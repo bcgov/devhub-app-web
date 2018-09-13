@@ -1,0 +1,46 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+      "browser": true,
+      "es6": true,
+      "jest": true
+    },
+    "extends": "airbnb",
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "settings": {
+      "import/core-modules": ["react"]
+    },
+    "plugins": [
+      "react"
+    ],
+    "rules": {
+      "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+      "linebreak-style": [
+        "warn",
+        "unix"
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "operator-linebreak": "off",
+      "indent": "off",
+      "jsx-a11y/click-events-have-key-events": "off",
+      "import/no-named-as-default": "off",
+      "no-shadow": "off",
+      "quote-props": "off",
+      "max-len": "off",
+      "react/sort-comp": "off",
+      "no-unused-expressions": "warn",
+      "no-useless-concat": "warn",
+      "block-scoped-var": "error",
+      "consistent-return": "error",
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    }
+  }
