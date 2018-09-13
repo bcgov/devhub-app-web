@@ -1,3 +1,5 @@
+const autoprefixer = require('autoprefixer');
+
 module.exports = {
   siteMetadata: {
     title: 'My Gatsby Site',
