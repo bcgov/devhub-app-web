@@ -7,23 +7,22 @@ exports.modifyWebpackConfig = ({ config, env }) => {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
       });
+      config.merge({
+        postcss: [
+          require('postcss-flexbugs-fixes'),
+          autoprefixer({
+            browsers: [
+              '>1%',
+              'last 4 versions',
+              'Firefox ESR',
+              'not ie < 9', // React doesn't support IE8 anyway
+            ],
+            flexbox: 'no-2009',
+          }),
+        ],
+      });
       break;
   }
-  // add post css plugins to all environments
-  config.merge({
-    postcss: [
-      require('postcss-flexbugs-fixes'),
-      autoprefixer({
-        browsers: [
-          '>1%',
-          'last 4 versions',
-          'Firefox ESR',
-          'not ie < 9', // React doesn't support IE8 anyway
-        ],
-        flexbox: 'no-2009',
-      }),
-    ]
-  });
   return config;
 };
 
