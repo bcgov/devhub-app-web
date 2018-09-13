@@ -1,41 +1,39 @@
-# gatsby-starter-gatsbythemes
+# Developers.gov.bc.ca
 
-This is a basic starter package for
-[GatsbyJS](https://github.com/gatsbyjs/gatsby). I found myself doing the same
-things over and over again when starting a new gatsby project, hence I figured
-I should created myself a starter so that I don't have to start from scratch
-every single time. Maybe this starter can be useful to some of you.
+> this application was scaffolded using [GatsbyJS](https://github.com/gatsbyjs/gatsby). 
 
-## Demo
-A preview of the starter can be seen [here](https://themes.gatsbythemes.com/gatsby-starter/).
+Developers.gov.bc.ca is an outline platform that...
 
-## What's included
+## Features
 
-Currently this starter includes the following:
+## Usage
+`cd [project directory]` and `gatsby develop` to run the app
+## Requirements
 
-* CSS-in-JS via [Emotion](https://github.com/emotion-js/emotion).
-* Jest and Enzyme for testing.
-* Eslint in dev mode with the airbnb config and prettier formatting rules.
-* React 16.
-* A basic blog, with posts under src/pages/blog. There's also a script which creates a new Blog entry (post.sh).
-* Data per JSON files.
-* A few basic components (Navigation, Footer, Layout).
-* Layout components make use of [Styled-System](https://github.com/jxnblk/styled-system).
-* Google Analytics (you just have to enter your tracking-id).
-* Gatsby-Plugin-Offline which includes Service Workers.
-* [Prettier](https://github.com/prettier/prettier) for a uniform codebase.
-* [Normalize](https://github.com/necolas/normalize.css/) css (7.0).
-* [Feather](https://feather.netlify.com/) icons.
-* Font styles taken from [Tachyons](http://tachyons.io/).
+## Installation
 
+## Project Status
 
-## How to use it?
+## Goals/Roadmap
 
-If you have 'gatsby' installed globally, just start a new project with:
+## Getting Help or Reporting an Issue
 
-```
-gatsby new my-project https://github.com/saschajullmann/gatsby-starter-gatsbythemes
-```
+## How to Contribute
 
-If there is anything else you'd like to see included or changed, just let me
-know.
+*If you are including a Code of Conduct, make sure that you have a [CODE_OF_CONDUCT.md](SAMPLE-CODE_OF_CONDUCT.md) file, and include the following text in here in the README:*
+"Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms."
+
+## License
+Copyright 2018 Province of British Columbia
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at 
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
