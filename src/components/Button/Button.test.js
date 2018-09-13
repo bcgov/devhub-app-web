@@ -16,4 +16,8 @@ describe('Button Component', () => {
     const wrapper = shallow(<Button>{text}</Button>);
     expect(wrapper.text()).toBe(text);
   });
+
+  test('it matches snapshot', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
 });

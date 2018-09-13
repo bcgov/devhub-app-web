@@ -35,7 +35,8 @@
   },
   "jest": {
     "transform": {
-      ".(js|jsx)": "babel-jest"
+      ".(js|jsx)": "babel-jest",
+      ".+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/config/fileTransformer.js"
     },
     "testRegex": "(\\.(test|spec))\\.(jsx|js)$",
     "testPathIgnorePatterns": [
@@ -44,11 +45,14 @@
     ],
     "moduleFileExtensions": [
       "jsx",
-      "js"
+      "js",
+      "module.css",
+      ".css"
     ],
     "moduleNameMapper": {
       "^react$": "gatsby-plugin-react-next/node_modules/react",
-      "^react-dom$": "gatsby-plugin-react-next/node_modules/react-dom"
+      "^react-dom$": "gatsby-plugin-react-next/node_modules/react-dom",
+      "\\.module\\.(css|less)$": "identity-obj-proxy"
     },
     "collectCoverage": true,
     "coverageReporters": [
@@ -75,6 +79,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-prettier": "^2.3.1",
     "eslint-plugin-react": "^7.4.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^21.2.1",
     "prettier": "1.7.4"
   }
