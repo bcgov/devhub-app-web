@@ -1,9 +1,8 @@
 {
-  "name": "gatsby-starter-gatsbythemes",
-  "author": "Sascha Jullmann <sascha@gatsbythemes.com>",
+  "name": "developer.gov.bc.ca",
   "version": "0.0.1",
   "main": "index.js",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "dependencies": {
     "autoprefixer": "^9.1.5",
     "emotion": "^8.0.8",
