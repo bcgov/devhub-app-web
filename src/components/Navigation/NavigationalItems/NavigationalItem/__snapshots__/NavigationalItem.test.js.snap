@@ -6,6 +6,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <NavigationalItem
     description="this is the description"
     icon=""
+    link="/"
     title="this is the title"
   />,
   Symbol(enzyme.__renderer__): Object {

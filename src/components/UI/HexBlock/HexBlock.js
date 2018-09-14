@@ -33,12 +33,14 @@ HexBlock.propTypes = {
   children: PropTypes.node,
   collapses: PropTypes.bool,
   clicked: PropTypes.func,
+  icon: PropTypes.string,
 };
 
 HexBlock.defaultProps = {
   children: '',
   collapses: false,
   clicked: () => undefined,
+  icon: ''
 };
 
 export default HexBlock;

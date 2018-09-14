@@ -6,8 +6,14 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <NavigationalItems
     navItems={
       Array [
-        "link 1",
-        "link 2",
+        Object {
+          "link": "/",
+          "text": "link1",
+        },
+        Object {
+          "link": "/2",
+          "text": "link2",
+        },
       ]
     }
   />,
@@ -28,14 +34,14 @@ ShallowWrapper {
         <NavigationalItem
           description=""
           icon="coffee"
-          link={[Function]}
-          title={undefined}
+          link="/"
+          title="link1"
         />,
         <NavigationalItem
           description=""
           icon="coffee"
-          link={[Function]}
-          title={undefined}
+          link="/2"
+          title="link2"
         />,
       ],
       "className": "NavigationalItems",
@@ -44,13 +50,13 @@ ShallowWrapper {
     "rendered": Array [
       Object {
         "instance": null,
-        "key": "undefined_0",
+        "key": "link1_0",
         "nodeType": "function",
         "props": Object {
           "description": "",
           "icon": "coffee",
-          "link": [Function],
-          "title": undefined,
+          "link": "/",
+          "title": "link1",
         },
         "ref": null,
         "rendered": null,
@@ -58,13 +64,13 @@ ShallowWrapper {
       },
       Object {
         "instance": null,
-        "key": "undefined_1",
+        "key": "link2_1",
         "nodeType": "function",
         "props": Object {
           "description": "",
           "icon": "coffee",
-          "link": [Function],
-          "title": undefined,
+          "link": "/2",
+          "title": "link2",
         },
         "ref": null,
         "rendered": null,
@@ -83,14 +89,14 @@ ShallowWrapper {
           <NavigationalItem
             description=""
             icon="coffee"
-            link={[Function]}
-            title={undefined}
+            link="/"
+            title="link1"
           />,
           <NavigationalItem
             description=""
             icon="coffee"
-            link={[Function]}
-            title={undefined}
+            link="/2"
+            title="link2"
           />,
         ],
         "className": "NavigationalItems",
@@ -99,13 +105,13 @@ ShallowWrapper {
       "rendered": Array [
         Object {
           "instance": null,
-          "key": "undefined_0",
+          "key": "link1_0",
           "nodeType": "function",
           "props": Object {
             "description": "",
             "icon": "coffee",
-            "link": [Function],
-            "title": undefined,
+            "link": "/",
+            "title": "link1",
           },
           "ref": null,
           "rendered": null,
@@ -113,13 +119,13 @@ ShallowWrapper {
         },
         Object {
           "instance": null,
-          "key": "undefined_1",
+          "key": "link2_1",
           "nodeType": "function",
           "props": Object {
             "description": "",
             "icon": "coffee",
-            "link": [Function],
-            "title": undefined,
+            "link": "/2",
+            "title": "link2",
           },
           "ref": null,
           "rendered": null,

@@ -1,13 +1,17 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import NavigationalItem from './NavigationalItem';
+import NavigationalItem, { navigate } from './NavigationalItem';
 
 describe('Navigational Item Component', () => {
   test('it matches snapshot', () => {
-    const title = 'this is the title';
-    const description = 'this is the description';
+    const baseProps = {
+      title: 'this is the title',
+      description: 'this is the description',
+      link: '/',
+    }
+
     const wrapper = shallow(
-      <NavigationalItem title={title} description={description} />
+      <NavigationalItem {...baseProps}/>
     );
     expect(wrapper).toMatchSnapshot();
   });

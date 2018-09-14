@@ -12,7 +12,6 @@
     "emotion-server": "^8.0.8",
     "feather-icons": "^3.3.0",
     "gatsby": "^1.9.76",
-    "gatsby-image": "^1.0.13",
     "gatsby-link": "^1.6.21",
     "gatsby-plugin-emotion": "^1.1.8",
     "gatsby-plugin-favicon": "^3.1.4",
