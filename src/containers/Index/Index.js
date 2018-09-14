@@ -6,31 +6,31 @@ import NavigationalItems from '../../components/Navigation/NavigationalItems/Nav
 const links = [
   {
     link: '/learn',
-    text: 'Learn',
+    title: 'Learn',
     icon: 'book',
     description: 'this is a description describing what this block is all about',
   },
   {
     link: '/do',
-    text: 'Do',
+    title: 'Do',
     icon: 'user-astronaut',
     description: 'this is a description describing what this block is all about',
   },
   {
     link: '/deliver',
-    text: 'Deliver',
+    title: 'Deliver',
     icon: 'shipping-fast',
     description: 'this is a description describing what this block is all about',
   },
   {
     link: '/deliver',
-    text: 'user-astronaut',
+    title: 'user-astronaut',
     icon: 'shipping-fast',
     description: 'this is a description describing what this block is all about',
   },
   {
     link: '/deliver',
-    text: 'blah',
+    title: 'blah',
     icon: 'shipping-fast',
     description: 'this is a description describing what this block is all about',
   },

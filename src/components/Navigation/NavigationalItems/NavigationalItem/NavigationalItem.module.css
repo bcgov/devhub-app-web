@@ -1,5 +1,11 @@
-.NavigationlItem .Title {
+.Title {
     font-size: 2em;
+    color: #234075;
+    margin-bottom: 15px;
+}
+
+.Description {
+    color: #002663;
 }
 /* .NavigationalItem {
     position: relative;

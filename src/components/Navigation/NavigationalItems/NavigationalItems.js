@@ -9,10 +9,8 @@ const NavigationalItems = props => {
   const hexClassNameMappings = hexGridCalculator(props.navItems.length, [3, 2]);
   const navItems = props.navItems.map((item, ind) => (
     <NavigationalItem
-      key={`${item.text}_${ind}`}
-      icon={item.icon}
-      title={item.text}
-      link={item.link}
+      key={`${item.title}_${ind}`}
+      {...item}
       hexGridClassNumber={hexClassNameMappings[ind]}
     />
   ));

@@ -8,7 +8,7 @@ const NavigationalItem = props => (
   <HexBlock icon={props.icon} clicked={() => push(props.link)} collapses gridClassNumber={props.hexGridClassNumber}>
     <div>
       <h3 className={classes.Title}>{props.title}</h3>
-      {props.description && <p>props.description</p>}
+      {props.description && <p className={classes.Description}>{props.description}</p>}
     </div>
   </HexBlock>
 );
