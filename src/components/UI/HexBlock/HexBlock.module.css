@@ -1,0 +1,64 @@
+.HexBlock {
+    position: relative;
+    width: 285px;
+    height: calc(285px / 1.6603639801);
+    background-color: rgba(255, 255, 255, .8);
+    border-left: solid 3px solid #ccc;
+    border-right: solid 3px solid #ccc;
+    display: inline-block;
+    border-radius: 5px;
+    text-align: center;   
+    margin: 94.12px 11px; 
+    box-sizing: border-box;
+    opacity: .85;
+}
+.HexBlock:hover,
+.HexBlock:hover::after,
+.HexBlock:hover::before {
+    border-color: #f3bd48;
+    opacity: 1;
+}
+
+.Collapses {
+    margin-top: 0;
+}
+/* add margin left to to hex block so that its size is equal to half a hexblock plus its initial margin-left of 11px plus the hex its
+attempted to overlap's margin-left*/
+.Collapses:first-child {
+    margin-left: calc((285px / 2) + 22px) ;
+}
+
+.HexBlock::after,
+.HexBlock::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    border-radius: inherit;
+    width: calc(281px / 1.4141922496);
+    height: calc(281px / 1.4141922496);
+    transform: scaleY(0.5774) rotate(-45deg);
+    background-color: inherit;
+    left: 38.1515px;
+}
+/* allows any content inside the hex block to stack on top of before/after elements */
+.HexBlock > * {
+    position: relative;
+    z-index: 2;
+}
+.HexBlock::after {
+    bottom: -99.3485px;
+    border-bottom: solid 4.3426px #ccc;
+    border-left: solid 4.3426px #ccc;
+}
+
+.HexBlock::before {
+    top: -99.3485px;
+    border-top: solid 4.3426px #ccc;
+    border-right: solid 4.3426px #ccc;
+}
+/* icon styles */
+.HexBlock .Icon {
+    font-size: 2.5em;
+    display: inline-block;
+    transform: translateY(-1em);
+}

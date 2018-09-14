@@ -1,4 +1,7 @@
-.NavigationalItem {
+.NavigationlItem .Title {
+    font-size: 2em;
+}
+/* .NavigationalItem {
     position: relative;
     list-style-type: none;
     width: 27.85714285714286%;
@@ -6,7 +9,7 @@
     overflow: hidden;
     visibility: hidden;
     -webkit-transform: rotate(-60deg) skewY(30deg);
-float:left;
+    float:left;
     -ms-transform: rotate(-60deg) skewY(30deg);
     transform: rotate(-60deg) skewY(30deg);
 }
@@ -32,4 +35,4 @@ float:left;
 .NavigationalItem:nth-child(2n + 3)
 .NavigationalItem:nth-child(3n + 3) {
     transform: skewY(-30deg) rotate(60deg) translateY(-5%);
-}
+} */
