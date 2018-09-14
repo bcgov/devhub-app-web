@@ -2,11 +2,9 @@ const autoprefixer = require('autoprefixer');
 
 module.exports = {
   siteMetadata: {
-    title: 'My Gatsby Site',
+    title: 'Devhub',
   },
-  mapping: {
-    'MarkdownRemark.frontmatter.author': 'AuthorsYaml',
-  },
+  mapping: {},
   plugins: [
     // Adding various source folders to the GraphQL layer.
     {
@@ -21,6 +19,13 @@ module.exports = {
       options: {
         name: `data`,
         path: `${__dirname}/src/data/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `fonts`,
+        path: `${__dirname}/src/assets/fonts`,
       },
     },
     {
@@ -42,5 +47,15 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-next',
+    'gatsby-plugin-react-helmet',
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        custom: {
+          families: ['Myriad-Pro:n1,n2,n3,n4,n5,n6,n7'],
+          urls: [`./src/assets/styles/fonts.css`],
+        },
+      },
+    },
   ],
 };

@@ -1,9 +1,6 @@
 /* eslint-disable no-undef, react/prop-types */
 import React from 'react';
-import Button from '../components/Button/Button';
+import NavigationalItems from '../components/Navigation/NavigationalItems/NavigationalItems';
 
-export default () => (
-  <div>
-    <Button>Hlloe world</Button>
-  </div>
-);
+const links = ['blah', 'blah', 'blah', 'baashasdf', 'asdf'];
+export default () => <NavigationalItems navItems={links} />;

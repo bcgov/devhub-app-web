@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button Component it matches snapshot 1`] = `
+exports[`Primary Footer Component it matches snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Button>
+  Symbol(enzyme.__unrendered__): <PrimaryFooter>
     
-  </Button>,
+  </PrimaryFooter>,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -20,11 +20,11 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": "",
-      "className": "Button",
+      "className": "PrimaryFooter",
     },
     "ref": null,
     "rendered": "",
-    "type": "button",
+    "type": "footer",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
@@ -33,11 +33,11 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": "",
-        "className": "Button",
+        "className": "PrimaryFooter",
       },
       "ref": null,
       "rendered": "",
-      "type": "button",
+      "type": "footer",
     },
   ],
   Symbol(enzyme.__options__): Object {
