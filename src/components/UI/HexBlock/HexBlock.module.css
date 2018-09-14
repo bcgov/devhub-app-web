@@ -22,11 +22,6 @@
 .Collapses {
     margin-top: 0;
 }
-/* add margin left to to hex block so that its size is equal to half a hexblock plus its initial margin-left of 11px plus the hex its
-attempted to overlap's margin-left*/
-.Collapses:first-child {
-    margin-left: calc((285px / 2) + 22px) ;
-}
 
 .HexBlock::after,
 .HexBlock::before {
@@ -62,3 +57,30 @@ attempted to overlap's margin-left*/
     display: inline-block;
     transform: translateY(-1em);
 }
+
+/* queries to make sure hex blocks wrap in the correct way */
+@media screen and (max-width: 993px) {
+    .HexBlock.Row3:nth-child(3n) {
+        margin-left: 200px;
+        margin-right: 200px;
+    }
+}
+
+@media screen and (max-width: 756px) {
+    .HexBlock.Row3:nth-child(3n) {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+}
+
+@media screen and (max-width: 683px) {
+    .HexBlock.Collapses:nth-child(n + 2) {
+        margin-top: 94.12px;
+    }
+    .HexBlock.Row3:nth-child(3n) {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
+
+

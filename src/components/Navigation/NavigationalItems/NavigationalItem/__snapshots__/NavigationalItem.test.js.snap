@@ -33,7 +33,7 @@ ShallowWrapper {
         </p>
       </div>,
       "clicked": [Function],
-      "collapses": false,
+      "collapses": true,
       "icon": "",
     },
     "ref": null,
@@ -100,7 +100,7 @@ ShallowWrapper {
           </p>
         </div>,
         "clicked": [Function],
-        "collapses": false,
+        "collapses": true,
         "icon": "",
       },
       "ref": null,

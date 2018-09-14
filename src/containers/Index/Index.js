@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import classes from './Index.module.css';
 import NavigationalItems from '../../components/Navigation/NavigationalItems/NavigationalItems';
 
 const links = [
@@ -8,24 +8,39 @@ const links = [
     link: '/learn',
     text: 'Learn',
     icon: 'book',
+    description: 'this is a description describing what this block is all about',
   },
   {
     link: '/do',
     text: 'Do',
     icon: 'user-astronaut',
+    description: 'this is a description describing what this block is all about',
   },
   {
     link: '/deliver',
     text: 'Deliver',
     icon: 'shipping-fast',
+    description: 'this is a description describing what this block is all about',
+  },
+  {
+    link: '/deliver',
+    text: 'user-astronaut',
+    icon: 'shipping-fast',
+    description: 'this is a description describing what this block is all about',
+  },
+  {
+    link: '/deliver',
+    text: 'blah',
+    icon: 'shipping-fast',
+    description: 'this is a description describing what this block is all about',
   },
 ];
 
 class Index extends Component {
   render() {
     return (
-      <main role="main">
-        <p>
+      <main role="main" className={classes.Main}>
+        <p className={classes.Para}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
           imperdiet ullamcorper massa, eget venenatis mauris sagittis ut. Nunc
           rutrum libero consequat turpis faucibus semper. In hac habitasse

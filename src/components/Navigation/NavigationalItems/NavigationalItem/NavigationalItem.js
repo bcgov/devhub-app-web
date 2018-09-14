@@ -5,7 +5,7 @@ import HexBlock from '../../../UI/HexBlock/HexBlock';
 import classes from './NavigationalItem.module.css';
 
 const NavigationalItem = props => (
-  <HexBlock icon={props.icon} clicked={() => push(props.link)}>
+  <HexBlock icon={props.icon} clicked={() => push(props.link)} collapses gridClassNumber={props.hexGridClassNumber}>
     <div>
       <h3 className={classes.Title}>{props.title}</h3>
       {props.description && <p>props.description</p>}
@@ -18,6 +18,7 @@ NavigationalItem.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   link: PropTypes.string.isRequired,
+  hexGridClassNumber: PropTypes.number.isRequired
 };
 
 NavigationalItem.defaultProps = {
