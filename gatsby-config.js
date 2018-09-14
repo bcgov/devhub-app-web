@@ -52,10 +52,8 @@ module.exports = {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
         custom: {
-          families: ['Myriad Pro'],
-          urls: [
-            `${__dirname}/src/styles/fonts.css`,
-          ],
+          families: ['Myriad-Pro:n1,n2,n3,n4,n5,n6,n7'],
+          urls: [`./src/assets/styles/fonts.css`],
         },
       },
     },
