@@ -3,7 +3,20 @@ import PropTypes from 'prop-types';
 
 import NavigationalItems from '../../components/Navigation/NavigationalItems/NavigationalItems';
 
-const links = ['Learn', 'Do', 'Deliver'];
+const links = [
+  {
+    link: '/learn',
+    text: 'Learn',
+  },
+  {
+    link: '/do',
+    text: 'Do',
+  },
+  {
+    link: '/deliver',
+    text: 'Deliver',
+  },
+];
 
 class Index extends Component {
   render() {

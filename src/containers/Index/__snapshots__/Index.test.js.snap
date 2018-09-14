@@ -24,9 +24,18 @@ ShallowWrapper {
         <NavigationalItems
           navItems={
             Array [
-              "Learn",
-              "Do",
-              "Deliver",
+              Object {
+                "link": "/learn",
+                "text": "Learn",
+              },
+              Object {
+                "link": "/do",
+                "text": "Do",
+              },
+              Object {
+                "link": "/deliver",
+                "text": "Deliver",
+              },
             ]
           }
         />,
@@ -52,9 +61,18 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "navItems": Array [
-            "Learn",
-            "Do",
-            "Deliver",
+            Object {
+              "link": "/learn",
+              "text": "Learn",
+            },
+            Object {
+              "link": "/do",
+              "text": "Do",
+            },
+            Object {
+              "link": "/deliver",
+              "text": "Deliver",
+            },
           ],
         },
         "ref": null,
@@ -77,9 +95,18 @@ ShallowWrapper {
           <NavigationalItems
             navItems={
               Array [
-                "Learn",
-                "Do",
-                "Deliver",
+                Object {
+                  "link": "/learn",
+                  "text": "Learn",
+                },
+                Object {
+                  "link": "/do",
+                  "text": "Do",
+                },
+                Object {
+                  "link": "/deliver",
+                  "text": "Deliver",
+                },
               ]
             }
           />,
@@ -105,9 +132,18 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "navItems": Array [
-              "Learn",
-              "Do",
-              "Deliver",
+              Object {
+                "link": "/learn",
+                "text": "Learn",
+              },
+              Object {
+                "link": "/do",
+                "text": "Do",
+              },
+              Object {
+                "link": "/deliver",
+                "text": "Deliver",
+              },
             ],
           },
           "ref": null,
