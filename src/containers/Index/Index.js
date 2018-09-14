@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 
 import NavigationalItems from '../../components/Navigation/NavigationalItems/NavigationalItems';
 
-
 const links = ['Learn', 'Do', 'Deliver'];
 
 class Index extends Component {
-
   render() {
     return (
       <main role="main">
