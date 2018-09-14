@@ -19,7 +19,7 @@ NavigationalItem.propTypes = {
 };
 
 NavigationalItem.defaultProps = {
-  icon: false,
+  icon: '',
   description: '',
 };
 
