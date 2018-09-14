@@ -28,12 +28,14 @@ ShallowWrapper {
         <NavigationalItem
           description=""
           icon="coffee"
-          title="link 1"
+          link={[Function]}
+          title={undefined}
         />,
         <NavigationalItem
           description=""
           icon="coffee"
-          title="link 2"
+          link={[Function]}
+          title={undefined}
         />,
       ],
       "className": "NavigationalItems",
@@ -42,12 +44,13 @@ ShallowWrapper {
     "rendered": Array [
       Object {
         "instance": null,
-        "key": "link 1_0",
+        "key": "undefined_0",
         "nodeType": "function",
         "props": Object {
           "description": "",
           "icon": "coffee",
-          "title": "link 1",
+          "link": [Function],
+          "title": undefined,
         },
         "ref": null,
         "rendered": null,
@@ -55,12 +58,13 @@ ShallowWrapper {
       },
       Object {
         "instance": null,
-        "key": "link 2_1",
+        "key": "undefined_1",
         "nodeType": "function",
         "props": Object {
           "description": "",
           "icon": "coffee",
-          "title": "link 2",
+          "link": [Function],
+          "title": undefined,
         },
         "ref": null,
         "rendered": null,
@@ -79,12 +83,14 @@ ShallowWrapper {
           <NavigationalItem
             description=""
             icon="coffee"
-            title="link 1"
+            link={[Function]}
+            title={undefined}
           />,
           <NavigationalItem
             description=""
             icon="coffee"
-            title="link 2"
+            link={[Function]}
+            title={undefined}
           />,
         ],
         "className": "NavigationalItems",
@@ -93,12 +99,13 @@ ShallowWrapper {
       "rendered": Array [
         Object {
           "instance": null,
-          "key": "link 1_0",
+          "key": "undefined_0",
           "nodeType": "function",
           "props": Object {
             "description": "",
             "icon": "coffee",
-            "title": "link 1",
+            "link": [Function],
+            "title": undefined,
           },
           "ref": null,
           "rendered": null,
@@ -106,12 +113,13 @@ ShallowWrapper {
         },
         Object {
           "instance": null,
-          "key": "link 2_1",
+          "key": "undefined_1",
           "nodeType": "function",
           "props": Object {
             "description": "",
             "icon": "coffee",
-            "title": "link 2",
+            "link": [Function],
+            "title": undefined,
           },
           "ref": null,
           "rendered": null,
