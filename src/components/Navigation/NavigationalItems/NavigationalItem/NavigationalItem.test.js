@@ -8,6 +8,7 @@ describe('Navigational Item Component', () => {
       title: 'this is the title',
       description: 'this is the description',
       link: '/',
+      hexGridClassNumber: 2,
     };
 
     const wrapper = shallow(<NavigationalItem {...baseProps} />);

@@ -5,6 +5,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <NavigationalItem
     description="this is the description"
+    hexGridClassNumber={2}
     icon=""
     link="/"
     title="this is the title"
@@ -28,12 +29,15 @@ ShallowWrapper {
         >
           this is the title
         </h3>
-        <p>
-          props.description
+        <p
+          className="Description"
+        >
+          this is the description
         </p>
       </div>,
       "clicked": [Function],
       "collapses": true,
+      "gridClassNumber": 2,
       "icon": "",
     },
     "ref": null,
@@ -48,8 +52,10 @@ ShallowWrapper {
           >
             this is the title
           </h3>,
-          <p>
-            props.description
+          <p
+            className="Description"
+          >
+            this is the description
           </p>,
         ],
       },
@@ -72,10 +78,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": "props.description",
+            "children": "this is the description",
+            "className": "Description",
           },
           "ref": null,
-          "rendered": "props.description",
+          "rendered": "this is the description",
           "type": "p",
         },
       ],
@@ -95,12 +102,15 @@ ShallowWrapper {
           >
             this is the title
           </h3>
-          <p>
-            props.description
+          <p
+            className="Description"
+          >
+            this is the description
           </p>
         </div>,
         "clicked": [Function],
         "collapses": true,
+        "gridClassNumber": 2,
         "icon": "",
       },
       "ref": null,
@@ -115,8 +125,10 @@ ShallowWrapper {
             >
               this is the title
             </h3>,
-            <p>
-              props.description
+            <p
+              className="Description"
+            >
+              this is the description
             </p>,
           ],
         },
@@ -139,10 +151,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": "props.description",
+              "children": "this is the description",
+              "className": "Description",
             },
             "ref": null,
-            "rendered": "props.description",
+            "rendered": "this is the description",
             "type": "p",
           },
         ],

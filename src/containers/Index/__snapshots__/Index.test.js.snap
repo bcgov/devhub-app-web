@@ -27,19 +27,34 @@ ShallowWrapper {
           navItems={
             Array [
               Object {
+                "description": "this is a description describing what this block is all about",
                 "icon": "book",
                 "link": "/learn",
-                "text": "Learn",
+                "title": "Learn",
               },
               Object {
+                "description": "this is a description describing what this block is all about",
                 "icon": "user-astronaut",
                 "link": "/do",
-                "text": "Do",
+                "title": "Do",
               },
               Object {
+                "description": "this is a description describing what this block is all about",
                 "icon": "shipping-fast",
                 "link": "/deliver",
-                "text": "Deliver",
+                "title": "Deliver",
+              },
+              Object {
+                "description": "this is a description describing what this block is all about",
+                "icon": "shipping-fast",
+                "link": "/deliver",
+                "title": "user-astronaut",
+              },
+              Object {
+                "description": "this is a description describing what this block is all about",
+                "icon": "shipping-fast",
+                "link": "/deliver",
+                "title": "blah",
               },
             ]
           }
@@ -69,19 +84,34 @@ ShallowWrapper {
         "props": Object {
           "navItems": Array [
             Object {
+              "description": "this is a description describing what this block is all about",
               "icon": "book",
               "link": "/learn",
-              "text": "Learn",
+              "title": "Learn",
             },
             Object {
+              "description": "this is a description describing what this block is all about",
               "icon": "user-astronaut",
               "link": "/do",
-              "text": "Do",
+              "title": "Do",
             },
             Object {
+              "description": "this is a description describing what this block is all about",
               "icon": "shipping-fast",
               "link": "/deliver",
-              "text": "Deliver",
+              "title": "Deliver",
+            },
+            Object {
+              "description": "this is a description describing what this block is all about",
+              "icon": "shipping-fast",
+              "link": "/deliver",
+              "title": "user-astronaut",
+            },
+            Object {
+              "description": "this is a description describing what this block is all about",
+              "icon": "shipping-fast",
+              "link": "/deliver",
+              "title": "blah",
             },
           ],
         },
@@ -108,19 +138,34 @@ ShallowWrapper {
             navItems={
               Array [
                 Object {
+                  "description": "this is a description describing what this block is all about",
                   "icon": "book",
                   "link": "/learn",
-                  "text": "Learn",
+                  "title": "Learn",
                 },
                 Object {
+                  "description": "this is a description describing what this block is all about",
                   "icon": "user-astronaut",
                   "link": "/do",
-                  "text": "Do",
+                  "title": "Do",
                 },
                 Object {
+                  "description": "this is a description describing what this block is all about",
                   "icon": "shipping-fast",
                   "link": "/deliver",
-                  "text": "Deliver",
+                  "title": "Deliver",
+                },
+                Object {
+                  "description": "this is a description describing what this block is all about",
+                  "icon": "shipping-fast",
+                  "link": "/deliver",
+                  "title": "user-astronaut",
+                },
+                Object {
+                  "description": "this is a description describing what this block is all about",
+                  "icon": "shipping-fast",
+                  "link": "/deliver",
+                  "title": "blah",
                 },
               ]
             }
@@ -150,19 +195,34 @@ ShallowWrapper {
           "props": Object {
             "navItems": Array [
               Object {
+                "description": "this is a description describing what this block is all about",
                 "icon": "book",
                 "link": "/learn",
-                "text": "Learn",
+                "title": "Learn",
               },
               Object {
+                "description": "this is a description describing what this block is all about",
                 "icon": "user-astronaut",
                 "link": "/do",
-                "text": "Do",
+                "title": "Do",
               },
               Object {
+                "description": "this is a description describing what this block is all about",
                 "icon": "shipping-fast",
                 "link": "/deliver",
-                "text": "Deliver",
+                "title": "Deliver",
+              },
+              Object {
+                "description": "this is a description describing what this block is all about",
+                "icon": "shipping-fast",
+                "link": "/deliver",
+                "title": "user-astronaut",
+              },
+              Object {
+                "description": "this is a description describing what this block is all about",
+                "icon": "shipping-fast",
+                "link": "/deliver",
+                "title": "blah",
               },
             ],
           },

@@ -19,7 +19,12 @@ const NavigationalItems = props => {
 };
 
 NavigationalItems.propTypes = {
-  navItems: PropTypes.arrayOf(PropTypes.node).isRequired
-}
+  navItems: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    icon: PropTypes.string,
+    link: PropTypes.string
+  })).isRequired,
+};
 
 export default NavigationalItems;
