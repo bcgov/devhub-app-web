@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import HexBlock from '../../../UI/HexBlock/HexBlock';
 import classes from './NavigationalItem.module.css';
 
-
 const NavigationalItem = props => (
   <HexBlock icon={props.icon} clicked={() => push(props.link)}>
     <div>

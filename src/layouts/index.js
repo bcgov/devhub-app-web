@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 /* eslint-disable */
 // font awesome loading
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons';
-library.add(faCheckSquare, faCoffee);
+import '../utils/fontAwesomeLibrary';
 import normalize from 'normalize.css';
 import '../assets/styles/index.css';
 import '../assets/styles/fonts.css';

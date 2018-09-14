@@ -6,7 +6,7 @@ const NavigationalItems = props => {
   const navItems = props.navItems.map((item, ind) => (
     <NavigationalItem
       key={`${item.text}_${ind}`}
-      icon="coffee"
+      icon={item.icon}
       title={item.text}
       link={item.link}
     />

@@ -8,11 +8,9 @@ describe('Navigational Item Component', () => {
       title: 'this is the title',
       description: 'this is the description',
       link: '/',
-    }
+    };
 
-    const wrapper = shallow(
-      <NavigationalItem {...baseProps}/>
-    );
+    const wrapper = shallow(<NavigationalItem {...baseProps} />);
     expect(wrapper).toMatchSnapshot();
   });
 });

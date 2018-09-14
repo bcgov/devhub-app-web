@@ -40,7 +40,7 @@ HexBlock.defaultProps = {
   children: '',
   collapses: false,
   clicked: () => undefined,
-  icon: ''
+  icon: '',
 };
 
 export default HexBlock;

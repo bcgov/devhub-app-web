@@ -33,13 +33,13 @@ ShallowWrapper {
       "children": Array [
         <NavigationalItem
           description=""
-          icon="coffee"
+          icon=""
           link="/"
           title="link1"
         />,
         <NavigationalItem
           description=""
-          icon="coffee"
+          icon=""
           link="/2"
           title="link2"
         />,
@@ -54,7 +54,7 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "description": "",
-          "icon": "coffee",
+          "icon": "",
           "link": "/",
           "title": "link1",
         },
@@ -68,7 +68,7 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "description": "",
-          "icon": "coffee",
+          "icon": "",
           "link": "/2",
           "title": "link2",
         },
@@ -88,13 +88,13 @@ ShallowWrapper {
         "children": Array [
           <NavigationalItem
             description=""
-            icon="coffee"
+            icon=""
             link="/"
             title="link1"
           />,
           <NavigationalItem
             description=""
-            icon="coffee"
+            icon=""
             link="/2"
             title="link2"
           />,
@@ -109,7 +109,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "description": "",
-            "icon": "coffee",
+            "icon": "",
             "link": "/",
             "title": "link1",
           },
@@ -123,7 +123,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "description": "",
-            "icon": "coffee",
+            "icon": "",
             "link": "/2",
             "title": "link2",
           },

@@ -7,14 +7,17 @@ const links = [
   {
     link: '/learn',
     text: 'Learn',
+    icon: 'book',
   },
   {
     link: '/do',
     text: 'Do',
+    icon: 'user-astronaut',
   },
   {
     link: '/deliver',
     text: 'Deliver',
+    icon: 'shipping-fast',
   },
 ];
 

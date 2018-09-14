@@ -25,14 +25,17 @@ ShallowWrapper {
           navItems={
             Array [
               Object {
+                "icon": "book",
                 "link": "/learn",
                 "text": "Learn",
               },
               Object {
+                "icon": "user-astronaut",
                 "link": "/do",
                 "text": "Do",
               },
               Object {
+                "icon": "shipping-fast",
                 "link": "/deliver",
                 "text": "Deliver",
               },
@@ -62,14 +65,17 @@ ShallowWrapper {
         "props": Object {
           "navItems": Array [
             Object {
+              "icon": "book",
               "link": "/learn",
               "text": "Learn",
             },
             Object {
+              "icon": "user-astronaut",
               "link": "/do",
               "text": "Do",
             },
             Object {
+              "icon": "shipping-fast",
               "link": "/deliver",
               "text": "Deliver",
             },
@@ -96,14 +102,17 @@ ShallowWrapper {
             navItems={
               Array [
                 Object {
+                  "icon": "book",
                   "link": "/learn",
                   "text": "Learn",
                 },
                 Object {
+                  "icon": "user-astronaut",
                   "link": "/do",
                   "text": "Do",
                 },
                 Object {
+                  "icon": "shipping-fast",
                   "link": "/deliver",
                   "text": "Deliver",
                 },
@@ -133,14 +142,17 @@ ShallowWrapper {
           "props": Object {
             "navItems": Array [
               Object {
+                "icon": "book",
                 "link": "/learn",
                 "text": "Learn",
               },
               Object {
+                "icon": "user-astronaut",
                 "link": "/do",
                 "text": "Do",
               },
               Object {
+                "icon": "shipping-fast",
                 "link": "/deliver",
                 "text": "Deliver",
               },
