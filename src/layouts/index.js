@@ -23,7 +23,10 @@ const Layout = ({ children, data }) => (
       />
     </Helmet>
     <PrimaryHeader />
-    {children()}
+    <div className="container">
+      {children()}
+
+    </div>
     <PrimaryFooter>
       <p>this is the footer</p>
     </PrimaryFooter>
