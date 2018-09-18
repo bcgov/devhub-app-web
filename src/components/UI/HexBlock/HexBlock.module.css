@@ -1,18 +1,19 @@
 .HexBlock {
     position: relative;
-    width: 285px;
-    height: calc(285px / 1.6603639801);
+    width: 17.82em;
+    height: calc(17.82em / 1.6603639801);
     background-color: rgba(255, 255, 255, .8);
-    border-left: solid 3px solid #ccc;
-    border-right: solid 3px solid #ccc;
+    border-left: solid .2em solid #ccc;
+    border-right: solid .2em solid #ccc;
     display: inline-block;
     border-radius: 5px;
     text-align: center;   
-    margin: 94.12px 11px; 
+    margin: 5.89em .69em; 
     box-sizing: border-box;
     padding: 10px;
     opacity: .85;
     text-decoration: none;
+    font-size: 16px;
 }
 
 .HexBlock:visited {
@@ -35,11 +36,11 @@
     position: absolute;
     z-index: 1;
     border-radius: inherit;
-    width: calc(281px / 1.4141922496);
-    height: calc(281px / 1.4141922496);
+    width: calc(17.56em / 1.4141922496);
+    height: calc(17.56em / 1.4141922496);
     transform: scaleY(0.5774) rotate(-45deg);
     background-color: inherit;
-    left: 38.1515px;
+    left: 2.38em;
 }
 /* allows any content inside the hex block to stack on top of before/after elements */
 .HexBlock > * {
@@ -47,15 +48,15 @@
     z-index: 2;
 }
 .HexBlock::after {
-    bottom: -99.3485px;
-    border-bottom: solid 4.3426px #ccc;
-    border-left: solid 4.3426px #ccc;
+    bottom: -6.21em;
+    border-bottom: solid .27em #ccc;
+    border-left: solid .27em #ccc;
 }
 
 .HexBlock::before {
-    top: -99.3485px;
-    border-top: solid 4.3426px #ccc;
-    border-right: solid 4.3426px #ccc;
+    top: -6.21em;
+    border-top: solid .27em #ccc;
+    border-right: solid .27em #ccc;
 }
 /* icon styles */
 .HexBlock .Icon {
