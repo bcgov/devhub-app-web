@@ -59,9 +59,6 @@ src/                - Project Code
         └── PrimaryFooter
         └── PrimaryHeader
         └── UI/
-    └── containers/ - Main Container Components per Gatsby Page
-        └── Index
-        └── Learn
     └── layouts     - Gatsby Layout Template as per framework
     └── pages/      - Gatsby builds static sites from these componenets
         └── index   - containers Index Container
