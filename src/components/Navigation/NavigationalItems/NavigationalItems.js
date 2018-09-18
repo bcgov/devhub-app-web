@@ -15,7 +15,7 @@ const NavigationalItems = props => {
     />
   ));
 
-  return <div className={classes.NavigationalItems}>{navItems}</div>;
+  return <nav className={classes.NavigationalItems}>{navItems}</nav>;
 };
 
 NavigationalItems.propTypes = {

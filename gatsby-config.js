@@ -41,14 +41,5 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-next',
     'gatsby-plugin-react-helmet',
-    {
-      resolve: 'gatsby-plugin-web-font-loader',
-      options: {
-        custom: {
-          families: ['Myriad-Pro:n1,n2,n3,n4,n5,n6,n7'],
-          urls: [`./src/assets/styles/fonts.css`],
-        },
-      },
-    },
   ],
 };
