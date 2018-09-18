@@ -7,16 +7,15 @@ import classes from './NavigationalItem.module.css';
 const NavigationalItem = props => (
   <HexBlock
     icon={props.icon}
-    clicked={() => push(props.link)}
+    link={props.link}
     collapses
-    gridClassNumber={props.hexGridClassNumber}
-  >
-    <div>
-      <h3 className={classes.Title}>{props.title}</h3>
+    gridClassNumber={props.hexGridClassNumber}>
+    <span className={classes.NavigationalItem}>
+      <span className={classes.Title}>{props.title}</span>
       {props.description && (
-        <p className={classes.Description}>{props.description}</p>
+        <span className={classes.Description}>{props.description}</span>
       )}
-    </div>
+    </span>
   </HexBlock>
 );
 

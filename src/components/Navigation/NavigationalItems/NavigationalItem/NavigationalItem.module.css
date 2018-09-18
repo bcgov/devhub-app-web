@@ -1,7 +1,12 @@
+.NavigationalItem {
+    display: block;
+}
+
 .Title {
     font-size: 2em;
     color: #234075;
     margin-bottom: 15px;
+    display: block;
 }
 
 .Description {

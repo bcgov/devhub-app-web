@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classes from './HexBlock.module.css';
+import Link from '../../Common/Link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const HexBlock = ({ children, collapses, icon, clicked, gridClassNumber }) => {
+const HexBlock = ({ children, collapses, icon, gridClassNumber, link }) => {
   const classNames = [classes.HexBlock];
   let iconWrapper = null;
   // apply a grid class style to allow hexes to stack on wrap
@@ -31,10 +32,10 @@ const HexBlock = ({ children, collapses, icon, clicked, gridClassNumber }) => {
   }
 
   return (
-    <div className={classNames.join(' ')} onClick={clicked}>
+    <Link className={classNames.join(' ')} to={link}>
       {iconWrapper}
       {children}
-    </div>
+    </Link>
   );
 };
 

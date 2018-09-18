@@ -10,7 +10,13 @@
     text-align: center;   
     margin: 94.12px 11px; 
     box-sizing: border-box;
+    padding: 10px;
     opacity: .85;
+    text-decoration: none;
+}
+
+.HexBlock:visited {
+    color: inherit;
 }
 .HexBlock:hover,
 .HexBlock:hover::after,

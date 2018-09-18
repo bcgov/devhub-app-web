@@ -5,36 +5,22 @@ import NavigationalItems from '../components/Navigation/NavigationalItems/Naviga
 
 const links = [
   {
-    link: '/learn',
+    link: 'https://www.pathfinder.gov.bc.ca',
     title: 'Learn',
     icon: 'book',
     description:
-      'this is a description describing what this block is all about',
+      'Learn more about the Pathfinder initiative',
   },
   {
     link: '/do',
     title: 'Do',
     icon: 'user-astronaut',
     description:
-      'this is a description describing what this block is all about',
+      'Use the Signing Tool',
   },
   {
     link: '/deliver',
     title: 'Deliver',
-    icon: 'shipping-fast',
-    description:
-      'this is a description describing what this block is all about',
-  },
-  {
-    link: '/deliver',
-    title: 'user-astronaut',
-    icon: 'shipping-fast',
-    description:
-      'this is a description describing what this block is all about',
-  },
-  {
-    link: '/deliver',
-    title: 'blah',
     icon: 'shipping-fast',
     description:
       'this is a description describing what this block is all about',
