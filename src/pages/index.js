@@ -1,6 +1,5 @@
 /* eslint-disable no-undef, react/prop-types */
 import React from 'react';
-import NavigationalItems from '../components/Navigation/NavigationalItems/NavigationalItems';
+import Index from '../containers/Index/Index';
 
-const links = ['blah', 'blah', 'blah', 'baashasdf', 'asdf'];
-export default () => <NavigationalItems navItems={links} />;
+export default () => <Index />;

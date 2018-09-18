@@ -4,6 +4,8 @@
     padding: 0;
     display: flex;
     flex-flow: row wrap;
-    max-width: 800px;
+    justify-content: center;
     margin: 0 auto;
+    padding-top: 100px;
 }
+

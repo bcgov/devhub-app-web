@@ -23,7 +23,7 @@ ShallowWrapper {
           Developers Hub
         </h1>,
       ],
-      "class": "PrimaryHeader",
+      "className": "PrimaryHeader",
     },
     "ref": null,
     "rendered": Array [
@@ -62,7 +62,7 @@ ShallowWrapper {
             Developers Hub
           </h1>,
         ],
-        "class": "PrimaryHeader",
+        "className": "PrimaryHeader",
       },
       "ref": null,
       "rendered": Array [

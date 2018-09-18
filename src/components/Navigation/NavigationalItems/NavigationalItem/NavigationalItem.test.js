@@ -1,11 +1,17 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import NavigationalItem from './NavigationalItem';
+import NavigationalItem, { navigate } from './NavigationalItem';
 
 describe('Navigational Item Component', () => {
-  test('it allows node to be passed in as child', () => {
-    const child = <div>Child</div>;
-    const wrapper = shallow(<NavigationalItem>{child}</NavigationalItem>);
-    expect(wrapper.containsMatchingElement(child)).toBe(true);
+  test('it matches snapshot', () => {
+    const baseProps = {
+      title: 'this is the title',
+      description: 'this is the description',
+      link: '/',
+      hexGridClassNumber: 2,
+    };
+
+    const wrapper = shallow(<NavigationalItem {...baseProps} />);
+    expect(wrapper).toMatchSnapshot();
   });
 });

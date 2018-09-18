@@ -6,6 +6,7 @@ Developers.gov.bc.ca is an outline platform that...
 ## Technology Stack Used
 - GatsbyJS
 - ReactJS
+- GraphQL
 ## Third-Party Products/Libraries used and the the License they are covert by
 - GatsbyJS 
 
@@ -31,10 +32,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ## Project Status
-
+In Development
 ## Documnentation
 
-GitHub Pages (https://guides.github.com/features/pages/) are a neat way to document you application/project.
+- [Component Architecture](./docs/components.md)
 
 ## Security
 
@@ -43,19 +44,47 @@ Authentication, Authorization, Policies, etc
 ## Files in this repository
 
 ```
-docs/           - Project Documentation
+docs/               - Project Documentation
 └── images        
-└── icons         
-
-openshift/      - OpenShift-specific files
-├── scripts     - helper scripts
-└── templates   - application templates
+└── icons       
+config/             - Test Configurations / Webpack Transformers
+src/                - Project Code
+    └── __mocks__   - jest mock fns
+    └── assets/
+        └── fonts
+        └── images
+        └── styles  - (global styles)
+    └── components/ - Presentational Components
+        └── Navigation/
+        └── PrimaryFooter
+        └── PrimaryHeader
+        └── UI/
+    └── containers/ - Main Container Components per Gatsby Page
+        └── Index
+        └── Learn
+    └── layouts     - Gatsby Layout Template as per framework
+    └── pages/      - Gatsby builds static sites from these componenets
+        └── index   - containers Index Container
+        └── learn   - '...'
+    └── templates   - template 'page' for page building on build time (ie building pages from github readme files) 
+    └── utils       - utility functions
+openshift/          - OpenShift-specific files
+├── scripts         - helper scripts
+└── templates       - application templates
 ```
 
 ## Deployment (Local Development)
 
-* Developer Workstation Requirements/Setup
-* Application Specific Setup
+* Requires Node 8 or higher
+* Clone this repo
+* Change into project directory
+* run: `npm install`
+* it may be beneficial to have the gatsby cli package `npm install -g gatsby-cli`
+* to start development server run: `gatsby develop`
+* to build a production version run: `gatsby build`
+* to view production build run: `gatsby serve`
+* to run prettier: `npm run prettify`
+* to run test suites: `npm test`
 
 ## Deployment (OpenShift)
 

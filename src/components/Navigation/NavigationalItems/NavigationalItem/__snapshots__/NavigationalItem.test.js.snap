@@ -1,0 +1,187 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navigational Item Component it matches snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <NavigationalItem
+    description="this is the description"
+    hexGridClassNumber={2}
+    icon=""
+    link="/"
+    title="this is the title"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": <div>
+        <h3
+          className="Title"
+        >
+          this is the title
+        </h3>
+        <p
+          className="Description"
+        >
+          this is the description
+        </p>
+      </div>,
+      "clicked": [Function],
+      "collapses": true,
+      "gridClassNumber": 2,
+      "icon": "",
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <h3
+            className="Title"
+          >
+            this is the title
+          </h3>,
+          <p
+            className="Description"
+          >
+            this is the description
+          </p>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "this is the title",
+            "className": "Title",
+          },
+          "ref": null,
+          "rendered": "this is the title",
+          "type": "h3",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "this is the description",
+            "className": "Description",
+          },
+          "ref": null,
+          "rendered": "this is the description",
+          "type": "p",
+        },
+      ],
+      "type": "div",
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": <div>
+          <h3
+            className="Title"
+          >
+            this is the title
+          </h3>
+          <p
+            className="Description"
+          >
+            this is the description
+          </p>
+        </div>,
+        "clicked": [Function],
+        "collapses": true,
+        "gridClassNumber": 2,
+        "icon": "",
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <h3
+              className="Title"
+            >
+              this is the title
+            </h3>,
+            <p
+              className="Description"
+            >
+              this is the description
+            </p>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "this is the title",
+              "className": "Title",
+            },
+            "ref": null,
+            "rendered": "this is the title",
+            "type": "h3",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "this is the description",
+              "className": "Description",
+            },
+            "ref": null,
+            "rendered": "this is the description",
+            "type": "p",
+          },
+        ],
+        "type": "div",
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

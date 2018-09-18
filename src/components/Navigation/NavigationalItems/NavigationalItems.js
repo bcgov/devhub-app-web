@@ -1,17 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import NavigationalItem from './NavigationalItem/NavigationalItem';
 import classes from './NavigationalItems.module.css';
+import hexGridCalculator from '../../../utils/hexGridCalculator';
 
 const NavigationalItems = props => {
-  const navItems = props.navItems.map((item, ind) => {
-    return (
-      <NavigationalItem key={item + `_${ind}`}>
-        <h1>{item}</h1>
-      </NavigationalItem>
-    );
-  });
+  //get class name mappins so that the navigational item hexes display as a grid
+  const hexClassNameMappings = hexGridCalculator(props.navItems.length, [3, 2]);
+  const navItems = props.navItems.map((item, ind) => (
+    <NavigationalItem
+      key={`${item.title}_${ind}`}
+      {...item}
+      hexGridClassNumber={hexClassNameMappings[ind]}
+    />
+  ));
 
-  return <ul className={classes.NavigationalItems}>{navItems}</ul>;
+  return <div className={classes.NavigationalItems}>{navItems}</div>;
+};
+
+NavigationalItems.propTypes = {
+  navItems: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    icon: PropTypes.string,
+    link: PropTypes.string
+  })).isRequired,
 };
 
 export default NavigationalItems;

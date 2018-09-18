@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 /* eslint-disable */
+// font awesome loading
+import '../utils/fontAwesomeLibrary';
 import normalize from 'normalize.css';
 import '../assets/styles/index.css';
 import '../assets/styles/fonts.css';
-
 import PrimaryFooter from '../components/PrimaryFooter/PrimaryFooter';
 import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
 
@@ -20,10 +21,7 @@ const Layout = ({ children, data }) => (
       />
     </Helmet>
     <PrimaryHeader />
-    {children()}
-    <PrimaryFooter>
-      <p>this is the footer</p>
-    </PrimaryFooter>
+    <div className="container">{children()}</div>
   </div>
 );
 
