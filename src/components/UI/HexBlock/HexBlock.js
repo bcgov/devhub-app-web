@@ -4,7 +4,7 @@ import classes from './HexBlock.module.css';
 import Link from '../../Common/Link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const HexBlock = ({ children, collapses, icon, gridClassNumber, link }) => {
+const HexBlock = ({ children, collapses, icon, gridClassNumber, link, fontSize}) => {
   const classNames = [classes.HexBlock];
   let iconWrapper = null;
   // apply a grid class style to allow hexes to stack on wrap
@@ -32,7 +32,7 @@ const HexBlock = ({ children, collapses, icon, gridClassNumber, link }) => {
   }
 
   return (
-    <Link className={classNames.join(' ')} to={link}>
+    <Link className={classNames.join(' ')} to={link} style={{fontSize}}>
       {iconWrapper}
       {children}
     </Link>
@@ -45,6 +45,7 @@ HexBlock.propTypes = {
   clicked: PropTypes.func,
   icon: PropTypes.string,
   gridClassNumber: PropTypes.number.isRequired,
+  fontSize: PropTypes.string
 };
 
 HexBlock.defaultProps = {
@@ -52,6 +53,7 @@ HexBlock.defaultProps = {
   collapses: false,
   clicked: () => undefined,
   icon: '',
+  fontSize: '16px'
 };
 
 export default HexBlock;
