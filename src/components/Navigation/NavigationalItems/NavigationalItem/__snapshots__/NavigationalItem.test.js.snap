@@ -23,22 +23,26 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "function",
     "props": Object {
-      "children": <div>
-        <h3
+      "children": <span
+        className="NavigationalItem"
+      >
+        <span
           className="Title"
         >
           this is the title
-        </h3>
-        <p
+        </span>
+        <span
           className="Description"
         >
           this is the description
-        </p>
-      </div>,
+        </span>
+      </span>,
       "clicked": [Function],
       "collapses": true,
+      "fontSize": "16px",
       "gridClassNumber": 2,
       "icon": "",
+      "link": "/",
     },
     "ref": null,
     "rendered": Object {
@@ -47,17 +51,18 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <h3
+          <span
             className="Title"
           >
             this is the title
-          </h3>,
-          <p
+          </span>,
+          <span
             className="Description"
           >
             this is the description
-          </p>,
+          </span>,
         ],
+        "className": "NavigationalItem",
       },
       "ref": null,
       "rendered": Array [
@@ -71,7 +76,7 @@ ShallowWrapper {
           },
           "ref": null,
           "rendered": "this is the title",
-          "type": "h3",
+          "type": "span",
         },
         Object {
           "instance": null,
@@ -83,10 +88,10 @@ ShallowWrapper {
           },
           "ref": null,
           "rendered": "this is the description",
-          "type": "p",
+          "type": "span",
         },
       ],
-      "type": "div",
+      "type": "span",
     },
     "type": [Function],
   },
@@ -96,22 +101,26 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "function",
       "props": Object {
-        "children": <div>
-          <h3
+        "children": <span
+          className="NavigationalItem"
+        >
+          <span
             className="Title"
           >
             this is the title
-          </h3>
-          <p
+          </span>
+          <span
             className="Description"
           >
             this is the description
-          </p>
-        </div>,
+          </span>
+        </span>,
         "clicked": [Function],
         "collapses": true,
+        "fontSize": "16px",
         "gridClassNumber": 2,
         "icon": "",
+        "link": "/",
       },
       "ref": null,
       "rendered": Object {
@@ -120,17 +129,18 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": Array [
-            <h3
+            <span
               className="Title"
             >
               this is the title
-            </h3>,
-            <p
+            </span>,
+            <span
               className="Description"
             >
               this is the description
-            </p>,
+            </span>,
           ],
+          "className": "NavigationalItem",
         },
         "ref": null,
         "rendered": Array [
@@ -144,7 +154,7 @@ ShallowWrapper {
             },
             "ref": null,
             "rendered": "this is the title",
-            "type": "h3",
+            "type": "span",
           },
           Object {
             "instance": null,
@@ -156,10 +166,10 @@ ShallowWrapper {
             },
             "ref": null,
             "rendered": "this is the description",
-            "type": "p",
+            "type": "span",
           },
         ],
-        "type": "div",
+        "type": "span",
       },
       "type": [Function],
     },

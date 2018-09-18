@@ -13,20 +13,6 @@ describe('Hex Block Component', () => {
     expect(wrapper.containsMatchingElement(child)).toBe(true);
   });
 
-  test('should trigger fn when clicked', () => {
-    const baseProps = {
-      clicked: jest.fn(),
-      gridClassNumber: 2
-    };
-
-    const wrapper = shallow(<HexBlock {...baseProps} />);
-    //find hex dom element wrapper that has the click event bound to it and click it
-    wrapper.simulate('click');
-
-    // expect(baseProps.clicked).toHaveBeenCalledTimes(1);
-    expect(baseProps.clicked).toHaveBeenCalledTimes(1);
-  });
-
   test('it adds to classNames if collapse flag is passed', () => {
     const baseProps = {
       gridClassNumber: 2

@@ -27,13 +27,13 @@ ShallowWrapper {
           navItems={
             Array [
               Object {
-                "description": "this is a description describing what this block is all about",
+                "description": "Learn more about the Pathfinder initiative",
                 "icon": "book",
-                "link": "/learn",
+                "link": "https://www.pathfinder.gov.bc.ca",
                 "title": "Learn",
               },
               Object {
-                "description": "this is a description describing what this block is all about",
+                "description": "Use the Signing Tool",
                 "icon": "user-astronaut",
                 "link": "/do",
                 "title": "Do",
@@ -43,18 +43,6 @@ ShallowWrapper {
                 "icon": "shipping-fast",
                 "link": "/deliver",
                 "title": "Deliver",
-              },
-              Object {
-                "description": "this is a description describing what this block is all about",
-                "icon": "shipping-fast",
-                "link": "/deliver",
-                "title": "user-astronaut",
-              },
-              Object {
-                "description": "this is a description describing what this block is all about",
-                "icon": "shipping-fast",
-                "link": "/deliver",
-                "title": "blah",
               },
             ]
           }
@@ -84,13 +72,13 @@ ShallowWrapper {
         "props": Object {
           "navItems": Array [
             Object {
-              "description": "this is a description describing what this block is all about",
+              "description": "Learn more about the Pathfinder initiative",
               "icon": "book",
-              "link": "/learn",
+              "link": "https://www.pathfinder.gov.bc.ca",
               "title": "Learn",
             },
             Object {
-              "description": "this is a description describing what this block is all about",
+              "description": "Use the Signing Tool",
               "icon": "user-astronaut",
               "link": "/do",
               "title": "Do",
@@ -100,18 +88,6 @@ ShallowWrapper {
               "icon": "shipping-fast",
               "link": "/deliver",
               "title": "Deliver",
-            },
-            Object {
-              "description": "this is a description describing what this block is all about",
-              "icon": "shipping-fast",
-              "link": "/deliver",
-              "title": "user-astronaut",
-            },
-            Object {
-              "description": "this is a description describing what this block is all about",
-              "icon": "shipping-fast",
-              "link": "/deliver",
-              "title": "blah",
             },
           ],
         },
@@ -138,13 +114,13 @@ ShallowWrapper {
             navItems={
               Array [
                 Object {
-                  "description": "this is a description describing what this block is all about",
+                  "description": "Learn more about the Pathfinder initiative",
                   "icon": "book",
-                  "link": "/learn",
+                  "link": "https://www.pathfinder.gov.bc.ca",
                   "title": "Learn",
                 },
                 Object {
-                  "description": "this is a description describing what this block is all about",
+                  "description": "Use the Signing Tool",
                   "icon": "user-astronaut",
                   "link": "/do",
                   "title": "Do",
@@ -154,18 +130,6 @@ ShallowWrapper {
                   "icon": "shipping-fast",
                   "link": "/deliver",
                   "title": "Deliver",
-                },
-                Object {
-                  "description": "this is a description describing what this block is all about",
-                  "icon": "shipping-fast",
-                  "link": "/deliver",
-                  "title": "user-astronaut",
-                },
-                Object {
-                  "description": "this is a description describing what this block is all about",
-                  "icon": "shipping-fast",
-                  "link": "/deliver",
-                  "title": "blah",
                 },
               ]
             }
@@ -195,13 +159,13 @@ ShallowWrapper {
           "props": Object {
             "navItems": Array [
               Object {
-                "description": "this is a description describing what this block is all about",
+                "description": "Learn more about the Pathfinder initiative",
                 "icon": "book",
-                "link": "/learn",
+                "link": "https://www.pathfinder.gov.bc.ca",
                 "title": "Learn",
               },
               Object {
-                "description": "this is a description describing what this block is all about",
+                "description": "Use the Signing Tool",
                 "icon": "user-astronaut",
                 "link": "/do",
                 "title": "Do",
@@ -211,18 +175,6 @@ ShallowWrapper {
                 "icon": "shipping-fast",
                 "link": "/deliver",
                 "title": "Deliver",
-              },
-              Object {
-                "description": "this is a description describing what this block is all about",
-                "icon": "shipping-fast",
-                "link": "/deliver",
-                "title": "user-astronaut",
-              },
-              Object {
-                "description": "this is a description describing what this block is all about",
-                "icon": "shipping-fast",
-                "link": "/deliver",
-                "title": "blah",
               },
             ],
           },
