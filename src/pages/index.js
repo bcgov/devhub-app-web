@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classes from './Index.module.css';
+import classes from './index.module.css';
 import NavigationalItems from '../components/Navigation/NavigationalItems/NavigationalItems';
 
 const links = [

@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Learn from './Learn';
+import Learn from './learn';
 
 describe('Learn Container', () => {
   test('it renders without crashing', () => {
