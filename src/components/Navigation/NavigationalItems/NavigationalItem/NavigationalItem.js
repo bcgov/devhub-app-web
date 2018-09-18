@@ -9,7 +9,8 @@ const NavigationalItem = props => (
     icon={props.icon}
     link={props.link}
     collapses
-    gridClassNumber={props.hexGridClassNumber}>
+    gridClassNumber={props.hexGridClassNumber}
+  >
     <span className={classes.NavigationalItem}>
       <span className={classes.Title}>{props.title}</span>
       {props.description && (

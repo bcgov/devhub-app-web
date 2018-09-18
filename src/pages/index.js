@@ -8,15 +8,13 @@ const links = [
     link: 'https://www.pathfinder.gov.bc.ca',
     title: 'Learn',
     icon: 'book',
-    description:
-      'Learn more about the Pathfinder initiative',
+    description: 'Learn more about the Pathfinder initiative',
   },
   {
     link: '/do',
     title: 'Do',
     icon: 'user-astronaut',
-    description:
-      'Use the Signing Tool',
+    description: 'Use the Signing Tool',
   },
   {
     link: '/deliver',
