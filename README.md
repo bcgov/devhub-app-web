@@ -80,9 +80,9 @@ openshift/          - OpenShift-specific files
 * Change into project directory
 * run: `npm install`
 * it may be beneficial to have the gatsby cli package `npm install -g gatsby-cli`
-* to start development server run: `gatsby develop`
-* to build a production version run: `gatsby build`
-* to view production build run: `gatsby serve`
+* to start development server run: `npm run dev`
+* to build a production version run: `npm run build`
+* to view production build run (requires gatsby-cli to be installed globally): `gatsby serve`
 * to run prettier: `npm run prettify`
 * to run test suites: `npm test`
 
