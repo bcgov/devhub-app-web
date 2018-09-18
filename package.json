@@ -34,6 +34,7 @@
     "prop-types": "^15.6.0",
     "react-emotion": "^8.0.8",
     "react-helmet": "^5.2.0",
+    "styled-components": "^3.4.9",
     "styled-system": "^1.0.8"
   },
   "scripts": {

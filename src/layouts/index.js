@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+// import { injectGlobal } from 'styled-components';
+// import * as fonts from '../assets/fonts/fonts';
 /* eslint-disable */
 // font awesome loading
 import '../utils/fontAwesomeLibrary';
@@ -9,6 +11,13 @@ import '../assets/styles/index.css';
 import '../assets/styles/fonts.css';
 import PrimaryFooter from '../components/PrimaryFooter/PrimaryFooter';
 import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
+
+// injectGlobal`
+//   @font-face {
+//     font-family: 'Roboto';
+//     src: local('Roboto'), url('${fonts.RobotoBlack}') format('truetype');
+//   }
+// `
 
 const Layout = ({ children, data }) => (
   <div>
