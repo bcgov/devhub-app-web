@@ -1,0 +1,96 @@
+{
+  "name": "developer.gov.bc.ca",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.4",
+    "@fortawesome/free-solid-svg-icons": "^5.3.1",
+    "@fortawesome/react-fontawesome": "^0.1.3",
+    "autoprefixer": "^9.1.5",
+    "emotion": "^8.0.8",
+    "emotion-server": "^8.0.8",
+    "feather-icons": "^3.3.0",
+    "gatsby": "^1.9.76",
+    "gatsby-link": "^1.6.46",
+    "gatsby-plugin-emotion": "^1.1.8",
+    "gatsby-plugin-favicon": "^3.1.4",
+    "gatsby-plugin-google-analytics": "^1.0.10",
+    "gatsby-plugin-offline": "^1.0.10",
+    "gatsby-plugin-postcss": "^1.0.0",
+    "gatsby-plugin-react-helmet": "^2.0.11",
+    "gatsby-plugin-react-next": "^1.0.4",
+    "gatsby-plugin-sharp": "^1.6.9",
+    "gatsby-source-filesystem": "^1.5.5",
+    "gatsby-transformer-json": "^1.0.11",
+    "gatsby-transformer-remark": "^1.7.17",
+    "gatsby-transformer-sharp": "^1.6.10",
+    "gatsby-transformer-yaml": "^1.5.11",
+    "i": "^0.3.6",
+    "normalize.css": "^7.0.0",
+    "npm": "^6.4.1",
+    "postcss-flexbugs-fixes": "^4.1.0",
+    "prop-types": "^15.6.0",
+    "react-emotion": "^8.0.8",
+    "react-helmet": "^5.2.0",
+    "styled-components": "^3.4.9",
+    "styled-system": "^1.0.8"
+  },
+  "scripts": {
+    "dev": "node_modules/.bin/gatsby develop",
+    "build": "node_modules/.bin/gatsby build",
+    "test": "jest --watch --env=jsdom",
+    "test:lint": "eslint src/",
+    "prettify": "prettier --write '{./,__{tests,mocks}__}/**/*.+(js|jsx)'"
+  },
+  "jest": {
+    "transform": {
+      ".(js|jsx)": "babel-jest",
+      ".+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/config/fileTransformer.js"
+    },
+    "testRegex": "(\\.(test|spec))\\.(jsx|js)$",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/.cache/"
+    ],
+    "moduleFileExtensions": [
+      "jsx",
+      "js",
+      "module.css",
+      ".css"
+    ],
+    "moduleNameMapper": {
+      "^react$": "gatsby-plugin-react-next/node_modules/react",
+      "^react-dom$": "gatsby-plugin-react-next/node_modules/react-dom",
+      "\\.module\\.(css|less)$": "identity-obj-proxy"
+    },
+    "collectCoverage": true,
+    "coverageReporters": [
+      "lcov",
+      "text",
+      "html"
+    ],
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/src/setupTests.js",
+      "<rootDir>/config/jest/loadershim.js"
+    ]
+  },
+  "devDependencies": {
+    "babel-eslint": "^9.0.0",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.0.2",
+    "enzyme-to-json": "^3.1.4",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.6.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-prettier": "^2.3.1",
+    "eslint-plugin-react": "^7.4.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^21.2.1",
+    "prettier": "1.7.4"
+  }
+}

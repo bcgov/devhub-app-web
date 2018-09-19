@@ -17,9 +17,7 @@ Although Gatsby is a frame work, it is still very much a living and breathing re
 
 ### Containers
 
-Each Page component (found under `/src/pages`) will render a container component with the exception of pages that are purely meant to be a static page (ie github readme markdown files which will be presented as HTML). The container will be responsible for all control of that portion of the app and can be thought of for all intents and purposes as its own SPA. 
-
-Another benefit for this page-to-container design is allows to demonstrate explicit relationships with other addons later on such as redux.
+Each Page component (found under `/src/pages`) is analagous to a react container in a more traditional react app.
 
 ### Components
 

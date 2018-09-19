@@ -47,8 +47,9 @@ Authentication, Authorization, Policies, etc
 docs/               - Project Documentation
 └── images        
 └── icons       
-config/             - Test Configurations / Webpack Transformers
-src/                - Project Code
+app-web/
+└──config/          - Test Configurations / Webpack Transformers
+└──src/             - Project Code
     └── __mocks__   - jest mock fns
     └── assets/
         └── fonts
@@ -59,9 +60,6 @@ src/                - Project Code
         └── PrimaryFooter
         └── PrimaryHeader
         └── UI/
-    └── containers/ - Main Container Components per Gatsby Page
-        └── Index
-        └── Learn
     └── layouts     - Gatsby Layout Template as per framework
     └── pages/      - Gatsby builds static sites from these componenets
         └── index   - containers Index Container
@@ -73,16 +71,16 @@ openshift/          - OpenShift-specific files
 └── templates       - application templates
 ```
 
-## Deployment (Local Development)
+## Deployment (Local Development For App-Web)
 
 * Requires Node 8 or higher
 * Clone this repo
-* Change into project directory
+* Change into app-web project directory
 * run: `npm install`
-* it may be beneficial to have the gatsby cli package `npm install -g gatsby-cli`
-* to start development server run: `gatsby develop`
-* to build a production version run: `gatsby build`
-* to view production build run: `gatsby serve`
+* *it may be* beneficial to have the gatsby cli package `npm install -g gatsby-cli`
+* to start development server run: `npm run dev`
+* to build a production version run: `npm run build`
+* to view production build run (requires gatsby-cli to be installed globally): `gatsby serve`
 * to run prettier: `npm run prettify`
 * to run test suites: `npm test`
 

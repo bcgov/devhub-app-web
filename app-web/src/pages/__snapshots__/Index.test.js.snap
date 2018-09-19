@@ -1,0 +1,209 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Index Container it matches snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Index />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <p
+          className="Para"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet ullamcorper massa, eget venenatis mauris sagittis ut. Nunc rutrum libero consequat turpis faucibus semper. In hac habitasse platea dictumst. Vivamus vel imperdiet lacus, quis euismod sapien. Vivamus quis volutpat lorem. Ut in turpis nec erat interdum interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam sagittis id ipsum vitae semper. Aenean sit amet euismod leo. Curabitur nec erat nisi. Ut sapien lorem, consequat molestie dignissim vel, maximus vel metus. Mauris at gravida neque.
+        </p>,
+        <NavigationalItems
+          navItems={
+            Array [
+              Object {
+                "description": "Learn more about the Pathfinder initiative",
+                "icon": "book",
+                "link": "https://www.pathfinder.gov.bc.ca",
+                "title": "Learn",
+              },
+              Object {
+                "description": "Use the Signing Tool",
+                "icon": "user-astronaut",
+                "link": "/do",
+                "title": "Do",
+              },
+              Object {
+                "description": "this is a description describing what this block is all about",
+                "icon": "shipping-fast",
+                "link": "/deliver",
+                "title": "Deliver",
+              },
+            ]
+          }
+        />,
+      ],
+      "className": "Main",
+      "role": "main",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet ullamcorper massa, eget venenatis mauris sagittis ut. Nunc rutrum libero consequat turpis faucibus semper. In hac habitasse platea dictumst. Vivamus vel imperdiet lacus, quis euismod sapien. Vivamus quis volutpat lorem. Ut in turpis nec erat interdum interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam sagittis id ipsum vitae semper. Aenean sit amet euismod leo. Curabitur nec erat nisi. Ut sapien lorem, consequat molestie dignissim vel, maximus vel metus. Mauris at gravida neque.",
+          "className": "Para",
+        },
+        "ref": null,
+        "rendered": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet ullamcorper massa, eget venenatis mauris sagittis ut. Nunc rutrum libero consequat turpis faucibus semper. In hac habitasse platea dictumst. Vivamus vel imperdiet lacus, quis euismod sapien. Vivamus quis volutpat lorem. Ut in turpis nec erat interdum interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam sagittis id ipsum vitae semper. Aenean sit amet euismod leo. Curabitur nec erat nisi. Ut sapien lorem, consequat molestie dignissim vel, maximus vel metus. Mauris at gravida neque.",
+        "type": "p",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "navItems": Array [
+            Object {
+              "description": "Learn more about the Pathfinder initiative",
+              "icon": "book",
+              "link": "https://www.pathfinder.gov.bc.ca",
+              "title": "Learn",
+            },
+            Object {
+              "description": "Use the Signing Tool",
+              "icon": "user-astronaut",
+              "link": "/do",
+              "title": "Do",
+            },
+            Object {
+              "description": "this is a description describing what this block is all about",
+              "icon": "shipping-fast",
+              "link": "/deliver",
+              "title": "Deliver",
+            },
+          ],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "main",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <p
+            className="Para"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet ullamcorper massa, eget venenatis mauris sagittis ut. Nunc rutrum libero consequat turpis faucibus semper. In hac habitasse platea dictumst. Vivamus vel imperdiet lacus, quis euismod sapien. Vivamus quis volutpat lorem. Ut in turpis nec erat interdum interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam sagittis id ipsum vitae semper. Aenean sit amet euismod leo. Curabitur nec erat nisi. Ut sapien lorem, consequat molestie dignissim vel, maximus vel metus. Mauris at gravida neque.
+          </p>,
+          <NavigationalItems
+            navItems={
+              Array [
+                Object {
+                  "description": "Learn more about the Pathfinder initiative",
+                  "icon": "book",
+                  "link": "https://www.pathfinder.gov.bc.ca",
+                  "title": "Learn",
+                },
+                Object {
+                  "description": "Use the Signing Tool",
+                  "icon": "user-astronaut",
+                  "link": "/do",
+                  "title": "Do",
+                },
+                Object {
+                  "description": "this is a description describing what this block is all about",
+                  "icon": "shipping-fast",
+                  "link": "/deliver",
+                  "title": "Deliver",
+                },
+              ]
+            }
+          />,
+        ],
+        "className": "Main",
+        "role": "main",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet ullamcorper massa, eget venenatis mauris sagittis ut. Nunc rutrum libero consequat turpis faucibus semper. In hac habitasse platea dictumst. Vivamus vel imperdiet lacus, quis euismod sapien. Vivamus quis volutpat lorem. Ut in turpis nec erat interdum interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam sagittis id ipsum vitae semper. Aenean sit amet euismod leo. Curabitur nec erat nisi. Ut sapien lorem, consequat molestie dignissim vel, maximus vel metus. Mauris at gravida neque.",
+            "className": "Para",
+          },
+          "ref": null,
+          "rendered": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet ullamcorper massa, eget venenatis mauris sagittis ut. Nunc rutrum libero consequat turpis faucibus semper. In hac habitasse platea dictumst. Vivamus vel imperdiet lacus, quis euismod sapien. Vivamus quis volutpat lorem. Ut in turpis nec erat interdum interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam sagittis id ipsum vitae semper. Aenean sit amet euismod leo. Curabitur nec erat nisi. Ut sapien lorem, consequat molestie dignissim vel, maximus vel metus. Mauris at gravida neque.",
+          "type": "p",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "navItems": Array [
+              Object {
+                "description": "Learn more about the Pathfinder initiative",
+                "icon": "book",
+                "link": "https://www.pathfinder.gov.bc.ca",
+                "title": "Learn",
+              },
+              Object {
+                "description": "Use the Signing Tool",
+                "icon": "user-astronaut",
+                "link": "/do",
+                "title": "Do",
+              },
+              Object {
+                "description": "this is a description describing what this block is all about",
+                "icon": "shipping-fast",
+                "link": "/deliver",
+                "title": "Deliver",
+              },
+            ],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "main",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;

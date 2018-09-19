@@ -1,0 +1,166 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navigational Item Component it matches snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <NavigationalItems
+    navItems={
+      Array [
+        Object {
+          "link": "/",
+          "title": "link1",
+        },
+        Object {
+          "link": "/2",
+          "title": "link2",
+        },
+      ]
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <NavigationalItem
+          description=""
+          hexGridClassNumber={3}
+          icon=""
+          link="/"
+          title="link1"
+        />,
+        <NavigationalItem
+          description=""
+          hexGridClassNumber={3}
+          icon=""
+          link="/2"
+          title="link2"
+        />,
+      ],
+      "className": "NavigationalItems",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": "link1_0",
+        "nodeType": "function",
+        "props": Object {
+          "description": "",
+          "hexGridClassNumber": 3,
+          "icon": "",
+          "link": "/",
+          "title": "link1",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "link2_1",
+        "nodeType": "function",
+        "props": Object {
+          "description": "",
+          "hexGridClassNumber": 3,
+          "icon": "",
+          "link": "/2",
+          "title": "link2",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "nav",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <NavigationalItem
+            description=""
+            hexGridClassNumber={3}
+            icon=""
+            link="/"
+            title="link1"
+          />,
+          <NavigationalItem
+            description=""
+            hexGridClassNumber={3}
+            icon=""
+            link="/2"
+            title="link2"
+          />,
+        ],
+        "className": "NavigationalItems",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": "link1_0",
+          "nodeType": "function",
+          "props": Object {
+            "description": "",
+            "hexGridClassNumber": 3,
+            "icon": "",
+            "link": "/",
+            "title": "link1",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "link2_1",
+          "nodeType": "function",
+          "props": Object {
+            "description": "",
+            "hexGridClassNumber": 3,
+            "icon": "",
+            "link": "/2",
+            "title": "link2",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "nav",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
