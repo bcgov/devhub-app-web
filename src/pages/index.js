@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classes from './index.module.css';
+// local components
 import NavigationalItems from '../components/Navigation/NavigationalItems/NavigationalItems';
+import { LEARN_ROUTE, DO_ROUTE, DELIVER_ROUTE } from '../constants/routes';
 
 const links = [
   {
-    link: 'https://www.pathfinder.gov.bc.ca',
+    link: LEARN_ROUTE,
     title: 'Learn',
     icon: 'book',
     description: 'Learn more about the Pathfinder initiative',
   },
   {
-    link: '/do',
+    link: DO_ROUTE,
     title: 'Do',
     icon: 'user-astronaut',
     description: 'Use the Signing Tool',
   },
   {
-    link: '/deliver',
+    link: DELIVER_ROUTE,
     title: 'Deliver',
     icon: 'shipping-fast',
-    description:
-      'this is a description describing what this block is all about',
+    description: 'this is a description describing what this block is all about',
   },
 ];
 
