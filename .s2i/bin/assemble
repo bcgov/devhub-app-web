@@ -1,4 +1,9 @@
 #!/bin/bash
-export LD_PRELOAD="$(find /opt/app-root/src/ -name 'libz.so')"
+# Required because of some dependency conflict
+# https://github.com/lovell/sharp/issues/892
+# https://github.com/lovell/sharp/issues/1276
 
-exec STI_SCRIPTS_PATH
+echo "Running Custom Assemble Script: $0"
+echo "STI_SCRIPTS_PATH:$STI_SCRIPTS_PATH"
+export LD_PRELOAD="$(find /opt/app-root/src/ -name 'libz.so')"
+exec $STI_SCRIPTS_PATH/assemble
