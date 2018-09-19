@@ -19,4 +19,10 @@ describe('Hex Grid Calculation', () => {
     const pattern = null;
     expect(() => hexGridCalculator(arrayLength, pattern)).toThrow();
   });
+
+  test('it should throw if integers passed to pattern are negative', () => {
+    const arrayLength = 5;
+    const pattern = [-1, 3];
+    expect(() => hexGridCalculator(arrayLength, pattern)).toThrow();
+  });
 });
