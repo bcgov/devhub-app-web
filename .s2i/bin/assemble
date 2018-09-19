@@ -1,0 +1,4 @@
+#!/bin/bash
+export LD_PRELOAD="$(find /opt/app-root/src/ -name 'libz.so')"
+
+exec STI_SCRIPTS_PATH
