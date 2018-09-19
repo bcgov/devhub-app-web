@@ -22,7 +22,7 @@ injectGlobal`
     url('${fonts.MyriadWebProWoff2}') format('woff2'),
     url('${fonts.MyriadWebProTtf}') format('truetype');
   }
-`
+`;
 
 const Layout = ({ children, data }) => (
   <div>

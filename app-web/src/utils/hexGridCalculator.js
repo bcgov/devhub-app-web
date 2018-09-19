@@ -16,9 +16,9 @@
  * @param {Array} pattern 
  */
 
-const isPositiveIntegerOnly = (int) => {
+const isPositiveIntegerOnly = int => {
   return int / 1 !== NaN && int > 0;
-}
+};
 
 const hexGridCalculator = (hexArrayLength, pattern = [3, 2]) => {
   //is hexarray length a number?

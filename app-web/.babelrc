@@ -1,4 +1,3 @@
-// This babelrc is only needed for jest to work properly
 {
   "env": {
     "test": {

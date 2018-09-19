@@ -22,7 +22,8 @@ const links = [
     link: DELIVER_ROUTE,
     title: 'Deliver',
     icon: 'shipping-fast',
-    description: 'this is a description describing what this block is all about',
+    description:
+      'this is a description describing what this block is all about',
   },
 ];
 
