@@ -26,6 +26,7 @@ pipeline {
                 sh "cd jenkins; curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s deploy --config=config.groovy --pr=${CHANGE_ID} --env=dev"
             }
         }
+        /*
         stage('Deploy (TEST)') {
             agent { label 'deploy' }
             input {
@@ -37,6 +38,7 @@ pipeline {
                 sh "cd jenkins; curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s deploy --config=config.groovy --pr=${CHANGE_ID} --env=test"
             }
         }
+        */
         stage('Deploy (PROD)') {
             agent { label 'deploy' }
             input {
@@ -46,6 +48,22 @@ pipeline {
             steps {
                 echo "Deploying ..."
                 sh "cd jenkins; curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s deploy --config=config.groovy --pr=${CHANGE_ID} --env=prod"
+            }
+        }
+        stage('Verification/Cleanup') {
+            agent { label 'deploy' }
+            input {
+                message "Should we continue with cleanup, merge, and close PR?"
+                ok "Yes!"
+            }
+            steps {
+                echo "Cleaning ..."
+                sh "cd jenkins; curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s cleanup --config=config.groovy --pr=${CHANGE_ID}"
+                script {
+                    String mergeMethod=("master".equalsIgnoreCase(env.CHANGE_TARGET))?'merge':'squash'
+                    echo "Merging (using '${mergeMethod}' method) and closing PR"
+                    bcgov.GitHubHelper.mergeAndClosePullRequest(this, mergeMethod)
+                }
             }
         }
     }

@@ -10,6 +10,10 @@ app {
             namespace = app.namespaces.'build'.namespace
             disposable = true
         }
+        'test' {
+            namespace = app.namespaces.'build'.namespace
+            disposable = true
+        }
         'prod' {
             namespace = app.namespaces.'build'.namespace
             disposable = false
@@ -30,17 +34,18 @@ app {
         }
         version = "${app.build.env.name}-v${opt.'pr'}"
         name = "${opt.'build-name'?:app.name}"
-        suffix = "${vars.deployment.suffix}"
+        suffix = "-pr-${opt.'pr'}"
         id = "${app.name}${app.build.suffix}"
         namespace = app.namespaces.'build'.namespace
         timeoutInSeconds = 60*20 // 20 minutes
         templates = [
             [
-                'file':'https://raw.githubusercontent.com/cvarjao-o/openshift-templates/f1d3e44018618ef7c9b9b52dd81d83d7030115db/jenkins/jenkins.bc.yaml',
+                'file':'https://raw.githubusercontent.com/cvarjao-o/openshift-templates/stable/jenkins/jenkins.bc.yaml',
                 'params':[
                     'NAME': "${app.build.name}",
                     'SUFFIX': "${app.build.suffix}",
-                    'VERSION': app.build.version
+                    'VERSION': app.build.version,
+                    'CONTEXT_DIR': 'base'
                 ]
             ]
         ]
@@ -53,19 +58,25 @@ app {
         }
         version = "${vars.deployment.version}" //app-version  and tag
         name = "${vars.deployment.name}" //app-name   (same name accross all deployments)
+        suffix = "${vars.deployment.suffix}"
         id = "${app.deployment.name}${app.deployment.suffix}" // app (unique name across all deployments int he namespace)
         namespace = "${vars.deployment.namespace}"
+        
 
         timeoutInSeconds = 60*20 // 20 minutes
         templates = [
                 [
-                    'file':'https://raw.githubusercontent.com/cvarjao-o/openshift-templates/f1d3e44018618ef7c9b9b52dd81d83d7030115db/jenkins/jenkins.dc.yaml',
+                    'file':'https://raw.githubusercontent.com/cvarjao-o/openshift-templates/stable/jenkins/jenkins.dc.yaml',
                     'params':[
                         'NAME':app.deployment.name,
                         'BC_NAME':app.build.name,
-                        'NAME_SUFFIX':'cvarjao',
+                        'SUFFIX':app.deployment.suffix,
                         'VERSION': app.deployment.version,
-                        'ROUTE_HOST': 'jenkinns-hello-cvarjao.pathfinder.gov.bc.ca'
+                        'ROUTE_HOST': "${app.deployment.id}-${app.deployment.namespace}.pathfinder.gov.bc.ca",
+                        'MASTER_CPU_REQUEST': '1000m',
+                        'MASTER_CPU_LIMIT': '2000m',
+                        'SLAVE_CPU_REQUEST': '500m',
+                        'SLAVE_CPU_LIMIT': '1000m'
                     ]
                 ]
         ]
