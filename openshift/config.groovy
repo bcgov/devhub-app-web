@@ -7,15 +7,15 @@ app {
             disposable = true
         }
         'dev' {
-            namespace = app.namespaces.'build'.namespace
+            namespace = 'csnr-devops-lab-deploy'
             disposable = true
         }
         'test' {
-            namespace = app.namespaces.'build'.namespace
+            namespace = app.namespaces.'dev'.namespace
             disposable = true
         }
         'prod' {
-            namespace = app.namespaces.'build'.namespace
+            namespace = app.namespaces.'dev'.namespace
             disposable = false
         }
     }
