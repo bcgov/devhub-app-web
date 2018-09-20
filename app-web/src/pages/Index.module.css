@@ -1,10 +1,21 @@
 .Main {
     padding: 15px 40px;
 }
+.Main h1 {
+    border-bottom: 1px solid #234075;
+    margin-top: 0;
+}
+.Main h2 {
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #5091cd;
+    font-weight: 300;
+}
 
 .Main .Para {
     margin-bottom: 20px;
-    font-size: 20px;
+    font-size: 16px;
+    font-weight: 400;
     line-height: 1.3em;
 }
 

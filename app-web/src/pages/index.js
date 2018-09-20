@@ -31,16 +31,25 @@ class Index extends Component {
   render() {
     return (
       <main role="main" className={classes.Main}>
+        <h1>Welcome</h1>
+        <h2>
+          <em>We are here to help</em>
+        </h2>
         <p className={classes.Para}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-          imperdiet ullamcorper massa, eget venenatis mauris sagittis ut. Nunc
-          rutrum libero consequat turpis faucibus semper. In hac habitasse
-          platea dictumst. Vivamus vel imperdiet lacus, quis euismod sapien.
-          Vivamus quis volutpat lorem. Ut in turpis nec erat interdum interdum.
-          Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam
-          sagittis id ipsum vitae semper. Aenean sit amet euismod leo. Curabitur
-          nec erat nisi. Ut sapien lorem, consequat molestie dignissim vel,
-          maximus vel metus. Mauris at gravida neque.
+          This is the front door to the developer community of the BC
+          Government. We’re embarking on a journey to help developers learn new
+          skills, discover resources and create amazing applications for
+          government.
+        </p>
+        <p className={classes.Para}>
+          This is our first release and we’re planning to have new material
+          added to this site every sprint (2 weeks), so please visit often to
+          check our progress.
+        </p>
+        <p className={classes.Para}>
+          {' '}
+          If you’d like to comment, offer a suggestion or ask a question you can
+          find us by opening an issue in our github.com repository.
         </p>
         <NavigationalItems navItems={links} />
       </main>
