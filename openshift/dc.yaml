@@ -24,7 +24,11 @@ objects:
     selector:
       deploymentconfig: ${NAME}-static${SUFFIX}
     strategy:
-      resources: {}
+      resources:
+        requests:
+          cpu: '100m'
+        limits:
+          cpu: '150m'
     template:
       metadata:
         creationTimestamp: null
@@ -37,7 +41,11 @@ objects:
           ports:
           - containerPort: 2015
             protocol: TCP
-          resources: {}
+          resources:
+            requests:
+              cpu: '100m'
+            limits:
+              cpu: '150m'
     test: false
     triggers:
     - type: ConfigChange
