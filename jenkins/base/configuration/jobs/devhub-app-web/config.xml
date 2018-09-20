@@ -31,7 +31,7 @@
         <source class="org.jenkinsci.plugins.github_branch_source.GitHubSCMSource" plugin="github-branch-source@2.3.6">
           <id>22bc9c64-6682-417e-88d9-d9c987c6d8e6</id>
           <credentialsId>github-account</credentialsId>
-          <repoOwner>cvarjao-o</repoOwner>
+          <repoOwner>bcgov</repoOwner>
           <repository>devhub-app-web</repository>
           <traits>
             <org.jenkinsci.plugins.github__branch__source.OriginPullRequestDiscoveryTrait>
