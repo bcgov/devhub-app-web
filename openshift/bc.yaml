@@ -64,7 +64,7 @@ objects:
       git:
         uri: ${SOURCE_REPOSITORY_URL}
         ref: ${SOURCE_REPOSITORY_REF}
-      contextDir: ''
+      contextDir: 'app-web'
       type: Git
     strategy:
       sourceStrategy:
