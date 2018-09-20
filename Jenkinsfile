@@ -1,92 +1,81 @@
-node('maven') {
-
-    stage('checkout') {
-       echo "checking out source"
-       echo "Build: ${BUILD_ID}"
-       checkout scm   
+pipeline {
+    agent none
+    options {
+        disableResume()
     }
-
-    stage('code quality check') {
-       echo "Code Quality Check ...."
-       SONARQUBE_PWD = sh (
-             script: 'oc env dc/sonarqube --list | awk  -F  "=" \'/SONARQUBE_ADMINPW/{print $2}\'',
-             returnStdout: true).trim()
-       SONARQUBE_URL = sh (
-             script: 'oc get routes -o wide --no-headers | awk \'/sonarqube/{ print match($0,/edge/) ?  "https://"$2 : "http://"$2 }\'',
-               returnStdout: true).trim()
-       dir('sonar-runner') {
-         sh returnStdout: true, script: "./gradlew sonarqube -Dsonar.host.url=${SONARQUBE_URL} -Dsonar.verbose=true --stacktrace --info  -Dsonar.sources=.."
-       }
+    environment {
+        OCP_PIPELINE_CLI_URL = 'https://raw.githubusercontent.com/BCDevOps/ocp-cd-pipeline/v0.0.4/src/main/resources/pipeline-cli'
+        OCP_PIPELINE_VERSION = '0.0.4'
     }
-
-    // Note: openshiftVerifyDeploy requires policy to be added:
-    // oc policy add-role-to-user view -z system:serviceaccount:<project-prefix>-tools:jenkins -n <project-prefix>-dev
-    // oc policy add-role-to-user view -z system:serviceaccount:<project-prefix>-tools:jenkins -n <project-prefix>-test
-    // oc policy add-role-to-user view -z system:serviceaccount:<project-prefix>-tools:jenkins -n <project-prefix>-prod
-	
-    stage('build') {
-       echo "Building..."
-       openshiftBuild bldCfg: '<name>', showBuildLogs: 'true'
-       echo ">>> Get Image Hash"
-       IMAGE_HASH = sh (
-         script: 'oc get istag <name>:latest -o template --template="{{.image.dockerImageReference}}"|awk -F ":" \'{print $3}\'',
- 	          returnStdout: true).trim()
-       echo ">> IMAGE_HASH: $IMAGE_HASH"
-       openshiftTag destStream: '<name>', verbose: 'true', destTag: 'dev', srcStream: '<name>', srcTag: "${IMAGE_HASH}"
-       openshiftVerifyDeployment depCfg: '<dc-dev>', namespace: '<project-prefix>-dev', replicaCount: 1, verbose: 'false', verifyReplicaCount: 'false'
-       echo ">>>> Deployment Complete"
+    stages {
+        stage('Build') {
+            agent { label 'build' }
+            steps {
+                echo "Aborting all running jobs ..."
+                script {
+                    abortAllPreviousBuildInProgress(currentBuild)
+                }
+                echo "Building ..."
+                sh "curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s build --config=openshift/config.groovy --pr=${CHANGE_ID}"
+            }
+        }
+        stage('Deploy (DEV)') {
+            agent { label 'deploy' }
+            steps {
+                echo "Deploying ..."
+                sh "curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s deploy --config=openshift/config.groovy --pr=${CHANGE_ID} --env=dev"
+            }
+        }
+        stage('Deploy (TEST)') {
+            agent { label 'deploy' }
+            when {
+              environment name: 'CHANGE_TARGET', value: 'master'
+            }
+            steps {
+                script {
+                    def IS_APPROVED = input(message: "Deploy to TEST?", ok: "yes", parameters: [string(name: 'IS_APPROVED', defaultValue: 'yes', description: 'Deploy to TEST?')])
+                    if (IS_APPROVED != 'yes') {
+                        currentBuild.result = "ABORTED"
+                        error "User cancelled"
+                    }
+                }
+                echo "Deploying ..."
+                sh "curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s deploy --config=openshift/config.groovy --pr=${CHANGE_ID} --env=test"
+            }
+        }
+        
+        stage('Deploy (PROD)') {
+            agent { label 'deploy' }
+            when {
+              environment name: 'CHANGE_TARGET', value: 'master'
+            }
+            steps {
+                script {
+                    def IS_APPROVED = input(message: "Deploy to PROD?", ok: "yes", parameters: [string(name: 'IS_APPROVED', defaultValue: 'yes', description: 'Deploy to PROD?')])
+                    if (IS_APPROVED != 'yes') {
+                        currentBuild.result = "ABORTED"
+                        error "User cancelled"
+                    }
+                }
+                echo "Deploying ..."
+                sh "curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s deploy --config=openshift/config.groovy --pr=${CHANGE_ID} --env=prod"
+            }
+        }
+        stage('Verification/Cleanup') {
+            agent { label 'deploy' }
+            input {
+                message "Should we continue with cleanup, merge, and close PR?"
+                ok "Yes!"
+            }
+            steps {
+                echo "Cleaning ..."
+                sh "curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s cleanup --config=openshift/config.groovy --pr=${CHANGE_ID}"
+                script {
+                    String mergeMethod=("master".equalsIgnoreCase(env.CHANGE_TARGET))?'merge':'squash'
+                    echo "Merging (using '${mergeMethod}' method) and closing PR"
+                    bcgov.GitHubHelper.mergeAndClosePullRequest(this, mergeMethod)
+                }
+            }
+        }
     }
-}
-
-node('bddstack') {
-    stage('Functional Test') {
-       //the checkout is mandatory, otherwise functional test would fail
-       echo "checking out source"
-       checkout scm
-       dir('functional-tests') {
-            // retrieving variables from buildConfig 
-          TEST_USERNAME = sh (
-                  script: 'oc env bc/<name> --list | awk  -F  "=" \'/TEST_USERNAME/{print $2}\'',
-                  returnStdout: true).trim()		  
-          TEST_PASSWORD = sh (
-                  script: 'oc env bc/<name> --list | awk  -F  "=" \'/TEST_PASSWORD/{print $2}\'',
-                  returnStdout: true).trim()
-          try {
-            sh 'export TEST_USERNAME=${TEST_USERNAME}\nexport TEST_PASSWORD=${TEST_PASSWORD}\n./gradlew --debug --stacktrace chromeHeadlessTest'
-          } finally { 
-            archiveArtifacts allowEmptyArchive: true, artifacts: 'build/reports/**/*'
-                  archiveArtifacts allowEmptyArchive: true, artifacts: 'build/test-results/**/*'
-                  junit 'build/test-results/**/*.xml'
-          }
-       }
-    }
-}
-
-stage('deploy-test') {
-  timeout(time: 3, unit: 'DAYS') {
-      input message: "Deploy to test?", submitter: 'admin'
-  }
-  node('master') {
-    echo "Send code to test ...."
-    openshiftTag destStream: 'devxp', verbose: 'true', destTag: 'test', srcStream: 'devxp', srcTag: "${IMAGE_HASH}"
-    openshiftVerifyDeployment depCfg: '<dc-test>', namespace: '<project-prefix>-test', replicaCount: 1, verbose: 'false', verifyReplicaCount: 'false'
-    echo "Send email ...."
-    mail (to: 'user@domain', subject: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) promoted to test", body: "URL: ${env.BUILD_URL}.");
-    echo "Stage deploy-test done"
-  }
-}
-
-stage('deploy-prod') {
-  timeout(time: 3, unit: 'DAYS') {
-      input message: "Deploy to prod?", submitter: 'admin'
-  }
-  node('master') {
-    echo "Send code to production ...."
-    openshiftTag destStream: '<name>', verbose: 'true', destTag: 'prodblue', srcStream: 'devxp', srcTag: 'prod'
-    openshiftTag destStream: '<name>', verbose: 'true', destTag: 'prod', srcStream: 'devxp', srcTag: "${IMAGE_HASH}"
-    openshiftVerifyDeployment depCfg: '<dc-prod>', namespace: '<project-prefix>-prod', replicaCount: 1, verbose: 'false', verifyReplicaCount: 'false'
-    echo "Send email ...."
-    mail (to: 'user@domain', subject: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) promoted to production", body: "URL: ${env.BUILD_URL}.");
-    echo "Stage deploy-prod done" 
-  }
 }

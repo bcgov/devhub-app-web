@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classes from './index.module.css';
+import classes from './Index.module.css';
 // local components
 import NavigationalItems from '../components/Navigation/NavigationalItems/NavigationalItems';
 import { LEARN_ROUTE, DO_ROUTE, DELIVER_ROUTE } from '../constants/routes';

@@ -1,0 +1,10 @@
+#!/bin/bash
+# Required because of some dependency conflict
+# https://github.com/lovell/sharp/issues/892
+# https://github.com/lovell/sharp/issues/1276
+
+echo "Running Custom Assemble Script: $0"
+export LD_PRELOAD="/opt/app-root/src/node_modules/sharp/vendor/lib/libz.so"
+
+echo "Running Assemble Script $STI_SCRIPTS_PATH/assemble"
+exec $STI_SCRIPTS_PATH/assemble
