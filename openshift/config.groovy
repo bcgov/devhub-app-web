@@ -23,7 +23,7 @@ app {
     git {
         workDir = ['git', 'rev-parse', '--show-toplevel'].execute().text.trim()
         uri = ['git', 'config', '--get', 'remote.origin.url'].execute().text.trim()
-        ref = ['bash','-c', 'git config branch.`git name-rev --name-only HEAD`.merge'].execute().text.trim()
+        ref = opt.'branch'?:"refs/pull/${opt.'pr'}/head"
         commit = ['git', 'rev-parse', 'HEAD'].execute().text.trim()
     }
 
@@ -44,7 +44,9 @@ app {
                 'params':[
                     'NAME': app.build.name,
                     'SUFFIX': app.build.suffix,
-                    'VERSION': app.build.version
+                    'VERSION': app.build.version,
+                    'SOURCE_REPOSITORY_URL': app.git.uri,
+                    'SOURCE_REPOSITORY_REF': app.git.ref
                 ]
             ]
         ]
