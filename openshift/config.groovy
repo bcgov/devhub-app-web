@@ -3,19 +3,19 @@ app {
     name = 'devhub'
     namespaces {
         'build'{
-            namespace = 'csnr-devops-lab-tools'
+            namespace = 'devhub-tools'
             disposable = true
         }
         'dev' {
-            namespace = 'csnr-devops-lab-deploy'
+            namespace = 'devhub-dev'
             disposable = true
         }
         'test' {
-            namespace = app.namespaces.'dev'.namespace
+            namespace = 'devhub-test'
             disposable = true
         }
         'prod' {
-            namespace = app.namespaces.'dev'.namespace
+            namespace = 'devhub-prod'
             disposable = false
         }
     }
