@@ -11,6 +11,7 @@ import '../utils/fontAwesomeLibrary';
 import normalize from 'normalize.css';
 import '../assets/styles/index.css';
 import '../assets/styles/fonts.css';
+import '../assets/styles/page.css';
 // layout local componenets
 import PrimaryFooter from '../components/PrimaryFooter/PrimaryFooter';
 import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';

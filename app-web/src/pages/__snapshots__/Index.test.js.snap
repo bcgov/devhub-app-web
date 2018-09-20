@@ -18,10 +18,29 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
+        <h1>
+          Welcome
+        </h1>,
+        <h2>
+          <em>
+            We are here to help
+          </em>
+        </h2>,
         <p
-          className="Para"
+          className="para"
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet ullamcorper massa, eget venenatis mauris sagittis ut. Nunc rutrum libero consequat turpis faucibus semper. In hac habitasse platea dictumst. Vivamus vel imperdiet lacus, quis euismod sapien. Vivamus quis volutpat lorem. Ut in turpis nec erat interdum interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam sagittis id ipsum vitae semper. Aenean sit amet euismod leo. Curabitur nec erat nisi. Ut sapien lorem, consequat molestie dignissim vel, maximus vel metus. Mauris at gravida neque.
+          This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.
+        </p>,
+        <p
+          className="para"
+        >
+          This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.
+        </p>,
+        <p
+          className="para"
+        >
+           
+          If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our github.com repository.
         </p>,
         <NavigationalItems
           navItems={
@@ -33,13 +52,13 @@ ShallowWrapper {
                 "title": "Learn",
               },
               Object {
-                "description": "Use the Signing Tool",
+                "description": "Register your mobile application with our in-house Signing Tool",
                 "icon": "user-astronaut",
                 "link": "/do",
                 "title": "Do",
               },
               Object {
-                "description": "this is a description describing what this block is all about",
+                "description": "This section is currently in development",
                 "icon": "shipping-fast",
                 "link": "/deliver",
                 "title": "Deliver",
@@ -48,7 +67,7 @@ ShallowWrapper {
           }
         />,
       ],
-      "className": "Main",
+      "className": "main",
       "role": "main",
     },
     "ref": null,
@@ -58,11 +77,75 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet ullamcorper massa, eget venenatis mauris sagittis ut. Nunc rutrum libero consequat turpis faucibus semper. In hac habitasse platea dictumst. Vivamus vel imperdiet lacus, quis euismod sapien. Vivamus quis volutpat lorem. Ut in turpis nec erat interdum interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam sagittis id ipsum vitae semper. Aenean sit amet euismod leo. Curabitur nec erat nisi. Ut sapien lorem, consequat molestie dignissim vel, maximus vel metus. Mauris at gravida neque.",
-          "className": "Para",
+          "children": "Welcome",
         },
         "ref": null,
-        "rendered": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet ullamcorper massa, eget venenatis mauris sagittis ut. Nunc rutrum libero consequat turpis faucibus semper. In hac habitasse platea dictumst. Vivamus vel imperdiet lacus, quis euismod sapien. Vivamus quis volutpat lorem. Ut in turpis nec erat interdum interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam sagittis id ipsum vitae semper. Aenean sit amet euismod leo. Curabitur nec erat nisi. Ut sapien lorem, consequat molestie dignissim vel, maximus vel metus. Mauris at gravida neque.",
+        "rendered": "Welcome",
+        "type": "h1",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <em>
+            We are here to help
+          </em>,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "We are here to help",
+          },
+          "ref": null,
+          "rendered": "We are here to help",
+          "type": "em",
+        },
+        "type": "h2",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.",
+          "className": "para",
+        },
+        "ref": null,
+        "rendered": "This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.",
+        "type": "p",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.",
+          "className": "para",
+        },
+        "ref": null,
+        "rendered": "This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.",
+        "type": "p",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            " ",
+            "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our github.com repository.",
+          ],
+          "className": "para",
+        },
+        "ref": null,
+        "rendered": Array [
+          " ",
+          "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our github.com repository.",
+        ],
         "type": "p",
       },
       Object {
@@ -78,13 +161,13 @@ ShallowWrapper {
               "title": "Learn",
             },
             Object {
-              "description": "Use the Signing Tool",
+              "description": "Register your mobile application with our in-house Signing Tool",
               "icon": "user-astronaut",
               "link": "/do",
               "title": "Do",
             },
             Object {
-              "description": "this is a description describing what this block is all about",
+              "description": "This section is currently in development",
               "icon": "shipping-fast",
               "link": "/deliver",
               "title": "Deliver",
@@ -105,10 +188,29 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
+          <h1>
+            Welcome
+          </h1>,
+          <h2>
+            <em>
+              We are here to help
+            </em>
+          </h2>,
           <p
-            className="Para"
+            className="para"
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet ullamcorper massa, eget venenatis mauris sagittis ut. Nunc rutrum libero consequat turpis faucibus semper. In hac habitasse platea dictumst. Vivamus vel imperdiet lacus, quis euismod sapien. Vivamus quis volutpat lorem. Ut in turpis nec erat interdum interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam sagittis id ipsum vitae semper. Aenean sit amet euismod leo. Curabitur nec erat nisi. Ut sapien lorem, consequat molestie dignissim vel, maximus vel metus. Mauris at gravida neque.
+            This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.
+          </p>,
+          <p
+            className="para"
+          >
+            This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.
+          </p>,
+          <p
+            className="para"
+          >
+             
+            If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our github.com repository.
           </p>,
           <NavigationalItems
             navItems={
@@ -120,13 +222,13 @@ ShallowWrapper {
                   "title": "Learn",
                 },
                 Object {
-                  "description": "Use the Signing Tool",
+                  "description": "Register your mobile application with our in-house Signing Tool",
                   "icon": "user-astronaut",
                   "link": "/do",
                   "title": "Do",
                 },
                 Object {
-                  "description": "this is a description describing what this block is all about",
+                  "description": "This section is currently in development",
                   "icon": "shipping-fast",
                   "link": "/deliver",
                   "title": "Deliver",
@@ -135,7 +237,7 @@ ShallowWrapper {
             }
           />,
         ],
-        "className": "Main",
+        "className": "main",
         "role": "main",
       },
       "ref": null,
@@ -145,11 +247,75 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet ullamcorper massa, eget venenatis mauris sagittis ut. Nunc rutrum libero consequat turpis faucibus semper. In hac habitasse platea dictumst. Vivamus vel imperdiet lacus, quis euismod sapien. Vivamus quis volutpat lorem. Ut in turpis nec erat interdum interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam sagittis id ipsum vitae semper. Aenean sit amet euismod leo. Curabitur nec erat nisi. Ut sapien lorem, consequat molestie dignissim vel, maximus vel metus. Mauris at gravida neque.",
-            "className": "Para",
+            "children": "Welcome",
           },
           "ref": null,
-          "rendered": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet ullamcorper massa, eget venenatis mauris sagittis ut. Nunc rutrum libero consequat turpis faucibus semper. In hac habitasse platea dictumst. Vivamus vel imperdiet lacus, quis euismod sapien. Vivamus quis volutpat lorem. Ut in turpis nec erat interdum interdum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam sagittis id ipsum vitae semper. Aenean sit amet euismod leo. Curabitur nec erat nisi. Ut sapien lorem, consequat molestie dignissim vel, maximus vel metus. Mauris at gravida neque.",
+          "rendered": "Welcome",
+          "type": "h1",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <em>
+              We are here to help
+            </em>,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "We are here to help",
+            },
+            "ref": null,
+            "rendered": "We are here to help",
+            "type": "em",
+          },
+          "type": "h2",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.",
+            "className": "para",
+          },
+          "ref": null,
+          "rendered": "This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.",
+          "type": "p",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.",
+            "className": "para",
+          },
+          "ref": null,
+          "rendered": "This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.",
+          "type": "p",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              " ",
+              "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our github.com repository.",
+            ],
+            "className": "para",
+          },
+          "ref": null,
+          "rendered": Array [
+            " ",
+            "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our github.com repository.",
+          ],
           "type": "p",
         },
         Object {
@@ -165,13 +331,13 @@ ShallowWrapper {
                 "title": "Learn",
               },
               Object {
-                "description": "Use the Signing Tool",
+                "description": "Register your mobile application with our in-house Signing Tool",
                 "icon": "user-astronaut",
                 "link": "/do",
                 "title": "Do",
               },
               Object {
-                "description": "this is a description describing what this block is all about",
+                "description": "This section is currently in development",
                 "icon": "shipping-fast",
                 "link": "/deliver",
                 "title": "Deliver",
