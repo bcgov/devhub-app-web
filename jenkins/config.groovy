@@ -3,7 +3,7 @@ app {
     name = 'jenkins-devhub'
     namespaces {
         'build'{
-            namespace = 'csnr-devops-lab-tools'
+            namespace = 'devhub-tools'
             disposable = true
         }
         'dev' {
