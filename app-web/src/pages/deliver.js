@@ -9,7 +9,7 @@ class Deliver extends Component {
         <h1>Deliver</h1>
         <p>
           This section is currently in development. Please check back soon!
-          <Link to={HOME_ROUTE}>Go Back</Link>.
+          <Link to={HOME_ROUTE}> Go Back</Link>.
         </p>
       </main>
     );
