@@ -53,7 +53,7 @@ objects:
   kind: Service
   metadata:
     creationTimestamp: null
-    name: ${NAME}${SUFFIX}
+    name: ${NAME}-static${SUFFIX}
   spec:
     ports:
     - name: web

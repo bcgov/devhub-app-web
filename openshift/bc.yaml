@@ -55,7 +55,11 @@ objects:
         kind: ImageStreamTag
         name: ${NAME}:${VERSION}
     postCommit: {}
-    resources: {}
+    resources:
+      requests:
+        cpu: 1
+      limits:
+        cpu: 2
     source:
       git:
         uri: ${SOURCE_REPOSITORY_URL}
@@ -87,7 +91,11 @@ objects:
         kind: ImageStreamTag
         name: ${NAME}-static:${VERSION}
     postCommit: {}
-    resources: {}
+    resources:
+      requests:
+        cpu: 1
+      limits:
+        cpu: 2
     source:
       dockerfile: |-
         FROM nodejs/build-output:latest
