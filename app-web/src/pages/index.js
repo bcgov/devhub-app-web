@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // local components
 import NavigationalItems from '../components/Navigation/NavigationalItems/NavigationalItems';
 import links from '../mainNavigation';
-
+import {GITHUB_ISSUES_ROUTE} from '../constants/routes';
 class Index extends Component {
   render() {
     console.log(links);
@@ -27,7 +27,7 @@ class Index extends Component {
         <p className="para">
           {' '}
           If you’d like to comment, offer a suggestion or ask a question you can
-          find us by opening an issue in our github.com repository.
+          find us by opening an issue in our <a href={GITHUB_ISSUES_ROUTE}>github.com</a> repository.
         </p>
         <NavigationalItems navItems={links} />
       </main>
