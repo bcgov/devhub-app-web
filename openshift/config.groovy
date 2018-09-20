@@ -12,7 +12,7 @@ app {
         }
         'test' {
             namespace = 'devhub-test'
-            disposable = true
+            disposable = false
         }
         'prod' {
             namespace = 'devhub-prod'
