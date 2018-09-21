@@ -5,7 +5,6 @@ import Link from '../../../Common/Link';
 
 const HexBlock = ({ children, collapses, gridClassNumber, link, fontSize }) => {
   const classNames = [classes.HexBlock];
-  console.log(gridClassNumber);
   // apply a grid class style to allow hexes to stack on wrap
   switch (gridClassNumber) {
     case 2:
