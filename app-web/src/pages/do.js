@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Link from 'gatsby-link';
 import { HOME_ROUTE } from '../constants/routes';
 // local components
-class Deliver extends Component {
+class Do extends Component {
   render() {
     return (
       <main role="main" className="main">
@@ -17,4 +17,4 @@ class Deliver extends Component {
   }
 }
 
-export default Deliver;
+export default Do;
