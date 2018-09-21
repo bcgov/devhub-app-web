@@ -1,5 +1,19 @@
 def APP_NAME = 'devhub-web'
 def POD_LABEL = "${APP_NAME}-${UUID.randomUUID().toString()}"
+podTemplate(label: "${POD_LABEL}", name: "${POD_LABEL}", serviceAccount: 'jenkins', cloud: 'openshift', containers: [
+    containerTemplate(
+        name: 'jnlp',
+        image: 'docker-registry.default.svc:5000/openshift/jenkins-slave-nodejs:8',
+        resourceRequestCpu: '1500m',
+        resourceLimitCpu: '2000m',
+        resourceRequestMemory: '1Gi',
+        resourceLimitMemory: '2Gi',
+        workingDir: '/tmp',
+        command: '',
+        args: '${computer.jnlpmac} ${computer.name}',
+        alwaysPullImage: false
+    )
+    ]) 
 pipeline {
     agent none
     options {
@@ -12,20 +26,7 @@ pipeline {
     stages {
         stage('Test') {
             // See https://github.com/jenkinsci/kubernetes-plugin
-            podTemplate(label: "${POD_LABEL}", name: "${POD_LABEL}", serviceAccount: 'jenkins', cloud: 'openshift', containers: [
-            containerTemplate(
-                name: 'jnlp',
-                image: 'docker-registry.default.svc:5000/openshift/jenkins-slave-nodejs:8',
-                resourceRequestCpu: '1500m',
-                resourceLimitCpu: '2000m',
-                resourceRequestMemory: '1Gi',
-                resourceLimitMemory: '2Gi',
-                workingDir: '/tmp',
-                command: '',
-                args: '${computer.jnlpmac} ${computer.name}',
-                alwaysPullImage: false
-            )
-            ]) 
+            
             node("${POD_LABEL}") {
                 echo "Setup: ${BUILD_ID}"
                 sh "npm ci"
