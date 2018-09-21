@@ -19,6 +19,12 @@ pipeline {
                 sh "curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s build --config=openshift/config.groovy --pr=${CHANGE_ID}"
             }
         }
+        stage('Test') {
+            steps {
+                NPM_VERSION = sh (script: 'npm -v', returnStout: true)
+                echo "Running Unit Tests ${NPM_VERSION}"
+            }
+        }
         stage('Deploy (DEV)') {
             agent { label 'deploy' }
             steps {
