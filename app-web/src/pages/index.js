@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 // local components
 import NavigationalItems from '../components/Navigation/NavigationalItems/NavigationalItems';
 import links from '../mainNavigation';
-
+import { GITHUB_ISSUES_ROUTE } from '../constants/routes';
+import Hexgrid from '../components/UI/Hexgrid/Hexgrid';
 class Index extends Component {
   render() {
-    console.log(links);
     return (
       <main role="main" className="main">
         <h1>Welcome</h1>
@@ -27,7 +27,8 @@ class Index extends Component {
         <p className="para">
           {' '}
           If you’d like to comment, offer a suggestion or ask a question you can
-          find us by opening an issue in our github.com repository.
+          find us by opening an issue in our{' '}
+          <a href={GITHUB_ISSUES_ROUTE}>github.com</a> repository.
         </p>
         <NavigationalItems navItems={links} />
       </main>

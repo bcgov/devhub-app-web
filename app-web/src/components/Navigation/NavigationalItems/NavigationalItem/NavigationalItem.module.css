@@ -1,7 +1,12 @@
 .NavigationalItem {
     display: block;
 }
-
+.Icon {
+    font-size: 2.5em;
+    display: inline-block;
+    transform: translateY(-1em);
+    color: #000;
+}
 .Title {
     font-size: 2em;
     color: #234075;
