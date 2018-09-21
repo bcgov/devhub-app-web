@@ -8,6 +8,14 @@ pipeline {
         OCP_PIPELINE_VERSION = '0.0.4'
     }
     stages {
+        stage('Test') {
+            steps {
+                script {
+                    NPM_VERSION = sh (script: 'npm -v', returnStout: true)
+                }
+                echo "Running Unit Tests ${NPM_VERSION}"
+            }
+        }
         stage('Build') {
             agent { label 'build' }
             steps {
@@ -17,14 +25,6 @@ pipeline {
                 }
                 echo "Building ..."
                 sh "curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s build --config=openshift/config.groovy --pr=${CHANGE_ID}"
-            }
-        }
-        stage('Test') {
-            steps {
-                script {
-                    NPM_VERSION = sh (script: 'npm -v', returnStout: true)
-                }
-                echo "Running Unit Tests ${NPM_VERSION}"
             }
         }
         stage('Deploy (DEV)') {
