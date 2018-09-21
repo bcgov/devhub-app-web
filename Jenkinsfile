@@ -1,6 +1,6 @@
 def APP_NAME = 'devhub-web'
 def POD_LABEL = "${APP_NAME}-${UUID.randomUUID().toString()}"
-podTemplate(label: "${POD_LABEL}", name: "${POD_LABEL}", serviceAccount: 'jenkins', cloud: 'openshift', containers: [
+podTemplate(label: "${POD_LABEL}", name: "${POD_LABEL}", serviceAccount: 'jenkins', containers: [
     containerTemplate(
         name: 'jnlp',
         image: 'docker-registry.default.svc:5000/openshift/jenkins-slave-nodejs:8',
