@@ -26,8 +26,7 @@ pipeline {
                 alwaysPullImage: false
             )
             ]) 
-            agent { node { label: "${POD_LABEL}"}}
-            steps {
+            node(${POD_LABEL}") {
                 echo "Setup: ${BUILD_ID}"
                 sh "npm ci"
                 sh "npm -v"
