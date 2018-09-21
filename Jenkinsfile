@@ -48,10 +48,10 @@ pipeline {
                         workingDir: '/home/jenkins',
                         command: '',
                         args: '${computer.jnlpmac} ${computer.name}',
-                        envVars: [
-                            envVar(key:'BASEURL', value: "${BDDSTACK_URL}"),
-                            envVar(key:'GRADLE_USER_HOME', value: '/var/cache/artifacts/gradle')
-                        ]
+                        // envVars: [
+                        //     envVar(key:'BASEURL', value: "${BDDSTACK_URL}"),
+                        //     envVar(key:'GRADLE_USER_HOME', value: '/var/cache/artifacts/gradle')
+                        // ]
                     )
                     ],
                     // volumes: [
@@ -65,7 +65,7 @@ pipeline {
                     node("bddstack-pr-${CHANGE_ID}") {
                         echo "Build: ${BUILD_ID}"
                         echo "baseURL: ${BDDSTACK_URL}"
-                        checkout scm
+                        // checkout scm
                         echo "Finishing functional testing"
                     } //end node
                 } //end podTemplate
