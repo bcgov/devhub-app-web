@@ -28,38 +28,40 @@ pipeline {
             // See https://github.com/jenkinsci/kubernetes-plugin
             steps {
                 node("${POD_LABEL}") {
-                    echo "Setup: ${BUILD_ID}"
-                    sh "npm ci"
-                    sh "npm -v"
-                    sh "node -v"
-                    echo "Running Unit Tests"
-                    //check build
-                    try {
-                        echo "Checking Build"
-                        sh "npm run build"
-                    } catch (error) {
-                        def attachment = [:]
-                        attachment.fallback = 'See build log for more details'
-                        attachment.title = "API Build ${BUILD_ID} FAILED! :face_with_head_bandage: :hankey:"
-                        attachment.color = '#CD0000' // Red
-                        attachment.text = "The code does not build.\ncommit ${GIT_COMMIT_SHORT_HASH} by ${GIT_COMMIT_AUTHOR}"
-                        // attachment.title_link = "${env.BUILD_URL}"
-                        // notifySlack("${APP_NAME}, Build #${BUILD_ID}", "${SLACK_CHANNEL}", "https://hooks.slack.com/services/${SLACK_TOKEN}", [attachment], JENKINS_ICO)
-                        sh "exit 1001"
-                    }
-                    // check unit tests
-                    try {
+                    script {
+                        echo "Setup: ${BUILD_ID}"
+                        sh "npm ci"
+                        sh "npm -v"
+                        sh "node -v"
                         echo "Running Unit Tests"
-                        sh "npm run test:ci"
-                    } catch (error) {
-                        def attachment = [:]
-                        attachment.fallback = 'See build log for more details'
-                        attachment.title = "API Build ${BUILD_ID} FAILED! :face_with_head_bandage: :hankey:"
-                        attachment.color = '#CD0000' // Red
-                        attachment.text = "There are issues with the unit tests.\ncommit ${GIT_COMMIT_SHORT_HASH} by ${GIT_COMMIT_AUTHOR}"
-                        // attachment.title_link = "${env.BUILD_URL}"
-                        // notifySlack("${APP_NAME}, Build #${BUILD_ID}", "${SLACK_CHANNEL}", "https://hooks.slack.com/services/${SLACK_TOKEN}", [attachment], JENKINS_ICO)
-                        sh "exit 1001"
+                        //check build
+                        try {
+                            echo "Checking Build"
+                            sh "npm run build"
+                        } catch (error) {
+                            def attachment = [:]
+                            attachment.fallback = 'See build log for more details'
+                            attachment.title = "API Build ${BUILD_ID} FAILED! :face_with_head_bandage: :hankey:"
+                            attachment.color = '#CD0000' // Red
+                            attachment.text = "The code does not build.\ncommit ${GIT_COMMIT_SHORT_HASH} by ${GIT_COMMIT_AUTHOR}"
+                            // attachment.title_link = "${env.BUILD_URL}"
+                            // notifySlack("${APP_NAME}, Build #${BUILD_ID}", "${SLACK_CHANNEL}", "https://hooks.slack.com/services/${SLACK_TOKEN}", [attachment], JENKINS_ICO)
+                            sh "exit 1001"
+                        }
+                        // check unit tests
+                        try {
+                            echo "Running Unit Tests"
+                            sh "npm run test:ci"
+                        } catch (error) {
+                            def attachment = [:]
+                            attachment.fallback = 'See build log for more details'
+                            attachment.title = "API Build ${BUILD_ID} FAILED! :face_with_head_bandage: :hankey:"
+                            attachment.color = '#CD0000' // Red
+                            attachment.text = "There are issues with the unit tests.\ncommit ${GIT_COMMIT_SHORT_HASH} by ${GIT_COMMIT_AUTHOR}"
+                            // attachment.title_link = "${env.BUILD_URL}"
+                            // notifySlack("${APP_NAME}, Build #${BUILD_ID}", "${SLACK_CHANNEL}", "https://hooks.slack.com/services/${SLACK_TOKEN}", [attachment], JENKINS_ICO)
+                            sh "exit 1001"
+                        }
                     }
                 }
             }
