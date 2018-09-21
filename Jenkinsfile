@@ -26,7 +26,7 @@ pipeline {
                 alwaysPullImage: false
             )
             ]) 
-            node(${POD_LABEL}") {
+            node("${POD_LABEL}") {
                 echo "Setup: ${BUILD_ID}"
                 sh "npm ci"
                 sh "npm -v"
