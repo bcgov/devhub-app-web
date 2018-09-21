@@ -1,20 +1,20 @@
 def APP_NAME = 'devhub-web'
 def POD_LABEL = "${APP_NAME}-${UUID.randomUUID().toString()}"
 // dynamic pod to run units tests in
-podTemplate(label: "${POD_LABEL}", name: "${POD_LABEL}", serviceAccount: 'jenkins', containers: [
-    containerTemplate(
-        name: 'jnlp',
-        image: 'docker-registry.default.svc:5000/openshift/jenkins-slave-nodejs:8',
-        resourceRequestCpu: '1500m',
-        resourceLimitCpu: '2000m',
-        resourceRequestMemory: '1Gi',
-        resourceLimitMemory: '2Gi',
-        workingDir: '/tmp',
-        command: '',
-        args: '${computer.jnlpmac} ${computer.name}',
-        alwaysPullImage: false
-    )
-    ]) 
+// podTemplate(label: "${POD_LABEL}", name: "${POD_LABEL}", serviceAccount: 'jenkins', containers: [
+//     containerTemplate(
+//         name: 'jnlp',
+//         image: 'docker-registry.default.svc:5000/openshift/jenkins-slave-nodejs:8',
+//         resourceRequestCpu: '1500m',
+//         resourceLimitCpu: '2000m',
+//         resourceRequestMemory: '1Gi',
+//         resourceLimitMemory: '2Gi',
+//         workingDir: '/tmp',
+//         command: '',
+//         args: '${computer.jnlpmac} ${computer.name}',
+//         alwaysPullImage: false
+//     )
+//     ]) 
 
 pipeline {
     agent none
