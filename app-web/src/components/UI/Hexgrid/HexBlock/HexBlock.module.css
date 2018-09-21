@@ -58,13 +58,6 @@
     border-top: solid .27em #ccc;
     border-right: solid .27em #ccc;
 }
-/* icon styles */
-.HexBlock .Icon {
-    font-size: 2.5em;
-    display: inline-block;
-    transform: translateY(-1em);
-    color: #000;
-}
 
 /* queries to make sure hex blocks wrap in the correct way */
 @media screen and (max-width: 993px) {
@@ -91,4 +84,12 @@
     }
 }
 
+@media screen and (min-width: 950px) {
+    .HexBlock.Row2:nth-of-type(2n) {
+        margin-left: calc(17.82em / 2);
+    }
+    .HexBlock.Row2:nth-of-type(2n + 1) {
+        margin-right: calc(17.82em / 2);
+    }
+}
 

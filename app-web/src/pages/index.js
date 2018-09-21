@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import NavigationalItems from '../components/Navigation/NavigationalItems/NavigationalItems';
 import links from '../mainNavigation';
 import { GITHUB_ISSUES_ROUTE } from '../constants/routes';
+import Hexgrid from '../components/UI/Hexgrid/Hexgrid';
 class Index extends Component {
   render() {
-    console.log(links);
     return (
       <main role="main" className="main">
         <h1>Welcome</h1>
