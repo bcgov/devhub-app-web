@@ -8,6 +8,14 @@ pipeline {
         OCP_PIPELINE_VERSION = '0.0.4'
     }
     stages {
+        stage('Test') {
+            steps {
+                script {
+                    NPM_VERSION = sh (script: 'npm -v', returnStout: true)
+                }
+                echo "Running Unit Tests ${NPM_VERSION}"
+            }
+        }
         stage('Build') {
             agent { label 'build' }
             steps {
