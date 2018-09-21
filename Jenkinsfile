@@ -20,8 +20,10 @@ pipeline {
             }
         }
         stage('Test') {
-            NPM_VERSION = sh (script: 'npm -v', returnStout: true)
             steps {
+                script {
+                    NPM_VERSION = sh (script: 'npm -v', returnStout: true)
+                }
                 echo "Running Unit Tests ${NPM_VERSION}"
             }
         }
