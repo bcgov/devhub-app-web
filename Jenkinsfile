@@ -1,3 +1,5 @@
+def APP_NAME = 'devhub-web'
+def POD_LABEL = "${APP_NAME}-${UUID.randomUUID().toString()}"
 pipeline {
     agent none
     options {
@@ -8,12 +10,62 @@ pipeline {
         OCP_PIPELINE_VERSION = '0.0.4'
     }
     stages {
-        stage('Test') {
-            steps {
-                script {
-                    NPM_VERSION = sh (script: 'npm -v', returnStout: true)
+        stage('Test:CI') {
+            // See https://github.com/jenkinsci/kubernetes-plugin
+            podTemplate(label: "${POD_LABEL}", name: "${POD_LABEL}", serviceAccount: 'jenkins', cloud: 'openshift', containers: [
+            containerTemplate(
+                name: 'jnlp',
+                image: 'docker-registry.default.svc:5000/openshift/jenkins-slave-nodejs:8',
+                resourceRequestCpu: '1500m',
+                resourceLimitCpu: '2000m',
+                resourceRequestMemory: '1Gi',
+                resourceLimitMemory: '2Gi',
+                workingDir: '/tmp',
+                command: '',
+                args: '${computer.jnlpmac} ${computer.name}',
+                alwaysPullImage: false
+                // envVars: [
+                //     secretEnvVar(key: 'BDD_DEVICE_FARM_USER', secretName: 'bdd-credentials', secretKey: 'username'),
+                //     secretEnvVar(key: 'BDD_DEVICE_FARM_PASSWD', secretName: 'bdd-credentials', secretKey: 'password'),
+                //     secretEnvVar(key: 'ANDROID_DECRYPT_KEY', secretName: 'android-decrypt-key', secretKey: 'decryptKey')
+                //   ]
+            )
+            ]) node("${POD_LABEL}") {
+                steps {
+                    echo "Setup: ${BUILD_ID}"
+                    sh "npm ci"
+                    sh "npm -v"
+                    sh "node -v"
+                    echo "Running Unit Tests"
+                    //check build
+                    try {
+                        echo "Checking Build"
+                        sh "npm run build"
+                    } catch (error) {
+                        def attachment = [:]
+                        attachment.fallback = 'See build log for more details'
+                        attachment.title = "API Build ${BUILD_ID} FAILED! :face_with_head_bandage: :hankey:"
+                        attachment.color = '#CD0000' // Red
+                        attachment.text = "The code does not build.\ncommit ${GIT_COMMIT_SHORT_HASH} by ${GIT_COMMIT_AUTHOR}"
+                        // attachment.title_link = "${env.BUILD_URL}"
+                        // notifySlack("${APP_NAME}, Build #${BUILD_ID}", "${SLACK_CHANNEL}", "https://hooks.slack.com/services/${SLACK_TOKEN}", [attachment], JENKINS_ICO)
+                        sh "exit 1001"
+                    }
+                    // check unit tests
+                    try {
+                        echo "Running Unit Tests"
+                        sh "npm run test:ci"
+                    } catch (error) {
+                        def attachment = [:]
+                        attachment.fallback = 'See build log for more details'
+                        attachment.title = "API Build ${BUILD_ID} FAILED! :face_with_head_bandage: :hankey:"
+                        attachment.color = '#CD0000' // Red
+                        attachment.text = "There are issues with the unit tests.\ncommit ${GIT_COMMIT_SHORT_HASH} by ${GIT_COMMIT_AUTHOR}"
+                        // attachment.title_link = "${env.BUILD_URL}"
+                        // notifySlack("${APP_NAME}, Build #${BUILD_ID}", "${SLACK_CHANNEL}", "https://hooks.slack.com/services/${SLACK_TOKEN}", [attachment], JENKINS_ICO)
+                        sh "exit 1001"
+                    }
                 }
-                echo "Running Unit Tests ${NPM_VERSION}"
             }
         }
         stage('Build') {
