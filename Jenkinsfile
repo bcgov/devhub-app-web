@@ -10,7 +10,7 @@ pipeline {
         OCP_PIPELINE_VERSION = '0.0.4'
     }
     stages {
-        stage('Test:CI') {
+        stage('Test') {
             // See https://github.com/jenkinsci/kubernetes-plugin
             podTemplate(label: "${POD_LABEL}", name: "${POD_LABEL}", serviceAccount: 'jenkins', cloud: 'openshift', containers: [
             containerTemplate(
