@@ -38,7 +38,7 @@
   },
   "scripts": {
     "dev": "node_modules/.bin/gatsby develop",
-    "build": "node_modules/.bin/gatsby build",
+    "build": "npm run test:ci && node_modules/.bin/gatsby build",
     "test": "jest --watch --env=jsdom",
     "test:ci": "jest --env=jsdom",
     "test:lint": "eslint src/",

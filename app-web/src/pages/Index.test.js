@@ -7,4 +7,8 @@ describe('Index Container', () => {
     const wrapper = shallow(<Index />);
     expect(wrapper).toMatchSnapshot();
   });
+
+  test('1 + 1 = 2', () => {
+    expect(1 + 1).toBe(3);
+  });
 });
