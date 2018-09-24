@@ -1,0 +1,33 @@
+.Button {
+    /* taken from gov bootstrap template https://github.com/bcgov/Gov-2.0-Bootstrap-Skeleton */
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+}
+/* these classes aren't capatalized for ease of using these in dynamic logic */
+.Button .primary {
+    background-color: #234075;
+    color: #fff;
+}
+
+.Button .secondary {
+    background-color: #002663;
+    color: #fff;
+}
+
+.Button .link {
+    background-color: transparent;
+    outline: none;
+    color: #234075;
+}
