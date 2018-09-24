@@ -9,7 +9,8 @@ class Do extends Component {
         <h1>Do</h1>
         <h2>Signing Tool</h2>
         <p>
-          The Signing Tool application is currently in development. Please check back soon!
+          The Signing Tool application is currently in development. Please check
+          back soon!
           <Link to={HOME_ROUTE}> Go Back</Link>.
         </p>
       </main>
