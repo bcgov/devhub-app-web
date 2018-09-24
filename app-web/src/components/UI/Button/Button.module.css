@@ -16,17 +16,17 @@
     border-radius: .25rem;
 }
 /* these classes aren't capatalized for ease of using these in dynamic logic */
-.Button .primary {
-    background-color: #234075;
+.Button.primary {
+    background-color: #E3A82B;
     color: #fff;
 }
 
-.Button .secondary {
+.Button.secondary {
     background-color: #002663;
     color: #fff;
 }
 
-.Button .link {
+.Button.link {
     background-color: transparent;
     outline: none;
     color: #234075;

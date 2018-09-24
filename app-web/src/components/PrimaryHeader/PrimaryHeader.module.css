@@ -5,14 +5,5 @@
     color: #fff;
     display: flex;
     align-items: center;
-}
-
-.PrimaryHeader .Logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-}
-
-.PrimaryHeader .Logo:visited {
-    color: inherit;
+    justify-content: space-between
 }
