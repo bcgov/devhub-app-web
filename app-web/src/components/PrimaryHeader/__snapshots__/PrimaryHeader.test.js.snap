@@ -17,57 +17,46 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "host",
     "props": Object {
-      "children": <GatsbyLink
-        className="Logo"
-        to="/"
-      >
-        <GovLogo />
-        <h1>
-          Developers Hub
-        </h1>
-      </GatsbyLink>,
+      "children": Array [
+        <Banner
+          title="Developer's Hub"
+        />,
+        <Button
+          clicked={[Function]}
+          type="primary"
+        >
+          Login
+        </Button>,
+      ],
       "className": "PrimaryHeader",
     },
     "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "children": Array [
-          <GovLogo />,
-          <h1>
-            Developers Hub
-          </h1>,
-        ],
-        "className": "Logo",
-        "to": "/",
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "title": "Developer's Hub",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
       },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": "Login",
+          "clicked": [Function],
+          "type": "primary",
         },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "Developers Hub",
-          },
-          "ref": null,
-          "rendered": "Developers Hub",
-          "type": "h1",
-        },
-      ],
-      "type": [Function],
-    },
+        "ref": null,
+        "rendered": "Login",
+        "type": [Function],
+      },
+    ],
     "type": "header",
   },
   Symbol(enzyme.__nodes__): Array [
@@ -76,57 +65,46 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "host",
       "props": Object {
-        "children": <GatsbyLink
-          className="Logo"
-          to="/"
-        >
-          <GovLogo />
-          <h1>
-            Developers Hub
-          </h1>
-        </GatsbyLink>,
+        "children": Array [
+          <Banner
+            title="Developer's Hub"
+          />,
+          <Button
+            clicked={[Function]}
+            type="primary"
+          >
+            Login
+          </Button>,
+        ],
         "className": "PrimaryHeader",
       },
       "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": Array [
-            <GovLogo />,
-            <h1>
-              Developers Hub
-            </h1>,
-          ],
-          "className": "Logo",
-          "to": "/",
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "title": "Developer's Hub",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
         },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": "Login",
+            "clicked": [Function],
+            "type": "primary",
           },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Developers Hub",
-            },
-            "ref": null,
-            "rendered": "Developers Hub",
-            "type": "h1",
-          },
-        ],
-        "type": [Function],
-      },
+          "ref": null,
+          "rendered": "Login",
+          "type": [Function],
+        },
+      ],
       "type": "header",
     },
   ],

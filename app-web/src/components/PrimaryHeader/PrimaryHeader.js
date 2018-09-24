@@ -1,16 +1,16 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import classes from './PrimaryHeader.module.css';
-import GovLogo from '../UI/GovLogo/GovLogo';
-import { HOME_ROUTE } from '../../constants/routes';
-
+import { APP_TITLE } from '../../constants/strings';
+import Banner from '../Common/Banner';
+import Button from '../UI/Button/Button';
 const PrimaryHeader = () => {
   return (
     <header className={classes.PrimaryHeader}>
-      <Link to={HOME_ROUTE} className={classes.Logo}>
-        <GovLogo />
-        <h1>Developers Hub</h1>
-      </Link>
+      <Banner title={APP_TITLE} />
+      <Button type="primary" clicked={() => undefined}>
+        Login
+      </Button>
     </header>
   );
 };

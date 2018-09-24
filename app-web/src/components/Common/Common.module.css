@@ -1,0 +1,9 @@
+.Logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.Logo:visited {
+    color: inherit;
+}
