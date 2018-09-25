@@ -47,9 +47,9 @@ pipeline {
 
         stage('Functional Test (TEST)') {
             agent { label 'deploy' }
-            when {
-              environment name: 'CHANGE_TARGET', value: 'master'
-            }
+            // when {
+            //   environment name: 'CHANGE_TARGET', value: 'master'
+            // }
             steps {
                 echo "Functional Test (DEV) ..."
                 // 1. run test
