@@ -7,7 +7,8 @@
  */
 export const saveDataInLocalStorage = (key, data) => {
   try {
-    const serializedData = JSON.stringify(data);
+    const serializedData =
+      typeof data === 'object' ? JSON.stringify(data) : data;
     localStorage.setItem(key, serializedData);
   } catch (err) {
     throw new Error('Unable to save data, are you sure it is a js object?');
@@ -21,15 +22,15 @@ export const saveDataInLocalStorage = (key, data) => {
  * @returns {object} the data object
  */
 export const getDataFromLocalStorage = key => {
-  try {
-    const serializedData = localStorage.getItem(key);
-    if (serializedData) {
-      return JSON.parse(serializedData);
+  const data = localStorage.getItem(key);
+  if (data) {
+    try {
+      return JSON.parse(data);
+    } catch (err) {
+      return data;
     }
-    return undefined;
-  } catch (err) {
-    return undefined;
   }
+  return undefined;
 };
 
 export const deleteDataFromLocalStorage = key => {
