@@ -7,6 +7,13 @@ describe('Hex Grid Calculation', () => {
     expect(hexGridCalculator(arrayLength, pattern)).toEqual(expected);
   });
 
+  test('it should return [3, 3, 3, 2, 2, 3, 3, 3, 2, 2] when passed in 10 and [3, 2]', () => {
+    const expected = [3, 3, 3, 2, 2, 3, 3, 3, 2, 2];
+    const arrayLength = 10;
+    const pattern = [3, 2];
+    expect(hexGridCalculator(arrayLength, pattern)).toEqual(expected);
+  });
+
   test('it should throw if not passed a number as array length or if number is less than 0', () => {
     const arrayLength = false;
     const pattern = [3, 2];

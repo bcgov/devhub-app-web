@@ -1,12 +1,16 @@
 import React from 'react';
+import Link from 'gatsby-link';
 import classes from './PrimaryHeader.module.css';
-import GovLogo from '../UI/GovLogo/GovLogo';
-
+import { APP_TITLE } from '../../constants/strings';
+import Banner from '../Common/Banner';
+import Button from '../UI/Button/Button';
 const PrimaryHeader = () => {
   return (
     <header className={classes.PrimaryHeader}>
-      <GovLogo />
-      <h1>Developers Hub</h1>
+      <Banner title={APP_TITLE} />
+      <Button type="primary" clicked={() => undefined}>
+        Login
+      </Button>
     </header>
   );
 };

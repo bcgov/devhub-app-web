@@ -24,16 +24,4 @@ describe('Hex Block Component', () => {
     const updatedClassNames = wrapper.prop('className').split(' ');
     expect(initialClassNames.length).toBeLessThan(updatedClassNames.length);
   });
-
-  test('it adds icon if flag passed', () => {
-    const baseProps = {
-      icon: 'blah',
-      gridClassNumber: 2,
-    };
-    const wrapper = shallow(<HexBlock {...baseProps} />);
-    expect(wrapper.find('.Icon').length).toBe(1); //only 1 icon is passed in for now
-    wrapper.setProps({ icon: '' });
-    wrapper.update();
-    expect(wrapper.find('.Icon').length).toBe(0);
-  });
 });

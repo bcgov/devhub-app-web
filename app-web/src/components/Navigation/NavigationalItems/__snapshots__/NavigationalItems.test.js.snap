@@ -30,57 +30,69 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "host",
     "props": Object {
-      "children": Array [
-        <NavigationalItem
-          description=""
-          hexGridClassNumber={3}
-          icon=""
-          link="/"
-          title="link1"
-        />,
-        <NavigationalItem
-          description=""
-          hexGridClassNumber={3}
-          icon=""
-          link="/2"
-          title="link2"
-        />,
-      ],
+      "children": <Hexgrid
+        gridPattern={
+          Array [
+            3,
+            2,
+          ]
+        }
+        hexConfig={
+          Object {
+            "collapses": true,
+          }
+        }
+        items={
+          Array [
+            <NavigationalItem
+              description=""
+              icon=""
+              link="/"
+              title="link1"
+            />,
+            <NavigationalItem
+              description=""
+              icon=""
+              link="/2"
+              title="link2"
+            />,
+          ]
+        }
+      />,
       "className": "NavigationalItems",
     },
     "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": "link1_0",
-        "nodeType": "function",
-        "props": Object {
-          "description": "",
-          "hexGridClassNumber": 3,
-          "icon": "",
-          "link": "/",
-          "title": "link1",
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "gridPattern": Array [
+          3,
+          2,
+        ],
+        "hexConfig": Object {
+          "collapses": true,
         },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
+        "items": Array [
+          <NavigationalItem
+            description=""
+            icon=""
+            link="/"
+            title="link1"
+          />,
+          <NavigationalItem
+            description=""
+            icon=""
+            link="/2"
+            title="link2"
+          />,
+        ],
       },
-      Object {
-        "instance": null,
-        "key": "link2_1",
-        "nodeType": "function",
-        "props": Object {
-          "description": "",
-          "hexGridClassNumber": 3,
-          "icon": "",
-          "link": "/2",
-          "title": "link2",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-    ],
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
+    },
     "type": "nav",
   },
   Symbol(enzyme.__nodes__): Array [
@@ -89,57 +101,69 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "host",
       "props": Object {
-        "children": Array [
-          <NavigationalItem
-            description=""
-            hexGridClassNumber={3}
-            icon=""
-            link="/"
-            title="link1"
-          />,
-          <NavigationalItem
-            description=""
-            hexGridClassNumber={3}
-            icon=""
-            link="/2"
-            title="link2"
-          />,
-        ],
+        "children": <Hexgrid
+          gridPattern={
+            Array [
+              3,
+              2,
+            ]
+          }
+          hexConfig={
+            Object {
+              "collapses": true,
+            }
+          }
+          items={
+            Array [
+              <NavigationalItem
+                description=""
+                icon=""
+                link="/"
+                title="link1"
+              />,
+              <NavigationalItem
+                description=""
+                icon=""
+                link="/2"
+                title="link2"
+              />,
+            ]
+          }
+        />,
         "className": "NavigationalItems",
       },
       "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": "link1_0",
-          "nodeType": "function",
-          "props": Object {
-            "description": "",
-            "hexGridClassNumber": 3,
-            "icon": "",
-            "link": "/",
-            "title": "link1",
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "gridPattern": Array [
+            3,
+            2,
+          ],
+          "hexConfig": Object {
+            "collapses": true,
           },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
+          "items": Array [
+            <NavigationalItem
+              description=""
+              icon=""
+              link="/"
+              title="link1"
+            />,
+            <NavigationalItem
+              description=""
+              icon=""
+              link="/2"
+              title="link2"
+            />,
+          ],
         },
-        Object {
-          "instance": null,
-          "key": "link2_1",
-          "nodeType": "function",
-          "props": Object {
-            "description": "",
-            "hexGridClassNumber": 3,
-            "icon": "",
-            "link": "/2",
-            "title": "link2",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-      ],
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
       "type": "nav",
     },
   ],

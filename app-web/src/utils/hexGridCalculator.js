@@ -38,7 +38,7 @@ const hexGridCalculator = (hexArrayLength, pattern = [3, 2]) => {
     if (currentCountForPattern >= patternNum) {
       currentCountForPattern = 1;
       patternPosition =
-        patternPosition + 1 > patternNum ? 0 : patternPosition + 1;
+        patternPosition + 1 >= pattern.length ? 0 : patternPosition + 1;
       patternNum = pattern[patternPosition];
     } else {
       currentCountForPattern++;

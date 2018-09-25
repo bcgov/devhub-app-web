@@ -18,10 +18,15 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <GovLogo />,
-        <h1>
-          Developers Hub
-        </h1>,
+        <Banner
+          title="Developer's Hub"
+        />,
+        <Button
+          clicked={[Function]}
+          type="primary"
+        >
+          Login
+        </Button>,
       ],
       "className": "PrimaryHeader",
     },
@@ -31,7 +36,9 @@ ShallowWrapper {
         "instance": null,
         "key": undefined,
         "nodeType": "function",
-        "props": Object {},
+        "props": Object {
+          "title": "Developer's Hub",
+        },
         "ref": null,
         "rendered": null,
         "type": [Function],
@@ -39,13 +46,15 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "function",
         "props": Object {
-          "children": "Developers Hub",
+          "children": "Login",
+          "clicked": [Function],
+          "type": "primary",
         },
         "ref": null,
-        "rendered": "Developers Hub",
-        "type": "h1",
+        "rendered": "Login",
+        "type": [Function],
       },
     ],
     "type": "header",
@@ -57,10 +66,15 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <GovLogo />,
-          <h1>
-            Developers Hub
-          </h1>,
+          <Banner
+            title="Developer's Hub"
+          />,
+          <Button
+            clicked={[Function]}
+            type="primary"
+          >
+            Login
+          </Button>,
         ],
         "className": "PrimaryHeader",
       },
@@ -70,7 +84,9 @@ ShallowWrapper {
           "instance": null,
           "key": undefined,
           "nodeType": "function",
-          "props": Object {},
+          "props": Object {
+            "title": "Developer's Hub",
+          },
           "ref": null,
           "rendered": null,
           "type": [Function],
@@ -78,13 +94,15 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "function",
           "props": Object {
-            "children": "Developers Hub",
+            "children": "Login",
+            "clicked": [Function],
+            "type": "primary",
           },
           "ref": null,
-          "rendered": "Developers Hub",
-          "type": "h1",
+          "rendered": "Login",
+          "type": [Function],
         },
       ],
       "type": "header",

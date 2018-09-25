@@ -1,4 +1,4 @@
-.NavigationalItems {
+.Hexgrid {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -6,6 +6,6 @@
     flex-flow: row wrap;
     justify-content: center;
     margin: 0 auto;
-    padding-top: 25px;
+    padding-top: 100px;
 }
 
