@@ -1,33 +1,33 @@
 export class TypeCheck {
-    static getClass(object) {
-        return Object.prototype.toString.call(object).slice(8, -1);
-    }
+  static getClass(object) {
+    return Object.prototype.toString.call(object).slice(8, -1);
+  }
 
-    static isArray(object) {
-        return TypeCheck.getClass(object) === 'Array';
-    }
+  static isArray(object) {
+    return TypeCheck.getClass(object) === 'Array';
+  }
 
-    static isObject(object) {
-        return TypeCheck.getClass(object) === 'Object';
-    }
+  static isObject(object) {
+    return TypeCheck.getClass(object) === 'Object';
+  }
 
-    static isBoolean(object) {
-        return TypeCheck.getClass(object) === 'Boolean';
-    }
+  static isBoolean(object) {
+    return TypeCheck.getClass(object) === 'Boolean';
+  }
 
-    static isNumber(object) {
-        return TypeCheck.getClass(object) === 'Number';
-    }
+  static isNumber(object) {
+    return TypeCheck.getClass(object) === 'Number';
+  }
 
-    static isString(object) {
-        return TypeCheck.getClass(object) === 'String';
-    }
+  static isString(object) {
+    return TypeCheck.getClass(object) === 'String';
+  }
 
-    static isDate(object) {
-        return TypeCheck.getClass(object) === 'Date';
-    }
+  static isDate(object) {
+    return TypeCheck.getClass(object) === 'Date';
+  }
 
-    static isRegExp(object) {
-        return TypeCheck.getClass(object) === 'RegExp';
-    }
+  static isRegExp(object) {
+    return TypeCheck.getClass(object) === 'RegExp';
+  }
 }
