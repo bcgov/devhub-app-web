@@ -26,6 +26,7 @@ pipeline {
                 sh "curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s deploy --config=openshift/config.groovy --pr=${CHANGE_ID} --env=dev"
             }
         }
+
         stage('Deploy (TEST)') {
             agent { label 'deploy' }
             when {
@@ -43,7 +44,20 @@ pipeline {
                 sh "curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s deploy --config=openshift/config.groovy --pr=${CHANGE_ID} --env=test"
             }
         }
-        
+
+        stage('Functional Test (TEST)') {
+            agent { label 'deploy' }
+            // when {
+            //   environment name: 'CHANGE_TARGET', value: 'master'
+            // }
+            steps {
+                echo "Functional Test (DEV) ..."
+                // 1. run test
+                // 2. export url of test result to slack
+                sh "unset JAVA_OPTS; pipeline/gradlew --no-build-cache --console=plain --no-daemon -b pipeline/build.gradle cd-functional-test -Pargs.--config=openshift/config.groovy -Pargs.--pr=${CHANGE_ID} -Pargs.--env=test"
+            }
+        }
+
         stage('Deploy (PROD)') {
             agent { label 'deploy' }
             when {

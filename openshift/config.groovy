@@ -48,6 +48,16 @@ app {
                     'SOURCE_REPOSITORY_URL': app.git.uri,
                     'SOURCE_REPOSITORY_REF': app.git.ref
                 ]
+            ], [
+                'file':'openshift/bddstack.bc.json',
+                'params':[
+                    'NAME':"bdd-stack",
+                    'SUFFIX': app.build.suffix,
+                    'VERSION': app.build.version,
+                    'SOURCE_CONTEXT_DIR': "functional-tests",
+                    'SOURCE_REPOSITORY_URL': app.git.uri,
+                    'SOURCE_REPOSITORY_REF': app.git.ref
+                ]
             ]
         ]
     }
