@@ -47,7 +47,7 @@ pipeline {
 
         stage('Functional Test (TEST)') {
             agent { label 'deploy' }
-            steps {
+            when {
               environment name: 'CHANGE_TARGET', value: 'master'
             }
             steps {
