@@ -116,4 +116,35 @@ describe('Implicit Auth Manager Class', () => {
     //request key has been stored by createNonce
     expect(iam.isAReplayAttack(nonce)).toBe(false);
   });
+
+  test('getParameterByName returns paramaters value contained within a url fragment/hash', () => {
+    const hash = '#value1=23109482304923&complexValue=#$*)4!@#(*dsf8ad9f08a7sdf981239816547836423&anotherValue=true';
+    const value1Param = '23109482304923';
+    const complexValueParam = '#$*)4!@#(*dsf8ad9f08a7sdf981239816547836423';
+    const anotherValueParam = 'true';
+    const config = {
+        clientId: '123',
+        baseURL: '1324',
+        realmName: '432',
+      };
+    const iam = new ImplicitAuthManager(config);
+    expect(iam.getParameterByName(hash, 'value1')).toBe(value1Param);
+    expect(iam.getParameterByName(hash, 'complexValue')).toBe(complexValueParam);
+    expect(iam.getParameterByName(hash, 'anotherValue')).toBe(anotherValueParam);
+  });
+
+  test('isTokenExpired returns true when a token is expired', () => {
+    const oldDate = new Date();
+    oldDate.setDate(oldDate.getDate() - 5);
+    const token = {
+        exp: oldDate / 1000
+    }
+    const config = {
+        clientId: '123',
+        baseURL: '1324',
+        realmName: '432',
+      };
+    const iam = new ImplicitAuthManager(config);
+    expect(iam.isTokenExpired(token)).toBe(true);
+  });
 });

@@ -93,4 +93,14 @@ export class ImplicitAuthManager {
       return true;
     }
   }
+  // based on the hash value returned from an implicit auth redirect
+  // return a parameter by its name
+  getParameterByName(hash, name) {
+    const match = RegExp('[#&]' + name + '=([^&]*)').exec(hash);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+  };
+
+  isTokenExpired(token) {
+    return new Date() / 1000 > token.exp;
+  }
 }
