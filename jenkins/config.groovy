@@ -91,7 +91,7 @@ environments {
                     name ="dev"
                     id = "pr-${opt.'pr'}"
                 }
-                host = "${app.deployment.id}-${app.deployment.namespace}.pathfinder.gov.bc.ca"
+                host = "pr-${opt.'pr'}-${app.namespaces[env.name].namespace}.pathfinder.gov.bc.ca"
                 suffix = "-dev-${opt.'pr'}"
                 name = "${opt.'deployment-name'?:app.name}"
                 namespace = app.namespaces[env.name].namespace
@@ -106,7 +106,7 @@ environments {
                     name ="test"
                     id = "pr-${opt.'pr'}"
                 }
-                host = "${app.deployment.id}-${app.deployment.namespace}.pathfinder.gov.bc.ca"
+                host = "pr-${opt.'pr'}-${app.namespaces[env.name].namespace}.pathfinder.gov.bc.ca"
                 suffix = '-test'
                 name = "${opt.'deployment-name'?:app.name}"
                 namespace = app.namespaces[env.name].namespace
