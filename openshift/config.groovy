@@ -62,7 +62,7 @@ app {
         suffix = "${vars.deployment.suffix}"
         id = "${app.deployment.name}${app.deployment.suffix}" // app (unique name across all deployments int he namespace)
         namespace = "${vars.deployment.namespace}"
-        
+        host = "${vars.deployment.host}"
 
         timeoutInSeconds = 60*20 // 20 minutes
         templates = [
@@ -71,7 +71,8 @@ app {
                     'params':[
                         'NAME':app.deployment.name,
                         'SUFFIX':app.deployment.suffix,
-                        'VERSION': app.deployment.version
+                        'VERSION': app.deployment.version,
+                        'HOST': app.deployment.host
                     ]
                 ]
         ]
@@ -86,6 +87,7 @@ environments {
                     name ="dev"
                     id = "pr-${opt.'pr'}"
                 }
+                host = "${opt.'deployment-name'?:app.name}-static-dev"
                 suffix = "-dev-${opt.'pr'}"
                 name = "${opt.'deployment-name'?:app.name}"
                 namespace = app.namespaces[env.name].namespace
@@ -100,6 +102,7 @@ environments {
                     name ="test"
                     id = "pr-${opt.'pr'}"
                 }
+                host = "${opt.'deployment-name'?:app.name}-static-test"
                 suffix = '-test'
                 name = "${opt.'deployment-name'?:app.name}"
                 namespace = app.namespaces[env.name].namespace
@@ -114,6 +117,7 @@ environments {
                     name ="prod"
                     id = "pr-${opt.'pr'}"
                 }
+                host = "developer.gov.bc.ca"
                 suffix = ''
                 id = "${app.name}${vars.deployment.suffix}"
                 name = "${opt.'deployment-name'?:app.name}"
