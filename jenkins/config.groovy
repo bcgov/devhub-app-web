@@ -72,7 +72,7 @@ app {
                         'BC_NAME':app.build.name,
                         'SUFFIX':app.deployment.suffix,
                         'VERSION': app.deployment.version,
-                        'ROUTE_HOST': vars.deployment.env.name=='prod' ? 'developers.gov.bc.ca' : "${app.deployment.id}-${app.deployment.namespace}.pathfinder.gov.bc.ca",
+                        'ROUTE_HOST': vars.deployment.host,
                         'MASTER_CPU_REQUEST': '1000m',
                         'MASTER_CPU_LIMIT': '2000m',
                         'SLAVE_CPU_REQUEST': '500m',
@@ -91,6 +91,7 @@ environments {
                     name ="dev"
                     id = "pr-${opt.'pr'}"
                 }
+                host = "${app.deployment.id}-${app.deployment.namespace}.pathfinder.gov.bc.ca"
                 suffix = "-dev-${opt.'pr'}"
                 name = "${opt.'deployment-name'?:app.name}"
                 namespace = app.namespaces[env.name].namespace
@@ -105,6 +106,7 @@ environments {
                     name ="test"
                     id = "pr-${opt.'pr'}"
                 }
+                host = "${app.deployment.id}-${app.deployment.namespace}.pathfinder.gov.bc.ca"
                 suffix = '-test'
                 name = "${opt.'deployment-name'?:app.name}"
                 namespace = app.namespaces[env.name].namespace
@@ -119,6 +121,7 @@ environments {
                     name ="prod"
                     id = "pr-${opt.'pr'}"
                 }
+                host = 'developer.gov.bc.ca'
                 suffix = ''
                 id = "${app.name}${vars.deployment.suffix}"
                 name = "${opt.'deployment-name'?:app.name}"
