@@ -8,9 +8,9 @@ const PrimaryHeader = () => {
   return (
     <header className={classes.PrimaryHeader}>
       <Banner title={APP_TITLE} />
-      <Button type="primary" clicked={() => undefined}>
+      {/*<Button type="primary" clicked={() => undefined}>
         Login
-      </Button>
+      </Button>*/}
     </header>
   );
 };
