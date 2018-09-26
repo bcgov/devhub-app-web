@@ -5,11 +5,16 @@ import { BANNER_ID } from '../../constants/ui';
 import GovLogo from '../UI/GovLogo/GovLogo';
 import classes from './Common.module.css';
 
-const Banner = ({ title }) => {
+const Banner = ({ title, navigateOnClickPath }) => {
   return (
-    <div onClick={() => {
-      navigateTo('/');
-    }} className={classes.Logo}>
+    <div
+      onClick={() => {
+        if (navigateOnClickPath) {
+          navigateTo(navigateOnClickPath);
+        }
+      }}
+      className={classes.Logo}
+    >
       <GovLogo />
       <h1>{title}</h1>
     </div>
@@ -18,6 +23,11 @@ const Banner = ({ title }) => {
 
 Banner.propTypes = {
   title: PropTypes.string.isRequired,
+  navigateOnClickPath: PropTypes.navigateOnClickPath,
+};
+
+Banner.defaultProps = {
+  navigateOnClickPath: '',
 };
 
 export default Banner;
