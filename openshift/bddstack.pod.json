@@ -43,7 +43,7 @@
         "containers": [
           {
             "name": "bdd-test",
-            "image": "docker-registry.default.svc:5000/empr-mds-tools/${NAME}:${VERSION}",
+            "image": "docker-registry.default.svc:5000/devhub-tools/${NAME}:${VERSION}",
             "command": [
               "/bin/bash",
               "-c",
