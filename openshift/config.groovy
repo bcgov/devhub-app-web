@@ -97,7 +97,7 @@ environments {
                     name ="dev"
                     id = "pr-${opt.'pr'}"
                 }
-                host = "${opt.'deployment-name'?:app.name}-static-dev"
+                host = ""
                 suffix = "-dev-${opt.'pr'}"
                 name = "${opt.'deployment-name'?:app.name}"
                 namespace = app.namespaces[env.name].namespace
@@ -112,7 +112,7 @@ environments {
                     name ="test"
                     id = "pr-${opt.'pr'}"
                 }
-                host = "${opt.'deployment-name'?:app.name}-static-test"
+                host = ""
                 suffix = '-test'
                 name = "${opt.'deployment-name'?:app.name}"
                 namespace = app.namespaces[env.name].namespace
