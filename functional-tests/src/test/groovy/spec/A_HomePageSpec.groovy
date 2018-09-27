@@ -13,7 +13,9 @@ class  A_HomePageSpec extends GebReportingSpec {
     when:"I go to the homepage"
     to HomePage
 
-    then: "I see destinations"
-    Buttons
+    then: "I see Learning session"
+    LearnButton
+    DoButton
+    DelieveyButton
   }
 }
