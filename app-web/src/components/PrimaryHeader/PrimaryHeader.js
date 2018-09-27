@@ -7,7 +7,7 @@ import Button from '../UI/Button/Button';
 const PrimaryHeader = () => {
   return (
     <header className={classes.PrimaryHeader}>
-      <Banner title={APP_TITLE} />
+      <Banner title={APP_TITLE} navigateOnClickPath='/' />
       {/*<Button type="primary" clicked={() => undefined}>
         Login
       </Button>*/}

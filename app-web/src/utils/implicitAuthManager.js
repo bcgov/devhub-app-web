@@ -98,7 +98,7 @@ export class ImplicitAuthManager {
   getParameterByName(hash, name) {
     const match = RegExp('[#&]' + name + '=([^&]*)').exec(hash);
     return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
-  };
+  }
 
   isTokenExpired(token) {
     return new Date() / 1000 > token.exp;
