@@ -26,7 +26,9 @@
     "gatsby-transformer-remark": "^1.7.17",
     "gatsby-transformer-sharp": "^1.6.10",
     "gatsby-transformer-yaml": "^1.5.11",
+    "hash.js": "^1.1.5",
     "i": "^0.3.6",
+    "jwt-decode": "^2.2.0",
     "normalize.css": "^7.0.0",
     "npm": "^6.4.1",
     "postcss-flexbugs-fixes": "^4.1.0",
@@ -74,6 +76,7 @@
     ],
     "setupFiles": [
       "raf/polyfill",
+      "jest-localstorage-mock",
       "<rootDir>/src/setupTests.js",
       "<rootDir>/config/jest/loadershim.js"
     ]
@@ -93,6 +96,7 @@
     "eslint-plugin-react": "^7.4.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^21.2.1",
+    "jest-localstorage-mock": "^2.2.0",
     "prettier": "1.7.4"
   }
 }

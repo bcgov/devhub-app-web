@@ -76,7 +76,7 @@ objects:
     creationTimestamp: null
     name: ${NAME}-static${SUFFIX}
   spec:
-    host: ''
+    host:
     port:
       targetPort: web
     tls:
@@ -103,3 +103,8 @@ parameters:
   name: VERSION
   required: true
   value: v1.0.0
+- description: A name used for routes/services and deployment configs
+  displayName: Host
+  name: HOST
+  required: false
+  value: ''
