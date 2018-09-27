@@ -17,6 +17,10 @@ const Hexgrid = ({ items, gridPattern, hexConfig }) => {
       //binds a link prop to the hex block if exists so that hex block is clickable
       hexConfig.link = item.props.link;
     }
+    if (item.props.id) {
+      //binds the id property to hex block
+      hexConfig.id = item.props.id;
+    }
     return (
       <HexBlock
         {...hexConfig}

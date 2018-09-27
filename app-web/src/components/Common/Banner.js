@@ -23,7 +23,7 @@ const Banner = ({ title, navigateOnClickPath }) => {
 
 Banner.propTypes = {
   title: PropTypes.string.isRequired,
-  navigateOnClickPath: PropTypes.navigateOnClickPath,
+  navigateOnClickPath: PropTypes.string,
 };
 
 Banner.defaultProps = {

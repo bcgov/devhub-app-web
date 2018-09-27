@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classes from './HexBlock.module.css';
 import Link from '../../../Common/Link';
 
-const HexBlock = ({ children, collapses, gridClassNumber, link, fontSize }) => {
+const HexBlock = ({ children, collapses, gridClassNumber, link, fontSize, id }) => {
   const classNames = [classes.HexBlock];
   // apply a grid class style to allow hexes to stack on wrap
   switch (gridClassNumber) {
@@ -22,7 +22,7 @@ const HexBlock = ({ children, collapses, gridClassNumber, link, fontSize }) => {
   }
 
   return (
-    <Link className={classNames.join(' ')} to={link} style={{ fontSize }}>
+    <Link className={classNames.join(' ')} to={link} style={{ fontSize }} id={id}>
       {children}
     </Link>
   );
