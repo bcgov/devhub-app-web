@@ -16,6 +16,6 @@ class  A_HomePageSpec extends GebReportingSpec {
     then: "I see Learning session"
     LearnButton
     DoButton
-    DelieveyButton
+    DeliveryButton
   }
 }
