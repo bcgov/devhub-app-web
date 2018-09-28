@@ -4,14 +4,14 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
   id 'com.gradle.build-scan' version '1.16'
-  id "groovy"
-  id "com.energizedwork.webdriver-binaries" version "1.0"
-  id "net.foragerr.jmeter" version "1.0.10-3.3"
+  id 'groovy'
+  id 'com.energizedwork.webdriver-binaries' version '1.0'
+  id 'net.foragerr.jmeter' version '1.0.10-3.3'
 }
 
 ext {
   // The drivers we want to use
-  drivers = ["firefox", "firefoxHeadless", "chrome", "chromeHeadless","ie","edge","safari"]
+  drivers = ['firefox', 'firefoxHeadless', 'chrome', 'chromeHeadless', 'ie', 'edge', 'safari']
     ext {
     groovyVersion = '2.4.12'
     gebVersion = '2.1'
@@ -24,7 +24,7 @@ ext {
   }
 }
 
-apply from: "gradle/osSpecificDownloads.gradle"
+apply from: 'gradle/osSpecificDownloads.gradle'
 
 repositories {
   mavenCentral()
@@ -39,7 +39,7 @@ dependencies {
   // If using Spock, need to depend on geb-spock
   testCompile "org.gebish:geb-spock:$gebVersion"
   testCompile("org.spockframework:spock-core:1.1-groovy-2.4") {
-    exclude group: "org.codehaus.groovy"
+    exclude group: 'org.codehaus.groovy'
   }
   testCompile "org.codehaus.groovy:groovy-all:$groovyVersion"
 
@@ -76,23 +76,23 @@ drivers.each { driver ->
 
     outputs.upToDateWhen { false }  // Always run tests
 
-    systemProperty "geb.build.reportsDir", reporting.file("geb/$name")
-    systemProperty "geb.env", driver
+    systemProperty 'geb.build.reportsDir', reporting.file("geb/$name")
+    systemProperty 'geb.env', driver
   }
 }
 
 ieTest {
   dependsOn unzipIeDriver
 
-  def iedriverFilename = Os.isFamily(Os.FAMILY_WINDOWS) ? "IEDriverServer.exe" : "IEDriverServer"
-  systemProperty "webdriver.ie.driver", new File(unzipIeDriver.outputs.files.singleFile, iedriverFilename).absolutePath
+  def iedriverFilename = Os.isFamily(Os.FAMILY_WINDOWS) ? 'IEDriverServer.exe' : 'IEDriverServer'
+  systemProperty 'webdriver.ie.driver', new File(unzipIeDriver.outputs.files.singleFile, iedriverFilename).absolutePath
 }
 
 edgeTest {
   dependsOn unzipEdgeDriver
 
-  def edgedriverFilename = Os.isFamily(Os.FAMILY_WINDOWS) ? "MicrosoftWebDriver.exe" : "MicrosoftWebDriver.exe"
-  systemProperty "webdriver.edge.driver", new File(unzipEdgeDriver.outputs.files.singleFile,edgedriverFilename).absolutePath
+  def edgedriverFilename = Os.isFamily(Os.FAMILY_WINDOWS) ? 'MicrosoftWebDriver.exe' : 'MicrosoftWebDriver.exe'
+  systemProperty 'webdriver.edge.driver', new File(unzipEdgeDriver.outputs.files.singleFile,edgedriverFilename).absolutePath
 }
 
 test {
@@ -103,7 +103,7 @@ test {
 }
 
 tasks.withType(Test) {
-  maxHeapSize = "1g"
+  maxHeapSize = '1g'
   jvmArgs '-XX:MaxMetaspaceSize=512m'
   testLogging {
     exceptionFormat = 'full'
@@ -112,8 +112,8 @@ tasks.withType(Test) {
   // Spock Report settings
   systemProperty 'com.athaydes.spockframework.report.outputDir', 'build/reports/spock'
   systemProperty 'com.athaydes.spockframework.report.internal.HtmlReportCreator.inlineCss', false
-  systemProperty 'com.athaydes.spockframework.report.projectName',"Devhub-Web"
-  systemProperty 'com.athaydes.spockframework.report.projectVersion',"1.0"
+  systemProperty 'com.athaydes.spockframework.report.projectName','Devhub-Web'
+  systemProperty 'com.athaydes.spockframework.report.projectVersion','1.0'
 
   //for individual reports:
   testLogging {
