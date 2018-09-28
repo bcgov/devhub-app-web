@@ -5,7 +5,7 @@ import org.junit.runners.Suite
 
 @RunWith(Suite)
 @Suite.SuiteClasses([
-        A_HomePageSpec.class
+  A_HomePageSpec.class
 ])
 
 class CustomJUnitSpecRunner {
