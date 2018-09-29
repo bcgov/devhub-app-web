@@ -1,0 +1,11 @@
+.Logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+}
+
+.Logo:visited {
+    color: inherit;
+}

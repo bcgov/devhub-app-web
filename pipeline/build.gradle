@@ -1,0 +1,49 @@
+apply plugin: 'groovy'
+
+
+repositories {
+  jcenter()
+  maven {
+    url  "https://dl.bintray.com/cvarjao/maven"
+  }
+}
+
+dependencies {
+  compile 'org.codehaus.groovy:groovy-all:2.5.0'
+  compile 'ca.bc.gov.devops.cd.pipeline:ocp-pipeline:0.0.3'
+}
+
+sourceSets {
+  main {
+    groovy {
+      srcDirs = ['src/groovy']
+    }
+  }
+}
+
+ext.getScriptArgs = {->
+  def keys = project.getProperties().findAll { it.key.startsWith('args.') }.collect { it.key }
+  def argsMap = project.getProperties().subMap(keys)
+  def args =[]
+  for (def entry:argsMap){
+    if (entry.key.startsWith('args.')){
+      String argKey=entry.key.substring(5)
+      args+=["${argKey}=${entry.value}"]
+    }
+  }
+  return args
+}
+
+task('cd-functional-test', type: JavaExec) {
+  description 'Run BDD Stack script'
+
+  // Set main property to name of Groovy script class.
+  main = 'BddStack'
+
+  // Set classpath for running the Groovy script.
+  classpath = sourceSets.main.runtimeClasspath
+
+  args project.getScriptArgs()
+
+  workingDir file(['git', 'rev-parse', '--show-toplevel'].execute().text.trim())
+}

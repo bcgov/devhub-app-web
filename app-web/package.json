@@ -26,20 +26,24 @@
     "gatsby-transformer-remark": "^1.7.17",
     "gatsby-transformer-sharp": "^1.6.10",
     "gatsby-transformer-yaml": "^1.5.11",
+    "hash.js": "^1.1.5",
     "i": "^0.3.6",
+    "jwt-decode": "^2.2.0",
     "normalize.css": "^7.0.0",
     "npm": "^6.4.1",
     "postcss-flexbugs-fixes": "^4.1.0",
     "prop-types": "^15.6.0",
     "react-emotion": "^8.0.8",
     "react-helmet": "^5.2.0",
+    "shortid": "^2.2.13",
     "styled-components": "^3.4.9",
     "styled-system": "^1.0.8"
   },
   "scripts": {
     "dev": "node_modules/.bin/gatsby develop",
     "build": "node_modules/.bin/gatsby build",
-    "test": "jest --watch --env=jsdom",
+    "test:watch": "jest --watch --env=jsdom",
+    "test": "jest --env=jsdom",
     "test:lint": "eslint src/",
     "prettify": "prettier --write '{./,__{tests,mocks}__}/**/*.+(js|jsx)'"
   },
@@ -72,6 +76,7 @@
     ],
     "setupFiles": [
       "raf/polyfill",
+      "jest-localstorage-mock",
       "<rootDir>/src/setupTests.js",
       "<rootDir>/config/jest/loadershim.js"
     ]
@@ -91,6 +96,7 @@
     "eslint-plugin-react": "^7.4.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^21.2.1",
+    "jest-localstorage-mock": "^2.2.0",
     "prettier": "1.7.4"
   }
 }

@@ -78,7 +78,7 @@ public/
 *.dmg
 *.gz
 *.iso
-*.jar
+# *.jar # need to include the grdale-wrapper.js for pipeline task
 *.rar
 *.tar
 *.zip
@@ -99,3 +99,7 @@ public/
 ehthumbs.db
 Thumbs.db
 
+# pipeline gradle builds #
+######################
+.gradle/
+pipeline/build/
