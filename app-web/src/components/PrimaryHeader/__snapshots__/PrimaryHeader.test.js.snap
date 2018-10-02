@@ -3,7 +3,9 @@
 exports[`Primary Header Component it matches snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <PrimaryHeader />,
+  Symbol(enzyme.__unrendered__): <PrimaryHeader
+    isAuthenticated={false}
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -17,41 +19,24 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "host",
     "props": Object {
-      "children": <Banner
-        navigateOnClickPath="/"
-        title="Developer's Hub"
-      />,
-      "className": "PrimaryHeader",
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "navigateOnClickPath": "/",
-        "title": "Developer's Hub",
-      },
-      "ref": null,
-      "rendered": null,
-      "type": [Function],
-    },
-    "type": "header",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": <Banner
+      "children": Array [
+        <Banner
           navigateOnClickPath="/"
           title="Developer's Hub"
         />,
-        "className": "PrimaryHeader",
-      },
-      "ref": null,
-      "rendered": Object {
+        <Button
+          clicked={[Function]}
+          id="dh-login"
+          type="primary"
+        >
+          Login
+        </Button>,
+      ],
+      "className": "PrimaryHeader",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
         "instance": null,
         "key": undefined,
         "nodeType": "function",
@@ -63,6 +48,73 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": "Login",
+          "clicked": [Function],
+          "id": "dh-login",
+          "type": "primary",
+        },
+        "ref": null,
+        "rendered": "Login",
+        "type": [Function],
+      },
+    ],
+    "type": "header",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Banner
+            navigateOnClickPath="/"
+            title="Developer's Hub"
+          />,
+          <Button
+            clicked={[Function]}
+            id="dh-login"
+            type="primary"
+          >
+            Login
+          </Button>,
+        ],
+        "className": "PrimaryHeader",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "navigateOnClickPath": "/",
+            "title": "Developer's Hub",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": "Login",
+            "clicked": [Function],
+            "id": "dh-login",
+            "type": "primary",
+          },
+          "ref": null,
+          "rendered": "Login",
+          "type": [Function],
+        },
+      ],
       "type": "header",
     },
   ],
