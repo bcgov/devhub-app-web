@@ -10,7 +10,7 @@ import Banner from '../Common/Banner';
 import Button from '../UI/Button/Button';
 import { LOGOUT_BTN_ID, LOGIN_BTN_ID } from '../../constants/ui';
 
-const PrimaryHeader = ({ isAuthenticated, login, logout }) => {
+export const PrimaryHeader = ({ isAuthenticated, login, logout }) => {
   let button = (
     <Button type="primary" id={LOGIN_BTN_ID} clicked={login}>
       Login
@@ -38,6 +38,8 @@ PrimaryHeader.propTypes = {
 
 PrimaryHeader.defaultProps = {
   isAuthenticated: false,
+  login: () => undefined,
+  logout: () => undefined,
 };
 
 const mapStateToProps = state => ({

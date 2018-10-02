@@ -1,12 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import PrimaryHeader from './PrimaryHeader';
+import { PrimaryHeader } from './PrimaryHeader';
 import { LOGOUT_BTN_ID, LOGIN_BTN_ID } from '../../constants/ui';
-let wrapper;
-
-beforeEach(() => {
-  shallow(<PrimaryHeader />);
-});
 
 describe('Primary Header Component', () => {
   test('it matches snapshot', () => {
@@ -15,7 +10,7 @@ describe('Primary Header Component', () => {
   });
 
   it('shows logout button when authenticated', () => {
-    const wrapper = shallow(<PrimaryHeader isAuthenticated />);
+    const wrapper = shallow(<PrimaryHeader isAuthenticated={true} />);
     expect(wrapper.find(`#${LOGOUT_BTN_ID}`).length).toBe(1);
     expect(wrapper.find(`#${LOGIN_BTN_ID}`).length).toBe(0);
   });

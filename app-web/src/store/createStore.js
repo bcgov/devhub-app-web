@@ -22,10 +22,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 //creates store with combined reducer and applys redux debugger helper
 //and thunk async action creator middleware
 const createStoreFN = () => {
-  return createStore(
-    rootReducer,
-    composeEnhancers(applyMiddleware(thunk))
-  );
+  return createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 };
 
 export default createStoreFN;

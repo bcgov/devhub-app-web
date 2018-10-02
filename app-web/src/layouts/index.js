@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { injectGlobal } from 'styled-components';
+import { connect } from 'react-redux';
+import { ImplicitAuthManager } from '@bcgov/common-web-utils';
 import Helmet from 'react-helmet';
 // local sourced fonts
 import * as fonts from '../assets/fonts/fonts';
@@ -13,8 +15,11 @@ import '../assets/styles/index.css';
 import '../assets/styles/fonts.css';
 import '../assets/styles/page.css';
 // layout local componenets
+import * as actions from '../store/actions/actions';
 import PrimaryFooter from '../components/PrimaryFooter/PrimaryFooter';
 import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
+
+import { SSO_BASE_URL, SSO_CLIENT_ID, SSO_REALM_NAME } from '../constants/api';
 
 injectGlobal`
   @font-face {
@@ -25,20 +30,40 @@ injectGlobal`
   }
 `;
 
-const Layout = ({ children, data }) => (
-  <div>
-    <Helmet>
-      <title>{data.site.siteMetadata.title}</title>
-      <link
-        href="https://portal.nrs.gov.bc.ca/nrs-portal-theme/images/favicon.ico"
-        rel="icon"
-        type="image/x-icon"
-      />
-    </Helmet>
-    <PrimaryHeader />
-    <div className="container">{children()}</div>
-  </div>
-);
+class Layout extends React.Component {
+  componentDidMount() {
+    const config = {
+      baseURL: SSO_BASE_URL,
+      clientId: SSO_CLIENT_ID,
+      realmName: SSO_REALM_NAME,
+      hooks: {
+        onAuthenticateSuccess: () => this.props.login(),
+        onAuthenticateFail: () => this.props.logout(),
+      },
+    };
+
+    const implicitAuthManager = new ImplicitAuthManager(config);
+    implicitAuthManager.handleOnPageLoad();
+  }
+
+  render() {
+    const { data, children } = this.props;
+    return (
+      <div>
+        <Helmet>
+          <title>{data.site.siteMetadata.title}</title>
+          <link
+            href="https://portal.nrs.gov.bc.ca/nrs-portal-theme/images/favicon.ico"
+            rel="icon"
+            type="image/x-icon"
+          />
+        </Helmet>
+        <PrimaryHeader />
+        <div className="container">{children()}</div>
+      </div>
+    );
+  }
+}
 
 Layout.propTypes = {
   children: PropTypes.func.isRequired,
@@ -54,4 +79,9 @@ export const LayoutQuery = graphql`
   }
 `;
 
-export default Layout;
+const mapDispatchToProps = dispatch => ({
+  login: () => dispatch(actions.authenticateSuccess()),
+  logout: () => dispatch(actions.authenticateFailed()),
+});
+
+export default connect(null, mapDispatchToProps)(Layout);

@@ -1,4 +1,1 @@
-export {
-    authenticateSuccess,
-    authenticateFailed,
-} from './authActions';
+export { authenticateSuccess, authenticateFailed } from './authActions';
