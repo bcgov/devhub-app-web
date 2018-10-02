@@ -1,11 +1,36 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import * as actions from '../store/actions/actions';
 // local components
 import NavigationalItems from '../components/Navigation/NavigationalItems/NavigationalItems';
 import links from '../mainNavigation';
 import { GITHUB_ISSUES_ROUTE } from '../constants/routes';
-import Hexgrid from '../components/UI/Hexgrid/Hexgrid';
+import { ImplicitAuthManager } from '@bcgov/common-web-utils';
+
+import {
+    SSO_BASE_URL,
+    SSO_CLIENT_ID,
+    SSO_REALM_NAME,
+} from '../constants/api';
+
+
 class Index extends Component {
+  componentDidMount() {
+    console.log(this.props);
+    const config = {
+        baseURL: SSO_BASE_URL,
+        clientId: SSO_CLIENT_ID,
+        realmName: SSO_REALM_NAME,
+        hooks: {
+          onAuthenticateSuccess: () => this.props.login(),
+          onAuthenticateFail: () => this.props.logout(),
+        }
+    }
+
+    const implicitAuthManager = new ImplicitAuthManager(config);
+    implicitAuthManager.handleOnPageLoad();
+  }
+
   render() {
     return (
       <main role="main" className="main">
@@ -36,4 +61,9 @@ class Index extends Component {
   }
 }
 
-export default Index;
+const mapDispatchToProps = dispatch => ({
+  login: () => dispatch(actions.authenticateSuccess()),
+  logout: () => dispatch(actions.authenticateFailed()),
+});
+
+export default connect(null, mapDispatchToProps)(Index);
