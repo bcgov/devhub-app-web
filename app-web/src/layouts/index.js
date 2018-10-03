@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { injectGlobal } from 'styled-components';
 import { connect } from 'react-redux';
-import { ImplicitAuthManager } from '@bcgov/common-web-utils';
 import Helmet from 'react-helmet';
+import implicitAuthManager from '../auth';
 // local sourced fonts
 import * as fonts from '../assets/fonts/fonts';
 /* eslint-disable */
@@ -32,17 +32,11 @@ injectGlobal`
 
 class Layout extends React.Component {
   componentDidMount() {
-    const config = {
-      baseURL: SSO_BASE_URL,
-      clientId: SSO_CLIENT_ID,
-      realmName: SSO_REALM_NAME,
-      hooks: {
-        onAuthenticateSuccess: () => this.props.login(),
-        onAuthenticateFail: () => this.props.logout(),
-      },
-    };
-
-    const implicitAuthManager = new ImplicitAuthManager(config);
+    implicitAuthManager.registerHooks({
+      onAuthenticateSuccess: () => this.props.login(),
+      onAuthenticateFail: () => this.props.logout(),
+      onAuthLocalStorageCleared: () => this.props.logout(),
+    });
     implicitAuthManager.handleOnPageLoad();
   }
 

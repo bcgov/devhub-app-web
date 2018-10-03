@@ -10,7 +10,7 @@ describe('Primary Header Component', () => {
   });
 
   it('shows logout button when authenticated', () => {
-    const wrapper = shallow(<PrimaryHeader isAuthenticated={true} />);
+    const wrapper = shallow(<PrimaryHeader isAuthenticated />);
     expect(wrapper.find(`#${LOGOUT_BTN_ID}`).length).toBe(1);
     expect(wrapper.find(`#${LOGIN_BTN_ID}`).length).toBe(0);
   });

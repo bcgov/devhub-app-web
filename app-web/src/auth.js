@@ -9,4 +9,5 @@ const config = {
 };
 
 const iam = new ImplicitAuthManager(config);
+
 export default iam;
