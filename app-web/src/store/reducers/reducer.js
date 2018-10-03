@@ -15,7 +15,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, isAuthenticated: true };
     case actionTypes.AUTHENTICATE_FAILED:
       return { ...state, isAuthenticated: false };
-    default: return state;
+    default:
+      return state;
   }
 };
 

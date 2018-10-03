@@ -17,12 +17,18 @@ import reducer from './reducers/reducer';
 const rootReducer = combineReducers({
   auth: reducer,
 });
-//redux debugging
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-//creates store with combined reducer and applys redux debugger helper
-//and thunk async action creator middleware
+let composeEnhancers;
+let middlewares;
+if (typeof window !== 'undefined') {
+  // eslint-disable-next-line
+  composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  middlewares = composeEnhancers(applyMiddleware(thunk));
+}
+// edux debugging
+// creates store with combined reducer and applys redux debugger helper
+// and thunk async action creator middleware
 const createStoreFN = () => {
-  return createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
+  return createStore(rootReducer, middlewares);
 };
 
 export default createStoreFN;

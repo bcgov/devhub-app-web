@@ -1,5 +1,5 @@
-
-module.exports = {  siteMetadata: {
+module.exports = {
+  siteMetadata: {
     title: 'Devhub',
   },
   mapping: {},
