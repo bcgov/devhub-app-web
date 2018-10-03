@@ -9,7 +9,11 @@ import classes from './NavigationalItems.module.css';
 const NavigationalItems = props => {
   //get class name mappins so that the navigational item hexes display as a grid
   const navItems = props.navItems.map((item, ind) => (
-    <NavigationalItem key={shortid.generate()} {...item} id={`${MAIN_NAVIGATION_BTN}-${ind}`}/>
+    <NavigationalItem
+      key={shortid.generate()}
+      {...item}
+      id={`${MAIN_NAVIGATION_BTN}-${ind}`}
+    />
   ));
 
   return (
