@@ -1,7 +1,5 @@
-const autoprefixer = require('autoprefixer');
-const utils = require('@bcgov/common-web-utils');
-module.exports = {
-  siteMetadata: {
+
+module.exports = {  siteMetadata: {
     title: 'Devhub',
   },
   mapping: {},
