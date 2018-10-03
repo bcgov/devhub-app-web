@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { injectGlobal } from 'styled-components';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import implicitAuthManager from '../auth';
 // local sourced fonts
 import * as fonts from '../assets/fonts/fonts';
 /* eslint-disable */
@@ -15,11 +14,11 @@ import '../assets/styles/index.css';
 import '../assets/styles/fonts.css';
 import '../assets/styles/page.css';
 // layout local componenets
-import * as actions from '../store/actions/actions';
 import PrimaryFooter from '../components/PrimaryFooter/PrimaryFooter';
 import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
-
-import { SSO_BASE_URL, SSO_CLIENT_ID, SSO_REALM_NAME } from '../constants/api';
+// redux & auth
+import implicitAuthManager from '../auth';
+import * as actions from '../store/actions/actions';
 
 injectGlobal`
   @font-face {
