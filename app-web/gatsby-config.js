@@ -35,7 +35,6 @@ module.exports = {
     },
     'gatsby-transformer-remark',
     // 'gatsby-transformer-json',
-    'gatsby-transformer-yaml',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-next',
@@ -58,8 +57,9 @@ module.exports = {
               }
             }
           }
-        }`
-      }
+        }`,
+      },
     },
+    'gatsby-transformer-yaml',
   ],
 };
