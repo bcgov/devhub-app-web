@@ -5,15 +5,16 @@ class Learn extends Component {
   render() {
     const {
       data: { allSitePage: { edges } },
-      pageResources: { page: { path } },
+      location: { pathname },
     } = this.props;
+    let path = pathname;
+    path += pathname.charAt(pathname.length - 1) !== '/' ? '/' : '';
     // get only links relative to this page
     const links = edges
       .filter(e => {
         // filter out any paths that do not have currentpath in it as well as the
         // current path itself
         const nodePath = e.node.fields.path;
-        console.log(e.node.fields);
         return nodePath.indexOf(path) >= 0 && nodePath !== path;
       })
       .map(l => ({
