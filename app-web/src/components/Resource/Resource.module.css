@@ -1,0 +1,14 @@
+.Resource {
+    padding: 0 5px;
+}
+
+.Resource .Title {
+    text-transform: capitalize;
+    font-size: 26px;
+    color: hsl(206, 92%, 63%);
+}
+
+.Resource .Items {
+    overflow-x: auto;
+    display: flex;
+}
