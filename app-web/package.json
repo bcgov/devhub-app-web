@@ -24,7 +24,6 @@
     "gatsby-plugin-react-next": "^1.0.4",
     "gatsby-plugin-sharp": "^1.6.9",
     "gatsby-source-filesystem": "^1.5.5",
-    "gatsby-source-github": "0.0.2",
     "gatsby-source-github-api": "0.0.3",
     "gatsby-transformer-json": "^1.0.11",
     "gatsby-transformer-remark": "^1.7.17",
