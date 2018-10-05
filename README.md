@@ -77,6 +77,8 @@ openshift/          - OpenShift-specific files
 * Clone this repo
 * Change into app-web project directory
 * run: `npm install`
+* cp .env.example .env
+* replace relevant environment variables (for local dev only)
 * *it may be* beneficial to have the gatsby cli package `npm install -g gatsby-cli`
 * to start development server run: `npm run dev`
 * to build a production version run: `npm run build`

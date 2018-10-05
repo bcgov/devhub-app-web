@@ -1,0 +1,15 @@
+.Item {
+    flex-basis: 250px;
+    margin: 15px 10px;
+    padding: 5px;
+    flex-shrink: 0;
+    box-shadow: 0 0 1px 2px #ccc;
+}
+
+.Item h1 {
+    font-size: 16px;
+}
+
+.Item a {
+    margin-left: auto;
+}
