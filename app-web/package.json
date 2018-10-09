@@ -13,6 +13,7 @@
     "emotion": "^8.0.8",
     "emotion-server": "^8.0.8",
     "feather-icons": "^3.3.0",
+    "flag": "^3.0.0-1",
     "gatsby": "^1.9.76",
     "gatsby-link": "^1.6.46",
     "gatsby-plugin-emotion": "^1.1.8",

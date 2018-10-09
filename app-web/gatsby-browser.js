@@ -2,13 +2,16 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { ConnectedFlagsProvider } from 'flag';
 import createStore from './src/store/createStore';
 
 exports.replaceRouterComponent = ({ history }) => {
   const store = createStore();
   const ConnectedRouterWrapper = ({ children }) => (
     <Provider store={store}>
-      <Router history={history}>{children}</Router>
+      <ConnectedFlagsProvider>
+        <Router history={history}>{children}</Router>
+      </ConnectedFlagsProvider>
     </Provider>
   );
 
