@@ -36,7 +36,6 @@ export const PrimaryHeader = ({ isAuthenticated }) => {
       </Button>
     );
   }
-
   return (
     <header className={classes.PrimaryHeader}>
       <Banner title={APP_TITLE} navigateOnClickPath="/" />

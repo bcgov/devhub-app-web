@@ -7,3 +7,7 @@
     align-items: center;
     justify-content: space-between
 }
+
+.PrimaryHeader button {
+    display: none;
+}

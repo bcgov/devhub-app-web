@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 const { ImplicitAuthManager, TypeCheck } = jest.requireActual(
   '@bcgov/common-web-utils'
 );
