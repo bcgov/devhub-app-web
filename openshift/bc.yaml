@@ -68,6 +68,12 @@ objects:
       type: Git
     strategy:
       sourceStrategy:
+        env:
+          - name: GITHUB_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: devhub-gh-token
+                key: GITHUB_TOKEN
         from:
           kind: ImageStreamTag
           name: rhscl-nodejs-8-rhel7:8.1-22

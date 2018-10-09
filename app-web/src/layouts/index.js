@@ -36,7 +36,9 @@ class Layout extends React.Component {
       onAuthenticateFail: () => this.props.logout(),
       onAuthLocalStorageCleared: () => this.props.logout(),
     });
-    implicitAuthManager.handleOnPageLoad();
+    if (window.location.origin.indexOf('localhost') < 0) {
+      implicitAuthManager.handleOnPageLoad();
+    }
   }
 
   render() {

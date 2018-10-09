@@ -55,7 +55,7 @@ ShallowWrapper {
               Object {
                 "description": "Learn more about the Pathfinder initiative",
                 "icon": "book",
-                "link": "https://www.pathfinder.gov.bc.ca",
+                "link": "/learn",
                 "title": "Learn",
               },
               Object {
@@ -185,7 +185,7 @@ ShallowWrapper {
             Object {
               "description": "Learn more about the Pathfinder initiative",
               "icon": "book",
-              "link": "https://www.pathfinder.gov.bc.ca",
+              "link": "/learn",
               "title": "Learn",
             },
             Object {
@@ -253,7 +253,7 @@ ShallowWrapper {
                 Object {
                   "description": "Learn more about the Pathfinder initiative",
                   "icon": "book",
-                  "link": "https://www.pathfinder.gov.bc.ca",
+                  "link": "/learn",
                   "title": "Learn",
                 },
                 Object {
@@ -383,7 +383,7 @@ ShallowWrapper {
               Object {
                 "description": "Learn more about the Pathfinder initiative",
                 "icon": "book",
-                "link": "https://www.pathfinder.gov.bc.ca",
+                "link": "/learn",
                 "title": "Learn",
               },
               Object {
