@@ -1,38 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Button from '../../UI/Button/Button';
 import { LOGOUT_BTN_ID, LOGIN_BTN_ID } from '../../../constants/ui';
+import implicitAuthManager from '../../../auth';
 
-const Login = ({ isAuthenticated }) => {
+export const Login = ({ isAuthenticated }) => {
+  let button = (
+    <Button
+      type="primary"
+      id={LOGIN_BTN_ID}
+      clicked={() => {
+        window.location = implicitAuthManager.getSSOLoginURI();
+      }}
+    >
+      Login
+    </Button>
+  );
   if (isAuthenticated) {
-    return (
+    button = (
       <Button
-        id={LOGOUT_BTN_ID}
         type="primary"
+        id={LOGOUT_BTN_ID}
         clicked={() => {
-          console.log('logging user out!');
+          implicitAuthManager.clearAuthLocalStorage();
+          window.location = implicitAuthManager.getSSOLogoutURI();
         }}
       >
         Logout
       </Button>
     );
-  } else {
-    return (
-      <Button
-        id={LOGIN_BTN_ID}
-        type="primary"
-        clicked={() => {
-          console.log('logging user in!');
-        }}
-      >
-        Login
-      </Button>
-    );
   }
+  return button;
 };
 
 Login.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
 };
 
-export default Login;
+Login.defaultProps = {
+  isAuthenticated: false,
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, null)(Login);

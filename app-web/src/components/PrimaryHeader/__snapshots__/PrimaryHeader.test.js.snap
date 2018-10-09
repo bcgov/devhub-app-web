@@ -3,9 +3,7 @@
 exports[`Primary Header Component it matches snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <PrimaryHeader
-    isAuthenticated={false}
-  />,
+  Symbol(enzyme.__unrendered__): <PrimaryHeader />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -24,13 +22,7 @@ ShallowWrapper {
           navigateOnClickPath="/"
           title="Developer's Hub"
         />,
-        <Button
-          clicked={[Function]}
-          id="dh-login"
-          type="primary"
-        >
-          Login
-        </Button>,
+        <Connect(Login) />,
       ],
       "className": "PrimaryHeader",
     },
@@ -51,15 +43,10 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "children": "Login",
-          "clicked": [Function],
-          "id": "dh-login",
-          "type": "primary",
-        },
+        "nodeType": "class",
+        "props": Object {},
         "ref": null,
-        "rendered": "Login",
+        "rendered": null,
         "type": [Function],
       },
     ],
@@ -76,13 +63,7 @@ ShallowWrapper {
             navigateOnClickPath="/"
             title="Developer's Hub"
           />,
-          <Button
-            clicked={[Function]}
-            id="dh-login"
-            type="primary"
-          >
-            Login
-          </Button>,
+          <Connect(Login) />,
         ],
         "className": "PrimaryHeader",
       },
@@ -103,15 +84,10 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": "Login",
-            "clicked": [Function],
-            "id": "dh-login",
-            "type": "primary",
-          },
+          "nodeType": "class",
+          "props": Object {},
           "ref": null,
-          "rendered": "Login",
+          "rendered": null,
           "type": [Function],
         },
       ],
