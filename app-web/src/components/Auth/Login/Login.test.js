@@ -1,7 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Login from './Login';
+import { Login } from './Login';
 import { LOGOUT_BTN_ID, LOGIN_BTN_ID } from '../../../constants/ui';
+
 describe('Login Component', () => {
   it('shows logout button when logged in', () => {
     const wrapper = mount(<Login isAuthenticated />);
