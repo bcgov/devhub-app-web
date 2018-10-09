@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import { createFlagsReducer } from 'flag';
 import reducer from './reducers/reducer';
+import featuresReducer from './reducers/features';
 
 // const logger = store => {
 //   return next => {
@@ -17,11 +17,7 @@ import reducer from './reducers/reducer';
 
 const rootReducer = combineReducers({
   auth: reducer,
-  flags: createFlagsReducer({
-    features: {
-      login: false,
-    },
-  }),
+  flags: featuresReducer,
 });
 let composeEnhancers;
 let middlewares;
