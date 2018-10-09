@@ -29,6 +29,7 @@ export const PrimaryHeader = ({ isAuthenticated }) => {
         id={LOGOUT_BTN_ID}
         clicked={() => {
           implicitAuthManager.clearAuthLocalStorage();
+          window.location = implicitAuthManager.getSSOLogoutURI();
         }}
       >
         Logout
