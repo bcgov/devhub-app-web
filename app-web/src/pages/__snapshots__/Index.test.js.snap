@@ -62,7 +62,7 @@ ShallowWrapper {
                 "description": "Register your mobile application with our in-house Signing Tool",
                 "icon": "user-astronaut",
                 "link": "/do",
-                "title": "Do",
+                "title": "Tools & Applications",
               },
               Object {
                 "description": "This section is currently in development",
@@ -192,7 +192,7 @@ ShallowWrapper {
               "description": "Register your mobile application with our in-house Signing Tool",
               "icon": "user-astronaut",
               "link": "/do",
-              "title": "Do",
+              "title": "Tools & Applications",
             },
             Object {
               "description": "This section is currently in development",
@@ -260,7 +260,7 @@ ShallowWrapper {
                   "description": "Register your mobile application with our in-house Signing Tool",
                   "icon": "user-astronaut",
                   "link": "/do",
-                  "title": "Do",
+                  "title": "Tools & Applications",
                 },
                 Object {
                   "description": "This section is currently in development",
@@ -390,7 +390,7 @@ ShallowWrapper {
                 "description": "Register your mobile application with our in-house Signing Tool",
                 "icon": "user-astronaut",
                 "link": "/do",
-                "title": "Do",
+                "title": "Tools & Applications",
               },
               Object {
                 "description": "This section is currently in development",
