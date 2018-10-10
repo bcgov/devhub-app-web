@@ -9,7 +9,7 @@ export default [
   },
   {
     link: DO_ROUTE,
-    title: 'Do',
+    title: 'Tools & Applications',
     icon: 'user-astronaut',
     description:
       'Register your mobile application with our in-house Signing Tool',
