@@ -2,8 +2,9 @@
     padding: 15px 40px;
 }
 .main h1 {
-    border-bottom: 1px solid #234075;
+    border-bottom: 1px solid #ccc;
     margin-top: 0;
+    color: #003469;
 }
 .main h2 {
     font-size: 14px;
