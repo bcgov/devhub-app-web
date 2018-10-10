@@ -31,13 +31,15 @@ injectGlobal`
 
 class Layout extends React.Component {
   componentDidMount() {
-    implicitAuthManager.registerHooks({
-      onAuthenticateSuccess: () => this.props.login(),
-      onAuthenticateFail: () => this.props.logout(),
-      onAuthLocalStorageCleared: () => this.props.logout(),
-    });
-    if (window.location.origin.indexOf('localhost') < 0) {
-      implicitAuthManager.handleOnPageLoad();
+    if(this.props.useAuth) {
+      implicitAuthManager.registerHooks({
+        onAuthenticateSuccess: () => this.props.login(),
+        onAuthenticateFail: () => this.props.logout(),
+        onAuthLocalStorageCleared: () => this.props.logout(),
+      });
+      if (window.location.origin.indexOf('localhost') < 0) {
+        implicitAuthManager.handleOnPageLoad();
+      }
     }
   }
 
@@ -62,6 +64,7 @@ class Layout extends React.Component {
 
 Layout.propTypes = {
   children: PropTypes.func.isRequired,
+  useAuth: PropTypes.bool.isRequired,
 };
 
 export const LayoutQuery = graphql`
@@ -79,4 +82,10 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(actions.authenticateFailed()),
 });
 
-export default connect(null, mapDispatchToProps)(Layout);
+const mapStateToProps = state => {
+  return {
+    useAuth: state.flags.features.login
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);
