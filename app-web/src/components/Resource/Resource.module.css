@@ -1,14 +1,27 @@
 .Resource {
     padding: 0 5px;
+    margin-bottom: 15px;
 }
 
 .Resource .Title {
     text-transform: capitalize;
-    font-size: 26px;
-    color: hsl(206, 92%, 63%);
+    font-size: 32px;
+    color: #003469;
+    border-bottom: 1px solid #ccc;
 }
 
 .Resource .Items {
     overflow-x: auto;
     display: flex;
+}
+
+.Resource .Items:last-child::after {
+    content: '';
+    flex: 0 0 25px;
+}
+
+@media screen and (min-width: 500px) {
+    .Resource {
+        margin-bottom: 35px;
+    }
 }
