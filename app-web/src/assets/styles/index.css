@@ -11,7 +11,7 @@ body {
   font-family: 'Myriad-Pro', Calibri, Arial, 'Sans Serif';
   margin: 0;
   padding: 0;
-  min-width: 500px;
+  min-width: 320px;
   overflow-x: auto;
   background: #fdfdfd;
 }
