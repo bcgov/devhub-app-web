@@ -6,6 +6,7 @@
     flex-shrink: 0;
     box-shadow: 0 0 1px 1px #ccc;
     position: relative;
+    overflow-y: overlay;
     transition: transform .35s ease-out, box-shadow .35s ease-out;
 }
 .Item:hover {
@@ -42,6 +43,12 @@
     text-align: left;
     margin-bottom: 15px;
     color: #717388;
+}
+
+.Item .Body {
+    overflow: overlay;
+    padding: 5px 0;
+    height: 202px;
 }
 
 .Item p {
