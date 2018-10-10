@@ -35,7 +35,7 @@
           <repository>devhub-app-web</repository>
           <traits>
             <org.jenkinsci.plugins.github__branch__source.OriginPullRequestDiscoveryTrait>
-              <strategyId>1</strategyId>
+              <strategyId>2</strategyId>
             </org.jenkinsci.plugins.github__branch__source.OriginPullRequestDiscoveryTrait>
             <jenkins.plugins.git.traits.WipeWorkspaceTrait plugin="git@3.9.1">
               <extension class="hudson.plugins.git.extensions.impl.WipeWorkspace"/>
