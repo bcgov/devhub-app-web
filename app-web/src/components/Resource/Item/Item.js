@@ -5,7 +5,9 @@ import styles from './Item.module.css';
 const Item = ({ description, link, children }) => (
   <div className={styles.Item}>
     <h1>{description}</h1>
-    {children}
+    <div className={styles.Body}>
+      {children}
+    </div>
     <div className={styles.Bottom}> 
       <a href={link} className={styles.Action}>Learn more</a>
     </div>
