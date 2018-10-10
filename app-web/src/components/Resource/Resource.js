@@ -9,7 +9,7 @@ const Resource = ({ category, resources }) => {
     <Item key={shortid.generate()} {...i}> 
       {
         i.details ? <p>{i.details}</p> :
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pellentesque, sapien a blandit scelerisque, purus.</p>
+        <p>Click below for more details.</p>
       }
     </Item>
   ));
