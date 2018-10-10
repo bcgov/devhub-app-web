@@ -6,6 +6,7 @@ const iconsToUse = [
   Icons.faShippingFast,
   Icons.faCoffee,
   Icons.faUserAstronaut,
+  Icons.faChevronRight,
 ];
 
 export default library.add.apply(library, iconsToUse);
