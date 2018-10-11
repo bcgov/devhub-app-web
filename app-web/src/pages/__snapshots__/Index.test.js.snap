@@ -55,14 +55,14 @@ ShallowWrapper {
               Object {
                 "description": "Learn more about the Pathfinder initiative",
                 "icon": "book",
-                "link": "https://www.pathfinder.gov.bc.ca",
+                "link": "/learn",
                 "title": "Learn",
               },
               Object {
                 "description": "Register your mobile application with our in-house Signing Tool",
                 "icon": "user-astronaut",
                 "link": "/do",
-                "title": "Do",
+                "title": "Tools & Applications",
               },
               Object {
                 "description": "This section is currently in development",
@@ -185,14 +185,14 @@ ShallowWrapper {
             Object {
               "description": "Learn more about the Pathfinder initiative",
               "icon": "book",
-              "link": "https://www.pathfinder.gov.bc.ca",
+              "link": "/learn",
               "title": "Learn",
             },
             Object {
               "description": "Register your mobile application with our in-house Signing Tool",
               "icon": "user-astronaut",
               "link": "/do",
-              "title": "Do",
+              "title": "Tools & Applications",
             },
             Object {
               "description": "This section is currently in development",
@@ -253,14 +253,14 @@ ShallowWrapper {
                 Object {
                   "description": "Learn more about the Pathfinder initiative",
                   "icon": "book",
-                  "link": "https://www.pathfinder.gov.bc.ca",
+                  "link": "/learn",
                   "title": "Learn",
                 },
                 Object {
                   "description": "Register your mobile application with our in-house Signing Tool",
                   "icon": "user-astronaut",
                   "link": "/do",
-                  "title": "Do",
+                  "title": "Tools & Applications",
                 },
                 Object {
                   "description": "This section is currently in development",
@@ -383,14 +383,14 @@ ShallowWrapper {
               Object {
                 "description": "Learn more about the Pathfinder initiative",
                 "icon": "book",
-                "link": "https://www.pathfinder.gov.bc.ca",
+                "link": "/learn",
                 "title": "Learn",
               },
               Object {
                 "description": "Register your mobile application with our in-house Signing Tool",
                 "icon": "user-astronaut",
                 "link": "/do",
-                "title": "Do",
+                "title": "Tools & Applications",
               },
               Object {
                 "description": "This section is currently in development",
@@ -424,8 +424,6 @@ ShallowWrapper {
         },
       },
     },
-    "attachTo": undefined,
-    "hydrateIn": undefined,
   },
 }
 `;

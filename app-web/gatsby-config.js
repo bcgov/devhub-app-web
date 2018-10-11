@@ -1,4 +1,6 @@
-const autoprefixer = require('autoprefixer');
+require('dotenv').config({
+  path: '.env.production',
+});
 
 module.exports = {
   siteMetadata: {
@@ -35,11 +37,32 @@ module.exports = {
       },
     },
     'gatsby-transformer-remark',
-    'gatsby-transformer-json',
-    'gatsby-transformer-yaml',
+    // 'gatsby-transformer-json',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-next',
     'gatsby-plugin-react-helmet',
+    {
+      resolve: `gatsby-source-github-api`,
+      options: {
+        // token required by the Github API
+        token: process.env.GITHUB_TOKEN, // required
+        variables: {},
+        graphQLQuery: `
+        query {
+          organization(login:"BCDevOps") {
+            repository(name: "pathfinder") {
+              name,
+              resources: object(expression: "master:resources.yml") {
+                ...on Blob {
+                  text
+                }
+              }
+            }
+          }
+        }`,
+      },
+    },
+    'gatsby-transformer-yaml',
   ],
 };
