@@ -23,9 +23,9 @@ const {
   PROCESSABLE_EXTENSIONS,
   MEDIATYPES,
 } = require('./constants');
-const { TypeCheck } = require('@bcgov/common-web-utils');
-const Base64 = require('js-base64').Base64;
-const fetch = require('node-fetch');
+const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line 
+const { Base64 } = require('js-base64'); // eslint-disable-line
+const fetch = require('node-fetch'); // eslint-disable-line
 
 /**
  * returns extension of a file name
@@ -118,9 +118,7 @@ const filterFilesByExtensions = (entries, extensions = ['.md']) => {
   }
   // ensure extensions are of correct pattern
   if (
-    !extensions.every(ext => {
-      return /\.\w+$/.test(ext);
-    })
+    !extensions.every(ext => /\.\w+$/.test(ext))
   ) {
     throw new Error('extensions must have shape /\\.w+$/');
   }
@@ -165,9 +163,7 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
       PROCESSABLE_EXTENSIONS
     );
     // retrieve contents for each file
-    const filesWithContents = filesToFetch.map(async file => {
-      return await fetchFile(repo, owner, file.path, token);
-    });
+    const filesWithContents = filesToFetch.map(file => fetchFile(repo, owner, file.path, token));
     const filesResponse = await Promise.all(filesWithContents);
     // for some reason the accept header is not returning with raw content so we will decode
     // the default base 64 encoded content
@@ -178,9 +174,9 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
         ...f,
         content: Base64.decode(f.content),
         metadata: {
-          name: name,
+          name,
           source: repo,
-          owner: owner,
+          owner,
           fileType: getNameOfExtensionVerbose(f.name),
           mediaType: getMediaTypeByExtension(ext),
           extension: ext,
@@ -189,6 +185,7 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
     });
     return files;
   } catch (e) {
+    // eslint-disable-next-line
     console.error(
       `\nERROR!! in Gatsby Source Github All: \n unable to fetch files frome repo ${repo}`
     );

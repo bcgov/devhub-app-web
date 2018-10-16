@@ -17,5 +17,6 @@
 //
 // Created by Patrick Simonian on 2018-10-12.
 //
-const sourceNodes = require('./sourceNodes').sourceNodes;
+const { sourceNodes } = require('./sourceNodes');
+
 exports.sourceNodes = sourceNodes;

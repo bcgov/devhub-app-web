@@ -17,12 +17,11 @@
 //
 // Created by Patrick Simonian on 2018-10-12.
 //
-const crypto = require(`crypto`);
-const _ = require('lodash');
+const crypto = require('crypto');
+const _ = require('lodash'); // eslint-disable-line
 const { getFilesFromRepo } = require('./utils/github-api');
 
-const createGHNode = (file, id) => {
-  return {
+const createGHNode = (file, id) => ({
     id,
     children: [],
     fileName: file.name,
@@ -47,12 +46,9 @@ const createGHNode = (file, id) => {
       // that transformer plugins can take and further process.
       content: file.content,
     },
-  };
-};
+  });
 
-const repoIsValid = repo => {
-  return repo.name && repo.url && repo.repo && repo.owner;
-};
+const repoIsValid = repo => repo.name && repo.url && repo.repo && repo.owner;
 
 const reposAreValid = repos => repos.every(repoIsValid);
 
@@ -66,21 +62,19 @@ const checkRegistry = registry => {
 };
 
 const getRegistry = getNodes => {
-  const registryFound = getNodes().filter(node => {
-    return node.internal.type === 'SourceRegistryYaml';
-  });
+  const registryFound = getNodes().filter(node => node.internal.type === 'SourceRegistryYaml');
   if (registryFound.length > 0) {
     return registryFound[0];
-  } else {
-    throw new Error('Registry not found');
   }
+
+  throw new Error('Registry not found');
 };
 
 const sourceNodes = async (
   { getNodes, boundActionCreators, createNodeId },
   { token }
 ) => {
-  //get registry from current nodes
+  // get registry from current nodes
   const registry = getRegistry(getNodes);
   const { createNode } = boundActionCreators;
   try {
@@ -89,22 +83,20 @@ const sourceNodes = async (
     // fetch all repos
     const repos = await Promise.all(
       registry.repos.map(
-        async repo =>
-          await getFilesFromRepo(repo.repo, repo.owner, repo.name, token)
+        repo => getFilesFromRepo(repo.repo, repo.owner, repo.name, token)
       )
     );
     // flatten dataToNodify
     const dataToNodify = _.flatten(repos, true);
     // create nodes
     return Promise.all(
-      dataToNodify.map(file => {
-        createNode(createGHNode(file, createNodeId(file.sha)));
-      })
+      dataToNodify.map(file => createNode(createGHNode(file, createNodeId(file.sha))))
     );
   } catch (e) {
     // failed to retrieve files or some other type of failure
+    // eslint-disable-next-line
     console.error(e, e.type);
-    return Promise.reject('Unable to build nodes from Github Source');
+    return Promise.reject(e);
   }
 };
 module.exports = {
