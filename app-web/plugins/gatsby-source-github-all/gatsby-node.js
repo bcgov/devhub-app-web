@@ -45,13 +45,40 @@ const createGHNode = (file, id) => {
   };
 };
 
-exports.sourceNodes = (utils, { token }) => {
+const checkRegistry = registry => {
+  return true;
+};
+
+const getRegistry = getNodes => {
+  const registryFound = getNodes().filter(node => {
+    return node.internal.type === 'SourceRegistryYaml';
+  });
+  if (registryFound.length > 1) {
+    return registryFound[0];
+  } else {
+    throw new Error('Registry not found');
+  }
+};
+
+exports.sourceNodes = ({ getNodes }, { token }) => {
   return new Promise(async (resolve, reject) => {
+    //get registry from current nodes
+    const registry = getRegistry(getNodes);
     // attempt to get github data
     let dataForNodifying = [];
     try {
-      const data = await getFilesFromRepo('range-web', 'bcgov', token);
-      // console.log(data);
+      // check registry prior to fetching data
+      checkRegistry(registry);
+      // get designSystem from registry
+      // this will be replaced by a loop eventually
+      const [designSystem] = registry.repos;
+
+      const data = await getFilesFromRepo(
+        designSystem.repo,
+        designSystem.owner,
+        token
+      );
+      console.log(data);
       dataForNodifying = dataForNodifying.concat(data);
     } catch (e) {
       // failed to retrieve
