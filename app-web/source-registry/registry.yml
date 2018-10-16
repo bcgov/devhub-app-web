@@ -1,5 +1,6 @@
 repos:
   - name: Design System
-    path: https://github.com/bcgov/design-system/
+    url: https://github.com/bcgov/design-system/
     owner: bcgov
     repo: 'design-system'
+  
