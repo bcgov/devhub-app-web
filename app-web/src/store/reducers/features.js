@@ -3,7 +3,7 @@ import { createFlagsReducer } from 'flag';
 // https://www.npmjs.com/package/flag
 // there are referenced by the Flag Component using string dot notation
 export default createFlagsReducer({
-    features: {
-      login: false,
-    },
+  features: {
+    login: false,
+  },
 });

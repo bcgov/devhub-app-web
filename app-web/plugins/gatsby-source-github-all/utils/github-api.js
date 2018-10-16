@@ -17,7 +17,12 @@
 //
 // Created by Patrick Simonian on 2018-10-12.
 //
-const { GITHUB_API_ENDPOINT, FILETYPES } = require('./constants');
+const {
+  GITHUB_API_ENDPOINT,
+  FILETYPES,
+  PROCESSABLE_EXTENSIONS,
+  MEDIATYPES,
+} = require('./constants');
 const { TypeCheck } = require('@bcgov/common-web-utils');
 const Base64 = require('js-base64').Base64;
 const fetch = require('node-fetch');
@@ -39,6 +44,12 @@ const getNameOfExtensionVerbose = fileName => {
   const ext = getExtensionFromName(fileName);
   return FILETYPES[ext] ? FILETYPES[ext] : '';
 };
+/**
+ * returns media type from extension
+ * @param {String} extension 
+ */
+const getMediaTypeByExtension = extension =>
+  MEDIATYPES[extension] ? MEDIATYPES[extension] : '';
 /**
  * Using the recursion param, this
  * function attempts to retrieve all directories/files from a repo
@@ -117,7 +128,7 @@ const filterFilesByExtensions = (entries, extensions = ['.md']) => {
   const re = new RegExp(`(${extensions.join('|')})$`);
   // would have shape like /(.md|.txt)$/
   // filter entries
-  return entries.filter(entry => re.test(entry.name));
+  return entries.filter(entry => re.test(entry.path));
 };
 /**
    * filters out directories from array of github graph ql entries
@@ -148,11 +159,14 @@ const getFilesFromRepo = async (repo, owner, token) => {
   const now = Date.now();
   try {
     // create graphql string for finding all files in a directory
-    // console.log(repo, owner, token);
     const data = await fetchGithubTree(repo, owner, token);
-    // console.log('data raw', data.tree);
     // filter out files by extensions
-    const filesToFetch = filterFilesFromDirectories(data.tree);
+    let filesToFetch = filterFilesFromDirectories(data.tree);
+    // filter out files that aren't markdown
+    filesToFetch = filterFilesByExtensions(
+      filesToFetch,
+      PROCESSABLE_EXTENSIONS
+    );
     // retrieve contents for each file
     const filesWithContents = filesToFetch.map(async file => {
       return await fetchFile(repo, owner, file.path, token);
@@ -160,8 +174,20 @@ const getFilesFromRepo = async (repo, owner, token) => {
     const filesResponse = await Promise.all(filesWithContents);
     // for some reason the accept header is not returning with raw content so we will decode
     // the default base 64 encoded content
+    // also adding some additional params
     const files = filesResponse.map(f => {
-      return { ...f, content: Base64.decode(f.content) };
+      const ext = getExtensionFromName(f.name);
+      return {
+        ...f,
+        content: Base64.decode(f.content),
+        metadata: {
+          source: repo,
+          owner: owner,
+          fileType: getNameOfExtensionVerbose(f.name),
+          mediaType: getMediaTypeByExtension(ext),
+          extension: ext,
+        },
+      };
     });
     console.log('Files loaded in ', (Date.now() - now) / 1000, ' seconds');
     return files;

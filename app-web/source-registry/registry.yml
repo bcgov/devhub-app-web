@@ -1,3 +1,5 @@
 repos:
-  - name: Dev Hub
-    repo: https://github.com/bcgov/devhub-app-web/
+  - name: Design System
+    path: https://github.com/bcgov/design-system/
+    owner: bcgov
+    repo: 'design-system'

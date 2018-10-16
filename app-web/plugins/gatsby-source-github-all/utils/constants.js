@@ -29,8 +29,19 @@ const FILETYPES = {
   txt: 'text',
 };
 
+const MEDIATYPES = {
+  md: 'text/markdown',
+  json: 'application/json',
+  yaml: 'text/yaml',
+  txt: 'text/html',
+  html: 'text/html',
+};
+
+const PROCESSABLE_EXTENSIONS = ['.md'];
+
 module.exports = {
   BLACKLISTED_DIRECTORIES,
   GITHUB_API_ENDPOINT,
   FILETYPES,
+  MEDIATYPES,
 };

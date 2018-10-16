@@ -17,30 +17,32 @@
 //
 // Created by Patrick Simonian on 2018-10-12.
 //
+const crypto = require(`crypto`);
 const { getFilesFromRepo } = require('./utils/github-api');
 
 const createGHNode = (file, id) => {
   return {
     id,
-    parent: String,
-    // Reserved for plugins who wish to extend other nodes.
-    fields: {
-      slug: '',
-    },
+    name: file.name,
+    path: file.path,
+    source: file.metadata.source,
+    owner: file.metadata.owner,
+    children: [],
+    fileType: file.metadata.fileType,
+    parent: null,
     internal: {
-      contentDigest: String,
+      contentDigest: crypto
+        .createHash('md5')
+        .update(JSON.stringify(file))
+        .digest('hex'),
       // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate
       // to transformer plugins this node has data they can further process.
-      mediaType: String,
+      mediaType: file.metadata.mediaType,
       // A globally unique node type chosen by the plugin owner.
-      type: String,
-      // The plugin which created this node.
-      owner: String,
-      // Stores which plugins created which fields.
-      fieldOwners: Object,
+      type: 'SourceDevhubGithub',
       // Optional field exposing the raw content for this node
       // that transformer plugins can take and further process.
-      content: String,
+      content: file.content,
     },
   };
 };
@@ -53,36 +55,45 @@ const getRegistry = getNodes => {
   const registryFound = getNodes().filter(node => {
     return node.internal.type === 'SourceRegistryYaml';
   });
-  if (registryFound.length > 1) {
+  if (registryFound.length > 0) {
     return registryFound[0];
   } else {
     throw new Error('Registry not found');
   }
 };
 
-exports.sourceNodes = ({ getNodes }, { token }) => {
-  return new Promise(async (resolve, reject) => {
-    //get registry from current nodes
-    const registry = getRegistry(getNodes);
-    // attempt to get github data
-    let dataForNodifying = [];
-    try {
-      // check registry prior to fetching data
-      checkRegistry(registry);
-      // get designSystem from registry
-      // this will be replaced by a loop eventually
-      const [designSystem] = registry.repos;
-
-      const data = await getFilesFromRepo(
-        designSystem.repo,
-        designSystem.owner,
-        token
-      );
-      console.log(data);
-      dataForNodifying = dataForNodifying.concat(data);
-    } catch (e) {
-      // failed to retrieve
-    }
-    // process dataForNodifying into nodes
-  });
+exports.sourceNodes = async (
+  { getNodes, boundActionCreators, createNodeId },
+  { token }
+) => {
+  //get registry from current nodes
+  const registry = getRegistry(getNodes);
+  const { createNode } = boundActionCreators;
+  // attempt to get github data
+  let dataForNodifying = [];
+  try {
+    // check registry prior to fetching data
+    checkRegistry(registry);
+    // get designSystem from registry
+    // this will be replaced by a loop eventually
+    const [designSystem] = registry.repos;
+    // get design system files
+    const data = await getFilesFromRepo(
+      designSystem.repo,
+      designSystem.owner,
+      token,
+    );
+    
+    dataForNodifying = dataForNodifying.concat(data);
+    // create nodes
+    return Promise.all(
+      dataForNodifying.map(file =>
+        createNode(createGHNode(file, createNodeId(file.name)))
+      )
+    );
+  } catch (e) {
+    // failed to retrieve
+    console.error(e);
+    return Promise.reject('Unable to build nodes from Github Source');
+  }
 };
