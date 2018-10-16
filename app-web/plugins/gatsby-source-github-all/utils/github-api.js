@@ -149,14 +149,11 @@ const filterFilesFromDirectories = entries => {
  * by recursive graphql query to each directory in repo (accomplished via breadth first-search)
  * @param {String} repo 
  * @param {String} owner 
+ * @param {String} name // name of repo as per registry 
  * @param {String} token 
  */
 // eslint-disable-next-line
-const getFilesFromRepo = async (repo, owner, token) => {
-  // an empty string initially in queue represents the root directory
-  // in the repo
-  let files = [];
-  const now = Date.now();
+const getFilesFromRepo = async (repo, owner, name, token) => {
   try {
     // create graphql string for finding all files in a directory
     const data = await fetchGithubTree(repo, owner, token);
@@ -181,6 +178,7 @@ const getFilesFromRepo = async (repo, owner, token) => {
         ...f,
         content: Base64.decode(f.content),
         metadata: {
+          name: name,
           source: repo,
           owner: owner,
           fileType: getNameOfExtensionVerbose(f.name),
@@ -189,11 +187,12 @@ const getFilesFromRepo = async (repo, owner, token) => {
         },
       };
     });
-    console.log('Files loaded in ', (Date.now() - now) / 1000, ' seconds');
     return files;
   } catch (e) {
-    console.error('ERROR!!', e);
-    return e;
+    console.error(
+      `\nERROR!! in Gatsby Source Github All: \n unable to fetch files frome repo ${repo}`
+    );
+    return [];
   }
 };
 

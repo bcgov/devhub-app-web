@@ -21,15 +21,15 @@ let entries = null;
 beforeEach(() => {
   entries = [
     {
-      name: 'something.md',
+      path: 'something.md',
       type: 'blob',
     },
     {
-      name: 'readme.md',
+      path: 'readme.md',
       type: 'blob',
     },
     {
-      name: 'something.txt',
+      path: 'something.txt',
       type: 'blob',
     },
   ];
@@ -95,25 +95,25 @@ describe('Github API', () => {
   test('filterFilesByExtensions filters entries', () => {
     const expected = [
       {
-        name: 'something.md',
+        path: 'something.md',
         type: 'blob',
       },
       {
-        name: 'readme.md',
+        path: 'readme.md',
         type: 'blob',
       },
     ];
     const expected2 = [
       {
-        name: 'something.md',
+        path: 'something.md',
         type: 'blob',
       },
       {
-        name: 'readme.md',
+        path: 'readme.md',
         type: 'blob',
       },
       {
-        name: 'something.txt',
+        path: 'something.txt',
         type: 'blob',
       },
     ];
