@@ -86,7 +86,8 @@ const sourceNodes = async (
         repo => getFilesFromRepo(repo.repo, repo.owner, repo.name, token)
       )
     );
-    // flatten dataToNodify
+    // repos is an array of arrays [repo files, repo files] etc
+    // so we flatten it into a 1 dimensional array
     const dataToNodify = _.flatten(repos, true);
     // create nodes
     return Promise.all(
@@ -95,7 +96,7 @@ const sourceNodes = async (
   } catch (e) {
     // failed to retrieve files or some other type of failure
     // eslint-disable-next-line
-    console.error(e, e.type);
+    console.error(e);
     return Promise.reject(e);
   }
 };
