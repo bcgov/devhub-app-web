@@ -1,0 +1,182 @@
+//
+// Dev Hub
+//
+// Copyright © 2018 Province of British Columbia
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+// Created by Patrick Simonian on 2018-10-12.
+//
+const { GITHUB_API_ENDPOINT, FILETYPES } = require('./constants');
+const { TypeCheck } = require('@bcgov/common-web-utils');
+const Base64 = require('js-base64').Base64;
+const fetch = require('node-fetch');
+
+/**
+ * returns extension of a file name
+ * can handle linux type files (which require no extension)
+ * @param {String} name 
+ * @returns {String} 'readme.md' => md, '.gitignore' => ''
+ */
+const getExtensionFromName = name =>
+  name.slice((Math.max(0, name.lastIndexOf('.')) || Infinity) + 1);
+/** returns the name of the file type by its extension
+ * if it is an extensionless file, returns ''
+ * @param {String} fileName
+ * @returns {String} 'the more verbose name'.. 'md' => 'Markdown'
+ */
+const getNameOfExtensionVerbose = fileName => {
+  const ext = getExtensionFromName(fileName);
+  return FILETYPES[ext] ? FILETYPES[ext] : '';
+};
+/**
+ * Using the recursion param, this
+ * function attempts to retrieve all directories/files from a repo
+ * there is a limit on how deep it can go down a tree
+ * as per https://developer.github.com/v3/git/trees/#get-a-tree-recursively
+ * @param {String} repo
+ * @param {String} owner
+ * @param {String} token
+ */
+const fetchGithubTree = async (repo, owner, token) => {
+  try {
+    const result = await fetch(
+      `${GITHUB_API_ENDPOINT}/repos/${owner}/${repo}/git/trees/master?recursive=1`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return await result.json();
+  } catch (e) {
+    throw e;
+  }
+};
+/**
+ * Fetches contents from file
+ * note the media type header, it converts what would have been a
+ * b64 encoded string of the file contents into either raw string data or json
+ * @param {String} repo 
+ * @param {String} owner 
+ * @param {String} path 
+ * @param {String} token 
+ */
+const fetchFile = async (repo, owner, path, token) => {
+  try {
+    const result = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}/contents/${path}`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'X-GitHub-Media-Type': 'Accept: application/vnd.github.v3.raw+json',
+        },
+      }
+    );
+    return await result.json();
+  } catch (e) {
+    throw e;
+  }
+};
+/**
+   * filters an array of github graphql entries by their extensions
+   * the filtering compares the object.name property with a regex test
+   * @param {Array} entries 
+   * @param {Array} extensions (defaults to [.md])
+   */
+const filterFilesByExtensions = (entries, extensions = ['.md']) => {
+  // ensure entries is an array of objects
+  if (!TypeCheck.isArray(entries) || !entries.every(TypeCheck.isObject)) {
+    throw new Error('entries are invalid');
+  }
+
+  if (!TypeCheck.isArray(extensions) || !extensions.every(TypeCheck.isString)) {
+    throw new Error('extensions must be an array of strings');
+  }
+  // ensure extensions are of correct pattern
+  if (
+    !extensions.every(ext => {
+      return /\.\w+$/.test(ext);
+    })
+  ) {
+    throw new Error('extensions must have shape /\\.w+$/');
+  }
+  // convert extensions into a regex expression
+  const re = new RegExp(`(${extensions.join('|')})$`);
+  // would have shape like /(.md|.txt)$/
+  // filter entries
+  return entries.filter(entry => re.test(entry.name));
+};
+/**
+   * filters out directories from array of github graph ql entries
+   * directories have type of 'tree'
+   * @param {Array} entries 
+   */
+const filterFilesFromDirectories = entries => {
+  // ensure entries is an array of objects
+  if (!TypeCheck.isArray(entries) || !entries.every(TypeCheck.isObject)) {
+    throw new Error('entries are invalid');
+  }
+  // only tree type entries that don't start with a . (ignore hidden folders)
+  return entries.filter(entry => entry.type === 'blob');
+};
+
+/**
+ * returns a flattened array of all files in a repository
+ * by recursive graphql query to each directory in repo (accomplished via breadth first-search)
+ * @param {String} repo 
+ * @param {String} owner 
+ * @param {String} token 
+ */
+// eslint-disable-next-line
+const getFilesFromRepo = async (repo, owner, token) => {
+  // an empty string initially in queue represents the root directory
+  // in the repo
+  let files = [];
+  const now = Date.now();
+  try {
+    // create graphql string for finding all files in a directory
+    // console.log(repo, owner, token);
+    const data = await fetchGithubTree(repo, owner, token);
+    // console.log('data raw', data.tree);
+    // filter out files by extensions
+    const filesToFetch = filterFilesFromDirectories(data.tree);
+    // retrieve contents for each file
+    const filesWithContents = filesToFetch.map(async file => {
+      return await fetchFile(repo, owner, file.path, token);
+    });
+    const filesResponse = await Promise.all(filesWithContents);
+    // for some reason the accept header is not returning with raw content so we will decode
+    // the default base 64 encoded content
+    const files = filesResponse.map(f => {
+      return { ...f, content: Base64.decode(f.content) };
+    });
+    console.log('Files loaded in ', (Date.now() - now) / 1000, ' seconds');
+    return files;
+  } catch (e) {
+    console.error('ERROR!!', e);
+    return e;
+  }
+};
+
+module.exports = {
+  getFilesFromRepo,
+  getExtensionFromName,
+  getNameOfExtensionVerbose,
+  fetchGithubTree,
+  fetchFile,
+  filterFilesFromDirectories,
+  filterFilesByExtensions,
+};
