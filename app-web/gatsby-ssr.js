@@ -14,9 +14,7 @@ exports.replaceRenderer = ({ bodyComponent, replaceBodyHTMLString }) => {
 
   const ConnectedBody = () => (
     <Provider store={store}>
-      <ConnectedFlagsProvider>
-        {bodyComponent}
-      </ConnectedFlagsProvider>
+      <ConnectedFlagsProvider>{bodyComponent}</ConnectedFlagsProvider>
     </Provider>
   );
   replaceBodyHTMLString(renderToString(<ConnectedBody />));

@@ -19,6 +19,13 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `registry`,
+        path: `${__dirname}/source-registry/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `fonts`,
         path: `${__dirname}/src/assets/fonts`,
       },
@@ -64,5 +71,11 @@ module.exports = {
       },
     },
     'gatsby-transformer-yaml',
+    {
+      resolve: 'gatsby-source-github-all',
+      options: {
+        token: process.env.GITHUB_TOKEN,
+      },
+    },
   ],
 };

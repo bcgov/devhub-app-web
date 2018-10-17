@@ -31,7 +31,7 @@ injectGlobal`
 
 class Layout extends React.Component {
   componentDidMount() {
-    if(this.props.useAuth) {
+    if (this.props.useAuth) {
       implicitAuthManager.registerHooks({
         onAuthenticateSuccess: () => this.props.login(),
         onAuthenticateFail: () => this.props.logout(),
@@ -84,8 +84,8 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => {
   return {
-    useAuth: state.flags.features.login
-  }
-}
+    useAuth: state.flags.features.login,
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);

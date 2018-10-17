@@ -1,0 +1,14 @@
+{
+  "name": "gatsby-source-github-all",
+  "version": "1.0.0",
+  "description": "Plugin that generates a set of nodes based on a registry/manifest file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Patrick Simonian",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "graphql-fetch": "^1.0.1"
+  }
+}

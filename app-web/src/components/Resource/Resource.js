@@ -6,11 +6,8 @@ import Item from './Item/Item';
 
 const Resource = ({ category, resources }) => {
   const items = resources.map(i => (
-    <Item key={shortid.generate()} {...i}> 
-      {
-        i.details ? <p>{i.details}</p> :
-        <p>Click below for more details.</p>
-      }
+    <Item key={shortid.generate()} {...i}>
+      {i.details ? <p>{i.details}</p> : <p>Click below for more details.</p>}
     </Item>
   ));
 
