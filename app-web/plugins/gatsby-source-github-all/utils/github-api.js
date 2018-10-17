@@ -22,11 +22,12 @@ const {
   FILETYPES,
   PROCESSABLE_EXTENSIONS,
   MEDIATYPES,
+  DEFUALT_IGNORES,
 } = require('./constants');
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line 
 const { Base64 } = require('js-base64'); // eslint-disable-line
 const fetch = require('node-fetch'); // eslint-disable-line
-
+const ignore = require('ignore');
 /**
  * returns extension of a file name
  * can handle linux type files (which require no extension)
@@ -102,6 +103,16 @@ const fetchFile = async (repo, owner, path, token) => {
   }
 };
 /**
+ * fetches .devhubignore file from a repo
+ * @param { String } repo 
+ * @param { String } owner 
+ * @param { String } token 
+ */
+const fetchIgnoreFile = async (repo, owner, token) => {
+  const ignoreFile = await fetchFile(repo, owner, '/.devhubignore', token);
+  return ignoreFile.content ? Base64.decode(ignoreFile.content).split('\n') : [];
+};
+/**
    * filters an array of github graphql entries by their extensions
    * the filtering compares the object.name property with a regex test
    * @param {Array} entries 
@@ -153,6 +164,8 @@ const filterFilesFromDirectories = entries => {
 // eslint-disable-next-line
 const getFilesFromRepo = async (repo, owner, name, token) => {
   try {
+    // ignore filtering
+    const ig = ignore().add(DEFUALT_IGNORES);
     // create graphql string for finding all files in a directory
     const data = await fetchGithubTree(repo, owner, token);
     // filter out files by extensions
@@ -162,6 +175,11 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
       filesToFetch,
       PROCESSABLE_EXTENSIONS
     );
+    // fetch ignore file if exists
+    const repoIgnores = fetchIgnoreFile(repo, owner, token);
+    ig.add(repoIgnores);
+    // filter out files that are apart of ignore
+    filesToFetch = filesToFetch.filter(file => !ig.ignores(file.path));
     // retrieve contents for each file
     const filesWithContents = filesToFetch.map(file => fetchFile(repo, owner, file.path, token));
     const filesResponse = await Promise.all(filesWithContents);
@@ -174,7 +192,7 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
         ...f,
         content: Base64.decode(f.content),
         metadata: {
-          name,
+          name: name,
           source: repo,
           owner,
           fileType: getNameOfExtensionVerbose(f.name),
