@@ -21,6 +21,8 @@
 
 .Nav li {
     padding: 5px;
+    border-radius: 5px;
+    background-color: #fafafa;
 }
 
 .Nav li a {

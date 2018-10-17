@@ -97,7 +97,6 @@ module.exports = async ({ graphql, boundActionCreators }) => {
         }
     }}
   `);
-
   // // right now we are making an assumption all data here resolved from a markdown file
   // // and will be treated as so
   githubDataV2.data.allSourceDevhubGithub.edges.forEach(({ node }) => {
