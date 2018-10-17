@@ -72,44 +72,4 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   }
 };
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators;
-  return new Promise((resolve, reject) => {
-    graphql(`
-      {
-        allGithubData {
-          edges {
-            node {
-              fields {
-                slug
-                basePagePath
-              }
-              data {
-                organization {
-                  repository {
-                    resources {
-                      yaml: text
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    `).then(result => {
-      result.data.allGithubData.edges.forEach(({ node }) => {
-        createPage({
-          path: node.fields.basePagePath + node.fields.slug,
-          component: path.resolve(`./src/templates/github.js`),
-          context: {
-            // Data passed to context is available in page queries as GraphQL variables.
-            slug: node.fields.slug,
-            yaml: node.data.organization.repository.resources.yaml,
-          },
-        });
-      });
-      resolve();
-    });
-  });
-};
+exports.createPages = require('./gatsby/createPages');

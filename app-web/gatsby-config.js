@@ -43,7 +43,6 @@ module.exports = {
         trackingId: ``,
       },
     },
-    'gatsby-transformer-remark',
     // 'gatsby-transformer-json',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
@@ -77,5 +76,6 @@ module.exports = {
         token: process.env.GITHUB_TOKEN,
       },
     },
+    'gatsby-transformer-remark',
   ],
 };
