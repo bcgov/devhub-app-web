@@ -3,7 +3,45 @@
 exports[`Index Container it matches snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Index />,
+  Symbol(enzyme.__unrendered__): <Index
+    data={
+      Object {
+        "allSourceDevhubGithub": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "childMarkdownRemark": Object {
+                  "frontmatter": Object {
+                    "description": "This is a test description that will be used as the intro blurb to a card",
+                    "title": "",
+                  },
+                },
+                "id": "1bc91db3-c484-58b5-9700-55c22406950a",
+                "pagePath": "/design-system/test",
+                "sourceName": "Design System",
+                "title": "test",
+              },
+            },
+          ],
+        },
+        "pathfinder": Object {
+          "data": Object {
+            "organization": Object {
+              "repository": Object {
+                "resources": Object {
+                  "yaml": "entries:
+- {details: \\"test1\\" , originalSource: ../index.html, category: 'What''s Going On Now', link: 'https://github.com/BCDevOps/BCDevOps-Guide', description: 'DevOps PaaS'}
+- {details: \\"test2\\", originalSource: ../index.html, category: Community, link: 'https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all', description: 'DevOps Commons'}
+- {details: \\"test3\\", originalSource: ../index.html, category: Community, link: 'https://www.meetup.com/DevOps-Commons', description: 'DevOps Commons Meetups'}
+",
+                },
+              },
+            },
+          },
+        },
+      }
+    }
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -15,27 +53,30 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "class",
     "props": Object {
-      "children": Array [
+      "children": <main
+        className="main"
+        role="main"
+      >
         <h1>
           Welcome
-        </h1>,
+        </h1>
         <h2>
           <em>
             We are here to help
           </em>
-        </h2>,
+        </h2>
         <p
           className="para"
         >
           This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.
-        </p>,
+        </p>
         <p
           className="para"
         >
           This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.
-        </p>,
+        </p>
         <p
           className="para"
         >
@@ -48,169 +89,73 @@ ShallowWrapper {
             github.com
           </a>
            repository.
-        </p>,
-        <NavigationalItems
-          navItems={
+        </p>
+        <Resource
+          category="Design System"
+          resources={
             Array [
               Object {
-                "description": "Learn more about the Pathfinder initiative",
-                "icon": "book",
-                "link": "/learn",
-                "title": "Learn",
-              },
-              Object {
-                "description": "Register your mobile application with our in-house Signing Tool",
-                "icon": "user-astronaut",
-                "link": "/do",
-                "title": "Tools & Applications",
-              },
-              Object {
-                "description": "This section is currently in development",
-                "icon": "shipping-fast",
-                "link": "/deliver",
-                "title": "Deliver",
+                "abstract": "This is a test description that will be used as the intro blurb to a card",
+                "childMarkdownRemark": Object {
+                  "frontmatter": Object {
+                    "description": "This is a test description that will be used as the intro blurb to a card",
+                    "title": "",
+                  },
+                },
+                "id": "1bc91db3-c484-58b5-9700-55c22406950a",
+                "link": "/design-system/test",
+                "pagePath": "/design-system/test",
+                "sourceName": "Design System",
+                "title": "test",
               },
             ]
           }
-        />,
-      ],
-      "className": "main",
-      "role": "main",
+        />
+        <Resource
+          category="What's Going On Now"
+          resources={
+            Array [
+              Object {
+                "abstract": "test1",
+                "category": "What's Going On Now",
+                "description": "DevOps PaaS",
+                "details": "test1",
+                "link": "https://github.com/BCDevOps/BCDevOps-Guide",
+                "originalSource": "../index.html",
+                "title": "DevOps PaaS",
+              },
+            ]
+          }
+        />
+        <Resource
+          category="Community"
+          resources={
+            Array [
+              Object {
+                "abstract": "test2",
+                "category": "Community",
+                "description": "DevOps Commons",
+                "details": "test2",
+                "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
+                "originalSource": "../index.html",
+                "title": "DevOps Commons",
+              },
+              Object {
+                "abstract": "test3",
+                "category": "Community",
+                "description": "DevOps Commons Meetups",
+                "details": "test3",
+                "link": "https://www.meetup.com/DevOps-Commons",
+                "originalSource": "../index.html",
+                "title": "DevOps Commons Meetups",
+              },
+            ]
+          }
+        />
+      </main>,
     },
     "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": "Welcome",
-        },
-        "ref": null,
-        "rendered": "Welcome",
-        "type": "h1",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": <em>
-            We are here to help
-          </em>,
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "We are here to help",
-          },
-          "ref": null,
-          "rendered": "We are here to help",
-          "type": "em",
-        },
-        "type": "h2",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": "This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.",
-          "className": "para",
-        },
-        "ref": null,
-        "rendered": "This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.",
-        "type": "p",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": "This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.",
-          "className": "para",
-        },
-        "ref": null,
-        "rendered": "This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.",
-        "type": "p",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": Array [
-            " ",
-            "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our",
-            " ",
-            <a
-              href="https://github.com/bcgov/devhub-web/issues"
-            >
-              github.com
-            </a>,
-            " repository.",
-          ],
-          "className": "para",
-        },
-        "ref": null,
-        "rendered": Array [
-          " ",
-          "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our",
-          " ",
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "github.com",
-              "href": "https://github.com/bcgov/devhub-web/issues",
-            },
-            "ref": null,
-            "rendered": "github.com",
-            "type": "a",
-          },
-          " repository.",
-        ],
-        "type": "p",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "navItems": Array [
-            Object {
-              "description": "Learn more about the Pathfinder initiative",
-              "icon": "book",
-              "link": "/learn",
-              "title": "Learn",
-            },
-            Object {
-              "description": "Register your mobile application with our in-house Signing Tool",
-              "icon": "user-astronaut",
-              "link": "/do",
-              "title": "Tools & Applications",
-            },
-            Object {
-              "description": "This section is currently in development",
-              "icon": "shipping-fast",
-              "link": "/deliver",
-              "title": "Deliver",
-            },
-          ],
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-    ],
-    "type": "main",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
+    "rendered": Object {
       "instance": null,
       "key": undefined,
       "nodeType": "host",
@@ -247,30 +192,72 @@ ShallowWrapper {
             </a>
              repository.
           </p>,
-          <NavigationalItems
-            navItems={
-              Array [
-                Object {
-                  "description": "Learn more about the Pathfinder initiative",
-                  "icon": "book",
-                  "link": "/learn",
-                  "title": "Learn",
-                },
-                Object {
-                  "description": "Register your mobile application with our in-house Signing Tool",
-                  "icon": "user-astronaut",
-                  "link": "/do",
-                  "title": "Tools & Applications",
-                },
-                Object {
-                  "description": "This section is currently in development",
-                  "icon": "shipping-fast",
-                  "link": "/deliver",
-                  "title": "Deliver",
-                },
-              ]
-            }
-          />,
+          Array [
+            <Resource
+              category="Design System"
+              resources={
+                Array [
+                  Object {
+                    "abstract": "This is a test description that will be used as the intro blurb to a card",
+                    "childMarkdownRemark": Object {
+                      "frontmatter": Object {
+                        "description": "This is a test description that will be used as the intro blurb to a card",
+                        "title": "",
+                      },
+                    },
+                    "id": "1bc91db3-c484-58b5-9700-55c22406950a",
+                    "link": "/design-system/test",
+                    "pagePath": "/design-system/test",
+                    "sourceName": "Design System",
+                    "title": "test",
+                  },
+                ]
+              }
+            />,
+          ],
+          Array [
+            <Resource
+              category="What's Going On Now"
+              resources={
+                Array [
+                  Object {
+                    "abstract": "test1",
+                    "category": "What's Going On Now",
+                    "description": "DevOps PaaS",
+                    "details": "test1",
+                    "link": "https://github.com/BCDevOps/BCDevOps-Guide",
+                    "originalSource": "../index.html",
+                    "title": "DevOps PaaS",
+                  },
+                ]
+              }
+            />,
+            <Resource
+              category="Community"
+              resources={
+                Array [
+                  Object {
+                    "abstract": "test2",
+                    "category": "Community",
+                    "description": "DevOps Commons",
+                    "details": "test2",
+                    "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
+                    "originalSource": "../index.html",
+                    "title": "DevOps Commons",
+                  },
+                  Object {
+                    "abstract": "test3",
+                    "category": "Community",
+                    "description": "DevOps Commons Meetups",
+                    "details": "test3",
+                    "link": "https://www.meetup.com/DevOps-Commons",
+                    "originalSource": "../index.html",
+                    "title": "DevOps Commons Meetups",
+                  },
+                ]
+              }
+            />,
+          ],
         ],
         "className": "main",
         "role": "main",
@@ -376,27 +363,77 @@ ShallowWrapper {
         },
         Object {
           "instance": null,
-          "key": undefined,
+          "key": "2",
           "nodeType": "function",
           "props": Object {
-            "navItems": Array [
+            "category": "Design System",
+            "resources": Array [
               Object {
-                "description": "Learn more about the Pathfinder initiative",
-                "icon": "book",
-                "link": "/learn",
-                "title": "Learn",
+                "abstract": "This is a test description that will be used as the intro blurb to a card",
+                "childMarkdownRemark": Object {
+                  "frontmatter": Object {
+                    "description": "This is a test description that will be used as the intro blurb to a card",
+                    "title": "",
+                  },
+                },
+                "id": "1bc91db3-c484-58b5-9700-55c22406950a",
+                "link": "/design-system/test",
+                "pagePath": "/design-system/test",
+                "sourceName": "Design System",
+                "title": "test",
+              },
+            ],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "0",
+          "nodeType": "function",
+          "props": Object {
+            "category": "What's Going On Now",
+            "resources": Array [
+              Object {
+                "abstract": "test1",
+                "category": "What's Going On Now",
+                "description": "DevOps PaaS",
+                "details": "test1",
+                "link": "https://github.com/BCDevOps/BCDevOps-Guide",
+                "originalSource": "../index.html",
+                "title": "DevOps PaaS",
+              },
+            ],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "1",
+          "nodeType": "function",
+          "props": Object {
+            "category": "Community",
+            "resources": Array [
+              Object {
+                "abstract": "test2",
+                "category": "Community",
+                "description": "DevOps Commons",
+                "details": "test2",
+                "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
+                "originalSource": "../index.html",
+                "title": "DevOps Commons",
               },
               Object {
-                "description": "Register your mobile application with our in-house Signing Tool",
-                "icon": "user-astronaut",
-                "link": "/do",
-                "title": "Tools & Applications",
-              },
-              Object {
-                "description": "This section is currently in development",
-                "icon": "shipping-fast",
-                "link": "/deliver",
-                "title": "Deliver",
+                "abstract": "test3",
+                "category": "Community",
+                "description": "DevOps Commons Meetups",
+                "details": "test3",
+                "link": "https://www.meetup.com/DevOps-Commons",
+                "originalSource": "../index.html",
+                "title": "DevOps Commons Meetups",
               },
             ],
           },
@@ -406,6 +443,405 @@ ShallowWrapper {
         },
       ],
       "type": "main",
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <main
+          className="main"
+          role="main"
+        >
+          <h1>
+            Welcome
+          </h1>
+          <h2>
+            <em>
+              We are here to help
+            </em>
+          </h2>
+          <p
+            className="para"
+          >
+            This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.
+          </p>
+          <p
+            className="para"
+          >
+            This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.
+          </p>
+          <p
+            className="para"
+          >
+             
+            If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our
+             
+            <a
+              href="https://github.com/bcgov/devhub-web/issues"
+            >
+              github.com
+            </a>
+             repository.
+          </p>
+          <Resource
+            category="Design System"
+            resources={
+              Array [
+                Object {
+                  "abstract": "This is a test description that will be used as the intro blurb to a card",
+                  "childMarkdownRemark": Object {
+                    "frontmatter": Object {
+                      "description": "This is a test description that will be used as the intro blurb to a card",
+                      "title": "",
+                    },
+                  },
+                  "id": "1bc91db3-c484-58b5-9700-55c22406950a",
+                  "link": "/design-system/test",
+                  "pagePath": "/design-system/test",
+                  "sourceName": "Design System",
+                  "title": "test",
+                },
+              ]
+            }
+          />
+          <Resource
+            category="What's Going On Now"
+            resources={
+              Array [
+                Object {
+                  "abstract": "test1",
+                  "category": "What's Going On Now",
+                  "description": "DevOps PaaS",
+                  "details": "test1",
+                  "link": "https://github.com/BCDevOps/BCDevOps-Guide",
+                  "originalSource": "../index.html",
+                  "title": "DevOps PaaS",
+                },
+              ]
+            }
+          />
+          <Resource
+            category="Community"
+            resources={
+              Array [
+                Object {
+                  "abstract": "test2",
+                  "category": "Community",
+                  "description": "DevOps Commons",
+                  "details": "test2",
+                  "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
+                  "originalSource": "../index.html",
+                  "title": "DevOps Commons",
+                },
+                Object {
+                  "abstract": "test3",
+                  "category": "Community",
+                  "description": "DevOps Commons Meetups",
+                  "details": "test3",
+                  "link": "https://www.meetup.com/DevOps-Commons",
+                  "originalSource": "../index.html",
+                  "title": "DevOps Commons Meetups",
+                },
+              ]
+            }
+          />
+        </main>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <h1>
+              Welcome
+            </h1>,
+            <h2>
+              <em>
+                We are here to help
+              </em>
+            </h2>,
+            <p
+              className="para"
+            >
+              This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.
+            </p>,
+            <p
+              className="para"
+            >
+              This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.
+            </p>,
+            <p
+              className="para"
+            >
+               
+              If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our
+               
+              <a
+                href="https://github.com/bcgov/devhub-web/issues"
+              >
+                github.com
+              </a>
+               repository.
+            </p>,
+            Array [
+              <Resource
+                category="Design System"
+                resources={
+                  Array [
+                    Object {
+                      "abstract": "This is a test description that will be used as the intro blurb to a card",
+                      "childMarkdownRemark": Object {
+                        "frontmatter": Object {
+                          "description": "This is a test description that will be used as the intro blurb to a card",
+                          "title": "",
+                        },
+                      },
+                      "id": "1bc91db3-c484-58b5-9700-55c22406950a",
+                      "link": "/design-system/test",
+                      "pagePath": "/design-system/test",
+                      "sourceName": "Design System",
+                      "title": "test",
+                    },
+                  ]
+                }
+              />,
+            ],
+            Array [
+              <Resource
+                category="What's Going On Now"
+                resources={
+                  Array [
+                    Object {
+                      "abstract": "test1",
+                      "category": "What's Going On Now",
+                      "description": "DevOps PaaS",
+                      "details": "test1",
+                      "link": "https://github.com/BCDevOps/BCDevOps-Guide",
+                      "originalSource": "../index.html",
+                      "title": "DevOps PaaS",
+                    },
+                  ]
+                }
+              />,
+              <Resource
+                category="Community"
+                resources={
+                  Array [
+                    Object {
+                      "abstract": "test2",
+                      "category": "Community",
+                      "description": "DevOps Commons",
+                      "details": "test2",
+                      "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
+                      "originalSource": "../index.html",
+                      "title": "DevOps Commons",
+                    },
+                    Object {
+                      "abstract": "test3",
+                      "category": "Community",
+                      "description": "DevOps Commons Meetups",
+                      "details": "test3",
+                      "link": "https://www.meetup.com/DevOps-Commons",
+                      "originalSource": "../index.html",
+                      "title": "DevOps Commons Meetups",
+                    },
+                  ]
+                }
+              />,
+            ],
+          ],
+          "className": "main",
+          "role": "main",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "Welcome",
+            },
+            "ref": null,
+            "rendered": "Welcome",
+            "type": "h1",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <em>
+                We are here to help
+              </em>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "We are here to help",
+              },
+              "ref": null,
+              "rendered": "We are here to help",
+              "type": "em",
+            },
+            "type": "h2",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.",
+              "className": "para",
+            },
+            "ref": null,
+            "rendered": "This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.",
+            "type": "p",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.",
+              "className": "para",
+            },
+            "ref": null,
+            "rendered": "This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.",
+            "type": "p",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                " ",
+                "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our",
+                " ",
+                <a
+                  href="https://github.com/bcgov/devhub-web/issues"
+                >
+                  github.com
+                </a>,
+                " repository.",
+              ],
+              "className": "para",
+            },
+            "ref": null,
+            "rendered": Array [
+              " ",
+              "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our",
+              " ",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "github.com",
+                  "href": "https://github.com/bcgov/devhub-web/issues",
+                },
+                "ref": null,
+                "rendered": "github.com",
+                "type": "a",
+              },
+              " repository.",
+            ],
+            "type": "p",
+          },
+          Object {
+            "instance": null,
+            "key": "2",
+            "nodeType": "function",
+            "props": Object {
+              "category": "Design System",
+              "resources": Array [
+                Object {
+                  "abstract": "This is a test description that will be used as the intro blurb to a card",
+                  "childMarkdownRemark": Object {
+                    "frontmatter": Object {
+                      "description": "This is a test description that will be used as the intro blurb to a card",
+                      "title": "",
+                    },
+                  },
+                  "id": "1bc91db3-c484-58b5-9700-55c22406950a",
+                  "link": "/design-system/test",
+                  "pagePath": "/design-system/test",
+                  "sourceName": "Design System",
+                  "title": "test",
+                },
+              ],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "function",
+            "props": Object {
+              "category": "What's Going On Now",
+              "resources": Array [
+                Object {
+                  "abstract": "test1",
+                  "category": "What's Going On Now",
+                  "description": "DevOps PaaS",
+                  "details": "test1",
+                  "link": "https://github.com/BCDevOps/BCDevOps-Guide",
+                  "originalSource": "../index.html",
+                  "title": "DevOps PaaS",
+                },
+              ],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "function",
+            "props": Object {
+              "category": "Community",
+              "resources": Array [
+                Object {
+                  "abstract": "test2",
+                  "category": "Community",
+                  "description": "DevOps Commons",
+                  "details": "test2",
+                  "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
+                  "originalSource": "../index.html",
+                  "title": "DevOps Commons",
+                },
+                Object {
+                  "abstract": "test3",
+                  "category": "Community",
+                  "description": "DevOps Commons Meetups",
+                  "details": "test3",
+                  "link": "https://www.meetup.com/DevOps-Commons",
+                  "originalSource": "../index.html",
+                  "title": "DevOps Commons Meetups",
+                },
+              ],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": "main",
+      },
+      "type": [Function],
     },
   ],
   Symbol(enzyme.__options__): Object {
