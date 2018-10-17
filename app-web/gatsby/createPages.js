@@ -107,8 +107,7 @@ module.exports = async ({ graphql, boundActionCreators }) => {
         component: genericTemplate,
         context: {
           // Data passed to context is available in page queries as GraphQL variables.
-          markdownHTML: node.childMarkdownRemark.html,
-          title,
+          id: node.id,
         },
     });
   });
