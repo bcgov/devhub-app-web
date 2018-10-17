@@ -17,8 +17,15 @@
 //
 // Created by Patrick Simonian on 2018-10-12.
 //
-// directories to never recursively search through
-const BLACKLISTED_DIRECTORIES = ['node_modules'];
+
+const DEFUALT_IGNORES = [
+  'node_modules',
+  'CONTRIBUTING.md',
+  'CODE_OF_CONDUCT.md',
+  'LICENSE',
+  'CODE\ OF\ CONDUCT.md',
+  'openshift',
+];
 // github rest api v3
 const GITHUB_API_ENDPOINT = 'https://api.github.com';
 const FILETYPES = {
@@ -40,7 +47,7 @@ const MEDIATYPES = {
 const PROCESSABLE_EXTENSIONS = ['.md'];
 
 module.exports = {
-  BLACKLISTED_DIRECTORIES,
+  DEFUALT_IGNORES,
   GITHUB_API_ENDPOINT,
   FILETYPES,
   MEDIATYPES,

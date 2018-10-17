@@ -3,4 +3,8 @@ repos:
     url: https://github.com/bcgov/design-system/
     owner: bcgov
     repo: 'design-system'
+    attributes:
+      categories:
+        - Design System
+        - Getting Started
   
