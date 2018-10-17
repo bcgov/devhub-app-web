@@ -152,6 +152,7 @@ describe('gatsby source github all plugin', () => {
       owner: 'Billy Bob',
       parent: null,
       path: '/test.md',
+      pagePath: '/something/something/test',
       source: 'something/something',
       sourceName: 'something',
       internal: {
