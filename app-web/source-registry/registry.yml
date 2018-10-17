@@ -7,14 +7,4 @@ repos:
       categories:
         - Design System
         - Getting Started
-<<<<<<< HEAD
-  - name: Dev Hub
-    url: https://github.com/bcgov/devhub-app-web/
-    owner: bcgov
-    repo: 'devhub-app-web'
-    attributes:
-      categories:
-        - Getting Started
-=======
   
->>>>>>> sprint-3

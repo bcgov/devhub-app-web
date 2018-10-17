@@ -27,8 +27,15 @@ const {
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line 
 const { Base64 } = require('js-base64'); // eslint-disable-line
 const fetch = require('node-fetch'); // eslint-disable-line
-<<<<<<< HEAD
 const ignore = require('ignore'); // eslint-disable-line
+/**
+ * returns extension of a file name
+ * can handle linux type files (which require no extension)
+ * @param {String} name 
+ * @returns {String} 'readme.md' => md, '.gitignore' => ''
+ */
+const getExtensionFromName = name =>
+  name.slice((Math.max(0, name.lastIndexOf('.')) || Infinity) + 1);
 /**
  * 
  * @param {String} name 
@@ -42,23 +49,13 @@ const getNameWithoutExtension = name => {
     return name.replace(re, '');
   } 
   return name;
-}
-=======
-const ignore = require('ignore');
->>>>>>> sprint-3
-/**
- * returns extension of a file name
- * can handle linux type files (which require no extension)
- * @param {String} name 
- * @returns {String} 'readme.md' => md, '.gitignore' => ''
- */
-const getExtensionFromName = name =>
-  name.slice((Math.max(0, name.lastIndexOf('.')) || Infinity) + 1);
+};
 /** returns the name of the file type by its extension
  * if it is an extensionless file, returns ''
  * @param {String} fileName
  * @returns {String} 'the more verbose name'.. 'md' => 'Markdown'
  */
+
 const getNameOfExtensionVerbose = fileName => {
   const ext = getExtensionFromName(fileName);
   return FILETYPES[ext] ? FILETYPES[ext] : '';
@@ -194,11 +191,7 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
       PROCESSABLE_EXTENSIONS
     );
     // fetch ignore file if exists
-<<<<<<< HEAD
     const repoIgnores = await fetchIgnoreFile(repo, owner, token);
-=======
-    const repoIgnores = fetchIgnoreFile(repo, owner, token);
->>>>>>> sprint-3
     ig.add(repoIgnores);
     // filter out files that are apart of ignore
     filesToFetch = filesToFetch.filter(file => !ig.ignores(file.path));
@@ -214,16 +207,10 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
         ...f,
         content: Base64.decode(f.content),
         metadata: {
-<<<<<<< HEAD
           sourceName: name,
           source: repo,
           owner,
           name: getNameWithoutExtension(f.name),
-=======
-          name,
-          source: repo,
-          owner,
->>>>>>> sprint-3
           fileType: getNameOfExtensionVerbose(f.name),
           fileName: f.name,
           mediaType: getMediaTypeByExtension(ext),
@@ -244,10 +231,7 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
 module.exports = {
   getFilesFromRepo,
   getExtensionFromName,
-<<<<<<< HEAD
   getNameWithoutExtension,
-=======
->>>>>>> sprint-3
   getNameOfExtensionVerbose,
   fetchGithubTree,
   fetchFile,

@@ -26,10 +26,7 @@ import {
   fetchFile,
   filterFilesByExtensions,
   getExtensionFromName,
-<<<<<<< HEAD
   getNameWithoutExtension,
-=======
->>>>>>> sprint-3
 } from '../utils/github-api';
 
 // eslint-disable-next-line
@@ -164,7 +161,6 @@ describe('Github API', () => {
     expect(getNameOfExtensionVerbose(file1)).toBe(expected1);
     expect(getNameOfExtensionVerbose(file2)).toBe(expected2);
   });
-<<<<<<< HEAD
 
   test('getNameWithoutExtension works on extensionless names', () => {
     const file = '.gitignore';
@@ -179,6 +175,4 @@ describe('Github API', () => {
     expect(getNameWithoutExtension(file)).toBe(expected);
     expect(getNameWithoutExtension(file2)).toBe(expected2);
   });
-=======
->>>>>>> sprint-3
 });

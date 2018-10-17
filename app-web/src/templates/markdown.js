@@ -23,7 +23,6 @@ import Aux from '../hoc/auxillary';
 import styles from './markdown.module.css';
 // eslint-disable-next-line
 const Generic = ({ data: { sourceDevhubGithub }}) => {
-  console.log(styles);
   // eslint-disable-next-line
   return (
     <Aux>
@@ -40,7 +39,7 @@ const Generic = ({ data: { sourceDevhubGithub }}) => {
           <GatsbyLink to="/learn">Go Back</GatsbyLink>
         </li>
       </ul>
-      <section className={styles.MarkdownBody} dangerouslySetInnerHTML={{ __html: sourceDevhubGithub.childMarkdownRemark.html}}/>
+      <section className={styles.MarkdownBody} dangerouslySetInnerHTML={{ __html: sourceDevhubGithub.childMarkdownRemark.html}} />
     </Aux>
   );
 };
