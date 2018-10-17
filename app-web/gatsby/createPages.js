@@ -24,7 +24,7 @@ const { resolve } = require('path');
 module.exports = async ({ graphql, boundActionCreators }) => {
     const { createPage } = boundActionCreators;
     const pathFinderTemplate = resolve(__dirname, '../src/templates/github.js');
-    const genericTemplate = resolve(__dirname, '../src/templates/generic.js');
+    const markdownTemplate = resolve(__dirname, '../src/templates/markdown.js');
     // *****************************************************
     // this is legacy page creation for pathfinder.gov.bc.ca
     // *****************************************************
@@ -104,7 +104,7 @@ module.exports = async ({ graphql, boundActionCreators }) => {
     const title = node.childMarkdownRemark.frontmatter.title ? node.childMarkdownRemark.frontmatter.title : node.fileName;
     createPage({
         path: `/learn/${node.source}/${title}`,
-        component: genericTemplate,
+        component: markdownTemplate,
         context: {
           // Data passed to context is available in page queries as GraphQL variables.
           id: node.id,
