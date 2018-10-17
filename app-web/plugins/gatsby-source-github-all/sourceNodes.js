@@ -31,7 +31,11 @@ const createGHNode = (file, id) => ({
     parent: null,
     path: file.path,
     source: file.metadata.source,
+<<<<<<< HEAD
     sourceName: file.metadata.sourceName,
+=======
+    sourceName: file.metadata.name,
+>>>>>>> sprint-3
     internal: {
       contentDigest: crypto
         .createHash('md5')
@@ -90,8 +94,12 @@ const sourceNodes = async (
     // so we flatten it into a 1 dimensional array
     const dataToNodify = _.flatten(repos, true);
     // create nodes
+<<<<<<< HEAD
     dataToNodify.forEach(file => createNode(createGHNode(file, createNodeId(file.sha))));
     return Promise.resolve();
+=======
+    dataToNodify.forEach(file => createNode(createGHNode(file, createNodeId(file.sha))))
+>>>>>>> sprint-3
   } catch (e) {
     // failed to retrieve files or some other type of failure
     // eslint-disable-next-line

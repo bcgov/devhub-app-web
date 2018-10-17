@@ -45,7 +45,11 @@ const MEDIATYPES = {
   html: 'text/html',
 };
 
+<<<<<<< HEAD
 const PROCESSABLE_EXTENSIONS = ['.md', '.yml', '.yaml'];
+=======
+const PROCESSABLE_EXTENSIONS = ['.md'];
+>>>>>>> sprint-3
 
 module.exports = {
   PROCESSABLE_EXTENSIONS,

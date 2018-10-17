@@ -113,7 +113,10 @@ describe('gatsby source github all plugin', () => {
       metadata: {
         name: 'test',
         source: 'something/something',
+<<<<<<< HEAD
         sourceName: 'something',
+=======
+>>>>>>> sprint-3
         owner: 'Billy Bob',
         fileType: 'Markdown',
         fileName: 'test.md',
@@ -153,7 +156,11 @@ describe('gatsby source github all plugin', () => {
       parent: null,
       path: '/test.md',
       source: 'something/something',
+<<<<<<< HEAD
       sourceName: 'something',
+=======
+      sourceName: 'test',
+>>>>>>> sprint-3
       internal: {
         contentDigest: JSON.stringify(file),
         // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate

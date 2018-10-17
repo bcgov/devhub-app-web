@@ -19,14 +19,24 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
+<<<<<<< HEAD
         name: 'registry',
+=======
+        name: `registry`,
+>>>>>>> sprint-3
         path: `${__dirname}/source-registry/`,
       },
     },
     {
+<<<<<<< HEAD
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'fonts',
+=======
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `fonts`,
+>>>>>>> sprint-3
         path: `${__dirname}/src/assets/fonts`,
       },
     },
@@ -76,6 +86,9 @@ module.exports = {
         token: process.env.GITHUB_TOKEN,
       },
     },
+<<<<<<< HEAD
     'gatsby-transformer-remark',
+=======
+>>>>>>> sprint-3
   ],
 };
