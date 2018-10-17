@@ -190,7 +190,7 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
       PROCESSABLE_EXTENSIONS
     );
     // fetch ignore file if exists
-    const repoIgnores = fetchIgnoreFile(repo, owner, token);
+    const repoIgnores = await fetchIgnoreFile(repo, owner, token);
     ig.add(repoIgnores);
     // filter out files that are apart of ignore
     filesToFetch = filesToFetch.filter(file => !ig.ignores(file.path));
