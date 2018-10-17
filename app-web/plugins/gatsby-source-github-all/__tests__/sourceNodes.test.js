@@ -115,6 +115,7 @@ describe('gatsby source github all plugin', () => {
         source: 'something/something',
         owner: 'Billy Bob',
         fileType: 'Markdown',
+        fileName: 'test.md',
         mediaType: 'application/test',
         extension: '.md',
       },
@@ -144,7 +145,7 @@ describe('gatsby source github all plugin', () => {
     const expected = {
       id: '123',
       children: [],
-      fileName: 'test',
+      fileName: 'test.md',
       fileType: 'Markdown',
       name: 'test',
       owner: 'Billy Bob',
