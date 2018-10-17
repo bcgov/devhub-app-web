@@ -20,6 +20,7 @@
 
 // create pages based on nodes
 const { resolve } = require('path');
+
 module.exports = async ({ graphql, boundActionCreators }) => {
     const { createPage } = boundActionCreators;
     const pathFinderTemplate = resolve(__dirname, '../src/templates/github.js');
@@ -111,5 +112,4 @@ module.exports = async ({ graphql, boundActionCreators }) => {
         },
     });
   });
-  return;
-}
+};
