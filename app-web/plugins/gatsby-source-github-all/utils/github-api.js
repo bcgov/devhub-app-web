@@ -29,6 +29,20 @@ const { Base64 } = require('js-base64'); // eslint-disable-line
 const fetch = require('node-fetch'); // eslint-disable-line
 const ignore = require('ignore'); // eslint-disable-line
 /**
+ * 
+ * @param {String} name 
+ * @returns name without extension
+ * .gitignore => .gitignore, readme.md => readme
+ */
+const getNameWithoutExtension = name => {
+  const ext = getExtensionFromName(name);
+  if(ext !== '') {
+    const re = new RegExp(`.${ext}$`);
+    return name.replace(re, '');
+  } 
+  return name;
+}
+/**
  * returns extension of a file name
  * can handle linux type files (which require no extension)
  * @param {String} name 
@@ -192,9 +206,10 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
         ...f,
         content: Base64.decode(f.content),
         metadata: {
-          name,
+          sourceName: name,
           source: repo,
           owner,
+          name: getNameWithoutExtension(f.name),
           fileType: getNameOfExtensionVerbose(f.name),
           fileName: f.name,
           mediaType: getMediaTypeByExtension(ext),
@@ -215,6 +230,7 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
 module.exports = {
   getFilesFromRepo,
   getExtensionFromName,
+  getNameWithoutExtension,
   getNameOfExtensionVerbose,
   fetchGithubTree,
   fetchFile,

@@ -31,7 +31,7 @@ const createGHNode = (file, id) => ({
     parent: null,
     path: file.path,
     source: file.metadata.source,
-    sourceName: file.metadata.name,
+    sourceName: file.metadata.sourceName,
     internal: {
       contentDigest: crypto
         .createHash('md5')
