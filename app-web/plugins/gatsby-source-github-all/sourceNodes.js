@@ -24,7 +24,7 @@ const { getFilesFromRepo } = require('./utils/github-api');
 const createGHNode = (file, id) => ({
     id,
     children: [],
-    fileName: file.name,
+    fileName: file.metadata.fileName,
     fileType: file.metadata.fileType,
     name: file.metadata.name,
     owner: file.metadata.owner,
@@ -90,9 +90,7 @@ const sourceNodes = async (
     // so we flatten it into a 1 dimensional array
     const dataToNodify = _.flatten(repos, true);
     // create nodes
-    return Promise.all(
-      dataToNodify.map(file => createNode(createGHNode(file, createNodeId(file.sha))))
-    );
+    dataToNodify.forEach(file => createNode(createGHNode(file, createNodeId(file.sha))))
   } catch (e) {
     // failed to retrieve files or some other type of failure
     // eslint-disable-next-line

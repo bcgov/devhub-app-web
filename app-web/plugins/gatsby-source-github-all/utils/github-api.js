@@ -178,6 +178,7 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
           source: repo,
           owner,
           fileType: getNameOfExtensionVerbose(f.name),
+          fileName: f.name,
           mediaType: getMediaTypeByExtension(ext),
           extension: ext,
         },
