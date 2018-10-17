@@ -27,7 +27,7 @@ const {
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line 
 const { Base64 } = require('js-base64'); // eslint-disable-line
 const fetch = require('node-fetch'); // eslint-disable-line
-const ignore = require('ignore');
+const ignore = require('ignore'); // eslint-disable-line
 /**
  * returns extension of a file name
  * can handle linux type files (which require no extension)
@@ -192,7 +192,7 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
         ...f,
         content: Base64.decode(f.content),
         metadata: {
-          name: name,
+          name,
           source: repo,
           owner,
           fileType: getNameOfExtensionVerbose(f.name),

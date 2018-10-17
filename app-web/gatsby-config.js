@@ -10,37 +10,37 @@ module.exports = {
   plugins: [
     // Adding various source folders to the GraphQL layer.
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `pages`,
+        name: 'pages',
         path: `${__dirname}/src/pages/`,
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `registry`,
+        name: 'registry',
         path: `${__dirname}/source-registry/`,
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `fonts`,
+        name: 'fonts',
         path: `${__dirname}/src/assets/fonts`,
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `images`,
+        name: 'images',
         path: `${__dirname}/src/assets/images/`,
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: ``,
+        trackingId: '',
       },
     },
     // 'gatsby-transformer-json',
@@ -49,7 +49,7 @@ module.exports = {
     'gatsby-plugin-react-next',
     'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-source-github-api`,
+      resolve: 'gatsby-source-github-api',
       options: {
         // token required by the Github API
         token: process.env.GITHUB_TOKEN, // required

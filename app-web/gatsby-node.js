@@ -1,9 +1,8 @@
-const path = require('path');
 const autoprefixer = require('autoprefixer');
-const { createFilePath } = require(`gatsby-source-filesystem`);
 
 exports.modifyWebpackConfig = ({ config, env }) => {
   // switch allows to change config based on environment
+  // eslint-disable-next-line
   switch (env) {
     case 'develop':
       config.preLoader('eslint-loader', {
@@ -12,7 +11,7 @@ exports.modifyWebpackConfig = ({ config, env }) => {
       });
       config.merge({
         postcss: [
-          require('postcss-flexbugs-fixes'),
+          require('postcss-flexbugs-fixes'), // eslint-disable-line
           autoprefixer({
             browsers: [
               '>1%',
@@ -29,23 +28,23 @@ exports.modifyWebpackConfig = ({ config, env }) => {
   return config;
 };
 
-exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
+exports.onCreateNode = ({ node, boundActionCreators }) => {
   // programattically create pages from github resources
   const { createNodeField } = boundActionCreators;
   if (node.internal.type === 'GithubData') {
     createNodeField({
       node,
-      name: `slug`,
+      name: 'slug',
       value: node.data.organization.repository.name,
     });
     createNodeField({
       node,
-      name: `pageType`,
+      name: 'pageType',
       value: 'dynamic',
     });
     createNodeField({
       node,
-      name: `basePagePath`,
+      name: 'basePagePath',
       value: 'learn/',
     });
     // modify site page nodes to include some navigational data which may useful at a later stage
@@ -57,7 +56,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
         value: node.fields.slug,
       });
     } else {
-      let linkName = node.path.split('/').filter(part => part.length > 0);
+      const linkName = node.path.split('/').filter(part => part.length > 0);
       createNodeField({
         node,
         name: 'linkName',
@@ -66,7 +65,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
     }
     createNodeField({
       node,
-      name: `path`,
+      name: 'path',
       value: node.path,
     });
   }

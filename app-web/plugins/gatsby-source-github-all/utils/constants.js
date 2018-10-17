@@ -23,7 +23,7 @@ const DEFUALT_IGNORES = [
   'CONTRIBUTING.md',
   'CODE_OF_CONDUCT.md',
   'LICENSE',
-  'CODE\ OF\ CONDUCT.md',
+  'CODE OF CONDUCT.md',
   'openshift',
 ];
 // github rest api v3
@@ -44,11 +44,12 @@ const MEDIATYPES = {
   html: 'text/html',
 };
 
-const PROCESSABLE_EXTENSIONS = ['.md'];
+const PROCESSABLE_EXTENSIONS = ['.md', '.yml', '.yaml'];
 
 module.exports = {
   DEFUALT_IGNORES,
   GITHUB_API_ENDPOINT,
   FILETYPES,
   MEDIATYPES,
+  PROCESSABLE_EXTENSIONS,
 };

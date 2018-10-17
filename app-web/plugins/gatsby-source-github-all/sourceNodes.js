@@ -90,7 +90,8 @@ const sourceNodes = async (
     // so we flatten it into a 1 dimensional array
     const dataToNodify = _.flatten(repos, true);
     // create nodes
-    dataToNodify.forEach(file => createNode(createGHNode(file, createNodeId(file.sha))))
+    dataToNodify.forEach(file => createNode(createGHNode(file, createNodeId(file.sha))));
+    return Promise.resolve();
   } catch (e) {
     // failed to retrieve files or some other type of failure
     // eslint-disable-next-line
