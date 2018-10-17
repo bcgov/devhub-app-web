@@ -22,31 +22,32 @@ const _ = require('lodash'); // eslint-disable-line
 const { getFilesFromRepo } = require('./utils/github-api');
 
 const createGHNode = (file, id) => ({
-    id,
-    children: [],
-    fileName: file.metadata.fileName,
-    fileType: file.metadata.fileType,
-    name: file.metadata.name,
-    owner: file.metadata.owner,
-    parent: null,
-    path: file.path,
-    source: file.metadata.source,
-    sourceName: file.metadata.sourceName,
-    internal: {
-      contentDigest: crypto
-        .createHash('md5')
-        .update(JSON.stringify(file))
-        .digest('hex'),
-      // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate
-      // to transformer plugins this node has data they can further process.
-      mediaType: file.metadata.mediaType,
-      // A globally unique node type chosen by the plugin owner.
-      type: 'SourceDevhubGithub',
-      // Optional field exposing the raw content for this node
-      // that transformer plugins can take and further process.
-      content: file.content,
-    },
-  });
+  id,
+  children: [],
+  fileName: file.metadata.fileName,
+  fileType: file.metadata.fileType,
+  name: file.metadata.name,
+  owner: file.metadata.owner,
+  parent: null,
+  path: file.path,
+  source: file.metadata.source,
+  sourceName: file.metadata.sourceName,
+  pagePath: `/${file.metadata.source}/${file.metadata.name}`,
+  internal: {
+    contentDigest: crypto
+      .createHash('md5')
+      .update(JSON.stringify(file))
+      .digest('hex'),
+    // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate
+    // to transformer plugins this node has data they can further process.
+    mediaType: file.metadata.mediaType,
+    // A globally unique node type chosen by the plugin owner.
+    type: 'SourceDevhubGithub',
+    // Optional field exposing the raw content for this node
+    // that transformer plugins can take and further process.
+    content: file.content,
+  },
+});
 
 const repoIsValid = repo => repo.name && repo.url && repo.repo && repo.owner;
 
@@ -62,7 +63,9 @@ const checkRegistry = registry => {
 };
 
 const getRegistry = getNodes => {
-  const registryFound = getNodes().filter(node => node.internal.type === 'SourceRegistryYaml');
+  const registryFound = getNodes().filter(
+    node => node.internal.type === 'SourceRegistryYaml'
+  );
   if (registryFound.length > 0) {
     return registryFound[0];
   }
@@ -82,15 +85,17 @@ const sourceNodes = async (
     checkRegistry(registry);
     // fetch all repos
     const repos = await Promise.all(
-      registry.repos.map(
-        repo => getFilesFromRepo(repo.repo, repo.owner, repo.name, token)
+      registry.repos.map(repo =>
+        getFilesFromRepo(repo.repo, repo.owner, repo.name, token)
       )
     );
     // repos is an array of arrays [repo files, repo files] etc
     // so we flatten it into a 1 dimensional array
     const dataToNodify = _.flatten(repos, true);
     // create nodes
-    dataToNodify.forEach(file => createNode(createGHNode(file, createNodeId(file.sha))));
+    dataToNodify.forEach(file =>
+      createNode(createGHNode(file, createNodeId(file.sha)))
+    );
     return Promise.resolve();
   } catch (e) {
     // failed to retrieve files or some other type of failure
