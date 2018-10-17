@@ -1,41 +1,70 @@
 import React from 'react';
 import YAML from 'js-yaml';
 import shortid from 'shortid';
-import { groupBy } from '../utils/dataMassager';
+import { groupBy, flattenAllSourceDevhubGithub } from '../utils/dataMassager';
 import { GITHUB_ISSUES_ROUTE } from '../constants/routes';
 // local components
 import Layout from '../hoc/Layout';
 import Resource from '../components/Resource/Resource';
 
-const Index = ({ data: { pathfinder, allSourceDevhubGithub }}) => {
+const Index = ({ data: { pathfinder, allSourceDevhubGithub } }) => {
+  const yamlData = YAML.safeLoad(
+    pathfinder.data.organization.repository.resources.yaml
+  );
 
-  const yamlData = YAML.safeLoad(pathfinder.data.organization.repository.resources.yaml);
-  const groupedData = groupBy(yamlData.entries, 'category');
-  const pathfinderResources = groupedData.map(gd => (
+  // map entries and set paramaters in entries that resource component expects
+  const mappedEntries = yamlData.entries.map(entry => ({
+    ...entry,
+    title: entry.description,
+    abstract: entry.details,
+  }));
+
+  const groupedPathFinderData = groupBy(mappedEntries, 'category');
+  const pathfinderResources = groupedPathFinderData.map(gd => (
     <Resource
       key={shortid.generate()}
       category={gd.category}
       resources={gd.data}
     />
-  ))
+  ));
+  // flatten out allSourceGithub edges from query
+  const devhubGithubNodes = flattenAllSourceDevhubGithub(
+    allSourceDevhubGithub.edges
+  );
+  console.log(devhubGithubNodes);
+  // map out github nodes to have paramaters that are expected by Resource
+  const mappedDevhubGithubNodes = devhubGithubNodes.map(dhnode => ({
+    ...dhnode,
+    abstract: dhnode.childMarkdownRemark.frontmatter.description,
+    link: dhnode.pagePath,
+  }));
+
+  const groupedGithubData = groupBy(mappedDevhubGithubNodes, 'sourceName');
+  const devhubGithubResources = groupedGithubData.map(ghData => (
+    <Resource
+      key={shortid.generate()}
+      category={ghData.sourceName}
+      resources={ghData.data}
+    />
+  ));
 
   return (
     <Layout>
-
       <main role="main" className="main">
         <h1>Welcome</h1>
         <h2>
           <em>We are here to help</em>
         </h2>
         <p className="para">
-          This is the front door to the developer community of the BC Government.
-          We’re embarking on a journey to help developers learn new skills, discover
-          resources and create amazing applications for government.
+          This is the front door to the developer community of the BC
+          Government. We’re embarking on a journey to help developers learn new
+          skills, discover resources and create amazing applications for
+          government.
         </p>
         <p className="para">
-          This is our first release and we’re planning to have new material added to
-          this site every sprint (2 weeks), so please visit often to check our
-          progress.
+          This is our first release and we’re planning to have new material
+          added to this site every sprint (2 weeks), so please visit often to
+          check our progress.
         </p>
         <p className="para">
           {' '}
@@ -43,13 +72,12 @@ const Index = ({ data: { pathfinder, allSourceDevhubGithub }}) => {
           find us by opening an issue in our{' '}
           <a href={GITHUB_ISSUES_ROUTE}>github.com</a> repository.
         </p>
-
-        { pathfinderResources }
+        {devhubGithubResources}
+        {pathfinderResources}
       </main>
     </Layout>
   );
-}
-
+};
 
 export const resourceQuery = graphql`
   query resourceQuery {
@@ -66,21 +94,18 @@ export const resourceQuery = graphql`
     }
     allSourceDevhubGithub {
       edges {
-          node {
-              id,
-              name,
-              fileName,
-              fileType,
-              owner,
-              path,
-              source,
-              sourceName,
-              childMarkdownRemark {
-                frontmatter {
-                  title,
-                },
-              }
+        node {
+          id
+          title: name
+          sourceName
+          pagePath
+          childMarkdownRemark {
+            frontmatter {
+              title
+              description
+            }
           }
+        }
       }
     }
   }
