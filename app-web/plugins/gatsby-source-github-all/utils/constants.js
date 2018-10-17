@@ -28,6 +28,7 @@ const DEFUALT_IGNORES = [
 ];
 // github rest api v3
 const GITHUB_API_ENDPOINT = 'https://api.github.com';
+
 const FILETYPES = {
   yml: 'YAML',
   yaml: 'YAML',
@@ -47,6 +48,7 @@ const MEDIATYPES = {
 const PROCESSABLE_EXTENSIONS = ['.md', '.yml', '.yaml'];
 
 module.exports = {
+  PROCESSABLE_EXTENSIONS,
   DEFUALT_IGNORES,
   GITHUB_API_ENDPOINT,
   FILETYPES,

@@ -88,7 +88,7 @@ const fetchGithubTree = async (repo, owner, token) => {
 const fetchFile = async (repo, owner, path, token) => {
   try {
     const result = await fetch(
-      `https://api.github.com/repos/${owner}/${repo}/contents/${path}`,
+      `${GITHUB_API_ENDPOINT}/repos/${owner}/${repo}/contents/${path}`,
       {
         method: 'GET',
         headers: {
