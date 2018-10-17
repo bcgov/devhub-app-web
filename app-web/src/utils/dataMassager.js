@@ -36,3 +36,7 @@ export const groupBy = (collection, key) => {
     data: grouping[groupKey],
   }));
 };
+
+// the raw query return an array of objects that contains a node property
+export const flattenAllSourceDevhubGithub = edges =>
+  edges.map(node => node.node);
