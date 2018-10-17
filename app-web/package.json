@@ -77,7 +77,8 @@
     "moduleNameMapper": {
       "^react$": "gatsby-plugin-react-next/node_modules/react",
       "^react-dom$": "gatsby-plugin-react-next/node_modules/react-dom",
-      "\\.module\\.(css|less)$": "identity-obj-proxy"
+      "\\.module\\.(css|less)$": "identity-obj-proxy",
+      ".(css)$": "identity-obj-proxy"
     },
     "collectCoverage": true,
     "coverageReporters": [
