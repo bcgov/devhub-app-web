@@ -45,10 +45,11 @@ class Layout extends React.Component {
 
   render() {
     const { data, children } = this.props;
+    console.log(data);
     return (
       <div>
         <Helmet>
-          <title>{data.site.siteMetadata.title}</title>
+         
           <link
             href="https://portal.nrs.gov.bc.ca/nrs-portal-theme/images/favicon.ico"
             rel="icon"
@@ -56,26 +57,16 @@ class Layout extends React.Component {
           />
         </Helmet>
         <PrimaryHeader />
-        <div className="container">{children()}</div>
+        <div className="container">{children}</div>
       </div>
     );
   }
 }
 
 Layout.propTypes = {
-  children: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
   useAuth: PropTypes.bool.isRequired,
 };
-
-export const LayoutQuery = graphql`
-  query LayoutQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`;
 
 const mapDispatchToProps = dispatch => ({
   login: () => dispatch(actions.authenticateSuccess()),
