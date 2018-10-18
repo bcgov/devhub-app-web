@@ -30,6 +30,18 @@ objects:
     creationTimestamp: null
     labels:
       shared: true
+    name: ${NAME}-base
+    annotations: 
+      description: 'Nodejs runtime image'
+  spec:
+    lookupPolicy:
+      local: false
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    creationTimestamp: null
+    labels:
+      shared: true
     name: ${NAME}
   spec:
     lookupPolicy:
@@ -43,6 +55,39 @@ objects:
   spec:
     lookupPolicy:
       local: false
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    creationTimestamp: null
+    name: ${NAME}-base-${SUFFIX}
+    annotations:
+      description: 'The base app image that contains all dependancies but no build artifacts'
+  spec:
+    runPolicy: SerialLatestOnly
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: ${NAME}-base:${VERSION}
+    postCommit: {}
+    resources:
+      requests:
+        cpu: 1
+      limits:
+        cpu: 2
+    source:
+      contextDir: 'Docker-images/nodejs-8'
+      type: Binary
+    strategy:
+      dockerStrategy:
+        from:
+          kind: ImageStreamTag
+          name: rhscl-nodejs-8-rhel7:8.1-22
+      type: Docker
+    triggers:
+    - type: ConfigChange
+    - imageChange: {}
+      type: ImageChange
 - apiVersion: v1
   kind: BuildConfig
   metadata:
@@ -76,7 +121,7 @@ objects:
                 key: GITHUB_TOKEN
         from:
           kind: ImageStreamTag
-          name: rhscl-nodejs-8-rhel7:8.1-22
+          name: ${NAME}-base:${VERSION}
       type: Source
     triggers:
     - type: ConfigChange
