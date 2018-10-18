@@ -33,6 +33,10 @@ pipeline {
     }
     
     stage('Functional Test (TEST)') {
+      // functional tests are currently broken as homepage has been redesigned.
+      // for now this stage is being skipped. All of this has been documented
+      // see https://taiga.pathfinder.gov.bc.ca/project/lukegonis-developergovbcca/issue/309
+      // Oct 18 2018 Patrick Simonian
       when {
         expression { params.RUN_FUNCTIONAL_TESTS == 'TRUE'}
       }
