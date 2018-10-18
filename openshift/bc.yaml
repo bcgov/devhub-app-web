@@ -76,7 +76,7 @@ objects:
       limits:
         cpu: 2
     source:
-      contextDir: 'Docker-images/nodejs-8'
+      contextDir: 'docker-images/nodejs-8'
       type: Binary
     strategy:
       dockerStrategy:
