@@ -32,27 +32,7 @@ module.exports = async ({ graphql, boundActionCreators }) => {
         edges {
           node {
             id
-            name
-            fileName
-            fileType
-            owner
-            path
-            source
-            sourceName
             pagePath
-            childMarkdownRemark {
-              frontmatter {
-                title
-              }
-              html
-            }
-            internal {
-              contentDigest
-              mediaType
-              type
-              content
-              owner
-            }
           }
         }
       }
