@@ -1,6 +1,7 @@
 import React from 'react';
 import YAML from 'js-yaml';
 import shortid from 'shortid';
+import { Flag } from 'flag';
 import { groupBy, flattenAllSourceDevhubGithub } from '../utils/dataMassager';
 import { GITHUB_ISSUES_ROUTE } from '../constants/routes';
 // local components
@@ -31,7 +32,6 @@ const Index = ({ data: { pathfinder, allSourceDevhubGithub } }) => {
   const devhubGithubNodes = flattenAllSourceDevhubGithub(
     allSourceDevhubGithub.edges
   );
-  console.log(devhubGithubNodes);
   // map out github nodes to have paramaters that are expected by Resource
   const mappedDevhubGithubNodes = devhubGithubNodes.map(dhnode => ({
     ...dhnode,
@@ -72,8 +72,12 @@ const Index = ({ data: { pathfinder, allSourceDevhubGithub } }) => {
           find us by opening an issue in our{' '}
           <a href={GITHUB_ISSUES_ROUTE}>github.com</a> repository.
         </p>
-        {devhubGithubResources}
-        {pathfinderResources}
+        <Flag name="features.githubResourceCards">
+          {devhubGithubResources}
+        </Flag>
+        <Flag name="features.pathfinderResourceCards">
+          {pathfinderResources}
+        </Flag>
       </main>
     </Layout>
   );
