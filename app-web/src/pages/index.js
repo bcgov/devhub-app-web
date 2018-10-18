@@ -82,7 +82,8 @@ const Index = ({ data: { pathfinder, allSourceDevhubGithub } }) => {
     </Layout>
   );
 };
-
+// this query automagically gets passed in as a 'data' prop into 
+// the above component
 export const resourceQuery = graphql`
   query resourceQuery {
     pathfinder: githubData {

@@ -54,7 +54,7 @@ const repoIsValid = repo => repo.name && repo.url && repo.repo && repo.owner;
 const reposAreValid = repos => repos.every(repoIsValid);
 
 const checkRegistry = registry => {
-  if (!reposAreValid(registry.repos)) {
+  if (!registry.repos || !reposAreValid(registry.repos)) {
     throw new Error(
       'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters'
     );
@@ -96,12 +96,11 @@ const sourceNodes = async (
     dataToNodify.forEach(file =>
       createNode(createGHNode(file, createNodeId(file.sha)))
     );
-    return Promise.resolve();
   } catch (e) {
     // failed to retrieve files or some other type of failure
     // eslint-disable-next-line
     console.error(e);
-    return Promise.reject(e);
+    process.exit(1);
   }
 };
 module.exports = {

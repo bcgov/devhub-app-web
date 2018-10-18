@@ -24,6 +24,7 @@ const {
   MEDIATYPES,
   DEFUALT_IGNORES,
 } = require('./constants');
+const chalk = require('chalk'); // eslint-disable-line
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
 const { Base64 } = require('js-base64'); // eslint-disable-line
 const fetch = require('node-fetch'); // eslint-disable-line
@@ -223,10 +224,20 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
     return files;
   } catch (e) {
     // eslint-disable-next-line
-    console.error(
-      `\nERROR!! in Gatsby Source Github All: \n unable to fetch files frome repo ${repo}`
-    );
-    return [];
+    console.error(chalk`
+      {red.bold ERROR!! in Gatsby Source Github All} 
+
+      unable to fetch files from repo ${repo}.
+
+      Perhaps you should check spelling of repo parameters..
+
+      {green.underline repo}: ${repo}
+      {green.underline owner}: ${owner}
+
+      {yellow if this doesn't resolve the issue either the api token is invalid
+      or the build is failing to connect to the github api}
+    `);
+    throw e;
   }
 };
 
