@@ -61,7 +61,7 @@ objects:
     creationTimestamp: null
     name: ${NAME}-base${SUFFIX}
     annotations:
-      description: 'The base app image that contains all dependancies but no build artifacts'
+      description: 'The base app node js image'
   spec:
     completionDeadlineSeconds: 1440
     successfulBuildsHistoryLimit: 3
