@@ -45,7 +45,7 @@ const MEDIATYPES = {
   html: 'text/html',
 };
 
-const PROCESSABLE_EXTENSIONS = ['.md'];
+const PROCESSABLE_EXTENSIONS = ['.md', '.yml', '.yaml'];
 
 module.exports = {
   PROCESSABLE_EXTENSIONS,
