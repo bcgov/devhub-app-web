@@ -59,10 +59,13 @@ objects:
   kind: BuildConfig
   metadata:
     creationTimestamp: null
-    name: ${NAME}-base-${SUFFIX}
+    name: ${NAME}-base${SUFFIX}
     annotations:
       description: 'The base app image that contains all dependancies but no build artifacts'
   spec:
+    completionDeadlineSeconds: 1440
+    successfulBuildsHistoryLimit: 3
+    failedBuildsHistoryLimit: 3
     runPolicy: SerialLatestOnly
     nodeSelector: null
     output:
