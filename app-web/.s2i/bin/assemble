@@ -95,7 +95,7 @@ else
 	{
 		export ex_code=$?
 		echo "Unit tests failed!"
-		echo $ex_code
+		echo "exit code: $ex_code"
 	}
 	#do not fail when there is no build script
 	echo "---> Building in production mode"
