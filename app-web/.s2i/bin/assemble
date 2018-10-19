@@ -89,7 +89,14 @@ else
 	echo "---> Installing all dependencies"
 	NODE_ENV=development npm install
     echo "---> Running Unit Tests"
-    npm run test
+	{
+    	npm run test 
+	} || 
+	{
+		export ex_code=$?
+		echo "Unit tests failed!"
+		echo $ex_code
+	}
 	#do not fail when there is no build script
 	echo "---> Building in production mode"
 	npm run build --if-present
