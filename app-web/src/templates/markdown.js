@@ -19,6 +19,7 @@
 //
 import React from 'react';
 import GatsbyLink from '../components/Common/Link';
+import { HOME_ROUTE } from '../constants/routes';
 import Layout from '../hoc/Layout';
 import styles from './markdown.module.css';
 // eslint-disable-next-line
@@ -36,7 +37,7 @@ const Generic = ({ data: { sourceDevhubGithub } }) => {
       </header>
       <ul className={styles.Nav}>
         <li>
-          <GatsbyLink to="/">Home</GatsbyLink>
+          <GatsbyLink to={HOME_ROUTE}>Home</GatsbyLink>
         </li>
       </ul>
       <section

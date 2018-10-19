@@ -45,7 +45,6 @@ class Layout extends React.Component {
 
   render() {
     const { data, children } = this.props;
-    console.log(data);
     return (
       <div>
         <Helmet>
