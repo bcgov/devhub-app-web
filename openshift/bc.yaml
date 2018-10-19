@@ -209,8 +209,3 @@ parameters:
   name: SOURCE_REPOSITORY_REF
   required: true
   value: WIP
-- description: SOURCE_DOCKER_DIR
-  displayName: SOURCE_DOCKER_DIR
-  name: SOURCE_DOCKER_DIR
-  required: true
-  value: 'docker-images'
