@@ -23,9 +23,13 @@ The build process is a chain build.
 
 Create a base image of the nodejs run time
 
-### Step 2
+### Step 2a
 
 Create image from base image and source code and build
+
+### Step 2b
+
+Post Commit build hook is run to run jest unit tests
 
 ### Step 3
 
