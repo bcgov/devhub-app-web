@@ -31,7 +31,7 @@ import { createFlagsReducer } from 'flag';
 export default createFlagsReducer({
   features: {
     login: false,
-    githubResourceCards: false,
+    githubResourceCards: true,
     pathfinderResourceCards: true,
   },
 });
