@@ -90,7 +90,7 @@ else
 	NODE_ENV=development npm install
     echo "---> Running Unit Tests"
 	{
-    	npm run test 
+    	npm run test:ci 
 	} || 
 	{
 		export ex_code=$?
