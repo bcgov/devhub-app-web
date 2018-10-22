@@ -58,8 +58,10 @@ objects:
     resources:
       requests:
         cpu: 1
+        memory: 2Gi
       limits:
         cpu: 2
+        memory: 2Gi
     source:
       git:
         uri: ${SOURCE_REPOSITORY_URL}
@@ -74,8 +76,6 @@ objects:
               secretKeyRef:
                 name: devhub-gh-token
                 key: GITHUB_TOKEN
-          - name: "BUILD_LOGLEVEL"
-            value: "5" 
         from:
           kind: ImageStreamTag
           name: rhscl-nodejs-8-rhel7:8.1-22
