@@ -22,92 +22,33 @@
 const { resolve } = require('path');
 
 module.exports = async ({ graphql, boundActionCreators }) => {
-    const { createPage } = boundActionCreators;
-    const pathFinderTemplate = resolve(__dirname, '../src/templates/github.js');
-    const markdownTemplate = resolve(__dirname, '../src/templates/markdown.js');
-    // *****************************************************
-    // this is legacy page creation for pathfinder.gov.bc.ca
-    // *****************************************************
-    const githubData = await graphql(`
+  const { createPage } = boundActionCreators;
+  const markdownTemplate = resolve(__dirname, '../src/templates/markdown.js');
+
+  // main graphql query here
+  const devhubData = await graphql(`
     {
-      allGithubData {
+      allSourceDevhubGithub {
         edges {
           node {
-            fields {
-              slug
-              basePagePath
-            }
-            data {
-              organization {
-                repository {
-                  resources {
-                    yaml: text
-                  }
-                }
-              }
-            }
+            id
+            pagePath
           }
         }
       }
     }
   `);
-  // process the yaml file from pathfinder repo
-  // although this is in a loop, it's should be length 1 
-  githubData.data.allGithubData.edges.forEach(({ node }) => {
-    // create pathfinder page using github page template
-    createPage({
-      path: node.fields.basePagePath + node.fields.slug,
-      component: pathFinderTemplate,
-      context: {
-        // Data passed to context is available in page queries as GraphQL variables.
-        slug: node.fields.slug,
-        yaml: node.data.organization.repository.resources.yaml,
-      },
-    });
-  });
-
-  // main graphql query here
-  const githubDataV2 = await graphql(`
-    {
-        allSourceDevhubGithub {
-        edges {
-            node {
-                id,
-                name,
-                fileName,
-                fileType,
-                owner,
-                path,
-                source,
-                sourceName,
-                childMarkdownRemark {
-                  frontmatter {
-                    title,
-                  },
-                  html,
-                },
-                internal {
-                    contentDigest
-                    mediaType
-                    type
-                    content
-                    owner
-                }
-            }
-        }
-    }}
-  `);
   // // right now we are making an assumption all data here resolved from a markdown file
   // // and will be treated as so
-  githubDataV2.data.allSourceDevhubGithub.edges.forEach(({ node }) => {
-    const title = node.childMarkdownRemark.frontmatter.title ? node.childMarkdownRemark.frontmatter.title : node.fileName;
+  devhubData.data.allSourceDevhubGithub.edges.forEach(({ node }) => {
+    // const title = node.childMarkdownRemark.frontmatter.title ? node.childMarkdownRemark.frontmatter.title : node.fileName;
     createPage({
-        path: `/learn/${node.source}/${title}`,
-        component: markdownTemplate,
-        context: {
-          // Data passed to context is available in page queries as GraphQL variables.
-          id: node.id,
-        },
+      path: node.pagePath,
+      component: markdownTemplate,
+      context: {
+        // Data passed to context is available in page queries as GraphQL variables.
+        id: node.id,
+      },
     });
   });
 };

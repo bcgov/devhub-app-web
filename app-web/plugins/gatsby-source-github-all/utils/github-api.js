@@ -24,7 +24,8 @@ const {
   MEDIATYPES,
   DEFUALT_IGNORES,
 } = require('./constants');
-const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line 
+const chalk = require('chalk'); // eslint-disable-line
+const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
 const { Base64 } = require('js-base64'); // eslint-disable-line
 const fetch = require('node-fetch'); // eslint-disable-line
 const ignore = require('ignore'); // eslint-disable-line
@@ -44,10 +45,10 @@ const getExtensionFromName = name =>
  */
 const getNameWithoutExtension = name => {
   const ext = getExtensionFromName(name);
-  if(ext !== '') {
+  if (ext !== '') {
     const re = new RegExp(`.${ext}$`);
     return name.replace(re, '');
-  } 
+  }
   return name;
 };
 /** returns the name of the file type by its extension
@@ -125,7 +126,9 @@ const fetchFile = async (repo, owner, path, token) => {
  */
 const fetchIgnoreFile = async (repo, owner, token) => {
   const ignoreFile = await fetchFile(repo, owner, '/.devhubignore', token);
-  return ignoreFile.content ? Base64.decode(ignoreFile.content).split('\n') : [];
+  return ignoreFile.content
+    ? Base64.decode(ignoreFile.content).split('\n')
+    : [];
 };
 /**
    * filters an array of github graphql entries by their extensions
@@ -143,9 +146,7 @@ const filterFilesByExtensions = (entries, extensions = ['.md']) => {
     throw new Error('extensions must be an array of strings');
   }
   // ensure extensions are of correct pattern
-  if (
-    !extensions.every(ext => /\.\w+$/.test(ext))
-  ) {
+  if (!extensions.every(ext => /\.\w+$/.test(ext))) {
     throw new Error('extensions must have shape /\\.w+$/');
   }
   // convert extensions into a regex expression
@@ -196,7 +197,9 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
     // filter out files that are apart of ignore
     filesToFetch = filesToFetch.filter(file => !ig.ignores(file.path));
     // retrieve contents for each file
-    const filesWithContents = filesToFetch.map(file => fetchFile(repo, owner, file.path, token));
+    const filesWithContents = filesToFetch.map(file =>
+      fetchFile(repo, owner, file.path, token)
+    );
     const filesResponse = await Promise.all(filesWithContents);
     // for some reason the accept header is not returning with raw content so we will decode
     // the default base 64 encoded content
@@ -221,10 +224,20 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
     return files;
   } catch (e) {
     // eslint-disable-next-line
-    console.error(
-      `\nERROR!! in Gatsby Source Github All: \n unable to fetch files frome repo ${repo}`
-    );
-    return [];
+    console.error(chalk`
+      {red.bold ERROR!! in Gatsby Source Github All} 
+
+      unable to fetch files from repo ${repo}.
+
+      Perhaps you should check spelling of repo parameters..
+
+      {green.underline repo}: ${repo}
+      {green.underline owner}: ${owner}
+
+      {yellow if this doesn't resolve the issue either the api token is invalid
+      or the build is failing to connect to the github api}
+    `);
+    throw e;
   }
 };
 

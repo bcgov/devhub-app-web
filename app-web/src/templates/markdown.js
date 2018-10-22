@@ -19,13 +19,14 @@
 //
 import React from 'react';
 import GatsbyLink from '../components/Common/Link';
-import Aux from '../hoc/auxillary';
+import { HOME_ROUTE } from '../constants/routes';
+import Layout from '../hoc/Layout';
 import styles from './markdown.module.css';
 // eslint-disable-next-line
-const Generic = ({ data: { sourceDevhubGithub }}) => {
+const Generic = ({ data: { sourceDevhubGithub } }) => {
   // eslint-disable-next-line
   return (
-    <Aux>
+    <Layout>
       <header className={styles.Header}>
         <h1>{sourceDevhubGithub.sourceName}</h1>
         <div>
@@ -36,30 +37,35 @@ const Generic = ({ data: { sourceDevhubGithub }}) => {
       </header>
       <ul className={styles.Nav}>
         <li>
-          <GatsbyLink to="/learn">Go Back</GatsbyLink>
+          <GatsbyLink to={HOME_ROUTE}>Home</GatsbyLink>
         </li>
       </ul>
-      <section className={styles.MarkdownBody} dangerouslySetInnerHTML={{ __html: sourceDevhubGithub.childMarkdownRemark.html}} />
-    </Aux>
+      <section
+        className={styles.MarkdownBody}
+        dangerouslySetInnerHTML={{
+          __html: sourceDevhubGithub.childMarkdownRemark.html,
+        }}
+      />
+    </Layout>
   );
 };
 
 export const sourceDevhubGithub = graphql`
   query sourceDevhubGithub($id: String!) {
-    sourceDevhubGithub(id: { eq: $id}) {
-      name,
-      id,
+    sourceDevhubGithub(id: { eq: $id }) {
+      name
+      id
       childMarkdownRemark {
         frontmatter {
           title
         }
         html
       }
-      source,
-      sourceName,
-      owner,
-      fileName,
-      fileType,
+      source
+      sourceName
+      owner
+      fileName
+      fileType
       path
     }
   }
