@@ -3,9 +3,6 @@
 # https://github.com/lovell/sharp/issues/892
 # https://github.com/lovell/sharp/issues/1276
 
-echo "Running Custom Assemble Script: $0"
-export LD_PRELOAD="/opt/app-root/src/node_modules/sharp/vendor/lib/libz.so"
-
 echo "Running Modified NodeJS S2I Script"
 #!/bin/bash
 
@@ -88,6 +85,7 @@ else
 
 	echo "---> Installing all dependencies"
 	NODE_ENV=development npm install
+	export LD_PRELOAD="/opt/app-root/src/node_modules/sharp/vendor/lib/libz.so"
     echo "---> Running Unit Tests"
 	NPM_CONFIG_LOGLEVEL=verbose
 	npm run test:ci
