@@ -74,6 +74,8 @@ objects:
               secretKeyRef:
                 name: devhub-gh-token
                 key: GITHUB_TOKEN
+          - name: "BUILD_LOGLEVEL"
+            value: "2" 
         from:
           kind: ImageStreamTag
           name: rhscl-nodejs-8-rhel7:8.1-22
