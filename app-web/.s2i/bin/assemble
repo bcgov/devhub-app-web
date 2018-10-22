@@ -87,6 +87,8 @@ else
 	NODE_ENV=development npm install
 	export LD_PRELOAD="/opt/app-root/src/node_modules/sharp/vendor/lib/libz.so"
     echo "---> Running Unit Tests"
+	echo "checking package.json"
+	cat package.json
 	NPM_CONFIG_LOGLEVEL=verbose
 	npm run test:ci
 	unset NPM_CONFIG_LOGLEVEL
