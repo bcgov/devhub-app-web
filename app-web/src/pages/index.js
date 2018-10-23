@@ -35,6 +35,7 @@ const Index = ({ data: { pathfinder, allSourceDevhubGithub } }) => {
   // map out github nodes to have paramaters that are expected by Resource
   const mappedDevhubGithubNodes = devhubGithubNodes.map(dhnode => ({
     ...dhnode,
+    title: dhnode.childMarkdownRemark.frontmatter.title,
     abstract: dhnode.childMarkdownRemark.frontmatter.description,
     link: dhnode.pagePath,
   }));
