@@ -35,6 +35,7 @@ const Index = ({ data: { pathfinder, allSourceDevhubGithub } }) => {
   // map out github nodes to have paramaters that are expected by Resource
   const mappedDevhubGithubNodes = devhubGithubNodes.map(dhnode => ({
     ...dhnode,
+    title: dhnode.childMarkdownRemark.frontmatter.title,
     abstract: dhnode.childMarkdownRemark.frontmatter.description,
     link: dhnode.pagePath,
   }));
@@ -72,9 +73,7 @@ const Index = ({ data: { pathfinder, allSourceDevhubGithub } }) => {
           find us by opening an issue in our{' '}
           <a href={GITHUB_ISSUES_ROUTE}>github.com</a> repository.
         </p>
-        <Flag name="features.githubResourceCards">
-          {devhubGithubResources}
-        </Flag>
+        <Flag name="features.githubResourceCards">{devhubGithubResources}</Flag>
         <Flag name="features.pathfinderResourceCards">
           {pathfinderResources}
         </Flag>
@@ -82,7 +81,7 @@ const Index = ({ data: { pathfinder, allSourceDevhubGithub } }) => {
     </Layout>
   );
 };
-// this query automagically gets passed in as a 'data' prop into 
+// this query automagically gets passed in as a 'data' prop into
 // the above component
 export const resourceQuery = graphql`
   query resourceQuery {

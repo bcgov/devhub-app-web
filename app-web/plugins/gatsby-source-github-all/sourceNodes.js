@@ -20,6 +20,8 @@
 const crypto = require('crypto');
 const _ = require('lodash'); // eslint-disable-line
 const { getFilesFromRepo } = require('./utils/github-api');
+const { fileTransformer } = require('./utils/transformer');
+const { markdownPlugin } = require('./utils/plugins');
 
 const createGHNode = (file, id) => ({
   id,
@@ -93,9 +95,16 @@ const sourceNodes = async (
     // so we flatten it into a 1 dimensional array
     const dataToNodify = _.flatten(repos, true);
     // create nodes
-    dataToNodify.forEach(file =>
-      createNode(createGHNode(file, createNodeId(file.sha)))
-    );
+    dataToNodify.map(file => {
+      const newFile = {...file, metadata: { ...file.metadata }};
+      const {content, metadata: { extension }} = newFile;
+      const ft = fileTransformer(extension, content, newFile);
+      const newContent = ft.use(markdownPlugin).resolve();
+      newFile.content = newContent;
+      return newFile;
+    }).forEach(file => {
+      createNode(createGHNode(file, createNodeId(file.sha)));
+    });
   } catch (e) {
     // failed to retrieve files or some other type of failure
     // eslint-disable-next-line

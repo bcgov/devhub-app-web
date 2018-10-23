@@ -64,7 +64,7 @@ included, the title will be *inferred* by the first header in your markdown code
 #### description (mandatory)
 A short description describing what's in this file. This will be used as the short blurb in the card view inside the devhub. (try to limit to 280 character)
 
-### Step 3: Register your repository
+<!-- ### Step 3: Register your repository
 
 Before your repo's content is taken in by the Devhub, the Devhub needs to know it exists first.
 
@@ -74,4 +74,4 @@ This will involve making a Fork and Pull Request to the [Devhub Repository](http
 
 Once you've forked the Devhub Repo, you will want to make a new branch.
 
-...TBC
+...TBC -->
