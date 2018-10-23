@@ -47,7 +47,19 @@ const MEDIATYPES = {
 
 const PROCESSABLE_EXTENSIONS = ['.md', '.yml', '.yaml'];
 
+const MARKDOWN_FRONTMATTER_SCHEMA = {
+  title: {
+    type: String,
+    required: false,
+  },
+  description: {
+    type: String,
+    required: true,
+  }
+};
+
 module.exports = {
+  MARKDOWN_FRONTMATTER_SCHEMA,
   PROCESSABLE_EXTENSIONS,
   DEFUALT_IGNORES,
   GITHUB_API_ENDPOINT,

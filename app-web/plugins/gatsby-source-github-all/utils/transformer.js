@@ -20,63 +20,17 @@ Created by Patrick Simonian
 // files. Front matter for md files cannot be trusted to be completed by
 // users of the system and so we will provide default front matter properties
 // via a plugin
-const matter = require('gray-matter'); // eslint-disable-line
-const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
-const visit = require('unist-util-visit'); // eslint-disable-line
-const remark = require('remark'); // eslint-disable-line
 
+const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
 /**
- * applys default front matter properties
- * @param {String} extension 
+ * takes in file parameters and runs it through plugins that
+ * modify the content
+ * @param {String} fileExtension 
  * @param {String} content 
  * @param {Object} file 
- * @returns {String} the modified markdown content
+ * @returns {String} file content transformed
  */
-const markdownPlugin = (extension, raw, file) => {
-    // only modify markdown files
-    if(extension === 'md') {
-        // parse front matter
-        const data = matter(raw);
-        const frontmatter = data.data;
-        const DEFAULTS = {
-            title: () => {
-                // attempt to generate a title by finding the first h1 in markdown content
-                // if none title should be fileName
-                const ast = remark.parse(data.content);
-                // make title file name by default
-                let title = file.metadata.fileName;
-                // visit heading
-                visit(ast, 'heading', node => {
-                    // is node on first line and a h1 or h2?
-                    if(title === file.metadata.fileName && (node.depth === 1 || node.depth === 2)) {
-                        if( node.position.start.line === 1) {
-                            title = node.children[0].value;
-                        }
-                    }
-                });
-                return title;
-            },
-        };
-        // check front matter against defaults
-        Object.keys(DEFAULTS).forEach(key => {
-            // does front matter have a valid non string value
-            // for key
-            const value = frontmatter[key];
-            if(!value || !TypeCheck.isString(value) || value === '') {
-                // can we provide a default? 
-                if(DEFAULTS[key]) {
-                    frontmatter[key] = DEFAULTS[key]();
-                }
-            }
-        });
-        // create 'new' md string with updated front matter
-        return matter.stringify(data.content, frontmatter);
-    }
-    return raw;
-};
-
-const fileTransformer = (fileExtension, content, file) => {
-  return {
+const fileTransformer = (fileExtension, content, file) => ({
     content,
     use(plugin, options = {}) {
       if(!TypeCheck.isFunction(plugin)) {
@@ -92,10 +46,8 @@ const fileTransformer = (fileExtension, content, file) => {
     resolve() {
         return this.content;
     },
-  };
-};
+});
 
 module.exports = {
   fileTransformer,
-  markdownPlugin,
 };

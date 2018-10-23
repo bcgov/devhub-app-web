@@ -1,4 +1,5 @@
-import { fileTransformer, markdownPlugin } from '../utils/transformer';
+import { fileTransformer } from '../utils/transformer';
+import { markdownPlugin } from '../utils/plugins';
 import { PROCESSED_FILE } from '../__fixtures__/fixtures';
 
 describe('Transformer System', () => {
