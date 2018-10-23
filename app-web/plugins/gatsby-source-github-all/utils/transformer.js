@@ -20,23 +20,69 @@ Created by Patrick Simonian
 // files. Front matter for md files cannot be trusted to be completed by
 // users of the system and so we will provide default front matter properties
 // via a plugin
-const matter = require('gray-matter');
-const { TypeCheck } = require('@bcgov/common-web-utils');
+const matter = require('gray-matter'); // eslint-disable-line
+const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
+const visit = require('unist-util-visit'); // eslint-disable-line
+const remark = require('remark'); // eslint-disable-line
 
-const markdownPlugin = (fileType, raw) => {
-  const content = plugin => {
-    return;
-  };
+/**
+ * applys default front matter properties
+ * @param {String} extension 
+ * @param {String} content 
+ * @param {Object} file 
+ * @returns {String} the modified markdown content
+ */
+const markdownPlugin = (extension, raw, file) => {
+    // only modify markdown files
+    if(extension === 'md') {
+        // parse front matter
+        const data = matter(raw);
+        const frontmatter = data.data;
+        const DEFAULTS = {
+            title: () => {
+                // attempt to generate a title by finding the first h1 in markdown content
+                // if none title should be fileName
+                const ast = remark.parse(data.content);
+                // make title file name by default
+                let title = file.metadata.fileName;
+                // visit heading
+                visit(ast, 'heading', node => {
+                    // is node on first line and a h1 or h2?
+                    if(title === file.metadata.fileName && (node.depth === 1 || node.depth === 2)) {
+                        if( node.position.start.line === 1) {
+                            title = node.children[0].value;
+                        }
+                    }
+                });
+                return title;
+            },
+        };
+        // check front matter against defaults
+        Object.keys(DEFAULTS).forEach(key => {
+            // does front matter have a valid non string value
+            // for key
+            const value = frontmatter[key];
+            if(!value || !TypeCheck.isString(value) || value === '') {
+                // can we provide a default? 
+                if(DEFAULTS[key]) {
+                    frontmatter[key] = DEFAULTS[key]();
+                }
+            }
+        });
+        // create 'new' md string with updated front matter
+        return matter.stringify(data.content, frontmatter);
+    }
+    return raw;
 };
 
-const fileTransformer = (fileExtension, content) => {
+const fileTransformer = (fileExtension, content, file) => {
   return {
     content,
     use(plugin, options = {}) {
       if(!TypeCheck.isFunction(plugin)) {
         throw new Error('Plugin must be function');
       }
-      const contentTransformed = plugin(fileExtension, this.content, options);
+      const contentTransformed = plugin(fileExtension, this.content, file, options);
       if (contentTransformed === undefined) {
         throw new Error(`Plugin ${plugin.name} must return content`);
       }
@@ -49,20 +95,7 @@ const fileTransformer = (fileExtension, content) => {
   };
 };
 
-// const apply = {
-//     /**
-//      * @param {String} fileExtension md,yaml,txt etc
-//      * @param {String} raw = raw content
-//      *
-//      */
-//     md: (fileExtension, raw) => {
-//         console.log(fileType);
-//         const data = matter(raw);
-//         data.data.title = "YOYOYO";
-//         return matter.stringify(data.content, data.data);
-//     }
-// }
-
 module.exports = {
   fileTransformer,
+  markdownPlugin,
 };
