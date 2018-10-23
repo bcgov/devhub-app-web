@@ -36,6 +36,7 @@ In Development
 ## Documnentation
 
 - [Component Architecture](./docs/components.md)
+- [Devhub Ingestion System](./docs/gatsbySources.md)
 
 ## Security
 
