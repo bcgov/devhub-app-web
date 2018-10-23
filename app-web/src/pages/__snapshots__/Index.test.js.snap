@@ -109,7 +109,7 @@ ShallowWrapper {
                   "link": "/design-system/test",
                   "pagePath": "/design-system/test",
                   "sourceName": "Design System",
-                  "title": "test",
+                  "title": "",
                 },
               ]
             }
@@ -219,7 +219,7 @@ ShallowWrapper {
                     "link": "/design-system/test",
                     "pagePath": "/design-system/test",
                     "sourceName": "Design System",
-                    "title": "test",
+                    "title": "",
                   },
                 ]
               }
@@ -395,7 +395,7 @@ ShallowWrapper {
                       "link": "/design-system/test",
                       "pagePath": "/design-system/test",
                       "sourceName": "Design System",
-                      "title": "test",
+                      "title": "",
                     },
                   ]
                 }
@@ -424,7 +424,7 @@ ShallowWrapper {
                     "link": "/design-system/test",
                     "pagePath": "/design-system/test",
                     "sourceName": "Design System",
-                    "title": "test",
+                    "title": "",
                   },
                 ],
               },
@@ -608,7 +608,7 @@ ShallowWrapper {
                     "link": "/design-system/test",
                     "pagePath": "/design-system/test",
                     "sourceName": "Design System",
-                    "title": "test",
+                    "title": "",
                   },
                 ]
               }
@@ -718,7 +718,7 @@ ShallowWrapper {
                       "link": "/design-system/test",
                       "pagePath": "/design-system/test",
                       "sourceName": "Design System",
-                      "title": "test",
+                      "title": "",
                     },
                   ]
                 }
@@ -894,7 +894,7 @@ ShallowWrapper {
                         "link": "/design-system/test",
                         "pagePath": "/design-system/test",
                         "sourceName": "Design System",
-                        "title": "test",
+                        "title": "",
                       },
                     ]
                   }
@@ -923,7 +923,7 @@ ShallowWrapper {
                       "link": "/design-system/test",
                       "pagePath": "/design-system/test",
                       "sourceName": "Design System",
-                      "title": "test",
+                      "title": "",
                     },
                   ],
                 },
