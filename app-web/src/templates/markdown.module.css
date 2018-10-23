@@ -46,10 +46,16 @@
 
 .MarkdownBody {
     padding: 10px;
-
+    background-color: #ebebeb;
+}
+.MarkdownBody > h1:first-child {
+    margin-top: 0;
 }
 .MarkdownBody > * {
     margin-bottom: 10px;
+}
+.MarkdownBody pre {
+    border-radius: 4px;
 }
 .MarkdownBody h1,
 .MarkdownBody h2,
