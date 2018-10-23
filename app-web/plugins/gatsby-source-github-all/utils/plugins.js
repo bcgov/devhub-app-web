@@ -52,7 +52,6 @@ const markdownPlugin = (extension, raw, file) => {
                 });
                 return title;
             },
-            description: () => { throw new Error('Description property missing or blank in md frontmatter'); },
         };
         // check front matter against defaults
         Object.keys(MARKDOWN_FRONTMATTER_SCHEMA).forEach(key => {
