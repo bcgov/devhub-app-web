@@ -41,6 +41,7 @@ const MEDIATYPES = {
   md: 'text/markdown',
   json: 'application/json',
   yaml: 'text/yaml',
+  yml: 'text/yaml',
   txt: 'text/html',
   html: 'text/html',
 };

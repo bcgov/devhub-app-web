@@ -95,11 +95,13 @@ const sourceNodes = async (
     const dataToNodify = _.flatten(repos, true);
     // create nodes
     dataToNodify.map(file => {
-      const fileTransformed = {...file};
-      fileTransformed.content = fileTransformer(fileTransformed.metadata.extension, fileTransformed.content, file)
+      const newFile = {...file, metadata: { ...file.metadata }};
+      const {content, metadata: { extension }} = newFile.content;
+      const newContent = fileTransformer(extension, content, newFile)
       .use(markdownPlugin)
       .resolve();
-      return fileTransformed;
+      newFile.content = newContent;
+      return newFile;
     }).forEach(file => {
       createNode(createGHNode(file, createNodeId(file.sha)));
     });
