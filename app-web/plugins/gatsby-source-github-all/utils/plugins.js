@@ -55,16 +55,14 @@ const markdownPlugin = (extension, raw, file) => {
         };
         // check front matter against defaults
         Object.keys(MARKDOWN_FRONTMATTER_SCHEMA).forEach(key => {
-            // does front matter have a valid non string value
-            // for key
             const property = MARKDOWN_FRONTMATTER_SCHEMA[key];
-            // if propery required and does frontmatter have it? 
             const value = frontmatter[key];
             const valueIsInvalid = (!value || !TypeCheck.isString(value) || value === '');
+            // if propery required and frontmatter doesn't have it
             if(property.required && valueIsInvalid) {
                 throw new Error(`Frontmatter key ${key} is required but ${file.metadata.fileName} is missing it`);
+                // is there a defaultable value we can provide
             } else if(valueIsInvalid && DEFAULTS[key]) {
-                // can we provide a default? 
                 frontmatter[key] = DEFAULTS[key]();
             }
         });
