@@ -20,7 +20,8 @@
 const crypto = require('crypto');
 const _ = require('lodash'); // eslint-disable-line
 const { getFilesFromRepo } = require('./utils/github-api');
-const { fileTransformer, markdownPlugin } = require('./utils/transformer');
+const { fileTransformer } = require('./utils/transformer');
+const { markdownPlugin } = require('./utils/plugins');
 
 const createGHNode = (file, id) => ({
   id,
@@ -96,10 +97,9 @@ const sourceNodes = async (
     // create nodes
     dataToNodify.map(file => {
       const newFile = {...file, metadata: { ...file.metadata }};
-      const {content, metadata: { extension }} = newFile.content;
-      const newContent = fileTransformer(extension, content, newFile)
-      .use(markdownPlugin)
-      .resolve();
+      const {content, metadata: { extension }} = newFile;
+      const ft = fileTransformer(extension, content, newFile);
+      const newContent = ft.use(markdownPlugin).resolve();
       newFile.content = newContent;
       return newFile;
     }).forEach(file => {
