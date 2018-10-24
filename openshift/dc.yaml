@@ -46,6 +46,26 @@ objects:
               cpu: '100m'
             limits:
               cpu: '150m'
+          command: ["/bin/sh","-c"]
+          # args: ["pwd"]
+          # args: ["cd xxx; ./kc-create-client.sh xxx"]
+          env:
+            - name: KEYCLOAK_CLIENT_ID
+                valueFrom:
+                  secretKeyRef:
+                    name: keycloak-service-account
+                    key: KEYCLOAK_CLIENT_ID
+            - name: KEYCLOAK_CLIENT_SECRET
+                valueFrom:
+                  secretKeyRef:
+                    name: keycloak-service-account
+                    key: KEYCLOAK_CLIENT_SECRET
+            - name: KEYCLOAK_URL
+              value: ${SSO_URL}
+            - name: REALM_NAME
+              value: ${SSO_REALM_NAME}
+            - name: PR_NUMBER
+              value: ${PR}
     test: false
     triggers:
     - type: ConfigChange
