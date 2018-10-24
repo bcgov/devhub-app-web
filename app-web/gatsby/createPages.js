@@ -41,7 +41,6 @@ module.exports = async ({ graphql, boundActionCreators }) => {
   // // right now we are making an assumption all data here resolved from a markdown file
   // // and will be treated as so
   devhubData.data.allSourceDevhubGithub.edges.forEach(({ node }) => {
-    // const title = node.childMarkdownRemark.frontmatter.title ? node.childMarkdownRemark.frontmatter.title : node.fileName;
     createPage({
       path: node.pagePath,
       component: markdownTemplate,
