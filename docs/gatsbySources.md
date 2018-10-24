@@ -65,7 +65,7 @@ const transformedContent = fileTransformer(extension, originalContent, file)
       .resolve(); // returns the content
 ```
 ##### Transformer Plugin Authoring
-
+***not to be confused with a gatsby-transformer plugin!!!***
 Plugins should be written in [plugins.js](../app-web/plugins/gatsby-source-github-all/utils/plugins.js).
 Unless there is a time the file is too cumbersome and seperating the plugins into seperate files is necessary. 
 
