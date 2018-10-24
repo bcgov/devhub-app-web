@@ -84,7 +84,7 @@ ShallowWrapper {
           If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our
            
           <a
-            href="https://github.com/bcgov/devhub-web/issues"
+            href="https://github.com/bcgov/devhub-app-web/issues"
           >
             github.com
           </a>
@@ -194,7 +194,7 @@ ShallowWrapper {
             If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our
              
             <a
-              href="https://github.com/bcgov/devhub-web/issues"
+              href="https://github.com/bcgov/devhub-app-web/issues"
             >
               github.com
             </a>
@@ -344,7 +344,7 @@ ShallowWrapper {
               "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our",
               " ",
               <a
-                href="https://github.com/bcgov/devhub-web/issues"
+                href="https://github.com/bcgov/devhub-app-web/issues"
               >
                 github.com
               </a>,
@@ -363,7 +363,7 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": "github.com",
-                "href": "https://github.com/bcgov/devhub-web/issues",
+                "href": "https://github.com/bcgov/devhub-app-web/issues",
               },
               "ref": null,
               "rendered": "github.com",
@@ -583,7 +583,7 @@ ShallowWrapper {
             If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our
              
             <a
-              href="https://github.com/bcgov/devhub-web/issues"
+              href="https://github.com/bcgov/devhub-app-web/issues"
             >
               github.com
             </a>
@@ -693,7 +693,7 @@ ShallowWrapper {
               If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our
                
               <a
-                href="https://github.com/bcgov/devhub-web/issues"
+                href="https://github.com/bcgov/devhub-app-web/issues"
               >
                 github.com
               </a>
@@ -843,7 +843,7 @@ ShallowWrapper {
                 "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our",
                 " ",
                 <a
-                  href="https://github.com/bcgov/devhub-web/issues"
+                  href="https://github.com/bcgov/devhub-app-web/issues"
                 >
                   github.com
                 </a>,
@@ -862,7 +862,7 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": "github.com",
-                  "href": "https://github.com/bcgov/devhub-web/issues",
+                  "href": "https://github.com/bcgov/devhub-app-web/issues",
                 },
                 "ref": null,
                 "rendered": "github.com",
