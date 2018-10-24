@@ -82,7 +82,7 @@ app {
                         'NAME':app.deployment.name,
                         'SUFFIX':app.deployment.suffix,
                         'VERSION': app.deployment.version,
-                        'HOST': app.deployment.host
+                        'HOST': app.deployment.host,
                         'PR': app.deployment.pr,
                         'SSO_URL': app.deployment.sso_url,
                         'SSO_CLIENT_ID': app.deployment.client_id,
