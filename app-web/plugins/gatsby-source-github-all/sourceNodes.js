@@ -19,6 +19,7 @@
 //
 const crypto = require('crypto');
 const _ = require('lodash'); // eslint-disable-line
+const shortid = require('shortid') // eslint-disable-line
 const { getFilesFromRepo } = require('./utils/github-api');
 const { fileTransformer } = require('./utils/transformer');
 const { markdownPlugin } = require('./utils/plugins');
@@ -35,7 +36,7 @@ const createGHNode = (file, id) => ({
   htmlURL: file.html_url,
   source: file.metadata.source,
   sourceName: file.metadata.sourceName,
-  pagePath: `/${file.metadata.source}/${file.metadata.name}`,
+  pagePath: `/${file.metadata.source}/${file.metadata.name}_${shortid.generate()}`,
   internal: {
     contentDigest: crypto
       .createHash('md5')
