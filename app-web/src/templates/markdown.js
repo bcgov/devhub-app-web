@@ -18,10 +18,12 @@
 // Created by Patrick Simonian on 2018-10-12.
 //
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import GatsbyLink from '../components/Common/Link';
 import { HOME_ROUTE } from '../constants/routes';
 import Layout from '../hoc/Layout';
 import styles from './markdown.module.css';
+import {faGithub} from '@fortawesome/fontawesome-free-brands';
 // eslint-disable-next-line
 const Generic = ({ data: { sourceDevhubGithub } }) => {
   // eslint-disable-next-line
@@ -31,7 +33,7 @@ const Generic = ({ data: { sourceDevhubGithub } }) => {
         <h1>{sourceDevhubGithub.sourceName}</h1>
         <div>
           <ul className={styles.List}>
-            <li>Original Source: {sourceDevhubGithub.path}</li>
+            <li><a href={sourceDevhubGithub.htmlURL}><FontAwesomeIcon icon={faGithub} /></a></li>
           </ul>
         </div>
       </header>
@@ -49,8 +51,8 @@ const Generic = ({ data: { sourceDevhubGithub } }) => {
     </Layout>
   );
 };
-
-export const sourceDevhubGithub = graphql`
+// eslint-disable-next-line
+export const sourceDevhubGithub = graphql` 
   query sourceDevhubGithub($id: String!) {
     sourceDevhubGithub(id: { eq: $id }) {
       name
@@ -61,6 +63,7 @@ export const sourceDevhubGithub = graphql`
         }
         html
       }
+      htmlURL
       source
       sourceName
       owner

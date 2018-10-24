@@ -6,8 +6,6 @@ import Helmet from 'react-helmet';
 // local sourced fonts
 import * as fonts from '../assets/fonts/fonts';
 /* eslint-disable */
-// font awesome loading
-import '../utils/fontAwesomeLibrary';
 // stylesheets
 import 'normalize.css';
 import '../assets/styles/index.css';

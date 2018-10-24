@@ -32,6 +32,7 @@ const createGHNode = (file, id) => ({
   owner: file.metadata.owner,
   parent: null,
   path: file.path,
+  htmlURL: file.html_url,
   source: file.metadata.source,
   sourceName: file.metadata.sourceName,
   pagePath: `/${file.metadata.source}/${file.metadata.name}`,

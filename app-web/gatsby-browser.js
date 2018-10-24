@@ -6,6 +6,8 @@ import { ConnectedFlagsProvider } from 'flag';
 import 'prismjs/themes/prism-tomorrow.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import createStore from './src/store/createStore';
+// font awesome loading
+import './src/utils/fontAwesomeLibrary';
 
 exports.replaceRouterComponent = ({ history }) => {
   const store = createStore();
