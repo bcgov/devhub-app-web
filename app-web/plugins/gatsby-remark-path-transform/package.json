@@ -1,0 +1,11 @@
+{
+  "name": "gatsby-remark-path-transform",
+  "version": "1.0.0",
+  "description": "transform relative paths from gatsby source github all",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Patrick Simonian",
+  "license": "Apache-2.0"
+}
