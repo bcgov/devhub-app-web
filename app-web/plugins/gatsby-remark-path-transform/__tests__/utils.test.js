@@ -1,9 +1,3 @@
-import { 
-    assetRelativePathToAbsolute,
-    isRelativePath,
-    convertRelativePathsToAbsolute,
-} from '../utils/utils';
-import jsdom from 'jsdom'; // eslint-disable-line
 /*
 Copyright 2018 Province of British Columbia
 
@@ -21,6 +15,11 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
+import transformRelativePaths from '../index';
+import { 
+    isRelativePath,
+} from '../utils/utils';
+
 describe('gatsby-remark-path-transform', () => {
     describe('isRelativePath', () => {
         it('returns true if path is relative', () => {
@@ -30,6 +29,17 @@ describe('gatsby-remark-path-transform', () => {
         
         it('returns false if path is absolute', () => {
             expect(isRelativePath('/something')).toBe(false);
+        });
+    });
+
+    describe('transformRelativePaths', () => {
+        it('throws if converter option doesn\'t exist or is not a function',  () => {
+            expect(() => {
+                transformRelativePaths({}, {converter: null});
+            }).toThrow('gatsby-remark-path-transform option: \'converter\' must be passed in as a function!');
+            expect(() => {
+                transformRelativePaths({});
+            }).toThrow('gatsby-remark-path-transform option: \'converter\' must be passed in as a function!');
         });
     });
 });

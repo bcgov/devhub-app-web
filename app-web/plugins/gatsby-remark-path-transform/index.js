@@ -27,9 +27,9 @@ const { isRelativePath } = require('./utils/utils');
  * @param {Object} remark 
  * @param {Object} options 
  */
-const transformRelativePaths = async (
+const transformRelativePaths = (
     { markdownAST, markdownNode, getNode },
-    { converter }
+    { converter } = {}
 ) => {
     if(!converter || !TypeCheck.isFunction(converter)) {
         throw new Error('gatsby-remark-path-transform option: \'converter\' must be passed in as a function!');
