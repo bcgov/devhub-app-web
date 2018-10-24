@@ -36,12 +36,18 @@
 
 .Header .List {
     list-style: none;
+    font-size: 28px;
 }
-
+.List a {
+    cursor: pointer;
+    color: #3e3e3e;
+}
+.List a:visited {
+    color: #3e3e3e;
+}
 .Header > div {
     padding: 10px;
-    background-color: #fafafa;
-    flex: 0 0 250px;
+    align-self: flex-end;
 }
 
 .MarkdownBody {
