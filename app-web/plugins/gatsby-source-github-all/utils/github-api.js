@@ -185,18 +185,19 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
     // create graphql string for finding all files in a directory
     const data = await fetchGithubTree(repo, owner, token);
     // filter out files by extensions
+    if(!data.tree) return [];
     let filesToFetch = filterFilesFromDirectories(data.tree);
     // filter out files that aren't markdown
     filesToFetch = filterFilesByExtensions(
       filesToFetch,
       PROCESSABLE_EXTENSIONS
-    );
-    // fetch ignore file if exists
-    const repoIgnores = await fetchIgnoreFile(repo, owner, token);
-    ig.add(repoIgnores);
-    // filter out files that are apart of ignore
-    filesToFetch = filesToFetch.filter(file => !ig.ignores(file.path));
-    // retrieve contents for each file
+      );
+      // fetch ignore file if exists
+      const repoIgnores = await fetchIgnoreFile(repo, owner, token);
+      ig.add(repoIgnores);
+      // filter out files that are apart of ignore
+      filesToFetch = filesToFetch.filter(file => !ig.ignores(file.path));
+      // retrieve contents for each file
     const filesWithContents = filesToFetch.map(file =>
       fetchFile(repo, owner, file.path, token)
     );
@@ -204,7 +205,9 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
     // for some reason the accept header is not returning with raw content so we will decode
     // the default base 64 encoded content
     // also adding some additional params
+    // console.log(filesResponse);
     const files = filesResponse.map(f => {
+      console.log(f.name);
       const ext = getExtensionFromName(f.name);
       return {
         ...f,
@@ -223,21 +226,23 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
     });
     return files;
   } catch (e) {
+    console.error(e);
     // eslint-disable-next-line
-    console.error(chalk`
-      {red.bold ERROR!! in Gatsby Source Github All} 
+    // console.error(chalk`
+    //   {red.bold ERROR!! in Gatsby Source Github All} 
 
-      unable to fetch files from repo ${repo}.
+    //   unable to fetch files from repo ${repo}.
 
-      Perhaps you should check spelling of repo parameters..
+    //   Perhaps you should check spelling of repo parameters..
 
-      {green.underline repo}: ${repo}
-      {green.underline owner}: ${owner}
+    //   {green.underline repo}: ${repo}
+    //   {green.underline owner}: ${owner}
 
-      {yellow if this doesn't resolve the issue either the api token is invalid
-      or the build is failing to connect to the github api}
-    `);
-    throw e;
+    //   {yellow if this doesn't resolve the issue either the api token is invalid
+    //   or the build is failing to connect to the github api}
+    // `);
+    return [];
+    // throw e;
   }
 };
 

@@ -54,7 +54,8 @@
     "shortid": "^2.2.13",
     "styled-components": "^3.4.9",
     "styled-system": "^1.0.8",
-    "unist-util-visit": "^1.4.0"
+    "unist-util-visit": "^1.4.0",
+    "url-parse": "^1.4.3"
   },
   "scripts": {
     "dev": "node_modules/.bin/gatsby develop",

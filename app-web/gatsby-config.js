@@ -2,6 +2,9 @@ require('dotenv').config({
   path: '.env.production',
 });
 
+const path = require('path');
+const URL = require('url-parse');
+
 module.exports = {
   siteMetadata: {
     title: 'Devhub',
@@ -90,6 +93,25 @@ module.exports = {
               noInlineHighlight: false,
             },
           },
+          {
+            resolve: 'gatsby-remark-path-transform',
+            options: {
+              converter: (astType, relativePath, parentQLnode) => {
+                // only convert source devhub nodes
+                if(parentQLnode.internal.type === 'SourceDevhubGithub') {
+                  const parsedURL = path.parse(parentQLnode.htmlURL);
+                  let absolutePath = path.join(parsedURL.dir, relativePath);
+                  if(astType === 'image') {
+                    const url = new URL(absolutePath, {}, true);
+                    url.set('query', {raw: true})
+                    absolutePath = url.toString();
+                  }
+                  return absolutePath; 
+                }
+                return relativePath;
+              }
+            }
+          }
         ],
       },
     },

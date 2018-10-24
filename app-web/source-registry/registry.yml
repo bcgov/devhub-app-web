@@ -1,7 +1,15 @@
 repos:
+  # - name: Design System
+  #   url: https://github.com/bcgov/design-system/
+  #   owner: bcgov
+  #   repo: 'design-system'
+  #   attributes:
+  #     categories:
+  #       - Design System
+  #       - Getting Started
   - name: Design System
-    url: https://github.com/bcgov/design-system/
-    owner: bcgov
+    url: https://github.com/patricksimonian/design-system/
+    owner: patricksimonian
     repo: 'design-system'
     attributes:
       categories:
