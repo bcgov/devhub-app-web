@@ -28,29 +28,31 @@ const { isRelativePath } = require('./utils/utils');
  * @param {Object} options 
  */
 const transformRelativePaths = (
-    { markdownAST, markdownNode, getNode },
-    { converter } = {}
+  { markdownAST, markdownNode, getNode },
+  { converter } = {}
 ) => {
-    if(!converter || !TypeCheck.isFunction(converter)) {
-        throw new Error('gatsby-remark-path-transform option: \'converter\' must be passed in as a function!');
+  if (!converter || !TypeCheck.isFunction(converter)) {
+    throw new Error(
+      "gatsby-remark-path-transform option: 'converter' must be passed in as a function!"
+    );
+  }
+  const parentQLNode = getNode(markdownNode.parent);
+  // visit anchor tags and images
+  visit(markdownAST, 'image', node => {
+    // is node url relative?
+    if (isRelativePath(node.url)) {
+      const absolutePath = converter('image', node.url, parentQLNode);
+      node.url = absolutePath; // eslint-disable-line
     }
-    const parentQLNode = getNode(markdownNode.parent);
-    // visit anchor tags and images
-    visit(markdownAST, 'image', node => {
-        // is node url relative? 
-        if(isRelativePath(node.url)) {
-            const absolutePath = converter('image', node.url, parentQLNode);
-            node.url = absolutePath; // eslint-disable-line
-        }
-    });
+  });
 
-    visit(markdownAST, 'link', node => {
-        // is node url relative? 
-        if(isRelativePath(node.url)) {
-            const absolutePath = converter('link', node.url, parentQLNode);
-            node.url = absolutePath; // eslint-disable-line
-        }
-    });
+  visit(markdownAST, 'link', node => {
+    // is node url relative?
+    if (isRelativePath(node.url)) {
+      const absolutePath = converter('link', node.url, parentQLNode);
+      node.url = absolutePath; // eslint-disable-line
+    }
+  });
 };
 
 module.exports = transformRelativePaths;

@@ -18,55 +18,67 @@ Created by Patrick Simonian
 import transformRelativePaths from '../index';
 
 import {
-    GRAPH_QL_PARENT_NODE,
-    MARKDOWN_NODE,
-    IMAGE_AST_RELATIVE,
+  GRAPH_QL_PARENT_NODE,
+  MARKDOWN_NODE,
+  IMAGE_AST_RELATIVE,
 } from '../__fixtures__/fixtures';
 // mock isRelativePath
-jest.mock('../utils/utils', () => ({ isRelativePath: jest.fn(() => true)}));
+jest.mock('../utils/utils', () => ({ isRelativePath: jest.fn(() => true) }));
 
-const {
-    isRelativePath,
-} = jest.requireActual('../utils/utils');
+const { isRelativePath } = jest.requireActual('../utils/utils');
 
 describe('gatsby-remark-path-transform', () => {
-    describe('isRelativePath', () => {
-        it('returns true if path is relative', () => {
-            expect(isRelativePath('../something')).toBe(true);
-            expect(isRelativePath('./something')).toBe(true);
-        });
-        
-        it('returns false if path is absolute', () => {
-            expect(isRelativePath('/something')).toBe(false);
-        });
+  describe('isRelativePath', () => {
+    it('returns true if path is relative', () => {
+      expect(isRelativePath('../something')).toBe(true);
+      expect(isRelativePath('./something')).toBe(true);
     });
 
-    describe('transformRelativePaths', () => {
-        it('throws if converter option doesn\'t exist or is not a function',  () => {
-            expect(() => {
-                transformRelativePaths({}, {converter: null});
-            }).toThrow('gatsby-remark-path-transform option: \'converter\' must be passed in as a function!');
-            expect(() => {
-                transformRelativePaths({});
-            }).toThrow('gatsby-remark-path-transform option: \'converter\' must be passed in as a function!');
-        });
-
-        it('calls converters when a node is visited', () => {
-            const converter = jest.fn();
-            const getNode = jest.fn();
-            getNode.mockReturnValue(GRAPH_QL_PARENT_NODE);
-            converter.mockReturnValue('URL');
-            const markdownNode = MARKDOWN_NODE;
-            const markdownAST = IMAGE_AST_RELATIVE;
-            const oldURL = markdownAST.url;
-            transformRelativePaths({getNode, markdownAST, markdownNode}, { converter });
-
-            expect(converter).toHaveBeenCalledWith('image', oldURL, GRAPH_QL_PARENT_NODE);
-            expect(converter).toHaveBeenLastCalledWith('link', markdownAST.url, GRAPH_QL_PARENT_NODE);
-            expect(converter).toHaveBeenCalledTimes(2);
-            // expect url to hvae been changed
-            expect(oldURL).not.toBe(markdownAST.url);
-        });
-        
+    it('returns false if path is absolute', () => {
+      expect(isRelativePath('/something')).toBe(false);
     });
+  });
+
+  describe('transformRelativePaths', () => {
+    it("throws if converter option doesn't exist or is not a function", () => {
+      expect(() => {
+        transformRelativePaths({}, { converter: null });
+      }).toThrow(
+        "gatsby-remark-path-transform option: 'converter' must be passed in as a function!"
+      );
+      expect(() => {
+        transformRelativePaths({});
+      }).toThrow(
+        "gatsby-remark-path-transform option: 'converter' must be passed in as a function!"
+      );
+    });
+
+    it('calls converters when a node is visited', () => {
+      const converter = jest.fn();
+      const getNode = jest.fn();
+      getNode.mockReturnValue(GRAPH_QL_PARENT_NODE);
+      converter.mockReturnValue('URL');
+      const markdownNode = MARKDOWN_NODE;
+      const markdownAST = IMAGE_AST_RELATIVE;
+      const oldURL = markdownAST.url;
+      transformRelativePaths(
+        { getNode, markdownAST, markdownNode },
+        { converter }
+      );
+
+      expect(converter).toHaveBeenCalledWith(
+        'image',
+        oldURL,
+        GRAPH_QL_PARENT_NODE
+      );
+      expect(converter).toHaveBeenLastCalledWith(
+        'link',
+        markdownAST.url,
+        GRAPH_QL_PARENT_NODE
+      );
+      expect(converter).toHaveBeenCalledTimes(2);
+      // expect url to hvae been changed
+      expect(oldURL).not.toBe(markdownAST.url);
+    });
+  });
 });

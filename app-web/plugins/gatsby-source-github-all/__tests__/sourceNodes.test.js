@@ -152,7 +152,8 @@ describe('gatsby source github all plugin', () => {
       owner: 'Billy Bob',
       parent: null,
       path: '/test.md',
-      htmlURL: 'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
+      htmlURL:
+        'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
       pagePath: '/something/something/test_0',
       source: 'something/something',
       sourceName: 'something',
