@@ -15,8 +15,8 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import converter from './gatsby-remark-transform-path';
-import { FILE_QL_NODE, SOURCE_DEVHUB_GITHUB_QL_NODE } from '../__fixtures__/plugin-fixtures';
+import converter from '../../src/utils/gatsby-remark-transform-path';
+import { FILE_QL_NODE, SOURCE_DEVHUB_GITHUB_QL_NODE } from '../../__fixtures__/plugin-fixtures';
 
 describe('Gatsby Remark Transform Path Converter Callback', () => {
     describe('Unit Tests', () => {
