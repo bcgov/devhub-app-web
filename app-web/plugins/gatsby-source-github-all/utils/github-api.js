@@ -88,7 +88,7 @@ const fetchGithubTree = async (repo, owner, token) => {
       }
     );
     const data = await result.json();
-    if (result.status === 200) return data;
+    return data;
   } catch (e) {
     throw e;
   }
@@ -114,7 +114,9 @@ const fetchFile = async (repo, owner, path, token) => {
         },
       }
     );
-    return await result.json();
+    const data = await result.json();
+    if (result.status === 200) return data;
+    return undefined;
   } catch (e) {
     throw e;
   }
