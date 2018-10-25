@@ -1,8 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import PrimaryFooter from './PrimaryFooter';
-
-let wrapper;
+import PrimaryFooter from '../../src/components/PrimaryFooter/PrimaryFooter';
 
 beforeEach(() => {
   shallow(<PrimaryFooter />);

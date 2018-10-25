@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Button from './Button';
+import Button from '../../src/components/UI/Button/Button';
 
 describe('Button Component', () => {
   it('matches snapshot', () => {
