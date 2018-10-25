@@ -2,7 +2,8 @@
 
 Devhub utilizes a local GatsbyJS source plugin to retrieve files from registered github repos.
 More details on registering repos can be found [here](./registerRepo.md)
-
+## Custom Plugin Docs
+- [Gatsby Remark Path Transform](./gatsby-customer-plugins/gatsby-remark-path-transform.md)
 ## Contributing to gatsby-source-github-all
 
 Gatsby Source Github All has a very simple routine that is as follows:
