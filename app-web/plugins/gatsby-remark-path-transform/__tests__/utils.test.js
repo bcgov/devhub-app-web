@@ -20,11 +20,7 @@ import transformRelativePaths from '../index';
 import {
     GRAPH_QL_PARENT_NODE,
     MARKDOWN_NODE,
-    PARAGRAPH_AST,
-    IMAGE_AST_ABSOLUTE,
     IMAGE_AST_RELATIVE,
-    LINK_AST_ABSOLUTE,
-    LINK_AST_RELATIVE,
 } from '../__fixtures__/fixtures';
 // mock isRelativePath
 jest.mock('../utils/utils', () => ({ isRelativePath: jest.fn(() => true)}));
@@ -64,7 +60,7 @@ describe('gatsby-remark-path-transform', () => {
             const markdownAST = IMAGE_AST_RELATIVE;
             const oldURL = markdownAST.url;
             transformRelativePaths({getNode, markdownAST, markdownNode}, { converter });
-            
+
             expect(converter).toHaveBeenCalledWith('image', oldURL, GRAPH_QL_PARENT_NODE);
             expect(converter).toHaveBeenLastCalledWith('link', markdownAST.url, GRAPH_QL_PARENT_NODE);
             expect(converter).toHaveBeenCalledTimes(2);

@@ -79,7 +79,7 @@ const getMediaTypeByExtension = extension =>
 const fetchGithubTree = async (repo, owner, token) => {
   try {
     const result = await fetch(
-      `${GITHUB_API_ENDPOINT}/repos/${owner}/${repo}/git/trees/master?recursive=1`,
+      `${GITHUB_API_ENDPOINT}/repos/${owner}/${repo}/git/trees/ad43b82a758ee30399e3e05f68f8a762ebb6202d?recursive=1`,
       {
         method: 'GET',
         headers: {
@@ -191,13 +191,13 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
     filesToFetch = filterFilesByExtensions(
       filesToFetch,
       PROCESSABLE_EXTENSIONS
-      );
-      // fetch ignore file if exists
-      const repoIgnores = await fetchIgnoreFile(repo, owner, token);
-      ig.add(repoIgnores);
-      // filter out files that are apart of ignore
-      filesToFetch = filesToFetch.filter(file => !ig.ignores(file.path));
-      // retrieve contents for each file
+    );
+    // fetch ignore file if exists
+    const repoIgnores = await fetchIgnoreFile(repo, owner, token);
+    ig.add(repoIgnores);
+    // filter out files that are apart of ignore
+    filesToFetch = filesToFetch.filter(file => !ig.ignores(file.path));
+    // retrieve contents for each file
     const filesWithContents = filesToFetch.map(file =>
       fetchFile(repo, owner, file.path, token)
     );
@@ -205,9 +205,7 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
     // for some reason the accept header is not returning with raw content so we will decode
     // the default base 64 encoded content
     // also adding some additional params
-    // console.log(filesResponse);
     const files = filesResponse.map(f => {
-      console.log(f.name);
       const ext = getExtensionFromName(f.name);
       return {
         ...f,
@@ -226,21 +224,20 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
     });
     return files;
   } catch (e) {
-    console.error(e);
     // eslint-disable-next-line
-    // console.error(chalk`
-    //   {red.bold ERROR!! in Gatsby Source Github All} 
+    console.error(chalk`
+      {red.bold ERROR!! in Gatsby Source Github All} 
 
-    //   unable to fetch files from repo ${repo}.
+      unable to fetch files from repo ${repo}.
 
-    //   Perhaps you should check spelling of repo parameters..
+      Perhaps you should check spelling of repo parameters..
 
-    //   {green.underline repo}: ${repo}
-    //   {green.underline owner}: ${owner}
+      {green.underline repo}: ${repo}
+      {green.underline owner}: ${owner}
 
-    //   {yellow if this doesn't resolve the issue either the api token is invalid
-    //   or the build is failing to connect to the github api}
-    // `);
+      {yellow if this doesn't resolve the issue either the api token is invalid
+      or the build is failing to connect to the github api}
+    `);
     return [];
     // throw e;
   }
