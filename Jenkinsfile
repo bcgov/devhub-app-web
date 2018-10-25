@@ -3,6 +3,11 @@ pipeline {
   options {
     disableResume()
   }
+
+  parameters {
+    string(name: 'RUN_FUNCTIONAL_TESTS', defaultValue: 'FALSE', description: 'used for when statement in functional test stage?')
+  }
+
   environment {
     OCP_PIPELINE_CLI_URL = 'https://raw.githubusercontent.com/BCDevOps/ocp-cd-pipeline/v0.0.4/src/main/resources/pipeline-cli'
     OCP_PIPELINE_VERSION = '0.0.4'
@@ -28,6 +33,13 @@ pipeline {
     }
     
     stage('Functional Test (TEST)') {
+      // functional tests are currently broken as homepage has been redesigned.
+      // for now this stage is being skipped. All of this has been documented
+      // see https://taiga.pathfinder.gov.bc.ca/project/lukegonis-developergovbcca/issue/309
+      // Oct 18 2018 Patrick Simonian
+      when {
+        expression { params.RUN_FUNCTIONAL_TESTS == 'TRUE'}
+      }
       agent { label 'deploy' }
       steps {
         echo "Functional Test (DEV) ..."

@@ -1,0 +1,82 @@
+.Header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.Header h1 {
+    font-size: 48px;
+    margin: 10px;
+    color: #036;
+}
+
+.Nav {
+    list-style: none;
+    display: flex;
+    font-size: 18px;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.Nav li {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #fafafa;
+}
+
+.Nav li a {
+    text-decoration: none;
+    color:#036;
+}
+
+.Nav li a:visited {
+    color: inherit;
+}
+
+.Header .List {
+    list-style: none;
+    font-size: 28px;
+}
+.List a {
+    cursor: pointer;
+    color: #3e3e3e;
+}
+.List a:visited {
+    color: #3e3e3e;
+}
+.Header > div {
+    padding: 10px;
+    align-self: flex-end;
+}
+
+.MarkdownBody {
+    padding: 10px;
+    background-color: #ebebeb;
+}
+.MarkdownBody > h1:first-child {
+    margin-top: 0;
+}
+.MarkdownBody > * {
+    margin-bottom: 10px;
+}
+.MarkdownBody pre {
+    border-radius: 4px;
+}
+.MarkdownBody h1,
+.MarkdownBody h2,
+.MarkdownBody h3,
+.MarkdownBody h4,
+.MarkdownBody h5,
+.MarkdownBody h6 {
+    color: #222;
+}
+
+.MarkdownBody p {
+    line-height: 1.25em;
+    color: #3e3e3e;
+}
+
+.MarkdownBody pre {
+
+}

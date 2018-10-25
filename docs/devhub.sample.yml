@@ -1,0 +1,9 @@
+files:
+    - name: Button
+      path: ./components/button.md
+    - name: Footer
+      path: ./components/footer.md
+    - name: Header
+      path: ./components/header.md
+    - name: About Us
+      path: ./about-us.md

@@ -6,10 +6,8 @@ import Helmet from 'react-helmet';
 // local sourced fonts
 import * as fonts from '../assets/fonts/fonts';
 /* eslint-disable */
-// font awesome loading
-import '../utils/fontAwesomeLibrary';
 // stylesheets
-import normalize from 'normalize.css';
+import 'normalize.css';
 import '../assets/styles/index.css';
 import '../assets/styles/fonts.css';
 import '../assets/styles/page.css';
@@ -31,7 +29,7 @@ injectGlobal`
 
 class Layout extends React.Component {
   componentDidMount() {
-    if(this.props.useAuth) {
+    if (this.props.useAuth) {
       implicitAuthManager.registerHooks({
         onAuthenticateSuccess: () => this.props.login(),
         onAuthenticateFail: () => this.props.logout(),
@@ -48,7 +46,6 @@ class Layout extends React.Component {
     return (
       <div>
         <Helmet>
-          <title>{data.site.siteMetadata.title}</title>
           <link
             href="https://portal.nrs.gov.bc.ca/nrs-portal-theme/images/favicon.ico"
             rel="icon"
@@ -56,26 +53,16 @@ class Layout extends React.Component {
           />
         </Helmet>
         <PrimaryHeader />
-        <div className="container">{children()}</div>
+        <div className="container">{children}</div>
       </div>
     );
   }
 }
 
 Layout.propTypes = {
-  children: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
   useAuth: PropTypes.bool.isRequired,
 };
-
-export const LayoutQuery = graphql`
-  query LayoutQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`;
 
 const mapDispatchToProps = dispatch => ({
   login: () => dispatch(actions.authenticateSuccess()),
@@ -84,8 +71,8 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => {
   return {
-    useAuth: state.flags.features.login
-  }
-}
+    useAuth: state.flags.features.login,
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);

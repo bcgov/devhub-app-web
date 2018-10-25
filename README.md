@@ -37,6 +37,8 @@ In Development
 
 - [Component Architecture](./docs/components.md)
 
+- [Devhub Ingestion System](./docs/gatsbySources.md)
+
 ## Security
 
 Authentication, Authorization, Policies, etc
