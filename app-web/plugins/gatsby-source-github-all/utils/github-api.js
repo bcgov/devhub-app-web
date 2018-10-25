@@ -79,7 +79,7 @@ const getMediaTypeByExtension = extension =>
 const fetchGithubTree = async (repo, owner, token) => {
   try {
     const result = await fetch(
-      `${GITHUB_API_ENDPOINT}/repos/${owner}/${repo}/git/trees/ad43b82a758ee30399e3e05f68f8a762ebb6202d?recursive=1`,
+      `${GITHUB_API_ENDPOINT}/repos/${owner}/${repo}/git/trees/master?recursive=1`,
       {
         method: 'GET',
         headers: {
@@ -87,7 +87,8 @@ const fetchGithubTree = async (repo, owner, token) => {
         },
       }
     );
-    return await result.json();
+    const data = await result.json();
+    if (result.status === 200) return data;
   } catch (e) {
     throw e;
   }
@@ -191,13 +192,13 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
     filesToFetch = filterFilesByExtensions(
       filesToFetch,
       PROCESSABLE_EXTENSIONS
-    );
-    // fetch ignore file if exists
-    const repoIgnores = await fetchIgnoreFile(repo, owner, token);
-    ig.add(repoIgnores);
-    // filter out files that are apart of ignore
-    filesToFetch = filesToFetch.filter(file => !ig.ignores(file.path));
-    // retrieve contents for each file
+      );
+      // fetch ignore file if exists
+      const repoIgnores = await fetchIgnoreFile(repo, owner, token);
+      ig.add(repoIgnores);
+      // filter out files that are apart of ignore
+      filesToFetch = filesToFetch.filter(file => !ig.ignores(file.path));
+      // retrieve contents for each file
     const filesWithContents = filesToFetch.map(file =>
       fetchFile(repo, owner, file.path, token)
     );
@@ -205,23 +206,25 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
     // for some reason the accept header is not returning with raw content so we will decode
     // the default base 64 encoded content
     // also adding some additional params
-    const files = filesResponse.map(f => {
-      const ext = getExtensionFromName(f.name);
-      return {
-        ...f,
-        content: Base64.decode(f.content),
-        metadata: {
-          sourceName: name,
-          source: repo,
-          owner,
-          name: getNameWithoutExtension(f.name),
-          fileType: getNameOfExtensionVerbose(f.name),
-          fileName: f.name,
-          mediaType: getMediaTypeByExtension(ext),
-          extension: ext,
-        },
-      };
-    });
+    const files = filesResponse
+      .filter(f => f !== undefined) // filter out any files that weren't fetched
+      .map(f => {
+        const ext = getExtensionFromName(f.name);
+        return {
+          ...f,
+          content: Base64.decode(f.content),
+          metadata: {
+            sourceName: name,
+            source: repo,
+            owner,
+            name: getNameWithoutExtension(f.name),
+            fileType: getNameOfExtensionVerbose(f.name),
+            fileName: f.name,
+            mediaType: getMediaTypeByExtension(ext),
+            extension: ext,
+          },
+        };
+      });
     return files;
   } catch (e) {
     // eslint-disable-next-line
@@ -238,8 +241,7 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
       {yellow if this doesn't resolve the issue either the api token is invalid
       or the build is failing to connect to the github api}
     `);
-    return [];
-    // throw e;
+    throw e;
   }
 };
 
