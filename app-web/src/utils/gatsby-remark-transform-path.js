@@ -15,9 +15,9 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-const path = require('path');
-const URL = require('url-parse');
+const url = require('url');
 
+const { URL } = url;
 /**
  * this is the converter callback used within
  * the gatsby-remark-transform-path plugin
@@ -30,17 +30,17 @@ const converter = (astType, relativePath, parentQLnode) => {
   // only convert source devhub nodes
   if (parentQLnode.internal.type === 'SourceDevhubGithub') {
     // parse the htmlURL node of the sourceDevhubGithub
-    // this is the absolute path to the source
-    const parsedURL = path.parse(parentQLnode.htmlURL);
+    const urlObj = new URL(parentQLnode.htmlURL);
+    // check if it has a protocol
     // join the relative path with the directory of the absolute source
-    let absolutePath = path.join(parsedURL.dir, relativePath);
+    let absolutePath = url.resolve(urlObj.href, relativePath);
     if (astType === 'image') {
       // if the ast type is image we need to add the ?raw=true paramater
       // because the github absolute source is actually only the path to
       // where the source image is presented and not to the actual image itself
-      const url = new URL(absolutePath, {}, true);
-      url.set('query', { raw: true });
-      absolutePath = url.toString();
+      const absPathObj = new URL(absolutePath);
+      absPathObj.searchParams.set('raw', true);
+      absolutePath = absPathObj.toString();
     }
     return absolutePath;
   }
