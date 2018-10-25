@@ -1,0 +1,15 @@
+repos:
+  # - name: Pretty name for your Repo or Project (this will display as the top level source/category
+  #         for your content in devhub)
+  #   url: path to the repo like: https://github.com/bcgov/design-system/
+  #   owner: owner of the repo
+  #   repo: repo name as shown in github
+  - name: Design System Components
+    url: https://github.com/bcgov/design-system/
+    owner: bcgov
+    repo: 'design-system'
+  - name: Mobile Signing Tool
+    url: https://github.com/bcgov/devhub-signing-web/
+    owner: bcgov
+    repo: 'devhub-signing-web'
+  
