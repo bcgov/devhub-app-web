@@ -40,16 +40,16 @@ describe('gatsby-remark-path-transform', () => {
   });
 
   describe('transformRelativePaths', () => {
-    it("throws if converter option doesn't exist or is not a function", () => {
+    it('throws if converter option doesn\'t exist or is not a function', () => {
       expect(() => {
         transformRelativePaths({}, { converter: null });
       }).toThrow(
-        "gatsby-remark-path-transform option: 'converter' must be passed in as a function!"
+        'gatsby-remark-path-transform option: \'converter\' must be passed in as a function!'
       );
       expect(() => {
         transformRelativePaths({});
       }).toThrow(
-        "gatsby-remark-path-transform option: 'converter' must be passed in as a function!"
+        'gatsby-remark-path-transform option: \'converter\' must be passed in as a function!'
       );
     });
 
