@@ -11,6 +11,7 @@ import './src/utils/fontAwesomeLibrary';
 
 exports.replaceRouterComponent = ({ history }) => {
   const store = createStore();
+  // eslint-disable-next-line
   const ConnectedRouterWrapper = ({ children }) => (
     <Provider store={store}>
       <ConnectedFlagsProvider>
