@@ -97,7 +97,7 @@
     "setupFiles": [
       "raf/polyfill",
       "jest-localstorage-mock",
-      "<rootDir>/src/setupTests.js",
+      "<rootDir>/config/setupTests.js",
       "<rootDir>/config/jest/loadershim.js"
     ]
   },
