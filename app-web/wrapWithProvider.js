@@ -7,6 +7,5 @@ import createStore from './src/store/createStore';
 const store = createStore();
 // eslint-disable-next-line react/display-name,react/prop-types
 export default ({ element }) => {
-  console.log(arguments);
   return <Provider store={store}>{element}</Provider>;
 };
