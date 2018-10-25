@@ -2,7 +2,8 @@
 
 Devhub utilizes a local GatsbyJS source plugin to retrieve files from registered github repos.
 More details on registering repos can be found [here](./registerRepo.md)
-
+## Custom Plugin Docs
+- [Gatsby Remark Path Transform](./gatsby-customer-plugins/gatsby-remark-path-transform.md)
 ## Contributing to gatsby-source-github-all
 
 Gatsby Source Github All has a very simple routine that is as follows:
@@ -65,7 +66,7 @@ const transformedContent = fileTransformer(extension, originalContent, file)
       .resolve(); // returns the content
 ```
 ##### Transformer Plugin Authoring
-
+***not to be confused with a gatsby-transformer plugin!!!***
 Plugins should be written in [plugins.js](../app-web/plugins/gatsby-source-github-all/utils/plugins.js).
 Unless there is a time the file is too cumbersome and seperating the plugins into seperate files is necessary. 
 

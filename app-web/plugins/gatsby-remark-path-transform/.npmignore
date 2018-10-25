@@ -1,0 +1,12 @@
+# Tests
+__tests__
+coverage
+__mocks__
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed

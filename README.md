@@ -39,6 +39,7 @@ In Development
 
 - [Devhub Ingestion System](./docs/gatsbySources.md)
 
+- [Authoring Plugins for Remark](https://www.huynguyen.io/2018-05-remark-gatsby-plugin-part-2/)
 ## Security
 
 Authentication, Authorization, Policies, etc
