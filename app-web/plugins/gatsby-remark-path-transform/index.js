@@ -51,7 +51,6 @@ const transformRelativePaths = (
             node.url = absolutePath; // eslint-disable-line
         }
     });
-    return markdownAST;
 };
 
 module.exports = transformRelativePaths;

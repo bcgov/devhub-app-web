@@ -37,10 +37,26 @@ const LINK_AST_RELATIVE = {
     ],
 };
 
+const GRAPH_QL_PARENT_NODE = {
+    internal: {
+        type: 'node',
+        mediaType: 'text',
+    },
+    parent: null,
+};
+const MARKDOWN_NODE = {
+    internal: {
+        type: 'node',
+        mediaType: 'text',
+    },
+    parent: null,
+};
 module.exports = {
     PARAGRAPH_AST,
     IMAGE_AST_ABSOLUTE,
     IMAGE_AST_RELATIVE,
     LINK_AST_ABSOLUTE,
     LINK_AST_RELATIVE,
+    GRAPH_QL_PARENT_NODE,
+    MARKDOWN_NODE,
 };
