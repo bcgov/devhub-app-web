@@ -19,9 +19,9 @@ fi
 # make
 # sudo make install
 
-
-JQ=/usr/bin/jq
-chmod -R 755 /usr/bin
+mkdir /usr/bin/try
+JQ=/usr/bin/try/jq
+chmod -R 755 /usr/bin/try
 # chm # -> not existing yet
 curl https://stedolan.github.io/jq/download/linux64/jq > $JQ && chmod +x $JQ
 echo $JQ
