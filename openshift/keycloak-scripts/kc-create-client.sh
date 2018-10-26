@@ -11,6 +11,11 @@ if [ "$1" == "" ]; then
     exit 0
 fi
 
+JQ=/usr/bin/jq
+curl https://stedolan.github.io/jq/download/linux64/jq > $JQ && chmod +x $JQ
+ls -la $JQ
+which jq
+
 # oc get secret for sso service account:
 KEYCLOAK_CLIENT_ID=$(oc -n devhub-dev get secret/sso-dev-service-account --template={{.data.KEYCLOAK_CLIENT_ID}} | base64 --decode)
 KEYCLOAK_CLIENT_SECRET=$(oc -n devhub-dev get secret/sso-dev-service-account --template={{.data.KEYCLOAK_CLIENT_SECRET}} | base64 --decode)
