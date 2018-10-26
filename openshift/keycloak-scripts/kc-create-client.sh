@@ -6,14 +6,21 @@
 set -Eeuo pipefail
 #set -x
 
-if [ "$PR_NUMBER" == "" ]; then
+if [ "$1" == "" ]; then
     echo "Skip this step in test or prod enviroments"
     exit 0
 fi
 
-# get variables from dc.yaml
-# source "setenv-$1.sh"
-echo "$KEYCLOAK_URL"
+# oc get secret for sso service account:
+KEYCLOAK_CLIENT_ID=$(oc -n devhub-dev get secret/sso-dev-service-account --template={{.data.KEYCLOAK_CLIENT_ID}} | base64 --decode)
+KEYCLOAK_CLIENT_SECRET=$(oc -n devhub-dev get secret/sso-dev-service-account --template={{.data.KEYCLOAK_CLIENT_SECRET}} | base64 --decode)
+
+# get sso variables:
+KEYCLOAK_URL=https://sso-dev.pathfinder.gov.bc.ca
+REALM_NAME=devhub
+PR_NUMBER="$1"
+
+echo "Request to $KEYCLOAK_URL"
 
 # get auth token:
 export KEYCLOAK_ACCESS_TOKEN=$(curl -sX POST -u "$KEYCLOAK_CLIENT_ID:$KEYCLOAK_CLIENT_SECRET" "$KEYCLOAK_URL/auth/realms/$REALM_NAME/protocol/openid-connect/token" -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=client_credentials' -d 'client_id=admin-cli'| jq -r '.access_token')
@@ -27,7 +34,7 @@ CLIENT_ID=$(_curl -sX GET "$KEYCLOAK_URL/auth/admin/realms/$REALM_NAME/clients" 
 
 if [ "${CLIENT_ID}" == "" ]; then
     echo "Creating 'devhub-web-$PR_NUMBER' client..."
-    cat templates/new-client.json | sed -e "s|#{PR}|${PR_NUMBER}|g" | _curl -sX POST -d '@-' -H 'Content-Type: application/json' "$KEYCLOAK_URL/auth/admin/realms/$REALM_NAME/clients"
+    cat new-client.json | sed -e "s|#{PR}|${PR_NUMBER}|g" | _curl -sX POST -d '@-' -H 'Content-Type: application/json' "$KEYCLOAK_URL/auth/admin/realms/$REALM_NAME/clients"
 fi
 
 # return the client-id:
