@@ -115,7 +115,7 @@ const fetchFile = async (repo, owner, path, token) => {
       }
     );
     const data = await result.json();
-    if (result.status === 200) return data;
+    if (result.ok) return data;
     return undefined;
   } catch (e) {
     throw e;
@@ -129,7 +129,7 @@ const fetchFile = async (repo, owner, path, token) => {
  */
 const fetchIgnoreFile = async (repo, owner, token) => {
   const ignoreFile = await fetchFile(repo, owner, '/.devhubignore', token);
-  return ignoreFile.content
+  return ignoreFile
     ? Base64.decode(ignoreFile.content).split('\n')
     : [];
 };
@@ -254,6 +254,7 @@ module.exports = {
   getNameOfExtensionVerbose,
   fetchGithubTree,
   fetchFile,
+  fetchIgnoreFile,
   filterFilesFromDirectories,
   filterFilesByExtensions,
 };

@@ -25,10 +25,10 @@ import {
 // mock isRelativePath
 jest.mock('../utils/utils', () => ({ isRelativePath: jest.fn(() => true) }));
 
-const { isRelativePath } = jest.requireActual('../utils/utils');
 
 describe('gatsby-remark-path-transform', () => {
   describe('isRelativePath', () => {
+    const { isRelativePath } = jest.requireActual('../utils/utils');
     it('returns true if path is relative', () => {
       expect(isRelativePath('../something')).toBe(true);
       expect(isRelativePath('./something')).toBe(true);
