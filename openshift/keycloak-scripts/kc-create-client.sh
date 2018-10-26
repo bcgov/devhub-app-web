@@ -11,7 +11,18 @@ if [ "$1" == "" ]; then
     exit 0
 fi
 
-JQ=/usr/bin/jq
+echo "new try----"
+git clone https://github.com/stedolan/jq.git
+cd jq
+autoreconf -i
+./configure --disable-maintainer-mode
+make
+sudo make install
+
+echo "old try-----"
+NOW=$(pwd)
+# JQ=/usr/bin/jq
+JQ=$NOW/jq
 curl https://stedolan.github.io/jq/download/linux64/jq > $JQ
 echo $JQ
 chmod +x $JQ
