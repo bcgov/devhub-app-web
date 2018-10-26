@@ -188,19 +188,19 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
     // create graphql string for finding all files in a directory
     const data = await fetchGithubTree(repo, owner, token);
     // filter out files by extensions
-    if(!data.tree) return [];
+    if (!data.tree) return [];
     let filesToFetch = filterFilesFromDirectories(data.tree);
     // filter out files that aren't markdown
     filesToFetch = filterFilesByExtensions(
       filesToFetch,
       PROCESSABLE_EXTENSIONS
-      );
-      // fetch ignore file if exists
-      const repoIgnores = await fetchIgnoreFile(repo, owner, token);
-      ig.add(repoIgnores);
-      // filter out files that are apart of ignore
-      filesToFetch = filesToFetch.filter(file => !ig.ignores(file.path));
-      // retrieve contents for each file
+    );
+    // fetch ignore file if exists
+    const repoIgnores = await fetchIgnoreFile(repo, owner, token);
+    ig.add(repoIgnores);
+    // filter out files that are apart of ignore
+    filesToFetch = filesToFetch.filter(file => !ig.ignores(file.path));
+    // retrieve contents for each file
     const filesWithContents = filesToFetch.map(file =>
       fetchFile(repo, owner, file.path, token)
     );

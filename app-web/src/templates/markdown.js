@@ -23,7 +23,7 @@ import GatsbyLink from '../components/Common/Link';
 import { HOME_ROUTE } from '../constants/routes';
 import Layout from '../hoc/Layout';
 import styles from './markdown.module.css';
-import {faGithub} from '@fortawesome/fontawesome-free-brands';
+import { faGithub } from '@fortawesome/fontawesome-free-brands';
 // eslint-disable-next-line
 const Generic = ({ data: { sourceDevhubGithub } }) => {
   // eslint-disable-next-line
@@ -33,7 +33,11 @@ const Generic = ({ data: { sourceDevhubGithub } }) => {
         <h1>{sourceDevhubGithub.sourceName}</h1>
         <div>
           <ul className={styles.List}>
-            <li><a href={sourceDevhubGithub.htmlURL}><FontAwesomeIcon icon={faGithub} /></a></li>
+            <li>
+              <a href={sourceDevhubGithub.htmlURL}>
+                <FontAwesomeIcon icon={faGithub} />
+              </a>
+            </li>
           </ul>
         </div>
       </header>
@@ -52,7 +56,7 @@ const Generic = ({ data: { sourceDevhubGithub } }) => {
   );
 };
 // eslint-disable-next-line
-export const sourceDevhubGithub = graphql` 
+export const sourceDevhubGithub = graphql`
   query sourceDevhubGithub($id: String!) {
     sourceDevhubGithub(id: { eq: $id }) {
       name

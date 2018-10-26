@@ -16,7 +16,6 @@ limitations under the License.
 Created by Patrick Simonian
 */
 
-
 /**
  * returns boolean if path is relative
  * @param {String} path 
@@ -25,5 +24,5 @@ Created by Patrick Simonian
 const isRelativePath = path => /^\.\.?\//.test(path);
 
 module.exports = {
-    isRelativePath,
+  isRelativePath,
 };

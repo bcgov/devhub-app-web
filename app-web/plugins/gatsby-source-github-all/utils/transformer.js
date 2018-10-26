@@ -31,21 +31,26 @@ const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
  * @returns {String} file content transformed
  */
 const fileTransformer = (fileExtension, content, file) => ({
-    content,
-    use(plugin, options = {}) {
-      if(!TypeCheck.isFunction(plugin)) {
-        throw new Error('Plugin must be function');
-      }
-      const contentTransformed = plugin(fileExtension, this.content, file, options);
-      if (contentTransformed === undefined) {
-        throw new Error(`Plugin ${plugin.name} must return content`);
-      }
-      this.content = contentTransformed;
-      return this;
-    },
-    resolve() {
-        return this.content;
-    },
+  content,
+  use(plugin, options = {}) {
+    if (!TypeCheck.isFunction(plugin)) {
+      throw new Error('Plugin must be function');
+    }
+    const contentTransformed = plugin(
+      fileExtension,
+      this.content,
+      file,
+      options
+    );
+    if (contentTransformed === undefined) {
+      throw new Error(`Plugin ${plugin.name} must return content`);
+    }
+    this.content = contentTransformed;
+    return this;
+  },
+  resolve() {
+    return this.content;
+  },
 });
 
 module.exports = {

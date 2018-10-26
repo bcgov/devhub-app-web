@@ -19,16 +19,15 @@ Created by Patrick Simonian
 
 const matter = jest.requireActual('gray-matter');
 
-
 const matterMocked = function(content) {
-    return {
-        data: {},
-        content,
-    };
+  return {
+    data: {},
+    content,
+  };
 };
 
 matterMocked.prototype.stringify = function() {
-    return 'content';
+  return 'content';
 };
 
 module.exports = matter;

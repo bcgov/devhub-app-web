@@ -1,6 +1,7 @@
 require('dotenv').config({
   path: '.env.production',
 });
+const converter = require('./src/utils/gatsby-remark-transform-path');
 
 module.exports = {
   siteMetadata: {
@@ -19,14 +20,14 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: `registry`,
+        name: 'registry',
         path: `${__dirname}/source-registry/`,
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `fonts`,
+        name: 'fonts',
         path: `${__dirname}/src/assets/fonts`,
       },
     },
@@ -77,7 +78,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
           {
@@ -88,6 +89,12 @@ module.exports = {
               aliases: {},
               showLineNumbers: true,
               noInlineHighlight: false,
+            },
+          },
+          {
+            resolve: 'gatsby-remark-path-transform',
+            options: {
+              converter,
             },
           },
         ],
