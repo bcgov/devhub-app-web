@@ -20,7 +20,6 @@
 jest.mock('node-fetch');
 // eslint-disable-next-line
 import {
-  getFilesFromRepo,
   getNameOfExtensionVerbose,
   fetchGithubTree,
   fetchFile,
@@ -60,14 +59,6 @@ describe('Github API', () => {
   let fetchFileSucceeded = false;
   afterAll(() => {
     fetchFileSucceeded = false;
-  });
-  // test incorrect
-  test.skip('getFilesFromRepo returns data', async () => {
-    fetch.mockReturnValue(
-      Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE)))
-    );
-    const res = await getFilesFromRepo('pathfinder', 'bcdevops', 'avalidtoken');
-    expect(res).toEqual(GITHUB_API.FILE);
   });
 
   test('fetchFile returns data', async () => {
@@ -151,7 +142,19 @@ describe('Github API', () => {
     }).toThrow('extensions must have shape /\\.w+$/'); //eslint-disable-line
   });
 
-  test('filterFilesByExtensions succeeds with default params', () => {});
+  test('filterFilesByExtensions succeeds with default params', () => {
+    const expected = [
+      {
+        path: 'something.md',
+        type: 'blob',
+      },
+      {
+        path: 'readme.md',
+        type: 'blob',
+      },
+    ];
+    expect(filterFilesByExtensions(entries)).toEqual(expected);
+  });
 
   test('filerFilesByExtensions throws if entries are not passed', () => {
     expect(() => {

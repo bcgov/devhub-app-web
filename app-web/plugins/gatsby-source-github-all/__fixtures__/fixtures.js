@@ -33,6 +33,33 @@ const GITHUB_API = {
           'https://api.github.com/repos/bcgov/range-web/git/blobs/c18275f23c101c5bf62ab9a4a332b774db37dfd1',
       },
       {
+        path: '/docs/readme1.md',
+        mode: '100644',
+        type: 'blob',
+        sha: 'c18275f23c101c5bf62ab9a4a332b774db37dfd1',
+        size: 857,
+        url:
+          'https://api.github.com/repos/bcgov/range-web/git/blobs/c18275f23c101c5bf62ab9a4a332b774db37dfd1',
+      },
+      {
+        path: '/docs/readme2.md',
+        mode: '100644',
+        type: 'blob',
+        sha: 'c18275f23c101c5bf62ab9a4a332b774db37dfd1',
+        size: 857,
+        url:
+          'https://api.github.com/repos/bcgov/range-web/git/blobs/c18275f23c101c5bf62ab9a4a332b774db37dfd1',
+      },
+      {
+        path: '/docs/readme3.md',
+        mode: '100644',
+        type: 'blob',
+        sha: 'c18275f23c101c5bf62ab9a4a332b774db37dfd1',
+        size: 857,
+        url:
+          'https://api.github.com/repos/bcgov/range-web/git/blobs/c18275f23c101c5bf62ab9a4a332b774db37dfd1',
+      },
+      {
         path: '.gitignore',
         mode: '100644',
         type: 'blob',
