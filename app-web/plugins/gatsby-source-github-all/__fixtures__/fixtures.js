@@ -103,7 +103,15 @@ const GITHUB_API = {
         'https://github.com/bcgov/range-web/blob/master/public/manifest.json',
     },
   },
+  FAIL: { 
+    message: 'Not Found',
+    documentation_url: 'https://developer.github.com/v3',
+  },
+  IGNORE_FILE: {
+    content: 'file1 file2 file3',
+  },
 };
+
 const PROCESSED_FILE = {
   name: 'README.md',
   path: 'components/header/README.md',
