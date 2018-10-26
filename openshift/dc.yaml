@@ -46,26 +46,6 @@ objects:
               cpu: '100m'
             limits:
               cpu: '150m'
-          command: ["/bin/sh","-c"]
-          args: ["pwd"]
-          # args: ["cd xxx; ./kc-create-client.sh"]
-          # env:
-          # - name: KEYCLOAK_CLIENT_ID
-          #   valueFrom:
-          #     secretKeyRef:
-          #       name: keycloak-service-account
-          #       key: KEYCLOAK_CLIENT_ID
-          # - name: KEYCLOAK_CLIENT_SECRET
-          #   valueFrom:
-          #     secretKeyRef:
-          #       name: keycloak-service-account
-          #       key: KEYCLOAK_CLIENT_SECRET
-          # - name: KEYCLOAK_URL
-          #   value: ${SSO_URL}
-          # - name: REALM_NAME
-          #   value: ${SSO_REALM_NAME}
-          # - name: PR_NUMBER
-          #   value: ${PR}
     test: false
     triggers:
     - type: ConfigChange
@@ -126,25 +106,5 @@ parameters:
 - description: A name used for routes/services and deployment configs
   displayName: Host
   name: HOST
-  required: false
-  value: ''
-- description: The base url of keycloak sso
-  displayName: sso_url
-  name: SSO_URL
-  required: false
-  value: ''
-- description: The client of keycloak sso
-  displayName: sso_client_id
-  name: SSO_CLIENT_ID
-  required: false
-  value: ''
-- description: The realm of keycloak sso
-  displayName: sso_realm_name
-  name: SSO_REALM_NAME
-  required: false
-  value: ''
-- description: The pull request number, if exist
-  displayName: pr
-  name: PR
   required: false
   value: ''
