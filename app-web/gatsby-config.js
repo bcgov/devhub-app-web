@@ -9,6 +9,7 @@ module.exports = {
   },
   mapping: {},
   plugins: [
+    'gatsby-plugin-styled-components',
     // Adding various source folders to the GraphQL layer.
     {
       resolve: 'gatsby-source-filesystem',

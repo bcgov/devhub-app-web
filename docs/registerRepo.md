@@ -7,6 +7,13 @@ Register your repo so that any markdown files of your choosing will be viewable 
 
 ## How To Register Your Repo 
 
+We are still ironing out the best solution for registering.
+In the interim please ***fork*** and ***pull request*** to the registry.
+
+Please take a look at the [Registry Template](./registry.sample.yml)
+file to get an idea of how you would add your repository to the registry.
+
+
 When you register your repository several processes will be kicked off whenever the Devhub App is rebuilt. 
 
 In a nutshell it will grab one or more files from your repository, process them, and spit out either a 'card'
