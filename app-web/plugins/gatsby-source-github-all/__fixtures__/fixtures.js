@@ -175,7 +175,70 @@ const PROCESSED_FILE = {
     extension: 'md',
   },
 };
+
+const GRAPHQL_NODES_WITH_REGISTRY = [
+  {
+    'id': '/registry.yml absPath of file >>> YAML',
+    'repos': [
+      {
+        'name': 'Design System',
+        'url': 'https://github.com/bcgov/design-system/',
+        'owner': 'bcgov',
+        'repo': 'design-system'
+      }
+    ],
+    'internal': {
+      'contentDigest': '520538ca86778e449b1db66100137431',
+      'type': 'SourceRegistryYaml',
+      'owner': 'gatsby-transformer-yaml'
+    }
+  },
+  {
+    internal: {
+      type: 'SourceFile'
+    },
+  },
+  {
+    internal: {
+      type: 'SourceFile'
+    },
+  },
+];
+
+const GRAPHQL_NODES_WITHOUT_REGISTRY = [
+  {
+    internal: {
+      type: 'SourceFile'
+    },
+  },
+  {
+    internal: {
+      type: 'SourceFile'
+    },
+  },
+];
+
+const REGISTRY = {
+  'id': '/registry.yml absPath of file >>> YAML',
+  'repos': [
+    {
+      'name': 'Design System',
+      'url': 'https://github.com/bcgov/design-system/',
+      'owner': 'bcgov',
+      'repo': 'design-system'
+    }
+  ],
+  'internal': {
+    'contentDigest': '520538ca86778e449b1db66100137431',
+    'type': 'SourceRegistryYaml',
+    'owner': 'gatsby-transformer-yaml'
+  }
+}
+
 module.exports = {
   GITHUB_API,
   PROCESSED_FILE,
+  GRAPHQL_NODES_WITH_REGISTRY,
+  GRAPHQL_NODES_WITHOUT_REGISTRY,
+  REGISTRY,
 };

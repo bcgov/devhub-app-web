@@ -19,9 +19,20 @@
 //
 jest.mock('crypto');
 
-const { createGHNode, checkRegistry } = require('../sourceNodes');
+const { createGHNode, checkRegistry, getRegistry } = require('../sourceNodes');
+const { GRAPHQL_NODES_WITH_REGISTRY, GRAPHQL_NODES_WITHOUT_REGISTRY, REGISTRY } = require('../__fixtures__/fixtures');
 
 describe('gatsby source github all plugin', () => {
+  test('getRegistry returns the registry', () => {
+    const getNodes = jest.fn(() => GRAPHQL_NODES_WITH_REGISTRY);
+    expect(getRegistry(getNodes)).toEqual(REGISTRY);
+  });
+
+  test('getRegistry throws if no registry exists', () => {
+    const getNodes = jest.fn(() => GRAPHQL_NODES_WITHOUT_REGISTRY);
+    expect(() => getRegistry(getNodes)).toThrow('Registry not found');
+  });
+  
   test('checkRegistry throws if a repo is missing an owner', () => {
     const registry = {
       repos: [
