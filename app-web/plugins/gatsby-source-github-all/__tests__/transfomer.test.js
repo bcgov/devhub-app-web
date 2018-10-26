@@ -1,11 +1,11 @@
 import { fileTransformer, } from '../utils/transformer';
 import { markdownPlugin, } from '../utils/plugins';
-import { PROCESSED_FILE, } from '../__fixtures__/fixtures';
+import { PROCESSED_FILE_MD, } from '../__fixtures__/fixtures';
 
 describe('Transformer System', () => {
   let file = null;
   beforeEach(() => {
-    file = PROCESSED_FILE;
+    file = PROCESSED_FILE_MD;
   });
 
   it('returns without crashing', () => {
