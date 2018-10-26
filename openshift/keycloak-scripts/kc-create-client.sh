@@ -19,13 +19,12 @@ fi
 # make
 # sudo make install
 
-NOW=$(pwd)
-echo "$NOW"
-sudo
-JQ=$NOW/jq
+
+JQ=/usr/bin/jq
+chmod +x $JQ
 curl https://stedolan.github.io/jq/download/linux64/jq > $JQ
 echo $JQ
-chmod +x $JQ
+# chmod +x $JQ
 ls -la $JQ
 which jq
 
