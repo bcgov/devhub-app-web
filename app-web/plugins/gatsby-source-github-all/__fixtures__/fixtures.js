@@ -184,23 +184,23 @@ const GRAPHQL_NODES_WITH_REGISTRY = [
         'name': 'Design System',
         'url': 'https://github.com/bcgov/design-system/',
         'owner': 'bcgov',
-        'repo': 'design-system'
-      }
+        'repo': 'design-system',
+      },
     ],
     'internal': {
       'contentDigest': '520538ca86778e449b1db66100137431',
       'type': 'SourceRegistryYaml',
-      'owner': 'gatsby-transformer-yaml'
-    }
-  },
-  {
-    internal: {
-      type: 'SourceFile'
+      'owner': 'gatsby-transformer-yaml',
     },
   },
   {
     internal: {
-      type: 'SourceFile'
+      type: 'SourceFile',
+    },
+  },
+  {
+    internal: {
+      type: 'SourceFile',
     },
   },
 ];
@@ -208,12 +208,12 @@ const GRAPHQL_NODES_WITH_REGISTRY = [
 const GRAPHQL_NODES_WITHOUT_REGISTRY = [
   {
     internal: {
-      type: 'SourceFile'
+      type: 'SourceFile',
     },
   },
   {
     internal: {
-      type: 'SourceFile'
+      type: 'SourceFile',
     },
   },
 ];
@@ -225,15 +225,15 @@ const REGISTRY = {
       'name': 'Design System',
       'url': 'https://github.com/bcgov/design-system/',
       'owner': 'bcgov',
-      'repo': 'design-system'
-    }
+      'repo': 'design-system',
+    },
   ],
   'internal': {
     'contentDigest': '520538ca86778e449b1db66100137431',
     'type': 'SourceRegistryYaml',
-    'owner': 'gatsby-transformer-yaml'
-  }
-}
+    'owner': 'gatsby-transformer-yaml',
+  },
+};
 
 module.exports = {
   GITHUB_API,

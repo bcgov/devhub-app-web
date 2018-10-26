@@ -1,14 +1,15 @@
-import { PROCESSED_FILE, GRAPHQL_NODES_WITH_REGISTRY } from '../__fixtures__/fixtures';
-import { sourceNodes } from '../sourceNodes';
+import { PROCESSED_FILE, GRAPHQL_NODES_WITH_REGISTRY, } from '../__fixtures__/fixtures';
+import { sourceNodes, } from '../sourceNodes';
+import { transformer, } from '../utils/transformer';
+import { markdownPlugin, } from '../utils/plugins';
+import { getFilesFromRepo, } from '../utils/github-api';
+
 jest.mock('../utils/github-api.js');
 jest.unmock('unist-util-visit');
-import { transformer } from '../utils/transformer.js';
-import { markdownPlugin } from '../utils/plugins';
-import { getFilesFromRepo } from '../utils/github-api';
 
 describe('Integration Tests Source Nodes', () => {
     beforeEach(() => {
-        getFilesFromRepo.mockReturnValue(Promise.resolve([PROCESSED_FILE]));
+        getFilesFromRepo.mockReturnValue(Promise.resolve([PROCESSED_FILE,]));
     });
 
     test('source nodes calls create node', async () => {
@@ -18,7 +19,7 @@ describe('Integration Tests Source Nodes', () => {
         const createNodeId = jest.fn(() => 1);
         const token = '123';
         const getNodes = jest.fn(() => GRAPHQL_NODES_WITH_REGISTRY);
-        await sourceNodes({boundActionCreators, createNodeId, getNodes}, { token });
+        await sourceNodes({boundActionCreators, createNodeId, getNodes,}, { token, });
 
         expect(boundActionCreators.createNode).toHaveBeenCalledTimes(1);
     });

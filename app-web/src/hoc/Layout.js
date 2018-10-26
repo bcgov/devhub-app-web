@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectGlobal } from 'styled-components';
-import { connect } from 'react-redux';
+import { injectGlobal, } from 'styled-components';
+import { connect, } from 'react-redux';
 import Helmet from 'react-helmet';
 import 'normalize.css';
 // local sourced fonts
@@ -40,7 +40,7 @@ class Layout extends React.Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { children, } = this.props;
     return (
       <div>
         <Helmet>

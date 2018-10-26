@@ -139,7 +139,7 @@ const fetchIgnoreFile = async (repo, owner, token) => {
    * @param {Array} entries 
    * @param {Array} extensions (defaults to [.md])
    */
-const filterFilesByExtensions = (entries, extensions = ['.md']) => {
+const filterFilesByExtensions = (entries, extensions = ['.md',]) => {
   // ensure entries is an array of objects
   if (!TypeCheck.isArray(entries) || !entries.every(TypeCheck.isObject)) {
     throw new Error('entries are invalid');

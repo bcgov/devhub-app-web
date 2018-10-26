@@ -19,8 +19,8 @@
 //
 jest.mock('crypto');
 
-const { createGHNode, checkRegistry, getRegistry } = require('../sourceNodes');
-const { GRAPHQL_NODES_WITH_REGISTRY, GRAPHQL_NODES_WITHOUT_REGISTRY, REGISTRY } = require('../__fixtures__/fixtures');
+const { createGHNode, checkRegistry, getRegistry, } = require('../sourceNodes');
+const { GRAPHQL_NODES_WITH_REGISTRY, GRAPHQL_NODES_WITHOUT_REGISTRY, REGISTRY, } = require('../__fixtures__/fixtures');
 
 describe('gatsby source github all plugin', () => {
   test('getRegistry returns the registry', () => {

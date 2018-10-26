@@ -1,6 +1,6 @@
-import { fileTransformer } from '../utils/transformer';
-import { markdownPlugin } from '../utils/plugins';
-import { PROCESSED_FILE } from '../__fixtures__/fixtures';
+import { fileTransformer, } from '../utils/transformer';
+import { markdownPlugin, } from '../utils/plugins';
+import { PROCESSED_FILE, } from '../__fixtures__/fixtures';
 
 describe('Transformer System', () => {
   let file = null;
@@ -34,7 +34,7 @@ describe('Transformer System', () => {
     expect(typeof transformedContent).toBe('string');
   });
 
-  it("throws if plugin isn't a function", () => {
+  it('throws if plugin isn\'t a function', () => {
     const plugin = null;
     const ft = fileTransformer(file.metadata.extension, file.content, file);
     expect(() => {
@@ -42,7 +42,7 @@ describe('Transformer System', () => {
     }).toThrow('Plugin must be function');
   });
 
-  it("throws if plugin doesn't return content", () => {
+  it('throws if plugin doesn\'t return content', () => {
     const plugin = jest.fn();
     const ft = fileTransformer(file.metadata.extension, file.content);
     expect(() => {
