@@ -1,9 +1,15 @@
 import fetch from 'node-fetch'; // eslint-disable-line  
-import { getFilesFromRepo } from '../utils/github-api';
-import { GITHUB_API } from '../__fixtures__/fixtures';
+import { getFilesFromRepo, } from '../utils/github-api';
+import { GITHUB_API, } from '../__fixtures__/fixtures';
 
-const { Response } = jest.requireActual('node-fetch');
+const { Response, } = jest.requireActual('node-fetch');
 jest.mock('node-fetch');
+// mock console logs so that any error logs are not outputed during suite
+global.console = {
+    log: jest.fn(),
+    warn: jest.fn(),
+    error: jest.fn(),
+};
 // eslint-disable-next-line
 
 describe('Integration github api module', () => {
@@ -27,7 +33,7 @@ describe('Integration github api module', () => {
         .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.TREE))))
         .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))))
         .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))))
-        .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FAIL), { status: 400})))
+        .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FAIL), { status: 400, })))
         .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
 
         const files = await getFilesFromRepo();
@@ -38,7 +44,7 @@ describe('Integration github api module', () => {
     it('returns a list of files even if some fail', async () => {
         // mock out concurrent requests to githup api
         fetch
-        .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FAIL), { status: 400 })));
+        .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FAIL), { status: 400, })));
         const files = await getFilesFromRepo();
         expect(files).toBeInstanceOf(Array);
         expect(files.length).toBe(0);
