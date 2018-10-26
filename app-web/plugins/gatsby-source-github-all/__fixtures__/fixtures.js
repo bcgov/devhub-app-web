@@ -109,28 +109,23 @@ const GITHUB_API = {
     path: 'public/manifest.json',
     sha: 'ef19ec243e739479802a5553d0b38a18ed845307',
     size: 317,
-    url:
-      'https://api.github.com/repos/bcgov/range-web/contents/public/manifest.json?ref=master',
-    html_url:
-      'https://github.com/bcgov/range-web/blob/master/public/manifest.json',
+    url: 'https://api.github.com/repos/bcgov/range-web/contents/public/manifest.json?ref=master',
+    html_url: 'https://github.com/bcgov/range-web/blob/master/public/manifest.json',
     git_url:
       'https://api.github.com/repos/bcgov/range-web/git/blobs/ef19ec243e739479802a5553d0b38a18ed845307',
-    download_url:
-      'https://raw.githubusercontent.com/bcgov/range-web/master/public/manifest.json',
+    download_url: 'https://raw.githubusercontent.com/bcgov/range-web/master/public/manifest.json',
     type: 'file',
     content:
       '{\n  "short_name": "React App",\n  "name": "Create React App Sample",\n  "icons": [\n    {\n      "src": "favicon.ico",\n      "sizes": "64x64 32x32 24x24 16x16",\n      "type": "image/x-icon"\n    }\n  ],\n  "start_url": "./index.html",\n"display": "standalone",\n  "theme_color": "#000000",\n  "background_color": "#ffffff"\n}\n',
     encoding: 'base64',
     _links: {
-      self:
-        'https://api.github.com/repos/bcgov/range-web/contents/public/manifest.json?ref=master',
+      self: 'https://api.github.com/repos/bcgov/range-web/contents/public/manifest.json?ref=master',
       git:
         'https://api.github.com/repos/bcgov/range-web/git/blobs/ef19ec243e739479802a5553d0b38a18ed845307',
-      html:
-        'https://github.com/bcgov/range-web/blob/master/public/manifest.json',
+      html: 'https://github.com/bcgov/range-web/blob/master/public/manifest.json',
     },
   },
-  FAIL: { 
+  FAIL: {
     message: 'Not Found',
     documentation_url: 'https://developer.github.com/v3',
   },
@@ -146,8 +141,7 @@ const PROCESSED_FILE_MD = {
   size: 2562,
   url:
     'https://api.github.com/repos/bcgov/design-system/contents/components/header/README.md?ref=master',
-  html_url:
-    'https://github.com/bcgov/design-system/blob/master/components/header/README.md',
+  html_url: 'https://github.com/bcgov/design-system/blob/master/components/header/README.md',
   git_url:
     'https://api.github.com/repos/bcgov/design-system/git/blobs/1b0260c9b456f68d0443d0194ea84ed76e3d3041',
   download_url:
@@ -161,8 +155,7 @@ const PROCESSED_FILE_MD = {
       'https://api.github.com/repos/bcgov/design-system/contents/components/header/README.md?ref=master',
     git:
       'https://api.github.com/repos/bcgov/design-system/git/blobs/1b0260c9b456f68d0443d0194ea84ed76e3d3041',
-    html:
-      'https://github.com/bcgov/design-system/blob/master/components/header/README.md',
+    html: 'https://github.com/bcgov/design-system/blob/master/components/header/README.md',
   },
   metadata: {
     sourceName: 'Design System',
@@ -183,8 +176,7 @@ const PROCESSED_FILE_TXT = {
   size: 2562,
   url:
     'https://api.github.com/repos/bcgov/design-system/contents/components/header/README.md?ref=master',
-  html_url:
-    'https://github.com/bcgov/design-system/blob/master/components/header/README.md',
+  html_url: 'https://github.com/bcgov/design-system/blob/master/components/header/README.md',
   git_url:
     'https://api.github.com/repos/bcgov/design-system/git/blobs/1b0260c9b456f68d0443d0194ea84ed76e3d3041',
   download_url:
@@ -197,8 +189,7 @@ const PROCESSED_FILE_TXT = {
       'https://api.github.com/repos/bcgov/design-system/contents/components/header/README.md?ref=master',
     git:
       'https://api.github.com/repos/bcgov/design-system/git/blobs/1b0260c9b456f68d0443d0194ea84ed76e3d3041',
-    html:
-      'https://github.com/bcgov/design-system/blob/master/components/header/README.md',
+    html: 'https://github.com/bcgov/design-system/blob/master/components/header/README.md',
   },
   metadata: {
     sourceName: 'Design System',
@@ -214,19 +205,19 @@ const PROCESSED_FILE_TXT = {
 
 const GRAPHQL_NODES_WITH_REGISTRY = [
   {
-    'id': '/registry.yml absPath of file >>> YAML',
-    'repos': [
+    id: '/registry.yml absPath of file >>> YAML',
+    repos: [
       {
-        'name': 'Design System',
-        'url': 'https://github.com/bcgov/design-system/',
-        'owner': 'bcgov',
-        'repo': 'design-system',
+        name: 'Design System',
+        url: 'https://github.com/bcgov/design-system/',
+        owner: 'bcgov',
+        repo: 'design-system',
       },
     ],
-    'internal': {
-      'contentDigest': '520538ca86778e449b1db66100137431',
-      'type': 'SourceRegistryYaml',
-      'owner': 'gatsby-transformer-yaml',
+    internal: {
+      contentDigest: '520538ca86778e449b1db66100137431',
+      type: 'SourceRegistryYaml',
+      owner: 'gatsby-transformer-yaml',
     },
   },
   {
@@ -255,19 +246,19 @@ const GRAPHQL_NODES_WITHOUT_REGISTRY = [
 ];
 
 const REGISTRY = {
-  'id': '/registry.yml absPath of file >>> YAML',
-  'repos': [
+  id: '/registry.yml absPath of file >>> YAML',
+  repos: [
     {
-      'name': 'Design System',
-      'url': 'https://github.com/bcgov/design-system/',
-      'owner': 'bcgov',
-      'repo': 'design-system',
+      name: 'Design System',
+      url: 'https://github.com/bcgov/design-system/',
+      owner: 'bcgov',
+      repo: 'design-system',
     },
   ],
-  'internal': {
-    'contentDigest': '520538ca86778e449b1db66100137431',
-    'type': 'SourceRegistryYaml',
-    'owner': 'gatsby-transformer-yaml',
+  internal: {
+    contentDigest: '520538ca86778e449b1db66100137431',
+    type: 'SourceRegistryYaml',
+    owner: 'gatsby-transformer-yaml',
   },
 };
 

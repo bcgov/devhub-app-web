@@ -65,8 +65,7 @@ const getNameOfExtensionVerbose = fileName => {
  * returns media type from extension
  * @param {String} extension 
  */
-const getMediaTypeByExtension = extension =>
-  MEDIATYPES[extension] ? MEDIATYPES[extension] : '';
+const getMediaTypeByExtension = extension => (MEDIATYPES[extension] ? MEDIATYPES[extension] : '');
 /**
  * Using the recursion param, this
  * function attempts to retrieve all directories/files from a repo
@@ -104,16 +103,13 @@ const fetchGithubTree = async (repo, owner, token) => {
  */
 const fetchFile = async (repo, owner, path, token) => {
   try {
-    const result = await fetch(
-      `${GITHUB_API_ENDPOINT}/repos/${owner}/${repo}/contents/${path}`,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'X-GitHub-Media-Type': 'Accept: application/vnd.github.v3.raw+json',
-        },
-      }
-    );
+    const result = await fetch(`${GITHUB_API_ENDPOINT}/repos/${owner}/${repo}/contents/${path}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'X-GitHub-Media-Type': 'Accept: application/vnd.github.v3.raw+json',
+      },
+    });
     const data = await result.json();
     if (result.ok) return data;
     return undefined;
@@ -129,9 +125,7 @@ const fetchFile = async (repo, owner, path, token) => {
  */
 const fetchIgnoreFile = async (repo, owner, token) => {
   const ignoreFile = await fetchFile(repo, owner, '/.devhubignore', token);
-  return ignoreFile
-    ? Base64.decode(ignoreFile.content).split('\n')
-    : [];
+  return ignoreFile ? Base64.decode(ignoreFile.content).split('\n') : [];
 };
 /**
    * filters an array of github graphql entries by their extensions
@@ -139,7 +133,7 @@ const fetchIgnoreFile = async (repo, owner, token) => {
    * @param {Array} entries 
    * @param {Array} extensions (defaults to [.md])
    */
-const filterFilesByExtensions = (entries, extensions = ['.md',]) => {
+const filterFilesByExtensions = (entries, extensions = ['.md']) => {
   // ensure entries is an array of objects
   if (!TypeCheck.isArray(entries) || !entries.every(TypeCheck.isObject)) {
     throw new Error('entries are invalid');
@@ -191,20 +185,15 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
     if (!data.tree) return [];
     let filesToFetch = filterFilesFromDirectories(data.tree);
     // filter out files that aren't markdown
-    filesToFetch = filterFilesByExtensions(
-      filesToFetch,
-      PROCESSABLE_EXTENSIONS
-      );
-      // fetch ignore file if exists
-      const repoIgnores = await fetchIgnoreFile(repo, owner, token);
-      ig.add(repoIgnores);
-      // filter out files that are apart of ignore
-      filesToFetch = filesToFetch.filter(file => !ig.ignores(file.path));
-      // retrieve contents for each file
-      const filesWithContents = filesToFetch.map(file =>
-        fetchFile(repo, owner, file.path, token)
-        );
-        const filesResponse = await Promise.all(filesWithContents);
+    filesToFetch = filterFilesByExtensions(filesToFetch, PROCESSABLE_EXTENSIONS);
+    // fetch ignore file if exists
+    const repoIgnores = await fetchIgnoreFile(repo, owner, token);
+    ig.add(repoIgnores);
+    // filter out files that are apart of ignore
+    filesToFetch = filesToFetch.filter(file => !ig.ignores(file.path));
+    // retrieve contents for each file
+    const filesWithContents = filesToFetch.map(file => fetchFile(repo, owner, file.path, token));
+    const filesResponse = await Promise.all(filesWithContents);
     // for some reason the accept header is not returning with raw content so we will decode
     // the default base 64 encoded content
     // also adding some additional params

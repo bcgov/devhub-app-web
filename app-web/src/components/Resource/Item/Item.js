@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Item.module.css';
 
 const Item = ({ title, abstract, link }) => {
-  const abstractPara = abstract ? (
-    <p>{abstract}</p>
-  ) : (
-    <p>Click below for more details.</p>
-  );
+  const abstractPara = abstract ? <p>{abstract}</p> : <p>Click below for more details.</p>;
   return (
     <div className={styles.Item}>
       <h1>{title}</h1>

@@ -62,48 +62,32 @@ describe('Github API', () => {
   });
 
   test('fetchFile returns data', async () => {
-    fetch.mockReturnValue(
-      Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE)))
-    );
-    const res = await fetchFile(
-      'pathfinder',
-      'bcdevops',
-      '/readme.md',
-      'avalidtoken'
-    );
+    fetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
+    const res = await fetchFile('pathfinder', 'bcdevops', '/readme.md', 'avalidtoken');
     expect(res).toEqual(GITHUB_API.FILE);
     fetchFileSucceeded = true;
   });
 
   test('fetchFile returns undefined when status !== 200', async () => {
     const r = new Response(JSON.stringify(GITHUB_API.FAIL), { status: 400 });
-    fetch.mockReturnValue(
-      Promise.resolve(r)
-    );
-    const res = await fetchFile(
-      'pathfinder',
-      'bcdevops',
-      '/readme.md',
-      'avalidtoken'
-    );
+    fetch.mockReturnValue(Promise.resolve(r));
+    const res = await fetchFile('pathfinder', 'bcdevops', '/readme.md', 'avalidtoken');
     expect(res).toEqual(undefined);
   });
 
   test('fetchIgnoreFile returns an array', async () => {
-    if(!fetchFileSucceeded) {
+    if (!fetchFileSucceeded) {
       throw new Error('fetchIgnoreFile failed because fetchFile failed');
     }
     // mock fetch file
-    fetch.mockReturnValue(
-      Promise.resolve(new Response(JSON.stringify(GITHUB_API.IGNORE_FILE)))
-    );
+    fetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify(GITHUB_API.IGNORE_FILE))));
     const ignoreFile = await fetchIgnoreFile();
 
     expect(ignoreFile).toBeInstanceOf(Array);
   });
 
   test('fetchIgnoreFile returns an array if fetch fails', async () => {
-    if(!fetchFileSucceeded) {
+    if (!fetchFileSucceeded) {
       throw new Error('fetchIgnoreFile failed because fetchFile failed');
     }
     // mock fetch file
@@ -116,9 +100,7 @@ describe('Github API', () => {
   });
 
   test('fetchGithubTree returns data', async () => {
-    fetch.mockReturnValue(
-      Promise.resolve(new Response(JSON.stringify(GITHUB_API.TREE)))
-    );
+    fetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify(GITHUB_API.TREE))));
     expect.assertions(1);
     const res = await fetchGithubTree();
     expect(res).toEqual(GITHUB_API.TREE);

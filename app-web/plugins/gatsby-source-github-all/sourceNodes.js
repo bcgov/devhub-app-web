@@ -20,9 +20,9 @@
 const crypto = require('crypto');
 const _ = require('lodash'); // eslint-disable-line
 const shortid = require('shortid'); // eslint-disable-line
-const { getFilesFromRepo, } = require('./utils/github-api');
-const { fileTransformer, } = require('./utils/transformer');
-const { markdownPlugin, } = require('./utils/plugins');
+const { getFilesFromRepo } = require('./utils/github-api');
+const { fileTransformer } = require('./utils/transformer');
+const { markdownPlugin } = require('./utils/plugins');
 
 const createGHNode = (file, id) => ({
   id,
@@ -36,8 +36,7 @@ const createGHNode = (file, id) => ({
   htmlURL: file.html_url,
   source: file.metadata.source,
   sourceName: file.metadata.sourceName,
-  pagePath: `/${file.metadata.source}/${file.metadata
-    .name}_${shortid.generate()}`,
+  pagePath: `/${file.metadata.source}/${file.metadata.name}_${shortid.generate()}`,
   internal: {
     contentDigest: crypto
       .createHash('md5')
@@ -68,9 +67,7 @@ const checkRegistry = registry => {
 };
 
 const getRegistry = getNodes => {
-  const registryFound = getNodes().filter(
-    node => node.internal.type === 'SourceRegistryYaml'
-  );
+  const registryFound = getNodes().filter(node => node.internal.type === 'SourceRegistryYaml');
   if (registryFound.length > 0) {
     return registryFound[0];
   }
@@ -78,21 +75,16 @@ const getRegistry = getNodes => {
   throw new Error('Registry not found');
 };
 
-const sourceNodes = async (
-  { getNodes, boundActionCreators, createNodeId, },
-  { token, }
-) => {
+const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { token }) => {
   // get registry from current nodes
   const registry = getRegistry(getNodes);
-  const { createNode, } = boundActionCreators;
+  const { createNode } = boundActionCreators;
   try {
     // check registry prior to fetching data
     checkRegistry(registry);
     // fetch all repos
     const repos = await Promise.all(
-      registry.repos.map(repo =>
-        getFilesFromRepo(repo.repo, repo.owner, repo.name, token)
-      )
+      registry.repos.map(repo => getFilesFromRepo(repo.repo, repo.owner, repo.name, token))
     );
     // repos is an array of arrays [repo files, repo files] etc
     // so we flatten it into a 1 dimensional array
@@ -100,8 +92,8 @@ const sourceNodes = async (
     // create nodes
     dataToNodify
       .map(file => {
-        const newFile = { ...file, metadata: { ...file.metadata, }, };
-        const { content, metadata: { extension, }, } = newFile;
+        const newFile = { ...file, metadata: { ...file.metadata } };
+        const { content, metadata: { extension } } = newFile;
         const ft = fileTransformer(extension, content, newFile);
         const newContent = ft.use(markdownPlugin).resolve();
         newFile.content = newContent;

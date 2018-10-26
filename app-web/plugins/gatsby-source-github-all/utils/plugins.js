@@ -20,7 +20,7 @@ const matter = require('gray-matter'); // eslint-disable-line
 const visit = require('unist-util-visit'); // eslint-disable-line
 const remark = require('remark'); // eslint-disable-line
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
-const { MARKDOWN_FRONTMATTER_SCHEMA, } = require('./constants');
+const { MARKDOWN_FRONTMATTER_SCHEMA } = require('./constants');
 /**
  * applys default front matter properties
  * @param {String} extension 
@@ -44,10 +44,7 @@ const markdownPlugin = (extension, raw, file) => {
         // visit heading
         visit(ast, 'heading', node => {
           // is node on first line and a h1 or h2?
-          if (
-            title === file.metadata.fileName &&
-            (node.depth === 1 || node.depth === 2)
-          ) {
+          if (title === file.metadata.fileName && (node.depth === 1 || node.depth === 2)) {
             if (node.position.start.line === 1) {
               title = node.children[0].value;
             }
@@ -60,13 +57,11 @@ const markdownPlugin = (extension, raw, file) => {
     Object.keys(MARKDOWN_FRONTMATTER_SCHEMA).forEach(key => {
       const property = MARKDOWN_FRONTMATTER_SCHEMA[key];
       const value = frontmatter[key];
-      const valueIsInvalid =
-        !value || !TypeCheck.isString(value) || value === '';
+      const valueIsInvalid = !value || !TypeCheck.isString(value) || value === '';
       // if propery required and frontmatter doesn't have it
       if (property.required && valueIsInvalid) {
         throw new Error(
-          `Frontmatter key ${key} is required but ${file.metadata
-            .fileName} is missing it`
+          `Frontmatter key ${key} is required but ${file.metadata.fileName} is missing it`
         );
         // is there a defaultable value we can provide
       } else if (valueIsInvalid && DEFAULTS[key]) {

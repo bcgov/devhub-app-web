@@ -36,12 +36,7 @@ const fileTransformer = (fileExtension, content, file) => ({
     if (!TypeCheck.isFunction(plugin)) {
       throw new Error('Plugin must be function');
     }
-    const contentTransformed = plugin(
-      fileExtension,
-      this.content,
-      file,
-      options
-    );
+    const contentTransformed = plugin(fileExtension, this.content, file, options);
     if (contentTransformed === undefined) {
       throw new Error(`Plugin ${plugin.name} must return content`);
     }

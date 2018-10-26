@@ -12,7 +12,7 @@ describe('Index Container', () => {
               resources: {
                 // eslint-disable-next-line
                 yaml:
-                  'entries:\n- {details: "test1" , originalSource: ../index.html, category: \'What\'\'s Going On Now\', link: \'https://github.com/BCDevOps/BCDevOps-Guide\', description: \'DevOps PaaS\'}\n- {details: "test2", originalSource: ../index.html, category: Community, link: \'https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all\', description: \'DevOps Commons\'}\n- {details: "test3", originalSource: ../index.html, category: Community, link: \'https://www.meetup.com/DevOps-Commons\', description: \'DevOps Commons Meetups\'}\n',
+                  "entries:\n- {details: \"test1\" , originalSource: ../index.html, category: 'What''s Going On Now', link: 'https://github.com/BCDevOps/BCDevOps-Guide', description: 'DevOps PaaS'}\n- {details: \"test2\", originalSource: ../index.html, category: Community, link: 'https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all', description: 'DevOps Commons'}\n- {details: \"test3\", originalSource: ../index.html, category: Community, link: 'https://www.meetup.com/DevOps-Commons', description: 'DevOps Commons Meetups'}\n",
               },
             },
           },

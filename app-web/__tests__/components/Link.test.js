@@ -4,7 +4,7 @@ import GatsbyLink from 'gatsby-link';
 import Link from '../../src/components/Common/Link';
 
 describe('Gatsby Link Component', () => {
-  test('it renders an anchor tag if passed a path that doesn\'t link to a page component', () => {
+  test("it renders an anchor tag if passed a path that doesn't link to a page component", () => {
     const to = 'https://www.google.com';
     const wrapper = shallow(<Link to={to} />); // eslint-disable-line
     const expected = <a href={to} />; // eslint-disable-line
