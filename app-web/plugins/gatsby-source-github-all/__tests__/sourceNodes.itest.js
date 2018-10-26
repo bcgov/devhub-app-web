@@ -1,8 +1,6 @@
 import shortid from 'shortid'; // eslint-disable-line
 import { PROCESSED_FILE_MD, PROCESSED_FILE_TXT, GRAPHQL_NODES_WITH_REGISTRY, } from '../__fixtures__/fixtures';
 import { sourceNodes, createGHNode, } from '../sourceNodes';
-import { transformer, } from '../utils/transformer';
-import { markdownPlugin, } from '../utils/plugins';
 import { getFilesFromRepo, } from '../utils/github-api';
 
 jest.mock('../utils/github-api.js');

@@ -20,7 +20,7 @@ const matter = require('gray-matter'); // eslint-disable-line
 const visit = require('unist-util-visit'); // eslint-disable-line
 const remark = require('remark'); // eslint-disable-line
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
-const { MARKDOWN_FRONTMATTER_SCHEMA } = require('./constants');
+const { MARKDOWN_FRONTMATTER_SCHEMA, } = require('./constants');
 /**
  * applys default front matter properties
  * @param {String} extension 
