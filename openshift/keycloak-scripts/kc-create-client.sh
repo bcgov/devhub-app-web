@@ -21,9 +21,10 @@ REALM_NAME=devhub
 PR_NUMBER="$1"
 
 echo "Request to $KEYCLOAK_URL"
+which jq
 
 # get auth token:
-export KEYCLOAK_ACCESS_TOKEN=$(curl -sX POST -u "$KEYCLOAK_CLIENT_ID:$KEYCLOAK_CLIENT_SECRET" "$KEYCLOAK_URL/auth/realms/$REALM_NAME/protocol/openid-connect/token" -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=client_credentials' -d 'client_id=admin-cli'| jq -r '.access_token')
+KEYCLOAK_ACCESS_TOKEN=$(curl -sX POST -u "$KEYCLOAK_CLIENT_ID:$KEYCLOAK_CLIENT_SECRET" "$KEYCLOAK_URL/auth/realms/$REALM_NAME/protocol/openid-connect/token" -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=client_credentials' -d 'client_id=admin-cli'| jq -r '.access_token')
 
  _curl(){
      curl -H "Authorization: Bearer $KEYCLOAK_ACCESS_TOKEN" "$@"
@@ -34,7 +35,7 @@ CLIENT_ID=$(_curl -sX GET "$KEYCLOAK_URL/auth/admin/realms/$REALM_NAME/clients" 
 
 if [ "${CLIENT_ID}" == "" ]; then
     echo "Creating 'devhub-web-$PR_NUMBER' client..."
-    cat new-client.json | sed -e "s|#{PR}|${PR_NUMBER}|g" | _curl -sX POST -d '@-' -H 'Content-Type: application/json' "$KEYCLOAK_URL/auth/admin/realms/$REALM_NAME/clients"
+    cat openshift/keycloak-scripts/new-client.json | sed -e "s|#{PR}|${PR_NUMBER}|g" | _curl -sX POST -d '@-' -H 'Content-Type: application/json' "$KEYCLOAK_URL/auth/admin/realms/$REALM_NAME/clients"
 fi
 
 # return the client-id:
