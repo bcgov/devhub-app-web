@@ -12,7 +12,9 @@ if [ "$1" == "" ]; then
 fi
 
 JQ=/usr/bin/jq
-curl https://stedolan.github.io/jq/download/linux64/jq > $JQ && chmod +x $JQ
+curl https://stedolan.github.io/jq/download/linux64/jq > $JQ
+echo $JQ
+chmod +x $JQ
 ls -la $JQ
 which jq
 
