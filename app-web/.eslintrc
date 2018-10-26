@@ -6,6 +6,9 @@
     "es6": true,
     "jest": true
   },
+  "globals": {
+    "graphql": false
+  },
   "extends": ["react-app"],
   "parserOptions": {
     "sourceType": "module"
@@ -14,7 +17,6 @@
   "rules": {
     "prettier/prettier": ["error"],
     "linebreak-style": ["warn", "unix"],
-    "quotes": ["error", "single"],
     "semi": ["error", "always"],
     "indent": "off",
     "jsx-a11y/click-events-have-key-events": "off",
