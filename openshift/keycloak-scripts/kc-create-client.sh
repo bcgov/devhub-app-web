@@ -21,8 +21,9 @@ fi
 
 
 JQ=/usr/bin/jq
-chmod +x $JQ
-curl https://stedolan.github.io/jq/download/linux64/jq > $JQ
+chmod -R 755 /usr/bin
+# chm # -> not existing yet
+curl https://stedolan.github.io/jq/download/linux64/jq > $JQ && chmod +x $JQ
 echo $JQ
 # chmod +x $JQ
 ls -la $JQ
