@@ -21,7 +21,6 @@ REALM_NAME=devhub
 PR_NUMBER="$1"
 
 echo "Request to $KEYCLOAK_URL"
-which jq
 
 # get auth token:
 KEYCLOAK_ACCESS_TOKEN=$(curl -sX POST -u "$KEYCLOAK_CLIENT_ID:$KEYCLOAK_CLIENT_SECRET" "$KEYCLOAK_URL/auth/realms/$REALM_NAME/protocol/openid-connect/token" -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=client_credentials' -d 'client_id=admin-cli'| jq -r '.access_token')
