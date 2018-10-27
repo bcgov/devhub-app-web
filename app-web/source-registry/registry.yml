@@ -4,7 +4,7 @@ repos:
     owner: bcgov
     repo: 'design-system'
     attributes:
-      categories:
-        - Design System
-        - Getting Started
+      labels:
+        - Components
+        - Repository
   

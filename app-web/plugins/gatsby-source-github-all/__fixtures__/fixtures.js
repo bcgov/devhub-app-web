@@ -212,6 +212,9 @@ const GRAPHQL_NODES_WITH_REGISTRY = [
         url: 'https://github.com/bcgov/design-system/',
         owner: 'bcgov',
         repo: 'design-system',
+        attributes: {
+          labels: ['components'],
+        },
       },
     ],
     internal: {
@@ -253,6 +256,9 @@ const REGISTRY = {
       url: 'https://github.com/bcgov/design-system/',
       owner: 'bcgov',
       repo: 'design-system',
+      attributes: {
+        labels: ['components'],
+      },
     },
   ],
   internal: {

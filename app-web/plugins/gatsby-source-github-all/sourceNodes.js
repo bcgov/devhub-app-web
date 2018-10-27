@@ -50,6 +50,7 @@ const createGHNode = (file, id) => ({
     // Optional field exposing the raw content for this node
     // that transformer plugins can take and further process.
     content: file.content,
+    labels: file.metadata.labels, // labels from source registry
   },
 });
 
@@ -83,9 +84,7 @@ const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { to
     // check registry prior to fetching data
     checkRegistry(registry);
     // fetch all repos
-    const repos = await Promise.all(
-      registry.repos.map(repo => getFilesFromRepo(repo.repo, repo.owner, repo.name, token))
-    );
+    const repos = await Promise.all(registry.repos.map(repo => getFilesFromRepo(repo, token)));
     // repos is an array of arrays [repo files, repo files] etc
     // so we flatten it into a 1 dimensional array
     const dataToNodify = _.flatten(repos, true);

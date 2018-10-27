@@ -175,7 +175,7 @@ const filterFilesFromDirectories = entries => {
  * @param {String} token 
  */
 // eslint-disable-next-line
-const getFilesFromRepo = async (repo, owner, name, token) => {
+const getFilesFromRepo = async ({ repo, owner, name, attributes: { labels }}, token) => {
   try {
     // ignore filtering
     const ig = ignore().add(DEFUALT_IGNORES);
@@ -205,6 +205,7 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
           ...f,
           content: Base64.decode(f.content),
           metadata: {
+            labels,
             sourceName: name,
             source: repo,
             owner,

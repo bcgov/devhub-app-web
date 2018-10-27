@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'; // eslint-disable-line
 import { getFilesFromRepo } from '../utils/github-api';
-import { GITHUB_API } from '../__fixtures__/fixtures';
+import { GITHUB_API, REGISTRY } from '../__fixtures__/fixtures';
 
 const { Response } = jest.requireActual('node-fetch');
 jest.mock('node-fetch');
@@ -22,7 +22,7 @@ describe('Integration github api module', () => {
       .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))))
       .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
 
-    const files = await getFilesFromRepo();
+    const files = await getFilesFromRepo(REGISTRY.repos[0]);
     expect(files).toBeInstanceOf(Array);
     expect(files.length).toBe(3);
   });
@@ -37,8 +37,7 @@ describe('Integration github api module', () => {
         Promise.resolve(new Response(JSON.stringify(GITHUB_API.FAIL), { status: 400 }))
       )
       .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
-
-    const files = await getFilesFromRepo();
+    const files = await getFilesFromRepo(REGISTRY.repos[0]);
     expect(files).toBeInstanceOf(Array);
     expect(files.length).toBe(2);
   });
@@ -48,7 +47,7 @@ describe('Integration github api module', () => {
     fetch.mockReturnValueOnce(
       Promise.resolve(new Response(JSON.stringify(GITHUB_API.FAIL), { status: 400 }))
     );
-    const files = await getFilesFromRepo();
+    const files = await getFilesFromRepo(REGISTRY.repos[0]);
     expect(files).toBeInstanceOf(Array);
     expect(files.length).toBe(0);
   });
@@ -58,7 +57,7 @@ describe('Integration github api module', () => {
       throw new Error('Fetch Failed');
     });
     try {
-      await getFilesFromRepo();
+      await getFilesFromRepo(REGISTRY.repos[0]);
     } catch (e) {
       expect(e.message).toBe('Fetch Failed');
     }
