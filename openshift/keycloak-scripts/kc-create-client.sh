@@ -4,7 +4,7 @@
 # https://www.keycloak.org/docs-api/3.3/rest-api/#_identity_providers_resource
 
 set -Eeuo pipefail
-#set -x
+set -x
 
 if [ "$1" == "" ]; then
     echo "Skip this step in test or prod enviroments"
@@ -19,9 +19,9 @@ fi
 # make
 # sudo make install
 
-mkdir /usr/bin/try
-JQ=/usr/bin/try/jq
-chmod -R 755 /usr/bin/try
+# mkdir /usr/bin/try
+JQ=/usr/bin/jq
+# chmod -R 755 /usr/bin/try
 # chm # -> not existing yet
 curl https://stedolan.github.io/jq/download/linux64/jq > $JQ && chmod +x $JQ
 echo $JQ
