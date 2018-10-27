@@ -37,6 +37,7 @@ const createGHNode = (file, id) => ({
   source: file.metadata.source,
   sourceName: file.metadata.sourceName,
   pagePath: `/${file.metadata.source}/${file.metadata.name}_${shortid.generate()}`,
+  labels: file.metadata.labels, // labels from source registry
   internal: {
     contentDigest: crypto
       .createHash('md5')
@@ -50,7 +51,6 @@ const createGHNode = (file, id) => ({
     // Optional field exposing the raw content for this node
     // that transformer plugins can take and further process.
     content: file.content,
-    labels: file.metadata.labels, // labels from source registry
   },
 });
 
