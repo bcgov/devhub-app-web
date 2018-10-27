@@ -11,24 +11,10 @@ if [ "$1" == "" ]; then
     exit 0
 fi
 
-# echo "new try----"
-# git clone https://github.com/stedolan/jq.git
-# cd jq
-# autoreconf -i
-# ./configure --disable-maintainer-mode
-# make
-# sudo make install
-
-# mkdir /usr/bin/try
-# JQ=/usr/bin/jq
 JQ=/tmp/jq
-# chmod -R 755 /usr/bin/try
-# chm # -> not existing yet
 curl https://stedolan.github.io/jq/download/linux64/jq > $JQ && chmod +x $JQ
-echo $JQ
-# chmod +x $JQ
 ls -la $JQ
-which jq
+# which jq
 
 # oc get secret for sso service account:
 KEYCLOAK_CLIENT_ID=$(oc -n devhub-dev get secret/sso-dev-service-account --template={{.data.KEYCLOAK_CLIENT_ID}} | base64 --decode)
@@ -42,14 +28,14 @@ PR_NUMBER="$1"
 echo "Request to $KEYCLOAK_URL"
 
 # get auth token:
-KEYCLOAK_ACCESS_TOKEN=$(curl -sX POST -u "$KEYCLOAK_CLIENT_ID:$KEYCLOAK_CLIENT_SECRET" "$KEYCLOAK_URL/auth/realms/$REALM_NAME/protocol/openid-connect/token" -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=client_credentials' -d 'client_id=admin-cli'| jq -r '.access_token')
+KEYCLOAK_ACCESS_TOKEN=$(curl -sX POST -u "$KEYCLOAK_CLIENT_ID:$KEYCLOAK_CLIENT_SECRET" "$KEYCLOAK_URL/auth/realms/$REALM_NAME/protocol/openid-connect/token" -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=client_credentials' -d 'client_id=admin-cli'| /tmp/jq -r '.access_token')
 
  _curl(){
      curl -H "Authorization: Bearer $KEYCLOAK_ACCESS_TOKEN" "$@"
  }
 
 # check if client exists:
-CLIENT_ID=$(_curl -sX GET "$KEYCLOAK_URL/auth/admin/realms/$REALM_NAME/clients" -H "Accept: application/json" | jq -r --arg CLIENT "devhub-web-$PR_NUMBER" '.[] | select(.clientId==$CLIENT) | .id')
+CLIENT_ID=$(_curl -sX GET "$KEYCLOAK_URL/auth/admin/realms/$REALM_NAME/clients" -H "Accept: application/json" | /tmp/jq -r --arg CLIENT "devhub-web-$PR_NUMBER" '.[] | select(.clientId==$CLIENT) | .id')
 
 if [ "${CLIENT_ID}" == "" ]; then
     echo "Creating 'devhub-web-$PR_NUMBER' client..."
