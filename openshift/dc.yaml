@@ -46,6 +46,13 @@ objects:
               cpu: '100m'
             limits:
               cpu: '150m'
+          environment:
+          - name: "SSO_BASE_URL"
+            value: "${SSO_BASE_URL_VALUE}"
+          - name: "SSO_REALM_NAME"
+            value: "${SSO_REALM_NAME_VALUE}"
+          - name: "SSO_CLIENT_ID"
+            value: "${SSO_CLIENT_ID_VALUE}"
     test: false
     triggers:
     - type: ConfigChange
@@ -107,4 +114,24 @@ parameters:
   displayName: Host
   name: HOST
   required: false
+  value: ''
+- description: A base url of sso in the env
+  displayName: sso base URL
+  name: SSO_BASE_URL_VALUE
+  required: true
+  value: ''
+- description: A base url of sso in the env
+  displayName: sso base URL
+  name: SSO_BASE_URL_VALUE
+  required: true
+  value: ''
+- description: A sso client id in the env
+  displayName: sso client id
+  name: SSO_CLIENT_ID_VALUE
+  required: true
+  value: ''
+- description: A sso realm name in the env
+  displayName: sso realm name
+  name: SSO_REALM_NAME_VALUE
+  required: true
   value: ''
