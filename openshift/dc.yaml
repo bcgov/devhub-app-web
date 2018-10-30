@@ -47,12 +47,22 @@ objects:
             limits:
               cpu: '150m'
           environment:
-          - name: "SSO_BASE_URL"
-            value: "${SSO_BASE_URL_VALUE}"
-          - name: "SSO_REALM_NAME"
-            value: "${SSO_REALM_NAME_VALUE}"
-          - name: "SSO_CLIENT_ID"
-            value: "${SSO_CLIENT_ID_VALUE}"
+          - name: SSO_BASE_URL
+            value: ${SSO_BASE_URL_VALUE}
+          - name: SSO_REALM_NAME
+            value: ${SSO_REALM_NAME_VALUE}
+          - name: SSO_CLIENT_ID
+            value: ${SSO_CLIENT_ID_VALUE}
+          volumeMounts:
+          - name: ${VOLUMN_NAME}
+            mountPath: /etc/Caddyfile
+            readOnly: true
+            subPath: Caddyfile
+        volumes:
+        - name: ${VOLUMN_NAME}
+          configMap:
+          - defaultMode: 420
+            name: ${NAME}-caddy
     test: false
     triggers:
     - type: ConfigChange
@@ -77,6 +87,14 @@ objects:
       targetPort: 2015
     selector:
       deploymentconfig: ${NAME}-static${SUFFIX}
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: ${NAME}-caddy
+    creationTimestamp: null
+  data:
+    Caddyfile: |
+      "0.0.0.0:2015\nroot /var/www/html\nlog stdout\nerrors stdout\nrewrite {\n  if    {path} not_match ^\\/0.0.0.0\n  to    {path} {path}/ /?_url={uri}\n}"
 - apiVersion: route.openshift.io/v1
   kind: Route
   metadata:
@@ -130,3 +148,8 @@ parameters:
   name: SSO_REALM_NAME_VALUE
   required: true
   value: ''
+- description: A volumn used for the caddy from config map
+  displayName: volumn name
+  name: VOLUMN_NAME
+  required: true
+  value: 'web-caddy-config'
