@@ -15,6 +15,8 @@
     "dotenv": "^6.0.0",
     "emotion": "^8.0.8",
     "emotion-server": "^8.0.8",
+    "eslint-config-react-app": "^3.0.4",
+    "eslint-plugin-flowtype": "^3.1.1",
     "feather-icons": "^3.3.0",
     "flag": "^3.0.0-1",
     "gatsby": "^1.9.76",

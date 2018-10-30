@@ -9,9 +9,7 @@ import Layout from '../hoc/Layout';
 import Resource from '../components/Resource/Resource';
 
 const Index = ({ data: { pathfinder, allSourceDevhubGithub } }) => {
-  const yamlData = YAML.safeLoad(
-    pathfinder.data.organization.repository.resources.yaml
-  );
+  const yamlData = YAML.safeLoad(pathfinder.data.organization.repository.resources.yaml);
 
   // map entries and set paramaters in entries that resource component expects
   const mappedEntries = yamlData.entries.map(entry => ({
@@ -22,16 +20,10 @@ const Index = ({ data: { pathfinder, allSourceDevhubGithub } }) => {
 
   const groupedPathFinderData = groupBy(mappedEntries, 'category');
   const pathfinderResources = groupedPathFinderData.map(gd => (
-    <Resource
-      key={shortid.generate()}
-      category={gd.category}
-      resources={gd.data}
-    />
+    <Resource key={shortid.generate()} category={gd.category} resources={gd.data} />
   ));
   // flatten out allSourceGithub edges from query
-  const devhubGithubNodes = flattenAllSourceDevhubGithub(
-    allSourceDevhubGithub.edges
-  );
+  const devhubGithubNodes = flattenAllSourceDevhubGithub(allSourceDevhubGithub.edges);
   // map out github nodes to have paramaters that are expected by Resource
   const mappedDevhubGithubNodes = devhubGithubNodes.map(dhnode => ({
     ...dhnode,
@@ -42,11 +34,7 @@ const Index = ({ data: { pathfinder, allSourceDevhubGithub } }) => {
 
   const groupedGithubData = groupBy(mappedDevhubGithubNodes, 'sourceName');
   const devhubGithubResources = groupedGithubData.map(ghData => (
-    <Resource
-      key={shortid.generate()}
-      category={ghData.sourceName}
-      resources={ghData.data}
-    />
+    <Resource key={shortid.generate()} category={ghData.sourceName} resources={ghData.data} />
   ));
 
   return (
@@ -57,26 +45,21 @@ const Index = ({ data: { pathfinder, allSourceDevhubGithub } }) => {
           <em>We are here to help</em>
         </h2>
         <p className="para">
-          This is the front door to the developer community of the BC
-          Government. We’re embarking on a journey to help developers learn new
-          skills, discover resources and create amazing applications for
-          government.
+          This is the front door to the developer community of the BC Government. We’re embarking on
+          a journey to help developers learn new skills, discover resources and create amazing
+          applications for government.
         </p>
         <p className="para">
-          This is our first release and we’re planning to have new material
-          added to this site every sprint (2 weeks), so please visit often to
-          check our progress.
+          This is our first release and we’re planning to have new material added to this site every
+          sprint (2 weeks), so please visit often to check our progress.
         </p>
         <p className="para">
           {' '}
-          If you’d like to comment, offer a suggestion or ask a question you can
-          find us by opening an issue in our{' '}
-          <a href={GITHUB_ISSUES_ROUTE}>github.com</a> repository.
+          If you’d like to comment, offer a suggestion or ask a question you can find us by opening
+          an issue in our <a href={GITHUB_ISSUES_ROUTE}>github.com</a> repository.
         </p>
         <Flag name="features.githubResourceCards">{devhubGithubResources}</Flag>
-        <Flag name="features.pathfinderResourceCards">
-          {pathfinderResources}
-        </Flag>
+        <Flag name="features.pathfinderResourceCards">{pathfinderResources}</Flag>
       </main>
     </Layout>
   );

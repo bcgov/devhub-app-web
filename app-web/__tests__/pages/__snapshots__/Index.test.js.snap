@@ -81,8 +81,7 @@ ShallowWrapper {
           className="para"
         >
            
-          If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our
-           
+          If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
           <a
             href="https://github.com/bcgov/devhub-app-web/issues"
           >
@@ -191,8 +190,7 @@ ShallowWrapper {
             className="para"
           >
              
-            If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our
-             
+            If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
             <a
               href="https://github.com/bcgov/devhub-app-web/issues"
             >
@@ -341,8 +339,7 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               " ",
-              "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our",
-              " ",
+              "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our ",
               <a
                 href="https://github.com/bcgov/devhub-app-web/issues"
               >
@@ -355,8 +352,7 @@ ShallowWrapper {
           "ref": null,
           "rendered": Array [
             " ",
-            "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our",
-            " ",
+            "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our ",
             Object {
               "instance": null,
               "key": undefined,
@@ -580,8 +576,7 @@ ShallowWrapper {
             className="para"
           >
              
-            If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our
-             
+            If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
             <a
               href="https://github.com/bcgov/devhub-app-web/issues"
             >
@@ -690,8 +685,7 @@ ShallowWrapper {
               className="para"
             >
                
-              If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our
-               
+              If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
               <a
                 href="https://github.com/bcgov/devhub-app-web/issues"
               >
@@ -840,8 +834,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 " ",
-                "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our",
-                " ",
+                "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our ",
                 <a
                   href="https://github.com/bcgov/devhub-app-web/issues"
                 >
@@ -854,8 +847,7 @@ ShallowWrapper {
             "ref": null,
             "rendered": Array [
               " ",
-              "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our",
-              " ",
+              "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our ",
               Object {
                 "instance": null,
                 "key": undefined,

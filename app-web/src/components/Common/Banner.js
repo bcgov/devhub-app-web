@@ -8,6 +8,7 @@ import classes from './Common.module.css';
 const Banner = ({ title, navigateOnClickPath }) => {
   return (
     <div
+      id={BANNER_ID}
       onClick={() => {
         if (navigateOnClickPath) {
           navigateTo(navigateOnClickPath);

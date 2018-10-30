@@ -1,7 +1,5 @@
 // eslint-disable-next-line
-const { ImplicitAuthManager, TypeCheck } = jest.requireActual(
-  '@bcgov/common-web-utils'
-);
+const { ImplicitAuthManager, TypeCheck } = jest.requireActual('@bcgov/common-web-utils');
 
 class ImplicitAuthManagerMocked {
   // eslint-disable-next-line

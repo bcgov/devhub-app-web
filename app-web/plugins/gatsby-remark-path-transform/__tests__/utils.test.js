@@ -17,14 +17,9 @@ Created by Patrick Simonian
 */
 import transformRelativePaths from '../index';
 
-import {
-  GRAPH_QL_PARENT_NODE,
-  MARKDOWN_NODE,
-  IMAGE_AST_RELATIVE,
-} from '../__fixtures__/fixtures';
+import { GRAPH_QL_PARENT_NODE, MARKDOWN_NODE, IMAGE_AST_RELATIVE } from '../__fixtures__/fixtures';
 // mock isRelativePath
 jest.mock('../utils/utils', () => ({ isRelativePath: jest.fn(() => true) }));
-
 
 describe('gatsby-remark-path-transform', () => {
   describe('isRelativePath', () => {
@@ -40,16 +35,16 @@ describe('gatsby-remark-path-transform', () => {
   });
 
   describe('transformRelativePaths', () => {
-    it('throws if converter option doesn\'t exist or is not a function', () => {
+    it("throws if converter option doesn't exist or is not a function", () => {
       expect(() => {
         transformRelativePaths({}, { converter: null });
       }).toThrow(
-        'gatsby-remark-path-transform option: \'converter\' must be passed in as a function!'
+        "gatsby-remark-path-transform option: 'converter' must be passed in as a function!"
       );
       expect(() => {
         transformRelativePaths({});
       }).toThrow(
-        'gatsby-remark-path-transform option: \'converter\' must be passed in as a function!'
+        "gatsby-remark-path-transform option: 'converter' must be passed in as a function!"
       );
     });
 
@@ -61,21 +56,10 @@ describe('gatsby-remark-path-transform', () => {
       const markdownNode = MARKDOWN_NODE;
       const markdownAST = IMAGE_AST_RELATIVE;
       const oldURL = markdownAST.url;
-      transformRelativePaths(
-        { getNode, markdownAST, markdownNode },
-        { converter }
-      );
+      transformRelativePaths({ getNode, markdownAST, markdownNode }, { converter });
 
-      expect(converter).toHaveBeenCalledWith(
-        'image',
-        oldURL,
-        GRAPH_QL_PARENT_NODE
-      );
-      expect(converter).toHaveBeenLastCalledWith(
-        'link',
-        markdownAST.url,
-        GRAPH_QL_PARENT_NODE
-      );
+      expect(converter).toHaveBeenCalledWith('image', oldURL, GRAPH_QL_PARENT_NODE);
+      expect(converter).toHaveBeenLastCalledWith('link', markdownAST.url, GRAPH_QL_PARENT_NODE);
       expect(converter).toHaveBeenCalledTimes(2);
       // expect url to hvae been changed
       expect(oldURL).not.toBe(markdownAST.url);

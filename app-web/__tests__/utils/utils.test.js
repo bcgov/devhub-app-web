@@ -84,7 +84,7 @@ describe('Data Massagers', () => {
     }).toThrow('Collection must only contain Objects');
   });
 
-  test('If grouping doesn\'t exist in object it is not returned', () => {
+  test("If grouping doesn't exist in object it is not returned", () => {
     const data = [
       {
         foo: 'bar',

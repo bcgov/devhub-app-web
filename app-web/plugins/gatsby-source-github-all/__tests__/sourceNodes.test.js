@@ -19,8 +19,12 @@
 //
 jest.mock('crypto');
 
-const { createGHNode, checkRegistry, getRegistry, } = require('../sourceNodes');
-const { GRAPHQL_NODES_WITH_REGISTRY, GRAPHQL_NODES_WITHOUT_REGISTRY, REGISTRY, } = require('../__fixtures__/fixtures');
+const { createGHNode, checkRegistry, getRegistry } = require('../sourceNodes');
+const {
+  GRAPHQL_NODES_WITH_REGISTRY,
+  GRAPHQL_NODES_WITHOUT_REGISTRY,
+  REGISTRY,
+} = require('../__fixtures__/fixtures');
 
 describe('gatsby source github all plugin', () => {
   test('getRegistry returns the registry', () => {
@@ -32,7 +36,7 @@ describe('gatsby source github all plugin', () => {
     const getNodes = jest.fn(() => GRAPHQL_NODES_WITHOUT_REGISTRY);
     expect(() => getRegistry(getNodes)).toThrow('Registry not found');
   });
-  
+
   test('checkRegistry throws if a repo is missing an owner', () => {
     const registry = {
       repos: [
@@ -137,10 +141,8 @@ describe('gatsby source github all plugin', () => {
       size: 317,
       url:
         'https://api.github.com/repos/awesomeOrg/awesomeRepo/contents/public/manifest.json?ref=master',
-      html_url:
-        'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
-      git_url:
-        'https://api.github.com/repos/awesomeOrg/awesomeRepo/git/blobs/123',
+      html_url: 'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
+      git_url: 'https://api.github.com/repos/awesomeOrg/awesomeRepo/git/blobs/123',
       download_url:
         'https://raw.githubusercontent.com/awesomeOrg/awesomeRepo/master/public/manifest.json',
       type: 'file',
@@ -148,10 +150,8 @@ describe('gatsby source github all plugin', () => {
       _links: {
         self:
           'https://api.github.com/repos/awesomeOrg/awesomeRepo/contents/public/manifest.json?ref=master',
-        git:
-          'https://api.github.com/repos/awesomeOrg/awesomeRepo/git/blobs/123',
-        html:
-          'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
+        git: 'https://api.github.com/repos/awesomeOrg/awesomeRepo/git/blobs/123',
+        html: 'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
       },
     };
     const expected = {
@@ -163,8 +163,7 @@ describe('gatsby source github all plugin', () => {
       owner: 'Billy Bob',
       parent: null,
       path: '/test.md',
-      htmlURL:
-        'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
+      htmlURL: 'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
       pagePath: '/something/something/test_0',
       source: 'something/something',
       sourceName: 'something',

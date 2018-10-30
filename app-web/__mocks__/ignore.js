@@ -19,6 +19,8 @@ Created by Patrick Simonian
 jest.requireActual('ignore');
 
 module.exports = () => ({
-    add: function() { return this }, // eslint-disable-line
-    ignores: jest.fn(() => false),
+  add: function() {
+    return this;
+  }, // eslint-disable-line
+  ignores: jest.fn(() => false),
 });
