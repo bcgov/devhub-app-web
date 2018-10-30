@@ -98,6 +98,8 @@ pipeline {
           echo "Merging (using '${mergeMethod}' method) and closing PR"
           bcgov.GitHubHelper.mergeAndClosePullRequest(this, mergeMethod)
         }
+        echo "Cleaning sso client ..."
+        sh "openshift/keycloak-scripts/kc-delete-client.sh ${CHANGE_ID}"
       }
     }
   }

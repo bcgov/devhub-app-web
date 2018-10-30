@@ -4,7 +4,7 @@
 # https://www.keycloak.org/docs-api/3.3/rest-api/#_identity_providers_resource
 
 set -Eeuo pipefail
-set -x
+# set -x
 
 if [ "$1" == "" ]; then
     echo "Skip this step in test or prod enviroments"
@@ -37,6 +37,7 @@ KEYCLOAK_ACCESS_TOKEN=$(curl -sX POST -u "$KEYCLOAK_CLIENT_ID:$KEYCLOAK_CLIENT_S
 # check if client exists:
 CLIENT_ID=$(_curl -sX GET "$KEYCLOAK_URL/auth/admin/realms/$REALM_NAME/clients" -H "Accept: application/json" | $JQ -r --arg CLIENT "devhub-web-$PR_NUMBER" '.[] | select(.clientId==$CLIENT) | .id')
 
+# Create client:
 if [ "${CLIENT_ID}" == "" ]; then
     echo "Creating 'devhub-web-$PR_NUMBER' client..."
     cat openshift/keycloak-scripts/new-client.json | sed -e "s|#{PR}|${PR_NUMBER}|g" | _curl -sX POST -d '@-' -H 'Content-Type: application/json' "$KEYCLOAK_URL/auth/admin/realms/$REALM_NAME/clients"
