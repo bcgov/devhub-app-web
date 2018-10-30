@@ -40,21 +40,6 @@ describe('Integration Tests Source Nodes', () => {
         expect(boundActionCreators.createNode).not.toHaveBeenCalledWith(node);
     });
     
-    test('file content doesn\'t get transformed if its not markdown', async () => {
-        getFilesFromRepo.mockReturnValue(Promise.resolve([ PROCESSED_FILE_TXT, ]));
-        const boundActionCreators = {
-            createNode: jest.fn(),
-        };
-        const createNodeId = jest.fn(() => 1);
-        const token = '123';
-        const getNodes = jest.fn(() => GRAPHQL_NODES_WITH_REGISTRY);
-        await sourceNodes({boundActionCreators, createNodeId, getNodes,}, { token, });
-        // create a graphql node bypassing the transformer in sourceNodes
-        const node = createGHNode(PROCESSED_FILE_TXT, createNodeId());
-        // this text file should have NOT been transformed and there for nodes
-        // should be equal
-        expect(boundActionCreators.createNode).toHaveBeenCalledWith(node);
-    });
 });
 
 
