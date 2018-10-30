@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { navigateTo } from 'gatsby-link';
 import { BANNER_ID } from '../../constants/ui';
 import GovLogo from '../UI/GovLogo/GovLogo';
 import classes from './Common.module.css';
