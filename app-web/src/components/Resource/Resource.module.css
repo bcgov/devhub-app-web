@@ -1,59 +1,30 @@
 .Resource {
-    padding: 0 10px;
-    margin-bottom: 15px;
 }
 
 .Resource .Title {
     text-transform: capitalize;
-    font-size: 32px;
-    color: #003469;
-    border-bottom: 1px solid #ccc;
+    font-size: 24px;
+    border: none;
+    display: none;
 }
 
 .Resource .Items {
-    overflow-x: auto;
     display: flex;
-}
-
-.Items::-webkit-scrollbar {
-    height: 10px;
-}
-  
-/* Track */
-.Items::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
-    border-radius: 8px;
-}
-  
-/* Handle */
-.Items::-webkit-scrollbar-thumb {
-    background: #444; 
-    border-radius: 10px;
-}
-/* Track */
-.Items::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
-    border-radius: 8px;
-}
-
-/* Handle */
-.Items::-webkit-scrollbar-thumb {
-    background: #999; 
-    border-radius: 10px;
-}
-
-/* Handle on hover */
-.Items::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-}
-
-.Resource .Items:last-child::after {
-    content: '';
-    flex: 0 0 25px;
+    flex-flow: row wrap;
+    justify-content: center;
 }
 
 @media screen and (min-width: 500px) {
     .Resource {
-        margin-bottom: 35px;
+        padding: 0 10px;
+    }
+
+    .Resource .Title {
+        font-size: 32px;
+        display: block;
+    }
+
+    .Resource .Items {
+        justify-content: flex-start;
     }
 }

@@ -16,6 +16,7 @@ const Index = ({ data: { pathfinder, allSourceDevhubGithub } }) => {
     ...entry,
     title: entry.description,
     abstract: entry.details,
+    sourceName: 'Pathfinder',
   }));
 
   const groupedPathFinderData = groupBy(mappedEntries, 'category');
