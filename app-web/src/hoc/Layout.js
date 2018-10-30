@@ -8,7 +8,7 @@ import '../assets/styles/page.css';
 // layout local componenets
 import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
 // redux & auth
-import implicitAuthManager from '../auth';
+import { implicitAuthManager } from '../../gatsby-browser';
 import * as actions from '../store/actions/actions';
 
 class Layout extends React.Component {

@@ -1,8 +1,17 @@
 .PrimaryHeader {
     background-color: #036;
     border-bottom: 2px solid #fcba19;
-    padding: 0 65px 0 65px;
+    padding: 0 25px;
     color: #fff;
     display: flex;
     height: 65px;
 }
+
+
+@media screen and (min-width: 600px) {
+    .PrimaryHeader {
+        padding: 0 65px 0 65px;
+    }
+   
+}
+  

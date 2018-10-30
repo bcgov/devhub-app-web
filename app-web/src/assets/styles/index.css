@@ -28,3 +28,18 @@ p {
   max-width: 1000px;
   margin: 0 auto;
 }
+
+.large-screen {
+  display: none;
+}
+
+@media screen and (min-width: 600px) {
+  .small-screen {
+    display: none;
+  }
+
+  .large-screen {
+    display: block;
+  }
+}
+
