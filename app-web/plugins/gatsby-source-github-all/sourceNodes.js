@@ -37,6 +37,7 @@ const createGHNode = (file, id) => ({
   source: file.metadata.source,
   sourceName: file.metadata.sourceName,
   pagePath: `/${file.metadata.source}/${file.metadata.name}_${shortid.generate()}`,
+  labels: file.metadata.labels, // labels from source registry
   internal: {
     contentDigest: crypto
       .createHash('md5')
@@ -83,9 +84,7 @@ const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { to
     // check registry prior to fetching data
     checkRegistry(registry);
     // fetch all repos
-    const repos = await Promise.all(
-      registry.repos.map(repo => getFilesFromRepo(repo.repo, repo.owner, repo.name, token))
-    );
+    const repos = await Promise.all(registry.repos.map(repo => getFilesFromRepo(repo, token)));
     // repos is an array of arrays [repo files, repo files] etc
     // so we flatten it into a 1 dimensional array
     const dataToNodify = _.flatten(repos, true);
