@@ -168,11 +168,12 @@ const filterFilesFromDirectories = entries => {
 
 /**
  * returns a flattened array of all files in a repository
- * by recursive graphql query to each directory in repo (accomplished via breadth first-search)
- * @param {String} repo 
- * @param {String} owner 
- * @param {String} name // name of repo as per registry 
+ * accomplished by fetching the github tree for a repo and filter files
+ * to be fetched by a configuration. Fetch the filtered files and
+ * append metadata before returning
+ * @param {String} repo the repo data (comes from the registry)
  * @param {String} token 
+ * @returns {Array} The array of files
  */
 // eslint-disable-next-line
 const getFilesFromRepo = async ({ repo, owner, name, attributes: { labels }}, token) => {
