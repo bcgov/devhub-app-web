@@ -1,9 +1,8 @@
 .Logo {
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    text-decoration: none;
-    cursor: pointer;
-    color: #fff;
+    margin: 0 10px 0 0;
 }
 
 .Logo:visited {
@@ -11,7 +10,10 @@
 }
 
 .Logo h1 {
-    font-size: 20px;
+    font-weight: normal;  /* 400 */
+    margin: 5px 5px 0 18px;
+    visibility: hidden;
+    color: #fff;
 }
 
 
