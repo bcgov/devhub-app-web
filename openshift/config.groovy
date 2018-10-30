@@ -82,7 +82,7 @@ app {
                         'NAME':app.deployment.name,
                         'SUFFIX':app.deployment.suffix,
                         'VERSION': app.deployment.version,
-                        'HOST': app.deployment.host
+                        'HOST': app.deployment.host,
                     ]
                 ]
         ]
