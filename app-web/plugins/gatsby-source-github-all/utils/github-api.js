@@ -115,7 +115,7 @@ const fetchFile = async (repo, owner, path, token) => {
       }
     );
     const data = await result.json();
-    if (result.status === 200) return data;
+    if (result.ok) return data;
     return undefined;
   } catch (e) {
     throw e;
@@ -129,7 +129,7 @@ const fetchFile = async (repo, owner, path, token) => {
  */
 const fetchIgnoreFile = async (repo, owner, token) => {
   const ignoreFile = await fetchFile(repo, owner, '/.devhubignore', token);
-  return ignoreFile.content
+  return ignoreFile
     ? Base64.decode(ignoreFile.content).split('\n')
     : [];
 };
@@ -139,7 +139,7 @@ const fetchIgnoreFile = async (repo, owner, token) => {
    * @param {Array} entries 
    * @param {Array} extensions (defaults to [.md])
    */
-const filterFilesByExtensions = (entries, extensions = ['.md']) => {
+const filterFilesByExtensions = (entries, extensions = ['.md',]) => {
   // ensure entries is an array of objects
   if (!TypeCheck.isArray(entries) || !entries.every(TypeCheck.isObject)) {
     throw new Error('entries are invalid');
@@ -194,17 +194,17 @@ const getFilesFromRepo = async (repo, owner, name, token) => {
     filesToFetch = filterFilesByExtensions(
       filesToFetch,
       PROCESSABLE_EXTENSIONS
-    );
-    // fetch ignore file if exists
-    const repoIgnores = await fetchIgnoreFile(repo, owner, token);
-    ig.add(repoIgnores);
-    // filter out files that are apart of ignore
-    filesToFetch = filesToFetch.filter(file => !ig.ignores(file.path));
-    // retrieve contents for each file
-    const filesWithContents = filesToFetch.map(file =>
-      fetchFile(repo, owner, file.path, token)
-    );
-    const filesResponse = await Promise.all(filesWithContents);
+      );
+      // fetch ignore file if exists
+      const repoIgnores = await fetchIgnoreFile(repo, owner, token);
+      ig.add(repoIgnores);
+      // filter out files that are apart of ignore
+      filesToFetch = filesToFetch.filter(file => !ig.ignores(file.path));
+      // retrieve contents for each file
+      const filesWithContents = filesToFetch.map(file =>
+        fetchFile(repo, owner, file.path, token)
+        );
+        const filesResponse = await Promise.all(filesWithContents);
     // for some reason the accept header is not returning with raw content so we will decode
     // the default base 64 encoded content
     // also adding some additional params
@@ -254,6 +254,7 @@ module.exports = {
   getNameOfExtensionVerbose,
   fetchGithubTree,
   fetchFile,
+  fetchIgnoreFile,
   filterFilesFromDirectories,
   filterFilesByExtensions,
 };

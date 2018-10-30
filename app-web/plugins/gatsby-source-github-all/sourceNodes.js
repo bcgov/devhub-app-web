@@ -20,9 +20,9 @@
 const crypto = require('crypto');
 const _ = require('lodash'); // eslint-disable-line
 const shortid = require('shortid'); // eslint-disable-line
-const { getFilesFromRepo } = require('./utils/github-api');
-const { fileTransformer } = require('./utils/transformer');
-const { markdownPlugin } = require('./utils/plugins');
+const { getFilesFromRepo, } = require('./utils/github-api');
+const { fileTransformer, } = require('./utils/transformer');
+const { markdownPlugin, } = require('./utils/plugins');
 
 const createGHNode = (file, id) => ({
   id,
@@ -79,12 +79,12 @@ const getRegistry = getNodes => {
 };
 
 const sourceNodes = async (
-  { getNodes, boundActionCreators, createNodeId },
-  { token }
+  { getNodes, boundActionCreators, createNodeId, },
+  { token, }
 ) => {
   // get registry from current nodes
   const registry = getRegistry(getNodes);
-  const { createNode } = boundActionCreators;
+  const { createNode, } = boundActionCreators;
   try {
     // check registry prior to fetching data
     checkRegistry(registry);
@@ -100,8 +100,8 @@ const sourceNodes = async (
     // create nodes
     dataToNodify
       .map(file => {
-        const newFile = { ...file, metadata: { ...file.metadata } };
-        const { content, metadata: { extension } } = newFile;
+        const newFile = { ...file, metadata: { ...file.metadata, }, };
+        const { content, metadata: { extension, }, } = newFile;
         const ft = fileTransformer(extension, content, newFile);
         const newContent = ft.use(markdownPlugin).resolve();
         newFile.content = newContent;
