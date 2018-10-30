@@ -1,7 +1,6 @@
 import shortid from 'shortid'; // eslint-disable-line
 import {
   PROCESSED_FILE_MD,
-  PROCESSED_FILE_TXT,
   GRAPHQL_NODES_WITH_REGISTRY,
 } from '../__fixtures__/fixtures';
 import { sourceNodes, createGHNode } from '../sourceNodes';
@@ -26,26 +25,6 @@ describe('Integration Tests Source Nodes', () => {
     const getNodes = jest.fn(() => GRAPHQL_NODES_WITH_REGISTRY);
     await sourceNodes({ boundActionCreators, createNodeId, getNodes }, { token });
 
-<<<<<<< HEAD
-        expect(boundActionCreators.createNode).toHaveBeenCalledTimes(1);
-    });
-
-    test('file content gets transformed if its markdown', async () => {
-        const boundActionCreators = {
-            createNode: jest.fn(),
-        };
-        const createNodeId = jest.fn(() => 1);
-        const token = '123';
-        const getNodes = jest.fn(() => GRAPHQL_NODES_WITH_REGISTRY);
-        await sourceNodes({boundActionCreators, createNodeId, getNodes,}, { token, });
-        // create a graphql node bypassing the transformer in sourceNodes
-        const node = createGHNode(PROCESSED_FILE_MD, createNodeId());
-        // this markdown file should have been transformed and there for nodes
-        // should not be equal
-        expect(boundActionCreators.createNode).not.toHaveBeenCalledWith(node);
-    });
-    
-=======
     expect(boundActionCreators.createNode).toHaveBeenCalledTimes(1);
   });
 
@@ -63,21 +42,4 @@ describe('Integration Tests Source Nodes', () => {
     // should not be equal
     expect(boundActionCreators.createNode).not.toHaveBeenCalledWith(node);
   });
-
-  test("file content doesn't get transformed if its not markdown", async () => {
-    getFilesFromRepo.mockReturnValue(Promise.resolve([PROCESSED_FILE_TXT]));
-    const boundActionCreators = {
-      createNode: jest.fn(),
-    };
-    const createNodeId = jest.fn(() => 1);
-    const token = '123';
-    const getNodes = jest.fn(() => GRAPHQL_NODES_WITH_REGISTRY);
-    await sourceNodes({ boundActionCreators, createNodeId, getNodes }, { token });
-    // create a graphql node bypassing the transformer in sourceNodes
-    const node = createGHNode(PROCESSED_FILE_TXT, createNodeId());
-    // this text file should have NOT been transformed and there for nodes
-    // should be equal
-    expect(boundActionCreators.createNode).toHaveBeenCalledWith(node);
-  });
->>>>>>> update eslint/prettier to stop conflicting and re linted
 });
