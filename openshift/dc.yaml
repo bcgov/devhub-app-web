@@ -61,7 +61,7 @@ objects:
         volumes:
         - name: ${VOLUMN_NAME}
           configMap:
-          - defaultMode: 420
+          - defaultMode: '420'
             name: ${NAME}-caddy
     test: false
     triggers:
@@ -136,17 +136,17 @@ parameters:
   displayName: sso base URL
   name: SSO_BASE_URL_VALUE
   required: true
-  value: ''
+  value: '123'
 - description: A sso client id in the env
   displayName: sso client id
   name: SSO_CLIENT_ID_VALUE
   required: true
-  value: ''
+  value: '123'
 - description: A sso realm name in the env
   displayName: sso realm name
   name: SSO_REALM_NAME_VALUE
   required: true
-  value: ''
+  value: '123'
 - description: A volumn used for the caddy from config map
   displayName: volumn name
   name: VOLUMN_NAME
