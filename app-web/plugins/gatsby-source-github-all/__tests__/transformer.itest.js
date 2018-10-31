@@ -49,7 +49,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
   test('transformer sets pagePath to gatsby create page path by default', () => {
     const data = matter(PROCESSED_FILE_MD.content);
     const { metadata: { source, name } } = PROCESSED_FILE_MD;
-    expect(data.data.resourcePath).not.toBeDefined();
+    expect(data.data.resourcePath).toBe('');
     const transformedFile = fileTransformer(PROCESSED_FILE_MD.metadata.extension, PROCESSED_FILE_MD)
       .use(markdownPagePathPlugin)
       .resolve();
