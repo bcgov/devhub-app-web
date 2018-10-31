@@ -46,7 +46,7 @@ objects:
               cpu: '100m'
             limits:
               cpu: '150m'
-          environment:
+          env:
           - name: SSO_BASE_URL
             value: ${SSO_BASE_URL_VALUE}
           - name: SSO_REALM_NAME

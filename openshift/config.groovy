@@ -83,9 +83,9 @@ app {
                         'SUFFIX':app.deployment.suffix,
                         'VERSION': app.deployment.version,
                         'HOST': app.deployment.host,
-                        'SSO_BASE_URL_VALUE': app.deployment.ssourl,
-                        'SSO_CLIENT_ID_VALUE': app.deployment.ssoclient,
-                        'SSO_REALM_NAME_VALUE': app.deployment.ssorealm
+                        'SSO_BASE_URL_VALUE': app.deployment.ssoURL,
+                        'SSO_CLIENT_ID_VALUE': app.deployment.ssoClient,
+                        'SSO_REALM_NAME_VALUE': app.deployment.ssoRealm
                     ]
                 ]
         ]
@@ -105,9 +105,9 @@ environments {
                 name = "${opt.'deployment-name'?:app.name}"
                 namespace = app.namespaces[env.name].namespace
                 version = "${vars.deployment.name}-${vars.deployment.env.name}-v${opt.'pr'}"
-                ssourl = "https://sso-dev.pathfinder.gov.bc.ca"
-                ssoclient = "devhub-web-${opt.'pr'}"
-                ssorealm = "devhub"
+                ssoURL = "https://sso-dev.pathfinder.gov.bc.ca"
+                ssoClient = "devhub-web-${opt.'pr'}"
+                ssoRealm = "devhub"
             }
         }
     }
