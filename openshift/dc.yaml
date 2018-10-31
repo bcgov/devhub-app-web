@@ -95,7 +95,17 @@ objects:
     creationTimestamp: null
     name: ${NAME}-caddy
   data:
-    Caddyfile: placeHolder
+    Caddyfile: |-
+      0.0.0.0:2015
+      root /var/www/html
+      log stdout
+      errors stdout
+      rewrite {
+        if  {path} not_match ^\/0.0.0.0
+        to  {path} {path}/ /?_url={uri}}
+      templates {
+        path  /static/js
+        ext   .js}
 - apiVersion: route.openshift.io/v1
   kind: Route
   metadata:
