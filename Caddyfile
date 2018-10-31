@@ -1,0 +1,11 @@
+0.0.0.0:2015
+root /var/www/html
+log stdout
+errors stdout
+rewrite {
+  if  {path} not_match ^\/0.0.0.0
+  to  {path} {path}/ /?_url={uri}
+}
+templates {
+  ext   .js
+}
