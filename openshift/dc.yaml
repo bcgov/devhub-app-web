@@ -20,7 +20,7 @@ objects:
     creationTimestamp: null
     name: ${NAME}-static${SUFFIX}
   spec:
-    replicas: 1
+    replicas: '1'
     selector:
       deploymentconfig: ${NAME}-static${SUFFIX}
     strategy:
@@ -41,7 +41,7 @@ objects:
           args:
           - /tmp/scripts/run
           ports:
-          - containerPort: 2015
+          - containerPort: '2015'
             protocol: TCP
           resources:
             requests:
