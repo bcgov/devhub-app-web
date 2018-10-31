@@ -7,6 +7,6 @@ rewrite {
   to    {path} {path}/ /?_url={uri}
 }
 templates {
-	path	/app-web/public/js
+	path	./
 	ext		.js
 }

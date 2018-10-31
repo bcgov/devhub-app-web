@@ -61,7 +61,7 @@ objects:
         volumes:
         - name: ${VOLUMN_NAME}
           configMap:
-          - defaultMode: '420'
+          - defaultMode: 420
             name: ${NAME}-caddy
     test: false
     triggers:
@@ -90,8 +90,8 @@ objects:
 - apiVersion: v1
   kind: ConfigMap
   metadata:
-    name: ${NAME}-caddy
     creationTimestamp: null
+    name: ${NAME}-caddy
   data:
     Caddyfile: placeHolder
 - apiVersion: route.openshift.io/v1
@@ -136,19 +136,19 @@ parameters:
   displayName: sso base URL
   name: SSO_BASE_URL_VALUE
   required: true
-  value: '123'
+  value: ''
 - description: A sso client id in the env
   displayName: sso client id
   name: SSO_CLIENT_ID_VALUE
   required: true
-  value: '123'
+  value: ''
 - description: A sso realm name in the env
   displayName: sso realm name
   name: SSO_REALM_NAME_VALUE
   required: true
-  value: '123'
+  value: ''
 - description: A volumn used for the caddy from config map
   displayName: volumn name
   name: VOLUMN_NAME
   required: true
-  value: 'web-caddy-config'
+  value: web-caddy-config
