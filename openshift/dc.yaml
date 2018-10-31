@@ -130,20 +130,20 @@ parameters:
 - description: A base url of sso in the env
   displayName: sso base URL
   name: SSO_BASE_URL_VALUE
-  required: true
+  required: false
   value: ''
 - description: A sso client id in the env
   displayName: sso client id
   name: SSO_CLIENT_ID_VALUE
-  required: true
+  required: false
   value: ''
 - description: A sso realm name in the env
   displayName: sso realm name
   name: SSO_REALM_NAME_VALUE
-  required: true
+  required: false
   value: ''
 - description: A volumn used for the caddy from config map
   displayName: volumn name
   name: VOLUMN_NAME
-  required: true
+  required: false
   value: web-caddy-config

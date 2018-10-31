@@ -73,6 +73,9 @@ app {
         id = "${app.deployment.name}${app.deployment.suffix}" // app (unique name across all deployments int he namespace)
         namespace = "${vars.deployment.namespace}"
         host = "${vars.deployment.host}"
+        ssoURL = "${vars.deployment.ssoURL}"
+        ssoClient = "${vars.deployment.ssoClient}"
+        ssoRealm = "${vars.deployment.ssoRealm}"
 
         timeoutInSeconds = 60*20 // 20 minutes
         templates = [
