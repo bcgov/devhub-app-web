@@ -28,11 +28,11 @@ const { MARKDOWN_FRONTMATTER_SCHEMA } = require('./constants');
  * @param {Object} file 
  * @returns {String} the modified markdown content
  */
-const markdownPlugin = (extension, raw, file) => {
+const markdownPlugin = (extension, file) => {
   // only modify markdown files
   if (extension === 'md') {
     // parse front matter
-    const data = matter(raw);
+    const data = matter(file.content);
     const frontmatter = data.data;
     const DEFAULTS = {
       title: () => {
@@ -52,12 +52,13 @@ const markdownPlugin = (extension, raw, file) => {
         });
         return title;
       },
+      ignore: () => false,
     };
     // check front matter against defaults
     Object.keys(MARKDOWN_FRONTMATTER_SCHEMA).forEach(key => {
       const property = MARKDOWN_FRONTMATTER_SCHEMA[key];
       const value = frontmatter[key];
-      const valueIsInvalid = !value || !TypeCheck.isString(value) || value === '';
+      const valueIsInvalid = !value || !TypeCheck.isA(property.type, value) || value === '';
       // if propery required and frontmatter doesn't have it
       if (property.required && valueIsInvalid) {
         throw new Error(
@@ -69,9 +70,10 @@ const markdownPlugin = (extension, raw, file) => {
       }
     });
     // create 'new' md string with updated front matter
-    return matter.stringify(data.content, frontmatter);
+    file.content = matter.stringify(data.content, frontmatter);
+    return file;
   }
-  return raw;
+  return file;
 };
 
 module.exports = {
