@@ -61,7 +61,7 @@ objects:
         volumes:
         - name: ${VOLUMN_NAME}
           configMap:
-          - defaultMode: 420
+            defaultMode: '420'
             name: ${NAME}-caddy
     test: false
     triggers:
