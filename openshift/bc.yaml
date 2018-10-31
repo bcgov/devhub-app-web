@@ -97,7 +97,7 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: ${NAME}-static:${VERSION}
+        name: ${NAME}-static:${VEFRSION}
     postCommit: {}
     resources:
       requests:
@@ -111,7 +111,7 @@ objects:
         COPY html/* /var/www/html/
         #RUN ls -la /var/www/ && ls -la /var/www/html/
         #USER 1001
-        CMD ["sh","/tmp/scripts/run"]
+        #CMD ["sh","/tmp/scripts/run"]
       images:
         - from:
             kind: ImageStreamTag

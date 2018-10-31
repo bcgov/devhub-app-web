@@ -38,6 +38,8 @@ objects:
         containers:
         - image: ${NAME}-static:${VERSION}
           name: devhub-app-web
+          args:
+          - /tmp/scripts/run
           ports:
           - containerPort: 2015
             protocol: TCP
