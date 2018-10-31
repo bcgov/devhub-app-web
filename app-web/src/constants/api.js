@@ -1,3 +1,7 @@
-export const SSO_REALM_NAME = '{{.Env.SSO_REALM_NAME}}';
-export const SSO_CLIENT_ID = '{{.Env.SSO_CLIENT_ID}}';
-export const SSO_BASE_URL = '{{.Env.SSO_BASE_URL}}';
+import config from '../config.json';
+
+// config.json is used for Caddy templating during deployment
+// to run locally, use .env.production
+export const SSO_REALM_NAME = process.env.GATSBY_SSO_REALM_NAME || config.ssoRealmName;
+export const SSO_CLIENT_ID = process.env.GATSBY_SSO_CLIENT_ID || config.ssoClientId;
+export const SSO_BASE_URL = process.env.GATSBY_SSO_BASE_URL || config.ssoBaseUrl;

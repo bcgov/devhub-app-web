@@ -1,0 +1,5 @@
+{
+  "ssoRealmName": "{{.Env.SSO_REALM_NAME}}",
+  "ssoClientId": "{{.Env.SSO_CLIENT_ID}}",
+  "ssoBaseUrl": "{{.Env.SSO_BASE_URL}}"
+}
