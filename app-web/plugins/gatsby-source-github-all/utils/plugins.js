@@ -15,7 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-
+const shortid = require('shortid'); // eslint-disable-line
 const matter = require('gray-matter'); // eslint-disable-line
 const visit = require('unist-util-visit'); // eslint-disable-line
 const remark = require('remark'); // eslint-disable-line
@@ -24,11 +24,10 @@ const { MARKDOWN_FRONTMATTER_SCHEMA } = require('./constants');
 /**
  * applys default front matter properties
  * @param {String} extension 
- * @param {String} content 
  * @param {Object} file 
- * @returns {String} the modified markdown content
+ * @returns {Object} the modified file
  */
-const markdownPlugin = (extension, file) => {
+const markdownFrontmatterPlugin = (extension, file) => {
   // only modify markdown files
   if (extension === 'md') {
     // parse front matter
@@ -76,6 +75,31 @@ const markdownPlugin = (extension, file) => {
   return file;
 };
 
+/**
+ * assigns the metadata page path property
+ * @param {String} extension
+ * @param {Object} file
+ * @returns {Object} the modified file
+ */
+const markdownPagePathPlugin = (extension, file) => {
+  if (extension !== 'md') {
+    return file;
+  }
+  // check front matter for a resourcePath
+  const data = matter(file.content);
+  const frontmatter = data.data;
+  if (frontmatter.resourcePath) {
+    file.metadata.pagePath = frontmatter.resourcePath;
+  } else {
+    // no resource path, this file is destined to be turned into a page,
+    // the page page is composed of the source name, the title of the file plus an id
+    file.metadata.pagePath = `/${file.metadata.source}/${frontmatter.title}_${shortid.generate()}`;
+  }
+
+  return file;
+};
+
 module.exports = {
-  markdownPlugin,
+  markdownFrontmatterPlugin,
+  markdownPagePathPlugin,
 };

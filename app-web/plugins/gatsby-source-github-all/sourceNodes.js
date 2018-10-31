@@ -19,10 +19,9 @@
 //
 const crypto = require('crypto');
 const _ = require('lodash'); // eslint-disable-line
-const shortid = require('shortid'); // eslint-disable-line
 const { getFilesFromRepo } = require('./utils/github-api');
 const { fileTransformer } = require('./utils/transformer');
-const { markdownPlugin } = require('./utils/plugins');
+const { markdownFrontmatterPlugin, markdownPagePathPlugin } = require('./utils/plugins');
 
 const createGHNode = (file, id) => ({
   id,
@@ -36,7 +35,7 @@ const createGHNode = (file, id) => ({
   htmlURL: file.html_url,
   source: file.metadata.source,
   sourceName: file.metadata.sourceName,
-  pagePath: `/${file.metadata.source}/${file.metadata.name}_${shortid.generate()}`,
+  pagePath: file.metadata.pagePath,
   labels: file.metadata.labels, // labels from source registry
   internal: {
     contentDigest: crypto
@@ -94,7 +93,10 @@ const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { to
         const newFile = { ...file, metadata: { ...file.metadata } };
         const { metadata: { extension } } = newFile;
         const ft = fileTransformer(extension, newFile);
-        const fileTransformed = ft.use(markdownPlugin).resolve();
+        const fileTransformed = ft
+          .use(markdownFrontmatterPlugin)
+          .use(markdownPagePathPlugin)
+          .resolve();
         return fileTransformed;
       })
       .forEach(file => {
