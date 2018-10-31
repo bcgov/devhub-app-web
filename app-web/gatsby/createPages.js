@@ -33,6 +33,15 @@ module.exports = async ({ graphql, boundActionCreators }) => {
           node {
             id
             pagePath
+            internal {
+              mediaType
+            }
+            childMarkdownRemark {
+              frontmatter {
+                resourcePath
+                ignore
+              }
+            }
           }
         }
       }
@@ -41,13 +50,21 @@ module.exports = async ({ graphql, boundActionCreators }) => {
   // // right now we are making an assumption all data here resolved from a markdown file
   // // and will be treated as so
   devhubData.data.allSourceDevhubGithub.edges.forEach(({ node }) => {
-    createPage({
-      path: node.pagePath,
-      component: markdownTemplate,
-      context: {
-        // Data passed to context is available in page queries as GraphQL variables.
-        id: node.id,
-      },
-    });
+    // only create pages for markdown files and ones that don't have an ignore flag
+    // or a resourcePath (which links the content to an external resource)
+    if (
+      node.internal.mediaType !== 'text/markdown' ||
+      node.childMarkdownRemark.frontmatter.ignore ||
+      node.childMarkdownRemark.frontmatter.resourcePath
+    ) {
+      createPage({
+        path: node.pagePath,
+        component: markdownTemplate,
+        context: {
+          // Data passed to context is available in page queries as GraphQL variables.
+          id: node.id,
+        },
+      });
+    }
   });
 };

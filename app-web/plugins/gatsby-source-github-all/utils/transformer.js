@@ -22,6 +22,7 @@ Created by Patrick Simonian
 // via a plugin
 
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
+const clone = require('clone'); // eslint-disable-line
 /**
  * takes in file parameters and runs it through plugins that
  * modify the content
@@ -30,21 +31,21 @@ const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
  * @param {Object} file 
  * @returns {String} file content transformed
  */
-const fileTransformer = (fileExtension, content, file) => ({
-  content,
+const fileTransformer = (fileExtension, file) => ({
+  file: clone(file),
   use(plugin, options = {}) {
     if (!TypeCheck.isFunction(plugin)) {
       throw new Error('Plugin must be function');
     }
-    const contentTransformed = plugin(fileExtension, this.content, file, options);
-    if (contentTransformed === undefined) {
-      throw new Error(`Plugin ${plugin.name} must return content`);
+    const fileTransformed = plugin(fileExtension, this.file, options);
+    if (fileTransformed === undefined) {
+      throw new Error(`Plugin ${plugin.name} must return file`);
     }
-    this.content = contentTransformed;
+    this.file = fileTransformed;
     return this;
   },
   resolve() {
-    return this.content;
+    return this.file;
   },
 });
 

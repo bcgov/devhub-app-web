@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "Apache-2.0",
   "dependencies": {
-    "@bcgov/common-web-utils": "0.0.6",
+    "@bcgov/common-web-utils": "~0.1.0",
     "@fortawesome/fontawesome-free-brands": "^5.0.13",
     "@fortawesome/fontawesome-svg-core": "^1.2.4",
     "@fortawesome/free-solid-svg-icons": "^5.3.1",
@@ -12,6 +12,7 @@
     "autoprefixer": "^9.1.5",
     "babel-plugin-styled-components": "^1.8.0",
     "chalk": "^2.4.1",
+    "clone": "^2.1.2",
     "dotenv": "^6.0.0",
     "emotion": "^8.0.8",
     "emotion-server": "^8.0.8",
