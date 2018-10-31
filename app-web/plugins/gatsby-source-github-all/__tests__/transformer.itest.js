@@ -1,6 +1,6 @@
 import matter from 'gray-matter'; // eslint-disable-line
 import { fileTransformer } from '../utils/transformer';
-import { markdownPlugin } from '../utils/plugins';
+import { markdownFrontmatterPlugin } from '../utils/plugins';
 import { PROCESSED_FILE_MD, PROCESSED_FILE_TXT } from '../__fixtures__/fixtures';
 
 jest.unmock('@bcgov/common-web-utils');
@@ -12,15 +12,11 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
   test('transformer implicitly adds title front matter with markdown plugin', () => {
     const data1 = matter(PROCESSED_FILE_MD.content);
     expect(data1.data.title).not.toBeDefined();
-    const transformedContent = fileTransformer(
-      PROCESSED_FILE_MD.metadata.extension,
-      PROCESSED_FILE_MD.content,
-      PROCESSED_FILE_MD
-    )
-      .use(markdownPlugin)
+    const transformedFile = fileTransformer(PROCESSED_FILE_MD.metadata.extension, PROCESSED_FILE_MD)
+      .use(markdownFrontmatterPlugin)
       .resolve();
-    expect(transformedContent).not.toBe(PROCESSED_FILE_MD.content);
-    const data2 = matter(transformedContent);
+    expect(transformedFile.content).not.toBe(PROCESSED_FILE_MD.content);
+    const data2 = matter(transformedFile.content);
     expect(data2.data.title).toBeDefined();
   });
 
@@ -31,7 +27,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
       PROCESSED_FILE_TXT.content,
       PROCESSED_FILE_TXT
     )
-      .use(markdownPlugin)
+      .use(markdownFrontmatterPlugin)
       .resolve();
     expect(transformedContent).toBe(originalContent);
   });
