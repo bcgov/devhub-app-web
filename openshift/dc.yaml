@@ -93,7 +93,7 @@ objects:
     name: ${NAME}-caddy
     creationTimestamp: null
   data:
-    Caddyfile: 0.0.0.0:2015\nroot /var/www/html\nlog stdout\nerrors stdout\nrewrite {\n  if    {path} not_match ^\\/0.0.0.0\n  to    {path} {path}/ /?_url={uri}\n}
+    Caddyfile: placeHolder
 - apiVersion: route.openshift.io/v1
   kind: Route
   metadata:
