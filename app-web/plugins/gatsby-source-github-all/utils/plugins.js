@@ -93,7 +93,7 @@ const markdownPagePathPlugin = (extension, file) => {
   } else {
     // no resource path, this file is destined to be turned into a page,
     // the page page is composed of the source name, the title of the file plus an id
-    file.metadata.pagePath = `/${file.metadata.source}/${frontmatter.title}_${shortid.generate()}`;
+    file.metadata.pagePath = `/${file.metadata.source}/${file.metadata.name}_${shortid.generate()}`;
   }
 
   return file;

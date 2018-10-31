@@ -1,7 +1,11 @@
 import matter from 'gray-matter'; // eslint-disable-line
 import { fileTransformer } from '../utils/transformer';
-import { markdownFrontmatterPlugin } from '../utils/plugins';
-import { PROCESSED_FILE_MD, PROCESSED_FILE_TXT } from '../__fixtures__/fixtures';
+import { markdownFrontmatterPlugin, markdownPagePathPlugin } from '../utils/plugins';
+import {
+  PROCESSED_FILE_MD,
+  PROCESSED_FILE_TXT,
+  RAW_FILE_MD_WITH_RESOURCEPATH,
+} from '../__fixtures__/fixtures';
 
 jest.unmock('@bcgov/common-web-utils');
 jest.unmock('unist-util-visit');
@@ -21,14 +25,34 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
   });
 
   test('transformer leaves text files alone with markdown plugin', () => {
-    const originalContent = PROCESSED_FILE_TXT.content;
     const transformedContent = fileTransformer(
       PROCESSED_FILE_TXT.metadata.extension,
-      PROCESSED_FILE_TXT.content,
       PROCESSED_FILE_TXT
     )
       .use(markdownFrontmatterPlugin)
       .resolve();
-    expect(transformedContent).toBe(originalContent);
+    expect(transformedContent).toEqual(PROCESSED_FILE_TXT);
+  });
+
+  test('transformer sets pagePath to be resourcePath if it exists', () => {
+    const data = matter(RAW_FILE_MD_WITH_RESOURCEPATH.content);
+    expect(data.data.resourcePath).toBeDefined();
+    const transformedFile = fileTransformer(
+      RAW_FILE_MD_WITH_RESOURCEPATH.metadata.extension,
+      RAW_FILE_MD_WITH_RESOURCEPATH
+    )
+      .use(markdownPagePathPlugin)
+      .resolve();
+    expect(transformedFile.metadata.pagePath).toBe(data.data.resourcePath);
+  });
+
+  test('transformer sets pagePath to gatsby create page path by default', () => {
+    const data = matter(PROCESSED_FILE_MD.content);
+    const { metadata: { source, name } } = PROCESSED_FILE_MD;
+    expect(data.data.resourcePath).not.toBeDefined();
+    const transformedFile = fileTransformer(PROCESSED_FILE_MD.metadata.extension, PROCESSED_FILE_MD)
+      .use(markdownPagePathPlugin)
+      .resolve();
+    expect(transformedFile.metadata.pagePath).toBe(`/${source}/${name}_0`);
   });
 });
