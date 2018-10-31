@@ -52,6 +52,7 @@ const markdownFrontmatterPlugin = (extension, file) => {
         return title;
       },
       ignore: () => false,
+      resourcePath: () => false,
     };
     // check front matter against defaults
     Object.keys(MARKDOWN_FRONTMATTER_SCHEMA).forEach(key => {
