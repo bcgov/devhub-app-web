@@ -53,9 +53,9 @@ module.exports = async ({ graphql, boundActionCreators }) => {
     // only create pages for markdown files and ones that don't have an ignore flag
     // or a resourcePath (which links the content to an external resource)
     if (
-      node.internal.mediaType !== 'text/markdown' ||
-      node.childMarkdownRemark.frontmatter.ignore ||
-      node.childMarkdownRemark.frontmatter.resourcePath
+      node.internal.mediaType === 'text/markdown' &&
+      !node.childMarkdownRemark.frontmatter.ignore &&
+      !node.childMarkdownRemark.frontmatter.resourcePath
     ) {
       createPage({
         path: node.pagePath,
