@@ -20,7 +20,7 @@ objects:
     creationTimestamp: null
     name: ${NAME}-static${SUFFIX}
   spec:
-    replicas: '1'
+    replicas: 1
     selector:
       deploymentconfig: ${NAME}-static${SUFFIX}
     strategy:
@@ -41,7 +41,7 @@ objects:
           args:
           - /tmp/scripts/run
           ports:
-          - containerPort: '2015'
+          - containerPort: 2015
             protocol: TCP
           resources:
             requests:
@@ -63,7 +63,7 @@ objects:
         volumes:
         - name: ${VOLUMN_NAME}
           configMap:
-            defaultMode: '420'
+            defaultMode: 420
             name: ${NAME}-caddy
     test: false
     triggers:
@@ -89,23 +89,6 @@ objects:
       targetPort: 2015
     selector:
       deploymentconfig: ${NAME}-static${SUFFIX}
-- apiVersion: v1
-  kind: ConfigMap
-  metadata:
-    creationTimestamp: null
-    name: ${NAME}-caddy
-  data:
-    Caddyfile: |-
-      0.0.0.0:2015
-      root /var/www/html
-      log stdout
-      errors stdout
-      rewrite {
-        if  {path} not_match ^\/0.0.0.0
-        to  {path} {path}/ /?_url={uri}}
-      templates {
-        path  /static/js
-        ext   .js}
 - apiVersion: route.openshift.io/v1
   kind: Route
   metadata:
@@ -121,7 +104,7 @@ objects:
     to:
       kind: Service
       name: ${NAME}-static${SUFFIX}
-      weight: '100'
+      weight: 100
     wildcardPolicy: None
 parameters:
 - description: A name used for all objects
