@@ -6,11 +6,11 @@ import { groupBy, flattenAllSourceDevhubGithub } from '../utils/dataMassager';
 import { GITHUB_ISSUES_ROUTE } from '../constants/routes';
 // local components
 import Layout from '../hoc/Layout';
+import Cards from '../components/Cards/Cards';
 import Resource from '../components/Resource/Resource';
 
 const Index = ({ data: { pathfinder, allSourceDevhubGithub } }) => {
   const yamlData = YAML.safeLoad(pathfinder.data.organization.repository.resources.yaml);
-
   // map entries and set paramaters in entries that resource component expects
   const mappedEntries = yamlData.entries.map(entry => ({
     ...entry,
@@ -31,6 +31,10 @@ const Index = ({ data: { pathfinder, allSourceDevhubGithub } }) => {
     title: dhnode.childMarkdownRemark.frontmatter.title,
     abstract: dhnode.childMarkdownRemark.frontmatter.description,
     link: dhnode.pagePath,
+    description: dhnode.childMarkdownRemark.frontmatter.description,
+    sourceName: dhnode.sourceName,
+    sourceURL: 'https://www.google.com',
+    resourcePath: dhnode.pagePath,
   }));
 
   const groupedGithubData = groupBy(mappedDevhubGithubNodes, 'sourceName');
@@ -41,6 +45,7 @@ const Index = ({ data: { pathfinder, allSourceDevhubGithub } }) => {
   return (
     <Layout>
       <main role="main" className="main">
+        <Cards githubLink="https://google.ca" cards={mappedDevhubGithubNodes} />
         <h1>Welcome</h1>
         <h2>
           <em>We are here to help</em>
