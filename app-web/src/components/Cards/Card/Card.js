@@ -4,11 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkSquareAlt } from '@fortawesome/free-solid-svg-icons';
 import styles from './Card.module.css';
 import Link from '../../Common/Link';
+import { ARIA_LABEL_FILE_IN_REPO, ARIA_LABEL_RESOURCE, ARIA_LABEL_REPO } from '../../../constants/strings';
 
 const Card = ({ sourcePath, sourceName, title, description, resourcePath }) => (
   <article className={styles.Card}>
     <h2>
-      <Link to={resourcePath}>
+      <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE}>
         <FontAwesomeIcon icon={faExternalLinkSquareAlt} />
         <span>{title}</span>
       </Link>
@@ -19,7 +20,9 @@ const Card = ({ sourcePath, sourceName, title, description, resourcePath }) => (
     <div className={styles.Actions}>
       {/* <ul>
             </ul> */}
-      <Link to={sourcePath}>{sourceName}</Link>
+      <Link to={sourcePath} aria-label={ARIA_LABEL_REPO}>
+        {sourceName}
+      </Link>
     </div>
   </article>
 );

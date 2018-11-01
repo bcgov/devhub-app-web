@@ -6,12 +6,13 @@ import { faGithub } from '@fortawesome/fontawesome-free-brands';
 import styles from './Cards.module.css';
 import Card from './Card/Card';
 import Link from '../Common/Link';
+import { ARIA_LABEL_REPO } from '../../constants/strings';
 
 const Cards = ({ topic, sourcePath, cards }) => {
   const cardComponents = cards.map(c => <Card {...c} key={shortid.generate()} />);
   const octoKat =
     sourcePath === '' ? null : (
-      <Link to={sourcePath}>
+      <Link to={sourcePath} aria-label={ARIA_LABEL_REPO}>
         <FontAwesomeIcon icon={faGithub} />
       </Link>
     );
