@@ -32,11 +32,12 @@ const createGHNode = (file, id) => ({
   owner: file.metadata.owner,
   parent: null,
   path: file.path,
-  originalSource: file.html_url,
-  source: file.metadata.source,
-  sourceName: file.metadata.sourceName,
-  sourcePath: file.metadata.sourceURL,
-  resourcePath: file.metadata.resourcePath,
+  originalSource: file.html_url, // path to the file in github
+  source: file.metadata.source, // the repo-name
+  sourceName: file.metadata.sourceName, // the pretty name of the 'source'
+  sourcePath: file.metadata.sourceURL, // the path to the repo
+  resourcePath: file.metadata.resourcePath, // either path to a gastby created page based on this node
+  // or the path to an external resource this node points too
   labels: file.metadata.labels, // labels from source registry
   internal: {
     contentDigest: crypto
