@@ -32,7 +32,7 @@ module.exports = async ({ graphql, boundActionCreators }) => {
         edges {
           node {
             id
-            pagePath
+            resourcePath
             internal {
               mediaType
             }
@@ -58,7 +58,7 @@ module.exports = async ({ graphql, boundActionCreators }) => {
       !node.childMarkdownRemark.frontmatter.resourcePath
     ) {
       createPage({
-        path: node.pagePath,
+        path: node.resourcePath,
         component: markdownTemplate,
         context: {
           // Data passed to context is available in page queries as GraphQL variables.

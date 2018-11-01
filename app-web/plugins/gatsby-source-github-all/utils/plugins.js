@@ -90,11 +90,12 @@ const markdownPagePathPlugin = (extension, file) => {
   const data = matter(file.content);
   const frontmatter = data.data;
   if (frontmatter.resourcePath) {
-    file.metadata.pagePath = frontmatter.resourcePath;
+    file.metadata.resourcePath = frontmatter.resourcePath;
   } else {
     // no resource path, this file is destined to be turned into a page,
     // the page page is composed of the source name, the title of the file plus an id
-    file.metadata.pagePath = `/${file.metadata.source}/${file.metadata.name}_${shortid.generate()}`;
+    file.metadata.resourcePath = `/${file.metadata.source}/${file.metadata
+      .name}_${shortid.generate()}`;
   }
 
   return file;

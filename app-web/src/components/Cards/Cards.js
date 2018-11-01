@@ -35,7 +35,7 @@ Cards.defaultProps = {
 Cards.propTypes = {
   cards: PropTypes.arrayOf(PropTypes.object).isRequired,
   sourcePath: PropTypes.string,
-  sourcePath: PropTypes.string.isRequired,
+  topic: PropTypes.string.isRequired,
 };
 
 export default Cards;

@@ -7,7 +7,6 @@ import { GITHUB_ISSUES_ROUTE } from '../constants/routes';
 // local components
 import Layout from '../hoc/Layout';
 import Cards from '../components/Cards/Cards';
-import Resource from '../components/Resource/Resource';
 
 const Index = ({ data: { pathfinder, allSourceDevhubGithub } }) => {
   const yamlData = YAML.safeLoad(pathfinder.data.organization.repository.resources.yaml);
@@ -15,13 +14,18 @@ const Index = ({ data: { pathfinder, allSourceDevhubGithub } }) => {
   const mappedEntries = yamlData.entries.map(entry => ({
     ...entry,
     title: entry.description,
-    abstract: entry.details,
+    description: entry.details,
     sourceName: 'Pathfinder',
   }));
 
   const groupedPathFinderData = groupBy(mappedEntries, 'category');
   const pathfinderResources = groupedPathFinderData.map(gd => (
-    <Resource key={shortid.generate()} category={gd.category} resources={gd.data} />
+    <Cards
+      key={shortid.generate()}
+      topic={gd.category}
+      sourcePath={gd.sourcePath}
+      cards={gd.data}
+    />
   ));
   // flatten out allSourceGithub edges from query
   const devhubGithubNodes = flattenAllSourceDevhubGithub(allSourceDevhubGithub.edges);
@@ -29,23 +33,23 @@ const Index = ({ data: { pathfinder, allSourceDevhubGithub } }) => {
   const mappedDevhubGithubNodes = devhubGithubNodes.map(dhnode => ({
     ...dhnode,
     title: dhnode.childMarkdownRemark.frontmatter.title,
-    abstract: dhnode.childMarkdownRemark.frontmatter.description,
-    link: dhnode.pagePath,
     description: dhnode.childMarkdownRemark.frontmatter.description,
-    sourceName: dhnode.sourceName,
-    sourceURL: 'https://www.google.com',
-    resourcePath: dhnode.pagePath,
   }));
 
   const groupedGithubData = groupBy(mappedDevhubGithubNodes, 'sourceName');
+  console.log(groupedGithubData);
   const devhubGithubResources = groupedGithubData.map(ghData => (
-    <Resource key={shortid.generate()} category={ghData.sourceName} resources={ghData.data} />
+    <Cards
+      key={shortid.generate()}
+      topic={ghData.sourceName}
+      sourcePath={ghData.sourcePath}
+      cards={ghData.data}
+    />
   ));
 
   return (
     <Layout>
       <main role="main" className="main">
-        <Cards topic="topic" sourcePath="https://google.ca" cards={mappedDevhubGithubNodes} />
         <h1>Welcome</h1>
         <h2>
           <em>We are here to help</em>
@@ -91,7 +95,8 @@ export const resourceQuery = graphql`
           id
           title: name
           sourceName
-          pagePath
+          sourcePath
+          resourcePath
           childMarkdownRemark {
             frontmatter {
               title

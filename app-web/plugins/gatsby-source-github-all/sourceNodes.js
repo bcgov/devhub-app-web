@@ -32,10 +32,11 @@ const createGHNode = (file, id) => ({
   owner: file.metadata.owner,
   parent: null,
   path: file.path,
-  htmlURL: file.html_url,
+  originalSource: file.html_url,
   source: file.metadata.source,
   sourceName: file.metadata.sourceName,
-  pagePath: file.metadata.pagePath,
+  sourcePath: file.metadata.sourceURL,
+  resourcePath: file.metadata.resourcePath,
   labels: file.metadata.labels, // labels from source registry
   internal: {
     contentDigest: crypto

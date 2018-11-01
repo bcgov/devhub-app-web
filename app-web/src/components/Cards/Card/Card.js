@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Card.module.css';
 import Link from '../../Common/Link';
 
-const Card = ({ sourceURL, sourceName, title, description, resourcePath }) => (
+const Card = ({ sourcePath, sourceName, title, description, resourcePath }) => (
   <article className={styles.Card}>
     <h2>{title}</h2>
     <div className={styles.Body}>
@@ -12,7 +12,7 @@ const Card = ({ sourceURL, sourceName, title, description, resourcePath }) => (
     <div className={styles.Actions}>
       {/* <ul>
             </ul> */}
-      <Link to={sourceURL}>{sourceName}</Link>
+      <Link to={sourcePath}>{sourceName}</Link>
     </div>
   </article>
 );
@@ -20,7 +20,7 @@ const Card = ({ sourceURL, sourceName, title, description, resourcePath }) => (
 Card.displayName = 'Github Card Component';
 
 Card.propTypes = {
-  sourceURL: PropTypes.string.isRequired,
+  sourcePath: PropTypes.string.isRequired,
   sourceName: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,

@@ -34,7 +34,7 @@ const Generic = ({ data: { sourceDevhubGithub } }) => {
         <div>
           <ul className={styles.List}>
             <li>
-              <a href={sourceDevhubGithub.htmlURL}>
+              <a href={sourceDevhubGithub.originalSource}>
                 <FontAwesomeIcon icon={faGithub} />
               </a>
             </li>
@@ -67,7 +67,7 @@ export const sourceDevhubGithub = graphql`
         }
         html
       }
-      htmlURL
+      originalSource
       source
       sourceName
       owner
