@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 // stylesheets
 import '../assets/styles/index.css';
-import '../assets/styles/page.css';
 // layout local componenets
 import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
 // redux & auth
