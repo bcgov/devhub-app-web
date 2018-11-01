@@ -15,7 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-
+const shortid = require('shortid'); // eslint-disable-line
 const matter = require('gray-matter'); // eslint-disable-line
 const visit = require('unist-util-visit'); // eslint-disable-line
 const remark = require('remark'); // eslint-disable-line
@@ -24,15 +24,14 @@ const { MARKDOWN_FRONTMATTER_SCHEMA } = require('./constants');
 /**
  * applys default front matter properties
  * @param {String} extension 
- * @param {String} content 
  * @param {Object} file 
- * @returns {String} the modified markdown content
+ * @returns {Object} the modified file
  */
-const markdownPlugin = (extension, raw, file) => {
+const markdownFrontmatterPlugin = (extension, file) => {
   // only modify markdown files
   if (extension === 'md') {
     // parse front matter
-    const data = matter(raw);
+    const data = matter(file.content);
     const frontmatter = data.data;
     const DEFAULTS = {
       title: () => {
@@ -52,12 +51,14 @@ const markdownPlugin = (extension, raw, file) => {
         });
         return title;
       },
+      ignore: () => false,
+      resourcePath: () => '',
     };
     // check front matter against defaults
     Object.keys(MARKDOWN_FRONTMATTER_SCHEMA).forEach(key => {
       const property = MARKDOWN_FRONTMATTER_SCHEMA[key];
       const value = frontmatter[key];
-      const valueIsInvalid = !value || !TypeCheck.isString(value) || value === '';
+      const valueIsInvalid = !value || !TypeCheck.isA(property.type, value) || value === '';
       // if propery required and frontmatter doesn't have it
       if (property.required && valueIsInvalid) {
         throw new Error(
@@ -69,11 +70,37 @@ const markdownPlugin = (extension, raw, file) => {
       }
     });
     // create 'new' md string with updated front matter
-    return matter.stringify(data.content, frontmatter);
+    file.content = matter.stringify(data.content, frontmatter);
+    return file;
   }
-  return raw;
+  return file;
+};
+
+/**
+ * assigns the metadata page path property
+ * @param {String} extension
+ * @param {Object} file
+ * @returns {Object} the modified file
+ */
+const markdownPagePathPlugin = (extension, file) => {
+  if (extension !== 'md') {
+    return file;
+  }
+  // check front matter for a resourcePath
+  const data = matter(file.content);
+  const frontmatter = data.data;
+  if (frontmatter.resourcePath) {
+    file.metadata.pagePath = frontmatter.resourcePath;
+  } else {
+    // no resource path, this file is destined to be turned into a page,
+    // the page page is composed of the source name, the title of the file plus an id
+    file.metadata.pagePath = `/${file.metadata.source}/${file.metadata.name}_${shortid.generate()}`;
+  }
+
+  return file;
 };
 
 module.exports = {
-  markdownPlugin,
+  markdownFrontmatterPlugin,
+  markdownPagePathPlugin,
 };

@@ -1,5 +1,5 @@
 import { fileTransformer } from '../utils/transformer';
-import { markdownPlugin } from '../utils/plugins';
+import { markdownFrontmatterPlugin, markdownPagePathPlugin } from '../utils/plugins';
 import { PROCESSED_FILE_MD } from '../__fixtures__/fixtures';
 
 describe('Transformer System', () => {
@@ -15,45 +15,55 @@ describe('Transformer System', () => {
   it('calls plugins when used', () => {
     const plugin = jest.fn();
     plugin.mockReturnValue('content');
-    const ft = fileTransformer(file.metadata.extension, file.content, file);
+    const ft = fileTransformer(file.metadata.extension, file);
     ft.use(plugin);
-    expect(plugin).toHaveBeenCalledWith(file.metadata.extension, file.content, file, {});
+    expect(plugin).toHaveBeenCalledWith(file.metadata.extension, file, {});
   });
 
-  it('resolves content at end of chain', () => {
+  it('resolves file at end of chain', () => {
     const plugin = jest.fn();
-    plugin.mockReturnValue('content');
-    const ft = fileTransformer(file.metadata.extension, file.content, file);
+    plugin.mockReturnValue('file');
+    const ft = fileTransformer(file.metadata.extension, file);
     const transformedContent = ft.use(plugin).resolve();
     expect(transformedContent).toBeDefined();
-    expect(typeof transformedContent).toBe('string');
   });
 
   it("throws if plugin isn't a function", () => {
     const plugin = null;
-    const ft = fileTransformer(file.metadata.extension, file.content, file);
+    const ft = fileTransformer(file.metadata.extension, file);
     expect(() => {
       ft.use(plugin);
     }).toThrow('Plugin must be function');
   });
 
-  it("throws if plugin doesn't return content", () => {
+  it("throws if plugin doesn't return file", () => {
     const plugin = jest.fn();
-    const ft = fileTransformer(file.metadata.extension, file.content);
+    const ft = fileTransformer(file.metadata.extension, file);
     expect(() => {
       ft.use(plugin);
-    }).toThrow(`Plugin ${plugin.name} must return content`);
+    }).toThrow(`Plugin ${plugin.name} must return file`);
   });
 
-  describe('Markdown Plugin', () => {
-    it('returns content', () => {
-      const result = markdownPlugin(file.metadata.extension, file.content, file);
+  describe('Markdown Plugins', () => {
+    it('returns file', () => {
+      const result = markdownFrontmatterPlugin(file.metadata.extension, file);
       expect(result).toBeDefined();
     });
 
-    it('returns content if file is not md', () => {
+    it('returns file if file is not md', () => {
       file.metadata.extension = 'txt';
-      const result = markdownPlugin(file.metadata.extension, file.content, file);
+      const result = markdownFrontmatterPlugin(file.metadata.extension, file);
+      expect(result).toBeDefined();
+    });
+
+    it('returns file', () => {
+      const result = markdownPagePathPlugin(file.metadata.extension, file);
+      expect(result).toBeDefined();
+    });
+
+    it('returns file if file is not md', () => {
+      file.metadata.extension = 'txt';
+      const result = markdownPagePathPlugin(file.metadata.extension, file);
       expect(result).toBeDefined();
     });
   });

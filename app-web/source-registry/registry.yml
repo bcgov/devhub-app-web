@@ -7,4 +7,12 @@ repos:
       labels:
         - Components
         - Repository
+  - name: Signing Tool
+    url: https://github.com/bcgov/devhub-signing-web/
+    owner: bcgov
+    repo: 'devhub-signing-web'
+    attributes:
+      labels:
+        - Self Service
+        - Repository
   

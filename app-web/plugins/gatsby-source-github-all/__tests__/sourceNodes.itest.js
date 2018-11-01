@@ -1,8 +1,5 @@
 import shortid from 'shortid'; // eslint-disable-line
-import {
-  PROCESSED_FILE_MD,
-  GRAPHQL_NODES_WITH_REGISTRY,
-} from '../__fixtures__/fixtures';
+import { PROCESSED_FILE_MD, GRAPHQL_NODES_WITH_REGISTRY } from '../__fixtures__/fixtures';
 import { sourceNodes, createGHNode } from '../sourceNodes';
 import { getFilesFromRepo } from '../utils/github-api';
 

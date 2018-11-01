@@ -107,11 +107,7 @@ objects:
     source:
       dockerfile: |-
         FROM nodejs/build-output:latest
-        #USER 0
         COPY html/* /var/www/html/
-        #RUN ls -la /var/www/ && ls -la /var/www/html/
-        #USER 1001
-        CMD ["sh","/tmp/scripts/run"]
       images:
         - from:
             kind: ImageStreamTag

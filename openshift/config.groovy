@@ -73,6 +73,9 @@ app {
         id = "${app.deployment.name}${app.deployment.suffix}" // app (unique name across all deployments int he namespace)
         namespace = "${vars.deployment.namespace}"
         host = "${vars.deployment.host}"
+        ssoURL = "${vars.deployment.ssoURL}"
+        ssoClient = "${vars.deployment.ssoClient}"
+        ssoRealm = "${vars.deployment.ssoRealm}"
 
         timeoutInSeconds = 60*20 // 20 minutes
         templates = [
@@ -83,6 +86,9 @@ app {
                         'SUFFIX':app.deployment.suffix,
                         'VERSION': app.deployment.version,
                         'HOST': app.deployment.host,
+                        'SSO_BASE_URL_VALUE': app.deployment.ssoURL,
+                        'SSO_CLIENT_ID_VALUE': app.deployment.ssoClient,
+                        'SSO_REALM_NAME_VALUE': app.deployment.ssoRealm
                     ]
                 ]
         ]
@@ -101,7 +107,10 @@ environments {
                 suffix = "-dev-${opt.'pr'}"
                 name = "${opt.'deployment-name'?:app.name}"
                 namespace = app.namespaces[env.name].namespace
-                version = "${vars.deployment.name}-${vars.deployment.env.name}-v${opt.'pr'}" //app-version  and tag
+                version = "${vars.deployment.name}-${vars.deployment.env.name}-v${opt.'pr'}"
+                ssoURL = "https://sso-dev.pathfinder.gov.bc.ca"
+                ssoClient = "devhub-web-${opt.'pr'}"
+                ssoRealm = "devhub"
             }
         }
     }
@@ -117,6 +126,9 @@ environments {
                 name = "${opt.'deployment-name'?:app.name}"
                 namespace = app.namespaces[env.name].namespace
                 version = "${vars.deployment.name}-${vars.deployment.env.name}" //app-version  and tag
+                ssoURL = "https://sso-test.pathfinder.gov.bc.ca"
+                ssoClient = "devhub-web"
+                ssoRealm = "devhub"
             }
         }
     }
@@ -133,6 +145,9 @@ environments {
                 name = "${opt.'deployment-name'?:app.name}"
                 namespace = app.namespaces[env.name].namespace
                 version = "${vars.deployment.name}-${vars.deployment.env.name}" //app-version  and tag
+                ssoURL = "https://sso.pathfinder.gov.bc.ca"
+                ssoClient = "devhub-web"
+                ssoRealm = "devhub"
             }
         }
     }

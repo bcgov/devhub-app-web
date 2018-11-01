@@ -134,6 +134,7 @@ describe('gatsby source github all plugin', () => {
         fileName: 'test.md',
         mediaType: 'application/test',
         extension: '.md',
+        labels: 'component',
       },
       name: 'test',
       path: '/test.md',
@@ -163,8 +164,9 @@ describe('gatsby source github all plugin', () => {
       owner: 'Billy Bob',
       parent: null,
       path: '/test.md',
+      labels: 'component',
       htmlURL: 'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
-      pagePath: '/something/something/test_0',
+      pagePath: undefined,
       source: 'something/something',
       sourceName: 'something',
       internal: {

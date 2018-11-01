@@ -8,11 +8,12 @@ import '../assets/styles/page.css';
 // layout local componenets
 import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
 // redux & auth
-import { implicitAuthManager } from '../../gatsby-browser';
+import { create_iam } from '../auth';
 import * as actions from '../store/actions/actions';
 
 class Layout extends React.Component {
   componentDidMount() {
+    const implicitAuthManager = create_iam();
     if (this.props.useAuth) {
       implicitAuthManager.registerHooks({
         onAuthenticateSuccess: () => this.props.login(),
