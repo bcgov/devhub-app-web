@@ -45,7 +45,7 @@ In Development
 Authentication, Authorization, Policies, etc
 
 ## Files in this repository
-> cmd to update tree (from project root) `tree -I 'node_modules|coverage|.cache|app-web/public' -d -L 3 >
+> cmd to update tree (from project root) `tree -I 'node_modules|coverage|.cache|app-web/public' -d -L 3`
 ```
 ├── app-web
 │   ├── __fixtures__
@@ -120,6 +120,10 @@ If you would like to contribute, please see our [CONTRIBUTING](CONTRIBUTING.md) 
 
 Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). 
 By participating in this project you agree to abide by its terms.
+
+## Issues/Suggestions
+Make Suggestions/Issues [here!](https://github.com/bcgov/devhub-app-web/issues/new)
+Issues are [markdown supported](https://guides.github.com/features/mastering-markdown/).
 
 ## License
 
