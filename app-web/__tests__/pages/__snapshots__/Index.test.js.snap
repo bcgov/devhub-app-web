@@ -128,6 +128,7 @@ ShallowWrapper {
                   "details": "test1",
                   "link": "https://github.com/BCDevOps/BCDevOps-Guide",
                   "originalSource": "../index.html",
+                  "sourceName": "Pathfinder",
                   "title": "DevOps PaaS",
                 },
               ]
@@ -144,6 +145,7 @@ ShallowWrapper {
                   "details": "test2",
                   "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                   "originalSource": "../index.html",
+                  "sourceName": "Pathfinder",
                   "title": "DevOps Commons",
                 },
                 Object {
@@ -153,6 +155,7 @@ ShallowWrapper {
                   "details": "test3",
                   "link": "https://www.meetup.com/DevOps-Commons",
                   "originalSource": "../index.html",
+                  "sourceName": "Pathfinder",
                   "title": "DevOps Commons Meetups",
                 },
               ]
@@ -237,6 +240,7 @@ ShallowWrapper {
                     "details": "test1",
                     "link": "https://github.com/BCDevOps/BCDevOps-Guide",
                     "originalSource": "../index.html",
+                    "sourceName": "Pathfinder",
                     "title": "DevOps PaaS",
                   },
                 ]
@@ -253,6 +257,7 @@ ShallowWrapper {
                     "details": "test2",
                     "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                     "originalSource": "../index.html",
+                    "sourceName": "Pathfinder",
                     "title": "DevOps Commons",
                   },
                   Object {
@@ -262,6 +267,7 @@ ShallowWrapper {
                     "details": "test3",
                     "link": "https://www.meetup.com/DevOps-Commons",
                     "originalSource": "../index.html",
+                    "sourceName": "Pathfinder",
                     "title": "DevOps Commons Meetups",
                   },
                 ]
@@ -448,6 +454,7 @@ ShallowWrapper {
                       "details": "test1",
                       "link": "https://github.com/BCDevOps/BCDevOps-Guide",
                       "originalSource": "../index.html",
+                      "sourceName": "Pathfinder",
                       "title": "DevOps PaaS",
                     },
                   ]
@@ -464,6 +471,7 @@ ShallowWrapper {
                       "details": "test2",
                       "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                       "originalSource": "../index.html",
+                      "sourceName": "Pathfinder",
                       "title": "DevOps Commons",
                     },
                     Object {
@@ -473,6 +481,7 @@ ShallowWrapper {
                       "details": "test3",
                       "link": "https://www.meetup.com/DevOps-Commons",
                       "originalSource": "../index.html",
+                      "sourceName": "Pathfinder",
                       "title": "DevOps Commons Meetups",
                     },
                   ]
@@ -497,6 +506,7 @@ ShallowWrapper {
                     "details": "test1",
                     "link": "https://github.com/BCDevOps/BCDevOps-Guide",
                     "originalSource": "../index.html",
+                    "sourceName": "Pathfinder",
                     "title": "DevOps PaaS",
                   },
                 ],
@@ -519,6 +529,7 @@ ShallowWrapper {
                     "details": "test2",
                     "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                     "originalSource": "../index.html",
+                    "sourceName": "Pathfinder",
                     "title": "DevOps Commons",
                   },
                   Object {
@@ -528,6 +539,7 @@ ShallowWrapper {
                     "details": "test3",
                     "link": "https://www.meetup.com/DevOps-Commons",
                     "originalSource": "../index.html",
+                    "sourceName": "Pathfinder",
                     "title": "DevOps Commons Meetups",
                   },
                 ],
@@ -623,6 +635,7 @@ ShallowWrapper {
                     "details": "test1",
                     "link": "https://github.com/BCDevOps/BCDevOps-Guide",
                     "originalSource": "../index.html",
+                    "sourceName": "Pathfinder",
                     "title": "DevOps PaaS",
                   },
                 ]
@@ -639,6 +652,7 @@ ShallowWrapper {
                     "details": "test2",
                     "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                     "originalSource": "../index.html",
+                    "sourceName": "Pathfinder",
                     "title": "DevOps Commons",
                   },
                   Object {
@@ -648,6 +662,7 @@ ShallowWrapper {
                     "details": "test3",
                     "link": "https://www.meetup.com/DevOps-Commons",
                     "originalSource": "../index.html",
+                    "sourceName": "Pathfinder",
                     "title": "DevOps Commons Meetups",
                   },
                 ]
@@ -732,6 +747,7 @@ ShallowWrapper {
                       "details": "test1",
                       "link": "https://github.com/BCDevOps/BCDevOps-Guide",
                       "originalSource": "../index.html",
+                      "sourceName": "Pathfinder",
                       "title": "DevOps PaaS",
                     },
                   ]
@@ -748,6 +764,7 @@ ShallowWrapper {
                       "details": "test2",
                       "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                       "originalSource": "../index.html",
+                      "sourceName": "Pathfinder",
                       "title": "DevOps Commons",
                     },
                     Object {
@@ -757,6 +774,7 @@ ShallowWrapper {
                       "details": "test3",
                       "link": "https://www.meetup.com/DevOps-Commons",
                       "originalSource": "../index.html",
+                      "sourceName": "Pathfinder",
                       "title": "DevOps Commons Meetups",
                     },
                   ]
@@ -943,6 +961,7 @@ ShallowWrapper {
                         "details": "test1",
                         "link": "https://github.com/BCDevOps/BCDevOps-Guide",
                         "originalSource": "../index.html",
+                        "sourceName": "Pathfinder",
                         "title": "DevOps PaaS",
                       },
                     ]
@@ -959,6 +978,7 @@ ShallowWrapper {
                         "details": "test2",
                         "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                         "originalSource": "../index.html",
+                        "sourceName": "Pathfinder",
                         "title": "DevOps Commons",
                       },
                       Object {
@@ -968,6 +988,7 @@ ShallowWrapper {
                         "details": "test3",
                         "link": "https://www.meetup.com/DevOps-Commons",
                         "originalSource": "../index.html",
+                        "sourceName": "Pathfinder",
                         "title": "DevOps Commons Meetups",
                       },
                     ]
@@ -992,6 +1013,7 @@ ShallowWrapper {
                       "details": "test1",
                       "link": "https://github.com/BCDevOps/BCDevOps-Guide",
                       "originalSource": "../index.html",
+                      "sourceName": "Pathfinder",
                       "title": "DevOps PaaS",
                     },
                   ],
@@ -1014,6 +1036,7 @@ ShallowWrapper {
                       "details": "test2",
                       "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                       "originalSource": "../index.html",
+                      "sourceName": "Pathfinder",
                       "title": "DevOps Commons",
                     },
                     Object {
@@ -1023,6 +1046,7 @@ ShallowWrapper {
                       "details": "test3",
                       "link": "https://www.meetup.com/DevOps-Commons",
                       "originalSource": "../index.html",
+                      "sourceName": "Pathfinder",
                       "title": "DevOps Commons Meetups",
                     },
                   ],

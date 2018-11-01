@@ -1,7 +1,7 @@
 .Item {
-    flex-basis: 250px;
-    margin: 15px 10px;
-    height: 290px;
+    flex-basis: 284px;
+    height: 330px;
+    margin: 15px 0;
     flex-shrink: 0;
     box-shadow: 0 0 1px 1px #ccc;
     position: relative;
@@ -12,28 +12,42 @@
     transition: transform .35s ease-out, box-shadow .35s ease-out;
 }
 
+.Item .SourceLabel {
+    position: absolute;
+    top: 0;
+    padding: 4px;
+    border-bottom-left-radius: 8px;
+    background-color: #c1d0e3;
+    color: #444;
+    right: 0;
+    font-size: 12px;
+    font-weight: 700;
+    max-width: 89px;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    white-space: pre;
+}
+
 .Item:hover {
     transform: translateY(-5px);
     box-shadow: 0px 1px 3px 4px #ccc;
 }
 
-.Item h1 {
+.Item header {
     font-size: 20px;
     text-align: left;
     margin: 0;
-    padding-left: 10px;
-    padding-bottom: 15px;
-    padding: 10px 10px 6px;
-    color: #717388;
+    padding: 4px 9px 6px;
     -ms-flex-preferred-size: 46px;
     background-color: #f7f7f7;
-    flex: 0 0 62px;
+    flex: 0 0 71px;
     box-sizing: border-box;
     position: relative;
+    border-bottom: 1px solid #ccc;
 }
 
 /* for some flair */
-.Item h1::after {
+.Item header::after {
     position: absolute;
     content: '';
     width: 45px;
@@ -47,10 +61,16 @@
     left: 10px;
 }
 
+.Item header h1 {
+    color: #717388;
+    font-size: 18px;
+    border-bottom: 0;
+    margin: 0;
+    max-width: 165px;
+}
 .Item .Body {
     overflow: overlay;
     padding: 5px 10px;
-    margin-top: 4px;
     flex-grow: 1;
 }
 
@@ -82,4 +102,28 @@
 
 .Item p {
     line-height: 1.4em;
+}
+
+@media screen and (min-width: 500px) {
+    .Item {
+        flex-basis: 250px;
+        margin: 15px 10px;
+        height: 290px;
+        flex-shrink: 0;
+        box-shadow: 0 0 1px 1px #ccc;
+        position: relative;
+        overflow-y: overlay;
+        display: flex; 
+        flex-direction: column;
+        justify-content: space-between;
+        transition: transform .35s ease-out, box-shadow .35s ease-out;
+    }
+
+    .Item .SourceLabel {
+        display: none;
+    }
+
+    .Item header h1 {
+        max-width: initial;
+    }
 }

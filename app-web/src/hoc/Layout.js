@@ -1,11 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectGlobal } from 'styled-components';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import 'normalize.css';
-// local sourced fonts
-import * as fonts from '../assets/fonts/fonts';
 // stylesheets
 import '../assets/styles/index.css';
 import '../assets/styles/page.css';
@@ -14,16 +10,6 @@ import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
 // redux & auth
 import { create_iam } from '../auth';
 import * as actions from '../store/actions/actions';
-
-// eslint-disable-next-line
-injectGlobal`
-  @font-face {
-    font-family: 'Myriad-Pro';
-    src: local('Myriad-Pro'), url('${fonts.MyriadWebProWoff}') format('woff'),
-    url('${fonts.MyriadWebProWoff2}') format('woff2'),
-    url('${fonts.MyriadWebProTtf}') format('truetype');
-  }
-`;
 
 class Layout extends React.Component {
   componentDidMount() {

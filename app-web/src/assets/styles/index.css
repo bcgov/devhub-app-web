@@ -8,7 +8,7 @@ body, html {
 }
 
 body {
-  font-family: 'Myriad-Pro', Calibri, Arial, 'Sans Serif';
+  font-family: 'PT Sans', 'Sans Serif', Arial;
   margin: 0;
   padding: 0;
   min-width: 320px;
@@ -27,5 +27,19 @@ p {
 .container {
   max-width: 1000px;
   margin: 0 auto;
-  padding-top: 25px;
 }
+
+.large-screen {
+  display: none;
+}
+
+@media screen and (min-width: 600px) {
+  .small-screen {
+    display: none;
+  }
+
+  .large-screen {
+    display: block;
+  }
+}
+
