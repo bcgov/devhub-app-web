@@ -16,11 +16,15 @@
     box-shadow: 0 0 2px 2px rgba(0, 44, 95, .25);
 }
 
-.Card h2 {
+.Card h2 a {
     font-size: 20px;
-    color: #242424;
     font-weight: 400;
     margin-bottom: 13px;
+}
+
+.Card h2 span {
+    margin-left: 10px;
+    color: #242424;
 }
 
 .Card a {
