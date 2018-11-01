@@ -1,0 +1,26 @@
+.Cards {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+.TopicContainer {
+    display: flex;
+    align-items: center;
+}
+
+.TopicContainer h1 {
+    flex-grow: 1;
+    border-bottom: 0;
+    color: #6d6d6d;
+}
+
+.TopicContainer a {
+    color: #242424;
+    font-size: 28px;
+}
+
+@media screen and (min-width: 620px) {
+    .Cards {
+        justify-content: flex-start;
+    }
+}

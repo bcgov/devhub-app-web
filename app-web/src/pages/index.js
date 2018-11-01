@@ -45,7 +45,7 @@ const Index = ({ data: { pathfinder, allSourceDevhubGithub } }) => {
   return (
     <Layout>
       <main role="main" className="main">
-        <Cards githubLink="https://google.ca" cards={mappedDevhubGithubNodes} />
+        <Cards topic="topic" sourcePath="https://google.ca" cards={mappedDevhubGithubNodes} />
         <h1>Welcome</h1>
         <h2>
           <em>We are here to help</em>
