@@ -20,7 +20,7 @@ const Card = ({ sourcePath, sourceName, title, description, resourcePath }) => (
 Card.displayName = 'Github Card Component';
 
 Card.propTypes = {
-  sourcePath: PropTypes.string.isRequired,
+  sourcePath: PropTypes.string,
   sourceName: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,

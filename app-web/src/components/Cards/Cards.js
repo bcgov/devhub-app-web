@@ -16,7 +16,7 @@ const Cards = ({ topic, sourcePath, cards }) => {
       </Link>
     );
   return (
-    <section>
+    <section className={styles.CardsContainer}>
       <div className={styles.TopicContainer}>
         <h1>{topic}</h1>
         {octoKat}
