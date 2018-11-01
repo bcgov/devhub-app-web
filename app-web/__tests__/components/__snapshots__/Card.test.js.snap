@@ -26,6 +26,7 @@ ShallowWrapper {
       "children": Array [
         <h2>
           <GatsbyLink
+            aria-label="Learn more about this article"
             to="resourcePath"
           >
             <FontAwesomeIcon
@@ -74,6 +75,7 @@ ShallowWrapper {
           className="Actions"
         >
           <GatsbyLink
+            aria-label="Link to the Github Repository"
             to="sourcePath"
           >
             sourceName
@@ -90,6 +92,7 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": <GatsbyLink
+            aria-label="Learn more about this article"
             to="resourcePath"
           >
             <FontAwesomeIcon
@@ -133,6 +136,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "aria-label": "Learn more about this article",
             "children": Array [
               <FontAwesomeIcon
                 border={false}
@@ -254,6 +258,7 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": <GatsbyLink
+            aria-label="Link to the Github Repository"
             to="sourcePath"
           >
             sourceName
@@ -266,6 +271,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "aria-label": "Link to the Github Repository",
             "children": "sourceName",
             "to": "sourcePath",
           },
@@ -287,6 +293,7 @@ ShallowWrapper {
         "children": Array [
           <h2>
             <GatsbyLink
+              aria-label="Learn more about this article"
               to="resourcePath"
             >
               <FontAwesomeIcon
@@ -335,6 +342,7 @@ ShallowWrapper {
             className="Actions"
           >
             <GatsbyLink
+              aria-label="Link to the Github Repository"
               to="sourcePath"
             >
               sourceName
@@ -351,6 +359,7 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": <GatsbyLink
+              aria-label="Learn more about this article"
               to="resourcePath"
             >
               <FontAwesomeIcon
@@ -394,6 +403,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
+              "aria-label": "Learn more about this article",
               "children": Array [
                 <FontAwesomeIcon
                   border={false}
@@ -515,6 +525,7 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": <GatsbyLink
+              aria-label="Link to the Github Repository"
               to="sourcePath"
             >
               sourceName
@@ -527,6 +538,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
+              "aria-label": "Link to the Github Repository",
               "children": "sourceName",
               "to": "sourcePath",
             },
