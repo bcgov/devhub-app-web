@@ -13,7 +13,7 @@ const Cards = ({ topic, sourcePath, cards }) => {
   const octoKat =
     sourcePath === '' ? null : (
       <Link to={sourcePath} aria-label={ARIA_LABEL_REPO}>
-        <FontAwesomeIcon icon={faGithub} />
+        <FontAwesomeIcon icon={faGithub} color="#242424" size="2x" />
       </Link>
     );
   return (

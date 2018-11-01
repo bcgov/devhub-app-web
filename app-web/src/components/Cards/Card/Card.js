@@ -10,7 +10,7 @@ const Card = ({ sourcePath, sourceName, title, description, resourcePath }) => (
   <article className={styles.Card}>
     <h2>
       <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE}>
-        <FontAwesomeIcon icon={faExternalLinkSquareAlt} />
+        <FontAwesomeIcon icon={faExternalLinkSquareAlt} size="1x" />
         <span>{title}</span>
       </Link>
     </h2>
