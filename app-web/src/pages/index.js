@@ -1,7 +1,6 @@
 import React from 'react';
 import YAML from 'js-yaml';
 import shortid from 'shortid';
-import groupArray from 'group-array';
 import { Flag } from 'flag';
 import { groupBy, flattenAllSourceDevhubGithub } from '../utils/dataMassager';
 import { GITHUB_ISSUES_ROUTE } from '../constants/routes';

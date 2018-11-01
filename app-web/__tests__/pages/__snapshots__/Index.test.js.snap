@@ -56,7 +56,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": <main
-        className="main"
+        className="Main"
         role="main"
       >
         <h1>
@@ -67,20 +67,10 @@ ShallowWrapper {
             We are here to help
           </em>
         </h2>
-        <p
-          className="para"
-        >
+        <p>
           This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.
         </p>
-        <p
-          className="para"
-        >
-          This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.
-        </p>
-        <p
-          className="para"
-        >
-           
+        <p>
           If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
           <a
             href="https://github.com/bcgov/devhub-app-web/issues"
@@ -92,74 +82,76 @@ ShallowWrapper {
         <Flag
           name="features.githubResourceCards"
         >
-          <Resource
-            category="Design System"
-            resources={
+          <Github Cards Component
+            cards={
               Array [
                 Object {
-                  "abstract": "This is a test description that will be used as the intro blurb to a card",
                   "childMarkdownRemark": Object {
                     "frontmatter": Object {
                       "description": "This is a test description that will be used as the intro blurb to a card",
                       "title": "",
                     },
                   },
+                  "description": "This is a test description that will be used as the intro blurb to a card",
                   "id": "1bc91db3-c484-58b5-9700-55c22406950a",
-                  "link": "/design-system/test",
                   "pagePath": "/design-system/test",
                   "sourceName": "Design System",
                   "title": "",
                 },
               ]
             }
+            sourcePath=""
+            topic="Design System"
           />
         </Flag>
         <Flag
           name="features.pathfinderResourceCards"
         >
-          <Resource
-            category="What's Going On Now"
-            resources={
+          <Github Cards Component
+            cards={
               Array [
                 Object {
-                  "abstract": "test1",
                   "category": "What's Going On Now",
-                  "description": "DevOps PaaS",
+                  "description": "test1",
                   "details": "test1",
                   "link": "https://github.com/BCDevOps/BCDevOps-Guide",
                   "originalSource": "../index.html",
+                  "resourcePath": "https://github.com/BCDevOps/BCDevOps-Guide",
                   "sourceName": "Pathfinder",
                   "title": "DevOps PaaS",
                 },
               ]
             }
+            sourcePath=""
+            topic="What's Going On Now"
           />
-          <Resource
-            category="Community"
-            resources={
+          <Github Cards Component
+            cards={
               Array [
                 Object {
-                  "abstract": "test2",
                   "category": "Community",
-                  "description": "DevOps Commons",
+                  "description": "test2",
                   "details": "test2",
                   "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                   "originalSource": "../index.html",
+                  "resourcePath": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                   "sourceName": "Pathfinder",
                   "title": "DevOps Commons",
                 },
                 Object {
-                  "abstract": "test3",
                   "category": "Community",
-                  "description": "DevOps Commons Meetups",
+                  "description": "test3",
                   "details": "test3",
                   "link": "https://www.meetup.com/DevOps-Commons",
                   "originalSource": "../index.html",
+                  "resourcePath": "https://www.meetup.com/DevOps-Commons",
                   "sourceName": "Pathfinder",
                   "title": "DevOps Commons Meetups",
                 },
               ]
             }
+            sourcePath=""
+            topic="Community"
           />
         </Flag>
       </main>,
@@ -179,20 +171,10 @@ ShallowWrapper {
               We are here to help
             </em>
           </h2>,
-          <p
-            className="para"
-          >
+          <p>
             This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.
           </p>,
-          <p
-            className="para"
-          >
-            This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.
-          </p>,
-          <p
-            className="para"
-          >
-             
+          <p>
             If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
             <a
               href="https://github.com/bcgov/devhub-app-web/issues"
@@ -204,78 +186,80 @@ ShallowWrapper {
           <Flag
             name="features.githubResourceCards"
           >
-            <Resource
-              category="Design System"
-              resources={
+            <Github Cards Component
+              cards={
                 Array [
                   Object {
-                    "abstract": "This is a test description that will be used as the intro blurb to a card",
                     "childMarkdownRemark": Object {
                       "frontmatter": Object {
                         "description": "This is a test description that will be used as the intro blurb to a card",
                         "title": "",
                       },
                     },
+                    "description": "This is a test description that will be used as the intro blurb to a card",
                     "id": "1bc91db3-c484-58b5-9700-55c22406950a",
-                    "link": "/design-system/test",
                     "pagePath": "/design-system/test",
                     "sourceName": "Design System",
                     "title": "",
                   },
                 ]
               }
+              sourcePath=""
+              topic="Design System"
             />
           </Flag>,
           <Flag
             name="features.pathfinderResourceCards"
           >
-            <Resource
-              category="What's Going On Now"
-              resources={
+            <Github Cards Component
+              cards={
                 Array [
                   Object {
-                    "abstract": "test1",
                     "category": "What's Going On Now",
-                    "description": "DevOps PaaS",
+                    "description": "test1",
                     "details": "test1",
                     "link": "https://github.com/BCDevOps/BCDevOps-Guide",
                     "originalSource": "../index.html",
+                    "resourcePath": "https://github.com/BCDevOps/BCDevOps-Guide",
                     "sourceName": "Pathfinder",
                     "title": "DevOps PaaS",
                   },
                 ]
               }
+              sourcePath=""
+              topic="What's Going On Now"
             />
-            <Resource
-              category="Community"
-              resources={
+            <Github Cards Component
+              cards={
                 Array [
                   Object {
-                    "abstract": "test2",
                     "category": "Community",
-                    "description": "DevOps Commons",
+                    "description": "test2",
                     "details": "test2",
                     "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                     "originalSource": "../index.html",
+                    "resourcePath": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                     "sourceName": "Pathfinder",
                     "title": "DevOps Commons",
                   },
                   Object {
-                    "abstract": "test3",
                     "category": "Community",
-                    "description": "DevOps Commons Meetups",
+                    "description": "test3",
                     "details": "test3",
                     "link": "https://www.meetup.com/DevOps-Commons",
                     "originalSource": "../index.html",
+                    "resourcePath": "https://www.meetup.com/DevOps-Commons",
                     "sourceName": "Pathfinder",
                     "title": "DevOps Commons Meetups",
                   },
                 ]
               }
+              sourcePath=""
+              topic="Community"
             />
           </Flag>,
         ],
-        "className": "main",
+        "className": "Main",
         "role": "main",
       },
       "ref": null,
@@ -320,7 +304,6 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": "This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.",
-            "className": "para",
           },
           "ref": null,
           "rendered": "This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.",
@@ -331,20 +314,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": "This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.",
-            "className": "para",
-          },
-          "ref": null,
-          "rendered": "This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.",
-          "type": "p",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
             "children": Array [
-              " ",
               "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our ",
               <a
                 href="https://github.com/bcgov/devhub-app-web/issues"
@@ -353,11 +323,9 @@ ShallowWrapper {
               </a>,
               " repository.",
             ],
-            "className": "para",
           },
           "ref": null,
           "rendered": Array [
-            " ",
             "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our ",
             Object {
               "instance": null,
@@ -381,26 +349,26 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Resource
-                category="Design System"
-                resources={
+              <Github Cards Component
+                cards={
                   Array [
                     Object {
-                      "abstract": "This is a test description that will be used as the intro blurb to a card",
                       "childMarkdownRemark": Object {
                         "frontmatter": Object {
                           "description": "This is a test description that will be used as the intro blurb to a card",
                           "title": "",
                         },
                       },
+                      "description": "This is a test description that will be used as the intro blurb to a card",
                       "id": "1bc91db3-c484-58b5-9700-55c22406950a",
-                      "link": "/design-system/test",
                       "pagePath": "/design-system/test",
                       "sourceName": "Design System",
                       "title": "",
                     },
                   ]
                 }
+                sourcePath=""
+                topic="Design System"
               />,
             ],
             "name": "features.githubResourceCards",
@@ -412,23 +380,23 @@ ShallowWrapper {
               "key": "2",
               "nodeType": "function",
               "props": Object {
-                "category": "Design System",
-                "resources": Array [
+                "cards": Array [
                   Object {
-                    "abstract": "This is a test description that will be used as the intro blurb to a card",
                     "childMarkdownRemark": Object {
                       "frontmatter": Object {
                         "description": "This is a test description that will be used as the intro blurb to a card",
                         "title": "",
                       },
                     },
+                    "description": "This is a test description that will be used as the intro blurb to a card",
                     "id": "1bc91db3-c484-58b5-9700-55c22406950a",
-                    "link": "/design-system/test",
                     "pagePath": "/design-system/test",
                     "sourceName": "Design System",
                     "title": "",
                   },
                 ],
+                "sourcePath": "",
+                "topic": "Design System",
               },
               "ref": null,
               "rendered": null,
@@ -443,49 +411,51 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Resource
-                category="What's Going On Now"
-                resources={
+              <Github Cards Component
+                cards={
                   Array [
                     Object {
-                      "abstract": "test1",
                       "category": "What's Going On Now",
-                      "description": "DevOps PaaS",
+                      "description": "test1",
                       "details": "test1",
                       "link": "https://github.com/BCDevOps/BCDevOps-Guide",
                       "originalSource": "../index.html",
+                      "resourcePath": "https://github.com/BCDevOps/BCDevOps-Guide",
                       "sourceName": "Pathfinder",
                       "title": "DevOps PaaS",
                     },
                   ]
                 }
+                sourcePath=""
+                topic="What's Going On Now"
               />,
-              <Resource
-                category="Community"
-                resources={
+              <Github Cards Component
+                cards={
                   Array [
                     Object {
-                      "abstract": "test2",
                       "category": "Community",
-                      "description": "DevOps Commons",
+                      "description": "test2",
                       "details": "test2",
                       "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                       "originalSource": "../index.html",
+                      "resourcePath": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                       "sourceName": "Pathfinder",
                       "title": "DevOps Commons",
                     },
                     Object {
-                      "abstract": "test3",
                       "category": "Community",
-                      "description": "DevOps Commons Meetups",
+                      "description": "test3",
                       "details": "test3",
                       "link": "https://www.meetup.com/DevOps-Commons",
                       "originalSource": "../index.html",
+                      "resourcePath": "https://www.meetup.com/DevOps-Commons",
                       "sourceName": "Pathfinder",
                       "title": "DevOps Commons Meetups",
                     },
                   ]
                 }
+                sourcePath=""
+                topic="Community"
               />,
             ],
             "name": "features.pathfinderResourceCards",
@@ -497,19 +467,20 @@ ShallowWrapper {
               "key": "0",
               "nodeType": "function",
               "props": Object {
-                "category": "What's Going On Now",
-                "resources": Array [
+                "cards": Array [
                   Object {
-                    "abstract": "test1",
                     "category": "What's Going On Now",
-                    "description": "DevOps PaaS",
+                    "description": "test1",
                     "details": "test1",
                     "link": "https://github.com/BCDevOps/BCDevOps-Guide",
                     "originalSource": "../index.html",
+                    "resourcePath": "https://github.com/BCDevOps/BCDevOps-Guide",
                     "sourceName": "Pathfinder",
                     "title": "DevOps PaaS",
                   },
                 ],
+                "sourcePath": "",
+                "topic": "What's Going On Now",
               },
               "ref": null,
               "rendered": null,
@@ -520,29 +491,30 @@ ShallowWrapper {
               "key": "1",
               "nodeType": "function",
               "props": Object {
-                "category": "Community",
-                "resources": Array [
+                "cards": Array [
                   Object {
-                    "abstract": "test2",
                     "category": "Community",
-                    "description": "DevOps Commons",
+                    "description": "test2",
                     "details": "test2",
                     "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                     "originalSource": "../index.html",
+                    "resourcePath": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                     "sourceName": "Pathfinder",
                     "title": "DevOps Commons",
                   },
                   Object {
-                    "abstract": "test3",
                     "category": "Community",
-                    "description": "DevOps Commons Meetups",
+                    "description": "test3",
                     "details": "test3",
                     "link": "https://www.meetup.com/DevOps-Commons",
                     "originalSource": "../index.html",
+                    "resourcePath": "https://www.meetup.com/DevOps-Commons",
                     "sourceName": "Pathfinder",
                     "title": "DevOps Commons Meetups",
                   },
                 ],
+                "sourcePath": "",
+                "topic": "Community",
               },
               "ref": null,
               "rendered": null,
@@ -563,7 +535,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": <main
-          className="main"
+          className="Main"
           role="main"
         >
           <h1>
@@ -574,20 +546,10 @@ ShallowWrapper {
               We are here to help
             </em>
           </h2>
-          <p
-            className="para"
-          >
+          <p>
             This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.
           </p>
-          <p
-            className="para"
-          >
-            This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.
-          </p>
-          <p
-            className="para"
-          >
-             
+          <p>
             If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
             <a
               href="https://github.com/bcgov/devhub-app-web/issues"
@@ -599,74 +561,76 @@ ShallowWrapper {
           <Flag
             name="features.githubResourceCards"
           >
-            <Resource
-              category="Design System"
-              resources={
+            <Github Cards Component
+              cards={
                 Array [
                   Object {
-                    "abstract": "This is a test description that will be used as the intro blurb to a card",
                     "childMarkdownRemark": Object {
                       "frontmatter": Object {
                         "description": "This is a test description that will be used as the intro blurb to a card",
                         "title": "",
                       },
                     },
+                    "description": "This is a test description that will be used as the intro blurb to a card",
                     "id": "1bc91db3-c484-58b5-9700-55c22406950a",
-                    "link": "/design-system/test",
                     "pagePath": "/design-system/test",
                     "sourceName": "Design System",
                     "title": "",
                   },
                 ]
               }
+              sourcePath=""
+              topic="Design System"
             />
           </Flag>
           <Flag
             name="features.pathfinderResourceCards"
           >
-            <Resource
-              category="What's Going On Now"
-              resources={
+            <Github Cards Component
+              cards={
                 Array [
                   Object {
-                    "abstract": "test1",
                     "category": "What's Going On Now",
-                    "description": "DevOps PaaS",
+                    "description": "test1",
                     "details": "test1",
                     "link": "https://github.com/BCDevOps/BCDevOps-Guide",
                     "originalSource": "../index.html",
+                    "resourcePath": "https://github.com/BCDevOps/BCDevOps-Guide",
                     "sourceName": "Pathfinder",
                     "title": "DevOps PaaS",
                   },
                 ]
               }
+              sourcePath=""
+              topic="What's Going On Now"
             />
-            <Resource
-              category="Community"
-              resources={
+            <Github Cards Component
+              cards={
                 Array [
                   Object {
-                    "abstract": "test2",
                     "category": "Community",
-                    "description": "DevOps Commons",
+                    "description": "test2",
                     "details": "test2",
                     "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                     "originalSource": "../index.html",
+                    "resourcePath": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                     "sourceName": "Pathfinder",
                     "title": "DevOps Commons",
                   },
                   Object {
-                    "abstract": "test3",
                     "category": "Community",
-                    "description": "DevOps Commons Meetups",
+                    "description": "test3",
                     "details": "test3",
                     "link": "https://www.meetup.com/DevOps-Commons",
                     "originalSource": "../index.html",
+                    "resourcePath": "https://www.meetup.com/DevOps-Commons",
                     "sourceName": "Pathfinder",
                     "title": "DevOps Commons Meetups",
                   },
                 ]
               }
+              sourcePath=""
+              topic="Community"
             />
           </Flag>
         </main>,
@@ -686,20 +650,10 @@ ShallowWrapper {
                 We are here to help
               </em>
             </h2>,
-            <p
-              className="para"
-            >
+            <p>
               This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.
             </p>,
-            <p
-              className="para"
-            >
-              This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.
-            </p>,
-            <p
-              className="para"
-            >
-               
+            <p>
               If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
               <a
                 href="https://github.com/bcgov/devhub-app-web/issues"
@@ -711,78 +665,80 @@ ShallowWrapper {
             <Flag
               name="features.githubResourceCards"
             >
-              <Resource
-                category="Design System"
-                resources={
+              <Github Cards Component
+                cards={
                   Array [
                     Object {
-                      "abstract": "This is a test description that will be used as the intro blurb to a card",
                       "childMarkdownRemark": Object {
                         "frontmatter": Object {
                           "description": "This is a test description that will be used as the intro blurb to a card",
                           "title": "",
                         },
                       },
+                      "description": "This is a test description that will be used as the intro blurb to a card",
                       "id": "1bc91db3-c484-58b5-9700-55c22406950a",
-                      "link": "/design-system/test",
                       "pagePath": "/design-system/test",
                       "sourceName": "Design System",
                       "title": "",
                     },
                   ]
                 }
+                sourcePath=""
+                topic="Design System"
               />
             </Flag>,
             <Flag
               name="features.pathfinderResourceCards"
             >
-              <Resource
-                category="What's Going On Now"
-                resources={
+              <Github Cards Component
+                cards={
                   Array [
                     Object {
-                      "abstract": "test1",
                       "category": "What's Going On Now",
-                      "description": "DevOps PaaS",
+                      "description": "test1",
                       "details": "test1",
                       "link": "https://github.com/BCDevOps/BCDevOps-Guide",
                       "originalSource": "../index.html",
+                      "resourcePath": "https://github.com/BCDevOps/BCDevOps-Guide",
                       "sourceName": "Pathfinder",
                       "title": "DevOps PaaS",
                     },
                   ]
                 }
+                sourcePath=""
+                topic="What's Going On Now"
               />
-              <Resource
-                category="Community"
-                resources={
+              <Github Cards Component
+                cards={
                   Array [
                     Object {
-                      "abstract": "test2",
                       "category": "Community",
-                      "description": "DevOps Commons",
+                      "description": "test2",
                       "details": "test2",
                       "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                       "originalSource": "../index.html",
+                      "resourcePath": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                       "sourceName": "Pathfinder",
                       "title": "DevOps Commons",
                     },
                     Object {
-                      "abstract": "test3",
                       "category": "Community",
-                      "description": "DevOps Commons Meetups",
+                      "description": "test3",
                       "details": "test3",
                       "link": "https://www.meetup.com/DevOps-Commons",
                       "originalSource": "../index.html",
+                      "resourcePath": "https://www.meetup.com/DevOps-Commons",
                       "sourceName": "Pathfinder",
                       "title": "DevOps Commons Meetups",
                     },
                   ]
                 }
+                sourcePath=""
+                topic="Community"
               />
             </Flag>,
           ],
-          "className": "main",
+          "className": "Main",
           "role": "main",
         },
         "ref": null,
@@ -827,7 +783,6 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": "This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.",
-              "className": "para",
             },
             "ref": null,
             "rendered": "This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.",
@@ -838,20 +793,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": "This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.",
-              "className": "para",
-            },
-            "ref": null,
-            "rendered": "This is our first release and we’re planning to have new material added to this site every sprint (2 weeks), so please visit often to check our progress.",
-            "type": "p",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
               "children": Array [
-                " ",
                 "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our ",
                 <a
                   href="https://github.com/bcgov/devhub-app-web/issues"
@@ -860,11 +802,9 @@ ShallowWrapper {
                 </a>,
                 " repository.",
               ],
-              "className": "para",
             },
             "ref": null,
             "rendered": Array [
-              " ",
               "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our ",
               Object {
                 "instance": null,
@@ -888,26 +828,26 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": Array [
-                <Resource
-                  category="Design System"
-                  resources={
+                <Github Cards Component
+                  cards={
                     Array [
                       Object {
-                        "abstract": "This is a test description that will be used as the intro blurb to a card",
                         "childMarkdownRemark": Object {
                           "frontmatter": Object {
                             "description": "This is a test description that will be used as the intro blurb to a card",
                             "title": "",
                           },
                         },
+                        "description": "This is a test description that will be used as the intro blurb to a card",
                         "id": "1bc91db3-c484-58b5-9700-55c22406950a",
-                        "link": "/design-system/test",
                         "pagePath": "/design-system/test",
                         "sourceName": "Design System",
                         "title": "",
                       },
                     ]
                   }
+                  sourcePath=""
+                  topic="Design System"
                 />,
               ],
               "name": "features.githubResourceCards",
@@ -919,23 +859,23 @@ ShallowWrapper {
                 "key": "2",
                 "nodeType": "function",
                 "props": Object {
-                  "category": "Design System",
-                  "resources": Array [
+                  "cards": Array [
                     Object {
-                      "abstract": "This is a test description that will be used as the intro blurb to a card",
                       "childMarkdownRemark": Object {
                         "frontmatter": Object {
                           "description": "This is a test description that will be used as the intro blurb to a card",
                           "title": "",
                         },
                       },
+                      "description": "This is a test description that will be used as the intro blurb to a card",
                       "id": "1bc91db3-c484-58b5-9700-55c22406950a",
-                      "link": "/design-system/test",
                       "pagePath": "/design-system/test",
                       "sourceName": "Design System",
                       "title": "",
                     },
                   ],
+                  "sourcePath": "",
+                  "topic": "Design System",
                 },
                 "ref": null,
                 "rendered": null,
@@ -950,49 +890,51 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": Array [
-                <Resource
-                  category="What's Going On Now"
-                  resources={
+                <Github Cards Component
+                  cards={
                     Array [
                       Object {
-                        "abstract": "test1",
                         "category": "What's Going On Now",
-                        "description": "DevOps PaaS",
+                        "description": "test1",
                         "details": "test1",
                         "link": "https://github.com/BCDevOps/BCDevOps-Guide",
                         "originalSource": "../index.html",
+                        "resourcePath": "https://github.com/BCDevOps/BCDevOps-Guide",
                         "sourceName": "Pathfinder",
                         "title": "DevOps PaaS",
                       },
                     ]
                   }
+                  sourcePath=""
+                  topic="What's Going On Now"
                 />,
-                <Resource
-                  category="Community"
-                  resources={
+                <Github Cards Component
+                  cards={
                     Array [
                       Object {
-                        "abstract": "test2",
                         "category": "Community",
-                        "description": "DevOps Commons",
+                        "description": "test2",
                         "details": "test2",
                         "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                         "originalSource": "../index.html",
+                        "resourcePath": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                         "sourceName": "Pathfinder",
                         "title": "DevOps Commons",
                       },
                       Object {
-                        "abstract": "test3",
                         "category": "Community",
-                        "description": "DevOps Commons Meetups",
+                        "description": "test3",
                         "details": "test3",
                         "link": "https://www.meetup.com/DevOps-Commons",
                         "originalSource": "../index.html",
+                        "resourcePath": "https://www.meetup.com/DevOps-Commons",
                         "sourceName": "Pathfinder",
                         "title": "DevOps Commons Meetups",
                       },
                     ]
                   }
+                  sourcePath=""
+                  topic="Community"
                 />,
               ],
               "name": "features.pathfinderResourceCards",
@@ -1004,19 +946,20 @@ ShallowWrapper {
                 "key": "0",
                 "nodeType": "function",
                 "props": Object {
-                  "category": "What's Going On Now",
-                  "resources": Array [
+                  "cards": Array [
                     Object {
-                      "abstract": "test1",
                       "category": "What's Going On Now",
-                      "description": "DevOps PaaS",
+                      "description": "test1",
                       "details": "test1",
                       "link": "https://github.com/BCDevOps/BCDevOps-Guide",
                       "originalSource": "../index.html",
+                      "resourcePath": "https://github.com/BCDevOps/BCDevOps-Guide",
                       "sourceName": "Pathfinder",
                       "title": "DevOps PaaS",
                     },
                   ],
+                  "sourcePath": "",
+                  "topic": "What's Going On Now",
                 },
                 "ref": null,
                 "rendered": null,
@@ -1027,29 +970,30 @@ ShallowWrapper {
                 "key": "1",
                 "nodeType": "function",
                 "props": Object {
-                  "category": "Community",
-                  "resources": Array [
+                  "cards": Array [
                     Object {
-                      "abstract": "test2",
                       "category": "Community",
-                      "description": "DevOps Commons",
+                      "description": "test2",
                       "details": "test2",
                       "link": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                       "originalSource": "../index.html",
+                      "resourcePath": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
                       "sourceName": "Pathfinder",
                       "title": "DevOps Commons",
                     },
                     Object {
-                      "abstract": "test3",
                       "category": "Community",
-                      "description": "DevOps Commons Meetups",
+                      "description": "test3",
                       "details": "test3",
                       "link": "https://www.meetup.com/DevOps-Commons",
                       "originalSource": "../index.html",
+                      "resourcePath": "https://www.meetup.com/DevOps-Commons",
                       "sourceName": "Pathfinder",
                       "title": "DevOps Commons Meetups",
                     },
                   ],
+                  "sourcePath": "",
+                  "topic": "Community",
                 },
                 "ref": null,
                 "rendered": null,
