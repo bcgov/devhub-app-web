@@ -165,10 +165,11 @@ describe('gatsby source github all plugin', () => {
       parent: null,
       path: '/test.md',
       labels: 'component',
-      htmlURL: 'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
-      pagePath: undefined,
+      originalSource: 'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
+      resourcePath: undefined,
       source: 'something/something',
       sourceName: 'something',
+      sourcePath: undefined,
       internal: {
         contentDigest: JSON.stringify(file),
         // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate

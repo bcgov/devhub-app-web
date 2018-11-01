@@ -34,7 +34,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
     expect(transformedContent).toEqual(PROCESSED_FILE_TXT);
   });
 
-  test('transformer sets pagePath to be resourcePath if it exists', () => {
+  test('transformer sets resourcePath to be resourcePath from metadata if it exists', () => {
     const data = matter(RAW_FILE_MD_WITH_RESOURCEPATH.content);
     expect(data.data.resourcePath).toBeDefined();
     const transformedFile = fileTransformer(
@@ -43,7 +43,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
     )
       .use(markdownPagePathPlugin)
       .resolve();
-    expect(transformedFile.metadata.pagePath).toBe(data.data.resourcePath);
+    expect(transformedFile.metadata.resourcePath).toBe(data.data.resourcePath);
   });
 
   test('transformer sets pagePath to gatsby create page path by default', () => {
@@ -53,6 +53,6 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
     const transformedFile = fileTransformer(PROCESSED_FILE_MD.metadata.extension, PROCESSED_FILE_MD)
       .use(markdownPagePathPlugin)
       .resolve();
-    expect(transformedFile.metadata.pagePath).toBe(`/${source}/${name}_0`);
+    expect(transformedFile.metadata.resourcePath).toBe(`/${source}/${name}_0`);
   });
 });
