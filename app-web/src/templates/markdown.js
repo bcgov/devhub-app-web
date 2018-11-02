@@ -22,6 +22,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Layout from '../hoc/Layout';
 import styles from './markdown.module.css';
 import { faGithub } from '@fortawesome/fontawesome-free-brands';
+import { faCodeBranch } from '@fortawesome/free-solid-svg-icons';
 import Navigation from '../components/DesignSystem/Navigation';
 // eslint-disable-next-line
 const Generic = ({ data: { sourceDevhubGithub, nav }, location: pathname }) => {
@@ -35,7 +36,18 @@ const Generic = ({ data: { sourceDevhubGithub, nav }, location: pathname }) => {
             <ul className={styles.SourceTags}>
               <li>
                 <a href={sourceDevhubGithub.originalSource}>
-                  <FontAwesomeIcon icon={faGithub} />
+                  <FontAwesomeIcon
+                    icon={faGithub}
+                    aria-label={`View the original source ${sourceDevhubGithub.fileName} on github`}
+                  />
+                </a>
+              </li>
+              <li>
+                <a href={`${sourceDevhubGithub.sourcePath}fork`}>
+                  <FontAwesomeIcon
+                    icon={faCodeBranch}
+                    aria-label={`Fork ${sourceDevhubGithub.sourceName} on github`}
+                  />
                 </a>
               </li>
             </ul>
@@ -69,6 +81,7 @@ export const sourceDevhubGithub = graphql`
       originalSource
       source
       sourceName
+      sourcePath
       owner
       fileName
       fileType
