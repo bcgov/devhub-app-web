@@ -46,12 +46,13 @@ const Generic = ({ data: { sourceDevhubGithub } }) => {
           <GatsbyLink to={HOME_ROUTE}>Home</GatsbyLink>
         </li>
       </ul>
-      <section
-        className={styles.MarkdownBody}
+
+      <section className={styles.Content}>
+        <div className={styles.MarkdownBody}
         dangerouslySetInnerHTML={{
           __html: sourceDevhubGithub.childMarkdownRemark.html,
-        }}
-      />
+        }}/>
+      </section>
     </Layout>
   );
 };

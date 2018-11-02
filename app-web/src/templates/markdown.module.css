@@ -20,14 +20,16 @@
 }
 
 .Nav li {
-    padding: 5px;
+    padding: 5px 8px;
+    margin: 0 10px;
     border-radius: 5px;
-    background-color: #fafafa;
+    background-color: #004d99;
+    color: #fff;
 }
 
 .Nav li a {
     text-decoration: none;
-    color:#036;
+    color: inherit;
 }
 
 .Nav li a:visited {
@@ -50,9 +52,11 @@
     align-self: flex-end;
 }
 
+.Content {
+    background-color: #fff;
+}
 .MarkdownBody {
     padding: 10px;
-    background-color: #ebebeb;
 }
 .MarkdownBody > h1:first-child {
     margin-top: 0;
@@ -69,7 +73,8 @@
 .MarkdownBody h4,
 .MarkdownBody h5,
 .MarkdownBody h6 {
-    color: #222;
+    color: #6d6d6d;
+    font-weight: 400;
 }
 
 .MarkdownBody p {
@@ -79,4 +84,15 @@
 
 .MarkdownBody img {
     max-width: 100%;
+}
+
+.MarkdownBody a {
+    color: #00996a;
+    font-weight: 600;
+    transition: all .15s ease-in;
+}
+
+.MarkdownBody a:hover {
+    color: #0d553f;
+    transform: scale(1.1);
 }
