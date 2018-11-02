@@ -35,10 +35,7 @@ SOFTWARE.
 In Development
 ## Documnentation
 
-- [Component Architecture](./docs/components.md)
-
-- [Devhub Ingestion System](./docs/gatsbySources.md)
-
+- [Internal Docs](./docs/README.md)
 - [Authoring Plugins for Remark](https://www.huynguyen.io/2018-05-remark-gatsby-plugin-part-2/)
 ## Security
 
