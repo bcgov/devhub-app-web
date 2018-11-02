@@ -77,6 +77,6 @@
     color: #3e3e3e;
 }
 
-.MarkdownBody pre {
-
+.MarkdownBody img {
+    max-width: 100%;
 }
