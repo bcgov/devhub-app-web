@@ -24,7 +24,7 @@
     font-size: 28px;
 }
 
-@media screen and (min-width: 620px) {
+@media screen and (min-width: 570px) {
     .Cards {
         justify-content: flex-start;
     }
