@@ -12,6 +12,9 @@ Devhub is a content catalogue generator. **Siphon** is Devhub's main tool that *
     - [Fetching/Validating The Registry](#registry)
     - [Fetching Files from repositories](#fetch-files-from-repo)
     - [Transforming Files with the FileTransformer Pipeline](#file-transformer)
+-   [File Transfomer Pipeline](#the-file-transformer)
+    - [Transfomer Usage](#transformer-usage)
+    - [Transformer Plugin Authoring](#transformer-plugin-authoring)
 -   [Understanding the Node Structure](#node-structure)
     - [GraphQL Intro](#graphql)
     - [The Siphon GraphQL Schema](#siphons-graphql-schema)
@@ -43,6 +46,84 @@ In addition, they lacked the ability to control things like **mime types** for r
 #### File Transformer
 
 <img src="./images/file-transformer.png">
+
+## The File Transformer
+
+Transforming files sourced by **Siphon**
+
+There is a transformer routine that can sift through files to further transform the raw file data
+prior to creating the graphql node.
+
+Reasons for the transfomer routine:
+
+I spent many hours working on how to accomplish a similar task within preexisting gatsby plugins to find
+that either it was not possible or went against the grain of that plugin's purpose. The transformer routine
+can better thought of as data massaging utility more than anything. It is 100% particular to the local
+source plugin and so I felt it didn't fit the needs of being a fully isolated gastby plugin. The **Primary**
+purpose of this transformer is to set up reasonable default configurations for files and or apply metadata based on file content.
+The initial release was for providing default front matter properties.
+
+### Transformer Usage
+
+The transfomer is a simple pipeline. It recieves a file and passes it through different pipelines, each
+that modify the content before passing into the next pipeline.
+
+It's usage:
+```
+const { fileTransformer } = require(...);
+
+const transformedFile = fileTransformer(extension, file)
+      .use(markdownPlugin)
+      .use(anotherPlugin)
+      .use(anotherPlugin)
+      .resolve(); // returns the file
+```
+### Transformer Plugin Authoring
+***not to be confused with a gatsby-transformer plugin!!!***
+Plugins should be written in [plugins.js](../app-web/plugins/gatsby-source-github-all/utils/plugins.js).
+Unless there is a time the file is too cumbersome and seperating the plugins into seperate files is necessary.
+
+Plugins receive all files that were fetched inside of the repo. For that reason, it is ***recommended***
+that you check for the file type (by extension) before modifying the content. In any case the content property
+***must*** be returned for the pipeline to continue.
+
+The plugin format should be:
+
+```javascript
+    const pluginName = (extension, file, options) => {
+        return file;
+    }
+```
+> Parameters
+- extension: This is the file extension ie 'md', 'txt', 'json', 'yaml', 'yml'
+    - you may only want to modify content of a particular file type
+    - in any case the content MUST be returned regardless of any conditions in your code
+- file: This is the file that your plugin will transform
+- options: an optional object passed into the transformer pipline
+
+It's usage would be...
+
+```javascript
+// pipeline.js
+const yamlPlugin = (extension, file, { dateLoaded }) => {
+    if(extension === 'yaml' || extension === 'yml') {
+        // do something to content
+        const yaml = YAML.parse(file.internal.content);
+        // apply new property
+        yaml.dateLoaded = dateLoaded;
+        file.internal.content = YAML.stringify(yaml);
+        return file;
+    }
+    return file;
+}
+
+// sourceNodes.js
+const date = Date.now();
+const content = fileTransformer(extension, file)
+    .use(markdownPlugin)
+    .use(yamlPlugin, { dateLoaded: date })
+    .resolve();
+```
 
 ## Node Structure
 
