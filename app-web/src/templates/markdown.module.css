@@ -1,13 +1,21 @@
-.Header {
+.DesignSystem {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.Panel {
+    flex: 1 0 200px;
+    max-width: 200px;
+}
+.Header {
     border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .Header h1 {
-    font-size: 48px;
-    margin: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 10px 0 4px;
+    text-align: center;
     color: #036;
 }
 
@@ -36,15 +44,22 @@
     color: inherit;
 }
 
-.Header .List {
+.Header .SourceTags {
     list-style: none;
-    font-size: 28px;
+    font-size: 25px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
 }
-.List a {
+.SourceTags li {
+    margin: 0 3px;
+}
+.SourceTags a {
     cursor: pointer;
     color: #3e3e3e;
 }
-.List a:visited {
+.SourceTags a:visited {
     color: #3e3e3e;
 }
 .Header > div {
@@ -54,6 +69,8 @@
 
 .Content {
     background-color: #fff;
+    min-width: 400px;
+    flex: 1 1 400px;
 }
 .MarkdownBody {
     padding: 10px;
@@ -94,5 +111,8 @@
 
 .MarkdownBody a:hover {
     color: #0d553f;
-    transform: scale(1.1);
+}
+
+@media screen and (min-width: 500px) {
+
 }

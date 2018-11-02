@@ -1,0 +1,16 @@
+.Navigation ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.Navigation a {
+    color: #2e2e2e;
+    display: inline-block;
+    width: 100%;
+    padding: 4px;
+}
+
+.Navigation a:visited {
+    color: #2e2e2e;
+}

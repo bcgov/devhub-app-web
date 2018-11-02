@@ -19,46 +19,44 @@
 //
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import GatsbyLink from '../components/Common/Link';
-import { HOME_ROUTE } from '../constants/routes';
 import Layout from '../hoc/Layout';
 import styles from './markdown.module.css';
 import { faGithub } from '@fortawesome/fontawesome-free-brands';
+import Navigation from '../components/DesignSystem/Navigation';
 // eslint-disable-next-line
-const Generic = ({ data: { sourceDevhubGithub } }) => {
+const Generic = ({ data: { sourceDevhubGithub, nav }, location: pathname }) => {
   // eslint-disable-next-line
   return (
     <Layout>
-      <header className={styles.Header}>
-        <h1>{sourceDevhubGithub.sourceName}</h1>
-        <div>
-          <ul className={styles.List}>
-            <li>
-              <a href={sourceDevhubGithub.originalSource}>
-                <FontAwesomeIcon icon={faGithub} />
-              </a>
-            </li>
-          </ul>
+      <div className={styles.DesignSystem}>
+        <div className={styles.Panel}>
+          <header className={styles.Header}>
+            <h1>{sourceDevhubGithub.sourceName}</h1>
+            <ul className={styles.SourceTags}>
+              <li>
+                <a href={sourceDevhubGithub.originalSource}>
+                  <FontAwesomeIcon icon={faGithub} />
+                </a>
+              </li>
+            </ul>
+          </header>
+          <Navigation components={nav.edges} activeLink={pathname} />
         </div>
-      </header>
-      <ul className={styles.Nav}>
-        <li>
-          <GatsbyLink to={HOME_ROUTE}>Home</GatsbyLink>
-        </li>
-      </ul>
-
-      <section className={styles.Content}>
-        <div className={styles.MarkdownBody}
-        dangerouslySetInnerHTML={{
-          __html: sourceDevhubGithub.childMarkdownRemark.html,
-        }}/>
-      </section>
+        <section className={styles.Content}>
+          <div
+            className={styles.MarkdownBody}
+            dangerouslySetInnerHTML={{
+              __html: sourceDevhubGithub.childMarkdownRemark.html,
+            }}
+          />
+        </section>
+      </div>
     </Layout>
   );
 };
 // eslint-disable-next-line
 export const sourceDevhubGithub = graphql`
-  query sourceDevhubGithub($id: String!) {
+  query sourceDevhubGithub($id: String!, $source: String!) {
     sourceDevhubGithub(id: { eq: $id }) {
       name
       id
@@ -75,6 +73,13 @@ export const sourceDevhubGithub = graphql`
       fileName
       fileType
       path
+    }
+    nav: allSourceDevhubGithub(filter: { source: { eq: $source } }) {
+      edges {
+        node {
+          ...NavigationFragment
+        }
+      }
     }
   }
 `;
