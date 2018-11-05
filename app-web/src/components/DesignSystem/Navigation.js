@@ -8,9 +8,8 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 const Navigation = ({ components }) => {
   // map over components and generate links
   const links = components.map(({ node: { resourcePath, childMarkdownRemark } }) => (
-    <li>
+    <li key={shortid.generate()}>
       <Link
-        key={shortid.generate()}
         to={resourcePath}
         activeStyle={{
           backgroundColor: '#fff',
