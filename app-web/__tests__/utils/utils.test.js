@@ -1,4 +1,5 @@
 import { groupBy } from '../../src/utils/dataMassager';
+import converter from '../../src/utils/gatsby-remark-transform-path';
 
 describe('Data Massagers', () => {
   test('it groups data correctly when passed in the right arguments', () => {

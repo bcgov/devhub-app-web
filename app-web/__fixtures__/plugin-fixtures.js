@@ -19,12 +19,15 @@ export const SOURCE_DEVHUB_GITHUB_QL_NODE = {
   id: 'd90c1b12-9055-580b-adb3-b29354871657',
   source: 'design-system',
   sourceName: 'Design System',
+  sourcePath: 'https://github.com/bcgov/design-system/',
+  resourcePath: '/design-system/README_123o8123',
   path: 'components/footer/README.md',
   owner: 'bcgov',
+  labels: ['Design System', 'Components'],
   fileName: 'about.md',
   fileType: 'Markdown',
   pagePath: '/design-system/about_G0Z6oO3_3',
-  htmlURL:
+  originalSource:
     'https://github.com/bcgov/design-system/blob/master/components/footer/something/README.md',
   internal: {
     mediaType: 'text/markdown',
