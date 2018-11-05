@@ -15,4 +15,13 @@ repos:
       labels:
         - Self Service
         - Repository
-  
+  - name: Open Shift Wiki
+    url: https://github.com/BCDevOps/openshift-wiki
+    owner: BCDevOps
+    repo: 'openshift-wiki'
+    attributes:
+      labels:
+        - Guides
+        - Repository
+        - Wiki
+        - How To

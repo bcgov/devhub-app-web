@@ -44,7 +44,8 @@ const markdownFrontmatterPlugin = (extension, file) => {
         visit(ast, 'heading', node => {
           // is node on first line and a h1 or h2?
           if (title === file.metadata.fileName && (node.depth === 1 || node.depth === 2)) {
-            if (node.position.start.line === 1) {
+            // accept headers up to 3rd line of markdown file
+            if (node.position.start.line < 3) {
               title = node.children[0].value;
             }
           }

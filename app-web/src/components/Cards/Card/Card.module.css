@@ -15,7 +15,11 @@
 .Card:hover {
     box-shadow: 0 0 2px 2px rgba(0, 44, 95, .25);
 }
-
+.Card h2 {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2em;
+}
 .Card h2 a {
     font-weight: 400;
     margin-bottom: 13px;

@@ -24,7 +24,9 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <h2>
+        <h2
+          title="title"
+        >
           <GatsbyLink
             aria-label="Learn more about this article"
             to="resourcePath"
@@ -129,6 +131,7 @@ ShallowWrapper {
               title
             </span>
           </GatsbyLink>,
+          "title": "title",
         },
         "ref": null,
         "rendered": Object {
@@ -291,7 +294,9 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <h2>
+          <h2
+            title="title"
+          >
             <GatsbyLink
               aria-label="Learn more about this article"
               to="resourcePath"
@@ -396,6 +401,7 @@ ShallowWrapper {
                 title
               </span>
             </GatsbyLink>,
+            "title": "title",
           },
           "ref": null,
           "rendered": Object {
