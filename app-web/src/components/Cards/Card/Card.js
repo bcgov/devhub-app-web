@@ -8,7 +8,7 @@ import { ARIA_LABEL_RESOURCE, ARIA_LABEL_REPO } from '../../../constants/strings
 
 const Card = ({ sourcePath, sourceName, title, description, resourcePath }) => (
   <article className={styles.Card}>
-    <h2>
+    <h2 title={title}>
       <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE}>
         <FontAwesomeIcon icon={faExternalLinkSquareAlt} size="1x" />
         <span>{title}</span>
