@@ -32,6 +32,6 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "operator-linebreak": "off",
     "arrow-parens": "off",
-    "eol-last": "always"
+    "eol-last": ["error", "always"]
   }
 }
