@@ -33,8 +33,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ## Project Status
 In Development
-## Documnentation
-
+## Documentation
 - [Internal Docs](./docs/README.md)
 - [Authoring Plugins for Remark](https://www.huynguyen.io/2018-05-remark-gatsby-plugin-part-2/)
 ## Security
@@ -109,7 +108,7 @@ See (openshift/Readme.md)
 
 ## Getting Help or Reporting an Issue
 
-To report bugs/issues/feature requests, please file an [issue](https://github.com/BCDevOps/opendev-template/issues/).
+To report bugs/issues/feature requests, please file an [issue](https://github.com/bcgov/devhub-app-web/issues/).
 
 ## How to Contribute
 
