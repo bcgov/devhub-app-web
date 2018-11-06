@@ -33,8 +33,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ## Project Status
 In Development
-## Documnentation
-
+## Documentation
 - [Internal Docs](./docs/README.md)
 - [Authoring Plugins for Remark](https://www.huynguyen.io/2018-05-remark-gatsby-plugin-part-2/)
 ## Security
