@@ -108,7 +108,7 @@ See (openshift/Readme.md)
 
 ## Getting Help or Reporting an Issue
 
-To report bugs/issues/feature requests, please file an [issue](https://github.com/BCDevOps/opendev-template/issues/).
+To report bugs/issues/feature requests, please file an [issue](https://github.com/bcgov/devhub-app-web/issues/).
 
 ## How to Contribute
 
