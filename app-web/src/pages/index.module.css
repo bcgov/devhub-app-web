@@ -1,3 +1,7 @@
+.Main {
+    padding: 15px;
+}
+
 .Main > h1 {
     margin-top: 0;
     color: #242424;

@@ -91,6 +91,12 @@ module.exports = {
               converter,
             },
           },
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 590,
+            },
+          },
         ],
       },
     },
