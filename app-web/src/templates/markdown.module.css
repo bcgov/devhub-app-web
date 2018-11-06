@@ -52,6 +52,7 @@
 
 .MarkdownBody {
     padding: 10px;
+    word-break: break-word;
 }
 
 .MarkdownBody > h1:first-child {
@@ -79,6 +80,7 @@
 .MarkdownBody p {
     line-height: 1.25em;
     color: #3e3e3e;
+    font-size: 14x;
 }
 
 .MarkdownBody img {

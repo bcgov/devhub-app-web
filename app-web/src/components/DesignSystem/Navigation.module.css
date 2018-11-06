@@ -6,15 +6,30 @@
     padding: 0;
     margin: 0;
     list-style: none;
+    overflow-y: auto;
+    max-height: 100px;
 }
 
 .Navigation a {
+    overflow: hidden;
     color: #2e2e2e;
     display: inline-block;
     width: 100%;
     padding: 4px;
+    text-overflow: ellipsis;
 }
 
 .Navigation a:visited {
     color: #2e2e2e;
+}
+
+.ActiveLink {
+    text-decoration: underline;
+    background-color: #fff;
+}
+
+@media screen and (min-width: 500px) {
+    .Navigation ul {
+        max-height: 500px;
+    }
 }
