@@ -29,8 +29,8 @@ const { URL } = url;
 const converter = (astType, relativePath, parentQLnode) => {
   // only convert source devhub nodes
   if (parentQLnode.internal.type === 'SourceDevhubGithub') {
-    // parse the htmlURL node of the sourceDevhubGithub
-    const urlObj = new URL(parentQLnode.htmlURL);
+    // parse the originalSource node of the sourceDevhubGithub
+    const urlObj = new URL(parentQLnode.originalSource);
     // check if it has a protocol
     // join the relative path with the directory of the absolute source
     let absolutePath = url.resolve(urlObj.href, relativePath);

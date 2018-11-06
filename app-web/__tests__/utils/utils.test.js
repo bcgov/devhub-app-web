@@ -1,4 +1,27 @@
 import { groupBy } from '../../src/utils/dataMassager';
+import { SOURCE_DEVHUB_GITHUB_QL_NODE } from '../../__fixtures__/plugin-fixtures';
+import converter from '../../src/utils/gatsby-remark-transform-path';
+
+describe('Gatsby Remark Transformer Path Converter', () => {
+  test('it only transforms sourceDevHubGithub nodes', () => {
+    const path = './something.png';
+    const astType = 'image';
+    const node = {
+      internal: {
+        type: 'notsourceDevhubGithub',
+      },
+    };
+    expect(converter(astType, path, node)).toBe(path);
+  });
+
+  test('it returns path on sourceDevhubGithub nodes', () => {
+    const path = './somthing.png';
+    const astType = 'image';
+    const newPath = converter(astType, path, SOURCE_DEVHUB_GITHUB_QL_NODE);
+    expect(typeof newPath).toBe('string');
+    expect(newPath).not.toBe(path);
+  });
+});
 
 describe('Data Massagers', () => {
   test('it groups data correctly when passed in the right arguments', () => {
