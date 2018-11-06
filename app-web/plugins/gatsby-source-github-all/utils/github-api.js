@@ -176,7 +176,7 @@ const filterFilesFromDirectories = entries => {
  * @returns {Array} The array of files
  */
 // eslint-disable-next-line
-const getFilesFromRepo = async ({ repo, url, owner, name, attributes: { labels }}, token) => {
+const getFilesFromRepo = async ({ repo, url, owner, name, attributes: { labels } }, token) => {
   try {
     // ignore filtering
     const ig = ignore().add(DEFUALT_IGNORES);

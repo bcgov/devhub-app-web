@@ -3,8 +3,6 @@ import shortid from 'shortid';
 import PropTypes from 'prop-types';
 import Link from '../Common/Link';
 import styles from './Navigation.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 class Navigation extends Component {
   componentDidMount() {
