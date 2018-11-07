@@ -179,7 +179,7 @@ const getFilesFromRepo = async ({ repo, url, owner, name, attributes: { labels }
     // ignore filtering
     const ig = ignore().add(DEFUALT_IGNORES);
     // create graphql string for finding all files in a directory
-    const data = await fetchGithubTree(repo, owner, token);
+    const data = await fetchGithubTree(repo, owner, token, repo.branch);
     // filter out files by extensions
     if (!data.tree) return [];
     let filesToFetch = filterFilesFromDirectories(data.tree);
@@ -233,7 +233,8 @@ const getFilesFromRepo = async ({ repo, url, owner, name, attributes: { labels }
       {yellow if this doesn't resolve the issue either the api token is invalid
       or the build is failing to connect to the github api}
     `);
-    throw e;
+    // post issue for repo if possible
+    return [];
   }
 };
 
