@@ -106,6 +106,22 @@ describe('Github API', () => {
     expect(res).toEqual(GITHUB_API.TREE);
   });
 
+  test('fetchGithubTree fetches from branch if passed in', async () => {
+    const branch = 'branchA';
+    const token = 'TOKEN';
+    const repo = 'REPO';
+    const owner = 'OWNER';
+    fetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify(GITHUB_API.TREE))));
+    await fetchGithubTree(repo, owner, token, branch);
+    expect(fetch).toHaveBeenCalledWith(
+      `https://api.github.com/repos/OWNER/REPO/git/trees/${branch}?recursive=1`,
+      expect.objectContaining({
+        headers: { Authorization: 'Bearer TOKEN' },
+        method: 'GET',
+      })
+    );
+  });
+
   test('filterFilesByExtensions throws if no array of strings is passed', () => {
     const extensions1 = null;
     const extensions2 = ['', '234', 234];

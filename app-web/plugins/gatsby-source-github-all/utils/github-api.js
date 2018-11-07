@@ -75,17 +75,15 @@ const getMediaTypeByExtension = extension => (MEDIATYPES[extension] ? MEDIATYPES
  * @param {String} owner
  * @param {String} token
  */
-const fetchGithubTree = async (repo, owner, token) => {
+const fetchGithubTree = async (repo, owner, token, branch = 'master') => {
+  const endPoint = `${GITHUB_API_ENDPOINT}/repos/${owner}/${repo}/git/trees/${branch}?recursive=1`;
   try {
-    const result = await fetch(
-      `${GITHUB_API_ENDPOINT}/repos/${owner}/${repo}/git/trees/master?recursive=1`,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const result = await fetch(endPoint, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const data = await result.json();
     return data;
   } catch (e) {
