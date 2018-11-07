@@ -19,6 +19,7 @@ const shortid = require('shortid'); // eslint-disable-line
 const matter = require('gray-matter'); // eslint-disable-line
 const visit = require('unist-util-visit'); // eslint-disable-line
 const remark = require('remark'); // eslint-disable-line
+const crypto = require('crypto'); // eslint-disable-line
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
 const { MARKDOWN_FRONTMATTER_SCHEMA } = require('./constants');
 /**
