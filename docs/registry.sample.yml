@@ -12,4 +12,5 @@ repos:
     url: https://github.com/bcgov/devhub-signing-web/
     owner: bcgov
     repo: 'devhub-signing-web'
+    branch: my-branch
   

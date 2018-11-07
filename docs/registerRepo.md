@@ -6,15 +6,13 @@ description: A guide on how to get your repo registered with the Devhub so that 
 Register your repo so that any markdown files of your choosing will be viewable in the Devhub.
 
 ## How To Register Your Repo 
+When you register your repository several processes will be kicked off whenever the Devhub App is rebuilt. 
 
 We are still ironing out the best solution for registering.
 In the interim please ***fork*** and ***pull request*** to the registry.
 
 Please take a look at the [Registry Template](./registry.sample.yml)
 file to get an idea of how you would add your repository to the registry.
-
-
-When you register your repository several processes will be kicked off whenever the Devhub App is rebuilt. 
 
 In a nutshell it will grab one or more files from your repository, process them, and spit out either a 'card'
 
@@ -87,14 +85,25 @@ A short description describing what's in this file. This will be used as the sho
 Tells the devhub to point the user to your resource when they click on the devhub resource card
 The resourcepath should be a valid hyper link
 
-<!-- ### Step 3: Register your repository
+### Step 3: Register your repository
 
 Before your repo's content is taken in by the Devhub, the Devhub needs to know it exists first.
+This is accomplished by 'registering' into the devhub.
 
-This will involve making a Fork and Pull Request to the [Devhub Repository](https://github.com/bcgov/devhub-app-web).
+> Valid Registry Properties:
+- `name`  The name you would like to represent your repository as in the devhub. 
+    *ie* You may have a repository called **my-awesome-app** but you may want to have it referred to as
+    **My Awesome App V1** and so you should set `name: 'My Awesome App V1'`
+- `url`  This is the path to your repository
+- `owner` This is the owner of the repository
+- `repo` This is the **actual** repository name
+- `branch` (optional) The branch you would like devhub to source content from
+
+This will involve making a [Fork of the Devhub](https://github.com/bcgov/devhub-app-web/fork) and Pull Request to the [Devhub Repository's contributor-repository-registry branch](https://github.com/bcgov/devhub-app-web/tree/contributor-repo-registry).
+
+***PULL REQUESTS TO MASTER OR ANY OTHER BRANCH WILL BE IGNORED***
 
 >If this is your first time Forking and or making Pull Requests, more details can be found [here](https://github.com/bcgov/devhub-app-web/blob/master/CONTRIBUTING.md).
 
-Once you've forked the Devhub Repo, you will want to make a new branch.
 
-...TBC -->
+
