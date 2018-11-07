@@ -6,11 +6,15 @@
 .Panel {
     flex: 1 0 200px;
 }
-
+.Header {
+    background-color: #fff;
+    padding-top: 10px;
+    border-bottom: 1px solid #ccc;
+}
 .Header h1 {
     font-size: 20px;
     font-weight: 400;
-    margin: 10px 0 4px;
+    margin: 0 4px;
     text-align: center;
     color: #036;
 }
@@ -97,10 +101,10 @@
     color: #0d553f;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 600px) {
     .Header {
         margin-bottom: 5px;
-        border-bottom: 1px solid #ccc;
+        background-color: inherit;
     }
 
     .Panel {
