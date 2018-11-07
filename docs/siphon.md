@@ -98,7 +98,26 @@ The plugin format should be:
 - extension: This is the file extension ie 'md', 'txt', 'json', 'yaml', 'yml'
     - you may only want to modify content of a particular file type
     - in any case the content MUST be returned regardless of any conditions in your code
-- file: This is the file that your plugin will transform
+- file: This is the file that your plugin will transform, the obj contains everything that is received from [Github API 3 Contents](https://developer.github.com/v3/repos/contents/#get-contents) plus additional data
+    ```javascript
+    // sample file
+    {
+    ...ContentsAPIData,
+          content: String,
+          metadata: {
+            labels: Array,
+            sourceName: String,
+            source: String,
+            owner: String,
+            name: String,
+            fileType: String,
+            fileName: String,
+            mediaType: String,
+            extension: String,
+            sourceURL: String,
+          },
+        }
+      ```
 - options: an optional object passed into the transformer pipline
 
 It's usage would be...
@@ -111,7 +130,7 @@ const yamlPlugin = (extension, file, { dateLoaded }) => {
         const yaml = YAML.parse(file.internal.content);
         // apply new property
         yaml.dateLoaded = dateLoaded;
-        file.internal.content = YAML.stringify(yaml);
+        file.content = YAML.stringify(yaml);
         return file;
     }
     return file;
