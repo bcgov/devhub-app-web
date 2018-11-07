@@ -6,7 +6,7 @@
     padding: 0;
     margin: 0;
     list-style: none;
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: 100px;
 }
 .Navigation ul::-webkit-scrollbar-track {
