@@ -6,8 +6,20 @@
     padding: 0;
     margin: 0;
     list-style: none;
-    overflow-y: auto;
+    overflow-y: scroll;
     max-height: 100px;
+}
+.Navigation ul::-webkit-scrollbar-track {
+    padding: 2px 0;
+}
+
+.Navigation ul::-webkit-scrollbar {
+    width: 10px;
+}
+
+.Navigation ul::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #737272;
 }
 
 .Navigation a {
@@ -23,7 +35,7 @@
     color: #2e2e2e;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 600px) {
     .Navigation ul {
         max-height: 500px;
     }
