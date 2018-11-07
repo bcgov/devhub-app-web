@@ -99,15 +99,19 @@ const fetchGithubTree = async (repo, owner, token, branch = 'master') => {
  * @param {String} path 
  * @param {String} token 
  */
-const fetchFile = async (repo, owner, path, token) => {
+const fetchFile = async (repo, owner, path, token, branch = '') => {
   try {
-    const result = await fetch(`${GITHUB_API_ENDPOINT}/repos/${owner}/${repo}/contents/${path}`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'X-GitHub-Media-Type': 'Accept: application/vnd.github.v3.raw+json',
-      },
-    });
+    const ref = branch === '' ? '' : `?ref=${branch}`;
+    const result = await fetch(
+      `${GITHUB_API_ENDPOINT}/repos/${owner}/${repo}/contents/${path}${ref}`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'X-GitHub-Media-Type': 'Accept: application/vnd.github.v3.raw+json',
+        },
+      }
+    );
     const data = await result.json();
     if (result.ok) return data;
     return undefined;
@@ -121,8 +125,8 @@ const fetchFile = async (repo, owner, path, token) => {
  * @param { String } owner 
  * @param { String } token 
  */
-const fetchIgnoreFile = async (repo, owner, token) => {
-  const ignoreFile = await fetchFile(repo, owner, '/.devhubignore', token);
+const fetchIgnoreFile = async (repo, owner, token, branch) => {
+  const ignoreFile = await fetchFile(repo, owner, '.devhubignore', token, branch);
   return ignoreFile ? Base64.decode(ignoreFile.content).split('\n') : [];
 };
 /**
@@ -169,29 +173,42 @@ const filterFilesFromDirectories = entries => {
  * accomplished by fetching the github tree for a repo and filter files
  * to be fetched by a configuration. Fetch the filtered files and
  * append metadata before returning
- * @param {String} repo the repo data (comes from the registry)
+ * @param {Object} repo the repo data (comes from the registry)
+ * is deconstructed into its components
+ * {String} repo.repo name of repository
+ * {String} repo.url path to repository
+ * {String} repo.owner owner of repository
+ * {String} repo.name used as a 'pretty' name for the repository (also considered the source)
+ * {String} repo.branch branch to fetch tree/files from, when undefined this defaults to master
+ * {Object} repo.attributes extra attributes to bind as metadata to files
  * @param {String} token 
  * @returns {Array} The array of files
  */
 // eslint-disable-next-line
+<<<<<<< HEAD
 const getFilesFromRepo = async ({ repo, url, owner, name, attributes: { labels } }, token) => {
+=======
+const getFilesFromRepo = async ({ repo, url, owner, name, branch, attributes: { labels }}, token) => {
+>>>>>>> add tests for fetching files via a branch
   try {
     // ignore filtering
     const ig = ignore().add(DEFUALT_IGNORES);
     // create graphql string for finding all files in a directory
-    const data = await fetchGithubTree(repo, owner, token, repo.branch);
+    const data = await fetchGithubTree(repo, owner, token, branch);
     // filter out files by extensions
     if (!data.tree) return [];
     let filesToFetch = filterFilesFromDirectories(data.tree);
     // filter out files that aren't markdown
     filesToFetch = filterFilesByExtensions(filesToFetch, PROCESSABLE_EXTENSIONS);
     // fetch ignore file if exists
-    const repoIgnores = await fetchIgnoreFile(repo, owner, token);
+    const repoIgnores = await fetchIgnoreFile(repo, owner, token, branch);
     ig.add(repoIgnores);
     // filter out files that are apart of ignore
     filesToFetch = filesToFetch.filter(file => !ig.ignores(file.path));
     // retrieve contents for each file
-    const filesWithContents = filesToFetch.map(file => fetchFile(repo, owner, file.path, token));
+    const filesWithContents = filesToFetch.map(file =>
+      fetchFile(repo, owner, file.path, token, branch)
+    );
     const filesResponse = await Promise.all(filesWithContents);
     // for some reason the accept header is not returning with raw content so we will decode
     // the default base 64 encoded content
