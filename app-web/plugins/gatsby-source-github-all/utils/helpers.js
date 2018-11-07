@@ -21,11 +21,11 @@ Created by Patrick Simonian
  * @param  {Array} digestable 
  * @returns {String} ie (/mypath, file.md) => /mypath/123dsfakjhdf
  */
-import { TypeCheck } from '@bcgov/common-web-utils';
-import path from 'path';
-import shorthash from 'shorthash';
+const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
+const path = require('path');
+const shorthash = require('shorthash');
 
-export const createPathWithDigest = (base, digestable) => {
+const createPathWithDigest = (base, digestable) => {
   if (!TypeCheck.isString(base)) {
     throw new Error('base must be a string');
   }
@@ -35,4 +35,8 @@ export const createPathWithDigest = (base, digestable) => {
   const normalizedBase = base.replace(/^\//, '').replace(/\/$/, '');
   const digested = shorthash.unique(digestable);
   return path.join('/', normalizedBase, digested);
+};
+
+module.exports = {
+  createPathWithDigest,
 };
