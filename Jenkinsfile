@@ -29,6 +29,8 @@ pipeline {
       steps {
         echo "Deploying ..."
         sh "curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s deploy --config=openshift/config.groovy --pr=${CHANGE_ID} --env=dev"
+        echo "Creating sso client ..."
+        sh "openshift/keycloak-scripts/kc-create-client.sh ${CHANGE_ID}"
       }
     }
     
@@ -96,6 +98,8 @@ pipeline {
           echo "Merging (using '${mergeMethod}' method) and closing PR"
           bcgov.GitHubHelper.mergeAndClosePullRequest(this, mergeMethod)
         }
+        echo "Cleaning sso client ..."
+        sh "openshift/keycloak-scripts/kc-delete-client.sh ${CHANGE_ID}"
       }
     }
   }

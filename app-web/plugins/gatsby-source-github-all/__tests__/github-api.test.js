@@ -20,10 +20,10 @@
 jest.mock('node-fetch');
 // eslint-disable-next-line
 import {
-  getFilesFromRepo,
   getNameOfExtensionVerbose,
   fetchGithubTree,
   fetchFile,
+  fetchIgnoreFile,
   filterFilesByExtensions,
   getExtensionFromName,
   getNameWithoutExtension,
@@ -56,32 +56,51 @@ beforeEach(() => {
 });
 
 describe('Github API', () => {
-  // test incorrect
-  test.skip('getFilesFromRepo returns data', async () => {
-    fetch.mockReturnValue(
-      Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE)))
-    );
-    const res = await getFilesFromRepo('pathfinder', 'bcdevops', 'avalidtoken');
-    expect(res).toEqual(GITHUB_API.FILE);
+  let fetchFileSucceeded = false;
+  afterAll(() => {
+    fetchFileSucceeded = false;
   });
 
   test('fetchFile returns data', async () => {
-    fetch.mockReturnValue(
-      Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE)))
-    );
-    const res = await fetchFile(
-      'pathfinder',
-      'bcdevops',
-      '/readme.md',
-      'avalidtoken'
-    );
+    fetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
+    const res = await fetchFile('pathfinder', 'bcdevops', '/readme.md', 'avalidtoken');
     expect(res).toEqual(GITHUB_API.FILE);
+    fetchFileSucceeded = true;
+  });
+
+  test('fetchFile returns undefined when status !== 200', async () => {
+    const r = new Response(JSON.stringify(GITHUB_API.FAIL), { status: 400 });
+    fetch.mockReturnValue(Promise.resolve(r));
+    const res = await fetchFile('pathfinder', 'bcdevops', '/readme.md', 'avalidtoken');
+    expect(res).toEqual(undefined);
+  });
+
+  test('fetchIgnoreFile returns an array', async () => {
+    if (!fetchFileSucceeded) {
+      throw new Error('fetchIgnoreFile failed because fetchFile failed');
+    }
+    // mock fetch file
+    fetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify(GITHUB_API.IGNORE_FILE))));
+    const ignoreFile = await fetchIgnoreFile();
+
+    expect(ignoreFile).toBeInstanceOf(Array);
+  });
+
+  test('fetchIgnoreFile returns an array if fetch fails', async () => {
+    if (!fetchFileSucceeded) {
+      throw new Error('fetchIgnoreFile failed because fetchFile failed');
+    }
+    // mock fetch file
+    fetch.mockReturnValue(
+      Promise.resolve(new Response(JSON.stringify(GITHUB_API.FAIL), { status: 400 }))
+    );
+    const ignoreFile = await fetchIgnoreFile();
+
+    expect(ignoreFile).toBeInstanceOf(Array);
   });
 
   test('fetchGithubTree returns data', async () => {
-    fetch.mockReturnValue(
-      Promise.resolve(new Response(JSON.stringify(GITHUB_API.TREE)))
-    );
+    fetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify(GITHUB_API.TREE))));
     expect.assertions(1);
     const res = await fetchGithubTree();
     expect(res).toEqual(GITHUB_API.TREE);
@@ -105,7 +124,19 @@ describe('Github API', () => {
     }).toThrow('extensions must have shape /\\.w+$/'); //eslint-disable-line
   });
 
-  test('filterFilesByExtensions succeeds with default params', () => {});
+  test('filterFilesByExtensions succeeds with default params', () => {
+    const expected = [
+      {
+        path: 'something.md',
+        type: 'blob',
+      },
+      {
+        path: 'readme.md',
+        type: 'blob',
+      },
+    ];
+    expect(filterFilesByExtensions(entries)).toEqual(expected);
+  });
 
   test('filerFilesByExtensions throws if entries are not passed', () => {
     expect(() => {

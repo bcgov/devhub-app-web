@@ -1,11 +1,19 @@
 import React from 'react';
+import Link from '../../Common/Link';
 import logo from '../../../assets/images/logo.png';
-import classes from './GovLogo.module.css';
+import logoMobile from '../../../assets/images/logo.svg';
+import { HOME_ROUTE } from '../../../constants/routes';
+import styles from './GovLogo.module.css';
 
 const GovLogo = () => (
-  <div className={classes.GovLogo}>
-    <img src={logo} alt="Government of British Columbia" />
-  </div>
+  <Link to={HOME_ROUTE}>
+    <img src={logo} className="large-screen" alt="Government of British Columbia" />
+    <img
+      src={logoMobile}
+      className={[styles.MobileLogo, 'small-screen'].join(' ')}
+      alt="Government of British Columbia"
+    />
+  </Link>
 );
 
 export default GovLogo;

@@ -8,12 +8,12 @@ body, html {
 }
 
 body {
-  font-family: 'Myriad-Pro', Calibri, Arial, 'Sans Serif';
+  font-family: 'PT Sans', 'Sans Serif', Arial;
   margin: 0;
   padding: 0;
   min-width: 320px;
   overflow-x: auto;
-  background: #fdfdfd;
+  background: #ebebeb;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -25,7 +25,21 @@ p {
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1110px;
   margin: 0 auto;
-  padding-top: 25px;
 }
+
+.large-screen {
+  display: none;
+}
+
+@media screen and (min-width: 600px) {
+  .small-screen {
+    display: none;
+  }
+
+  .large-screen {
+    display: block;
+  }
+}
+

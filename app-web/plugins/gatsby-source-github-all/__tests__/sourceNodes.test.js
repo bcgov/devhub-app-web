@@ -19,9 +19,24 @@
 //
 jest.mock('crypto');
 
-const { createGHNode, checkRegistry } = require('../sourceNodes');
+const { createGHNode, checkRegistry, getRegistry } = require('../sourceNodes');
+const {
+  GRAPHQL_NODES_WITH_REGISTRY,
+  GRAPHQL_NODES_WITHOUT_REGISTRY,
+  REGISTRY,
+} = require('../__fixtures__/fixtures');
 
 describe('gatsby source github all plugin', () => {
+  test('getRegistry returns the registry', () => {
+    const getNodes = jest.fn(() => GRAPHQL_NODES_WITH_REGISTRY);
+    expect(getRegistry(getNodes)).toEqual(REGISTRY);
+  });
+
+  test('getRegistry throws if no registry exists', () => {
+    const getNodes = jest.fn(() => GRAPHQL_NODES_WITHOUT_REGISTRY);
+    expect(() => getRegistry(getNodes)).toThrow('Registry not found');
+  });
+
   test('checkRegistry throws if a repo is missing an owner', () => {
     const registry = {
       repos: [
@@ -119,6 +134,7 @@ describe('gatsby source github all plugin', () => {
         fileName: 'test.md',
         mediaType: 'application/test',
         extension: '.md',
+        labels: 'component',
       },
       name: 'test',
       path: '/test.md',
@@ -126,10 +142,8 @@ describe('gatsby source github all plugin', () => {
       size: 317,
       url:
         'https://api.github.com/repos/awesomeOrg/awesomeRepo/contents/public/manifest.json?ref=master',
-      html_url:
-        'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
-      git_url:
-        'https://api.github.com/repos/awesomeOrg/awesomeRepo/git/blobs/123',
+      html_url: 'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
+      git_url: 'https://api.github.com/repos/awesomeOrg/awesomeRepo/git/blobs/123',
       download_url:
         'https://raw.githubusercontent.com/awesomeOrg/awesomeRepo/master/public/manifest.json',
       type: 'file',
@@ -137,10 +151,8 @@ describe('gatsby source github all plugin', () => {
       _links: {
         self:
           'https://api.github.com/repos/awesomeOrg/awesomeRepo/contents/public/manifest.json?ref=master',
-        git:
-          'https://api.github.com/repos/awesomeOrg/awesomeRepo/git/blobs/123',
-        html:
-          'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
+        git: 'https://api.github.com/repos/awesomeOrg/awesomeRepo/git/blobs/123',
+        html: 'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
       },
     };
     const expected = {
@@ -152,10 +164,12 @@ describe('gatsby source github all plugin', () => {
       owner: 'Billy Bob',
       parent: null,
       path: '/test.md',
-      htmlURL: 'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
-      pagePath: '/something/something/test_0',
+      labels: 'component',
+      originalSource: 'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
+      resourcePath: undefined,
       source: 'something/something',
       sourceName: 'something',
+      sourcePath: undefined,
       internal: {
         contentDigest: JSON.stringify(file),
         // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate

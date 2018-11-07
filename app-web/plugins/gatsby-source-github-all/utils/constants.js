@@ -56,7 +56,15 @@ const MARKDOWN_FRONTMATTER_SCHEMA = {
   description: {
     type: String,
     required: true,
-  }
+  },
+  resourcePath: {
+    type: String,
+    required: false,
+  },
+  ignore: {
+    type: Boolean,
+    required: false,
+  },
 };
 
 module.exports = {

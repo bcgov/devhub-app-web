@@ -1,1 +1,0 @@
-module.exports = jest.genMockFromModule('unist-util-visit');

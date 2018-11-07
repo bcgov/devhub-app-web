@@ -1,6 +1,7 @@
 require('dotenv').config({
   path: '.env.production',
 });
+const converter = require('./src/utils/gatsby-remark-transform-path');
 
 module.exports = {
   siteMetadata: {
@@ -8,6 +9,7 @@ module.exports = {
   },
   mapping: {},
   plugins: [
+    'gatsby-plugin-styled-components',
     // Adding various source folders to the GraphQL layer.
     {
       resolve: 'gatsby-source-filesystem',
@@ -19,15 +21,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: `registry`,
+        name: 'registry',
         path: `${__dirname}/source-registry/`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `fonts`,
-        path: `${__dirname}/src/assets/fonts`,
       },
     },
     {
@@ -77,7 +72,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
           {
@@ -88,6 +83,18 @@ module.exports = {
               aliases: {},
               showLineNumbers: true,
               noInlineHighlight: false,
+            },
+          },
+          {
+            resolve: 'gatsby-remark-path-transform',
+            options: {
+              converter,
+            },
+          },
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 590,
             },
           },
         ],

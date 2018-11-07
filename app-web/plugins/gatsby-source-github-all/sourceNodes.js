@@ -19,10 +19,9 @@
 //
 const crypto = require('crypto');
 const _ = require('lodash'); // eslint-disable-line
-const shortid = require('shortid') // eslint-disable-line
 const { getFilesFromRepo } = require('./utils/github-api');
 const { fileTransformer } = require('./utils/transformer');
-const { markdownPlugin } = require('./utils/plugins');
+const { markdownFrontmatterPlugin, markdownPagePathPlugin } = require('./utils/plugins');
 
 const createGHNode = (file, id) => ({
   id,
@@ -33,10 +32,13 @@ const createGHNode = (file, id) => ({
   owner: file.metadata.owner,
   parent: null,
   path: file.path,
-  htmlURL: file.html_url,
-  source: file.metadata.source,
-  sourceName: file.metadata.sourceName,
-  pagePath: `/${file.metadata.source}/${file.metadata.name}_${shortid.generate()}`,
+  originalSource: file.html_url, // path to the file in github
+  source: file.metadata.source, // the repo-name
+  sourceName: file.metadata.sourceName, // the pretty name of the 'source'
+  sourcePath: file.metadata.sourceURL, // the path to the repo
+  resourcePath: file.metadata.resourcePath, // either path to a gastby created page based on this node
+  // or the path to an external resource this node points too
+  labels: file.metadata.labels, // labels from source registry
   internal: {
     contentDigest: crypto
       .createHash('md5')
@@ -67,9 +69,7 @@ const checkRegistry = registry => {
 };
 
 const getRegistry = getNodes => {
-  const registryFound = getNodes().filter(
-    node => node.internal.type === 'SourceRegistryYaml'
-  );
+  const registryFound = getNodes().filter(node => node.internal.type === 'SourceRegistryYaml');
   if (registryFound.length > 0) {
     return registryFound[0];
   }
@@ -77,10 +77,7 @@ const getRegistry = getNodes => {
   throw new Error('Registry not found');
 };
 
-const sourceNodes = async (
-  { getNodes, boundActionCreators, createNodeId },
-  { token }
-) => {
+const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { token }) => {
   // get registry from current nodes
   const registry = getRegistry(getNodes);
   const { createNode } = boundActionCreators;
@@ -88,25 +85,25 @@ const sourceNodes = async (
     // check registry prior to fetching data
     checkRegistry(registry);
     // fetch all repos
-    const repos = await Promise.all(
-      registry.repos.map(repo =>
-        getFilesFromRepo(repo.repo, repo.owner, repo.name, token)
-      )
-    );
+    const repos = await Promise.all(registry.repos.map(repo => getFilesFromRepo(repo, token)));
     // repos is an array of arrays [repo files, repo files] etc
     // so we flatten it into a 1 dimensional array
     const dataToNodify = _.flatten(repos, true);
     // create nodes
-    dataToNodify.map(file => {
-      const newFile = {...file, metadata: { ...file.metadata }};
-      const {content, metadata: { extension }} = newFile;
-      const ft = fileTransformer(extension, content, newFile);
-      const newContent = ft.use(markdownPlugin).resolve();
-      newFile.content = newContent;
-      return newFile;
-    }).forEach(file => {
-      createNode(createGHNode(file, createNodeId(file.sha)));
-    });
+    dataToNodify
+      .map(file => {
+        const newFile = { ...file, metadata: { ...file.metadata } };
+        const { metadata: { extension } } = newFile;
+        const ft = fileTransformer(extension, newFile);
+        const fileTransformed = ft
+          .use(markdownFrontmatterPlugin)
+          .use(markdownPagePathPlugin)
+          .resolve();
+        return fileTransformed;
+      })
+      .forEach(file => {
+        createNode(createGHNode(file, createNodeId(file.sha)));
+      });
   } catch (e) {
     // failed to retrieve files or some other type of failure
     // eslint-disable-next-line

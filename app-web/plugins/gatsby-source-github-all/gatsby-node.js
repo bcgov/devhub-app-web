@@ -17,6 +17,9 @@
 //
 // Created by Patrick Simonian on 2018-10-12.
 //
+
+// SIPHON
+// The main content pull and creation system for devhub:)
 const { sourceNodes } = require('./sourceNodes');
 
 exports.sourceNodes = sourceNodes;

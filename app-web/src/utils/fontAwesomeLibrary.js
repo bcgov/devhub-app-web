@@ -9,8 +9,7 @@ const iconsToUse = [
   Icons.faCoffee,
   Icons.faUserAstronaut,
   Icons.faChevronRight,
-  Brands.faGithub
+  Brands.faGithub,
 ];
 // eslint-disable-next-line
 export default library.add.apply(library, iconsToUse);
-

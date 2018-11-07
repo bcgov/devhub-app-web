@@ -1,34 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectGlobal } from 'styled-components';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-// local sourced fonts
-import * as fonts from '../assets/fonts/fonts';
-/* eslint-disable */
 // stylesheets
-import 'normalize.css';
 import '../assets/styles/index.css';
-import '../assets/styles/fonts.css';
-import '../assets/styles/page.css';
 // layout local componenets
-import PrimaryFooter from '../components/PrimaryFooter/PrimaryFooter';
 import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
 // redux & auth
-import implicitAuthManager from '../auth';
+import { create_iam } from '../auth';
 import * as actions from '../store/actions/actions';
-
-injectGlobal`
-  @font-face {
-    font-family: 'Myriad-Pro';
-    src: local('Myriad-Pro'), url('${fonts.MyriadWebProWoff}') format('woff'),
-    url('${fonts.MyriadWebProWoff2}') format('woff2'),
-    url('${fonts.MyriadWebProTtf}') format('truetype');
-  }
-`;
 
 class Layout extends React.Component {
   componentDidMount() {
+    const implicitAuthManager = create_iam();
     if (this.props.useAuth) {
       implicitAuthManager.registerHooks({
         onAuthenticateSuccess: () => this.props.login(),
@@ -42,7 +26,7 @@ class Layout extends React.Component {
   }
 
   render() {
-    const { data, children } = this.props;
+    const { children } = this.props;
     return (
       <div>
         <Helmet>
@@ -62,6 +46,8 @@ class Layout extends React.Component {
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
   useAuth: PropTypes.bool.isRequired,
+  login: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -69,10 +55,8 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(actions.authenticateFailed()),
 });
 
-const mapStateToProps = state => {
-  return {
-    useAuth: state.flags.features.login,
-  };
-};
+const mapStateToProps = state => ({
+  useAuth: state.flags.features.login,
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);

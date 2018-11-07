@@ -1,22 +1,32 @@
 .Logo {
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    text-decoration: none;
-    cursor: pointer;
-    color: #fff;
+    margin: 0 10px 0 0;
 }
 
-.Logo:visited {
+.Logo a:visited {
     color: inherit;
 }
 
 .Logo h1 {
-    font-size: 20px;
+    font-weight: normal;  /* 400 */
+    margin: 5px 5px 0 18px;
+    color: #fff;
+    font-size: 1.5em;
 }
 
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 600px) and (max-width: 899px) {
     .Logo h1 {
-        font-size: 24px;
-    }   
-}
+      font-size: calc(7px + 2.2vw);
+      visibility: visible;
+    }
+  }
+  
+  @media screen and (min-width: 900px) {
+    .Logo h1 {
+      font-size: 2.0em;
+      display: block;
+    }
+  }

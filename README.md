@@ -33,44 +33,58 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ## Project Status
 In Development
-## Documnentation
-
-- [Component Architecture](./docs/components.md)
-
-- [Devhub Ingestion System](./docs/gatsbySources.md)
-
+## Documentation
+- [Internal Docs](./docs/README.md)
+- [Authoring Plugins for Remark](https://www.huynguyen.io/2018-05-remark-gatsby-plugin-part-2/)
 ## Security
 
 Authentication, Authorization, Policies, etc
 
 ## Files in this repository
-
+> cmd to update tree (from project root) `tree -I 'node_modules|coverage|.cache|app-web/public' -d -L 3`
 ```
-docs/               - Project Documentation
-└── images        
-└── icons       
-app-web/
-└──config/          - Test Configurations / Webpack Transformers
-└──src/             - Project Code
-    └── __mocks__   - jest mock fns
-    └── assets/
-        └── fonts
-        └── images
-        └── styles  - (global styles)
-    └── components/ - Presentational Components
-        └── Navigation/
-        └── PrimaryFooter
-        └── PrimaryHeader
-        └── UI/
-    └── layouts     - Gatsby Layout Template as per framework
-    └── pages/      - Gatsby builds static sites from these componenets
-        └── index   - containers Index Container
-        └── learn   - '...'
-    └── templates   - template 'page' for page building on build time (ie building pages from github readme files) 
-    └── utils       - utility functions
-openshift/          - OpenShift-specific files
-├── scripts         - helper scripts
-└── templates       - application templates
+├── app-web
+│   ├── __fixtures__
+│   ├── __mocks__
+│   │   └── @bcgov
+│   ├── __tests__
+│   │   ├── components
+│   │   ├── gatsby-plugins
+│   │   ├── pages
+│   │   └── utils
+│   ├── config
+│   │   └── jest
+│   ├── gatsby
+│   ├── plugins
+│   │   ├── gatsby-remark-path-transform
+│   │   └── gatsby-source-github-all
+│   ├── public
+│   │   └── static
+│   ├── shell-scripts
+│   ├── source-registry
+│   └── src
+│       ├── assets
+│       ├── components
+│       ├── constants
+│       ├── hoc
+│       ├── pages
+│       ├── store
+│       ├── templates
+│       └── utils
+├── docs
+│   ├── gatsby-custom-plugins
+│   └── images
+├── functional-tests
+│   ├── gradle
+│   │   └── wrapper
+│   └── src
+│       └── test
+├── openshift
+└── pipeline
+    ├── gradle
+    │   └── wrapper
+    └── src
+        └── groovy
 ```
 
 ## Deployment (Local Development For App-Web)
@@ -79,7 +93,7 @@ openshift/          - OpenShift-specific files
 * Clone this repo
 * Change into app-web project directory
 * run: `npm install`
-* cp .env.example .env
+* cp .env.production.example .env.production
 * replace relevant environment variables (for local dev only)
 * *it may be* beneficial to have the gatsby cli package `npm install -g gatsby-cli`
 * to start development server run: `npm run dev`
@@ -94,7 +108,7 @@ See (openshift/Readme.md)
 
 ## Getting Help or Reporting an Issue
 
-To report bugs/issues/feature requests, please file an [issue](https://github.com/BCDevOps/opendev-template/issues/).
+To report bugs/issues/feature requests, please file an [issue](https://github.com/bcgov/devhub-app-web/issues/).
 
 ## How to Contribute
 
@@ -102,6 +116,10 @@ If you would like to contribute, please see our [CONTRIBUTING](CONTRIBUTING.md) 
 
 Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). 
 By participating in this project you agree to abide by its terms.
+
+## Issues/Suggestions
+Make Suggestions/Issues [here!](https://github.com/bcgov/devhub-app-web/issues/new)
+Issues are [markdown supported](https://guides.github.com/features/mastering-markdown/).
 
 ## License
 

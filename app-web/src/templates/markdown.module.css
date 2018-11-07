@@ -1,82 +1,113 @@
-.Header {
+.DesignSystem {
     display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
+    flex-wrap: wrap;
 }
 
+.Panel {
+    flex: 1 0 200px;
+}
+.Header {
+    background-color: #fff;
+    padding-top: 10px;
+    border-bottom: 1px solid #ccc;
+}
 .Header h1 {
-    font-size: 48px;
-    margin: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0 4px;
+    text-align: center;
     color: #036;
 }
 
-.Nav {
+.Header .SourceTags {
     list-style: none;
-    display: flex;
-    font-size: 18px;
+    font-size: 25px;
+    margin: 0;
     padding: 0;
-    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.SourceTags li {
+    margin: 0 4px;
+    flex-basis: 26px;
+    text-align: center;
 }
 
-.Nav li {
-    padding: 5px;
-    border-radius: 5px;
-    background-color: #fafafa;
-}
-
-.Nav li a {
-    text-decoration: none;
-    color:#036;
-}
-
-.Nav li a:visited {
-    color: inherit;
-}
-
-.Header .List {
-    list-style: none;
-    font-size: 28px;
-}
-.List a {
+.SourceTags a {
     cursor: pointer;
     color: #3e3e3e;
 }
-.List a:visited {
+
+.SourceTags a:visited {
     color: #3e3e3e;
 }
+
 .Header > div {
     padding: 10px;
     align-self: flex-end;
 }
 
+.Content {
+    background-color: #fff;
+    min-width: 250px;
+    flex: 1 1 400px;
+}
+
 .MarkdownBody {
     padding: 10px;
-    background-color: #ebebeb;
+    word-break: break-word;
 }
+
 .MarkdownBody > h1:first-child {
     margin-top: 0;
 }
+
 .MarkdownBody > * {
     margin-bottom: 10px;
 }
+
 .MarkdownBody pre {
     border-radius: 4px;
 }
+
 .MarkdownBody h1,
 .MarkdownBody h2,
 .MarkdownBody h3,
 .MarkdownBody h4,
 .MarkdownBody h5,
 .MarkdownBody h6 {
-    color: #222;
+    color: #6d6d6d;
+    font-weight: 400;
 }
 
 .MarkdownBody p {
     line-height: 1.25em;
     color: #3e3e3e;
+    font-size: 14x;
 }
 
-.MarkdownBody pre {
+.MarkdownBody img {
+    max-width: 100%;
+}
 
+.MarkdownBody a {
+    color: #00996a;
+    font-weight: 600;
+    transition: all .15s ease-in;
+}
+
+.MarkdownBody a:hover {
+    color: #0d553f;
+}
+
+@media screen and (min-width: 600px) {
+    .Header {
+        margin-bottom: 5px;
+        background-color: inherit;
+    }
+
+    .Panel {
+        max-width: 200px;
+    }
 }

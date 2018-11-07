@@ -4,7 +4,24 @@ repos:
     owner: bcgov
     repo: 'design-system'
     attributes:
-      categories:
-        - Design System
-        - Getting Started
-  
+      labels:
+        - Components
+        - Repository
+  - name: Signing Tool
+    url: https://github.com/bcgov/devhub-signing-web/
+    owner: bcgov
+    repo: 'devhub-signing-web'
+    attributes:
+      labels:
+        - Self Service
+        - Repository
+  - name: Open Shift Wiki
+    url: https://github.com/BCDevOps/openshift-wiki
+    owner: BCDevOps
+    repo: 'openshift-wiki'
+    attributes:
+      labels:
+        - Guides
+        - Repository
+        - Wiki
+        - How To

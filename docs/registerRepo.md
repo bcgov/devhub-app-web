@@ -7,6 +7,13 @@ Register your repo so that any markdown files of your choosing will be viewable 
 
 ## How To Register Your Repo 
 
+We are still ironing out the best solution for registering.
+In the interim please ***fork*** and ***pull request*** to the registry.
+
+Please take a look at the [Registry Template](./registry.sample.yml)
+file to get an idea of how you would add your repository to the registry.
+
+
 When you register your repository several processes will be kicked off whenever the Devhub App is rebuilt. 
 
 In a nutshell it will grab one or more files from your repository, process them, and spit out either a 'card'
@@ -45,6 +52,8 @@ Front matter provides extra information that is necessary for Devhub to know ***
 
 >***TL;DR***
 
+**If your markdown content is destined to create a page in the devhub:**
+
 Your markdown file must contain this as apart of its front matter:
 ```markdown
 ---
@@ -55,14 +64,28 @@ description: short description explaining the content
 ...
 ```
 
+**If your markdown content should point to an external resource**
+Your markdown file must contain this as apart of its front matter:
+```markdown
+---
+title: what you want as the title
+description: short description explaining the content
+resourcePath: https://www.toyoursite.com
+---
+```
+
 Let's get into detail what each of those **things** are used for in the front matter.
 
-#### title (optionally)
+#### title (optional)
 The title for your file which is used as the title in the card view inside the devhub. If this is not
 included, the title will be *inferred* by the first header in your markdown code.
 
 #### description (mandatory)
 A short description describing what's in this file. This will be used as the short blurb in the card view inside the devhub. (try to limit to 280 character)
+
+#### resoucePath (optional)
+Tells the devhub to point the user to your resource when they click on the devhub resource card
+The resourcepath should be a valid hyper link
 
 <!-- ### Step 3: Register your repository
 

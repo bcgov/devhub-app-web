@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Button from '../../UI/Button/Button';
 import { LOGOUT_BTN_ID, LOGIN_BTN_ID } from '../../../constants/ui';
-import implicitAuthManager from '../../../auth';
+import { create_iam } from '../../../auth';
 
 export const Login = ({ isAuthenticated }) => {
+  const implicitAuthManager = create_iam();
   let button = (
     <Button
       type="primary"

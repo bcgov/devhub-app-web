@@ -27,8 +27,10 @@ Following a React best practice, components should generally be considered for p
 
 This is where Gatsby Differs from React, A page components will be converted into it's own index.html file ie (learnmore.js => /learnmore/index.html). This is the main feature of gatsby that we can generate several static sites that have all caching and preloading features already done for us at build time. 
 
+### Templates
+
+Templates are similar to Gatsby Pages but are used for dynamically created pages.
+
 ## Data Management
 
-Where at all possible, graphQL will be used as the data api for populating our components. This is the most idiomatic way of developing in gatsby. On any pages that require client side rendering redux and more traditional methods of fetching data will be used.
-
-(tbc)
+Where at all possible, graphQL will be used as the data api for populating our components. This is the most idiomatic way of developing in gatsby. On any pages that require client side rendering (for filtering or other interactive use cases) redux and more traditional methods of fetching data will be used.

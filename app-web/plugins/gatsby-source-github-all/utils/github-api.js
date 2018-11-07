@@ -65,8 +65,7 @@ const getNameOfExtensionVerbose = fileName => {
  * returns media type from extension
  * @param {String} extension 
  */
-const getMediaTypeByExtension = extension =>
-  MEDIATYPES[extension] ? MEDIATYPES[extension] : '';
+const getMediaTypeByExtension = extension => (MEDIATYPES[extension] ? MEDIATYPES[extension] : '');
 /**
  * Using the recursion param, this
  * function attempts to retrieve all directories/files from a repo
@@ -87,7 +86,8 @@ const fetchGithubTree = async (repo, owner, token) => {
         },
       }
     );
-    return await result.json();
+    const data = await result.json();
+    return data;
   } catch (e) {
     throw e;
   }
@@ -103,17 +103,16 @@ const fetchGithubTree = async (repo, owner, token) => {
  */
 const fetchFile = async (repo, owner, path, token) => {
   try {
-    const result = await fetch(
-      `${GITHUB_API_ENDPOINT}/repos/${owner}/${repo}/contents/${path}`,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'X-GitHub-Media-Type': 'Accept: application/vnd.github.v3.raw+json',
-        },
-      }
-    );
-    return await result.json();
+    const result = await fetch(`${GITHUB_API_ENDPOINT}/repos/${owner}/${repo}/contents/${path}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'X-GitHub-Media-Type': 'Accept: application/vnd.github.v3.raw+json',
+      },
+    });
+    const data = await result.json();
+    if (result.ok) return data;
+    return undefined;
   } catch (e) {
     throw e;
   }
@@ -126,9 +125,7 @@ const fetchFile = async (repo, owner, path, token) => {
  */
 const fetchIgnoreFile = async (repo, owner, token) => {
   const ignoreFile = await fetchFile(repo, owner, '/.devhubignore', token);
-  return ignoreFile.content
-    ? Base64.decode(ignoreFile.content).split('\n')
-    : [];
+  return ignoreFile ? Base64.decode(ignoreFile.content).split('\n') : [];
 };
 /**
    * filters an array of github graphql entries by their extensions
@@ -171,56 +168,57 @@ const filterFilesFromDirectories = entries => {
 
 /**
  * returns a flattened array of all files in a repository
- * by recursive graphql query to each directory in repo (accomplished via breadth first-search)
- * @param {String} repo 
- * @param {String} owner 
- * @param {String} name // name of repo as per registry 
+ * accomplished by fetching the github tree for a repo and filter files
+ * to be fetched by a configuration. Fetch the filtered files and
+ * append metadata before returning
+ * @param {String} repo the repo data (comes from the registry)
  * @param {String} token 
+ * @returns {Array} The array of files
  */
 // eslint-disable-next-line
-const getFilesFromRepo = async (repo, owner, name, token) => {
+const getFilesFromRepo = async ({ repo, url, owner, name, attributes: { labels } }, token) => {
   try {
     // ignore filtering
     const ig = ignore().add(DEFUALT_IGNORES);
     // create graphql string for finding all files in a directory
     const data = await fetchGithubTree(repo, owner, token);
     // filter out files by extensions
+    if (!data.tree) return [];
     let filesToFetch = filterFilesFromDirectories(data.tree);
     // filter out files that aren't markdown
-    filesToFetch = filterFilesByExtensions(
-      filesToFetch,
-      PROCESSABLE_EXTENSIONS
-    );
+    filesToFetch = filterFilesByExtensions(filesToFetch, PROCESSABLE_EXTENSIONS);
     // fetch ignore file if exists
     const repoIgnores = await fetchIgnoreFile(repo, owner, token);
     ig.add(repoIgnores);
     // filter out files that are apart of ignore
     filesToFetch = filesToFetch.filter(file => !ig.ignores(file.path));
     // retrieve contents for each file
-    const filesWithContents = filesToFetch.map(file =>
-      fetchFile(repo, owner, file.path, token)
-    );
+    const filesWithContents = filesToFetch.map(file => fetchFile(repo, owner, file.path, token));
     const filesResponse = await Promise.all(filesWithContents);
     // for some reason the accept header is not returning with raw content so we will decode
     // the default base 64 encoded content
     // also adding some additional params
-    const files = filesResponse.map(f => {
-      const ext = getExtensionFromName(f.name);
-      return {
-        ...f,
-        content: Base64.decode(f.content),
-        metadata: {
-          sourceName: name,
-          source: repo,
-          owner,
-          name: getNameWithoutExtension(f.name),
-          fileType: getNameOfExtensionVerbose(f.name),
-          fileName: f.name,
-          mediaType: getMediaTypeByExtension(ext),
-          extension: ext,
-        },
-      };
-    });
+    const files = filesResponse
+      .filter(f => f !== undefined) // filter out any files that weren't fetched
+      .map(f => {
+        const ext = getExtensionFromName(f.name);
+        return {
+          ...f,
+          content: Base64.decode(f.content),
+          metadata: {
+            labels,
+            sourceName: name,
+            source: repo,
+            owner,
+            name: getNameWithoutExtension(f.name),
+            fileType: getNameOfExtensionVerbose(f.name),
+            fileName: f.name,
+            mediaType: getMediaTypeByExtension(ext),
+            extension: ext,
+            sourceURL: url,
+          },
+        };
+      });
     return files;
   } catch (e) {
     // eslint-disable-next-line
@@ -248,6 +246,7 @@ module.exports = {
   getNameOfExtensionVerbose,
   fetchGithubTree,
   fetchFile,
+  fetchIgnoreFile,
   filterFilesFromDirectories,
   filterFilesByExtensions,
 };

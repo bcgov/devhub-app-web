@@ -4,16 +4,20 @@
   "main": "index.js",
   "license": "Apache-2.0",
   "dependencies": {
-    "@bcgov/common-web-utils": "0.0.6",
+    "@bcgov/common-web-utils": "~0.1.0",
     "@fortawesome/fontawesome-free-brands": "^5.0.13",
     "@fortawesome/fontawesome-svg-core": "^1.2.4",
     "@fortawesome/free-solid-svg-icons": "^5.3.1",
     "@fortawesome/react-fontawesome": "^0.1.3",
     "autoprefixer": "^9.1.5",
+    "babel-plugin-styled-components": "^1.8.0",
     "chalk": "^2.4.1",
+    "clone": "^2.1.2",
     "dotenv": "^6.0.0",
     "emotion": "^8.0.8",
     "emotion-server": "^8.0.8",
+    "eslint-config-react-app": "^3.0.4",
+    "eslint-plugin-flowtype": "^3.1.1",
     "feather-icons": "^3.3.0",
     "flag": "^3.0.0-1",
     "gatsby": "^1.9.76",
@@ -26,6 +30,8 @@
     "gatsby-plugin-react-helmet": "^2.0.11",
     "gatsby-plugin-react-next": "^1.0.4",
     "gatsby-plugin-sharp": "^1.6.9",
+    "gatsby-plugin-styled-components": "^3.0.0",
+    "gatsby-remark-images": "^2.0.5",
     "gatsby-remark-prismjs": "^3.0.2",
     "gatsby-source-filesystem": "^1.5.5",
     "gatsby-source-github-api": "0.0.3",
@@ -52,8 +58,10 @@
     "redux-thunk": "^2.3.0",
     "remark": "^10.0.0",
     "shortid": "^2.2.13",
-    "styled-components": "^3.4.9",
-    "styled-system": "^1.0.8"
+    "styled-components": "^3.4.10",
+    "styled-system": "^1.0.8",
+    "unist-util-visit": "^1.4.0",
+    "url-parse": "^1.4.3"
   },
   "scripts": {
     "dev": "node_modules/.bin/gatsby develop",
@@ -69,7 +77,7 @@
       ".(js|jsx)": "babel-jest",
       ".+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/config/fileTransformer.js"
     },
-    "testRegex": "(\\.(test|spec))\\.(jsx|js)$",
+    "testRegex": "(\\.(i?test|spec))\\.(jsx|js)$",
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/.cache/"
@@ -95,7 +103,7 @@
     "setupFiles": [
       "raf/polyfill",
       "jest-localstorage-mock",
-      "<rootDir>/src/setupTests.js",
+      "<rootDir>/config/setupTests.js",
       "<rootDir>/config/jest/loadershim.js"
     ]
   },

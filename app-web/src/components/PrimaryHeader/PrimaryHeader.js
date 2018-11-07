@@ -9,9 +9,11 @@ const PrimaryHeader = () => {
   return (
     <header className={classes.PrimaryHeader}>
       <Banner title={APP_TITLE} navigateOnClickPath="/" />
-      <Flag name="features.login">
-        <Login />
-      </Flag>
+      <div>
+        <Flag name="features.login">
+          <Login />
+        </Flag>
+      </div>
     </header>
   );
 };
