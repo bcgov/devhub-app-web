@@ -185,11 +185,7 @@ const filterFilesFromDirectories = entries => {
  * @returns {Array} The array of files
  */
 // eslint-disable-next-line
-<<<<<<< HEAD
-const getFilesFromRepo = async ({ repo, url, owner, name, attributes: { labels } }, token) => {
-=======
 const getFilesFromRepo = async ({ repo, url, owner, name, branch, attributes: { labels }}, token) => {
->>>>>>> add tests for fetching files via a branch
   try {
     // ignore filtering
     const ig = ignore().add(DEFUALT_IGNORES);
