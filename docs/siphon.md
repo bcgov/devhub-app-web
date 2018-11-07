@@ -103,20 +103,20 @@ The plugin format should be:
     // sample file
     {
     ...ContentsAPIData,
-          content: String,
-          metadata: {
-            labels: Array,
-            sourceName: String,
-            source: String,
-            owner: String,
-            name: String,
-            fileType: String,
-            fileName: String,
-            mediaType: String,
-            extension: String,
-            sourceURL: String,
-          },
-        }
+      content: String,
+      metadata: {
+        labels: Array,
+        sourceName: String,
+        source: String,
+        owner: String,
+        name: String,
+        fileType: String,
+        fileName: String,
+        mediaType: String,
+        extension: String,
+        sourceURL: String,
+      },
+    }
       ```
 - options: an optional object passed into the transformer pipline
 
