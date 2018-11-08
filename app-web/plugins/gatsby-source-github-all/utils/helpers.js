@@ -17,8 +17,8 @@ Created by Patrick Simonian
 */
 /**
  * returns an idempotent path based on a base path plus a digestable string that is hashed
- * @param {String} source the string name of the original source
- * @param  {Array} digestable 
+ * @param {String} base the base path (which is not changed)
+ * @param  {...String} digestables comma seperated list of strings which are dsigested by shorthash 
  * @returns {String} ie (/mypath, file.md) => /mypath/123dsfakjhdf
  */
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
