@@ -1,5 +1,6 @@
 import { createPathWithDigest } from '../utils/helpers';
 describe('createPathWithDigest', () => {
+
   it('throws if base is not a string', () => {
     expect(() => createPathWithDigest(9, '123')).toThrow('base must be a string');
   });

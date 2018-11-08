@@ -29,11 +29,14 @@ const createPathWithDigest = (base, digestable) => {
   if (!TypeCheck.isString(base)) {
     throw new Error('base must be a string');
   }
+
   if (!TypeCheck.isString(digestable)) {
     throw new Error('digestable must be a string');
   }
+
   const normalizedBase = base.replace(/^\//, '').replace(/\/$/, '');
   const digested = shorthash.unique(digestable);
+
   return path.join('/', normalizedBase, digested);
 };
 
