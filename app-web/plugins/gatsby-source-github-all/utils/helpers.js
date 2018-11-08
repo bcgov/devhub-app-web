@@ -25,17 +25,16 @@ const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
 const path = require('path');
 const shorthash = require('shorthash');
 
-const createPathWithDigest = (base, digestable) => {
+const createPathWithDigest = (base, ...digestables) => {
   if (!TypeCheck.isString(base)) {
     throw new Error('base must be a string');
   }
-
-  if (!TypeCheck.isString(digestable)) {
+  if (!digestables.every(TypeCheck.isString)) {
     throw new Error('digestable must be a string');
   }
 
   const normalizedBase = base.replace(/^\//, '').replace(/\/$/, '');
-  const digested = shorthash.unique(digestable);
+  const digested = shorthash.unique(digestables.join(''));
 
   return path.join('/', normalizedBase, digested);
 };

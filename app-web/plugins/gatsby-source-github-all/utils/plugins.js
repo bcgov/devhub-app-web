@@ -98,7 +98,8 @@ const markdownPagePathPlugin = (extension, file) => {
     // the page page is composed of the source name, the title of the file plus an id
     file.metadata.resourcePath = createPathWithDigest(
       file.metadata.source,
-      file.metadata.source + file.metadata.name
+      file.metadata.source,
+      file.metadata.name
     );
   }
 
