@@ -133,6 +133,42 @@ const GITHUB_API = {
     content: 'file1 file2 file3',
   },
 };
+
+const RAW_HTML_FILE = {
+  name: 'index.html',
+  path: 'components/header/index.html',
+  sha: 'dfdfas123',
+  size: 2562,
+  url:
+    'https://api.github.com/repos/bcgov/design-system/contents/components/header/index.html?ref=master',
+  html_url: 'https://github.com/bcgov/design-system/blob/master/components/header/index.html',
+  git_url:
+    'https://api.github.com/repos/bcgov/design-system/git/blobs/1b0260c9b456f68d0443d0194ea84ed76e3d3041',
+  download_url:
+    'https://raw.githubusercontent.com/bcgov/design-system/master/components/header/index.html',
+  type: 'file',
+  content:
+    '<!DOCTYPE><html><head></head><body><h1>Hello World!</h1></body></html>',
+  encoding: 'base64',
+  _links: {
+    self:
+      'https://api.github.com/repos/bcgov/design-system/contents/components/header/index.html?ref=master',
+    git:
+      'https://api.github.com/repos/bcgov/design-system/git/blobs/1b0260c9b456f68d0443d0194ea84ed76e3d3041',
+    html: 'https://github.com/bcgov/design-system/blob/master/components/header/index.html',
+  },
+  metadata: {
+    sourceName: 'Design System',
+    source: 'design-system',
+    owner: 'bcgov',
+    name: 'README',
+    fileType: 'Markdown',
+    fileName: 'README.md',
+    mediaType: 'text/markdown',
+    extension: 'md',
+  },
+};
+
 // with resource path frontmatter
 const RAW_FILE_MD_WITH_RESOURCEPATH = {
   name: 'README.md',
