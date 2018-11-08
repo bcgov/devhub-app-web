@@ -18,6 +18,8 @@
 // Created by Patrick Simonian on 2018-10-12.
 //
 
+const GRAPHQL_NODE_TYPE = 'DevhubSyphon';
+
 const DEFUALT_IGNORES = [
   'node_modules',
   'CONTRIBUTING.md',
@@ -70,6 +72,7 @@ const MARKDOWN_FRONTMATTER_SCHEMA = {
 };
 
 module.exports = {
+  GRAPHQL_NODE_TYPE,
   MARKDOWN_FRONTMATTER_SCHEMA,
   PROCESSABLE_EXTENSIONS,
   DEFUALT_IGNORES,

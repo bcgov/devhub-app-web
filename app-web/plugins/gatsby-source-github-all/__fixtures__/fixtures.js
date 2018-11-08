@@ -134,7 +134,7 @@ const GITHUB_API = {
   },
 };
 
-const RAW_HTML_FILE = {
+const PROCESSED_FILE_HTML = {
   name: 'index.html',
   path: 'components/header/index.html',
   sha: 'dfdfas123',
@@ -377,6 +377,7 @@ module.exports = {
   GITHUB_API,
   PROCESSED_FILE_MD,
   PROCESSED_FILE_TXT,
+  PROCESSED_FILE_HTML,
   RAW_FILE_MD,
   RAW_FILE_MD_WITH_RESOURCEPATH,
   GRAPHQL_NODES_WITH_REGISTRY,

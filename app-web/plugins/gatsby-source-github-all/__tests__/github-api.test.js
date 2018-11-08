@@ -27,7 +27,6 @@ import {
   filterFilesByExtensions,
   getExtensionFromName,
   getNameWithoutExtension,
-  filterFiles,
   applyBaseMetadata,
 } from '../utils/github-api';
 
