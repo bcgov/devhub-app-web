@@ -9,7 +9,7 @@ import Layout from '../hoc/Layout';
 import Cards from '../components/Cards/Cards';
 import styles from './index.module.css';
 
-const Index = ({ data: { pathfinder, devhubSyphon } }) => {
+const Index = ({ data: { pathfinder, allDevhubSiphon } }) => {
   const yamlData = YAML.safeLoad(pathfinder.data.organization.repository.resources.yaml);
   // map entries and set paramaters in entries that resource component expects
   const mappedEntries = yamlData.entries.map(entry => ({
@@ -30,15 +30,15 @@ const Index = ({ data: { pathfinder, devhubSyphon } }) => {
     />
   ));
   // flatten out allSourceGithub edges from query
-  const syphonNodes = flattenAllSourceDevhubGithub(devhubSyphon.edges);
+  const siphonNodes = flattenAllSourceDevhubGithub(allDevhubSiphon.edges);
   // map out github nodes to have paramaters that are expected by Resource
-  const mappedSyphonNodes = syphonNodes.map(dhnode => ({
+  const mappedSiphonNodes = siphonNodes.map(dhnode => ({
     ...dhnode,
     title: dhnode.childMarkdownRemark.frontmatter.title,
     description: dhnode.childMarkdownRemark.frontmatter.description,
   }));
-  const groupedSyphonData = groupBy(mappedSyphonNodes, 'sourceName');
-  const syphonResources = groupedSyphonData.map(ghData => (
+  const groupedSiphonData = groupBy(mappedSiphonNodes, 'sourceName');
+  const SiphonResources = groupedSiphonData.map(ghData => (
     <Cards
       key={shortid.generate()}
       topic={ghData.sourceName}
@@ -63,7 +63,7 @@ const Index = ({ data: { pathfinder, devhubSyphon } }) => {
           If you’d like to comment, offer a suggestion or ask a question you can find us by opening
           an issue in our <a href={GITHUB_ISSUES_ROUTE}>github.com</a> repository.
         </p>
-        <Flag name="features.githubResourceCards">{syphonResources}</Flag>
+        <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
         <Flag name="features.pathfinderResourceCards">{pathfinderResources}</Flag>
       </main>
     </Layout>
@@ -84,7 +84,7 @@ export const resourceQuery = graphql`
         }
       }
     }
-    allDevhubSyphon {
+    allDevhubSiphon {
       edges {
         node {
           id

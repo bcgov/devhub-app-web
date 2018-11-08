@@ -18,7 +18,7 @@
 // Created by Patrick Simonian on 2018-10-12.
 //
 
-const GRAPHQL_NODE_TYPE = 'DevhubSyphon';
+const GRAPHQL_NODE_TYPE = 'DevhubSiphon';
 
 const DEFUALT_IGNORES = [
   'node_modules',

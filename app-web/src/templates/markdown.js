@@ -25,28 +25,28 @@ import { faGithub } from '@fortawesome/fontawesome-free-brands';
 import { faCodeBranch } from '@fortawesome/free-solid-svg-icons';
 import Navigation from '../components/DesignSystem/Navigation';
 // eslint-disable-next-line
-const Generic = ({ data: { devhubSyphon, nav }, location: pathname }) => {
+const Generic = ({ data: { devhubSiphon, nav }, location: pathname }) => {
   // eslint-disable-next-line
   return (
     <Layout>
       <div className={styles.DesignSystem}>
         <div className={styles.Panel}>
           <header className={styles.Header}>
-            <h1>{devhubSyphon.sourceName}</h1>
+            <h1>{devhubSiphon.sourceName}</h1>
             <ul className={styles.SourceTags}>
               <li>
-                <a href={devhubSyphon.originalSource}>
+                <a href={devhubSiphon.originalSource}>
                   <FontAwesomeIcon
                     icon={faGithub}
-                    aria-label={`View the original source ${devhubSyphon.fileName} on github`}
+                    aria-label={`View the original source ${devhubSiphon.fileName} on github`}
                   />
                 </a>
               </li>
               <li>
-                <a href={`${devhubSyphon.sourcePath}fork`}>
+                <a href={`${devhubSiphon.sourcePath}fork`}>
                   <FontAwesomeIcon
                     icon={faCodeBranch}
-                    aria-label={`Fork ${devhubSyphon.sourceName} on github`}
+                    aria-label={`Fork ${devhubSiphon.sourceName} on github`}
                   />
                 </a>
               </li>
@@ -58,7 +58,7 @@ const Generic = ({ data: { devhubSyphon, nav }, location: pathname }) => {
           <div
             className={styles.MarkdownBody}
             dangerouslySetInnerHTML={{
-              __html: devhubSyphon.childMarkdownRemark.html,
+              __html: devhubSiphon.childMarkdownRemark.html,
             }}
           />
         </section>
@@ -67,9 +67,9 @@ const Generic = ({ data: { devhubSyphon, nav }, location: pathname }) => {
   );
 };
 // eslint-disable-next-line
-export const devhubSyphon = graphql`
-  query devhubSyphon($id: String!, $source: String!) {
-    devhubSyphon(id: { eq: $id }) {
+export const devhubSiphon = graphql`
+  query devhubSiphon($id: String!, $source: String!) {
+    devhubSiphon(id: { eq: $id }) {
       name
       id
       childMarkdownRemark {
@@ -87,7 +87,7 @@ export const devhubSyphon = graphql`
       fileType
       path
     }
-    nav: allDevhubSyphon(filter: { source: { eq: $source } }) {
+    nav: allDevhubSiphon(filter: { source: { eq: $source } }) {
       edges {
         node {
           ...NavigationFragment

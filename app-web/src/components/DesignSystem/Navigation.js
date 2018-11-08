@@ -36,7 +36,7 @@ class Navigation extends Component {
 }
 
 export const query = graphql`
-  fragment NavigationFragment on DevhubSyphon {
+  fragment NavigationFragment on DevhubSiphon {
     childMarkdownRemark {
       frontmatter {
         title
