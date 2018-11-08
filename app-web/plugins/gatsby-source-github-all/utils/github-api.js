@@ -169,6 +169,48 @@ const filterFilesFromDirectories = entries => {
 };
 
 /**
+ * applies base meta data to file
+ * @param {Object} file 
+ * @param {Array} labels 
+ * @param {String} owner 
+ * @param {String} source 
+ * @param {String} sourceName 
+ * @param {String} sourceURL 
+ */
+const applyBaseMetadata = (file, labels, owner, source, sourceName, sourceURL) => {
+  const extension = getExtensionFromName(file.name);
+  return {
+    ...file,
+    content: Base64.decode(file.content),
+    metadata: {
+      labels,
+      sourceName,
+      source,
+      owner,
+      name: getNameWithoutExtension(file.name),
+      fileType: getNameOfExtensionVerbose(file.name),
+      fileName: file.name,
+      mediaType: getMediaTypeByExtension(extension),
+      extension,
+      sourceURL,
+    },
+  };
+};
+
+/**
+ * filters files by processable extensions as well as the devhubignores
+ * @param {Array} files the files
+ * @param {Object} ignoreObj the ignore module object
+ */
+const filterFiles = (files, ignoreObj) => {
+  // filter out files that aren't markdown
+  const filteredFiles = filterFilesByExtensions(files, PROCESSABLE_EXTENSIONS);
+  // filter out files that are apart of ignore
+  const filesToFetch = filteredFiles.filter(file => !ignoreObj.ignores(file.path));
+  return filesToFetch;
+};
+
+/**
  * returns a flattened array of all files in a repository
  * accomplished by fetching the github tree for a repo and filter files
  * to be fetched by a configuration. Fetch the filtered files and
@@ -193,14 +235,13 @@ const getFilesFromRepo = async ({ repo, url, owner, name, branch, attributes: { 
     const data = await fetchGithubTree(repo, owner, token, branch);
     // filter out files by extensions
     if (!data.tree) return [];
-    let filesToFetch = filterFilesFromDirectories(data.tree);
-    // filter out files that aren't markdown
-    filesToFetch = filterFilesByExtensions(filesToFetch, PROCESSABLE_EXTENSIONS);
+    let files = filterFilesFromDirectories(data.tree);
     // fetch ignore file if exists
     const repoIgnores = await fetchIgnoreFile(repo, owner, token, branch);
+    // add repo ignores to ignore object
     ig.add(repoIgnores);
-    // filter out files that are apart of ignore
-    filesToFetch = filesToFetch.filter(file => !ig.ignores(file.path));
+    // pass files to filter routine with ignore object
+    const filesToFetch = filterFiles(files, ig);
     // retrieve contents for each file
     const filesWithContents = filesToFetch.map(file =>
       fetchFile(repo, owner, file.path, token, branch)
@@ -209,28 +250,9 @@ const getFilesFromRepo = async ({ repo, url, owner, name, branch, attributes: { 
     // for some reason the accept header is not returning with raw content so we will decode
     // the default base 64 encoded content
     // also adding some additional params
-    const files = filesResponse
+    return filesResponse
       .filter(f => f !== undefined) // filter out any files that weren't fetched
-      .map(f => {
-        const ext = getExtensionFromName(f.name);
-        return {
-          ...f,
-          content: Base64.decode(f.content),
-          metadata: {
-            labels,
-            sourceName: name,
-            source: repo,
-            owner,
-            name: getNameWithoutExtension(f.name),
-            fileType: getNameOfExtensionVerbose(f.name),
-            fileName: f.name,
-            mediaType: getMediaTypeByExtension(ext),
-            extension: ext,
-            sourceURL: url,
-          },
-        };
-      });
-    return files;
+      .map(f => applyBaseMetadata(f, labels, owner, repo, name, url));
   } catch (e) {
     // eslint-disable-next-line
     console.error(chalk`
