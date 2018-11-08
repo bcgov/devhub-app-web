@@ -37,8 +37,8 @@ const FILETYPES = {
   json: 'JSON',
   md: 'Markdown',
   txt: 'text',
-  html: 'html',
-  HTML: 'html',
+  html: 'HTML',
+  HTML: 'HTML',
 };
 
 const MEDIATYPES = {
@@ -48,6 +48,7 @@ const MEDIATYPES = {
   yml: 'text/yaml',
   txt: 'text/html',
   html: 'text/html',
+  HTML: 'text/html',
 };
 
 const PROCESSABLE_EXTENSIONS = ['.md', '.yml', '.yaml', '.html'];
