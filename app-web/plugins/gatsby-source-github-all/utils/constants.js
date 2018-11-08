@@ -35,6 +35,8 @@ const FILETYPES = {
   json: 'JSON',
   md: 'Markdown',
   txt: 'text',
+  html: 'html',
+  HTML: 'html',
 };
 
 const MEDIATYPES = {
@@ -46,7 +48,7 @@ const MEDIATYPES = {
   html: 'text/html',
 };
 
-const PROCESSABLE_EXTENSIONS = ['.md', '.yml', '.yaml'];
+const PROCESSABLE_EXTENSIONS = ['.md', '.yml', '.yaml', '.html'];
 
 const MARKDOWN_FRONTMATTER_SCHEMA = {
   title: {
