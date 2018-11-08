@@ -27,6 +27,8 @@ import {
   filterFilesByExtensions,
   getExtensionFromName,
   getNameWithoutExtension,
+  filterFiles,
+  applyBaseMetadata,
 } from '../utils/github-api';
 
 // eslint-disable-next-line
@@ -261,5 +263,31 @@ describe('Github API', () => {
     const expected2 = 'something';
     expect(getNameWithoutExtension(file)).toBe(expected);
     expect(getNameWithoutExtension(file2)).toBe(expected2);
+  });
+
+  test("applyBaseMetadata does it's thing", () => {
+    const RAW_FILE = GITHUB_API.FILE;
+    const labels = ['Components', 'Repository'];
+    const owner = 'billybob';
+    const source = 'Devhub';
+    const sourceName = 'Devhub';
+    const url = 'https://billybob.com';
+    const expected = {
+      ...RAW_FILE,
+      content: RAW_FILE.content,
+      metadata: {
+        labels: ['Components', 'Repository'],
+        sourceName: 'Devhub',
+        source: 'Devhub',
+        owner: 'billybob',
+        name: 'manifest',
+        fileType: 'JSON',
+        fileName: 'manifest.json',
+        mediaType: 'application/json',
+        extension: 'json',
+        sourceURL: 'https://billybob.com',
+      },
+    };
+    expect(applyBaseMetadata(RAW_FILE, labels, owner, source, sourceName, url)).toEqual(expected);
   });
 });

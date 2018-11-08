@@ -147,8 +147,7 @@ const RAW_HTML_FILE = {
   download_url:
     'https://raw.githubusercontent.com/bcgov/design-system/master/components/header/index.html',
   type: 'file',
-  content:
-    '<!DOCTYPE><html><head></head><body><h1>Hello World!</h1></body></html>',
+  content: '<!DOCTYPE><html><head></head><body><h1>Hello World!</h1></body></html>',
   encoding: 'base64',
   _links: {
     self:

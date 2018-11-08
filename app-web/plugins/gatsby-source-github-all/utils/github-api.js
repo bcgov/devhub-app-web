@@ -281,6 +281,8 @@ module.exports = {
   fetchGithubTree,
   fetchFile,
   fetchIgnoreFile,
+  filterFiles,
   filterFilesFromDirectories,
   filterFilesByExtensions,
+  applyBaseMetadata,
 };
