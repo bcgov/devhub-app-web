@@ -19,7 +19,7 @@
 //
 const crypto = require('crypto');
 const _ = require('lodash'); // eslint-disable-line
-const fetchFromSource = require('./utils/fetchSource');
+const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
 const { GRAPHQL_NODE_TYPE } = require('./utils/constants');
 const { fileTransformer } = require('./utils/transformer');
 const { markdownFrontmatterPlugin, markdownPagePathPlugin } = require('./utils/plugins');
@@ -56,13 +56,18 @@ const createGHNode = (file, id) => ({
   },
 });
 
-const repoIsValid = repo => repo.name && repo.url && repo.repo && repo.owner;
+/**
+ * loops over sources and validates them based on their type
+ * @param {Array} sources the sources
+ */
+const sourcesAreValid = sources => sources.every(validateSourceRegistry);
 
-// const reposAreValid = sources => repos.every(repoIsValid);
-const reposAreValid = sources => true;
-
+/**
+ * validates source registry
+ * @param {Object} registry the source registry
+ */
 const checkRegistry = registry => {
-  if (!registry.sources || !reposAreValid(registry.sources)) {
+  if (!registry.sources || !sourcesAreValid(registry.sources)) {
     throw new Error(
       'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters'
     );

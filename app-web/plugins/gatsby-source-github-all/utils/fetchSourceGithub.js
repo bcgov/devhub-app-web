@@ -227,7 +227,7 @@ const filterFiles = (files, ignoreObj) => {
  * @returns {Array} The array of files
  */
 // eslint-disable-next-line
-const getFilesFromRepo = async ({ repo, url, owner, name, branch, attributes: { labels }}, token) => {
+const getFilesFromRepo = async ({ name, sourceProperties: { repo, url, owner, branch }, attributes: { labels }}, token) => {
   try {
     // ignore filtering
     const ig = ignore().add(DEFUALT_IGNORES);
@@ -254,6 +254,7 @@ const getFilesFromRepo = async ({ repo, url, owner, name, branch, attributes: { 
       .filter(f => f !== undefined) // filter out any files that weren't fetched
       .map(f => applyBaseMetadata(f, labels, owner, repo, name, url));
   } catch (e) {
+    console.error(e);
     // eslint-disable-next-line
     console.error(chalk`
       {red.bold ERROR!! in Gatsby Source Github All} 
@@ -273,6 +274,12 @@ const getFilesFromRepo = async ({ repo, url, owner, name, branch, attributes: { 
   }
 };
 
+const validateSourceGithub = source =>
+  source.name &&
+  source.sourceProperties.url &&
+  source.sourceProperties.repo &&
+  source.sourceProperties.owner;
+
 module.exports = {
   getFilesFromRepo,
   getExtensionFromName,
@@ -285,4 +292,5 @@ module.exports = {
   filterFilesFromDirectories,
   filterFilesByExtensions,
   applyBaseMetadata,
+  validateSourceGithub,
 };
