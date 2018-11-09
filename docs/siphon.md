@@ -10,8 +10,10 @@ Devhub is a content catalogue generator. **Siphon** is Devhub's main tool that *
 -   [Flow Charts](#routine-flow)
     - [Main Routine](#main-routine-flow)
     - [Fetching/Validating The Registry](#registry)
-    - [Fetching Files from repositories](#fetch-files-from-repo)
+    - [Fetching Files By A Source Type](#fetch-files-from-source)
+        - [Fetching Files from Github Repositories repositories](#fetchgithubsource-fetch-files-from-repos)
     - [Transforming Files with the FileTransformer Pipeline](#file-transformer)
+-   [Fetching Files By Sources Authoring](#authoring-a-fetch-routine)
 -   [File Transfomer Pipeline](#the-file-transformer)
     - [Transfomer Usage](#transformer-usage)
     - [Transformer Plugin Authoring](#transformer-plugin-authoring)
@@ -39,13 +41,35 @@ In addition, they lacked the ability to control things like **mime types** for r
 #### Registry
 <img src="./images/registry-routine.png">
 
-#### Fetch Files From Repo
+#### Fetch Files From Source
 
-<img src="./images/fetch-files-from-repo.png">
+Sources are fetched based on their source type. The source type is mapped against 
+a fetching function which returns a normalized datastructure on return.
+
+<img src="./images/fetch-from-source-routine.png">
+
+##### Fetching Functions
+
+###### fetchGithubSource (fetch files from repos)
+<img src="./images/fetch-source-github.png">
 
 #### File Transformer
 
 <img src="./images/file-transformer.png">
+
+## Authoring A Source Fetch Routine
+
+Because Siphon has the ability to collect data from several sources it is important that
+when sources are *sourced* they return a standardized object which Siphon can then use to create
+nodes. Currently the standardized object is just a plain javascript object but future implementations
+would more than likely involve an instance of a **Class the implements a Source Interface**.
+
+### Things to Consider
+
+- Have you added to the `SOURCE_TYPES` constant the source you are attempting to fetch?
+- Have you created a validation function to validate the `sourceProperties` that are made available to your source
+from the source registry?
+- Have you created a fetch routine that returns the standard metadata required (see the githubsource fn for more info)
 
 ## The File Transformer
 

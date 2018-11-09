@@ -20,6 +20,10 @@ In a nutshell it will grab one or more files from your repository, process them,
 
 or a card and a page (which the card would navigate too when clicked)
 
+## Supported File Types in Devhub
+- .md (Markdown)
+- .html (HTML)
+
 ### Step 1: Include `.devhubignore`
 
 Ensure you have a `.devhubignore` file apart of your repo in the root level of the repo (not within any folders). 
@@ -34,16 +38,22 @@ By default we already exclude the following files and folders so you will not to
 - CODE_OF_CONDUCT.md
 - LICENSE
 
-******
-**At this point the only file types we are supporting are Markdown (.md) files**
-******
 Sample .devhubignore file:
+
 ```
 README.md
 /docs/dont_show_this.md
 ```
 
-### Step 2: Add Front Matter To Your Markdown Files
+
+### Step 2: Ensuring Your Files Meet Metadata Requirements
+
+Based on what type of file you are choosing to include in the devhub some metadata properties may
+be required. 
+
+#### Markdown Metadata
+
+Add Front Matter To Your Markdown Files
 > Last updated: Oct 17th 2018
 
 Front matter provides extra information that is necessary for Devhub to know ***how*** to process your markdown files. As definitions change for this process, the requirements for what will be needed for your front matter may change.
@@ -84,6 +94,14 @@ A short description describing what's in this file. This will be used as the sho
 #### resoucePath (optional)
 Tells the devhub to point the user to your resource when they click on the devhub resource card
 The resourcepath should be a valid hyper link
+
+
+#### HTML metadata
+
+In future versions, the Devhub will use the *unfurling* techinique to create neat previews of your
+content. Follow this document on how to add the appropriate metadata to your HTML document. 
+
+https://medium.com/slack-developer-blog/everything-you-ever-wanted-to-know-about-unfurling-but-were-afraid-to-ask-or-how-to-make-your-e64b4bb9254
 
 ### Step 3: Register your repository
 
