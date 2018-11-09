@@ -20,6 +20,7 @@ const matter = require('gray-matter'); // eslint-disable-line
 const visit = require('unist-util-visit'); // eslint-disable-line
 const remark = require('remark'); // eslint-disable-line
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
+const { createPathWithDigest } = require('./helpers'); // eslint-disable-line
 const { MARKDOWN_FRONTMATTER_SCHEMA } = require('./constants');
 /**
  * applys default front matter properties
@@ -95,8 +96,12 @@ const markdownPagePathPlugin = (extension, file) => {
   } else {
     // no resource path, this file is destined to be turned into a page,
     // the page page is composed of the source name, the title of the file plus an id
-    file.metadata.resourcePath = `/${file.metadata.source}/${file.metadata
-      .name}_${shortid.generate()}`;
+    file.metadata.resourcePath = createPathWithDigest(
+      file.metadata.source,
+      file.metadata.source,
+      file.metadata.name,
+      file.html_url
+    );
   }
 
   return file;

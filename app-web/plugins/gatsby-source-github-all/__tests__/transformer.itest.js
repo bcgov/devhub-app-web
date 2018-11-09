@@ -53,6 +53,8 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
     const transformedFile = fileTransformer(PROCESSED_FILE_MD.metadata.extension, PROCESSED_FILE_MD)
       .use(markdownPagePathPlugin)
       .resolve();
-    expect(transformedFile.metadata.resourcePath).toBe(`/${source}/${name}_0`);
+    expect(transformedFile.metadata.resourcePath).toBe(
+      `/${source}/${source}${name}https:/github.com/bcgov/design-system/blob/master/components/header/README.md`
+    );
   });
 });
