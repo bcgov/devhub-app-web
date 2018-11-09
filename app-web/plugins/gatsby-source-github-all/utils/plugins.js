@@ -99,7 +99,8 @@ const markdownPagePathPlugin = (extension, file) => {
     file.metadata.resourcePath = createPathWithDigest(
       file.metadata.source,
       file.metadata.source,
-      file.metadata.name
+      file.metadata.name,
+      file.html_url
     );
   }
 
