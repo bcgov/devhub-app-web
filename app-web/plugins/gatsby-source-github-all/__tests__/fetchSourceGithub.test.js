@@ -28,7 +28,7 @@ import {
   getExtensionFromName,
   getNameWithoutExtension,
   applyBaseMetadata,
-} from '../utils/github-api';
+} from '../utils/fetchSourceGithub';
 
 // eslint-disable-next-line
 import fetch from 'node-fetch';

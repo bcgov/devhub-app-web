@@ -17,15 +17,18 @@
 //
 // Created by Patrick Simonian on 2018-10-12.
 //
-jest.mock('crypto');
-
-const { createGHNode, checkRegistry, getRegistry } = require('../sourceNodes');
-const { GRAPHQL_NODE_TYPE } = require('../utils/constants');
-const {
+import { createGHNode, checkRegistry, getRegistry } from '../sourceNodes';
+import { GRAPHQL_NODE_TYPE } from '../utils/constants';
+import {
   GRAPHQL_NODES_WITH_REGISTRY,
   GRAPHQL_NODES_WITHOUT_REGISTRY,
   REGISTRY,
-} = require('../__fixtures__/fixtures');
+} from '../__fixtures__/fixtures';
+import { validateSourceRegistry } from '../utils/fetchSource';
+
+jest.mock('crypto');
+
+jest.mock('../utils/fetchSource.js');
 
 describe('gatsby source github all plugin', () => {
   test('getRegistry returns the registry', () => {
@@ -38,90 +41,20 @@ describe('gatsby source github all plugin', () => {
     expect(() => getRegistry(getNodes)).toThrow('Registry not found');
   });
 
-  test('checkRegistry throws if a repo is missing an owner', () => {
-    const registry = {
-      repos: [
-        {
-          name: 'something',
-          repo: '123',
-          url: 'https://wadup.com',
-          // missing owner
-        },
-      ],
-    };
-
-    expect(() => {
-      checkRegistry(registry);
-    }).toThrow(
-      'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters'
-    );
+  test('checkRegistry returns true if sources are valid', () => {
+    validateSourceRegistry.mockReturnValue(true);
+    expect(checkRegistry(REGISTRY)).toBe(true);
   });
 
-  test('checkRegistry throws if a repo is missing repo', () => {
-    const registry = {
-      repos: [
-        {
-          name: 'something',
-          owner: 'something',
-          url: 'https://wadup.com',
-        },
-      ],
-    };
-
-    expect(() => {
-      checkRegistry(registry);
-    }).toThrow(
+  test("checkRegistry throws if sources don't exist or if sources are invalid", () => {
+    const BAD_REGISTRY = { ...REGISTRY, sources: null };
+    expect(() => checkRegistry(BAD_REGISTRY)).toThrow(
       'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters'
     );
-  });
-
-  test('checkRegistry throws if a repo is missing name', () => {
-    const registry = {
-      repos: [
-        {
-          repo: 'something',
-          url: 'https://wadup.com',
-          owner: 'something',
-        },
-      ],
-    };
-
-    expect(() => {
-      checkRegistry(registry);
-    }).toThrow(
+    validateSourceRegistry.mockReturnValue(false);
+    expect(() => checkRegistry(REGISTRY)).toThrow(
       'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters'
     );
-  });
-  test('checkRegistry throws if a repo is missing url', () => {
-    const registry = {
-      repos: [
-        {
-          name: 'something',
-          owner: 'something',
-          repo: '123',
-        },
-      ],
-    };
-
-    expect(() => {
-      checkRegistry(registry);
-    }).toThrow(
-      'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters'
-    );
-  });
-  test('checkRegistry returns true if repo is valid', () => {
-    const registry = {
-      repos: [
-        {
-          name: '123',
-          owner: '123',
-          repo: '123',
-          url: 'https://repo.com',
-        },
-      ],
-    };
-
-    expect(checkRegistry(registry)).toBe(true);
   });
 
   test('createGHNode returns data', () => {
