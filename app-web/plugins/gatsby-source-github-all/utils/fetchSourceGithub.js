@@ -23,6 +23,7 @@ const {
   PROCESSABLE_EXTENSIONS,
   MEDIATYPES,
   DEFUALT_IGNORES,
+  GITHUB_SOURCE_SCHEMA,
 } = require('./constants');
 const chalk = require('chalk'); // eslint-disable-line
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
@@ -274,11 +275,17 @@ const getFilesFromRepo = async ({ name, sourceProperties: { repo, url, owner, br
   }
 };
 
-const validateSourceGithub = source =>
-  source.name &&
-  source.sourceProperties.url &&
-  source.sourceProperties.repo &&
-  source.sourceProperties.owner;
+const validateSourceGithub = source => {
+  return Object.keys(GITHUB_SOURCE_SCHEMA).every(key => {
+    const schemaItem = GITHUB_SOURCE_SCHEMA[key];
+    return (
+      schemaItem.required &&
+      Object.prototype.hasOwnProperty.call(source.sourceProperties, key) &&
+      TypeCheck.isA(schemaItem.type, source.sourceProperties[key]) &&
+      source.name
+    );
+  });
+};
 
 module.exports = {
   getFilesFromRepo,

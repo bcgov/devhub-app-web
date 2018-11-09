@@ -24,6 +24,7 @@ import {
   fetchGithubTree,
   fetchFile,
   fetchIgnoreFile,
+  validateSourceGithub,
   filterFilesByExtensions,
   getExtensionFromName,
   getNameWithoutExtension,
@@ -35,7 +36,7 @@ import fetch from 'node-fetch';
 
 const { Response } = jest.requireActual('node-fetch');
 // eslint-disable-next-line
-import { GITHUB_API } from '../__fixtures__/fixtures';
+import { GITHUB_API, GITHUB_SOURCE } from '../__fixtures__/fixtures';
 
 let entries = null;
 
@@ -288,5 +289,19 @@ describe('Github API', () => {
       },
     };
     expect(applyBaseMetadata(RAW_FILE, labels, owner, source, sourceName, url)).toEqual(expected);
+  });
+
+  test('validateSourceGithub returns true when valid', () => {
+    expect(validateSourceGithub(GITHUB_SOURCE)).toBe(true);
+  });
+
+  test('validateSourceGithub returns false when source is invalid', () => {
+    const BAD_SOURCE = { ...GITHUB_SOURCE, name: null };
+    expect(validateSourceGithub(BAD_SOURCE)).toBe(false);
+    const ANOTHER_BAD_SOURCE = {
+      ...GITHUB_SOURCE,
+      sourceProperties: { ...GITHUB_SOURCE.sourceProperties, url: null },
+    };
+    expect(validateSourceGithub(ANOTHER_BAD_SOURCE)).toBe(false);
   });
 });

@@ -77,12 +77,28 @@ const MARKDOWN_FRONTMATTER_SCHEMA = {
   },
 };
 
+const GITHUB_SOURCE_SCHEMA = {
+  url: {
+    type: String,
+    required: true,
+  },
+  owner: {
+    type: String,
+    required: true,
+  },
+  repo: {
+    type: String,
+    required: true,
+  },
+};
+
 module.exports = {
   GRAPHQL_NODE_TYPE,
   MARKDOWN_FRONTMATTER_SCHEMA,
   PROCESSABLE_EXTENSIONS,
   DEFUALT_IGNORES,
   GITHUB_API_ENDPOINT,
+  GITHUB_SOURCE_SCHEMA,
   FILETYPES,
   MEDIATYPES,
   SOURCE_TYPES,

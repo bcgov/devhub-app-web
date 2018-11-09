@@ -35,7 +35,6 @@ describe('Integration Tests Source Nodes', () => {
       createNode: jest.fn(),
     };
     const createNodeId = jest.fn(() => 1);
-    const token = '123';
     const getNodes = jest.fn(() => GRAPHQL_NODES_WITH_REGISTRY);
     await sourceNodes({ boundActionCreators, createNodeId, getNodes }, CONFIG_OPTIONS);
     // create a graphql node bypassing the transformer in sourceNodes
@@ -50,9 +49,11 @@ describe('Integration Tests Source Nodes', () => {
       createNode: node => node,
     };
     const createNodeId = jest.fn(() => 1);
-    const token = '123';
     const getNodes = jest.fn(() => GRAPHQL_NODES_WITH_REGISTRY);
-    const nodes = await sourceNodes({ boundActionCreators, createNodeId, getNodes }, CONFIG_OPTIONS);
+    const nodes = await sourceNodes(
+      { boundActionCreators, createNodeId, getNodes },
+      CONFIG_OPTIONS
+    );
     expect(nodes.every(node => node.internal.type === GRAPHQL_NODE_TYPE)).toBe(true);
   });
 });
