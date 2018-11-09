@@ -28,7 +28,7 @@ module.exports = async ({ graphql, boundActionCreators }) => {
   // main graphql query here
   const devhubData = await graphql(`
     {
-      allSourceDevhubGithub {
+      allDevhubSiphon {
         edges {
           node {
             id
@@ -50,7 +50,7 @@ module.exports = async ({ graphql, boundActionCreators }) => {
   `);
   // // right now we are making an assumption all data here resolved from a markdown file
   // // and will be treated as so
-  devhubData.data.allSourceDevhubGithub.edges.forEach(({ node }) => {
+  devhubData.data.allDevhubSiphon.edges.forEach(({ node }) => {
     // only create pages for markdown files and ones that don't have an ignore flag
     // or a resourcePath (which links the content to an external resource)
     if (

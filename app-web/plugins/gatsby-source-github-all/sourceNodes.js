@@ -20,6 +20,7 @@
 const crypto = require('crypto');
 const _ = require('lodash'); // eslint-disable-line
 const { getFilesFromRepo } = require('./utils/github-api');
+const { GRAPHQL_NODE_TYPE } = require('./utils/constants');
 const { fileTransformer } = require('./utils/transformer');
 const { markdownFrontmatterPlugin, markdownPagePathPlugin } = require('./utils/plugins');
 
@@ -48,7 +49,7 @@ const createGHNode = (file, id) => ({
     // to transformer plugins this node has data they can further process.
     mediaType: file.metadata.mediaType,
     // A globally unique node type chosen by the plugin owner.
-    type: 'SourceDevhubGithub',
+    type: GRAPHQL_NODE_TYPE,
     // Optional field exposing the raw content for this node
     // that transformer plugins can take and further process.
     content: file.content,
@@ -77,6 +78,7 @@ const getRegistry = getNodes => {
   throw new Error('Registry not found');
 };
 
+// eslint-disable-next-line consistent-return
 const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { token }) => {
   // get registry from current nodes
   const registry = getRegistry(getNodes);
@@ -90,7 +92,7 @@ const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { to
     // so we flatten it into a 1 dimensional array
     const dataToNodify = _.flatten(repos, true);
     // create nodes
-    dataToNodify
+    return dataToNodify
       .map(file => {
         const newFile = { ...file, metadata: { ...file.metadata } };
         const { metadata: { extension } } = newFile;
@@ -101,9 +103,7 @@ const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { to
           .resolve();
         return fileTransformed;
       })
-      .forEach(file => {
-        createNode(createGHNode(file, createNodeId(file.sha)));
-      });
+      .map(file => createNode(createGHNode(file, createNodeId(file.sha))));
   } catch (e) {
     // failed to retrieve files or some other type of failure
     // eslint-disable-next-line

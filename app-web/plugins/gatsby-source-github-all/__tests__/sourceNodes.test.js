@@ -20,6 +20,7 @@
 jest.mock('crypto');
 
 const { createGHNode, checkRegistry, getRegistry } = require('../sourceNodes');
+const { GRAPHQL_NODE_TYPE } = require('../utils/constants');
 const {
   GRAPHQL_NODES_WITH_REGISTRY,
   GRAPHQL_NODES_WITHOUT_REGISTRY,
@@ -176,7 +177,7 @@ describe('gatsby source github all plugin', () => {
         // to transformer plugins this node has data they can further process.
         mediaType: 'application/test',
         // A globally unique node type chosen by the plugin owner.
-        type: 'SourceDevhubGithub',
+        type: GRAPHQL_NODE_TYPE,
         // Optional field exposing the raw content for this node
         // that transformer plugins can take and further process.
         content: 'content',

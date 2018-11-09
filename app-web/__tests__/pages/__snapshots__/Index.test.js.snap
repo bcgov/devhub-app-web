@@ -6,7 +6,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <Index
     data={
       Object {
-        "allSourceDevhubGithub": Object {
+        "allDevhubSiphon": Object {
           "edges": Array [
             Object {
               "node": Object {

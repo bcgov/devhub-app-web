@@ -18,6 +18,8 @@
 // Created by Patrick Simonian on 2018-10-12.
 //
 
+const GRAPHQL_NODE_TYPE = 'DevhubSiphon';
+
 const DEFUALT_IGNORES = [
   'node_modules',
   'CONTRIBUTING.md',
@@ -35,6 +37,8 @@ const FILETYPES = {
   json: 'JSON',
   md: 'Markdown',
   txt: 'text',
+  html: 'HTML',
+  HTML: 'HTML',
 };
 
 const MEDIATYPES = {
@@ -44,9 +48,10 @@ const MEDIATYPES = {
   yml: 'text/yaml',
   txt: 'text/html',
   html: 'text/html',
+  HTML: 'text/html',
 };
 
-const PROCESSABLE_EXTENSIONS = ['.md', '.yml', '.yaml'];
+const PROCESSABLE_EXTENSIONS = ['.md', '.yml', '.yaml', '.html'];
 
 const MARKDOWN_FRONTMATTER_SCHEMA = {
   title: {
@@ -68,6 +73,7 @@ const MARKDOWN_FRONTMATTER_SCHEMA = {
 };
 
 module.exports = {
+  GRAPHQL_NODE_TYPE,
   MARKDOWN_FRONTMATTER_SCHEMA,
   PROCESSABLE_EXTENSIONS,
   DEFUALT_IGNORES,

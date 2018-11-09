@@ -18,7 +18,7 @@ describe('Index Container', () => {
           },
         },
       },
-      allSourceDevhubGithub: {
+      allDevhubSiphon: {
         edges: [
           {
             node: {

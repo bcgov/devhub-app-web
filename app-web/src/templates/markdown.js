@@ -25,28 +25,28 @@ import { faGithub } from '@fortawesome/fontawesome-free-brands';
 import { faCodeBranch } from '@fortawesome/free-solid-svg-icons';
 import Navigation from '../components/DesignSystem/Navigation';
 // eslint-disable-next-line
-const Generic = ({ data: { sourceDevhubGithub, nav }, location: pathname }) => {
+const Generic = ({ data: { devhubSiphon, nav }, location: pathname }) => {
   // eslint-disable-next-line
   return (
     <Layout>
       <div className={styles.DesignSystem}>
         <div className={styles.Panel}>
           <header className={styles.Header}>
-            <h1>{sourceDevhubGithub.sourceName}</h1>
+            <h1>{devhubSiphon.sourceName}</h1>
             <ul className={styles.SourceTags}>
               <li>
-                <a href={sourceDevhubGithub.originalSource}>
+                <a href={devhubSiphon.originalSource}>
                   <FontAwesomeIcon
                     icon={faGithub}
-                    aria-label={`View the original source ${sourceDevhubGithub.fileName} on github`}
+                    aria-label={`View the original source ${devhubSiphon.fileName} on github`}
                   />
                 </a>
               </li>
               <li>
-                <a href={`${sourceDevhubGithub.sourcePath}fork`}>
+                <a href={`${devhubSiphon.sourcePath}fork`}>
                   <FontAwesomeIcon
                     icon={faCodeBranch}
-                    aria-label={`Fork ${sourceDevhubGithub.sourceName} on github`}
+                    aria-label={`Fork ${devhubSiphon.sourceName} on github`}
                   />
                 </a>
               </li>
@@ -58,7 +58,7 @@ const Generic = ({ data: { sourceDevhubGithub, nav }, location: pathname }) => {
           <div
             className={styles.MarkdownBody}
             dangerouslySetInnerHTML={{
-              __html: sourceDevhubGithub.childMarkdownRemark.html,
+              __html: devhubSiphon.childMarkdownRemark.html,
             }}
           />
         </section>
@@ -67,9 +67,9 @@ const Generic = ({ data: { sourceDevhubGithub, nav }, location: pathname }) => {
   );
 };
 // eslint-disable-next-line
-export const sourceDevhubGithub = graphql`
-  query sourceDevhubGithub($id: String!, $source: String!) {
-    sourceDevhubGithub(id: { eq: $id }) {
+export const devhubSiphon = graphql`
+  query devhubSiphon($id: String!, $source: String!) {
+    devhubSiphon(id: { eq: $id }) {
       name
       id
       childMarkdownRemark {
@@ -87,7 +87,9 @@ export const sourceDevhubGithub = graphql`
       fileType
       path
     }
-    nav: allSourceDevhubGithub(filter: { source: { eq: $source } }) {
+    nav: allDevhubSiphon(
+      filter: { source: { eq: $source }, internal: { mediaType: { eq: "text/markdown" } } }
+    ) {
       edges {
         node {
           ...NavigationFragment
