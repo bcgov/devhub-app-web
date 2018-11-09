@@ -16,6 +16,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 const url = require('url');
+const { GRAPHQL_NODE_TYPE } = require('../../plugins/gatsby-source-github-all/utils/constants');
 
 const { URL } = url;
 /**
@@ -28,7 +29,7 @@ const { URL } = url;
  */
 const converter = (astType, relativePath, parentQLnode) => {
   // only convert source devhub nodes
-  if (parentQLnode.internal.type === 'SourceDevhubGithub') {
+  if (parentQLnode.internal.type === 'DevhubSiphon') {
     // parse the originalSource node of the sourceDevhubGithub
     const urlObj = new URL(parentQLnode.originalSource);
     // check if it has a protocol
