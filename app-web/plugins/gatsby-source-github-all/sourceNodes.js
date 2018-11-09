@@ -19,7 +19,7 @@
 //
 const crypto = require('crypto');
 const _ = require('lodash'); // eslint-disable-line
-const { getFilesFromRepo } = require('./utils/github-api');
+const fetchFromSource = require('./utils/fetchSource');
 const { GRAPHQL_NODE_TYPE } = require('./utils/constants');
 const { fileTransformer } = require('./utils/transformer');
 const { markdownFrontmatterPlugin, markdownPagePathPlugin } = require('./utils/plugins');
@@ -58,10 +58,11 @@ const createGHNode = (file, id) => ({
 
 const repoIsValid = repo => repo.name && repo.url && repo.repo && repo.owner;
 
-const reposAreValid = repos => repos.every(repoIsValid);
+// const reposAreValid = sources => repos.every(repoIsValid);
+const reposAreValid = sources => true;
 
 const checkRegistry = registry => {
-  if (!registry.repos || !reposAreValid(registry.repos)) {
+  if (!registry.sources || !reposAreValid(registry.sources)) {
     throw new Error(
       'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters'
     );
@@ -79,7 +80,7 @@ const getRegistry = getNodes => {
 };
 
 // eslint-disable-next-line consistent-return
-const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { token }) => {
+const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { tokens }) => {
   // get registry from current nodes
   const registry = getRegistry(getNodes);
   const { createNode } = boundActionCreators;
@@ -87,7 +88,9 @@ const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { to
     // check registry prior to fetching data
     checkRegistry(registry);
     // fetch all repos
-    const repos = await Promise.all(registry.repos.map(repo => getFilesFromRepo(repo, token)));
+    const repos = await Promise.all(
+      registry.sources.map(source => fetchFromSource(source.sourceType, source, tokens))
+    );
     // repos is an array of arrays [repo files, repo files] etc
     // so we flatten it into a 1 dimensional array
     const dataToNodify = _.flatten(repos, true);

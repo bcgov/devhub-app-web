@@ -1,24 +1,30 @@
-repos:
+sources:
   - name: Design System
-    url: https://github.com/bcgov/design-system/
-    owner: bcgov
-    repo: 'design-system'
+    sourceType: 'github'
+    sourceProperties:
+      url: https://github.com/bcgov/design-system/
+      owner: bcgov
+      repo: 'design-system'
     attributes:
       labels:
         - Components
         - Repository
   - name: Signing Tool
-    url: https://github.com/bcgov/devhub-signing-web/
-    owner: bcgov
-    repo: 'devhub-signing-web'
+    sourceType: 'github'
+    sourceProperties:
+      url: https://github.com/bcgov/devhub-signing-web/
+      owner: bcgov
+      repo: 'devhub-signing-web'
     attributes:
       labels:
         - Self Service
         - Repository
   - name: Open Shift Wiki
-    url: https://github.com/BCDevOps/openshift-wiki
-    owner: BCDevOps
-    repo: 'openshift-wiki'
+    sourceType: 'github'
+    sourceProperties:
+      url: https://github.com/BCDevOps/openshift-wiki
+      owner: BCDevOps
+      repo: 'openshift-wiki'
     attributes:
       labels:
         - Guides
