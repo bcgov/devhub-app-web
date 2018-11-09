@@ -15,7 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-export const SOURCE_DEVHUB_GITHUB_QL_NODE = {
+export const SIPHON_QL_NODE = {
   id: 'd90c1b12-9055-580b-adb3-b29354871657',
   source: 'design-system',
   sourceName: 'Design System',
@@ -31,7 +31,7 @@ export const SOURCE_DEVHUB_GITHUB_QL_NODE = {
     'https://github.com/bcgov/design-system/blob/master/components/footer/something/README.md',
   internal: {
     mediaType: 'text/markdown',
-    type: 'SourceDevhubGithub',
+    type: 'DevhubSiphon',
     owner: 'gatsby-source-github-all',
     contentDigest: '1239087asdfjkas',
     content: '---\nsomething:true\n---\n# Hello world\n',

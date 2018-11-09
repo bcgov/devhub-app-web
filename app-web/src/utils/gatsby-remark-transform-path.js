@@ -29,7 +29,7 @@ const { URL } = url;
  */
 const converter = (astType, relativePath, parentQLnode) => {
   // only convert source devhub nodes
-  if (parentQLnode.internal.type === 'DevhubSiphon') {
+  if (parentQLnode.internal.type === GRAPHQL_NODE_TYPE) {
     // parse the originalSource node of the sourceDevhubGithub
     const urlObj = new URL(parentQLnode.originalSource);
     // check if it has a protocol

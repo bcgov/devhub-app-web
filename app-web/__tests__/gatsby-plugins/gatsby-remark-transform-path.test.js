@@ -16,7 +16,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import converter from '../../src/utils/gatsby-remark-transform-path';
-import { FILE_QL_NODE, SOURCE_DEVHUB_GITHUB_QL_NODE } from '../../__fixtures__/plugin-fixtures';
+import { FILE_QL_NODE, SIPHON_QL_NODE } from '../../__fixtures__/plugin-fixtures';
 
 describe('Gatsby Remark Transform Path Converter Callback', () => {
   describe('Unit Tests', () => {
@@ -30,7 +30,7 @@ describe('Gatsby Remark Transform Path Converter Callback', () => {
     it('returns a a transformed url', () => {
       const astType = 'image';
       const relativePath = '../images/banana.png';
-      const transformedPath = converter(astType, relativePath, SOURCE_DEVHUB_GITHUB_QL_NODE);
+      const transformedPath = converter(astType, relativePath, SIPHON_QL_NODE);
       expect(transformedPath).not.toBe(relativePath);
     });
   });
@@ -40,7 +40,7 @@ describe('Gatsby Remark Transform Path Converter Callback', () => {
     it('converts relative path to absolute', () => {
       const astType = 'link';
       const relativePath = '../something.md';
-      const transformedPath = converter(astType, relativePath, SOURCE_DEVHUB_GITHUB_QL_NODE);
+      const transformedPath = converter(astType, relativePath, SIPHON_QL_NODE);
       const expectedPath =
         'https://github.com/bcgov/design-system/blob/master/components/footer/something.md';
       expect(transformedPath).toBe(expectedPath);
@@ -49,7 +49,7 @@ describe('Gatsby Remark Transform Path Converter Callback', () => {
     it('converts relative path for image to absolute with raw paramater', () => {
       const astType = 'image';
       const relativePath = '../banana.png';
-      const transformedPath = converter(astType, relativePath, SOURCE_DEVHUB_GITHUB_QL_NODE);
+      const transformedPath = converter(astType, relativePath, SIPHON_QL_NODE);
       const expectedPath =
         'https://github.com/bcgov/design-system/blob/master/components/footer/banana.png?raw=true';
       expect(transformedPath).toBe(expectedPath);
