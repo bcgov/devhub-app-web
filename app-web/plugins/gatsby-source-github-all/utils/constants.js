@@ -18,6 +18,11 @@
 // Created by Patrick Simonian on 2018-10-12.
 //
 
+// source types that map to fetch routines
+const SOURCE_TYPES = {
+  GITHUB: 'github',
+};
+
 const GRAPHQL_NODE_TYPE = 'DevhubSiphon';
 
 const DEFUALT_IGNORES = [
@@ -72,12 +77,29 @@ const MARKDOWN_FRONTMATTER_SCHEMA = {
   },
 };
 
+const GITHUB_SOURCE_SCHEMA = {
+  url: {
+    type: String,
+    required: true,
+  },
+  owner: {
+    type: String,
+    required: true,
+  },
+  repo: {
+    type: String,
+    required: true,
+  },
+};
+
 module.exports = {
   GRAPHQL_NODE_TYPE,
   MARKDOWN_FRONTMATTER_SCHEMA,
   PROCESSABLE_EXTENSIONS,
   DEFUALT_IGNORES,
   GITHUB_API_ENDPOINT,
+  GITHUB_SOURCE_SCHEMA,
   FILETYPES,
   MEDIATYPES,
+  SOURCE_TYPES,
 };

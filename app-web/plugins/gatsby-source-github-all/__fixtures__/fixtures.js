@@ -311,12 +311,15 @@ const PROCESSED_FILE_TXT = {
 const GRAPHQL_NODES_WITH_REGISTRY = [
   {
     id: '/registry.yml absPath of file >>> YAML',
-    repos: [
+    sources: [
       {
         name: 'Design System',
-        url: 'https://github.com/bcgov/design-system/',
-        owner: 'bcgov',
-        repo: 'design-system',
+        sourceType: 'github',
+        sourceProperties: {
+          url: 'https://github.com/bcgov/design-system/',
+          owner: 'bcgov',
+          repo: 'design-system',
+        },
         attributes: {
           labels: ['components'],
         },
@@ -355,12 +358,15 @@ const GRAPHQL_NODES_WITHOUT_REGISTRY = [
 
 const REGISTRY = {
   id: '/registry.yml absPath of file >>> YAML',
-  repos: [
+  sources: [
     {
       name: 'Design System',
-      url: 'https://github.com/bcgov/design-system/',
-      owner: 'bcgov',
-      repo: 'design-system',
+      sourceType: 'github',
+      sourceProperties: {
+        owner: 'bcgov',
+        repo: 'design-system',
+        url: 'https://github.com/bcgov/design-system/',
+      },
       attributes: {
         labels: ['components'],
       },
@@ -370,6 +376,25 @@ const REGISTRY = {
     contentDigest: '520538ca86778e449b1db66100137431',
     type: 'SourceRegistryYaml',
     owner: 'gatsby-transformer-yaml',
+  },
+};
+
+const GITHUB_SOURCE = {
+  name: 'Design System',
+  sourceType: 'github',
+  sourceProperties: {
+    owner: 'bcgov',
+    repo: 'design-system',
+    url: 'https://github.com/bcgov/design-system/',
+  },
+  attributes: {
+    labels: ['components'],
+  },
+};
+
+const CONFIG_OPTIONS = {
+  tokens: {
+    GITHUB_API_TOKEN: '123',
   },
 };
 
@@ -383,4 +408,6 @@ module.exports = {
   GRAPHQL_NODES_WITH_REGISTRY,
   GRAPHQL_NODES_WITHOUT_REGISTRY,
   REGISTRY,
+  GITHUB_SOURCE,
+  CONFIG_OPTIONS,
 };

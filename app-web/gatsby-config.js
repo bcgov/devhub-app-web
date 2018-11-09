@@ -68,7 +68,9 @@ module.exports = {
     {
       resolve: 'gatsby-source-github-all',
       options: {
-        token: process.env.GITHUB_TOKEN,
+        tokens: {
+          GITHUB_API_TOKEN: process.env.GITHUB_TOKEN,
+        },
       },
     },
     {

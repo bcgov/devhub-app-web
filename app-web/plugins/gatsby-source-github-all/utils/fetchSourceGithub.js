@@ -23,6 +23,7 @@ const {
   PROCESSABLE_EXTENSIONS,
   MEDIATYPES,
   DEFUALT_IGNORES,
+  GITHUB_SOURCE_SCHEMA,
 } = require('./constants');
 const chalk = require('chalk'); // eslint-disable-line
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
@@ -227,7 +228,7 @@ const filterFiles = (files, ignoreObj) => {
  * @returns {Array} The array of files
  */
 // eslint-disable-next-line
-const getFilesFromRepo = async ({ repo, url, owner, name, branch, attributes: { labels }}, token) => {
+const getFilesFromRepo = async ({ name, sourceProperties: { repo, url, owner, branch }, attributes: { labels }}, token) => {
   try {
     // ignore filtering
     const ig = ignore().add(DEFUALT_IGNORES);
@@ -254,6 +255,7 @@ const getFilesFromRepo = async ({ repo, url, owner, name, branch, attributes: { 
       .filter(f => f !== undefined) // filter out any files that weren't fetched
       .map(f => applyBaseMetadata(f, labels, owner, repo, name, url));
   } catch (e) {
+    console.error(e);
     // eslint-disable-next-line
     console.error(chalk`
       {red.bold ERROR!! in Gatsby Source Github All} 
@@ -273,6 +275,18 @@ const getFilesFromRepo = async ({ repo, url, owner, name, branch, attributes: { 
   }
 };
 
+const validateSourceGithub = source => {
+  return Object.keys(GITHUB_SOURCE_SCHEMA).every(key => {
+    const schemaItem = GITHUB_SOURCE_SCHEMA[key];
+    return (
+      schemaItem.required &&
+      Object.prototype.hasOwnProperty.call(source.sourceProperties, key) &&
+      TypeCheck.isA(schemaItem.type, source.sourceProperties[key]) &&
+      source.name
+    );
+  });
+};
+
 module.exports = {
   getFilesFromRepo,
   getExtensionFromName,
@@ -285,4 +299,5 @@ module.exports = {
   filterFilesFromDirectories,
   filterFilesByExtensions,
   applyBaseMetadata,
+  validateSourceGithub,
 };

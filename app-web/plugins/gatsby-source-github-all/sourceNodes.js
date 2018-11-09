@@ -19,7 +19,7 @@
 //
 const crypto = require('crypto');
 const _ = require('lodash'); // eslint-disable-line
-const { getFilesFromRepo } = require('./utils/github-api');
+const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
 const { GRAPHQL_NODE_TYPE } = require('./utils/constants');
 const { fileTransformer } = require('./utils/transformer');
 const { markdownFrontmatterPlugin, markdownPagePathPlugin } = require('./utils/plugins');
@@ -56,12 +56,18 @@ const createGHNode = (file, id) => ({
   },
 });
 
-const repoIsValid = repo => repo.name && repo.url && repo.repo && repo.owner;
+/**
+ * loops over sources and validates them based on their type
+ * @param {Array} sources the sources
+ */
+const sourcesAreValid = sources => sources.every(validateSourceRegistry);
 
-const reposAreValid = repos => repos.every(repoIsValid);
-
+/**
+ * validates source registry
+ * @param {Object} registry the source registry
+ */
 const checkRegistry = registry => {
-  if (!registry.repos || !reposAreValid(registry.repos)) {
+  if (!registry.sources || !sourcesAreValid(registry.sources)) {
     throw new Error(
       'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters'
     );
@@ -79,7 +85,7 @@ const getRegistry = getNodes => {
 };
 
 // eslint-disable-next-line consistent-return
-const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { token }) => {
+const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { tokens }) => {
   // get registry from current nodes
   const registry = getRegistry(getNodes);
   const { createNode } = boundActionCreators;
@@ -87,7 +93,9 @@ const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { to
     // check registry prior to fetching data
     checkRegistry(registry);
     // fetch all repos
-    const repos = await Promise.all(registry.repos.map(repo => getFilesFromRepo(repo, token)));
+    const repos = await Promise.all(
+      registry.sources.map(source => fetchFromSource(source.sourceType, source, tokens))
+    );
     // repos is an array of arrays [repo files, repo files] etc
     // so we flatten it into a 1 dimensional array
     const dataToNodify = _.flatten(repos, true);
