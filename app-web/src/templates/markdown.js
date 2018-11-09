@@ -87,7 +87,9 @@ export const devhubSiphon = graphql`
       fileType
       path
     }
-    nav: allDevhubSiphon(filter: { source: { eq: $source } }) {
+    nav: allDevhubSiphon(
+      filter: { source: { eq: $source }, internal: { mediaType: { eq: "text/markdown" } } }
+    ) {
       edges {
         node {
           ...NavigationFragment
