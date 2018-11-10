@@ -53,8 +53,9 @@ const markdownFrontmatterPlugin = (extension, file) => {
         });
         return title;
       },
-      ignore: () => false,
-      resourcePath: () => '',
+      ignore: () => false, // ignore this node (when true) all together no page or other presentational components are created
+      resourcePath: () => '', // when blank indicates this node is destined to create a page, the markdownPagePath plugin updates this
+      pageOnly: () => false, // in the use case where we want this node to not be presented as a card in the home page
     };
     // check front matter against defaults
     Object.keys(MARKDOWN_FRONTMATTER_SCHEMA).forEach(key => {
