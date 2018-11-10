@@ -32,11 +32,13 @@ const Index = ({ data: { pathfinder, allDevhubSiphon } }) => {
   // flatten out allSourceGithub edges from query
   const siphonNodes = flattenAllSourceDevhubGithub(allDevhubSiphon.edges);
   // map out github nodes to have paramaters that are expected by Resource
-  const mappedSiphonNodes = siphonNodes.map(siphonNode => ({
-    ...siphonNode,
-    title: siphonNode.childMarkdownRemark.frontmatter.title,
-    description: siphonNode.childMarkdownRemark.frontmatter.description,
-  }));
+  const mappedSiphonNodes = siphonNodes
+    .filter(siphonNode => !siphonNode.childMarkdownRemark.frontmatter.pageOnly)
+    .map(siphonNode => ({
+      ...siphonNode,
+      title: siphonNode.childMarkdownRemark.frontmatter.title,
+      description: siphonNode.childMarkdownRemark.frontmatter.description,
+    }));
   const groupedSiphonData = groupBy(mappedSiphonNodes, 'sourceName');
   const SiphonResources = groupedSiphonData.map(ghData => (
     <Cards
@@ -96,6 +98,7 @@ export const resourceQuery = graphql`
             frontmatter {
               title
               description
+              pageOnly
             }
           }
         }
