@@ -85,25 +85,26 @@ const markdownFrontmatterPlugin = (extension, file) => {
  * @returns {Object} the modified file
  */
 const markdownPagePathPlugin = (extension, file) => {
-  if (extension !== 'md') {
+  if (extension !== 'md' && extension !== 'html') {
     return file;
   }
   // check front matter for a resourcePath
-  const data = matter(file.content);
-  const frontmatter = data.data;
-  if (frontmatter.resourcePath) {
-    file.metadata.resourcePath = frontmatter.resourcePath;
-  } else {
-    // no resource path, this file is destined to be turned into a page,
-    // the page page is composed of the source name, the title of the file plus an id
-    file.metadata.resourcePath = createPathWithDigest(
-      file.metadata.source,
-      file.metadata.source,
-      file.metadata.name,
-      file.html_url
-    );
+  if (extension === 'md') {
+    const data = matter(file.content);
+    const frontmatter = data.data;
+    if (frontmatter.resourcePath) {
+      file.metadata.resourcePath = frontmatter.resourcePath;
+      return file;
+    }
   }
-
+  // no resource path, this file is destined to be turned into a page,
+  // the page page is composed of the source name, the title of the file plus an id
+  file.metadata.resourcePath = createPathWithDigest(
+    file.metadata.source,
+    file.metadata.source,
+    file.metadata.name,
+    file.html_url
+  );
   return file;
 };
 

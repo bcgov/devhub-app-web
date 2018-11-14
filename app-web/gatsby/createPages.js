@@ -21,10 +21,16 @@
 // create pages based on nodes
 const { resolve } = require('path');
 
+const getTemplate = key => {
+  const TEMPLATES = {
+    'text/markdown': resolve(__dirname, '../src/templates/SourceMarkdown.js'),
+    'text/html': resolve(__dirname, '../src/templates/SourceHTML.js'),
+  };
+  return TEMPLATES[key];
+};
+
 module.exports = async ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;
-  const markdownTemplate = resolve(__dirname, '../src/templates/markdown.js');
-
   // main graphql query here
   const devhubData = await graphql(`
     {
@@ -53,14 +59,19 @@ module.exports = async ({ graphql, boundActionCreators }) => {
   devhubData.data.allDevhubSiphon.edges.forEach(({ node }) => {
     // only create pages for markdown files and ones that don't have an ignore flag
     // or a resourcePath (which links the content to an external resource)
-    if (
-      node.internal.mediaType === 'text/markdown' &&
-      !node.childMarkdownRemark.frontmatter.ignore &&
-      !node.childMarkdownRemark.frontmatter.resourcePath
-    ) {
+    const isResource =
+      node.childMarkdownRemark &&
+      node.childMarkdownRemark.frontmatter &&
+      node.childMarkdownRemark.frontmatter.resourcePath;
+    const isIgnored =
+      node.childMarkdownRemark &&
+      node.childMarkdownRemark.frontmatter &&
+      node.childMarkdownRemark.frontmatter.ignore;
+    // if file is html these would both resolve to false since there are no meta data properties
+    if (!isResource && !isIgnored) {
       createPage({
         path: node.resourcePath,
-        component: markdownTemplate,
+        component: getTemplate(node.internal.mediaType),
         context: {
           // Data passed to context is available in page queries as GraphQL variables.
           id: node.id,

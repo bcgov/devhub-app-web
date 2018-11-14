@@ -37,11 +37,8 @@ export const devhubSiphonHTML = graphql`
     devhubSiphon(id: { eq: $id }) {
       name
       id
-      childMarkdownRemark {
-        frontmatter {
-          title
-        }
-        html
+      internal {
+        content
       }
       originalSource
       source
