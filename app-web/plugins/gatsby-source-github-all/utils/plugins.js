@@ -107,7 +107,31 @@ const markdownPagePathPlugin = (extension, file) => {
   return file;
 };
 
+/**
+ * unfurls markdown by frontmatter and appends the .unfurl metadata property
+ * @param {String} extension 
+ * @param {String} file 
+ * @returns the modified file
+ */
+const markdownUnfurlPlugin = (extension, file) => {
+  if (extension !== 'md') {
+    return file;
+  }
+  // check front matter for a resourcePath
+  const data = matter(file.content, { delims: '---' });
+  const frontmatter = data.data;
+  const unfurl = {
+    type: 'markdown',
+    description: frontmatter.description,
+    image: frontmatter.image,
+    title: frontmatter.title,
+  };
+  file.metadata.unfurl = unfurl;
+  return file;
+};
+
 module.exports = {
   markdownFrontmatterPlugin,
   markdownPagePathPlugin,
+  markdownUnfurlPlugin,
 };

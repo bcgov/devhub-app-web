@@ -1,5 +1,9 @@
 import { fileTransformer } from '../utils/transformer';
-import { markdownFrontmatterPlugin, markdownPagePathPlugin } from '../utils/plugins';
+import {
+  markdownFrontmatterPlugin,
+  markdownPagePathPlugin,
+  markdownUnfurlPlugin,
+} from '../utils/plugins';
 import { PROCESSED_FILE_MD } from '../__fixtures__/fixtures';
 
 describe('Transformer System', () => {
@@ -45,6 +49,10 @@ describe('Transformer System', () => {
   });
 
   describe('Markdown Plugins', () => {
+    afterEach(() => {
+      file.metadata.extension = 'md';
+    });
+
     it('returns file', () => {
       const result = markdownFrontmatterPlugin(file.metadata.extension, file);
       expect(result).toBeDefined();
@@ -64,6 +72,18 @@ describe('Transformer System', () => {
     it('returns file if file is not md', () => {
       file.metadata.extension = 'txt';
       const result = markdownPagePathPlugin(file.metadata.extension, file);
+      expect(result).toBeDefined();
+    });
+
+    it('returns file with unfurl', () => {
+      const result = markdownUnfurlPlugin(file.metadata.extension, file);
+      expect(result).toBeDefined();
+      expect(result.metadata.unfurl).toBeDefined();
+    });
+
+    it('returns files if not md', () => {
+      file.metadata.extension = 'txt';
+      const result = markdownUnfurlPlugin(file.metadata.extension, file);
       expect(result).toBeDefined();
     });
   });
