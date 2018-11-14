@@ -39,6 +39,25 @@ const createPathWithDigest = (base, ...digestables) => {
   return path.join('/', normalizedBase, digested);
 };
 
+/**
+ * Creates Standardized Unfurl meta data
+ * @param {String} type 
+ * @param {Object} unfurledData
+ */
+const createUnfurlObj = (type, { label1, data1, label2, data2, description, title, image }) => {
+  return {
+    type,
+    label1,
+    data1,
+    label2,
+    data2,
+    image,
+    title,
+    description,
+  };
+};
+
 module.exports = {
   createPathWithDigest,
+  createUnfurlObj,
 };

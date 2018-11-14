@@ -22,7 +22,11 @@ const _ = require('lodash'); // eslint-disable-line
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
 const { GRAPHQL_NODE_TYPE } = require('./utils/constants');
 const { fileTransformer } = require('./utils/transformer');
-const { markdownFrontmatterPlugin, markdownPagePathPlugin } = require('./utils/plugins');
+const {
+  markdownFrontmatterPlugin,
+  markdownPagePathPlugin,
+  markdownUnfurlPlugin,
+} = require('./utils/plugins');
 
 const createSiphonNode = (file, id) => ({
   id,
@@ -33,7 +37,7 @@ const createSiphonNode = (file, id) => ({
   owner: file.metadata.owner,
   parent: null,
   path: file.path,
-  unfurl: file.metadata.unfurl,
+  unfurl: file.metadata.unfurl, // normalized unfurled content from various sources https://medium.com/slack-developer-blog/everything-you-ever-wanted-to-know-about-unfurling-but-were-afraid-to-ask-or-how-to-make-your-e64b4bb9254
   originalSource: file.html_url, // path to the file in github
   source: file.metadata.source, // the repo-name
   sourceName: file.metadata.sourceName, // the pretty name of the 'source'
@@ -109,6 +113,7 @@ const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { to
         const fileTransformed = ft
           .use(markdownFrontmatterPlugin)
           .use(markdownPagePathPlugin)
+          .use(markdownUnfurlPlugin)
           .resolve();
         return fileTransformed;
       })

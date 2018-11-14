@@ -20,7 +20,7 @@ const matter = require('gray-matter'); // eslint-disable-line
 const visit = require('unist-util-visit'); // eslint-disable-line
 const remark = require('remark'); // eslint-disable-line
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
-const { createPathWithDigest } = require('./helpers'); // eslint-disable-line
+const { createPathWithDigest, createUnfurlObj } = require('./helpers'); // eslint-disable-line
 const { MARKDOWN_FRONTMATTER_SCHEMA } = require('./constants');
 /**
  * applys default front matter properties
@@ -53,8 +53,13 @@ const markdownFrontmatterPlugin = (extension, file) => {
         });
         return title;
       },
-      ignore: () => false,
-      resourcePath: () => '',
+      ignore: () => false, // should this markdown siphon node be ignored
+      resourcePath: () => '', // apply empty string as a default, tells gatsby to treate this node as a dynamic page
+      label1: () => '', // unfurl metadata
+      data1: () => '', // unfurl metadata
+      label2: () => '', // unfurl metadata
+      data2: () => '', // unfurl metadata
+      image: () => '', // unfurl metadata
     };
     // check front matter against defaults
     Object.keys(MARKDOWN_FRONTMATTER_SCHEMA).forEach(key => {
@@ -117,16 +122,11 @@ const markdownUnfurlPlugin = (extension, file) => {
   if (extension !== 'md') {
     return file;
   }
-  // check front matter for a resourcePath
+  // grab front matter from md file
   const data = matter(file.content, { delims: '---' });
   const frontmatter = data.data;
-  const unfurl = {
-    type: 'markdown',
-    description: frontmatter.description,
-    image: frontmatter.image,
-    title: frontmatter.title,
-  };
-  file.metadata.unfurl = unfurl;
+  // apply unfurl metadata
+  file.metadata.unfurl = createUnfurlObj('markdown', frontmatter);
   return file;
 };
 
