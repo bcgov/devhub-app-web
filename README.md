@@ -1,36 +1,92 @@
-# Devhub App Web
-> this application was scaffolded using [GatsbyJS](https://github.com/gatsbyjs/gatsby). 
+# DevHub App Web
+ 
+ This is the primary repository for the BC Gov DevHub application.  The code contained mostly relates to the web application specifically, but other content may relate to the DevHub more generally.     
+ 
+## DevHub Intro
 
-Developers.gov.bc.ca is an outline platform that...
+DevHub aims to become the "Central Nervous System" for the growing gov developer community.
 
-## Technology Stack Used
-- GatsbyJS
+It will provide a comprehensive inventory of relevant internal and external documentation, open source components, services, APIs and data for internal and external developers who are building government products, or want to build their own products
+
+It will also be a platform through which government teams can share their developer resources for discovery and use by internal and external developers.
+
+It will provide an inventory of ongoing open product development products, components and teams
+
+The resources will be collected into curated various focused kits/collections of resources needed to build particular types of systems, assist teams at a point in their lifecycle, support persona specific-workflows, etc. 
+
+It will also provide a aeans to seed “prosumer”/community behaviours. For example, it will be possible to view source/fork/comment/PR on many of the elements in the DevHub.
+
+## Resource Types
+ 
+The currently imagined resource types are as follows:
+
+* Documentation 
+* Repositories
+* Components
+* Self-Service Tools 
+* People
+* Projects
+
+There is also the concept of a set of potentially heterogeneous resources that we are calling a "Collection". For example, a   
+
+### Documentation
+
+Documentation is the most straightforward type of resource.  
+
+Documentation would include any type of guide, how-to, reference, manual, or FAQ relevant to designers or developers.  
+Documentation may exist in Markdown, HTML, PDF, and Word/Office formats, among others.  
+Documentation may be sourced from GitHub, other government websites, or external websites.
+Documentation would be presented in the DevHub top-level UI as a "Card" with some "preview" or summary view, and "clicking through" would present the documentation itself, which may reside in the DevHub site (based on source and format), or an external site.
+Documentation is added to the DevHub via registration of a "documentation source" (most commonly pointing to a GitHub repository) with the DevHub, at which point supported documentation found in the repository will be pulled into the DevHub.  There will be a mechanism to manage included/excluded files as well as providing metadata, etc.  
+     
+
+### Repositories
+
+Repositories correspond directly to code repositories on GitHub.com (or potentially other source code repository systems in the future).
+
+Repositories in the DevHub would include code repositories containing source code for government-related systems or software libraries.  Most commonly, these will reside in the BCGov GitHub org.  
+Repositories  would be presented in the DevHub top-level UI as a "Card" with some "preview" or summary view, and "clicking through" would navigate to the repo in GitHub.com (or other repository site in the future).       
+Repositories would be added to the DevHub via registration of a "repository source" (most commonly pointing to a GitHub org) with the DevHub, at which point repos found in the org would be displayed in the DevHub. There will be a mechanism to manage included/excluded repos as well as providing metadata, etc.
+
+### Components
+
+Components represent are the reusable building blocks for systems. Designers and developers and will leverage these components as they design and build new systems to reduce the efofrt required, imrpvode consistency, and ensure compliance.
+
+Components in the DevHub would include visual components, code libraries, microservices, and code snippets or templates, produced and managed by or for government.
+Components would be presented in the DevHub top-level UI as a "Card" with some "preview" or summary view, and "clicking through" would present details about the component (essnetially a special case of a Documentation resource), which may reside in the DevHub site (based on source and format), or an external site.   
+Components would be added to the DevHub via registration of a "component source" with the DevHub (implementation TBD), at which point components found in the source would be displayed in the DevHub.
+
+### Self-Service Tools
+
+Self-Service Tools provide the means for developers to provision, configure, and track the shared services (operated by the DevOps Platform Services Team and others) that they leverage as part of their development processes or production applications.
+
+Self-Service Tools in the DevHub would include OpenShift, Keycloak/SSO, GitHub repositories, platform security tools, mobile publishing tools, API Gateway, and cloud/SaaS services (future).
+Self-Service Tools would be presented in the DevHub top-level UI as a "Card" with some "preview" or summary view, and "clicking through" would present an interactive application for provisioning a Self-Service Tool.  There will also be a means to access and interact with existing Self-Service Tools that a developer has already provisioned. Details of that are TBD ATM.
+Self-Service Tools would be added to the DevHub via registration of a "tool source" with the DevHub (possibly an Open Service Broker API instance), at which point components found in the source would be displayed in the DevHub.
+
+### People
+
+The People resource represents members of the gov development community, users of the DevHub, and creators/collaborators of the resources presented in the DevHub.
+
+### Projects
+
+This resource is a little tricky and the definition/scope is evolving.  However, it is intended to be a "connection point" for several of the other resource types that together represent some group of people working together on the development/lifecycle of a software product.  
+
+## Technical Details
+
+This application was scaffolded using [GatsbyJS](https://github.com/gatsbyjs/gatsby).
+
+Here are some of the other components/technologies used by DevHub: 
+
 - ReactJS
 - GraphQL
-## Third-Party Products/Libraries used and the the License they are covert by
-- GatsbyJS 
 
-**The MIT License (MIT)**
+## Third-Party Products/Libraries used and the the License they are covered by
 
-Copyright (c) 2015 Gatsbyjs
+- GatsbyJS  
+[![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/gatsbyjs/gatsby/blob/master/LICENSE)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
 ## Project Status
 In Development
 ## Documentation
