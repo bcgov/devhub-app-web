@@ -20,7 +20,7 @@ objects:
     creationTimestamp: null
     name: ${NAME}-static${SUFFIX}
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       deploymentconfig: ${NAME}-static${SUFFIX}
     strategy:
