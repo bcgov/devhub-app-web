@@ -95,6 +95,10 @@ const MARKDOWN_FRONTMATTER_SCHEMA = {
     type: String,
     required: false,
   },
+  pageOnly: {
+    type: Boolean,
+    required: false,
+  },
 };
 
 const GITHUB_SOURCE_SCHEMA = {

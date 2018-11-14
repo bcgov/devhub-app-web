@@ -3,7 +3,7 @@ import shortid from 'shortid';
 import PropTypes from 'prop-types';
 import Link from '../Common/Link';
 import styles from './Navigation.module.css';
-
+// navigation for dynamically created page components
 class Navigation extends Component {
   componentDidMount() {
     // scroll into view of active link if exists
@@ -14,7 +14,7 @@ class Navigation extends Component {
   render() {
     const { components } = this.props;
     // map over components and generate links
-    const links = components.map(({ node: { resourcePath, childMarkdownRemark } }) => (
+    const links = components.map(({ node: { resourcePath, resourceTitle } }) => (
       <li key={shortid.generate()} data-active={this.props.activeLink.pathname === resourcePath}>
         <Link
           to={resourcePath}
@@ -23,7 +23,7 @@ class Navigation extends Component {
             textDecoration: 'underline',
           }}
         >
-          {childMarkdownRemark.frontmatter.title}
+          {resourceTitle}
         </Link>
       </li>
     ));
@@ -37,11 +37,7 @@ class Navigation extends Component {
 
 export const query = graphql`
   fragment NavigationFragment on DevhubSiphon {
-    childMarkdownRemark {
-      frontmatter {
-        title
-      }
-    }
+    resourceTitle
     resourcePath
   }
 `;
@@ -51,7 +47,7 @@ Navigation.propTypes = {
     PropTypes.shape({
       node: PropTypes.shape({
         resourcePath: PropTypes.string,
-        childMarkdownRemark: PropTypes.object,
+        resourceTitle: PropTypes.string,
       }),
     })
   ).isRequired,

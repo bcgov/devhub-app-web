@@ -32,7 +32,7 @@ const markdownFrontmatterPlugin = (extension, file) => {
   // only modify markdown files
   if (extension === 'md') {
     // parse front matter
-    const data = matter(file.content);
+    const data = matter(file.content, { delimiters: '---' });
     const frontmatter = data.data;
     const DEFAULTS = {
       title: () => {
@@ -60,6 +60,7 @@ const markdownFrontmatterPlugin = (extension, file) => {
       label2: () => '', // unfurl metadata
       data2: () => '', // unfurl metadata
       image: () => '', // unfurl metadata
+      pageOnly: () => false, // in the use case where we want this node to not be presented as a card in the home page
     };
     // check front matter against defaults
     Object.keys(MARKDOWN_FRONTMATTER_SCHEMA).forEach(key => {
@@ -76,6 +77,12 @@ const markdownFrontmatterPlugin = (extension, file) => {
         frontmatter[key] = DEFAULTS[key]();
       }
     });
+    // attach front matter properties to metadata
+    file.metadata = {
+      ...file.metadata,
+      resourceTitle: frontmatter.title,
+      resourceDescription: frontmatter.description,
+    };
     // create 'new' md string with updated front matter
     file.content = matter.stringify(data.content, frontmatter);
     return file;
@@ -89,26 +96,27 @@ const markdownFrontmatterPlugin = (extension, file) => {
  * @param {Object} file
  * @returns {Object} the modified file
  */
-const markdownPagePathPlugin = (extension, file) => {
-  if (extension !== 'md') {
+const pagePathPlugin = (extension, file) => {
+  if (extension !== 'md' && extension !== 'html') {
     return file;
   }
   // check front matter for a resourcePath
-  const data = matter(file.content);
-  const frontmatter = data.data;
-  if (frontmatter.resourcePath) {
-    file.metadata.resourcePath = frontmatter.resourcePath;
-  } else {
-    // no resource path, this file is destined to be turned into a page,
-    // the page page is composed of the source name, the title of the file plus an id
-    file.metadata.resourcePath = createPathWithDigest(
-      file.metadata.source,
-      file.metadata.source,
-      file.metadata.name,
-      file.html_url
-    );
+  if (extension === 'md') {
+    const data = matter(file.content, { delimiters: '---' });
+    const frontmatter = data.data;
+    if (frontmatter.resourcePath) {
+      file.metadata.resourcePath = frontmatter.resourcePath;
+      return file;
+    }
   }
-
+  // no resource path, this file is destined to be turned into a page,
+  // the page page is composed of the source name, the title of the file plus an id
+  file.metadata.resourcePath = createPathWithDigest(
+    file.metadata.source,
+    file.metadata.source,
+    file.metadata.name,
+    file.html_url
+  );
   return file;
 };
 
@@ -132,6 +140,6 @@ const markdownUnfurlPlugin = (extension, file) => {
 
 module.exports = {
   markdownFrontmatterPlugin,
-  markdownPagePathPlugin,
   markdownUnfurlPlugin,
+  pagePathPlugin,
 };
