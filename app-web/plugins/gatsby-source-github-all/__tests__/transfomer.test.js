@@ -1,5 +1,5 @@
 import { fileTransformer } from '../utils/transformer';
-import { markdownFrontmatterPlugin, markdownPagePathPlugin } from '../utils/plugins';
+import { markdownFrontmatterPlugin, pagePathPlugin } from '../utils/plugins';
 import { PROCESSED_FILE_MD } from '../__fixtures__/fixtures';
 
 describe('Transformer System', () => {
@@ -57,13 +57,13 @@ describe('Transformer System', () => {
     });
 
     it('returns file', () => {
-      const result = markdownPagePathPlugin(file.metadata.extension, file);
+      const result = pagePathPlugin(file.metadata.extension, file);
       expect(result).toBeDefined();
     });
 
     it('returns file if file is not md', () => {
       file.metadata.extension = 'txt';
-      const result = markdownPagePathPlugin(file.metadata.extension, file);
+      const result = pagePathPlugin(file.metadata.extension, file);
       expect(result).toBeDefined();
     });
   });

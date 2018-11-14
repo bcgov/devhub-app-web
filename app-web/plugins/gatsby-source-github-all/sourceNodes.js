@@ -22,7 +22,7 @@ const _ = require('lodash'); // eslint-disable-line
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
 const { GRAPHQL_NODE_TYPE } = require('./utils/constants');
 const { fileTransformer } = require('./utils/transformer');
-const { markdownFrontmatterPlugin, markdownPagePathPlugin } = require('./utils/plugins');
+const { markdownFrontmatterPlugin, pagePathPlugin } = require('./utils/plugins');
 
 const createGHNode = (file, id) => ({
   id,
@@ -38,6 +38,8 @@ const createGHNode = (file, id) => ({
   sourceName: file.metadata.sourceName, // the pretty name of the 'source'
   sourcePath: file.metadata.sourceURL, // the path to the repo
   resourcePath: file.metadata.resourcePath, // either path to a gastby created page based on this node
+  resourceTitle: file.metadata.resourceTitle,
+  resourceDescription: file.metadata.resourceDescription,
   // or the path to an external resource this node points too
   labels: file.metadata.labels, // labels from source registry
   internal: {
@@ -107,7 +109,7 @@ const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { to
         const ft = fileTransformer(extension, newFile);
         const fileTransformed = ft
           .use(markdownFrontmatterPlugin)
-          .use(markdownPagePathPlugin)
+          .use(pagePathPlugin)
           .resolve();
         return fileTransformed;
       })

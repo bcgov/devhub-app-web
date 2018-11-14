@@ -71,6 +71,12 @@ const markdownFrontmatterPlugin = (extension, file) => {
         frontmatter[key] = DEFAULTS[key]();
       }
     });
+    // attach front matter properties to metadata
+    file.metadata = {
+      ...file.metadata,
+      resourceTitle: frontmatter.title,
+      resourceDescription: frontmatter.description,
+    };
     // create 'new' md string with updated front matter
     file.content = matter.stringify(data.content, frontmatter);
     return file;
@@ -84,7 +90,7 @@ const markdownFrontmatterPlugin = (extension, file) => {
  * @param {Object} file
  * @returns {Object} the modified file
  */
-const markdownPagePathPlugin = (extension, file) => {
+const pagePathPlugin = (extension, file) => {
   if (extension !== 'md' && extension !== 'html') {
     return file;
   }
@@ -110,5 +116,5 @@ const markdownPagePathPlugin = (extension, file) => {
 
 module.exports = {
   markdownFrontmatterPlugin,
-  markdownPagePathPlugin,
+  pagePathPlugin,
 };
