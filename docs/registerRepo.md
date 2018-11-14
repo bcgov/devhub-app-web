@@ -95,9 +95,13 @@ A short description describing what's in this file. This will be used as the sho
 Tells the devhub to point the user to your resource when they click on the devhub resource card
 The resourcepath should be a valid hyper link
 
+#### pageOnly (optional)
+Set to true if you do not want the content to show up in the homepage as an individual card, the content will still be presented in the page view
+
+#### ignore (optional)
+Set to true if you do not want the content to show up at all
 
 #### HTML metadata
-
 In future versions, the Devhub will use the *unfurling* techinique to create neat previews of your
 content. Follow this document on how to add the appropriate metadata to your HTML document. 
 
