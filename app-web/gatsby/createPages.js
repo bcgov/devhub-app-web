@@ -68,7 +68,7 @@ module.exports = async ({ graphql, boundActionCreators }) => {
       node.childMarkdownRemark.frontmatter &&
       node.childMarkdownRemark.frontmatter.ignore;
     // if file is html these would both resolve to false since there are no meta data properties
-    if (!isResource && !isIgnored) {
+    if (!isResource && !isIgnored && node.internal.mediaType === 'text/markdown') {
       createPage({
         path: node.resourcePath,
         component: getTemplate(node.internal.mediaType),
