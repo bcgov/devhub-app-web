@@ -32,7 +32,7 @@ const markdownFrontmatterPlugin = (extension, file) => {
   // only modify markdown files
   if (extension === 'md') {
     // parse front matter
-    const data = matter(file.content);
+    const data = matter(file.content, { delimiters: '---' });
     const frontmatter = data.data;
     const DEFAULTS = {
       title: () => {
@@ -90,7 +90,7 @@ const markdownPagePathPlugin = (extension, file) => {
     return file;
   }
   // check front matter for a resourcePath
-  const data = matter(file.content);
+  const data = matter(file.content, { delimiters: '---' });
   const frontmatter = data.data;
   if (frontmatter.resourcePath) {
     file.metadata.resourcePath = frontmatter.resourcePath;
