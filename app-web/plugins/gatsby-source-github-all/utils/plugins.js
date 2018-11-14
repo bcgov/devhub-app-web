@@ -72,6 +72,12 @@ const markdownFrontmatterPlugin = (extension, file) => {
         frontmatter[key] = DEFAULTS[key]();
       }
     });
+    // attach front matter properties to metadata
+    file.metadata = {
+      ...file.metadata,
+      resourceTitle: frontmatter.title,
+      resourceDescription: frontmatter.description,
+    };
     // create 'new' md string with updated front matter
     file.content = matter.stringify(data.content, frontmatter);
     return file;
@@ -85,30 +91,31 @@ const markdownFrontmatterPlugin = (extension, file) => {
  * @param {Object} file
  * @returns {Object} the modified file
  */
-const markdownPagePathPlugin = (extension, file) => {
-  if (extension !== 'md') {
+const pagePathPlugin = (extension, file) => {
+  if (extension !== 'md' && extension !== 'html') {
     return file;
   }
   // check front matter for a resourcePath
-  const data = matter(file.content, { delimiters: '---' });
-  const frontmatter = data.data;
-  if (frontmatter.resourcePath) {
-    file.metadata.resourcePath = frontmatter.resourcePath;
-  } else {
-    // no resource path, this file is destined to be turned into a page,
-    // the page page is composed of the source name, the title of the file plus an id
-    file.metadata.resourcePath = createPathWithDigest(
-      file.metadata.source,
-      file.metadata.source,
-      file.metadata.name,
-      file.html_url
-    );
+  if (extension === 'md') {
+    const data = matter(file.content, { delimiters: '---' });
+    const frontmatter = data.data;
+    if (frontmatter.resourcePath) {
+      file.metadata.resourcePath = frontmatter.resourcePath;
+      return file;
+    }
   }
-
+  // no resource path, this file is destined to be turned into a page,
+  // the page page is composed of the source name, the title of the file plus an id
+  file.metadata.resourcePath = createPathWithDigest(
+    file.metadata.source,
+    file.metadata.source,
+    file.metadata.name,
+    file.html_url
+  );
   return file;
 };
 
 module.exports = {
   markdownFrontmatterPlugin,
-  markdownPagePathPlugin,
+  pagePathPlugin,
 };

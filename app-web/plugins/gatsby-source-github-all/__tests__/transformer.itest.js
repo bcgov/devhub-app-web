@@ -1,6 +1,6 @@
 import matter from 'gray-matter'; // eslint-disable-line
 import { fileTransformer } from '../utils/transformer';
-import { markdownFrontmatterPlugin, markdownPagePathPlugin } from '../utils/plugins';
+import { markdownFrontmatterPlugin, pagePathPlugin } from '../utils/plugins';
 import {
   PROCESSED_FILE_MD,
   PROCESSED_FILE_TXT,
@@ -89,7 +89,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
       RAW_FILE_MD_WITH_RESOURCEPATH.metadata.extension,
       RAW_FILE_MD_WITH_RESOURCEPATH
     )
-      .use(markdownPagePathPlugin)
+      .use(pagePathPlugin)
       .resolve();
     expect(transformedFile.metadata.resourcePath).toBe(data.data.resourcePath);
   });
@@ -99,7 +99,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
     const { metadata: { source, name } } = mdFile;
     expect(data.data.resourcePath).not.toBeDefined();
     const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
-      .use(markdownPagePathPlugin)
+      .use(pagePathPlugin)
       .resolve();
     expect(transformedFile.metadata.resourcePath).toBe(
       `/${source}/${source}${name}https:/github.com/bcgov/design-system/blob/master/components/header/README.md`
