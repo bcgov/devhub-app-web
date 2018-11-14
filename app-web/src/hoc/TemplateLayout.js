@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // stylesheets
 import styles from './TemplateLayout.module.css';
 // layout local componenets
-import Navigation from '../components/DesignSystem/Navigation';
+import Navigation from '../components/Navigation/Navigation';
 import Layout from './Layout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/fontawesome-free-brands';
