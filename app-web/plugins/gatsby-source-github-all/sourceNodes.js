@@ -33,6 +33,7 @@ const createSiphonNode = (file, id) => ({
   owner: file.metadata.owner,
   parent: null,
   path: file.path,
+  unfurl: file.metadata.unfurl,
   originalSource: file.html_url, // path to the file in github
   source: file.metadata.source, // the repo-name
   sourceName: file.metadata.sourceName, // the pretty name of the 'source'
