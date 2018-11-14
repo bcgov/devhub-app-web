@@ -25,7 +25,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
       .use(markdownFrontmatterPlugin)
       .resolve();
     expect(transformedFile.content).not.toBe(mdFile.content);
-    const data2 = matter(transformedFile.content);
+    const data2 = matter(transformedFile.content, { foo: '---' });
     expect(data2.data.title).toBeDefined();
     expect(data2.data.ignore).toBe(false);
     expect(data2.data.resourcePath).toBe('');
@@ -33,10 +33,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
   });
 
   test('transformer implicitly adds title front matter with markdown plugin', () => {
-    // Debuging:
-    console.log(mdFile); //clean file
     const data1 = matter(mdFile.content);
-    console.log(data1); // contents the extra
     expect(data1.data.title).not.toBeDefined();
     const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
       .use(markdownFrontmatterPlugin)
@@ -45,7 +42,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
     expect(data2.data.title).toBeDefined();
   });
 
-  test.skip('transformer implicitly adds ignore front matter with markdown plugin', () => {
+  test('transformer implicitly adds ignore front matter with markdown plugin', () => {
     const data1 = matter(mdFile.content);
     expect(data1.data.ignore).not.toBeDefined();
     const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
@@ -55,7 +52,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
     expect(data2.data.ignore).toBe(false);
   });
 
-  test.skip('transformer implicitly adds resourcePath front matter with markdown plugin', () => {
+  test('transformer implicitly adds resourcePath front matter with markdown plugin', () => {
     const data1 = matter(mdFile.content);
     expect(data1.data.resourcePath).not.toBeDefined();
     const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
@@ -65,7 +62,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
     expect(data2.data.resourcePath).toBe('');
   });
 
-  test.skip('transformer implicitly adds pageOnly front matter with markdown plugin', () => {
+  test('transformer implicitly adds pageOnly front matter with markdown plugin', () => {
     const data1 = matter(mdFile.content);
     expect(data1.data.pageOnly).not.toBeDefined();
     const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
@@ -100,7 +97,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
   test('transformer sets pagePath to gatsby create page path by default', () => {
     const data = matter(mdFile.content);
     const { metadata: { source, name } } = mdFile;
-    expect(data.data.resourcePath).toBe(''); // this should be undefined
+    expect(data.data.resourcePath).not.toBeDefined();
     const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
       .use(markdownPagePathPlugin)
       .resolve();
