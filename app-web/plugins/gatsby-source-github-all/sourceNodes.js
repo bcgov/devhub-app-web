@@ -24,7 +24,7 @@ const { GRAPHQL_NODE_TYPE } = require('./utils/constants');
 const { fileTransformer } = require('./utils/transformer');
 const { markdownFrontmatterPlugin, markdownPagePathPlugin } = require('./utils/plugins');
 
-const createGHNode = (file, id) => ({
+const createSiphonNode = (file, id) => ({
   id,
   children: [],
   fileName: file.metadata.fileName,
@@ -111,7 +111,7 @@ const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { to
           .resolve();
         return fileTransformed;
       })
-      .map(file => createNode(createGHNode(file, createNodeId(file.sha))));
+      .map(file => createNode(createSiphonNode(file, createNodeId(file.sha))));
   } catch (e) {
     // failed to retrieve files or some other type of failure
     // eslint-disable-next-line
@@ -122,6 +122,6 @@ const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { to
 module.exports = {
   getRegistry,
   checkRegistry,
-  createGHNode,
+  createSiphonNode,
   sourceNodes,
 };
