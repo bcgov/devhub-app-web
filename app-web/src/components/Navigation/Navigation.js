@@ -3,7 +3,7 @@ import shortid from 'shortid';
 import PropTypes from 'prop-types';
 import Link from '../Common/Link';
 import styles from './Navigation.module.css';
-
+// navigation for dynamically created page components
 class Navigation extends Component {
   componentDidMount() {
     // scroll into view of active link if exists

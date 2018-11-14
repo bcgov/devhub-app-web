@@ -10,6 +10,7 @@ import { faGithub } from '@fortawesome/fontawesome-free-brands';
 import { faCodeBranch } from '@fortawesome/free-solid-svg-icons';
 
 const TemplateLayout = ({ siphonData, nav, pathname, children }) => {
+  // navigation doesn't show up if there are no links
   const navigation =
     nav.edges.length > 0 ? <Navigation components={nav.edges} activeLink={pathname} /> : null;
   return (
@@ -37,7 +38,6 @@ const TemplateLayout = ({ siphonData, nav, pathname, children }) => {
               </li>
             </ul>
           </header>
-          {/* navigation doesn't show up if there are no links */}
           {navigation}
         </div>
         <section className={styles.Content}>{children}</section>
