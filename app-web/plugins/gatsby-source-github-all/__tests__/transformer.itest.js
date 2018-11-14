@@ -99,7 +99,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
     const { metadata: { source, name } } = mdFile;
     expect(data.data.resourcePath).not.toBeDefined();
     const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
-      .use(markdownPagePathPlugin)
+      .use(pagePathPlugin)
       .resolve();
     expect(transformedFile.metadata.resourcePath).toBe(
       `/${source}/${source}${name}https:/github.com/bcgov/design-system/blob/master/components/header/README.md`
