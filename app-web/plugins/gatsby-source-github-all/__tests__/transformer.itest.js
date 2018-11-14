@@ -13,15 +13,63 @@ jest.unmock('remark');
 jest.unmock('gray-matter');
 
 describe('Integration Tests Gatsby source github all transformer and Plugins', () => {
-  test('transformer implicitly adds title front matter with markdown plugin', () => {
-    const data1 = matter(PROCESSED_FILE_MD.content);
+  let mdFile = PROCESSED_FILE_MD;
+
+  test('transformer implicitly updates front matter with markdown plugin', () => {
+    const data1 = matter(mdFile.content);
     expect(data1.data.title).not.toBeDefined();
-    const transformedFile = fileTransformer(PROCESSED_FILE_MD.metadata.extension, PROCESSED_FILE_MD)
+    expect(data1.data.ignore).not.toBeDefined();
+    expect(data1.data.resourcePath).not.toBeDefined();
+    expect(data1.data.pageOnly).not.toBeDefined();
+    const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
       .use(markdownFrontmatterPlugin)
       .resolve();
-    expect(transformedFile.content).not.toBe(PROCESSED_FILE_MD.content);
+    expect(transformedFile.content).not.toBe(mdFile.content);
+    const data2 = matter(transformedFile.content, { foo: '---' });
+    expect(data2.data.title).toBeDefined();
+    expect(data2.data.ignore).toBe(false);
+    expect(data2.data.resourcePath).toBe('');
+    expect(data2.data.pageOnly).toBe(false);
+  });
+
+  test('transformer implicitly adds title front matter with markdown plugin', () => {
+    const data1 = matter(mdFile.content);
+    expect(data1.data.title).not.toBeDefined();
+    const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
+      .use(markdownFrontmatterPlugin)
+      .resolve();
     const data2 = matter(transformedFile.content);
     expect(data2.data.title).toBeDefined();
+  });
+
+  test('transformer implicitly adds ignore front matter with markdown plugin', () => {
+    const data1 = matter(mdFile.content);
+    expect(data1.data.ignore).not.toBeDefined();
+    const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
+      .use(markdownFrontmatterPlugin)
+      .resolve();
+    const data2 = matter(transformedFile.content);
+    expect(data2.data.ignore).toBe(false);
+  });
+
+  test('transformer implicitly adds resourcePath front matter with markdown plugin', () => {
+    const data1 = matter(mdFile.content);
+    expect(data1.data.resourcePath).not.toBeDefined();
+    const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
+      .use(markdownFrontmatterPlugin)
+      .resolve();
+    const data2 = matter(transformedFile.content);
+    expect(data2.data.resourcePath).toBe('');
+  });
+
+  test('transformer implicitly adds pageOnly front matter with markdown plugin', () => {
+    const data1 = matter(mdFile.content);
+    expect(data1.data.pageOnly).not.toBeDefined();
+    const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
+      .use(markdownFrontmatterPlugin)
+      .resolve();
+    const data2 = matter(transformedFile.content);
+    expect(data2.data.pageOnly).toBe(false);
   });
 
   test('transformer leaves text files alone with markdown plugin', () => {
@@ -47,10 +95,10 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
   });
 
   test('transformer sets pagePath to gatsby create page path by default', () => {
-    const data = matter(PROCESSED_FILE_MD.content);
-    const { metadata: { source, name } } = PROCESSED_FILE_MD;
-    expect(data.data.resourcePath).toBe('');
-    const transformedFile = fileTransformer(PROCESSED_FILE_MD.metadata.extension, PROCESSED_FILE_MD)
+    const data = matter(mdFile.content);
+    const { metadata: { source, name } } = mdFile;
+    expect(data.data.resourcePath).not.toBeDefined();
+    const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
       .use(markdownPagePathPlugin)
       .resolve();
     expect(transformedFile.metadata.resourcePath).toBe(
