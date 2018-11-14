@@ -13,7 +13,6 @@ jest.unmock('remark');
 jest.unmock('gray-matter');
 
 describe('Integration Tests Gatsby source github all transformer and Plugins', () => {
-  // revisit the issue in skipped test cases
   let mdFile = PROCESSED_FILE_MD;
 
   test('transformer implicitly updates front matter with markdown plugin', () => {
@@ -33,8 +32,11 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
     expect(data2.data.pageOnly).toBe(false);
   });
 
-  test.skip('transformer implicitly adds title front matter with markdown plugin', () => {
+  test('transformer implicitly adds title front matter with markdown plugin', () => {
+    // Debuging:
+    console.log(mdFile); //clean file
     const data1 = matter(mdFile.content);
+    console.log(data1); // contents the extra
     expect(data1.data.title).not.toBeDefined();
     const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
       .use(markdownFrontmatterPlugin)
@@ -98,7 +100,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
   test('transformer sets pagePath to gatsby create page path by default', () => {
     const data = matter(mdFile.content);
     const { metadata: { source, name } } = mdFile;
-    expect(data.data.resourcePath).toBe('');
+    expect(data.data.resourcePath).toBe(''); // this should be undefined
     const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
       .use(markdownPagePathPlugin)
       .resolve();
