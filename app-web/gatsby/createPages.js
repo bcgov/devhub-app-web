@@ -68,6 +68,9 @@ module.exports = async ({ graphql, boundActionCreators }) => {
       node.childMarkdownRemark.frontmatter &&
       node.childMarkdownRemark.frontmatter.ignore;
     // if file is html these would both resolve to false since there are no meta data properties
+    // for now we are explicitly only creating pages for text/markdown, although html pages
+    // would work, there are many things about presenting html documents that haven't been ironed
+    // out yet but will be in future versions
     if (!isResource && !isIgnored && node.internal.mediaType === 'text/markdown') {
       createPage({
         path: node.resourcePath,
