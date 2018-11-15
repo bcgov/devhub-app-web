@@ -6,6 +6,7 @@ import { faGithub } from '@fortawesome/fontawesome-free-brands';
 import styles from './Cards.module.css';
 import Card from './Card/Card';
 import Link from '../Common/Link';
+import Toggle from './Toggle';
 import { ARIA_LABEL_REPO } from '../../constants/strings';
 
 const Cards = ({ topic, sourcePath, cards }) => {
@@ -22,7 +23,7 @@ const Cards = ({ topic, sourcePath, cards }) => {
         <h1>{topic}</h1>
         {octoKat}
       </div>
-      <div className={styles.Cards}>{cardComponents}</div>
+      <Toggle cardComponents={cardComponents} />
     </section>
   );
 };
