@@ -33,7 +33,21 @@
   display: none;
 }
 
+.LargeView {
+  display: none;
+}
+
+.MobileView {
+  display: block;
+}
+
 @media screen and (min-width: 570px) {
+    .MobileView {
+      display: none;
+    }
+    .LargeView {
+      display: block;
+    }
     .Cards {
         justify-content: flex-start;
     }

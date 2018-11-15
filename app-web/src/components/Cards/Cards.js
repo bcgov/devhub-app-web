@@ -8,6 +8,7 @@ import Card from './Card/Card';
 import Link from '../Common/Link';
 import Toggle from './Toggle';
 import { ARIA_LABEL_REPO } from '../../constants/strings';
+import { LARGE_SCREEN_LIMIT, SMALL_SCREEN_LIMIT } from '../../constants/ui';
 
 const Cards = ({ topic, sourcePath, cards }) => {
   const cardComponents = cards.map(c => <Card {...c} key={shortid.generate()} />);
@@ -23,7 +24,12 @@ const Cards = ({ topic, sourcePath, cards }) => {
         <h1>{topic}</h1>
         {octoKat}
       </div>
-      <Toggle cardComponents={cardComponents} />
+      <div className={styles.LargeView}>
+        <Toggle cardComponents={cardComponents} cardLimits={LARGE_SCREEN_LIMIT} />
+      </div>
+      <div className={styles.MobileView}>
+        <Toggle cardComponents={cardComponents} cardLimits={SMALL_SCREEN_LIMIT} />
+      </div>
     </section>
   );
 };
