@@ -22,7 +22,6 @@ const _ = require('lodash'); // eslint-disable-line
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
 const { GRAPHQL_NODE_TYPE } = require('./utils/constants');
 
-
 const createSiphonNode = (file, id) => ({
   id,
   children: [],
@@ -95,19 +94,19 @@ const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { to
     // check registry prior to fetching data
     checkRegistry(registry);
     // fetch all repos
-    const repos = await Promise.all(
+    const sources = await Promise.all(
       registry.sources.map(source => fetchFromSource(source.sourceType, source, tokens))
     );
-    // repos is an array of arrays [repo files, repo files] etc
+    // sources is an array of arrays [repo files, repo files] etc
     // so we flatten it into a 1 dimensional array
-    const dataToNodify = _.flatten(repos, true);
+    let dataToNodify = _.flatten(sources, true);
     // create nodes
-    return dataToNodify.forEach(file => createNode(createSiphonNode(file, createNodeId(file.sha))));
+    return dataToNodify.map(file => createNode(createSiphonNode(file, createNodeId(file.sha))));
   } catch (e) {
     // failed to retrieve files or some other type of failure
     // eslint-disable-next-line
     console.error(e);
-    process.exit(1);
+    throw e;
   }
 };
 module.exports = {

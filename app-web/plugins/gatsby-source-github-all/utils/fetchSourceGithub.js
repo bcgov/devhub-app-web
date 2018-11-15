@@ -257,7 +257,7 @@ const getFilesFromRepo = async ({ name, sourceProperties: { repo, url, owner, br
     // for some reason the accept header is not returning with raw content so we will decode
     // the default base 64 encoded content
     // also adding some additional params
-    return filesResponse
+    const processedFiles = filesResponse
       .filter(f => f !== undefined) // filter out any files that weren't fetched
       .map(f => applyBaseMetadata(f, labels, owner, repo, name, url))
       .map(f => {
@@ -268,6 +268,7 @@ const getFilesFromRepo = async ({ name, sourceProperties: { repo, url, owner, br
           .use(markdownUnfurlPlugin)
           .resolve();
       });
+    return processedFiles;
   } catch (e) {
     console.error(e);
     // eslint-disable-next-line
