@@ -10,25 +10,25 @@ import Cards from '../components/Cards/Cards';
 import styles from './index.module.css';
 
 const Index = ({ data: { pathfinder, allDevhubSiphon } }) => {
-  const yamlData = YAML.safeLoad(pathfinder.data.organization.repository.resources.yaml);
-  // map entries and set paramaters in entries that resource component expects
-  const mappedEntries = yamlData.entries.map(entry => ({
-    ...entry,
-    title: entry.description,
-    description: entry.details,
-    sourceName: 'Pathfinder',
-    resourcePath: entry.link,
-  }));
+  // const yamlData = YAML.safeLoad(pathfinder.data.organization.repository.resources.yaml);
+  // // map entries and set paramaters in entries that resource component expects
+  // const mappedEntries = yamlData.entries.map(entry => ({
+  //   ...entry,
+  //   title: entry.description,
+  //   description: entry.details,
+  //   sourceName: 'Pathfinder',
+  //   resourcePath: entry.link,
+  // }));
 
-  const groupedPathFinderData = groupBy(mappedEntries, 'category');
-  const pathfinderResources = groupedPathFinderData.map(gd => (
-    <Cards
-      key={shortid.generate()}
-      topic={gd.category}
-      sourcePath={gd.data[0].sourcePath}
-      cards={gd.data}
-    />
-  ));
+  // const groupedPathFinderData = groupBy(mappedEntries, 'category');
+  // const pathfinderResources = groupedPathFinderData.map(gd => (
+  //   <Cards
+  //     key={shortid.generate()}
+  //     topic={gd.category}
+  //     sourcePath={gd.data[0].sourcePath}
+  //     cards={gd.data}
+  //   />
+  // ));
   // flatten out allSourceGithub edges from query
   const siphonNodes = flattenAllSourceDevhubGithub(allDevhubSiphon.edges);
   // map out github nodes to have paramaters that are expected by Resource
@@ -66,16 +66,15 @@ const Index = ({ data: { pathfinder, allDevhubSiphon } }) => {
           an issue in our <a href={GITHUB_ISSUES_ROUTE}>github.com</a> repository.
         </p>
         <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
-        <Flag name="features.pathfinderResourceCards">{pathfinderResources}</Flag>
+        {/* <Flag name="features.pathfinderResourceCards">{pathfinderResources}</Flag> */}
       </main>
     </Layout>
   );
 };
 // this query automagically gets passed in as a 'data' prop into
 // the above component
-export const resourceQuery = graphql`
-  query resourceQuery {
-    pathfinder: githubData {
+/** query removed at this time
+ pathfinder: githubData {
       data {
         organization {
           repository {
@@ -86,18 +85,27 @@ export const resourceQuery = graphql`
         }
       }
     }
+ */
+export const resourceQuery = graphql`
+  query resourceQuery {
     allDevhubSiphon(filter: { internal: { mediaType: { eq: "text/markdown" } } }) {
       edges {
         node {
           id
           title: name
-          sourceName
-          sourcePath
+          source {
+            displayName
+            sourcePath
+            type
+          }
           resourcePath
+          unfurl {
+            title
+            description
+            type
+          }
           childMarkdownRemark {
             frontmatter {
-              title
-              description
               pageOnly
             }
           }

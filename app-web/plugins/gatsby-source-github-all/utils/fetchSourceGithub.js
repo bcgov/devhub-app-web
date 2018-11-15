@@ -184,7 +184,7 @@ const filterFilesFromDirectories = entries => {
  * @param {String} sourceName 
  * @param {String} sourceURL 
  */
-const applyBaseMetadata = (file, labels, owner, source, sourceName, sourceURL) => {
+const applyBaseMetadata = (file, labels, owner, source, sourceName, sourceURL, sourceType) => {
   const extension = getExtensionFromName(file.name);
   return {
     ...file,
@@ -200,6 +200,7 @@ const applyBaseMetadata = (file, labels, owner, source, sourceName, sourceURL) =
       mediaType: getMediaTypeByExtension(extension),
       extension,
       sourceURL,
+      sourceType,
     },
   };
 };
@@ -234,7 +235,7 @@ const filterFiles = (files, ignoreObj) => {
  * @returns {Array} The array of files
  */
 // eslint-disable-next-line
-const getFilesFromRepo = async ({ name, sourceProperties: { repo, url, owner, branch }, attributes: { labels }}, token) => {
+const getFilesFromRepo = async ({sourceType, name, sourceProperties: { repo, url, owner, branch }, attributes: { labels }}, token) => {
   try {
     // ignore filtering
     const ig = ignore().add(DEFUALT_IGNORES);
@@ -259,7 +260,7 @@ const getFilesFromRepo = async ({ name, sourceProperties: { repo, url, owner, br
     // also adding some additional params
     const processedFiles = filesResponse
       .filter(f => f !== undefined) // filter out any files that weren't fetched
-      .map(f => applyBaseMetadata(f, labels, owner, repo, name, url))
+      .map(f => applyBaseMetadata(f, labels, owner, repo, name, url, sourceType))
       .map(f => {
         const ft = fileTransformer(f.metadata.extension, f);
         return ft

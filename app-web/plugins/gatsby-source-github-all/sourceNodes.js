@@ -22,38 +22,41 @@ const _ = require('lodash'); // eslint-disable-line
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
 const { GRAPHQL_NODE_TYPE } = require('./utils/constants');
 
-const createSiphonNode = (file, id) => ({
+const createSiphonNode = (data, id) => ({
   id,
   children: [],
-  fileName: file.metadata.fileName,
-  fileType: file.metadata.fileType,
-  name: file.metadata.name,
-  owner: file.metadata.owner,
+  fileName: data.metadata.fileName,
+  fileType: data.metadata.fileType,
+  name: data.metadata.name,
+  owner: data.metadata.owner,
   parent: null,
-  path: file.path,
-  unfurl: file.metadata.unfurl, // normalized unfurled content from various sources https://medium.com/slack-developer-blog/everything-you-ever-wanted-to-know-about-unfurling-but-were-afraid-to-ask-or-how-to-make-your-e64b4bb9254
-  originalSource: file.html_url, // path to the file in github
-  source: file.metadata.source, // the repo-name
-  sourceName: file.metadata.sourceName, // the pretty name of the 'source'
-  sourcePath: file.metadata.sourceURL, // the path to the repo
-  resourcePath: file.metadata.resourcePath, // either path to a gastby created page based on this node
-  resourceTitle: file.metadata.resourceTitle,
-  resourceDescription: file.metadata.resourceDescription,
+  path: data.path,
+  unfurl: data.metadata.unfurl, // normalized unfurled content from various sources https://medium.com/slack-developer-blog/everything-you-ever-wanted-to-know-about-unfurling-but-were-afraid-to-ask-or-how-to-make-your-e64b4bb9254
+  originalSource: data.html_url, // original path to the data
+  source: {
+    name: data.metadata.source, // the source-name
+    displayName: data.metadata.sourceName, // the pretty name of the 'source'
+    sourcePath: data.metadata.sourceURL, // the path to the source
+    type: data.metadata.sourceType, // the type of the source
+  },
+  resourcePath: data.metadata.resourcePath, // either path to a gastby created page based on this node
+  resourceTitle: data.metadata.resourceTitle,
+  resourceDescription: data.metadata.resourceDescription,
   // or the path to an external resource this node points too
-  labels: file.metadata.labels, // labels from source registry
+  labels: data.metadata.labels, // labels from source registry
   internal: {
     contentDigest: crypto
       .createHash('md5')
-      .update(JSON.stringify(file))
+      .update(JSON.stringify(data))
       .digest('hex'),
     // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate
     // to transformer plugins this node has data they can further process.
-    mediaType: file.metadata.mediaType,
+    mediaType: data.metadata.mediaType,
     // A globally unique node type chosen by the plugin owner.
     type: GRAPHQL_NODE_TYPE,
     // Optional field exposing the raw content for this node
     // that transformer plugins can take and further process.
-    content: file.content,
+    content: data.content,
   },
 });
 

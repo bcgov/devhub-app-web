@@ -38,7 +38,10 @@ module.exports = async ({ graphql, boundActionCreators }) => {
         edges {
           node {
             id
-            source
+            source {
+              name
+              type
+            }
             resourcePath
             internal {
               mediaType
@@ -78,7 +81,7 @@ module.exports = async ({ graphql, boundActionCreators }) => {
         context: {
           // Data passed to context is available in page queries as GraphQL variables.
           id: node.id,
-          source: node.source,
+          source: node.source.name,
         },
       });
     }
