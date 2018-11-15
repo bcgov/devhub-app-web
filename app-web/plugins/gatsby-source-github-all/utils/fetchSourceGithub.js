@@ -30,6 +30,12 @@ const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
 const { Base64 } = require('js-base64'); // eslint-disable-line
 const fetch = require('node-fetch'); // eslint-disable-line
 const ignore = require('ignore'); // eslint-disable-line
+const { fileTransformer } = require('./transformer');
+const {
+  markdownFrontmatterPlugin,
+  pagePathPlugin,
+  markdownUnfurlPlugin,
+} = require('./plugins');
 /**
  * returns extension of a file name
  * can handle linux type files (which require no extension)
@@ -253,7 +259,15 @@ const getFilesFromRepo = async ({ name, sourceProperties: { repo, url, owner, br
     // also adding some additional params
     return filesResponse
       .filter(f => f !== undefined) // filter out any files that weren't fetched
-      .map(f => applyBaseMetadata(f, labels, owner, repo, name, url));
+      .map(f => applyBaseMetadata(f, labels, owner, repo, name, url))
+      .map(f => {
+        const ft = fileTransformer(f.metadata.extension, f);
+        return ft
+          .use(markdownFrontmatterPlugin)
+          .use(pagePathPlugin)
+          .use(markdownUnfurlPlugin)
+          .resolve();
+      });
   } catch (e) {
     console.error(e);
     // eslint-disable-next-line

@@ -21,12 +21,7 @@ const crypto = require('crypto');
 const _ = require('lodash'); // eslint-disable-line
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
 const { GRAPHQL_NODE_TYPE } = require('./utils/constants');
-const { fileTransformer } = require('./utils/transformer');
-const {
-  markdownFrontmatterPlugin,
-  pagePathPlugin,
-  markdownUnfurlPlugin,
-} = require('./utils/plugins');
+
 
 const createSiphonNode = (file, id) => ({
   id,
@@ -107,19 +102,7 @@ const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { to
     // so we flatten it into a 1 dimensional array
     const dataToNodify = _.flatten(repos, true);
     // create nodes
-    return dataToNodify
-      .map(file => {
-        const newFile = { ...file, metadata: { ...file.metadata } };
-        const { metadata: { extension } } = newFile;
-        const ft = fileTransformer(extension, newFile);
-        const fileTransformed = ft
-          .use(markdownFrontmatterPlugin)
-          .use(pagePathPlugin)
-          .use(markdownUnfurlPlugin)
-          .resolve();
-        return fileTransformed;
-      })
-      .map(file => createNode(createSiphonNode(file, createNodeId(file.sha))));
+    return dataToNodify.forEach(file => createNode(createSiphonNode(file, createNodeId(file.sha))));
   } catch (e) {
     // failed to retrieve files or some other type of failure
     // eslint-disable-next-line
