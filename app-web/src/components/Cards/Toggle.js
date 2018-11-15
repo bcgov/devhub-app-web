@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Cards.module.css';
+import Button from '../UI/Button/Button';
 
 /**
  * Toggle component
@@ -17,15 +18,23 @@ class Toggle extends Component {
 
   render() {
     const toggleIcon = this.state.toggled ? (
-      <button
-        onClick={() => {
+      <Button
+        type="link"
+        clicked={() => {
           this.toggledHandler(false);
-        }}>Collapse</button>
+        }}
+      >
+        Collapse
+      </Button>
     ) : (
-      <button
-        onClick={() => {
+      <Button
+        type="link"
+        clicked={() => {
           this.toggledHandler(true);
-        }}>Show All</button>
+        }}
+      >
+        Show All
+      </Button>
     );
     const { cardComponents, cardLimits } = this.props;
     const cardShow = this.state.toggled ? cardComponents.length : cardLimits;

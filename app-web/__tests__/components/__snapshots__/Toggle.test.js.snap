@@ -35,11 +35,12 @@ ShallowWrapper {
         <div
           className="ToggleButton"
         >
-          <button
-            onClick={[Function]}
+          <Button
+            clicked={[Function]}
+            type="link"
           >
             Show All
-          </button>
+          </Button>
         </div>,
       ],
     },
@@ -66,25 +67,27 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": <button
-            onClick={[Function]}
+          "children": <Button
+            clicked={[Function]}
+            type="link"
           >
             Show All
-          </button>,
+          </Button>,
           "className": "ToggleButton",
         },
         "ref": null,
         "rendered": Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "function",
           "props": Object {
             "children": "Show All",
-            "onClick": [Function],
+            "clicked": [Function],
+            "type": "link",
           },
           "ref": null,
           "rendered": "Show All",
-          "type": "button",
+          "type": [Function],
         },
         "type": "div",
       },
@@ -106,11 +109,12 @@ ShallowWrapper {
           <div
             className="ToggleButton"
           >
-            <button
-              onClick={[Function]}
+            <Button
+              clicked={[Function]}
+              type="link"
             >
               Show All
-            </button>
+            </Button>
           </div>,
         ],
       },
@@ -137,25 +141,27 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": <button
-              onClick={[Function]}
+            "children": <Button
+              clicked={[Function]}
+              type="link"
             >
               Show All
-            </button>,
+            </Button>,
             "className": "ToggleButton",
           },
           "ref": null,
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
+            "nodeType": "function",
             "props": Object {
               "children": "Show All",
-              "onClick": [Function],
+              "clicked": [Function],
+              "type": "link",
             },
             "ref": null,
             "rendered": "Show All",
-            "type": "button",
+            "type": [Function],
           },
           "type": "div",
         },
