@@ -6,7 +6,7 @@ import {
   CONFIG_OPTIONS,
 } from '../__fixtures__/fixtures';
 import { GRAPHQL_NODE_TYPE } from '../utils/constants';
-import { sourceNodes, createGHNode } from '../sourceNodes';
+import { sourceNodes, createSiphonNode } from '../sourceNodes';
 import { getFilesFromRepo, validateSourceGithub } from '../utils/fetchSourceGithub';
 
 jest.mock('../utils/fetchSourceGithub.js');
@@ -38,7 +38,7 @@ describe('Integration Tests Source Nodes', () => {
     const getNodes = jest.fn(() => GRAPHQL_NODES_WITH_REGISTRY);
     await sourceNodes({ boundActionCreators, createNodeId, getNodes }, CONFIG_OPTIONS);
     // create a graphql node bypassing the transformer in sourceNodes
-    const node = createGHNode(PROCESSED_FILE_MD, createNodeId());
+    const node = createSiphonNode(PROCESSED_FILE_MD, createNodeId());
     // this markdown file should have been transformed and there for nodes
     // should not be equal
     expect(boundActionCreators.createNode).not.toHaveBeenCalledWith(node);

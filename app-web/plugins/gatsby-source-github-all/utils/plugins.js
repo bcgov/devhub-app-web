@@ -20,7 +20,7 @@ const matter = require('gray-matter'); // eslint-disable-line
 const visit = require('unist-util-visit'); // eslint-disable-line
 const remark = require('remark'); // eslint-disable-line
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
-const { createPathWithDigest } = require('./helpers'); // eslint-disable-line
+const { createPathWithDigest, createUnfurlObj } = require('./helpers'); // eslint-disable-line
 const { MARKDOWN_FRONTMATTER_SCHEMA } = require('./constants');
 /**
  * applys default front matter properties
@@ -53,8 +53,13 @@ const markdownFrontmatterPlugin = (extension, file) => {
         });
         return title;
       },
-      ignore: () => false, // ignore this node (when true) all together no page or other presentational components are created
-      resourcePath: () => '', // when blank indicates this node is destined to create a page, the markdownPagePath plugin updates this
+      ignore: () => false, // should this markdown siphon node be ignored
+      resourcePath: () => '', // apply empty string as a default, tells gatsby to treate this node as a dynamic page
+      label1: () => '', // unfurl metadata
+      data1: () => '', // unfurl metadata
+      label2: () => '', // unfurl metadata
+      data2: () => '', // unfurl metadata
+      image: () => '', // unfurl metadata
       pageOnly: () => false, // in the use case where we want this node to not be presented as a card in the home page
     };
     // check front matter against defaults
@@ -115,7 +120,26 @@ const pagePathPlugin = (extension, file) => {
   return file;
 };
 
+/**
+ * unfurls markdown by frontmatter and appends the .unfurl metadata property
+ * @param {String} extension 
+ * @param {String} file 
+ * @returns the modified file
+ */
+const markdownUnfurlPlugin = (extension, file) => {
+  if (extension !== 'md') {
+    return file;
+  }
+  // grab front matter from md file
+  const data = matter(file.content, { delims: '---' });
+  const frontmatter = data.data;
+  // apply unfurl metadata
+  file.metadata.unfurl = createUnfurlObj('markdown', frontmatter);
+  return file;
+};
+
 module.exports = {
   markdownFrontmatterPlugin,
+  markdownUnfurlPlugin,
   pagePathPlugin,
 };

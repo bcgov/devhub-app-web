@@ -1,6 +1,5 @@
-import { createPathWithDigest } from '../utils/helpers';
+import { createPathWithDigest, createUnfurlObj } from '../utils/helpers';
 describe('createPathWithDigest', () => {
-
   it('throws if base is not a string', () => {
     expect(() => createPathWithDigest(9, '123')).toThrow('base must be a string');
   });
@@ -17,5 +16,17 @@ describe('createPathWithDigest', () => {
     expect(createPathWithDigest('/path/', 'source', 'readme.md')).toBe('/path/sourcereadme.md');
     expect(createPathWithDigest('path/', 'source', 'readme.md')).toBe('/path/sourcereadme.md');
     expect(createPathWithDigest('path', 'source', 'readme.md')).toBe('/path/sourcereadme.md');
+  });
+});
+
+describe('createUnfurlObj', () => {
+  it('returns an object', () => {
+    expect(createUnfurlObj('test', {})).toBeDefined();
+  });
+
+  it('throws if type is not a string', () => {
+    expect(() => {
+      createUnfurlObj(null, {});
+    }).toThrow('type must be a string!');
   });
 });

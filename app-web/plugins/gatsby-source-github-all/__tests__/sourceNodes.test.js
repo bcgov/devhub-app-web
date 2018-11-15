@@ -17,7 +17,7 @@
 //
 // Created by Patrick Simonian on 2018-10-12.
 //
-import { createGHNode, checkRegistry, getRegistry } from '../sourceNodes';
+import { createSiphonNode, checkRegistry, getRegistry } from '../sourceNodes';
 import { GRAPHQL_NODE_TYPE } from '../utils/constants';
 import {
   GRAPHQL_NODES_WITH_REGISTRY,
@@ -57,7 +57,7 @@ describe('gatsby source github all plugin', () => {
     );
   });
 
-  test('createGHNode returns data', () => {
+  test('createSiphonNode returns data', () => {
     const file = {
       metadata: {
         name: 'test',
@@ -117,6 +117,6 @@ describe('gatsby source github all plugin', () => {
       },
     };
 
-    expect(createGHNode(file, '123')).toEqual(expected);
+    expect(createSiphonNode(file, '123')).toEqual(expected);
   });
 });
