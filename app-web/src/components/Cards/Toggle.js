@@ -28,7 +28,7 @@ class Toggle extends Component {
         }}>Show All</button>
     );
     const { cardComponents, cardLimits } = this.props;
-    const cardShow = this.state.toggled ? 500 : cardLimits;
+    const cardShow = this.state.toggled ? cardComponents.length : cardLimits;
     const hideToggleButton =
       cardComponents.length > cardLimits ? styles.ToggleButton : styles.HideToggleButton;
 
@@ -43,6 +43,7 @@ class Toggle extends Component {
 
 Toggle.propTypes = {
   cardComponents: PropTypes.array.isRequired,
+  cardLimits: PropTypes.number.isRequired,
 };
 
 export default Toggle;
