@@ -1,6 +1,10 @@
 import matter from 'gray-matter'; // eslint-disable-line
 import { fileTransformer } from '../utils/transformer';
-import { markdownFrontmatterPlugin, pagePathPlugin } from '../utils/plugins';
+import {
+  markdownFrontmatterPlugin,
+  pagePathPlugin,
+  markdownResourceTypePlugin,
+} from '../utils/plugins';
 import {
   PROCESSED_FILE_MD,
   PROCESSED_FILE_TXT,
@@ -10,7 +14,9 @@ import {
 jest.unmock('@bcgov/common-web-utils');
 jest.unmock('unist-util-visit');
 jest.unmock('remark');
+jest.unmock('string-similarity');
 jest.unmock('gray-matter');
+jest.unmock('../utils/helpers');
 
 describe('Integration Tests Gatsby source github all transformer and Plugins', () => {
   let mdFile = PROCESSED_FILE_MD;
@@ -40,6 +46,16 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
       .resolve();
     const data2 = matter(transformedFile.content);
     expect(data2.data.title).toBeDefined();
+  });
+
+  test('transformer implicitly adds resourceType front matter with markdown plugin', () => {
+    const data1 = matter(mdFile.content);
+    expect(data1.data.resourceType).not.toBeDefined();
+    const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
+      .use(markdownFrontmatterPlugin)
+      .resolve();
+    const data2 = matter(transformedFile.content);
+    expect(data2.data.resourceType).toBeDefined();
   });
 
   test('transformer implicitly adds ignore front matter with markdown plugin', () => {
@@ -104,5 +120,50 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
     expect(transformedFile.metadata.resourcePath).toBe(
       `/${source}/${source}${name}https:/github.com/bcgov/design-system/blob/master/components/header/README.md`
     );
+  });
+
+  test('transformer sets resourceType by the globalResourceType', () => {
+    const mdFile = { ...PROCESSED_FILE_MD, metadata: { ...PROCESSED_FILE_MD.metadata } };
+    mdFile.metadata.globalResourceType = 'Documentation';
+    const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
+      .use(markdownResourceTypePlugin)
+      .resolve();
+    expect(transformedFile.metadata.resourceType).toBe('Documentation');
+  });
+
+  test('transformer sets resourceType by the frontmatter resourceType if valid', () => {
+    const mdFile = { ...PROCESSED_FILE_MD, metadata: { ...PROCESSED_FILE_MD.metadata } };
+    mdFile.content = '---\nresourceType: Documentation\n---';
+    expect(mdFile.metadata.globalResourceType).not.toBeDefined();
+    const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
+      .use(markdownResourceTypePlugin)
+      .resolve();
+    expect(transformedFile.metadata.resourceType).toBe('Documentation');
+  });
+
+  test('transformer sets resourceType by the frontmatter closely matched resourceType ', () => {
+    const mdFile = { ...PROCESSED_FILE_MD, metadata: { ...PROCESSED_FILE_MD.metadata } };
+    mdFile.content = '---\nresourceType: Drocumentation\n---';
+    expect(mdFile.metadata.globalResourceType).not.toBeDefined();
+    const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
+      .use(markdownResourceTypePlugin)
+      .resolve();
+    expect(transformedFile.metadata.resourceType).toBe('Documentation');
+  });
+
+  test('transformer sets resourceType to be \'\' when invalid ', () => {
+    const mdFile = { ...PROCESSED_FILE_MD, metadata: { ...PROCESSED_FILE_MD.metadata } };
+    mdFile.content = '---\nresourceType: sadfklj\n---';
+    expect(mdFile.metadata.globalResourceType).not.toBeDefined();
+    const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
+      .use(markdownResourceTypePlugin)
+      .resolve();
+    expect(transformedFile.metadata.resourceType).toBe('');
+
+    mdFile.content = '---\nresourceType: AwesomePossum\n---';
+    const transformedFile2 = fileTransformer(mdFile.metadata.extension, mdFile)
+      .use(markdownResourceTypePlugin)
+      .resolve();
+    expect(transformedFile2.metadata.resourceType).toBe('');
   });
 });

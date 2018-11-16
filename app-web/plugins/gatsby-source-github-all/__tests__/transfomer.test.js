@@ -1,6 +1,16 @@
 import { fileTransformer } from '../utils/transformer';
-import { markdownFrontmatterPlugin, pagePathPlugin, markdownUnfurlPlugin } from '../utils/plugins';
+import {
+  markdownFrontmatterPlugin,
+  pagePathPlugin,
+  markdownUnfurlPlugin,
+  markdownResourceTypePlugin,
+} from '../utils/plugins';
 import { PROCESSED_FILE_MD } from '../__fixtures__/fixtures';
+import { createUnfurlObj, getClosestResourceType } from '../utils/helpers';
+jest.mock('../utils/helpers.js');
+
+createUnfurlObj.mockReturnValue({});
+getClosestResourceType.mockReturnValue('');
 
 describe('Transformer System', () => {
   let file = null;
@@ -81,6 +91,18 @@ describe('Transformer System', () => {
       file.metadata.extension = 'txt';
       const result = markdownUnfurlPlugin(file.metadata.extension, file);
       expect(result).toBeDefined();
+    });
+
+    it('returns files if not md', () => {
+      file.metadata.extension = 'txt';
+      const result = markdownResourceTypePlugin(file.metadata.extension, file);
+      expect(result).toBeDefined();
+    });
+
+    it('appends resourceType metadata property', () => {
+      expect(file.metadata.resourceType).not.toBeDefined();
+      const result = markdownResourceTypePlugin(file.metadata.extension, file);
+      expect(result.metadata.resourceType).toBeDefined();
     });
   });
 });

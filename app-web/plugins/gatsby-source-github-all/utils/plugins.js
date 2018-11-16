@@ -20,8 +20,8 @@ const matter = require('gray-matter'); // eslint-disable-line
 const visit = require('unist-util-visit'); // eslint-disable-line
 const remark = require('remark'); // eslint-disable-line
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
-const { createPathWithDigest, createUnfurlObj } = require('./helpers'); // eslint-disable-line
-const { MARKDOWN_FRONTMATTER_SCHEMA, RESOURCE_TYPES } = require('./constants');
+const { createPathWithDigest, createUnfurlObj, getClosestResourceType } = require('./helpers'); // eslint-disable-line
+const { MARKDOWN_FRONTMATTER_SCHEMA } = require('./constants');
 /**
  * applys default front matter properties
  * @param {String} extension 
@@ -153,13 +153,14 @@ const markdownResourceTypePlugin = (extension, file) => {
   const data = matter(file.content, { delims: '---' });
   const frontmatter = data.data;
   // is front matter resource type valid?
-  if (frontmatter.resourceType)
-    if (frontmatter.resourceType === '' && file.metadata.globalResourceType) {
-      // is front matter resourceType blank?
-      // and is there a global resource type set?
-      file.metadata.resourceType === file.metadata.globalResourceType;
-    } else {
-    }
+  if (frontmatter.resourceType) {
+    file.metadata.resourceType = getClosestResourceType(frontmatter.resourceType);
+    // is there a global resource type this file can inherit?
+  } else if (!frontmatter.resourceType && file.metadata.globalResourceType) {
+    file.metadata.resourceType = getClosestResourceType(file.metadata.globalResourceType);
+  } else {
+    file.metadata.resourceType = '';
+  }
   return file;
 };
 
@@ -167,4 +168,5 @@ module.exports = {
   markdownFrontmatterPlugin,
   markdownUnfurlPlugin,
   pagePathPlugin,
+  markdownResourceTypePlugin,
 };
