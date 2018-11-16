@@ -43,6 +43,7 @@ const createSiphonNode = (data, id) => ({
   resourceTitle: data.metadata.resourceTitle,
   resourceDescription: data.metadata.resourceDescription,
   // or the path to an external resource this node points too
+  resourceType: data.metadata.resourceType,
   labels: data.metadata.labels, // labels from source registry
   internal: {
     contentDigest: crypto

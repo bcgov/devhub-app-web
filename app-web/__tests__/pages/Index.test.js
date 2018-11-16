@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Index from '../../src/pages/index';
+import { Index } from '../../src/pages/index';
+import { loadSiphonNodes } from '../../src/store/actions/actions';
 
 describe('Index Container', () => {
   test('it matches snapshot', () => {
@@ -38,7 +39,8 @@ describe('Index Container', () => {
         ],
       },
     };
-    const wrapper = shallow(<Index data={data} />);
+    const loadSiphonNodes = jest.fn();
+    const wrapper = shallow(<Index data={data} loadSiphonNodes={loadSiphonNodes} />);
     expect(wrapper).toMatchSnapshot();
   });
 });
