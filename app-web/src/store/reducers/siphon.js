@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
-import dotProp from 'dot-prop';
+import dotProp from 'dot-prop-immutable';
 
 const initialState = {
   nodes: [],

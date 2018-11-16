@@ -13,7 +13,7 @@
     "babel-plugin-styled-components": "^1.8.0",
     "chalk": "^2.4.1",
     "clone": "^2.1.2",
-    "dot-prop": "^4.2.0",
+    "dot-prop-immutable": "^1.5.0",
     "dotenv": "^6.0.0",
     "emotion": "^8.0.8",
     "emotion-server": "^8.0.8",
