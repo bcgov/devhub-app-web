@@ -60,6 +60,7 @@
     "remark": "^10.0.0",
     "shorthash": "0.0.2",
     "shortid": "^2.2.13",
+    "string-similarity": "^2.0.0",
     "styled-components": "^3.4.10",
     "styled-system": "^1.0.8",
     "unfurl.js": "^1.1.6",
