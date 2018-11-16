@@ -6,7 +6,7 @@ import {
   CONFIG_OPTIONS,
 } from '../__fixtures__/fixtures';
 import { GRAPHQL_NODE_TYPE } from '../utils/constants';
-import { sourceNodes, createSiphonNode } from '../sourceNodes';
+import { sourceNodes } from '../sourceNodes';
 import { getFilesFromRepo, validateSourceGithub } from '../utils/fetchSourceGithub';
 
 jest.mock('../utils/fetchSourceGithub.js');
