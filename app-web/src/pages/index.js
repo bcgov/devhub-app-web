@@ -90,7 +90,9 @@ export const resourceQuery = graphql`
             sourcePath
             type
           }
-          resourcePath
+          resource {
+            path
+          }
           unfurl {
             title
             description

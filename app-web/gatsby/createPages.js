@@ -42,7 +42,9 @@ module.exports = async ({ graphql, boundActionCreators }) => {
               name
               type
             }
-            resourcePath
+            resource {
+              path
+            }
             internal {
               mediaType
             }
@@ -76,7 +78,7 @@ module.exports = async ({ graphql, boundActionCreators }) => {
     // out yet but will be in future versions
     if (!isResource && !isIgnored && node.internal.mediaType === 'text/markdown') {
       createPage({
-        path: node.resourcePath,
+        path: node.resource.path,
         component: getTemplate(node.internal.mediaType),
         context: {
           // Data passed to context is available in page queries as GraphQL variables.
