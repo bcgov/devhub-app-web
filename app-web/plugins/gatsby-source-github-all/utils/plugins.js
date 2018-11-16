@@ -153,14 +153,13 @@ const markdownResourceTypePlugin = (extension, file) => {
   const data = matter(file.content, { delims: '---' });
   const frontmatter = data.data;
   // is front matter resource type valid?
-  if(frontmatter.resourceType)
-  // is front matter resourceType blank?
-  // and is there a global resource type set?
-  if (frontmatter.resourceType === '' && file.metadata.globalResourceType) {
-    file.metadata.resourceType === file.metadata.globalResourceType;
-  } else {
-
-  }
+  if (frontmatter.resourceType)
+    if (frontmatter.resourceType === '' && file.metadata.globalResourceType) {
+      // is front matter resourceType blank?
+      // and is there a global resource type set?
+      file.metadata.resourceType === file.metadata.globalResourceType;
+    } else {
+    }
   return file;
 };
 

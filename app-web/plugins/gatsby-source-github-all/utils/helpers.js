@@ -72,7 +72,8 @@ const getClosestResourceType = resourceType => {
   // if its blank don't bother checking closeness
   if (resourceType === '') return '';
   const matches = stringSimilarity.findBestMatch(resourceType, RESOURCE_TYPES);
-  return matches.bestMatch.rating >= .5 ? matches.bestMatch.target : '';
+  // only return the best match if its greater than .5 in similarity
+  return matches.bestMatch.rating >= 0.5 ? matches.bestMatch.target : '';
 };
 
 module.exports = {
