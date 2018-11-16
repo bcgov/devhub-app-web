@@ -100,11 +100,16 @@ describe('gatsby source github all plugin', () => {
       path: '/test.md',
       labels: 'component',
       originalSource: 'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
-      resourcePath: undefined,
       source: {
         name: 'something/something',
         displayName: 'something',
         sourcePath: undefined,
+        type: undefined,
+      },
+      unfurl: undefined,
+      resource: {
+        type: undefined,
+        path: undefined,
       },
       internal: {
         contentDigest: JSON.stringify(file),

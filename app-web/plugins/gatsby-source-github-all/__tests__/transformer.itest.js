@@ -151,7 +151,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
     expect(transformedFile.metadata.resourceType).toBe('Documentation');
   });
 
-  test('transformer sets resourceType to be \'\' when invalid ', () => {
+  test("transformer sets resourceType to be '' when invalid ", () => {
     const mdFile = { ...PROCESSED_FILE_MD, metadata: { ...PROCESSED_FILE_MD.metadata } };
     mdFile.content = '---\nresourceType: sadfklj\n---';
     expect(mdFile.metadata.globalResourceType).not.toBeDefined();

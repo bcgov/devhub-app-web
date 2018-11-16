@@ -1,7 +1,7 @@
 jest.requireActual('string-similarity');
 
 module.exports = {
-  bestMatch: match => {
+  findBestMatch: match => {
     return {
       bestMatch: {
         target: match,

@@ -35,6 +35,7 @@ const {
   markdownFrontmatterPlugin,
   pagePathPlugin,
   markdownUnfurlPlugin,
+  markdownResourceTypePlugin,
 } = require('./plugins');
 /**
  * returns extension of a file name
@@ -267,6 +268,7 @@ const getFilesFromRepo = async ({sourceType, name, sourceProperties: { repo, url
           .use(markdownFrontmatterPlugin)
           .use(pagePathPlugin)
           .use(markdownUnfurlPlugin)
+          .use(markdownResourceTypePlugin)
           .resolve();
       });
     return processedFiles;
