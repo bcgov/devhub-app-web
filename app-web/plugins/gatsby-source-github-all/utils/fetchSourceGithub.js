@@ -194,7 +194,8 @@ const applyBaseMetadata = (
   sourceName,
   sourceURL,
   sourceType,
-  globalResourceType
+  globalResourceType,
+  originalResourceLocation
 ) => {
   const extension = getExtensionFromName(file.name);
   return {
@@ -213,6 +214,7 @@ const applyBaseMetadata = (
       sourceURL,
       sourceType,
       globalResourceType,
+      originalResourceLocation,
     },
   };
 };
@@ -272,7 +274,9 @@ const getFilesFromRepo = async ({sourceType, resourceType, name, sourcePropertie
     // also adding some additional params
     const processedFiles = filesResponse
       .filter(f => f !== undefined) // filter out any files that weren't fetched
-      .map(f => applyBaseMetadata(f, labels, owner, repo, name, url, sourceType, resourceType))
+      .map(f =>
+        applyBaseMetadata(f, labels, owner, repo, name, url, sourceType, resourceType, f.html_url)
+      )
       .map(f => {
         const ft = fileTransformer(f.metadata.extension, f);
         return ft
