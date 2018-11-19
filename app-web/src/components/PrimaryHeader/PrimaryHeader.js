@@ -16,34 +16,36 @@ export const PrimaryHeader = ({ filterSiphonNodes }) => {
         <Flag name="features.login">
           <Login />
         </Flag>
-        <Button
-          clicked={() => {
-            filterSiphonNodes('All');
-          }}
-        >
-          All
-        </Button>
-        <Button
-          clicked={() => {
-            filterSiphonNodes('Components');
-          }}
-        >
-          Components
-        </Button>
-        <Button
-          clicked={() => {
-            filterSiphonNodes('Documentation');
-          }}
-        >
-          Documentation
-        </Button>
-        <Button
-          clicked={() => {
-            filterSiphonNodes('Self-Service Tools');
-          }}
-        >
-          Self-Service Tools
-        </Button>
+        <Flag name="features.filterSources">
+          <Button
+            clicked={() => {
+              filterSiphonNodes('All');
+            }}
+          >
+            All
+          </Button>
+          <Button
+            clicked={() => {
+              filterSiphonNodes('Components');
+            }}
+          >
+            Components
+          </Button>
+          <Button
+            clicked={() => {
+              filterSiphonNodes('Documentation');
+            }}
+          >
+            Documentation
+          </Button>
+          <Button
+            clicked={() => {
+              filterSiphonNodes('Self-Service Tools');
+            }}
+          >
+            Self-Service Tools
+          </Button>
+        </Flag>
       </div>
     </header>
   );
