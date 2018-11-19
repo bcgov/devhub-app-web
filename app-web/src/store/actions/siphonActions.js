@@ -8,3 +8,13 @@ export const loadSiphonNodes = nodes => {
     },
   };
 };
+
+export const filterSiphonNodes = (filteredBy, value) => {
+  return {
+    type: actionTypes.FILTER_SIPHON_NODES,
+    payload: {
+      filteredBy,
+      value,
+    },
+  };
+};

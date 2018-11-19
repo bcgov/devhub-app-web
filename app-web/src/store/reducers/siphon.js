@@ -4,10 +4,6 @@ import dotProp from 'dot-prop-immutable';
 const initialState = {
   nodes: [],
   filteredNodes: [],
-  filtered: {
-    by: null,
-    value: null,
-  },
   groupBy: null,
   loading: false,
   error: false,
@@ -17,8 +13,12 @@ const initialState = {
 /**
  * retrieves nodes by filtering for a given value in a nested siphon property
  */
-export const filterNodesByParam = (filtered, nodes) => {
-  return nodes.filter(n => dotProp.get(n, filtered.by) === filtered.value);
+export const filterNodesByParam = (state, filteredBy, value) => {
+  const filteredNodes = state.nodes
+    .filter(n => dotProp.get(n, filteredBy) === value || value === 'All')
+    .map(n => ({ ...n }));
+  const newState = { ...state, filteredNodes };
+  return newState;
 };
 
 const loadNodes = (state, nodes) => {
@@ -33,6 +33,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOAD_SIPHON_NODES:
       return loadNodes(state, action.payload.nodes);
+    case actionTypes.FILTER_SIPHON_NODES:
+      return filterNodesByParam(state, action.payload.filteredBy, action.payload.value);
     default:
       return state;
   }
