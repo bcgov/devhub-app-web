@@ -62,19 +62,4 @@ describe('Integration github api module', () => {
       expect(e.message).toBe('Fetch Failed');
     }
   });
-  // if a file has poor configurations such as a md with bad front matter
-  // the file is ignored and the routine doesn't break;
-  it('returns files if configurations are bad', async () => {
-    fetch
-      .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.TREE)))) // first for getting tree
-      .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))))
-      .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.BAD_MD_FILE))))
-      .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.BAD_MD_FILE))))
-      .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
-
-    const files = await getFilesFromRepo(GITHUB_SOURCE);
-    // console.log(files);
-    expect(files).toBeInstanceOf(Array);
-    expect(files.length).toBe(1);
-  });
 });

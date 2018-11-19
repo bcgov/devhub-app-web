@@ -125,27 +125,6 @@ const GITHUB_API = {
       html: 'https://github.com/bcgov/range-web/blob/master/public/manifest.json',
     },
   },
-  BAD_MD_FILE: {
-    // no description field in front matter
-    name: 'badfile.md',
-    path: 'public/badfile.md',
-    sha: 'ef19ec243e739479802a5553d0b38a18ed845307',
-    size: 317,
-    url: 'https://api.github.com/repos/bcgov/range-web/contents/public/badfile.md?ref=master',
-    html_url: 'https://github.com/bcgov/range-web/blob/master/public/badfile.md',
-    git_url:
-      'https://api.github.com/repos/bcgov/range-web/git/blobs/ef19ec243e739479802a5553d0b38a18ed845307',
-    download_url: 'https://raw.githubusercontent.com/bcgov/range-web/master/public/badfile.md',
-    type: 'file',
-    content: '---\ntitle: yoyoyo\npageOnly: true\n---\n#Hello World!',
-    encoding: 'base64',
-    _links: {
-      self: 'https://api.github.com/repos/bcgov/range-web/contents/public/badfile.md?ref=master',
-      git:
-        'https://api.github.com/repos/bcgov/range-web/git/blobs/ef19ec243e739479802a5553d0b38a18ed845307',
-      html: 'https://github.com/bcgov/range-web/blob/master/public/badfile.md',
-    },
-  },
   FAIL: {
     message: 'Not Found',
     documentation_url: 'https://developer.github.com/v3',
