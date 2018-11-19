@@ -186,7 +186,7 @@ const markdownResourceTypePlugin = (extension, file) => {
 const externalLinkUnfurlPlugin = async (extension, file) => {
   // does file have a resource path and is it a valid url?
   if (file.metadata.resourcePath && validUrl.isUri(file.metadata.resourcePath)) {
-    const { body: html, url } = await got(file.resourcePath);
+    const { body: html, url } = await got(file.metadata.resourcePath);
     const metadata = await metascraper({ html, url });
     file.metadata.unfurl = createUnfurlObj(UNFURL_TYPES.EXTERNAL, metadata);
   }
