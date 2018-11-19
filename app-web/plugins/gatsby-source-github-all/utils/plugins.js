@@ -34,7 +34,7 @@ const validUrl = require('valid-url');
 const got = require('got');
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
 const { createPathWithDigest, createUnfurlObj, getClosestResourceType } = require('./helpers'); // eslint-disable-line
-const { MARKDOWN_FRONTMATTER_SCHEMA } = require('./constants');
+const { MARKDOWN_FRONTMATTER_SCHEMA, UNFURL_TYPES } = require('./constants');
 /**
  * applys default front matter properties
  * @param {String} extension 
@@ -149,7 +149,7 @@ const markdownUnfurlPlugin = (extension, file) => {
   const data = matter(file.content, { delims: '---' });
   const frontmatter = data.data;
   // apply unfurl metadata
-  file.metadata.unfurl = createUnfurlObj('markdown', frontmatter);
+  file.metadata.unfurl = createUnfurlObj(UNFURL_TYPES.MARKDOWN, frontmatter);
   return file;
 };
 
@@ -188,7 +188,7 @@ const externalLinkUnfurlPlugin = async (extension, file) => {
   if (file.metadata.resourcePath && validUrl.isUri(file.metadata.resourcePath)) {
     const { body: html, url } = await got(file.resourcePath);
     const metadata = await metascraper({ html, url });
-    file.metadata.unfurl = createUnfurlObj('external', metadata);
+    file.metadata.unfurl = createUnfurlObj(UNFURL_TYPES.EXTERNAL, metadata);
   }
   return file;
 };

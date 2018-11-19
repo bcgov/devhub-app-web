@@ -18,6 +18,10 @@
 // Created by Patrick Simonian on 2018-10-12.
 //
 
+const UNFURL_TYPES = {
+  MARKDOWN: 'markdown',
+  EXTERNAL: 'external',
+};
 // source types that map to fetch routines
 const SOURCE_TYPES = {
   GITHUB: 'github',
@@ -141,4 +145,5 @@ module.exports = {
   MEDIATYPES,
   SOURCE_TYPES,
   RESOURCE_TYPES,
+  UNFURL_TYPES,
 };
