@@ -188,11 +188,7 @@ const externalLinkUnfurlPlugin = async (extension, file) => {
   if (file.metadata.resourcePath && validUrl.isUri(file.metadata.resourcePath)) {
     const { body: html, url } = await got(file.resourcePath);
     const metadata = await metascraper({ html, url });
-<<<<<<< HEAD
     file.metadata.unfurl = createUnfurlObj(UNFURL_TYPES.EXTERNAL, metadata);
-=======
-    file.metadata.unfurl = createUnfurlObj('external', metadata);
->>>>>>> add external unfurl links plugin
   }
   return file;
 };
