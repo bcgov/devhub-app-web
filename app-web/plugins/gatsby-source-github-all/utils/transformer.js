@@ -25,11 +25,10 @@ const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
 const clone = require('clone'); // eslint-disable-line
 /**
  * takes in file parameters and runs it through plugins that
- * modify the content
+ * modifies its properties
  * @param {String} fileExtension 
- * @param {String} content 
  * @param {Object} file 
- * @returns {String} file content transformed
+ * @returns {Object} the file transformed
  */
 const fileTransformer = (fileExtension, originalFile) => {
   let file = clone(originalFile);
