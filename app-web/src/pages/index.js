@@ -4,7 +4,7 @@ import shortid from 'shortid';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/actions';
 import { Flag } from 'flag';
-import { groupBy, flattenAllSourceDevhubGithub } from '../utils/dataMassager';
+import { groupBy } from '../utils/dataMassager';
 import { GITHUB_ISSUES_ROUTE } from '../constants/routes';
 // local components
 import Layout from '../hoc/Layout';
@@ -14,21 +14,25 @@ import styles from './index.module.css';
 export class Index extends Component {
   componentDidMount() {
     // flatted nodes from graphql
-    const nodes = this.props.data.allDevhubSiphon.edges.map(n => n.node)
-    .filter(node => node.childMarkdownRemark && !node.childMarkdownRemark.frontmatter.pageOnly)
-    .map(node => ({
-      ...node.unfurl,
-        resourcePath: node.resource.path,
-        sourceName: node.source.displayName,
-        sourcePath: node.source.sourcePath,
-        resourceType: node.resource.type,
-    }));
+    const nodes = this.props.data.allDevhubSiphon.edges.map(n => n.node);
     this.props.loadSiphonNodes(nodes);
   }
 
   render() {
     const { nodes } = this.props;
-    const mappedSiphonNodes = nodes || [];
+    let mappedSiphonNodes = [];
+    if (nodes && nodes.length) {
+      mappedSiphonNodes = nodes
+        .filter(node => node.childMarkdownRemark && !node.childMarkdownRemark.frontmatter.pageOnly)
+        .map(node => ({
+          ...node.unfurl,
+          resourcePath: node.resource.path,
+          sourceName: node.source.displayName,
+          sourcePath: node.source.sourcePath,
+          resourceType: node.resource.type,
+        }));
+    }
+
     // const cards = mappedSiphonNodes.length > 0 ? <Cards cards={mappedSiphonNodes} topic='Everything'/> : <div>Loading</div>;
     // console.log(mappedSiphonNodes);
     //   .map(siphonNode => ({
