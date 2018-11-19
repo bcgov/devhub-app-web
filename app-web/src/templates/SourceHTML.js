@@ -41,16 +41,18 @@ export const devhubSiphonHTML = graphql`
         content
       }
       originalSource
-      source
-      sourceName
-      sourcePath
+      source {
+        name
+        displayName
+        sourcePath
+      }
       owner
       fileName
       fileType
       path
     }
     nav: allDevhubSiphon(
-      filter: { source: { eq: $source }, internal: { mediaType: { eq: "text/html" } } }
+      filter: { source: { name: { eq: $source } }, internal: { mediaType: { eq: "text/html" } } }
     ) {
       edges {
         node {

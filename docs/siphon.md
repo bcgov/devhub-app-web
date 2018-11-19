@@ -171,17 +171,33 @@ the graphQL schema (more on that [here](https://v1.gatsbyjs.org/docs/source-plug
     owner // repo owner
     parent // gatsby required attribute, this is null
     path // path to the file relative to the respository
-    originalSource // the original URL to the file
-    source // the actual repository name as found in github
-    sourceName // pretty name for the source which is inherited by the name property in the source-registry.yml
-    sourcePath // the URL to the repository
-    resourcePath
-    // pointer to the resource for this node. This may be external, a link to another website
-    // or internal, a link to a generated gatsby page
+    originalSource // the original URL to the file ***WILL BE REMOVED IN FUTURE VERSIONS***
+    // data used to provide 'previews' for the node
+    // this adopts standards from twitter cards, open graph
+    // and normalized the properties
+    unfurl {
+        description,
+        title,
+        image,
+        label1,
+        data1,
+        label2,
+        data2,
+        type,
+    }
+    source {
+        name // the actual repository name as found in github
+        displayName // pretty name for the source which is inherited by the name property in the source-registry.yml
+        sourcePath // the URL to the repository
+        sourceType // the type of the source ie (github, website etc) 
+    }
+    resource {
+        type // the resource types, (Documentation, People, Projects, Repositories, Components, Self-Service-Tools)
+        // pointer to the resource for this node. This may be external, a link to another website
+        // or internal, a link to a generated gatsby page
+        path 
+    }
     labels
-    // this is a combination of globally set labels (found in source registry.yml) and any implicity
-    // found by other mechanisms (when sifting through the content). Labels is planned to be used for
-    // filtering nodes on the client
     internal {
         contentDigest // a gatsby required property
         // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate

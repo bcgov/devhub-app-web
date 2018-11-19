@@ -28,6 +28,30 @@ ShallowWrapper {
           >
             <Connect(Login) />
           </Flag>
+          <Flag
+            name="features.filterSources"
+          >
+            <Button
+              clicked={[Function]}
+            >
+              All
+            </Button>
+            <Button
+              clicked={[Function]}
+            >
+              Components
+            </Button>
+            <Button
+              clicked={[Function]}
+            >
+              Documentation
+            </Button>
+            <Button
+              clicked={[Function]}
+            >
+              Self-Service Tools
+            </Button>
+          </Flag>
         </div>,
       ],
       "className": "PrimaryHeader",
@@ -51,33 +75,143 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": <Flag
-            name="features.login"
-          >
-            <Connect(Login) />
-          </Flag>,
+          "children": Array [
+            <Flag
+              name="features.login"
+            >
+              <Connect(Login) />
+            </Flag>,
+            <Flag
+              name="features.filterSources"
+            >
+              <Button
+                clicked={[Function]}
+              >
+                All
+              </Button>
+              <Button
+                clicked={[Function]}
+              >
+                Components
+              </Button>
+              <Button
+                clicked={[Function]}
+              >
+                Documentation
+              </Button>
+              <Button
+                clicked={[Function]}
+              >
+                Self-Service Tools
+              </Button>
+            </Flag>,
+          ],
         },
         "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <Connect(Login) />,
-            "name": "features.login",
-          },
-          "ref": null,
-          "rendered": Object {
+        "rendered": Array [
+          Object {
             "instance": null,
             "key": undefined,
             "nodeType": "class",
-            "props": Object {},
+            "props": Object {
+              "children": <Connect(Login) />,
+              "name": "features.login",
+            },
             "ref": null,
-            "rendered": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {},
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
             "type": [Function],
           },
-          "type": [Function],
-        },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <Button
+                  clicked={[Function]}
+                >
+                  All
+                </Button>,
+                <Button
+                  clicked={[Function]}
+                >
+                  Components
+                </Button>,
+                <Button
+                  clicked={[Function]}
+                >
+                  Documentation
+                </Button>,
+                <Button
+                  clicked={[Function]}
+                >
+                  Self-Service Tools
+                </Button>,
+              ],
+              "name": "features.filterSources",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "All",
+                  "clicked": [Function],
+                },
+                "ref": null,
+                "rendered": "All",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "Components",
+                  "clicked": [Function],
+                },
+                "ref": null,
+                "rendered": "Components",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "Documentation",
+                  "clicked": [Function],
+                },
+                "ref": null,
+                "rendered": "Documentation",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "children": "Self-Service Tools",
+                  "clicked": [Function],
+                },
+                "ref": null,
+                "rendered": "Self-Service Tools",
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
         "type": "div",
       },
     ],
@@ -99,6 +233,30 @@ ShallowWrapper {
               name="features.login"
             >
               <Connect(Login) />
+            </Flag>
+            <Flag
+              name="features.filterSources"
+            >
+              <Button
+                clicked={[Function]}
+              >
+                All
+              </Button>
+              <Button
+                clicked={[Function]}
+              >
+                Components
+              </Button>
+              <Button
+                clicked={[Function]}
+              >
+                Documentation
+              </Button>
+              <Button
+                clicked={[Function]}
+              >
+                Self-Service Tools
+              </Button>
             </Flag>
           </div>,
         ],
@@ -123,33 +281,143 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": <Flag
-              name="features.login"
-            >
-              <Connect(Login) />
-            </Flag>,
+            "children": Array [
+              <Flag
+                name="features.login"
+              >
+                <Connect(Login) />
+              </Flag>,
+              <Flag
+                name="features.filterSources"
+              >
+                <Button
+                  clicked={[Function]}
+                >
+                  All
+                </Button>
+                <Button
+                  clicked={[Function]}
+                >
+                  Components
+                </Button>
+                <Button
+                  clicked={[Function]}
+                >
+                  Documentation
+                </Button>
+                <Button
+                  clicked={[Function]}
+                >
+                  Self-Service Tools
+                </Button>
+              </Flag>,
+            ],
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <Connect(Login) />,
-              "name": "features.login",
-            },
-            "ref": null,
-            "rendered": Object {
+          "rendered": Array [
+            Object {
               "instance": null,
               "key": undefined,
               "nodeType": "class",
-              "props": Object {},
+              "props": Object {
+                "children": <Connect(Login) />,
+                "name": "features.login",
+              },
               "ref": null,
-              "rendered": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
               "type": [Function],
             },
-            "type": [Function],
-          },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <Button
+                    clicked={[Function]}
+                  >
+                    All
+                  </Button>,
+                  <Button
+                    clicked={[Function]}
+                  >
+                    Components
+                  </Button>,
+                  <Button
+                    clicked={[Function]}
+                  >
+                    Documentation
+                  </Button>,
+                  <Button
+                    clicked={[Function]}
+                  >
+                    Self-Service Tools
+                  </Button>,
+                ],
+                "name": "features.filterSources",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "All",
+                    "clicked": [Function],
+                  },
+                  "ref": null,
+                  "rendered": "All",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "Components",
+                    "clicked": [Function],
+                  },
+                  "ref": null,
+                  "rendered": "Components",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "Documentation",
+                    "clicked": [Function],
+                  },
+                  "ref": null,
+                  "rendered": "Documentation",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "children": "Self-Service Tools",
+                    "clicked": [Function],
+                  },
+                  "ref": null,
+                  "rendered": "Self-Service Tools",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+          ],
           "type": "div",
         },
       ],
