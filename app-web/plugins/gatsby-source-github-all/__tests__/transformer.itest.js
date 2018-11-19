@@ -3,11 +3,7 @@ import { fileTransformer } from '../utils/transformer';
 import {
   markdownFrontmatterPlugin,
   pagePathPlugin,
-<<<<<<< HEAD
   markdownResourceTypePlugin,
-=======
-  externalLinkUnfurlPlugin,
->>>>>>> add integration/unit tests
 } from '../utils/plugins';
 import {
   PROCESSED_FILE_MD,
@@ -198,17 +194,5 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
     expect(transformedFile.metadata.resourcePath).toBe(
       `/${source}/${source}${name}https:/github.com/bcgov/design-system/blob/master/components/header/README.md`
     );
-  });
-
-  test('transformer unfurls an external resource path', async () => {
-    const file = {
-      metadata: {
-        resourcePath: 'www.example.com',
-      },
-    };
-
-    const transformedFile = await fileTransformer('.md', file)
-      .use(externalLinkUnfurlPlugin)
-      .resolve();
   });
 });

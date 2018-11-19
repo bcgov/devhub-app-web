@@ -19,19 +19,7 @@ const shortid = require('shortid'); // eslint-disable-line
 const matter = require('gray-matter'); // eslint-disable-line
 const visit = require('unist-util-visit'); // eslint-disable-line
 const remark = require('remark'); // eslint-disable-line
-const metascraper = require('metascraper')([
-  require('metascraper-author')(),
-  require('metascraper-date')(),
-  require('metascraper-description')(),
-  require('metascraper-image')(),
-  require('metascraper-logo')(),
-  require('metascraper-clearbit-logo')(),
-  require('metascraper-publisher')(),
-  require('metascraper-title')(),
-  require('metascraper-url')(),
-]);
-const validUrl = require('valid-url');
-const got = require('got');
+
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
 const { createPathWithDigest, createUnfurlObj, getClosestResourceType } = require('./helpers'); // eslint-disable-line
 const { MARKDOWN_FRONTMATTER_SCHEMA } = require('./constants');
@@ -153,22 +141,6 @@ const markdownUnfurlPlugin = async (extension, file) => {
   return file;
 };
 /**
- * unfurls from an HTTP request and appends .unfurl metadata property
- * @param {String} extension 
- * @param {String} file 
- * @returns the modified file
- */
-const externalLinkUnfurlPlugin = async (extension, file) => {
-  // does file have a resource path and is it a valid url?
-  if (file.metadata.resourcePath && validUrl.isUri(file.metadata.resourcePath)) {
-    const { body: html, url } = await got(file.resourcePath);
-    const metadata = await metascraper({ html, url });
-    file.metadata.unfurl = createUnfurlObj('external', metadata);
-  }
-  return file;
-};
-
-/**
  * Applies the resourceType metadata property
  * @param {String} extension 
  * @param {Object} file
@@ -196,9 +168,5 @@ module.exports = {
   markdownFrontmatterPlugin,
   markdownUnfurlPlugin,
   pagePathPlugin,
-<<<<<<< HEAD
   markdownResourceTypePlugin,
-=======
-  externalLinkUnfurlPlugin,
->>>>>>> add integration/unit tests
 };
