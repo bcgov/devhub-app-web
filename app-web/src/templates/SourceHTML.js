@@ -40,7 +40,9 @@ export const devhubSiphonHTML = graphql`
       internal {
         content
       }
-      originalSource
+      resource {
+        originalSource
+      }
       source {
         name
         displayName
