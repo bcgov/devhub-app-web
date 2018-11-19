@@ -49,7 +49,9 @@ export const devhubSiphonMarkdown = graphql`
         sourcePath
         type
       }
-      originalSource
+      resource {
+        originalSource
+      }
       owner
       fileName
       fileType
