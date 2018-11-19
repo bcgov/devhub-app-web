@@ -17,8 +17,12 @@ ShallowWrapper {
                   },
                 },
                 "id": "1bc91db3-c484-58b5-9700-55c22406950a",
-                "pagePath": "/design-system/test",
-                "sourceName": "Design System",
+                "resource": Object {
+                  "path": "/design-system/test",
+                },
+                "source": Object {
+                  "displayName": "Design System",
+                },
                 "title": "test",
               },
             },
@@ -80,6 +84,9 @@ ShallowWrapper {
           </a>
            repository.
         </p>
+        <Flag
+          name="features.githubResourceCards"
+        />
       </main>,
     },
     "ref": null,
@@ -109,6 +116,9 @@ ShallowWrapper {
             </a>
              repository.
           </p>,
+          <Flag
+            name="features.githubResourceCards"
+          />,
         ],
         "className": "Main",
         "role": "main",
@@ -194,6 +204,18 @@ ShallowWrapper {
           ],
           "type": "p",
         },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [],
+            "name": "features.githubResourceCards",
+          },
+          "ref": null,
+          "rendered": Array [],
+          "type": [Function],
+        },
       ],
       "type": "main",
     },
@@ -229,6 +251,9 @@ ShallowWrapper {
             </a>
              repository.
           </p>
+          <Flag
+            name="features.githubResourceCards"
+          />
         </main>,
       },
       "ref": null,
@@ -258,6 +283,9 @@ ShallowWrapper {
               </a>
                repository.
             </p>,
+            <Flag
+              name="features.githubResourceCards"
+            />,
           ],
           "className": "Main",
           "role": "main",
@@ -342,6 +370,18 @@ ShallowWrapper {
               " repository.",
             ],
             "type": "p",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [],
+              "name": "features.githubResourceCards",
+            },
+            "ref": null,
+            "rendered": Array [],
+            "type": [Function],
           },
         ],
         "type": "main",

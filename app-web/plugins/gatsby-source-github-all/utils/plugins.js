@@ -20,7 +20,7 @@ const matter = require('gray-matter'); // eslint-disable-line
 const visit = require('unist-util-visit'); // eslint-disable-line
 const remark = require('remark'); // eslint-disable-line
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
-const { createPathWithDigest, createUnfurlObj } = require('./helpers'); // eslint-disable-line
+const { createPathWithDigest, createUnfurlObj, getClosestResourceType } = require('./helpers'); // eslint-disable-line
 const { MARKDOWN_FRONTMATTER_SCHEMA } = require('./constants');
 /**
  * applys default front matter properties
@@ -61,6 +61,8 @@ const markdownFrontmatterPlugin = (extension, file) => {
       data2: () => '', // unfurl metadata
       image: () => '', // unfurl metadata
       pageOnly: () => false, // in the use case where we want this node to not be presented as a card in the home page
+      // provide default resource type to be blank
+      resourceType: () => '',
     };
     // check front matter against defaults
     Object.keys(MARKDOWN_FRONTMATTER_SCHEMA).forEach(key => {
@@ -138,8 +140,33 @@ const markdownUnfurlPlugin = (extension, file) => {
   return file;
 };
 
+/**
+ * Applies the resourceType metadata property
+ * @param {String} extension 
+ * @param {Object} file
+ */
+const markdownResourceTypePlugin = (extension, file) => {
+  if (extension !== 'md') {
+    return file;
+  }
+  // grab front matter from md file
+  const data = matter(file.content, { delims: '---' });
+  const frontmatter = data.data;
+  // is front matter resource type valid?
+  if (frontmatter.resourceType) {
+    file.metadata.resourceType = getClosestResourceType(frontmatter.resourceType);
+    // is there a global resource type this file can inherit?
+  } else if (file.metadata.globalResourceType) {
+    file.metadata.resourceType = getClosestResourceType(file.metadata.globalResourceType);
+  } else {
+    file.metadata.resourceType = '';
+  }
+  return file;
+};
+
 module.exports = {
   markdownFrontmatterPlugin,
   markdownUnfurlPlugin,
   pagePathPlugin,
+  markdownResourceTypePlugin,
 };

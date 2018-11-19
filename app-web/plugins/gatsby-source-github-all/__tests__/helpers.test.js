@@ -1,4 +1,6 @@
-import { createPathWithDigest, createUnfurlObj } from '../utils/helpers';
+import { createPathWithDigest, createUnfurlObj, getClosestResourceType } from '../utils/helpers';
+import { RESOURCE_TYPES } from '../utils/constants';
+
 describe('createPathWithDigest', () => {
   it('throws if base is not a string', () => {
     expect(() => createPathWithDigest(9, '123')).toThrow('base must be a string');
@@ -28,5 +30,15 @@ describe('createUnfurlObj', () => {
     expect(() => {
       createUnfurlObj(null, {});
     }).toThrow('type must be a string!');
+  });
+});
+
+describe('getClosestResourceType', () => {
+  it('returns an empty string if one is passed in', () => {
+    expect(getClosestResourceType('')).toBe('');
+  });
+
+  it('returns the closest resource type when matched', () => {
+    expect(getClosestResourceType(RESOURCE_TYPES[0])).toBe(RESOURCE_TYPES[0]);
   });
 });

@@ -39,11 +39,10 @@ const createSiphonNode = (data, id) => ({
     sourcePath: data.metadata.sourceURL, // the path to the source
     type: data.metadata.sourceType, // the type of the source
   },
-  resourcePath: data.metadata.resourcePath, // either path to a gastby created page based on this node
-  resourceTitle: data.metadata.resourceTitle,
-  resourceDescription: data.metadata.resourceDescription,
-  // or the path to an external resource this node points too
-  resourceType: data.metadata.resourceType,
+  resource: {
+    path: data.metadata.resourcePath, // either path to a gastby created page based on this node
+    type: data.metadata.resourceType, // the base resource type for this see utils/constants.js
+  },
   labels: data.metadata.labels, // labels from source registry
   internal: {
     contentDigest: crypto

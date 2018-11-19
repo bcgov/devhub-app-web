@@ -113,14 +113,20 @@ Before your repo's content is taken in by the Devhub, the Devhub needs to know i
 This is accomplished by 'registering' into the devhub.
 
 > Valid Registry Properties:
-- `name`  The name you would like to represent your repository as in the devhub. 
-    *ie* You may have a repository called **my-awesome-app** but you may want to have it referred to as
-    **My Awesome App V1** and so you should set `name: 'My Awesome App V1'`
-- `url`  This is the path to your repository
-- `owner` This is the owner of the repository
-- `repo` This is the **actual** repository name
-- `branch` (optional) The branch you would like devhub to source content from
-
+- `name`  The name you would like to represent your source as in the devhub. This is something user's will see so avoid naming it in an unpresentable way such as
+    - bad: `name: 'my-awesome-repo'
+    - good: `name: 'My Awesome Repo'
+- `sourceType` This tells Siphon how to grab information from your source
+    - Valid Source Types:
+        - 'github'
+- `sourceProperties` These are properties as required for a source type
+    - 'github'
+        - `url`: the path to your repo
+        - `owner`: the owner of the repo    
+        - `repo` This is the **actual** repository name
+        - `branch` (optional) The branch you would like devhub to source content from
+- `resourceType` (optional) This is a global resource type, any singular chunk of data (such as a markdown file or a yaml file or a  link to a website) that Siphon grabs from your source can have it's individual resourceType defaulted to this value
+    - valid resource types: see the main readme
 This will involve making a [Fork of the Devhub](https://github.com/bcgov/devhub-app-web/fork) and Pull Request to the [Devhub Repository's contributor-repository-registry branch](https://github.com/bcgov/devhub-app-web/tree/contributor-repo-registry).
 
 ***PULL REQUESTS TO MASTER OR ANY OTHER BRANCH WILL BE IGNORED***

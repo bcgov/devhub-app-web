@@ -10,6 +10,7 @@ repos:
       url: https://github.com/bcgov/design-system/
       owner: bcgov
       repo: 'design-system'
+    resourceType: 'Components'
   - name: Mobile Signing Tool
     sourceType: 'github'
     sourceProperties:
@@ -17,4 +18,5 @@ repos:
       owner: bcgov
       repo: 'devhub-signing-web'
       branch: my-branch
+    resourceType: Self-Service Tools
   

@@ -1,11 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions/actions';
 import { Flag } from 'flag';
 import classes from './PrimaryHeader.module.css';
 import { APP_TITLE } from '../../constants/strings';
 import Banner from '../Common/Banner';
 import Login from '../Auth/Login/Login';
+import Button from '../UI/Button/Button';
 
-const PrimaryHeader = () => {
+export const PrimaryHeader = ({ filterSiphonNodes }) => {
   return (
     <header className={classes.PrimaryHeader}>
       <Banner title={APP_TITLE} navigateOnClickPath="/" />
@@ -13,9 +16,43 @@ const PrimaryHeader = () => {
         <Flag name="features.login">
           <Login />
         </Flag>
+        <Button
+          clicked={() => {
+            filterSiphonNodes('All');
+          }}
+        >
+          All
+        </Button>
+        <Button
+          clicked={() => {
+            filterSiphonNodes('Components');
+          }}
+        >
+          Components
+        </Button>
+        <Button
+          clicked={() => {
+            filterSiphonNodes('Documentation');
+          }}
+        >
+          Documentation
+        </Button>
+        <Button
+          clicked={() => {
+            filterSiphonNodes('Self-Service Tools');
+          }}
+        >
+          Self-Service Tools
+        </Button>
       </div>
     </header>
   );
 };
 
-export default PrimaryHeader;
+const mapDispatchToProps = dispatch => {
+  return {
+    filterSiphonNodes: value => dispatch(actions.filterSiphonNodes('resource.type', value)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(PrimaryHeader);

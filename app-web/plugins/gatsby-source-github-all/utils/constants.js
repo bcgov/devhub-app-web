@@ -23,6 +23,16 @@ const SOURCE_TYPES = {
   GITHUB: 'github',
 };
 
+// Resource Types for Devhub
+const RESOURCE_TYPES = [
+  'Documentation',
+  'Repositories',
+  'People',
+  'Projects',
+  'Self-Service Tools',
+  'Components',
+];
+
 const GRAPHQL_NODE_TYPE = 'DevhubSiphon';
 
 const DEFUALT_IGNORES = [
@@ -99,6 +109,10 @@ const MARKDOWN_FRONTMATTER_SCHEMA = {
     type: Boolean,
     required: false,
   },
+  resourceType: {
+    type: String,
+    required: false,
+  },
 };
 
 const GITHUB_SOURCE_SCHEMA = {
@@ -126,4 +140,5 @@ module.exports = {
   FILETYPES,
   MEDIATYPES,
   SOURCE_TYPES,
+  RESOURCE_TYPES,
 };

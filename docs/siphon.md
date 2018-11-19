@@ -171,7 +171,7 @@ the graphQL schema (more on that [here](https://v1.gatsbyjs.org/docs/source-plug
     owner // repo owner
     parent // gatsby required attribute, this is null
     path // path to the file relative to the respository
-    originalSource // the original URL to the file
+    originalSource // the original URL to the file ***WILL BE REMOVED IN FUTURE VERSIONS***
     // data used to provide 'previews' for the node
     // this adopts standards from twitter cards, open graph
     // and normalized the properties
@@ -191,12 +191,12 @@ the graphQL schema (more on that [here](https://v1.gatsbyjs.org/docs/source-plug
         sourcePath // the URL to the repository
         sourceType // the type of the source ie (github, website etc) 
     }
-    // pointer to the resource for this node. This may be external, a link to another website
-    // or internal, a link to a generated gatsby page
-    resourcePath
-    // this is a combination of globally set labels (found in source registry.yml) and any implicity
-    // found by other mechanisms (when sifting through the content). Labels is planned to be used for
-    // filtering nodes on the client
+    resource {
+        type // the resource types, (Documentation, People, Projects, Repositories, Components, Self-Service-Tools)
+        // pointer to the resource for this node. This may be external, a link to another website
+        // or internal, a link to a generated gatsby page
+        path 
+    }
     labels
     internal {
         contentDigest // a gatsby required property

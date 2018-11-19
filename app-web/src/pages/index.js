@@ -4,7 +4,7 @@ import shortid from 'shortid';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/actions';
 import { Flag } from 'flag';
-import { groupBy, flattenAllSourceDevhubGithub } from '../utils/dataMassager';
+import { groupBy } from '../utils/dataMassager';
 import { GITHUB_ISSUES_ROUTE } from '../constants/routes';
 // local components
 import Layout from '../hoc/Layout';
@@ -20,24 +20,36 @@ export class Index extends Component {
 
   render() {
     const { nodes } = this.props;
+    let mappedSiphonNodes = [];
+    if (nodes && nodes.length) {
+      mappedSiphonNodes = nodes
+        .filter(node => node.childMarkdownRemark && !node.childMarkdownRemark.frontmatter.pageOnly)
+        .map(node => ({
+          ...node.unfurl,
+          resourcePath: node.resource.path,
+          sourceName: node.source.displayName,
+          sourcePath: node.source.sourcePath,
+          resourceType: node.resource.type,
+        }));
+    }
 
-    // const mappedSiphonNodes = siphonNodes
-    //   .filter(siphonNode => !siphonNode.childMarkdownRemark.frontmatter.pageOnly)
+    // const cards = mappedSiphonNodes.length > 0 ? <Cards cards={mappedSiphonNodes} topic='Everything'/> : <div>Loading</div>;
+    // console.log(mappedSiphonNodes);
     //   .map(siphonNode => ({
     //     ...siphonNode,
     //     title: siphonNode.childMarkdownRemark.frontmatter.title,
     //     description: siphonNode.childMarkdownRemark.frontmatter.description,
     //   }));
 
-    // const groupedSiphonData = groupBy(mappedSiphonNodes, 'sourceName');
-    // const SiphonResources = groupedSiphonData.map(ghData => (
-    //   <Cards
-    //     key={shortid.generate()}
-    //     topic={ghData.sourceName}
-    //     sourcePath={ghData.data[0].sourcePath}
-    //     cards={ghData.data}
-    //   />
-    // ));
+    const groupedSiphonData = groupBy(mappedSiphonNodes, 'sourceName');
+    const SiphonResources = groupedSiphonData.map(ghData => (
+      <Cards
+        key={shortid.generate()}
+        topic={ghData.sourceName}
+        sourcePath={ghData.data[0].sourcePath}
+        cards={ghData.data}
+      />
+    ));
 
     return (
       <Layout>
@@ -55,7 +67,7 @@ export class Index extends Component {
             If you’d like to comment, offer a suggestion or ask a question you can find us by
             opening an issue in our <a href={GITHUB_ISSUES_ROUTE}>github.com</a> repository.
           </p>
-          {/* <Flag name="features.githubResourceCards">{SiphonResources}</Flag> */}
+          <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
           {/* <Flag name="features.pathfinderResourceCards">{pathfinderResources}</Flag> */}
         </main>
       </Layout>
@@ -84,13 +96,16 @@ export const resourceQuery = graphql`
       edges {
         node {
           id
-          title: name
           source {
             displayName
             sourcePath
             type
+            name
           }
-          resourcePath
+          resource {
+            path
+            type
+          }
           unfurl {
             title
             description
