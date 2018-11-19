@@ -280,15 +280,22 @@ const getFilesFromRepo = async ({sourceType, resourceType, name, sourcePropertie
       )
       .map(async f => {
         const ft = fileTransformer(f.metadata.extension, f);
-        return await ft
-          .use(markdownFrontmatterPlugin)
-          .use(pagePathPlugin)
-          .use(markdownUnfurlPlugin)
-          .use(markdownResourceTypePlugin)
-          .resolve();
+        try {
+          return await ft
+            .use(markdownFrontmatterPlugin)
+            .use(pagePathPlugin)
+            .use(markdownUnfurlPlugin)
+            .use(markdownResourceTypePlugin)
+            .resolve();
+        } catch (e) {
+          // return undefined and skip file
+          // at this point we could apply a hook to post a gh issue if needed
+          return undefined;
+        }
       });
-
-    return await Promise.all(processedFiles);
+    const postProcessedFiles = await Promise.all(processedFiles);
+    // any promises that return undefined are filtered out
+    return postProcessedFiles.filter(f => f !== undefined);
   } catch (e) {
     console.error(e);
     // eslint-disable-next-line
