@@ -25,15 +25,20 @@ describe('Transformer System', () => {
   it('calls plugins when used', () => {
     const plugin = jest.fn();
     plugin.mockReturnValue('content');
-    const ft = fileTransformer(file.metadata.extension, file);
-    ft.use(plugin).resolve();
+
+    fileTransformer(file.metadata.extension, file)
+      .use(plugin)
+      .resolve();
+
     expect(plugin).toHaveBeenCalledWith(file.metadata.extension, file, {});
   });
 
   it('resolves file at end of chain', async () => {
     const plugin = jest.fn();
     plugin.mockReturnValue('file');
+
     const ft = fileTransformer(file.metadata.extension, file);
+
     const transformedContent = await ft.use(plugin).resolve();
     expect(transformedContent).toBeDefined();
   });
@@ -41,6 +46,7 @@ describe('Transformer System', () => {
   it("throws if plugin isn't a function", () => {
     const plugin = null;
     const ft = fileTransformer(file.metadata.extension, file);
+
     expect(() => {
       ft.use(plugin);
     }).toThrow('Plugin must be function');
@@ -49,6 +55,7 @@ describe('Transformer System', () => {
   it("throws if plugin doesn't return file", async () => {
     const plugin = jest.fn();
     const ft = fileTransformer(file.metadata.extension, file);
+
     try {
       await ft.use(plugin).resolve();
     } catch (e) {

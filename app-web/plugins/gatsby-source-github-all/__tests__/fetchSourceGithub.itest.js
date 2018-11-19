@@ -29,6 +29,7 @@ describe('Integration github api module', () => {
 
   it('returns a list of files even if some fail', async () => {
     // mock out concurrent requests to githup api
+    // which is made by getFilesFromRepo
     fetch
       .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.TREE))))
       .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))))
@@ -37,7 +38,9 @@ describe('Integration github api module', () => {
         Promise.resolve(new Response(JSON.stringify(GITHUB_API.FAIL), { status: 400 }))
       )
       .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
+
     const files = await getFilesFromRepo(GITHUB_SOURCE);
+
     expect(files).toBeInstanceOf(Array);
     expect(files.length).toBe(2);
   });
@@ -47,7 +50,9 @@ describe('Integration github api module', () => {
     fetch.mockReturnValueOnce(
       Promise.resolve(new Response(JSON.stringify(GITHUB_API.FAIL), { status: 400 }))
     );
+
     const files = await getFilesFromRepo(GITHUB_SOURCE);
+
     expect(files).toBeInstanceOf(Array);
     expect(files.length).toBe(0);
   });
@@ -56,6 +61,7 @@ describe('Integration github api module', () => {
     fetch.mockImplementation(() => {
       throw new Error('Fetch Failed');
     });
+
     try {
       await getFilesFromRepo(GITHUB_SOURCE);
     } catch (e) {

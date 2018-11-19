@@ -249,23 +249,24 @@ const filterFiles = (files, ignoreObj) => {
 // eslint-disable-next-line
 const getFilesFromRepo = async ({sourceType, resourceType, name, sourceProperties: { repo, url, owner, branch }, attributes: { labels }}, token) => {
   try {
-    // ignore filtering
+    // set up the ignore object for filtering later
     const ig = ignore().add(DEFUALT_IGNORES);
-    // create graphql string for finding all files in a directory
+
     const data = await fetchGithubTree(repo, owner, token, branch);
-    // filter out files by extensions
+
     if (!data.tree) return [];
     let files = filterFilesFromDirectories(data.tree);
-    // fetch ignore file if exists
+
     const repoIgnores = await fetchIgnoreFile(repo, owner, token, branch);
-    // add repo ignores to ignore object
+
     ig.add(repoIgnores);
-    // pass files to filter routine with ignore object
+
     const filesToFetch = filterFiles(files, ig);
-    // retrieve contents for each file
+
     const filesWithContents = filesToFetch.map(file =>
       fetchFile(repo, owner, file.path, token, branch)
     );
+
     const filesResponse = await Promise.all(filesWithContents);
     // for some reason the accept header is not returning with raw content so we will decode
     // the default base 64 encoded content
@@ -274,10 +275,10 @@ const getFilesFromRepo = async ({sourceType, resourceType, name, sourcePropertie
       .filter(f => f !== undefined) // filter out any files that weren't fetched
       .map(f => applyBaseMetadata(f, labels, owner, repo, name, url, sourceType, resourceType))
       .map(async f => {
-        // run through the file transformer routine
+        // transform files to apply metadata and content changes if required
         const ft = fileTransformer(f.metadata.extension, f);
         try {
-            return await ft
+          return await ft
             .use(markdownFrontmatterPlugin)
             .use(pagePathPlugin)
             .use(markdownUnfurlPlugin)
