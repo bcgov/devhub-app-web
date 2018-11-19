@@ -286,6 +286,7 @@ const getFilesFromRepo = async ({sourceType, resourceType, name, sourcePropertie
             .use(pagePathPlugin)
             .use(markdownUnfurlPlugin)
             .use(markdownResourceTypePlugin)
+            .use(externalLinkUnfurlPlugin)
             .resolve();
         } catch (e) {
           // return undefined and skip file
