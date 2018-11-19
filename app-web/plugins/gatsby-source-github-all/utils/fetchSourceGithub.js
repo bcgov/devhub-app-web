@@ -284,7 +284,6 @@ const getFilesFromRepo = async ({sourceType, resourceType, name, sourcePropertie
             .use(markdownResourceTypePlugin)
             .resolve();
         } catch (e) {
-          // console.log('yyoyoyo', e)
           // return undefined and skip file
           // at this point we could apply a hook to post a gh issue if needed
           return undefined;
