@@ -114,7 +114,7 @@ that you check for the file type (by extension) before modifying the content. In
 The plugin format should be:
 
 ```javascript
-    const pluginName = (extension, file, options) => {
+    const pluginName = async (extension, file, options) => {
         return file;
     }
 ```
@@ -129,7 +129,7 @@ It's usage would be...
 
 ```javascript
 // pipeline.js
-const yamlPlugin = (extension, file, { dateLoaded }) => {
+const yamlPlugin = async (extension, file, { dateLoaded }) => {
     if(extension === 'yaml' || extension === 'yml') {
         // do something to content
         const yaml = YAML.parse(file.internal.content);
@@ -143,11 +143,13 @@ const yamlPlugin = (extension, file, { dateLoaded }) => {
 
 // sourceNodes.js
 const date = Date.now();
-const content = fileTransformer(extension, file)
+const content = await fileTransformer(extension, file)
     .use(markdownPlugin)
     .use(yamlPlugin, { dateLoaded: date })
     .resolve();
 ```
+
+> note how async/await is used in the transformer and plugins
 
 ## Node Structure
 
