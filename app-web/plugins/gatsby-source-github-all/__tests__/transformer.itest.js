@@ -4,6 +4,7 @@ import {
   markdownFrontmatterPlugin,
   pagePathPlugin,
   markdownResourceTypePlugin,
+  externalLinkUnfurlPlugin,
 } from '../utils/plugins';
 import {
   PROCESSED_FILE_MD,
@@ -165,5 +166,19 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
       .use(markdownResourceTypePlugin)
       .resolve();
     expect(transformedFile2.metadata.resourceType).toBe('');
+  });
+
+  test('transformer unfurls an external resource path', async () => {
+    const file = {
+      metadata: {
+        resourcePath: 'www.example.com',
+      },
+    };
+
+    const transformedFile = await fileTransformer('.md', file)
+      .use(externalLinkUnfurlPlugin)
+      .resolve();
+
+    expect(transformedFile.metadata.unfurl).toBeDefined();
   });
 });
