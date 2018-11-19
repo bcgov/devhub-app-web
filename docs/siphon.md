@@ -114,7 +114,7 @@ that you check for the file type (by extension) before modifying the content. In
 The plugin format should be:
 
 ```javascript
-    const pluginName = (extension, file, options) => {
+    const pluginName = async (extension, file, options) => {
         return file;
     }
 ```
@@ -129,7 +129,7 @@ It's usage would be...
 
 ```javascript
 // pipeline.js
-const yamlPlugin = (extension, file, { dateLoaded }) => {
+const yamlPlugin = async (extension, file, { dateLoaded }) => {
     if(extension === 'yaml' || extension === 'yml') {
         // do something to content
         const yaml = YAML.parse(file.internal.content);
@@ -148,6 +148,9 @@ const content = fileTransformer(extension, file)
     .use(yamlPlugin, { dateLoaded: date })
     .resolve();
 ```
+
+You may have noticed that although the example plugins were not doing anything asyncronously such as
+fetching from an api, they still were declared as async functions. This is important as it allows plugins to have async implementations but still execute serially within the resolve function. 
 
 ## Node Structure
 
