@@ -1,12 +1,26 @@
 ---
-description: A guide on how to get your repo registered with the Devhub so that it's content is generated into a live site.
+description: A guide on how to get your repo registered with the Devhub so that it can display your content.
 ---
 # Registering Your Repo for Devhub
 
-Register your repo so that any markdown files of your choosing will be viewable in the Devhub.
+Register your repo so that any supported files of your choosing will be viewable in the Devhub.
+
+## How It Works
+
+When you register your repository with the Devhub Repository. On rebuild of the Devhub Application, several processes are kicked off to retrieve any content that may exist in your repo (*specifically content that you choose to provide by means of configuration explained below*).
+
+Depending on the configuration of your content files, namely markdown files, the way your content is
+displayed, accessed as well as how it behaves will change.
+
+***The approach** we are taking is to provide maximum flexibility for content contributors to get
+their content into the devhub with minimum configuration.
+
+### Key Feature: Unfurling
+
+Your content, whether it is a markdown file, or a link to an external resource is [unfurled](https://medium.com/slack-developer-blog/everything-you-ever-wanted-to-know-about-unfurling-but-were-afraid-to-ask-or-how-to-make-your-e64b4bb9254).
 
 ## How To Register Your Repo 
-When you register your repository several processes will be kicked off whenever the Devhub App is rebuilt. 
+
 
 We are still ironing out the best solution for registering.
 In the interim please ***fork*** and ***pull request*** to the registry.
@@ -54,7 +68,7 @@ be required.
 #### Markdown Metadata
 
 Add Front Matter To Your Markdown Files
-> Last updated: Oct 17th 2018
+> Last updated: Nov 19th 2018
 
 Front matter provides extra information that is necessary for Devhub to know ***how*** to process your markdown files. As definitions change for this process, the requirements for what will be needed for your front matter may change.
 
@@ -62,7 +76,7 @@ Front matter provides extra information that is necessary for Devhub to know ***
 
 **If your markdown content is destined to create a page in the devhub:**
 
-Your markdown file must contain this as apart of its front matter:
+Your markdown file must contain this ***at a minimum*** as apart of its front matter:
 ```markdown
 ---
 title: what you want as the title
@@ -76,10 +90,10 @@ description: short description explaining the content
 Your markdown file must contain this as apart of its front matter:
 ```markdown
 ---
-title: what you want as the title
-description: short description explaining the content
+description:  a short description
 resourcePath: https://www.toyoursite.com
 ---
+
 ```
 
 Let's get into detail what each of those **things** are used for in the front matter.
@@ -93,7 +107,7 @@ A short description describing what's in this file. This will be used as the sho
 
 #### resoucePath (optional)
 Tells the devhub to point the user to your resource when they click on the devhub resource card
-The resourcepath should be a valid hyper link
+The resourcepath should be a valid hyperlink *ie https://www.example.com*
 
 #### pageOnly (optional)
 Set to true if you do not want the content to show up in the homepage as an individual card, the content will still be presented in the page view
@@ -101,9 +115,21 @@ Set to true if you do not want the content to show up in the homepage as an indi
 #### ignore (optional)
 Set to true if you do not want the content to show up at all
 
+#### image (optional)
+A valid link to an image, avoid using a *relative* path to an image *ie ../my_image.png* and instead
+use a *absolute* path such as *https://www.mysite.com/my_image.png*
+
+#### label1 (optional)
+One of two key value pairs allowed in the preview of a card
+#### value1 (optional)
+Must come inconjuction with `label1`
+#### label2 (optional)
+Last of the two key value pairs allowed in the preview of a card
+#### value2 (optional)
+Must come inconjuction with `label2`
+
 #### HTML metadata
-In future versions, the Devhub will use the *unfurling* techinique to create neat previews of your
-content. Follow this document on how to add the appropriate metadata to your HTML document. 
+Follow this document on how to add the appropriate metadata to your HTML document. 
 
 https://medium.com/slack-developer-blog/everything-you-ever-wanted-to-know-about-unfurling-but-were-afraid-to-ask-or-how-to-make-your-e64b4bb9254
 
