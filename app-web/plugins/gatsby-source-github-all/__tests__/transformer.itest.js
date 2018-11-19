@@ -3,11 +3,8 @@ import { fileTransformer } from '../utils/transformer';
 import {
   markdownFrontmatterPlugin,
   pagePathPlugin,
-<<<<<<< HEAD
   markdownResourceTypePlugin,
-=======
   externalLinkUnfurlPlugin,
->>>>>>> add integration/unit tests
 } from '../utils/plugins';
 import {
   PROCESSED_FILE_MD,
@@ -210,5 +207,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
     const transformedFile = await fileTransformer('.md', file)
       .use(externalLinkUnfurlPlugin)
       .resolve();
+
+    expect(transformedFile.metadata.unfurl).toBeDefined();
   });
 });

@@ -196,9 +196,6 @@ module.exports = {
   markdownFrontmatterPlugin,
   markdownUnfurlPlugin,
   pagePathPlugin,
-<<<<<<< HEAD
   markdownResourceTypePlugin,
-=======
   externalLinkUnfurlPlugin,
->>>>>>> add integration/unit tests
 };
