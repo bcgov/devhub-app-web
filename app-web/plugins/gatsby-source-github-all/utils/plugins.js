@@ -28,7 +28,7 @@ const { MARKDOWN_FRONTMATTER_SCHEMA } = require('./constants');
  * @param {Object} file 
  * @returns {Object} the modified file
  */
-const markdownFrontmatterPlugin = (extension, file) => {
+const markdownFrontmatterPlugin = async (extension, file) => {
   // only modify markdown files
   if (extension === 'md') {
     // parse front matter
@@ -98,7 +98,7 @@ const markdownFrontmatterPlugin = (extension, file) => {
  * @param {Object} file
  * @returns {Object} the modified file
  */
-const pagePathPlugin = (extension, file) => {
+const pagePathPlugin = async (extension, file) => {
   if (extension !== 'md' && extension !== 'html') {
     return file;
   }
@@ -128,7 +128,7 @@ const pagePathPlugin = (extension, file) => {
  * @param {String} file 
  * @returns the modified file
  */
-const markdownUnfurlPlugin = (extension, file) => {
+const markdownUnfurlPlugin = async (extension, file) => {
   if (extension !== 'md') {
     return file;
   }

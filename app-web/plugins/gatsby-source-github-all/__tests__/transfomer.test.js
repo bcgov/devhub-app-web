@@ -26,15 +26,15 @@ describe('Transformer System', () => {
     const plugin = jest.fn();
     plugin.mockReturnValue('content');
     const ft = fileTransformer(file.metadata.extension, file);
-    ft.use(plugin);
+    ft.use(plugin).resolve();
     expect(plugin).toHaveBeenCalledWith(file.metadata.extension, file, {});
   });
 
-  it('resolves file at end of chain', () => {
+  it('resolves file at end of chain', async () => {
     const plugin = jest.fn();
     plugin.mockReturnValue('file');
     const ft = fileTransformer(file.metadata.extension, file);
-    const transformedContent = ft.use(plugin).resolve();
+    const transformedContent = await ft.use(plugin).resolve();
     expect(transformedContent).toBeDefined();
   });
 
@@ -46,12 +46,14 @@ describe('Transformer System', () => {
     }).toThrow('Plugin must be function');
   });
 
-  it("throws if plugin doesn't return file", () => {
+  it("throws if plugin doesn't return file", async () => {
     const plugin = jest.fn();
     const ft = fileTransformer(file.metadata.extension, file);
-    expect(() => {
-      ft.use(plugin);
-    }).toThrow(`Plugin ${plugin.name} must return file`);
+    try {
+      await ft.use(plugin).resolve();
+    } catch (e) {
+      expect(e.message).toBe('Plugin must return the file');
+    }
   });
 
   describe('Markdown Plugins', () => {
@@ -59,8 +61,8 @@ describe('Transformer System', () => {
       file.metadata.extension = 'md';
     });
 
-    it('returns file', () => {
-      const result = markdownFrontmatterPlugin(file.metadata.extension, file);
+    it('returns file', async () => {
+      const result = await markdownFrontmatterPlugin(file.metadata.extension, file);
       expect(result).toBeDefined();
     });
 
@@ -70,19 +72,19 @@ describe('Transformer System', () => {
       expect(result).toBeDefined();
     });
 
-    it('returns file', () => {
-      const result = pagePathPlugin(file.metadata.extension, file);
+    it('returns file', async () => {
+      const result = await pagePathPlugin(file.metadata.extension, file);
       expect(result).toBeDefined();
     });
 
-    it('returns file if file is not md', () => {
+    it('returns file if file is not md', async () => {
       file.metadata.extension = 'txt';
-      const result = pagePathPlugin(file.metadata.extension, file);
+      const result = await pagePathPlugin(file.metadata.extension, file);
       expect(result).toBeDefined();
     });
 
-    it('returns file with unfurl', () => {
-      const result = markdownUnfurlPlugin(file.metadata.extension, file);
+    it('returns file with unfurl', async () => {
+      const result = await markdownUnfurlPlugin(file.metadata.extension, file);
       expect(result).toBeDefined();
       expect(result.metadata.unfurl).toBeDefined();
     });

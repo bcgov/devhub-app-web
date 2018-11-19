@@ -273,7 +273,7 @@ const getFilesFromRepo = async ({sourceType, resourceType, name, sourcePropertie
     const processedFiles = filesResponse
       .filter(f => f !== undefined) // filter out any files that weren't fetched
       .map(f => applyBaseMetadata(f, labels, owner, repo, name, url, sourceType, resourceType))
-      .map(f => {
+      .map(async f => {
         const ft = fileTransformer(f.metadata.extension, f);
         return ft
           .use(markdownFrontmatterPlugin)
@@ -282,7 +282,7 @@ const getFilesFromRepo = async ({sourceType, resourceType, name, sourcePropertie
           .use(markdownResourceTypePlugin)
           .resolve();
       });
-    return processedFiles;
+    return await Promise.all(processedFiles);
   } catch (e) {
     console.error(e);
     // eslint-disable-next-line
