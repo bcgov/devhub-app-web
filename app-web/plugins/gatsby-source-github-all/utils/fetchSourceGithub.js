@@ -36,6 +36,7 @@ const {
   pagePathPlugin,
   markdownUnfurlPlugin,
   markdownResourceTypePlugin,
+  externalLinkUnfurlPlugin,
 } = require('./plugins');
 /**
  * returns extension of a file name
@@ -277,16 +278,17 @@ const getFilesFromRepo = async ({sourceType, resourceType, name, sourcePropertie
       .map(f =>
         applyBaseMetadata(f, labels, owner, repo, name, url, sourceType, resourceType, f.html_url)
       )
-      .map(f => {
+      .map(async f => {
         const ft = fileTransformer(f.metadata.extension, f);
-        return ft
+        return await ft
           .use(markdownFrontmatterPlugin)
           .use(pagePathPlugin)
           .use(markdownUnfurlPlugin)
           .use(markdownResourceTypePlugin)
           .resolve();
       });
-    return processedFiles;
+
+    return await Promise.all(processedFiles);
   } catch (e) {
     console.error(e);
     // eslint-disable-next-line
