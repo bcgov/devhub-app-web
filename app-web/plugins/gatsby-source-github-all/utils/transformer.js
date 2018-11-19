@@ -41,9 +41,6 @@ const fileTransformer = (fileExtension, originalFile) => {
       if (typeof plugin !== 'function') {
         throw new Error('Plugin must be function');
       }
-      if (!plugin() instanceof Promise) {
-        throw new Error('Plugin must return Promise');
-      }
       plugins.push([plugin, options]);
       return this;
     },

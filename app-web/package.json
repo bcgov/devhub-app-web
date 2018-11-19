@@ -40,6 +40,7 @@
     "gatsby-transformer-remark": "^1.7.44",
     "gatsby-transformer-sharp": "^1.6.10",
     "gatsby-transformer-yaml": "^1.5.11",
+    "got": "^9.3.2",
     "hash.js": "^1.1.5",
     "i": "^0.3.6",
     "ignore": "^5.0.2",
@@ -47,6 +48,15 @@
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.11",
     "metascraper": "^4.7.0",
+    "metascraper-author": "^4.7.0",
+    "metascraper-clearbit-logo": "^4.7.0",
+    "metascraper-date": "^4.7.0",
+    "metascraper-description": "^4.7.0",
+    "metascraper-image": "^4.7.0",
+    "metascraper-logo": "^4.7.0",
+    "metascraper-publisher": "^4.7.0",
+    "metascraper-title": "^4.7.0",
+    "metascraper-url": "^4.7.0",
     "normalize.css": "^7.0.0",
     "npm": "^6.4.1",
     "postcss-flexbugs-fixes": "^4.1.0",
@@ -66,7 +76,8 @@
     "styled-system": "^1.0.8",
     "unfurl.js": "^1.1.6",
     "unist-util-visit": "^1.4.0",
-    "url-parse": "^1.4.3"
+    "url-parse": "^1.4.3",
+    "valid-url": "^1.0.9"
   },
   "scripts": {
     "dev": "node_modules/.bin/gatsby develop",

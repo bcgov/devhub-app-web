@@ -3,7 +3,11 @@ import { fileTransformer } from '../utils/transformer';
 import {
   markdownFrontmatterPlugin,
   pagePathPlugin,
+<<<<<<< HEAD
   markdownResourceTypePlugin,
+=======
+  externalLinkUnfurlPlugin,
+>>>>>>> add integration/unit tests
 } from '../utils/plugins';
 import {
   PROCESSED_FILE_MD,
@@ -113,57 +117,98 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
   test('transformer sets pagePath to gatsby create page path by default', async () => {
     const data = matter(mdFile.content);
     const { metadata: { source, name } } = mdFile;
+
     expect(data.data.resourcePath).not.toBeDefined();
+
     const transformedFile = await fileTransformer(mdFile.metadata.extension, mdFile)
       .use(pagePathPlugin)
       .resolve();
+
     expect(transformedFile.metadata.resourcePath).toBe(
       `/${source}/${source}${name}https:/github.com/bcgov/design-system/blob/master/components/header/README.md`
     );
   });
 
-  test('transformer sets resourceType by the globalResourceType', () => {
+  test('transformer sets resourceType by the globalResourceType', async () => {
     const mdFile = { ...PROCESSED_FILE_MD, metadata: { ...PROCESSED_FILE_MD.metadata } };
     mdFile.metadata.globalResourceType = 'Documentation';
-    const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
+
+    const transformedFile = await fileTransformer(mdFile.metadata.extension, mdFile)
       .use(markdownResourceTypePlugin)
       .resolve();
+
     expect(transformedFile.metadata.resourceType).toBe('Documentation');
   });
 
-  test('transformer sets resourceType by the frontmatter resourceType if valid', () => {
+  test('transformer sets resourceType by the frontmatter resourceType if valid', async () => {
     const mdFile = { ...PROCESSED_FILE_MD, metadata: { ...PROCESSED_FILE_MD.metadata } };
     mdFile.content = '---\nresourceType: Documentation\n---';
+
     expect(mdFile.metadata.globalResourceType).not.toBeDefined();
-    const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
+
+    const transformedFile = await fileTransformer(mdFile.metadata.extension, mdFile)
       .use(markdownResourceTypePlugin)
       .resolve();
+
     expect(transformedFile.metadata.resourceType).toBe('Documentation');
   });
 
-  test('transformer sets resourceType by the frontmatter closely matched resourceType ', () => {
+  test('transformer sets resourceType by the frontmatter closely matched resourceType ', async () => {
     const mdFile = { ...PROCESSED_FILE_MD, metadata: { ...PROCESSED_FILE_MD.metadata } };
     mdFile.content = '---\nresourceType: Drocumentation\n---';
+
     expect(mdFile.metadata.globalResourceType).not.toBeDefined();
-    const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
+
+    const transformedFile = await fileTransformer(mdFile.metadata.extension, mdFile)
       .use(markdownResourceTypePlugin)
       .resolve();
+
     expect(transformedFile.metadata.resourceType).toBe('Documentation');
   });
 
-  test("transformer sets resourceType to be '' when invalid ", () => {
+  test("transformer sets resourceType to be '' when invalid ", async () => {
     const mdFile = { ...PROCESSED_FILE_MD, metadata: { ...PROCESSED_FILE_MD.metadata } };
     mdFile.content = '---\nresourceType: sadfklj\n---';
+
     expect(mdFile.metadata.globalResourceType).not.toBeDefined();
-    const transformedFile = fileTransformer(mdFile.metadata.extension, mdFile)
+    const transformedFile = await fileTransformer(mdFile.metadata.extension, mdFile)
       .use(markdownResourceTypePlugin)
       .resolve();
+
     expect(transformedFile.metadata.resourceType).toBe('');
 
     mdFile.content = '---\nresourceType: AwesomePossum\n---';
-    const transformedFile2 = fileTransformer(mdFile.metadata.extension, mdFile)
+    const transformedFile2 = await fileTransformer(mdFile.metadata.extension, mdFile)
       .use(markdownResourceTypePlugin)
       .resolve();
+
     expect(transformedFile2.metadata.resourceType).toBe('');
+  });
+
+  test('transformer sets pagePath to gatsby create page path by default', async () => {
+    const data = matter(mdFile.content);
+    const { metadata: { source, name } } = mdFile;
+
+    expect(data.data.resourcePath).not.toBeDefined();
+
+    const transformedFile = await fileTransformer(mdFile.metadata.extension, mdFile)
+      .use(pagePathPlugin)
+      .resolve();
+
+    expect(transformedFile.metadata.resourcePath).toBe(
+      `/${source}/${source}${name}https:/github.com/bcgov/design-system/blob/master/components/header/README.md`
+    );
+  });
+
+  test('transformer unfurls an external resource path', async () => {
+    const file = {
+      metadata: {
+        resourcePath: 'www.example.com',
+      },
+    };
+
+    const transformedFile = await fileTransformer('.md', file)
+      .use(externalLinkUnfurlPlugin)
+      .resolve();
   });
 });
