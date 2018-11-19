@@ -8,7 +8,7 @@ import Banner from '../Common/Banner';
 import Login from '../Auth/Login/Login';
 import Button from '../UI/Button/Button';
 
-const PrimaryHeader = ({ filterSiphonNodes }) => {
+export const PrimaryHeader = ({ filterSiphonNodes }) => {
   return (
     <header className={classes.PrimaryHeader}>
       <Banner title={APP_TITLE} navigateOnClickPath="/" />

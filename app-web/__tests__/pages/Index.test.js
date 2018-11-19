@@ -25,8 +25,12 @@ describe('Index Container', () => {
             node: {
               id: '1bc91db3-c484-58b5-9700-55c22406950a',
               title: 'test',
-              sourceName: 'Design System',
-              pagePath: '/design-system/test',
+              source: {
+                displayName: 'Design System',
+              },
+              resource: {
+                path: '/design-system/test',
+              },
               childMarkdownRemark: {
                 frontmatter: {
                   title: '',

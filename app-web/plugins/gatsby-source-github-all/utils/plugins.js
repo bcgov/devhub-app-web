@@ -156,7 +156,7 @@ const markdownResourceTypePlugin = (extension, file) => {
   if (frontmatter.resourceType) {
     file.metadata.resourceType = getClosestResourceType(frontmatter.resourceType);
     // is there a global resource type this file can inherit?
-  } else if (!frontmatter.resourceType && file.metadata.globalResourceType) {
+  } else if (file.metadata.globalResourceType) {
     file.metadata.resourceType = getClosestResourceType(file.metadata.globalResourceType);
   } else {
     file.metadata.resourceType = '';

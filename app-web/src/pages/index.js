@@ -14,22 +14,21 @@ import styles from './index.module.css';
 export class Index extends Component {
   componentDidMount() {
     // flatted nodes from graphql
-    const nodes = this.props.data.allDevhubSiphon.edges.map(n => n.node);
+    const nodes = this.props.data.allDevhubSiphon.edges.map(n => n.node)
+    .filter(node => node.childMarkdownRemark && !node.childMarkdownRemark.frontmatter.pageOnly)
+    .map(node => ({
+      ...node.unfurl,
+        resourcePath: node.resource.path,
+        sourceName: node.source.displayName,
+        sourcePath: node.source.sourcePath,
+        resourceType: node.resource.type,
+    }));
     this.props.loadSiphonNodes(nodes);
   }
 
   render() {
     const { nodes } = this.props;
-    const mappedSiphonNodes = nodes
-      .filter(node => node.childMarkdownRemark && !node.childMarkdownRemark.frontmatter.pageOnly)
-      .map(node => ({
-        ...node.unfurl,
-        resourcePath: node.resource.path,
-        sourceName: node.source.displayName,
-        sourcePath: node.source.sourcePath,
-        resourceType: node.resource.type,
-      }));
-
+    const mappedSiphonNodes = nodes || [];
     // const cards = mappedSiphonNodes.length > 0 ? <Cards cards={mappedSiphonNodes} topic='Everything'/> : <div>Loading</div>;
     // console.log(mappedSiphonNodes);
     //   .map(siphonNode => ({
