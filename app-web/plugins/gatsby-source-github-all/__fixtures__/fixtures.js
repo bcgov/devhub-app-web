@@ -125,7 +125,8 @@ const GITHUB_API = {
       html: 'https://github.com/bcgov/range-web/blob/master/public/manifest.json',
     },
   },
-  BAD_MD_FILE: { // no description field in front matter
+  BAD_MD_FILE: {
+    // no description field in front matter
     name: 'badfile.md',
     path: 'public/badfile.md',
     sha: 'ef19ec243e739479802a5553d0b38a18ed845307',
