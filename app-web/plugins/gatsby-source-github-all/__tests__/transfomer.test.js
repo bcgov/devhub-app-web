@@ -4,6 +4,7 @@ import {
   pagePathPlugin,
   markdownUnfurlPlugin,
   markdownResourceTypePlugin,
+  externalLinkUnfurlPlugin,
 } from '../utils/plugins';
 import { PROCESSED_FILE_MD } from '../__fixtures__/fixtures';
 import { createUnfurlObj, getClosestResourceType } from '../utils/helpers';
@@ -103,6 +104,20 @@ describe('Transformer System', () => {
       expect(file.metadata.resourceType).not.toBeDefined();
       const result = markdownResourceTypePlugin(file.metadata.extension, file);
       expect(result.metadata.resourceType).toBeDefined();
+    });
+
+    it('returns file', async () => {
+      file.metadata.resourcePath =
+        'http://www.bloomberg.com/news/articles/2016-05-24/as-zenefits-stumbles-gusto-goes-head-on-by-selling-insurance';
+      const result = await externalLinkUnfurlPlugin(file.metadata.extension, file);
+      expect(result).toBeDefined();
+    });
+
+    it('returns files with unfurl', async () => {
+      file.metadata.resourcePath =
+        'http://www.bloomberg.com/news/articles/2016-05-24/as-zenefits-stumbles-gusto-goes-head-on-by-selling-insurance';
+      const result = await externalLinkUnfurlPlugin(file.metadata.extension, file);
+      expect(result.metadata.unfurl).toBeDefined();
     });
   });
 });
