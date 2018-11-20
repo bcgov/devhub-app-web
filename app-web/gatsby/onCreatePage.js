@@ -30,7 +30,7 @@ module.exports = async ({ page, boundActionCreators }) => {
   // which is intended for client side loading only
   // https://github.com/gatsbyjs/gatsby/blob/v1/docs/docs/building-apps-with-gatsby.md#client-only-routes--user-authentication
   if (page.path.match(re)) {
-    page.matchPath = `${FILTER_BASE_ROUTE}/:resource`;
+    page.matchPath = `${FILTER_BASE_ROUTE}/:resource_type`;
     createPage(page);
   }
 };

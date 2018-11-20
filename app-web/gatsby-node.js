@@ -28,4 +28,5 @@ exports.modifyWebpackConfig = ({ config, env }) => {
   return config;
 };
 
+exports.onCreatePage = require('./gatsby/onCreatePage');
 exports.createPages = require('./gatsby/createPages');
