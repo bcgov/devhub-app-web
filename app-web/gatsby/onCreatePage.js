@@ -17,10 +17,10 @@ Created by Patrick Simonian
 */
 
 // const { FILTER_BASE_ROUTE } = require('../src/constants/routes');
-// the above declaration is to identify the actual constants where FILTER_BASE_ROUTES
-// should be coming from. At this time, there is no babel transpilation of this file or gatsby-node
+// the above declaration is to identify the actual constants where FILTER_BASE_ROUTE
+// should be coming from. At this time, there is no babel transpilation of this file or gatsby-node.js
 // and so requiring from an es6+ file (such as src/constants/routes) will fail.
-// until the time this issue is resolved, are declaring the filter base route here in the interim.
+// until the time this issue is resolved, we are declaring the filter base route here in the interim.
 const FILTER_BASE_ROUTE = '/resources';
 
 module.exports = async ({ page, boundActionCreators }) => {
