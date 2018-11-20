@@ -34,3 +34,13 @@ sources:
         - Repository
         - Wiki
         - How To
+  - name: OpenShift Components
+    sourceType: 'github'
+    sourceProperties:
+      url: https://github.com/BCDevOps/openshift-components/
+      owner: BCDevOps
+      repo: 'openshift-components'
+    attributes:
+      labels:
+        - Repository
+        - Components
