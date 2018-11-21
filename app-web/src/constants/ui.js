@@ -24,6 +24,11 @@ export const RESOURCE_TYPES = {
     VALUE: 'Self-Service Tools',
     ROUTE: '/resources/self-service-tools',
   },
+  RESPOSITORIES: {
+    DISPLAY_NAME: 'Repositories',
+    VALUE: 'Repositories',
+    ROUTE: '/resources/repositories',
+  },
 };
 
 // the 'dot prop' to get the resource type from a siphon data node
@@ -53,5 +58,11 @@ export const MAIN_NAV_CONFIG = [
     DISPLAY_NAME: RESOURCE_TYPES.SELF_SERVICE_TOOLS.DISPLAY_NAME,
     SIPHON_PROP: SIPHON_RESOURCE_TYPE_PROP,
     VALUE: RESOURCE_TYPES.SELF_SERVICE_TOOLS.VALUE,
+  },
+  {
+    ROUTE: RESOURCE_TYPES.RESPOSITORIES.ROUTE,
+    DISPLAY_NAME: RESOURCE_TYPES.RESPOSITORIES.DISPLAY_NAME,
+    SIPHON_PROP: SIPHON_RESOURCE_TYPE_PROP,
+    VALUE: RESOURCE_TYPES.RESPOSITORIES.VALUE,
   },
 ];
