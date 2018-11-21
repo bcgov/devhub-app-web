@@ -100,7 +100,7 @@ export class PrimaryNavigation extends React.Component {
             filterSiphonNodes(option.filterBy, option.value);
           }}
         />
-        {/* mobiler select */}
+        {/* mobile select */}
         <Hamburger
           className={styles.mobileOnly}
           clicked={() => this.setState({ toggled: !this.state.toggled })}
@@ -116,7 +116,7 @@ export class PrimaryNavigation extends React.Component {
           onChange={selectedOption => {
             this.setState({ selectedOption: selectedOption, toggled: false });
             const option = JSON.parse(selectedOption.value);
-            filterSiphonNodes(option.value.filterBy, option.value.value);
+            filterSiphonNodes(option.filterBy, option.value);
           }}
         />
       </Aux>
