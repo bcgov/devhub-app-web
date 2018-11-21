@@ -1,3 +1,9 @@
+---
+
+description: This is the primary repository for the BC Gov DevHub application
+
+---
+
 # DevHub App Web
  
  This is the primary repository for the BC Gov DevHub application.  The code contained mostly relates to the web application specifically, but other content may relate to the DevHub more generally.     
