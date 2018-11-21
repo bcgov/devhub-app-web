@@ -70,7 +70,7 @@ export class PrimaryNavigation extends React.Component {
         ...provided,
         borderBottom: '1px solid #ccc',
         color: state.isSelected ? '#036' : '#444',
-        backgroundColor: state.isFocused ? '#fafafa' : '#fafafa',
+        backgroundColor: '#fafafa',
       }),
       control: (provided, state) => ({
         display: 'none',
