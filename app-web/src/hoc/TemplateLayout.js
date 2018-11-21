@@ -32,7 +32,7 @@ const TemplateLayout = ({ siphonData, nav, pathname, children }) => {
                 <a href={`${siphonData.source.sourcePath}fork`}>
                   <FontAwesomeIcon
                     icon={faCodeBranch}
-                    aria-label={`Fork ${siphonData.sourceName} on github`}
+                    aria-label={`Fork ${siphonData.source.name} on github`}
                   />
                 </a>
               </li>
@@ -48,7 +48,15 @@ const TemplateLayout = ({ siphonData, nav, pathname, children }) => {
 
 TemplateLayout.propTypes = {
   children: PropTypes.node.isRequired,
-  siphonData: PropTypes.object.isRequired,
+  siphonData: PropTypes.shape({
+    source: PropTypes.shape({
+      sourcePath: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+    resource: PropTypes.shape({
+      originalSource: PropTypes.string.isRequired,
+    }),
+  }),
   nav: PropTypes.object.isRequired,
   pathname: PropTypes.object.isRequired,
 };
