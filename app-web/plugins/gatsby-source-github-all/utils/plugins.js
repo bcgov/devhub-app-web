@@ -31,7 +31,7 @@ const metascraper = require('metascraper')([
   require('metascraper-url')(),
 ]);
 const validUrl = require('valid-url');
-const got = require('got');
+const puppeteer = require('puppeteer');
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
 const { createPathWithDigest, createUnfurlObj, getClosestResourceType } = require('./helpers'); // eslint-disable-line
 const { MARKDOWN_FRONTMATTER_SCHEMA, UNFURL_TYPES } = require('./constants');
@@ -186,8 +186,13 @@ const markdownResourceTypePlugin = (extension, file) => {
 const externalLinkUnfurlPlugin = async (extension, file) => {
   // does file have a resource path and is it a valid url?
   if (file.metadata.resourcePath && validUrl.isUri(file.metadata.resourcePath)) {
-    const { body: html, url } = await got(file.metadata.resourcePath);
-    const metadata = await metascraper({ html, url });
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(file.metadata.resourcePath);
+    const metadata = await metascraper({
+      html: await page.content(),
+      url: file.metadata.resourcePath,
+    });
     file.metadata.unfurl = createUnfurlObj(UNFURL_TYPES.EXTERNAL, metadata);
   }
   return file;
