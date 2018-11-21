@@ -32,7 +32,7 @@ const initialState = {
  */
 export const filterNodesByParam = (state, filteredBy, value) => {
   const filteredNodes = state.nodes
-    .filter(n => dotProp.get(n, filteredBy) === value || value === 'All')
+    .filter(n => value === 'All' || dotProp.get(n, filteredBy) === value)
     .map(n => ({ ...n }));
   const newState = { ...state, filteredNodes };
   return newState;
