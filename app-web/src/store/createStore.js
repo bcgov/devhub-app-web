@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import authReducer from './reducers/auth';
 import featuresReducer from './reducers/features';
 import siphonReducer from './reducers/siphon';
-
+import uiReducer from './reducers/ui';
 // const logger = store => {
 //   return next => {
 //     return action => {
@@ -20,7 +20,9 @@ const rootReducer = combineReducers({
   auth: authReducer,
   flags: featuresReducer,
   siphon: siphonReducer,
+  ui: uiReducer,
 });
+
 let composeEnhancers;
 let middlewares;
 if (typeof window !== 'undefined') {

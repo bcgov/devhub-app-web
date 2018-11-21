@@ -15,26 +15,22 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import * as actionTypes from '../actions/actionTypes';
-
-const initialState = {
-  isAuthenticated: false,
-  accessToken: null,
-  idToken: null,
-  error: false,
-  messages: [],
+import * as actions from './actionTypes';
+// allows for the select drop down in header to be consistently rendered to show selected
+// option between page views
+export const setSelectedFilterOption = option => {
+  return {
+    type: actions.SET_SELECTED_FILTER_OPTION,
+    payload: option,
+  };
 };
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case actionTypes.AUTHENTICATE_SUCCESS:
-      console.log('called');
-      return { ...state, isAuthenticated: true };
-    case actionTypes.AUTHENTICATE_FAILED:
-      return { ...state, isAuthenticated: false };
-    default:
-      return state;
-  }
+// allows the two select drops (for mobile and large screens) to toggle in sync
+export const toggleMainNavigation = toggled => {
+  return {
+    type: actions.TOGGLE_MAIN_NAVIGATION,
+    payload: {
+      toggled,
+    },
+  };
 };
-
-export default reducer;

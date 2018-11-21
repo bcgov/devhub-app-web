@@ -33,7 +33,7 @@ ShallowWrapper {
           <Flag
             name="features.sourceFiltering"
           >
-            <Connect(PrimaryNavigation) />
+            <Connect(PrimaryFilter) />
           </Flag>
         </div>,
       ],
@@ -67,7 +67,7 @@ ShallowWrapper {
             <Flag
               name="features.sourceFiltering"
             >
-              <Connect(PrimaryNavigation) />
+              <Connect(PrimaryFilter) />
             </Flag>,
           ],
           "className": "Other",
@@ -99,7 +99,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <Connect(PrimaryNavigation) />,
+              "children": <Connect(PrimaryFilter) />,
               "name": "features.sourceFiltering",
             },
             "ref": null,
@@ -142,7 +142,7 @@ ShallowWrapper {
             <Flag
               name="features.sourceFiltering"
             >
-              <Connect(PrimaryNavigation) />
+              <Connect(PrimaryFilter) />
             </Flag>
           </div>,
         ],
@@ -176,7 +176,7 @@ ShallowWrapper {
               <Flag
                 name="features.sourceFiltering"
               >
-                <Connect(PrimaryNavigation) />
+                <Connect(PrimaryFilter) />
               </Flag>,
             ],
             "className": "Other",
@@ -208,7 +208,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <Connect(PrimaryNavigation) />,
+                "children": <Connect(PrimaryFilter) />,
                 "name": "features.sourceFiltering",
               },
               "ref": null,
