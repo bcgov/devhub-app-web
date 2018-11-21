@@ -5,7 +5,7 @@ pipeline {
   }
 
   parameters {
-    string(name: 'RUN_FUNCTIONAL_TESTS', defaultValue: 'TRUE', description: 'used for when statement in functional test stage?')
+    string(name: 'RUN_FUNCTIONAL_TESTS', defaultValue: 'FALSE', description: 'used for when statement in functional test stage?')
   }
 
   environment {
