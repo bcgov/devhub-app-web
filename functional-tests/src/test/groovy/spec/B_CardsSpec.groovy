@@ -18,7 +18,7 @@ class  B_CardsSpec extends GebReportingSpec {
 
     then: "I see the Cards Containers and Topics"
     at HomePage
-    assert cardsContainers.size() == 5
+    assert cardsContainers.size() == 4
     assert cardsLargeViews.size() == cardsContainers.size()
   }
 

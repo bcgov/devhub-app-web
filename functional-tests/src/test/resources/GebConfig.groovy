@@ -88,9 +88,9 @@ environments {
 def env = System.getenv()
 baseUrl = env['BASEURL']
 if (!baseUrl) {
-	baseUrl = 'https://devhub-static-dev-85-devhub-dev.pathfinder.gov.bc.ca/'
-  // 'https://devhub-static-dev-85-devhub-dev.pathfinder.gov.bc.ca/'
-  // 'http://localhost:8000/'
+	baseUrl = 'http://localhost:8000/'
+  //a stable site: 'https://devhub-static-dev-xx-devhub-dev.pathfinder.gov.bc.ca/'
+  //test locally: 'http://localhost:8000/'
 }
 
 println "BaseURL: ${baseUrl}"
