@@ -25,108 +25,104 @@ import { MAIN_NAV_CONFIG } from '../../constants/ui';
 import { ARIA_LABEL_FILTER_SELECT } from '../../constants/strings';
 import Hamburger from '../Common/Hamburger';
 
-export class PrimaryFilter extends React.Component {
-  render() {
-    const {
-      filterSiphonNodes,
-      menuToggled,
-      selectedOption,
-      setSelectedOption,
-      setMainNavigationToggled,
-    } = this.props;
+export const PrimaryFilter = ({
+  filterSiphonNodes,
+  menuToggled,
+  selectedOption,
+  setSelectedOption,
+  setMainNavigationToggled,
+}) => {
+  // mapping config to work with the <Select /> composition
+  // value is stringified because it is used in two select components
+  // this is to prevent any pass-by-reference bugs from happening within Select
+  const navigationItems = MAIN_NAV_CONFIG.map(navConfig => ({
+    value: JSON.stringify({
+      filterBy: navConfig.SIPHON_PROP,
+      value: navConfig.VALUE,
+    }),
+    label: navConfig.DISPLAY_NAME,
+  }));
 
-    // mapping config to work with the <Select /> composition
-    // value is stringified because it is used in two select components
-    // this is to prevent any pass-by-reference bugs from happening within Select
-    const navigationItems = MAIN_NAV_CONFIG.map(navConfig => ({
-      value: JSON.stringify({
-        filterBy: navConfig.SIPHON_PROP,
-        value: navConfig.VALUE,
-      }),
-      label: navConfig.DISPLAY_NAME,
-    }));
+  const selectStylesLargeScreen = {
+    option: (provided, state) => ({
+      ...provided,
+      borderBottom: '1px solid #ccc',
+      color: state.isSelected ? '#036' : '#444',
+      backgroundColor: state.isFocused ? '#ccc' : '#fafafa',
+    }),
+    singleValue: (provided, state) => {
+      const opacity = state.isDisabled ? 0.5 : 1;
+      const transition = 'opacity 300ms';
+      return { ...provided, opacity, transition };
+    },
+    control: (provided, state) => ({
+      ...provided,
+      width: 150,
+    }),
+  };
+  // mobile select styles
+  // hiding the dropdown menu and instead using a hamburger to activate it via state
+  const selectStylesMobile = {
+    ...selectStylesLargeScreen,
+    option: (provided, state) => ({
+      ...provided,
+      borderBottom: '1px solid #ccc',
+      color: state.isSelected ? '#036' : '#444',
+      backgroundColor: '#fafafa',
+    }),
+    control: (provided, state) => ({
+      display: 'none',
+    }),
+    menu: (provided, state) => {
+      const width = 150;
+      return {
+        ...provided,
+        width,
+        transform: `translate(-${width}px, 18px)`,
+      };
+    },
+  };
 
-    const selectStylesLargeScreen = {
-      option: (provided, state) => ({
-        ...provided,
-        borderBottom: '1px solid #ccc',
-        color: state.isSelected ? '#036' : '#444',
-        backgroundColor: state.isFocused ? '#ccc' : '#fafafa',
-      }),
-      singleValue: (provided, state) => {
-        const opacity = state.isDisabled ? 0.5 : 1;
-        const transition = 'opacity 300ms';
-        return { ...provided, opacity, transition };
-      },
-      control: (provided, state) => ({
-        ...provided,
-        width: 150,
-      }),
-    };
-    // mobile select styles
-    // hiding the dropdown menu and instead using a hamburger to activate it via state
-    const selectStylesMobile = {
-      ...selectStylesLargeScreen,
-      option: (provided, state) => ({
-        ...provided,
-        borderBottom: '1px solid #ccc',
-        color: state.isSelected ? '#036' : '#444',
-        backgroundColor: '#fafafa',
-      }),
-      control: (provided, state) => ({
-        display: 'none',
-      }),
-      menu: (provided, state) => {
-        const width = 150;
-        return {
-          ...provided,
-          width,
-          transform: `translate(-${width}px, 18px)`,
-        };
-      },
-    };
-
-    return (
-      <Aux>
-        <Select
-          value={selectedOption}
-          ariaLabel={ARIA_LABEL_FILTER_SELECT}
-          className={[styles.PrimaryFilter, styles.largeOnly].join(' ')}
-          styles={selectStylesLargeScreen}
-          options={navigationItems}
-          placeholder="Filter"
-          onChange={selectedOption => {
-            setSelectedOption(selectedOption);
-            const option = JSON.parse(selectedOption.value);
-            filterSiphonNodes(option.filterBy, option.value);
-          }}
-          onMenuOpen={() => setMainNavigationToggled(true)}
-          onMenuClose={() => setMainNavigationToggled(false)}
-        />
-        {/* mobile select */}
-        <Hamburger
-          className={styles.mobileOnly}
-          clicked={() => setMainNavigationToggled(!menuToggled)}
-        />
-        <Select
-          value={selectedOption}
-          ariaLabel={ARIA_LABEL_FILTER_SELECT}
-          className={[styles.PrimaryFilter, styles.mobileOnly].join(' ')}
-          styles={selectStylesMobile}
-          options={navigationItems}
-          placeholder=""
-          menuIsOpen={menuToggled}
-          onChange={selectedOption => {
-            setSelectedOption(selectedOption);
-            setMainNavigationToggled(false);
-            const option = JSON.parse(selectedOption.value);
-            filterSiphonNodes(option.filterBy, option.value);
-          }}
-        />
-      </Aux>
-    );
-  }
-}
+  return (
+    <Aux>
+      <Select
+        value={selectedOption}
+        ariaLabel={ARIA_LABEL_FILTER_SELECT}
+        className={[styles.PrimaryFilter, styles.largeOnly].join(' ')}
+        styles={selectStylesLargeScreen}
+        options={navigationItems}
+        placeholder="Filter"
+        onChange={selectedOption => {
+          setSelectedOption(selectedOption);
+          const option = JSON.parse(selectedOption.value);
+          filterSiphonNodes(option.filterBy, option.value);
+        }}
+        onMenuOpen={() => setMainNavigationToggled(true)}
+        onMenuClose={() => setMainNavigationToggled(false)}
+      />
+      {/* mobile select */}
+      <Hamburger
+        className={styles.mobileOnly}
+        clicked={() => setMainNavigationToggled(!menuToggled)}
+      />
+      <Select
+        value={selectedOption}
+        ariaLabel={ARIA_LABEL_FILTER_SELECT}
+        className={[styles.PrimaryFilter, styles.mobileOnly].join(' ')}
+        styles={selectStylesMobile}
+        options={navigationItems}
+        placeholder=""
+        menuIsOpen={menuToggled}
+        onChange={selectedOption => {
+          setSelectedOption(selectedOption);
+          setMainNavigationToggled(false);
+          const option = JSON.parse(selectedOption.value);
+          filterSiphonNodes(option.filterBy, option.value);
+        }}
+      />
+    </Aux>
+  );
+};
 
 const mapStateToProps = state => ({
   menuToggled: state.ui.mainNavigationToggled,
