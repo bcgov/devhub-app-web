@@ -26,17 +26,18 @@ import { ARIA_LABEL_FILTER_SELECT } from '../../constants/strings';
 import Hamburger from '../Common/Hamburger';
 
 export class PrimaryNavigation extends React.Component {
-  state = {
-    selectedOption: null,
-    toggled: false,
-  };
-
   render() {
-    const { filterSiphonNodes } = this.props;
-    // convert into open objects the Select component understands
+    const {
+      filterSiphonNodes,
+      menuToggled,
+      selectedOption,
+      setSelectedOption,
+      setMainNavigationToggled,
+    } = this.props;
+
+    // mapping config to work with the <Select /> composition
     // value is stringified because it is used in two select components
-    // this is to prevent any odd pass by reference bugs from going on that
-    // are beyond our control
+    // this is to prevent any pass-by-reference bugs from happening within Select
     const navigationItems = MAIN_NAV_CONFIG.map(navConfig => ({
       value: JSON.stringify({
         filterBy: navConfig.SIPHON_PROP,
@@ -45,7 +46,7 @@ export class PrimaryNavigation extends React.Component {
       label: navConfig.DISPLAY_NAME,
     }));
 
-    const customStylesLarge = {
+    const selectStylesLargeScreen = {
       option: (provided, state) => ({
         ...provided,
         borderBottom: '1px solid #ccc',
@@ -64,8 +65,8 @@ export class PrimaryNavigation extends React.Component {
     };
     // mobile select styles
     // hiding the dropdown menu and instead using a hamburger to activate it via state
-    const customStylesSmall = {
-      ...customStylesLarge,
+    const selectStylesMobile = {
+      ...selectStylesLargeScreen,
       option: (provided, state) => ({
         ...provided,
         borderBottom: '1px solid #ccc',
@@ -88,33 +89,36 @@ export class PrimaryNavigation extends React.Component {
     return (
       <Aux>
         <Select
-          value={this.state.selectedOption}
+          value={selectedOption}
           ariaLabel={ARIA_LABEL_FILTER_SELECT}
           className={[styles.PrimaryNavigation, styles.largeOnly].join(' ')}
-          styles={customStylesLarge}
+          styles={selectStylesLargeScreen}
           options={navigationItems}
           placeholder="Filter"
           onChange={selectedOption => {
-            this.setState({ selectedOption: selectedOption });
+            setSelectedOption(selectedOption);
             const option = JSON.parse(selectedOption.value);
             filterSiphonNodes(option.filterBy, option.value);
           }}
+          onMenuOpen={() => setMainNavigationToggled(true)}
+          onMenuClose={() => setMainNavigationToggled(false)}
         />
         {/* mobile select */}
         <Hamburger
           className={styles.mobileOnly}
-          clicked={() => this.setState({ toggled: !this.state.toggled })}
+          clicked={() => setMainNavigationToggled(!menuToggled)}
         />
         <Select
-          value={this.state.selectedOption}
+          value={selectedOption}
           ariaLabel={ARIA_LABEL_FILTER_SELECT}
           className={[styles.PrimaryNavigation, styles.mobileOnly].join(' ')}
-          styles={customStylesSmall}
+          styles={selectStylesMobile}
           options={navigationItems}
           placeholder=""
-          menuIsOpen={this.state.toggled}
+          menuIsOpen={menuToggled}
           onChange={selectedOption => {
-            this.setState({ selectedOption: selectedOption, toggled: false });
+            setSelectedOption(selectedOption);
+            setMainNavigationToggled(false);
             const option = JSON.parse(selectedOption.value);
             filterSiphonNodes(option.filterBy, option.value);
           }}
@@ -124,11 +128,17 @@ export class PrimaryNavigation extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  menuToggled: state.ui.mainNavigationToggled,
+  selectedOption: state.ui.selectedFilterOption,
+});
+
 const mapDispatchToProps = dispatch => {
   return {
     filterSiphonNodes: (filterBy, value) => dispatch(actions.filterSiphonNodes(filterBy, value)),
-    mainNavigationToggled: toggled => dispatch(actions.toggleMenu(toggled)),
+    setMainNavigationToggled: toggled => dispatch(actions.toggleMainNavigation(toggled)),
+    setSelectedOption: option => dispatch(actions.setSelectedFilterOption(option)),
   };
 };
 
-export default connect(null, mapDispatchToProps)(PrimaryNavigation);
+export default connect(mapStateToProps, mapDispatchToProps)(PrimaryNavigation);
