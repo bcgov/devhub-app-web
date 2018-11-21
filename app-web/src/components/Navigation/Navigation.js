@@ -14,16 +14,16 @@ class Navigation extends Component {
   render() {
     const { components } = this.props;
     // map over components and generate links
-    const links = components.map(({ node: { resourcePath, resourceTitle } }) => (
-      <li key={shortid.generate()} data-active={this.props.activeLink.pathname === resourcePath}>
+    const links = components.map(({ node: { unfurl: { title }, resource: { path } } }) => (
+      <li key={shortid.generate()} data-active={this.props.activeLink.pathname === path}>
         <Link
-          to={resourcePath}
+          to={path}
           activeStyle={{
             backgroundColor: '#fff',
             textDecoration: 'underline',
           }}
         >
-          {resourceTitle}
+          {title}
         </Link>
       </li>
     ));
@@ -37,8 +37,12 @@ class Navigation extends Component {
 
 export const query = graphql`
   fragment NavigationFragment on DevhubSiphon {
-    resourceTitle
-    resourcePath
+    unfurl {
+      title
+    }
+    resource {
+      path
+    }
   }
 `;
 

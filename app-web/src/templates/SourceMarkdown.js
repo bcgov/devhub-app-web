@@ -43,17 +43,25 @@ export const devhubSiphonMarkdown = graphql`
         }
         html
       }
-      originalSource
-      source
-      sourceName
-      sourcePath
+      source {
+        name
+        displayName
+        sourcePath
+        type
+      }
+      resource {
+        originalSource
+      }
       owner
       fileName
       fileType
       path
     }
     nav: allDevhubSiphon(
-      filter: { source: { eq: $source }, internal: { mediaType: { eq: "text/markdown" } } }
+      filter: {
+        source: { name: { eq: $source } }
+        internal: { mediaType: { eq: "text/markdown" } }
+      }
     ) {
       edges {
         node {

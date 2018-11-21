@@ -1,6 +1,7 @@
 ---
+
 description: An overview of how Devhub's Siphon works
-ignore: true
+
 ---
 # Siphon
 Devhub is a content catalogue generator. **Siphon** is Devhub's main tool that *siphons* content from Github Repositories and converts it into useable Gatsby JS graphQL nodes.
@@ -114,7 +115,7 @@ that you check for the file type (by extension) before modifying the content. In
 The plugin format should be:
 
 ```javascript
-    const pluginName = (extension, file, options) => {
+    const pluginName = async (extension, file, options) => {
         return file;
     }
 ```
@@ -129,7 +130,7 @@ It's usage would be...
 
 ```javascript
 // pipeline.js
-const yamlPlugin = (extension, file, { dateLoaded }) => {
+const yamlPlugin = async (extension, file, { dateLoaded }) => {
     if(extension === 'yaml' || extension === 'yml') {
         // do something to content
         const yaml = YAML.parse(file.internal.content);
@@ -143,11 +144,13 @@ const yamlPlugin = (extension, file, { dateLoaded }) => {
 
 // sourceNodes.js
 const date = Date.now();
-const content = fileTransformer(extension, file)
+const content = await fileTransformer(extension, file)
     .use(markdownPlugin)
     .use(yamlPlugin, { dateLoaded: date })
     .resolve();
 ```
+
+> note how async/await is used in the transformer and plugins
 
 ## Node Structure
 
@@ -171,17 +174,33 @@ the graphQL schema (more on that [here](https://v1.gatsbyjs.org/docs/source-plug
     owner // repo owner
     parent // gatsby required attribute, this is null
     path // path to the file relative to the respository
-    originalSource // the original URL to the file
-    source // the actual repository name as found in github
-    sourceName // pretty name for the source which is inherited by the name property in the source-registry.yml
-    sourcePath // the URL to the repository
-    resourcePath
-    // pointer to the resource for this node. This may be external, a link to another website
-    // or internal, a link to a generated gatsby page
+    originalSource // the original URL to the file ***WILL BE REMOVED IN FUTURE VERSIONS***
+    // data used to provide 'previews' for the node
+    // this adopts standards from twitter cards, open graph
+    // and normalized the properties
+    unfurl {
+        description,
+        title,
+        image,
+        label1,
+        data1,
+        label2,
+        data2,
+        type,
+    }
+    source {
+        name // the actual repository name as found in github
+        displayName // pretty name for the source which is inherited by the name property in the source-registry.yml
+        sourcePath // the URL to the repository
+        sourceType // the type of the source ie (github, website etc) 
+    }
+    resource {
+        type // the resource types, (Documentation, People, Projects, Repositories, Components, Self-Service-Tools)
+        // pointer to the resource for this node. This may be external, a link to another website
+        // or internal, a link to a generated gatsby page
+        path 
+    }
     labels
-    // this is a combination of globally set labels (found in source registry.yml) and any implicity
-    // found by other mechanisms (when sifting through the content). Labels is planned to be used for
-    // filtering nodes on the client
     internal {
         contentDigest // a gatsby required property
         // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate

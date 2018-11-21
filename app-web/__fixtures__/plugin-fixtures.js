@@ -20,6 +20,10 @@ export const SIPHON_QL_NODE = {
   source: 'design-system',
   sourceName: 'Design System',
   sourcePath: 'https://github.com/bcgov/design-system/',
+  resource: {
+    originalSource:
+    'https://github.com/bcgov/design-system/blob/master/components/footer/something/README.md',
+  },
   resourcePath: '/design-system/README_123o8123',
   path: 'components/footer/README.md',
   owner: 'bcgov',
@@ -27,8 +31,6 @@ export const SIPHON_QL_NODE = {
   fileName: 'about.md',
   fileType: 'Markdown',
   pagePath: '/design-system/about_G0Z6oO3_3',
-  originalSource:
-    'https://github.com/bcgov/design-system/blob/master/components/footer/something/README.md',
   internal: {
     mediaType: 'text/markdown',
     type: 'DevhubSiphon',

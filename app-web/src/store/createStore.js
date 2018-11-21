@@ -1,7 +1,8 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import reducer from './reducers/reducer';
+import authReducer from './reducers/auth';
 import featuresReducer from './reducers/features';
+import siphonReducer from './reducers/siphon';
 
 // const logger = store => {
 //   return next => {
@@ -16,8 +17,9 @@ import featuresReducer from './reducers/features';
 // };
 
 const rootReducer = combineReducers({
-  auth: reducer,
+  auth: authReducer,
   flags: featuresReducer,
+  siphon: siphonReducer,
 });
 let composeEnhancers;
 let middlewares;

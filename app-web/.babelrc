@@ -3,7 +3,10 @@
   "env": {
     "test": {
       "presets": ["env", "react"],
-      "plugins": "babel-plugin-emotion"
+      "plugins": [
+        "babel-plugin-emotion",
+        "transform-class-properties"
+      ]
     }
   }
 }

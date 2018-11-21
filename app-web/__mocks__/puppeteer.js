@@ -15,9 +15,19 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
+jest.requireActual('puppeteer');
 
-// gatsby event hooks
-// https://www.gatsbyjs.org/docs/node-apis/
-exports.modifyWebpackConfig = require('./gatsby/modifyWebpackConfig');
-exports.onCreatePage = require('./gatsby/onCreatePage');
-exports.createPages = require('./gatsby/createPages');
+const page = {
+  goto: async url => url,
+  content: async () => null,
+};
+
+const browser = {
+  newPage: async () => page,
+};
+
+const puppeteer = {
+  launch: async () => browser,
+};
+
+module.exports = puppeteer;

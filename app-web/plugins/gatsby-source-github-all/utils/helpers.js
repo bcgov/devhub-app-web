@@ -24,6 +24,8 @@ Created by Patrick Simonian
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
 const path = require('path');
 const shorthash = require('shorthash');
+const stringSimilarity = require('string-similarity');
+const { RESOURCE_TYPES } = require('./constants');
 
 const createPathWithDigest = (base, ...digestables) => {
   if (!TypeCheck.isString(base)) {
@@ -61,7 +63,21 @@ const createUnfurlObj = (type, { label1, data1, label2, data2, description, titl
   };
 };
 
+/**
+ * returns the closest resourceType from the constant resourceTypes array based on the
+ * uncontrolled resourceType (given to us by contributors)
+ * @param {String} resourceType the resource type provided by a specific piece of content
+ */
+const getClosestResourceType = resourceType => {
+  // if its blank don't bother checking closeness
+  if (resourceType === '') return '';
+  const matches = stringSimilarity.findBestMatch(resourceType, RESOURCE_TYPES);
+  // only return the best match if its greater than .5 in similarity
+  return matches.bestMatch.rating >= 0.5 ? matches.bestMatch.target : '';
+};
+
 module.exports = {
   createPathWithDigest,
   createUnfurlObj,
+  getClosestResourceType,
 };

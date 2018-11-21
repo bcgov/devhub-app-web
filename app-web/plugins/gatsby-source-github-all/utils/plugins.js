@@ -19,9 +19,22 @@ const shortid = require('shortid'); // eslint-disable-line
 const matter = require('gray-matter'); // eslint-disable-line
 const visit = require('unist-util-visit'); // eslint-disable-line
 const remark = require('remark'); // eslint-disable-line
+const metascraper = require('metascraper')([
+  require('metascraper-author')(),
+  require('metascraper-date')(),
+  require('metascraper-description')(),
+  require('metascraper-image')(),
+  require('metascraper-logo')(),
+  require('metascraper-clearbit-logo')(),
+  require('metascraper-publisher')(),
+  require('metascraper-title')(),
+  require('metascraper-url')(),
+]);
+const validUrl = require('valid-url');
+const puppeteer = require('puppeteer');
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
-const { createPathWithDigest, createUnfurlObj } = require('./helpers'); // eslint-disable-line
-const { MARKDOWN_FRONTMATTER_SCHEMA } = require('./constants');
+const { createPathWithDigest, createUnfurlObj, getClosestResourceType } = require('./helpers'); // eslint-disable-line
+const { MARKDOWN_FRONTMATTER_SCHEMA, UNFURL_TYPES } = require('./constants');
 /**
  * applys default front matter properties
  * @param {String} extension 
@@ -61,6 +74,8 @@ const markdownFrontmatterPlugin = (extension, file) => {
       data2: () => '', // unfurl metadata
       image: () => '', // unfurl metadata
       pageOnly: () => false, // in the use case where we want this node to not be presented as a card in the home page
+      // provide default resource type to be blank
+      resourceType: () => '',
     };
     // check front matter against defaults
     Object.keys(MARKDOWN_FRONTMATTER_SCHEMA).forEach(key => {
@@ -134,7 +149,52 @@ const markdownUnfurlPlugin = (extension, file) => {
   const data = matter(file.content, { delims: '---' });
   const frontmatter = data.data;
   // apply unfurl metadata
-  file.metadata.unfurl = createUnfurlObj('markdown', frontmatter);
+  file.metadata.unfurl = createUnfurlObj(UNFURL_TYPES.MARKDOWN, frontmatter);
+  return file;
+};
+
+/**
+ * Applies the resourceType metadata property
+ * @param {String} extension 
+ * @param {Object} file
+ */
+const markdownResourceTypePlugin = (extension, file) => {
+  if (extension !== 'md') {
+    return file;
+  }
+  // grab front matter from md file
+  const data = matter(file.content, { delims: '---' });
+  const frontmatter = data.data;
+  // is front matter resource type valid?
+  if (frontmatter.resourceType) {
+    file.metadata.resourceType = getClosestResourceType(frontmatter.resourceType);
+    // is there a global resource type this file can inherit?
+  } else if (file.metadata.globalResourceType) {
+    file.metadata.resourceType = getClosestResourceType(file.metadata.globalResourceType);
+  } else {
+    file.metadata.resourceType = '';
+  }
+  return file;
+};
+
+/**
+ * unfurls from an HTTP request and appends .unfurl metadata property
+ * @param {String} extension 
+ * @param {String} file 
+ * @returns the modified file
+ */
+const externalLinkUnfurlPlugin = async (extension, file) => {
+  // does file have a resource path and is it a valid url?
+  if (file.metadata.resourcePath && validUrl.isUri(file.metadata.resourcePath)) {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(file.metadata.resourcePath);
+    const metadata = await metascraper({
+      html: await page.content(),
+      url: file.metadata.resourcePath,
+    });
+    file.metadata.unfurl = createUnfurlObj(UNFURL_TYPES.EXTERNAL, metadata);
+  }
   return file;
 };
 
@@ -142,4 +202,6 @@ module.exports = {
   markdownFrontmatterPlugin,
   markdownUnfurlPlugin,
   pagePathPlugin,
+  markdownResourceTypePlugin,
+  externalLinkUnfurlPlugin,
 };

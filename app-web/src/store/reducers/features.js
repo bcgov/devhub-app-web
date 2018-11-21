@@ -33,5 +33,6 @@ export default createFlagsReducer({
     login: false,
     githubResourceCards: true,
     pathfinderResourceCards: true,
+    sourceFiltering: true,
   },
 });

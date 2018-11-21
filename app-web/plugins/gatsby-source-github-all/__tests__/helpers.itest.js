@@ -1,6 +1,7 @@
-import { createPathWithDigest } from '../utils/helpers';
+import { createPathWithDigest, getClosestResourceType } from '../utils/helpers';
 jest.unmock('@bcgov/common-web-utils');
 jest.unmock('shorthash');
+jest.unmock('string-similarity');
 
 const shorthash = require('shorthash');
 
@@ -14,5 +15,14 @@ describe('createPathWithDigest Integration Tests', () => {
     expect(createPathWithDigest('path/', digestable)).toBe(
       createPathWithDigest('path/', digestable)
     );
+  });
+});
+
+describe('getClosestResourceType', () => {
+  it('returns the closest resource type when matched', () => {
+    expect(getClosestResourceType('documentation')).toBe('Documentation');
+    expect(getClosestResourceType('docmentatun')).toBe('Documentation');
+    expect(getClosestResourceType('Description')).toBe('');
+    expect(getClosestResourceType('adsfasdfkj')).toBe('');
   });
 });

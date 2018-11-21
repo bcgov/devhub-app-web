@@ -4,14 +4,18 @@ import classes from './PrimaryHeader.module.css';
 import { APP_TITLE } from '../../constants/strings';
 import Banner from '../Common/Banner';
 import Login from '../Auth/Login/Login';
+import PrimaryNavigation from '../Navigation/PrimaryNavigation';
 
-const PrimaryHeader = () => {
+export const PrimaryHeader = () => {
   return (
     <header className={classes.PrimaryHeader}>
       <Banner title={APP_TITLE} navigateOnClickPath="/" />
-      <div>
+      <div className={classes.Other}>
         <Flag name="features.login">
           <Login />
+        </Flag>
+        <Flag name="features.sourceFiltering">
+          <PrimaryNavigation />
         </Flag>
       </div>
     </header>

@@ -15,9 +15,17 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
+import * as actions from '../../src/store/actions/actions';
+import { ACTIONS } from '../../__fixtures__/redux-fixtures';
 
-// gatsby event hooks
-// https://www.gatsbyjs.org/docs/node-apis/
-exports.modifyWebpackConfig = require('./gatsby/modifyWebpackConfig');
-exports.onCreatePage = require('./gatsby/onCreatePage');
-exports.createPages = require('./gatsby/createPages');
+describe('actions', () => {
+  it('should create an action to load siphon nodes', () => {
+    const expected = ACTIONS.LOAD_SIPHON_NODES;
+    expect(actions.loadSiphonNodes(ACTIONS.LOAD_SIPHON_NODES.payload.nodes)).toEqual(expected);
+  });
+
+  it('should create an action to filter siphon nodes', () => {
+    const expected = ACTIONS.FILTER_SIPHON_NODES;
+    expect(actions.filterSiphonNodes('foo', 'bar')).toEqual(expected);
+  });
+});

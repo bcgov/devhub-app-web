@@ -6,7 +6,7 @@ const { Response } = jest.requireActual('node-fetch');
 jest.mock('node-fetch');
 // mock console logs so that any error logs are not outputed during suite
 global.console = {
-  log: jest.fn(),
+  log: console.log,
   warn: jest.fn(),
   error: jest.fn(),
 };
@@ -61,5 +61,19 @@ describe('Integration github api module', () => {
     } catch (e) {
       expect(e.message).toBe('Fetch Failed');
     }
+  });
+
+  it('returns files if configurations are bad', async () => {
+    fetch
+      .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.TREE)))) // first for getting tree
+      .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))))
+      .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.BAD_MD_FILE))))
+      .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.BAD_MD_FILE))))
+      .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
+
+    const files = await getFilesFromRepo(GITHUB_SOURCE);
+    // console.log(files);
+    expect(files).toBeInstanceOf(Array);
+    expect(files.length).toBe(1);
   });
 });

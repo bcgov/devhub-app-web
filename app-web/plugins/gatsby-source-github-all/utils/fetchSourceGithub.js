@@ -30,6 +30,14 @@ const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
 const { Base64 } = require('js-base64'); // eslint-disable-line
 const fetch = require('node-fetch'); // eslint-disable-line
 const ignore = require('ignore'); // eslint-disable-line
+const { fileTransformer } = require('./transformer');
+const {
+  markdownFrontmatterPlugin,
+  pagePathPlugin,
+  markdownUnfurlPlugin,
+  markdownResourceTypePlugin,
+  externalLinkUnfurlPlugin,
+} = require('./plugins');
 /**
  * returns extension of a file name
  * can handle linux type files (which require no extension)
@@ -177,8 +185,19 @@ const filterFilesFromDirectories = entries => {
  * @param {String} source 
  * @param {String} sourceName 
  * @param {String} sourceURL 
+ * @param {String} resourceType
  */
-const applyBaseMetadata = (file, labels, owner, source, sourceName, sourceURL) => {
+const applyBaseMetadata = (
+  file,
+  labels,
+  owner,
+  source,
+  sourceName,
+  sourceURL,
+  sourceType,
+  globalResourceType,
+  originalResourceLocation
+) => {
   const extension = getExtensionFromName(file.name);
   return {
     ...file,
@@ -194,6 +213,9 @@ const applyBaseMetadata = (file, labels, owner, source, sourceName, sourceURL) =
       mediaType: getMediaTypeByExtension(extension),
       extension,
       sourceURL,
+      sourceType,
+      globalResourceType,
+      originalResourceLocation,
     },
   };
 };
@@ -228,7 +250,7 @@ const filterFiles = (files, ignoreObj) => {
  * @returns {Array} The array of files
  */
 // eslint-disable-next-line
-const getFilesFromRepo = async ({ name, sourceProperties: { repo, url, owner, branch }, attributes: { labels }}, token) => {
+const getFilesFromRepo = async ({sourceType, resourceType, name, sourceProperties: { repo, url, owner, branch }, attributes: { labels }}, token) => {
   try {
     // ignore filtering
     const ig = ignore().add(DEFUALT_IGNORES);
@@ -251,9 +273,31 @@ const getFilesFromRepo = async ({ name, sourceProperties: { repo, url, owner, br
     // for some reason the accept header is not returning with raw content so we will decode
     // the default base 64 encoded content
     // also adding some additional params
-    return filesResponse
+    const processedFiles = filesResponse
       .filter(f => f !== undefined) // filter out any files that weren't fetched
-      .map(f => applyBaseMetadata(f, labels, owner, repo, name, url));
+      .map(f =>
+        applyBaseMetadata(f, labels, owner, repo, name, url, sourceType, resourceType, f.html_url)
+      )
+      .map(async f => {
+        const ft = fileTransformer(f.metadata.extension, f);
+        try {
+          return await ft
+            .use(markdownFrontmatterPlugin)
+            .use(pagePathPlugin)
+            .use(markdownUnfurlPlugin)
+            .use(markdownResourceTypePlugin)
+            .use(externalLinkUnfurlPlugin)
+            .resolve();
+        } catch (e) {
+          console.error(chalk.yellow(e.message));
+          // return undefined and skip file
+          // at this point we could apply a hook to post a gh issue if needed
+          return undefined;
+        }
+      });
+    const postProcessedFiles = await Promise.all(processedFiles);
+    // any promises that return undefined are filtered out
+    return postProcessedFiles.filter(f => f !== undefined);
   } catch (e) {
     console.error(e);
     // eslint-disable-next-line

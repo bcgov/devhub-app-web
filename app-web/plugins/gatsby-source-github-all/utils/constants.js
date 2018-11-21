@@ -18,10 +18,24 @@
 // Created by Patrick Simonian on 2018-10-12.
 //
 
+const UNFURL_TYPES = {
+  MARKDOWN: 'markdown',
+  EXTERNAL: 'external',
+};
 // source types that map to fetch routines
 const SOURCE_TYPES = {
   GITHUB: 'github',
 };
+
+// Resource Types for Devhub
+const RESOURCE_TYPES = [
+  'Documentation',
+  'Repositories',
+  'People',
+  'Projects',
+  'Self-Service Tools',
+  'Components',
+];
 
 const GRAPHQL_NODE_TYPE = 'DevhubSiphon';
 
@@ -32,6 +46,7 @@ const DEFUALT_IGNORES = [
   'LICENSE',
   'CODE OF CONDUCT.md',
   'openshift',
+  '.github',
 ];
 // github rest api v3
 const GITHUB_API_ENDPOINT = 'https://api.github.com';
@@ -56,7 +71,7 @@ const MEDIATYPES = {
   HTML: 'text/html',
 };
 
-const PROCESSABLE_EXTENSIONS = ['.md', '.yml', '.yaml', '.html'];
+const PROCESSABLE_EXTENSIONS = ['.md', '.html'];
 
 const MARKDOWN_FRONTMATTER_SCHEMA = {
   title: {
@@ -99,6 +114,10 @@ const MARKDOWN_FRONTMATTER_SCHEMA = {
     type: Boolean,
     required: false,
   },
+  resourceType: {
+    type: String,
+    required: false,
+  },
 };
 
 const GITHUB_SOURCE_SCHEMA = {
@@ -126,4 +145,6 @@ module.exports = {
   FILETYPES,
   MEDIATYPES,
   SOURCE_TYPES,
+  RESOURCE_TYPES,
+  UNFURL_TYPES,
 };

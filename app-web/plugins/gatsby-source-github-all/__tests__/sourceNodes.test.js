@@ -69,6 +69,8 @@ describe('gatsby source github all plugin', () => {
         mediaType: 'application/test',
         extension: '.md',
         labels: 'component',
+        originalResourceLocation:
+          'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
       },
       name: 'test',
       path: '/test.md',
@@ -99,11 +101,19 @@ describe('gatsby source github all plugin', () => {
       parent: null,
       path: '/test.md',
       labels: 'component',
-      originalSource: 'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
-      resourcePath: undefined,
-      source: 'something/something',
-      sourceName: 'something',
-      sourcePath: undefined,
+      source: {
+        name: 'something/something',
+        displayName: 'something',
+        sourcePath: undefined,
+        type: undefined,
+      },
+      unfurl: undefined,
+      resource: {
+        originalSource:
+          'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
+        type: undefined,
+        path: undefined,
+      },
       internal: {
         contentDigest: JSON.stringify(file),
         // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate

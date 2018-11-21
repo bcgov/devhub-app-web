@@ -38,8 +38,13 @@ module.exports = async ({ graphql, boundActionCreators }) => {
         edges {
           node {
             id
-            source
-            resourcePath
+            source {
+              name
+              type
+            }
+            resource {
+              path
+            }
             internal {
               mediaType
             }
@@ -73,12 +78,12 @@ module.exports = async ({ graphql, boundActionCreators }) => {
     // out yet but will be in future versions
     if (!isResource && !isIgnored && node.internal.mediaType === 'text/markdown') {
       createPage({
-        path: node.resourcePath,
+        path: node.resource.path,
         component: getTemplate(node.internal.mediaType),
         context: {
           // Data passed to context is available in page queries as GraphQL variables.
           id: node.id,
-          source: node.source,
+          source: node.source.name,
         },
       });
     }
