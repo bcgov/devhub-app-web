@@ -30,6 +30,13 @@ export const ACTIONS = {
       value: 'bar',
     },
   },
+  FILTER_SIPHON_NODES_BY_ALL: {
+    type: actions.FILTER_SIPHON_NODES,
+    payload: {
+      filteredBy: 'foo',
+      value: 'All',
+    },
+  },
 };
 
 export const INITIAL_STATES = {
