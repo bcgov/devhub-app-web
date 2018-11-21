@@ -46,6 +46,7 @@ const DEFUALT_IGNORES = [
   'LICENSE',
   'CODE OF CONDUCT.md',
   'openshift',
+  '.github',
 ];
 // github rest api v3
 const GITHUB_API_ENDPOINT = 'https://api.github.com';
@@ -70,7 +71,7 @@ const MEDIATYPES = {
   HTML: 'text/html',
 };
 
-const PROCESSABLE_EXTENSIONS = ['.md', '.yml', '.yaml', '.html'];
+const PROCESSABLE_EXTENSIONS = ['.md', '.html'];
 
 const MARKDOWN_FRONTMATTER_SCHEMA = {
   title: {

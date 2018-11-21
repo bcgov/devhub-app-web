@@ -289,6 +289,7 @@ const getFilesFromRepo = async ({sourceType, resourceType, name, sourcePropertie
             .use(externalLinkUnfurlPlugin)
             .resolve();
         } catch (e) {
+          console.error(chalk.yellow(e.message));
           // return undefined and skip file
           // at this point we could apply a hook to post a gh issue if needed
           return undefined;
