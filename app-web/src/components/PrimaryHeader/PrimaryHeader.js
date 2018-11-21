@@ -4,7 +4,7 @@ import classes from './PrimaryHeader.module.css';
 import { APP_TITLE } from '../../constants/strings';
 import Banner from '../Common/Banner';
 import Login from '../Auth/Login/Login';
-import PrimaryNavigation from '../Navigation/PrimaryNavigation';
+import PrimaryFilter from '../PrimaryFilter/PrimaryFilter';
 
 export const PrimaryHeader = () => {
   return (
@@ -15,7 +15,7 @@ export const PrimaryHeader = () => {
           <Login />
         </Flag>
         <Flag name="features.sourceFiltering">
-          <PrimaryNavigation />
+          <PrimaryFilter />
         </Flag>
       </div>
     </header>
