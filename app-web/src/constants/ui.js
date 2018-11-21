@@ -26,6 +26,7 @@ export const RESOURCE_TYPES = {
   },
 };
 
+// the 'dot prop' to get the resource type from a siphon data node
 export const SIPHON_RESOURCE_TYPE_PROP = 'resource.type';
 
 export const MAIN_NAV_CONFIG = [
