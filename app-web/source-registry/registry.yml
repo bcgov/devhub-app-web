@@ -40,7 +40,18 @@ sources:
       url: https://github.com/BCDevOps/openshift-components/
       owner: BCDevOps
       repo: 'openshift-components'
+    resourceType: 'Components'
     attributes:
       labels:
         - Repository
         - Components
+  - name: DevHub
+    sourceType: 'github'
+    sourceProperties:
+      url: https://github.com/bcgov/devhub-app-web/
+      owner: bcgov
+      repo: 'devhub-app-web'
+    resourceType: 'Repositories'
+    attributes:
+      labels:
+        - Repository
