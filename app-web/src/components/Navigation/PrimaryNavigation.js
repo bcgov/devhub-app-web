@@ -127,6 +127,7 @@ export class PrimaryNavigation extends React.Component {
 const mapDispatchToProps = dispatch => {
   return {
     filterSiphonNodes: (filterBy, value) => dispatch(actions.filterSiphonNodes(filterBy, value)),
+    mainNavigationToggled: toggled => dispatch(actions.toggleMenu(toggled)),
   };
 };
 
