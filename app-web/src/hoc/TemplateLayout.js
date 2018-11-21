@@ -21,7 +21,7 @@ const TemplateLayout = ({ siphonData, nav, pathname, children }) => {
             <h1>{siphonData.sourceName}</h1>
             <ul className={styles.SourceTags}>
               <li>
-                <a href={siphonData.originalSource}>
+                <a href={siphonData.resource.originalSource}>
                   <FontAwesomeIcon
                     icon={faGithub}
                     aria-label={`View the original source ${siphonData.fileName} on github`}
