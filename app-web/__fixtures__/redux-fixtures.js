@@ -37,6 +37,24 @@ export const ACTIONS = {
       value: 'All',
     },
   },
+  SELECT_FILTER_OPTION: {
+    type: actions.SET_SELECTED_FILTER_OPTION,
+    payload: {
+      foo: 'bar',
+    },
+  },
+  TOGGLE_MAIN_NAVIGATION_ON: {
+    type: actions.TOGGLE_MAIN_NAVIGATION,
+    payload: {
+      toggled: true,
+    },
+  },
+  TOGGLE_MAIN_NAVIGATION_OFF: {
+    type: actions.TOGGLE_MAIN_NAVIGATION,
+    payload: {
+      toggled: false,
+    },
+  },
 };
 
 export const INITIAL_STATES = {
@@ -47,5 +65,9 @@ export const INITIAL_STATES = {
     loading: false,
     error: false,
     messages: [],
+  },
+  UI: {
+    selectedFilterOption: null,
+    mainNavigationToggled: false,
   },
 };
