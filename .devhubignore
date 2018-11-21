@@ -2,7 +2,6 @@ functional-tests
 .vscode
 app-web
 pipline
-README.md
 docs/components.md
 docs/Readme.md
 
