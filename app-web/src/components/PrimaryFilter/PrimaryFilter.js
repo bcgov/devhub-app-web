@@ -16,7 +16,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import styles from './PrimaryNavigation.module.css';
+import styles from './PrimaryFilter.module.css';
 import { connect } from 'react-redux';
 import Select from 'react-select';
 import Aux from '../../hoc/auxillary';
@@ -25,7 +25,7 @@ import { MAIN_NAV_CONFIG } from '../../constants/ui';
 import { ARIA_LABEL_FILTER_SELECT } from '../../constants/strings';
 import Hamburger from '../Common/Hamburger';
 
-export class PrimaryNavigation extends React.Component {
+export class PrimaryFilter extends React.Component {
   render() {
     const {
       filterSiphonNodes,
@@ -91,7 +91,7 @@ export class PrimaryNavigation extends React.Component {
         <Select
           value={selectedOption}
           ariaLabel={ARIA_LABEL_FILTER_SELECT}
-          className={[styles.PrimaryNavigation, styles.largeOnly].join(' ')}
+          className={[styles.PrimaryFilter, styles.largeOnly].join(' ')}
           styles={selectStylesLargeScreen}
           options={navigationItems}
           placeholder="Filter"
@@ -111,7 +111,7 @@ export class PrimaryNavigation extends React.Component {
         <Select
           value={selectedOption}
           ariaLabel={ARIA_LABEL_FILTER_SELECT}
-          className={[styles.PrimaryNavigation, styles.mobileOnly].join(' ')}
+          className={[styles.PrimaryFilter, styles.mobileOnly].join(' ')}
           styles={selectStylesMobile}
           options={navigationItems}
           placeholder=""
@@ -141,4 +141,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PrimaryNavigation);
+export default connect(mapStateToProps, mapDispatchToProps)(PrimaryFilter);
