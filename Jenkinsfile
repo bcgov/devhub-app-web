@@ -34,7 +34,7 @@ pipeline {
       }
     }
     
-    stage('Functional Test (TEST)') {
+    stage('Functional Test (DEV)') {
       // functional tests are currently broken as homepage has been redesigned.
       // for now this stage is being skipped. All of this has been documented
       // see https://taiga.pathfinder.gov.bc.ca/project/lukegonis-developergovbcca/issue/309
