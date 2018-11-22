@@ -46,6 +46,11 @@ ShallowWrapper {
       }
     }
     loadSiphonNodes={[Function]}
+    location={
+      Object {
+        "pathname": "/",
+      }
+    }
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -88,6 +93,7 @@ ShallowWrapper {
           name="features.githubResourceCards"
         />
       </main>,
+      "path": "/",
     },
     "ref": null,
     "rendered": Object {
@@ -255,6 +261,7 @@ ShallowWrapper {
             name="features.githubResourceCards"
           />
         </main>,
+        "path": "/",
       },
       "ref": null,
       "rendered": Object {

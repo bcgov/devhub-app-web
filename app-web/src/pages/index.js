@@ -19,7 +19,7 @@ export class Index extends Component {
   }
 
   render() {
-    const { nodes } = this.props;
+    const { nodes, location: { pathname } } = this.props;
     let mappedSiphonNodes = [];
     if (nodes && nodes.length) {
       mappedSiphonNodes = nodes
@@ -52,7 +52,7 @@ export class Index extends Component {
     ));
 
     return (
-      <Layout>
+      <Layout path={pathname}>
         <main role="main" className={styles.Main}>
           <h1>Welcome</h1>
           <h2>
