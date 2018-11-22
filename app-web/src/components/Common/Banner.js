@@ -1,20 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { BANNER_ID } from '../../constants/ui';
+import { HOME_ROUTE } from '../../constants/routes';
 import GovLogo from '../UI/GovLogo/GovLogo';
+import AppLogo from '../UI/AppLogo/AppLogo';
+import Link from './Link';
 import classes from './Common.module.css';
 
-const Banner = ({ title }) => {
+const Banner = () => {
   return (
-    <div id={BANNER_ID} className={classes.Logo}>
+    <Link id={BANNER_ID} className={classes.Logo} to={HOME_ROUTE}>
       <GovLogo />
-      <h1>{title}</h1>
-    </div>
+      <AppLogo />
+    </Link>
   );
 };
 
 Banner.propTypes = {
-  title: PropTypes.string.isRequired,
   navigateOnClickPath: PropTypes.string,
 };
 

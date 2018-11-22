@@ -1,0 +1,12 @@
+.AppLogo {
+  border: 2px solid #fff;
+  font-weight: 400;
+  margin: 6px 16px;
+  padding: 0px 4px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.orange {
+  color:#fcba19;
+}
