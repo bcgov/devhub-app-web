@@ -1,16 +1,12 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import classes from './Circle.module.css';
 
 const Circle = ({ type, children, ...rest }) => {
   let circleClasses = [classes.circle];
   const typeClass = classes[type];
   circleClasses = circleClasses.concat([typeClass]);
-  return (
-    <div className={circleClasses.join(' ')}>
-        { children }
-    </div>
-  );
+  return <div className={circleClasses.join(' ')}>{children}</div>;
 };
 
 Circle.propTypes = {

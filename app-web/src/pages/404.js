@@ -1,13 +1,10 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from '../components/UI/Link/Link';
-import { faSadTear } from '@fortawesome/free-solid-svg-icons';
 import VennDiagram from '../components/UI/VennDiagram/VennDiagram';
-
 
 const NotFound = ({ location }) => (
   <div>
     <h1>404 Error - Page Not Found</h1>
+    <a href="">Take me home.</a>
     <VennDiagram />
   </div>
 );
