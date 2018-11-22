@@ -30,11 +30,6 @@ ShallowWrapper {
           >
             <Connect(Login) />
           </Flag>
-          <Flag
-            name="features.sourceFiltering"
-          >
-            <Connect(PrimaryFilter) />
-          </Flag>
         </div>,
       ],
       "className": "PrimaryHeader",
@@ -64,11 +59,7 @@ ShallowWrapper {
             >
               <Connect(Login) />
             </Flag>,
-            <Flag
-              name="features.sourceFiltering"
-            >
-              <Connect(PrimaryFilter) />
-            </Flag>,
+            null,
           ],
           "className": "Other",
         },
@@ -94,26 +85,7 @@ ShallowWrapper {
             },
             "type": [Function],
           },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <Connect(PrimaryFilter) />,
-              "name": "features.sourceFiltering",
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {},
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": [Function],
-          },
+          null,
         ],
         "type": "div",
       },
@@ -138,11 +110,6 @@ ShallowWrapper {
               name="features.login"
             >
               <Connect(Login) />
-            </Flag>
-            <Flag
-              name="features.sourceFiltering"
-            >
-              <Connect(PrimaryFilter) />
             </Flag>
           </div>,
         ],
@@ -173,11 +140,7 @@ ShallowWrapper {
               >
                 <Connect(Login) />
               </Flag>,
-              <Flag
-                name="features.sourceFiltering"
-              >
-                <Connect(PrimaryFilter) />
-              </Flag>,
+              null,
             ],
             "className": "Other",
           },
@@ -203,26 +166,7 @@ ShallowWrapper {
               },
               "type": [Function],
             },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": <Connect(PrimaryFilter) />,
-                "name": "features.sourceFiltering",
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {},
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "type": [Function],
-            },
+            null,
           ],
           "type": "div",
         },
