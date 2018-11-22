@@ -20,7 +20,7 @@ ShallowWrapper {
       "children": Array [
         <Banner
           navigateOnClickPath="/"
-          title="Developer's Hub"
+          title={undefined}
         />,
         <div
           className="Other"
@@ -47,7 +47,7 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "navigateOnClickPath": "/",
-          "title": "Developer's Hub",
+          "title": undefined,
         },
         "ref": null,
         "rendered": null,
@@ -129,7 +129,7 @@ ShallowWrapper {
         "children": Array [
           <Banner
             navigateOnClickPath="/"
-            title="Developer's Hub"
+            title={undefined}
           />,
           <div
             className="Other"
@@ -156,7 +156,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "navigateOnClickPath": "/",
-            "title": "Developer's Hub",
+            "title": undefined,
           },
           "ref": null,
           "rendered": null,
