@@ -17,6 +17,7 @@ Created by Patrick Simonian
 */
 
 const visit = require('unist-util-visit');
+const cheerio = require('cheerio');
 const { TypeCheck } = require('@bcgov/common-web-utils');
 const { isRelativePath } = require('./utils/utils');
 
@@ -28,28 +29,51 @@ const { isRelativePath } = require('./utils/utils');
  * @param {Object} options 
  */
 const transformRelativePaths = ({ markdownAST, markdownNode, getNode }, { converter } = {}) => {
+  const IMAGE = 'image';
+  const LINK = 'link';
+
   if (!converter || !TypeCheck.isFunction(converter)) {
     throw new Error(
       "gatsby-remark-path-transform option: 'converter' must be passed in as a function!"
     );
   }
-  const parentQLNode = getNode(markdownNode.parent);
-  // visit anchor tags and images
-  visit(markdownAST, 'image', node => {
-    // is node url relative?
-    if (isRelativePath(node.url)) {
-      const absolutePath = converter('image', node.url, parentQLNode);
-      node.url = absolutePath; // eslint-disable-line
-    }
-  });
 
-  visit(markdownAST, 'link', node => {
+  /**
+   * Closured call back to call on visit of a node
+   * @param {String} nodeType 
+   * @param {Object} parentQLNode 
+   */
+  const visitCB = (nodeType, parentQLNode) => node => {
     // is node url relative?
     if (isRelativePath(node.url)) {
-      const absolutePath = converter('link', node.url, parentQLNode);
+      const absolutePath = converter(nodeType, node.url, parentQLNode);
       node.url = absolutePath; // eslint-disable-line
     }
+  };
+
+  const parentQLNode = getNode(markdownNode.parent);
+  const imageVisitedCB = visitCB(IMAGE, parentQLNode);
+  const linkVisitedCB = visitCB(LINK, parentQLNode);
+  // visit any html nodes and ensure and check for stand alone img tags
+  visit(markdownAST, 'html', node => {
+    const $ = cheerio.load(node.value);
+    const images = $('img');
+
+    images.each((ind, elm) => {
+      const src = $(elm).attr('src');
+
+      if (isRelativePath(src)) {
+        const absolutePath = converter(IMAGE, src, parentQLNode);
+        $(elm).attr('src', absolutePath);
+      }
+    });
+
+    node.value = $.html();
   });
+  // visit link and img ast nodes
+  visit(markdownAST, IMAGE, imageVisitedCB);
+
+  visit(markdownAST, 'link', linkVisitedCB);
 };
 
 module.exports = transformRelativePaths;
