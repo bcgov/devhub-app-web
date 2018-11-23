@@ -38,7 +38,7 @@
 .MarkdownBody a {
     color: #00996a;
     font-weight: 600;
-    transition: all .15s ease-in;
+    transition: color .15s ease-in;
 }
 
 .MarkdownBody a:hover {

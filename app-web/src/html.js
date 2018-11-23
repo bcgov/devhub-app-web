@@ -25,6 +25,12 @@ module.exports = class HTML extends React.Component {
             href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap-reboot.min.css"
             rel="stylesheet"
           />
+          <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+            crossOrigin="anonymous"
+          />
           <link href="https://fonts.googleapis.com/css?family=PT Sans:400,700" rel="stylesheet" />
           {this.props.headComponents}
           {css}

@@ -1,11 +1,13 @@
 .CardsContainer {
     margin-bottom: 15px;
 }
+
 .Cards {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
 }
+
 .TopicContainer {
     display: flex;
     align-items: center;
