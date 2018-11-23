@@ -17,12 +17,11 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import { shallow } from 'enzyme';
-import NavigationItem from '../../src/components/NavigationItems/NavigationItem/NavigationItem';
-import { A_NAV_ITEM } from '../../__fixtures__/ui-fixtures';
-
+import NavigationItems from '../../src/components/NavigationItems/NavigationItems';
+import { FOOTER_NAV } from '../../__fixtures__/ui-fixtures';
 describe('Primary Footer Component', () => {
   test('it matches snapshot', () => {
-    const wrapper = shallow(<NavigationItem to={A_NAV_ITEM.to} text={A_NAV_ITEM.text} />);
+    const wrapper = shallow(<NavigationItems items={FOOTER_NAV} />);
     expect(wrapper).toMatchSnapshot();
   });
 });

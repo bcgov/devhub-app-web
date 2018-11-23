@@ -15,14 +15,9 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React from 'react';
-import { shallow } from 'enzyme';
-import NavigationItem from '../../src/components/NavigationItems/NavigationItem/NavigationItem';
-import { A_NAV_ITEM } from '../../__fixtures__/ui-fixtures';
+export const A_NAV_ITEM = {
+  to: '/',
+  text: 'banana',
+};
 
-describe('Primary Footer Component', () => {
-  test('it matches snapshot', () => {
-    const wrapper = shallow(<NavigationItem to={A_NAV_ITEM.to} text={A_NAV_ITEM.text} />);
-    expect(wrapper).toMatchSnapshot();
-  });
-});
+export const FOOTER_NAV = [{ ...A_NAV_ITEM }];
