@@ -2,7 +2,7 @@ import React from 'react';
 import { Flag } from 'flag';
 import classes from './PrimaryHeader.module.css';
 import { APP_TITLE } from '../../constants/strings';
-import Banner from '../Common/Banner';
+import Banner from '../UI/Banner/Banner';
 import Login from '../Auth/Login/Login';
 import PrimaryFilter from '../PrimaryFilter/PrimaryFilter';
 import { HOME_ROUTE } from '../../constants/routes';

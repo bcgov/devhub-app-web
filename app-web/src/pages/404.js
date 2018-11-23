@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from '../components/Common/Link';
+import Link from '../components/UI/Link/Link';
 import { faSadTear } from '@fortawesome/free-solid-svg-icons';
 
 const styles = {

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BANNER_ID } from '../../constants/ui';
-import { HOME_ROUTE } from '../../constants/routes';
-import GovLogo from '../UI/GovLogo/GovLogo';
-import AppLogo from '../UI/AppLogo/AppLogo';
-import Link from './Link';
-import classes from './Common.module.css';
+import { BANNER_ID } from '../../../constants/ui';
+import { HOME_ROUTE } from '../../../constants/routes';
+import GovLogo from '../GovLogo/GovLogo';
+import AppLogo from '../AppLogo/AppLogo';
+import Link from '../Link/Link';
+import classes from './Banner.module.css';
 
 const Banner = () => {
   return (
