@@ -1,0 +1,46 @@
+.MarkdownBody {
+    padding: 10px;
+    word-break: break-word;
+}
+
+.MarkdownBody > h1:first-child {
+    margin-top: 0;
+}
+
+.MarkdownBody > * {
+    margin-bottom: 10px;
+}
+
+.MarkdownBody pre {
+    border-radius: 4px;
+}
+
+.MarkdownBody h1,
+.MarkdownBody h2,
+.MarkdownBody h3,
+.MarkdownBody h4,
+.MarkdownBody h5,
+.MarkdownBody h6 {
+    color: #6d6d6d;
+    font-weight: 400;
+}
+
+.MarkdownBody p {
+    line-height: 1.25em;
+    color: #3e3e3e;
+    font-size: 14px;
+}
+
+.MarkdownBody img {
+    max-width: 100%;
+}
+
+.MarkdownBody a {
+    color: #00996a;
+    font-weight: 600;
+    transition: all .15s ease-in;
+}
+
+.MarkdownBody a:hover {
+    color: #0d553f;
+}

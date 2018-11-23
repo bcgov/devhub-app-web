@@ -4,15 +4,24 @@ import classes from './PrimaryHeader.module.css';
 import { APP_TITLE } from '../../constants/strings';
 import Banner from '../Common/Banner';
 import Login from '../Auth/Login/Login';
-
-const PrimaryHeader = () => {
+import PrimaryFilter from '../PrimaryFilter/PrimaryFilter';
+import { HOME_ROUTE } from '../../constants/routes';
+export const PrimaryHeader = ({ path }) => {
+  // only show primary filter on home page
+  const primaryFilter =
+    path === HOME_ROUTE ? (
+      <Flag name="features.sourceFiltering">
+        <PrimaryFilter />
+      </Flag>
+    ) : null;
   return (
     <header className={classes.PrimaryHeader}>
       <Banner title={APP_TITLE} navigateOnClickPath="/" />
-      <div>
+      <div className={classes.Other}>
         <Flag name="features.login">
           <Login />
         </Flag>
+        {primaryFilter}
       </div>
     </header>
   );

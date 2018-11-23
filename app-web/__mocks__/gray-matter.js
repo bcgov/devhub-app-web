@@ -15,8 +15,6 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-'use strict';
-
 const matter = jest.requireActual('gray-matter');
 
 const matterMocked = function(content) {

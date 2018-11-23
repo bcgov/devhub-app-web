@@ -26,7 +26,7 @@ class Layout extends React.Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { children, path } = this.props;
     return (
       <div>
         <Helmet>
@@ -36,7 +36,7 @@ class Layout extends React.Component {
             type="image/x-icon"
           />
         </Helmet>
-        <PrimaryHeader />
+        <PrimaryHeader path={path}/>
         <div className="container">{children}</div>
       </div>
     );

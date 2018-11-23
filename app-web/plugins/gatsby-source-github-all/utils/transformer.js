@@ -25,29 +25,35 @@ const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
 const clone = require('clone'); // eslint-disable-line
 /**
  * takes in file parameters and runs it through plugins that
- * modify the content
+ * modifies its properties
  * @param {String} fileExtension 
- * @param {String} content 
  * @param {Object} file 
- * @returns {String} file content transformed
+ * @returns {Object} the file transformed
  */
-const fileTransformer = (fileExtension, file) => ({
-  file: clone(file),
-  use(plugin, options = {}) {
-    if (!TypeCheck.isFunction(plugin)) {
-      throw new Error('Plugin must be function');
-    }
-    const fileTransformed = plugin(fileExtension, this.file, options);
-    if (fileTransformed === undefined) {
-      throw new Error(`Plugin ${plugin.name} must return file`);
-    }
-    this.file = fileTransformed;
-    return this;
-  },
-  resolve() {
-    return this.file;
-  },
-});
+const fileTransformer = (fileExtension, originalFile) => {
+  let file = clone(originalFile);
+  const plugins = [];
+  return {
+    use(plugin, options = {}) {
+      // using typeof check instaed of TypeCheck since async functions are nott
+      // true instances of Function
+      if (typeof plugin !== 'function') {
+        throw new Error('Plugin must be function');
+      }
+      plugins.push([plugin, options]);
+      return this;
+    },
+    async resolve() {
+      for (const plugin of plugins) {
+        file = await plugin[0](fileExtension, file, plugin[1]);
+        if (file === undefined) {
+          throw new Error('Plugin must return the file');
+        }
+      }
+      return file;
+    },
+  };
+};
 
 module.exports = {
   fileTransformer,

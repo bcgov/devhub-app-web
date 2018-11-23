@@ -1,6 +1,7 @@
 ---
+
 description: An overview of how Devhub's Siphon works
-ignore: true
+
 ---
 # Siphon
 Devhub is a content catalogue generator. **Siphon** is Devhub's main tool that *siphons* content from Github Repositories and converts it into useable Gatsby JS graphQL nodes.
@@ -10,8 +11,10 @@ Devhub is a content catalogue generator. **Siphon** is Devhub's main tool that *
 -   [Flow Charts](#routine-flow)
     - [Main Routine](#main-routine-flow)
     - [Fetching/Validating The Registry](#registry)
-    - [Fetching Files from repositories](#fetch-files-from-repo)
+    - [Fetching Files By A Source Type](#fetch-files-from-source)
+        - [Fetching Files from Github Repositories repositories](#fetchgithubsource-fetch-files-from-repos)
     - [Transforming Files with the FileTransformer Pipeline](#file-transformer)
+-   [Fetching Files By Sources Authoring](#authoring-a-fetch-routine)
 -   [File Transfomer Pipeline](#the-file-transformer)
     - [Transfomer Usage](#transformer-usage)
     - [Transformer Plugin Authoring](#transformer-plugin-authoring)
@@ -39,13 +42,35 @@ In addition, they lacked the ability to control things like **mime types** for r
 #### Registry
 <img src="./images/registry-routine.png">
 
-#### Fetch Files From Repo
+#### Fetch Files From Source
 
-<img src="./images/fetch-files-from-repo.png">
+Sources are fetched based on their source type. The source type is mapped against 
+a fetching function which returns a normalized datastructure on return.
+
+<img src="./images/fetch-from-source-routine.png">
+
+##### Fetching Functions
+
+###### fetchGithubSource (fetch files from repos)
+<img src="./images/fetch-source-github.png">
 
 #### File Transformer
 
 <img src="./images/file-transformer.png">
+
+## Authoring A Source Fetch Routine
+
+Because Siphon has the ability to collect data from several sources it is important that
+when sources are *sourced* they return a standardized object which Siphon can then use to create
+nodes. Currently the standardized object is just a plain javascript object but future implementations
+would more than likely involve an instance of a **Class the implements a Source Interface**.
+
+### Things to Consider
+
+- Have you added to the `SOURCE_TYPES` constant the source you are attempting to fetch?
+- Have you created a validation function to validate the `sourceProperties` that are made available to your source
+from the source registry?
+- Have you created a fetch routine that returns the standard metadata required (see the githubsource fn for more info)
 
 ## The File Transformer
 
@@ -90,7 +115,7 @@ that you check for the file type (by extension) before modifying the content. In
 The plugin format should be:
 
 ```javascript
-    const pluginName = (extension, file, options) => {
+    const pluginName = async (extension, file, options) => {
         return file;
     }
 ```
@@ -124,7 +149,7 @@ It's usage would be...
 
 ```javascript
 // pipeline.js
-const yamlPlugin = (extension, file, { dateLoaded }) => {
+const yamlPlugin = async (extension, file, { dateLoaded }) => {
     if(extension === 'yaml' || extension === 'yml') {
         // do something to content
         const yaml = YAML.parse(file.internal.content);
@@ -138,11 +163,13 @@ const yamlPlugin = (extension, file, { dateLoaded }) => {
 
 // sourceNodes.js
 const date = Date.now();
-const content = fileTransformer(extension, file)
+const content = await fileTransformer(extension, file)
     .use(markdownPlugin)
     .use(yamlPlugin, { dateLoaded: date })
     .resolve();
 ```
+
+> note how async/await is used in the transformer and plugins
 
 ## Node Structure
 
@@ -166,17 +193,33 @@ the graphQL schema (more on that [here](https://v1.gatsbyjs.org/docs/source-plug
     owner // repo owner
     parent // gatsby required attribute, this is null
     path // path to the file relative to the respository
-    originalSource // the original URL to the file
-    source // the actual repository name as found in github
-    sourceName // pretty name for the source which is inherited by the name property in the source-registry.yml
-    sourcePath // the URL to the repository
-    resourcePath
-    // pointer to the resource for this node. This may be external, a link to another website
-    // or internal, a link to a generated gatsby page
+    originalSource // the original URL to the file ***WILL BE REMOVED IN FUTURE VERSIONS***
+    // data used to provide 'previews' for the node
+    // this adopts standards from twitter cards, open graph
+    // and normalized the properties
+    unfurl {
+        description,
+        title,
+        image,
+        label1,
+        data1,
+        label2,
+        data2,
+        type,
+    }
+    source {
+        name // the actual repository name as found in github
+        displayName // pretty name for the source which is inherited by the name property in the source-registry.yml
+        sourcePath // the URL to the repository
+        sourceType // the type of the source ie (github, website etc) 
+    }
+    resource {
+        type // the resource types, (Documentation, People, Projects, Repositories, Components, Self-Service-Tools)
+        // pointer to the resource for this node. This may be external, a link to another website
+        // or internal, a link to a generated gatsby page
+        path 
+    }
     labels
-    // this is a combination of globally set labels (found in source registry.yml) and any implicity
-    // found by other mechanisms (when sifting through the content). Labels is planned to be used for
-    // filtering nodes on the client
     internal {
         contentDigest // a gatsby required property
         // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate

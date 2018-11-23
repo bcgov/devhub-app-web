@@ -18,6 +18,27 @@
 // Created by Patrick Simonian on 2018-10-12.
 //
 
+const UNFURL_TYPES = {
+  MARKDOWN: 'markdown',
+  EXTERNAL: 'external',
+};
+// source types that map to fetch routines
+const SOURCE_TYPES = {
+  GITHUB: 'github',
+};
+
+// Resource Types for Devhub
+const RESOURCE_TYPES = [
+  'Documentation',
+  'Repositories',
+  'People',
+  'Projects',
+  'Self-Service Tools',
+  'Components',
+];
+
+const GRAPHQL_NODE_TYPE = 'DevhubSiphon';
+
 const DEFUALT_IGNORES = [
   'node_modules',
   'CONTRIBUTING.md',
@@ -25,6 +46,7 @@ const DEFUALT_IGNORES = [
   'LICENSE',
   'CODE OF CONDUCT.md',
   'openshift',
+  '.github',
 ];
 // github rest api v3
 const GITHUB_API_ENDPOINT = 'https://api.github.com';
@@ -35,6 +57,8 @@ const FILETYPES = {
   json: 'JSON',
   md: 'Markdown',
   txt: 'text',
+  html: 'HTML',
+  HTML: 'HTML',
 };
 
 const MEDIATYPES = {
@@ -44,9 +68,10 @@ const MEDIATYPES = {
   yml: 'text/yaml',
   txt: 'text/html',
   html: 'text/html',
+  HTML: 'text/html',
 };
 
-const PROCESSABLE_EXTENSIONS = ['.md', '.yml', '.yaml'];
+const PROCESSABLE_EXTENSIONS = ['.md', '.html'];
 
 const MARKDOWN_FRONTMATTER_SCHEMA = {
   title: {
@@ -65,13 +90,61 @@ const MARKDOWN_FRONTMATTER_SCHEMA = {
     type: Boolean,
     required: false,
   },
+  image: {
+    type: String,
+    required: false,
+  },
+  label1: {
+    type: String,
+    required: false,
+  },
+  data1: {
+    type: String,
+    required: false,
+  },
+  label2: {
+    type: String,
+    required: false,
+  },
+  data2: {
+    type: String,
+    required: false,
+  },
+  pageOnly: {
+    type: Boolean,
+    required: false,
+  },
+  resourceType: {
+    type: String,
+    required: false,
+  },
+};
+
+const GITHUB_SOURCE_SCHEMA = {
+  url: {
+    type: String,
+    required: true,
+  },
+  owner: {
+    type: String,
+    required: true,
+  },
+  repo: {
+    type: String,
+    required: true,
+  },
 };
 
 module.exports = {
+  GRAPHQL_NODE_TYPE,
   MARKDOWN_FRONTMATTER_SCHEMA,
   PROCESSABLE_EXTENSIONS,
   DEFUALT_IGNORES,
   GITHUB_API_ENDPOINT,
+  GITHUB_SOURCE_SCHEMA,
   FILETYPES,
   MEDIATYPES,
+  SOURCE_TYPES,
+  RESOURCE_TYPES,
+  UNFURL_TYPES,
 };

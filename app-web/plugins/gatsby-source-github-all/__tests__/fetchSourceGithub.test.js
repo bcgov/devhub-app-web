@@ -24,17 +24,19 @@ import {
   fetchGithubTree,
   fetchFile,
   fetchIgnoreFile,
+  validateSourceGithub,
   filterFilesByExtensions,
   getExtensionFromName,
   getNameWithoutExtension,
-} from '../utils/github-api';
+  applyBaseMetadata,
+} from '../utils/fetchSourceGithub';
 
 // eslint-disable-next-line
 import fetch from 'node-fetch';
 
 const { Response } = jest.requireActual('node-fetch');
 // eslint-disable-next-line
-import { GITHUB_API } from '../__fixtures__/fixtures';
+import { GITHUB_API, GITHUB_SOURCE } from '../__fixtures__/fixtures';
 
 let entries = null;
 
@@ -75,6 +77,26 @@ describe('Github API', () => {
     expect(res).toEqual(undefined);
   });
 
+  test('fetchFile fetches from branch if passed in', async () => {
+    const branch = 'branchA';
+    const token = 'TOKEN';
+    const repo = 'REPO';
+    const owner = 'OWNER';
+    const path = 'test.md';
+    fetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
+    await fetchFile(repo, owner, path, token, branch);
+    expect(fetch).toHaveBeenCalledWith(
+      `https://api.github.com/repos/OWNER/REPO/contents/${path}?ref=${branch}`,
+      expect.objectContaining({
+        headers: {
+          Authorization: 'Bearer TOKEN',
+          'X-GitHub-Media-Type': 'Accept: application/vnd.github.v3.raw+json',
+        },
+        method: 'GET',
+      })
+    );
+  });
+
   test('fetchIgnoreFile returns an array', async () => {
     if (!fetchFileSucceeded) {
       throw new Error('fetchIgnoreFile failed because fetchFile failed');
@@ -99,11 +121,47 @@ describe('Github API', () => {
     expect(ignoreFile).toBeInstanceOf(Array);
   });
 
+  test('fetchIgnoreFile fetches from branch when passed in', async () => {
+    const branch = 'branchA';
+    const token = 'TOKEN';
+    const repo = 'REPO';
+    const owner = 'OWNER';
+    const path = '.devhubignore';
+    fetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
+    await fetchIgnoreFile(repo, owner, token, branch);
+    expect(fetch).toHaveBeenCalledWith(
+      `https://api.github.com/repos/OWNER/REPO/contents/${path}?ref=${branch}`,
+      expect.objectContaining({
+        headers: {
+          Authorization: 'Bearer TOKEN',
+          'X-GitHub-Media-Type': 'Accept: application/vnd.github.v3.raw+json',
+        },
+        method: 'GET',
+      })
+    );
+  });
+
   test('fetchGithubTree returns data', async () => {
     fetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify(GITHUB_API.TREE))));
     expect.assertions(1);
     const res = await fetchGithubTree();
     expect(res).toEqual(GITHUB_API.TREE);
+  });
+
+  test('fetchGithubTree fetches from branch if passed in', async () => {
+    const branch = 'branchA';
+    const token = 'TOKEN';
+    const repo = 'REPO';
+    const owner = 'OWNER';
+    fetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify(GITHUB_API.TREE))));
+    await fetchGithubTree(repo, owner, token, branch);
+    expect(fetch).toHaveBeenCalledWith(
+      `https://api.github.com/repos/OWNER/REPO/git/trees/${branch}?recursive=1`,
+      expect.objectContaining({
+        headers: { Authorization: 'Bearer TOKEN' },
+        method: 'GET',
+      })
+    );
   });
 
   test('filterFilesByExtensions throws if no array of strings is passed', () => {
@@ -205,5 +263,45 @@ describe('Github API', () => {
     const expected2 = 'something';
     expect(getNameWithoutExtension(file)).toBe(expected);
     expect(getNameWithoutExtension(file2)).toBe(expected2);
+  });
+
+  test("applyBaseMetadata does it's thing", () => {
+    const RAW_FILE = GITHUB_API.FILE;
+    const labels = ['Components', 'Repository'];
+    const owner = 'billybob';
+    const source = 'Devhub';
+    const sourceName = 'Devhub';
+    const url = 'https://billybob.com';
+    const expected = {
+      ...RAW_FILE,
+      content: RAW_FILE.content,
+      metadata: {
+        labels: ['Components', 'Repository'],
+        sourceName: 'Devhub',
+        source: 'Devhub',
+        owner: 'billybob',
+        name: 'manifest',
+        fileType: 'JSON',
+        fileName: 'manifest.json',
+        mediaType: 'application/json',
+        extension: 'json',
+        sourceURL: 'https://billybob.com',
+      },
+    };
+    expect(applyBaseMetadata(RAW_FILE, labels, owner, source, sourceName, url)).toEqual(expected);
+  });
+
+  test('validateSourceGithub returns true when valid', () => {
+    expect(validateSourceGithub(GITHUB_SOURCE)).toBe(true);
+  });
+
+  test('validateSourceGithub returns false when source is invalid', () => {
+    const BAD_SOURCE = { ...GITHUB_SOURCE, name: null };
+    expect(validateSourceGithub(BAD_SOURCE)).toBe(false);
+    const ANOTHER_BAD_SOURCE = {
+      ...GITHUB_SOURCE,
+      sourceProperties: { ...GITHUB_SOURCE.sourceProperties, url: null },
+    };
+    expect(validateSourceGithub(ANOTHER_BAD_SOURCE)).toBe(false);
   });
 });

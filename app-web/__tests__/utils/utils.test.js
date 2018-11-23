@@ -1,5 +1,5 @@
 import { groupBy } from '../../src/utils/dataMassager';
-import { SOURCE_DEVHUB_GITHUB_QL_NODE } from '../../__fixtures__/plugin-fixtures';
+import { SIPHON_QL_NODE } from '../../__fixtures__/plugin-fixtures';
 import converter from '../../src/utils/gatsby-remark-transform-path';
 
 describe('Gatsby Remark Transformer Path Converter', () => {
@@ -17,7 +17,7 @@ describe('Gatsby Remark Transformer Path Converter', () => {
   test('it returns path on sourceDevhubGithub nodes', () => {
     const path = './somthing.png';
     const astType = 'image';
-    const newPath = converter(astType, path, SOURCE_DEVHUB_GITHUB_QL_NODE);
+    const newPath = converter(astType, path, SIPHON_QL_NODE);
     expect(typeof newPath).toBe('string');
     expect(newPath).not.toBe(path);
   });

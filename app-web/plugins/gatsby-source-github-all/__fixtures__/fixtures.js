@@ -125,6 +125,26 @@ const GITHUB_API = {
       html: 'https://github.com/bcgov/range-web/blob/master/public/manifest.json',
     },
   },
+  BAD_MD_FILE: { // no description front matter (which is required)
+    name: 'badfile.md',
+    path: 'public/badfile.md',
+    sha: 'ef19ec243e739479802a5553d0b38a18ed845307',
+    size: 317,
+    url: 'https://api.github.com/repos/bcgov/range-web/contents/public/badfile.md?ref=master',
+    html_url: 'https://github.com/bcgov/range-web/blob/master/public/badfile.md',
+    git_url:
+      'https://api.github.com/repos/bcgov/range-web/git/blobs/ef19ec243e739479802a5553d0b38a18ed845307',
+    download_url: 'https://raw.githubusercontent.com/bcgov/range-web/master/public/badfile.md',
+    type: 'file',
+    content: '---\ntitle: yoyoyo\n---\n# markdown',
+    encoding: 'base64',
+    _links: {
+      self: 'https://api.github.com/repos/bcgov/range-web/contents/public/badfile.md?ref=master',
+      git:
+        'https://api.github.com/repos/bcgov/range-web/git/blobs/ef19ec243e739479802a5553d0b38a18ed845307',
+      html: 'https://github.com/bcgov/range-web/blob/master/public/badfile.md',
+    },
+  },
   FAIL: {
     message: 'Not Found',
     documentation_url: 'https://developer.github.com/v3',
@@ -133,6 +153,41 @@ const GITHUB_API = {
     content: 'file1 file2 file3',
   },
 };
+
+const PROCESSED_FILE_HTML = {
+  name: 'index.html',
+  path: 'components/header/index.html',
+  sha: 'dfdfas123',
+  size: 2562,
+  url:
+    'https://api.github.com/repos/bcgov/design-system/contents/components/header/index.html?ref=master',
+  html_url: 'https://github.com/bcgov/design-system/blob/master/components/header/index.html',
+  git_url:
+    'https://api.github.com/repos/bcgov/design-system/git/blobs/1b0260c9b456f68d0443d0194ea84ed76e3d3041',
+  download_url:
+    'https://raw.githubusercontent.com/bcgov/design-system/master/components/header/index.html',
+  type: 'file',
+  content: '<!DOCTYPE><html><head></head><body><h1>Hello World!</h1></body></html>',
+  encoding: 'base64',
+  _links: {
+    self:
+      'https://api.github.com/repos/bcgov/design-system/contents/components/header/index.html?ref=master',
+    git:
+      'https://api.github.com/repos/bcgov/design-system/git/blobs/1b0260c9b456f68d0443d0194ea84ed76e3d3041',
+    html: 'https://github.com/bcgov/design-system/blob/master/components/header/index.html',
+  },
+  metadata: {
+    sourceName: 'Design System',
+    source: 'design-system',
+    owner: 'bcgov',
+    name: 'README',
+    fileType: 'Markdown',
+    fileName: 'README.md',
+    mediaType: 'text/markdown',
+    extension: 'md',
+  },
+};
+
 // with resource path frontmatter
 const RAW_FILE_MD_WITH_RESOURCEPATH = {
   name: 'README.md',
@@ -276,12 +331,15 @@ const PROCESSED_FILE_TXT = {
 const GRAPHQL_NODES_WITH_REGISTRY = [
   {
     id: '/registry.yml absPath of file >>> YAML',
-    repos: [
+    sources: [
       {
         name: 'Design System',
-        url: 'https://github.com/bcgov/design-system/',
-        owner: 'bcgov',
-        repo: 'design-system',
+        sourceType: 'github',
+        sourceProperties: {
+          url: 'https://github.com/bcgov/design-system/',
+          owner: 'bcgov',
+          repo: 'design-system',
+        },
         attributes: {
           labels: ['components'],
         },
@@ -320,12 +378,15 @@ const GRAPHQL_NODES_WITHOUT_REGISTRY = [
 
 const REGISTRY = {
   id: '/registry.yml absPath of file >>> YAML',
-  repos: [
+  sources: [
     {
       name: 'Design System',
-      url: 'https://github.com/bcgov/design-system/',
-      owner: 'bcgov',
-      repo: 'design-system',
+      sourceType: 'github',
+      sourceProperties: {
+        owner: 'bcgov',
+        repo: 'design-system',
+        url: 'https://github.com/bcgov/design-system/',
+      },
       attributes: {
         labels: ['components'],
       },
@@ -338,13 +399,35 @@ const REGISTRY = {
   },
 };
 
+const GITHUB_SOURCE = {
+  name: 'Design System',
+  sourceType: 'github',
+  sourceProperties: {
+    owner: 'bcgov',
+    repo: 'design-system',
+    url: 'https://github.com/bcgov/design-system/',
+  },
+  attributes: {
+    labels: ['components'],
+  },
+};
+
+const CONFIG_OPTIONS = {
+  tokens: {
+    GITHUB_API_TOKEN: '123',
+  },
+};
+
 module.exports = {
   GITHUB_API,
   PROCESSED_FILE_MD,
   PROCESSED_FILE_TXT,
+  PROCESSED_FILE_HTML,
   RAW_FILE_MD,
   RAW_FILE_MD_WITH_RESOURCEPATH,
   GRAPHQL_NODES_WITH_REGISTRY,
   GRAPHQL_NODES_WITHOUT_REGISTRY,
   REGISTRY,
+  GITHUB_SOURCE,
+  CONFIG_OPTIONS,
 };

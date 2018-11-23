@@ -19,48 +19,59 @@
 //
 const crypto = require('crypto');
 const _ = require('lodash'); // eslint-disable-line
-const { getFilesFromRepo } = require('./utils/github-api');
-const { fileTransformer } = require('./utils/transformer');
-const { markdownFrontmatterPlugin, markdownPagePathPlugin } = require('./utils/plugins');
+const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
+const { GRAPHQL_NODE_TYPE } = require('./utils/constants');
 
-const createGHNode = (file, id) => ({
+const createSiphonNode = (data, id) => ({
   id,
   children: [],
-  fileName: file.metadata.fileName,
-  fileType: file.metadata.fileType,
-  name: file.metadata.name,
-  owner: file.metadata.owner,
+  fileName: data.metadata.fileName,
+  fileType: data.metadata.fileType,
+  name: data.metadata.name,
+  owner: data.metadata.owner,
   parent: null,
-  path: file.path,
-  originalSource: file.html_url, // path to the file in github
-  source: file.metadata.source, // the repo-name
-  sourceName: file.metadata.sourceName, // the pretty name of the 'source'
-  sourcePath: file.metadata.sourceURL, // the path to the repo
-  resourcePath: file.metadata.resourcePath, // either path to a gastby created page based on this node
-  // or the path to an external resource this node points too
-  labels: file.metadata.labels, // labels from source registry
+  path: data.path,
+  unfurl: data.metadata.unfurl, // normalized unfurled content from various sources https://medium.com/slack-developer-blog/everything-you-ever-wanted-to-know-about-unfurling-but-were-afraid-to-ask-or-how-to-make-your-e64b4bb9254
+  source: {
+    name: data.metadata.source, // the source-name
+    displayName: data.metadata.sourceName, // the pretty name of the 'source'
+    sourcePath: data.metadata.sourceURL, // the path to the source
+    type: data.metadata.sourceType, // the type of the source
+  },
+  resource: {
+    path: data.metadata.resourcePath, // either path to a gastby created page based on this node
+    type: data.metadata.resourceType, // the base resource type for this see utils/constants.js
+    originalSource: data.metadata.originalResourceLocation, // the original location of the resource
+  },
+  labels: data.metadata.labels, // labels from source registry
   internal: {
     contentDigest: crypto
       .createHash('md5')
-      .update(JSON.stringify(file))
+      .update(JSON.stringify(data))
       .digest('hex'),
     // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate
     // to transformer plugins this node has data they can further process.
-    mediaType: file.metadata.mediaType,
+    mediaType: data.metadata.mediaType,
     // A globally unique node type chosen by the plugin owner.
-    type: 'SourceDevhubGithub',
+    type: GRAPHQL_NODE_TYPE,
     // Optional field exposing the raw content for this node
     // that transformer plugins can take and further process.
-    content: file.content,
+    content: data.content,
   },
 });
 
-const repoIsValid = repo => repo.name && repo.url && repo.repo && repo.owner;
+/**
+ * loops over sources and validates them based on their type
+ * @param {Array} sources the sources
+ */
+const sourcesAreValid = sources => sources.every(validateSourceRegistry);
 
-const reposAreValid = repos => repos.every(repoIsValid);
-
+/**
+ * validates source registry
+ * @param {Object} registry the source registry
+ */
 const checkRegistry = registry => {
-  if (!registry.repos || !reposAreValid(registry.repos)) {
+  if (!registry.sources || !sourcesAreValid(registry.sources)) {
     throw new Error(
       'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters'
     );
@@ -77,7 +88,8 @@ const getRegistry = getNodes => {
   throw new Error('Registry not found');
 };
 
-const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { token }) => {
+// eslint-disable-next-line consistent-return
+const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { tokens }) => {
   // get registry from current nodes
   const registry = getRegistry(getNodes);
   const { createNode } = boundActionCreators;
@@ -85,35 +97,24 @@ const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { to
     // check registry prior to fetching data
     checkRegistry(registry);
     // fetch all repos
-    const repos = await Promise.all(registry.repos.map(repo => getFilesFromRepo(repo, token)));
-    // repos is an array of arrays [repo files, repo files] etc
+    const sources = await Promise.all(
+      registry.sources.map(source => fetchFromSource(source.sourceType, source, tokens))
+    );
+    // sources is an array of arrays [repo files, repo files] etc
     // so we flatten it into a 1 dimensional array
-    const dataToNodify = _.flatten(repos, true);
+    let dataToNodify = _.flatten(sources, true);
     // create nodes
-    dataToNodify
-      .map(file => {
-        const newFile = { ...file, metadata: { ...file.metadata } };
-        const { metadata: { extension } } = newFile;
-        const ft = fileTransformer(extension, newFile);
-        const fileTransformed = ft
-          .use(markdownFrontmatterPlugin)
-          .use(markdownPagePathPlugin)
-          .resolve();
-        return fileTransformed;
-      })
-      .forEach(file => {
-        createNode(createGHNode(file, createNodeId(file.sha)));
-      });
+    return dataToNodify.map(file => createNode(createSiphonNode(file, createNodeId(file.sha))));
   } catch (e) {
     // failed to retrieve files or some other type of failure
     // eslint-disable-next-line
     console.error(e);
-    process.exit(1);
+    throw e;
   }
 };
 module.exports = {
   getRegistry,
   checkRegistry,
-  createGHNode,
+  createSiphonNode,
   sourceNodes,
 };

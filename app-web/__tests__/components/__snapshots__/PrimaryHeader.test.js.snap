@@ -20,9 +20,11 @@ ShallowWrapper {
       "children": Array [
         <Banner
           navigateOnClickPath="/"
-          title="Developer's Hub"
+          title={undefined}
         />,
-        <div>
+        <div
+          className="Other"
+        >
           <Flag
             name="features.login"
           >
@@ -40,7 +42,7 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "navigateOnClickPath": "/",
-          "title": "Developer's Hub",
+          "title": undefined,
         },
         "ref": null,
         "rendered": null,
@@ -51,86 +53,19 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": <Flag
-            name="features.login"
-          >
-            <Connect(Login) />
-          </Flag>,
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <Connect(Login) />,
-            "name": "features.login",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          "type": [Function],
-        },
-        "type": "div",
-      },
-    ],
-    "type": "header",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": Array [
-          <Banner
-            navigateOnClickPath="/"
-            title="Developer's Hub"
-          />,
-          <div>
+          "children": Array [
             <Flag
               name="features.login"
             >
               <Connect(Login) />
-            </Flag>
-          </div>,
-        ],
-        "className": "PrimaryHeader",
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "navigateOnClickPath": "/",
-            "title": "Developer's Hub",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": <Flag
-              name="features.login"
-            >
-              <Connect(Login) />
             </Flag>,
-          },
-          "ref": null,
-          "rendered": Object {
+            null,
+          ],
+          "className": "Other",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
             "instance": null,
             "key": undefined,
             "nodeType": "class",
@@ -150,6 +85,89 @@ ShallowWrapper {
             },
             "type": [Function],
           },
+          null,
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "header",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Banner
+            navigateOnClickPath="/"
+            title={undefined}
+          />,
+          <div
+            className="Other"
+          >
+            <Flag
+              name="features.login"
+            >
+              <Connect(Login) />
+            </Flag>
+          </div>,
+        ],
+        "className": "PrimaryHeader",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "navigateOnClickPath": "/",
+            "title": undefined,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <Flag
+                name="features.login"
+              >
+                <Connect(Login) />
+              </Flag>,
+              null,
+            ],
+            "className": "Other",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <Connect(Login) />,
+                "name": "features.login",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            null,
+          ],
           "type": "div",
         },
       ],
