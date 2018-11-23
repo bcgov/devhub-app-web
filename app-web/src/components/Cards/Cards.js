@@ -7,7 +7,7 @@ import styles from './Cards.module.css';
 import Card from './Card/Card';
 import Link from '../UI/Link/Link';
 import Toggle from './Toggle';
-import { ARIA_LABEL_REPO } from '../../constants/strings';
+import { ARIA_LABEL_REPO } from '../../constants/ariaLabels';
 import { LARGE_SCREEN_LIMIT, SMALL_SCREEN_LIMIT } from '../../constants/ui';
 
 const Cards = ({ topic, sourcePath, cards }) => {
