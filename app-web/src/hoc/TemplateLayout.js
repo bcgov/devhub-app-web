@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 // stylesheets
 import styles from './TemplateLayout.module.css';
 // layout local componenets
-import Navigation from '../components/Navigation/Navigation';
+import SourceNavigation from '../components/SourceNavigation/SourceNavigation';
 import Layout from './Layout';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/fontawesome-free-brands';
 import { faCodeBranch } from '@fortawesome/free-solid-svg-icons';
 
 const TemplateLayout = ({ siphonData, nav, pathname, children }) => {
-  // navigation doesn't show up if there are no links
-  const navigation =
-    nav.edges.length > 0 ? <Navigation components={nav.edges} activeLink={pathname} /> : null;
+  // SourceNavigation doesn't show up if there are no links
+  const sourceNavigation =
+    nav.edges.length > 0 ? <SourceNavigation components={nav.edges} activeLink={pathname} /> : null;
   return (
     <Layout>
       <div className={styles.DesignSystem}>
@@ -38,7 +38,7 @@ const TemplateLayout = ({ siphonData, nav, pathname, children }) => {
               </li>
             </ul>
           </header>
-          {navigation}
+          {sourceNavigation}
         </div>
         <section className={styles.Content}>{children}</section>
       </div>
