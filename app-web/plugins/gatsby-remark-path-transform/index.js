@@ -39,21 +39,24 @@ const transformRelativePaths = ({ markdownAST, markdownNode, getNode }, { conver
   }
 
   /**
-   * Closured call back to call on visit of a node
+   * Closured call back to call that returns the url transformed by the 
+   * converter cb or the url on its own if it isn't relative
    * @param {String} nodeType 
    * @param {Object} parentQLNode 
    */
-  const visitCB = (nodeType, parentQLNode) => node => {
+  const visitCB = (nodeType, parentQLNode) => url => {
     // is node url relative?
-    if (isRelativePath(node.url)) {
-      const absolutePath = converter(nodeType, node.url, parentQLNode);
-      node.url = absolutePath; // eslint-disable-line
+    if (isRelativePath(url)) {
+      const absolutePath = converter(nodeType, url, parentQLNode);
+      return absolutePath; // eslint-disable-line
     }
+    return url;
   };
 
   const parentQLNode = getNode(markdownNode.parent);
   const imageVisitedCB = visitCB(IMAGE, parentQLNode);
   const linkVisitedCB = visitCB(LINK, parentQLNode);
+
   // visit any html nodes and ensure and check for stand alone img tags
   visit(markdownAST, 'html', node => {
     const $ = cheerio.load(node.value);
@@ -61,19 +64,20 @@ const transformRelativePaths = ({ markdownAST, markdownNode, getNode }, { conver
 
     images.each((ind, elm) => {
       const src = $(elm).attr('src');
-
-      if (isRelativePath(src)) {
-        const absolutePath = converter(IMAGE, src, parentQLNode);
-        $(elm).attr('src', absolutePath);
-      }
+      $(elm).attr('src', imageVisitedCB(src));
     });
 
     node.value = $.html();
   });
-  // visit link and img ast nodes
-  visit(markdownAST, IMAGE, imageVisitedCB);
 
-  visit(markdownAST, 'link', linkVisitedCB);
+  // visit link and img ast nodes
+  visit(markdownAST, IMAGE, node => {
+    node.url = imageVisitedCB(node.url);
+  });
+
+  visit(markdownAST, 'link', node => {
+    node.url = linkVisitedCB(node.url);
+  });
 };
 
 module.exports = transformRelativePaths;
