@@ -8,3 +8,4 @@ export const SELF_SERVICE_ROUTE = `${FILTER_BASE_ROUTE}/self-service`;
 export const COMPONENTS_ROUTE = `${FILTER_BASE_ROUTE}/components`;
 export const PROJECTS_ROUTE = `${FILTER_BASE_ROUTE}/projects`;
 export const PEOPLE_ROUTE = `${FILTER_BASE_ROUTE}/people`;
+export const REPOS_ROUTE = `${FILTER_BASE_ROUTE}/repositories`;
