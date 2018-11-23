@@ -16,21 +16,18 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
+import Link from '../../Common/Link';
 import PropTypes from 'prop-types';
-import classes from './PrimaryFooter.module.css';
 
-const PrimaryFooter = props => (
-  <footer className={classes.PrimaryFooter}>
-    <div class={classes.Container} />
-  </footer>
+const NavigationItem = ({ to, text }) => (
+  <li>
+    <Link to={to}>{text}</Link>
+  </li>
 );
 
-PrimaryFooter.propTypes = {
-  children: PropTypes.node,
+NavigationItem.propTypes = {
+  to: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
-PrimaryFooter.defaultProps = {
-  children: '',
-};
-
-export default PrimaryFooter;
+export default NavigationItem;
