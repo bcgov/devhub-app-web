@@ -57,7 +57,7 @@ const transformRelativePaths = ({ markdownAST, markdownNode, getNode }, { conver
   const imageVisitedCB = visitCB(IMAGE, parentQLNode);
   const linkVisitedCB = visitCB(LINK, parentQLNode);
 
-  // visit any html nodes and ensure and check for stand alone img tags
+  // visit any html nodes and ensure and check for stand alone image tags
   visit(markdownAST, 'html', node => {
     const $ = cheerio.load(node.value);
     const images = $('img');
