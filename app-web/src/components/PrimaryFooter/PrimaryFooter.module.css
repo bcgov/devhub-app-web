@@ -3,13 +3,41 @@
     border-top: 2px solid #fcba19;
     padding: 9px 0 10px;
     color: #fff;
+    padding: 0 12px 0 25px;
+}
+
+.PrimaryFooter a {
+    color: inherit;
+    font-size: 0.813em;
+    text-transform: capitalize;
+    font-weight: normal;
 }
 
 .Container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
     height: 46px;
+    display: flex;
+    align-items: center;
+}
+
+.Container ul {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+.Container ul li {
+    padding: 0 5px;
+    flex-basis: 75px;
+    text-align: center;
+}
+
+.Container ul li:nth-child(n + 2) {
+    border-left: 1px solid #4b5e7e;
+}
+
+@media screen and (min-width: 600px) {
+    .PrimaryFooter {
+        padding: 0 65px 0 65px;
+    }
 }
   
