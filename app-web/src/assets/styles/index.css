@@ -24,11 +24,6 @@ p {
   font-weight: 400;
 }
 
-.container {
-  max-width: 1110px;
-  margin: 0 auto;
-}
-
 .large-screen {
   display: none;
 }

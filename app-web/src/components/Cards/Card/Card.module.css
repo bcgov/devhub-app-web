@@ -5,8 +5,6 @@
     padding: 14px 17px 64px;
     position: relative;
     color: #3b3b3b;
-    display: flex;
-    flex-flow: column nowrap;
     flex-shrink: 0;
     margin: 10px 20px 10px 0px;
     transition: box-shadow .25s ease-out;
@@ -67,9 +65,17 @@
     flex-basis: 25px;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 480px) {
+    .Card {
+        width: 214px;
+        height: 300px;
+    }
+}
+
+
+/* @media screen and (min-width: 700px) {
     .Card {
         width: 250px;
         height: 350px;
     }
-}
+} */

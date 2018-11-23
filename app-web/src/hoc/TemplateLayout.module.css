@@ -54,7 +54,7 @@
     flex: 1 1 400px;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 768px) {
     .Header {
         margin-bottom: 5px;
         background-color: inherit;

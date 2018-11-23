@@ -29,7 +29,7 @@ module.exports = class HTML extends React.Component {
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
             integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-            crossorigin="anonymous"
+            crossOrigin="anonymous"
           />
           <link href="https://fonts.googleapis.com/css?family=PT Sans:400,700" rel="stylesheet" />
           {this.props.headComponents}
