@@ -17,24 +17,29 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import PropTypes from 'prop-types';
-import classes from './PrimaryFooter.module.css';
-import NavigationItems from '../NavigationItems/NavigationItems';
-import { FOOTER_NAVIGATION } from '../../constants/ui';
+import shortid from 'shortid';
+import NavigationItem from './NavigationItem/NavigationItem';
+import classes from './NavigationItems.module.css';
 
-const PrimaryFooter = props => (
-  <footer className={classes.PrimaryFooter}>
-    <div class={classes.Container}>
-      <NavigationItems items={FOOTER_NAVIGATION} />
-    </div>
-  </footer>
-);
+const NavigationItems = ({ items }) => {
+  const navigationitems = items.map(item => (
+    <NavigationItem to={item.to} text={item.text} key={shortid.generate()} />
+  ));
 
-PrimaryFooter.propTypes = {
-  children: PropTypes.node,
+  return <ul className={classes.NavigationItems}>{navigationitems}</ul>;
 };
 
-PrimaryFooter.defaultProps = {
-  children: '',
+NavigationItems.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      to: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+    })
+  ),
 };
 
-export default PrimaryFooter;
+NavigationItems.defaultProps = {
+  items: [],
+};
+
+export default NavigationItems;

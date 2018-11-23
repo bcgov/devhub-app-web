@@ -16,25 +16,13 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import PropTypes from 'prop-types';
-import classes from './PrimaryFooter.module.css';
-import NavigationItems from '../NavigationItems/NavigationItems';
-import { FOOTER_NAVIGATION } from '../../constants/ui';
+import { shallow } from 'enzyme';
+import NavigationItem from '../../src/components/NavigationItems/NavigationItem/NavigationItem';
+import { A_NAV_ITEM } from '../../__fixtures__/ui-fixtures';
 
-const PrimaryFooter = props => (
-  <footer className={classes.PrimaryFooter}>
-    <div class={classes.Container}>
-      <NavigationItems items={FOOTER_NAVIGATION} />
-    </div>
-  </footer>
-);
-
-PrimaryFooter.propTypes = {
-  children: PropTypes.node,
-};
-
-PrimaryFooter.defaultProps = {
-  children: '',
-};
-
-export default PrimaryFooter;
+describe('Primary Footer Component', () => {
+  test('it matches snapshot', () => {
+    const wrapper = shallow(<NavigationItem to={A_NAV_ITEM.to} text={A_NAV_ITEM.text} />);
+    expect(wrapper).toMatchSnapshot();
+  });
+});

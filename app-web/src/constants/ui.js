@@ -1,5 +1,5 @@
 // all User Interface related constants
-
+import { HOME_ROUTE } from './routes';
 export const buttonTypes = ['primary', 'secondary', 'link'];
 export const LOGIN_BTN_ID = 'dh-login';
 export const LOGOUT_BTN_ID = 'dh-logout';
@@ -36,7 +36,7 @@ export const SIPHON_RESOURCE_TYPE_PROP = 'resource.type';
 
 export const MAIN_NAV_CONFIG = [
   {
-    ROUTE: '/',
+    ROUTE: HOME_ROUTE,
     DISPLAY_NAME: 'All',
     SIPHON_PROP: SIPHON_RESOURCE_TYPE_PROP,
     VALUE: 'All',
@@ -64,5 +64,12 @@ export const MAIN_NAV_CONFIG = [
     DISPLAY_NAME: RESOURCE_TYPES.RESPOSITORIES.DISPLAY_NAME,
     SIPHON_PROP: SIPHON_RESOURCE_TYPE_PROP,
     VALUE: RESOURCE_TYPES.RESPOSITORIES.VALUE,
+  },
+];
+
+export const FOOTER_NAVIGATION = [
+  {
+    to: HOME_ROUTE,
+    text: 'home',
   },
 ];

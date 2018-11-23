@@ -5,6 +5,7 @@
 
 body, html {
   height: 100%;
+  overflow: none;
 }
 
 body {
@@ -14,6 +15,17 @@ body {
   min-width: 320px;
   overflow-x: auto;
   background: #ebebeb;
+}
+#___gatsby, #___gatsby > div, .layout {
+  height: 100%;
+}
+.container {
+  overflow: auto;
+  min-height: 100%;
+  box-sizing: border-box;
+  padding-top: 55px;
+  padding-bottom: 20px;
+  margin-bottom: -48px;
 }
 
 h1, h2, h3, h4, h5, h6 {
