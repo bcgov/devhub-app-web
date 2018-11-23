@@ -6,6 +6,7 @@ import Helmet from 'react-helmet';
 import '../assets/styles/index.css';
 // layout local componenets
 import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
+import PrimaryFooter from '../components/PrimaryFooter/PrimaryFooter';
 // redux & auth
 import { create_iam } from '../auth';
 import * as actions from '../store/actions/actions';
@@ -38,6 +39,7 @@ class Layout extends React.Component {
         </Helmet>
         <PrimaryHeader path={path}/>
         <div className="container">{children}</div>
+        <PrimaryFooter />
       </div>
     );
   }

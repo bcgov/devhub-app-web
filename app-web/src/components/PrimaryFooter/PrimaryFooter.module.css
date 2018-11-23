@@ -4,3 +4,12 @@
     padding: 9px 0 10px;
     color: #fff;
 }
+
+.Container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 46px;
+}
+  
