@@ -16,7 +16,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import Link from '../../Common/Link';
+import Link from '../../UI/Link/Link';
 import PropTypes from 'prop-types';
 
 const NavigationItem = ({ to, text }) => (
