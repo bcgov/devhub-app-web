@@ -17,7 +17,7 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import { shallow } from 'enzyme';
-import Hamburger from '../../src/components/Common/Hamburger';
+import Hamburger from '../../src/components/UI/Hamburger/Hamburger';
 
 describe('Hamburger Component', () => {
   let hamburger = null;

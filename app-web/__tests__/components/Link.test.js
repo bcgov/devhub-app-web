@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import GatsbyLink from 'gatsby-link';
-import Link from '../../src/components/Common/Link';
+import Link from '../../src/components/UI/Link/Link';
 
 describe('Gatsby Link Component', () => {
   test("it renders an anchor tag if passed a path that doesn't link to a page component", () => {
