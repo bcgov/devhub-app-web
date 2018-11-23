@@ -17,11 +17,11 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import PropTypes from 'prop-types';
-import shortid from 'short-id';
+import shortid from 'shortid';
 import NavigationItem from './NavigationItem/NavigationItem';
 import classes from './NavigationItems.module.css';
 
-const NavigationItems = items => {
+const NavigationItems = ({ items }) => {
   const navigationitems = items.map(item => (
     <NavigationItem to={item.to} text={item.text} key={shortid.generate()} />
   ));
@@ -41,3 +41,5 @@ NavigationItems.propTypes = {
 NavigationItems.defaultProps = {
   items: [],
 };
+
+export default NavigationItems;
