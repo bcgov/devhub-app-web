@@ -2,8 +2,10 @@
     width: 250px;
     height: 350px;
     background-color: #fff;
-    padding: 14px 17px 64px;
+    padding: 14px 17px 32px;
     position: relative;
+    display: flex;
+    flex-flow: column nowrap;
     color: #3b3b3b;
     flex-shrink: 0;
     margin: 10px 20px 10px 0px;
@@ -16,7 +18,7 @@
 .Card h2 {
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 1.2em;
+    line-height: .8em;
 }
 .Card h2 a {
     font-weight: 400;
