@@ -1,5 +1,11 @@
 // all User Interface related constants
-import { HOME_ROUTE } from './routes';
+import {
+  HOME_ROUTE,
+  DOCUMENTS_ROUTE,
+  REPOS_ROUTE,
+  COMPONENTS_ROUTE,
+  SELF_SERVICE_ROUTE,
+} from './routes';
 export const buttonTypes = ['primary', 'secondary', 'link'];
 export const LOGIN_BTN_ID = 'dh-login';
 export const LOGOUT_BTN_ID = 'dh-logout';
@@ -12,22 +18,22 @@ export const RESOURCE_TYPES = {
   COMPONENTS: {
     DISPLAY_NAME: 'Components',
     VALUE: 'Components',
-    ROUTE: '/resources/components',
+    ROUTE: COMPONENTS_ROUTE,
   },
   DOCUMENTATION: {
     DISPLAY_NAME: 'Documentation',
     VALUE: 'Documentation',
-    ROUTE: '/resources/documentation',
+    ROUTE: DOCUMENTS_ROUTE,
   },
   SELF_SERVICE_TOOLS: {
     DISPLAY_NAME: 'Self-Service Tools',
     VALUE: 'Self-Service Tools',
-    ROUTE: '/resources/self-service-tools',
+    ROUTE: SELF_SERVICE_ROUTE,
   },
   RESPOSITORIES: {
     DISPLAY_NAME: 'Repositories',
     VALUE: 'Repositories',
-    ROUTE: '/resources/repositories',
+    ROUTE: REPOS_ROUTE,
   },
 };
 

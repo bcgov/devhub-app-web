@@ -22,8 +22,8 @@ import Select from 'react-select';
 import Aux from '../../hoc/auxillary';
 import * as actions from '../../store/actions/actions';
 import { MAIN_NAV_CONFIG } from '../../constants/ui';
-import { ARIA_LABEL_FILTER_SELECT } from '../../constants/strings';
-import Hamburger from '../Common/Hamburger';
+import { ARIA_LABEL_FILTER_SELECT } from '../../constants/ariaLabels';
+import Hamburger from '../UI/Hamburger/Hamburger';
 
 export const PrimaryFilter = ({
   filterSiphonNodes,

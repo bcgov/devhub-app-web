@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkSquareAlt } from '@fortawesome/free-solid-svg-icons';
 import styles from './Card.module.css';
-import Link from '../../Common/Link';
-import { ARIA_LABEL_RESOURCE, ARIA_LABEL_REPO } from '../../../constants/strings';
+import Link from '../../UI/Link/Link';
+import { ARIA_LABEL_RESOURCE, ARIA_LABEL_REPO } from '../../../constants/ariaLabels';
 
 const Card = ({ sourcePath, sourceName, title, description, resourcePath }) => (
   <article className={styles.Card}>
