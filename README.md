@@ -100,7 +100,13 @@ In Development
 - [Authoring Plugins for Remark](https://www.huynguyen.io/2018-05-remark-gatsby-plugin-part-2/)
 ## Security
 
-Authentication, Authorization, Policies, etc
+### Authentication, Authorization, Policies, etc
+
+Currently, DevHub is a statically generated site (generated using GatsbyJS) and served using [Caddy Server](https://caddyserver.com/) and has no concept of users, authentication, or authorization. This will likely change in the future at which point this documentation will be updated to reflect details in those areas.
+
+## Code Management
+
+This project follows the [GitHub Flow workflow](https://guides.github.com/introduction/flow/) for managing code branches and releases.     
 
 ## Files in this repository
 > cmd to update tree (from project root) `tree -I 'node_modules|coverage|.cache|app-web/public' -d -L 3`
