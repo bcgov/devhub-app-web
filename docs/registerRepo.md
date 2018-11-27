@@ -118,7 +118,8 @@ Set to true if you do not want the content to show up at all
 #### image (optional)
 A valid link to an image, avoid using a *relative* path to an image *ie ../my_image.png* and instead
 use a *absolute* path such as *https://www.mysite.com/my_image.png*
-
+#### author (optional but recommended)
+The author of the markdown file
 #### label1 (optional)
 One of two key value pairs allowed in the preview of a card
 #### value1 (optional)
