@@ -20,7 +20,7 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": <div
-        class="Container"
+        className="Container"
       >
         <NavigationItems
           items={
@@ -51,7 +51,7 @@ ShallowWrapper {
             ]
           }
         />,
-        "class": "Container",
+        "className": "Container",
       },
       "ref": null,
       "rendered": Object {
@@ -81,7 +81,7 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": <div
-          class="Container"
+          className="Container"
         >
           <NavigationItems
             items={
@@ -112,7 +112,7 @@ ShallowWrapper {
               ]
             }
           />,
-          "class": "Container",
+          "className": "Container",
         },
         "ref": null,
         "rendered": Object {

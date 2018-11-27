@@ -20,13 +20,30 @@
 
 // create pages based on nodes
 const { resolve } = require('path');
+const { SOURCE_TYPES } = require('../plugins/gatsby-source-github-all/utils/constants');
 
-const getTemplate = key => {
+/**
+ * Get Templates based on source and media type
+ * @param {String} source 
+ * @param {String} mediaType 
+ * @returns {string} the path to the template
+ */
+const getTemplate = (source, mediaType) => {
   const TEMPLATES = {
-    'text/markdown': resolve(__dirname, '../src/templates/SourceMarkdown.js'),
-    'text/html': resolve(__dirname, '../src/templates/SourceHTML.js'),
+    [SOURCE_TYPES.GITHUB]: {
+      'text/markdown': resolve(__dirname, '../src/templates/SourceGithubMarkdown.js'),
+      'text/html': resolve(__dirname, '../src/templates/SourceGithubHTML.js'),
+    },
   };
-  return TEMPLATES[key];
+
+  const sourceTemplate = TEMPLATES[source];
+  if (sourceTemplate) {
+    return sourceTemplate[mediaType];
+  } else {
+    throw new Error(
+      `No Available Template for source type ${source}, this is most likely an issue with Siphon's code base creating nodes with the incorrect source type!`
+    );
+  }
 };
 
 module.exports = async ({ graphql, boundActionCreators }) => {
@@ -79,7 +96,7 @@ module.exports = async ({ graphql, boundActionCreators }) => {
     if (!isResource && !isIgnored && node.internal.mediaType === 'text/markdown') {
       createPage({
         path: node.resource.path,
-        component: getTemplate(node.internal.mediaType),
+        component: getTemplate(node.source.type, node.internal.mediaType),
         context: {
           // Data passed to context is available in page queries as GraphQL variables.
           id: node.id,
