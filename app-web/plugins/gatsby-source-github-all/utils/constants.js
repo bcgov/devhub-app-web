@@ -110,6 +110,10 @@ const MARKDOWN_FRONTMATTER_SCHEMA = {
     type: String,
     required: false,
   },
+  author: {
+    type: String,
+    required: false,
+  },
   pageOnly: {
     type: Boolean,
     required: false,

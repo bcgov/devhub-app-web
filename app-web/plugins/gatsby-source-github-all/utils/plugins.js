@@ -73,6 +73,7 @@ const markdownFrontmatterPlugin = (extension, file) => {
       label2: () => '', // unfurl metadata
       data2: () => '', // unfurl metadata
       image: () => '', // unfurl metadata
+      author: () => '', // unfurl metadata
       pageOnly: () => false, // in the use case where we want this node to not be presented as a card in the home page
       // provide default resource type to be blank
       resourceType: () => '',
