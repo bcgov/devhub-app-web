@@ -3,7 +3,7 @@
 exports[`Card Component matches snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Github Card Component
+  Symbol(enzyme.__unrendered__): <Default Card Component
     description="description"
     resourcePath="resourcePath"
     sourceName="sourceName"
@@ -21,7 +21,7 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
         <h2
@@ -84,7 +84,6 @@ ShallowWrapper {
           </GatsbyLink>
         </div>,
       ],
-      "className": "Card",
     },
     "ref": null,
     "rendered": Array [
@@ -285,13 +284,13 @@ ShallowWrapper {
         "type": "div",
       },
     ],
-    "type": "article",
+    "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "host",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
           <h2
@@ -354,7 +353,6 @@ ShallowWrapper {
             </GatsbyLink>
           </div>,
         ],
-        "className": "Card",
       },
       "ref": null,
       "rendered": Array [
@@ -555,7 +553,7 @@ ShallowWrapper {
           "type": "div",
         },
       ],
-      "type": "article",
+      "type": [Function],
     },
   ],
   Symbol(enzyme.__options__): Object {

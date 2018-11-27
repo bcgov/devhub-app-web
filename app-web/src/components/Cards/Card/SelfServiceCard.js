@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkSquareAlt } from '@fortawesome/free-solid-svg-icons';
 import styles from './Card.module.css';
+import Card from '../../../hoc/Card';
 import Link from '../../UI/Link/Link';
 import { ARIA_LABEL_RESOURCE, ARIA_LABEL_REPO } from '../../../constants/ariaLabels';
 
-const Card = ({ sourcePath, sourceName, title, description, resourcePath }) => (
-  <article className={styles.Card}>
+const SelfServiceCard = ({ sourcePath, sourceName, title, description, resourcePath }) => (
+  <Card>
     <h2 title={title}>
       <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE}>
         <FontAwesomeIcon icon={faExternalLinkSquareAlt} size="1x" />
@@ -24,12 +25,12 @@ const Card = ({ sourcePath, sourceName, title, description, resourcePath }) => (
         {sourceName}
       </Link>
     </div>
-  </article>
+  </Card>
 );
 
-Card.displayName = 'Github Card Component';
+SelfServiceCard.displayName = 'Self Service Card Component';
 
-Card.propTypes = {
+SelfServiceCard.propTypes = {
   sourcePath: PropTypes.string,
   sourceName: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
@@ -37,4 +38,4 @@ Card.propTypes = {
   resourcePath: PropTypes.string.isRequired,
 };
 
-export default Card;
+export default SelfServiceCard;
