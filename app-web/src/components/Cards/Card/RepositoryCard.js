@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkSquareAlt } from '@fortawesome/free-solid-svg-icons';
 import styles from './Card.module.css';
+import Card from '../../../hoc/Card';
 import Link from '../../UI/Link/Link';
 import { ARIA_LABEL_RESOURCE, ARIA_LABEL_REPO } from '../../../constants/ariaLabels';
 
 const RepositoryCard = ({ sourcePath, sourceName, title, description, resourcePath }) => (
-  <article className={styles.Card}>
+  <Card>
     <h2 title={title}>
       <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE}>
         <FontAwesomeIcon icon={faExternalLinkSquareAlt} size="1x" />
@@ -24,7 +25,7 @@ const RepositoryCard = ({ sourcePath, sourceName, title, description, resourcePa
         {sourceName}
       </Link>
     </div>
-  </article>
+  </Card>
 );
 
 RepositoryCard.displayName = 'Repository Card Component';
