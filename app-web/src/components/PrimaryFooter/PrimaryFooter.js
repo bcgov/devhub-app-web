@@ -23,7 +23,7 @@ import { FOOTER_NAVIGATION } from '../../constants/ui';
 
 const PrimaryFooter = props => (
   <footer className={classes.PrimaryFooter}>
-    <div class={classes.Container}>
+    <div className={classes.Container}>
       <NavigationItems items={FOOTER_NAVIGATION} />
     </div>
   </footer>

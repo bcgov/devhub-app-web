@@ -1,12 +1,13 @@
-.DesignSystem {
+.TemplateContainer {
     display: flex;
     flex-wrap: wrap;
     padding-bottom: 50px;
 }
 
-.Panel {
+.SidePanel {
     flex: 1 0 200px;
 }
+
 .Header {
     background-color: #fff;
     padding-top: 10px;
@@ -61,7 +62,7 @@
         background-color: inherit;
     }
 
-    .Panel {
+    .SidePanel {
         max-width: 200px;
     }
 }

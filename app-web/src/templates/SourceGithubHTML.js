@@ -18,39 +18,35 @@
 // Created by Patrick Simonian on 2018-10-12.
 //
 import React from 'react';
-import TemplateLayout from '../hoc/TemplateLayout';
-import styles from './SourceMarkdown.module.css';
+import GithubTemplateLayout from '../hoc/GithubTemplateLayout';
+import styles from './SourceHTML.module.css';
 // eslint-disable-next-line
-const SourceMarkdown = ({ data: { devhubSiphon, nav }, location: pathname }) => (
-  <TemplateLayout siphonData={devhubSiphon} nav={nav} pathname={pathname}>
+const SourceHTML = ({ data: { devhubSiphon, nav }, location: pathname }) => (
+  <GithubTemplateLayout siphonData={devhubSiphon} nav={nav} pathname={pathname}>
     <div
-      className={styles.MarkdownBody}
+      className={styles.HTMLBody}
       dangerouslySetInnerHTML={{
-        __html: devhubSiphon.childMarkdownRemark.html,
+        __html: devhubSiphon.internal.content,
       }}
     />
-  </TemplateLayout>
+  </GithubTemplateLayout>
 );
 
-export const devhubSiphonMarkdown = graphql`
-  query devhubSiphonMarkdown($id: String!, $source: String!) {
+export const devhubSiphonHTML = graphql`
+  query devhubSiphonHTML($id: String!, $source: String!) {
     devhubSiphon(id: { eq: $id }) {
       name
       id
-      childMarkdownRemark {
-        frontmatter {
-          title
-        }
-        html
+      internal {
+        content
+      }
+      resource {
+        originalSource
       }
       source {
         name
         displayName
         sourcePath
-        type
-      }
-      resource {
-        originalSource
       }
       owner
       fileName
@@ -58,10 +54,7 @@ export const devhubSiphonMarkdown = graphql`
       path
     }
     nav: allDevhubSiphon(
-      filter: {
-        source: { name: { eq: $source } }
-        internal: { mediaType: { eq: "text/markdown" } }
-      }
+      filter: { source: { name: { eq: $source } }, internal: { mediaType: { eq: "text/html" } } }
     ) {
       edges {
         node {
@@ -72,4 +65,4 @@ export const devhubSiphonMarkdown = graphql`
   }
 `;
 
-export default SourceMarkdown;
+export default SourceHTML;
