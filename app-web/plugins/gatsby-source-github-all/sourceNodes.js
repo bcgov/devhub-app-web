@@ -88,6 +88,16 @@ const getRegistry = getNodes => {
   throw new Error('Registry not found');
 };
 
+/**
+ * Filteres out resources that have the ignore metadata property set to true
+ * @param {Array} sources
+ * @returns {Array} the filtered sources 
+ */
+const filterIgnoredResources = sources =>
+  sources.filter(
+    s => !Object.prototype.hasOwnProperty.call(s.metadata, 'ignore') || !s.metadata.ignore
+  );
+
 // eslint-disable-next-line consistent-return
 const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { tokens }) => {
   // get registry from current nodes
@@ -100,9 +110,10 @@ const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { to
     const sources = await Promise.all(
       registry.sources.map(source => fetchFromSource(source.sourceType, source, tokens))
     );
-    // sources is an array of arrays [repo files, repo files] etc
+    // sources is an array of arrays [[source data], [source data]] etc
     // so we flatten it into a 1 dimensional array
     let dataToNodify = _.flatten(sources, true);
+    dataToNodify = filterIgnoredResources(dataToNodify);
     // create nodes
     return dataToNodify.map(file => createNode(createSiphonNode(file, createNodeId(file.sha))));
   } catch (e) {
@@ -117,4 +128,5 @@ module.exports = {
   checkRegistry,
   createSiphonNode,
   sourceNodes,
+  filterIgnoredResources,
 };

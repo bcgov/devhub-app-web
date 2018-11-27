@@ -17,7 +17,12 @@
 //
 // Created by Patrick Simonian on 2018-10-12.
 //
-import { createSiphonNode, checkRegistry, getRegistry } from '../sourceNodes';
+import {
+  createSiphonNode,
+  checkRegistry,
+  getRegistry,
+  filterIgnoredResources,
+} from '../sourceNodes';
 import { GRAPHQL_NODE_TYPE } from '../utils/constants';
 import {
   GRAPHQL_NODES_WITH_REGISTRY,
@@ -31,6 +36,41 @@ jest.mock('crypto');
 jest.mock('../utils/fetchSource.js');
 
 describe('gatsby source github all plugin', () => {
+  test('filterIgnoreResources returns a filtered set of sources', () => {
+    const sources = [
+      {
+        metadata: {
+          ignore: true,
+        },
+      },
+      {
+        metadata: {
+          ignore: false,
+        },
+      },
+      {
+        metadata: {
+          apple: true,
+        },
+      },
+    ];
+
+    const expected = [
+      {
+        metadata: {
+          ignore: false,
+        },
+      },
+      {
+        metadata: {
+          apple: true,
+        },
+      },
+    ];
+
+    expect(filterIgnoredResources(sources)).toEqual(expected);
+  });
+
   test('getRegistry returns the registry', () => {
     const getNodes = jest.fn(() => GRAPHQL_NODES_WITH_REGISTRY);
     expect(getRegistry(getNodes)).toEqual(REGISTRY);
