@@ -19,6 +19,7 @@
 //
 const crypto = require('crypto');
 const _ = require('lodash'); // eslint-disable-line
+const chalk = require('chalk'); // eslint-disable-line
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
 const { GRAPHQL_NODE_TYPE } = require('./utils/constants');
 
@@ -94,9 +95,16 @@ const getRegistry = getNodes => {
  * @returns {Array} the filtered sources 
  */
 const filterIgnoredResources = sources =>
-  sources.filter(
-    s => !Object.prototype.hasOwnProperty.call(s.metadata, 'ignore') || !s.metadata.ignore
-  );
+  sources.filter(s => {
+    if (!Object.prototype.hasOwnProperty.call(s.metadata, 'ignore') || !s.metadata.ignore) {
+      return true;
+    }
+    console.log(
+      chalk`\n The resource {green.bold ${s.metadata
+        .name}} has been flagged as {green.bold 'ignore'} and will not have a Siphon Node created for it`
+    );
+    return false;
+  });
 
 // eslint-disable-next-line consistent-return
 const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { tokens }) => {
