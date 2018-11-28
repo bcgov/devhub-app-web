@@ -199,7 +199,7 @@ const applyBaseMetadata = (
   sourceType,
   globalResourceType,
   originalResourceLocation,
-  globalPersona
+  globalPersona,
 ) => {
   const extension = getExtensionFromName(file.name);
   return {
