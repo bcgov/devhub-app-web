@@ -9,51 +9,53 @@
     color: #3b3b3b;
     flex-shrink: 0;
     margin: 10px 20px 10px 0px;
-    transition: box-shadow .25s ease-out;
-}
-
-.Card:hover {
-    box-shadow: 0 0 2px 2px rgba(0, 44, 95, .25);
-}
-.Card h2 {
+    transition: box-shadow 0.25s ease-out;
+  }
+  
+  .Card:hover {
+    box-shadow: 0 0 2px 2px rgba(0, 44, 95, 0.25);
+  }
+  .Card h2 {
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: .8em;
-}
-.Card h2 a {
+    line-height: 0.8em;
+    max-height: 2em;
+  }
+  
+  .Card h2 a {
     font-weight: 400;
     margin-bottom: 13px;
     font-size: 20px;
-}
-
-.Card h2 span {
-    margin-left: 10px;
-    color: #242424;
-}
-
-.Card a {
+  }
+  
+  .Card h2 svg {
+    margin-right: 10px;
     color: #6d6d6d;
+  }  
+  
+  .Card a {
+    color: #242424;
     text-decoration: none;
     font-size: 16px;
-    text-transform: capitalize
-}
-
-.Card p {
+    text-transform: capitalize;
+  }
+  
+  .Card p {
     font-size: 14px;
     line-height: 1.2em;
-}
-.Body {
+  }
+  .Body {
     overflow: auto;
     padding-right: 8px;
-}
-.Actions {
+  }
+  .Actions {
     position: absolute;
     bottom: 0;
     left: 0;
     padding: 8px 14px;
-}
-
-.Actions ul {
+  }
+  
+  .Actions ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -61,15 +63,16 @@
     flex-flow: row none;
     justify-content: flex-start;
     align-items: center;
-}
-
-.Actions li {
+  }
+  
+  .Actions li {
     flex-basis: 25px;
-}
-
-@media screen and (min-width: 480px) {
+  }
+  
+  @media screen and (min-width: 480px) {
     .Card {
-        width: 214px;
-        height: 300px;
+      width: 214px;
+      height: 300px;
     }
-}
+  }
+  

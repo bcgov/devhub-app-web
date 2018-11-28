@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkSquareAlt } from '@fortawesome/free-solid-svg-icons';
+import DotDotDot from 'react-dotdotdot';
 import styles from './Card.module.css';
 import Card from '../../../hoc/Card';
 import Link from '../../UI/Link/Link';
@@ -11,8 +12,10 @@ const SelfServiceCard = ({ sourcePath, sourceName, title, description, resourceP
   <Card>
     <h2 title={title}>
       <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE}>
-        <FontAwesomeIcon icon={faExternalLinkSquareAlt} size="1x" />
-        <span>{title}</span>
+        <DotDotDot clamp={2} tagName="span">
+          <FontAwesomeIcon icon={faExternalLinkSquareAlt} size="1x" />
+          {title}
+        </DotDotDot>
       </Link>
     </h2>
     <div className={styles.Body}>
