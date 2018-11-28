@@ -85,7 +85,8 @@ const markdownFrontmatterPlugin = (extension, file) => {
       // if propery required and frontmatter doesn't have it
       if (property.required && valueIsInvalid) {
         throw new Error(
-          `Frontmatter key ${key} is required but ${file.metadata.fileName} is missing it`
+          `\nFrontmatter key '${key}' is required but ${file.metadata.fileName} for source ${file
+            .metadata.source} is missing it`
         );
         // is there a defaultable value we can provide
       } else if (valueIsInvalid && DEFAULTS[key]) {
@@ -97,6 +98,7 @@ const markdownFrontmatterPlugin = (extension, file) => {
       ...file.metadata,
       resourceTitle: frontmatter.title,
       resourceDescription: frontmatter.description,
+      ignore: frontmatter.ignore,
     };
     // create 'new' md string with updated front matter
     file.content = matter.stringify(data.content, frontmatter);
