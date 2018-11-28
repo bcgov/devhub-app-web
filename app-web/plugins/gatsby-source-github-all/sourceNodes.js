@@ -44,7 +44,10 @@ const createSiphonNode = (data, id) => ({
     type: data.metadata.resourceType, // the base resource type for this see utils/constants.js
     originalSource: data.metadata.originalResourceLocation, // the original location of the resource
   },
-  labels: data.metadata.labels, // labels from source registry
+  attributes: {
+    labels: data.metadata.labels, // labels from source registry
+    persona: data.metadata.persona, // persona from the source registry, see constants for valid personas
+  },
   internal: {
     contentDigest: crypto
       .createHash('md5')
