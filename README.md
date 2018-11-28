@@ -106,7 +106,19 @@ Currently, DevHub is a statically generated site (generated using GatsbyJS) and 
 
 ## Code Management
 
-This project follows the [GitHub Flow workflow](https://guides.github.com/introduction/flow/) for managing code branches and releases.     
+### Workflow
+
+This project follows the [GitHub Flow workflow](https://guides.github.com/introduction/flow/) for managing code branches and releases.
+
+### Integration with Taiga via commit messages
+
+This repository has been configured to send webhooks to a self-hosted Taiga instance as outlined [here](https://tree.taiga.io/support/integrations/github-integration/).  This allows a couple of useful things:
+
+* close issues and user stories via commit messages as described [here](https://tree.taiga.io/support/integrations/changing-elements-status-via-commit-message/)
+* associate commits with user stories and issues via commits as described [here](https://tree.taiga.io/support/integrations/attach-commits-to-elements-via-commit-message/)
+* create issues in Taiga when created in GitHub 
+
+         
 
 ## Files in this repository
 > cmd to update tree (from project root) `tree -I 'node_modules|coverage|.cache|app-web/public' -d -L 3`
