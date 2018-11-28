@@ -77,7 +77,7 @@ const sourcesAreValid = sources => sources.every(validateSourceRegistry);
 const checkRegistry = registry => {
   if (!registry.sources || !sourcesAreValid(registry.sources)) {
     throw new Error(
-      'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters'
+      'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters',
     );
   }
   return true;
@@ -104,7 +104,7 @@ const filterIgnoredResources = sources =>
     }
     console.log(
       chalk`\n The resource {green.bold ${s.metadata
-        .name}} has been flagged as {green.bold 'ignore'} and will not have a Siphon Node created for it`
+        .name}} has been flagged as {green.bold 'ignore'} and will not have a Siphon Node created for it`,
     );
     return false;
   });
@@ -119,7 +119,7 @@ const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { to
     checkRegistry(registry);
     // fetch all repos
     const sources = await Promise.all(
-      registry.sources.map(source => fetchFromSource(source.sourceType, source, tokens))
+      registry.sources.map(source => fetchFromSource(source.sourceType, source, tokens)),
     );
     // sources is an array of arrays [[source data], [source data]] etc
     // so we flatten it into a 1 dimensional array

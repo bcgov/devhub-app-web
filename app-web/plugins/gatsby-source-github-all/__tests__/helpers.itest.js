@@ -13,7 +13,7 @@ describe('createPathWithDigest Integration Tests', () => {
     expect(createPathWithDigest('/path/', digestable)).toBe(`/path/${hash}`);
 
     expect(createPathWithDigest('path/', digestable)).toBe(
-      createPathWithDigest('path/', digestable)
+      createPathWithDigest('path/', digestable),
     );
   });
 });

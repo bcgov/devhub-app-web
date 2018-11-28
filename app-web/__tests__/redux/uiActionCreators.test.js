@@ -27,7 +27,7 @@ describe('ui action creators', () => {
   it('should create an action to set main navigiaton toggle', () => {
     const expected = ACTIONS.TOGGLE_MAIN_NAVIGATION_ON;
     expect(actions.toggleMainNavigation(ACTIONS.TOGGLE_MAIN_NAVIGATION_ON.payload.toggled)).toEqual(
-      expected
+      expected,
     );
   });
 });

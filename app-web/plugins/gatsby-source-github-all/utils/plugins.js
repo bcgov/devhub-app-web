@@ -33,7 +33,12 @@ const metascraper = require('metascraper')([
 const validUrl = require('valid-url');
 const got = require('got');
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
-const { createPathWithDigest, createUnfurlObj, getClosestResourceType, getClosestPersona } = require('./helpers'); // eslint-disable-line
+const {
+  createPathWithDigest,
+  createUnfurlObj,
+  getClosestResourceType,
+  getClosestPersona,
+} = require('./helpers'); // eslint-disable-line
 const { MARKDOWN_FRONTMATTER_SCHEMA, UNFURL_TYPES } = require('./constants');
 /**
  * applys default front matter properties
@@ -88,7 +93,7 @@ const markdownFrontmatterPlugin = (extension, file) => {
       if (property.required && valueIsInvalid) {
         throw new Error(
           `\nFrontmatter key '${key}' is required but ${file.metadata.fileName} for source ${file
-            .metadata.source} is missing it`
+            .metadata.source} is missing it`,
         );
         // is there a defaultable value we can provide
       } else if (valueIsInvalid && DEFAULTS[key]) {
@@ -134,7 +139,7 @@ const pagePathPlugin = (extension, file) => {
     file.metadata.source,
     file.metadata.source,
     file.metadata.name,
-    file.html_url
+    file.html_url,
   );
   return file;
 };

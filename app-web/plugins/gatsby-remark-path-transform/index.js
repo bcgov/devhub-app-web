@@ -30,7 +30,7 @@ const { isRelativePath } = require('./utils/utils');
 const transformRelativePaths = ({ markdownAST, markdownNode, getNode }, { converter } = {}) => {
   if (!converter || !TypeCheck.isFunction(converter)) {
     throw new Error(
-      "gatsby-remark-path-transform option: 'converter' must be passed in as a function!"
+      "gatsby-remark-path-transform option: 'converter' must be passed in as a function!",
     );
   }
   const parentQLNode = getNode(markdownNode.parent);

@@ -89,11 +89,11 @@ describe('gatsby source github all plugin', () => {
   test("checkRegistry throws if sources don't exist or if sources are invalid", () => {
     const BAD_REGISTRY = { ...REGISTRY, sources: null };
     expect(() => checkRegistry(BAD_REGISTRY)).toThrow(
-      'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters'
+      'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters',
     );
     validateSourceRegistry.mockReturnValue(false);
     expect(() => checkRegistry(REGISTRY)).toThrow(
-      'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters'
+      'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters',
     );
   });
 

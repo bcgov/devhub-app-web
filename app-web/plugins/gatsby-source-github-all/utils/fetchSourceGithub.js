@@ -254,7 +254,16 @@ const filterFiles = (files, ignoreObj) => {
  * @returns {Array} The array of files
  */
 // eslint-disable-next-line
-const getFilesFromRepo = async ({sourceType, resourceType, name, sourceProperties: { repo, url, owner, branch }, attributes: { labels, persona }}, token) => {
+const getFilesFromRepo = async (
+  {
+    sourceType,
+    resourceType,
+    name,
+    sourceProperties: { repo, url, owner, branch },
+    attributes: { labels, persona },
+  },
+  token,
+) => {
   try {
     // ignore filtering
     const ig = ignore().add(DEFUALT_IGNORES);

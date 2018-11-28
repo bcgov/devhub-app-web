@@ -70,7 +70,7 @@ SourceNavigation.propTypes = {
         resourcePath: PropTypes.string,
         resourceTitle: PropTypes.string,
       }),
-    })
+    }),
   ).isRequired,
 };
 

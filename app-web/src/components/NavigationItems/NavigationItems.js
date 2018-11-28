@@ -34,7 +34,7 @@ NavigationItems.propTypes = {
     PropTypes.shape({
       to: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired,
-    })
+    }),
   ),
 };
 
