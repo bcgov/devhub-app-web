@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkSquareAlt } from '@fortawesome/free-solid-svg-icons';
 import DotDotDot from 'react-dotdotdot';
+import Image from 'react-image';
 import styles from './Card.module.css';
 import Card from '../../../hoc/Card';
 import Link from '../../UI/Link/Link';
 import { ARIA_LABEL_RESOURCE, ARIA_LABEL_REPO } from '../../../constants/ariaLabels';
 
-const SelfServiceCard = ({ sourcePath, sourceName, title, description, resourcePath }) => (
+const SelfServiceCard = ({ sourcePath, sourceName, title, description, resourcePath, image }) => (
   <Card>
     <h2 title={title}>
       <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE}>
@@ -19,7 +20,12 @@ const SelfServiceCard = ({ sourcePath, sourceName, title, description, resourceP
       </Link>
     </h2>
     <div className={styles.Body}>
-      <p>{description}</p>
+      <DotDotDot clamp={4} className={styles.BodyDescription}>
+        <p>{description}</p>
+      </DotDotDot>
+      <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE} className={styles.BodyImage}>
+        <Image src={image} />
+      </Link>
     </div>
     <div className={styles.Actions}>
       {/* <ul>
@@ -39,6 +45,10 @@ SelfServiceCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   resourcePath: PropTypes.string.isRequired,
+  image: PropTypes.string,
 };
 
+SelfServiceCard.defaultProps = {
+  image: '',
+};
 export default SelfServiceCard;

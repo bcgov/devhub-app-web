@@ -20,8 +20,12 @@ const DocumentCard = ({ sourcePath, sourceName, title, description, resourcePath
       </Link>
     </h2>
     <div className={styles.Body}>
-      <p>{description}</p>
-      <Image src={image} />
+      <DotDotDot clamp={4} className={styles.BodyDescription}>
+        <p>{description}</p>
+      </DotDotDot>
+      <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE} className={styles.BodyImage}>
+        <Image src={image} />
+      </Link>
     </div>
     <div className={styles.Actions}>
       {/* <ul>
