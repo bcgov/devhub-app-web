@@ -46,7 +46,10 @@ const createPathWithDigest = (base, ...digestables) => {
  * @param {String} type 
  * @param {Object} unfurledData
  */
-const createUnfurlObj = (type, { label1, data1, label2, data2, description, title, image }) => {
+const createUnfurlObj = (
+  type,
+  { label1, data1, label2, data2, description, title, image, author }
+) => {
   if (!TypeCheck.isString(type)) {
     throw new Error('type must be a string!');
   }
@@ -60,6 +63,7 @@ const createUnfurlObj = (type, { label1, data1, label2, data2, description, titl
     image,
     title,
     description,
+    author,
   };
 };
 

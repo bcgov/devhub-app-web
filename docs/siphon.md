@@ -206,6 +206,7 @@ the graphQL schema (more on that [here](https://v1.gatsbyjs.org/docs/source-plug
         label2,
         data2,
         type,
+        author
     }
     source {
         name // the actual repository name as found in github
