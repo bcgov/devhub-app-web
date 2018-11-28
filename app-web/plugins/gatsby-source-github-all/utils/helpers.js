@@ -89,7 +89,7 @@ const getClosestResourceType = resourceType => {
 const getClosestPersona = (persona, personas) => {
   // if its blank don't bother checking closeness
   if (persona === '') return '';
-  const matches = stringSimilarity.findBestMatch(personas, personas);
+  const matches = stringSimilarity.findBestMatch(persona, personas);
   // only return the best match if its greater than .5 in similarity
   return matches.bestMatch.rating >= 0.5 ? matches.bestMatch.target : '';
 };
