@@ -80,8 +80,23 @@ const getClosestResourceType = resourceType => {
   return matches.bestMatch.rating >= 0.5 ? matches.bestMatch.target : '';
 };
 
+/**
+ * returns the closest persona from the array of personas based on the
+ * uncontrolled persona (given to us by contributors)
+ * @param {String} persona the persona provided by a specific piece of content
+ * @param {Array} personas the valid personas list
+ */
+const getClosestPersona = (persona, personas) => {
+  // if its blank don't bother checking closeness
+  if (persona === '') return '';
+  const matches = stringSimilarity.findBestMatch(personas, personas);
+  // only return the best match if its greater than .5 in similarity
+  return matches.bestMatch.rating >= 0.5 ? matches.bestMatch.target : '';
+};
+
 module.exports = {
   createPathWithDigest,
   createUnfurlObj,
   getClosestResourceType,
+  getClosestPersona,
 };

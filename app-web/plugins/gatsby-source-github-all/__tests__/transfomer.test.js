@@ -5,13 +5,16 @@ import {
   markdownUnfurlPlugin,
   markdownResourceTypePlugin,
   externalLinkUnfurlPlugin,
+  markdownPersonaPlugin,
 } from '../utils/plugins';
 import { PROCESSED_FILE_MD } from '../__fixtures__/fixtures';
-import { createUnfurlObj, getClosestResourceType } from '../utils/helpers';
+import { PERSONAS_LIST } from '../utils/constants';
+import { createUnfurlObj, getClosestResourceType, getClosestPersona } from '../utils/helpers';
 jest.mock('../utils/helpers.js');
 
 createUnfurlObj.mockReturnValue({});
 getClosestResourceType.mockReturnValue('');
+getClosestPersona.mockImplementation(persona => persona);
 
 describe('Transformer System', () => {
   let file = null;
@@ -120,6 +123,39 @@ describe('Transformer System', () => {
         'http://www.bloomberg.com/news/articles/2016-05-24/as-zenefits-stumbles-gusto-goes-head-on-by-selling-insurance';
       const result = await externalLinkUnfurlPlugin(file.metadata.extension, file);
       expect(result.metadata.unfurl).toBeDefined();
+    });
+
+    it('returns file if not md', async () => {
+      file.metadata.extension = 'txt';
+      const result = await markdownPersonaPlugin(file.metadata.extension, file, {
+        personas: PERSONAS_LIST,
+      });
+      expect(result).toBeDefined();
+    });
+
+    it('appends persona metadata property', async () => {
+      expect(file.metadata.persona).not.toBeDefined();
+      const result = await markdownPersonaPlugin(file.metadata.extension, file, {
+        personas: PERSONAS_LIST,
+      });
+      expect(result.metadata.persona).toBeDefined();
+    });
+
+    it('appends persona metadata property by front matter first', async () => {
+      file.content = `---\npersona: Developer\n---`;
+      const result = await markdownPersonaPlugin(file.metadata.extension, file, {
+        personas: PERSONAS_LIST,
+      });
+      expect(result.metadata.persona).toBe('Developer');
+    });
+
+    it("sets persona metadata property '' when no applicable persona is available", async () => {
+      file.content = `---\n---`;
+      file.metadata.globalPersona = null;
+      const result = await markdownPersonaPlugin(file.metadata.extension, file, {
+        personas: PERSONAS_LIST,
+      });
+      expect(result.metadata.persona).toBe('');
     });
   });
 });
