@@ -24,6 +24,7 @@ const {
   MEDIATYPES,
   DEFUALT_IGNORES,
   GITHUB_SOURCE_SCHEMA,
+  PERSONAS_LIST,
 } = require('./constants');
 const chalk = require('chalk'); // eslint-disable-line
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
@@ -37,6 +38,7 @@ const {
   markdownUnfurlPlugin,
   markdownResourceTypePlugin,
   externalLinkUnfurlPlugin,
+  markdownPersonaPlugin,
 } = require('./plugins');
 /**
  * returns extension of a file name
@@ -300,6 +302,7 @@ const getFilesFromRepo = async ({sourceType, resourceType, name, sourcePropertie
             .use(markdownUnfurlPlugin)
             .use(markdownResourceTypePlugin)
             .use(externalLinkUnfurlPlugin)
+            .use(markdownPersonaPlugin, { personas: PERSONAS_LIST })
             .resolve();
         } catch (e) {
           console.error(chalk.yellow(e.message));
