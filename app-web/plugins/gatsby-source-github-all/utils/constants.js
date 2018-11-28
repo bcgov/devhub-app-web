@@ -130,6 +130,10 @@ const MARKDOWN_FRONTMATTER_SCHEMA = {
     type: String,
     required: false,
   },
+  persona: {
+    type: String,
+    required: false,
+  },
 };
 
 const GITHUB_SOURCE_SCHEMA = {

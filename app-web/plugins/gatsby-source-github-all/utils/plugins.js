@@ -77,6 +77,7 @@ const markdownFrontmatterPlugin = (extension, file) => {
       pageOnly: () => false, // in the use case where we want this node to not be presented as a card in the home page
       // provide default resource type to be blank
       resourceType: () => '',
+      persona: () => '',
     };
     // check front matter against defaults
     Object.keys(MARKDOWN_FRONTMATTER_SCHEMA).forEach(key => {
