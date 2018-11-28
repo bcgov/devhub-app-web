@@ -87,11 +87,11 @@ const getClosestResourceType = resourceType => {
  * @param {Array} personas the valid personas list
  */
 const getClosestPersona = (persona, personas) => {
+  const RATING_THRESHOLD = 0.5; // rating is between 0 - 1, we only want a match if it's greater than half. 
   // if its blank don't bother checking closeness
   if (persona === '') return '';
   const matches = stringSimilarity.findBestMatch(persona, personas);
-  // only return the best match if its greater than .5 in similarity
-  return matches.bestMatch.rating >= 0.5 ? matches.bestMatch.target : '';
+  return matches.bestMatch.rating >= RATING_THRESHOLD ? matches.bestMatch.target : '';
 };
 
 module.exports = {
