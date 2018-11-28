@@ -48,7 +48,7 @@ const createPathWithDigest = (base, ...digestables) => {
  */
 const createUnfurlObj = (
   type,
-  { label1, data1, label2, data2, description, title, image, author }
+  { label1, data1, label2, data2, description, title, image, author },
 ) => {
   if (!TypeCheck.isString(type)) {
     throw new Error('type must be a string!');
@@ -87,7 +87,7 @@ const getClosestResourceType = resourceType => {
  * @param {Array} personas the valid personas list
  */
 const getClosestPersona = (persona, personas) => {
-  const RATING_THRESHOLD = 0.5; // rating is between 0 - 1, we only want a match if it's greater than half. 
+  const RATING_THRESHOLD = 0.5; // rating is between 0 - 1, we only want a match if it's greater than half.
   // if its blank don't bother checking closeness
   if (persona === '') return '';
   const matches = stringSimilarity.findBestMatch(persona, personas);

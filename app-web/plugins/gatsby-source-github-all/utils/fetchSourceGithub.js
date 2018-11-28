@@ -121,7 +121,7 @@ const fetchFile = async (repo, owner, path, token, branch = '') => {
           Authorization: `Bearer ${token}`,
           'X-GitHub-Media-Type': 'Accept: application/vnd.github.v3.raw+json',
         },
-      }
+      },
     );
     const data = await result.json();
     if (result.ok) return data;
@@ -271,7 +271,7 @@ const getFilesFromRepo = async ({sourceType, resourceType, name, sourcePropertie
     const filesToFetch = filterFiles(files, ig);
     // retrieve contents for each file
     const filesWithContents = filesToFetch.map(file =>
-      fetchFile(repo, owner, file.path, token, branch)
+      fetchFile(repo, owner, file.path, token, branch),
     );
     const filesResponse = await Promise.all(filesWithContents);
     // for some reason the accept header is not returning with raw content so we will decode
@@ -290,8 +290,8 @@ const getFilesFromRepo = async ({sourceType, resourceType, name, sourcePropertie
           sourceType,
           resourceType,
           f.html_url,
-          persona
-        )
+          persona,
+        ),
       )
       .map(async f => {
         const ft = fileTransformer(f.metadata.extension, f);
