@@ -128,7 +128,9 @@ Must come inconjuction with `label1`
 Last of the two key value pairs allowed in the preview of a card
 #### value2 (optional)
 Must come inconjuction with `label2`
-
+#### persona (options)
+this will overide and global personas configurations set in the registry, this is used to allow for
+filtering the markdown files in the devhub by persona (valid personas: 'Developer', 'Designer', 'Product Owner')
 #### HTML metadata
 Follow this document on how to add the appropriate metadata to your HTML document. 
 
@@ -154,6 +156,9 @@ This is accomplished by 'registering' into the devhub.
         - `branch` (optional) The branch you would like devhub to source content from
 - `resourceType` (optional) This is a global resource type, any singular chunk of data (such as a markdown file or a yaml file or a  link to a website) that Siphon grabs from your source can have it's individual resourceType defaulted to this value
     - valid resource types: see the main readme
+- `attributes`
+    `labels`: a yaml list of labels/tags for all of your sources to inherit
+    `persona`: a global persona that all sources may inherit, personas are validated against a master list, valid values are: 'Designer', 'Developer', 'Product Owner'
 This will involve making a [Fork of the Devhub](https://github.com/bcgov/devhub-app-web/fork) and Pull Request to the [Devhub Repository's contributor-repository-registry branch](https://github.com/bcgov/devhub-app-web/tree/contributor-repo-registry).
 
 ***PULL REQUESTS TO MASTER OR ANY OTHER BRANCH WILL BE IGNORED***

@@ -220,7 +220,10 @@ the graphQL schema (more on that [here](https://v1.gatsbyjs.org/docs/source-plug
         // or internal, a link to a generated gatsby page
         path 
     }
-    labels
+    attributes { // extra information that may be beneficial for searching
+        labels
+        persona
+    }
     internal {
         contentDigest // a gatsby required property
         // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate
