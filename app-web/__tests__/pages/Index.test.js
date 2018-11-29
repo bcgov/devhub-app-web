@@ -47,7 +47,9 @@ describe('Index Container', () => {
       pathname: '/',
     };
 
-    const wrapper = shallow(<Index data={data} loadSiphonNodes={loadSiphonNodes} location={location}/>);
+    const wrapper = shallow(
+      <Index data={data} loadSiphonNodes={loadSiphonNodes} location={location} />,
+    );
     expect(wrapper).toMatchSnapshot();
   });
 });

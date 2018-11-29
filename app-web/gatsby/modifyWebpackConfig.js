@@ -27,7 +27,7 @@ module.exports = ({ config, env }) => {
       });
       config.merge({
         postcss: [
-            require('postcss-flexbugs-fixes'), // eslint-disable-line
+          require('postcss-flexbugs-fixes'), // eslint-disable-line
           autoprefixer({
             browsers: [
               '>1%',

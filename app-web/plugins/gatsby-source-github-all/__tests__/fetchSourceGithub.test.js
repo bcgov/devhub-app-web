@@ -93,7 +93,7 @@ describe('Github API', () => {
           'X-GitHub-Media-Type': 'Accept: application/vnd.github.v3.raw+json',
         },
         method: 'GET',
-      })
+      }),
     );
   });
 
@@ -114,7 +114,7 @@ describe('Github API', () => {
     }
     // mock fetch file
     fetch.mockReturnValue(
-      Promise.resolve(new Response(JSON.stringify(GITHUB_API.FAIL), { status: 400 }))
+      Promise.resolve(new Response(JSON.stringify(GITHUB_API.FAIL), { status: 400 })),
     );
     const ignoreFile = await fetchIgnoreFile();
 
@@ -137,7 +137,7 @@ describe('Github API', () => {
           'X-GitHub-Media-Type': 'Accept: application/vnd.github.v3.raw+json',
         },
         method: 'GET',
-      })
+      }),
     );
   });
 
@@ -160,7 +160,7 @@ describe('Github API', () => {
       expect.objectContaining({
         headers: { Authorization: 'Bearer TOKEN' },
         method: 'GET',
-      })
+      }),
     );
   });
 

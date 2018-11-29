@@ -37,7 +37,7 @@ class Layout extends React.Component {
             type="image/x-icon"
           />
         </Helmet>
-        <PrimaryHeader path={path}/>
+        <PrimaryHeader path={path} />
         <div className="container">{children}</div>
         <PrimaryFooter />
       </div>

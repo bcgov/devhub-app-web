@@ -48,7 +48,7 @@ const createPathWithDigest = (base, ...digestables) => {
  */
 const createUnfurlObj = (
   type,
-  { label1, data1, label2, data2, description, title, image, author }
+  { label1, data1, label2, data2, description, title, image, author },
 ) => {
   if (!TypeCheck.isString(type)) {
     throw new Error('type must be a string!');
@@ -80,8 +80,23 @@ const getClosestResourceType = resourceType => {
   return matches.bestMatch.rating >= 0.5 ? matches.bestMatch.target : '';
 };
 
+/**
+ * returns the closest persona from the array of personas based on the
+ * uncontrolled persona (given to us by contributors)
+ * @param {String} persona the persona provided by a specific piece of content
+ * @param {Array} personas the valid personas list
+ */
+const getClosestPersona = (persona, personas) => {
+  const RATING_THRESHOLD = 0.5; // rating is between 0 - 1, we only want a match if it's greater than half.
+  // if its blank don't bother checking closeness
+  if (persona === '') return '';
+  const matches = stringSimilarity.findBestMatch(persona, personas);
+  return matches.bestMatch.rating >= RATING_THRESHOLD ? matches.bestMatch.target : '';
+};
+
 module.exports = {
   createPathWithDigest,
   createUnfurlObj,
   getClosestResourceType,
+  getClosestPersona,
 };

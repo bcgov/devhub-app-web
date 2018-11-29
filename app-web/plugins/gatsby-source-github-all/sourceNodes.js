@@ -44,7 +44,10 @@ const createSiphonNode = (data, id) => ({
     type: data.metadata.resourceType, // the base resource type for this see utils/constants.js
     originalSource: data.metadata.originalResourceLocation, // the original location of the resource
   },
-  labels: data.metadata.labels, // labels from source registry
+  attributes: {
+    labels: data.metadata.labels, // labels from source registry
+    persona: data.metadata.persona, // persona from the source registry, see constants for valid personas
+  },
   internal: {
     contentDigest: crypto
       .createHash('md5')
@@ -74,7 +77,7 @@ const sourcesAreValid = sources => sources.every(validateSourceRegistry);
 const checkRegistry = registry => {
   if (!registry.sources || !sourcesAreValid(registry.sources)) {
     throw new Error(
-      'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters'
+      'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters',
     );
   }
   return true;
@@ -101,7 +104,7 @@ const filterIgnoredResources = sources =>
     }
     console.log(
       chalk`\n The resource {green.bold ${s.metadata
-        .name}} has been flagged as {green.bold 'ignore'} and will not have a Siphon Node created for it`
+        .name}} has been flagged as {green.bold 'ignore'} and will not have a Siphon Node created for it`,
     );
     return false;
   });
@@ -116,7 +119,7 @@ const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { to
     checkRegistry(registry);
     // fetch all repos
     const sources = await Promise.all(
-      registry.sources.map(source => fetchFromSource(source.sourceType, source, tokens))
+      registry.sources.map(source => fetchFromSource(source.sourceType, source, tokens)),
     );
     // sources is an array of arrays [[source data], [source data]] etc
     // so we flatten it into a 1 dimensional array

@@ -41,7 +41,7 @@ const getTemplate = (source, mediaType) => {
     return sourceTemplate[mediaType];
   } else {
     throw new Error(
-      `No Available Template for source type ${source}, this is most likely an issue with Siphon's code base creating nodes with the incorrect source type!`
+      `No Available Template for source type ${source}, this is most likely an issue with Siphon's code base creating nodes with the incorrect source type!`,
     );
   }
 };

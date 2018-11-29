@@ -39,12 +39,12 @@ describe('gatsby-remark-path-transform', () => {
       expect(() => {
         transformRelativePaths({}, { converter: null });
       }).toThrow(
-        "gatsby-remark-path-transform option: 'converter' must be passed in as a function!"
+        "gatsby-remark-path-transform option: 'converter' must be passed in as a function!",
       );
       expect(() => {
         transformRelativePaths({});
       }).toThrow(
-        "gatsby-remark-path-transform option: 'converter' must be passed in as a function!"
+        "gatsby-remark-path-transform option: 'converter' must be passed in as a function!",
       );
     });
 

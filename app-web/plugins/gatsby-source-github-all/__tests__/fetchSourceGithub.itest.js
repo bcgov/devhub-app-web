@@ -34,7 +34,7 @@ describe('Integration github api module', () => {
       .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))))
       .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))))
       .mockReturnValueOnce(
-        Promise.resolve(new Response(JSON.stringify(GITHUB_API.FAIL), { status: 400 }))
+        Promise.resolve(new Response(JSON.stringify(GITHUB_API.FAIL), { status: 400 })),
       )
       .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
     const files = await getFilesFromRepo(GITHUB_SOURCE);
@@ -45,7 +45,7 @@ describe('Integration github api module', () => {
   it('returns a list of files even if some fail', async () => {
     // mock out concurrent requests to githup api
     fetch.mockReturnValueOnce(
-      Promise.resolve(new Response(JSON.stringify(GITHUB_API.FAIL), { status: 400 }))
+      Promise.resolve(new Response(JSON.stringify(GITHUB_API.FAIL), { status: 400 })),
     );
     const files = await getFilesFromRepo(GITHUB_SOURCE);
     expect(files).toBeInstanceOf(Array);

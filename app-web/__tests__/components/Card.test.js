@@ -11,7 +11,7 @@ describe('Card Component', () => {
         resourcePath="resourcePath"
         sourcePath="sourcePath"
         sourceName="sourceName"
-      />
+      />,
     );
     expect(wrapper).toMatchSnapshot();
   });

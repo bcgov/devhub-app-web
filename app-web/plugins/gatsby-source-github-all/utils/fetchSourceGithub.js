@@ -24,6 +24,7 @@ const {
   MEDIATYPES,
   DEFUALT_IGNORES,
   GITHUB_SOURCE_SCHEMA,
+  PERSONAS_LIST,
 } = require('./constants');
 const chalk = require('chalk'); // eslint-disable-line
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
@@ -37,6 +38,7 @@ const {
   markdownUnfurlPlugin,
   markdownResourceTypePlugin,
   externalLinkUnfurlPlugin,
+  markdownPersonaPlugin,
 } = require('./plugins');
 /**
  * returns extension of a file name
@@ -119,7 +121,7 @@ const fetchFile = async (repo, owner, path, token, branch = '') => {
           Authorization: `Bearer ${token}`,
           'X-GitHub-Media-Type': 'Accept: application/vnd.github.v3.raw+json',
         },
-      }
+      },
     );
     const data = await result.json();
     if (result.ok) return data;
@@ -196,7 +198,8 @@ const applyBaseMetadata = (
   sourceURL,
   sourceType,
   globalResourceType,
-  originalResourceLocation
+  originalResourceLocation,
+  globalPersona,
 ) => {
   const extension = getExtensionFromName(file.name);
   return {
@@ -216,6 +219,7 @@ const applyBaseMetadata = (
       sourceType,
       globalResourceType,
       originalResourceLocation,
+      globalPersona,
     },
   };
 };
@@ -250,7 +254,16 @@ const filterFiles = (files, ignoreObj) => {
  * @returns {Array} The array of files
  */
 // eslint-disable-next-line
-const getFilesFromRepo = async ({sourceType, resourceType, name, sourceProperties: { repo, url, owner, branch }, attributes: { labels }}, token) => {
+const getFilesFromRepo = async (
+  {
+    sourceType,
+    resourceType,
+    name,
+    sourceProperties: { repo, url, owner, branch },
+    attributes: { labels, persona },
+  },
+  token,
+) => {
   try {
     // ignore filtering
     const ig = ignore().add(DEFUALT_IGNORES);
@@ -267,7 +280,7 @@ const getFilesFromRepo = async ({sourceType, resourceType, name, sourcePropertie
     const filesToFetch = filterFiles(files, ig);
     // retrieve contents for each file
     const filesWithContents = filesToFetch.map(file =>
-      fetchFile(repo, owner, file.path, token, branch)
+      fetchFile(repo, owner, file.path, token, branch),
     );
     const filesResponse = await Promise.all(filesWithContents);
     // for some reason the accept header is not returning with raw content so we will decode
@@ -276,7 +289,18 @@ const getFilesFromRepo = async ({sourceType, resourceType, name, sourcePropertie
     const processedFiles = filesResponse
       .filter(f => f !== undefined) // filter out any files that weren't fetched
       .map(f =>
-        applyBaseMetadata(f, labels, owner, repo, name, url, sourceType, resourceType, f.html_url)
+        applyBaseMetadata(
+          f,
+          labels,
+          owner,
+          repo,
+          name,
+          url,
+          sourceType,
+          resourceType,
+          f.html_url,
+          persona,
+        ),
       )
       .map(async f => {
         const ft = fileTransformer(f.metadata.extension, f);
@@ -287,6 +311,7 @@ const getFilesFromRepo = async ({sourceType, resourceType, name, sourcePropertie
             .use(markdownUnfurlPlugin)
             .use(markdownResourceTypePlugin)
             .use(externalLinkUnfurlPlugin)
+            .use(markdownPersonaPlugin, { personas: PERSONAS_LIST })
             .resolve();
         } catch (e) {
           console.error(chalk.yellow(e.message));

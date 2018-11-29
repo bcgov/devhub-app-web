@@ -125,7 +125,8 @@ const GITHUB_API = {
       html: 'https://github.com/bcgov/range-web/blob/master/public/manifest.json',
     },
   },
-  BAD_MD_FILE: { // no description front matter (which is required)
+  BAD_MD_FILE: {
+    // no description front matter (which is required)
     name: 'badfile.md',
     path: 'public/badfile.md',
     sha: 'ef19ec243e739479802a5553d0b38a18ed845307',
@@ -291,6 +292,7 @@ const PROCESSED_FILE_MD = {
     fileName: 'README.md',
     mediaType: 'text/markdown',
     extension: 'md',
+    globalPersona: 'Designer',
   },
 };
 

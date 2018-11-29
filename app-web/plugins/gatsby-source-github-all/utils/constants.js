@@ -37,6 +37,14 @@ const RESOURCE_TYPES = [
   'Components',
 ];
 
+const PERSONAS = {
+  DESIGNER: 'Designer',
+  DEVELOPER: 'Developer',
+  PRODUCT_OWNER: 'Product Owner',
+};
+
+const PERSONAS_LIST = Object.keys(PERSONAS).map(p => PERSONAS[p]);
+
 const GRAPHQL_NODE_TYPE = 'DevhubSiphon';
 
 const DEFUALT_IGNORES = [
@@ -122,6 +130,10 @@ const MARKDOWN_FRONTMATTER_SCHEMA = {
     type: String,
     required: false,
   },
+  persona: {
+    type: String,
+    required: false,
+  },
 };
 
 const GITHUB_SOURCE_SCHEMA = {
@@ -151,4 +163,6 @@ module.exports = {
   SOURCE_TYPES,
   RESOURCE_TYPES,
   UNFURL_TYPES,
+  PERSONAS,
+  PERSONAS_LIST,
 };

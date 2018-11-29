@@ -105,7 +105,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
   test('transformer leaves text files alone with markdown plugin', async () => {
     const transformedContent = await fileTransformer(
       PROCESSED_FILE_TXT.metadata.extension,
-      PROCESSED_FILE_TXT
+      PROCESSED_FILE_TXT,
     )
       .use(markdownFrontmatterPlugin)
       .resolve();
@@ -117,7 +117,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
     expect(data.data.resourcePath).toBeDefined();
     const transformedFile = await fileTransformer(
       RAW_FILE_MD_WITH_RESOURCEPATH.metadata.extension,
-      RAW_FILE_MD_WITH_RESOURCEPATH
+      RAW_FILE_MD_WITH_RESOURCEPATH,
     )
       .use(pagePathPlugin)
       .resolve();
@@ -134,7 +134,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
       .resolve();
 
     expect(transformedFile.metadata.resourcePath).toBe(
-      `/${source}/${source}${name}https:/github.com/bcgov/design-system/blob/master/components/header/README.md`
+      `/${source}/${source}${name}https:/github.com/bcgov/design-system/blob/master/components/header/README.md`,
     );
   });
 
