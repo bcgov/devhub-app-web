@@ -7,20 +7,21 @@ import Image from 'react-image';
 import styles from './Card.module.css';
 import Card from '../../../hoc/Card';
 import Link from '../../UI/Link/Link';
+import { CARD_CONFIG } from '../../../constants/ui';
 import { ARIA_LABEL_RESOURCE, ARIA_LABEL_REPO } from '../../../constants/ariaLabels';
 
 const ComponentCard = ({ sourcePath, sourceName, title, description, resourcePath, image }) => (
   <Card>
     <h2 title={title}>
       <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE}>
-        <DotDotDot clamp={2} tagName="span">
+        <DotDotDot clamp={CARD_CONFIG.maxTitleLines} tagName="span">
           <FontAwesomeIcon icon={faExternalLinkSquareAlt} size="1x" />
           {title}
         </DotDotDot>
       </Link>
     </h2>
     <div className={styles.Body}>
-      <DotDotDot clamp={4} className={styles.BodyDescription}>
+      <DotDotDot clamp={CARD_CONFIG.maxDescriptionLines} className={styles.BodyDescription}>
         <p>{description}</p>
       </DotDotDot>
       <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE} className={styles.BodyImage}>
