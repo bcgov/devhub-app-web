@@ -41,7 +41,7 @@ const DocumentCard = ({ sourcePath, sourceName, title, description, resourcePath
 DocumentCard.displayName = 'Document Card Component';
 
 DocumentCard.propTypes = {
-  sourcePath: PropTypes.string,
+  sourcePath: PropTypes.string.isRequired,
   sourceName: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
