@@ -20,6 +20,7 @@ const visit = require('unist-util-visit');
 const cheerio = require('cheerio');
 const { TypeCheck } = require('@bcgov/common-web-utils');
 const { isRelativePath } = require('./utils/utils');
+const { IMAGE, LINK } = require('./utils/constants');
 
 /**
  * sifts through ast (see https://www.huynguyen.io/2018-05-remark-gatsby-plugin-part-2/)
@@ -29,9 +30,6 @@ const { isRelativePath } = require('./utils/utils');
  * @param {Object} options 
  */
 const transformRelativePaths = ({ markdownAST, markdownNode, getNode }, { converter } = {}) => {
-  const IMAGE = 'image';
-  const LINK = 'link';
-
   if (!converter || !TypeCheck.isFunction(converter)) {
     throw new Error(
       "gatsby-remark-path-transform option: 'converter' must be passed in as a function!",
@@ -75,7 +73,7 @@ const transformRelativePaths = ({ markdownAST, markdownNode, getNode }, { conver
     node.url = imageVisitedCB(node.url);
   });
 
-  visit(markdownAST, 'link', node => {
+  visit(markdownAST, LINK, node => {
     node.url = linkVisitedCB(node.url);
   });
 };
