@@ -21,7 +21,7 @@ import shortid from 'shortid';
 import Card from '../../../hoc/Card';
 import ActionGroup from './ActionGroup/ActionGroup';
 
-const BackSide = ({ actionGroups }) => (
+const Backside = ({ actionGroups }) => (
   <Card>
     {actionGroups.map(ag => (
       <ActionGroup title={ag.title} actions={ag.actions} key={shortid.generate()} />
@@ -29,7 +29,7 @@ const BackSide = ({ actionGroups }) => (
   </Card>
 );
 
-BackSide.propTypes = {
+Backside.propTypes = {
   actionGroups: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
@@ -38,4 +38,4 @@ BackSide.propTypes = {
   ),
 };
 
-export default BackSide;
+export default Backside;
