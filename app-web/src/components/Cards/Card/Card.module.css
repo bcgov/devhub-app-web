@@ -19,6 +19,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 0.8em;
+    flex-shrink: 0;
     max-height: 2em;
   }
   
@@ -40,14 +41,32 @@
     text-transform: capitalize;
   }
   
-  .Card p {
-    font-size: 14px;
+  .Body {
+    overflow: hidden;
+    flex-grow: 1;
+    box-sizing: border-box;
+  }
+
+  .BodyDescription {
+    font-size: 16px;
     line-height: 1.2em;
   }
-  .Body {
-    overflow: auto;
-    padding-right: 8px;
+
+  .BodyDescription p {
+    margin-bottom: 0;
   }
+
+  .Body img {
+    max-height: 100%;
+  }
+
+  .BodyImage {
+    margin-top: 10px;
+    text-align: center;
+    height: 125px;
+    display: block;
+  }
+
   .Actions {
     position: absolute;
     bottom: 0;

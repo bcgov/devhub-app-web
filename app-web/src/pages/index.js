@@ -110,6 +110,7 @@ export const resourceQuery = graphql`
             title
             description
             type
+            image
           }
           childMarkdownRemark {
             frontmatter {

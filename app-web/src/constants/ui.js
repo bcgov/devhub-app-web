@@ -6,6 +6,12 @@ import {
   COMPONENTS_ROUTE,
   SELF_SERVICE_ROUTE,
 } from './routes';
+
+export const CARD_CONFIG = {
+  maxDescriptionLines: 4, // max number of lines before text should be truncated
+  maxTitleLines: 2, // similar.
+};
+
 export const buttonTypes = ['primary', 'secondary', 'link'];
 export const LOGIN_BTN_ID = 'dh-login';
 export const LOGOUT_BTN_ID = 'dh-logout';
