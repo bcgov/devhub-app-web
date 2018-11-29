@@ -17,8 +17,10 @@ Created by Patrick Simonian
 */
 
 const visit = require('unist-util-visit');
+const cheerio = require('cheerio');
 const { TypeCheck } = require('@bcgov/common-web-utils');
 const { isRelativePath } = require('./utils/utils');
+const { IMAGE, LINK } = require('./utils/constants');
 
 /**
  * sifts through ast (see https://www.huynguyen.io/2018-05-remark-gatsby-plugin-part-2/)
@@ -33,22 +35,46 @@ const transformRelativePaths = ({ markdownAST, markdownNode, getNode }, { conver
       "gatsby-remark-path-transform option: 'converter' must be passed in as a function!",
     );
   }
-  const parentQLNode = getNode(markdownNode.parent);
-  // visit anchor tags and images
-  visit(markdownAST, 'image', node => {
+
+  /**
+   * Closured call back to call that returns the url transformed by the 
+   * converter cb or the url on its own if it isn't relative
+   * @param {String} nodeType 
+   * @param {Object} parentQLNode 
+   */
+  const visitCB = (nodeType, parentQLNode) => url => {
     // is node url relative?
-    if (isRelativePath(node.url)) {
-      const absolutePath = converter('image', node.url, parentQLNode);
-      node.url = absolutePath; // eslint-disable-line
+    if (isRelativePath(url)) {
+      const absolutePath = converter(nodeType, url, parentQLNode);
+      return absolutePath; // eslint-disable-line
     }
+    return url;
+  };
+
+  const parentQLNode = getNode(markdownNode.parent);
+  const imageVisitedCB = visitCB(IMAGE, parentQLNode);
+  const linkVisitedCB = visitCB(LINK, parentQLNode);
+
+  // visit any html nodes and ensure and check for stand alone image tags
+  visit(markdownAST, 'html', node => {
+    const $ = cheerio.load(node.value);
+    const images = $('img');
+
+    images.each((ind, elm) => {
+      const src = $(elm).attr('src');
+      $(elm).attr('src', imageVisitedCB(src));
+    });
+
+    node.value = $.html();
   });
 
-  visit(markdownAST, 'link', node => {
-    // is node url relative?
-    if (isRelativePath(node.url)) {
-      const absolutePath = converter('link', node.url, parentQLNode);
-      node.url = absolutePath; // eslint-disable-line
-    }
+  // visit link and img ast nodes
+  visit(markdownAST, IMAGE, node => {
+    node.url = imageVisitedCB(node.url);
+  });
+
+  visit(markdownAST, LINK, node => {
+    node.url = linkVisitedCB(node.url);
   });
 };
 

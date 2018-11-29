@@ -1,4 +1,6 @@
 jest.requireActual('unist-util-visit');
 module.exports = (ast, node, cb) => {
-  cb(ast);
+  if (ast.type === node) {
+    cb(ast);
+  }
 };
