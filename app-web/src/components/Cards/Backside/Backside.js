@@ -35,7 +35,7 @@ Backside.propTypes = {
       title: PropTypes.string.isRequired,
       actions: PropTypes.array.isRequired,
     }),
-  ),
+  ).isRequired,
 };
 
 export default Backside;

@@ -36,7 +36,7 @@ ActionGroup.propTypes = {
       actionValue: PropTypes.string.isRequired,
       link: PropTypes.string,
     }),
-  ),
+  ).isRequired,
 };
 
 export default ActionGroup;

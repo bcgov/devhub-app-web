@@ -37,6 +37,7 @@ Action.propTypes = {
   icon: PropTypes.node.isRequired,
   actionValue: PropTypes.string.isRequired,
   actionName: PropTypes.string.isRequired,
+  link: PropTypes.string,
 };
 
 Action.defaultProps = {
