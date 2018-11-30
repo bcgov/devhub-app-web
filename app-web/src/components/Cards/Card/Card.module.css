@@ -33,6 +33,8 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #ccc;
   }
 
   .Head h2 {
@@ -90,11 +92,13 @@
   }
 
   .Foot {
+    border-top: 1px solid #ccc;
     color: #6d6d6d;
     font-weight: 400;
     position: absolute;
     bottom: 0;
     left: 0;
+    right: 0;
     padding: 8px 14px;
   }
   
