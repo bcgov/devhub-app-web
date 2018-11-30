@@ -195,7 +195,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
   test('transformer unfurls an external resource path', async () => {
     const file = {
       metadata: {
-        resourcePath: 'www.example.com',
+        resourcePath: 'https://www.example.com',
       },
     };
 

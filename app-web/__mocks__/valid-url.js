@@ -1,5 +1,6 @@
 jest.requireActual('valid-url');
 
 module.exports = {
-  isUri: () => true,
+  isUri: url => url,
+  isWebUri: url => url,
 };
