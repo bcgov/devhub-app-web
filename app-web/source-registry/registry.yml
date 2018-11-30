@@ -2,8 +2,8 @@ sources:
   - name: Design System
     sourceType: 'github'
     sourceProperties:
-      url: https://github.com/patricksimonian/design-system/
-      owner: patricksimonian
+      url: https://github.com/bcgov/design-system/
+      owner: bcgov
       repo: 'design-system'
     attributes:
       labels:
