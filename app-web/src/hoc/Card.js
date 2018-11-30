@@ -15,6 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
+
 // wrapper for all card type components
 import React from 'react';
 import PropTypes from 'prop-types';
