@@ -115,3 +115,17 @@
   .Actions li {
     flex-basis: 25px;
   }
+
+  @media screen and (min-width: 500px) {
+    .Card {
+      width: 220px;
+      height: 308px;
+    }
+  }
+
+  @media screen and (min-width: 641px) {
+    .Card {
+      width: 250px;
+      height: 350px;
+    }
+  }
