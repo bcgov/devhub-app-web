@@ -224,14 +224,42 @@ const applyBaseMetadata = (
   };
 };
 
+const filterFilesByContext = (files, contextDir) => {
+  let targetPath;
+  if (contextDir.charAt(0) === '/') {
+    targetPath = contextDir.substring(1);
+  } else {
+    targetPath = contextDir;
+  }
+
+  // now only return files in the target vcontext dir
+  let contextFiles = files.filter(file => {
+    console.log(file.path.substring(0, targetPath.length) + '\n');
+    return file.path.substring(0, targetPath.length) === targetPath;
+  });
+
+  return contextFiles;
+};
+
 /**
  * filters files by processable extensions as well as the devhubignores
  * @param {Array} files the files
  * @param {Object} ignoreObj the ignore module object
  */
-const filterFiles = (files, ignoreObj) => {
+const filterFiles = (files, ignoreObj, contextDir) => {
+  let fileInContext;
+  if (contextDir) {
+    // filter out files that are not in the context path
+    fileInContext = filterFilesByContext(files, contextDir);
+  } else {
+    fileInContext = files;
+  }
+
+  console.log('CONTEXT' + contextDir);
+  console.log('FILES' + fileInContext);
+
   // filter out files that aren't markdown
-  const filteredFiles = filterFilesByExtensions(files, PROCESSABLE_EXTENSIONS);
+  const filteredFiles = filterFilesByExtensions(fileInContext, PROCESSABLE_EXTENSIONS);
   // filter out files that are apart of ignore
   const filesToFetch = filteredFiles.filter(file => !ignoreObj.ignores(file.path));
   return filesToFetch;
@@ -259,7 +287,7 @@ const getFilesFromRepo = async (
     sourceType,
     resourceType,
     name,
-    sourceProperties: { repo, url, owner, branch },
+    sourceProperties: { repo, url, owner, branch, context },
     attributes: { labels, persona },
   },
   token,
@@ -272,12 +300,13 @@ const getFilesFromRepo = async (
     // filter out files by extensions
     if (!data.tree) return [];
     let files = filterFilesFromDirectories(data.tree);
+
     // fetch ignore file if exists
     const repoIgnores = await fetchIgnoreFile(repo, owner, token, branch);
     // add repo ignores to ignore object
     ig.add(repoIgnores);
     // pass files to filter routine with ignore object
-    const filesToFetch = filterFiles(files, ig);
+    const filesToFetch = filterFiles(files, ig, context);
     // retrieve contents for each file
     const filesWithContents = filesToFetch.map(file =>
       fetchFile(repo, owner, file.path, token, branch),
