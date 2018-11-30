@@ -200,11 +200,13 @@ const externalLinkUnfurlPlugin = async (extension, file) => {
     const { body: html, url } = await got(file.metadata.resourcePath);
     const metadata = await metascraper({ html, url });
     // update image to have resource path prepended to it if it is not https
-    metadata.image =
-      validUrl.isUri(metadata.image) !== undefined
-        ? metadata.image
-        : resolve(file.metadata.resourcePath, '/', metadata.image);
-    file.metadata.unfurl = createUnfurlObj(UNFURL_TYPES.EXTERNAL, metadata);
+    if (metadata.image) {
+      metadata.image =
+        validUrl.isUri(metadata.image) !== undefined
+          ? metadata.image
+          : resolve(file.metadata.resourcePath, '/', metadata.image);
+      file.metadata.unfurl = createUnfurlObj(UNFURL_TYPES.EXTERNAL, metadata);
+    }
   }
   return file;
 };
