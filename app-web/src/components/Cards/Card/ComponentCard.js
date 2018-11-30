@@ -10,8 +10,8 @@ import Link from '../../UI/Link/Link';
 import { CARD_CONFIG } from '../../../constants/ui';
 import { ARIA_LABEL_RESOURCE, ARIA_LABEL_REPO } from '../../../constants/ariaLabels';
 
-const ComponentCard = ({ sourcePath, sourceName, title, description, resourcePath, image }) => (
-  <Card>
+const ComponentCard = ({ title, description, resourcePath, image, resourceType }) => (
+  <Card resourceType={resourceType}>
     <h2 title={title}>
       <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE}>
         <DotDotDot clamp={CARD_CONFIG.maxTitleLines} tagName="span">
@@ -28,13 +28,6 @@ const ComponentCard = ({ sourcePath, sourceName, title, description, resourcePat
         <Image src={image} />
       </Link>
     </div>
-    <div className={styles.Actions}>
-      {/* <ul>
-            </ul> */}
-      <Link to={sourcePath} aria-label={ARIA_LABEL_REPO}>
-        {sourceName}
-      </Link>
-    </div>
   </Card>
 );
 
@@ -46,6 +39,7 @@ ComponentCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   resourcePath: PropTypes.string.isRequired,
+  resourceType: PropTypes.string.isRequired,
   image: PropTypes.string,
 };
 

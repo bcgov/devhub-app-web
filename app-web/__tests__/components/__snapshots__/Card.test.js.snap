@@ -7,6 +7,7 @@ ShallowWrapper {
     description="description"
     image=""
     resourcePath="resourcePath"
+    resourceType=""
     sourceName="sourceName"
     sourcePath="sourcePath"
     title="title"
@@ -100,17 +101,8 @@ ShallowWrapper {
             />
           </GatsbyLink>
         </div>,
-        <div
-          className="Actions"
-        >
-          <GatsbyLink
-            aria-label="Link to the Github Repository"
-            to="sourcePath"
-          >
-            sourceName
-          </GatsbyLink>
-        </div>,
       ],
+      "resourceType": "",
     },
     "ref": null,
     "rendered": Array [
@@ -401,35 +393,6 @@ ShallowWrapper {
         ],
         "type": "div",
       },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": <GatsbyLink
-            aria-label="Link to the Github Repository"
-            to="sourcePath"
-          >
-            sourceName
-          </GatsbyLink>,
-          "className": "Actions",
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "aria-label": "Link to the Github Repository",
-            "children": "sourceName",
-            "to": "sourcePath",
-          },
-          "ref": null,
-          "rendered": "sourceName",
-          "type": [Function],
-        },
-        "type": "div",
-      },
     ],
     "type": [Function],
   },
@@ -515,17 +478,8 @@ ShallowWrapper {
               />
             </GatsbyLink>
           </div>,
-          <div
-            className="Actions"
-          >
-            <GatsbyLink
-              aria-label="Link to the Github Repository"
-              to="sourcePath"
-            >
-              sourceName
-            </GatsbyLink>
-          </div>,
         ],
+        "resourceType": "",
       },
       "ref": null,
       "rendered": Array [
@@ -814,35 +768,6 @@ ShallowWrapper {
               "type": [Function],
             },
           ],
-          "type": "div",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": <GatsbyLink
-              aria-label="Link to the Github Repository"
-              to="sourcePath"
-            >
-              sourceName
-            </GatsbyLink>,
-            "className": "Actions",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "aria-label": "Link to the Github Repository",
-              "children": "sourceName",
-              "to": "sourcePath",
-            },
-            "ref": null,
-            "rendered": "sourceName",
-            "type": [Function],
-          },
           "type": "div",
         },
       ],
