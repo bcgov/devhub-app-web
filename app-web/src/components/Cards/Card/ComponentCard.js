@@ -16,9 +16,11 @@ const ComponentCard = ({ title, description, resourcePath, image, resourceType, 
       <DotDotDot clamp={CARD_CONFIG.maxDescriptionLines} className={styles.BodyDescription}>
         <p>{description}</p>
       </DotDotDot>
-      <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE} className={styles.BodyImage}>
-        <Image src={image} />
-      </Link>
+      <div className={styles.BodyImage}>
+        <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE}>
+          <Image src={image} width={CARD_CONFIG.cardImageWidth} height={CARD_CONFIG.cardImageHeight} />
+        </Link>
+      </div>
     </div>
   </Card>
 );

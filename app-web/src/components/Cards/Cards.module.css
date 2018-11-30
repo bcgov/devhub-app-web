@@ -51,7 +51,7 @@
       display: block;
     }
     .Cards {
-        justify-content: space-between;
+        justify-content: flex-start;
     }
     .CardsContainer {
         margin-bottom: 20px;

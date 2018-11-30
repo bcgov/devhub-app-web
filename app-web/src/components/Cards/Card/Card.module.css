@@ -14,18 +14,8 @@
 
   .Card:hover {
     box-shadow: 0 0 2px 2px rgba(0, 44, 95, 0.25);
-    cursor: pointer;
   }
 
-  .Card h2 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    flex-shrink: 0;
-    font-weight: 400;
-    margin-bottom: 13px;
-    font-size: 20px;
-  }
-  
   .Card h2 svg {
     margin-right: 10px;
     color: #6d6d6d;
@@ -46,9 +36,19 @@
   }
 
   .Head h2 {
-    flex-basis: 75%;
+    flex: 1 0 75%;
     margin: 0;
-    flex-grow: 1;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .Head h2 a {
+    font-size: 20px;
+    display: block;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   .Head .Avatar {
@@ -89,7 +89,7 @@
     justify-content: center;
   }
 
-  .ResourceType {
+  .Foot {
     color: #6d6d6d;
     font-weight: 400;
     position: absolute;
@@ -98,7 +98,7 @@
     padding: 8px 14px;
   }
   
-  .ResourceType p {
+  .Foot p {
     margin: 0;
   }
   

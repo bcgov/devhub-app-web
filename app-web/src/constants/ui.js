@@ -13,6 +13,8 @@ export const CARD_CONFIG = {
   avatarIconSize: 200,
   avatarIconWidth: 30,
   avatarIconHeight: 30,
+  cardImageWidth: 150,
+  cardImageHeight: 150,
 };
 
 export const buttonTypes = ['primary', 'secondary', 'link'];
