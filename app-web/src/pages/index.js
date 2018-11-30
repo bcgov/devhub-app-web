@@ -111,6 +111,7 @@ export const resourceQuery = graphql`
             description
             type
             image
+            author
           }
           childMarkdownRemark {
             frontmatter {

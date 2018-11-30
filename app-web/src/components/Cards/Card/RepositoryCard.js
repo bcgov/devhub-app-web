@@ -18,16 +18,9 @@ const RepositoryCard = ({
   resourcePath,
   image,
   resourceType,
+  author,
 }) => (
-  <Card resourceType={resourceType}>
-    <h2 title={title}>
-      <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE}>
-        <DotDotDot clamp={CARD_CONFIG.maxTitleLines} tagName="span">
-          <FontAwesomeIcon icon={faExternalLinkSquareAlt} size="1x" />
-          {title}
-        </DotDotDot>
-      </Link>
-    </h2>
+  <Card resourceType={resourceType} title={title} resourcePath={resourcePath} author={author}>
     <div className={styles.Body}>
       <DotDotDot clamp={CARD_CONFIG.maxDescriptionLines} className={styles.BodyDescription}>
         <p>{description}</p>

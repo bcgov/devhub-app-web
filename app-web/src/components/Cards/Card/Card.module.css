@@ -8,22 +8,19 @@
     flex-flow: column nowrap;
     color: #3b3b3b;
     flex-shrink: 0;
-    margin: 10px 20px 10px 0px;
+    margin: 10px;
     transition: box-shadow 0.25s ease-out;
   }
 
   .Card:hover {
     box-shadow: 0 0 2px 2px rgba(0, 44, 95, 0.25);
+    cursor: pointer;
   }
+
   .Card h2 {
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 0.8em;
     flex-shrink: 0;
-    max-height: 2em;
-  }
-  
-  .Card h2 a {
     font-weight: 400;
     margin-bottom: 13px;
     font-size: 20px;
@@ -41,8 +38,29 @@
     text-transform: capitalize;
   }
   
+  .Head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .Head h2 {
+    flex-basis: 75%;
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .Head .Avatar {
+    display: inline;
+    border-radius: 50px;
+    overflow: hidden;
+  }
+
   .Body {
     overflow: hidden;
+    display: flex;
+    flex-flow: column nowrap;
     flex-grow: 1;
     box-sizing: border-box;
   }
@@ -65,6 +83,10 @@
     text-align: center;
     height: 125px;
     display: block;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .ResourceType {
@@ -93,11 +115,3 @@
   .Actions li {
     flex-basis: 25px;
   }
-  
-  @media screen and (min-width: 480px) {
-    .Card {
-      width: 214px;
-      height: 300px;
-    }
-  }
-  

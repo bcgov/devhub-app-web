@@ -10,6 +10,9 @@ import {
 export const CARD_CONFIG = {
   maxDescriptionLines: 4, // max number of lines before text should be truncated
   maxTitleLines: 2, // similar.
+  avatarIconSize: 200,
+  avatarIconWidth: 30,
+  avatarIconHeight: 30,
 };
 
 export const buttonTypes = ['primary', 'secondary', 'link'];
