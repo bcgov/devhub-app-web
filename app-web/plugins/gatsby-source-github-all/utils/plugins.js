@@ -20,19 +20,8 @@ const matter = require('gray-matter'); // eslint-disable-line
 const visit = require('unist-util-visit'); // eslint-disable-line
 const remark = require('remark'); // eslint-disable-line
 const url = require('url');
-const metascraper = require('metascraper')([
-  require('metascraper-author')(),
-  require('metascraper-date')(),
-  require('metascraper-description')(),
-  require('metascraper-image')(),
-  require('metascraper-logo')(),
-  require('metascraper-clearbit-logo')(),
-  require('metascraper-publisher')(),
-  require('metascraper-title')(),
-  require('metascraper-url')(),
-]);
+const scrape = require('html-metadata');
 const validUrl = require('valid-url');
-const got = require('got');
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
 const {
   createPathWithDigest,
@@ -194,18 +183,25 @@ const markdownResourceTypePlugin = (extension, file) => {
  * @returns the modified file
  */
 const externalLinkUnfurlPlugin = async (extension, file) => {
-  const resolve = url.resolve;
   // does file have a resource path and is it a valid url?
   if (file.metadata.resourcePath && validUrl.isUri(file.metadata.resourcePath)) {
-    const { body: html, url } = await got(file.metadata.resourcePath);
-    const metadata = await metascraper({ html, url });
+    let metadata;
+    try {
+      metadata = await scrape(file.metadata.resourcePath);
+    } catch (e) {
+      console.log(e);
+      return file;
+    }
+    // metadata comes in with properties for each type of unfurl spec (twitter, openGraph etc)
+    const combinedMetadata = { ...metadata.twitter, ...metadata.openGraph };
+    // const metadata = await metascraper({ html, url });
     // update image to have resource path prepended to it if it is not https
-    if (metadata.image) {
-      metadata.image =
-        validUrl.isUri(metadata.image) !== undefined
-          ? metadata.image
-          : resolve(file.metadata.resourcePath, '/', metadata.image);
-      file.metadata.unfurl = createUnfurlObj(UNFURL_TYPES.EXTERNAL, metadata);
+    if (TypeCheck.isString(combinedMetadata.image)) {
+      if (validUrl.isWebUri(combinedMetadata.image) === undefined) {
+        combinedMetadata.image = url.resolve(file.metadata.resourcePath, combinedMetadata.image);
+      }
+
+      file.metadata.unfurl = createUnfurlObj(UNFURL_TYPES.EXTERNAL, combinedMetadata);
     }
   }
   return file;
