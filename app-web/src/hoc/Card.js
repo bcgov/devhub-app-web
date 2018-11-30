@@ -56,6 +56,13 @@ const Card = ({ children, resourceType, resourcePath, title, author }) => (
 Card.propTypes = {
   children: PropTypes.node.isRequired,
   resourceType: PropTypes.string.isRequired,
+  resourcePath: PropTypes.string.isRequired,
+  author: PropTypes.string,
+  title: PropTypes.string.isRequired,
+};
+
+Card.defaultProps = {
+  author: '',
 };
 
 export default Card;
