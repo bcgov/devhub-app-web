@@ -205,7 +205,6 @@ const externalLinkUnfurlPlugin = async (extension, file) => {
         ? metadata.image
         : resolve(file.metadata.resourcePath, '/', metadata.image);
     file.metadata.unfurl = createUnfurlObj(UNFURL_TYPES.EXTERNAL, metadata);
-    console.log(metadata.image);
   }
   return file;
 };
