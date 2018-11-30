@@ -1,5 +1,6 @@
 ---
 description: A guide on how to get your repo registered with the Devhub so that it can display your content.
+author: patricksimonian
 ---
 # Registering Your Repo for Devhub
 

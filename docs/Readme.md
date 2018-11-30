@@ -1,5 +1,6 @@
 ---
 description: Devhub documentation for contributors
+ignore: true
 ---
 # Project Documention
 

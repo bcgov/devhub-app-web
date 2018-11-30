@@ -1,3 +1,6 @@
+---
+ignore: true
+---
 # Component Architecture
 
 > This project is planned to be a cross over from a traditional react/redux app that you'd generally see scaffolded by create-react-app
