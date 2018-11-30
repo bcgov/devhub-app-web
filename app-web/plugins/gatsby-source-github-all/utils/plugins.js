@@ -194,6 +194,7 @@ const markdownResourceTypePlugin = (extension, file) => {
  * @returns the modified file
  */
 const externalLinkUnfurlPlugin = async (extension, file) => {
+  const resolve = url.resolve;
   // does file have a resource path and is it a valid url?
   if (file.metadata.resourcePath && validUrl.isUri(file.metadata.resourcePath)) {
     const { body: html, url } = await got(file.metadata.resourcePath);
@@ -202,7 +203,7 @@ const externalLinkUnfurlPlugin = async (extension, file) => {
     metadata.image =
       validUrl.isUri(metadata.image) !== undefined
         ? metadata.image
-        : url.resolve(file.metadata.resourcePath, '/', metadata.image);
+        : resolve(file.metadata.resourcePath, '/', metadata.image);
     file.metadata.unfurl = createUnfurlObj(UNFURL_TYPES.EXTERNAL, metadata);
     console.log(metadata.image);
   }
