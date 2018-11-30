@@ -19,6 +19,7 @@ const shortid = require('shortid'); // eslint-disable-line
 const matter = require('gray-matter'); // eslint-disable-line
 const visit = require('unist-util-visit'); // eslint-disable-line
 const remark = require('remark'); // eslint-disable-line
+const url = require('url');
 const metascraper = require('metascraper')([
   require('metascraper-author')(),
   require('metascraper-date')(),
@@ -197,7 +198,13 @@ const externalLinkUnfurlPlugin = async (extension, file) => {
   if (file.metadata.resourcePath && validUrl.isUri(file.metadata.resourcePath)) {
     const { body: html, url } = await got(file.metadata.resourcePath);
     const metadata = await metascraper({ html, url });
+    // update image to have resource path prepended to it if it is not https
+    metadata.image =
+      validUrl.isUri(metadata.image) !== undefined
+        ? metadata.image
+        : url.resolve(file.metadata.resourcePath, '/', metadata.image);
     file.metadata.unfurl = createUnfurlObj(UNFURL_TYPES.EXTERNAL, metadata);
+    console.log(metadata.image);
   }
   return file;
 };
