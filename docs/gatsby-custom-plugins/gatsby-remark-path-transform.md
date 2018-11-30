@@ -4,6 +4,7 @@ description: 'For devhub to predictably ingest content with minimal
             configuration to content contributors, a plugin was required
             to transform any links to assets (images, links) so that they
             were visiible when viewed in the devhub'
+ignore: true
 ---
 # Gatsby Remark Path Transform Plugin
 
