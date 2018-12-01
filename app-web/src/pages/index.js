@@ -11,6 +11,7 @@ import Layout from '../hoc/Layout';
 import Cards from '../components/Cards/Cards';
 import Button from '../components/UI/Button/Button'
 import styles from './index.module.css';
+import CardFilterButton from "../components/CardFilterButton/CardFilterButton";
 
 export class Index extends Component {
     componentDidMount() {
@@ -51,10 +52,6 @@ export class Index extends Component {
                 cards={ghData.data}
             />
         ));
-        
-        const personaAction =(personaName) => {
-            console.log(personaName);
-        };
 
         return (
             <Layout path={pathname}>
@@ -66,22 +63,34 @@ export class Index extends Component {
                             <h2>We are here to help.</h2>
 
                             <p className="lead text-muted">This is the front door to the developer community of the BC
-                                Government. We’re embarking on a journey to help developers learn new skills, discover
-                                resources and create amazing applications for government.
+                                Government. The aim of the DevHub is to help developers and digital product teams learn
+                                new
+                                skills and discover resources to use on their journeys of creating amazing applications
+                                for
+                                government.
                             </p>
                             <p>
-                                To help you find your way around here, tell us who you are below and we'll tailor the set of resources to you.
+                                In the future, we plan to offer a variety of cool and useful ways to organize and
+                                navigate DevHub resources. For now, you can tell us who you are below and we'll tailor
+                                the
+                                set of resources shown just for you.
                             </p>
                             <p>
-                                <Button clicked={ personaAction("developer")} className="btn btn-outline-primary">I'm a Developer</Button>
-                                <Button clicked={ personaAction("designer")} className="btn btn-outline-success">I'm a Designer.</Button>
-                                <Button clicked={ personaAction("product_owner")} className="btn btn-outline-info">I'm a Product Owner.</Button>
+                                <CardFilterButton filterByProperty={'attributes.persona'} filterByValue={'Developer'}
+                                                  className="btn btn-outline-primary">I'm a
+                                    Developer</CardFilterButton>
+                                <CardFilterButton filterByProperty={'attributes.persona'} filterByValue={'Designer'}
+                                                  className="btn btn-outline-success">I'm a
+                                    Designer</CardFilterButton>
+                                <CardFilterButton filterByProperty={'attributes.persona'} filterByValue={'Product Owner'}
+                                                  className="btn btn-outline-info">I'm a
+                                    Product Owner</CardFilterButton>
                             </p>
                             <p>
                                 Thanks for visiting!
                             </p>
                             <p>
-                                -- The DevHub Team.
+                                &mdash; The DevHub Team.
                             </p>
 
                             <p className="text-muted">
@@ -117,8 +126,11 @@ export const resourceQuery = graphql`
   query resourceQuery {
     allDevhubSiphon(filter: { internal: { mediaType: { eq: "text/markdown" } } }) {
       edges {
-        node {
+        node {           
           id
+          attributes {
+            persona
+            }
           source {
             displayName
             sourcePath

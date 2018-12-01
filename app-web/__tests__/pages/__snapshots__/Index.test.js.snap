@@ -69,26 +69,70 @@ ShallowWrapper {
         className="Main"
         role="main"
       >
-        <h1>
-          Welcome
-        </h1>
-        <h2>
-          <em>
-            We are here to help
-          </em>
-        </h2>
-        <p>
-          This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.
-        </p>
-        <p>
-          If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
-          <a
-            href="https://github.com/bcgov/devhub-app-web/issues"
+        <section
+          className="jumbotron text-center"
+        >
+          <div
+            className="container"
           >
-            github.com
-          </a>
-           repository.
-        </p>
+            <h1
+              className="jumbotron-heading"
+            >
+              Welcome.
+            </h1>
+            <h2>
+              We are here to help.
+            </h2>
+            <p
+              className="lead text-muted"
+            >
+              This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
+            </p>
+            <p>
+              In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
+            </p>
+            <p>
+              <Connect(CardFilterButton)
+                className="btn btn-outline-primary"
+                filterByProperty="attributes.persona"
+                filterByValue="Developer"
+              >
+                I'm a Developer
+              </Connect(CardFilterButton)>
+              <Connect(CardFilterButton)
+                className="btn btn-outline-success"
+                filterByProperty="attributes.persona"
+                filterByValue="Designer"
+              >
+                I'm a Designer
+              </Connect(CardFilterButton)>
+              <Connect(CardFilterButton)
+                className="btn btn-outline-info"
+                filterByProperty="attributes.persona"
+                filterByValue="Product Owner"
+              >
+                I'm a Product Owner
+              </Connect(CardFilterButton)>
+            </p>
+            <p>
+              Thanks for visiting!
+            </p>
+            <p>
+              — The DevHub Team.
+            </p>
+            <p
+              className="text-muted"
+            >
+              PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
+              <a
+                href="https://github.com/bcgov/devhub-app-web/issues"
+              >
+                GitHub
+              </a>
+               repository.
+            </p>
+          </div>
+        </section>
         <Flag
           name="features.githubResourceCards"
         />
@@ -102,26 +146,70 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <h1>
-            Welcome
-          </h1>,
-          <h2>
-            <em>
-              We are here to help
-            </em>
-          </h2>,
-          <p>
-            This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.
-          </p>,
-          <p>
-            If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
-            <a
-              href="https://github.com/bcgov/devhub-app-web/issues"
+          <section
+            className="jumbotron text-center"
+          >
+            <div
+              className="container"
             >
-              github.com
-            </a>
-             repository.
-          </p>,
+              <h1
+                className="jumbotron-heading"
+              >
+                Welcome.
+              </h1>
+              <h2>
+                We are here to help.
+              </h2>
+              <p
+                className="lead text-muted"
+              >
+                This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
+              </p>
+              <p>
+                In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
+              </p>
+              <p>
+                <Connect(CardFilterButton)
+                  className="btn btn-outline-primary"
+                  filterByProperty="attributes.persona"
+                  filterByValue="Developer"
+                >
+                  I'm a Developer
+                </Connect(CardFilterButton)>
+                <Connect(CardFilterButton)
+                  className="btn btn-outline-success"
+                  filterByProperty="attributes.persona"
+                  filterByValue="Designer"
+                >
+                  I'm a Designer
+                </Connect(CardFilterButton)>
+                <Connect(CardFilterButton)
+                  className="btn btn-outline-info"
+                  filterByProperty="attributes.persona"
+                  filterByValue="Product Owner"
+                >
+                  I'm a Product Owner
+                </Connect(CardFilterButton)>
+              </p>
+              <p>
+                Thanks for visiting!
+              </p>
+              <p>
+                — The DevHub Team.
+              </p>
+              <p
+                className="text-muted"
+              >
+                PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
+                <a
+                  href="https://github.com/bcgov/devhub-app-web/issues"
+                >
+                  GitHub
+                </a>
+                 repository.
+              </p>
+            </div>
+          </section>,
           <Flag
             name="features.githubResourceCards"
           />,
@@ -136,20 +224,67 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": "Welcome",
-          },
-          "ref": null,
-          "rendered": "Welcome",
-          "type": "h1",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": <em>
-              We are here to help
-            </em>,
+            "children": <div
+              className="container"
+            >
+              <h1
+                className="jumbotron-heading"
+              >
+                Welcome.
+              </h1>
+              <h2>
+                We are here to help.
+              </h2>
+              <p
+                className="lead text-muted"
+              >
+                This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
+              </p>
+              <p>
+                In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
+              </p>
+              <p>
+                <Connect(CardFilterButton)
+                  className="btn btn-outline-primary"
+                  filterByProperty="attributes.persona"
+                  filterByValue="Developer"
+                >
+                  I'm a Developer
+                </Connect(CardFilterButton)>
+                <Connect(CardFilterButton)
+                  className="btn btn-outline-success"
+                  filterByProperty="attributes.persona"
+                  filterByValue="Designer"
+                >
+                  I'm a Designer
+                </Connect(CardFilterButton)>
+                <Connect(CardFilterButton)
+                  className="btn btn-outline-info"
+                  filterByProperty="attributes.persona"
+                  filterByValue="Product Owner"
+                >
+                  I'm a Product Owner
+                </Connect(CardFilterButton)>
+              </p>
+              <p>
+                Thanks for visiting!
+              </p>
+              <p>
+                — The DevHub Team.
+              </p>
+              <p
+                className="text-muted"
+              >
+                PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
+                <a
+                  href="https://github.com/bcgov/devhub-app-web/issues"
+                >
+                  GitHub
+                </a>
+                 repository.
+              </p>
+            </div>,
+            "className": "jumbotron text-center",
           },
           "ref": null,
           "rendered": Object {
@@ -157,58 +292,251 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": "We are here to help",
+              "children": Array [
+                <h1
+                  className="jumbotron-heading"
+                >
+                  Welcome.
+                </h1>,
+                <h2>
+                  We are here to help.
+                </h2>,
+                <p
+                  className="lead text-muted"
+                >
+                  This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
+                </p>,
+                <p>
+                  In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
+                </p>,
+                <p>
+                  <Connect(CardFilterButton)
+                    className="btn btn-outline-primary"
+                    filterByProperty="attributes.persona"
+                    filterByValue="Developer"
+                  >
+                    I'm a Developer
+                  </Connect(CardFilterButton)>
+                  <Connect(CardFilterButton)
+                    className="btn btn-outline-success"
+                    filterByProperty="attributes.persona"
+                    filterByValue="Designer"
+                  >
+                    I'm a Designer
+                  </Connect(CardFilterButton)>
+                  <Connect(CardFilterButton)
+                    className="btn btn-outline-info"
+                    filterByProperty="attributes.persona"
+                    filterByValue="Product Owner"
+                  >
+                    I'm a Product Owner
+                  </Connect(CardFilterButton)>
+                </p>,
+                <p>
+                  Thanks for visiting!
+                </p>,
+                <p>
+                  — The DevHub Team.
+                </p>,
+                <p
+                  className="text-muted"
+                >
+                  PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
+                  <a
+                    href="https://github.com/bcgov/devhub-app-web/issues"
+                  >
+                    GitHub
+                  </a>
+                   repository.
+                </p>,
+              ],
+              "className": "container",
             },
             "ref": null,
-            "rendered": "We are here to help",
-            "type": "em",
-          },
-          "type": "h2",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.",
-          },
-          "ref": null,
-          "rendered": "This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.",
-          "type": "p",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our ",
-              <a
-                href="https://github.com/bcgov/devhub-app-web/issues"
-              >
-                github.com
-              </a>,
-              " repository.",
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our ",
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": "github.com",
-                "href": "https://github.com/bcgov/devhub-app-web/issues",
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Welcome.",
+                  "className": "jumbotron-heading",
+                },
+                "ref": null,
+                "rendered": "Welcome.",
+                "type": "h1",
               },
-              "ref": null,
-              "rendered": "github.com",
-              "type": "a",
-            },
-            " repository.",
-          ],
-          "type": "p",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "We are here to help.",
+                },
+                "ref": null,
+                "rendered": "We are here to help.",
+                "type": "h2",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.",
+                  "className": "lead text-muted",
+                },
+                "ref": null,
+                "rendered": "This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.",
+                "type": "p",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.",
+                },
+                "ref": null,
+                "rendered": "In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.",
+                "type": "p",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <Connect(CardFilterButton)
+                      className="btn btn-outline-primary"
+                      filterByProperty="attributes.persona"
+                      filterByValue="Developer"
+                    >
+                      I'm a Developer
+                    </Connect(CardFilterButton)>,
+                    <Connect(CardFilterButton)
+                      className="btn btn-outline-success"
+                      filterByProperty="attributes.persona"
+                      filterByValue="Designer"
+                    >
+                      I'm a Designer
+                    </Connect(CardFilterButton)>,
+                    <Connect(CardFilterButton)
+                      className="btn btn-outline-info"
+                      filterByProperty="attributes.persona"
+                      filterByValue="Product Owner"
+                    >
+                      I'm a Product Owner
+                    </Connect(CardFilterButton)>,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "I'm a Developer",
+                      "className": "btn btn-outline-primary",
+                      "filterByProperty": "attributes.persona",
+                      "filterByValue": "Developer",
+                    },
+                    "ref": null,
+                    "rendered": "I'm a Developer",
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "I'm a Designer",
+                      "className": "btn btn-outline-success",
+                      "filterByProperty": "attributes.persona",
+                      "filterByValue": "Designer",
+                    },
+                    "ref": null,
+                    "rendered": "I'm a Designer",
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "I'm a Product Owner",
+                      "className": "btn btn-outline-info",
+                      "filterByProperty": "attributes.persona",
+                      "filterByValue": "Product Owner",
+                    },
+                    "ref": null,
+                    "rendered": "I'm a Product Owner",
+                    "type": [Function],
+                  },
+                ],
+                "type": "p",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Thanks for visiting!",
+                },
+                "ref": null,
+                "rendered": "Thanks for visiting!",
+                "type": "p",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "— The DevHub Team.",
+                },
+                "ref": null,
+                "rendered": "— The DevHub Team.",
+                "type": "p",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    "PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our ",
+                    <a
+                      href="https://github.com/bcgov/devhub-app-web/issues"
+                    >
+                      GitHub
+                    </a>,
+                    " repository.",
+                  ],
+                  "className": "text-muted",
+                },
+                "ref": null,
+                "rendered": Array [
+                  "PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our ",
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "GitHub",
+                      "href": "https://github.com/bcgov/devhub-app-web/issues",
+                    },
+                    "ref": null,
+                    "rendered": "GitHub",
+                    "type": "a",
+                  },
+                  " repository.",
+                ],
+                "type": "p",
+              },
+            ],
+            "type": "div",
+          },
+          "type": "section",
         },
         Object {
           "instance": null,
@@ -237,26 +565,70 @@ ShallowWrapper {
           className="Main"
           role="main"
         >
-          <h1>
-            Welcome
-          </h1>
-          <h2>
-            <em>
-              We are here to help
-            </em>
-          </h2>
-          <p>
-            This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.
-          </p>
-          <p>
-            If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
-            <a
-              href="https://github.com/bcgov/devhub-app-web/issues"
+          <section
+            className="jumbotron text-center"
+          >
+            <div
+              className="container"
             >
-              github.com
-            </a>
-             repository.
-          </p>
+              <h1
+                className="jumbotron-heading"
+              >
+                Welcome.
+              </h1>
+              <h2>
+                We are here to help.
+              </h2>
+              <p
+                className="lead text-muted"
+              >
+                This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
+              </p>
+              <p>
+                In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
+              </p>
+              <p>
+                <Connect(CardFilterButton)
+                  className="btn btn-outline-primary"
+                  filterByProperty="attributes.persona"
+                  filterByValue="Developer"
+                >
+                  I'm a Developer
+                </Connect(CardFilterButton)>
+                <Connect(CardFilterButton)
+                  className="btn btn-outline-success"
+                  filterByProperty="attributes.persona"
+                  filterByValue="Designer"
+                >
+                  I'm a Designer
+                </Connect(CardFilterButton)>
+                <Connect(CardFilterButton)
+                  className="btn btn-outline-info"
+                  filterByProperty="attributes.persona"
+                  filterByValue="Product Owner"
+                >
+                  I'm a Product Owner
+                </Connect(CardFilterButton)>
+              </p>
+              <p>
+                Thanks for visiting!
+              </p>
+              <p>
+                — The DevHub Team.
+              </p>
+              <p
+                className="text-muted"
+              >
+                PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
+                <a
+                  href="https://github.com/bcgov/devhub-app-web/issues"
+                >
+                  GitHub
+                </a>
+                 repository.
+              </p>
+            </div>
+          </section>
           <Flag
             name="features.githubResourceCards"
           />
@@ -270,26 +642,70 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": Array [
-            <h1>
-              Welcome
-            </h1>,
-            <h2>
-              <em>
-                We are here to help
-              </em>
-            </h2>,
-            <p>
-              This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.
-            </p>,
-            <p>
-              If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
-              <a
-                href="https://github.com/bcgov/devhub-app-web/issues"
+            <section
+              className="jumbotron text-center"
+            >
+              <div
+                className="container"
               >
-                github.com
-              </a>
-               repository.
-            </p>,
+                <h1
+                  className="jumbotron-heading"
+                >
+                  Welcome.
+                </h1>
+                <h2>
+                  We are here to help.
+                </h2>
+                <p
+                  className="lead text-muted"
+                >
+                  This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
+                </p>
+                <p>
+                  In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
+                </p>
+                <p>
+                  <Connect(CardFilterButton)
+                    className="btn btn-outline-primary"
+                    filterByProperty="attributes.persona"
+                    filterByValue="Developer"
+                  >
+                    I'm a Developer
+                  </Connect(CardFilterButton)>
+                  <Connect(CardFilterButton)
+                    className="btn btn-outline-success"
+                    filterByProperty="attributes.persona"
+                    filterByValue="Designer"
+                  >
+                    I'm a Designer
+                  </Connect(CardFilterButton)>
+                  <Connect(CardFilterButton)
+                    className="btn btn-outline-info"
+                    filterByProperty="attributes.persona"
+                    filterByValue="Product Owner"
+                  >
+                    I'm a Product Owner
+                  </Connect(CardFilterButton)>
+                </p>
+                <p>
+                  Thanks for visiting!
+                </p>
+                <p>
+                  — The DevHub Team.
+                </p>
+                <p
+                  className="text-muted"
+                >
+                  PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
+                  <a
+                    href="https://github.com/bcgov/devhub-app-web/issues"
+                  >
+                    GitHub
+                  </a>
+                   repository.
+                </p>
+              </div>
+            </section>,
             <Flag
               name="features.githubResourceCards"
             />,
@@ -304,20 +720,67 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": "Welcome",
-            },
-            "ref": null,
-            "rendered": "Welcome",
-            "type": "h1",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": <em>
-                We are here to help
-              </em>,
+              "children": <div
+                className="container"
+              >
+                <h1
+                  className="jumbotron-heading"
+                >
+                  Welcome.
+                </h1>
+                <h2>
+                  We are here to help.
+                </h2>
+                <p
+                  className="lead text-muted"
+                >
+                  This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
+                </p>
+                <p>
+                  In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
+                </p>
+                <p>
+                  <Connect(CardFilterButton)
+                    className="btn btn-outline-primary"
+                    filterByProperty="attributes.persona"
+                    filterByValue="Developer"
+                  >
+                    I'm a Developer
+                  </Connect(CardFilterButton)>
+                  <Connect(CardFilterButton)
+                    className="btn btn-outline-success"
+                    filterByProperty="attributes.persona"
+                    filterByValue="Designer"
+                  >
+                    I'm a Designer
+                  </Connect(CardFilterButton)>
+                  <Connect(CardFilterButton)
+                    className="btn btn-outline-info"
+                    filterByProperty="attributes.persona"
+                    filterByValue="Product Owner"
+                  >
+                    I'm a Product Owner
+                  </Connect(CardFilterButton)>
+                </p>
+                <p>
+                  Thanks for visiting!
+                </p>
+                <p>
+                  — The DevHub Team.
+                </p>
+                <p
+                  className="text-muted"
+                >
+                  PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
+                  <a
+                    href="https://github.com/bcgov/devhub-app-web/issues"
+                  >
+                    GitHub
+                  </a>
+                   repository.
+                </p>
+              </div>,
+              "className": "jumbotron text-center",
             },
             "ref": null,
             "rendered": Object {
@@ -325,58 +788,251 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": "We are here to help",
+                "children": Array [
+                  <h1
+                    className="jumbotron-heading"
+                  >
+                    Welcome.
+                  </h1>,
+                  <h2>
+                    We are here to help.
+                  </h2>,
+                  <p
+                    className="lead text-muted"
+                  >
+                    This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
+                  </p>,
+                  <p>
+                    In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
+                  </p>,
+                  <p>
+                    <Connect(CardFilterButton)
+                      className="btn btn-outline-primary"
+                      filterByProperty="attributes.persona"
+                      filterByValue="Developer"
+                    >
+                      I'm a Developer
+                    </Connect(CardFilterButton)>
+                    <Connect(CardFilterButton)
+                      className="btn btn-outline-success"
+                      filterByProperty="attributes.persona"
+                      filterByValue="Designer"
+                    >
+                      I'm a Designer
+                    </Connect(CardFilterButton)>
+                    <Connect(CardFilterButton)
+                      className="btn btn-outline-info"
+                      filterByProperty="attributes.persona"
+                      filterByValue="Product Owner"
+                    >
+                      I'm a Product Owner
+                    </Connect(CardFilterButton)>
+                  </p>,
+                  <p>
+                    Thanks for visiting!
+                  </p>,
+                  <p>
+                    — The DevHub Team.
+                  </p>,
+                  <p
+                    className="text-muted"
+                  >
+                    PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
+                    <a
+                      href="https://github.com/bcgov/devhub-app-web/issues"
+                    >
+                      GitHub
+                    </a>
+                     repository.
+                  </p>,
+                ],
+                "className": "container",
               },
               "ref": null,
-              "rendered": "We are here to help",
-              "type": "em",
-            },
-            "type": "h2",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.",
-            },
-            "ref": null,
-            "rendered": "This is the front door to the developer community of the BC Government. We’re embarking on a journey to help developers learn new skills, discover resources and create amazing applications for government.",
-            "type": "p",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our ",
-                <a
-                  href="https://github.com/bcgov/devhub-app-web/issues"
-                >
-                  github.com
-                </a>,
-                " repository.",
-              ],
-            },
-            "ref": null,
-            "rendered": Array [
-              "If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our ",
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "github.com",
-                  "href": "https://github.com/bcgov/devhub-app-web/issues",
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Welcome.",
+                    "className": "jumbotron-heading",
+                  },
+                  "ref": null,
+                  "rendered": "Welcome.",
+                  "type": "h1",
                 },
-                "ref": null,
-                "rendered": "github.com",
-                "type": "a",
-              },
-              " repository.",
-            ],
-            "type": "p",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "We are here to help.",
+                  },
+                  "ref": null,
+                  "rendered": "We are here to help.",
+                  "type": "h2",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.",
+                    "className": "lead text-muted",
+                  },
+                  "ref": null,
+                  "rendered": "This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.",
+                  "type": "p",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.",
+                  },
+                  "ref": null,
+                  "rendered": "In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.",
+                  "type": "p",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <Connect(CardFilterButton)
+                        className="btn btn-outline-primary"
+                        filterByProperty="attributes.persona"
+                        filterByValue="Developer"
+                      >
+                        I'm a Developer
+                      </Connect(CardFilterButton)>,
+                      <Connect(CardFilterButton)
+                        className="btn btn-outline-success"
+                        filterByProperty="attributes.persona"
+                        filterByValue="Designer"
+                      >
+                        I'm a Designer
+                      </Connect(CardFilterButton)>,
+                      <Connect(CardFilterButton)
+                        className="btn btn-outline-info"
+                        filterByProperty="attributes.persona"
+                        filterByValue="Product Owner"
+                      >
+                        I'm a Product Owner
+                      </Connect(CardFilterButton)>,
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": "I'm a Developer",
+                        "className": "btn btn-outline-primary",
+                        "filterByProperty": "attributes.persona",
+                        "filterByValue": "Developer",
+                      },
+                      "ref": null,
+                      "rendered": "I'm a Developer",
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": "I'm a Designer",
+                        "className": "btn btn-outline-success",
+                        "filterByProperty": "attributes.persona",
+                        "filterByValue": "Designer",
+                      },
+                      "ref": null,
+                      "rendered": "I'm a Designer",
+                      "type": [Function],
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": "I'm a Product Owner",
+                        "className": "btn btn-outline-info",
+                        "filterByProperty": "attributes.persona",
+                        "filterByValue": "Product Owner",
+                      },
+                      "ref": null,
+                      "rendered": "I'm a Product Owner",
+                      "type": [Function],
+                    },
+                  ],
+                  "type": "p",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Thanks for visiting!",
+                  },
+                  "ref": null,
+                  "rendered": "Thanks for visiting!",
+                  "type": "p",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "— The DevHub Team.",
+                  },
+                  "ref": null,
+                  "rendered": "— The DevHub Team.",
+                  "type": "p",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      "PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our ",
+                      <a
+                        href="https://github.com/bcgov/devhub-app-web/issues"
+                      >
+                        GitHub
+                      </a>,
+                      " repository.",
+                    ],
+                    "className": "text-muted",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    "PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our ",
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "GitHub",
+                        "href": "https://github.com/bcgov/devhub-app-web/issues",
+                      },
+                      "ref": null,
+                      "rendered": "GitHub",
+                      "type": "a",
+                    },
+                    " repository.",
+                  ],
+                  "type": "p",
+                },
+              ],
+              "type": "div",
+            },
+            "type": "section",
           },
           Object {
             "instance": null,

@@ -29,7 +29,7 @@ class Layout extends React.Component {
   render() {
     const { children, path } = this.props;
     return (
-      <div class="layout">
+      <div className="layout">
         <Helmet>
           <link
             href="https://portal.nrs.gov.bc.ca/nrs-portal-theme/images/favicon.ico"

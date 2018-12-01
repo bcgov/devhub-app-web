@@ -9,6 +9,7 @@ sources:
       labels:
         - Components
         - Repository
+      persona: 'Designer'
     resourceType: 'Components'
   - name: Signing Tool
     sourceType: 'github'
@@ -20,6 +21,7 @@ sources:
       labels:
         - Self Service
         - Repository
+      persona: 'Developer'
     resourceType: 'Self-Service Tools'
   - name: Open Shift Wiki
     sourceType: 'github'
@@ -34,6 +36,7 @@ sources:
         - Repository
         - Wiki
         - How To
+      persona: 'Developer'
   - name: OpenShift Components
     sourceType: 'github'
     sourceProperties:
@@ -45,6 +48,7 @@ sources:
       labels:
         - Repository
         - Components
+    persona: 'Developer'
   - name: DevHub
     sourceType: 'github'
     sourceProperties:
@@ -55,3 +59,5 @@ sources:
     attributes:
       labels:
         - Repository
+      persona: 'Developer'
+
