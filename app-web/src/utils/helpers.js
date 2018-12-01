@@ -18,6 +18,9 @@ Created by Patrick Simonian
 
 import { GITHUB_URL } from '../constants/api';
 import { TypeCheck } from '@bcgov/common-web-utils';
+
+export const getGithubIssuesRoute = repository => `${GITHUB_URL}/${repository}/issues`;
+
 export const getGithubUsernameURL = username => `${GITHUB_URL}/${username}`;
 /**
  * returns a github username image url
