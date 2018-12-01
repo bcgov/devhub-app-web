@@ -141,11 +141,11 @@ const fetchIgnoreFile = async (repo, owner, token, branch) => {
   return ignoreFile ? Base64.decode(ignoreFile.content).split('\n') : [];
 };
 /**
-   * filters an array of github graphql entries by their extensions
-   * the filtering compares the object.name property with a regex test
-   * @param {Array} entries 
-   * @param {Array} extensions (defaults to [.md])
-   */
+ * filters an array of github graphql entries by their extensions
+ * the filtering compares the object.name property with a regex test
+ * @param {Array} entries 
+ * @param {Array} extensions (defaults to [.md])
+ */
 const filterFilesByExtensions = (entries, extensions = ['.md']) => {
   // ensure entries is an array of objects
   if (!TypeCheck.isArray(entries) || !entries.every(TypeCheck.isObject)) {
@@ -224,20 +224,19 @@ const applyBaseMetadata = (
   };
 };
 
+/**
+ * filters files by the context directories from source
+ * @param {Array} files the files
+ * @param {Object} contextDir array of paths to get files in a repo
+ */
 const filterFilesByContext = (files, contextDir) => {
-  let targetPath;
-  if (contextDir.charAt(0) === '/') {
-    targetPath = contextDir.substring(1);
-  } else {
-    targetPath = contextDir;
-  }
-
-  // now only return files in the target vcontext dir
-  let contextFiles = files.filter(file => {
-    console.log(file.path.substring(0, targetPath.length) + '\n');
-    return file.path.substring(0, targetPath.length) === targetPath;
+  const targetPaths = contextDir.map(dir => {
+    return dir.charAt(0) === '/' ? dir.substring(1) : dir;
   });
-
+  // now only return files in the target context dir array
+  const contextFiles = files.filter(file => {
+    return targetPaths.some(path => file.path.indexOf(path) >= 0);
+  });
   return contextFiles;
 };
 
@@ -245,19 +244,11 @@ const filterFilesByContext = (files, contextDir) => {
  * filters files by processable extensions as well as the devhubignores
  * @param {Array} files the files
  * @param {Object} ignoreObj the ignore module object
+ * @param {Object} contextDir array of paths for get files in a repo
  */
 const filterFiles = (files, ignoreObj, contextDir) => {
-  let fileInContext;
-  if (contextDir) {
-    // filter out files that are not in the context path
-    fileInContext = filterFilesByContext(files, contextDir);
-  } else {
-    fileInContext = files;
-  }
-
-  console.log('CONTEXT' + contextDir);
-  console.log('FILES' + fileInContext);
-
+  // filter out files that are not in the context path
+  const fileInContext = contextDir ? filterFilesByContext(files, contextDir) : files;
   // filter out files that aren't markdown
   const filteredFiles = filterFilesByExtensions(fileInContext, PROCESSABLE_EXTENSIONS);
   // filter out files that are apart of ignore
@@ -305,7 +296,7 @@ const getFilesFromRepo = async (
     const repoIgnores = await fetchIgnoreFile(repo, owner, token, branch);
     // add repo ignores to ignore object
     ig.add(repoIgnores);
-    // pass files to filter routine with ignore object
+    // pass files to filter routine with ignore object and specified context paths
     const filesToFetch = filterFiles(files, ig, context);
     // retrieve contents for each file
     const filesWithContents = filesToFetch.map(file =>
@@ -396,6 +387,7 @@ module.exports = {
   filterFiles,
   filterFilesFromDirectories,
   filterFilesByExtensions,
+  filterFilesByContext,
   applyBaseMetadata,
   validateSourceGithub,
 };
