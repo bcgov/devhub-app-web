@@ -4,10 +4,6 @@ import Button from '../../components/UI/Button/Button'
 import { connect } from 'react-redux';
 import * as actions from "../../store/actions/actions";
 
-const filterAction = function(groupingAttribute) {
-    console.log('persona');
-};
-
 export const CardFilterButton = ({filterByProperty, filterByValue, filterSiphonNodes, children, ...rest }) => {
     return (
         <Button clicked={() => filterSiphonNodes(filterByProperty, filterByValue)} {...rest}>
