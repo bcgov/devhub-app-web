@@ -2,33 +2,23 @@
     width: 250px;
     height: 350px;
     background-color: #fff;
-    padding: 14px 17px 32px;
+    /* padding: 14px 17px 32px; */
     position: relative;
     display: flex;
     flex-flow: column nowrap;
+    justify-content: space-between;
     color: #3b3b3b;
     flex-shrink: 0;
-    margin: 10px 20px 10px 0px;
-    transition: box-shadow 0.25s ease-out;
+    margin: 10px;
+    box-shadow: 0 1px 2px 2px #ccc;
+    transition: box-shadow 0.25s ease-out, transform .25s ease-out;
   }
-  
+
   .Card:hover {
-    box-shadow: 0 0 2px 2px rgba(0, 44, 95, 0.25);
+    box-shadow: 0 2px 4px 2px rgba(0, 44, 95, 0.25);
+    transform: translateY(-6px);
   }
-  .Card h2 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 0.8em;
-    flex-shrink: 0;
-    max-height: 2em;
-  }
-  
-  .Card h2 a {
-    font-weight: 400;
-    margin-bottom: 13px;
-    font-size: 20px;
-  }
-  
+
   .Card h2 svg {
     margin-right: 10px;
     color: #6d6d6d;
@@ -40,9 +30,48 @@
     font-size: 16px;
     text-transform: capitalize;
   }
-  
+
+  .Head, .Body, .Foot {
+    padding: 4px 6px;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+  .Head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .Head h2 {
+    flex: 1 0 75%;
+    margin: 0;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .Head h2 a {
+    font-size: 20px;
+    display: block;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .Head .Avatar {
+    display: inline;
+    border-radius: 50px;
+    overflow: hidden;
+  }
+
   .Body {
     overflow: hidden;
+    display: flex;
+    flex-flow: column nowrap;
     flex-grow: 1;
     box-sizing: border-box;
   }
@@ -65,13 +94,25 @@
     text-align: center;
     height: 125px;
     display: block;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .Actions {
-    position: absolute;
+  .Foot {
+    border-top: 1px solid #ccc;
+    color: #6d6d6d;
+    font-weight: 400;
+    /* position: absolute; */
     bottom: 0;
     left: 0;
+    right: 0;
     padding: 8px 14px;
+  }
+  
+  .Foot p {
+    margin: 0;
   }
   
   .Actions ul {
@@ -87,11 +128,17 @@
   .Actions li {
     flex-basis: 25px;
   }
-  
-  @media screen and (min-width: 480px) {
+
+  @media screen and (min-width: 500px) {
     .Card {
-      width: 214px;
-      height: 300px;
+      width: 220px;
+      height: 308px;
     }
   }
-  
+
+  @media screen and (min-width: 641px) {
+    .Card {
+      width: 250px;
+      height: 350px;
+    }
+  }

@@ -34,6 +34,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "function",
     "props": Object {
+      "author": "",
       "children": Array [
         <ActionGroup
           actions={
@@ -82,6 +83,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "function",
       "props": Object {
+        "author": "",
         "children": Array [
           <ActionGroup
             actions={

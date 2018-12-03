@@ -43,12 +43,7 @@ export class Index extends Component {
 
     const groupedSiphonData = groupBy(mappedSiphonNodes, 'sourceName');
     const SiphonResources = groupedSiphonData.map(ghData => (
-      <Cards
-        key={shortid.generate()}
-        topic={ghData.sourceName}
-        sourcePath={ghData.data[0].sourcePath}
-        cards={ghData.data}
-      />
+      <Cards key={shortid.generate()} topic={ghData.sourceName} cards={ghData.data} />
     ));
 
     return (
@@ -67,7 +62,9 @@ export class Index extends Component {
             If you’d like to comment, offer a suggestion or ask a question you can find us by
             opening an issue in our <a href={GITHUB_ISSUES_ROUTE}>github.com</a> repository.
           </p>
-          <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
+          <div className={styles.CardContainer}>
+            <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
+          </div>
           {/* <Flag name="features.pathfinderResourceCards">{pathfinderResources}</Flag> */}
         </main>
       </Layout>
@@ -111,6 +108,7 @@ export const resourceQuery = graphql`
             description
             type
             image
+            author
           }
           childMarkdownRemark {
             frontmatter {
