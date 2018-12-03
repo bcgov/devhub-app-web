@@ -31,7 +31,7 @@
     text-transform: capitalize;
   }
 
-  .Head, .Body, .Foot {
+  .Head, .Body, .Foot, .Ribbon {
     padding: 4px 6px;
     margin-left: 8px;
     margin-right: 8px;
@@ -98,6 +98,32 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .Ribbon {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+    margin-bottom: 0;
+    padding: 5px 0;
+  }
+
+  .Card .Ribbon:nth-of-type(1) {
+    border-top: 1px solid #00316b
+  }
+
+  .Card .Ribbon:nth-of-type(2) {
+    border-top: 1px solid #1a5a96
+  }
+
+  .Card .Ribbon:nth-of-type(3) {
+    border-top: 1px solid #5475a7
+  }
+
+  .Ribbon li {
+    margin: 5px;
   }
 
   .Foot {

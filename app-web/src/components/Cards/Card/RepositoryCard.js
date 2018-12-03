@@ -5,6 +5,8 @@ import Image from 'react-image';
 import styles from './Card.module.css';
 import Card from '../../../hoc/Card';
 import Link from '../../UI/Link/Link';
+import Ribbon from './Ribbon';
+
 import { ARIA_LABEL_RESOURCE } from '../../../constants/ariaLabels';
 import { CARD_CONFIG } from '../../../constants/ui';
 
@@ -18,6 +20,11 @@ const RepositoryCard = ({ title, description, resourcePath, image, resourceType,
         <Image src={image} />
       </Link>
     </div>
+    <Ribbon>
+      <li>Issues</li>
+      <li>Issues</li>
+      <li>Issues</li>
+    </Ribbon>
   </Card>
 );
 

@@ -1,3 +1,5 @@
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/fontawesome-free-brands';
 // all User Interface related constants
 import {
   HOME_ROUTE,
@@ -7,6 +9,7 @@ import {
   SELF_SERVICE_ROUTE,
 } from './routes';
 
+import { ARIA_LABEL_TO_GITHUB_ISSUES, ARIA_LABEL_REPO } from './ariaLabels';
 export const CARD_CONFIG = {
   maxDescriptionLines: 4, // max number of lines before text should be truncated
   maxTitleLines: 2, // similar.
@@ -15,6 +18,20 @@ export const CARD_CONFIG = {
   avatarIconHeight: 45,
   cardImageWidth: 150,
   cardImageHeight: 150,
+  actionsRibbon: [
+    {
+      name: 'Issues',
+      flag: 'card.issues',
+      icon: faExclamationCircle,
+      ariaLabel: ARIA_LABEL_TO_GITHUB_ISSUES,
+    },
+    {
+      name: 'Repository',
+      flag: 'card.repository',
+      icon: faGithub,
+      ariaLabel: ARIA_LABEL_REPO,
+    },
+  ],
 };
 
 export const buttonTypes = ['primary', 'secondary', 'link'];
