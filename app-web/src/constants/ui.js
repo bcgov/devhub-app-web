@@ -67,8 +67,6 @@ export const CARD_CONFIG = {
   avatarIconSize: 200,
   avatarIconWidth: 45,
   avatarIconHeight: 45,
-  cardImageWidth: 150,
-  cardImageHeight: 150,
   actionsRibbon: {
     [RESOURCE_TYPES.RESPOSITORIES]: [
       CARD_ACTIONS.REPOSITORY,

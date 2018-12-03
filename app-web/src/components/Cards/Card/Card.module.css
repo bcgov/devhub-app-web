@@ -118,6 +118,11 @@
   .Ribbon li a {
     font-size: 19px;
     color: #38598a;
+    transition: color .25s ease-out;
+  }
+
+  .Ribbon li a:hover {
+    color: #00316b;
   }
 
   .Card .Ribbon:nth-of-type(1) {

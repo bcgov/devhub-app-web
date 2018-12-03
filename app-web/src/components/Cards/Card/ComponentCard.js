@@ -17,9 +17,7 @@ const ComponentCard = ({ title, description, resourcePath, image, resourceType, 
       </DotDotDot>
       <div className={styles.BodyImage}>
         <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE}>
-          <Image
-            src={image}
-          />
+          <Image src={image} />
         </Link>
       </div>
     </div>
