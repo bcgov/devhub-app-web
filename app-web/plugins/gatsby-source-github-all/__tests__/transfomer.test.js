@@ -6,9 +6,10 @@ import {
   markdownResourceTypePlugin,
   externalLinkUnfurlPlugin,
   markdownPersonaPlugin,
+  repositoryResourcePathPlugin,
 } from '../utils/plugins';
 import { PROCESSED_FILE_MD } from '../__fixtures__/fixtures';
-import { PERSONAS_LIST } from '../utils/constants';
+import { PERSONAS_LIST, RESOURCE_TYPES } from '../utils/constants';
 import { createUnfurlObj, getClosestResourceType, getClosestPersona } from '../utils/helpers';
 jest.mock('../utils/helpers.js');
 
@@ -156,6 +157,14 @@ describe('Transformer System', () => {
         personas: PERSONAS_LIST,
       });
       expect(result.metadata.persona).toBe('');
+    });
+
+    it('sets resourcePath if resourceType is repositories', async () => {
+      file.metadata.resourceType = RESOURCE_TYPES.RESPOSITORIES;
+      file.metadata.resourcePath = undefined;
+      file.metadata.originalResourceLocation = 'https://www.google.com';
+      const result = await repositoryResourcePathPlugin(file.metadata.extension, file);
+      expect(result.metadata.resourcePath).toBe(file.metadata.originalResourceLocation);
     });
   });
 });

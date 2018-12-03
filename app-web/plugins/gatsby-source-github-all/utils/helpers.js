@@ -25,7 +25,7 @@ const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
 const path = require('path');
 const shorthash = require('shorthash');
 const stringSimilarity = require('string-similarity');
-const { RESOURCE_TYPES } = require('./constants');
+const { RESOURCE_TYPES_LIST } = require('./constants');
 
 const createPathWithDigest = (base, ...digestables) => {
   if (!TypeCheck.isString(base)) {
@@ -75,7 +75,7 @@ const createUnfurlObj = (
 const getClosestResourceType = resourceType => {
   // if its blank don't bother checking closeness
   if (resourceType === '') return '';
-  const matches = stringSimilarity.findBestMatch(resourceType, RESOURCE_TYPES);
+  const matches = stringSimilarity.findBestMatch(resourceType, RESOURCE_TYPES_LIST);
   // only return the best match if its greater than .5 in similarity
   return matches.bestMatch.rating >= 0.5 ? matches.bestMatch.target : '';
 };

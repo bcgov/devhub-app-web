@@ -27,14 +27,22 @@ const SOURCE_TYPES = {
   GITHUB: 'github',
 };
 
+const RESOURCE_TYPES = {
+  COMPONENTS: 'Components',
+  DOCUMENTATION: 'Documentation',
+  SELF_SERVICE_TOOLS: 'Self-Service Tools',
+  RESPOSITORIES: 'Repositories',
+  PEOPLE: 'People',
+  PROJECTS: 'Projects',
+};
 // Resource Types for Devhub
-const RESOURCE_TYPES = [
-  'Documentation',
-  'Repositories',
-  'People',
-  'Projects',
-  'Self-Service Tools',
-  'Components',
+const RESOURCE_TYPES_LIST = [
+  RESOURCE_TYPES.DOCUMENTATION,
+  RESOURCE_TYPES.RESPOSITORIES,
+  RESOURCE_TYPES.COMPONENTS,
+  RESOURCE_TYPES.PEOPLE,
+  RESOURCE_TYPES.SELF_SERVICE_TOOLS,
+  RESOURCE_TYPES.PROJECTS,
 ];
 
 const PERSONAS = {
@@ -162,6 +170,7 @@ module.exports = {
   MEDIATYPES,
   SOURCE_TYPES,
   RESOURCE_TYPES,
+  RESOURCE_TYPES_LIST,
   UNFURL_TYPES,
   PERSONAS,
   PERSONAS_LIST,
