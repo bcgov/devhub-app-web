@@ -9,7 +9,16 @@ import ActionsRibbon from './ActionsRibbon';
 import { CARD_CONFIG } from '../../../constants/ui';
 import { ARIA_LABEL_RESOURCE } from '../../../constants/ariaLabels';
 
-const ComponentCard = ({ title, description, resourcePath, image, resourceType, author, repository, owner}) => (
+const ComponentCard = ({
+  title,
+  description,
+  resourcePath,
+  image,
+  resourceType,
+  author,
+  repository,
+  owner,
+}) => (
   <Card resourceType={resourceType} resourcePath={resourcePath} title={title} author={author}>
     <div className={styles.Body}>
       <DotDotDot clamp={CARD_CONFIG.maxDescriptionLines} className={styles.BodyDescription}>

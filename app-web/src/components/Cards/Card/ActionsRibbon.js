@@ -41,7 +41,15 @@ const ActionsRibbon = ({ actions, repository, owner }) => {
 };
 
 ActionsRibbon.propTypes = {
-  reosurceType: PropTypes.string.isRequired,
+  actions: PropTypes.arrayOf(
+    PropTypes.shape({
+      getHref: PropTypes.func.isRequired,
+      icon: PropTypes.node.isRequired,
+      ariaLabel: PropTypes.string.isRequired,
+      flag: PropTypes.string.isRequired, // this is the dot prop path to the feature flag state reducer
+      name: PropTypes.string,
+    }).isRequired,
+  ),
   repository: PropTypes.string.isRequired,
   owner: PropTypes.string.isRequired,
 };
