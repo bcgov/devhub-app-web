@@ -27,15 +27,16 @@ const SOURCE_TYPES = {
   GITHUB: 'github',
 };
 
+const RESOURCE_TYPES = {
+  COMPONENTS: 'Components',
+  DOCUMENTATION: 'Documentation',
+  SELF_SERVICE_TOOLS: 'Self-Service Tools',
+  RESPOSITORIES: 'Repositories',
+  PEOPLE: 'People',
+  PROJECTS: 'Projects',
+};
 // Resource Types for Devhub
-const RESOURCE_TYPES = [
-  'Documentation',
-  'Repositories',
-  'People',
-  'Projects',
-  'Self-Service Tools',
-  'Components',
-];
+const RESOURCE_TYPES_LIST = Object.values(RESOURCE_TYPES);
 
 const PERSONAS = {
   DESIGNER: 'Designer',
@@ -43,7 +44,7 @@ const PERSONAS = {
   PRODUCT_OWNER: 'Product Owner',
 };
 
-const PERSONAS_LIST = Object.keys(PERSONAS).map(p => PERSONAS[p]);
+const PERSONAS_LIST = Object.values(PERSONAS);
 
 const GRAPHQL_NODE_TYPE = 'DevhubSiphon';
 
@@ -162,6 +163,7 @@ module.exports = {
   MEDIATYPES,
   SOURCE_TYPES,
   RESOURCE_TYPES,
+  RESOURCE_TYPES_LIST,
   UNFURL_TYPES,
   PERSONAS,
   PERSONAS_LIST,

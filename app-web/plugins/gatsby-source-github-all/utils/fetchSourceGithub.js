@@ -39,6 +39,7 @@ const {
   markdownResourceTypePlugin,
   externalLinkUnfurlPlugin,
   markdownPersonaPlugin,
+  repositoryResourcePathPlugin,
 } = require('./plugins');
 /**
  * returns extension of a file name
@@ -334,6 +335,7 @@ const getFilesFromRepo = async (
             .use(markdownResourceTypePlugin)
             .use(externalLinkUnfurlPlugin)
             .use(markdownPersonaPlugin, { personas: PERSONAS_LIST })
+            .use(repositoryResourcePathPlugin)
             .resolve();
         } catch (e) {
           console.error(chalk.yellow(e.message));
