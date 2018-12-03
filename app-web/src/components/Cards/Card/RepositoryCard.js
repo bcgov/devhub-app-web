@@ -25,9 +25,11 @@ const RepositoryCard = ({
       <DotDotDot clamp={CARD_CONFIG.maxDescriptionLines} className={styles.BodyDescription}>
         <p>{description}</p>
       </DotDotDot>
-      <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE} className={styles.BodyImage}>
-        <Image src={image} />
-      </Link>
+      <div className={styles.BodyImage}>
+        <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE}>
+          <Image src={image} />
+        </Link>
+      </div>
     </div>
     <ActionsRibbon
       actions={CARD_CONFIG.actionsRibbon[resourceType]}
