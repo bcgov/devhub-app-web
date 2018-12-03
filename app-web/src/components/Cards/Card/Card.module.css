@@ -87,17 +87,22 @@
 
   .Body img {
     max-height: 100%;
+    max-width: 100%;
   }
 
   .BodyImage {
-    margin-top: 10px;
+    margin: 10px 0;
     text-align: center;
-    height: 125px;
-    display: block;
+    max-height: 125px;
+    position: relative;
     flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  }
+
+  .BodyImage a {
+    position: absolute;
+    width: 100%;
+    display: block;
+    height: 100%;
   }
 
   .Ribbon {

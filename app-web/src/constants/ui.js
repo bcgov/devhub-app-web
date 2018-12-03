@@ -23,6 +23,44 @@ import {
   ARIA_LABEL_WATCH_GITHUB_REPO,
 } from './ariaLabels';
 
+export const RESOURCE_TYPES = {
+  COMPONENTS: 'Components',
+  DOCUMENTATION: 'Documentation',
+  SELF_SERVICE_TOOLS: 'Self-Service Tools',
+  RESPOSITORIES: 'Repositories',
+};
+
+export const CARD_ACTIONS = {
+  REPOSITORY: {
+    name: 'Repository',
+    flag: 'features.card.repository',
+    icon: faGithub,
+    ariaLabel: ARIA_LABEL_REPO,
+    getHref: getGithubRepoRoute,
+  },
+  ISSUES: {
+    name: 'Issues',
+    flag: 'features.card.issues',
+    icon: faComment,
+    ariaLabel: ARIA_LABEL_TO_GITHUB_ISSUES,
+    getHref: getGithubIssuesRoute,
+  },
+  FORK: {
+    name: 'Fork',
+    flag: 'features.card.fork',
+    icon: faCodeBranch,
+    ariaLabel: ARIA_LABEL_FORK_GITHUB_REPO,
+    getHref: getGithubForkRoute,
+  },
+  WATCH: {
+    name: 'Watch',
+    flag: 'features.card.watch',
+    icon: faEye,
+    ariaLabel: ARIA_LABEL_WATCH_GITHUB_REPO,
+    getHref: getGithubWatchRoute,
+  },
+};
+
 export const CARD_CONFIG = {
   maxDescriptionLines: 4, // max number of lines before text should be truncated
   maxTitleLines: 2, // similar.
@@ -31,36 +69,16 @@ export const CARD_CONFIG = {
   avatarIconHeight: 45,
   cardImageWidth: 150,
   cardImageHeight: 150,
-  actionsRibbon: [
-    {
-      name: 'Repository',
-      flag: 'features.card.repository',
-      icon: faGithub,
-      ariaLabel: ARIA_LABEL_REPO,
-      getHref: getGithubRepoRoute,
-    },
-    {
-      name: 'Issues',
-      flag: 'features.card.issues',
-      icon: faComment,
-      ariaLabel: ARIA_LABEL_TO_GITHUB_ISSUES,
-      getHref: getGithubIssuesRoute,
-    },
-    {
-      name: 'Fork',
-      flag: 'features.card.fork',
-      icon: faCodeBranch,
-      ariaLabel: ARIA_LABEL_FORK_GITHUB_REPO,
-      getHref: getGithubForkRoute,
-    },
-    {
-      name: 'Watch',
-      flag: 'features.card.watch',
-      icon: faEye,
-      ariaLabel: ARIA_LABEL_WATCH_GITHUB_REPO,
-      getHref: getGithubWatchRoute,
-    },
-  ],
+  actionsRibbon: {
+    [RESOURCE_TYPES.RESPOSITORIES]: [
+      CARD_ACTIONS.REPOSITORY,
+      CARD_ACTIONS.ISSUES,
+      CARD_ACTIONS.FORK,
+      CARD_ACTIONS.WATCH,
+    ],
+    [RESOURCE_TYPES.DOCUMENTATION]: [CARD_ACTIONS.ISSUES],
+    [RESOURCE_TYPES.COMPONENTS]: [CARD_ACTIONS.ISSUES],
+  },
 };
 
 export const buttonTypes = ['primary', 'secondary', 'link'];
@@ -70,13 +88,6 @@ export const BANNER_ID = 'dh-banner';
 export const MAIN_NAVIGATION_BTN = 'dh-main-nav';
 export const LARGE_SCREEN_LIMIT = 4;
 export const SMALL_SCREEN_LIMIT = 1;
-
-export const RESOURCE_TYPES = {
-  COMPONENTS: 'Components',
-  DOCUMENTATION: 'Documentation',
-  SELF_SERVICE_TOOLS: 'Self-Service Tools',
-  RESPOSITORIES: 'Repositories',
-};
 
 export const RESOURCE_TYPES_CONFIG = {
   COMPONENTS: {

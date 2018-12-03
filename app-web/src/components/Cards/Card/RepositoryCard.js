@@ -29,7 +29,11 @@ const RepositoryCard = ({
         <Image src={image} />
       </Link>
     </div>
-    <ActionsRibbon repository={repository} owner={owner} />
+    <ActionsRibbon
+      actions={CARD_CONFIG.actionsRibbon[resourceType]}
+      repository={repository}
+      owner={owner}
+    />
   </Card>
 );
 

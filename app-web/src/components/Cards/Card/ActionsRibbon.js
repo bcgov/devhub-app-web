@@ -22,10 +22,9 @@ import Link from '../../UI/Link/Link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Ribbon from './Ribbon';
 import shortid from 'shortid';
-import { CARD_CONFIG } from '../../../constants/ui';
 
-const ActionsRibbon = ({ repository, owner }) => {
-  const actionsRibbon = CARD_CONFIG.actionsRibbon.map(config => {
+const ActionsRibbon = ({ actions, repository, owner }) => {
+  const actionsRibbon = actions.map(config => {
     const link = config.getHref(repository, owner);
 
     return (
@@ -42,6 +41,7 @@ const ActionsRibbon = ({ repository, owner }) => {
 };
 
 ActionsRibbon.propTypes = {
+  reosurceType: PropTypes.string.isRequired,
   repository: PropTypes.string.isRequired,
   owner: PropTypes.string.isRequired,
 };
