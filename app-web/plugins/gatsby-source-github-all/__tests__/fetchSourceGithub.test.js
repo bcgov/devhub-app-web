@@ -59,15 +59,19 @@ beforeEach(() => {
   ];
   entriesInDir = [
     {
-      path: '/docs/a/something.md',
+      path: 'docs/a/something.md',
       type: 'blob',
     },
     {
-      path: '/otherDocs/something.md',
+      path: 'otherDocs/something.md',
       type: 'blob',
     },
     {
-      path: '/docs/something.md',
+      path: 'docs/something.md',
+      type: 'blob',
+    },
+    {
+      path: 'a/docs/something.md',
       type: 'blob',
     },
     {
@@ -256,28 +260,28 @@ describe('Github API', () => {
   test('filterFilesByContext filters entries', () => {
     const expected = [
       {
-        path: '/docs/a/something.md',
+        path: 'docs/a/something.md',
         type: 'blob',
       },
       {
-        path: '/otherDocs/something.md',
+        path: 'otherDocs/something.md',
         type: 'blob',
       },
       {
-        path: '/docs/something.md',
+        path: 'docs/something.md',
         type: 'blob',
       },
     ];
     const expected2 = [
       {
-        path: '/docs/a/something.md',
+        path: 'docs/a/something.md',
         type: 'blob',
       },
     ];
     // here is assuming that there is at least one dontext dir specified
     // which is checked in filterFiles()
     const result1 = filterFilesByContext(entriesInDir, ['/docs', 'otherDocs']);
-    const result2 = filterFilesByContext(entriesInDir, ['/docs/a']);
+    const result2 = filterFilesByContext(entriesInDir, '/docs/a');
     expect(result1).toEqual(expected);
     expect(result2).toEqual(expected2);
   });

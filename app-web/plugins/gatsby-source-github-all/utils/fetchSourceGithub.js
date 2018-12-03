@@ -227,15 +227,17 @@ const applyBaseMetadata = (
 /**
  * filters files by the context directories from source
  * @param {Array} files the files
- * @param {Object} contextDir array of paths to get files in a repo
+ * @param {Object} contextDir a path or array of paths to get files in a repo
  */
 const filterFilesByContext = (files, contextDir) => {
-  const targetPaths = contextDir.map(dir => {
+  const contextDirArray = TypeCheck.isArray(contextDir) ? contextDir : new Array(contextDir);
+  // Use relative paths to root:
+  const targetPaths = contextDirArray.map(dir => {
     return dir.charAt(0) === '/' ? dir.substring(1) : dir;
   });
   // now only return files in the target context dir array
   const contextFiles = files.filter(file => {
-    return targetPaths.some(path => file.path.indexOf(path) >= 0);
+    return targetPaths.some(path => file.path.indexOf(path) === 0);
   });
   return contextFiles;
 };
@@ -244,7 +246,7 @@ const filterFilesByContext = (files, contextDir) => {
  * filters files by processable extensions as well as the devhubignores
  * @param {Array} files the files
  * @param {Object} ignoreObj the ignore module object
- * @param {Object} contextDir array of paths for get files in a repo
+ * @param {Object} contextDir a path or array of paths for get files in a repo
  */
 const filterFiles = (files, ignoreObj, contextDir) => {
   // filter out files that are not in the context path
