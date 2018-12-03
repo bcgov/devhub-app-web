@@ -31,7 +31,7 @@
     text-transform: capitalize;
   }
 
-  .Head, .Body, .Foot {
+  .Head, .Body, .Foot, .Ribbon {
     padding: 4px 6px;
     margin-left: 8px;
     margin-right: 8px;
@@ -87,17 +87,58 @@
 
   .Body img {
     max-height: 100%;
+    max-width: 100%;
   }
 
   .BodyImage {
-    margin-top: 10px;
+    margin: 10px 0;
     text-align: center;
-    height: 125px;
-    display: block;
+    max-height: 125px;
+    position: relative;
     flex-grow: 1;
+  }
+
+  .BodyImage a {
+    position: absolute;
+    width: 100%;
+    display: block;
+    height: 100%;
+  }
+
+  .Ribbon {
     display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: center;
+    list-style: none;
+    margin-bottom: 0;
+    padding: 5px 0;
+  }
+
+  .Ribbon li a {
+    font-size: 19px;
+    color: #38598a;
+    transition: color .25s ease-out;
+  }
+
+  .Ribbon li a:hover {
+    color: #00316b;
+  }
+
+  .Card .Ribbon:nth-of-type(1) {
+    border-top: 1px solid #00316b
+  }
+
+  .Card .Ribbon:nth-of-type(2) {
+    border-top: 1px solid #1a5a96
+  }
+
+  .Card .Ribbon:nth-of-type(3) {
+    border-top: 1px solid #5475a7
+  }
+
+  .Ribbon li {
+    margin: 0 5px;
   }
 
   .Foot {

@@ -30,6 +30,8 @@ export class Index extends Component {
           sourceName: node.source.displayName,
           sourcePath: node.source.sourcePath,
           resourceType: node.resource.type,
+          owner: node.owner,
+          repository: node.source.name,
         }));
     }
 
@@ -99,6 +101,7 @@ export const resourceQuery = graphql`
             type
             name
           }
+          owner
           resource {
             path
             type

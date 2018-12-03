@@ -15,9 +15,20 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import { getGithubAvatarFromUsername, getGithubUsernameURL } from '../../src/utils/helpers';
+import {
+  getGithubAvatarFromUsername,
+  getGithubUsernameURL,
+  getGithubIssuesRoute,
+} from '../../src/utils/helpers';
 import { GITHUB_URL } from '../../src/constants/api';
 describe('Helpers', () => {
+  test('getGethubIssuesRoute returns a url', () => {
+    const repo = 'foo';
+    const owner = 'bar';
+    const expected = `${GITHUB_URL}/${owner}/${repo}/issues`;
+    expect(getGithubIssuesRoute(repo, owner)).toBe(expected);
+  });
+
   test('getGithubUsernameUrl returns a url', () => {
     const username = 'billy@bob';
     const expected = `${GITHUB_URL}/${username}`;
