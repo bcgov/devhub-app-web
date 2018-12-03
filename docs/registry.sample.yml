@@ -25,7 +25,9 @@ repos:
       url: https://github.com/bcgov/devhub-app-web/
       owner: bcgov
       repo: 'devhub-app-web'
-      context: ['/docs/test-context-dir', 'plugins/docs']
+      context:
+        - '/docs/test-context-dir'
+        - 'plugins/docs'
       branch: 'template'
     resourceType: 'Repositories'
     attributes:
