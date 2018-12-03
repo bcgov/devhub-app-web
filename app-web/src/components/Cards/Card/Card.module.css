@@ -137,39 +137,14 @@
     border-top: 1px solid #5475a7
   }
 
+  .Card .Ribbon:last-of-type {
+    border-top: 1px solid #ccc;
+  }
+
   .Ribbon li {
     margin: 0 5px;
   }
-
-  .Foot {
-    border-top: 1px solid #ccc;
-    color: #6d6d6d;
-    font-weight: 400;
-    /* position: absolute; */
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 8px 14px;
-  }
   
-  .Foot p {
-    margin: 0;
-  }
-  
-  .Actions ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-flow: row none;
-    justify-content: flex-start;
-    align-items: center;
-  }
-  
-  .Actions li {
-    flex-basis: 25px;
-  }
-
   @media screen and (min-width: 500px) {
     .Card {
       width: 220px;
