@@ -5,12 +5,21 @@ import Image from 'react-image';
 import styles from './Card.module.css';
 import Card from '../../../hoc/Card';
 import Link from '../../UI/Link/Link';
-import Ribbon from './Ribbon';
+import ActionsRibbon from './ActionsRibbon';
 
 import { ARIA_LABEL_RESOURCE } from '../../../constants/ariaLabels';
 import { CARD_CONFIG } from '../../../constants/ui';
 
-const RepositoryCard = ({ title, description, resourcePath, image, resourceType, author }) => (
+const RepositoryCard = ({
+  title,
+  description,
+  resourcePath,
+  image,
+  resourceType,
+  author,
+  repository,
+  owner,
+}) => (
   <Card resourceType={resourceType} title={title} resourcePath={resourcePath} author={author}>
     <div className={styles.Body}>
       <DotDotDot clamp={CARD_CONFIG.maxDescriptionLines} className={styles.BodyDescription}>
@@ -20,11 +29,7 @@ const RepositoryCard = ({ title, description, resourcePath, image, resourceType,
         <Image src={image} />
       </Link>
     </div>
-    <Ribbon>
-      <li>Issues</li>
-      <li>Issues</li>
-      <li>Issues</li>
-    </Ribbon>
+    <ActionsRibbon repository={repository} owner={owner} />
   </Card>
 );
 
@@ -35,6 +40,8 @@ RepositoryCard.propTypes = {
   description: PropTypes.string.isRequired,
   resourcePath: PropTypes.string.isRequired,
   resourceType: PropTypes.string.isRequired,
+  repository: PropTypes.string.isRequired,
+  owner: PropTypes.string.isRequired,
   image: PropTypes.string,
   author: PropTypes.string,
 };

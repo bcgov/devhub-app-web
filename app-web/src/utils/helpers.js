@@ -22,7 +22,7 @@ import { TypeCheck } from '@bcgov/common-web-utils';
 export const getGithubRepoRoute = (repository, owner) => `${GITHUB_URL}/${owner}/${repository}`;
 
 export const getGithubIssuesRoute = (repository, owner) =>
-  `${getGithubRepoRoute(repository)}/issues`;
+  `${getGithubRepoRoute(repository, owner)}/issues`;
 
 export const getGithubUsernameURL = username => `${GITHUB_URL}/${username}`;
 /**
