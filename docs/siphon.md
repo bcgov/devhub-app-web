@@ -1,6 +1,7 @@
 ---
 description: An overview of how Devhub's Siphon works
 author: patricksimonian
+image: https://cdn.pixabay.com/photo/2016/01/23/16/02/book-1157658_960_720.png
 ---
 # Siphon
 Devhub is a content catalogue generator. **Siphon** is Devhub's main tool that *siphons* content from Github Repositories and converts it into useable Gatsby JS graphQL nodes.
