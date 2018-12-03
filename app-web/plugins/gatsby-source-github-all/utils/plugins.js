@@ -189,7 +189,6 @@ const externalLinkUnfurlPlugin = async (extension, file) => {
     try {
       metadata = await scrape(file.metadata.resourcePath);
     } catch (e) {
-      console.log(e);
       return file;
     }
     // metadata comes in with properties for each type of unfurl spec (twitter, openGraph etc)
@@ -197,12 +196,16 @@ const externalLinkUnfurlPlugin = async (extension, file) => {
     // const metadata = await metascraper({ html, url });
     // update image to have resource path prepended to it if it is not https
     if (TypeCheck.isString(combinedMetadata.image)) {
-      if (validUrl.isWebUri(combinedMetadata.image) === undefined) {
-        combinedMetadata.image = url.resolve(file.metadata.resourcePath, combinedMetadata.image);
-      }
-
-      file.metadata.unfurl = createUnfurlObj(UNFURL_TYPES.EXTERNAL, combinedMetadata);
+      combinedMetadata.image = url.resolve(file.metadata.resourcePath, combinedMetadata.image);
+    } else if (
+      TypeCheck.isObject(combinedMetadata.image) &&
+      Object.prototype.hasOwnProperty.call(combinedMetadata.image, 'url')
+    ) {
+      // sometimes the image property from opengraph or twitter card comes in from scrape as
+      // .url property
+      combinedMetadata.image = combinedMetadata.image.url;
     }
+    file.metadata.unfurl = createUnfurlObj(UNFURL_TYPES.EXTERNAL, combinedMetadata);
   }
   return file;
 };
