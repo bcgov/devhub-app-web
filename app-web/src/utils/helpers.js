@@ -24,6 +24,12 @@ export const getGithubRepoRoute = (repository, owner) => `${GITHUB_URL}/${owner}
 export const getGithubIssuesRoute = (repository, owner) =>
   `${getGithubRepoRoute(repository, owner)}/issues`;
 
+export const getGithubForkRoute = (repository, owner) =>
+  `${getGithubRepoRoute(repository, owner)}/fork`;
+
+export const getGithubWatchRoute = (repository, owner) =>
+  `${getGithubRepoRoute(repository, owner)}/subscription`;
+
 export const getGithubUsernameURL = username => `${GITHUB_URL}/${username}`;
 /**
  * returns a github username image url

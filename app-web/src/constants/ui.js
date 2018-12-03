@@ -1,5 +1,5 @@
 // all User Interface related constants
-import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import { faComment, faEye, faCodeBranch } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/fontawesome-free-brands';
 import {
   HOME_ROUTE,
@@ -8,8 +8,21 @@ import {
   COMPONENTS_ROUTE,
   SELF_SERVICE_ROUTE,
 } from './routes';
-import { getGithubIssuesRoute, getGithubRepoRoute } from '../utils/helpers';
-import { ARIA_LABEL_TO_GITHUB_ISSUES, ARIA_LABEL_REPO } from './ariaLabels';
+
+import {
+  getGithubIssuesRoute,
+  getGithubRepoRoute,
+  getGithubForkRoute,
+  getGithubWatchRoute,
+} from '../utils/helpers';
+
+import {
+  ARIA_LABEL_TO_GITHUB_ISSUES,
+  ARIA_LABEL_REPO,
+  ARIA_LABEL_FORK_GITHUB_REPO,
+  ARIA_LABEL_WATCH_GITHUB_REPO,
+} from './ariaLabels';
+
 export const CARD_CONFIG = {
   maxDescriptionLines: 4, // max number of lines before text should be truncated
   maxTitleLines: 2, // similar.
@@ -29,9 +42,23 @@ export const CARD_CONFIG = {
     {
       name: 'Issues',
       flag: 'features.card.issues',
-      icon: faExclamationCircle,
+      icon: faComment,
       ariaLabel: ARIA_LABEL_TO_GITHUB_ISSUES,
       getHref: getGithubIssuesRoute,
+    },
+    {
+      name: 'Fork',
+      flag: 'features.card.fork',
+      icon: faCodeBranch,
+      ariaLabel: ARIA_LABEL_FORK_GITHUB_REPO,
+      getHref: getGithubForkRoute,
+    },
+    {
+      name: 'Watch',
+      flag: 'features.card.watch',
+      icon: faEye,
+      ariaLabel: ARIA_LABEL_WATCH_GITHUB_REPO,
+      getHref: getGithubWatchRoute,
     },
   ],
 };

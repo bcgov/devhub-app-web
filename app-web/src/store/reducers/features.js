@@ -37,6 +37,8 @@ export default createFlagsReducer({
     card: {
       issues: true,
       repository: true,
+      watch: true,
+      fork: true,
     },
   },
 });

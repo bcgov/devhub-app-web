@@ -111,7 +111,8 @@
   }
 
   .Ribbon li a {
-    font-size: 22px;
+    font-size: 19px;
+    color: #38598a;
   }
 
   .Card .Ribbon:nth-of-type(1) {
