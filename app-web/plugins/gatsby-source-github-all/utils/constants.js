@@ -36,14 +36,7 @@ const RESOURCE_TYPES = {
   PROJECTS: 'Projects',
 };
 // Resource Types for Devhub
-const RESOURCE_TYPES_LIST = [
-  RESOURCE_TYPES.DOCUMENTATION,
-  RESOURCE_TYPES.RESPOSITORIES,
-  RESOURCE_TYPES.COMPONENTS,
-  RESOURCE_TYPES.PEOPLE,
-  RESOURCE_TYPES.SELF_SERVICE_TOOLS,
-  RESOURCE_TYPES.PROJECTS,
-];
+const RESOURCE_TYPES_LIST = Object.values(RESOURCE_TYPES);
 
 const PERSONAS = {
   DESIGNER: 'Designer',
@@ -51,7 +44,7 @@ const PERSONAS = {
   PRODUCT_OWNER: 'Product Owner',
 };
 
-const PERSONAS_LIST = Object.keys(PERSONAS).map(p => PERSONAS[p]);
+const PERSONAS_LIST = Object.values(PERSONAS);
 
 const GRAPHQL_NODE_TYPE = 'DevhubSiphon';
 
