@@ -24,8 +24,9 @@ import { GITHUB_URL } from '../../src/constants/api';
 describe('Helpers', () => {
   test('getGethubIssuesRoute returns a url', () => {
     const repo = 'foo';
-    const expected = `${GITHUB_URL}/${repo}/issues`;
-    expect(getGithubIssuesRoute(repo)).toBe(expected);
+    const owner = 'bar';
+    const expected = `${GITHUB_URL}/${owner}/${repo}/issues`;
+    expect(getGithubIssuesRoute(repo, owner)).toBe(expected);
   });
 
   test('getGithubUsernameUrl returns a url', () => {
