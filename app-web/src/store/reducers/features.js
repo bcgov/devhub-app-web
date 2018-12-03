@@ -35,6 +35,7 @@ export default createFlagsReducer({
     pathfinderResourceCards: true,
     sourceFiltering: true,
     card: {
+      metadata: true,
       issues: true,
       repository: true,
       watch: true,

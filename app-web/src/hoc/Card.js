@@ -19,9 +19,10 @@ Created by Patrick Simonian
 // wrapper for all card type components
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from '../components/UI/Link/Link';
 import DotDotDot from 'react-dotdotdot';
 import Image from 'react-image';
+import Link from '../components/UI/Link/Link';
+import MetadataRibbon from '../components/Cards/Card/MetadataRibbon';
 import { CARD_CONFIG } from '../constants/ui';
 import { ARIA_LABEL_RESOURCE, ARIA_LABEL_TO_GITHUB_USER } from '../constants/ariaLabels';
 import { getGithubAvatarFromUsername, getGithubUsernameURL } from '../utils/helpers';
@@ -48,9 +49,7 @@ const Card = ({ children, resourceType, resourcePath, title, author }) => (
       </Link>
     </div>
     {children}
-    <div className={styles.Foot}>
-      <p>{resourceType}</p>
-    </div>
+    <MetadataRibbon items={[resourceType]} />
   </article>
 );
 
