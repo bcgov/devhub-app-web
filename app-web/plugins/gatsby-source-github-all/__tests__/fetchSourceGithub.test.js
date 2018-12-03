@@ -26,6 +26,7 @@ import {
   fetchIgnoreFile,
   validateSourceGithub,
   filterFilesByExtensions,
+  filterFilesByContext,
   getExtensionFromName,
   getNameWithoutExtension,
   applyBaseMetadata,
@@ -39,6 +40,7 @@ const { Response } = jest.requireActual('node-fetch');
 import { GITHUB_API, GITHUB_SOURCE } from '../__fixtures__/fixtures';
 
 let entries = null;
+let entriesInDir = null;
 
 beforeEach(() => {
   entries = [
@@ -52,6 +54,28 @@ beforeEach(() => {
     },
     {
       path: 'something.txt',
+      type: 'blob',
+    },
+  ];
+  entriesInDir = [
+    {
+      path: 'docs/a/something.md',
+      type: 'blob',
+    },
+    {
+      path: 'otherDocs/something.md',
+      type: 'blob',
+    },
+    {
+      path: 'docs/something.md',
+      type: 'blob',
+    },
+    {
+      path: 'a/docs/something.md',
+      type: 'blob',
+    },
+    {
+      path: 'something.md',
       type: 'blob',
     },
   ];
@@ -229,6 +253,35 @@ describe('Github API', () => {
     ];
     const result1 = filterFilesByExtensions(entries);
     const result2 = filterFilesByExtensions(entries, ['.md', '.txt']);
+    expect(result1).toEqual(expected);
+    expect(result2).toEqual(expected2);
+  });
+
+  test('filterFilesByContext filters entries', () => {
+    const expected = [
+      {
+        path: 'docs/a/something.md',
+        type: 'blob',
+      },
+      {
+        path: 'otherDocs/something.md',
+        type: 'blob',
+      },
+      {
+        path: 'docs/something.md',
+        type: 'blob',
+      },
+    ];
+    const expected2 = [
+      {
+        path: 'docs/a/something.md',
+        type: 'blob',
+      },
+    ];
+    // here is assuming that there is at least one dontext dir specified
+    // which is checked in filterFiles()
+    const result1 = filterFilesByContext(entriesInDir, ['/docs', 'otherDocs']);
+    const result2 = filterFilesByContext(entriesInDir, '/docs/a');
     expect(result1).toEqual(expected);
     expect(result2).toEqual(expected2);
   });

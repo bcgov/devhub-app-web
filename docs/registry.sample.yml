@@ -19,4 +19,18 @@ repos:
       repo: 'devhub-signing-web'
       branch: my-branch
     resourceType: Self-Service Tools
+  - name: DevHub
+    sourceType: 'github'
+    sourceProperties:
+      url: https://github.com/bcgov/devhub-app-web/
+      owner: bcgov
+      repo: 'devhub-app-web'
+      context:
+        - '/docs/test-context-dir'
+        - 'plugins/docs'
+      branch: 'template'
+    resourceType: 'Repositories'
+    attributes:
+      labels:
+        - Repository
   

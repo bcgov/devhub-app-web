@@ -155,6 +155,7 @@ This is accomplished by 'registering' into the devhub.
         - `owner`: the owner of the repo    
         - `repo` This is the **actual** repository name
         - `branch` (optional) The branch you would like devhub to source content from
+        - `context` (optional) The directory or an array of directories you would like devhub to source content from the repo
 - `resourceType` (optional) This is a global resource type, any singular chunk of data (such as a markdown file or a yaml file or a  link to a website) that Siphon grabs from your source can have it's individual resourceType defaulted to this value
     - valid resource types: see the main readme
 - `attributes`
