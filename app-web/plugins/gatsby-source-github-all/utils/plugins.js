@@ -240,6 +240,9 @@ const markdownPersonaPlugin = async (extension, file, { personas }) => {
  * @param {Object} file 
  * @returns {Object} the modified file
  */
+// returns a promise only because the .use() method in file transformer expects one
+// this fileTransformer will be refactored to allow sync and async functions to run
+// serially at another time
 const repositoryResourcePathPlugin = async (extension, file) => {
   if (file.metadata.resourceType === RESOURCE_TYPES.RESPOSITORIES) {
     file.metadata.resourcePath = file.metadata.originalResourceLocation;
