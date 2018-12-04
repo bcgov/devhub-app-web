@@ -1,5 +1,6 @@
 import React from 'react';
 import Circle from '../Circle/Circle';
+import Link from '../../UI/Link/Link';
 import { HOME_ROUTE } from '../../../constants/routes';
 import classes from './VennDiagram.module.css';
 
@@ -11,8 +12,8 @@ const VennDiagram = ({ location }) => (
       </Circle>
       <Circle className={classes.circle_second}>
         <p>You mistyped.</p>
+        <p className={classes.center}>404 Error</p>
       </Circle>
-      <p className={classes.center}>404 Error</p>
     </div>
     <article className={classes.description}>
       <h2>Venn Diagram</h2>
@@ -22,6 +23,9 @@ const VennDiagram = ({ location }) => (
         overlap in the middle. Each circle follows a certain rule, so any numbers or objects placed
         in the overlapping part (the intersection) follow both rules. The diagram is named after the
         British logician, John Venn.
+      </p>
+      <p>
+        <Link to={HOME_ROUTE}>Back Home</Link>
       </p>
     </article>
   </main>
