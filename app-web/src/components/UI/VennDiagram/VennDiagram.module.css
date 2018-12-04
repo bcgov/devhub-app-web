@@ -20,7 +20,7 @@
 
 .venn_diagram p {
     color: #fff;
-    font-size: 16px;
+    font-size: 18px;
     margin: 1em 0;
     position: absolute;
     top: 50%;
@@ -40,7 +40,8 @@
 
 .circle_first p {
     transform: translate(-100%, -50%);
-    padding-right: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 .circle_second {
