@@ -2,20 +2,19 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classes from './Circle.module.css';
 
-const Circle = ({ type, children, ...rest }) => {
-  let circleClasses = [classes.circle];
-  const typeClass = classes[type];
-  circleClasses = circleClasses.concat([typeClass]);
+const Circle = ({ className, children, ...rest }) => {
+  let circleClasses = [classes.circle, className];
   return <div className={circleClasses.join(' ')}>{children}</div>;
 };
 
 Circle.propTypes = {
-  children: PropTypes.string,
-  clicked: PropTypes.func.isRequired,
+  children: PropTypes.node,
+  className: PropTypes.string,
 };
 
 Circle.defaultProps = {
   children: '',
+  className: '',
 };
 
 export default Circle;
