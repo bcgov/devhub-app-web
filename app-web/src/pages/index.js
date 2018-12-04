@@ -1,57 +1,53 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 // import YAML from 'js-yaml';
 import shortid from 'shortid';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import * as actions from '../store/actions/actions';
-import {Flag} from 'flag';
-import {groupBy} from '../utils/dataMassager';
-import {GITHUB_ISSUES_ROUTE} from '../constants/routes';
+import { Flag } from 'flag';
+import { groupBy } from '../utils/dataMassager';
+import { GITHUB_ISSUES_ROUTE } from '../constants/routes';
 // local components
 import Layout from '../hoc/Layout';
 import Cards from '../components/Cards/Cards';
-import Button from '../components/UI/Button/Button'
 import styles from './index.module.css';
 import CardFilterButton from "../components/CardFilterButton/CardFilterButton";
 
 export class Index extends Component {
-    componentDidMount() {
-        // flatted nodes from graphql
-        const nodes = this.props.data.allDevhubSiphon.edges.map(n => n.node);
-        this.props.loadSiphonNodes(nodes);
+  componentDidMount() {
+    // flatted nodes from graphql
+    const nodes = this.props.data.allDevhubSiphon.edges.map(n => n.node);
+    this.props.loadSiphonNodes(nodes);
+  }
+
+  render() {
+    const { nodes, location: { pathname } } = this.props;
+    let mappedSiphonNodes = [];
+    if (nodes && nodes.length) {
+      mappedSiphonNodes = nodes
+        .filter(node => node.childMarkdownRemark && !node.childMarkdownRemark.frontmatter.pageOnly)
+        .map(node => ({
+          ...node.unfurl,
+          resourcePath: node.resource.path,
+          sourceName: node.source.displayName,
+          sourcePath: node.source.sourcePath,
+          resourceType: node.resource.type,
+          owner: node.owner,
+          repository: node.source.name,
+        }));
     }
 
-    render() {
-        const {nodes, location: {pathname}} = this.props;
-        let mappedSiphonNodes = [];
-        if (nodes && nodes.length) {
-            mappedSiphonNodes = nodes
-                .filter(node => node.childMarkdownRemark && !node.childMarkdownRemark.frontmatter.pageOnly)
-                .map(node => ({
-                    ...node.unfurl,
-                    resourcePath: node.resource.path,
-                    sourceName: node.source.displayName,
-                    sourcePath: node.source.sourcePath,
-                    resourceType: node.resource.type,
-                }));
-        }
+    // const cards = mappedSiphonNodes.length > 0 ? <Cards cards={mappedSiphonNodes} topic='Everything'/> : <div>Loading</div>;
+    // console.log(mappedSiphonNodes);
+    //   .map(siphonNode => ({
+    //     ...siphonNode,
+    //     title: siphonNode.childMarkdownRemark.frontmatter.title,
+    //     description: siphonNode.childMarkdownRemark.frontmatter.description,
+    //   }));
 
-        // const cards = mappedSiphonNodes.length > 0 ? <Cards cards={mappedSiphonNodes} topic='Everything'/> : <div>Loading</div>;
-        // console.log(mappedSiphonNodes);
-        //   .map(siphonNode => ({
-        //     ...siphonNode,
-        //     title: siphonNode.childMarkdownRemark.frontmatter.title,
-        //     description: siphonNode.childMarkdownRemark.frontmatter.description,
-        //   }));
-
-        const groupedSiphonData = groupBy(mappedSiphonNodes, 'sourceName');
-        const SiphonResources = groupedSiphonData.map(ghData => (
-            <Cards
-                key={shortid.generate()}
-                topic={ghData.sourceName}
-                sourcePath={ghData.data[0].sourcePath}
-                cards={ghData.data}
-            />
-        ));
+    const groupedSiphonData = groupBy(mappedSiphonNodes, 'sourceName');
+    const SiphonResources = groupedSiphonData.map(ghData => (
+      <Cards key={shortid.generate()} topic={ghData.sourceName} cards={ghData.data} />
+    ));
 
         return (
             <Layout path={pathname}>
@@ -99,7 +95,9 @@ export class Index extends Component {
                             </p>
                         </div>
                     </section>
-                    <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
+                    <div className={styles.CardContainer}>
+                        <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
+                    </div>
                     {/*<Flag name="features.pathfinderResourceCards">{pathfinderResources}</Flag>*/}
                 </main>
             </Layout>
@@ -126,7 +124,7 @@ export const resourceQuery = graphql`
   query resourceQuery {
     allDevhubSiphon(filter: { internal: { mediaType: { eq: "text/markdown" } } }) {
       edges {
-        node {           
+        node {
           id
           attributes {
             persona
@@ -137,6 +135,7 @@ export const resourceQuery = graphql`
             type
             name
           }
+          owner
           resource {
             path
             type
@@ -146,6 +145,7 @@ export const resourceQuery = graphql`
             description
             type
             image
+            author
           }
           childMarkdownRemark {
             frontmatter {
@@ -159,15 +159,15 @@ export const resourceQuery = graphql`
 `;
 
 const mapStateToProps = state => {
-    return {
-        nodes: state.siphon.filteredNodes,
-    };
+  return {
+    nodes: state.siphon.filteredNodes,
+  };
 };
 
 const mapDispatchToProps = dispatch => {
-    return {
-        loadSiphonNodes: nodes => dispatch(actions.loadSiphonNodes(nodes)),
-    };
+  return {
+    loadSiphonNodes: nodes => dispatch(actions.loadSiphonNodes(nodes)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index);

@@ -29,7 +29,7 @@ const {
   getClosestResourceType,
   getClosestPersona,
 } = require('./helpers'); // eslint-disable-line
-const { MARKDOWN_FRONTMATTER_SCHEMA, UNFURL_TYPES } = require('./constants');
+const { MARKDOWN_FRONTMATTER_SCHEMA, UNFURL_TYPES, RESOURCE_TYPES } = require('./constants');
 /**
  * applys default front matter properties
  * @param {String} extension 
@@ -83,7 +83,7 @@ const markdownFrontmatterPlugin = (extension, file) => {
       if (property.required && valueIsInvalid) {
         throw new Error(
           `\nFrontmatter key '${key}' is required but ${file.metadata.fileName} for source ${file
-            .metadata.source} is missing it`,
+            .metadata.source} is missing it and will be ignored`,
         );
         // is there a defaultable value we can provide
       } else if (valueIsInvalid && DEFAULTS[key]) {
@@ -189,7 +189,6 @@ const externalLinkUnfurlPlugin = async (extension, file) => {
     try {
       metadata = await scrape(file.metadata.resourcePath);
     } catch (e) {
-      console.log(e);
       return file;
     }
     // metadata comes in with properties for each type of unfurl spec (twitter, openGraph etc)
@@ -197,12 +196,16 @@ const externalLinkUnfurlPlugin = async (extension, file) => {
     // const metadata = await metascraper({ html, url });
     // update image to have resource path prepended to it if it is not https
     if (TypeCheck.isString(combinedMetadata.image)) {
-      if (validUrl.isWebUri(combinedMetadata.image) === undefined) {
-        combinedMetadata.image = url.resolve(file.metadata.resourcePath, combinedMetadata.image);
-      }
-
-      file.metadata.unfurl = createUnfurlObj(UNFURL_TYPES.EXTERNAL, combinedMetadata);
+      combinedMetadata.image = url.resolve(file.metadata.resourcePath, combinedMetadata.image);
+    } else if (
+      TypeCheck.isObject(combinedMetadata.image) &&
+      Object.prototype.hasOwnProperty.call(combinedMetadata.image, 'url')
+    ) {
+      // sometimes the image property from opengraph or twitter card comes in from scrape as
+      // .url property
+      combinedMetadata.image = combinedMetadata.image.url;
     }
+    file.metadata.unfurl = createUnfurlObj(UNFURL_TYPES.EXTERNAL, combinedMetadata);
   }
   return file;
 };
@@ -231,6 +234,22 @@ const markdownPersonaPlugin = async (extension, file, { personas }) => {
   return file;
 };
 
+/**
+ * sets resource path to be path to file in repo if resource type is repo
+ * @param {String} extension 
+ * @param {Object} file 
+ * @returns {Object} the modified file
+ */
+// returns a promise only because the .use() method in file transformer expects one
+// this fileTransformer will be refactored to allow sync and async functions to run
+// serially at another time
+const repositoryResourcePathPlugin = async (extension, file) => {
+  if (file.metadata.resourceType === RESOURCE_TYPES.RESPOSITORIES) {
+    file.metadata.resourcePath = file.metadata.originalResourceLocation;
+  }
+  return file;
+};
+
 module.exports = {
   markdownFrontmatterPlugin,
   markdownUnfurlPlugin,
@@ -238,4 +257,5 @@ module.exports = {
   markdownResourceTypePlugin,
   externalLinkUnfurlPlugin,
   markdownPersonaPlugin,
+  repositoryResourcePathPlugin,
 };

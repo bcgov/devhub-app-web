@@ -15,15 +15,54 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
+
 // wrapper for all card type components
 import React from 'react';
 import PropTypes from 'prop-types';
+import DotDotDot from 'react-dotdotdot';
+import Image from 'react-image';
+import Link from '../components/UI/Link/Link';
+import MetadataRibbon from '../components/Cards/Card/MetadataRibbon';
+import { CARD_CONFIG } from '../constants/ui';
+import { ARIA_LABEL_RESOURCE, ARIA_LABEL_TO_GITHUB_USER } from '../constants/ariaLabels';
+import { getGithubAvatarFromUsername, getGithubUsernameURL } from '../utils/helpers';
 import styles from '../components/Cards/Card/Card.module.css';
 
-const Card = ({ children }) => <article className={styles.Card}>{children}</article>;
+const Card = ({ children, resourceType, resourcePath, title, author }) => (
+  <article className={styles.Card}>
+    <div className={styles.Head}>
+      <DotDotDot clamp={CARD_CONFIG.maxTitleLines} tagName="h2">
+        <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE} title={title}>
+          {title}
+        </Link>
+      </DotDotDot>
+      <Link
+        className={styles.Avatar}
+        to={getGithubUsernameURL(author)}
+        aria-label={ARIA_LABEL_TO_GITHUB_USER}
+      >
+        <Image
+          src={getGithubAvatarFromUsername(author, CARD_CONFIG.avatarIconSize)}
+          width={CARD_CONFIG.avatarIconWidth}
+          height={CARD_CONFIG.avatarIconHeight}
+        />
+      </Link>
+    </div>
+    {children}
+    <MetadataRibbon items={[resourceType]} />
+  </article>
+);
 
 Card.propTypes = {
   children: PropTypes.node.isRequired,
+  resourceType: PropTypes.string.isRequired,
+  resourcePath: PropTypes.string.isRequired,
+  author: PropTypes.string,
+  title: PropTypes.string.isRequired,
+};
+
+Card.defaultProps = {
+  author: '',
 };
 
 export default Card;

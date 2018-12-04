@@ -1,6 +1,7 @@
 ---
 description: This is the primary repository for the BC Gov DevHub application
 author: sheaphillips
+image: https://github.com/bcgov/devhub-app-web/blob/master/docs/images/book.png?raw=true
 ---
 
 # DevHub App Web

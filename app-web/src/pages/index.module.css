@@ -24,8 +24,19 @@
     line-height: 1.3em;
 }
 
+.CardContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 @media screen and (min-width: 500px) {
     .main {
         padding: 25px 35px 10px;
+    }
+
+    .CardContainer {
+        align-items: flex-start;
     }
 }
