@@ -56,9 +56,9 @@ export class Index extends Component {
                         <div className="container">
                             <h1 className="jumbotron-heading">Welcome.</h1>
 
-                            <h2>We are here to help.</h2>
+                            <h3> We are here to help.</h3>
 
-                            <p className="lead text-muted">This is the front door to the developer community of the BC
+                            <p className="lead">This is the front door to the developer community of the BC
                                 Government. The aim of the DevHub is to help developers and digital product teams learn
                                 new
                                 skills and discover resources to use on their journeys of creating amazing applications
@@ -71,23 +71,21 @@ export class Index extends Component {
                                 the
                                 set of resources shown just for you.
                             </p>
-                            <p>
-                                <CardFilterButton filterByProperty={'attributes.persona'} filterByValue={'Developer'}
-                                                  className="btn btn-outline-primary">I'm a
-                                    Developer</CardFilterButton>
-                                <CardFilterButton filterByProperty={'attributes.persona'} filterByValue={'Designer'}
-                                                  className="btn btn-outline-success">I'm a
-                                    Designer</CardFilterButton>
-                                <CardFilterButton filterByProperty={'attributes.persona'} filterByValue={'Product Owner'}
-                                                  className="btn btn-outline-info">I'm a
-                                    Product Owner</CardFilterButton>
-                            </p>
-                            <p>
-                                Thanks for visiting!
-                            </p>
-                            <p>
-                                &mdash; The DevHub Team.
-                            </p>
+                            <div className={'d-flex justify-content-center align-items-center'}>
+
+                                    <CardFilterButton filterByProperty={'attributes.persona'} filterByValue={'Developer'}
+                                                      className={["btn btn-outline-primary",styles.PersonaButton].join(' ')}>I'm a
+                                        Developer</CardFilterButton>
+                                    <CardFilterButton filterByProperty={'attributes.persona'} filterByValue={'Designer'}
+                                                      className={["btn btn-outline-success",styles.PersonaButton].join(' ')}>I'm a
+                                        Designer</CardFilterButton>
+
+                            </div>
+
+                            <blockquote className="blockquote">
+                                <p className="mb-0">Thanks for visiting!</p>
+                                <footer className="blockquote-footer">The DevHub Team.</footer>
+                            </blockquote>
 
                             <p className="text-muted">
                                 PS. If you’d like to comment, offer a suggestion or ask a question you can find us by

@@ -31,6 +31,10 @@
     align-items: center;
 }
 
+.PersonaButton {
+    margin: .7em;
+}
+
 @media screen and (min-width: 500px) {
     .main {
         padding: 25px 35px 10px;

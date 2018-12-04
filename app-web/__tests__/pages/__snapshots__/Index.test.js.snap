@@ -80,46 +80,49 @@ ShallowWrapper {
             >
               Welcome.
             </h1>
-            <h2>
-              We are here to help.
-            </h2>
+            <h3>
+               We are here to help.
+            </h3>
             <p
-              className="lead text-muted"
+              className="lead"
             >
               This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
             </p>
             <p>
               In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
             </p>
-            <p>
+            <div
+              className="d-flex justify-content-center align-items-center"
+            >
               <Connect(CardFilterButton)
-                className="btn btn-outline-primary"
+                className="btn btn-outline-primary PersonaButton"
                 filterByProperty="attributes.persona"
                 filterByValue="Developer"
               >
                 I'm a Developer
               </Connect(CardFilterButton)>
               <Connect(CardFilterButton)
-                className="btn btn-outline-success"
+                className="btn btn-outline-success PersonaButton"
                 filterByProperty="attributes.persona"
                 filterByValue="Designer"
               >
                 I'm a Designer
               </Connect(CardFilterButton)>
-              <Connect(CardFilterButton)
-                className="btn btn-outline-info"
-                filterByProperty="attributes.persona"
-                filterByValue="Product Owner"
+            </div>
+            <blockquote
+              className="blockquote"
+            >
+              <p
+                className="mb-0"
               >
-                I'm a Product Owner
-              </Connect(CardFilterButton)>
-            </p>
-            <p>
-              Thanks for visiting!
-            </p>
-            <p>
-              — The DevHub Team.
-            </p>
+                Thanks for visiting!
+              </p>
+              <footer
+                className="blockquote-footer"
+              >
+                The DevHub Team.
+              </footer>
+            </blockquote>
             <p
               className="text-muted"
             >
@@ -133,9 +136,13 @@ ShallowWrapper {
             </p>
           </div>
         </section>
-        <Flag
-          name="features.githubResourceCards"
-        />
+        <div
+          className="CardContainer"
+        >
+          <Flag
+            name="features.githubResourceCards"
+          />
+        </div>
       </main>,
       "path": "/",
     },
@@ -157,46 +164,49 @@ ShallowWrapper {
               >
                 Welcome.
               </h1>
-              <h2>
-                We are here to help.
-              </h2>
+              <h3>
+                 We are here to help.
+              </h3>
               <p
-                className="lead text-muted"
+                className="lead"
               >
                 This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
               </p>
               <p>
                 In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
               </p>
-              <p>
+              <div
+                className="d-flex justify-content-center align-items-center"
+              >
                 <Connect(CardFilterButton)
-                  className="btn btn-outline-primary"
+                  className="btn btn-outline-primary PersonaButton"
                   filterByProperty="attributes.persona"
                   filterByValue="Developer"
                 >
                   I'm a Developer
                 </Connect(CardFilterButton)>
                 <Connect(CardFilterButton)
-                  className="btn btn-outline-success"
+                  className="btn btn-outline-success PersonaButton"
                   filterByProperty="attributes.persona"
                   filterByValue="Designer"
                 >
                   I'm a Designer
                 </Connect(CardFilterButton)>
-                <Connect(CardFilterButton)
-                  className="btn btn-outline-info"
-                  filterByProperty="attributes.persona"
-                  filterByValue="Product Owner"
+              </div>
+              <blockquote
+                className="blockquote"
+              >
+                <p
+                  className="mb-0"
                 >
-                  I'm a Product Owner
-                </Connect(CardFilterButton)>
-              </p>
-              <p>
-                Thanks for visiting!
-              </p>
-              <p>
-                — The DevHub Team.
-              </p>
+                  Thanks for visiting!
+                </p>
+                <footer
+                  className="blockquote-footer"
+                >
+                  The DevHub Team.
+                </footer>
+              </blockquote>
               <p
                 className="text-muted"
               >
@@ -210,9 +220,13 @@ ShallowWrapper {
               </p>
             </div>
           </section>,
-          <Flag
-            name="features.githubResourceCards"
-          />,
+          <div
+            className="CardContainer"
+          >
+            <Flag
+              name="features.githubResourceCards"
+            />
+          </div>,
         ],
         "className": "Main",
         "role": "main",
@@ -232,46 +246,49 @@ ShallowWrapper {
               >
                 Welcome.
               </h1>
-              <h2>
-                We are here to help.
-              </h2>
+              <h3>
+                 We are here to help.
+              </h3>
               <p
-                className="lead text-muted"
+                className="lead"
               >
                 This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
               </p>
               <p>
                 In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
               </p>
-              <p>
+              <div
+                className="d-flex justify-content-center align-items-center"
+              >
                 <Connect(CardFilterButton)
-                  className="btn btn-outline-primary"
+                  className="btn btn-outline-primary PersonaButton"
                   filterByProperty="attributes.persona"
                   filterByValue="Developer"
                 >
                   I'm a Developer
                 </Connect(CardFilterButton)>
                 <Connect(CardFilterButton)
-                  className="btn btn-outline-success"
+                  className="btn btn-outline-success PersonaButton"
                   filterByProperty="attributes.persona"
                   filterByValue="Designer"
                 >
                   I'm a Designer
                 </Connect(CardFilterButton)>
-                <Connect(CardFilterButton)
-                  className="btn btn-outline-info"
-                  filterByProperty="attributes.persona"
-                  filterByValue="Product Owner"
+              </div>
+              <blockquote
+                className="blockquote"
+              >
+                <p
+                  className="mb-0"
                 >
-                  I'm a Product Owner
-                </Connect(CardFilterButton)>
-              </p>
-              <p>
-                Thanks for visiting!
-              </p>
-              <p>
-                — The DevHub Team.
-              </p>
+                  Thanks for visiting!
+                </p>
+                <footer
+                  className="blockquote-footer"
+                >
+                  The DevHub Team.
+                </footer>
+              </blockquote>
               <p
                 className="text-muted"
               >
@@ -298,46 +315,49 @@ ShallowWrapper {
                 >
                   Welcome.
                 </h1>,
-                <h2>
-                  We are here to help.
-                </h2>,
+                <h3>
+                   We are here to help.
+                </h3>,
                 <p
-                  className="lead text-muted"
+                  className="lead"
                 >
                   This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
                 </p>,
                 <p>
                   In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
                 </p>,
-                <p>
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                >
                   <Connect(CardFilterButton)
-                    className="btn btn-outline-primary"
+                    className="btn btn-outline-primary PersonaButton"
                     filterByProperty="attributes.persona"
                     filterByValue="Developer"
                   >
                     I'm a Developer
                   </Connect(CardFilterButton)>
                   <Connect(CardFilterButton)
-                    className="btn btn-outline-success"
+                    className="btn btn-outline-success PersonaButton"
                     filterByProperty="attributes.persona"
                     filterByValue="Designer"
                   >
                     I'm a Designer
                   </Connect(CardFilterButton)>
-                  <Connect(CardFilterButton)
-                    className="btn btn-outline-info"
-                    filterByProperty="attributes.persona"
-                    filterByValue="Product Owner"
+                </div>,
+                <blockquote
+                  className="blockquote"
+                >
+                  <p
+                    className="mb-0"
                   >
-                    I'm a Product Owner
-                  </Connect(CardFilterButton)>
-                </p>,
-                <p>
-                  Thanks for visiting!
-                </p>,
-                <p>
-                  — The DevHub Team.
-                </p>,
+                    Thanks for visiting!
+                  </p>
+                  <footer
+                    className="blockquote-footer"
+                  >
+                    The DevHub Team.
+                  </footer>
+                </blockquote>,
                 <p
                   className="text-muted"
                 >
@@ -371,11 +391,11 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": "We are here to help.",
+                  "children": " We are here to help.",
                 },
                 "ref": null,
-                "rendered": "We are here to help.",
-                "type": "h2",
+                "rendered": " We are here to help.",
+                "type": "h3",
               },
               Object {
                 "instance": null,
@@ -383,7 +403,7 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": "This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.",
-                  "className": "lead text-muted",
+                  "className": "lead",
                 },
                 "ref": null,
                 "rendered": "This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.",
@@ -407,27 +427,21 @@ ShallowWrapper {
                 "props": Object {
                   "children": Array [
                     <Connect(CardFilterButton)
-                      className="btn btn-outline-primary"
+                      className="btn btn-outline-primary PersonaButton"
                       filterByProperty="attributes.persona"
                       filterByValue="Developer"
                     >
                       I'm a Developer
                     </Connect(CardFilterButton)>,
                     <Connect(CardFilterButton)
-                      className="btn btn-outline-success"
+                      className="btn btn-outline-success PersonaButton"
                       filterByProperty="attributes.persona"
                       filterByValue="Designer"
                     >
                       I'm a Designer
                     </Connect(CardFilterButton)>,
-                    <Connect(CardFilterButton)
-                      className="btn btn-outline-info"
-                      filterByProperty="attributes.persona"
-                      filterByValue="Product Owner"
-                    >
-                      I'm a Product Owner
-                    </Connect(CardFilterButton)>,
                   ],
+                  "className": "d-flex justify-content-center align-items-center",
                 },
                 "ref": null,
                 "rendered": Array [
@@ -437,7 +451,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": "I'm a Developer",
-                      "className": "btn btn-outline-primary",
+                      "className": "btn btn-outline-primary PersonaButton",
                       "filterByProperty": "attributes.persona",
                       "filterByValue": "Developer",
                     },
@@ -451,7 +465,7 @@ ShallowWrapper {
                     "nodeType": "class",
                     "props": Object {
                       "children": "I'm a Designer",
-                      "className": "btn btn-outline-success",
+                      "className": "btn btn-outline-success PersonaButton",
                       "filterByProperty": "attributes.persona",
                       "filterByValue": "Designer",
                     },
@@ -459,44 +473,56 @@ ShallowWrapper {
                     "rendered": "I'm a Designer",
                     "type": [Function],
                   },
+                ],
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <p
+                      className="mb-0"
+                    >
+                      Thanks for visiting!
+                    </p>,
+                    <footer
+                      className="blockquote-footer"
+                    >
+                      The DevHub Team.
+                    </footer>,
+                  ],
+                  "className": "blockquote",
+                },
+                "ref": null,
+                "rendered": Array [
                   Object {
                     "instance": null,
                     "key": undefined,
-                    "nodeType": "class",
+                    "nodeType": "host",
                     "props": Object {
-                      "children": "I'm a Product Owner",
-                      "className": "btn btn-outline-info",
-                      "filterByProperty": "attributes.persona",
-                      "filterByValue": "Product Owner",
+                      "children": "Thanks for visiting!",
+                      "className": "mb-0",
                     },
                     "ref": null,
-                    "rendered": "I'm a Product Owner",
-                    "type": [Function],
+                    "rendered": "Thanks for visiting!",
+                    "type": "p",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "The DevHub Team.",
+                      "className": "blockquote-footer",
+                    },
+                    "ref": null,
+                    "rendered": "The DevHub Team.",
+                    "type": "footer",
                   },
                 ],
-                "type": "p",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "Thanks for visiting!",
-                },
-                "ref": null,
-                "rendered": "Thanks for visiting!",
-                "type": "p",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "— The DevHub Team.",
-                },
-                "ref": null,
-                "rendered": "— The DevHub Team.",
-                "type": "p",
+                "type": "blockquote",
               },
               Object {
                 "instance": null,
@@ -541,14 +567,27 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "host",
           "props": Object {
-            "children": Array [],
-            "name": "features.githubResourceCards",
+            "children": <Flag
+              name="features.githubResourceCards"
+            />,
+            "className": "CardContainer",
           },
           "ref": null,
-          "rendered": Array [],
-          "type": [Function],
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [],
+              "name": "features.githubResourceCards",
+            },
+            "ref": null,
+            "rendered": Array [],
+            "type": [Function],
+          },
+          "type": "div",
         },
       ],
       "type": "main",
@@ -576,46 +615,49 @@ ShallowWrapper {
               >
                 Welcome.
               </h1>
-              <h2>
-                We are here to help.
-              </h2>
+              <h3>
+                 We are here to help.
+              </h3>
               <p
-                className="lead text-muted"
+                className="lead"
               >
                 This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
               </p>
               <p>
                 In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
               </p>
-              <p>
+              <div
+                className="d-flex justify-content-center align-items-center"
+              >
                 <Connect(CardFilterButton)
-                  className="btn btn-outline-primary"
+                  className="btn btn-outline-primary PersonaButton"
                   filterByProperty="attributes.persona"
                   filterByValue="Developer"
                 >
                   I'm a Developer
                 </Connect(CardFilterButton)>
                 <Connect(CardFilterButton)
-                  className="btn btn-outline-success"
+                  className="btn btn-outline-success PersonaButton"
                   filterByProperty="attributes.persona"
                   filterByValue="Designer"
                 >
                   I'm a Designer
                 </Connect(CardFilterButton)>
-                <Connect(CardFilterButton)
-                  className="btn btn-outline-info"
-                  filterByProperty="attributes.persona"
-                  filterByValue="Product Owner"
+              </div>
+              <blockquote
+                className="blockquote"
+              >
+                <p
+                  className="mb-0"
                 >
-                  I'm a Product Owner
-                </Connect(CardFilterButton)>
-              </p>
-              <p>
-                Thanks for visiting!
-              </p>
-              <p>
-                — The DevHub Team.
-              </p>
+                  Thanks for visiting!
+                </p>
+                <footer
+                  className="blockquote-footer"
+                >
+                  The DevHub Team.
+                </footer>
+              </blockquote>
               <p
                 className="text-muted"
               >
@@ -629,9 +671,13 @@ ShallowWrapper {
               </p>
             </div>
           </section>
-          <Flag
-            name="features.githubResourceCards"
-          />
+          <div
+            className="CardContainer"
+          >
+            <Flag
+              name="features.githubResourceCards"
+            />
+          </div>
         </main>,
         "path": "/",
       },
@@ -653,46 +699,49 @@ ShallowWrapper {
                 >
                   Welcome.
                 </h1>
-                <h2>
-                  We are here to help.
-                </h2>
+                <h3>
+                   We are here to help.
+                </h3>
                 <p
-                  className="lead text-muted"
+                  className="lead"
                 >
                   This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
                 </p>
                 <p>
                   In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
                 </p>
-                <p>
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                >
                   <Connect(CardFilterButton)
-                    className="btn btn-outline-primary"
+                    className="btn btn-outline-primary PersonaButton"
                     filterByProperty="attributes.persona"
                     filterByValue="Developer"
                   >
                     I'm a Developer
                   </Connect(CardFilterButton)>
                   <Connect(CardFilterButton)
-                    className="btn btn-outline-success"
+                    className="btn btn-outline-success PersonaButton"
                     filterByProperty="attributes.persona"
                     filterByValue="Designer"
                   >
                     I'm a Designer
                   </Connect(CardFilterButton)>
-                  <Connect(CardFilterButton)
-                    className="btn btn-outline-info"
-                    filterByProperty="attributes.persona"
-                    filterByValue="Product Owner"
+                </div>
+                <blockquote
+                  className="blockquote"
+                >
+                  <p
+                    className="mb-0"
                   >
-                    I'm a Product Owner
-                  </Connect(CardFilterButton)>
-                </p>
-                <p>
-                  Thanks for visiting!
-                </p>
-                <p>
-                  — The DevHub Team.
-                </p>
+                    Thanks for visiting!
+                  </p>
+                  <footer
+                    className="blockquote-footer"
+                  >
+                    The DevHub Team.
+                  </footer>
+                </blockquote>
                 <p
                   className="text-muted"
                 >
@@ -706,9 +755,13 @@ ShallowWrapper {
                 </p>
               </div>
             </section>,
-            <Flag
-              name="features.githubResourceCards"
-            />,
+            <div
+              className="CardContainer"
+            >
+              <Flag
+                name="features.githubResourceCards"
+              />
+            </div>,
           ],
           "className": "Main",
           "role": "main",
@@ -728,46 +781,49 @@ ShallowWrapper {
                 >
                   Welcome.
                 </h1>
-                <h2>
-                  We are here to help.
-                </h2>
+                <h3>
+                   We are here to help.
+                </h3>
                 <p
-                  className="lead text-muted"
+                  className="lead"
                 >
                   This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
                 </p>
                 <p>
                   In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
                 </p>
-                <p>
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                >
                   <Connect(CardFilterButton)
-                    className="btn btn-outline-primary"
+                    className="btn btn-outline-primary PersonaButton"
                     filterByProperty="attributes.persona"
                     filterByValue="Developer"
                   >
                     I'm a Developer
                   </Connect(CardFilterButton)>
                   <Connect(CardFilterButton)
-                    className="btn btn-outline-success"
+                    className="btn btn-outline-success PersonaButton"
                     filterByProperty="attributes.persona"
                     filterByValue="Designer"
                   >
                     I'm a Designer
                   </Connect(CardFilterButton)>
-                  <Connect(CardFilterButton)
-                    className="btn btn-outline-info"
-                    filterByProperty="attributes.persona"
-                    filterByValue="Product Owner"
+                </div>
+                <blockquote
+                  className="blockquote"
+                >
+                  <p
+                    className="mb-0"
                   >
-                    I'm a Product Owner
-                  </Connect(CardFilterButton)>
-                </p>
-                <p>
-                  Thanks for visiting!
-                </p>
-                <p>
-                  — The DevHub Team.
-                </p>
+                    Thanks for visiting!
+                  </p>
+                  <footer
+                    className="blockquote-footer"
+                  >
+                    The DevHub Team.
+                  </footer>
+                </blockquote>
                 <p
                   className="text-muted"
                 >
@@ -794,46 +850,49 @@ ShallowWrapper {
                   >
                     Welcome.
                   </h1>,
-                  <h2>
-                    We are here to help.
-                  </h2>,
+                  <h3>
+                     We are here to help.
+                  </h3>,
                   <p
-                    className="lead text-muted"
+                    className="lead"
                   >
                     This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
                   </p>,
                   <p>
                     In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
                   </p>,
-                  <p>
+                  <div
+                    className="d-flex justify-content-center align-items-center"
+                  >
                     <Connect(CardFilterButton)
-                      className="btn btn-outline-primary"
+                      className="btn btn-outline-primary PersonaButton"
                       filterByProperty="attributes.persona"
                       filterByValue="Developer"
                     >
                       I'm a Developer
                     </Connect(CardFilterButton)>
                     <Connect(CardFilterButton)
-                      className="btn btn-outline-success"
+                      className="btn btn-outline-success PersonaButton"
                       filterByProperty="attributes.persona"
                       filterByValue="Designer"
                     >
                       I'm a Designer
                     </Connect(CardFilterButton)>
-                    <Connect(CardFilterButton)
-                      className="btn btn-outline-info"
-                      filterByProperty="attributes.persona"
-                      filterByValue="Product Owner"
+                  </div>,
+                  <blockquote
+                    className="blockquote"
+                  >
+                    <p
+                      className="mb-0"
                     >
-                      I'm a Product Owner
-                    </Connect(CardFilterButton)>
-                  </p>,
-                  <p>
-                    Thanks for visiting!
-                  </p>,
-                  <p>
-                    — The DevHub Team.
-                  </p>,
+                      Thanks for visiting!
+                    </p>
+                    <footer
+                      className="blockquote-footer"
+                    >
+                      The DevHub Team.
+                    </footer>
+                  </blockquote>,
                   <p
                     className="text-muted"
                   >
@@ -867,11 +926,11 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "host",
                   "props": Object {
-                    "children": "We are here to help.",
+                    "children": " We are here to help.",
                   },
                   "ref": null,
-                  "rendered": "We are here to help.",
-                  "type": "h2",
+                  "rendered": " We are here to help.",
+                  "type": "h3",
                 },
                 Object {
                   "instance": null,
@@ -879,7 +938,7 @@ ShallowWrapper {
                   "nodeType": "host",
                   "props": Object {
                     "children": "This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.",
-                    "className": "lead text-muted",
+                    "className": "lead",
                   },
                   "ref": null,
                   "rendered": "This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.",
@@ -903,27 +962,21 @@ ShallowWrapper {
                   "props": Object {
                     "children": Array [
                       <Connect(CardFilterButton)
-                        className="btn btn-outline-primary"
+                        className="btn btn-outline-primary PersonaButton"
                         filterByProperty="attributes.persona"
                         filterByValue="Developer"
                       >
                         I'm a Developer
                       </Connect(CardFilterButton)>,
                       <Connect(CardFilterButton)
-                        className="btn btn-outline-success"
+                        className="btn btn-outline-success PersonaButton"
                         filterByProperty="attributes.persona"
                         filterByValue="Designer"
                       >
                         I'm a Designer
                       </Connect(CardFilterButton)>,
-                      <Connect(CardFilterButton)
-                        className="btn btn-outline-info"
-                        filterByProperty="attributes.persona"
-                        filterByValue="Product Owner"
-                      >
-                        I'm a Product Owner
-                      </Connect(CardFilterButton)>,
                     ],
+                    "className": "d-flex justify-content-center align-items-center",
                   },
                   "ref": null,
                   "rendered": Array [
@@ -933,7 +986,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": "I'm a Developer",
-                        "className": "btn btn-outline-primary",
+                        "className": "btn btn-outline-primary PersonaButton",
                         "filterByProperty": "attributes.persona",
                         "filterByValue": "Developer",
                       },
@@ -947,7 +1000,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "children": "I'm a Designer",
-                        "className": "btn btn-outline-success",
+                        "className": "btn btn-outline-success PersonaButton",
                         "filterByProperty": "attributes.persona",
                         "filterByValue": "Designer",
                       },
@@ -955,44 +1008,56 @@ ShallowWrapper {
                       "rendered": "I'm a Designer",
                       "type": [Function],
                     },
+                  ],
+                  "type": "div",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <p
+                        className="mb-0"
+                      >
+                        Thanks for visiting!
+                      </p>,
+                      <footer
+                        className="blockquote-footer"
+                      >
+                        The DevHub Team.
+                      </footer>,
+                    ],
+                    "className": "blockquote",
+                  },
+                  "ref": null,
+                  "rendered": Array [
                     Object {
                       "instance": null,
                       "key": undefined,
-                      "nodeType": "class",
+                      "nodeType": "host",
                       "props": Object {
-                        "children": "I'm a Product Owner",
-                        "className": "btn btn-outline-info",
-                        "filterByProperty": "attributes.persona",
-                        "filterByValue": "Product Owner",
+                        "children": "Thanks for visiting!",
+                        "className": "mb-0",
                       },
                       "ref": null,
-                      "rendered": "I'm a Product Owner",
-                      "type": [Function],
+                      "rendered": "Thanks for visiting!",
+                      "type": "p",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "The DevHub Team.",
+                        "className": "blockquote-footer",
+                      },
+                      "ref": null,
+                      "rendered": "The DevHub Team.",
+                      "type": "footer",
                     },
                   ],
-                  "type": "p",
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "Thanks for visiting!",
-                  },
-                  "ref": null,
-                  "rendered": "Thanks for visiting!",
-                  "type": "p",
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "— The DevHub Team.",
-                  },
-                  "ref": null,
-                  "rendered": "— The DevHub Team.",
-                  "type": "p",
+                  "type": "blockquote",
                 },
                 Object {
                   "instance": null,
@@ -1037,14 +1102,27 @@ ShallowWrapper {
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "class",
+            "nodeType": "host",
             "props": Object {
-              "children": Array [],
-              "name": "features.githubResourceCards",
+              "children": <Flag
+                name="features.githubResourceCards"
+              />,
+              "className": "CardContainer",
             },
             "ref": null,
-            "rendered": Array [],
-            "type": [Function],
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [],
+                "name": "features.githubResourceCards",
+              },
+              "ref": null,
+              "rendered": Array [],
+              "type": [Function],
+            },
+            "type": "div",
           },
         ],
         "type": "main",
