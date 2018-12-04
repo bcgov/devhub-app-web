@@ -31,11 +31,6 @@ import styles from '../components/Cards/Card/Card.module.css';
 const Card = ({ children, resourceType, resourcePath, title, author }) => (
   <article className={styles.Card}>
     <div className={styles.Head}>
-      <DotDotDot clamp={CARD_CONFIG.maxTitleLines} tagName="h2">
-        <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE} title={title}>
-          {title}
-        </Link>
-      </DotDotDot>
       <Link
         className={styles.Avatar}
         to={getGithubUsernameURL(author)}
@@ -47,6 +42,13 @@ const Card = ({ children, resourceType, resourcePath, title, author }) => (
           height={CARD_CONFIG.avatarIconHeight}
         />
       </Link>
+      
+      <DotDotDot clamp={CARD_CONFIG.maxTitleLines} tagName="h2">
+        <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE} title={title}>
+          {title}
+        </Link>
+      </DotDotDot>
+
     </div>
     {children}
     <MetadataRibbon items={[resourceType]} />
