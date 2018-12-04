@@ -38,13 +38,15 @@ class Toggle extends Component {
     );
     const { cardComponents, cardLimits } = this.props;
     const cardShow = this.state.toggled ? cardComponents.length : cardLimits;
-    const hideToggleButton =
-      cardComponents.length > cardLimits ? styles.ToggleButton : styles.HideToggleButton;
+    const toggle =
+      cardComponents.length > cardLimits ? (
+        <div className={styles.ToggleButton}>{toggleIcon}</div>
+      ) : null;
 
     return (
       <div>
         <div className={styles.Cards}>{cardComponents.slice(0, cardShow)}</div>
-        <div className={hideToggleButton}>{toggleIcon}</div>
+        {toggle}
       </div>
     );
   }
