@@ -5,6 +5,8 @@
     opacity: 0.8;
     position: relative;
     min-height: 200px;
+    max-width: 300px;
+    max-height: 300px;
     min-width: 200px;
     text-align: center;
     -moz-border-radius: 50%;

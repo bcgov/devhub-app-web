@@ -3,19 +3,18 @@
     padding: 25px 15px;
     align-items: center;
     flex-flow: row wrap;
-    justify-content: center;
+    justify-content: space-around;
 }
 .venn_diagram {
     position: relative;
     display: inline-block;
-    margin-right: 25px;
 }
 
 .venn_diagram .center {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(calc(-50% + 25px), -50%);
+    transform: translate(-50%, -50%);
 }
 
 .venn_diagram p {
@@ -64,4 +63,6 @@
 .description {
     flex-basis: 250px;
     flex-grow: 1;
+    max-width: 450px;
+    margin-left: 35px;
 }
