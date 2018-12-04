@@ -44,6 +44,7 @@
     margin-top: 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid #ccc;
+
   }
 
   .Head h2 {
@@ -66,6 +67,7 @@
     display: inline;
     border-radius: 50px;
     overflow: hidden;
+    margin-right: 10px;
   }
 
   .Body {
@@ -79,6 +81,7 @@
   .BodyDescription {
     font-size: 16px;
     line-height: 1.2em;
+    min-height: 94px;
   }
 
   .BodyDescription p {
@@ -126,7 +129,7 @@
   }
 
   .Card .Ribbon:nth-of-type(1) {
-    border-top: 1px solid #00316b
+    border-top: 1px solid #ccc
   }
 
   .Card .Ribbon:nth-of-type(2) {
@@ -138,7 +141,8 @@
   }
 
   .Card .Ribbon:last-of-type {
-    border-top: 1px solid #ccc;
+    border-top: none;
+    /* margin-left: 50px; making space for color bars on left */
   }
 
   .Ribbon li {
@@ -155,6 +159,6 @@
   @media screen and (min-width: 641px) {
     .Card {
       width: 250px;
-      height: 350px;
+      height: 400px;
     }
   }
