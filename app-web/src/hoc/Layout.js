@@ -11,7 +11,7 @@ import PrimaryFooter from '../components/PrimaryFooter/PrimaryFooter';
 import { create_iam } from '../auth';
 import * as actions from '../store/actions/actions';
 
-class Layout extends React.Component {
+export class Layout extends React.Component {
   componentDidMount() {
     const implicitAuthManager = create_iam();
     if (this.props.useAuth) {
