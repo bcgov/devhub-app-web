@@ -27,7 +27,9 @@ export const PrimaryHeader = ({ path, toggleMenu, menuToggled }) => {
           <Flag name="features.login">
             <Login />
           </Flag>
-          <Hamburger clicked={toggleMenu} className={classes.Hamburger} />
+          {path === HOME_ROUTE ? (
+            <Hamburger clicked={toggleMenu} className={classes.Hamburger} />
+          ) : null}
         </div>
       </header>
       {primaryFilter}
