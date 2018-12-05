@@ -27,7 +27,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_SELECTED_FILTER_OPTION:
       return { ...state, selectedFilterOption: action.payload };
     case actionTypes.TOGGLE_MAIN_NAVIGATION:
-      return { ...state, mainNavigationToggled: action.payload.toggled };
+      return { ...state, mainNavigationToggled: !state.mainNavigationToggled };
     default:
       return state;
   }
