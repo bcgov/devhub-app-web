@@ -46,7 +46,12 @@
     .PrimaryFilter .mobileOnly {
         display: none;
     }
-    
+
+    .PrimaryFilter ul li:first-child {
+        flex-basis: 85px;
+        text-align: center;
+    }
+
     .PrimaryFilter .largeOnly {
         display: flex;
         align-items: center;
