@@ -65,15 +65,18 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": <main
-        className="Main"
-        role="main"
-      >
-        <section
-          className="jumbotron text-center"
+      "children": Array [
+        <Flag
+          name="features.sourceFiltering"
         >
-          <div
-            className="container"
+          <Connect(PrimaryFilter) />
+        </Flag>,
+        <main
+          className="Main container"
+          role="main"
+        >
+          <section
+            className="jumbotron text-center"
           >
             <h1
               className="jumbotron-heading"
@@ -134,112 +137,55 @@ ShallowWrapper {
               </a>
                repository.
             </p>
-          </div>
-        </section>
-        <div
-          className="CardContainer"
-        >
-          <Flag
-            name="features.githubResourceCards"
-          />
-        </div>
-      </main>,
-      "path": "/",
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": Array [
-          <section
-            className="jumbotron text-center"
-          >
-            <div
-              className="container"
-            >
-              <h1
-                className="jumbotron-heading"
-              >
-                Welcome.
-              </h1>
-              <h3>
-                 We are here to help.
-              </h3>
-              <p
-                className="lead"
-              >
-                This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
-              </p>
-              <p>
-                In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
-              </p>
-              <div
-                className="d-flex justify-content-center align-items-center"
-              >
-                <Connect(CardFilterButton)
-                  className="btn btn-outline-primary PersonaButton"
-                  filterByProperty="attributes.persona"
-                  filterByValue="Developer"
-                >
-                  I'm a Developer
-                </Connect(CardFilterButton)>
-                <Connect(CardFilterButton)
-                  className="btn btn-outline-success PersonaButton"
-                  filterByProperty="attributes.persona"
-                  filterByValue="Designer"
-                >
-                  I'm a Designer
-                </Connect(CardFilterButton)>
-              </div>
-              <blockquote
-                className="blockquote"
-              >
-                <p
-                  className="mb-0"
-                >
-                  Thanks for visiting!
-                </p>
-                <footer
-                  className="blockquote-footer"
-                >
-                  The DevHub Team.
-                </footer>
-              </blockquote>
-              <p
-                className="text-muted"
-              >
-                PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
-                <a
-                  href="https://github.com/bcgov/devhub-app-web/issues"
-                >
-                  GitHub
-                </a>
-                 repository.
-              </p>
-            </div>
-          </section>,
+          </section>
           <div
             className="CardContainer"
           >
             <Flag
               name="features.githubResourceCards"
             />
-          </div>,
+          </div>
+        </main>,
+      ],
+      "hamburgerClicked": undefined,
+      "showHamburger": true,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Connect(PrimaryFilter) />,
+            null,
+          ],
+          "name": "features.sourceFiltering",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          null,
         ],
-        "className": "Main",
-        "role": "main",
+        "type": [Function],
       },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": <div
-              className="container"
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <section
+              className="jumbotron text-center"
             >
               <h1
                 className="jumbotron-heading"
@@ -300,11 +246,21 @@ ShallowWrapper {
                 </a>
                  repository.
               </p>
+            </section>,
+            <div
+              className="CardContainer"
+            >
+              <Flag
+                name="features.githubResourceCards"
+              />
             </div>,
-            "className": "jumbotron text-center",
-          },
-          "ref": null,
-          "rendered": Object {
+          ],
+          "className": "Main container",
+          "role": "main",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
             "instance": null,
             "key": undefined,
             "nodeType": "host",
@@ -370,7 +326,7 @@ ShallowWrapper {
                    repository.
                 </p>,
               ],
-              "className": "container",
+              "className": "jumbotron text-center",
             },
             "ref": null,
             "rendered": Array [
@@ -560,38 +516,37 @@ ShallowWrapper {
                 "type": "p",
               },
             ],
-            "type": "div",
+            "type": "section",
           },
-          "type": "section",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": <Flag
-              name="features.githubResourceCards"
-            />,
-            "className": "CardContainer",
-          },
-          "ref": null,
-          "rendered": Object {
+          Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "class",
+            "nodeType": "host",
             "props": Object {
-              "children": Array [],
-              "name": "features.githubResourceCards",
+              "children": <Flag
+                name="features.githubResourceCards"
+              />,
+              "className": "CardContainer",
             },
             "ref": null,
-            "rendered": Array [],
-            "type": [Function],
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [],
+                "name": "features.githubResourceCards",
+              },
+              "ref": null,
+              "rendered": Array [],
+              "type": [Function],
+            },
+            "type": "div",
           },
-          "type": "div",
-        },
-      ],
-      "type": "main",
-    },
+        ],
+        "type": "main",
+      },
+    ],
     "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
@@ -600,15 +555,18 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": <main
-          className="Main"
-          role="main"
-        >
-          <section
-            className="jumbotron text-center"
+        "children": Array [
+          <Flag
+            name="features.sourceFiltering"
           >
-            <div
-              className="container"
+            <Connect(PrimaryFilter) />
+          </Flag>,
+          <main
+            className="Main container"
+            role="main"
+          >
+            <section
+              className="jumbotron text-center"
             >
               <h1
                 className="jumbotron-heading"
@@ -669,112 +627,55 @@ ShallowWrapper {
                 </a>
                  repository.
               </p>
-            </div>
-          </section>
-          <div
-            className="CardContainer"
-          >
-            <Flag
-              name="features.githubResourceCards"
-            />
-          </div>
-        </main>,
-        "path": "/",
-      },
-      "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": Array [
-            <section
-              className="jumbotron text-center"
-            >
-              <div
-                className="container"
-              >
-                <h1
-                  className="jumbotron-heading"
-                >
-                  Welcome.
-                </h1>
-                <h3>
-                   We are here to help.
-                </h3>
-                <p
-                  className="lead"
-                >
-                  This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
-                </p>
-                <p>
-                  In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
-                </p>
-                <div
-                  className="d-flex justify-content-center align-items-center"
-                >
-                  <Connect(CardFilterButton)
-                    className="btn btn-outline-primary PersonaButton"
-                    filterByProperty="attributes.persona"
-                    filterByValue="Developer"
-                  >
-                    I'm a Developer
-                  </Connect(CardFilterButton)>
-                  <Connect(CardFilterButton)
-                    className="btn btn-outline-success PersonaButton"
-                    filterByProperty="attributes.persona"
-                    filterByValue="Designer"
-                  >
-                    I'm a Designer
-                  </Connect(CardFilterButton)>
-                </div>
-                <blockquote
-                  className="blockquote"
-                >
-                  <p
-                    className="mb-0"
-                  >
-                    Thanks for visiting!
-                  </p>
-                  <footer
-                    className="blockquote-footer"
-                  >
-                    The DevHub Team.
-                  </footer>
-                </blockquote>
-                <p
-                  className="text-muted"
-                >
-                  PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
-                  <a
-                    href="https://github.com/bcgov/devhub-app-web/issues"
-                  >
-                    GitHub
-                  </a>
-                   repository.
-                </p>
-              </div>
-            </section>,
+            </section>
             <div
               className="CardContainer"
             >
               <Flag
                 name="features.githubResourceCards"
               />
-            </div>,
+            </div>
+          </main>,
+        ],
+        "hamburgerClicked": undefined,
+        "showHamburger": true,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Connect(PrimaryFilter) />,
+              null,
+            ],
+            "name": "features.sourceFiltering",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {},
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            null,
           ],
-          "className": "Main",
-          "role": "main",
+          "type": [Function],
         },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": <div
-                className="container"
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <section
+                className="jumbotron text-center"
               >
                 <h1
                   className="jumbotron-heading"
@@ -835,11 +736,21 @@ ShallowWrapper {
                   </a>
                    repository.
                 </p>
+              </section>,
+              <div
+                className="CardContainer"
+              >
+                <Flag
+                  name="features.githubResourceCards"
+                />
               </div>,
-              "className": "jumbotron text-center",
-            },
-            "ref": null,
-            "rendered": Object {
+            ],
+            "className": "Main container",
+            "role": "main",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
               "instance": null,
               "key": undefined,
               "nodeType": "host",
@@ -905,7 +816,7 @@ ShallowWrapper {
                      repository.
                   </p>,
                 ],
-                "className": "container",
+                "className": "jumbotron text-center",
               },
               "ref": null,
               "rendered": Array [
@@ -1095,38 +1006,37 @@ ShallowWrapper {
                   "type": "p",
                 },
               ],
-              "type": "div",
+              "type": "section",
             },
-            "type": "section",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": <Flag
-                name="features.githubResourceCards"
-              />,
-              "className": "CardContainer",
-            },
-            "ref": null,
-            "rendered": Object {
+            Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
+              "nodeType": "host",
               "props": Object {
-                "children": Array [],
-                "name": "features.githubResourceCards",
+                "children": <Flag
+                  name="features.githubResourceCards"
+                />,
+                "className": "CardContainer",
               },
               "ref": null,
-              "rendered": Array [],
-              "type": [Function],
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [],
+                  "name": "features.githubResourceCards",
+                },
+                "ref": null,
+                "rendered": Array [],
+                "type": [Function],
+              },
+              "type": "div",
             },
-            "type": "div",
-          },
-        ],
-        "type": "main",
-      },
+          ],
+          "type": "main",
+        },
+      ],
       "type": [Function],
     },
   ],
