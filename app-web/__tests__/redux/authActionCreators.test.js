@@ -15,25 +15,17 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import * as actionTypes from '../actions/actionTypes';
+import * as actions from '../../src/store/actions/actions';
+import { ACTIONS } from '../../__fixtures__/redux-fixtures';
 
-const initialState = {
-  isAuthenticated: false,
-  accessToken: null,
-  idToken: null,
-  error: false,
-  messages: [],
-};
+describe('actions', () => {
+  it('should create an action to log a user in', () => {
+    const expected = ACTIONS.AUTHENTICATE_SUCCESS;
+    expect(actions.authenticateSuccess()).toEqual(expected);
+  });
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case actionTypes.AUTHENTICATE_SUCCESS:
-      return { ...state, isAuthenticated: true };
-    case actionTypes.AUTHENTICATE_FAILED:
-      return { ...state, isAuthenticated: false };
-    default:
-      return state;
-  }
-};
-
-export default reducer;
+  it('should create an action to log a user out', () => {
+    const expected = ACTIONS.AUTHENTICATE_FAILED;
+    expect(actions.authenticateFailed()).toEqual(expected);
+  });
+});
