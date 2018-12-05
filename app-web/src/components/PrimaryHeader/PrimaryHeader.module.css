@@ -19,10 +19,18 @@
     display: flex;
 }
 
+.Hamburger {
+    cursor: pointer;
+}
+
 @media screen and (min-width: 600px) {
     .PrimaryHeader {
         padding: 0 65px 0 65px;
     }
-   
+}
+@media screen and (min-width: 750px) {
+    .Hamburger {
+        display: none;
+    }
 }
   
