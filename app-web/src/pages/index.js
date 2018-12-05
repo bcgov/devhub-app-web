@@ -10,7 +10,7 @@ import { GITHUB_ISSUES_ROUTE } from '../constants/routes';
 import Layout from '../hoc/Layout';
 import Cards from '../components/Cards/Cards';
 import styles from './index.module.css';
-import CardFilterButton from "../components/CardFilterButton/CardFilterButton";
+import CardFilterButton from '../components/CardFilterButton/CardFilterButton';
 
 export class Index extends Component {
   componentDidMount() {
@@ -49,58 +49,62 @@ export class Index extends Component {
       <Cards key={shortid.generate()} topic={ghData.sourceName} cards={ghData.data} />
     ));
 
-        return (
-            <Layout path={pathname}>
-                <main role="main" className={styles.Main}>
-                    <section className="jumbotron text-center">
-                        <div className="container">
-                            <h1 className="jumbotron-heading">Welcome.</h1>
+    return (
+      <Layout path={pathname}>
+        <main role="main" className={styles.Main}>
+          <section className="jumbotron text-center">
+            <div className="container">
+              <h1 className="jumbotron-heading">Welcome.</h1>
 
-                            <h3> We are here to help.</h3>
+              <h3> We are here to help.</h3>
 
-                            <p className="lead">This is the front door to the developer community of the BC
-                                Government. The aim of the DevHub is to help developers and digital product teams learn
-                                new
-                                skills and discover resources to use on their journeys of creating amazing applications
-                                for
-                                government.
-                            </p>
-                            <p>
-                                In the future, we plan to offer a variety of cool and useful ways to organize and
-                                navigate DevHub resources. For now, you can tell us who you are below and we'll tailor
-                                the
-                                set of resources shown just for you.
-                            </p>
-                            <div className={'d-flex justify-content-center align-items-center'}>
+              <p className="lead">
+                This is the front door to the developer community of the BC Government. The aim of
+                the DevHub is to help developers and digital product teams learn new skills and
+                discover resources to use on their journeys of creating amazing applications for
+                government.
+              </p>
+              <p>
+                In the future, we plan to offer a variety of cool and useful ways to organize and
+                navigate DevHub resources. For now, you can tell us who you are below and we'll
+                tailor the set of resources shown just for you.
+              </p>
+              <div className={'d-flex justify-content-center align-items-center'}>
+                <CardFilterButton
+                  filterByProperty={'attributes.persona'}
+                  filterByValue={'Developer'}
+                  className={['btn btn-outline-primary', styles.PersonaButton].join(' ')}
+                >
+                  I'm a Developer
+                </CardFilterButton>
+                <CardFilterButton
+                  filterByProperty={'attributes.persona'}
+                  filterByValue={'Designer'}
+                  className={['btn btn-outline-success', styles.PersonaButton].join(' ')}
+                >
+                  I'm a Designer
+                </CardFilterButton>
+              </div>
 
-                                    <CardFilterButton filterByProperty={'attributes.persona'} filterByValue={'Developer'}
-                                                      className={["btn btn-outline-primary",styles.PersonaButton].join(' ')}>I'm a
-                                        Developer</CardFilterButton>
-                                    <CardFilterButton filterByProperty={'attributes.persona'} filterByValue={'Designer'}
-                                                      className={["btn btn-outline-success",styles.PersonaButton].join(' ')}>I'm a
-                                        Designer</CardFilterButton>
+              <blockquote className="blockquote">
+                <p className="mb-0">Thanks for visiting!</p>
+                <footer className="blockquote-footer">The DevHub Team.</footer>
+              </blockquote>
 
-                            </div>
-
-                            <blockquote className="blockquote">
-                                <p className="mb-0">Thanks for visiting!</p>
-                                <footer className="blockquote-footer">The DevHub Team.</footer>
-                            </blockquote>
-
-                            <p className="text-muted">
-                                PS. If you’d like to comment, offer a suggestion or ask a question you can find us by
-                                opening an issue in our <a href={GITHUB_ISSUES_ROUTE}>GitHub</a> repository.
-                            </p>
-                        </div>
-                    </section>
-                    <div className={styles.CardContainer}>
-                        <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
-                    </div>
-                    {/*<Flag name="features.pathfinderResourceCards">{pathfinderResources}</Flag>*/}
-                </main>
-            </Layout>
-        );
-    }
+              <p className="text-muted">
+                PS. If you’d like to comment, offer a suggestion or ask a question you can find us
+                by opening an issue in our <a href={GITHUB_ISSUES_ROUTE}>GitHub</a> repository.
+              </p>
+            </div>
+          </section>
+          <div className={styles.CardContainer}>
+            <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
+          </div>
+          {/*<Flag name="features.pathfinderResourceCards">{pathfinderResources}</Flag>*/}
+        </main>
+      </Layout>
+    );
+  }
 }
 
 // this query automagically gets passed in as a 'data' prop into
@@ -126,7 +130,7 @@ export const resourceQuery = graphql`
           id
           attributes {
             persona
-            }
+          }
           source {
             displayName
             sourcePath
