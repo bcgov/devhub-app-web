@@ -46,17 +46,6 @@
     color: #0d553f;
 }
 
-.MarkdownBody #required {
-    font-size: smaller;
-    font-weight: bold;
-    background: red;
-    display: inline;
-    padding: 4px 6px;
-    margin: 1em 0;
-    color: white;
-    border-radius: 4px;
-}
-
 .MarkdownBody table {  
     color: #333;
     font-family: Helvetica, Arial, sans-serif;
