@@ -5,21 +5,25 @@ import {connect} from 'react-redux';
 import * as actions from "../../store/actions/actions";
 
 
-export const CardFilterButton = ({type, filterByProperty, filterByValue, filterSiphonNodes, resetFilter, children, ...rest}) => {
+export const CardFilterButton = ({filterByProperty, filterByValue, filterSiphonNodes, resetFilter, children, ...rest}) => {
 
-    let clicky = function() {
+    let personaSelected = function() {
         resetFilter();
         filterSiphonNodes(filterByProperty, filterByValue)
     };
 
     return (
-        <Button clicked={() => clicky() } {...rest}>
+        <Button clicked={personaSelected} {...rest}>
             {children}
         </Button>
     );
 };
 
 CardFilterButton.propTypes = {
+    filterByProperty: PropTypes.string.isRequired,
+    filterByValue: PropTypes.string.isRequired,
+    filterSiphonNodes: PropTypes.func.isRequired,
+    resetfilter: PropTypes.func.isRequired,
     children: PropTypes.string
 };
 
