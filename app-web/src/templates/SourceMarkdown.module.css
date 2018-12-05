@@ -64,6 +64,7 @@
     background: #a1bdd8;  /* Darken header a bit */
     font-weight: bold;
     text-align: center;
+    word-break: initial;
 }
 
 .MarkdownBody td {  
