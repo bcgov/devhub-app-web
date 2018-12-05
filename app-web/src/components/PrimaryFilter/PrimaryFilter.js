@@ -28,6 +28,8 @@ export const PrimaryFilter = ({
   filterSiphonNodes,
   selectedFilter,
   setSelectedFilter,
+  mobile,
+  menuToggled,
 }) => {
   const filters = MAIN_NAV_CONFIG.map(navConfig => {
     const activeClass = selectedFilter === navConfig.VALUE ? styles.ActiveFilter : '';
@@ -48,13 +50,13 @@ export const PrimaryFilter = ({
 
   return (
     <div className={styles.PrimaryFilter}>
-      <ul className={styles.largeOnly}>{filters}</ul>
-      <ul className={styles.mobileOnly}>{filters}</ul>
+      <ul className={mobile ? styles.mobileOnly : styles.largeOnly}>{filters}</ul>
     </div>
   );
 };
 
 PrimaryFilter.propTypes = {
+  mobile: PropTypes.bool.isRequired,
   selectedFilter: PropTypes.string,
   filterSiphonNodes: PropTypes.func.isRequired,
   setSelectedFilter: PropTypes.func.isRequired,

@@ -14,7 +14,10 @@ export const PrimaryHeader = ({ path, toggleMenu, menuToggled }) => {
   // only show primary filter on home page
   const primaryFilter =
     path === HOME_ROUTE ? (
-      <Flag name="features.sourceFiltering">{menuToggled ? <PrimaryFilter /> : null}</Flag>
+      <Flag name="features.sourceFiltering">
+        <PrimaryFilter />
+        {menuToggled ? <PrimaryFilter mobile /> : null}
+      </Flag>
     ) : null;
   return (
     <Aux>
