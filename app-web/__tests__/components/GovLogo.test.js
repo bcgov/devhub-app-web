@@ -15,25 +15,13 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import * as actionTypes from '../actions/actionTypes';
+import React from 'react';
+import { shallow } from 'enzyme';
+import GovLogo from '../../src/components/UI/GovLogo/GovLogo';
 
-const initialState = {
-  isAuthenticated: false,
-  accessToken: null,
-  idToken: null,
-  error: false,
-  messages: [],
-};
-
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case actionTypes.AUTHENTICATE_SUCCESS:
-      return { ...state, isAuthenticated: true };
-    case actionTypes.AUTHENTICATE_FAILED:
-      return { ...state, isAuthenticated: false };
-    default:
-      return state;
-  }
-};
-
-export default reducer;
+describe('Button Component', () => {
+  it('matches snapshot', () => {
+    const wrapper = shallow(<GovLogo />);
+    expect(wrapper).toMatchSnapshot();
+  });
+});

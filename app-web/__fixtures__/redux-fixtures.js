@@ -55,6 +55,12 @@ export const ACTIONS = {
       toggled: false,
     },
   },
+  AUTHENTICATE_SUCCESS: {
+    type: actions.AUTHENTICATE_SUCCESS,
+  },
+  AUTHENTICATE_FAILED: {
+    type: actions.AUTHENTICATE_FAILED,
+  },
 };
 
 export const INITIAL_STATES = {
@@ -69,5 +75,12 @@ export const INITIAL_STATES = {
   UI: {
     selectedFilterOption: null,
     mainNavigationToggled: false,
+  },
+  AUTH: {
+    isAuthenticated: false,
+    accessToken: null,
+    idToken: null,
+    error: false,
+    messages: [],
   },
 };

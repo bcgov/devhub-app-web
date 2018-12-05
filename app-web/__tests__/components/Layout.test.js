@@ -15,25 +15,20 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import * as actionTypes from '../actions/actionTypes';
+import React from 'react';
+import { shallow } from 'enzyme';
+import { Layout } from '../../src/hoc/Layout';
 
-const initialState = {
-  isAuthenticated: false,
-  accessToken: null,
-  idToken: null,
-  error: false,
-  messages: [],
-};
+describe('Layout Component', () => {
+  test('it matches snapshot', () => {
+    const props = {
+      useAuth: false,
+      login: jest.fn(),
+      logout: jest.fn(),
+      path: '/',
+    };
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case actionTypes.AUTHENTICATE_SUCCESS:
-      return { ...state, isAuthenticated: true };
-    case actionTypes.AUTHENTICATE_FAILED:
-      return { ...state, isAuthenticated: false };
-    default:
-      return state;
-  }
-};
-
-export default reducer;
+    const wrapper = shallow(<Layout {...props}>test</Layout>);
+    expect(wrapper).toMatchSnapshot();
+  });
+});
