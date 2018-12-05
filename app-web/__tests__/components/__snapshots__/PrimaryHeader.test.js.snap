@@ -15,94 +15,16 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
-        <Banner
-          navigateOnClickPath="/"
-          title={undefined}
-        />,
-        <div
-          className="Other"
+        <header
+          className="PrimaryHeader"
         >
-          <Flag
-            name="features.login"
-          >
-            <Connect(Login) />
-          </Flag>
-        </div>,
-      ],
-      "className": "PrimaryHeader",
-    },
-    "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "navigateOnClickPath": "/",
-          "title": undefined,
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": Array [
-            <Flag
-              name="features.login"
-            >
-              <Connect(Login) />
-            </Flag>,
-            null,
-          ],
-          "className": "Other",
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "class",
-            "props": Object {
-              "children": <Connect(Login) />,
-              "name": "features.login",
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {},
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          null,
-        ],
-        "type": "div",
-      },
-    ],
-    "type": "header",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": Array [
           <Banner
             navigateOnClickPath="/"
             title={undefined}
-          />,
+          />
           <div
             className="Other"
           >
@@ -111,67 +33,253 @@ ShallowWrapper {
             >
               <Connect(Login) />
             </Flag>
-          </div>,
+            <Hamburger
+              className="Hamburger"
+              clicked={undefined}
+            />
+          </div>
+        </header>,
+        null,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <Banner
+              navigateOnClickPath="/"
+              title={undefined}
+            />,
+            <div
+              className="Other"
+            >
+              <Flag
+                name="features.login"
+              >
+                <Connect(Login) />
+              </Flag>
+              <Hamburger
+                className="Hamburger"
+                clicked={undefined}
+              />
+            </div>,
+          ],
+          "className": "PrimaryHeader",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "navigateOnClickPath": "/",
+              "title": undefined,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <Flag
+                  name="features.login"
+                >
+                  <Connect(Login) />
+                </Flag>,
+                <Hamburger
+                  className="Hamburger"
+                  clicked={undefined}
+                />,
+              ],
+              "className": "Other",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <Connect(Login) />,
+                  "name": "features.login",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "className": "Hamburger",
+                  "clicked": undefined,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
+            "type": "div",
+          },
         ],
-        "className": "PrimaryHeader",
+        "type": "header",
+      },
+      null,
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <header
+            className="PrimaryHeader"
+          >
+            <Banner
+              navigateOnClickPath="/"
+              title={undefined}
+            />
+            <div
+              className="Other"
+            >
+              <Flag
+                name="features.login"
+              >
+                <Connect(Login) />
+              </Flag>
+              <Hamburger
+                className="Hamburger"
+                clicked={undefined}
+              />
+            </div>
+          </header>,
+          null,
+        ],
       },
       "ref": null,
       "rendered": Array [
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "navigateOnClickPath": "/",
-            "title": undefined,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              <Flag
-                name="features.login"
+              <Banner
+                navigateOnClickPath="/"
+                title={undefined}
+              />,
+              <div
+                className="Other"
               >
-                <Connect(Login) />
-              </Flag>,
-              null,
+                <Flag
+                  name="features.login"
+                >
+                  <Connect(Login) />
+                </Flag>
+                <Hamburger
+                  className="Hamburger"
+                  clicked={undefined}
+                />
+              </div>,
             ],
-            "className": "Other",
+            "className": "PrimaryHeader",
           },
           "ref": null,
           "rendered": Array [
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
+              "nodeType": "function",
               "props": Object {
-                "children": <Connect(Login) />,
-                "name": "features.login",
+                "navigateOnClickPath": "/",
+                "title": undefined,
               },
               "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {},
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
+              "rendered": null,
               "type": [Function],
             },
-            null,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <Flag
+                    name="features.login"
+                  >
+                    <Connect(Login) />
+                  </Flag>,
+                  <Hamburger
+                    className="Hamburger"
+                    clicked={undefined}
+                  />,
+                ],
+                "className": "Other",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <Connect(Login) />,
+                    "name": "features.login",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "className": "Hamburger",
+                    "clicked": undefined,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": "div",
+            },
           ],
-          "type": "div",
+          "type": "header",
         },
+        null,
       ],
-      "type": "header",
+      "type": [Function],
     },
   ],
   Symbol(enzyme.__options__): Object {
