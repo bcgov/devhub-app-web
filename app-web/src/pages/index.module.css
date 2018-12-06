@@ -1,5 +1,7 @@
 .Main {
-    padding: 15px;
+    padding: 0 15px 15px;
+    margin-top: 50px;
+    margin-bottom: 5px;
 }
 
 .Main > h1 {
@@ -36,7 +38,7 @@
 }
 
 @media screen and (min-width: 500px) {
-    .main {
+    .Main {
         padding: 25px 35px 10px;
     }
 

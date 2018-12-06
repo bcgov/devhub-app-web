@@ -27,7 +27,7 @@ export class Layout extends React.Component {
   }
 
   render() {
-    const { children, path } = this.props;
+    const { children, showHamburger, hamburgerClicked } = this.props;
     return (
       <div className="layout">
         <Helmet>
@@ -37,8 +37,8 @@ export class Layout extends React.Component {
             type="image/x-icon"
           />
         </Helmet>
-        <PrimaryHeader path={path} />
-        <div className="container">{children}</div>
+        <PrimaryHeader showHamburger={showHamburger} hamburgerClicked={hamburgerClicked} />
+        {children}
         <PrimaryFooter />
       </div>
     );
@@ -50,6 +50,13 @@ Layout.propTypes = {
   useAuth: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
+  showHamburger: PropTypes.bool,
+  hamburgerClicked: PropTypes.func,
+};
+
+Layout.defaultProps = {
+  showHamburger: false,
+  hamburgerClicked: () => undefined,
 };
 
 const mapDispatchToProps = dispatch => ({

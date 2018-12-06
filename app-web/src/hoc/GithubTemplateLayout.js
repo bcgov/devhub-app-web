@@ -40,7 +40,7 @@ const GithubTemplateLayout = ({ siphonData, nav, pathname, children }) => {
           </header>
           {sourceNavigation}
         </div>
-        <section className={styles.Content}>{children}</section>
+        <main className={styles.Content}>{children}</main>
       </div>
     </Layout>
   );

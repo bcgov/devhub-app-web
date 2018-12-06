@@ -4,9 +4,11 @@ exports[`Layout Component it matches snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Layout
+    hamburgerClicked={[Function]}
     login={[Function]}
     logout={[Function]}
     path="/"
+    showHamburger={false}
     useAuth={false}
   >
     test
@@ -35,14 +37,11 @@ ShallowWrapper {
             type="image/x-icon"
           />
         </HelmetWrapper>,
-        <Connect(PrimaryHeader)
-          path="/"
+        <PrimaryHeader
+          hamburgerClicked={[Function]}
+          showHamburger={false}
         />,
-        <div
-          className="container"
-        >
-          test
-        </div>,
+        "test",
         <PrimaryFooter>
           
         </PrimaryFooter>,
@@ -83,26 +82,16 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "function",
         "props": Object {
-          "path": "/",
+          "hamburgerClicked": [Function],
+          "showHamburger": false,
         },
         "ref": null,
         "rendered": null,
         "type": [Function],
       },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": "test",
-          "className": "container",
-        },
-        "ref": null,
-        "rendered": "test",
-        "type": "div",
-      },
+      "test",
       Object {
         "instance": null,
         "key": undefined,
@@ -134,14 +123,11 @@ ShallowWrapper {
               type="image/x-icon"
             />
           </HelmetWrapper>,
-          <Connect(PrimaryHeader)
-            path="/"
+          <PrimaryHeader
+            hamburgerClicked={[Function]}
+            showHamburger={false}
           />,
-          <div
-            className="container"
-          >
-            test
-          </div>,
+          "test",
           <PrimaryFooter>
             
           </PrimaryFooter>,
@@ -182,26 +168,16 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
-            "path": "/",
+            "hamburgerClicked": [Function],
+            "showHamburger": false,
           },
           "ref": null,
           "rendered": null,
           "type": [Function],
         },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "test",
-            "className": "container",
-          },
-          "ref": null,
-          "rendered": "test",
-          "type": "div",
-        },
+        "test",
         Object {
           "instance": null,
           "key": undefined,
