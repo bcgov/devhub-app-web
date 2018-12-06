@@ -6,6 +6,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <PrimaryFilter
     filterSiphonNodes={[Function]}
     menuToggled={false}
+    selectedFilter=""
     setMainNavigationToggled={[Function]}
     setSelectedOption={[Function]}
   />,
@@ -20,421 +21,339 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "function",
+    "nodeType": "host",
     "props": Object {
-      "children": Array [
-        <StateManager
-          ariaLabel="Select to filter cards by the resource type"
-          className="PrimaryFilter largeOnly"
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
-          onChange={[Function]}
-          onMenuClose={[Function]}
-          onMenuOpen={[Function]}
-          options={
-            Array [
-              Object {
-                "label": "All",
-                "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"All\\"}",
-              },
-              Object {
-                "label": "Components",
-                "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Components\\"}",
-              },
-              Object {
-                "label": "Documentation",
-                "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Documentation\\"}",
-              },
-              Object {
-                "label": "Self-Service Tools",
-                "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Self-Service Tools\\"}",
-              },
-              Object {
-                "label": "Repositories",
-                "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Repositories\\"}",
-              },
-            ]
-          }
-          placeholder="Filter"
-          styles={
-            Object {
-              "control": [Function],
-              "option": [Function],
-              "singleValue": [Function],
-            }
-          }
-          value={undefined}
-        />,
-        <Hamburger
-          className="mobileOnly"
-          clicked={[Function]}
-        />,
-        <StateManager
-          ariaLabel="Select to filter cards by the resource type"
-          className="PrimaryFilter mobileOnly"
-          defaultInputValue=""
-          defaultMenuIsOpen={false}
-          defaultValue={null}
-          menuIsOpen={false}
-          onChange={[Function]}
-          options={
-            Array [
-              Object {
-                "label": "All",
-                "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"All\\"}",
-              },
-              Object {
-                "label": "Components",
-                "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Components\\"}",
-              },
-              Object {
-                "label": "Documentation",
-                "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Documentation\\"}",
-              },
-              Object {
-                "label": "Self-Service Tools",
-                "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Self-Service Tools\\"}",
-              },
-              Object {
-                "label": "Repositories",
-                "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Repositories\\"}",
-              },
-            ]
-          }
-          placeholder=""
-          styles={
-            Object {
-              "control": [Function],
-              "menu": [Function],
-              "option": [Function],
-              "singleValue": [Function],
-            }
-          }
-          value={undefined}
-        />,
-      ],
+      "children": <ul
+        className="largeOnly"
+      >
+        <li
+          aria-label="Select to filter cards by the resource type"
+          className=""
+          onClick={[Function]}
+        >
+          All
+        </li>
+        <li
+          aria-label="Select to filter cards by the resource type"
+          className=""
+          onClick={[Function]}
+        >
+          Components
+        </li>
+        <li
+          aria-label="Select to filter cards by the resource type"
+          className=""
+          onClick={[Function]}
+        >
+          Documentation
+        </li>
+        <li
+          aria-label="Select to filter cards by the resource type"
+          className=""
+          onClick={[Function]}
+        >
+          Self-Service Tools
+        </li>
+        <li
+          aria-label="Select to filter cards by the resource type"
+          className=""
+          onClick={[Function]}
+        >
+          Repositories
+        </li>
+      </ul>,
+      "className": "PrimaryFilter",
     },
     "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "ariaLabel": "Select to filter cards by the resource type",
-          "className": "PrimaryFilter largeOnly",
-          "defaultInputValue": "",
-          "defaultMenuIsOpen": false,
-          "defaultValue": null,
-          "onChange": [Function],
-          "onMenuClose": [Function],
-          "onMenuOpen": [Function],
-          "options": Array [
-            Object {
-              "label": "All",
-              "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"All\\"}",
-            },
-            Object {
-              "label": "Components",
-              "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Components\\"}",
-            },
-            Object {
-              "label": "Documentation",
-              "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Documentation\\"}",
-            },
-            Object {
-              "label": "Self-Service Tools",
-              "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Self-Service Tools\\"}",
-            },
-            Object {
-              "label": "Repositories",
-              "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Repositories\\"}",
-            },
-          ],
-          "placeholder": "Filter",
-          "styles": Object {
-            "control": [Function],
-            "option": [Function],
-            "singleValue": [Function],
-          },
-          "value": undefined,
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "className": "mobileOnly",
-          "clicked": [Function],
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "ariaLabel": "Select to filter cards by the resource type",
-          "className": "PrimaryFilter mobileOnly",
-          "defaultInputValue": "",
-          "defaultMenuIsOpen": false,
-          "defaultValue": null,
-          "menuIsOpen": false,
-          "onChange": [Function],
-          "options": Array [
-            Object {
-              "label": "All",
-              "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"All\\"}",
-            },
-            Object {
-              "label": "Components",
-              "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Components\\"}",
-            },
-            Object {
-              "label": "Documentation",
-              "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Documentation\\"}",
-            },
-            Object {
-              "label": "Self-Service Tools",
-              "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Self-Service Tools\\"}",
-            },
-            Object {
-              "label": "Repositories",
-              "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Repositories\\"}",
-            },
-          ],
-          "placeholder": "",
-          "styles": Object {
-            "control": [Function],
-            "menu": [Function],
-            "option": [Function],
-            "singleValue": [Function],
-          },
-          "value": undefined,
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-    ],
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
+    "rendered": Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "function",
+      "nodeType": "host",
       "props": Object {
         "children": Array [
-          <StateManager
-            ariaLabel="Select to filter cards by the resource type"
-            className="PrimaryFilter largeOnly"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
-            onChange={[Function]}
-            onMenuClose={[Function]}
-            onMenuOpen={[Function]}
-            options={
-              Array [
-                Object {
-                  "label": "All",
-                  "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"All\\"}",
-                },
-                Object {
-                  "label": "Components",
-                  "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Components\\"}",
-                },
-                Object {
-                  "label": "Documentation",
-                  "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Documentation\\"}",
-                },
-                Object {
-                  "label": "Self-Service Tools",
-                  "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Self-Service Tools\\"}",
-                },
-                Object {
-                  "label": "Repositories",
-                  "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Repositories\\"}",
-                },
-              ]
-            }
-            placeholder="Filter"
-            styles={
-              Object {
-                "control": [Function],
-                "option": [Function],
-                "singleValue": [Function],
-              }
-            }
-            value={undefined}
-          />,
-          <Hamburger
-            className="mobileOnly"
-            clicked={[Function]}
-          />,
-          <StateManager
-            ariaLabel="Select to filter cards by the resource type"
-            className="PrimaryFilter mobileOnly"
-            defaultInputValue=""
-            defaultMenuIsOpen={false}
-            defaultValue={null}
-            menuIsOpen={false}
-            onChange={[Function]}
-            options={
-              Array [
-                Object {
-                  "label": "All",
-                  "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"All\\"}",
-                },
-                Object {
-                  "label": "Components",
-                  "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Components\\"}",
-                },
-                Object {
-                  "label": "Documentation",
-                  "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Documentation\\"}",
-                },
-                Object {
-                  "label": "Self-Service Tools",
-                  "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Self-Service Tools\\"}",
-                },
-                Object {
-                  "label": "Repositories",
-                  "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Repositories\\"}",
-                },
-              ]
-            }
-            placeholder=""
-            styles={
-              Object {
-                "control": [Function],
-                "menu": [Function],
-                "option": [Function],
-                "singleValue": [Function],
-              }
-            }
-            value={undefined}
-          />,
+          <li
+            aria-label="Select to filter cards by the resource type"
+            className=""
+            onClick={[Function]}
+          >
+            All
+          </li>,
+          <li
+            aria-label="Select to filter cards by the resource type"
+            className=""
+            onClick={[Function]}
+          >
+            Components
+          </li>,
+          <li
+            aria-label="Select to filter cards by the resource type"
+            className=""
+            onClick={[Function]}
+          >
+            Documentation
+          </li>,
+          <li
+            aria-label="Select to filter cards by the resource type"
+            className=""
+            onClick={[Function]}
+          >
+            Self-Service Tools
+          </li>,
+          <li
+            aria-label="Select to filter cards by the resource type"
+            className=""
+            onClick={[Function]}
+          >
+            Repositories
+          </li>,
         ],
+        "className": "largeOnly",
       },
       "ref": null,
       "rendered": Array [
         Object {
           "instance": null,
-          "key": undefined,
-          "nodeType": "class",
+          "key": "0",
+          "nodeType": "host",
           "props": Object {
-            "ariaLabel": "Select to filter cards by the resource type",
-            "className": "PrimaryFilter largeOnly",
-            "defaultInputValue": "",
-            "defaultMenuIsOpen": false,
-            "defaultValue": null,
-            "onChange": [Function],
-            "onMenuClose": [Function],
-            "onMenuOpen": [Function],
-            "options": Array [
-              Object {
-                "label": "All",
-                "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"All\\"}",
-              },
-              Object {
-                "label": "Components",
-                "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Components\\"}",
-              },
-              Object {
-                "label": "Documentation",
-                "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Documentation\\"}",
-              },
-              Object {
-                "label": "Self-Service Tools",
-                "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Self-Service Tools\\"}",
-              },
-              Object {
-                "label": "Repositories",
-                "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Repositories\\"}",
-              },
-            ],
-            "placeholder": "Filter",
-            "styles": Object {
-              "control": [Function],
-              "option": [Function],
-              "singleValue": [Function],
-            },
-            "value": undefined,
+            "aria-label": "Select to filter cards by the resource type",
+            "children": "All",
+            "className": "",
+            "onClick": [Function],
           },
           "ref": null,
-          "rendered": null,
-          "type": [Function],
+          "rendered": "All",
+          "type": "li",
         },
         Object {
           "instance": null,
-          "key": undefined,
-          "nodeType": "function",
+          "key": "1",
+          "nodeType": "host",
           "props": Object {
-            "className": "mobileOnly",
-            "clicked": [Function],
+            "aria-label": "Select to filter cards by the resource type",
+            "children": "Components",
+            "className": "",
+            "onClick": [Function],
           },
           "ref": null,
-          "rendered": null,
-          "type": [Function],
+          "rendered": "Components",
+          "type": "li",
         },
         Object {
           "instance": null,
-          "key": undefined,
-          "nodeType": "class",
+          "key": "2",
+          "nodeType": "host",
           "props": Object {
-            "ariaLabel": "Select to filter cards by the resource type",
-            "className": "PrimaryFilter mobileOnly",
-            "defaultInputValue": "",
-            "defaultMenuIsOpen": false,
-            "defaultValue": null,
-            "menuIsOpen": false,
-            "onChange": [Function],
-            "options": Array [
-              Object {
-                "label": "All",
-                "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"All\\"}",
-              },
-              Object {
-                "label": "Components",
-                "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Components\\"}",
-              },
-              Object {
-                "label": "Documentation",
-                "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Documentation\\"}",
-              },
-              Object {
-                "label": "Self-Service Tools",
-                "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Self-Service Tools\\"}",
-              },
-              Object {
-                "label": "Repositories",
-                "value": "{\\"filterBy\\":\\"resource.type\\",\\"value\\":\\"Repositories\\"}",
-              },
-            ],
-            "placeholder": "",
-            "styles": Object {
-              "control": [Function],
-              "menu": [Function],
-              "option": [Function],
-              "singleValue": [Function],
-            },
-            "value": undefined,
+            "aria-label": "Select to filter cards by the resource type",
+            "children": "Documentation",
+            "className": "",
+            "onClick": [Function],
           },
           "ref": null,
-          "rendered": null,
-          "type": [Function],
+          "rendered": "Documentation",
+          "type": "li",
+        },
+        Object {
+          "instance": null,
+          "key": "3",
+          "nodeType": "host",
+          "props": Object {
+            "aria-label": "Select to filter cards by the resource type",
+            "children": "Self-Service Tools",
+            "className": "",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": "Self-Service Tools",
+          "type": "li",
+        },
+        Object {
+          "instance": null,
+          "key": "4",
+          "nodeType": "host",
+          "props": Object {
+            "aria-label": "Select to filter cards by the resource type",
+            "children": "Repositories",
+            "className": "",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": "Repositories",
+          "type": "li",
         },
       ],
-      "type": [Function],
+      "type": "ul",
+    },
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <ul
+          className="largeOnly"
+        >
+          <li
+            aria-label="Select to filter cards by the resource type"
+            className=""
+            onClick={[Function]}
+          >
+            All
+          </li>
+          <li
+            aria-label="Select to filter cards by the resource type"
+            className=""
+            onClick={[Function]}
+          >
+            Components
+          </li>
+          <li
+            aria-label="Select to filter cards by the resource type"
+            className=""
+            onClick={[Function]}
+          >
+            Documentation
+          </li>
+          <li
+            aria-label="Select to filter cards by the resource type"
+            className=""
+            onClick={[Function]}
+          >
+            Self-Service Tools
+          </li>
+          <li
+            aria-label="Select to filter cards by the resource type"
+            className=""
+            onClick={[Function]}
+          >
+            Repositories
+          </li>
+        </ul>,
+        "className": "PrimaryFilter",
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <li
+              aria-label="Select to filter cards by the resource type"
+              className=""
+              onClick={[Function]}
+            >
+              All
+            </li>,
+            <li
+              aria-label="Select to filter cards by the resource type"
+              className=""
+              onClick={[Function]}
+            >
+              Components
+            </li>,
+            <li
+              aria-label="Select to filter cards by the resource type"
+              className=""
+              onClick={[Function]}
+            >
+              Documentation
+            </li>,
+            <li
+              aria-label="Select to filter cards by the resource type"
+              className=""
+              onClick={[Function]}
+            >
+              Self-Service Tools
+            </li>,
+            <li
+              aria-label="Select to filter cards by the resource type"
+              className=""
+              onClick={[Function]}
+            >
+              Repositories
+            </li>,
+          ],
+          "className": "largeOnly",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "host",
+            "props": Object {
+              "aria-label": "Select to filter cards by the resource type",
+              "children": "All",
+              "className": "",
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": "All",
+            "type": "li",
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "host",
+            "props": Object {
+              "aria-label": "Select to filter cards by the resource type",
+              "children": "Components",
+              "className": "",
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": "Components",
+            "type": "li",
+          },
+          Object {
+            "instance": null,
+            "key": "2",
+            "nodeType": "host",
+            "props": Object {
+              "aria-label": "Select to filter cards by the resource type",
+              "children": "Documentation",
+              "className": "",
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": "Documentation",
+            "type": "li",
+          },
+          Object {
+            "instance": null,
+            "key": "3",
+            "nodeType": "host",
+            "props": Object {
+              "aria-label": "Select to filter cards by the resource type",
+              "children": "Self-Service Tools",
+              "className": "",
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": "Self-Service Tools",
+            "type": "li",
+          },
+          Object {
+            "instance": null,
+            "key": "4",
+            "nodeType": "host",
+            "props": Object {
+              "aria-label": "Select to filter cards by the resource type",
+              "children": "Repositories",
+              "className": "",
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": "Repositories",
+            "type": "li",
+          },
+        ],
+        "type": "ul",
+      },
+      "type": "div",
     },
   ],
   Symbol(enzyme.__options__): Object {

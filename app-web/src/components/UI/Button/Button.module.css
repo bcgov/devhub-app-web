@@ -34,5 +34,5 @@
 .Button.link {
     background-color: transparent;
     outline: none;
-    color: #234075;
+    color: inherit;
 }

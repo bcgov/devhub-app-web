@@ -35,7 +35,7 @@ ShallowWrapper {
             type="image/x-icon"
           />
         </HelmetWrapper>,
-        <PrimaryHeader
+        <Connect(PrimaryHeader)
           path="/"
         />,
         <div
@@ -83,7 +83,7 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
+        "nodeType": "class",
         "props": Object {
           "path": "/",
         },
@@ -134,7 +134,7 @@ ShallowWrapper {
               type="image/x-icon"
             />
           </HelmetWrapper>,
-          <PrimaryHeader
+          <Connect(PrimaryHeader)
             path="/"
           />,
           <div
@@ -182,7 +182,7 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
             "path": "/",
           },
