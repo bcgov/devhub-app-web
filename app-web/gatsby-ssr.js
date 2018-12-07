@@ -9,7 +9,7 @@ import { renderToString } from 'react-dom/server';
 import { ConnectedFlagsProvider } from 'flag';
 import createStore from './src/store/createStore';
 
-exports.replaceRenderer = ({ bodyComponent, replaceBodyHTMLString }) => {
+export const replaceRenderer = ({ bodyComponent, replaceBodyHTMLString }) => {
   const store = createStore();
 
   const ConnectedBody = () => (
