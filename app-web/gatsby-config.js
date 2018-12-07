@@ -41,7 +41,6 @@ module.exports = {
     // 'gatsby-transformer-json',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
-    'gatsby-plugin-react-next',
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-source-github-api',
