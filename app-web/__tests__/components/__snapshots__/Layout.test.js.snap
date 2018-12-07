@@ -5,8 +5,8 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Layout
     hamburgerClicked={[Function]}
-    login={[Function]}
-    logout={[Function]}
+    login={[MockFunction]}
+    logout={[MockFunction]}
     path="/"
     showHamburger={false}
     useAuth={false}

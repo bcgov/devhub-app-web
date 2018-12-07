@@ -22,8 +22,7 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Banner
-          navigateOnClickPath="/"
-          title={undefined}
+          navigateOnClickPath=""
         />,
         <div
           className="Other"
@@ -44,8 +43,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "navigateOnClickPath": "/",
-          "title": undefined,
+          "navigateOnClickPath": "",
         },
         "ref": null,
         "rendered": null,
@@ -103,8 +101,7 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Banner
-            navigateOnClickPath="/"
-            title={undefined}
+            navigateOnClickPath=""
           />,
           <div
             className="Other"
@@ -125,8 +122,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "navigateOnClickPath": "/",
-            "title": undefined,
+            "navigateOnClickPath": "",
           },
           "ref": null,
           "rendered": null,

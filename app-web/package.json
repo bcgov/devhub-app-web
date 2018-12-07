@@ -119,8 +119,6 @@
       "json"
     ],
     "moduleNameMapper": {
-      "^react$": "gatsby-plugin-react-next/node_modules/react",
-      "^react-dom$": "gatsby-plugin-react-next/node_modules/react-dom",
       "\\.module\\.(css|less)$": "identity-obj-proxy",
       ".(css)$": "identity-obj-proxy"
     },
@@ -138,7 +136,11 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^9.0.0",
+    "babel-jest": "^23.6.0",
+    "babel-preset-gatsby": "^0.1.6",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.7.0",
     "enzyme-to-json": "^3.3.5",
@@ -154,6 +156,7 @@
     "jest": "^23.6.0",
     "jest-localstorage-mock": "^2.3.0",
     "prettier": "^1.15.3",
+    "react-test-renderer": "^16.6.3",
     "redux-mock-store": "^1.5.3"
   }
 }

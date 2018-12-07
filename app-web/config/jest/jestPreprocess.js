@@ -19,13 +19,7 @@ Created by Patrick Simonian
 // and gh issue https://github.com/facebook/jest/issues/1468#issuecomment-361260279
 
 const babelOptions = {
-  presets: ['env', 'react'],
-  env: {
-    test: {
-      presets: ['env', 'react'],
-      plugins: ['babel-plugin-emotion', 'transform-class-properties'],
-    },
-  },
+  presets: ['babel-preset-gatsby'],
 };
 
 module.exports = require('babel-jest').createTransformer(babelOptions);

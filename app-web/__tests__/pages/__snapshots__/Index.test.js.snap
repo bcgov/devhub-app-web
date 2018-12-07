@@ -45,7 +45,38 @@ ShallowWrapper {
         },
       }
     }
-    loadSiphonNodes={[Function]}
+    loadSiphonNodes={
+      [MockFunction] {
+        "calls": Array [
+          Array [
+            Array [
+              Object {
+                "childMarkdownRemark": Object {
+                  "frontmatter": Object {
+                    "description": "This is a test description that will be used as the intro blurb to a card",
+                    "title": "",
+                  },
+                },
+                "id": "1bc91db3-c484-58b5-9700-55c22406950a",
+                "resource": Object {
+                  "path": "/design-system/test",
+                },
+                "source": Object {
+                  "displayName": "Design System",
+                },
+                "title": "test",
+              },
+            ],
+          ],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
     location={
       Object {
         "pathname": "/",

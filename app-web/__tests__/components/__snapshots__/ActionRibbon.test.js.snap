@@ -9,7 +9,20 @@ ShallowWrapper {
         Object {
           "ariaLabel": "ariaLabel",
           "flag": "features.flag",
-          "getHref": [Function],
+          "getHref": [MockFunction] {
+            "calls": Array [
+              Array [
+                "repo",
+                "owner",
+              ],
+            ],
+            "results": Array [
+              Object {
+                "isThrow": false,
+                "value": undefined,
+              },
+            ],
+          },
           "icon": <i>
             Icon
           </i>,
@@ -40,7 +53,6 @@ ShallowWrapper {
           <li>
             <GatsbyLink
               aria-label="ariaLabel"
-              to={undefined}
             >
               <FontAwesomeIcon
                 border={false}
@@ -79,7 +91,6 @@ ShallowWrapper {
           "children": <li>
             <GatsbyLink
               aria-label="ariaLabel"
-              to={undefined}
             >
               <FontAwesomeIcon
                 border={false}
@@ -115,7 +126,6 @@ ShallowWrapper {
           "props": Object {
             "children": <GatsbyLink
               aria-label="ariaLabel"
-              to={undefined}
             >
               <FontAwesomeIcon
                 border={false}
@@ -223,7 +233,6 @@ ShallowWrapper {
             <li>
               <GatsbyLink
                 aria-label="ariaLabel"
-                to={undefined}
               >
                 <FontAwesomeIcon
                   border={false}
@@ -262,7 +271,6 @@ ShallowWrapper {
             "children": <li>
               <GatsbyLink
                 aria-label="ariaLabel"
-                to={undefined}
               >
                 <FontAwesomeIcon
                   border={false}
@@ -298,7 +306,6 @@ ShallowWrapper {
             "props": Object {
               "children": <GatsbyLink
                 aria-label="ariaLabel"
-                to={undefined}
               >
                 <FontAwesomeIcon
                   border={false}
