@@ -1,0 +1,12 @@
+node_modules
+.vscode
+.gitignore
+.editorconfig
+config
+doc
+openshift
+Dockerfile
+LICENSE.txt
+README.md
+RELEASE.md
+.env
