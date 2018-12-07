@@ -1,21 +1,20 @@
-// taken from https://github.com/gatsbyjs/gatsby/tree/master/examples/using-redux
-// in prep for porting over to gatsby v2 (this file will be used at that point)
-// import wrapWithProvider from './wrapWithProvider';
-// export const wrapRootElement = wrapWithProvider;
+/*
+Copyright 2018 Province of British Columbia
 
-import React from 'react';
-import { Provider } from 'react-redux';
-import { renderToString } from 'react-dom/server';
-import { ConnectedFlagsProvider } from 'flag';
-import createStore from './src/store/createStore';
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at 
 
-export const replaceRenderer = ({ bodyComponent, replaceBodyHTMLString }) => {
-  const store = createStore();
+   http://www.apache.org/licenses/LICENSE-2.0
 
-  const ConnectedBody = () => (
-    <Provider store={store}>
-      <ConnectedFlagsProvider>{bodyComponent}</ConnectedFlagsProvider>
-    </Provider>
-  );
-  replaceBodyHTMLString(renderToString(<ConnectedBody />));
-};
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Created by Patrick Simonian
+*/
+// for more info https://github.com/gatsbyjs/gatsby/tree/master/examples/using-redux
+import wrapWithProvider from './wrapWithProvider';
+export const wrapRootElement = wrapWithProvider;
