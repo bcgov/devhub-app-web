@@ -49,13 +49,13 @@ const PERSONAS_LIST = Object.values(PERSONAS);
 const GRAPHQL_NODE_TYPE = 'DevhubSiphon';
 
 const DEFUALT_IGNORES = [
-  'node_modules',
+  '/node_modules',
   'CONTRIBUTING.md',
   'CODE_OF_CONDUCT.md',
   'LICENSE',
   'CODE OF CONDUCT.md',
-  'openshift',
-  '.github',
+  '/openshift',
+  '/.github',
 ];
 // github rest api v3
 const GITHUB_API_ENDPOINT = 'https://api.github.com';
