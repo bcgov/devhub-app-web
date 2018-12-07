@@ -169,7 +169,7 @@ This repository has been configured to send webhooks to a self-hosted Taiga inst
 
 ## Deployment (Local Development For App-Web)
 
-* Requires Node 8 or higher
+* Requires Node 8 and npm 6
 * Clone this repo
 * Change into app-web project directory
 * run: `npm install`
