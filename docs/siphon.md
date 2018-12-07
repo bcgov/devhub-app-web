@@ -175,14 +175,14 @@ const content = await fileTransformer(extension, file)
 
 Siphon's endgame is to create graphQL nodes based on the files it pulls from github repositories. As
 this is a **Gatsby Source Plugin** there are a few conventions that are required to follow when creating
-the graphQL schema (more on that [here](https://v1.gatsbyjs.org/docs/source-plugin-tutorial/))
+the graphQL schema (more on that [here](https://www.gatsbyjs.org/docs/plugin-authoring/))
 
 ### GraphQL
 
-[Gatsby uses GraphQL](https://v1.gatsbyjs.org/docs/querying-with-graphql/) as a datalayer to render content to a Gatsby Page.
+[Gatsby uses GraphQL](https://www.gatsbyjs.org/docs/graphql/) as a datalayer to render content to a Gatsby Page.
 
 ### Siphon's GraphQL Schema
-> last updated Nov 2 2018
+> last updated Dec 7th 2018
 
 ```javascript
     id, // unique identifier for node
@@ -190,13 +190,12 @@ the graphQL schema (more on that [here](https://v1.gatsbyjs.org/docs/source-plug
     fileName // full file name
     fileType // the pretty printed name of the file type if exists, .md => Markdown, .yml => YAML, .json => JSON
     name // the file name minus extension
-    owner // repo owner
+    owner // owner of resource
     parent // gatsby required attribute, this is null
-    path // path to the file relative to the respository
-    originalSource // the original URL to the file ***WILL BE REMOVED IN FUTURE VERSIONS***
-    // data used to provide 'previews' for the node
+    path // path to the resource
+    // unfurl is data used to provide 'previews' for the node
     // this adopts standards from twitter cards, open graph
-    // and normalized the properties
+    // and other standard properties from other specs
     unfurl {
         description,
         title,
@@ -219,6 +218,7 @@ the graphQL schema (more on that [here](https://v1.gatsbyjs.org/docs/source-plug
         // pointer to the resource for this node. This may be external, a link to another website
         // or internal, a link to a generated gatsby page
         path 
+        originalSource
     }
     attributes { // extra information that may be beneficial for searching
         labels
@@ -245,7 +245,7 @@ the graphQL schema (more on that [here](https://v1.gatsbyjs.org/docs/source-plug
 
 ### Implicit Media Types and their Importance
 
-Gatsby has a set of plugins called [Transformers](https://v1.gatsbyjs.org/tutorial/part-six/). Which
+Gatsby has a set of plugins called [Transformers](https://gatsbyjs.org/tutorial/part-six/). Which
 are a very powerful and *slightly* automagical way of modifying or interpreting content.
 
 All transformers (as far as I've seen in the source code for plugins) base their transformations
