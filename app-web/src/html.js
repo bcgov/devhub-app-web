@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === 'production') {
   }
 }
 
-module.exports = class HTML extends React.Component {
+class HTML extends React.Component {
   render() {
     let css;
     if (process.env.NODE_ENV === 'production') {
@@ -43,4 +43,6 @@ module.exports = class HTML extends React.Component {
       </html>
     );
   }
-};
+}
+
+export default HTML;
