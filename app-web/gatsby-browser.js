@@ -10,7 +10,7 @@ import { ConnectedFlagsProvider } from 'flag';
 import { config } from '@fortawesome/fontawesome-svg-core';
 config.autoAddCss = false;
 
-export const wrapWrootElement = ({ element }) => {
+export const wrapRootElement = ({ element }) => {
   const store = createStore();
   // eslint-disable-next-line
   const ConnectedRootElement = (
