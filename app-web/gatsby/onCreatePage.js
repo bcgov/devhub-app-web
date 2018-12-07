@@ -23,8 +23,8 @@ Created by Patrick Simonian
 // until the time this issue is resolved, we are declaring the filter base route here in the interim.
 const FILTER_BASE_ROUTE = '/resources';
 
-module.exports = async ({ page, boundActionCreators }) => {
-  const { createPage } = boundActionCreators;
+module.exports = async ({ page, actions }) => {
+  const { createPage } = actions;
   const re = new RegExp(`^${FILTER_BASE_ROUTE}`);
   // check if page that's being created matches the filter base routes
   // which is intended for client side loading only
