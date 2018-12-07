@@ -167,13 +167,18 @@ This repository has been configured to send webhooks to a self-hosted Taiga inst
         └── groovy
 ```
 
+## Getting Started
+
+* change into app-web project directory
+* copy and update your env file
+* `cp .env.production.example .env.production`
+
 ## Deployment (Local Development For App-Web)
 
-* Requires Node 8 and npm 6
+* Requires **Node 8** and **npm 6**
 * Clone this repo
 * Change into app-web project directory
 * run: `npm install`
-* cp .env.production.example .env.production
 * replace relevant environment variables (for local dev only)
 * *it may be* beneficial to have the gatsby cli package `npm install -g gatsby-cli`
 * to start development server run: `npm run dev`
@@ -181,6 +186,13 @@ This repository has been configured to send webhooks to a self-hosted Taiga inst
 * to view production build run (requires gatsby-cli to be installed globally): `gatsby serve`
 * to run prettier: `npm run prettify`
 * to run test suites: `npm test`
+
+## Deployment (Docker for Local Development)
+
+* Requires **Docker** and **Docker Compose**
+* create image from docker file
+* run container
+* rebuild container on file changes
 
 ## Deployment (OpenShift)
 
