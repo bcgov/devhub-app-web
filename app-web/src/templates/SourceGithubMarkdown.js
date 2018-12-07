@@ -18,6 +18,7 @@
 // Created by Patrick Simonian on 2018-10-12.
 //
 import React from 'react';
+import { graphql } from 'gatsby';
 import GithubTemplateLayout from '../hoc/GithubTemplateLayout';
 import styles from './SourceMarkdown.module.css';
 // eslint-disable-next-line

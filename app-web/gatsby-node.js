@@ -18,6 +18,6 @@ Created by Patrick Simonian
 
 // gatsby event hooks
 // https://www.gatsbyjs.org/docs/node-apis/
-exports.modifyWebpackConfig = require('./gatsby/modifyWebpackConfig');
+exports.onCreateWebpackConfig = require('./gatsby/modifyWebpackConfig');
 exports.onCreatePage = require('./gatsby/onCreatePage');
 exports.createPages = require('./gatsby/createPages');

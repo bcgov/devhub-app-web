@@ -95,7 +95,7 @@ const getRegistry = getNodes => {
 /**
  * Filteres out resources that have the ignore metadata property set to true
  * @param {Array} sources
- * @returns {Array} the filtered sources 
+ * @returns {Array} the filtered sources
  */
 const filterIgnoredResources = sources =>
   sources.filter(s => {
@@ -103,17 +103,18 @@ const filterIgnoredResources = sources =>
       return true;
     }
     console.log(
-      chalk`\n The resource {green.bold ${s.metadata
-        .name}} has been flagged as {green.bold 'ignore'} and will not have a Siphon Node created for it`,
+      chalk`\n The resource {green.bold ${
+        s.metadata.name
+      }} has been flagged as {green.bold 'ignore'} and will not have a Siphon Node created for it`,
     );
     return false;
   });
 
 // eslint-disable-next-line consistent-return
-const sourceNodes = async ({ getNodes, boundActionCreators, createNodeId }, { tokens }) => {
+const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens }) => {
   // get registry from current nodes
   const registry = getRegistry(getNodes);
-  const { createNode } = boundActionCreators;
+  const { createNode } = actions;
   try {
     // check registry prior to fetching data
     checkRegistry(registry);

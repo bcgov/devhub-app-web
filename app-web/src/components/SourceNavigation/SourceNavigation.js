@@ -16,6 +16,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React, { Component } from 'react';
+import { graphql } from 'gatsby';
 import shortid from 'shortid';
 import PropTypes from 'prop-types';
 import Link from '../UI/Link/Link';

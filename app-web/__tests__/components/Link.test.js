@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import GatsbyLink from 'gatsby-link';
 import Link from '../../src/components/UI/Link/Link';
 
 describe('Gatsby Link Component', () => {
@@ -13,7 +12,8 @@ describe('Gatsby Link Component', () => {
 
   test('it renders a gatsby link if passed a path that links to a page componented', () => {
     const to = '/learn';
-    const wrapper = shallow(<Link to={to} />); // eslint-disable-line
-    expect(wrapper.type()).toEqual(GatsbyLink);
+    const gatsbyLinkWrapper = shallow(<Link to={to} />); // eslint-disable-line
+    const anchorLinkWrapper = shallow(<Link to="https://www.google.com" />);
+    expect(gatsbyLinkWrapper.type()).not.toEqual(anchorLinkWrapper.type());
   });
 });

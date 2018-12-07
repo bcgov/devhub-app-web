@@ -5,8 +5,9 @@ const converter = require('./src/utils/gatsby-remark-transform-path');
 
 module.exports = {
   siteMetadata: {
-    title: 'Devhub',
+    title: 'DevHub',
   },
+  pathPrefix: '/images',
   mapping: {},
   plugins: [
     'gatsby-plugin-styled-components',
@@ -41,7 +42,6 @@ module.exports = {
     // 'gatsby-transformer-json',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
-    'gatsby-plugin-react-next',
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-source-github-api',

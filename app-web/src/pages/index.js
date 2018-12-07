@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { graphql } from 'gatsby';
 // import YAML from 'js-yaml';
 import shortid from 'shortid';
 import { connect } from 'react-redux';

@@ -4,7 +4,7 @@ exports[`Button Component matches snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Button
-    clicked={[Function]}
+    clicked={[MockFunction]}
   >
     
   </Button>,
@@ -23,7 +23,7 @@ ShallowWrapper {
     "props": Object {
       "children": "",
       "className": "Button undefined",
-      "onClick": [Function],
+      "onClick": [MockFunction],
     },
     "ref": null,
     "rendered": "",
@@ -37,7 +37,7 @@ ShallowWrapper {
       "props": Object {
         "children": "",
         "className": "Button undefined",
-        "onClick": [Function],
+        "onClick": [MockFunction],
       },
       "ref": null,
       "rendered": "",

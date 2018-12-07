@@ -15,16 +15,11 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
+// as per gatsby v2 migration docs
+// and gh issue https://github.com/facebook/jest/issues/1468#issuecomment-361260279
 
-import React from 'react';
-import { Provider } from 'react-redux';
-import { ConnectedFlagsProvider } from 'flag';
-import createStore from './src/store/createStore';
+const babelOptions = {
+  presets: ['babel-preset-gatsby'],
+};
 
-const store = createStore();
-
-export default ({ element }) => (
-  <Provider store={store}>
-    <ConnectedFlagsProvider>{element}</ConnectedFlagsProvider>
-  </Provider>
-);
+module.exports = require('babel-jest').createTransformer(babelOptions);

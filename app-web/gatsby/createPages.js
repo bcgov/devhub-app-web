@@ -46,8 +46,8 @@ const getTemplate = (source, mediaType) => {
   }
 };
 
-module.exports = async ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators;
+module.exports = async ({ graphql, actions }) => {
+  const { createPage } = actions;
   // main graphql query here
   const devhubData = await graphql(`
     {

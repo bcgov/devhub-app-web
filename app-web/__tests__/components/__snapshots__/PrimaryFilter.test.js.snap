@@ -4,11 +4,11 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <PrimaryFilter
-    filterSiphonNodes={[Function]}
+    filterSiphonNodes={[MockFunction]}
     menuToggled={false}
     selectedFilter=""
-    setMainNavigationToggled={[Function]}
-    setSelectedOption={[Function]}
+    setMainNavigationToggled={[MockFunction]}
+    setSelectedOption={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
