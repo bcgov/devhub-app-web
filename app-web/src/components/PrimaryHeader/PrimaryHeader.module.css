@@ -19,7 +19,7 @@
     display: flex;
 }
 
-.Hamburger {
+.PrimaryHeader .Hamburger {
     cursor: pointer;
 }
 
@@ -29,7 +29,7 @@
     }
 }
 @media screen and (min-width: 750px) {
-    .Hamburger {
+    .PrimaryHeader .Hamburger {
         display: none;
     }
 }
