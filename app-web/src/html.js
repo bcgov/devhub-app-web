@@ -1,4 +1,5 @@
 import React from 'react';
+import { withPrefix } from 'gatsby'
 
 let stylesStr;
 if (process.env.NODE_ENV === 'production') {
@@ -18,6 +19,13 @@ class HTML extends React.Component {
     return (
       <html {...this.props.htmlAttributes}>
         <head>
+          <title>DevHub</title>
+          <meta name="twitter:author" content="patricksimonian" />
+          <meta name="twitter:description" content="DevHub aims to become the &#34;Central Nervous System&#34; for the growing BC Gov developer community." />
+          <meta name="twitter:image" content={withPrefix('/images/connected.png')} />
+          <meta name="og:author" content="patricksimonian" />
+          <meta name="og:description" content="DevHub aims to become the &#34;Central Nervous System&#34; for the growing BC Gov developer community." />
+          <meta name="og:image" content={withPrefix('/images/connected.png')} />
           <meta charSet="utf-8" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />

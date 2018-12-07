@@ -5,8 +5,9 @@ const converter = require('./src/utils/gatsby-remark-transform-path');
 
 module.exports = {
   siteMetadata: {
-    title: 'Devhub',
+    title: 'DevHub',
   },
+  pathPrefix: '/images',
   mapping: {},
   plugins: [
     'gatsby-plugin-styled-components',
