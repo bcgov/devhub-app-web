@@ -1,5 +1,5 @@
 .Main {
-    padding: 0 15px 15px;
+    padding: 0 15px 30px;
     margin-top: 50px;
     margin-bottom: 5px;
 }
@@ -39,7 +39,7 @@
 
 @media screen and (min-width: 500px) {
     .Main {
-        padding: 25px 35px 10px;
+        padding: 25px 35px 30px;
     }
 
     .CardContainer {

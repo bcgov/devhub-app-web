@@ -4,7 +4,10 @@
     padding: 9px 0 10px;
     color: #fff;
     padding: 0 12px 0 25px;
-    position: relative;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 .PrimaryFooter a {
