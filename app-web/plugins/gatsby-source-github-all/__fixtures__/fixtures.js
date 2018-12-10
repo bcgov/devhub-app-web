@@ -457,6 +457,7 @@ const GITHUB_SOURCE = {
 const CONFIG_OPTIONS = {
   tokens: {
     GITHUB_API_TOKEN: '123',
+    SOURCE_REGISTRY_TYPE: 'SourceRegistryYaml',
   },
 };
 
