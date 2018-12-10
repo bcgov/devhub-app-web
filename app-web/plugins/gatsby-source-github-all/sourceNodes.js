@@ -83,8 +83,13 @@ const checkRegistry = registry => {
   return true;
 };
 
-const getRegistry = getNodes => {
-  const registryFound = getNodes().filter(node => node.internal.type === 'SourceRegistryYaml');
+/**
+ * Filter out all nodes to get the ones specify for registry yaml file
+ * @param {Function} getNodes gatsby builtin function to return all nodes
+ * @param {String} SOURCE_REGISTRY_TYPE the name of the internal type refering to registry yaml source
+ */
+const getRegistry = (getNodes, { SOURCE_REGISTRY_TYPE }) => {
+  const registryFound = getNodes().filter(node => node.internal.type === SOURCE_REGISTRY_TYPE);
   if (registryFound.length > 0) {
     return registryFound[0];
   }
@@ -113,7 +118,7 @@ const filterIgnoredResources = sources =>
 // eslint-disable-next-line consistent-return
 const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens }) => {
   // get registry from current nodes
-  const registry = getRegistry(getNodes);
+  const registry = getRegistry(getNodes, tokens);
   const { createNode } = actions;
   try {
     // check registry prior to fetching data
