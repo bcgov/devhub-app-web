@@ -2,6 +2,7 @@ require('dotenv').config({
   path: '.env.production',
 });
 const converter = require('./src/utils/gatsby-remark-transform-path');
+const registry_path = process.env.REGISTRY_PATH || '';
 
 module.exports = {
   siteMetadata: {
@@ -23,7 +24,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'registry',
-        path: `${__dirname}/source-registry/`,
+        path: `${__dirname}/source-registry/${registry_path}`,
       },
     },
     {
@@ -70,6 +71,7 @@ module.exports = {
       options: {
         tokens: {
           GITHUB_API_TOKEN: process.env.GITHUB_TOKEN,
+          SOURCE_REGISTRY_TYPE: process.env.REGISTRY_TYPE || 'SourceRegistryYaml',
         },
       },
     },
