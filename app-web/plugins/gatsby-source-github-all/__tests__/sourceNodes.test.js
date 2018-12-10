@@ -36,6 +36,9 @@ jest.mock('crypto');
 jest.mock('../utils/fetchSource.js');
 
 describe('gatsby source github all plugin', () => {
+  const sourceOptions = {
+    SOURCE_REGISTRY_TYPE: 'SourceRegistryYaml',
+  };
   test('filterIgnoreResources returns a filtered set of sources', () => {
     const sources = [
       {
@@ -73,12 +76,17 @@ describe('gatsby source github all plugin', () => {
 
   test('getRegistry returns the registry', () => {
     const getNodes = jest.fn(() => GRAPHQL_NODES_WITH_REGISTRY);
-    expect(getRegistry(getNodes)).toEqual(REGISTRY);
+    expect(getRegistry(getNodes, sourceOptions)).toEqual(REGISTRY);
   });
 
   test('getRegistry throws if no registry exists', () => {
     const getNodes = jest.fn(() => GRAPHQL_NODES_WITHOUT_REGISTRY);
-    expect(() => getRegistry(getNodes)).toThrow('Registry not found');
+    expect(() => getRegistry(getNodes, sourceOptions)).toThrow('Registry not found');
+  });
+
+  test.skip('getRegistry returns with apecified registry yaml file', () => {
+    const getNodes = jest.fn(() => GRAPHQL_NODES_WITH_REGISTRY);
+    expect(() => getRegistry(getNodes, sourceOptions)).toThrow('Registry not found');
   });
 
   test('checkRegistry returns true if sources are valid', () => {
