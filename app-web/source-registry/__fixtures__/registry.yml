@@ -1,0 +1,12 @@
+sources:
+  - name: DevHub
+    sourceType: 'github'
+    sourceProperties:
+      url: https://github.com/bcgov/devhub-app-web/
+      owner: bcgov
+      repo: 'devhub-app-web'
+    resourceType: 'Repositories'
+    attributes:
+      labels:
+        - Repository
+      persona: 'Developer'
