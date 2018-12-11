@@ -26,7 +26,7 @@ import {
   mapInheritedSourceAttributes,
   getFetchQueue,
 } from '../sourceNodes';
-import { GRAPHQL_NODE_TYPE } from '../utils/constants';
+import { GRAPHQL_NODE_TYPE, COLLECTION_TYPES } from '../utils/constants';
 import {
   GRAPHQL_NODES_WITH_REGISTRY,
   GRAPHQL_NODES_WITHOUT_REGISTRY,
@@ -109,6 +109,10 @@ describe('gatsby source github all plugin', () => {
   test('createSiphonNode returns data', () => {
     const file = {
       metadata: {
+        collection: {
+          name: 'foo',
+          type: COLLECTION_TYPES.CURATED,
+        },
         name: 'test',
         source: 'something/something',
         sourceName: 'something',
@@ -151,8 +155,8 @@ describe('gatsby source github all plugin', () => {
       parent: null,
       path: '/test.md',
       collection: {
-        name: undefined,
-        type: undefined,
+        name: 'foo',
+        type: COLLECTION_TYPES.CURATED,
       },
       attributes: {
         labels: 'component',

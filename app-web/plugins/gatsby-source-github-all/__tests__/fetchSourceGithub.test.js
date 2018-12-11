@@ -349,12 +349,10 @@ describe('Github API', () => {
   });
 
   test('validateSourceGithub returns false when source is invalid', () => {
-    const BAD_SOURCE = { ...GITHUB_SOURCE, name: null };
-    expect(validateSourceGithub(BAD_SOURCE)).toBe(false);
-    const ANOTHER_BAD_SOURCE = {
+    const BAD_SOURCE = {
       ...GITHUB_SOURCE,
       sourceProperties: { ...GITHUB_SOURCE.sourceProperties, url: null },
     };
-    expect(validateSourceGithub(ANOTHER_BAD_SOURCE)).toBe(false);
+    expect(validateSourceGithub(BAD_SOURCE)).toBe(false);
   });
 });

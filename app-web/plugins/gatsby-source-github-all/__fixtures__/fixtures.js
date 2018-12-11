@@ -186,6 +186,10 @@ const PROCESSED_FILE_HTML = {
     fileName: 'README.md',
     mediaType: 'text/markdown',
     extension: 'md',
+    collection: {
+      name: 'foo',
+      type: 'bar',
+    },
   },
 };
 
@@ -257,6 +261,10 @@ const RAW_FILE_MD = {
     fileName: 'README.md',
     mediaType: 'text/markdown',
     extension: 'md',
+    collection: {
+      name: 'foo',
+      type: 'bar',
+    },
   },
 };
 
@@ -293,6 +301,10 @@ const PROCESSED_FILE_MD = {
     mediaType: 'text/markdown',
     extension: 'md',
     globalPersona: 'Designer',
+    collection: {
+      name: 'foo',
+      type: 'bar',
+    },
   },
 };
 
@@ -327,6 +339,10 @@ const PROCESSED_FILE_TXT = {
     fileName: 'README.txt',
     mediaType: 'text/markdown',
     extension: 'txt',
+    collection: {
+      name: 'foo',
+      type: 'bar',
+    },
   },
 };
 
