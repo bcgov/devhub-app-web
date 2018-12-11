@@ -150,6 +150,10 @@ describe('gatsby source github all plugin', () => {
       owner: 'Billy Bob',
       parent: null,
       path: '/test.md',
+      collection: {
+        name: undefined,
+        type: undefined,
+      },
       attributes: {
         labels: 'component',
         persona: undefined,
