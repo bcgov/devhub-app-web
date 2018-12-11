@@ -55,8 +55,10 @@ module.exports = async ({ graphql, actions }) => {
         edges {
           node {
             id
-            source {
+            collection {
               name
+            }
+            source {
               type
             }
             resource {
@@ -100,7 +102,7 @@ module.exports = async ({ graphql, actions }) => {
         context: {
           // Data passed to context is available in page queries as GraphQL variables.
           id: node.id,
-          source: node.source.name,
+          collection: node.collection.name,
         },
       });
     }

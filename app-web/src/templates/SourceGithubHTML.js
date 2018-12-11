@@ -34,7 +34,7 @@ const SourceHTML = ({ data: { devhubSiphon, nav }, location: pathname }) => (
 );
 
 export const devhubSiphonHTML = graphql`
-  query devhubSiphonHTML($id: String!, $source: String!) {
+  query devhubSiphonHTML($id: String!, $collection: String!) {
     devhubSiphon(id: { eq: $id }) {
       name
       id
@@ -55,7 +55,10 @@ export const devhubSiphonHTML = graphql`
       path
     }
     nav: allDevhubSiphon(
-      filter: { source: { name: { eq: $source } }, internal: { mediaType: { eq: "text/html" } } }
+      filter: {
+        collection: { name: { eq: $collection } }
+        internal: { mediaType: { eq: "text/html" } }
+      }
     ) {
       edges {
         node {

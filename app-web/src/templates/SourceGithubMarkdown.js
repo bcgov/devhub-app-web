@@ -34,7 +34,7 @@ const SourceGithubMarkdown = ({ data: { devhubSiphon, nav }, location: pathname 
 );
 
 export const devhubSiphonMarkdown = graphql`
-  query devhubSiphonMarkdown($id: String!, $source: String!) {
+  query devhubSiphonMarkdown($id: String!, $collection: String!) {
     devhubSiphon(id: { eq: $id }) {
       name
       id
@@ -60,7 +60,7 @@ export const devhubSiphonMarkdown = graphql`
     }
     nav: allDevhubSiphon(
       filter: {
-        source: { name: { eq: $source } }
+        collection: { name: { eq: $collection } }
         internal: { mediaType: { eq: "text/markdown" } }
       }
     ) {
