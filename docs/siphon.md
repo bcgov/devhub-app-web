@@ -193,6 +193,10 @@ the graphQL schema (more on that [here](https://www.gatsbyjs.org/docs/plugin-aut
     owner // owner of resource
     parent // gatsby required attribute, this is null
     path // path to the resource
+    collection {
+        name // name of the collection, this is directly related to the name attribute in the registry
+        type // this is an enumeration that is automatically assigned by siphon, values being 'curated' or 'soure'
+    }
     // unfurl is data used to provide 'previews' for the node
     // this adopts standards from twitter cards, open graph
     // and other standard properties from other specs
