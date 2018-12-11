@@ -21,7 +21,8 @@ const crypto = require('crypto');
 const _ = require('lodash'); // eslint-disable-line
 const chalk = require('chalk'); // eslint-disable-line
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
-const { GRAPHQL_NODE_TYPE } = require('./utils/constants');
+const { GRAPHQL_NODE_TYPE, COLLECTION_TYPES } = require('./utils/constants');
+const { TypeCheck } = require('@bcgov/common-web-utils');
 
 const createSiphonNode = (data, id) => ({
   id,
@@ -33,6 +34,10 @@ const createSiphonNode = (data, id) => ({
   parent: null,
   path: data.path,
   unfurl: data.metadata.unfurl, // normalized unfurled content from various sources https://medium.com/slack-developer-blog/everything-you-ever-wanted-to-know-about-unfurling-but-were-afraid-to-ask-or-how-to-make-your-e64b4bb9254
+  collection: {
+    name: data.metadata.collection.name, // name of the collection
+    type: data.metadata.collection.type,
+  },
   source: {
     name: data.metadata.source, // the source-name
     displayName: data.metadata.sourceName, // the pretty name of the 'source'
@@ -65,11 +70,51 @@ const createSiphonNode = (data, id) => ({
 });
 
 /**
+ * returns true/false if source contains more sources
+ * @param {Object} source
+ * @returns {Boolean}
+ */
+const isSourceCollection = source =>
+  Object.prototype.hasOwnProperty.call(source.sourceProperties, 'sources') &&
+  TypeCheck.isArray(source.sourceProperties.sources);
+
+/**
+ * maps root level attributes to a child 'source'
+ * this only happens for collections that are set in the registry
+ * @param {Object} rootSource
+ * @param {Object} targetSource
+ */
+const mapInheritedSourceAttributes = ({ name, attributes, resourceType }, targetSource) => ({
+  attributes: {
+    ...attributes,
+    ...targetSource.attributes,
+  },
+  resourceType,
+  name,
+  collection: {
+    name,
+    type: COLLECTION_TYPES.CURATED,
+  },
+  ...targetSource,
+});
+/**
  * loops over sources and validates them based on their type
  * @param {Array} sources the sources
  */
-const sourcesAreValid = sources => sources.every(validateSourceRegistry);
+const sourcesAreValid = sources => {
+  //firstly flatten out any sources that may contain more sources
+  let sourcesToCheck = [];
 
+  sources.forEach(s => {
+    if (isSourceCollection(s)) {
+      sourcesToCheck = sourcesToCheck.concat(s.sourceProperties.sources);
+    } else {
+      sourcesToCheck = sourcesToCheck.concat([s]);
+    }
+  });
+
+  return sourcesToCheck.every(validateSourceRegistry);
+};
 /**
  * validates source registry
  * @param {Object} registry the source registry
@@ -110,6 +155,34 @@ const filterIgnoredResources = sources =>
     return false;
   });
 
+/**
+ * creates the list of 'source' objects that are used by the fetch source routine
+ * @param {Array} sources
+ */
+const getFetchQueue = sources => {
+  let sourcesToFetch = [];
+  sources.forEach(rootSource => {
+    if (isSourceCollection(rootSource)) {
+      // if its a collection, the child sources need some properties from the root source to be
+      // mapped to it
+      const mappedChildSources = rootSource.sourceProperties.sources.map(childSource =>
+        mapInheritedSourceAttributes(rootSource, childSource),
+      );
+      sourcesToFetch = sourcesToFetch.concat(mappedChildSources);
+    } else {
+      sourcesToFetch = sourcesToFetch.concat([
+        {
+          ...rootSource,
+          collection: {
+            name: rootSource.name,
+            type: COLLECTION_TYPES[rootSource.sourceType],
+          },
+        },
+      ]);
+    }
+  });
+  return sourcesToFetch;
+};
 // eslint-disable-next-line consistent-return
 const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens }) => {
   // get registry from current nodes
@@ -118,16 +191,24 @@ const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens }) => {
   try {
     // check registry prior to fetching data
     checkRegistry(registry);
-    // fetch all repos
+    // map of over registry to flatten any collections that may exist
+    const fetchQueue = getFetchQueue(registry.sources);
     const sources = await Promise.all(
-      registry.sources.map(source => fetchFromSource(source.sourceType, source, tokens)),
+      fetchQueue.map(source => fetchFromSource(source.sourceType, source, tokens)),
     );
+
     // sources is an array of arrays [[source data], [source data]] etc
     // so we flatten it into a 1 dimensional array
     let dataToNodify = _.flatten(sources, true);
     dataToNodify = filterIgnoredResources(dataToNodify);
     // create nodes
-    return dataToNodify.map(file => createNode(createSiphonNode(file, createNodeId(file.sha))));
+    return dataToNodify.map(file => {
+      const fileHash = crypto
+        .createHash('md5')
+        .update(JSON.stringify(file.metadata))
+        .digest('hex');
+      return createNode(createSiphonNode(file, createNodeId(fileHash)));
+    });
   } catch (e) {
     // failed to retrieve files or some other type of failure
     // eslint-disable-next-line
@@ -141,4 +222,7 @@ module.exports = {
   createSiphonNode,
   sourceNodes,
   filterIgnoredResources,
+  sourcesAreValid,
+  mapInheritedSourceAttributes,
+  getFetchQueue,
 };

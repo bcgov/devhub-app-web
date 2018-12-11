@@ -22,12 +22,16 @@ import {
   checkRegistry,
   getRegistry,
   filterIgnoredResources,
+  sourcesAreValid,
+  mapInheritedSourceAttributes,
+  getFetchQueue,
 } from '../sourceNodes';
-import { GRAPHQL_NODE_TYPE } from '../utils/constants';
+import { GRAPHQL_NODE_TYPE, COLLECTION_TYPES } from '../utils/constants';
 import {
   GRAPHQL_NODES_WITH_REGISTRY,
   GRAPHQL_NODES_WITHOUT_REGISTRY,
   REGISTRY,
+  REGISTRY_WITH_COLLECTION,
 } from '../__fixtures__/fixtures';
 import { validateSourceRegistry } from '../utils/fetchSource';
 
@@ -73,7 +77,9 @@ describe('gatsby source github all plugin', () => {
 
   test('getRegistry returns the registry', () => {
     const getNodes = jest.fn(() => GRAPHQL_NODES_WITH_REGISTRY);
-    expect(getRegistry(getNodes)).toEqual(REGISTRY);
+    const registry = getRegistry(getNodes);
+    expect(registry).toBeDefined();
+    expect(registry.sources.length).toBeGreaterThan(0);
   });
 
   test('getRegistry throws if no registry exists', () => {
@@ -88,10 +94,13 @@ describe('gatsby source github all plugin', () => {
 
   test("checkRegistry throws if sources don't exist or if sources are invalid", () => {
     const BAD_REGISTRY = { ...REGISTRY, sources: null };
+
     expect(() => checkRegistry(BAD_REGISTRY)).toThrow(
       'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters',
     );
+
     validateSourceRegistry.mockReturnValue(false);
+
     expect(() => checkRegistry(REGISTRY)).toThrow(
       'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters',
     );
@@ -100,6 +109,10 @@ describe('gatsby source github all plugin', () => {
   test('createSiphonNode returns data', () => {
     const file = {
       metadata: {
+        collection: {
+          name: 'foo',
+          type: COLLECTION_TYPES.CURATED,
+        },
         name: 'test',
         source: 'something/something',
         sourceName: 'something',
@@ -131,6 +144,7 @@ describe('gatsby source github all plugin', () => {
         html: 'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
       },
     };
+
     const expected = {
       id: '123',
       children: [],
@@ -140,6 +154,10 @@ describe('gatsby source github all plugin', () => {
       owner: 'Billy Bob',
       parent: null,
       path: '/test.md',
+      collection: {
+        name: 'foo',
+        type: COLLECTION_TYPES.CURATED,
+      },
       attributes: {
         labels: 'component',
         persona: undefined,
@@ -171,5 +189,44 @@ describe('gatsby source github all plugin', () => {
     };
 
     expect(createSiphonNode(file, '123')).toEqual(expected);
+  });
+
+  test('sourcesAreValid handles collections of sources', () => {
+    validateSourceRegistry.mockClear();
+    validateSourceRegistry.mockReturnValue(true);
+    const sources = REGISTRY.sources.concat(REGISTRY_WITH_COLLECTION.sources);
+
+    sourcesAreValid(sources);
+    expect(validateSourceRegistry).toHaveBeenCalledTimes(3);
+  });
+
+  test('maps inherited source props', () => {
+    const rootSource = {
+      name: 'foo',
+      resourceType: 'Designer',
+    };
+    const childSource = {
+      sourceType: 'github',
+      sourceProperties: {
+        repo: 'blah',
+        owner: 'foo',
+        url: '/',
+      },
+    };
+
+    const result = mapInheritedSourceAttributes(rootSource, childSource);
+    expect(result.name).toBe(rootSource.name);
+    expect(result.resourceType).toBe(rootSource.resourceType);
+    expect(result.attributes).toEqual({});
+  });
+
+  test('creates a fetch queue with collections', () => {
+    const result = getFetchQueue(REGISTRY.sources);
+    expect(result.length).toBe(REGISTRY.sources.length);
+
+    const result2 = getFetchQueue(REGISTRY_WITH_COLLECTION.sources);
+    expect(result2.length).toBe(
+      REGISTRY_WITH_COLLECTION.sources[0].sourceProperties.sources.length,
+    );
   });
 });

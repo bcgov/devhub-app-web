@@ -26,8 +26,8 @@ const clone = require('clone'); // eslint-disable-line
 /**
  * takes in file parameters and runs it through plugins that
  * modifies its properties
- * @param {String} fileExtension 
- * @param {Object} file 
+ * @param {String} fileExtension
+ * @param {Object} file
  * @returns {Object} the file transformed
  */
 const fileTransformer = (fileExtension, originalFile) => {

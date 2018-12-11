@@ -126,7 +126,9 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
 
   test('transformer sets pagePath to gatsby create page path by default', async () => {
     const data = matter(mdFile.content);
-    const { metadata: { source, name } } = mdFile;
+    const {
+      metadata: { source, name },
+    } = mdFile;
     expect(data.data.resourcePath).not.toBeDefined();
 
     const transformedFile = await fileTransformer(mdFile.metadata.extension, mdFile)

@@ -32,8 +32,8 @@ const {
 const { MARKDOWN_FRONTMATTER_SCHEMA, UNFURL_TYPES, RESOURCE_TYPES } = require('./constants');
 /**
  * applys default front matter properties
- * @param {String} extension 
- * @param {Object} file 
+ * @param {String} extension
+ * @param {Object} file
  * @returns {Object} the modified file
  */
 const markdownFrontmatterPlugin = (extension, file) => {
@@ -82,8 +82,9 @@ const markdownFrontmatterPlugin = (extension, file) => {
       // if propery required and frontmatter doesn't have it
       if (property.required && valueIsInvalid) {
         throw new Error(
-          `\nFrontmatter key '${key}' is required but ${file.metadata.fileName} for source ${file
-            .metadata.source} is missing it and will be ignored`,
+          `\nFrontmatter key '${key}' is required but ${file.metadata.fileName} for source ${
+            file.metadata.source
+          } is missing it and will be ignored`,
         );
         // is there a defaultable value we can provide
       } else if (valueIsInvalid && DEFAULTS[key]) {
@@ -136,8 +137,8 @@ const pagePathPlugin = (extension, file) => {
 
 /**
  * unfurls markdown by frontmatter and appends the .unfurl metadata property
- * @param {String} extension 
- * @param {String} file 
+ * @param {String} extension
+ * @param {String} file
  * @returns the modified file
  */
 const markdownUnfurlPlugin = (extension, file) => {
@@ -154,7 +155,7 @@ const markdownUnfurlPlugin = (extension, file) => {
 
 /**
  * Applies the resourceType metadata property
- * @param {String} extension 
+ * @param {String} extension
  * @param {Object} file
  */
 const markdownResourceTypePlugin = (extension, file) => {
@@ -178,8 +179,8 @@ const markdownResourceTypePlugin = (extension, file) => {
 
 /**
  * unfurls from an HTTP request and appends .unfurl metadata property
- * @param {String} extension 
- * @param {String} file 
+ * @param {String} extension
+ * @param {String} file
  * @returns the modified file
  */
 const externalLinkUnfurlPlugin = async (extension, file) => {
@@ -212,7 +213,7 @@ const externalLinkUnfurlPlugin = async (extension, file) => {
 
 /**
  * Applies the persona metadata property
- * @param {String} extension 
+ * @param {String} extension
  * @param {Object} file
  */
 const markdownPersonaPlugin = async (extension, file, { personas }) => {
@@ -236,8 +237,8 @@ const markdownPersonaPlugin = async (extension, file, { personas }) => {
 
 /**
  * sets resource path to be path to file in repo if resource type is repo
- * @param {String} extension 
- * @param {Object} file 
+ * @param {String} extension
+ * @param {Object} file
  * @returns {Object} the modified file
  */
 // returns a promise only because the .use() method in file transformer expects one
