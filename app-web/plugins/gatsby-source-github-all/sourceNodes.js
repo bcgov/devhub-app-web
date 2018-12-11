@@ -35,8 +35,8 @@ const createSiphonNode = (data, id) => ({
   path: data.path,
   unfurl: data.metadata.unfurl, // normalized unfurled content from various sources https://medium.com/slack-developer-blog/everything-you-ever-wanted-to-know-about-unfurling-but-were-afraid-to-ask-or-how-to-make-your-e64b4bb9254
   collection: {
-    name: data.metadata.collection, // name of the collection
-    type: data.metadata.collectionType,
+    name: data.metadata.collection.name, // name of the collection
+    type: data.metadata.collection.type,
   },
   source: {
     name: data.metadata.source, // the source-name
@@ -85,7 +85,6 @@ const isSourceCollection = source =>
  * @param {Object} targetSource
  */
 const mapInheritedSourceAttributes = ({ name, attributes, resourceType }, targetSource) => ({
-  ...targetSource,
   attributes: {
     ...attributes,
     ...targetSource.attributes,
@@ -96,6 +95,7 @@ const mapInheritedSourceAttributes = ({ name, attributes, resourceType }, target
     name,
     type: COLLECTION_TYPES.CURATED,
   },
+  ...targetSource,
 });
 /**
  * loops over sources and validates them based on their type
@@ -104,6 +104,7 @@ const mapInheritedSourceAttributes = ({ name, attributes, resourceType }, target
 const sourcesAreValid = sources => {
   //firstly flatten out any sources that may contain more sources
   let sourcesToCheck = [];
+
   sources.forEach(s => {
     if (isSourceCollection(s)) {
       sourcesToCheck = sourcesToCheck.concat(s.sourceProperties.sources);
@@ -111,6 +112,7 @@ const sourcesAreValid = sources => {
       sourcesToCheck = sourcesToCheck.concat([s]);
     }
   });
+
   return sourcesToCheck.every(validateSourceRegistry);
 };
 /**
@@ -194,12 +196,19 @@ const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens }) => {
     const sources = await Promise.all(
       fetchQueue.map(source => fetchFromSource(source.sourceType, source, tokens)),
     );
+
     // sources is an array of arrays [[source data], [source data]] etc
     // so we flatten it into a 1 dimensional array
     let dataToNodify = _.flatten(sources, true);
     dataToNodify = filterIgnoredResources(dataToNodify);
     // create nodes
-    return dataToNodify.map(file => createNode(createSiphonNode(file, createNodeId(file.sha))));
+    return dataToNodify.map(file => {
+      const fileHash = crypto
+        .createHash('md5')
+        .update(JSON.stringify(file.metadata))
+        .digest('hex');
+      return createNode(createSiphonNode(file, createNodeId(fileHash)));
+    });
   } catch (e) {
     // failed to retrieve files or some other type of failure
     // eslint-disable-next-line

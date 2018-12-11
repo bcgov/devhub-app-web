@@ -378,8 +378,7 @@ const validateSourceGithub = source => {
     return (
       schemaItem.required &&
       Object.prototype.hasOwnProperty.call(source.sourceProperties, key) &&
-      TypeCheck.isA(schemaItem.type, source.sourceProperties[key]) &&
-      source.name
+      TypeCheck.isA(schemaItem.type, source.sourceProperties[key])
     );
   });
 };
