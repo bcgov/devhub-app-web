@@ -372,6 +372,11 @@ const getFilesFromRepo = async (
   }
 };
 
+/**
+ * validates source properties against schema
+ * @param {Object} source
+ * @returns {Boolean}
+ */
 const validateSourceGithub = source => {
   return Object.keys(GITHUB_SOURCE_SCHEMA).every(key => {
     const schemaItem = GITHUB_SOURCE_SCHEMA[key];

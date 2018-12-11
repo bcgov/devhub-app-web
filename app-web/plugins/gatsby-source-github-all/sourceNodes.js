@@ -24,6 +24,12 @@ const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource
 const { GRAPHQL_NODE_TYPE, COLLECTION_TYPES } = require('./utils/constants');
 const { TypeCheck } = require('@bcgov/common-web-utils');
 
+/**
+ * creates a object that is passed to the gatsby create node function
+ * many of these properties are assigned by convention
+ * @param {Object} data
+ * @param {String} id
+ */
 const createSiphonNode = (data, id) => ({
   id,
   children: [],
@@ -97,9 +103,11 @@ const mapInheritedSourceAttributes = ({ name, attributes, resourceType }, target
   },
   ...targetSource,
 });
+
 /**
  * loops over sources and validates them based on their type
  * @param {Array} sources the sources
+ * @returns {Boolean}
  */
 const sourcesAreValid = sources => {
   //firstly flatten out any sources that may contain more sources
@@ -115,9 +123,11 @@ const sourcesAreValid = sources => {
 
   return sourcesToCheck.every(validateSourceRegistry);
 };
+
 /**
  * validates source registry
  * @param {Object} registry the source registry
+ * @returns {Boolean} returns true if valid or otherwise throws
  */
 const checkRegistry = registry => {
   if (!registry.sources || !sourcesAreValid(registry.sources)) {
@@ -183,6 +193,13 @@ const getFetchQueue = sources => {
   });
   return sourcesToFetch;
 };
+
+/**
+ * event handler for the gatsby source plugin
+ * more info https://www.gatsbyjs.org/docs/create-source-plugin/
+ * @param {Object} gatsbyEventObject 
+ * @param {Object} options 
+ */
 // eslint-disable-next-line consistent-return
 const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens }) => {
   // get registry from current nodes
