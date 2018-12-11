@@ -21,7 +21,7 @@ const crypto = require('crypto');
 const _ = require('lodash'); // eslint-disable-line
 const chalk = require('chalk'); // eslint-disable-line
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
-const { GRAPHQL_NODE_TYPE } = require('./utils/constants');
+const { GRAPHQL_NODE_TYPE, COLLECTION_TYPES } = require('./utils/constants');
 const { TypeCheck } = require('@bcgov/common-web-utils');
 
 const createSiphonNode = (data, id) => ({
@@ -34,6 +34,10 @@ const createSiphonNode = (data, id) => ({
   parent: null,
   path: data.path,
   unfurl: data.metadata.unfurl, // normalized unfurled content from various sources https://medium.com/slack-developer-blog/everything-you-ever-wanted-to-know-about-unfurling-but-were-afraid-to-ask-or-how-to-make-your-e64b4bb9254
+  collection: {
+    name: data.metadata.collection, // name of the collection
+    type: data.metadata.collectionType,
+  },
   source: {
     name: data.metadata.source, // the source-name
     displayName: data.metadata.sourceName, // the pretty name of the 'source'
@@ -76,6 +80,7 @@ const isSourceCollection = source =>
 
 /**
  * maps root level attributes to a child 'source'
+ * this only happens for collections that are set in the registry
  * @param {Object} rootSource
  * @param {Object} targetSource
  */
@@ -87,6 +92,10 @@ const mapInheritedSourceAttributes = ({ name, attributes, resourceType }, target
   },
   resourceType,
   name,
+  collection: {
+    name,
+    type: COLLECTION_TYPES.CURATED,
+  },
 });
 /**
  * loops over sources and validates them based on their type
@@ -99,7 +108,7 @@ const sourcesAreValid = sources => {
     if (isSourceCollection(s)) {
       sourcesToCheck = sourcesToCheck.concat(s.sourceProperties.sources);
     } else {
-      sourcesToCheck = sourcesToCheck.concat(s);
+      sourcesToCheck = sourcesToCheck.concat([s]);
     }
   });
   return sourcesToCheck.every(validateSourceRegistry);
@@ -159,7 +168,15 @@ const getFetchQueue = sources => {
       );
       sourcesToFetch = sourcesToFetch.concat(mappedChildSources);
     } else {
-      sourcesToFetch = sourcesToFetch.concat(rootSource);
+      sourcesToFetch = sourcesToFetch.concat([
+        {
+          ...rootSource,
+          collection: {
+            name: rootSource.name,
+            type: COLLECTION_TYPES[rootSource.sourceType],
+          },
+        },
+      ]);
     }
   });
   return sourcesToFetch;

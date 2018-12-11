@@ -18,7 +18,7 @@ Created by Patrick Simonian
 /**
  * returns an idempotent path based on a base path plus a digestable string that is hashed
  * @param {String} base the base path (which is not changed)
- * @param  {...String} digestables comma seperated list of strings which are dsigested by shorthash 
+ * @param  {...String} digestables comma seperated list of strings which are dsigested by shorthash
  * @returns {String} ie (/mypath, file.md) => /mypath/123dsfakjhdf
  */
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
@@ -43,7 +43,7 @@ const createPathWithDigest = (base, ...digestables) => {
 
 /**
  * Creates Standardized Unfurl meta data
- * @param {String} type 
+ * @param {String} type
  * @param {Object} unfurledData
  */
 const createUnfurlObj = (

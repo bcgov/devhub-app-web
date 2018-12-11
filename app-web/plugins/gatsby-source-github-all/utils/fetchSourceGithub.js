@@ -44,14 +44,14 @@ const {
 /**
  * returns extension of a file name
  * can handle linux type files (which require no extension)
- * @param {String} name 
+ * @param {String} name
  * @returns {String} 'readme.md' => md, '.gitignore' => ''
  */
 const getExtensionFromName = name =>
   name.slice((Math.max(0, name.lastIndexOf('.')) || Infinity) + 1);
 /**
- * 
- * @param {String} name 
+ *
+ * @param {String} name
  * @returns name without extension
  * .gitignore => .gitignore, readme.md => readme
  */
@@ -75,7 +75,7 @@ const getNameOfExtensionVerbose = fileName => {
 };
 /**
  * returns media type from extension
- * @param {String} extension 
+ * @param {String} extension
  */
 const getMediaTypeByExtension = extension => (MEDIATYPES[extension] ? MEDIATYPES[extension] : '');
 /**
@@ -106,10 +106,10 @@ const fetchGithubTree = async (repo, owner, token, branch = 'master') => {
  * Fetches contents from file
  * note the media type header, it converts what would have been a
  * b64 encoded string of the file contents into either raw string data or json
- * @param {String} repo 
- * @param {String} owner 
- * @param {String} path 
- * @param {String} token 
+ * @param {String} repo
+ * @param {String} owner
+ * @param {String} path
+ * @param {String} token
  */
 const fetchFile = async (repo, owner, path, token, branch = '') => {
   try {
@@ -133,9 +133,9 @@ const fetchFile = async (repo, owner, path, token, branch = '') => {
 };
 /**
  * fetches .devhubignore file from a repo
- * @param { String } repo 
- * @param { String } owner 
- * @param { String } token 
+ * @param { String } repo
+ * @param { String } owner
+ * @param { String } token
  */
 const fetchIgnoreFile = async (repo, owner, token, branch) => {
   const ignoreFile = await fetchFile(repo, owner, '.devhubignore', token, branch);
@@ -144,7 +144,7 @@ const fetchIgnoreFile = async (repo, owner, token, branch) => {
 /**
  * filters an array of github graphql entries by their extensions
  * the filtering compares the object.name property with a regex test
- * @param {Array} entries 
+ * @param {Array} entries
  * @param {Array} extensions (defaults to [.md])
  */
 const filterFilesByExtensions = (entries, extensions = ['.md']) => {
@@ -167,10 +167,10 @@ const filterFilesByExtensions = (entries, extensions = ['.md']) => {
   return entries.filter(entry => re.test(entry.path));
 };
 /**
-   * filters out directories from array of github graph ql entries
-   * directories have type of 'tree'
-   * @param {Array} entries 
-   */
+ * filters out directories from array of github graph ql entries
+ * directories have type of 'tree'
+ * @param {Array} entries
+ */
 const filterFilesFromDirectories = entries => {
   // ensure entries is an array of objects
   if (!TypeCheck.isArray(entries) || !entries.every(TypeCheck.isObject)) {
@@ -182,12 +182,12 @@ const filterFilesFromDirectories = entries => {
 
 /**
  * applies base meta data to file
- * @param {Object} file 
- * @param {Array} labels 
- * @param {String} owner 
- * @param {String} source 
- * @param {String} sourceName 
- * @param {String} sourceURL 
+ * @param {Object} file
+ * @param {Array} labels
+ * @param {String} owner
+ * @param {String} source
+ * @param {String} sourceName
+ * @param {String} sourceURL
  * @param {String} resourceType
  */
 const applyBaseMetadata = (
@@ -201,6 +201,7 @@ const applyBaseMetadata = (
   globalResourceType,
   originalResourceLocation,
   globalPersona,
+  collection,
 ) => {
   const extension = getExtensionFromName(file.name);
   return {
@@ -221,6 +222,7 @@ const applyBaseMetadata = (
       globalResourceType,
       originalResourceLocation,
       globalPersona,
+      collection,
     },
   };
 };
@@ -272,7 +274,7 @@ const filterFiles = (files, ignoreObj, contextDir) => {
  * {String} repo.name used as a 'pretty' name for the repository (also considered the source)
  * {String} repo.branch branch to fetch tree/files from, when undefined this defaults to master
  * {Object} repo.attributes extra attributes to bind as metadata to files
- * @param {String} token 
+ * @param {String} token
  * @returns {Array} The array of files
  */
 // eslint-disable-next-line
@@ -283,6 +285,7 @@ const getFilesFromRepo = async (
     name,
     sourceProperties: { repo, url, owner, branch, context },
     attributes: { labels, persona },
+    collection,
   },
   token,
 ) => {
@@ -323,6 +326,7 @@ const getFilesFromRepo = async (
           resourceType,
           f.html_url,
           persona,
+          collection,
         ),
       )
       .map(async f => {

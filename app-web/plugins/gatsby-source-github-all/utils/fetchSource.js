@@ -23,7 +23,7 @@ const { getFilesFromRepo, validateSourceGithub } = require('./fetchSourceGithub'
  * all fetch functions implement the same return object
  * @param {String} sourceType // the source type
  * @param {Object} source  // source object as found in source regsitry
- * @param {Object} tokens // relevant API tokens needed to fetch from sources 
+ * @param {Object} tokens // relevant API tokens needed to fetch from sources
  */
 const fetchFromSource = (sourceType, source, { GITHUB_API_TOKEN }) => {
   switch (sourceType) {

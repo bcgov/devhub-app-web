@@ -27,6 +27,11 @@ const SOURCE_TYPES = {
   GITHUB: 'github',
 };
 
+const COLLECTION_TYPES = {
+  [SOURCE_TYPES.GITHUB]: 'source',
+  CURATED: 'curated',
+};
+
 const RESOURCE_TYPES = {
   COMPONENTS: 'Components',
   DOCUMENTATION: 'Documentation',
@@ -167,4 +172,5 @@ module.exports = {
   UNFURL_TYPES,
   PERSONAS,
   PERSONAS_LIST,
+  COLLECTION_TYPES,
 };
