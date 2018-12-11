@@ -66,6 +66,29 @@ const createSiphonNode = (data, id) => ({
 });
 
 /**
+ * returns true/false if source contains more sources
+ * @param {Object} source
+ * @returns {Boolean}
+ */
+const isSourceCollection = source =>
+  Object.prototype.hasOwnProperty.call(source.sourceProperties, 'sources') &&
+  TypeCheck.isArray(source.sourceProperties.sources);
+
+/**
+ * maps root level attributes to a child 'source'
+ * @param {Object} rootSource
+ * @param {Object} targetSource
+ */
+const mapInheritedSourceAttributes = ({ name, attributes, resourceType }, targetSource) => ({
+  ...targetSource,
+  attributes: {
+    ...attributes,
+    ...targetSource.attributes,
+  },
+  resourceType,
+  name,
+});
+/**
  * loops over sources and validates them based on their type
  * @param {Array} sources the sources
  */
@@ -73,10 +96,7 @@ const sourcesAreValid = sources => {
   //firstly flatten out any sources that may contain more sources
   let sourcesToCheck = [];
   sources.forEach(s => {
-    if (
-      Object.prototype.hasOwnProperty.call(s.sourceProperties, 'sources') &&
-      TypeCheck.isArray(s.sourceProperties.sources)
-    ) {
+    if (isSourceCollection(s)) {
       sourcesToCheck = sourcesToCheck.concat(s.sourceProperties.sources);
     } else {
       sourcesToCheck = sourcesToCheck.concat(s);
@@ -124,6 +144,26 @@ const filterIgnoredResources = sources =>
     return false;
   });
 
+/**
+ * creates the list of 'source' objects that are used by the fetch source routine
+ * @param {Array} sources
+ */
+const getFetchQueue = sources => {
+  let sourcesToFetch = [];
+  sources.forEach(rootSource => {
+    if (isSourceCollection(rootSource)) {
+      // if its a collection, the child sources need some properties from the root source to be
+      // mapped to it
+      const mappedChildSources = rootSource.sourceProperties.sources.map(childSource =>
+        mapInheritedSourceAttributes(rootSource, childSource),
+      );
+      sourcesToFetch = sourcesToFetch.concat(mappedChildSources);
+    } else {
+      sourcesToFetch = sourcesToFetch.concat(rootSource);
+    }
+  });
+  return sourcesToFetch;
+};
 // eslint-disable-next-line consistent-return
 const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens }) => {
   // get registry from current nodes
@@ -132,9 +172,10 @@ const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens }) => {
   try {
     // check registry prior to fetching data
     checkRegistry(registry);
-    // fetch all repos
+    // map of over registry to flatten any collections that may exist
+    const fetchQueue = getFetchQueue(registry.sources);
     const sources = await Promise.all(
-      registry.sources.map(source => fetchFromSource(source.sourceType, source, tokens)),
+      fetchQueue.map(source => fetchFromSource(source.sourceType, source, tokens)),
     );
     // sources is an array of arrays [[source data], [source data]] etc
     // so we flatten it into a 1 dimensional array
@@ -156,4 +197,6 @@ module.exports = {
   sourceNodes,
   filterIgnoredResources,
   sourcesAreValid,
+  mapInheritedSourceAttributes,
+  getFetchQueue,
 };

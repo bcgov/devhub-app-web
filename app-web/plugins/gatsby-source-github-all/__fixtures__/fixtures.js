@@ -330,23 +330,70 @@ const PROCESSED_FILE_TXT = {
   },
 };
 
+const REGISTRY = {
+  id: '/registry.yml absPath of file >>> YAML',
+  sources: [
+    {
+      name: 'Design System',
+      sourceType: 'github',
+      sourceProperties: {
+        owner: 'bcgov',
+        repo: 'design-system',
+        url: 'https://github.com/bcgov/design-system/',
+      },
+      attributes: {
+        labels: ['components'],
+      },
+    },
+  ],
+  internal: {
+    contentDigest: '520538ca86778e449b1db66100137431',
+    type: 'SourceRegistryYaml',
+    owner: 'gatsby-transformer-yaml',
+  },
+};
+
+const REGISTRY_WITH_COLLECTION = {
+  id: '/registry.yml absPath of file >>> YAML',
+  sources: [
+    {
+      name: 'Design System',
+      sourceProperties: {
+        sources: [
+          {
+            sourceType: 'github',
+            sourceProperties: {
+              owner: 'bcgov',
+              repo: 'design-system',
+              url: 'https://github.com/bcgov/design-system/',
+            },
+          },
+          {
+            sourceType: 'github',
+            sourceProperties: {
+              owner: 'bcgov',
+              repo: 'design-system',
+              url: 'https://github.com/bcgov/design-system/',
+            },
+          },
+        ],
+      },
+      attributes: {
+        labels: ['components'],
+      },
+    },
+  ],
+  internal: {
+    contentDigest: '520538ca86778e449b1db66100137431',
+    type: 'SourceRegistryYaml',
+    owner: 'gatsby-transformer-yaml',
+  },
+};
+
 const GRAPHQL_NODES_WITH_REGISTRY = [
   {
     id: '/registry.yml absPath of file >>> YAML',
-    sources: [
-      {
-        name: 'Design System',
-        sourceType: 'github',
-        sourceProperties: {
-          url: 'https://github.com/bcgov/design-system/',
-          owner: 'bcgov',
-          repo: 'design-system',
-        },
-        attributes: {
-          labels: ['components'],
-        },
-      },
-    ],
+    sources: REGISTRY.sources.concat(REGISTRY_WITH_COLLECTION.sources),
     internal: {
       contentDigest: '520538ca86778e449b1db66100137431',
       type: 'SourceRegistryYaml',
@@ -378,29 +425,6 @@ const GRAPHQL_NODES_WITHOUT_REGISTRY = [
   },
 ];
 
-const REGISTRY = {
-  id: '/registry.yml absPath of file >>> YAML',
-  sources: [
-    {
-      name: 'Design System',
-      sourceType: 'github',
-      sourceProperties: {
-        owner: 'bcgov',
-        repo: 'design-system',
-        url: 'https://github.com/bcgov/design-system/',
-      },
-      attributes: {
-        labels: ['components'],
-      },
-    },
-  ],
-  internal: {
-    contentDigest: '520538ca86778e449b1db66100137431',
-    type: 'SourceRegistryYaml',
-    owner: 'gatsby-transformer-yaml',
-  },
-};
-
 const GITHUB_SOURCE = {
   name: 'Design System',
   sourceType: 'github',
@@ -430,6 +454,7 @@ module.exports = {
   GRAPHQL_NODES_WITH_REGISTRY,
   GRAPHQL_NODES_WITHOUT_REGISTRY,
   REGISTRY,
+  REGISTRY_WITH_COLLECTION,
   GITHUB_SOURCE,
   CONFIG_OPTIONS,
 };
