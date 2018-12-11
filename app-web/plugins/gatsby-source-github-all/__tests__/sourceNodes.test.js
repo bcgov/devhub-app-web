@@ -22,6 +22,7 @@ import {
   checkRegistry,
   getRegistry,
   filterIgnoredResources,
+  sourcesAreValid,
 } from '../sourceNodes';
 import { GRAPHQL_NODE_TYPE } from '../utils/constants';
 import {
@@ -92,6 +93,7 @@ describe('gatsby source github all plugin', () => {
       'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters',
     );
     validateSourceRegistry.mockReturnValue(false);
+    console.log('calling');
     expect(() => checkRegistry(REGISTRY)).toThrow(
       'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters',
     );
@@ -171,5 +173,45 @@ describe('gatsby source github all plugin', () => {
     };
 
     expect(createSiphonNode(file, '123')).toEqual(expected);
+  });
+
+  test('sourcesAreValid handles collections of sources', () => {
+    validateSourceRegistry.mockClear();
+    validateSourceRegistry.mockReturnValue(true);
+    const sources = [
+      {
+        sourceType: 'github',
+        sourceProperties: {
+          repo: 'foo',
+          owner: 'bar',
+          url: '/',
+        },
+      },
+      {
+        sourceProperties: {
+          sources: [
+            {
+              sourceType: 'github',
+              sourceProperties: {
+                repo: 'blah',
+                owner: 'foo',
+                url: 'blah',
+              },
+            },
+            {
+              sourceType: 'github',
+              sourceProperties: {
+                repo: 'blah',
+                owner: 'foo',
+                url: 'blah',
+              },
+            },
+          ],
+        },
+      },
+    ];
+
+    sourcesAreValid(sources);
+    expect(validateSourceRegistry).toHaveBeenCalledTimes(3);
   });
 });

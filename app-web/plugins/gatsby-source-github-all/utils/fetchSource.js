@@ -37,8 +37,8 @@ const fetchFromSource = (sourceType, source, { GITHUB_API_TOKEN }) => {
 /**
  * validates source registry components
  * based on source type
- * @param {String} sourceType 
- * @param {Object} source  
+ * @param {String} sourceType
+ * @param {Object} source
  */
 const validateSourceRegistry = source => {
   switch (source.sourceType) {

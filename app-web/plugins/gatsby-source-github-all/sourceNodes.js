@@ -22,6 +22,7 @@ const _ = require('lodash'); // eslint-disable-line
 const chalk = require('chalk'); // eslint-disable-line
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
 const { GRAPHQL_NODE_TYPE } = require('./utils/constants');
+const { TypeCheck } = require('@bcgov/common-web-utils');
 
 const createSiphonNode = (data, id) => ({
   id,
@@ -68,8 +69,21 @@ const createSiphonNode = (data, id) => ({
  * loops over sources and validates them based on their type
  * @param {Array} sources the sources
  */
-const sourcesAreValid = sources => sources.every(validateSourceRegistry);
-
+const sourcesAreValid = sources => {
+  //firstly flatten out any sources that may contain more sources
+  let sourcesToCheck = [];
+  sources.forEach(s => {
+    if (
+      Object.prototype.hasOwnProperty.call(s.sourceProperties, 'sources') &&
+      TypeCheck.isArray(s.sourceProperties.sources)
+    ) {
+      sourcesToCheck = sourcesToCheck.concat(s.sourceProperties.sources);
+    } else {
+      sourcesToCheck = sourcesToCheck.concat(s);
+    }
+  });
+  return sourcesToCheck.every(validateSourceRegistry);
+};
 /**
  * validates source registry
  * @param {Object} registry the source registry
@@ -141,4 +155,5 @@ module.exports = {
   createSiphonNode,
   sourceNodes,
   filterIgnoredResources,
+  sourcesAreValid,
 };
