@@ -2,7 +2,7 @@
 description: Create curated Collections of Resources within Devhub. 
 title: Registering a Collection in Devhub
 author: patricksimonian
-image: ./images/story.png
+image: https://github.com/bcgov/devhub-app-web/blob/master/docs/images/story.png?raw=true
 resourceType: Documentation
 ---
 # Collections
