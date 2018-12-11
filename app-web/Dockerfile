@@ -11,5 +11,5 @@ RUN npm ci --silent
 
 COPY . .
 
-EXPOSE 8000 8000
+EXPOSE 8000
 CMD [ "npm", "run", "dev" ]
