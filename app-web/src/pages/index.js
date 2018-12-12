@@ -30,7 +30,7 @@ export class Index extends Component {
         .map(node => ({
           ...node.unfurl,
           resourcePath: node.resource.path,
-          sourceName: node.source.displayName,
+          collectionName: node.collection.name,
           sourcePath: node.source.sourcePath,
           resourceType: node.resource.type,
           owner: node.owner,
@@ -46,9 +46,9 @@ export class Index extends Component {
     //     description: siphonNode.childMarkdownRemark.frontmatter.description,
     //   }));
 
-    const groupedSiphonData = groupBy(mappedSiphonNodes, 'sourceName');
+    const groupedSiphonData = groupBy(mappedSiphonNodes, 'collectionName');
     const SiphonResources = groupedSiphonData.map(ghData => (
-      <Cards key={shortid.generate()} topic={ghData.sourceName} cards={ghData.data} />
+      <Cards key={shortid.generate()} topic={ghData.collectionName} cards={ghData.data} />
     ));
 
     return (
@@ -134,6 +134,10 @@ export const resourceQuery = graphql`
           id
           attributes {
             persona
+          }
+          collection {
+            name
+            type
           }
           source {
             displayName
