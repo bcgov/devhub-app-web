@@ -105,26 +105,6 @@ describe('Github API', () => {
     expect(res).toEqual(undefined);
   });
 
-  test('fetchFile fetches from branch if passed in', async () => {
-    const branch = 'branchA';
-    const token = 'TOKEN';
-    const repo = 'REPO';
-    const owner = 'OWNER';
-    const path = 'test.md';
-    fetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
-    await fetchFile(repo, owner, path, token, branch);
-    expect(fetch).toHaveBeenCalledWith(
-      `https://api.github.com/repos/OWNER/REPO/contents/${path}?ref=${branch}`,
-      expect.objectContaining({
-        headers: {
-          Authorization: 'Bearer TOKEN',
-          'X-GitHub-Media-Type': 'Accept: application/vnd.github.v3.raw+json',
-        },
-        method: 'GET',
-      }),
-    );
-  });
-
   test('fetchIgnoreFile returns an array', async () => {
     if (!fetchFileSucceeded) {
       throw new Error('fetchIgnoreFile failed because fetchFile failed');
