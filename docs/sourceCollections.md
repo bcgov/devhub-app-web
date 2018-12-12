@@ -3,6 +3,7 @@ description: Create curated Collections of Resources within Devhub.
 title: Registering a Collection in Devhub
 author: patricksimonian
 image: ./images/story.png
+resourceType: Documentation
 ---
 # Collections
 
@@ -34,7 +35,7 @@ sources:
       sourceProperties:
         sources:
          - sourceType: 'github'
-           resourceType: 'Documenation'
+           resourceType: 'Documentation'
            sourceProperties:
             repo: mobileRepo1
             owner: awesomeOwner
@@ -45,6 +46,21 @@ sources:
             repo: signing-os-app
             owner: awesomeOwner
             url: https://github.com/awesomeOwner/signing-ios-app
+         - sourceType: 'github'
+           resourceType: 'Component'
+           sourceProperties:
+            repo: common-web-utils
+            owner: 'bcgov'
+            files: 
+             - docs/implicitAuthManager.md
+             - docs/TypeCheck.md
+             - README.md
+         - sourceType: 'github'
+           resourceType: 'Component'
+           sourceProperties:
+            repo: common-nodejs-utils
+            owner: 'bcgov'
+            file: README.md
 ```
 The collection can have metadata applied to it such as **attributes** just like a regular source can.
 It can even have a **resourceType**. If there are any sources within the collection that **do not have a resourceType**,
