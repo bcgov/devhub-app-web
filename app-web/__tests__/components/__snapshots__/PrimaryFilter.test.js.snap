@@ -6,8 +6,10 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <PrimaryFilter
     filterSiphonNodes={[MockFunction]}
     menuToggled={false}
+    mobile={false}
     selectedFilter=""
     setMainNavigationToggled={[MockFunction]}
+    setSelectedFilter={[MockFunction]}
     setSelectedOption={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {

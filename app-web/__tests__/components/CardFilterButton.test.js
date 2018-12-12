@@ -4,7 +4,14 @@ import { CardFilterButton } from '../../src/components/CardFilterButton/CardFilt
 
 describe('CardFilterButton Component', () => {
   it('matches snapshot', () => {
-    const wrapper = shallow(<CardFilterButton filterSiphonNodes={jest.fn()} />);
+    const wrapper = shallow(
+      <CardFilterButton
+        filterSiphonNodes={jest.fn()}
+        filterByProperty="filterByProperty"
+        filterByValue="filterByValue"
+        resetfilter={jest.fn()}
+      />,
+    );
     expect(wrapper).toMatchSnapshot();
   });
 });

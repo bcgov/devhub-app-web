@@ -5,13 +5,7 @@ import DefaultCard from '../../src/components/Cards/Card/DefaultCard';
 describe('Card Component', () => {
   it('matches snapshot', () => {
     const wrapper = shallow(
-      <DefaultCard
-        title="title"
-        description="description"
-        resourcePath="resourcePath"
-        sourcePath="sourcePath"
-        sourceName="sourceName"
-      />,
+      <DefaultCard title="title" description="description" resourcePath="resourcePath" />,
     );
     expect(wrapper).toMatchSnapshot();
   });
