@@ -41,6 +41,39 @@ const {
   markdownPersonaPlugin,
   repositoryResourcePathPlugin,
 } = require('./plugins');
+
+/**
+ * checks if the sourceProperties that are passed in are for siphoning
+ * a repository
+ * @param {Object} sourceProperties
+ * @returns {Boolean}
+ */
+const isConfigForFetchingRepo = sourceProperties =>
+  Object.prototype.hasOwnProperty.call(sourceProperties, 'repo') &&
+  Object.prototype.hasOwnProperty.call(sourceProperties, 'owner');
+
+/**
+ * checks if the sourceProperties that are passed in are for siphoning
+ * a singular file
+ * @param {Object} sourceProperties
+ * @returns {Boolean}
+ */
+const isConfigForFetchingAFile = sourceProperties =>
+  Object.prototype.hasOwnProperty.call(sourceProperties, 'file') &&
+  isConfigForFetchingRepo(sourceProperties);
+
+/**
+ * creates the GITHUB v3 contents api endpoint for a file
+ * @param {String} repo
+ * @param {String} owner
+ * @param {String} path
+ * @param {String} branch
+ */
+const createFetchFileRoute = (repo, owner, path, branch = '') => {
+  const ref = branch === '' ? '' : `?ref=${branch}`;
+  return `${GITHUB_API_ENDPOINT}/repos/${owner}/${repo}/contents/${path}${ref}`;
+};
+
 /**
  * returns extension of a file name
  * can handle linux type files (which require no extension)
@@ -388,27 +421,8 @@ const validateSourceGithub = source => {
   });
 };
 
-/**
- * checks if the sourceProperties that are passed in are for siphoning
- * a repository
- * @param {Object} sourceProperties
- * @returns {Boolean}
- */
-const isConfigForFetchingRepo = sourceProperties =>
-  Object.prototype.hasOwnProperty.call(sourceProperties, 'repo') &&
-  Object.prototype.hasOwnProperty.call(sourceProperties, 'owner');
-
-/**
- * checks if the sourceProperties that are passed in are for siphoning
- * a singular file
- * @param {Object} sourceProperties
- * @returns {Boolean}
- */
-const isConfigForFetchingAFile = sourceProperties =>
-  Object.prototype.hasOwnProperty.call(sourceProperties, 'file') &&
-  isConfigForFetchingRepo(sourceProperties);
-
 module.exports = {
+  createFetchFileRoute,
   getFilesFromRepo,
   getExtensionFromName,
   getNameWithoutExtension,
@@ -421,6 +435,7 @@ module.exports = {
   filterFilesByExtensions,
   filterFilesByContext,
   isConfigForFetchingAFile,
+  isConfigForFetchingRepo,
   applyBaseMetadata,
   validateSourceGithub,
 };

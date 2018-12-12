@@ -31,8 +31,11 @@ import {
   getNameWithoutExtension,
   applyBaseMetadata,
   isConfigForFetchingAFile,
+  isConfigForFetchingRepo,
+  createFetchFileRoute,
 } from '../utils/fetchSourceGithub';
 
+import { GITHUB_API_ENDPOINT } from '../utils/constants';
 // eslint-disable-next-line
 import fetch from 'node-fetch';
 
@@ -357,6 +360,14 @@ describe('Github API', () => {
     expect(validateSourceGithub(BAD_SOURCE)).toBe(false);
   });
 
+  test('isConfigForFetchingRepo returns true if source properties is for a repo', () => {
+    const sourceProperties = {
+      repo: 'foo',
+      owner: 'bar',
+    };
+    expect(isConfigForFetchingRepo(sourceProperties)).toBe(true);
+  });
+
   test('isConfigForFetchingAFile returns true if source properties is for a file', () => {
     const sourceProperties = {
       repo: 'foo',
@@ -372,5 +383,14 @@ describe('Github API', () => {
       owner: 'bar',
     };
     expect(isConfigForFetchingAFile(sourceProperties)).toBe(false);
+  });
+
+  test('createFetchFileRoute creates route', () => {
+    expect(createFetchFileRoute('foo', 'bar', 'doc.md')).toBe(
+      `${GITHUB_API_ENDPOINT}/repos/bar/foo/contents/doc.md`,
+    );
+    expect(createFetchFileRoute('foo', 'bar', 'doc.md', 'develop')).toBe(
+      `${GITHUB_API_ENDPOINT}/repos/bar/foo/contents/doc.md?ref=develop`,
+    );
   });
 });
