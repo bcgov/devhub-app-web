@@ -32,6 +32,7 @@ import {
   applyBaseMetadata,
   isConfigForFetchingAFile,
   isConfigForFetchingRepo,
+  isConfigForFetchingFiles,
   createFetchFileRoute,
 } from '../utils/fetchSourceGithub';
 // eslint-disable-next-line
@@ -386,6 +387,23 @@ describe('Github API', () => {
       owner: 'bar',
     };
     expect(isConfigForFetchingAFile(sourceProperties)).toBe(false);
+  });
+
+  test('isConfigForFetchingFiles returns true if source properties is for a files', () => {
+    const sourceProperties = {
+      repo: 'foo',
+      owner: 'bar',
+      files: ['/something/test.md'],
+    };
+    expect(isConfigForFetchingFiles(sourceProperties)).toBe(true);
+  });
+
+  test('isConfigForFetchingFiles returns false if source properties is not for a file', () => {
+    const sourceProperties = {
+      repo: 'foo',
+      owner: 'bar',
+    };
+    expect(isConfigForFetchingFiles(sourceProperties)).toBe(false);
   });
 
   test('createFetchFileRoute creates route', () => {

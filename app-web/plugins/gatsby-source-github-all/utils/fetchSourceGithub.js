@@ -62,6 +62,16 @@ const isConfigForFetchingAFile = sourceProperties =>
   isConfigForFetchingRepo(sourceProperties);
 
 /**
+ * checks if the sourceProperties that are passed in are for siphoning
+ * a list of files
+ * @param {Object} sourceProperties
+ * @returns {Boolean}
+ */
+const isConfigForFetchingFiles = sourceProperties =>
+  Object.prototype.hasOwnProperty.call(sourceProperties, 'files') &&
+  isConfigForFetchingRepo(sourceProperties);
+
+/**
  * creates the GITHUB v3 contents api endpoint for a file
  * @param {String} repo
  * @param {String} owner
@@ -401,8 +411,11 @@ const fetchSourceGithub = async (
   if (isConfigForFetchingAFile(sourceProperties)) {
     const { file } = sourceProperties;
     filesToFetch = [createFetchFileRoute(repo, owner, file, branch)];
-    // eslint-disable-line
+  } else if (isConfigForFetchingFiles(sourceProperties)) {
+    // map files list to get fetch file uris
+    filesToFetch = sourceProperties.files.map(f => createFetchFileRoute(repo, owner, f, branch));
   } else if (isConfigForFetchingRepo(sourceProperties)) {
+    // get files based on the github tree and other configs
     filesToFetch = await getFilesFromRepo(sourceProperties, token);
   }
   // actually fetch file contents and transform
@@ -467,6 +480,7 @@ module.exports = {
   filterFilesByContext,
   isConfigForFetchingAFile,
   isConfigForFetchingRepo,
+  isConfigForFetchingFiles,
   applyBaseMetadata,
   validateSourceGithub,
 };
