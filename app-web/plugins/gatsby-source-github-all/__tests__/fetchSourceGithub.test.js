@@ -42,7 +42,12 @@ import fetch from 'node-fetch';
 const { Response } = jest.requireActual('node-fetch');
 // eslint-disable-next-line
 import { GITHUB_API, GITHUB_SOURCE } from '../__fixtures__/fixtures';
-
+// suppress console errors
+global.console = {
+  error: jest.fn(),
+  log: global.console.log,
+  warn: jest.fn(),
+};
 let entries = null;
 let entriesInDir = null;
 

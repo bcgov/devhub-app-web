@@ -41,12 +41,6 @@ const {
   markdownPersonaPlugin,
   repositoryResourcePathPlugin,
 } = require('./plugins');
-// suppress console errors
-global.console = {
-  error: jest.fn(),
-  log: global.console.log,
-  warn: jest.fn(),
-};
 /**
  * checks if the sourceProperties that are passed in are for siphoning
  * a repository
