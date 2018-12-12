@@ -33,4 +33,31 @@ repos:
     attributes:
       labels:
         - Repository
-  
+  # this is a sample of a 'collection'
+  - name: My Awesome Collection
+    sourceProperties: # notice how collections don't immediately have a sourceType
+      sources:
+        # an example of fetching all files from a repo (based on configurations within the repo)
+        - sourceType: 'github' 
+          sourceProperties:
+            url: https://github.com/bcgov/devhub-app-web/
+            owner: bcgov
+            repo: 'devhub-app-web'
+            context: 
+              - '/docs/test-context-dir'
+              - 'plugins/docs'
+          resourceType: 'Repositories'
+        # an example of fetching a SINGLE file from a repo
+        - sourceType: 'github'
+          sourceProperties:
+            owner: bcgov
+            repo: 'design-system'
+            files:
+              - docs/something.md
+              - README.md
+        # an example of fetching several files from a repo
+        - sourceType: 'github'
+          sourceProperties:
+            owner: bcgov
+            repo: 'devhub-signing-web'
+            file: README.md
