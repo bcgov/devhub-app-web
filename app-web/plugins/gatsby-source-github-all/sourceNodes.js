@@ -202,8 +202,8 @@ const getFetchQueue = sources => {
 /**
  * event handler for the gatsby source plugin
  * more info https://www.gatsbyjs.org/docs/create-source-plugin/
- * @param {Object} gatsbyEventObject 
- * @param {Object} options 
+ * @param {Object} gatsbyEventObject
+ * @param {Object} options
  */
 // eslint-disable-next-line consistent-return
 const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens }) => {
