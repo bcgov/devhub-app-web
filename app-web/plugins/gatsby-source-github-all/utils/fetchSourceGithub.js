@@ -388,6 +388,17 @@ const validateSourceGithub = source => {
   });
 };
 
+/**
+ * checks if the sourceProperties that are passed in are for siphoning
+ * a singular file
+ * @param {Object} sourceProperties
+ * @returns {Boolean}
+ */
+const isConfigForFetchingAFile = sourceProperties =>
+  Object.prototype.hasOwnProperty.call(sourceProperties, 'file') &&
+  Object.prototype.hasOwnProperty.call(sourceProperties, 'repo') &&
+  Object.prototype.hasOwnProperty.call(sourceProperties, 'owner');
+
 module.exports = {
   getFilesFromRepo,
   getExtensionFromName,
@@ -400,6 +411,7 @@ module.exports = {
   filterFilesFromDirectories,
   filterFilesByExtensions,
   filterFilesByContext,
+  isConfigForFetchingAFile,
   applyBaseMetadata,
   validateSourceGithub,
 };

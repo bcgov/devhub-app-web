@@ -30,6 +30,7 @@ import {
   getExtensionFromName,
   getNameWithoutExtension,
   applyBaseMetadata,
+  isConfigForFetchingAFile,
 } from '../utils/fetchSourceGithub';
 
 // eslint-disable-next-line
@@ -354,5 +355,22 @@ describe('Github API', () => {
       sourceProperties: { ...GITHUB_SOURCE.sourceProperties, url: null },
     };
     expect(validateSourceGithub(BAD_SOURCE)).toBe(false);
+  });
+
+  test('isConfigForFetchingAFile returns true if source properties is for a file', () => {
+    const sourceProperties = {
+      repo: 'foo',
+      owner: 'bar',
+      file: '/something/test.md',
+    };
+    expect(isConfigForFetchingAFile(sourceProperties)).toBe(true);
+  });
+
+  test('isConfigForFetchingAFile returns false if source properties is not for a file', () => {
+    const sourceProperties = {
+      repo: 'foo',
+      owner: 'bar',
+    };
+    expect(isConfigForFetchingAFile(sourceProperties)).toBe(false);
   });
 });
