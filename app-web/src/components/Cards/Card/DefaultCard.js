@@ -9,7 +9,7 @@ import { ARIA_LABEL_RESOURCE } from '../../../constants/ariaLabels';
 import { CARD_CONFIG } from '../../../constants/ui';
 
 const DefaultCard = ({ title, description, resourcePath, image, resourceType, author }) => (
-  <Card resourceType={resourceType} title={title} author={author}>
+  <Card resourceType={resourceType} resourcePath={resourcePath} title={title} author={author}>
     <div className={styles.Body}>
       <DotDotDot clamp={CARD_CONFIG.maxDescriptionLines} className={styles.BodyDescription}>
         <p>{description}</p>
