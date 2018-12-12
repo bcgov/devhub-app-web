@@ -189,7 +189,7 @@ https://medium.com/slack-developer-blog/everything-you-ever-wanted-to-know-about
 Before your repo's content is taken in by the Devhub, the Devhub needs to know it exists first.
 This is accomplished by 'registering' into the devhub.
 
-> Valid Registry Properties:
+#### Valid Registry Properties:
 - `name`  The name you would like to represent your source as in the devhub. This is something user's will see so avoid naming it in an unpresentable way such as
     - bad: `name: 'my-awesome-repo'
     - good: `name: 'My Awesome Repo'
@@ -203,6 +203,10 @@ This is accomplished by 'registering' into the devhub.
         - `repo` This is the **actual** repository name
         - `branch` (optional) The branch you would like devhub to source content from
         - `context` (optional) The directory or an array of directories you would like devhub to source content from the repo
+        - `file` (optional) The path to a particular file in the repo, if this property is used only one file will be sourced from this registration item
+        - `files` (optional) A list of files to retrieve from a repository
+            - file1
+            - /docs/file2
 - `resourceType` (optional) This is a global resource type, any singular chunk of data (such as a markdown file or a yaml file or a  link to a website) that Siphon grabs from your source can have it's individual resourceType defaulted to this value
     - valid resource types: see the main readme
 - `attributes`
