@@ -390,14 +390,23 @@ const validateSourceGithub = source => {
 
 /**
  * checks if the sourceProperties that are passed in are for siphoning
+ * a repository
+ * @param {Object} sourceProperties
+ * @returns {Boolean}
+ */
+const isConfigForFetchingRepo = sourceProperties =>
+  Object.prototype.hasOwnProperty.call(sourceProperties, 'repo') &&
+  Object.prototype.hasOwnProperty.call(sourceProperties, 'owner');
+
+/**
+ * checks if the sourceProperties that are passed in are for siphoning
  * a singular file
  * @param {Object} sourceProperties
  * @returns {Boolean}
  */
 const isConfigForFetchingAFile = sourceProperties =>
   Object.prototype.hasOwnProperty.call(sourceProperties, 'file') &&
-  Object.prototype.hasOwnProperty.call(sourceProperties, 'repo') &&
-  Object.prototype.hasOwnProperty.call(sourceProperties, 'owner');
+  isConfigForFetchingRepo(sourceProperties);
 
 module.exports = {
   getFilesFromRepo,
