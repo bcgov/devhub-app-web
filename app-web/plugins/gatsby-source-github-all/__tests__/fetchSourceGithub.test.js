@@ -332,6 +332,24 @@ describe('Github API', () => {
     expect(validateSourceGithub(GITHUB_SOURCE)).toBe(true);
   });
 
+  test('validateSourceGithub returns true when valid with optional params', () => {
+    const SOURCE = {
+      ...GITHUB_SOURCE,
+      sourceProperties: { ...GITHUB_SOURCE.sourceProperties, file: 'blah' },
+    };
+
+    expect(validateSourceGithub(SOURCE)).toBe(true);
+  });
+
+  test('validateSourceGithub returns false when optional params are invalid', () => {
+    const SOURCE = {
+      ...GITHUB_SOURCE,
+      sourceProperties: { ...GITHUB_SOURCE.sourceProperties, file: null },
+    };
+
+    expect(validateSourceGithub(SOURCE)).toBe(false);
+  });
+
   test('validateSourceGithub returns false when source is invalid', () => {
     const BAD_SOURCE = {
       ...GITHUB_SOURCE,

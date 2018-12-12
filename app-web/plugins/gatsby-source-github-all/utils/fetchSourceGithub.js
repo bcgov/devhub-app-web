@@ -41,7 +41,12 @@ const {
   markdownPersonaPlugin,
   repositoryResourcePathPlugin,
 } = require('./plugins');
-
+// suppress console errors
+global.console = {
+  error: jest.fn(),
+  log: global.console.log,
+  warn: jest.fn(),
+};
 /**
  * checks if the sourceProperties that are passed in are for siphoning
  * a repository
@@ -358,10 +363,17 @@ const getFilesFromRepo = async ({ repo, owner, branch, context }, token) => {
 const validateSourceGithub = source => {
   return Object.keys(GITHUB_SOURCE_SCHEMA).every(key => {
     const schemaItem = GITHUB_SOURCE_SCHEMA[key];
-    const isValid =
-      schemaItem.required &&
-      Object.prototype.hasOwnProperty.call(source.sourceProperties, key) &&
-      TypeCheck.isA(schemaItem.type, source.sourceProperties[key]);
+    let isValid = true;
+
+    if (schemaItem.required) {
+      isValid =
+        Object.prototype.hasOwnProperty.call(source.sourceProperties, key) &&
+        TypeCheck.isA(schemaItem.type, source.sourceProperties[key]);
+      // does this source property have it anyways?
+    } else if (Object.prototype.hasOwnProperty.call(source.sourceProperties, key)) {
+      isValid = TypeCheck.isA(schemaItem.type, source.sourceProperties[key]);
+    }
+
     if (!isValid) {
       console.error(
         chalk`{red.bold \nError Validating Source type github} 
