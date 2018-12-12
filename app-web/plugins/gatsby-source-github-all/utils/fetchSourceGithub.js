@@ -358,11 +358,20 @@ const getFilesFromRepo = async ({ repo, owner, branch, context }, token) => {
 const validateSourceGithub = source => {
   return Object.keys(GITHUB_SOURCE_SCHEMA).every(key => {
     const schemaItem = GITHUB_SOURCE_SCHEMA[key];
-    return (
+    const isValid =
       schemaItem.required &&
       Object.prototype.hasOwnProperty.call(source.sourceProperties, key) &&
-      TypeCheck.isA(schemaItem.type, source.sourceProperties[key])
-    );
+      TypeCheck.isA(schemaItem.type, source.sourceProperties[key]);
+    if (!isValid) {
+      console.error(
+        chalk`{red.bold \nError Validating Source type github} 
+
+       Source failed on validation on source property {yellow.bold ${key}}
+       received value {yellow.bold ${source.sourceProperties[key]}}`,
+      );
+    }
+
+    return isValid;
   });
 };
 
