@@ -17,6 +17,37 @@
 //
 // Created by Patrick Simonian on 2018-10-12.
 //
+
+const TREE_FILES = {
+  FILE1: {
+    path: 'docs/readme1.md',
+    mode: '100644',
+    type: 'blob',
+    sha: 'c18275f23c101c5bf62ab9a4a332b774db37dfd1',
+    size: 857,
+    url:
+      'https://api.github.com/repos/bcgov/range-web/git/blobs/c18275f23c101c5bf62ab9a4a332b774db37dfd1',
+  },
+  FILE2: {
+    path: 'docs/readme2.md',
+    mode: '100644',
+    type: 'blob',
+    sha: 'c18275f23c101c5bf62ab9a4a332b774db37dfd1',
+    size: 857,
+    url:
+      'https://api.github.com/repos/bcgov/range-web/git/blobs/c18275f23c101c5bf62ab9a4a332b774db37dfd1',
+  },
+  FILE3: {
+    path: 'docs/readme3.md',
+    mode: '100644',
+    type: 'blob',
+    sha: 'c18275f23c101c5bf62ab9a4a332b774db37dfd1',
+    size: 857,
+    url:
+      'https://api.github.com/repos/bcgov/range-web/git/blobs/c18275f23c101c5bf62ab9a4a332b774db37dfd1',
+  },
+};
+
 const GITHUB_API = {
   TREE: {
     sha: 'fd0a8ca2b638662d565a20ba2947678e4fd3acee',
@@ -32,33 +63,9 @@ const GITHUB_API = {
         url:
           'https://api.github.com/repos/bcgov/range-web/git/blobs/c18275f23c101c5bf62ab9a4a332b774db37dfd1',
       },
-      {
-        path: '/docs/readme1.md',
-        mode: '100644',
-        type: 'blob',
-        sha: 'c18275f23c101c5bf62ab9a4a332b774db37dfd1',
-        size: 857,
-        url:
-          'https://api.github.com/repos/bcgov/range-web/git/blobs/c18275f23c101c5bf62ab9a4a332b774db37dfd1',
-      },
-      {
-        path: '/docs/readme2.md',
-        mode: '100644',
-        type: 'blob',
-        sha: 'c18275f23c101c5bf62ab9a4a332b774db37dfd1',
-        size: 857,
-        url:
-          'https://api.github.com/repos/bcgov/range-web/git/blobs/c18275f23c101c5bf62ab9a4a332b774db37dfd1',
-      },
-      {
-        path: '/docs/readme3.md',
-        mode: '100644',
-        type: 'blob',
-        sha: 'c18275f23c101c5bf62ab9a4a332b774db37dfd1',
-        size: 857,
-        url:
-          'https://api.github.com/repos/bcgov/range-web/git/blobs/c18275f23c101c5bf62ab9a4a332b774db37dfd1',
-      },
+      TREE_FILES.FILE1,
+      TREE_FILES.FILE2,
+      TREE_FILES.FILE3,
       {
         path: '.gitignore',
         mode: '100644',
@@ -151,7 +158,7 @@ const GITHUB_API = {
     documentation_url: 'https://developer.github.com/v3',
   },
   IGNORE_FILE: {
-    content: 'file1 file2 file3',
+    content: 'file1\nfile2\nfile3',
   },
 };
 
@@ -454,6 +461,20 @@ const GITHUB_SOURCE = {
   },
 };
 
+const GITHUB_SOURCE_WITHIN_INLINE_IGNORES = {
+  name: 'Design System',
+  sourceType: 'github',
+  sourceProperties: {
+    owner: 'bcgov',
+    repo: 'design-system',
+    url: 'https://github.com/bcgov/design-system/',
+    ignores: ['docs/readme1.md'],
+  },
+  attributes: {
+    labels: ['components'],
+  },
+};
+
 const CONFIG_OPTIONS = {
   tokens: {
     GITHUB_API_TOKEN: '123',
@@ -473,5 +494,7 @@ module.exports = {
   REGISTRY,
   REGISTRY_WITH_COLLECTION,
   GITHUB_SOURCE,
+  GITHUB_SOURCE_WITHIN_INLINE_IGNORES,
   CONFIG_OPTIONS,
+  TREE_FILES,
 };

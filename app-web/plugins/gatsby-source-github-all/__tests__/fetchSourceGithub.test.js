@@ -34,6 +34,7 @@ import {
   isConfigForFetchingRepo,
   isConfigForFetchingFiles,
   createFetchFileRoute,
+  processIgnores,
 } from '../utils/fetchSourceGithub';
 // eslint-disable-next-line
 import { GITHUB_API_ENDPOINT } from '../utils/constants';
@@ -413,5 +414,11 @@ describe('Github API', () => {
     expect(createFetchFileRoute('foo', 'bar', 'doc.md', 'develop')).toBe(
       `${GITHUB_API_ENDPOINT}/repos/bar/foo/contents/doc.md?ref=develop`,
     );
+  });
+
+  test('processIgnores removes leading forward slashes', () => {
+    const expected = ['docs'];
+    expect(processIgnores(['/docs'])).toEqual(expected);
+    expect(processIgnores(['//docs'])).toEqual(expected);
   });
 });

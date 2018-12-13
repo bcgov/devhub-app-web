@@ -163,6 +163,16 @@ const GITHUB_SOURCE_SCHEMA = {
     type: Array,
     required: false,
   },
+  // branch to base fetch off of
+  branch: {
+    type: String,
+    required: false,
+  },
+  // inline devhubignores
+  ignores: {
+    type: Array,
+    required: false,
+  },
 };
 
 module.exports = {
