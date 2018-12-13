@@ -71,8 +71,8 @@ module.exports = {
       options: {
         tokens: {
           GITHUB_API_TOKEN: process.env.GITHUB_TOKEN,
-          SOURCE_REGISTRY_TYPE: process.env.REGISTRY_TYPE || 'SourceRegistryYaml',
         },
+        sourceRegistryType: process.env.REGISTRY_TYPE || 'SourceRegistryYaml',
       },
     },
     {
