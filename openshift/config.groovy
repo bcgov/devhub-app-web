@@ -76,6 +76,7 @@ app {
         ssoURL = "${vars.deployment.ssoURL}"
         ssoClient = "${vars.deployment.ssoClient}"
         ssoRealm = "${vars.deployment.ssoRealm}"
+        replicas = "${vars.deployment.replicas}"
 
         timeoutInSeconds = 60*20 // 20 minutes
         templates = [
@@ -88,7 +89,8 @@ app {
                         'HOST': app.deployment.host,
                         'SSO_BASE_URL_VALUE': app.deployment.ssoURL,
                         'SSO_CLIENT_ID_VALUE': app.deployment.ssoClient,
-                        'SSO_REALM_NAME_VALUE': app.deployment.ssoRealm
+                        'SSO_REALM_NAME_VALUE': app.deployment.ssoRealm,
+                        'REPLICAS': app.deployment.replicas
                     ]
                 ]
         ]
@@ -111,6 +113,7 @@ environments {
                 ssoURL = "https://sso-dev.pathfinder.gov.bc.ca"
                 ssoClient = "devhub-web-${opt.'pr'}"
                 ssoRealm = "devhub"
+                replicas = 1
             }
         }
     }
@@ -129,6 +132,7 @@ environments {
                 ssoURL = "https://sso-test.pathfinder.gov.bc.ca"
                 ssoClient = "devhub-web"
                 ssoRealm = "devhub"
+                replicas = 1
             }
         }
     }
@@ -148,6 +152,7 @@ environments {
                 ssoURL = "https://sso.pathfinder.gov.bc.ca"
                 ssoClient = "devhub-web"
                 ssoRealm = "devhub"
+                replicas = 2
             }
         }
     }

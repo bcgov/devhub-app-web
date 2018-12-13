@@ -20,7 +20,7 @@ objects:
     creationTimestamp: null
     name: ${NAME}-static${SUFFIX}
   spec:
-    replicas: 2
+    replicas: ${REPLICAS}
     selector:
       deploymentconfig: ${NAME}-static${SUFFIX}
     strategy:
@@ -147,3 +147,8 @@ parameters:
   name: VOLUMN_NAME
   required: false
   value: web-caddy-config
+- description: Number of replicas to start by default
+  displayName: replicas
+  name: REPLICAS
+  required: false
+  value: 2
