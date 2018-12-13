@@ -27,6 +27,8 @@ describe('Primary Filter Component', () => {
     filterSiphonNodes: jest.fn(),
     setMainNavigationToggled: jest.fn(),
     setSelectedOption: jest.fn(),
+    mobile: false,
+    setSelectedFilter: jest.fn(),
   };
 
   beforeEach(() => {

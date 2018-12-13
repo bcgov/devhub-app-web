@@ -9,8 +9,6 @@ ShallowWrapper {
     image=""
     resourcePath="resourcePath"
     resourceType=""
-    sourceName="sourceName"
-    sourcePath="sourcePath"
     title="title"
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -58,6 +56,7 @@ ShallowWrapper {
           </GatsbyLink>
         </div>
       </div>,
+      "resourcePath": "resourcePath",
       "resourceType": "",
       "title": "title",
     },
@@ -226,6 +225,7 @@ ShallowWrapper {
             </GatsbyLink>
           </div>
         </div>,
+        "resourcePath": "resourcePath",
         "resourceType": "",
         "title": "title",
       },

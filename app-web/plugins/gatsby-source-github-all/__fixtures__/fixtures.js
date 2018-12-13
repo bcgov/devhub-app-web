@@ -458,6 +458,7 @@ const CONFIG_OPTIONS = {
   tokens: {
     GITHUB_API_TOKEN: '123',
   },
+  sourceRegistryType: 'SourceRegistryYaml',
 };
 
 module.exports = {
