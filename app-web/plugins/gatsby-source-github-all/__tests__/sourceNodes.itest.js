@@ -7,14 +7,14 @@ import {
 } from '../__fixtures__/fixtures';
 import { GRAPHQL_NODE_TYPE } from '../utils/constants';
 import { sourceNodes } from '../sourceNodes';
-import { getFilesFromRepo, validateSourceGithub } from '../utils/fetchSourceGithub';
+import { fetchSourceGithub, validateSourceGithub } from '../utils/fetchSourceGithub';
 
 jest.mock('../utils/fetchSourceGithub.js');
 jest.unmock('unist-util-visit');
 
 describe('Integration Tests Source Nodes', () => {
   beforeEach(() => {
-    getFilesFromRepo.mockReturnValue(Promise.resolve([PROCESSED_FILE_MD, PROCESSED_FILE_HTML]));
+    fetchSourceGithub.mockReturnValue(Promise.resolve([PROCESSED_FILE_MD, PROCESSED_FILE_HTML]));
     validateSourceGithub.mockReturnValue(true);
     // mock out short id generate to consistly return the same id
     shortid.generate = jest.fn(() => 1);

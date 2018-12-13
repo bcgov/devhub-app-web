@@ -42,6 +42,38 @@ const {
   repositoryResourcePathPlugin,
 } = require('./plugins');
 /**
+ * checks if the sourceProperties that are passed in are for siphoning
+ * a repository
+ * @param {Object} sourceProperties
+ * @returns {Boolean}
+ */
+const isConfigForFetchingRepo = sourceProperties =>
+  Object.prototype.hasOwnProperty.call(sourceProperties, 'repo') &&
+  Object.prototype.hasOwnProperty.call(sourceProperties, 'owner');
+
+/**
+ * checks if the sourceProperties that are passed in are for siphoning
+ * a singular file
+ * @param {Object} sourceProperties
+ * @returns {Boolean}
+ */
+const isConfigForFetchingAFile = sourceProperties =>
+  Object.prototype.hasOwnProperty.call(sourceProperties, 'file') &&
+  isConfigForFetchingRepo(sourceProperties);
+
+/**
+ * creates the GITHUB v3 contents api endpoint for a file
+ * @param {String} repo
+ * @param {String} owner
+ * @param {String} path
+ * @param {String} branch
+ */
+const createFetchFileRoute = (repo, owner, path, branch = '') => {
+  const ref = branch === '' ? '' : `?ref=${branch}`;
+  return `${GITHUB_API_ENDPOINT}/repos/${owner}/${repo}/contents/${path}${ref}`;
+};
+
+/**
  * returns extension of a file name
  * can handle linux type files (which require no extension)
  * @param {String} name
@@ -111,25 +143,30 @@ const fetchGithubTree = async (repo, owner, token, branch = 'master') => {
  * @param {String} path
  * @param {String} token
  */
-const fetchFile = async (repo, owner, path, token, branch = '') => {
+const fetchFile = async (path, token) => {
   try {
-    const ref = branch === '' ? '' : `?ref=${branch}`;
-    const result = await fetch(
-      `${GITHUB_API_ENDPOINT}/repos/${owner}/${repo}/contents/${path}${ref}`,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'X-GitHub-Media-Type': 'Accept: application/vnd.github.v3.raw+json',
-        },
+    const result = await fetch(path, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'X-GitHub-Media-Type': 'Accept: application/vnd.github.v3.raw+json',
       },
-    );
+    });
     const data = await result.json();
     if (result.ok) return data;
     return undefined;
   } catch (e) {
     throw e;
   }
+};
+
+/**
+ * returns array of fetch file promises
+ * @param {Array} files array of github api contents api uri strings
+ * @param {*} token github token
+ */
+const fetchFiles = (files, token) => {
+  return files.map(f => fetchFile(f, token));
 };
 /**
  * fetches .devhubignore file from a repo
@@ -138,7 +175,8 @@ const fetchFile = async (repo, owner, path, token, branch = '') => {
  * @param { String } token
  */
 const fetchIgnoreFile = async (repo, owner, token, branch) => {
-  const ignoreFile = await fetchFile(repo, owner, '.devhubignore', token, branch);
+  const ignoreRoute = createFetchFileRoute(repo, owner, '.devhubignore', branch);
+  const ignoreFile = await fetchFile(ignoreRoute, token);
   return ignoreFile ? Base64.decode(ignoreFile.content).split('\n') : [];
 };
 /**
@@ -262,33 +300,18 @@ const filterFiles = (files, ignoreObj, contextDir) => {
 };
 
 /**
- * returns a flattened array of all files in a repository
- * accomplished by fetching the github tree for a repo and filter files
- * to be fetched by a configuration. Fetch the filtered files and
- * append metadata before returning
+ * returns the list of files to be fetched
  * @param {Object} repo the repo data (comes from the registry)
  * is deconstructed into its components
  * {String} repo.repo name of repository
- * {String} repo.url path to repository
  * {String} repo.owner owner of repository
  * {String} repo.name used as a 'pretty' name for the repository (also considered the source)
  * {String} repo.branch branch to fetch tree/files from, when undefined this defaults to master
- * {Object} repo.attributes extra attributes to bind as metadata to files
+ * {String} repo.context the context directory to work off of when filtering through the github tree
  * @param {String} token
- * @returns {Array} The array of files
+ * @returns {Array} an array of Github Contents API v3 uri strings for the files
  */
-// eslint-disable-next-line
-const getFilesFromRepo = async (
-  {
-    sourceType,
-    resourceType,
-    name,
-    sourceProperties: { repo, url, owner, branch, context },
-    attributes: { labels, persona },
-    collection,
-  },
-  token,
-) => {
+const getFilesFromRepo = async ({ repo, owner, branch, context }, token) => {
   try {
     // ignore filtering
     const ig = ignore().add(DEFUALT_IGNORES);
@@ -304,53 +327,7 @@ const getFilesFromRepo = async (
     ig.add(repoIgnores);
     // pass files to filter routine with ignore object and specified context paths
     const filesToFetch = filterFiles(files, ig, context);
-    // retrieve contents for each file
-    const filesWithContents = filesToFetch.map(file =>
-      fetchFile(repo, owner, file.path, token, branch),
-    );
-    const filesResponse = await Promise.all(filesWithContents);
-    // for some reason the accept header is not returning with raw content so we will decode
-    // the default base 64 encoded content
-    // also adding some additional params
-    const processedFiles = filesResponse
-      .filter(f => f !== undefined) // filter out any files that weren't fetched
-      .map(f =>
-        applyBaseMetadata(
-          f,
-          labels,
-          owner,
-          repo,
-          name,
-          url,
-          sourceType,
-          resourceType,
-          f.html_url,
-          persona,
-          collection,
-        ),
-      )
-      .map(async f => {
-        const ft = fileTransformer(f.metadata.extension, f);
-        try {
-          return await ft
-            .use(markdownFrontmatterPlugin)
-            .use(pagePathPlugin)
-            .use(markdownUnfurlPlugin)
-            .use(markdownResourceTypePlugin)
-            .use(externalLinkUnfurlPlugin)
-            .use(markdownPersonaPlugin, { personas: PERSONAS_LIST })
-            .use(repositoryResourcePathPlugin)
-            .resolve();
-        } catch (e) {
-          console.error(chalk.yellow(e.message));
-          // return undefined and skip file
-          // at this point we could apply a hook to post a gh issue if needed
-          return undefined;
-        }
-      });
-    const postProcessedFiles = await Promise.all(processedFiles);
-    // any promises that return undefined are filtered out
-    return postProcessedFiles.filter(f => f !== undefined);
+    return filesToFetch.map(f => createFetchFileRoute(repo, owner, f.path, branch));
   } catch (e) {
     console.error(e);
     // eslint-disable-next-line
@@ -380,16 +357,104 @@ const getFilesFromRepo = async (
 const validateSourceGithub = source => {
   return Object.keys(GITHUB_SOURCE_SCHEMA).every(key => {
     const schemaItem = GITHUB_SOURCE_SCHEMA[key];
-    return (
-      schemaItem.required &&
-      Object.prototype.hasOwnProperty.call(source.sourceProperties, key) &&
-      TypeCheck.isA(schemaItem.type, source.sourceProperties[key])
-    );
+    let isValid = true;
+
+    if (schemaItem.required) {
+      isValid =
+        Object.prototype.hasOwnProperty.call(source.sourceProperties, key) &&
+        TypeCheck.isA(schemaItem.type, source.sourceProperties[key]);
+      // does this source property have it anyways?
+    } else if (Object.prototype.hasOwnProperty.call(source.sourceProperties, key)) {
+      isValid = TypeCheck.isA(schemaItem.type, source.sourceProperties[key]);
+    }
+
+    if (!isValid) {
+      console.error(
+        chalk`{red.bold \nError Validating Source type github} 
+
+       Source failed on validation on source property {yellow.bold ${key}}
+       received value {yellow.bold ${source.sourceProperties[key]}}`,
+      );
+    }
+
+    return isValid;
   });
 };
 
+/**
+ * returns a flattened array of github files from a repository
+ * based on the configuration passed into the routine
+ * the files have the siphon required meta data appended to it before being returned
+ * append metadata before returning
+ * @param {Object} source the source configuration (comes from the registry)
+ * is deconstructed into its components
+ * @param {String} token github api token
+ * @returns {Array} The array of files
+ */
+const fetchSourceGithub = async (
+  { sourceType, resourceType, name, sourceProperties, attributes: { labels, persona }, collection },
+  token,
+) => {
+  const { repo, owner, branch, url } = sourceProperties;
+  let filesToFetch = [];
+  // how are we sourcing this?
+  if (isConfigForFetchingAFile(sourceProperties)) {
+    const { file } = sourceProperties;
+    filesToFetch = [createFetchFileRoute(repo, owner, file, branch)];
+    // eslint-disable-line
+  } else if (isConfigForFetchingRepo(sourceProperties)) {
+    filesToFetch = await getFilesFromRepo(sourceProperties, token);
+  }
+  // actually fetch file contents and transform
+  const filesWithContents = fetchFiles(filesToFetch, token);
+  const filesResponse = await Promise.all(filesWithContents);
+  // for some reason the accept header is not returning with raw content so we will decode
+  // the default base 64 encoded content
+  // also adding some additional params
+  const processedFiles = filesResponse
+    .filter(f => f !== undefined) // filter out any files that weren't fetched
+    .map(f =>
+      applyBaseMetadata(
+        f,
+        labels,
+        owner,
+        repo,
+        name,
+        url,
+        sourceType,
+        resourceType,
+        f.html_url,
+        persona,
+        collection,
+      ),
+    )
+    .map(async f => {
+      const ft = fileTransformer(f.metadata.extension, f);
+      try {
+        return await ft
+          .use(markdownFrontmatterPlugin)
+          .use(pagePathPlugin)
+          .use(markdownUnfurlPlugin)
+          .use(markdownResourceTypePlugin)
+          .use(externalLinkUnfurlPlugin)
+          .use(markdownPersonaPlugin, { personas: PERSONAS_LIST })
+          .use(repositoryResourcePathPlugin)
+          .resolve();
+      } catch (e) {
+        console.error(chalk.yellow(e.message));
+        // return undefined and skip file
+        // at this point we could apply a hook to post a gh issue if needed
+        return undefined;
+      }
+    });
+  const postProcessedFiles = await Promise.all(processedFiles);
+  // any promises that return undefined are filtered out
+  return postProcessedFiles.filter(f => f !== undefined);
+};
 module.exports = {
+  createFetchFileRoute,
   getFilesFromRepo,
+  fetchSourceGithub,
   getExtensionFromName,
   getNameWithoutExtension,
   getNameOfExtensionVerbose,
@@ -400,6 +465,8 @@ module.exports = {
   filterFilesFromDirectories,
   filterFilesByExtensions,
   filterFilesByContext,
+  isConfigForFetchingAFile,
+  isConfigForFetchingRepo,
   applyBaseMetadata,
   validateSourceGithub,
 };

@@ -1,5 +1,5 @@
 import fetch from 'node-fetch'; // eslint-disable-line
-import { getFilesFromRepo } from '../utils/fetchSourceGithub';
+import { fetchSourceGithub } from '../utils/fetchSourceGithub';
 import { GITHUB_API, GITHUB_SOURCE } from '../__fixtures__/fixtures';
 
 const { Response } = jest.requireActual('node-fetch');
@@ -22,7 +22,7 @@ describe('Integration github api module', () => {
       .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))))
       .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
 
-    const files = await getFilesFromRepo(GITHUB_SOURCE);
+    const files = await fetchSourceGithub(GITHUB_SOURCE);
     expect(files).toBeInstanceOf(Array);
     expect(files.length).toBe(3);
   });
@@ -37,7 +37,7 @@ describe('Integration github api module', () => {
         Promise.resolve(new Response(JSON.stringify(GITHUB_API.FAIL), { status: 400 })),
       )
       .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
-    const files = await getFilesFromRepo(GITHUB_SOURCE);
+    const files = await fetchSourceGithub(GITHUB_SOURCE);
     expect(files).toBeInstanceOf(Array);
     expect(files.length).toBe(2);
   });
@@ -47,7 +47,7 @@ describe('Integration github api module', () => {
     fetch.mockReturnValueOnce(
       Promise.resolve(new Response(JSON.stringify(GITHUB_API.FAIL), { status: 400 })),
     );
-    const files = await getFilesFromRepo(GITHUB_SOURCE);
+    const files = await fetchSourceGithub(GITHUB_SOURCE);
     expect(files).toBeInstanceOf(Array);
     expect(files.length).toBe(0);
   });
@@ -57,7 +57,7 @@ describe('Integration github api module', () => {
       throw new Error('Fetch Failed');
     });
     try {
-      await getFilesFromRepo(GITHUB_SOURCE);
+      await fetchSourceGithub(GITHUB_SOURCE);
     } catch (e) {
       expect(e.message).toBe('Fetch Failed');
     }
@@ -71,7 +71,7 @@ describe('Integration github api module', () => {
       .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.BAD_MD_FILE))))
       .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
 
-    const files = await getFilesFromRepo(GITHUB_SOURCE);
+    const files = await fetchSourceGithub(GITHUB_SOURCE);
     // console.log(files);
     expect(files).toBeInstanceOf(Array);
     expect(files.length).toBe(1);

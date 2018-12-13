@@ -17,7 +17,7 @@ Created by Patrick Simonian
 */
 
 const { SOURCE_TYPES } = require('./constants');
-const { getFilesFromRepo, validateSourceGithub } = require('./fetchSourceGithub');
+const { fetchSourceGithub, validateSourceGithub } = require('./fetchSourceGithub');
 /**
  * maps to a fetch function for that sourceType,
  * all fetch functions implement the same return object
@@ -28,7 +28,7 @@ const { getFilesFromRepo, validateSourceGithub } = require('./fetchSourceGithub'
 const fetchFromSource = (sourceType, source, { GITHUB_API_TOKEN }) => {
   switch (sourceType) {
     case SOURCE_TYPES.GITHUB:
-      return getFilesFromRepo(source, GITHUB_API_TOKEN);
+      return fetchSourceGithub(source, GITHUB_API_TOKEN);
     default:
       return [];
   }

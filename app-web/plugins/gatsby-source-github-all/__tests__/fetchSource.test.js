@@ -17,10 +17,10 @@ Created by Patrick Simonian
 */
 import { GITHUB_SOURCE } from '../__fixtures__/fixtures';
 import { fetchFromSource, validateSourceRegistry } from '../utils/fetchSource';
-import { getFilesFromRepo, validateSourceGithub } from '../utils/fetchSourceGithub';
+import { fetchSourceGithub, validateSourceGithub } from '../utils/fetchSourceGithub';
 jest.mock('../utils/fetchSourceGithub.js');
 
-getFilesFromRepo.mockReturnValue([]);
+fetchSourceGithub.mockReturnValue([]);
 validateSourceGithub.mockReturnValue(true);
 
 describe('Fetch Source Routine', () => {
@@ -35,7 +35,7 @@ describe('Fetch Source Routine', () => {
 
   test('fetch from source calls getFilesFromRepo if source type is github', () => {
     fetchFromSource(GITHUB_SOURCE.sourceType, GITHUB_SOURCE, sourceOptions);
-    expect(getFilesFromRepo).toHaveBeenCalled();
+    expect(fetchSourceGithub).toHaveBeenCalled();
   });
 
   test('validateSourceGithub returns false if source type is invalid', () => {

@@ -172,6 +172,11 @@ const filterIgnoredResources = sources =>
 
 /**
  * creates the list of 'source' objects that are used by the fetch source routine
+ * if a source is a collection
+ * its child 'sources' inherit attributes from the collection like name, attributes, resourceType
+ * and then is flattened out along with all other sources
+ * if the child sources have properties (with the exception of name) that conflict with the parent
+ * the child properties take priority
  * @param {Array} sources
  */
 const getFetchQueue = sources => {

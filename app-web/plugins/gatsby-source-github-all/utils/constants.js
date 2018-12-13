@@ -155,6 +155,14 @@ const GITHUB_SOURCE_SCHEMA = {
     type: String,
     required: true,
   },
+  file: {
+    type: String,
+    required: false,
+  },
+  files: {
+    type: Array,
+    required: false,
+  },
 };
 
 module.exports = {

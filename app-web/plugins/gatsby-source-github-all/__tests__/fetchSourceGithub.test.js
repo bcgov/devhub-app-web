@@ -30,15 +30,24 @@ import {
   getExtensionFromName,
   getNameWithoutExtension,
   applyBaseMetadata,
+  isConfigForFetchingAFile,
+  isConfigForFetchingRepo,
+  createFetchFileRoute,
 } from '../utils/fetchSourceGithub';
-
+// eslint-disable-next-line
+import { GITHUB_API_ENDPOINT } from '../utils/constants';
 // eslint-disable-next-line
 import fetch from 'node-fetch';
 
 const { Response } = jest.requireActual('node-fetch');
 // eslint-disable-next-line
 import { GITHUB_API, GITHUB_SOURCE } from '../__fixtures__/fixtures';
-
+// suppress console errors
+global.console = {
+  error: jest.fn(),
+  log: global.console.log,
+  warn: jest.fn(),
+};
 let entries = null;
 let entriesInDir = null;
 
@@ -99,26 +108,6 @@ describe('Github API', () => {
     fetch.mockReturnValue(Promise.resolve(r));
     const res = await fetchFile('pathfinder', 'bcdevops', '/readme.md', 'avalidtoken');
     expect(res).toEqual(undefined);
-  });
-
-  test('fetchFile fetches from branch if passed in', async () => {
-    const branch = 'branchA';
-    const token = 'TOKEN';
-    const repo = 'REPO';
-    const owner = 'OWNER';
-    const path = 'test.md';
-    fetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
-    await fetchFile(repo, owner, path, token, branch);
-    expect(fetch).toHaveBeenCalledWith(
-      `https://api.github.com/repos/OWNER/REPO/contents/${path}?ref=${branch}`,
-      expect.objectContaining({
-        headers: {
-          Authorization: 'Bearer TOKEN',
-          'X-GitHub-Media-Type': 'Accept: application/vnd.github.v3.raw+json',
-        },
-        method: 'GET',
-      }),
-    );
   });
 
   test('fetchIgnoreFile returns an array', async () => {
@@ -348,11 +337,63 @@ describe('Github API', () => {
     expect(validateSourceGithub(GITHUB_SOURCE)).toBe(true);
   });
 
+  test('validateSourceGithub returns true when valid with optional params', () => {
+    const SOURCE = {
+      ...GITHUB_SOURCE,
+      sourceProperties: { ...GITHUB_SOURCE.sourceProperties, file: 'blah' },
+    };
+
+    expect(validateSourceGithub(SOURCE)).toBe(true);
+  });
+
+  test('validateSourceGithub returns false when optional params are invalid', () => {
+    const SOURCE = {
+      ...GITHUB_SOURCE,
+      sourceProperties: { ...GITHUB_SOURCE.sourceProperties, file: null },
+    };
+
+    expect(validateSourceGithub(SOURCE)).toBe(false);
+  });
+
   test('validateSourceGithub returns false when source is invalid', () => {
     const BAD_SOURCE = {
       ...GITHUB_SOURCE,
       sourceProperties: { ...GITHUB_SOURCE.sourceProperties, url: null },
     };
     expect(validateSourceGithub(BAD_SOURCE)).toBe(false);
+  });
+
+  test('isConfigForFetchingRepo returns true if source properties is for a repo', () => {
+    const sourceProperties = {
+      repo: 'foo',
+      owner: 'bar',
+    };
+    expect(isConfigForFetchingRepo(sourceProperties)).toBe(true);
+  });
+
+  test('isConfigForFetchingAFile returns true if source properties is for a file', () => {
+    const sourceProperties = {
+      repo: 'foo',
+      owner: 'bar',
+      file: '/something/test.md',
+    };
+    expect(isConfigForFetchingAFile(sourceProperties)).toBe(true);
+  });
+
+  test('isConfigForFetchingAFile returns false if source properties is not for a file', () => {
+    const sourceProperties = {
+      repo: 'foo',
+      owner: 'bar',
+    };
+    expect(isConfigForFetchingAFile(sourceProperties)).toBe(false);
+  });
+
+  test('createFetchFileRoute creates route', () => {
+    expect(createFetchFileRoute('foo', 'bar', 'doc.md')).toBe(
+      `${GITHUB_API_ENDPOINT}/repos/bar/foo/contents/doc.md`,
+    );
+    expect(createFetchFileRoute('foo', 'bar', 'doc.md', 'develop')).toBe(
+      `${GITHUB_API_ENDPOINT}/repos/bar/foo/contents/doc.md?ref=develop`,
+    );
   });
 });
