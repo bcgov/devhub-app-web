@@ -7,9 +7,9 @@ RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
 
 COPY package*.json /usr/src/app/
-RUN npm ci --silent
-
 COPY . .
+
+RUN npm ci --silent
 
 EXPOSE 8000
 CMD [ "npm", "run", "dev" ]

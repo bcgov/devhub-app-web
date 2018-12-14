@@ -93,7 +93,7 @@
     "valid-url": "^1.0.9"
   },
   "scripts": {
-    "dev": "node_modules/.bin/gatsby develop",
+    "dev": "node_modules/.bin/gatsby develop -H 0.0.0.0",
     "build": "node_modules/.bin/gatsby build",
     "test:watch": "jest --watch --env=jsdom",
     "test": "jest --env=jsdom",
