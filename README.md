@@ -167,13 +167,18 @@ This repository has been configured to send webhooks to a self-hosted Taiga inst
         └── groovy
 ```
 
+## Getting Started
+
+* change into app-web project directory
+* copy and update your env file
+* `cp .env.production.example .env.production`
+
 ## Deployment (Local Development For App-Web)
 
-* Requires Node 8 or higher
+* Requires **Node 8** and **npm 6**
 * Clone this repo
 * Change into app-web project directory
 * run: `npm install`
-* cp .env.production.example .env.production
 * replace relevant environment variables (for local dev only)
 * *it may be* beneficial to have the gatsby cli package `npm install -g gatsby-cli`
 * to start development server run: `npm run dev`
@@ -181,6 +186,18 @@ This repository has been configured to send webhooks to a self-hosted Taiga inst
 * to view production build run (requires gatsby-cli to be installed globally): `gatsby serve`
 * to run prettier: `npm run prettify`
 * to run test suites: `npm test`
+
+## Deployment (Docker for Local Development)
+
+* Requires **Docker**
+* move into `app-web` directory
+* build image `docker build -t devhub-client .`
+* run image as container with the following volumes (until a better solution is found) 
+```
+docker run -v `pwd`/src:/usr/src/app/src -v `pwd`/plugins:/usr/src/app/plugins -v `pwd`/__tests__:/usr/src/app/__tests__ -v `pwd`/__fixtures__:/usr/src/app/__fixtures__ -v `pwd`/__mocks__:/usr/src/app/__mocks__ `pwd`/source-registry:/usr/src/app/source-registry -p 8000:8000 devhub-client
+```
+* **Note** `npm run develop` calls gatsby develop and sets the host with `-H 0.0.0.0`. This is so docker can correctly
+listen for requests on your local machines localhost.
 
 ## Deployment (OpenShift)
 
