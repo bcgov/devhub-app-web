@@ -20,8 +20,7 @@ jest.requireActual('ignore');
 
 module.exports = () => ({
   add: function() {
-    console.log('mocked version called???');
     return this;
   }, // eslint-disable-line
-  ignores: jest.fn(() => 'poops'),
+  ignores: jest.fn(() => false),
 });
