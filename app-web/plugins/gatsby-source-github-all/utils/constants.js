@@ -61,6 +61,7 @@ const DEFUALT_IGNORES = [
   'CODE OF CONDUCT.md',
   '/openshift',
   '/.github',
+  '.github',
 ];
 // github rest api v3
 const GITHUB_API_ENDPOINT = 'https://api.github.com';
