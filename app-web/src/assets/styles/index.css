@@ -14,7 +14,7 @@ body {
   padding: 0;
   min-width: 320px;
   overflow-x: auto;
-  background: #ebebeb;
+  background-color: #fafafa;
 }
 #___gatsby, #___gatsby > div, .layout {
   height: 100%;

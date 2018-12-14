@@ -26,7 +26,9 @@ class SourceNavigation extends Component {
   componentDidMount() {
     // scroll into view of active link if exists
     const activeLi = document.querySelector(`.${styles.Navigation} li[data-active="true"]`);
-    activeLi.scrollIntoView();
+    if (activeLi) {
+      activeLi.scrollIntoView();
+    }
   }
 
   render() {

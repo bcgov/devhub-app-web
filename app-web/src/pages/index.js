@@ -10,10 +10,35 @@ import { GITHUB_ISSUES_ROUTE } from '../constants/routes';
 // local components
 import Layout from '../hoc/Layout';
 import PrimaryFilter from '../components/PrimaryFilter/PrimaryFilter';
+import SecondaryFilter from '../components/SecondaryFilter/SecondaryFilter';
 import Cards from '../components/Cards/Cards';
 import styles from './index.module.css';
 import CardFilterButton from '../components/CardFilterButton/CardFilterButton';
-
+const filterGroups = [
+  {
+    title: 'For',
+    filters: [
+      {
+        filterBy: 'attributes.persona',
+        value: 'Designer',
+        text: 'Designers',
+        active: true,
+      },
+      {
+        filterBy: 'attributes.persona',
+        value: 'Developer',
+        text: 'Developers',
+        active: false,
+      },
+      {
+        filterBy: 'attributes.persona',
+        value: 'Product Owner',
+        text: 'Product Owners',
+        active: false,
+      },
+    ],
+  },
+];
 export class Index extends Component {
   componentDidMount() {
     // flatted nodes from graphql
@@ -57,7 +82,6 @@ export class Index extends Component {
           <PrimaryFilter />
           {menuToggled ? <PrimaryFilter mobile /> : null}
         </Flag>
-
         <main role="main" className={[styles.Main, 'container'].join(' ')}>
           <section className="jumbotron text-center">
             <h1 className="jumbotron-heading">Welcome.</h1>
@@ -101,8 +125,11 @@ export class Index extends Component {
               opening an issue in our <a href={GITHUB_ISSUES_ROUTE}>GitHub</a> repository.
             </p>
           </section>
-          <div className={styles.CardContainer}>
-            <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
+          <div className={styles.ListContainer}>
+            <SecondaryFilter filterGroups={filterGroups} />
+            <div className={styles.CardContainer}>
+              <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
+            </div>
           </div>
           {/*<Flag name="features.pathfinderResourceCards">{pathfinderResources}</Flag>*/}
         </main>
