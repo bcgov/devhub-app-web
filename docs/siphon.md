@@ -35,12 +35,97 @@ In addition, they lacked the ability to control things like **mime types** for r
 
 ### Main Routine Flow
 
-<img src="./images/siphon-main.png" width="540">
+<img src="./images/siphon-simplified.png">
 
 ### Sub Routines
 
 #### Registry
 <img src="./images/registry-routine.png">
+
+#### Setting up the Fetch Queue
+
+Siphon treats collections in the **registry** just like any other **source**. If the fetch queue detects
+a registry item as a ***collection*** it grabs all the sources **within the collection**, extracts them,
+maps the **name** and **other properties** from the collection registry item to them and pushes them into the fetch queue. 
+
+If an items is **not a collection** it is simply pushed into the fetch queue without further processing. 
+
+##### So what is a collection then?
+The difference between a 'collection' and a regular 'source' is that *sources within the collection
+share the same **name attribute***
+
+Infact an individual source like:
+```yaml
+- name: My Repo
+  sourceType: 'github'
+  resourceType: Documentation
+  attributes:
+    persona: 'Designer'
+  sourceProperties:
+    repo: foo
+    owner: bar
+    url: https://github.com/bar/foo
+```
+
+Is really just a **special case of a collection**. A ***Source Collection***.
+Each individual node that is created from all of the content that is fetched from the above repo
+shares the same collection name `My Repo`.
+
+For a 'custom collection', each item could potentially be a repo or an individual file. For all of the
+nodes that are created for these sources, instead of their name being set individually, it is
+inherited by the `name` attribute that was defined in the registry.
+
+Example Collection Registry Item:
+```yaml
+- name: My Collection
+  resourceType: Documentation
+  attributes:
+    persona: Developer
+  sourceProperties:
+    sources:
+      - sourceType: github
+        sourceProperties:
+            repo: foo
+            owner: bar
+            url: https://github.com/bar/foo
+      - sourceType: github
+        sourceProperties:
+            repo: baz
+            owner: bar
+            file: README.md
+        resourceType: Component
+```
+
+Firstly notice how the **individual sources** within the collection do not have the `name` attribute (even if it were there it would be ignored in a collection). Instead, when processed in the `fetchQueue` routine, it inherits the properties set at the top. 
+
+So in the end each individual item would look more like
+```yaml
+-   name: My Collection
+    sourceType: github
+    sourceProperties:
+        repo: foo
+        owner: bar
+        url: https://github.com/bar/foo
+    resourceType: Documentation
+    attributes:
+        persona: Developer
+-   name: My Collection
+    sourceType: github
+    sourceProperties:
+        repo: baz
+        owner: bar
+        file: README.md
+    resourceType: Component
+    attributes:
+        persona: Developer
+```
+
+Notice how if there were properties that conflicted such as the `resourceType: Component` for the second
+source, it took priority. In essence properties in the collection *cascade* down to the child sources, but
+if the child sources have properties assigned they take priority (with the exception of name).
+
+Now that we have processed collections and indvidual sources in the registry as the **same thing**
+they can be processed exactly the same way :)
 
 #### Fetch Files From Source
 
@@ -51,8 +136,8 @@ a fetching function which returns a normalized datastructure on return.
 
 ##### Fetching Functions
 
-###### fetchGithubSource (fetch files from repos)
-<img src="./images/fetch-source-github.png">
+###### fetchGithubSource
+<img src="./images/fetchSourceGithub.png">
 
 #### File Transformer
 
