@@ -86,8 +86,13 @@ or a card and a page (which the card would navigate too when clicked)
 - .md (Markdown)
 - .html (HTML)
 
-### Step 1: Include `.devhubignore`
+### Step 1: Include `.devhubignore` File or Add Ignores as Configuration
 
+The Devhub's Siphon Plugin will attempt to grab **all valid files** from your repository if able.
+For many reasons, this can be an undesirable effect of regsitration. For that reason there are **two** ways
+too 'ignore' unwants files.
+
+#### By .devhubignore
 Ensure you have a `.devhubignore` file apart of your repo in the root level of the repo (not within any folders). 
 
 The `.devhubignore` is a configuration file that tells what files the devhub **should not** process. 
@@ -106,7 +111,33 @@ Sample .devhubignore file:
 README.md
 /docs/dont_show_this.md
 ```
+#### By the 'ignores' Configuration
+Instead of having to create a .devhubignore file, you can **configure** your registry within **inline ignores**.
 
+Further down in this article, you will find more detail on how to regsiter with the devhub. For now, let's
+take a look at this code example.
+
+```yaml
+sources:
+    -   name: Patricks Design Systen
+        sourceType: 'github'
+        sourceProperties:
+            url: https://github.com/bcgov/devhub-app-web/
+            owner: patricksimonian
+            repo: 'design-system'
+            ignores:
+                - components/
+                - /README.md
+        resourceType: 'Components'
+        attributes:
+        labels:
+            - Repository
+        persona: 'Developer'
+```
+
+This is a sample registry. Notice how there is a *yaml* property called **ignores**. This is where
+you can set a list of files/paths you want to ignore. It follows the same conventions
+as a **.githubignore** file and so you can do lazy matching such as `docs/**/*.md`. 
 
 ### Step 2: Ensuring Your Files Meet Metadata Requirements
 
