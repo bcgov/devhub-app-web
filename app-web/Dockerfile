@@ -1,12 +1,24 @@
 FROM node:8
 
+ARG NODE_MAJOR_VERSION=8
+ARG NODE_VERSION=8.14.0
+ARG APP_VERSION=2.3.0
+
+ENV INSTALL_PATH /usr/src/app
+ENV SUMMARY="Devhub App Web ${APP_VERSION}"  \
+  DESCRIPTION="Devhub App Web ${APP_VERSION} running node nodejs ${NODE_VERSION} on Alpine Linux"
+ENV LC_ALL=en_US.UTF-8 \
+  LANG=en_US.UTF-8 
+
+LABEL summary="$SUMMARY" \
+  description="$DESCRIPTION"
+
 RUN apt-get update && \
   yes | apt-get upgrade
 
-RUN mkdir /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir $INSTALL_PATH
+WORKDIR $INSTALL_PATH
 
-COPY package*.json /usr/src/app/
 COPY . .
 
 RUN npm ci --silent
