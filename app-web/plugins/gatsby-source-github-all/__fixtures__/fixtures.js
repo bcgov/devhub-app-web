@@ -18,6 +18,9 @@
 // Created by Patrick Simonian on 2018-10-12.
 //
 
+// sample files that may be received when calling github v3 tree api
+// seperating them out in this obj so that we can recycle some of these properties
+// in tests as well as other fixtures
 const TREE_FILES = {
   FILE1: {
     path: 'docs/readme1.md',
@@ -49,6 +52,7 @@ const TREE_FILES = {
 };
 
 const GITHUB_API = {
+  // the actual tree object returns from github tree api
   TREE: {
     sha: 'fd0a8ca2b638662d565a20ba2947678e4fd3acee',
     url:
@@ -111,6 +115,7 @@ const GITHUB_API = {
       },
     ],
   },
+  // sample return from github contents api
   FILE: {
     name: 'manifest.json',
     path: 'public/manifest.json',
@@ -132,8 +137,8 @@ const GITHUB_API = {
       html: 'https://github.com/bcgov/range-web/blob/master/public/manifest.json',
     },
   },
+  // sample file from github contents file missing description front matter
   BAD_MD_FILE: {
-    // no description front matter (which is required)
     name: 'badfile.md',
     path: 'public/badfile.md',
     sha: 'ef19ec243e739479802a5553d0b38a18ed845307',
@@ -153,15 +158,18 @@ const GITHUB_API = {
       html: 'https://github.com/bcgov/range-web/blob/master/public/badfile.md',
     },
   },
+  // sample return from a failed github contents api get request
   FAIL: {
     message: 'Not Found',
     documentation_url: 'https://developer.github.com/v3',
   },
+  // sameple .devhubignore file from github contents api
   IGNORE_FILE: {
     content: 'file1\nfile2\nfile3',
   },
 };
 
+// file after being processed through fetchsourcegithub
 const PROCESSED_FILE_HTML = {
   name: 'index.html',
   path: 'components/header/index.html',
@@ -200,7 +208,9 @@ const PROCESSED_FILE_HTML = {
   },
 };
 
-// with resource path frontmatter
+// with resource path frontmatter, this file is destined not to create a page but
+// rather have a hyperlink to an external resource. That external resource is actually
+// unfurled by one of the file transformer plugins
 const RAW_FILE_MD_WITH_RESOURCEPATH = {
   name: 'README.md',
   path: 'components/header/README.md',
@@ -353,6 +363,7 @@ const PROCESSED_FILE_TXT = {
   },
 };
 
+// a sample registry file that has been processed by the gatsby-source-filesystem/gatbsy-transformer-yaml plugins
 const REGISTRY = {
   id: '/registry.yml absPath of file >>> YAML',
   sources: [
@@ -376,6 +387,7 @@ const REGISTRY = {
   },
 };
 
+// same as above but this registry contains a 'collection' type config
 const REGISTRY_WITH_COLLECTION = {
   id: '/registry.yml absPath of file >>> YAML',
   sources: [
@@ -413,6 +425,8 @@ const REGISTRY_WITH_COLLECTION = {
   },
 };
 
+// the result of an allFile graphql query, it is filtered in sourceNodes.js to find only the registry file
+// that matches the option passed into this source plugin
 const GRAPHQL_NODES_WITH_REGISTRY = [
   {
     id: '/registry.yml absPath of file >>> YAML',
@@ -435,6 +449,7 @@ const GRAPHQL_NODES_WITH_REGISTRY = [
   },
 ];
 
+// for testing when registry doesn't exist/can't be found
 const GRAPHQL_NODES_WITHOUT_REGISTRY = [
   {
     internal: {
@@ -448,6 +463,7 @@ const GRAPHQL_NODES_WITHOUT_REGISTRY = [
   },
 ];
 
+//  a sample registry 'item'
 const GITHUB_SOURCE = {
   name: 'Design System',
   sourceType: 'github',
@@ -461,6 +477,7 @@ const GITHUB_SOURCE = {
   },
 };
 
+// another sample registry 'item'
 const GITHUB_SOURCE_WITHIN_INLINE_IGNORES = {
   name: 'Design System',
   sourceType: 'github',
@@ -475,6 +492,7 @@ const GITHUB_SOURCE_WITHIN_INLINE_IGNORES = {
   },
 };
 
+// sample config options passed into this source plugin from gatsby-config.js
 const CONFIG_OPTIONS = {
   tokens: {
     GITHUB_API_TOKEN: '123',

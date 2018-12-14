@@ -38,8 +38,13 @@ describe('Integration github api module', () => {
   });
 
   it('returns a list of files filtered by devhubignore', async () => {
+    // because fetch is called in multiple places we are mocking out each call to it with a different
+    // return from the github api
+    // first call: get the github tree
+    // second call: is a mock .devhubignore that is 'ignoring' path to file2
+    // third, fourth, fifth: are files from the contents api
     fetch
-      .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.TREE)))) // first for getting tree
+      .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.TREE))))
       .mockReturnValueOnce(
         Promise.resolve(new Response(JSON.stringify({ content: TREE_FILES.FILE2.path }))),
       )
@@ -48,6 +53,10 @@ describe('Integration github api module', () => {
       .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
 
     const files = await fetchSourceGithub(GITHUB_SOURCE, 'TOKEN');
+
+    // build out fetch paths for each file that would have been returned from the GITHUB_API.TREE
+    // because of the devhubignore file that was returned, we'd expect FILE2 path to not be passed into
+    // fetch
     const { repo, owner } = GITHUB_SOURCE_WITHIN_INLINE_IGNORES.sourceProperties;
     const fetchFile1Route = createFetchFileRoute(repo, owner, TREE_FILES.FILE1.path);
     const fetchFile2Route = createFetchFileRoute(repo, owner, TREE_FILES.FILE2.path);
@@ -90,6 +99,7 @@ describe('Integration github api module', () => {
       .mockReturnValueOnce(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
 
     const files = await fetchSourceGithub(GITHUB_SOURCE_WITHIN_INLINE_IGNORES, 'TOKEN');
+
     const { repo, owner } = GITHUB_SOURCE_WITHIN_INLINE_IGNORES.sourceProperties;
     const fetchFile1Route = createFetchFileRoute(repo, owner, TREE_FILES.FILE1.path);
     const fetchFile2Route = createFetchFileRoute(repo, owner, TREE_FILES.FILE2.path);
