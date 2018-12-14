@@ -310,14 +310,6 @@ const filterFiles = (files, ignoreObj, contextDir) => {
 };
 
 /**
- * removes leading '/' from paths in ignores
- * @param {Array} ignores
- */
-const processIgnores = ignores => {
-  // ignores have to be relative paths
-  return ignores.map(i => i.replace(/^\/+/, ''));
-};
-/**
  * returns the list of files to be fetched
  * @param {Object} repo the repo data (comes from the registry)
  * is deconstructed into its components
@@ -340,10 +332,10 @@ const getFilesFromRepo = async ({ repo, owner, branch, context, ignores }, token
     let files = filterFilesFromDirectories(data.tree);
     // fetch ignore file if exists
     const repoIgnores = await fetchIgnoreFile(repo, owner, token, branch);
-    ig.add(processIgnores(repoIgnores));
+    ig.add(repoIgnores);
     // if ignores was passed into source params add them into the ignores list
     if (ignores) {
-      ig.add(processIgnores(ignores));
+      ig.add(ignores);
     }
     // pass files to filter routine with ignore object and specified context paths
     const filesToFetch = filterFiles(files, ig, context);
@@ -493,5 +485,4 @@ module.exports = {
   isConfigForFetchingFiles,
   applyBaseMetadata,
   validateSourceGithub,
-  processIgnores,
 };

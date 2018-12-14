@@ -415,10 +415,4 @@ describe('Github API', () => {
       `${GITHUB_API_ENDPOINT}/repos/bar/foo/contents/doc.md?ref=develop`,
     );
   });
-
-  test('processIgnores removes leading forward slashes', () => {
-    const expected = ['docs'];
-    expect(processIgnores(['/docs'])).toEqual(expected);
-    expect(processIgnores(['//docs'])).toEqual(expected);
-  });
 });
