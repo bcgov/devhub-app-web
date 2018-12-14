@@ -61,6 +61,7 @@ const DEFUALT_IGNORES = [
   'CODE OF CONDUCT.md',
   '/openshift',
   '/.github',
+  '.github',
 ];
 // github rest api v3
 const GITHUB_API_ENDPOINT = 'https://api.github.com';
@@ -160,6 +161,16 @@ const GITHUB_SOURCE_SCHEMA = {
     required: false,
   },
   files: {
+    type: Array,
+    required: false,
+  },
+  // branch to base fetch off of
+  branch: {
+    type: String,
+    required: false,
+  },
+  // inline devhubignores
+  ignores: {
     type: Array,
     required: false,
   },

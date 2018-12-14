@@ -321,7 +321,7 @@ const filterFiles = (files, ignoreObj, contextDir) => {
  * @param {String} token
  * @returns {Array} an array of Github Contents API v3 uri strings for the files
  */
-const getFilesFromRepo = async ({ repo, owner, branch, context }, token) => {
+const getFilesFromRepo = async ({ repo, owner, branch, context, ignores }, token) => {
   try {
     // ignore filtering
     const ig = ignore().add(DEFUALT_IGNORES);
@@ -330,11 +330,13 @@ const getFilesFromRepo = async ({ repo, owner, branch, context }, token) => {
     // filter out files by extensions
     if (!data.tree) return [];
     let files = filterFilesFromDirectories(data.tree);
-
     // fetch ignore file if exists
     const repoIgnores = await fetchIgnoreFile(repo, owner, token, branch);
-    // add repo ignores to ignore object
     ig.add(repoIgnores);
+    // if ignores was passed into source params add them into the ignores list
+    if (ignores) {
+      ig.add(ignores);
+    }
     // pass files to filter routine with ignore object and specified context paths
     const filesToFetch = filterFiles(files, ig, context);
     return filesToFetch.map(f => createFetchFileRoute(repo, owner, f.path, branch));

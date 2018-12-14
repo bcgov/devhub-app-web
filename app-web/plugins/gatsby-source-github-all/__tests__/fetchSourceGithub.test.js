@@ -34,6 +34,7 @@ import {
   isConfigForFetchingRepo,
   isConfigForFetchingFiles,
   createFetchFileRoute,
+  processIgnores,
 } from '../utils/fetchSourceGithub';
 // eslint-disable-next-line
 import { GITHUB_API_ENDPOINT } from '../utils/constants';
