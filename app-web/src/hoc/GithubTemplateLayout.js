@@ -12,7 +12,7 @@ import { faCodeBranch } from '@fortawesome/free-solid-svg-icons';
 const GithubTemplateLayout = ({ siphonData, nav, pathname, children }) => {
   // SourceNavigation doesn't show up if there are no links
   const sourceNavigation =
-    nav.edges.length > 0 ? <SourceNavigation components={nav.edges} activeLink={pathname} /> : null;
+    nav.edges.length > 1 ? <SourceNavigation components={nav.edges} activeLink={pathname} /> : null;
   return (
     <Layout>
       <div className={styles.TemplateContainer}>
