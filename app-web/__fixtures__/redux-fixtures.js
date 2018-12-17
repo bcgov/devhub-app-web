@@ -115,7 +115,8 @@ export const ACTIONS = {
 export const INITIAL_STATES = {
   SIPHON: {
     nodes: [],
-    filteredNodes: [],
+    primaryFilteredNodes: [],
+    secondaryFilteredNodes: [],
     filterGroups: DEFAULT_FILTER_GROUPS,
     filters: [],
     groupBy: null,

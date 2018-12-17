@@ -10,7 +10,6 @@ import { GITHUB_ISSUES_ROUTE } from '../constants/routes';
 // local components
 import Layout from '../hoc/Layout';
 import PrimaryFilter from '../components/PrimaryFilter/PrimaryFilter';
-import SecondaryFilter from '../components/SecondaryFilter/SecondaryFilter';
 import Cards from '../components/Cards/Cards';
 import styles from './index.module.css';
 import CardFilterButton from '../components/CardFilterButton/CardFilterButton';
@@ -42,13 +41,6 @@ export class Index extends Component {
     const SiphonResources = groupedSiphonData.map(ghData => (
       <Cards key={shortid.generate()} topic={ghData.collectionName} cards={ghData.data} />
     ));
-
-    // group filter groups by their titles and then reassign the data attribute which is applied by
-    // default from the groupby function
-    const groupedFilterGroups = groupBy(this.props.filterGroups, 'title').map(fg => ({
-      ...fg,
-      filters: fg.data,
-    }));
 
     return (
       <Layout showHamburger hamburgerClicked={toggleMenu}>
@@ -100,7 +92,6 @@ export class Index extends Component {
             </p>
           </section>
           <div className={styles.ListContainer}>
-            <SecondaryFilter filterGroups={groupedFilterGroups} />
             <div className={styles.CardContainer}>
               <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
             </div>
@@ -155,9 +146,8 @@ export const resourceQuery = graphql`
 
 const mapStateToProps = state => {
   return {
-    nodes: state.siphon.secondFilteredNodes,
+    nodes: state.siphon.secondaryFilteredNodes,
     menuToggled: state.ui.mainNavigationToggled,
-    filterGroups: state.siphon.filterGroups,
   };
 };
 

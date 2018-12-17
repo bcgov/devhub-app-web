@@ -9,12 +9,14 @@ export const CardFilterButton = ({
   filterByValue,
   filterSiphonNodes,
   resetFilter,
+  filterNodes,
   children,
   ...rest
 }) => {
   let personaSelected = function() {
     resetFilter();
     filterSiphonNodes(filterByProperty, filterByValue);
+    filterNodes();
   };
 
   return (
@@ -39,6 +41,7 @@ CardFilterButton.defaultProps = {
 const mapDispatchToProps = dispatch => {
   return {
     filterSiphonNodes: (filterBy, value) => dispatch(actions.filterSiphonNodes(filterBy, value)),
+    filterNodes: () => dispatch(actions.filterSiphonNodesByFilterList()),
     resetFilter: (filterBy, value) =>
       dispatch(
         actions.setSelectedFilterOption({
