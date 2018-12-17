@@ -17,6 +17,7 @@ Created by Patrick Simonian
 */
 import * as actionTypes from '../actions/actionTypes';
 import dotProp from 'dot-prop-immutable';
+import defaultFilterGroups from '../../constants/filterGroups';
 
 const initialState = {
   nodes: [],
@@ -25,8 +26,62 @@ const initialState = {
   loading: false,
   error: false,
   messages: [],
+  filters: [],
+  filterGroups: defaultFilterGroups,
 };
 
+/**
+ * helper to find a filter group by key
+ * @param {Object} state
+ * @param {String} key
+ */
+const findFilterGroup = (state, key) => {
+  const ind = state.filterGroups.findIndex(f => f.key === key);
+  const fg = { ...state.filterGroups[ind] };
+
+  return fg;
+};
+
+/**
+ * sets 'active' property on a filter config object
+ * @param {Object} state
+ * @param {String} key
+ */
+const toggleFilter = (state, key) => {
+  const newState = { ...state };
+  const fg = findFilterGroup(state, key);
+
+  fg.active = !fg.active;
+  const newFilterGroups = newState.filterGroups.map(f => {
+    if (f.key === fg.key) return fg;
+    return f;
+  });
+
+  newState.filterGroups = newFilterGroups;
+  return newState;
+};
+
+/**
+ * adds filter to list of filters
+ * @param {Obejct} state
+ * @param {String} key
+ */
+const addFilter = (state, key) => {
+  const fg = findFilterGroup(state, key);
+  const newState = { ...state, filters: state.filters.concat(fg) };
+  return newState;
+};
+
+/**
+ * removes filter from list of filters
+ * @param {Object} state
+ * @param {String} key
+ */
+const removeFilter = (state, key) => {
+  const newState = { ...state };
+  newState.filters = newState.filters.filter(f => f.key === key);
+  return newState;
+};
 /**
  * retrieves nodes by filtering for a given value in a nested siphon property
  */
