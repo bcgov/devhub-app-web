@@ -170,11 +170,50 @@ ShallowWrapper {
             </p>
           </section>
           <div
-            className="CardContainer"
+            className="ListContainer"
           >
-            <Flag
-              name="features.githubResourceCards"
+            <SecondaryFilter
+              filterGroups={
+                Array [
+                  Object {
+                    "filters": Array [
+                      Object {
+                        "active": true,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "1",
+                        "text": "Designers",
+                        "value": "Designer",
+                      },
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "2",
+                        "text": "Developers",
+                        "value": "Developer",
+                      },
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "3",
+                        "text": "Product Owners",
+                        "value": "Product Owner",
+                      },
+                    ],
+                    "title": "For",
+                  },
+                ]
+              }
             />
+            <div
+              className="CardContainer"
+            >
+              <Flag
+                name="features.githubResourceCards"
+              />
+            </div>
           </div>
         </main>,
       ],
@@ -279,11 +318,50 @@ ShallowWrapper {
               </p>
             </section>,
             <div
-              className="CardContainer"
+              className="ListContainer"
             >
-              <Flag
-                name="features.githubResourceCards"
+              <SecondaryFilter
+                filterGroups={
+                  Array [
+                    Object {
+                      "filters": Array [
+                        Object {
+                          "active": true,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "1",
+                          "text": "Designers",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "2",
+                          "text": "Developers",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "3",
+                          "text": "Product Owners",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "title": "For",
+                    },
+                  ]
+                }
               />
+              <div
+                className="CardContainer"
+              >
+                <Flag
+                  name="features.githubResourceCards"
+                />
+              </div>
             </div>,
           ],
           "className": "Main container",
@@ -554,24 +632,121 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": <Flag
-                name="features.githubResourceCards"
-              />,
-              "className": "CardContainer",
+              "children": Array [
+                <SecondaryFilter
+                  filterGroups={
+                    Array [
+                      Object {
+                        "filters": Array [
+                          Object {
+                            "active": true,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "1",
+                            "text": "Designers",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "2",
+                            "text": "Developers",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "3",
+                            "text": "Product Owners",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "title": "For",
+                      },
+                    ]
+                  }
+                />,
+                <div
+                  className="CardContainer"
+                >
+                  <Flag
+                    name="features.githubResourceCards"
+                  />
+                </div>,
+              ],
+              "className": "ListContainer",
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "children": Array [],
-                "name": "features.githubResourceCards",
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "filterGroups": Array [
+                    Object {
+                      "filters": Array [
+                        Object {
+                          "active": true,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "1",
+                          "text": "Designers",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "2",
+                          "text": "Developers",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "3",
+                          "text": "Product Owners",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "title": "For",
+                    },
+                  ],
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
               },
-              "ref": null,
-              "rendered": Array [],
-              "type": [Function],
-            },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <Flag
+                    name="features.githubResourceCards"
+                  />,
+                  "className": "CardContainer",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [],
+                    "name": "features.githubResourceCards",
+                  },
+                  "ref": null,
+                  "rendered": Array [],
+                  "type": [Function],
+                },
+                "type": "div",
+              },
+            ],
             "type": "div",
           },
         ],
@@ -660,11 +835,50 @@ ShallowWrapper {
               </p>
             </section>
             <div
-              className="CardContainer"
+              className="ListContainer"
             >
-              <Flag
-                name="features.githubResourceCards"
+              <SecondaryFilter
+                filterGroups={
+                  Array [
+                    Object {
+                      "filters": Array [
+                        Object {
+                          "active": true,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "1",
+                          "text": "Designers",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "2",
+                          "text": "Developers",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "3",
+                          "text": "Product Owners",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "title": "For",
+                    },
+                  ]
+                }
               />
+              <div
+                className="CardContainer"
+              >
+                <Flag
+                  name="features.githubResourceCards"
+                />
+              </div>
             </div>
           </main>,
         ],
@@ -769,11 +983,50 @@ ShallowWrapper {
                 </p>
               </section>,
               <div
-                className="CardContainer"
+                className="ListContainer"
               >
-                <Flag
-                  name="features.githubResourceCards"
+                <SecondaryFilter
+                  filterGroups={
+                    Array [
+                      Object {
+                        "filters": Array [
+                          Object {
+                            "active": true,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "1",
+                            "text": "Designers",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "2",
+                            "text": "Developers",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "3",
+                            "text": "Product Owners",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "title": "For",
+                      },
+                    ]
+                  }
                 />
+                <div
+                  className="CardContainer"
+                >
+                  <Flag
+                    name="features.githubResourceCards"
+                  />
+                </div>
               </div>,
             ],
             "className": "Main container",
@@ -1044,24 +1297,121 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": <Flag
-                  name="features.githubResourceCards"
-                />,
-                "className": "CardContainer",
+                "children": Array [
+                  <SecondaryFilter
+                    filterGroups={
+                      Array [
+                        Object {
+                          "filters": Array [
+                            Object {
+                              "active": true,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "1",
+                              "text": "Designers",
+                              "value": "Designer",
+                            },
+                            Object {
+                              "active": false,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "2",
+                              "text": "Developers",
+                              "value": "Developer",
+                            },
+                            Object {
+                              "active": false,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "3",
+                              "text": "Product Owners",
+                              "value": "Product Owner",
+                            },
+                          ],
+                          "title": "For",
+                        },
+                      ]
+                    }
+                  />,
+                  <div
+                    className="CardContainer"
+                  >
+                    <Flag
+                      name="features.githubResourceCards"
+                    />
+                  </div>,
+                ],
+                "className": "ListContainer",
               },
               "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": Array [],
-                  "name": "features.githubResourceCards",
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "filterGroups": Array [
+                      Object {
+                        "filters": Array [
+                          Object {
+                            "active": true,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "1",
+                            "text": "Designers",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "2",
+                            "text": "Developers",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "3",
+                            "text": "Product Owners",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "title": "For",
+                      },
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
                 },
-                "ref": null,
-                "rendered": Array [],
-                "type": [Function],
-              },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <Flag
+                      name="features.githubResourceCards"
+                    />,
+                    "className": "CardContainer",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": Array [],
+                      "name": "features.githubResourceCards",
+                    },
+                    "ref": null,
+                    "rendered": Array [],
+                    "type": [Function],
+                  },
+                  "type": "div",
+                },
+              ],
               "type": "div",
             },
           ],

@@ -1,3 +1,9 @@
 export { authenticateSuccess, authenticateFailed } from './authActions';
-export { loadSiphonNodes, filterSiphonNodes } from './siphonActions';
+export {
+  loadSiphonNodes,
+  filterSiphonNodes,
+  toggleFilterGroup,
+  addFilter,
+  removeFilter,
+} from './siphonActions';
 export { setSelectedFilterOption, toggleMainNavigation } from './uiActions';

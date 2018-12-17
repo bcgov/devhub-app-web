@@ -24,12 +24,7 @@ export class Index extends Component {
   }
 
   render() {
-    const {
-      nodes,
-      location: { pathname },
-      menuToggled,
-      toggleMenu,
-    } = this.props;
+    const { nodes, menuToggled, toggleMenu } = this.props;
     let mappedSiphonNodes = [];
     if (nodes && nodes.length) {
       mappedSiphonNodes = nodes
@@ -191,4 +186,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Index);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Index);

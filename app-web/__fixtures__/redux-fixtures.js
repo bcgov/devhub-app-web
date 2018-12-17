@@ -17,10 +17,28 @@ Created by Patrick Simonian
 */
 import * as actions from '../src/store/actions/actionTypes';
 export const ACTIONS = {
+  ADD_FILTER: {
+    type: actions.ADD_FILTER,
+    payload: {
+      key: 'foo',
+    },
+  },
+  REMOVE_FILTER: {
+    type: actions.REMOVE_FILTER,
+    payload: {
+      key: 'foo',
+    },
+  },
   LOAD_SIPHON_NODES: {
     type: actions.LOAD_SIPHON_NODES,
     payload: {
       nodes: [{ foo: 'bar' }, { foo: 'baz' }, { foo: 'foo' }],
+    },
+  },
+  TOGGLE_FILTER_GROUP: {
+    type: actions.TOGGLE_FILTER_GROUP,
+    payload: {
+      key: 'foo',
     },
   },
   FILTER_SIPHON_NODES: {

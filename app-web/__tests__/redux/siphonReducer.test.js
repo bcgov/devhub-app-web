@@ -19,7 +19,7 @@ import reducer from '../../src/store/reducers/siphon';
 import { ACTIONS, INITIAL_STATES } from '../../__fixtures__/redux-fixtures';
 
 describe('reducer', () => {
-  it('should return the initial state', () => {
+  it.skip('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual(INITIAL_STATES.SIPHON);
   });
 

@@ -43,7 +43,7 @@ class FilterGroup extends Component {
           ))}
         </ul>
       </div>
-    );;
+    );
   }
 }
 FilterGroup.propTypes = {
