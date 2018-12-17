@@ -30,6 +30,7 @@ export const PrimaryFilter = ({
   setSelectedFilter,
   mobile,
   menuToggled,
+  filterNodes,
 }) => {
   const filters = MAIN_NAV_CONFIG.map(navConfig => {
     const activeClass = selectedFilter === navConfig.VALUE ? styles.ActiveFilter : '';
@@ -40,6 +41,7 @@ export const PrimaryFilter = ({
         onClick={() => {
           setSelectedFilter(navConfig.VALUE);
           filterSiphonNodes(navConfig.SIPHON_PROP, navConfig.VALUE);
+          filterNodes();
         }}
         aria-label={ARIA_LABEL_FILTER_SELECT}
       >
@@ -74,6 +76,7 @@ const mapDispatchToProps = dispatch => {
   return {
     filterSiphonNodes: (filterBy, value) => dispatch(actions.filterSiphonNodes(filterBy, value)),
     setSelectedFilter: value => dispatch(actions.setSelectedFilterOption(value)),
+    filterNodes: () => dispatch(actions.filterSiphonNodesByFilterList()),
   };
 };
 

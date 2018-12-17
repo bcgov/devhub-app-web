@@ -24,13 +24,7 @@ import shortid from 'shortid';
 const SecondaryFilter = ({ filterGroups }) => (
   <div className={styles.SecondaryFilter}>
     {filterGroups.map(fg => (
-      <FilterGroup
-        {...fg}
-        key={shortid.generate()}
-        toggleFilter={() => {
-          console.log('whoaaa');
-        }}
-      />
+      <FilterGroup {...fg} key={shortid.generate()} />
     ))}
   </div>
 );

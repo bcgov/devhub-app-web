@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Index } from '../../src/pages/index';
-
+import { DEFAULT_FILTER_GROUPS } from '../../__fixtures__/redux-fixtures';
 describe('Index Container', () => {
   test('it matches snapshot', () => {
     const data = {
@@ -48,7 +48,12 @@ describe('Index Container', () => {
     };
 
     const wrapper = shallow(
-      <Index data={data} loadSiphonNodes={loadSiphonNodes} location={location} />,
+      <Index
+        data={data}
+        loadSiphonNodes={loadSiphonNodes}
+        location={location}
+        filterGroups={DEFAULT_FILTER_GROUPS}
+      />,
     );
     expect(wrapper).toMatchSnapshot();
   });

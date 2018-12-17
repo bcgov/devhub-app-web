@@ -19,33 +19,31 @@ Created by Patrick Simonian
 
 const defaultFilterGroups = [
   {
+    filterBy: 'attributes.persona',
+    value: 'Designer',
+    text: 'Designers',
+    active: false,
+    availableResources: null,
+    key: '1',
     title: 'For',
-    filters: [
-      {
-        filterBy: 'attributes.persona',
-        value: 'Designer',
-        text: 'Designers',
-        active: true,
-        availableResources: null,
-        key: '1',
-      },
-      {
-        filterBy: 'attributes.persona',
-        value: 'Developer',
-        text: 'Developers',
-        active: false,
-        availableResources: null,
-        key: '2',
-      },
-      {
-        filterBy: 'attributes.persona',
-        value: 'Product Owner',
-        text: 'Product Owners',
-        active: false,
-        availableResources: null,
-        key: '3',
-      },
-    ],
+  },
+  {
+    filterBy: 'attributes.persona',
+    value: 'Developer',
+    text: 'Developers',
+    active: false,
+    availableResources: null,
+    key: '2',
+    title: 'For',
+  },
+  {
+    filterBy: 'attributes.persona',
+    value: 'Product Owner',
+    text: 'Product Owners',
+    active: false,
+    availableResources: null,
+    key: '3',
+    title: 'For',
   },
 ];
 

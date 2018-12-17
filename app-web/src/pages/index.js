@@ -14,7 +14,6 @@ import SecondaryFilter from '../components/SecondaryFilter/SecondaryFilter';
 import Cards from '../components/Cards/Cards';
 import styles from './index.module.css';
 import CardFilterButton from '../components/CardFilterButton/CardFilterButton';
-import defaultFilterGroups from '../constants/filterGroups';
 
 export class Index extends Component {
   componentDidMount() {
@@ -39,19 +38,17 @@ export class Index extends Component {
           repository: node.source.name,
         }));
     }
-
-    // const cards = mappedSiphonNodes.length > 0 ? <Cards cards={mappedSiphonNodes} topic='Everything'/> : <div>Loading</div>;
-    // console.log(mappedSiphonNodes);
-    //   .map(siphonNode => ({
-    //     ...siphonNode,
-    //     title: siphonNode.childMarkdownRemark.frontmatter.title,
-    //     description: siphonNode.childMarkdownRemark.frontmatter.description,
-    //   }));
-
     const groupedSiphonData = groupBy(mappedSiphonNodes, 'collectionName');
     const SiphonResources = groupedSiphonData.map(ghData => (
       <Cards key={shortid.generate()} topic={ghData.collectionName} cards={ghData.data} />
     ));
+
+    // group filter groups by their titles and then reassign the data attribute which is applied by
+    // default from the groupby function
+    const groupedFilterGroups = groupBy(this.props.filterGroups, 'title').map(fg => ({
+      ...fg,
+      filters: fg.data,
+    }));
 
     return (
       <Layout showHamburger hamburgerClicked={toggleMenu}>
@@ -103,33 +100,17 @@ export class Index extends Component {
             </p>
           </section>
           <div className={styles.ListContainer}>
-            <SecondaryFilter filterGroups={defaultFilterGroups} />
+            <SecondaryFilter filterGroups={groupedFilterGroups} />
             <div className={styles.CardContainer}>
               <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
             </div>
           </div>
-          {/*<Flag name="features.pathfinderResourceCards">{pathfinderResources}</Flag>*/}
         </main>
       </Layout>
     );
   }
 }
 
-// this query automagically gets passed in as a 'data' prop into
-// the above component
-/** query removed at this time
- pathfinder: githubData {
-      data {
-        organization {
-          repository {
-            resources {
-              yaml: text
-            }
-          }
-        }
-      }
-    }
- */
 export const resourceQuery = graphql`
   query resourceQuery {
     allDevhubSiphon(filter: { internal: { mediaType: { eq: "text/markdown" } } }) {
@@ -174,8 +155,9 @@ export const resourceQuery = graphql`
 
 const mapStateToProps = state => {
   return {
-    nodes: state.siphon.filteredNodes,
+    nodes: state.siphon.secondFilteredNodes,
     menuToggled: state.ui.mainNavigationToggled,
+    filterGroups: state.siphon.filterGroups,
   };
 };
 

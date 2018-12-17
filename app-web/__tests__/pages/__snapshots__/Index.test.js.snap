@@ -45,6 +45,37 @@ ShallowWrapper {
         },
       }
     }
+    filterGroups={
+      Array [
+        Object {
+          "active": false,
+          "availableResources": null,
+          "filterBy": "attributes.persona",
+          "key": "foo",
+          "text": "Designers",
+          "title": "For",
+          "value": "Designer",
+        },
+        Object {
+          "active": false,
+          "availableResources": null,
+          "filterBy": "attributes.persona",
+          "key": "bar",
+          "text": "Developers",
+          "title": "For",
+          "value": "Developer",
+        },
+        Object {
+          "active": false,
+          "availableResources": null,
+          "filterBy": "attributes.persona",
+          "key": "baz",
+          "text": "Product Owners",
+          "title": "For",
+          "value": "Product Owner",
+        },
+      ]
+    }
     loadSiphonNodes={
       [MockFunction] {
         "calls": Array [
@@ -176,29 +207,61 @@ ShallowWrapper {
               filterGroups={
                 Array [
                   Object {
-                    "filters": Array [
+                    "data": Array [
                       Object {
-                        "active": true,
+                        "active": false,
                         "availableResources": null,
                         "filterBy": "attributes.persona",
-                        "key": "1",
+                        "key": "foo",
                         "text": "Designers",
+                        "title": "For",
                         "value": "Designer",
                       },
                       Object {
                         "active": false,
                         "availableResources": null,
                         "filterBy": "attributes.persona",
-                        "key": "2",
+                        "key": "bar",
                         "text": "Developers",
+                        "title": "For",
                         "value": "Developer",
                       },
                       Object {
                         "active": false,
                         "availableResources": null,
                         "filterBy": "attributes.persona",
-                        "key": "3",
+                        "key": "baz",
                         "text": "Product Owners",
+                        "title": "For",
+                        "value": "Product Owner",
+                      },
+                    ],
+                    "filters": Array [
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "foo",
+                        "text": "Designers",
+                        "title": "For",
+                        "value": "Designer",
+                      },
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "bar",
+                        "text": "Developers",
+                        "title": "For",
+                        "value": "Developer",
+                      },
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "baz",
+                        "text": "Product Owners",
+                        "title": "For",
                         "value": "Product Owner",
                       },
                     ],
@@ -324,29 +387,61 @@ ShallowWrapper {
                 filterGroups={
                   Array [
                     Object {
-                      "filters": Array [
+                      "data": Array [
                         Object {
-                          "active": true,
+                          "active": false,
                           "availableResources": null,
                           "filterBy": "attributes.persona",
-                          "key": "1",
+                          "key": "foo",
                           "text": "Designers",
+                          "title": "For",
                           "value": "Designer",
                         },
                         Object {
                           "active": false,
                           "availableResources": null,
                           "filterBy": "attributes.persona",
-                          "key": "2",
+                          "key": "bar",
                           "text": "Developers",
+                          "title": "For",
                           "value": "Developer",
                         },
                         Object {
                           "active": false,
                           "availableResources": null,
                           "filterBy": "attributes.persona",
-                          "key": "3",
+                          "key": "baz",
                           "text": "Product Owners",
+                          "title": "For",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "filters": Array [
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "foo",
+                          "text": "Designers",
+                          "title": "For",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "bar",
+                          "text": "Developers",
+                          "title": "For",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "baz",
+                          "text": "Product Owners",
+                          "title": "For",
                           "value": "Product Owner",
                         },
                       ],
@@ -637,29 +732,61 @@ ShallowWrapper {
                   filterGroups={
                     Array [
                       Object {
-                        "filters": Array [
+                        "data": Array [
                           Object {
-                            "active": true,
+                            "active": false,
                             "availableResources": null,
                             "filterBy": "attributes.persona",
-                            "key": "1",
+                            "key": "foo",
                             "text": "Designers",
+                            "title": "For",
                             "value": "Designer",
                           },
                           Object {
                             "active": false,
                             "availableResources": null,
                             "filterBy": "attributes.persona",
-                            "key": "2",
+                            "key": "bar",
                             "text": "Developers",
+                            "title": "For",
                             "value": "Developer",
                           },
                           Object {
                             "active": false,
                             "availableResources": null,
                             "filterBy": "attributes.persona",
-                            "key": "3",
+                            "key": "baz",
                             "text": "Product Owners",
+                            "title": "For",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "filters": Array [
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "foo",
+                            "text": "Designers",
+                            "title": "For",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "bar",
+                            "text": "Developers",
+                            "title": "For",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "baz",
+                            "text": "Product Owners",
+                            "title": "For",
                             "value": "Product Owner",
                           },
                         ],
@@ -687,29 +814,61 @@ ShallowWrapper {
                 "props": Object {
                   "filterGroups": Array [
                     Object {
-                      "filters": Array [
+                      "data": Array [
                         Object {
-                          "active": true,
+                          "active": false,
                           "availableResources": null,
                           "filterBy": "attributes.persona",
-                          "key": "1",
+                          "key": "foo",
                           "text": "Designers",
+                          "title": "For",
                           "value": "Designer",
                         },
                         Object {
                           "active": false,
                           "availableResources": null,
                           "filterBy": "attributes.persona",
-                          "key": "2",
+                          "key": "bar",
                           "text": "Developers",
+                          "title": "For",
                           "value": "Developer",
                         },
                         Object {
                           "active": false,
                           "availableResources": null,
                           "filterBy": "attributes.persona",
-                          "key": "3",
+                          "key": "baz",
                           "text": "Product Owners",
+                          "title": "For",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "filters": Array [
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "foo",
+                          "text": "Designers",
+                          "title": "For",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "bar",
+                          "text": "Developers",
+                          "title": "For",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "baz",
+                          "text": "Product Owners",
+                          "title": "For",
                           "value": "Product Owner",
                         },
                       ],
@@ -841,29 +1000,61 @@ ShallowWrapper {
                 filterGroups={
                   Array [
                     Object {
-                      "filters": Array [
+                      "data": Array [
                         Object {
-                          "active": true,
+                          "active": false,
                           "availableResources": null,
                           "filterBy": "attributes.persona",
-                          "key": "1",
+                          "key": "foo",
                           "text": "Designers",
+                          "title": "For",
                           "value": "Designer",
                         },
                         Object {
                           "active": false,
                           "availableResources": null,
                           "filterBy": "attributes.persona",
-                          "key": "2",
+                          "key": "bar",
                           "text": "Developers",
+                          "title": "For",
                           "value": "Developer",
                         },
                         Object {
                           "active": false,
                           "availableResources": null,
                           "filterBy": "attributes.persona",
-                          "key": "3",
+                          "key": "baz",
                           "text": "Product Owners",
+                          "title": "For",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "filters": Array [
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "foo",
+                          "text": "Designers",
+                          "title": "For",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "bar",
+                          "text": "Developers",
+                          "title": "For",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "baz",
+                          "text": "Product Owners",
+                          "title": "For",
                           "value": "Product Owner",
                         },
                       ],
@@ -989,29 +1180,61 @@ ShallowWrapper {
                   filterGroups={
                     Array [
                       Object {
-                        "filters": Array [
+                        "data": Array [
                           Object {
-                            "active": true,
+                            "active": false,
                             "availableResources": null,
                             "filterBy": "attributes.persona",
-                            "key": "1",
+                            "key": "foo",
                             "text": "Designers",
+                            "title": "For",
                             "value": "Designer",
                           },
                           Object {
                             "active": false,
                             "availableResources": null,
                             "filterBy": "attributes.persona",
-                            "key": "2",
+                            "key": "bar",
                             "text": "Developers",
+                            "title": "For",
                             "value": "Developer",
                           },
                           Object {
                             "active": false,
                             "availableResources": null,
                             "filterBy": "attributes.persona",
-                            "key": "3",
+                            "key": "baz",
                             "text": "Product Owners",
+                            "title": "For",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "filters": Array [
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "foo",
+                            "text": "Designers",
+                            "title": "For",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "bar",
+                            "text": "Developers",
+                            "title": "For",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "baz",
+                            "text": "Product Owners",
+                            "title": "For",
                             "value": "Product Owner",
                           },
                         ],
@@ -1302,29 +1525,61 @@ ShallowWrapper {
                     filterGroups={
                       Array [
                         Object {
-                          "filters": Array [
+                          "data": Array [
                             Object {
-                              "active": true,
+                              "active": false,
                               "availableResources": null,
                               "filterBy": "attributes.persona",
-                              "key": "1",
+                              "key": "foo",
                               "text": "Designers",
+                              "title": "For",
                               "value": "Designer",
                             },
                             Object {
                               "active": false,
                               "availableResources": null,
                               "filterBy": "attributes.persona",
-                              "key": "2",
+                              "key": "bar",
                               "text": "Developers",
+                              "title": "For",
                               "value": "Developer",
                             },
                             Object {
                               "active": false,
                               "availableResources": null,
                               "filterBy": "attributes.persona",
-                              "key": "3",
+                              "key": "baz",
                               "text": "Product Owners",
+                              "title": "For",
+                              "value": "Product Owner",
+                            },
+                          ],
+                          "filters": Array [
+                            Object {
+                              "active": false,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "foo",
+                              "text": "Designers",
+                              "title": "For",
+                              "value": "Designer",
+                            },
+                            Object {
+                              "active": false,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "bar",
+                              "text": "Developers",
+                              "title": "For",
+                              "value": "Developer",
+                            },
+                            Object {
+                              "active": false,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "baz",
+                              "text": "Product Owners",
+                              "title": "For",
                               "value": "Product Owner",
                             },
                           ],
@@ -1352,29 +1607,61 @@ ShallowWrapper {
                   "props": Object {
                     "filterGroups": Array [
                       Object {
-                        "filters": Array [
+                        "data": Array [
                           Object {
-                            "active": true,
+                            "active": false,
                             "availableResources": null,
                             "filterBy": "attributes.persona",
-                            "key": "1",
+                            "key": "foo",
                             "text": "Designers",
+                            "title": "For",
                             "value": "Designer",
                           },
                           Object {
                             "active": false,
                             "availableResources": null,
                             "filterBy": "attributes.persona",
-                            "key": "2",
+                            "key": "bar",
                             "text": "Developers",
+                            "title": "For",
                             "value": "Developer",
                           },
                           Object {
                             "active": false,
                             "availableResources": null,
                             "filterBy": "attributes.persona",
-                            "key": "3",
+                            "key": "baz",
                             "text": "Product Owners",
+                            "title": "For",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "filters": Array [
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "foo",
+                            "text": "Designers",
+                            "title": "For",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "bar",
+                            "text": "Developers",
+                            "title": "For",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "baz",
+                            "text": "Product Owners",
+                            "title": "For",
                             "value": "Product Owner",
                           },
                         ],

@@ -19,8 +19,8 @@ import reducer from '../../src/store/reducers/siphon';
 import { ACTIONS, INITIAL_STATES } from '../../__fixtures__/redux-fixtures';
 
 describe('reducer', () => {
-  it.skip('should return the initial state', () => {
-    expect(reducer(undefined, {})).toEqual(INITIAL_STATES.SIPHON);
+  it('should return the initial state', () => {
+    expect(reducer(undefined, {})).toBeDefined();
   });
 
   it('should handle LOAD SIPHON NODES', () => {
@@ -41,5 +41,34 @@ describe('reducer', () => {
     const newState = reducer(INITIAL_STATES.SIPHON, ACTIONS.LOAD_SIPHON_NODES);
     const filteredState = reducer(newState, ACTIONS.FILTER_SIPHON_NODES_BY_ALL);
     expect(filteredState.filteredNodes.length).toBe(3);
+  });
+
+  it("should toggle a filtergroup active when it isn't", () => {
+    const fg = INITIAL_STATES.SIPHON.filterGroups[0];
+    expect(fg.active).toBe(false);
+    const newState = reducer(INITIAL_STATES.SIPHON, ACTIONS.TOGGLE_FILTER_GROUP);
+    // find the fg by the key
+    const updatedFg = newState.filterGroups.find(filterGroup => fg.key === filterGroup.key);
+    expect(updatedFg.active).toBe(true);
+  });
+
+  it('should add a filter group to filters list', () => {
+    expect(INITIAL_STATES.SIPHON.filters.length).toBe(0);
+
+    const newState = reducer(INITIAL_STATES.SIPHON, ACTIONS.ADD_FILTER);
+
+    expect(newState.filters.length).toBe(1);
+  });
+
+  it('should remove a filter group from filters list', () => {
+    expect(INITIAL_STATES.SIPHON.filters.length).toBe(0);
+
+    const newState = reducer(INITIAL_STATES.SIPHON, ACTIONS.ADD_FILTER);
+
+    expect(newState.filters.length).toBe(1);
+
+    const finalState = reducer(newState, ACTIONS.REMOVE_FILTER);
+
+    expect(finalState.filters.length).toBe(0);
   });
 });

@@ -15,46 +15,77 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../../store/actions/actions';
 import styles from './FilterGroup.module.css';
 import PropTypes from 'prop-types';
-import shortid from 'shortid';
+import {
+  ARIA_LABEL_FILTER_RESOURCE,
+  ARIA_LABEL_RESOURCES_MATCH_FILTER,
+} from '../../../constants/ariaLabels';
 
-class FilterGroup extends Component {
-  render() {
-    const { title, toggleFilter, filters } = this.props;
+export const FilterGroup = ({
+  title,
+  toggleFilter,
+  filters,
+  addFilter,
+  removeFilter,
+  filterNodes,
+}) => (
+  <div className={styles.FilterGroup}>
+    <h2>{title}</h2>
+    <ul>
+      {filters.map(filter => (
+        <li
+          className={filter.active ? styles.active : ''}
+          onClick={e => {
+            e.preventDefault();
+            console.log(filter.key);
+            filter.active ? removeFilter(filter.key) : addFilter(filter.key);
+            toggleFilter(filter.key);
+            filterNodes();
+          }}
+          key={filter.key}
+        >
+          <button className={styles.link} aria-label={ARIA_LABEL_FILTER_RESOURCE}>
+            {filter.text}
+          </button>
+          <span className={styles.FilterCount} aria-label={ARIA_LABEL_RESOURCES_MATCH_FILTER}>
+            15
+          </span>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
 
-    return (
-      <div className={styles.FilterGroup}>
-        <h2>{title}</h2>
-        <ul>
-          {filters.map(filter => (
-            <li
-              className={filter.active ? styles.active : ''}
-              onClick={e => {
-                e.preventDefault();
-                toggleFilter(filter);
-              }}
-              key={shortid.generate()}
-              data-count={15}
-            >
-              <a href="#">{filter.text}</a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
-}
 FilterGroup.propTypes = {
   title: PropTypes.string.isRequired,
-  filters: PropTypes.arrayOf({
-    text: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-    filterBy: PropTypes.string.isRequired,
-    active: PropTypes.bool.isRequired,
-  }).isRequired,
+  filters: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired,
+      filterBy: PropTypes.string.isRequired,
+      active: PropTypes.bool.isRequired,
+    }),
+  ).isRequired,
   toggleFilter: PropTypes.func.isRequired,
+  addFilter: PropTypes.func.isRequired,
+  removeFilter: PropTypes.func.isRequired,
+  filterNodes: PropTypes.func.isRequired,
 };
 
-export default FilterGroup;
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleFilter: key => dispatch(actions.toggleFilterGroup(key)),
+    addFilter: key => dispatch(actions.addFilter(key)),
+    removeFilter: key => dispatch(actions.removeFilter(key)),
+    filterNodes: () => dispatch(actions.filterSiphonNodesByFilterList()),
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(FilterGroup);

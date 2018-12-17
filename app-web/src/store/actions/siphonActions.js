@@ -71,3 +71,9 @@ export const removeFilter = key => {
     },
   };
 };
+
+export const filterSiphonNodesByFilterList = () => {
+  return {
+    type: actionTypes.FILTER_SIPHON_NODES_BY_FILTER_LIST,
+  };
+};

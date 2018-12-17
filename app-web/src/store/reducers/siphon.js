@@ -21,13 +21,32 @@ import defaultFilterGroups from '../../constants/filterGroups';
 
 const initialState = {
   nodes: [],
-  filteredNodes: [],
+  firstFilteredNodes: [],
+  secondFilteredNodes: [],
   groupBy: null,
   loading: false,
   error: false,
   messages: [],
   filters: [],
   filterGroups: defaultFilterGroups,
+};
+
+/**
+ * filters through the already filtered nodes with additional
+ * filters found from the filters list
+ * @param {Array} filteredNodes
+ * @param {Array} filtersList
+ */
+const filterNodesByFiltersList = state => {
+  const newState = { ...state };
+  if (newState.filters.length > 0) {
+    newState.secondFilteredNodes = newState.firstFilteredNodes.filter(n =>
+      state.filters.some(filter => dotProp.get(n, filter.filterBy) === filter.value),
+    );
+  } else {
+    newState.secondFilteredNodes = newState.firstFilteredNodes.map(f => ({...f}));
+  }
+  return newState;
 };
 
 /**
@@ -79,17 +98,18 @@ const addFilter = (state, key) => {
  */
 const removeFilter = (state, key) => {
   const newState = { ...state };
-  newState.filters = newState.filters.filter(f => f.key === key);
+  newState.filters = newState.filters.filter(f => f.key !== key);
   return newState;
 };
 /**
  * retrieves nodes by filtering for a given value in a nested siphon property
  */
-export const filterNodesByParam = (state, filteredBy, value) => {
-  const filteredNodes = state.nodes
+const filterNodesByParam = (state, filteredBy, value) => {
+  // filter the initial nodes based off the main filterBy value
+  const firstFilteredNodes = state.nodes
     .filter(n => value === 'All' || dotProp.get(n, filteredBy) === value)
     .map(n => ({ ...n }));
-  const newState = { ...state, filteredNodes };
+  const newState = { ...state, firstFilteredNodes };
   return newState;
 };
 
@@ -97,7 +117,8 @@ const loadNodes = (state, nodes) => {
   const newState = { ...state };
   newState.nodes = nodes.map(n => ({ ...n }));
   // nodes will be filtered eventually be resource type which is the top level navigation
-  newState.filteredNodes = nodes.map(n => ({ ...n }));
+  newState.firstFilteredNodes = nodes.map(n => ({ ...n }));
+  newState.secondFilteredNodes = nodes.map(n => ({ ...n }));
   return newState;
 };
 
@@ -107,6 +128,14 @@ const reducer = (state = initialState, action) => {
       return loadNodes(state, action.payload.nodes);
     case actionTypes.FILTER_SIPHON_NODES:
       return filterNodesByParam(state, action.payload.filteredBy, action.payload.value);
+    case actionTypes.TOGGLE_FILTER_GROUP:
+      return toggleFilter(state, action.payload.key);
+    case actionTypes.ADD_FILTER:
+      return addFilter(state, action.payload.key);
+    case actionTypes.REMOVE_FILTER:
+      return removeFilter(state, action.payload.key);
+    case actionTypes.FILTER_SIPHON_NODES_BY_FILTER_LIST:
+      return filterNodesByFiltersList(state);
     default:
       return state;
   }

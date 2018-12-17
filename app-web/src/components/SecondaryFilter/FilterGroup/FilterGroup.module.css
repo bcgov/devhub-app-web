@@ -24,14 +24,26 @@
   display: flex;
   align-items: center;
 }
-.FilterGroup li a {
+
+.FilterGroup button {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  text-transform: inherit;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.FilterGroup li .link {
   color: inherit;
 }
+
 .FilterGroup li:not(.active):hover {
   color: #0e3b6ddb;
 }
 
-.FilterGroup li.active a {
+.FilterGroup li.active .link {
   color: #222;
   text-decoration: underline;
 }
@@ -61,12 +73,7 @@
   transition: opacity .25s ease-out;
 }
 
-.FilterGroup li.active::after {
-  text-decoration: none;
-}
-
-.FilterGroup li::after {
-  content: attr(data-count);
+.FilterGroup li .FilterCount {
   color: #919191;
   margin-left: 5px;
 }
