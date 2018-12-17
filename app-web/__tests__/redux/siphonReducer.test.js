@@ -33,14 +33,14 @@ describe('reducer', () => {
     expect(INITIAL_STATES.SIPHON.nodes.length).toBe(0);
     const newState = reducer(INITIAL_STATES.SIPHON, ACTIONS.LOAD_SIPHON_NODES);
     const filteredState = reducer(newState, ACTIONS.FILTER_SIPHON_NODES);
-    expect(filteredState.filteredNodes.length).toBe(1);
+    expect(filteredState.firstFilteredNodes.length).toBe(1);
   });
 
   it('should return all nodes if Filtered value is All', () => {
     expect(INITIAL_STATES.SIPHON.nodes.length).toBe(0);
     const newState = reducer(INITIAL_STATES.SIPHON, ACTIONS.LOAD_SIPHON_NODES);
     const filteredState = reducer(newState, ACTIONS.FILTER_SIPHON_NODES_BY_ALL);
-    expect(filteredState.filteredNodes.length).toBe(3);
+    expect(filteredState.firstFilteredNodes.length).toBe(3);
   });
 
   it("should toggle a filtergroup active when it isn't", () => {
