@@ -15,31 +15,37 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React from 'react';
+import React, { Component } from 'react';
 import styles from './FilterGroup.module.css';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
-const FilterGroup = ({ title, filters, toggleFilter }) => (
-  <div className={styles.FilterGroup}>
-    <h2>{title}</h2>
-    <ul>
-      {filters.map(filter => (
-        <li
-          className={filter.active ? styles.active : ''}
-          onClick={() => {
-            toggleFilter(filter);
-          }}
-          key={shortid.generate()}
-          data-count={15}
-        >
-          <a href="#">{filter.text}</a>
-        </li>
-      ))}
-    </ul>
-  </div>
-);
+class FilterGroup extends Component {
+  render() {
+    const { title, toggleFilter, filters } = this.props;
 
+    return (
+      <div className={styles.FilterGroup}>
+        <h2>{title}</h2>
+        <ul>
+          {filters.map(filter => (
+            <li
+              className={filter.active ? styles.active : ''}
+              onClick={e => {
+                e.preventDefault();
+                toggleFilter(filter);
+              }}
+              key={shortid.generate()}
+              data-count={15}
+            >
+              <a href="#">{filter.text}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );;
+  }
+}
 FilterGroup.propTypes = {
   title: PropTypes.string.isRequired,
   filters: PropTypes.arrayOf({

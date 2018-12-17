@@ -17,7 +17,7 @@ Created by Patrick Simonian
 */
 // configuration for the secondary filtering mechanism
 
-export const filterGroups = [
+const defaultFilterGroups = [
   {
     title: 'For',
     filters: [
@@ -27,6 +27,7 @@ export const filterGroups = [
         text: 'Designers',
         active: true,
         availableResources: null,
+        key: '1',
       },
       {
         filterBy: 'attributes.persona',
@@ -34,6 +35,7 @@ export const filterGroups = [
         text: 'Developers',
         active: false,
         availableResources: null,
+        key: '2',
       },
       {
         filterBy: 'attributes.persona',
@@ -41,7 +43,10 @@ export const filterGroups = [
         text: 'Product Owners',
         active: false,
         availableResources: null,
+        key: '3',
       },
     ],
   },
 ];
+
+export default defaultFilterGroups;

@@ -14,31 +14,8 @@ import SecondaryFilter from '../components/SecondaryFilter/SecondaryFilter';
 import Cards from '../components/Cards/Cards';
 import styles from './index.module.css';
 import CardFilterButton from '../components/CardFilterButton/CardFilterButton';
-const filterGroups = [
-  {
-    title: 'For',
-    filters: [
-      {
-        filterBy: 'attributes.persona',
-        value: 'Designer',
-        text: 'Designers',
-        active: true,
-      },
-      {
-        filterBy: 'attributes.persona',
-        value: 'Developer',
-        text: 'Developers',
-        active: false,
-      },
-      {
-        filterBy: 'attributes.persona',
-        value: 'Product Owner',
-        text: 'Product Owners',
-        active: false,
-      },
-    ],
-  },
-];
+import defaultFilterGroups from '../constants/filterGroups';
+
 export class Index extends Component {
   componentDidMount() {
     // flatted nodes from graphql
@@ -47,7 +24,12 @@ export class Index extends Component {
   }
 
   render() {
-    const { nodes, location: { pathname }, menuToggled, toggleMenu } = this.props;
+    const {
+      nodes,
+      location: { pathname },
+      menuToggled,
+      toggleMenu,
+    } = this.props;
     let mappedSiphonNodes = [];
     if (nodes && nodes.length) {
       mappedSiphonNodes = nodes
@@ -126,7 +108,7 @@ export class Index extends Component {
             </p>
           </section>
           <div className={styles.ListContainer}>
-            <SecondaryFilter filterGroups={filterGroups} />
+            <SecondaryFilter filterGroups={defaultFilterGroups} />
             <div className={styles.CardContainer}>
               <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
             </div>

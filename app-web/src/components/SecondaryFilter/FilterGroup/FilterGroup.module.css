@@ -60,11 +60,23 @@
   opacity: .5;
   transition: opacity .25s ease-out;
 }
+
 .FilterGroup li.active::after {
   text-decoration: none;
 }
+
 .FilterGroup li::after {
   content: attr(data-count);
   color: #919191;
   margin-left: 5px;
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(15px);
+  }
 }
