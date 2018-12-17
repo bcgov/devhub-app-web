@@ -80,4 +80,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PrimaryFilter);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PrimaryFilter);

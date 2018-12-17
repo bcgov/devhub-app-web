@@ -44,7 +44,7 @@ const filterNodesByFiltersList = state => {
       state.filters.some(filter => dotProp.get(n, filter.filterBy) === filter.value),
     );
   } else {
-    newState.secondFilteredNodes = newState.firstFilteredNodes.map(f => ({...f}));
+    newState.secondFilteredNodes = newState.firstFilteredNodes.map(f => ({ ...f }));
   }
   return newState;
 };
