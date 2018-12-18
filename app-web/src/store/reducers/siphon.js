@@ -30,9 +30,10 @@ const initialState = {
  * filters through the primary filtered nodes by filters
  * found from the state.filters list
  * checks if the dot prop matches the value for a given siphon node
- * @param {Object} node
- * @param {String} dotProp
- * @param {String} value
+ * @param {Object} node the siphon node
+ * @param {String} dotProp a dot prop string notiation to access a nested value within the node
+ * https://github.com/sindresorhus/dot-prop
+ * @param {String} value the value to match against nodes value found by the dot prop
  */
 const dotPropMatchesValue = (node, filterBy, value) => dotProp.get(node, filterBy) === value;
 
@@ -80,19 +81,16 @@ const findFilter = (state, key) => {
 
 /**
  * sets 'active' property on a filter config object
- * @param {Object} state
- * @param {String} key
- * @param {Boolean} isActive
+ * @param {Object} state initial state coming in
+ * @param {String} key the key that identifies the filter in state.filters
+ * @param {Boolean} isActive sets filter[i].active
  */
 const toggleFilter = (state, key, isActive) => {
   const newState = { ...state };
   const fg = findFilter(state, key);
   fg.active = isActive;
 
-  const newFilters = newState.filters.map(f => {
-    if (f.key === fg.key) return fg;
-    return f;
-  });
+  const newFilters = newState.filters.map(f => (f.key === fg.key ? fg : f));
 
   newState.filters = newFilters;
   return newState;
