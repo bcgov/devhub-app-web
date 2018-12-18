@@ -31,7 +31,7 @@ export const loadSiphonNodes = nodes => {
 };
 
 /**
- * filters siphon nodes
+ * filters siphon main nodes and updates the primaryfiltered nodes props
  * @param {String} filteredBy use dot prop notation if you are intending on accessing a nested node property eg 'prop1.prop2'
  * @param {String} value
  */
@@ -45,12 +45,9 @@ export const filterSiphonNodes = (filteredBy, value) => {
   };
 };
 
-export const toggleFilterGroup = key => {
+export const removeAllFilters = () => {
   return {
-    type: actionTypes.TOGGLE_FILTER_GROUP,
-    payload: {
-      key,
-    },
+    type: actionTypes.REMOVE_ALL_FILTERS,
   };
 };
 

@@ -57,7 +57,7 @@ ShallowWrapper {
           "value": "Designer",
         },
         Object {
-          "active": false,
+          "active": true,
           "availableResources": null,
           "filterBy": "attributes.persona",
           "key": "bar",
