@@ -17,8 +17,8 @@ Created by Patrick Simonian
 */
 // configuration for the secondary filtering mechanism
 
-const defaultFilterGroups = [
-  {
+export const DEFAULT_FILTERS = {
+  PERSONA_DESIGNER: {
     filterBy: 'attributes.persona',
     value: 'Designer',
     text: 'Designers',
@@ -28,7 +28,7 @@ const defaultFilterGroups = [
     title: 'For',
     isFilterable: true,
   },
-  {
+  PERSONA_DEVELOPER: {
     filterBy: 'attributes.persona',
     value: 'Developer',
     text: 'Developers',
@@ -38,7 +38,7 @@ const defaultFilterGroups = [
     title: 'For',
     isFilterable: true,
   },
-  {
+  PERSONA_PRODUCT_OWNER: {
     filterBy: 'attributes.persona',
     value: 'Product Owner',
     text: 'Product Owners',
@@ -48,6 +48,8 @@ const defaultFilterGroups = [
     title: 'For',
     isFilterable: true,
   },
-];
+};
+
+const defaultFilterGroups = Object.keys(DEFAULT_FILTERS).map(f => DEFAULT_FILTERS[f]);
 
 export default defaultFilterGroups;

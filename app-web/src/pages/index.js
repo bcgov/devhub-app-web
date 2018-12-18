@@ -7,6 +7,7 @@ import * as actions from '../store/actions/actions';
 import { Flag } from 'flag';
 import { groupBy } from '../utils/dataMassager';
 import { GITHUB_ISSUES_ROUTE } from '../constants/routes';
+import { DEFAULT_FILTERS } from '../constants/filterGroups';
 // local components
 import Layout from '../hoc/Layout';
 import PrimaryFilter from '../components/PrimaryFilter/PrimaryFilter';
@@ -45,7 +46,6 @@ export class Index extends Component {
     const SiphonResources = groupedSiphonData.map(ghData => (
       <Cards key={shortid.generate()} topic={ghData.collectionName} cards={ghData.data} />
     ));
-
     // group filter groups by there title
     let groupedFilters = groupBy(filters, 'title');
     // map the data property that is created from groupBy
@@ -75,15 +75,13 @@ export class Index extends Component {
             </p>
             <div className={'d-flex justify-content-center align-items-center'}>
               <CardFilterButton
-                filterByProperty={'attributes.persona'}
-                filterByValue={'Developer'}
+                filterKey={DEFAULT_FILTERS.PERSONA_DEVELOPER.key}
                 className={['btn btn-outline-primary', styles.PersonaButton].join(' ')}
               >
                 I'm a Developer
               </CardFilterButton>
               <CardFilterButton
-                filterByProperty={'attributes.persona'}
-                filterByValue={'Designer'}
+                filterKey={DEFAULT_FILTERS.PERSONA_DESIGNER.key}
                 className={['btn btn-outline-success', styles.PersonaButton].join(' ')}
               >
                 I'm a Designer
