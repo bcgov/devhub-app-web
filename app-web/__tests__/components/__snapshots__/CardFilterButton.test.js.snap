@@ -27,6 +27,10 @@ ShallowWrapper {
     "props": Object {
       "children": "",
       "clicked": [Function],
+      "filterByProperty": "filterByProperty",
+      "filterByValue": "filterByValue",
+      "filterNodes": [MockFunction],
+      "filterSiphonNodes": [MockFunction],
       "resetfilter": [MockFunction],
     },
     "ref": null,
@@ -41,6 +45,10 @@ ShallowWrapper {
       "props": Object {
         "children": "",
         "clicked": [Function],
+        "filterByProperty": "filterByProperty",
+        "filterByValue": "filterByValue",
+        "filterNodes": [MockFunction],
+        "filterSiphonNodes": [MockFunction],
         "resetfilter": [MockFunction],
       },
       "ref": null,

@@ -45,7 +45,7 @@ ShallowWrapper {
         },
       }
     }
-    filterGroups={
+    filters={
       Array [
         Object {
           "active": false,
@@ -161,15 +161,13 @@ ShallowWrapper {
             >
               <Connect(CardFilterButton)
                 className="btn btn-outline-primary PersonaButton"
-                filterByProperty="attributes.persona"
-                filterByValue="Developer"
+                filterKey="2"
               >
                 I'm a Developer
               </Connect(CardFilterButton)>
               <Connect(CardFilterButton)
                 className="btn btn-outline-success PersonaButton"
-                filterByProperty="attributes.persona"
-                filterByValue="Designer"
+                filterKey="1"
               >
                 I'm a Designer
               </Connect(CardFilterButton)>
@@ -203,6 +201,73 @@ ShallowWrapper {
           <div
             className="ListContainer"
           >
+            <SecondaryFilter
+              filterGroups={
+                Array [
+                  Object {
+                    "data": Array [
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "foo",
+                        "text": "Designers",
+                        "title": "For",
+                        "value": "Designer",
+                      },
+                      Object {
+                        "active": true,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "bar",
+                        "text": "Developers",
+                        "title": "For",
+                        "value": "Developer",
+                      },
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "baz",
+                        "text": "Product Owners",
+                        "title": "For",
+                        "value": "Product Owner",
+                      },
+                    ],
+                    "filters": Array [
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "foo",
+                        "text": "Designers",
+                        "title": "For",
+                        "value": "Designer",
+                      },
+                      Object {
+                        "active": true,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "bar",
+                        "text": "Developers",
+                        "title": "For",
+                        "value": "Developer",
+                      },
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "baz",
+                        "text": "Product Owners",
+                        "title": "For",
+                        "value": "Product Owner",
+                      },
+                    ],
+                    "title": "For",
+                  },
+                ]
+              }
+            />
             <div
               className="CardContainer"
             >
@@ -274,15 +339,13 @@ ShallowWrapper {
               >
                 <Connect(CardFilterButton)
                   className="btn btn-outline-primary PersonaButton"
-                  filterByProperty="attributes.persona"
-                  filterByValue="Developer"
+                  filterKey="2"
                 >
                   I'm a Developer
                 </Connect(CardFilterButton)>
                 <Connect(CardFilterButton)
                   className="btn btn-outline-success PersonaButton"
-                  filterByProperty="attributes.persona"
-                  filterByValue="Designer"
+                  filterKey="1"
                 >
                   I'm a Designer
                 </Connect(CardFilterButton)>
@@ -316,6 +379,73 @@ ShallowWrapper {
             <div
               className="ListContainer"
             >
+              <SecondaryFilter
+                filterGroups={
+                  Array [
+                    Object {
+                      "data": Array [
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "foo",
+                          "text": "Designers",
+                          "title": "For",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": true,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "bar",
+                          "text": "Developers",
+                          "title": "For",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "baz",
+                          "text": "Product Owners",
+                          "title": "For",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "filters": Array [
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "foo",
+                          "text": "Designers",
+                          "title": "For",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": true,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "bar",
+                          "text": "Developers",
+                          "title": "For",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "baz",
+                          "text": "Product Owners",
+                          "title": "For",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "title": "For",
+                    },
+                  ]
+                }
+              />
               <div
                 className="CardContainer"
               >
@@ -357,15 +487,13 @@ ShallowWrapper {
                 >
                   <Connect(CardFilterButton)
                     className="btn btn-outline-primary PersonaButton"
-                    filterByProperty="attributes.persona"
-                    filterByValue="Developer"
+                    filterKey="2"
                   >
                     I'm a Developer
                   </Connect(CardFilterButton)>
                   <Connect(CardFilterButton)
                     className="btn btn-outline-success PersonaButton"
-                    filterByProperty="attributes.persona"
-                    filterByValue="Designer"
+                    filterKey="1"
                   >
                     I'm a Designer
                   </Connect(CardFilterButton)>
@@ -454,15 +582,13 @@ ShallowWrapper {
                   "children": Array [
                     <Connect(CardFilterButton)
                       className="btn btn-outline-primary PersonaButton"
-                      filterByProperty="attributes.persona"
-                      filterByValue="Developer"
+                      filterKey="2"
                     >
                       I'm a Developer
                     </Connect(CardFilterButton)>,
                     <Connect(CardFilterButton)
                       className="btn btn-outline-success PersonaButton"
-                      filterByProperty="attributes.persona"
-                      filterByValue="Designer"
+                      filterKey="1"
                     >
                       I'm a Designer
                     </Connect(CardFilterButton)>,
@@ -478,8 +604,7 @@ ShallowWrapper {
                     "props": Object {
                       "children": "I'm a Developer",
                       "className": "btn btn-outline-primary PersonaButton",
-                      "filterByProperty": "attributes.persona",
-                      "filterByValue": "Developer",
+                      "filterKey": "2",
                     },
                     "ref": null,
                     "rendered": "I'm a Developer",
@@ -492,8 +617,7 @@ ShallowWrapper {
                     "props": Object {
                       "children": "I'm a Designer",
                       "className": "btn btn-outline-success PersonaButton",
-                      "filterByProperty": "attributes.persona",
-                      "filterByValue": "Designer",
+                      "filterKey": "1",
                     },
                     "ref": null,
                     "rendered": "I'm a Designer",
@@ -593,41 +717,185 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": <div
-                className="CardContainer"
-              >
-                <Flag
-                  name="features.githubResourceCards"
-                />
-              </div>,
+              "children": Array [
+                <SecondaryFilter
+                  filterGroups={
+                    Array [
+                      Object {
+                        "data": Array [
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "foo",
+                            "text": "Designers",
+                            "title": "For",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": true,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "bar",
+                            "text": "Developers",
+                            "title": "For",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "baz",
+                            "text": "Product Owners",
+                            "title": "For",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "filters": Array [
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "foo",
+                            "text": "Designers",
+                            "title": "For",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": true,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "bar",
+                            "text": "Developers",
+                            "title": "For",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "baz",
+                            "text": "Product Owners",
+                            "title": "For",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "title": "For",
+                      },
+                    ]
+                  }
+                />,
+                <div
+                  className="CardContainer"
+                >
+                  <Flag
+                    name="features.githubResourceCards"
+                  />
+                </div>,
+              ],
               "className": "ListContainer",
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": <Flag
-                  name="features.githubResourceCards"
-                />,
-                "className": "CardContainer",
-              },
-              "ref": null,
-              "rendered": Object {
+            "rendered": Array [
+              Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "class",
+                "nodeType": "function",
                 "props": Object {
-                  "children": Array [],
-                  "name": "features.githubResourceCards",
+                  "filterGroups": Array [
+                    Object {
+                      "data": Array [
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "foo",
+                          "text": "Designers",
+                          "title": "For",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": true,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "bar",
+                          "text": "Developers",
+                          "title": "For",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "baz",
+                          "text": "Product Owners",
+                          "title": "For",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "filters": Array [
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "foo",
+                          "text": "Designers",
+                          "title": "For",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": true,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "bar",
+                          "text": "Developers",
+                          "title": "For",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "baz",
+                          "text": "Product Owners",
+                          "title": "For",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "title": "For",
+                    },
+                  ],
                 },
                 "ref": null,
-                "rendered": Array [],
+                "rendered": null,
                 "type": [Function],
               },
-              "type": "div",
-            },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <Flag
+                    name="features.githubResourceCards"
+                  />,
+                  "className": "CardContainer",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [],
+                    "name": "features.githubResourceCards",
+                  },
+                  "ref": null,
+                  "rendered": Array [],
+                  "type": [Function],
+                },
+                "type": "div",
+              },
+            ],
             "type": "div",
           },
         ],
@@ -676,15 +944,13 @@ ShallowWrapper {
               >
                 <Connect(CardFilterButton)
                   className="btn btn-outline-primary PersonaButton"
-                  filterByProperty="attributes.persona"
-                  filterByValue="Developer"
+                  filterKey="2"
                 >
                   I'm a Developer
                 </Connect(CardFilterButton)>
                 <Connect(CardFilterButton)
                   className="btn btn-outline-success PersonaButton"
-                  filterByProperty="attributes.persona"
-                  filterByValue="Designer"
+                  filterKey="1"
                 >
                   I'm a Designer
                 </Connect(CardFilterButton)>
@@ -718,6 +984,73 @@ ShallowWrapper {
             <div
               className="ListContainer"
             >
+              <SecondaryFilter
+                filterGroups={
+                  Array [
+                    Object {
+                      "data": Array [
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "foo",
+                          "text": "Designers",
+                          "title": "For",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": true,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "bar",
+                          "text": "Developers",
+                          "title": "For",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "baz",
+                          "text": "Product Owners",
+                          "title": "For",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "filters": Array [
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "foo",
+                          "text": "Designers",
+                          "title": "For",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": true,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "bar",
+                          "text": "Developers",
+                          "title": "For",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "baz",
+                          "text": "Product Owners",
+                          "title": "For",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "title": "For",
+                    },
+                  ]
+                }
+              />
               <div
                 className="CardContainer"
               >
@@ -789,15 +1122,13 @@ ShallowWrapper {
                 >
                   <Connect(CardFilterButton)
                     className="btn btn-outline-primary PersonaButton"
-                    filterByProperty="attributes.persona"
-                    filterByValue="Developer"
+                    filterKey="2"
                   >
                     I'm a Developer
                   </Connect(CardFilterButton)>
                   <Connect(CardFilterButton)
                     className="btn btn-outline-success PersonaButton"
-                    filterByProperty="attributes.persona"
-                    filterByValue="Designer"
+                    filterKey="1"
                   >
                     I'm a Designer
                   </Connect(CardFilterButton)>
@@ -831,6 +1162,73 @@ ShallowWrapper {
               <div
                 className="ListContainer"
               >
+                <SecondaryFilter
+                  filterGroups={
+                    Array [
+                      Object {
+                        "data": Array [
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "foo",
+                            "text": "Designers",
+                            "title": "For",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": true,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "bar",
+                            "text": "Developers",
+                            "title": "For",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "baz",
+                            "text": "Product Owners",
+                            "title": "For",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "filters": Array [
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "foo",
+                            "text": "Designers",
+                            "title": "For",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": true,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "bar",
+                            "text": "Developers",
+                            "title": "For",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "baz",
+                            "text": "Product Owners",
+                            "title": "For",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "title": "For",
+                      },
+                    ]
+                  }
+                />
                 <div
                   className="CardContainer"
                 >
@@ -872,15 +1270,13 @@ ShallowWrapper {
                   >
                     <Connect(CardFilterButton)
                       className="btn btn-outline-primary PersonaButton"
-                      filterByProperty="attributes.persona"
-                      filterByValue="Developer"
+                      filterKey="2"
                     >
                       I'm a Developer
                     </Connect(CardFilterButton)>
                     <Connect(CardFilterButton)
                       className="btn btn-outline-success PersonaButton"
-                      filterByProperty="attributes.persona"
-                      filterByValue="Designer"
+                      filterKey="1"
                     >
                       I'm a Designer
                     </Connect(CardFilterButton)>
@@ -969,15 +1365,13 @@ ShallowWrapper {
                     "children": Array [
                       <Connect(CardFilterButton)
                         className="btn btn-outline-primary PersonaButton"
-                        filterByProperty="attributes.persona"
-                        filterByValue="Developer"
+                        filterKey="2"
                       >
                         I'm a Developer
                       </Connect(CardFilterButton)>,
                       <Connect(CardFilterButton)
                         className="btn btn-outline-success PersonaButton"
-                        filterByProperty="attributes.persona"
-                        filterByValue="Designer"
+                        filterKey="1"
                       >
                         I'm a Designer
                       </Connect(CardFilterButton)>,
@@ -993,8 +1387,7 @@ ShallowWrapper {
                       "props": Object {
                         "children": "I'm a Developer",
                         "className": "btn btn-outline-primary PersonaButton",
-                        "filterByProperty": "attributes.persona",
-                        "filterByValue": "Developer",
+                        "filterKey": "2",
                       },
                       "ref": null,
                       "rendered": "I'm a Developer",
@@ -1007,8 +1400,7 @@ ShallowWrapper {
                       "props": Object {
                         "children": "I'm a Designer",
                         "className": "btn btn-outline-success PersonaButton",
-                        "filterByProperty": "attributes.persona",
-                        "filterByValue": "Designer",
+                        "filterKey": "1",
                       },
                       "ref": null,
                       "rendered": "I'm a Designer",
@@ -1108,41 +1500,185 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": <div
-                  className="CardContainer"
-                >
-                  <Flag
-                    name="features.githubResourceCards"
-                  />
-                </div>,
+                "children": Array [
+                  <SecondaryFilter
+                    filterGroups={
+                      Array [
+                        Object {
+                          "data": Array [
+                            Object {
+                              "active": false,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "foo",
+                              "text": "Designers",
+                              "title": "For",
+                              "value": "Designer",
+                            },
+                            Object {
+                              "active": true,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "bar",
+                              "text": "Developers",
+                              "title": "For",
+                              "value": "Developer",
+                            },
+                            Object {
+                              "active": false,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "baz",
+                              "text": "Product Owners",
+                              "title": "For",
+                              "value": "Product Owner",
+                            },
+                          ],
+                          "filters": Array [
+                            Object {
+                              "active": false,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "foo",
+                              "text": "Designers",
+                              "title": "For",
+                              "value": "Designer",
+                            },
+                            Object {
+                              "active": true,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "bar",
+                              "text": "Developers",
+                              "title": "For",
+                              "value": "Developer",
+                            },
+                            Object {
+                              "active": false,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "baz",
+                              "text": "Product Owners",
+                              "title": "For",
+                              "value": "Product Owner",
+                            },
+                          ],
+                          "title": "For",
+                        },
+                      ]
+                    }
+                  />,
+                  <div
+                    className="CardContainer"
+                  >
+                    <Flag
+                      name="features.githubResourceCards"
+                    />
+                  </div>,
+                ],
                 "className": "ListContainer",
               },
               "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": <Flag
-                    name="features.githubResourceCards"
-                  />,
-                  "className": "CardContainer",
-                },
-                "ref": null,
-                "rendered": Object {
+              "rendered": Array [
+                Object {
                   "instance": null,
                   "key": undefined,
-                  "nodeType": "class",
+                  "nodeType": "function",
                   "props": Object {
-                    "children": Array [],
-                    "name": "features.githubResourceCards",
+                    "filterGroups": Array [
+                      Object {
+                        "data": Array [
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "foo",
+                            "text": "Designers",
+                            "title": "For",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": true,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "bar",
+                            "text": "Developers",
+                            "title": "For",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "baz",
+                            "text": "Product Owners",
+                            "title": "For",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "filters": Array [
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "foo",
+                            "text": "Designers",
+                            "title": "For",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": true,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "bar",
+                            "text": "Developers",
+                            "title": "For",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "baz",
+                            "text": "Product Owners",
+                            "title": "For",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "title": "For",
+                      },
+                    ],
                   },
                   "ref": null,
-                  "rendered": Array [],
+                  "rendered": null,
                   "type": [Function],
                 },
-                "type": "div",
-              },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <Flag
+                      name="features.githubResourceCards"
+                    />,
+                    "className": "CardContainer",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": Array [],
+                      "name": "features.githubResourceCards",
+                    },
+                    "ref": null,
+                    "rendered": Array [],
+                    "type": [Function],
+                  },
+                  "type": "div",
+                },
+              ],
               "type": "div",
             },
           ],

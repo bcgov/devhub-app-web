@@ -52,7 +52,7 @@ describe('Index Container', () => {
         data={data}
         loadSiphonNodes={loadSiphonNodes}
         location={location}
-        filterGroups={DEFAULT_FILTER_GROUPS}
+        filters={DEFAULT_FILTER_GROUPS}
       />,
     );
     expect(wrapper).toMatchSnapshot();
