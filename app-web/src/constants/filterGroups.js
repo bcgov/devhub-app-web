@@ -26,6 +26,7 @@ const defaultFilterGroups = [
     availableResources: null,
     key: '1',
     title: 'For',
+    isFilterable: true,
   },
   {
     filterBy: 'attributes.persona',
@@ -35,6 +36,7 @@ const defaultFilterGroups = [
     availableResources: null,
     key: '2',
     title: 'For',
+    isFilterable: true,
   },
   {
     filterBy: 'attributes.persona',
@@ -44,6 +46,7 @@ const defaultFilterGroups = [
     availableResources: null,
     key: '3',
     title: 'For',
+    isFilterable: true,
   },
 ];
 

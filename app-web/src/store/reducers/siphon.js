@@ -34,16 +34,48 @@ const initialState = {
 /**
  * filters through the primary filtered nodes by filters
  * found from the state.filters list
+ * checks if the dot prop matches the value for a given siphon node
+ * @param {Object} node
+ * @param {String} dotProp
+ * @param {String} value
+ */
+const dotPropMatchesValue = (node, filterBy, value) => dotProp.get(node, filterBy) === value;
+
+/**
+ * Check the number of resources that match a filter group
+ * @param {Object} state
+ */
+const getCountOfResourcesByFilter = state => {
+  const newState = { ...state };
+  const filterGroups = newState.filterGroups.map(filter => {
+    let count = 0;
+    // loop over all secondary filtered nodes and tally up count of matching filters
+    newState.primaryFilteredNodes.forEach(n => {
+      if (dotPropMatchesValue(n, filter.filterBy, filter.value)) {
+        count += 1;
+      }
+    });
+    return { ...filter, availableResources: count, isFilterable: count > 0 };
+  });
+
+  return filterGroups;
+};
+/**
+ * filters through the already filtered nodes with additional
+ * filters found from the filters list
  */
 const applySecondaryFilters = state => {
   const newState = { ...state };
   if (newState.filters.length > 0) {
     newState.secondaryFilteredNodes = newState.primaryFilteredNodes.filter(n =>
-      state.filters.some(filter => dotProp.get(n, filter.filteraryBy) === filter.value),
+      state.filters.some(filter => dotPropMatchesValue(n, filter.filterBy, filter.value)),
     );
   } else {
     newState.secondaryFilteredNodes = newState.primaryFilteredNodes.map(f => ({ ...f }));
   }
+  // tallies up the count of resources that belong to a given filter group
+  newState.filterGroups = getCountOfResourcesByFilter(newState);
+
   return newState;
 };
 
@@ -86,7 +118,8 @@ const toggleFilter = (state, key) => {
 const addFilter = (state, key) => {
   const fg = findFilterGroup(state, key);
   const newState = { ...state, filters: state.filters.concat(fg) };
-  return newState;
+  return applySecondaryFilters(newState);
+  // return newState;
 };
 
 /**
@@ -97,7 +130,7 @@ const addFilter = (state, key) => {
 const removeFilter = (state, key) => {
   const newState = { ...state };
   newState.filters = newState.filters.filter(f => f.key !== key);
-  return newState;
+  return applySecondaryFilters(newState);
 };
 /**
  * retrieves nodes by filtering for a given value in a nested siphon property
@@ -108,7 +141,7 @@ const applyPrimaryFilter = (state, filteredBy, value) => {
     .filter(n => value === 'All' || dotProp.get(n, filteredBy) === value)
     .map(n => ({ ...n }));
   const newState = { ...state, primaryFilteredNodes };
-  return newState;
+  return applySecondaryFilters(newState);
 };
 
 const loadNodes = (state, nodes) => {
@@ -117,6 +150,7 @@ const loadNodes = (state, nodes) => {
   // nodes will be filtered eventually be resource type which is the top level navigation
   newState.primaryFilteredNodes = nodes.map(n => ({ ...n }));
   newState.secondaryFilteredNodes = nodes.map(n => ({ ...n }));
+  newState.filterGroups = getCountOfResourcesByFilter(newState);
   return newState;
 };
 
