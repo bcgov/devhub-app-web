@@ -58,7 +58,7 @@ export const PrimaryFilter = ({
 };
 
 PrimaryFilter.propTypes = {
-  mobile: PropTypes.bool.isRequired,
+  mobile: PropTypes.bool,
   selectedFilter: PropTypes.string,
   applyPrimaryFilter: PropTypes.func.isRequired,
   applySecondaryFilters: PropTypes.func.isRequired,
@@ -67,6 +67,7 @@ PrimaryFilter.propTypes = {
 
 PrimaryFilter.defaultProps = {
   selectedFilter: '',
+  mobile: false,
 };
 
 const mapStateToProps = state => ({
