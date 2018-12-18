@@ -48,6 +48,10 @@
         padding: 25px 35px 30px;
     }
 
+    .ListContainer {
+        justify-content: flex-start;
+    }
+    
     .CardContainer {
         align-items: flex-start;
     }
