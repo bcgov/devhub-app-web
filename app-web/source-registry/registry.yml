@@ -48,7 +48,7 @@ sources:
       labels:
         - Repository
         - Components
-    persona: 'Developer'
+      persona: 'Developer'
   - name: DevHub
     sourceType: 'github'
     sourceProperties:
