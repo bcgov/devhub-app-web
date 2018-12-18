@@ -24,7 +24,7 @@ export class Index extends Component {
   }
 
   render() {
-    const { nodes, menuToggled, toggleMenu, filterGroups } = this.props;
+    const { nodes, menuToggled, toggleMenu, filters } = this.props;
     let mappedSiphonNodes = [];
     if (nodes && nodes.length) {
       mappedSiphonNodes = nodes
@@ -47,9 +47,9 @@ export class Index extends Component {
     ));
 
     // group filter groups by there title
-    let groupedFilterGroups = groupBy(filterGroups, 'title');
+    let groupedFilters = groupBy(filters, 'title');
     // map the data property that is created from groupBy
-    groupedFilterGroups = groupedFilterGroups.map(fg => ({ ...fg, filters: fg.data }));
+    groupedFilters = groupedFilters.map(fg => ({ ...fg, filters: fg.data }));
 
     return (
       <Layout showHamburger hamburgerClicked={toggleMenu}>
@@ -101,7 +101,7 @@ export class Index extends Component {
             </p>
           </section>
           <div className={styles.ListContainer}>
-            <SecondaryFilter filterGroups={groupedFilterGroups} />
+            <SecondaryFilter filterGroups={groupedFilters} />
             <div className={styles.CardContainer}>
               <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
             </div>
@@ -158,7 +158,7 @@ const mapStateToProps = state => {
   return {
     nodes: state.siphon.secondaryFilteredNodes,
     menuToggled: state.ui.mainNavigationToggled,
-    filterGroups: state.siphon.filterGroups,
+    filters: state.siphon.filters,
   };
 };
 

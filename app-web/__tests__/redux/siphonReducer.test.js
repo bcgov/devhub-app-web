@@ -43,15 +43,6 @@ describe('reducer', () => {
     expect(filteredState.primaryFilteredNodes.length).toBe(3);
   });
 
-  it("should toggle a filtergroup active when it isn't", () => {
-    const fg = INITIAL_STATES.SIPHON.filterGroups[0];
-    expect(fg.active).toBe(false);
-    const newState = reducer(INITIAL_STATES.SIPHON, ACTIONS.TOGGLE_FILTER_GROUP);
-    // find the fg by the key
-    const updatedFg = newState.filterGroups.find(filterGroup => fg.key === filterGroup.key);
-    expect(updatedFg.active).toBe(true);
-  });
-
   it('should add a filter group to filters list', () => {
     expect(INITIAL_STATES.SIPHON.filters.length).toBe(0);
 

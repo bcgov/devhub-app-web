@@ -53,8 +53,6 @@ export const FilterGroup = ({
                 // on this groups params
                 if (filter.isFilterable) {
                   filter.active ? removeFilter(filter.key) : addFilter(filter.key);
-                  // applies the filter active class on rerender
-                  toggleFilter(filter.key);
                 }
               }}
               key={filter.key}
@@ -91,7 +89,6 @@ FilterGroup.propTypes = {
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleFilter: key => dispatch(actions.toggleFilterGroup(key)),
     addFilter: key => dispatch(actions.addFilter(key)),
     removeFilter: key => dispatch(actions.removeFilter(key)),
     applySecondaryFilters: () => dispatch(actions.filterSiphonNodesByFilterList()),

@@ -27,8 +27,7 @@ const initialState = {
   loading: false,
   error: false,
   messages: [],
-  filters: [],
-  filterGroups: defaultFilterGroups,
+  filters: defaultFilterGroups,
 };
 
 /**
@@ -42,51 +41,43 @@ const initialState = {
 const dotPropMatchesValue = (node, filterBy, value) => dotProp.get(node, filterBy) === value;
 
 /**
- * Check the number of resources that match a filter group
- * @param {Object} state
+ * Check the number of resources that match a filter
+ * and applies other props based on if the count is > 0
+ * @param {Object} filter
  */
-const getCountOfResourcesByFilter = state => {
-  const newState = { ...state };
-  const filterGroups = newState.filterGroups.map(filter => {
-    let count = 0;
-    // loop over all secondary filtered nodes and tally up count of matching filters
-    newState.primaryFilteredNodes.forEach(n => {
-      if (dotPropMatchesValue(n, filter.filterBy, filter.value)) {
-        count += 1;
-      }
-    });
-    return { ...filter, availableResources: count, isFilterable: count > 0 };
+const applyPropsToFilterByResourceCount = (filter, primaryNodes) => {
+  let count = 0;
+  // loop over all secondary filtered nodes and tally up count of matching filters
+  primaryNodes.forEach(n => {
+    count += dotPropMatchesValue(n, filter.filterBy, filter.value);
   });
 
-  return filterGroups;
-};
-/**
- * filters through the already filtered nodes with additional
- * filters found from the filters list
- */
-const applySecondaryFilters = state => {
-  const newState = { ...state };
-  if (newState.filters.length > 0) {
-    newState.secondaryFilteredNodes = newState.primaryFilteredNodes.filter(n =>
-      state.filters.some(filter => dotPropMatchesValue(n, filter.filterBy, filter.value)),
-    );
-  } else {
-    newState.secondaryFilteredNodes = newState.primaryFilteredNodes.map(f => ({ ...f }));
-  }
-  // tallies up the count of resources that belong to a given filter group
-  newState.filterGroups = getCountOfResourcesByFilter(newState);
+  // check if this filter has been set to active and if it should remain so
+  // this would onyl be the case if the available resources are greater than 0
+  const shouldStayActive = filter.active && count > 0;
 
-  return newState;
+  return {
+    ...filter,
+    availableResources: count,
+    isFilterable: count > 0,
+    active: shouldStayActive,
+  };
 };
+
+/**
+ * returns filter groups that are currently active
+ * @param {Array} filters
+ */
+const getActiveFilters = filters => filters.filter(fg => fg.active);
 
 /**
  * helper to find a filter group by key
  * @param {Object} state
  * @param {String} key
  */
-const findFilterGroup = (state, key) => {
-  const ind = state.filterGroups.findIndex(f => f.key === key);
-  const fg = { ...state.filterGroups[ind] };
+const findFilter = (state, key) => {
+  const ind = state.filters.findIndex(f => f.key === key);
+  const fg = { ...state.filters[ind] };
 
   return fg;
 };
@@ -95,43 +86,22 @@ const findFilterGroup = (state, key) => {
  * sets 'active' property on a filter config object
  * @param {Object} state
  * @param {String} key
+ * @param {Boolean} isActive
  */
-const toggleFilter = (state, key) => {
+const toggleFilter = (state, key, isActive) => {
   const newState = { ...state };
-  const fg = findFilterGroup(state, key);
+  const fg = findFilter(state, key);
+  fg.active = isActive;
 
-  fg.active = !fg.active;
-  const newFilterGroups = newState.filterGroups.map(f => {
+  const newFilters = newState.filters.map(f => {
     if (f.key === fg.key) return fg;
     return f;
   });
 
-  newState.filterGroups = newFilterGroups;
+  newState.filters = newFilters;
   return newState;
 };
 
-/**
- * adds filter to list of filters
- * @param {Obejct} state
- * @param {String} key
- */
-const addFilter = (state, key) => {
-  const fg = findFilterGroup(state, key);
-  const newState = { ...state, filters: state.filters.concat(fg) };
-  return applySecondaryFilters(newState);
-  // return newState;
-};
-
-/**
- * removes filter from list of filters
- * @param {Object} state
- * @param {String} key
- */
-const removeFilter = (state, key) => {
-  const newState = { ...state };
-  newState.filters = newState.filters.filter(f => f.key !== key);
-  return applySecondaryFilters(newState);
-};
 /**
  * retrieves nodes by filtering for a given value in a nested siphon property
  */
@@ -144,14 +114,60 @@ const applyPrimaryFilter = (state, filteredBy, value) => {
   return applySecondaryFilters(newState);
 };
 
+/**
+ * filters through the primary filtered nodes by the active
+ * filters in the state.filters list
+ * additionally tallies up how many resources apply to a filter and applies
+ * other metadata for a filter
+ */
+const applySecondaryFilters = state => {
+  const newState = { ...state };
+  // get counts of filters and apply other properties based on if count is 0
+  newState.filters = newState.filters.map(filter =>
+    applyPropsToFilterByResourceCount(filter, newState.primaryFilteredNodes),
+  );
+
+  const filtersToApply = getActiveFilters(newState.filters);
+  // if there aren't any filters to apply, the secondary filtered nodes is reset to what the primary
+  // nodes are
+  if (filtersToApply.length > 0) {
+    // loop over filters and see that atleast one of the filters suceeeds against the node
+    newState.secondaryFilteredNodes = newState.primaryFilteredNodes.filter(n =>
+      filtersToApply.some(filter => dotPropMatchesValue(n, filter.filterBy, filter.value)),
+    );
+  } else {
+    newState.secondaryFilteredNodes = newState.primaryFilteredNodes.map(f => ({ ...f }));
+  }
+
+  return newState;
+};
+
+/**
+ * adds filter to list of filters
+ * @param {Obejct} state
+ * @param {String} key
+ */
+const addFilter = (state, key) => {
+  const newState = toggleFilter(state, key, true);
+  return applySecondaryFilters(newState);
+};
+
+/**
+ * removes filter from list of filters
+ * @param {Object} state
+ * @param {String} key
+ */
+const removeFilter = (state, key) => {
+  const newState = toggleFilter(state, key, false);
+  return applySecondaryFilters(newState);
+};
+
 const loadNodes = (state, nodes) => {
   const newState = { ...state };
   newState.nodes = nodes.map(n => ({ ...n }));
   // nodes will be filtered eventually be resource type which is the top level navigation
   newState.primaryFilteredNodes = nodes.map(n => ({ ...n }));
-  newState.secondaryFilteredNodes = nodes.map(n => ({ ...n }));
-  newState.filterGroups = getCountOfResourcesByFilter(newState);
-  return newState;
+  return applySecondaryFilters(newState);
 };
 
 const reducer = (state = initialState, action) => {
@@ -160,8 +176,6 @@ const reducer = (state = initialState, action) => {
       return loadNodes(state, action.payload.nodes);
     case actionTypes.FILTER_SIPHON_NODES:
       return applyPrimaryFilter(state, action.payload.filteredBy, action.payload.value);
-    case actionTypes.TOGGLE_FILTER_GROUP:
-      return toggleFilter(state, action.payload.key);
     case actionTypes.ADD_FILTER:
       return addFilter(state, action.payload.key);
     case actionTypes.REMOVE_FILTER:

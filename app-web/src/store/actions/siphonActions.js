@@ -45,15 +45,6 @@ export const filterSiphonNodes = (filteredBy, value) => {
   };
 };
 
-export const toggleFilterGroup = key => {
-  return {
-    type: actionTypes.TOGGLE_FILTER_GROUP,
-    payload: {
-      key,
-    },
-  };
-};
-
 export const addFilter = key => {
   return {
     type: actionTypes.ADD_FILTER,
