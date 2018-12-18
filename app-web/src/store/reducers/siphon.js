@@ -32,10 +32,8 @@ const initialState = {
 };
 
 /**
- * filters through the already filtered nodes with additional
- * filters found from the filters list
- * @param {Array} filteredNodes
- * @param {Array} filtersList
+ * filters through the primary filtered nodes by filters
+ * found from the state.filters list
  */
 const applySecondaryFilters = state => {
   const newState = { ...state };
