@@ -42,13 +42,12 @@ const Card = ({ children, resourceType, resourcePath, title, author }) => (
           height={CARD_CONFIG.avatarIconHeight}
         />
       </Link>
-      
+
       <DotDotDot clamp={CARD_CONFIG.maxTitleLines} tagName="h2">
         <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE} title={title}>
           {title}
         </Link>
       </DotDotDot>
-
     </div>
     {children}
     <MetadataRibbon items={[resourceType]} />

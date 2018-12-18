@@ -4,7 +4,8 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <PrimaryFilter
-    filterSiphonNodes={[MockFunction]}
+    applyPrimaryFilter={[MockFunction]}
+    applySecondaryFilters={[MockFunction]}
     menuToggled={false}
     mobile={false}
     selectedFilter=""

@@ -7,6 +7,7 @@ describe('CardFilterButton Component', () => {
     const wrapper = shallow(
       <CardFilterButton
         filterSiphonNodes={jest.fn()}
+        filterNodes={jest.fn()}
         filterByProperty="filterByProperty"
         filterByValue="filterByValue"
         resetfilter={jest.fn()}

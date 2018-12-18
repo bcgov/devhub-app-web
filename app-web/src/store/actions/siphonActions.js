@@ -19,7 +19,7 @@ import * as actionTypes from './actionTypes';
 
 /**
  * Loads graphQL nodes from gatsby data layer into the redux store
- * @param {Array} nodes 
+ * @param {Array} nodes
  */
 export const loadSiphonNodes = nodes => {
   return {
@@ -33,7 +33,7 @@ export const loadSiphonNodes = nodes => {
 /**
  * filters siphon nodes
  * @param {String} filteredBy use dot prop notation if you are intending on accessing a nested node property eg 'prop1.prop2'
- * @param {String} value 
+ * @param {String} value
  */
 export const filterSiphonNodes = (filteredBy, value) => {
   return {
@@ -42,5 +42,38 @@ export const filterSiphonNodes = (filteredBy, value) => {
       filteredBy,
       value,
     },
+  };
+};
+
+export const toggleFilterGroup = key => {
+  return {
+    type: actionTypes.TOGGLE_FILTER_GROUP,
+    payload: {
+      key,
+    },
+  };
+};
+
+export const addFilter = key => {
+  return {
+    type: actionTypes.ADD_FILTER,
+    payload: {
+      key,
+    },
+  };
+};
+
+export const removeFilter = key => {
+  return {
+    type: actionTypes.REMOVE_FILTER,
+    payload: {
+      key,
+    },
+  };
+};
+
+export const filterSiphonNodesByFilterList = () => {
+  return {
+    type: actionTypes.FILTER_SIPHON_NODES_BY_FILTER_LIST,
   };
 };

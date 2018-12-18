@@ -68,4 +68,7 @@ const mapStateToProps = state => ({
   useAuth: state.flags.features.login,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Layout);

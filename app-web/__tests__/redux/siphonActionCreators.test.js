@@ -28,4 +28,19 @@ describe('actions', () => {
     const expected = ACTIONS.FILTER_SIPHON_NODES;
     expect(actions.filterSiphonNodes('foo', 'bar')).toEqual(expected);
   });
+
+  it('should create an action to toggle a filter group', () => {
+    const expected = ACTIONS.TOGGLE_FILTER_GROUP;
+    expect(actions.toggleFilterGroup('foo')).toEqual(expected);
+  });
+
+  it('should create an action to add a filter group to filters list', () => {
+    const expected = ACTIONS.ADD_FILTER;
+    expect(actions.addFilter('foo')).toEqual(expected);
+  });
+
+  it('should create an action to remove a filter group to filters list', () => {
+    const expected = ACTIONS.REMOVE_FILTER;
+    expect(actions.removeFilter('foo')).toEqual(expected);
+  });
 });

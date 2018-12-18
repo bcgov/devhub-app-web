@@ -23,7 +23,11 @@ import Action from './Action/Action';
 const ActionGroup = ({ title, actions }) => (
   <div>
     <h3>{title}</h3>
-    <ul>{actions.map(a => <Action key={shortid.generate()} {...a} />)}</ul>
+    <ul>
+      {actions.map(a => (
+        <Action key={shortid.generate()} {...a} />
+      ))}
+    </ul>
   </div>
 );
 

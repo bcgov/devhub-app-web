@@ -22,10 +22,10 @@ import { createFlagsReducer } from 'flag';
 
 /**
  * login: login authentication feature which renders/not renders the login button
- * githubResourceCards: renders/not renders resources pulled from the local 
+ * githubResourceCards: renders/not renders resources pulled from the local
  *                      gatsby-source-github-all plugin
  * pathfinderResourceCards: renders/not renders pathfinder resources which is pulled
- *                          from the pathfinder repo using a different library as 
+ *                          from the pathfinder repo using a different library as
  *                          a legacy implementation
  */
 export default createFlagsReducer({

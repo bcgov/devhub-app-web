@@ -18,7 +18,7 @@ Created by Patrick Simonian
 
 /**
  * returns boolean if path is relative
- * @param {String} path 
+ * @param {String} path
  * @returns {Boolean}
  */
 const isRelativePath = path => /^\.\.?\//.test(path);

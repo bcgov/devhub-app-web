@@ -16,11 +16,60 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import * as actions from '../src/store/actions/actionTypes';
+
+export const DEFAULT_FILTER_GROUPS = [
+  {
+    filterBy: 'attributes.persona',
+    value: 'Designer',
+    text: 'Designers',
+    active: false,
+    availableResources: null,
+    key: 'foo',
+    title: 'For',
+  },
+  {
+    filterBy: 'attributes.persona',
+    value: 'Developer',
+    text: 'Developers',
+    active: false,
+    availableResources: null,
+    key: 'bar',
+    title: 'For',
+  },
+  {
+    filterBy: 'attributes.persona',
+    value: 'Product Owner',
+    text: 'Product Owners',
+    active: false,
+    availableResources: null,
+    key: 'baz',
+    title: 'For',
+  },
+];
+
 export const ACTIONS = {
+  ADD_FILTER: {
+    type: actions.ADD_FILTER,
+    payload: {
+      key: 'foo',
+    },
+  },
+  REMOVE_FILTER: {
+    type: actions.REMOVE_FILTER,
+    payload: {
+      key: 'foo',
+    },
+  },
   LOAD_SIPHON_NODES: {
     type: actions.LOAD_SIPHON_NODES,
     payload: {
       nodes: [{ foo: 'bar' }, { foo: 'baz' }, { foo: 'foo' }],
+    },
+  },
+  TOGGLE_FILTER_GROUP: {
+    type: actions.TOGGLE_FILTER_GROUP,
+    payload: {
+      key: 'foo',
     },
   },
   FILTER_SIPHON_NODES: {
@@ -66,7 +115,10 @@ export const ACTIONS = {
 export const INITIAL_STATES = {
   SIPHON: {
     nodes: [],
-    filteredNodes: [],
+    primaryFilteredNodes: [],
+    secondaryFilteredNodes: [],
+    filterGroups: DEFAULT_FILTER_GROUPS,
+    filters: [],
     groupBy: null,
     loading: false,
     error: false,

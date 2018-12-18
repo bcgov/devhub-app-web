@@ -22,7 +22,7 @@ export class Index extends Component {
   }
 
   render() {
-    const { nodes, location: { pathname }, menuToggled, toggleMenu } = this.props;
+    const { nodes, menuToggled, toggleMenu } = this.props;
     let mappedSiphonNodes = [];
     if (nodes && nodes.length) {
       mappedSiphonNodes = nodes
@@ -37,15 +37,6 @@ export class Index extends Component {
           repository: node.source.name,
         }));
     }
-
-    // const cards = mappedSiphonNodes.length > 0 ? <Cards cards={mappedSiphonNodes} topic='Everything'/> : <div>Loading</div>;
-    // console.log(mappedSiphonNodes);
-    //   .map(siphonNode => ({
-    //     ...siphonNode,
-    //     title: siphonNode.childMarkdownRemark.frontmatter.title,
-    //     description: siphonNode.childMarkdownRemark.frontmatter.description,
-    //   }));
-
     const groupedSiphonData = groupBy(mappedSiphonNodes, 'collectionName');
     const SiphonResources = groupedSiphonData.map(ghData => (
       <Cards key={shortid.generate()} topic={ghData.collectionName} cards={ghData.data} />
@@ -57,7 +48,6 @@ export class Index extends Component {
           <PrimaryFilter />
           {menuToggled ? <PrimaryFilter mobile /> : null}
         </Flag>
-
         <main role="main" className={[styles.Main, 'container'].join(' ')}>
           <section className="jumbotron text-center">
             <h1 className="jumbotron-heading">Welcome.</h1>
@@ -101,31 +91,17 @@ export class Index extends Component {
               opening an issue in our <a href={GITHUB_ISSUES_ROUTE}>GitHub</a> repository.
             </p>
           </section>
-          <div className={styles.CardContainer}>
-            <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
+          <div className={styles.ListContainer}>
+            <div className={styles.CardContainer}>
+              <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
+            </div>
           </div>
-          {/*<Flag name="features.pathfinderResourceCards">{pathfinderResources}</Flag>*/}
         </main>
       </Layout>
     );
   }
 }
 
-// this query automagically gets passed in as a 'data' prop into
-// the above component
-/** query removed at this time
- pathfinder: githubData {
-      data {
-        organization {
-          repository {
-            resources {
-              yaml: text
-            }
-          }
-        }
-      }
-    }
- */
 export const resourceQuery = graphql`
   query resourceQuery {
     allDevhubSiphon(filter: { internal: { mediaType: { eq: "text/markdown" } } }) {
@@ -170,7 +146,7 @@ export const resourceQuery = graphql`
 
 const mapStateToProps = state => {
   return {
-    nodes: state.siphon.filteredNodes,
+    nodes: state.siphon.secondaryFilteredNodes,
     menuToggled: state.ui.mainNavigationToggled,
   };
 };
@@ -182,4 +158,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Index);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Index);

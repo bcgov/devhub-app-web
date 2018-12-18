@@ -17,24 +17,97 @@ Created by Patrick Simonian
 */
 import * as actionTypes from '../actions/actionTypes';
 import dotProp from 'dot-prop-immutable';
+import defaultFilterGroups from '../../constants/filterGroups';
 
 const initialState = {
   nodes: [],
-  filteredNodes: [],
+  primaryFilteredNodes: [], // this is filtered by the resource type top level filters
+  secondaryFilteredNodes: [], // subsequent filters using the filter side menu
   groupBy: null,
   loading: false,
   error: false,
   messages: [],
+  filters: [],
+  filterGroups: defaultFilterGroups,
 };
 
 /**
+ * filters through the primary filtered nodes by filters
+ * found from the state.filters list
+ */
+const applySecondaryFilters = state => {
+  const newState = { ...state };
+  if (newState.filters.length > 0) {
+    newState.secondaryFilteredNodes = newState.primaryFilteredNodes.filter(n =>
+      state.filters.some(filter => dotProp.get(n, filter.filteraryBy) === filter.value),
+    );
+  } else {
+    newState.secondaryFilteredNodes = newState.primaryFilteredNodes.map(f => ({ ...f }));
+  }
+  return newState;
+};
+
+/**
+ * helper to find a filter group by key
+ * @param {Object} state
+ * @param {String} key
+ */
+const findFilterGroup = (state, key) => {
+  const ind = state.filterGroups.findIndex(f => f.key === key);
+  const fg = { ...state.filterGroups[ind] };
+
+  return fg;
+};
+
+/**
+ * sets 'active' property on a filter config object
+ * @param {Object} state
+ * @param {String} key
+ */
+const toggleFilter = (state, key) => {
+  const newState = { ...state };
+  const fg = findFilterGroup(state, key);
+
+  fg.active = !fg.active;
+  const newFilterGroups = newState.filterGroups.map(f => {
+    if (f.key === fg.key) return fg;
+    return f;
+  });
+
+  newState.filterGroups = newFilterGroups;
+  return newState;
+};
+
+/**
+ * adds filter to list of filters
+ * @param {Obejct} state
+ * @param {String} key
+ */
+const addFilter = (state, key) => {
+  const fg = findFilterGroup(state, key);
+  const newState = { ...state, filters: state.filters.concat(fg) };
+  return newState;
+};
+
+/**
+ * removes filter from list of filters
+ * @param {Object} state
+ * @param {String} key
+ */
+const removeFilter = (state, key) => {
+  const newState = { ...state };
+  newState.filters = newState.filters.filter(f => f.key !== key);
+  return newState;
+};
+/**
  * retrieves nodes by filtering for a given value in a nested siphon property
  */
-export const filterNodesByParam = (state, filteredBy, value) => {
-  const filteredNodes = state.nodes
+const applyPrimaryFilter = (state, filteredBy, value) => {
+  // filter the initial nodes based off the main filterBy value
+  const primaryFilteredNodes = state.nodes
     .filter(n => value === 'All' || dotProp.get(n, filteredBy) === value)
     .map(n => ({ ...n }));
-  const newState = { ...state, filteredNodes };
+  const newState = { ...state, primaryFilteredNodes };
   return newState;
 };
 
@@ -42,7 +115,8 @@ const loadNodes = (state, nodes) => {
   const newState = { ...state };
   newState.nodes = nodes.map(n => ({ ...n }));
   // nodes will be filtered eventually be resource type which is the top level navigation
-  newState.filteredNodes = nodes.map(n => ({ ...n }));
+  newState.primaryFilteredNodes = nodes.map(n => ({ ...n }));
+  newState.secondaryFilteredNodes = nodes.map(n => ({ ...n }));
   return newState;
 };
 
@@ -51,7 +125,15 @@ const reducer = (state = initialState, action) => {
     case actionTypes.LOAD_SIPHON_NODES:
       return loadNodes(state, action.payload.nodes);
     case actionTypes.FILTER_SIPHON_NODES:
-      return filterNodesByParam(state, action.payload.filteredBy, action.payload.value);
+      return applyPrimaryFilter(state, action.payload.filteredBy, action.payload.value);
+    case actionTypes.TOGGLE_FILTER_GROUP:
+      return toggleFilter(state, action.payload.key);
+    case actionTypes.ADD_FILTER:
+      return addFilter(state, action.payload.key);
+    case actionTypes.REMOVE_FILTER:
+      return removeFilter(state, action.payload.key);
+    case actionTypes.FILTER_SIPHON_NODES_BY_FILTER_LIST:
+      return applySecondaryFilters(state);
     default:
       return state;
   }

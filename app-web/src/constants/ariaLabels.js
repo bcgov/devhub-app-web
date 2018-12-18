@@ -7,3 +7,5 @@ export const ARIA_LABEL_TO_GITHUB_USER = 'Select to view this authors Github Pro
 export const ARIA_LABEL_TO_GITHUB_ISSUES = "Select to view this Github respositories' issues";
 export const ARIA_LABEL_WATCH_GITHUB_REPO = 'Watch this Github repository';
 export const ARIA_LABEL_FORK_GITHUB_REPO = 'Fork this Github repository';
+export const ARIA_LABEL_FILTER_RESOURCE = 'Filter resources by this value';
+export const ARIA_LABEL_RESOURCES_MATCH_FILTER = 'Number of resources that match this filter';

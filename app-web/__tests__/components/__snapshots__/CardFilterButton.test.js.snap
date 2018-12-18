@@ -6,6 +6,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <CardFilterButton
     filterByProperty="filterByProperty"
     filterByValue="filterByValue"
+    filterNodes={[MockFunction]}
     filterSiphonNodes={[MockFunction]}
     resetfilter={[MockFunction]}
   >

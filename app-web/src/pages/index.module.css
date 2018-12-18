@@ -31,10 +31,15 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    padding-top: 25px;
 }
 
 .PersonaButton {
     margin: .7em;
+}
+
+.ListContainer {
+    display: flex;
 }
 
 @media screen and (min-width: 500px) {

@@ -24,8 +24,8 @@ const { SOURCE_TYPES } = require('../plugins/gatsby-source-github-all/utils/cons
 
 /**
  * Get Templates based on source and media type
- * @param {String} source 
- * @param {String} mediaType 
+ * @param {String} source
+ * @param {String} mediaType
  * @returns {string} the path to the template
  */
 const getTemplate = (source, mediaType) => {

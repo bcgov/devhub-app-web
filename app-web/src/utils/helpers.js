@@ -33,8 +33,8 @@ export const getGithubWatchRoute = (repository, owner) =>
 export const getGithubUsernameURL = username => `${GITHUB_URL}/${username}`;
 /**
  * returns a github username image url
- * @param {String} username 
- * @param {Number} size 
+ * @param {String} username
+ * @param {Number} size
  * @returns {String} the github path to the user's avatar
  */
 export const getGithubAvatarFromUsername = (username, size) => {
