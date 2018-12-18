@@ -14,16 +14,43 @@ Created by Patrick Simonian
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './SecondaryFilter.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import FilterGroup from './FilterGroup/FilterGroup';
 import shortid from 'shortid';
+import Toggle from 'react-toggled';
 
-const SecondaryFilter = ({ filterGroups }) => (
-  <div className={styles.SecondaryFilter}>
-    {filterGroups.map(fg => (
-      <FilterGroup {...fg} key={shortid.generate()} />
-    ))}
-  </div>
-);
+const SecondaryFilter = ({ filterGroups, mobile }) => {
+  const filterGroupsComponent = (
+    <div className={styles.SecondaryFilter}>
+      {filterGroups.map(fg => (
+        <FilterGroup {...fg} key={shortid.generate()} />
+      ))}
+    </div>
+  );
+
+  // if mobile we provide a toggling mechanism
+  if (mobile) {
+    return (
+      <Toggle>
+        {({ on, getTogglerProps }) => (
+          <div className={styles.MobileSecondaryFilterContainer}>
+            <button
+              className="btn btn-link"
+              {...getTogglerProps()}
+              style={{ margin: '1px', fontSize: '1.2em', textDecoration: 'none', color: '#1a5a96' }}
+            >
+              Filters <FontAwesomeIcon icon={faFilter} />
+            </button>
+            {on ? filterGroupsComponent : null}
+          </div>
+        )}
+      </Toggle>
+    );
+  } else {
+    return filterGroupsComponent;
+  }
+};
 
 SecondaryFilter.propTypes = {
   filterGroups: PropTypes.arrayOf(
@@ -32,6 +59,11 @@ SecondaryFilter.propTypes = {
       filters: PropTypes.array.isRequired,
     }),
   ).isRequired,
+  mobile: PropTypes.bool,
+};
+
+SecondaryFilter.defaultProps = {
+  mobile: false,
 };
 
 export default SecondaryFilter;

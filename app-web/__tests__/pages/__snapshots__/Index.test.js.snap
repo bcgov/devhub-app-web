@@ -267,6 +267,75 @@ ShallowWrapper {
                   },
                 ]
               }
+              mobile={false}
+            />
+            <SecondaryFilter
+              filterGroups={
+                Array [
+                  Object {
+                    "data": Array [
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "foo",
+                        "text": "Designers",
+                        "title": "For",
+                        "value": "Designer",
+                      },
+                      Object {
+                        "active": true,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "bar",
+                        "text": "Developers",
+                        "title": "For",
+                        "value": "Developer",
+                      },
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "baz",
+                        "text": "Product Owners",
+                        "title": "For",
+                        "value": "Product Owner",
+                      },
+                    ],
+                    "filters": Array [
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "foo",
+                        "text": "Designers",
+                        "title": "For",
+                        "value": "Designer",
+                      },
+                      Object {
+                        "active": true,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "bar",
+                        "text": "Developers",
+                        "title": "For",
+                        "value": "Developer",
+                      },
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "baz",
+                        "text": "Product Owners",
+                        "title": "For",
+                        "value": "Product Owner",
+                      },
+                    ],
+                    "title": "For",
+                  },
+                ]
+              }
+              mobile={true}
             />
             <div
               className="CardContainer"
@@ -445,6 +514,75 @@ ShallowWrapper {
                     },
                   ]
                 }
+                mobile={false}
+              />
+              <SecondaryFilter
+                filterGroups={
+                  Array [
+                    Object {
+                      "data": Array [
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "foo",
+                          "text": "Designers",
+                          "title": "For",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": true,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "bar",
+                          "text": "Developers",
+                          "title": "For",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "baz",
+                          "text": "Product Owners",
+                          "title": "For",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "filters": Array [
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "foo",
+                          "text": "Designers",
+                          "title": "For",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": true,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "bar",
+                          "text": "Developers",
+                          "title": "For",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "baz",
+                          "text": "Product Owners",
+                          "title": "For",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "title": "For",
+                    },
+                  ]
+                }
+                mobile={true}
               />
               <div
                 className="CardContainer"
@@ -784,6 +922,75 @@ ShallowWrapper {
                       },
                     ]
                   }
+                  mobile={false}
+                />,
+                <SecondaryFilter
+                  filterGroups={
+                    Array [
+                      Object {
+                        "data": Array [
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "foo",
+                            "text": "Designers",
+                            "title": "For",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": true,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "bar",
+                            "text": "Developers",
+                            "title": "For",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "baz",
+                            "text": "Product Owners",
+                            "title": "For",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "filters": Array [
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "foo",
+                            "text": "Designers",
+                            "title": "For",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": true,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "bar",
+                            "text": "Developers",
+                            "title": "For",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "baz",
+                            "text": "Product Owners",
+                            "title": "For",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "title": "For",
+                      },
+                    ]
+                  }
+                  mobile={true}
                 />,
                 <div
                   className="CardContainer"
@@ -865,6 +1072,81 @@ ShallowWrapper {
                       "title": "For",
                     },
                   ],
+                  "mobile": false,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "filterGroups": Array [
+                    Object {
+                      "data": Array [
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "foo",
+                          "text": "Designers",
+                          "title": "For",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": true,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "bar",
+                          "text": "Developers",
+                          "title": "For",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "baz",
+                          "text": "Product Owners",
+                          "title": "For",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "filters": Array [
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "foo",
+                          "text": "Designers",
+                          "title": "For",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": true,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "bar",
+                          "text": "Developers",
+                          "title": "For",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "baz",
+                          "text": "Product Owners",
+                          "title": "For",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "title": "For",
+                    },
+                  ],
+                  "mobile": true,
                 },
                 "ref": null,
                 "rendered": null,
@@ -1050,6 +1332,75 @@ ShallowWrapper {
                     },
                   ]
                 }
+                mobile={false}
+              />
+              <SecondaryFilter
+                filterGroups={
+                  Array [
+                    Object {
+                      "data": Array [
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "foo",
+                          "text": "Designers",
+                          "title": "For",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": true,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "bar",
+                          "text": "Developers",
+                          "title": "For",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "baz",
+                          "text": "Product Owners",
+                          "title": "For",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "filters": Array [
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "foo",
+                          "text": "Designers",
+                          "title": "For",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": true,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "bar",
+                          "text": "Developers",
+                          "title": "For",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "baz",
+                          "text": "Product Owners",
+                          "title": "For",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "title": "For",
+                    },
+                  ]
+                }
+                mobile={true}
               />
               <div
                 className="CardContainer"
@@ -1228,6 +1579,75 @@ ShallowWrapper {
                       },
                     ]
                   }
+                  mobile={false}
+                />
+                <SecondaryFilter
+                  filterGroups={
+                    Array [
+                      Object {
+                        "data": Array [
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "foo",
+                            "text": "Designers",
+                            "title": "For",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": true,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "bar",
+                            "text": "Developers",
+                            "title": "For",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "baz",
+                            "text": "Product Owners",
+                            "title": "For",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "filters": Array [
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "foo",
+                            "text": "Designers",
+                            "title": "For",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": true,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "bar",
+                            "text": "Developers",
+                            "title": "For",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "baz",
+                            "text": "Product Owners",
+                            "title": "For",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "title": "For",
+                      },
+                    ]
+                  }
+                  mobile={true}
                 />
                 <div
                   className="CardContainer"
@@ -1567,6 +1987,75 @@ ShallowWrapper {
                         },
                       ]
                     }
+                    mobile={false}
+                  />,
+                  <SecondaryFilter
+                    filterGroups={
+                      Array [
+                        Object {
+                          "data": Array [
+                            Object {
+                              "active": false,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "foo",
+                              "text": "Designers",
+                              "title": "For",
+                              "value": "Designer",
+                            },
+                            Object {
+                              "active": true,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "bar",
+                              "text": "Developers",
+                              "title": "For",
+                              "value": "Developer",
+                            },
+                            Object {
+                              "active": false,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "baz",
+                              "text": "Product Owners",
+                              "title": "For",
+                              "value": "Product Owner",
+                            },
+                          ],
+                          "filters": Array [
+                            Object {
+                              "active": false,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "foo",
+                              "text": "Designers",
+                              "title": "For",
+                              "value": "Designer",
+                            },
+                            Object {
+                              "active": true,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "bar",
+                              "text": "Developers",
+                              "title": "For",
+                              "value": "Developer",
+                            },
+                            Object {
+                              "active": false,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "baz",
+                              "text": "Product Owners",
+                              "title": "For",
+                              "value": "Product Owner",
+                            },
+                          ],
+                          "title": "For",
+                        },
+                      ]
+                    }
+                    mobile={true}
                   />,
                   <div
                     className="CardContainer"
@@ -1648,6 +2137,81 @@ ShallowWrapper {
                         "title": "For",
                       },
                     ],
+                    "mobile": false,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "filterGroups": Array [
+                      Object {
+                        "data": Array [
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "foo",
+                            "text": "Designers",
+                            "title": "For",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": true,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "bar",
+                            "text": "Developers",
+                            "title": "For",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "baz",
+                            "text": "Product Owners",
+                            "title": "For",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "filters": Array [
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "foo",
+                            "text": "Designers",
+                            "title": "For",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": true,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "bar",
+                            "text": "Developers",
+                            "title": "For",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "baz",
+                            "text": "Product Owners",
+                            "title": "For",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "title": "For",
+                      },
+                    ],
+                    "mobile": true,
                   },
                   "ref": null,
                   "rendered": null,

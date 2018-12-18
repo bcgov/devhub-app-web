@@ -40,11 +40,29 @@
 
 .ListContainer {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.WithBlocker::after {
+    width: 100%;
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 45px;
+    background-color: #fff;
 }
 
 @media screen and (min-width: 500px) {
     .Main {
         padding: 25px 35px 30px;
+    }
+
+    .ListContainer {
+        justify-content: flex-start;
+        flex-direction: row;
     }
 
     .CardContainer {

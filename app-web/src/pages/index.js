@@ -12,7 +12,6 @@ import { DEFAULT_FILTERS } from '../constants/filterGroups';
 import Layout from '../hoc/Layout';
 import PrimaryFilter from '../components/PrimaryFilter/PrimaryFilter';
 import SecondaryFilter from '../components/SecondaryFilter/SecondaryFilter';
-
 import Cards from '../components/Cards/Cards';
 import styles from './index.module.css';
 import CardFilterButton from '../components/CardFilterButton/CardFilterButton';
@@ -100,9 +99,9 @@ export class Index extends Component {
               opening an issue in our <a href={GITHUB_ISSUES_ROUTE}>GitHub</a> repository.
             </p>
           </section>
-
           <div className={styles.ListContainer}>
             <SecondaryFilter filterGroups={groupedFilters} />
+            <SecondaryFilter filterGroups={groupedFilters} mobile />
             <div className={styles.CardContainer}>
               <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
             </div>
