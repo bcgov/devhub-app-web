@@ -5,5 +5,6 @@ export {
   addFilter,
   removeFilter,
   filterSiphonNodesByFilterList,
+  removeAllFilters,
 } from './siphonActions';
 export { setSelectedFilterOption, toggleMainNavigation } from './uiActions';

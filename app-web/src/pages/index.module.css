@@ -40,6 +40,7 @@
 
 .ListContainer {
     display: flex;
+    justify-content: center;
 }
 
 @media screen and (min-width: 500px) {

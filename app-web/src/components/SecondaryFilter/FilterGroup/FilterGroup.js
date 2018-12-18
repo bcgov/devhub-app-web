@@ -81,17 +81,14 @@ FilterGroup.propTypes = {
       active: PropTypes.bool.isRequired,
     }),
   ).isRequired,
-  toggleFilter: PropTypes.func.isRequired,
   addFilter: PropTypes.func.isRequired,
   removeFilter: PropTypes.func.isRequired,
-  applySecondaryFilters: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     addFilter: key => dispatch(actions.addFilter(key)),
     removeFilter: key => dispatch(actions.removeFilter(key)),
-    applySecondaryFilters: () => dispatch(actions.filterSiphonNodesByFilterList()),
   };
 };
 

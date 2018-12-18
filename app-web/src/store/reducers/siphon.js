@@ -161,6 +161,15 @@ const removeFilter = (state, key) => {
   const newState = toggleFilter(state, key, false);
   return applySecondaryFilters(newState);
 };
+/**
+ * unsets all filters to inactive
+ * @param {Object} state
+ */
+const resetFilters = state => {
+  const newState = { ...state };
+  newState.filters = newState.filters.map(f => ({ ...f, active: false }));
+  return newState;
+};
 
 const loadNodes = (state, nodes) => {
   const newState = { ...state };
@@ -180,6 +189,8 @@ const reducer = (state = initialState, action) => {
       return addFilter(state, action.payload.key);
     case actionTypes.REMOVE_FILTER:
       return removeFilter(state, action.payload.key);
+    case actionTypes.REMOVE_ALL_FILTERS:
+      return resetFilters(state);
     case actionTypes.FILTER_SIPHON_NODES_BY_FILTER_LIST:
       return applySecondaryFilters(state);
     default:

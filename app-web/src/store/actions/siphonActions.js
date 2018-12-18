@@ -31,7 +31,7 @@ export const loadSiphonNodes = nodes => {
 };
 
 /**
- * filters siphon nodes
+ * filters siphon nodes to set the primary filter
  * @param {String} filteredBy use dot prop notation if you are intending on accessing a nested node property eg 'prop1.prop2'
  * @param {String} value
  */
@@ -63,6 +63,16 @@ export const removeFilter = key => {
   };
 };
 
+export const removeAllFilters = () => {
+  return {
+    type: actionTypes.REMOVE_ALL_FILTERS,
+  };
+};
+
+/**
+ * filters the primary filtered nodes to update the secondary filter
+ * this is done by applying filters from the state.filters list
+ */
 export const filterSiphonNodesByFilterList = () => {
   return {
     type: actionTypes.FILTER_SIPHON_NODES_BY_FILTER_LIST,
