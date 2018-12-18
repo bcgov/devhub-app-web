@@ -26,7 +26,7 @@ describe('actions', () => {
 
   it('should create an action to filter siphon nodes', () => {
     const expected = ACTIONS.FILTER_SIPHON_NODES;
-    expect(actions.filterSiphonNodes('foo', 'bar')).toEqual(expected);
+    expect(actions.filterSiphonNodes('resource.type', 'Components')).toEqual(expected);
   });
 
   it('should create an action to add a filter group to filters list', () => {
@@ -36,6 +36,6 @@ describe('actions', () => {
 
   it('should create an action to remove a filter group to filters list', () => {
     const expected = ACTIONS.REMOVE_FILTER;
-    expect(actions.removeFilter('foo')).toEqual(expected);
+    expect(actions.removeFilter('bar')).toEqual(expected);
   });
 });

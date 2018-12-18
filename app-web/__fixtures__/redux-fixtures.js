@@ -16,6 +16,32 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import * as actions from '../src/store/actions/actionTypes';
+export const NODES = [
+  {
+    resource: {
+      type: 'Components',
+    },
+    attributes: {
+      persona: 'Designer',
+    },
+  },
+  {
+    resource: {
+      type: 'Documentation',
+    },
+    attributes: {
+      persona: 'Developer',
+    },
+  },
+  {
+    resource: {
+      type: 'Components',
+    },
+    attributes: {
+      persona: 'Product Owner',
+    },
+  },
+];
 
 export const DEFAULT_FILTER_GROUPS = [
   {
@@ -31,7 +57,7 @@ export const DEFAULT_FILTER_GROUPS = [
     filterBy: 'attributes.persona',
     value: 'Developer',
     text: 'Developers',
-    active: false,
+    active: true,
     availableResources: null,
     key: 'bar',
     title: 'For',
@@ -57,13 +83,13 @@ export const ACTIONS = {
   REMOVE_FILTER: {
     type: actions.REMOVE_FILTER,
     payload: {
-      key: 'foo',
+      key: 'bar',
     },
   },
   LOAD_SIPHON_NODES: {
     type: actions.LOAD_SIPHON_NODES,
     payload: {
-      nodes: [{ foo: 'bar' }, { foo: 'baz' }, { foo: 'foo' }],
+      nodes: NODES,
     },
   },
   TOGGLE_FILTER_GROUP: {
@@ -75,14 +101,14 @@ export const ACTIONS = {
   FILTER_SIPHON_NODES: {
     type: actions.FILTER_SIPHON_NODES,
     payload: {
-      filteredBy: 'foo',
-      value: 'bar',
+      filteredBy: 'resource.type',
+      value: 'Components',
     },
   },
   FILTER_SIPHON_NODES_BY_ALL: {
     type: actions.FILTER_SIPHON_NODES,
     payload: {
-      filteredBy: 'foo',
+      filteredBy: 'resource.type',
       value: 'All',
     },
   },
@@ -117,8 +143,7 @@ export const INITIAL_STATES = {
     nodes: [],
     primaryFilteredNodes: [],
     secondaryFilteredNodes: [],
-    filterGroups: DEFAULT_FILTER_GROUPS,
-    filters: [],
+    filters: DEFAULT_FILTER_GROUPS,
     groupBy: null,
     loading: false,
     error: false,
