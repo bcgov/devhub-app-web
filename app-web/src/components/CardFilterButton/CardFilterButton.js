@@ -4,33 +4,22 @@ import Button from '../../components/UI/Button/Button';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/actions';
 
-export const CardFilterButton = ({
-  filterByProperty,
-  filterByValue,
-  filterSiphonNodes,
-  resetFilter,
-  filterNodes,
-  children,
-  ...rest
-}) => {
-  let personaSelected = function() {
-    resetFilter();
-    filterSiphonNodes(filterByProperty, filterByValue);
-    filterNodes();
+export const CardFilterButton = ({ addFilter, filterKey, unsetFilters, children, ...rest }) => {
+  const clicked = function() {
+    unsetFilters();
+    addFilter(filterKey);
   };
 
   return (
-    <Button clicked={personaSelected} {...rest}>
+    <Button clicked={clicked} {...rest}>
       {children}
     </Button>
   );
 };
 
 CardFilterButton.propTypes = {
-  filterByProperty: PropTypes.string.isRequired,
-  filterByValue: PropTypes.string.isRequired,
-  filterSiphonNodes: PropTypes.func.isRequired,
-  resetfilter: PropTypes.func.isRequired,
+  addFilter: PropTypes.func.isRequired,
+  unsetFilters: PropTypes.func.isRequired,
   children: PropTypes.string,
 };
 
@@ -40,15 +29,8 @@ CardFilterButton.defaultProps = {
 
 const mapDispatchToProps = dispatch => {
   return {
-    filterSiphonNodes: (filterBy, value) => dispatch(actions.filterSiphonNodes(filterBy, value)),
-    filterNodes: () => dispatch(actions.filterSiphonNodesByFilterList()),
-    resetFilter: (filterBy, value) =>
-      dispatch(
-        actions.setSelectedFilterOption({
-          value: '{"filterBy":"resource.type","value":"All"}',
-          label: 'All',
-        }),
-      ),
+    unsetFilters: () => dispatch(actions.removeAllFilters()),
+    addFilter: key => dispatch(actions.addFilter(key)),
   };
 };
 
