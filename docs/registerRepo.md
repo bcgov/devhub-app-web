@@ -2,6 +2,7 @@
 description: A guide on how to get your repo registered with the Devhub so that it can display your content.
 author: patricksimonian
 image: https://github.com/bcgov/devhub-app-web/blob/master/docs/images/book.png?raw=true
+resourceType: Documentation
 ---
 # Registering Your Repo for Devhub
 
@@ -109,7 +110,7 @@ Sample .devhubignore file:
 
 ```
 README.md
-/docs/dont_show_this.md
+docs/dont_show_this.md
 ```
 #### By the 'ignores' Configuration
 Instead of having to create a .devhubignore file, you can **configure** your registry within **inline ignores**.
@@ -127,7 +128,8 @@ sources:
             repo: 'design-system'
             ignores:
                 - components/
-                - /README.md
+                - README.md
+                #- /README.md <-- DO NOT start your ignore with a leading slash '/'
         resourceType: 'Components'
         attributes:
         labels:
