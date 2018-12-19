@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
-// import YAML from 'js-yaml';
 import shortid from 'shortid';
 import { connect } from 'react-redux';
-import * as actions from '../store/actions/actions';
 import { Flag } from 'flag';
+
+import * as actions from '../store/actions/actions';
 import { groupBy } from '../utils/dataMassager';
 import { GITHUB_ISSUES_ROUTE } from '../constants/routes';
+import { REACT_SCROLL } from '../constants/ui';
 import { DEFAULT_FILTERS } from '../constants/filterGroups';
-// local components
+import styles from './index.module.css';
+// components
+import { Element } from 'react-scroll';
 import Layout from '../hoc/Layout';
 import PrimaryFilter from '../components/PrimaryFilter/PrimaryFilter';
 import SecondaryFilter from '../components/SecondaryFilter/SecondaryFilter';
 import Cards from '../components/Cards/Cards';
-import styles from './index.module.css';
 import CardFilterButton from '../components/CardFilterButton/CardFilterButton';
 
 export class Index extends Component {
@@ -76,12 +78,14 @@ export class Index extends Component {
 
             <div className={'d-flex justify-content-center align-items-center'}>
               <CardFilterButton
+                scrollToTarget={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}
                 filterKey={DEFAULT_FILTERS.PERSONA_DEVELOPER.key}
                 className={['btn btn-outline-primary', styles.PersonaButton].join(' ')}
               >
                 I'm a Developer
               </CardFilterButton>
               <CardFilterButton
+                scrollToTarget={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}
                 filterKey={DEFAULT_FILTERS.PERSONA_DESIGNER.key}
                 className={['btn btn-outline-success', styles.PersonaButton].join(' ')}
               >
@@ -99,13 +103,15 @@ export class Index extends Component {
               opening an issue in our <a href={GITHUB_ISSUES_ROUTE}>GitHub</a> repository.
             </p>
           </section>
-          <div className={styles.ListContainer}>
-            <SecondaryFilter filterGroups={groupedFilters} />
-            <SecondaryFilter filterGroups={groupedFilters} mobile />
-            <div className={styles.CardContainer}>
-              <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
+          <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
+            <div className={styles.ListContainer}>
+              <SecondaryFilter filterGroups={groupedFilters} />
+              <SecondaryFilter filterGroups={groupedFilters} mobile />
+              <div className={styles.CardContainer}>
+                <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
+              </div>
             </div>
-          </div>
+          </Element>
         </main>
       </Layout>
     );

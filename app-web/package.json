@@ -78,6 +78,7 @@
     "react-image": "^1.5.1",
     "react-redux": "^5.0.0",
     "react-router-dom": "^4.3.1",
+    "react-scroll": "^1.7.10",
     "react-select": "^2.1.2",
     "react-toggled": "^1.2.7",
     "redux": "^3.0.0",
