@@ -17,7 +17,7 @@ Created by Patrick Simonian
 */
 
 const { SOURCE_TYPES } = require('./constants');
-const { fetchSourceGithub, validateSourceGithub } = require('./fetchSourceGithub');
+const { fetchSourceGithub, validateSourceGithub } = require('./sources/github');
 /**
  * maps to a fetch function for that sourceType,
  * all fetch functions implement the same return object
