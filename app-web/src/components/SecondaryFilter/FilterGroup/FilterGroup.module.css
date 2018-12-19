@@ -1,0 +1,75 @@
+.FilterGroup h2 {
+  font-weight: 300;
+  color: rgba(0, 0, 0, .55);
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.FilterGroup ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 12px;
+  font-family: Arial;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+.FilterGroup ul li {
+  transition: color .25s ease-out;
+  color: #535353e8;
+  text-transform: uppercase;
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+}
+
+.FilterGroup button {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  text-transform: inherit;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.FilterGroup li .link {
+  color: inherit;
+}
+
+.FilterGroup li:not(.active):not(.Disabled):hover {
+  color: #0e3b6ddb;
+}
+
+.FilterGroup li.active .link {
+  color: #222;
+  text-decoration: underline;
+}
+
+.FilterGroup li .Icon {
+  margin-right: 5px;
+  color: #5091cdba;
+}
+
+.FilterGroup li.active:hover {
+  color: #535353e8;
+}
+
+.FilterGroup li.active:hover {
+  opacity: .5;
+  transition: opacity .25s ease-out;
+}
+
+.FilterGroup li .FilterCount {
+  color: #919191;
+  margin-left: 5px;
+}
+
+.FilterGroup li.Disabled {
+  color: #c4c4c4;
+}
+
+.FilterGroup li.Disabled button {
+  cursor: default;
+}

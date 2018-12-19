@@ -7,9 +7,11 @@ import * as actions from '../store/actions/actions';
 import { Flag } from 'flag';
 import { groupBy } from '../utils/dataMassager';
 import { GITHUB_ISSUES_ROUTE } from '../constants/routes';
+import { DEFAULT_FILTERS } from '../constants/filterGroups';
 // local components
 import Layout from '../hoc/Layout';
 import PrimaryFilter from '../components/PrimaryFilter/PrimaryFilter';
+import SecondaryFilter from '../components/SecondaryFilter/SecondaryFilter';
 import Cards from '../components/Cards/Cards';
 import styles from './index.module.css';
 import CardFilterButton from '../components/CardFilterButton/CardFilterButton';
@@ -22,7 +24,7 @@ export class Index extends Component {
   }
 
   render() {
-    const { nodes, menuToggled, toggleMenu } = this.props;
+    const { nodes, menuToggled, toggleMenu, filters } = this.props;
     let mappedSiphonNodes = [];
     if (nodes && nodes.length) {
       mappedSiphonNodes = nodes
@@ -37,10 +39,17 @@ export class Index extends Component {
           repository: node.source.name,
         }));
     }
+    // group nodes into collections for display purposes
     const groupedSiphonData = groupBy(mappedSiphonNodes, 'collectionName');
+    // convert grouped data into their 'collected' cards containers
     const SiphonResources = groupedSiphonData.map(ghData => (
       <Cards key={shortid.generate()} topic={ghData.collectionName} cards={ghData.data} />
     ));
+    // group filter groups by there title
+    let groupedFilters = groupBy(filters, 'title');
+    // map the data property that is created from groupBy to filters which is needed
+    // for the FilterGroup component within Secondary Filter
+    groupedFilters = groupedFilters.map(fg => ({ ...fg, filters: fg.data }));
 
     return (
       <Layout showHamburger hamburgerClicked={toggleMenu}>
@@ -64,17 +73,16 @@ export class Index extends Component {
               navigate DevHub resources. For now, you can tell us who you are below and we'll tailor
               the set of resources shown just for you.
             </p>
+
             <div className={'d-flex justify-content-center align-items-center'}>
               <CardFilterButton
-                filterByProperty={'attributes.persona'}
-                filterByValue={'Developer'}
+                filterKey={DEFAULT_FILTERS.PERSONA_DEVELOPER.key}
                 className={['btn btn-outline-primary', styles.PersonaButton].join(' ')}
               >
                 I'm a Developer
               </CardFilterButton>
               <CardFilterButton
-                filterByProperty={'attributes.persona'}
-                filterByValue={'Designer'}
+                filterKey={DEFAULT_FILTERS.PERSONA_DESIGNER.key}
                 className={['btn btn-outline-success', styles.PersonaButton].join(' ')}
               >
                 I'm a Designer
@@ -92,6 +100,8 @@ export class Index extends Component {
             </p>
           </section>
           <div className={styles.ListContainer}>
+            <SecondaryFilter filterGroups={groupedFilters} />
+            <SecondaryFilter filterGroups={groupedFilters} mobile />
             <div className={styles.CardContainer}>
               <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
             </div>
@@ -148,6 +158,7 @@ const mapStateToProps = state => {
   return {
     nodes: state.siphon.secondaryFilteredNodes,
     menuToggled: state.ui.mainNavigationToggled,
+    filters: state.siphon.filters,
   };
 };
 
