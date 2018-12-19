@@ -25,7 +25,6 @@ const UNFURL_TYPES = {
 // source types that map to fetch routines
 const COLLECTION_TYPES = {
   [SOURCE_TYPES.GITHUB]: 'source',
-  [SOURCE_TYPES.WEB]: 'web',
   CURATED: 'curated',
 };
 

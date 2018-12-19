@@ -17,7 +17,6 @@ Created by Patrick Simonian
 */
 const SOURCE_TYPES = {
   GITHUB: 'github',
-  WEB: 'web',
 };
 
 const GITHUB_SOURCE_SCHEMA = {
@@ -53,15 +52,7 @@ const GITHUB_SOURCE_SCHEMA = {
   },
 };
 
-const WEB_SOURCE_SCHEMA = {
-  url: {
-    type: String,
-    required: true,
-  },
-};
-
 module.exports = {
   SOURCE_TYPES,
   GITHUB_SOURCE_SCHEMA,
-  WEB_SOURCE_SCHEMA,
 };
