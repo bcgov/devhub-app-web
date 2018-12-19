@@ -17,8 +17,9 @@ Created by Patrick Simonian
 */
 import { GITHUB_SOURCE } from '../__fixtures__/fixtures';
 import { fetchFromSource, validateSourceRegistry } from '../utils/fetchSource';
-import { fetchSourceGithub, validateSourceGithub } from '../utils/fetchSourceGithub';
-jest.mock('../utils/fetchSourceGithub.js');
+import { fetchSourceGithub, validateSourceGithub } from '../utils/sources/github';
+
+jest.mock('../utils/sources/github/index.js');
 
 fetchSourceGithub.mockReturnValue([]);
 validateSourceGithub.mockReturnValue(true);
