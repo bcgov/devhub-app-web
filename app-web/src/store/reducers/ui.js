@@ -20,6 +20,7 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
   selectedFilterOption: null,
   mainNavigationToggled: false,
+  welcomePanelWasViewed: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -28,6 +29,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, selectedFilterOption: action.payload };
     case actionTypes.TOGGLE_MAIN_NAVIGATION:
       return { ...state, mainNavigationToggled: !state.mainNavigationToggled };
+    case actionTypes.SET_WELCOME_PANEL_VIEWED:
+      return { ...state, welcomePanelWasViewed: action.payload.viewed };
     default:
       return state;
   }

@@ -7,4 +7,4 @@ export {
   removeFilter,
   filterSiphonNodesByFilterList,
 } from './siphonActions';
-export { setSelectedFilterOption, toggleMainNavigation } from './uiActions';
+export { setSelectedFilterOption, toggleMainNavigation, setWelcomePanelViewed } from './uiActions';

@@ -34,3 +34,12 @@ export const toggleMainNavigation = toggled => {
     },
   };
 };
+// sets whether or not the welcome panel was viewed (that giant welcome to devhub container)e
+export const setWelcomePanelViewed = viewed => {
+  return {
+    type: actions.SET_WELCOME_PANEL_VIEWED,
+    payload: {
+      viewed,
+    },
+  };
+};
