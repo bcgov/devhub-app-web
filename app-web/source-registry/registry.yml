@@ -60,3 +60,38 @@ sources:
       labels:
         - Repository
       persona: 'Developer'
+  - name: Starting Out as a Mobile App Developer In Gov
+    attributes: 
+      persona: 'Developer'
+    sourceProperties:
+      sources:
+        - sourceType: 'github'
+          resourceType: 'Self-Service Tools'
+          sourceProperties:
+            owner: bcgov
+            repo: 'devhub-signing-web'
+            url: https://github.com/bcgov/devhub-signing-web
+        - sourceType: 'github'
+          resourceType: 'Documentation'
+          sourceProperties:
+            repo: design-system
+            owner: 'bcgov'
+            url: https://github.com/bcgov/design-system
+            files: 
+              - components/about/about.md
+        - sourceType: 'github'
+          resourceType: 'Component'
+          sourceProperties:
+            repo: design-system
+            owner: 'bcgov'
+            url: https://github.com/bcgov/design-system
+            files: 
+              - components/footer/README.md
+              - components/header/README.md
+        - sourceType: 'github'
+          resourceType: 'Documentation'
+          sourceProperties:
+            repo: blog
+            owner: patricksimonian
+            url: https://github.com/patricksimonian/blog
+            file: MobileDevelopment.md
