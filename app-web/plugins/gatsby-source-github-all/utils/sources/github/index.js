@@ -33,6 +33,7 @@ const {
   filterFilesFromDirectories,
   applyBaseMetadata,
 } = require('./helpers');
+const { validateSourceAgainstSchema } = require('../../helpers');
 
 /**
  * Using the recursion param, this
@@ -161,32 +162,7 @@ const getFilesFromRepo = async ({ repo, owner, branch, context, ignores }, token
  * @param {Object} source
  * @returns {Boolean}
  */
-const validateSourceGithub = source => {
-  return Object.keys(GITHUB_SOURCE_SCHEMA).every(key => {
-    const schemaItem = GITHUB_SOURCE_SCHEMA[key];
-    let isValid = true;
-
-    if (schemaItem.required) {
-      isValid =
-        Object.prototype.hasOwnProperty.call(source.sourceProperties, key) &&
-        TypeCheck.isA(schemaItem.type, source.sourceProperties[key]);
-      // does this source property have it anyways?
-    } else if (Object.prototype.hasOwnProperty.call(source.sourceProperties, key)) {
-      isValid = TypeCheck.isA(schemaItem.type, source.sourceProperties[key]);
-    }
-
-    if (!isValid) {
-      console.error(
-        chalk`{red.bold \nError Validating Source type github} 
-
-       Source failed on validation on source property {yellow.bold ${key}}
-       received value {yellow.bold ${source.sourceProperties[key]}}`,
-      );
-    }
-
-    return isValid;
-  });
-};
+const validateSourceGithub = source => validateSourceAgainstSchema(source, GITHUB_SOURCE_SCHEMA);
 
 /**
  * returns a flattened array of github files from a repository
