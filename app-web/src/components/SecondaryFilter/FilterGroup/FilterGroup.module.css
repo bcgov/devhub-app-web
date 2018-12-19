@@ -47,27 +47,16 @@
   text-decoration: underline;
 }
 
-.FilterGroup li.active::before {
-  content: '';
-  display: inline-block;
-  width: 10px;
-  height: 10px;
+.FilterGroup li .Icon {
   margin-right: 5px;
-  border-radius: 50%;
-  background-color: #5091cdba;
+  color: #5091cdba;
 }
 
 .FilterGroup li.active:hover {
   color: #535353e8;
 }
 
-.FilterGroup li.active:hover::before {
-  content: '';
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin-right: 5px;
-  border-radius: 50%;
+.FilterGroup li.active:hover {
   opacity: .5;
   transition: opacity .25s ease-out;
 }

@@ -13,6 +13,8 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import * as actions from '../../../store/actions/actions';
 import styles from './FilterGroup.module.css';
 import PropTypes from 'prop-types';
@@ -46,6 +48,9 @@ export const FilterGroup = ({ title, filters, addFilter, removeFilter }) => {
               }}
               key={filter.key}
             >
+              {filter.active ? (
+                <FontAwesomeIcon className={styles.Icon} icon={faCheckCircle} />
+              ) : null}
               <button className={styles.link} aria-label={ARIA_LABEL_FILTER_RESOURCE}>
                 {filter.text}
               </button>
