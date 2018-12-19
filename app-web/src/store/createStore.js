@@ -17,6 +17,7 @@ Created by Patrick Simonian
 */
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
+import autoMergeLevel1 from 'redux-persist/lib/stateReconciler/autoMergeLevel1';
 import storage from 'redux-persist/lib/storage';
 import authReducer from './reducers/auth';
 import featuresReducer from './reducers/features';
@@ -30,17 +31,28 @@ const rootReducer = combineReducers({
   ui: uiReducer,
 });
 
+const persistConfig = {
+  key: 'root',
+  storage,
+  stateReconciler: autoMergeLevel1,
+  whitelist: ['ui'],
+};
+
 let composeEnhancers;
 let middlewares;
 // apply config to get redux dev tools working
 if (typeof window !== 'undefined') {
   // eslint-disable-next-line
   composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  middlewares = composeEnhancers(applyMiddleware(thunk));
+  middlewares = composeEnhancers();
 }
 
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 const createStoreFN = () => {
-  return createStore(rootReducer, middlewares);
+  const store = createStore(persistedReducer, middlewares);
+  const persistor = persistStore(store);
+  return { store, persistor };
 };
 
 export default createStoreFN;
