@@ -24,19 +24,26 @@ import featuresReducer from './reducers/features';
 import siphonReducer from './reducers/siphon';
 import uiReducer from './reducers/ui';
 
+/* Redux-persist configuration:
+   Please check docs for more details,
+   I followed them to get this set up https://github.com/rt2zz/redux-persist
+   this library will auto sync/load anything from the ui reducer (that is whitelisted) into local storage
+*/
+const uiPersistConfig = {
+  key: 'root',
+  storage,
+  stateReconciler: autoMergeLevel1,
+  whitelist: ['welcomePanelWasViewed'],
+};
+
+const persistedUIReducer = persistReducer(uiPersistConfig, uiReducer);
+
 const rootReducer = combineReducers({
   auth: authReducer,
   flags: featuresReducer,
   siphon: siphonReducer,
-  ui: uiReducer,
+  ui: persistedUIReducer,
 });
-
-const persistConfig = {
-  key: 'root',
-  storage,
-  stateReconciler: autoMergeLevel1,
-  whitelist: ['ui'],
-};
 
 let composeEnhancers;
 let middlewares;
@@ -47,10 +54,8 @@ if (typeof window !== 'undefined') {
   middlewares = composeEnhancers();
 }
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 const createStoreFN = () => {
-  const store = createStore(persistedReducer, middlewares);
+  const store = createStore(rootReducer, middlewares);
   const persistor = persistStore(store);
   return { store, persistor };
 };

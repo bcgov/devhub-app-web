@@ -34,10 +34,6 @@
     padding-top: 25px;
 }
 
-.PersonaButton {
-    margin: .7em;
-}
-
 .ListContainer {
     display: flex;
     flex-direction: column;
@@ -53,6 +49,12 @@
     bottom: 0;
     height: 45px;
     background-color: #fff;
+}
+
+/* When there isn't a welcome message, add top margin so that the cards container isn't
+touching the header bars */
+.NoWelcome {
+    margin-top: 33px;
 }
 
 @media screen and (min-width: 500px) {
