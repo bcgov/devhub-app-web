@@ -15,12 +15,60 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-const { WEB_SOURCE_SCHEMA } = require('../../constants');
-const { validateSourceAgainstSchema } = require('../../helpers');
+const { WEB_SOURCE_SCHEMA, MEDIATYPES } = require('../../constants');
+const { validateSourceAgainstSchema, unfurlWebURI } = require('../../helpers');
 
+/**
+ * validates the source properties against the web source schema
+ * @param {Object} source the registry source item
+ * @returns {Boolean}
+ */
 const validateSourceWeb = source => validateSourceAgainstSchema(source, WEB_SOURCE_SCHEMA);
 
-const fetchSourceWeb = () => [];
+/**
+ * fetches data from a web source
+ * based on the configuration passed into the routine
+ * @param {Object} source the source configuration (comes from the registry)
+ * is deconstructed into its components
+ * @returns {Object} the siphon object that is ready to be turned into a node
+ */
+const fetchSourceWeb = async ({
+  sourceType,
+  resourceType,
+  name,
+  sourceProperties,
+  attributes,
+  collection,
+}) => {
+  const { url } = sourceProperties;
+  // fetch information from the url
+  try {
+    const unfurl = await unfurlWebURI(url);
+    const siphonData = {
+      metadata: {
+        unfurl,
+        resourceType,
+        sourceType,
+        name,
+        ...attributes,
+        collection,
+        resourcePath: url,
+        originalResourceLocation: url,
+        fileName: null,
+        fileType: null,
+        owner: unfurl.author,
+        mediaType: MEDIATYPES.HTML, // hmm not too sure what should be considered the best media type
+      },
+      path: url,
+    };
+
+    console.log('returning data \n');
+    return [siphonData];
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
+};
 
 module.exports = {
   validateSourceWeb,
