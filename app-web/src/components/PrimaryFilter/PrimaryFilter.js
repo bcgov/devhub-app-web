@@ -60,7 +60,7 @@ export const PrimaryFilter = ({
 PrimaryFilter.propTypes = {
   mobile: PropTypes.bool,
   selectedFilter: PropTypes.string,
-  applyPrimaryFilter: PropTypes.func.isRequired,
+  applyPrimaryFilters: PropTypes.func.isRequired,
   applySecondaryFilters: PropTypes.func.isRequired,
   setSelectedFilter: PropTypes.func.isRequired,
 };
