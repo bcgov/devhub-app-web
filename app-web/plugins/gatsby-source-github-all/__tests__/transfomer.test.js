@@ -3,6 +3,7 @@ import {
   markdownFrontmatterPlugin,
   pagePathPlugin,
   markdownUnfurlPlugin,
+  markDownUnfurlImagePlugin,
   markdownResourceTypePlugin,
   externalLinkUnfurlPlugin,
   markdownPersonaPlugin,
@@ -165,6 +166,59 @@ describe('Transformer System', () => {
       file.metadata.originalResourceLocation = 'https://www.google.com';
       const result = await repositoryResourcePathPlugin(file.metadata.extension, file);
       expect(result.metadata.resourcePath).toBe(file.metadata.originalResourceLocation);
+    });
+
+    it('returns file if not md', () => {
+      file.metadata.extension = 'txt';
+      const result = markDownUnfurlImagePlugin(file.metadata.extension, file);
+      expect(result).toBeDefined();
+    });
+
+    it('corrects unfurl.image if it is relative', () => {
+      const image = '../docs/image.png';
+      const file = {
+        html_url: 'https://github.com/foo/bar/blob/master/components/header/readme.md',
+        metadata: {
+          unfurl: { image },
+          extension: 'md',
+        },
+      };
+
+      const newFile = markDownUnfurlImagePlugin(file.metadata.extension, file);
+      expect(newFile.metadata.unfurl.image).toBe(
+        'https://github.com/foo/bar/blob/master/components/docs/image.png?raw=true',
+      );
+    });
+
+    it('corrects unfurl.image if it is absolute without a domain', () => {
+      const image = '/docs/image.png';
+      const file = {
+        html_url: 'https://github.com/foo/bar/blob/master/components/header/readme.md',
+        url: 'https://github.com/foo/bar/blob/master/components/header/readme.md?ref=master',
+        metadata: {
+          owner: 'foo',
+          source: 'bar',
+          unfurl: { image },
+          extension: 'md',
+        },
+      };
+
+      const newFile = markDownUnfurlImagePlugin(file.metadata.extension, file);
+      expect(newFile.metadata.unfurl.image).toBe(
+        'https://github.com/foo/bar/blob/master/docs/image.png?raw=true',
+      );
+    });
+
+    it("doesn't alter unfurl.image if it is a valid url", () => {
+      const image = 'https://foo.com/docs/image.png';
+      const file = {
+        html_url: 'https://github.com/foo/bar/blob/master/components/header/readme.md',
+        metadata: {
+          unfurl: { image },
+        },
+      };
+      const newFile = markDownUnfurlImagePlugin(file.metadata.extension, file);
+      expect(newFile.metadata.unfurl.image).toBe(image);
     });
   });
 });
