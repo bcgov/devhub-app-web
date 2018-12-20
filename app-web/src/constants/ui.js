@@ -152,3 +152,15 @@ export const FOOTER_NAVIGATION = [
     text: 'home',
   },
 ];
+
+// react-scroll requires identifiers to scroll to individual elements
+export const REACT_SCROLL = {
+  CONFIG: {
+    duration: 750,
+    delay: 100,
+    smooth: true,
+  },
+  ELEMENTS: {
+    CARDS_CONTAINER: 'CARDS_CONTAINER',
+  },
+};
