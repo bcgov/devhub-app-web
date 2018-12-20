@@ -20,6 +20,7 @@ const matter = require('gray-matter'); // eslint-disable-line
 const visit = require('unist-util-visit'); // eslint-disable-line
 const remark = require('remark'); // eslint-disable-line
 const url = require('url');
+const path = require('path');
 const scrape = require('html-metadata');
 const validUrl = require('valid-url');
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
@@ -148,8 +149,49 @@ const markdownUnfurlPlugin = (extension, file) => {
   // grab front matter from md file
   const data = matter(file.content, { delims: '---' });
   const frontmatter = data.data;
+  const unfurl = createUnfurlObj(UNFURL_TYPES.MARKDOWN, frontmatter);
+  // check image path and see if its relative, if it is we need to create the absolute path from
   // apply unfurl metadata
-  file.metadata.unfurl = createUnfurlObj(UNFURL_TYPES.MARKDOWN, frontmatter);
+  file.metadata.unfurl = unfurl;
+  return file;
+};
+
+/**
+ * modifies a file objects file.metadata.unfurl.image property
+ * if this is a relative path is converts it to absolute
+ * if it is an absolute path minus the host, it appends the host
+ * @param {String} extension
+ * @param {Object} file the github api contents file object
+ */
+const markDownUnfurlImagePlugin = (extension, file) => {
+  if (extension !== 'md' || !Object.prototype.hasOwnProperty.call(file.metadata, 'unfurl')) {
+    return file;
+  }
+
+  const unfurl = file.metadata.unfurl;
+  // if the image paramater is relative, it will be correctly mapped to an absolute path
+  if (TypeCheck.isString(unfurl.image)) {
+    if (path.isAbsolute(unfurl.image)) {
+      // if the path is absolute we need to map the path based of the sourcePath to the repo
+      // this plus the absolute path cannot just be joined as the github api follows a convention
+      // for reaching a file
+      const urlObject = new url.URL(file.url);
+      const branch = urlObject.searchParams.get('ref');
+      const path = `${file.metadata.owner}/${file.metadata.source}/blob/${branch}${unfurl.image}`;
+      const absPath = url.resolve('https://github.com', path);
+
+      const absPathObj = new url.URL(absPath);
+      absPathObj.searchParams.set('raw', true);
+      unfurl.image = absPathObj.toString();
+    } else {
+      // if path is relative
+      const absPath = url.resolve(file.html_url, unfurl.image);
+      // since these files are from github we need to ensure the raw query paramter is passed into it
+      const urlObj = new url.URL(absPath);
+      urlObj.searchParams.set('raw', true);
+      unfurl.image = urlObj.toString();
+    }
+  }
   return file;
 };
 
@@ -254,6 +296,7 @@ const repositoryResourcePathPlugin = async (extension, file) => {
 module.exports = {
   markdownFrontmatterPlugin,
   markdownUnfurlPlugin,
+  markDownUnfurlImagePlugin,
   pagePathPlugin,
   markdownResourceTypePlugin,
   externalLinkUnfurlPlugin,

@@ -23,6 +23,7 @@ Created by Patrick Simonian
  */
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
 const path = require('path');
+const url = require('url');
 const shorthash = require('shorthash');
 const stringSimilarity = require('string-similarity');
 const { RESOURCE_TYPES_LIST } = require('./constants');
@@ -94,9 +95,29 @@ const getClosestPersona = (persona, personas) => {
   return matches.bestMatch.rating >= RATING_THRESHOLD ? matches.bestMatch.target : '';
 };
 
+/**
+ * returns a new absolute path based off of a relative position from the given absolute path
+ * @param {String} relativePath eg '../../something/something.txt'
+ * @param {String} absolutePath eg 'https://example.com/'
+ * @param {Object} queryParams a key value pair set of query parameters
+ */
+const getAbsolutePathFromRelative = (relativePath, absolutePath, queryParams) => {
+  const { URL } = url;
+  const absPath = url.resolve(absolutePath, relativePath);
+
+  const absPathObj = new URL(absPath);
+
+  Object.keys(queryParams).forEach(key => {
+    absPath.searchParams.set(key, queryParams[key]);
+  });
+
+  return absPathObj.toString();
+};
+
 module.exports = {
   createPathWithDigest,
   createUnfurlObj,
   getClosestResourceType,
   getClosestPersona,
+  getAbsolutePathFromRelative,
 };

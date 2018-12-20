@@ -17,12 +17,12 @@ Created by Patrick Simonian
 */
 const matter = jest.requireActual('gray-matter');
 
-const matterMocked = function(content) {
+const matterMocked = jest.fn(content => {
   return {
     data: {},
     content,
   };
-};
+});
 
 matterMocked.prototype.stringify = function() {
   return 'content';
