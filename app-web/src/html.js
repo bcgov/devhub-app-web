@@ -45,7 +45,7 @@ class HTML extends React.Component {
             integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
             crossOrigin="anonymous"
           />
-          <link href="https://fonts.googleapis.com/css?family=PT Sans:400,700" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" />
           {this.props.headComponents}
           {css}
         </head>

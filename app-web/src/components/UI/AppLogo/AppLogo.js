@@ -18,10 +18,6 @@ Created by Patrick Simonian
 import React from 'react';
 import styles from './AppLogo.module.css';
 
-const AppLogo = () => (
-  <h1 className={styles.AppLogo}>
-    DevHub
-  </h1>
-);
+const AppLogo = () => <h1 className={styles.AppLogo}>DevHub</h1>;
 
 export default AppLogo;
