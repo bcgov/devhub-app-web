@@ -40,9 +40,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 5px;
-    margin-top: 10px;
-    padding-bottom: 10px;
+    flex-basis: 62px;
     border-bottom: 1px solid #ccc;
 
   }
