@@ -62,7 +62,6 @@ const fetchSourceWeb = async ({
       path: url,
     };
 
-    console.log('returning data \n');
     return [siphonData];
   } catch (e) {
     console.error(e);
