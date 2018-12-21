@@ -2,6 +2,7 @@
 description: An overview of how Devhub's Siphon works
 author: patricksimonian
 image: https://github.com/bcgov/devhub-app-web/blob/master/docs/images/book.png?raw=true
+resourceType: Documentation
 ---
 # Siphon
 Devhub is a content catalogue generator. **Siphon** is Devhub's main tool that *siphons* content from Github Repositories and converts it into useable Gatsby JS graphQL nodes.
@@ -200,7 +201,11 @@ that you check for the file type (by extension) before modifying the content. In
 The plugin format should be:
 
 ```javascript
-    const pluginName = async (extension, file, options) => {
+    const pluginName = (extension, file, options) => {
+        return file;
+    }
+    // or an async version
+    const asyncPluginName = async (extension, file, options) => {
         return file;
     }
 ```
@@ -225,6 +230,7 @@ The plugin format should be:
         mediaType: String,
         extension: String,
         sourceURL: String,
+        // plus more
       },
     }
       ```
@@ -233,8 +239,9 @@ The plugin format should be:
 It's usage would be...
 
 ```javascript
+const { markdownPlugin } = require('pathtoplugin');
 // pipeline.js
-const yamlPlugin = async (extension, file, { dateLoaded }) => {
+const yamlPlugin = (extension, file, { dateLoaded }) => {
     if(extension === 'yaml' || extension === 'yml') {
         // do something to content
         const yaml = YAML.parse(file.internal.content);
@@ -254,7 +261,7 @@ const content = await fileTransformer(extension, file)
     .resolve();
 ```
 
-> note how async/await is used in the transformer and plugins
+> note how async/await is used in the transformer
 
 ## Node Structure
 
