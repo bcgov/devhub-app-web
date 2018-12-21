@@ -17,14 +17,8 @@
 //
 // Created by Patrick Simonian on 2018-10-12.
 //
-jest.mock('node-fetch');
-// eslint-disable-next-line
 import {
   getNameOfExtensionVerbose,
-  fetchGithubTree,
-  fetchFile,
-  fetchIgnoreFile,
-  validateSourceGithub,
   filterFilesByExtensions,
   filterFilesByContext,
   getExtensionFromName,
@@ -34,16 +28,20 @@ import {
   isConfigForFetchingRepo,
   isConfigForFetchingFiles,
   createFetchFileRoute,
-  processIgnores,
-} from '../utils/fetchSourceGithub';
-// eslint-disable-next-line
-import { GITHUB_API_ENDPOINT } from '../utils/constants';
-// eslint-disable-next-line
+} from '../utils/sources/github/helpers';
+import {
+  fetchGithubTree,
+  fetchFile,
+  fetchIgnoreFile,
+  validateSourceGithub,
+} from '../utils/sources/github';
 import fetch from 'node-fetch';
+import { GITHUB_API_ENDPOINT } from '../utils/constants';
+import { GITHUB_API, GITHUB_SOURCE } from '../__fixtures__/fixtures';
 
+jest.mock('node-fetch');
 const { Response } = jest.requireActual('node-fetch');
 // eslint-disable-next-line
-import { GITHUB_API, GITHUB_SOURCE } from '../__fixtures__/fixtures';
 // suppress console errors
 global.console = {
   error: jest.fn(),

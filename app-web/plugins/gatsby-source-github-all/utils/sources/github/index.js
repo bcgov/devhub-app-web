@@ -17,109 +17,23 @@
 //
 // Created by Patrick Simonian on 2018-10-12.
 //
-const {
-  GITHUB_API_ENDPOINT,
-  FILETYPES,
-  PROCESSABLE_EXTENSIONS,
-  MEDIATYPES,
-  DEFUALT_IGNORES,
-  GITHUB_SOURCE_SCHEMA,
-  PERSONAS_LIST,
-} = require('./constants');
 const chalk = require('chalk'); // eslint-disable-line
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
 const { Base64 } = require('js-base64'); // eslint-disable-line
 const fetch = require('node-fetch'); // eslint-disable-line
 const ignore = require('ignore'); // eslint-disable-line
-const { fileTransformer } = require('./transformer');
+const transformer = require('./githubFileTransformer');
+const { GITHUB_API_ENDPOINT, DEFUALT_IGNORES, GITHUB_SOURCE_SCHEMA } = require('../../constants');
 const {
-  markdownFrontmatterPlugin,
-  pagePathPlugin,
-  markdownUnfurlPlugin,
-  markdownResourceTypePlugin,
-  externalLinkUnfurlPlugin,
-  markdownPersonaPlugin,
-  repositoryResourcePathPlugin,
-} = require('./plugins');
-/**
- * checks if the sourceProperties that are passed in are for siphoning
- * a repository
- * @param {Object} sourceProperties
- * @returns {Boolean}
- */
-const isConfigForFetchingRepo = sourceProperties =>
-  Object.prototype.hasOwnProperty.call(sourceProperties, 'repo') &&
-  Object.prototype.hasOwnProperty.call(sourceProperties, 'owner');
+  isConfigForFetchingAFile,
+  isConfigForFetchingFiles,
+  isConfigForFetchingRepo,
+  createFetchFileRoute,
+  filterFiles,
+  filterFilesFromDirectories,
+  applyBaseMetadata,
+} = require('./helpers');
 
-/**
- * checks if the sourceProperties that are passed in are for siphoning
- * a singular file
- * @param {Object} sourceProperties
- * @returns {Boolean}
- */
-const isConfigForFetchingAFile = sourceProperties =>
-  Object.prototype.hasOwnProperty.call(sourceProperties, 'file') &&
-  isConfigForFetchingRepo(sourceProperties);
-
-/**
- * checks if the sourceProperties that are passed in are for siphoning
- * a list of files
- * @param {Object} sourceProperties
- * @returns {Boolean}
- */
-const isConfigForFetchingFiles = sourceProperties =>
-  Object.prototype.hasOwnProperty.call(sourceProperties, 'files') &&
-  isConfigForFetchingRepo(sourceProperties);
-
-/**
- * creates the GITHUB v3 contents api endpoint for a file
- * @param {String} repo
- * @param {String} owner
- * @param {String} path
- * @param {String} branch
- */
-const createFetchFileRoute = (repo, owner, path, branch = '') => {
-  const ref = branch === '' ? '' : `?ref=${branch}`;
-  return `${GITHUB_API_ENDPOINT}/repos/${owner}/${repo}/contents/${path}${ref}`;
-};
-
-/**
- * returns extension of a file name
- * can handle linux type files (which require no extension)
- * @param {String} name
- * @returns {String} 'readme.md' => md, '.gitignore' => ''
- */
-const getExtensionFromName = name =>
-  name.slice((Math.max(0, name.lastIndexOf('.')) || Infinity) + 1);
-/**
- *
- * @param {String} name
- * @returns name without extension
- * .gitignore => .gitignore, readme.md => readme
- */
-const getNameWithoutExtension = name => {
-  const ext = getExtensionFromName(name);
-  if (ext !== '') {
-    const re = new RegExp(`.${ext}$`);
-    return name.replace(re, '');
-  }
-  return name;
-};
-/** returns the name of the file type by its extension
- * if it is an extensionless file, returns ''
- * @param {String} fileName
- * @returns {String} 'the more verbose name'.. 'md' => 'Markdown'
- */
-
-const getNameOfExtensionVerbose = fileName => {
-  const ext = getExtensionFromName(fileName);
-  return FILETYPES[ext] ? FILETYPES[ext] : '';
-};
-/**
- * returns media type from extension
- * @param {String} extension
- */
-const getMediaTypeByExtension = extension => (MEDIATYPES[extension] ? MEDIATYPES[extension] : '');
 /**
  * Using the recursion param, this
  * function attempts to retrieve all directories/files from a repo
@@ -188,125 +102,6 @@ const fetchIgnoreFile = async (repo, owner, token, branch) => {
   const ignoreRoute = createFetchFileRoute(repo, owner, '.devhubignore', branch);
   const ignoreFile = await fetchFile(ignoreRoute, token);
   return ignoreFile ? Base64.decode(ignoreFile.content).split('\n') : [];
-};
-/**
- * filters an array of github graphql entries by their extensions
- * the filtering compares the object.name property with a regex test
- * @param {Array} entries
- * @param {Array} extensions (defaults to [.md])
- */
-const filterFilesByExtensions = (entries, extensions = ['.md']) => {
-  // ensure entries is an array of objects
-  if (!TypeCheck.isArray(entries) || !entries.every(TypeCheck.isObject)) {
-    throw new Error('entries are invalid');
-  }
-
-  if (!TypeCheck.isArray(extensions) || !extensions.every(TypeCheck.isString)) {
-    throw new Error('extensions must be an array of strings');
-  }
-  // ensure extensions are of correct pattern
-  if (!extensions.every(ext => /\.\w+$/.test(ext))) {
-    throw new Error('extensions must have shape /\\.w+$/');
-  }
-  // convert extensions into a regex expression
-  const re = new RegExp(`(${extensions.join('|')})$`);
-  // would have shape like /(.md|.txt)$/
-  // filter entries
-  return entries.filter(entry => re.test(entry.path));
-};
-/**
- * filters out directories from array of github graph ql entries
- * directories have type of 'tree'
- * @param {Array} entries
- */
-const filterFilesFromDirectories = entries => {
-  // ensure entries is an array of objects
-  if (!TypeCheck.isArray(entries) || !entries.every(TypeCheck.isObject)) {
-    throw new Error('entries are invalid');
-  }
-  // only tree type entries that don't start with a . (ignore hidden folders)
-  return entries.filter(entry => entry.type === 'blob');
-};
-
-/**
- * applies base meta data to file
- * @param {Object} file
- * @param {Array} labels
- * @param {String} owner
- * @param {String} source
- * @param {String} sourceName
- * @param {String} sourceURL
- * @param {String} resourceType
- */
-const applyBaseMetadata = (
-  file,
-  labels,
-  owner,
-  source,
-  sourceName,
-  sourceURL,
-  sourceType,
-  globalResourceType,
-  originalResourceLocation,
-  globalPersona,
-  collection,
-) => {
-  const extension = getExtensionFromName(file.name);
-  return {
-    ...file,
-    content: Base64.decode(file.content),
-    metadata: {
-      labels,
-      sourceName,
-      source,
-      owner,
-      name: getNameWithoutExtension(file.name),
-      fileType: getNameOfExtensionVerbose(file.name),
-      fileName: file.name,
-      mediaType: getMediaTypeByExtension(extension),
-      extension,
-      sourceURL,
-      sourceType,
-      globalResourceType,
-      originalResourceLocation,
-      globalPersona,
-      collection,
-    },
-  };
-};
-
-/**
- * filters files by the context directories from source
- * @param {Array} files the files
- * @param {Object} contextDir a path or array of paths to get files in a repo
- */
-const filterFilesByContext = (files, contextDir) => {
-  const contextDirArray = TypeCheck.isArray(contextDir) ? contextDir : new Array(contextDir);
-  // Use relative paths to root:
-  const targetPaths = contextDirArray.map(dir => {
-    return dir.charAt(0) === '/' ? dir.substring(1) : dir;
-  });
-  // now only return files in the target context dir array
-  const contextFiles = files.filter(file => {
-    return targetPaths.some(path => file.path.indexOf(path) === 0);
-  });
-  return contextFiles;
-};
-
-/**
- * filters files by processable extensions as well as the devhubignores
- * @param {Array} files the files
- * @param {Object} ignoreObj the ignore module object
- * @param {Object} contextDir a path or array of paths for get files in a repo
- */
-const filterFiles = (files, ignoreObj, contextDir) => {
-  // filter out files that are not in the context path
-  const fileInContext = contextDir ? filterFilesByContext(files, contextDir) : files;
-  // filter out files that aren't markdown
-  const filteredFiles = filterFilesByExtensions(fileInContext, PROCESSABLE_EXTENSIONS);
-  // filter out files that are apart of ignore
-  const filesToFetch = filteredFiles.filter(file => !ignoreObj.ignores(file.path));
-  return filesToFetch;
 };
 
 /**
@@ -444,19 +239,9 @@ const fetchSourceGithub = async (
       ),
     )
     .map(async f => {
-      const ft = fileTransformer(f.metadata.extension, f);
       try {
-        return await ft
-          .use(markdownFrontmatterPlugin)
-          .use(pagePathPlugin)
-          .use(markdownUnfurlPlugin)
-          .use(markdownResourceTypePlugin)
-          .use(externalLinkUnfurlPlugin)
-          .use(markdownPersonaPlugin, { personas: PERSONAS_LIST })
-          .use(repositoryResourcePathPlugin)
-          .resolve();
+        return await transformer(f.metadata.extension, f).resolve();
       } catch (e) {
-        console.error(chalk.yellow(e.message));
         // return undefined and skip file
         // at this point we could apply a hook to post a gh issue if needed
         return undefined;
@@ -466,23 +251,13 @@ const fetchSourceGithub = async (
   // any promises that return undefined are filtered out
   return postProcessedFiles.filter(f => f !== undefined);
 };
+
 module.exports = {
-  createFetchFileRoute,
   getFilesFromRepo,
   fetchSourceGithub,
-  getExtensionFromName,
-  getNameWithoutExtension,
-  getNameOfExtensionVerbose,
   fetchGithubTree,
   fetchFile,
   fetchIgnoreFile,
-  filterFiles,
   filterFilesFromDirectories,
-  filterFilesByExtensions,
-  filterFilesByContext,
-  isConfigForFetchingAFile,
-  isConfigForFetchingRepo,
-  isConfigForFetchingFiles,
-  applyBaseMetadata,
   validateSourceGithub,
 };

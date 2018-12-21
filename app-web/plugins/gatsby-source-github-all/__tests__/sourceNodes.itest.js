@@ -1,4 +1,4 @@
-import shortid from 'shortid'; // eslint-disable-line
+import shortid from 'shortid';
 import {
   PROCESSED_FILE_MD,
   PROCESSED_FILE_HTML,
@@ -7,9 +7,9 @@ import {
 } from '../__fixtures__/fixtures';
 import { GRAPHQL_NODE_TYPE } from '../utils/constants';
 import { sourceNodes } from '../sourceNodes';
-import { fetchSourceGithub, validateSourceGithub } from '../utils/fetchSourceGithub';
+import { fetchSourceGithub, validateSourceGithub } from '../utils/sources/github';
 
-jest.mock('../utils/fetchSourceGithub.js');
+jest.mock('../utils/sources/github/index.js');
 jest.unmock('unist-util-visit');
 
 describe('Integration Tests Source Nodes', () => {
