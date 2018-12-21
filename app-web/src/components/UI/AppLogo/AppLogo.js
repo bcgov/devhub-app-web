@@ -20,8 +20,7 @@ import styles from './AppLogo.module.css';
 
 const AppLogo = () => (
   <h1 className={styles.AppLogo}>
-    <span className={styles.orange}>Dev</span>
-    <span>Hub</span>
+    DevHub
   </h1>
 );
 
