@@ -137,74 +137,11 @@ ShallowWrapper {
           className="Main container"
           role="main"
         >
-          <section
-            className="jumbotron text-center"
-          >
-            <h1
-              className="jumbotron-heading"
-            >
-              Welcome.
-            </h1>
-            <h3>
-               We are here to help.
-            </h3>
-            <p
-              className="lead"
-            >
-              This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
-            </p>
-            <p>
-              In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
-            </p>
-            <div
-              className="d-flex justify-content-center align-items-center"
-            >
-              <Connect(CardFilterButton)
-                className="btn btn-outline-primary PersonaButton"
-                filterKey="2"
-                scrollToTarget="CARDS_CONTAINER"
-              >
-                I'm a Developer
-              </Connect(CardFilterButton)>
-              <Connect(CardFilterButton)
-                className="btn btn-outline-success PersonaButton"
-                filterKey="1"
-                scrollToTarget="CARDS_CONTAINER"
-              >
-                I'm a Designer
-              </Connect(CardFilterButton)>
-            </div>
-            <blockquote
-              className="blockquote"
-            >
-              <p
-                className="mb-0"
-              >
-                Thanks for visiting!
-              </p>
-              <footer
-                className="blockquote-footer"
-              >
-                The DevHub Team.
-              </footer>
-            </blockquote>
-            <p
-              className="text-muted"
-            >
-              PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
-              <a
-                href="https://github.com/bcgov/devhub-app-web/issues"
-              >
-                GitHub
-              </a>
-               repository.
-            </p>
-          </section>
           <Element
             name="CARDS_CONTAINER"
           >
             <div
-              className="ListContainer"
+              className="ListContainer NoWelcome"
             >
               <SecondaryFilter
                 filterGroups={
@@ -390,74 +327,12 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": Array [
-            <section
-              className="jumbotron text-center"
-            >
-              <h1
-                className="jumbotron-heading"
-              >
-                Welcome.
-              </h1>
-              <h3>
-                 We are here to help.
-              </h3>
-              <p
-                className="lead"
-              >
-                This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
-              </p>
-              <p>
-                In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
-              </p>
-              <div
-                className="d-flex justify-content-center align-items-center"
-              >
-                <Connect(CardFilterButton)
-                  className="btn btn-outline-primary PersonaButton"
-                  filterKey="2"
-                  scrollToTarget="CARDS_CONTAINER"
-                >
-                  I'm a Developer
-                </Connect(CardFilterButton)>
-                <Connect(CardFilterButton)
-                  className="btn btn-outline-success PersonaButton"
-                  filterKey="1"
-                  scrollToTarget="CARDS_CONTAINER"
-                >
-                  I'm a Designer
-                </Connect(CardFilterButton)>
-              </div>
-              <blockquote
-                className="blockquote"
-              >
-                <p
-                  className="mb-0"
-                >
-                  Thanks for visiting!
-                </p>
-                <footer
-                  className="blockquote-footer"
-                >
-                  The DevHub Team.
-                </footer>
-              </blockquote>
-              <p
-                className="text-muted"
-              >
-                PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
-                <a
-                  href="https://github.com/bcgov/devhub-app-web/issues"
-                >
-                  GitHub
-                </a>
-                 repository.
-              </p>
-            </section>,
+            null,
             <Element
               name="CARDS_CONTAINER"
             >
               <div
-                className="ListContainer"
+                className="ListContainer NoWelcome"
               >
                 <SecondaryFilter
                   filterGroups={
@@ -610,271 +485,14 @@ ShallowWrapper {
         },
         "ref": null,
         "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                <h1
-                  className="jumbotron-heading"
-                >
-                  Welcome.
-                </h1>,
-                <h3>
-                   We are here to help.
-                </h3>,
-                <p
-                  className="lead"
-                >
-                  This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
-                </p>,
-                <p>
-                  In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
-                </p>,
-                <div
-                  className="d-flex justify-content-center align-items-center"
-                >
-                  <Connect(CardFilterButton)
-                    className="btn btn-outline-primary PersonaButton"
-                    filterKey="2"
-                    scrollToTarget="CARDS_CONTAINER"
-                  >
-                    I'm a Developer
-                  </Connect(CardFilterButton)>
-                  <Connect(CardFilterButton)
-                    className="btn btn-outline-success PersonaButton"
-                    filterKey="1"
-                    scrollToTarget="CARDS_CONTAINER"
-                  >
-                    I'm a Designer
-                  </Connect(CardFilterButton)>
-                </div>,
-                <blockquote
-                  className="blockquote"
-                >
-                  <p
-                    className="mb-0"
-                  >
-                    Thanks for visiting!
-                  </p>
-                  <footer
-                    className="blockquote-footer"
-                  >
-                    The DevHub Team.
-                  </footer>
-                </blockquote>,
-                <p
-                  className="text-muted"
-                >
-                  PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
-                  <a
-                    href="https://github.com/bcgov/devhub-app-web/issues"
-                  >
-                    GitHub
-                  </a>
-                   repository.
-                </p>,
-              ],
-              "className": "jumbotron text-center",
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "Welcome.",
-                  "className": "jumbotron-heading",
-                },
-                "ref": null,
-                "rendered": "Welcome.",
-                "type": "h1",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": " We are here to help.",
-                },
-                "ref": null,
-                "rendered": " We are here to help.",
-                "type": "h3",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.",
-                  "className": "lead",
-                },
-                "ref": null,
-                "rendered": "This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.",
-                "type": "p",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.",
-                },
-                "ref": null,
-                "rendered": "In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.",
-                "type": "p",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": Array [
-                    <Connect(CardFilterButton)
-                      className="btn btn-outline-primary PersonaButton"
-                      filterKey="2"
-                      scrollToTarget="CARDS_CONTAINER"
-                    >
-                      I'm a Developer
-                    </Connect(CardFilterButton)>,
-                    <Connect(CardFilterButton)
-                      className="btn btn-outline-success PersonaButton"
-                      filterKey="1"
-                      scrollToTarget="CARDS_CONTAINER"
-                    >
-                      I'm a Designer
-                    </Connect(CardFilterButton)>,
-                  ],
-                  "className": "d-flex justify-content-center align-items-center",
-                },
-                "ref": null,
-                "rendered": Array [
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": "I'm a Developer",
-                      "className": "btn btn-outline-primary PersonaButton",
-                      "filterKey": "2",
-                      "scrollToTarget": "CARDS_CONTAINER",
-                    },
-                    "ref": null,
-                    "rendered": "I'm a Developer",
-                    "type": [Function],
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": "I'm a Designer",
-                      "className": "btn btn-outline-success PersonaButton",
-                      "filterKey": "1",
-                      "scrollToTarget": "CARDS_CONTAINER",
-                    },
-                    "ref": null,
-                    "rendered": "I'm a Designer",
-                    "type": [Function],
-                  },
-                ],
-                "type": "div",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": Array [
-                    <p
-                      className="mb-0"
-                    >
-                      Thanks for visiting!
-                    </p>,
-                    <footer
-                      className="blockquote-footer"
-                    >
-                      The DevHub Team.
-                    </footer>,
-                  ],
-                  "className": "blockquote",
-                },
-                "ref": null,
-                "rendered": Array [
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": "Thanks for visiting!",
-                      "className": "mb-0",
-                    },
-                    "ref": null,
-                    "rendered": "Thanks for visiting!",
-                    "type": "p",
-                  },
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": "The DevHub Team.",
-                      "className": "blockquote-footer",
-                    },
-                    "ref": null,
-                    "rendered": "The DevHub Team.",
-                    "type": "footer",
-                  },
-                ],
-                "type": "blockquote",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": Array [
-                    "PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our ",
-                    <a
-                      href="https://github.com/bcgov/devhub-app-web/issues"
-                    >
-                      GitHub
-                    </a>,
-                    " repository.",
-                  ],
-                  "className": "text-muted",
-                },
-                "ref": null,
-                "rendered": Array [
-                  "PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our ",
-                  Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "host",
-                    "props": Object {
-                      "children": "GitHub",
-                      "href": "https://github.com/bcgov/devhub-app-web/issues",
-                    },
-                    "ref": null,
-                    "rendered": "GitHub",
-                    "type": "a",
-                  },
-                  " repository.",
-                ],
-                "type": "p",
-              },
-            ],
-            "type": "section",
-          },
+          null,
           Object {
             "instance": null,
             "key": undefined,
             "nodeType": "class",
             "props": Object {
               "children": <div
-                className="ListContainer"
+                className="ListContainer NoWelcome"
               >
                 <SecondaryFilter
                   filterGroups={
@@ -1173,7 +791,7 @@ ShallowWrapper {
                     />
                   </div>,
                 ],
-                "className": "ListContainer",
+                "className": "ListContainer NoWelcome",
               },
               "ref": null,
               "rendered": Array [
@@ -1377,74 +995,11 @@ ShallowWrapper {
             className="Main container"
             role="main"
           >
-            <section
-              className="jumbotron text-center"
-            >
-              <h1
-                className="jumbotron-heading"
-              >
-                Welcome.
-              </h1>
-              <h3>
-                 We are here to help.
-              </h3>
-              <p
-                className="lead"
-              >
-                This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
-              </p>
-              <p>
-                In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
-              </p>
-              <div
-                className="d-flex justify-content-center align-items-center"
-              >
-                <Connect(CardFilterButton)
-                  className="btn btn-outline-primary PersonaButton"
-                  filterKey="2"
-                  scrollToTarget="CARDS_CONTAINER"
-                >
-                  I'm a Developer
-                </Connect(CardFilterButton)>
-                <Connect(CardFilterButton)
-                  className="btn btn-outline-success PersonaButton"
-                  filterKey="1"
-                  scrollToTarget="CARDS_CONTAINER"
-                >
-                  I'm a Designer
-                </Connect(CardFilterButton)>
-              </div>
-              <blockquote
-                className="blockquote"
-              >
-                <p
-                  className="mb-0"
-                >
-                  Thanks for visiting!
-                </p>
-                <footer
-                  className="blockquote-footer"
-                >
-                  The DevHub Team.
-                </footer>
-              </blockquote>
-              <p
-                className="text-muted"
-              >
-                PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
-                <a
-                  href="https://github.com/bcgov/devhub-app-web/issues"
-                >
-                  GitHub
-                </a>
-                 repository.
-              </p>
-            </section>
             <Element
               name="CARDS_CONTAINER"
             >
               <div
-                className="ListContainer"
+                className="ListContainer NoWelcome"
               >
                 <SecondaryFilter
                   filterGroups={
@@ -1630,74 +1185,12 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              <section
-                className="jumbotron text-center"
-              >
-                <h1
-                  className="jumbotron-heading"
-                >
-                  Welcome.
-                </h1>
-                <h3>
-                   We are here to help.
-                </h3>
-                <p
-                  className="lead"
-                >
-                  This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
-                </p>
-                <p>
-                  In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
-                </p>
-                <div
-                  className="d-flex justify-content-center align-items-center"
-                >
-                  <Connect(CardFilterButton)
-                    className="btn btn-outline-primary PersonaButton"
-                    filterKey="2"
-                    scrollToTarget="CARDS_CONTAINER"
-                  >
-                    I'm a Developer
-                  </Connect(CardFilterButton)>
-                  <Connect(CardFilterButton)
-                    className="btn btn-outline-success PersonaButton"
-                    filterKey="1"
-                    scrollToTarget="CARDS_CONTAINER"
-                  >
-                    I'm a Designer
-                  </Connect(CardFilterButton)>
-                </div>
-                <blockquote
-                  className="blockquote"
-                >
-                  <p
-                    className="mb-0"
-                  >
-                    Thanks for visiting!
-                  </p>
-                  <footer
-                    className="blockquote-footer"
-                  >
-                    The DevHub Team.
-                  </footer>
-                </blockquote>
-                <p
-                  className="text-muted"
-                >
-                  PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
-                  <a
-                    href="https://github.com/bcgov/devhub-app-web/issues"
-                  >
-                    GitHub
-                  </a>
-                   repository.
-                </p>
-              </section>,
+              null,
               <Element
                 name="CARDS_CONTAINER"
               >
                 <div
-                  className="ListContainer"
+                  className="ListContainer NoWelcome"
                 >
                   <SecondaryFilter
                     filterGroups={
@@ -1850,271 +1343,14 @@ ShallowWrapper {
           },
           "ref": null,
           "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": Array [
-                  <h1
-                    className="jumbotron-heading"
-                  >
-                    Welcome.
-                  </h1>,
-                  <h3>
-                     We are here to help.
-                  </h3>,
-                  <p
-                    className="lead"
-                  >
-                    This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.
-                  </p>,
-                  <p>
-                    In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.
-                  </p>,
-                  <div
-                    className="d-flex justify-content-center align-items-center"
-                  >
-                    <Connect(CardFilterButton)
-                      className="btn btn-outline-primary PersonaButton"
-                      filterKey="2"
-                      scrollToTarget="CARDS_CONTAINER"
-                    >
-                      I'm a Developer
-                    </Connect(CardFilterButton)>
-                    <Connect(CardFilterButton)
-                      className="btn btn-outline-success PersonaButton"
-                      filterKey="1"
-                      scrollToTarget="CARDS_CONTAINER"
-                    >
-                      I'm a Designer
-                    </Connect(CardFilterButton)>
-                  </div>,
-                  <blockquote
-                    className="blockquote"
-                  >
-                    <p
-                      className="mb-0"
-                    >
-                      Thanks for visiting!
-                    </p>
-                    <footer
-                      className="blockquote-footer"
-                    >
-                      The DevHub Team.
-                    </footer>
-                  </blockquote>,
-                  <p
-                    className="text-muted"
-                  >
-                    PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our 
-                    <a
-                      href="https://github.com/bcgov/devhub-app-web/issues"
-                    >
-                      GitHub
-                    </a>
-                     repository.
-                  </p>,
-                ],
-                "className": "jumbotron text-center",
-              },
-              "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "Welcome.",
-                    "className": "jumbotron-heading",
-                  },
-                  "ref": null,
-                  "rendered": "Welcome.",
-                  "type": "h1",
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": " We are here to help.",
-                  },
-                  "ref": null,
-                  "rendered": " We are here to help.",
-                  "type": "h3",
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.",
-                    "className": "lead",
-                  },
-                  "ref": null,
-                  "rendered": "This is the front door to the developer community of the BC Government. The aim of the DevHub is to help developers and digital product teams learn new skills and discover resources to use on their journeys of creating amazing applications for government.",
-                  "type": "p",
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.",
-                  },
-                  "ref": null,
-                  "rendered": "In the future, we plan to offer a variety of cool and useful ways to organize and navigate DevHub resources. For now, you can tell us who you are below and we'll tailor the set of resources shown just for you.",
-                  "type": "p",
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": Array [
-                      <Connect(CardFilterButton)
-                        className="btn btn-outline-primary PersonaButton"
-                        filterKey="2"
-                        scrollToTarget="CARDS_CONTAINER"
-                      >
-                        I'm a Developer
-                      </Connect(CardFilterButton)>,
-                      <Connect(CardFilterButton)
-                        className="btn btn-outline-success PersonaButton"
-                        filterKey="1"
-                        scrollToTarget="CARDS_CONTAINER"
-                      >
-                        I'm a Designer
-                      </Connect(CardFilterButton)>,
-                    ],
-                    "className": "d-flex justify-content-center align-items-center",
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "children": "I'm a Developer",
-                        "className": "btn btn-outline-primary PersonaButton",
-                        "filterKey": "2",
-                        "scrollToTarget": "CARDS_CONTAINER",
-                      },
-                      "ref": null,
-                      "rendered": "I'm a Developer",
-                      "type": [Function],
-                    },
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "class",
-                      "props": Object {
-                        "children": "I'm a Designer",
-                        "className": "btn btn-outline-success PersonaButton",
-                        "filterKey": "1",
-                        "scrollToTarget": "CARDS_CONTAINER",
-                      },
-                      "ref": null,
-                      "rendered": "I'm a Designer",
-                      "type": [Function],
-                    },
-                  ],
-                  "type": "div",
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": Array [
-                      <p
-                        className="mb-0"
-                      >
-                        Thanks for visiting!
-                      </p>,
-                      <footer
-                        className="blockquote-footer"
-                      >
-                        The DevHub Team.
-                      </footer>,
-                    ],
-                    "className": "blockquote",
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "host",
-                      "props": Object {
-                        "children": "Thanks for visiting!",
-                        "className": "mb-0",
-                      },
-                      "ref": null,
-                      "rendered": "Thanks for visiting!",
-                      "type": "p",
-                    },
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "host",
-                      "props": Object {
-                        "children": "The DevHub Team.",
-                        "className": "blockquote-footer",
-                      },
-                      "ref": null,
-                      "rendered": "The DevHub Team.",
-                      "type": "footer",
-                    },
-                  ],
-                  "type": "blockquote",
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": Array [
-                      "PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our ",
-                      <a
-                        href="https://github.com/bcgov/devhub-app-web/issues"
-                      >
-                        GitHub
-                      </a>,
-                      " repository.",
-                    ],
-                    "className": "text-muted",
-                  },
-                  "ref": null,
-                  "rendered": Array [
-                    "PS. If you’d like to comment, offer a suggestion or ask a question you can find us by opening an issue in our ",
-                    Object {
-                      "instance": null,
-                      "key": undefined,
-                      "nodeType": "host",
-                      "props": Object {
-                        "children": "GitHub",
-                        "href": "https://github.com/bcgov/devhub-app-web/issues",
-                      },
-                      "ref": null,
-                      "rendered": "GitHub",
-                      "type": "a",
-                    },
-                    " repository.",
-                  ],
-                  "type": "p",
-                },
-              ],
-              "type": "section",
-            },
+            null,
             Object {
               "instance": null,
               "key": undefined,
               "nodeType": "class",
               "props": Object {
                 "children": <div
-                  className="ListContainer"
+                  className="ListContainer NoWelcome"
                 >
                   <SecondaryFilter
                     filterGroups={
@@ -2413,7 +1649,7 @@ ShallowWrapper {
                       />
                     </div>,
                   ],
-                  "className": "ListContainer",
+                  "className": "ListContainer NoWelcome",
                 },
                 "ref": null,
                 "rendered": Array [

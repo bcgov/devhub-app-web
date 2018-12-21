@@ -42,7 +42,7 @@ export const CardFilterButton = ({
   };
 
   return (
-    <Button clicked={clicked} {...rest}>
+    <Button clicked={clicked} {...rest} style={{ margin: '.7em' }}>
       {children}
     </Button>
   );

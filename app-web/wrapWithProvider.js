@@ -19,12 +19,14 @@ Created by Patrick Simonian
 import React from 'react';
 import { Provider } from 'react-redux';
 import { ConnectedFlagsProvider } from 'flag';
+import { PersistGate } from 'redux-persist/integration/react';
 import createStore from './src/store/createStore';
 
-const store = createStore();
-
+const { store, persistor } = createStore();
 export default ({ element }) => (
   <Provider store={store}>
-    <ConnectedFlagsProvider>{element}</ConnectedFlagsProvider>
+    <PersistGate loading={null} persistor={persistor}>
+      <ConnectedFlagsProvider>{element}</ConnectedFlagsProvider>
+    </PersistGate>
   </Provider>
 );
