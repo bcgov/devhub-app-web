@@ -20,9 +20,9 @@ Created by Patrick Simonian
 import React from 'react';
 import PropTypes from 'prop-types';
 import DotDotDot from 'react-dotdotdot';
-import Image from 'react-image';
 import Link from '../components/UI/Link/Link';
 import MetadataRibbon from '../components/Cards/Card/MetadataRibbon';
+import Avatar from '../components/UI/Avatar/Avatar';
 import { CARD_CONFIG } from '../constants/ui';
 import { ARIA_LABEL_RESOURCE, ARIA_LABEL_TO_GITHUB_USER } from '../constants/ariaLabels';
 import { getGithubAvatarFromUsername, getGithubUsernameURL } from '../utils/helpers';
@@ -31,18 +31,14 @@ import styles from '../components/Cards/Card/Card.module.css';
 const Card = ({ children, resourceType, resourcePath, title, author }) => (
   <article className={styles.Card}>
     <div className={styles.Head}>
-      <Link
-        className={styles.Avatar}
-        to={getGithubUsernameURL(author)}
+      <Avatar
+        link={getGithubUsernameURL(author)}
         aria-label={ARIA_LABEL_TO_GITHUB_USER}
-      >
-        <Image
-          src={getGithubAvatarFromUsername(author, CARD_CONFIG.avatarIconSize)}
-          width={CARD_CONFIG.avatarIconWidth}
-          height={CARD_CONFIG.avatarIconHeight}
-        />
-      </Link>
-
+        image={getGithubAvatarFromUsername(author, CARD_CONFIG.avatarIconSize)}
+        width={CARD_CONFIG.avatarIconWidth}
+        height={CARD_CONFIG.avatarIconHeight}
+      />
+      {/* the title for the card */}
       <DotDotDot clamp={CARD_CONFIG.maxTitleLines} tagName="h2">
         <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE} title={title}>
           {title}
