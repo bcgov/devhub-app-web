@@ -17,44 +17,11 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "host",
     "props": Object {
-      "children": Array [
-        <span
-          className="orange"
-        >
-          Dev
-        </span>,
-        <span>
-          Hub
-        </span>,
-      ],
+      "children": "DevHub",
       "className": "AppLogo",
     },
     "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": "Dev",
-          "className": "orange",
-        },
-        "ref": null,
-        "rendered": "Dev",
-        "type": "span",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": "Hub",
-        },
-        "ref": null,
-        "rendered": "Hub",
-        "type": "span",
-      },
-    ],
+    "rendered": "DevHub",
     "type": "h1",
   },
   Symbol(enzyme.__nodes__): Array [
@@ -63,44 +30,11 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "host",
       "props": Object {
-        "children": Array [
-          <span
-            className="orange"
-          >
-            Dev
-          </span>,
-          <span>
-            Hub
-          </span>,
-        ],
+        "children": "DevHub",
         "className": "AppLogo",
       },
       "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "Dev",
-            "className": "orange",
-          },
-          "ref": null,
-          "rendered": "Dev",
-          "type": "span",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "Hub",
-          },
-          "ref": null,
-          "rendered": "Hub",
-          "type": "span",
-        },
-      ],
+      "rendered": "DevHub",
       "type": "h1",
     },
   ],
