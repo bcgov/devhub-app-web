@@ -48,7 +48,7 @@ const MEDIATYPES = {
   HTML: 'text/html',
 };
 
-const PROCESSABLE_EXTENSIONS = ['.md', '.html'];
+const PROCESSABLE_EXTENSIONS = ['.md'];
 
 const MARKDOWN_FRONTMATTER_SCHEMA = {
   title: {

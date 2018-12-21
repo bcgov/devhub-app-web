@@ -109,5 +109,37 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-plugin-lunr`,
+      options: {
+        languages: [
+          {
+            name: 'en',
+          },
+        ],
+        // Fields to index. If store === true value will be stored in index file.
+        // Attributes for custom indexing logic. See https://lunrjs.com/docs/lunr.Builder.html for details
+        fields: [
+          { name: 'title', store: true, attributes: { boost: 20 } },
+          { name: 'description', store: true },
+          { name: 'author' },
+          { name: 'content' },
+          { name: 'url', store: true },
+          { name: 'source', store: true },
+        ],
+        // How to resolve each field's value for a supported node type
+        resolvers: {
+          // For any node of type MarkdownRemark, list how to resolve the fields' values
+          DevhubSiphon: {
+            title: node => node.unfurl.title,
+            content: node => node.childMarkdownRemark && node.childMarkdownRemark.rawMarkdownBody,
+            url: node => node.resource.path,
+            author: node => node.unfurl.author,
+            description: node => node.unfurl.description,
+            source: node => node.source.displayName,
+          },
+        },
+      },
+    },
   ],
 };
