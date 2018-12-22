@@ -25,6 +25,7 @@ const {
   externalLinkUnfurlPlugin,
   markdownPersonaPlugin,
   repositoryResourcePathPlugin,
+  markDownUnfurlImagePlugin,
 } = require('../../plugins');
 
 const transfomer = (extension, file) => {
@@ -37,7 +38,8 @@ const transfomer = (extension, file) => {
     .use(markdownResourceTypePlugin)
     .use(externalLinkUnfurlPlugin)
     .use(markdownPersonaPlugin, { personas: PERSONAS_LIST })
-    .use(repositoryResourcePathPlugin);
+    .use(repositoryResourcePathPlugin)
+    .use(markDownUnfurlImagePlugin);
 };
 
 module.exports = transfomer;
