@@ -6,11 +6,10 @@ describe('CardFilterButton Component', () => {
   it('matches snapshot', () => {
     const wrapper = shallow(
       <CardFilterButton
-        filterSiphonNodes={jest.fn()}
-        filterNodes={jest.fn()}
         filterByProperty="filterByProperty"
         filterByValue="filterByValue"
-        resetfilter={jest.fn()}
+        unsetFilters={jest.fn()}
+        addFilter={jest.fn()}
       />,
     );
     expect(wrapper).toMatchSnapshot();

@@ -137,11 +137,12 @@ ShallowWrapper {
           className="Main container"
           role="main"
         >
+          <Connect(WelcomePanel) />
           <Element
             name="CARDS_CONTAINER"
           >
             <div
-              className="ListContainer NoWelcome"
+              className="ListContainer"
             >
               <SecondaryFilter
                 filterGroups={
@@ -327,12 +328,12 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": Array [
-            null,
+            <Connect(WelcomePanel) />,
             <Element
               name="CARDS_CONTAINER"
             >
               <div
-                className="ListContainer NoWelcome"
+                className="ListContainer"
               >
                 <SecondaryFilter
                   filterGroups={
@@ -485,14 +486,22 @@ ShallowWrapper {
         },
         "ref": null,
         "rendered": Array [
-          null,
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
           Object {
             "instance": null,
             "key": undefined,
             "nodeType": "class",
             "props": Object {
               "children": <div
-                className="ListContainer NoWelcome"
+                className="ListContainer"
               >
                 <SecondaryFilter
                   filterGroups={
@@ -791,7 +800,7 @@ ShallowWrapper {
                     />
                   </div>,
                 ],
-                "className": "ListContainer NoWelcome",
+                "className": "ListContainer",
               },
               "ref": null,
               "rendered": Array [
@@ -995,11 +1004,12 @@ ShallowWrapper {
             className="Main container"
             role="main"
           >
+            <Connect(WelcomePanel) />
             <Element
               name="CARDS_CONTAINER"
             >
               <div
-                className="ListContainer NoWelcome"
+                className="ListContainer"
               >
                 <SecondaryFilter
                   filterGroups={
@@ -1185,12 +1195,12 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              null,
+              <Connect(WelcomePanel) />,
               <Element
                 name="CARDS_CONTAINER"
               >
                 <div
-                  className="ListContainer NoWelcome"
+                  className="ListContainer"
                 >
                   <SecondaryFilter
                     filterGroups={
@@ -1343,14 +1353,22 @@ ShallowWrapper {
           },
           "ref": null,
           "rendered": Array [
-            null,
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {},
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
             Object {
               "instance": null,
               "key": undefined,
               "nodeType": "class",
               "props": Object {
                 "children": <div
-                  className="ListContainer NoWelcome"
+                  className="ListContainer"
                 >
                   <SecondaryFilter
                     filterGroups={
@@ -1649,7 +1667,7 @@ ShallowWrapper {
                       />
                     </div>,
                   ],
-                  "className": "ListContainer NoWelcome",
+                  "className": "ListContainer",
                 },
                 "ref": null,
                 "rendered": Array [
