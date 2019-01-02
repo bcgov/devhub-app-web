@@ -51,8 +51,6 @@ const Cards = ({ topic, sourcePath, cards }) => {
   );
 };
 
-Cards.displayName = 'Github Cards Component';
-
 Cards.defaultProps = {
   sourcePath: '',
 };
