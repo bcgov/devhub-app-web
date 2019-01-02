@@ -5,7 +5,6 @@ import CardFilterButton from '../CardFilterButton/CardFilterButton';
 import { DEFAULT_FILTERS } from '../../constants/filterGroups';
 import { GITHUB_ISSUES_ROUTE } from '../../constants/routes';
 import { REACT_SCROLL } from '../../constants/ui';
-import styles from './WelcomePanel.module.css';
 
 export class WelcomePanel extends Component {
   render() {
@@ -36,14 +35,14 @@ export class WelcomePanel extends Component {
           <CardFilterButton
             scrollToTarget={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}
             filterKey={DEFAULT_FILTERS.PERSONA_DEVELOPER.key}
-            className={['btn btn-outline-primary', styles.PersonaButton].join(' ')}
+            className={'btn btn-outline-primary'}
           >
             I'm a Developer
           </CardFilterButton>
           <CardFilterButton
             scrollToTarget={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}
             filterKey={DEFAULT_FILTERS.PERSONA_DESIGNER.key}
-            className={['btn btn-outline-success', styles.PersonaButton].join(' ')}
+            className={'btn btn-outline-success'}
           >
             I'm a Designer
           </CardFilterButton>

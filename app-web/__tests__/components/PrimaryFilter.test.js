@@ -24,7 +24,7 @@ describe('Primary Filter Component', () => {
 
   const props = {
     menuToggled: false,
-    applyPrimaryFilter: jest.fn(),
+    applyPrimaryFilters: jest.fn(),
     applySecondaryFilters: jest.fn(),
     setMainNavigationToggled: jest.fn(),
     setSelectedOption: jest.fn(),
