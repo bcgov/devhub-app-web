@@ -11,12 +11,18 @@ import {
 } from '../utils/plugins';
 import { PROCESSED_FILE_MD } from '../__fixtures__/fixtures';
 import { PERSONAS_LIST, RESOURCE_TYPES } from '../utils/constants';
-import { createUnfurlObj, getClosestResourceType, getClosestPersona } from '../utils/helpers';
+import {
+  createUnfurlObj,
+  getClosestResourceType,
+  getClosestPersona,
+  unfurlWebURI,
+} from '../utils/helpers';
 jest.mock('../utils/helpers.js');
 
 createUnfurlObj.mockReturnValue({});
 getClosestResourceType.mockReturnValue('');
 getClosestPersona.mockImplementation(persona => persona);
+unfurlWebURI.mockReturnValue({});
 
 describe('Transformer System', () => {
   let file = null;
@@ -120,7 +126,7 @@ describe('Transformer System', () => {
       expect(result).toBeDefined();
     });
 
-    it('returns files with unfurl', async () => {
+    it('returns files with unfurl property defined', async () => {
       file.metadata.resourcePath =
         'http://www.bloomberg.com/news/articles/2016-05-24/as-zenefits-stumbles-gusto-goes-head-on-by-selling-insurance';
       const result = await externalLinkUnfurlPlugin(file.metadata.extension, file);

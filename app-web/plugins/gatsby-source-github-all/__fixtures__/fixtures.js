@@ -476,6 +476,17 @@ const GITHUB_SOURCE = {
     labels: ['components'],
   },
 };
+// sample web source registry item
+const WEB_SOURCE = {
+  name: 'Foo',
+  sourceType: 'web',
+  sourceProperties: {
+    url: 'https://google.com',
+  },
+  attributes: {
+    persona: 'Developer',
+  },
+};
 
 // another sample registry 'item'
 const GITHUB_SOURCE_WITHIN_INLINE_IGNORES = {
@@ -500,11 +511,43 @@ const CONFIG_OPTIONS = {
   sourceRegistryType: 'SourceRegistryYaml',
 };
 
+const PROCESSED_WEB_SOURCE = {
+  metadata: {
+    unfurl: {
+      author: 'foo',
+      description: 'bar',
+      image: null,
+      label1: null,
+      value1: null,
+      label2: null,
+      value2: null,
+    },
+    resourceType: 'Documentation',
+    sourceType: 'web',
+    name: 'web source',
+    attributes: {
+      persona: 'Developer',
+    },
+    collection: {
+      name: 'web source',
+      type: 'source',
+    },
+    resourcePath: 'https://example.com',
+    originalResourceLocation: 'https://example.com',
+    fileName: null,
+    fileType: null,
+    owner: 'foo',
+    mediaType: 'text/html', // hmm not too sure what should be considered the best media type
+  },
+  path: 'https://example.com',
+};
+
 module.exports = {
   GITHUB_API,
   PROCESSED_FILE_MD,
   PROCESSED_FILE_TXT,
   PROCESSED_FILE_HTML,
+  PROCESSED_WEB_SOURCE,
   RAW_FILE_MD,
   RAW_FILE_MD_WITH_RESOURCEPATH,
   GRAPHQL_NODES_WITH_REGISTRY,
@@ -512,6 +555,7 @@ module.exports = {
   REGISTRY,
   REGISTRY_WITH_COLLECTION,
   GITHUB_SOURCE,
+  WEB_SOURCE,
   GITHUB_SOURCE_WITHIN_INLINE_IGNORES,
   CONFIG_OPTIONS,
   TREE_FILES,

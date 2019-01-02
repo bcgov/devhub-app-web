@@ -1,4 +1,9 @@
-import { createPathWithDigest, createUnfurlObj, getClosestResourceType } from '../utils/helpers';
+import {
+  createPathWithDigest,
+  createUnfurlObj,
+  getClosestResourceType,
+  unfurlWebURI,
+} from '../utils/helpers';
 import { RESOURCE_TYPES } from '../utils/constants';
 
 describe('createPathWithDigest', () => {
@@ -40,5 +45,22 @@ describe('getClosestResourceType', () => {
 
   it('returns the closest resource type when matched', () => {
     expect(getClosestResourceType(RESOURCE_TYPES[0])).toBe(RESOURCE_TYPES[0]);
+  });
+});
+
+describe('unfurlWebURI', () => {
+  it('returns a unfurl object', () => {
+    const uri = 'https://example.com';
+    expect(unfurlWebURI(uri)).toBeDefined();
+  });
+
+  it('throws if uri is invalid', async () => {
+    try {
+      await expect(unfurlWebURI());
+    } catch (e) {
+      expect(e).toEqual({
+        error: 'The uri is not valid',
+      });
+    }
   });
 });

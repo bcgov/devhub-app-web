@@ -24,9 +24,12 @@ Created by Patrick Simonian
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
 const path = require('path');
 const url = require('url');
+const chalk = require('chalk');
 const shorthash = require('shorthash');
 const stringSimilarity = require('string-similarity');
-const { RESOURCE_TYPES_LIST } = require('./constants');
+const { RESOURCE_TYPES_LIST, UNFURL_TYPES } = require('./constants');
+const scrape = require('html-metadata');
+const validUrl = require('valid-url');
 
 const createPathWithDigest = (base, ...digestables) => {
   if (!TypeCheck.isString(base)) {
@@ -114,10 +117,67 @@ const getAbsolutePathFromRelative = (relativePath, absolutePath, queryParams) =>
   return absPathObj.toString();
 };
 
+/* validates a registry item's source Properties against a valid schema
+ * @param {Object} source the registry source item properties
+ * @param {Object} schema has shape { type: String | Boolean | Date etc, required: true/false}
+ * @returns {Boolean}
+ */
+const validateSourceAgainstSchema = (source, schema) => {
+  return Object.keys(schema).every(key => {
+    const schemaItem = schema[key];
+    let isValid = true;
+
+    if (schemaItem.required) {
+      isValid =
+        Object.prototype.hasOwnProperty.call(source.sourceProperties, key) &&
+        TypeCheck.isA(schemaItem.type, source.sourceProperties[key]);
+      // does this source property have it anyways?
+    } else if (Object.prototype.hasOwnProperty.call(source.sourceProperties, key)) {
+      isValid = TypeCheck.isA(schemaItem.type, source.sourceProperties[key]);
+    }
+
+    if (!isValid) {
+      console.error(
+        chalk`{red.bold \nError Validating Source type ${source.sourceType}} 
+
+       Source failed on validation on source property {yellow.bold ${key}}
+       received value {yellow.bold ${source.sourceProperties[key]}}`,
+      );
+    }
+
+    return isValid;
+  });
+};
+
+const unfurlWebURI = async uri => {
+  // if is not valid uri throw
+  if (!uri || !validUrl.isUri(uri)) {
+    throw new Error('The uri is not valid');
+  }
+  const data = await scrape(uri);
+
+  // metadata comes in with properties for each type of unfurl spec (twitter, openGraph etc)
+  const combinedData = { ...data.general, ...data.twitter, ...data.openGraph };
+  // update image to have resource path prepended to it if it is not https
+  if (TypeCheck.isString(combinedData.image)) {
+    combinedData.image = url.resolve(uri, combinedData.image);
+  } else if (
+    TypeCheck.isObject(combinedData.image) &&
+    Object.prototype.hasOwnProperty.call(combinedData.image, 'url')
+  ) {
+    // sometimes the image property from opengraph or twitter card comes in from scrape as
+    // .url property
+    combinedData.image = combinedData.image.url;
+  }
+  return createUnfurlObj(UNFURL_TYPES.EXTERNAL, combinedData);
+};
+
 module.exports = {
   createPathWithDigest,
   createUnfurlObj,
   getClosestResourceType,
   getClosestPersona,
   getAbsolutePathFromRelative,
+  validateSourceAgainstSchema,
+  unfurlWebURI,
 };

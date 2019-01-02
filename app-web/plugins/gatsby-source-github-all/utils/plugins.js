@@ -21,14 +21,13 @@ const visit = require('unist-util-visit'); // eslint-disable-line
 const remark = require('remark'); // eslint-disable-line
 const url = require('url');
 const path = require('path');
-const scrape = require('html-metadata');
-const validUrl = require('valid-url');
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
 const {
   createPathWithDigest,
   createUnfurlObj,
   getClosestResourceType,
   getClosestPersona,
+  unfurlWebURI,
 } = require('./helpers'); // eslint-disable-line
 const { MARKDOWN_FRONTMATTER_SCHEMA, UNFURL_TYPES, RESOURCE_TYPES } = require('./constants');
 /**
@@ -226,31 +225,13 @@ const markdownResourceTypePlugin = (extension, file) => {
  * @returns the modified file
  */
 const externalLinkUnfurlPlugin = async (extension, file) => {
-  // does file have a resource path and is it a valid url?
-  if (file.metadata.resourcePath && validUrl.isUri(file.metadata.resourcePath)) {
-    let metadata;
-    try {
-      metadata = await scrape(file.metadata.resourcePath);
-    } catch (e) {
-      return file;
-    }
-    // metadata comes in with properties for each type of unfurl spec (twitter, openGraph etc)
-    const combinedMetadata = { ...metadata.twitter, ...metadata.openGraph };
-    // const metadata = await metascraper({ html, url });
-    // update image to have resource path prepended to it if it is not https
-    if (TypeCheck.isString(combinedMetadata.image)) {
-      combinedMetadata.image = url.resolve(file.metadata.resourcePath, combinedMetadata.image);
-    } else if (
-      TypeCheck.isObject(combinedMetadata.image) &&
-      Object.prototype.hasOwnProperty.call(combinedMetadata.image, 'url')
-    ) {
-      // sometimes the image property from opengraph or twitter card comes in from scrape as
-      // .url property
-      combinedMetadata.image = combinedMetadata.image.url;
-    }
-    file.metadata.unfurl = createUnfurlObj(UNFURL_TYPES.EXTERNAL, combinedMetadata);
+  try {
+    const unfurl = await unfurlWebURI(file.metadata.resourcePath);
+    file.metadata.unfurl = unfurl;
+    return file;
+  } catch (e) {
+    return file;
   }
-  return file;
 };
 
 /**

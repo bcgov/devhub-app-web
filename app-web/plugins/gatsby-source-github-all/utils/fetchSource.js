@@ -18,6 +18,7 @@ Created by Patrick Simonian
 
 const { SOURCE_TYPES } = require('./constants');
 const { fetchSourceGithub, validateSourceGithub } = require('./sources/github');
+const { fetchSourceWeb, validateSourceWeb } = require('./sources/web');
 /**
  * maps to a fetch function for that sourceType,
  * all fetch functions implement the same return object
@@ -29,6 +30,8 @@ const fetchFromSource = (sourceType, source, { GITHUB_API_TOKEN }) => {
   switch (sourceType) {
     case SOURCE_TYPES.GITHUB:
       return fetchSourceGithub(source, GITHUB_API_TOKEN);
+    case SOURCE_TYPES.WEB:
+      return fetchSourceWeb(source);
     default:
       return [];
   }
@@ -44,6 +47,8 @@ const validateSourceRegistry = source => {
   switch (source.sourceType) {
     case SOURCE_TYPES.GITHUB:
       return validateSourceGithub(source);
+    case SOURCE_TYPES.WEB:
+      return validateSourceWeb(source);
     default:
       return false;
   }
