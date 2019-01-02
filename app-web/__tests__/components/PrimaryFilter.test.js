@@ -23,11 +23,9 @@ describe('Primary Filter Component', () => {
   let primaryFilter = null;
 
   const props = {
-    menuToggled: false,
+    selectedFilter: 'foo',
     applyPrimaryFilters: jest.fn(),
     applySecondaryFilters: jest.fn(),
-    setMainNavigationToggled: jest.fn(),
-    setSelectedOption: jest.fn(),
     mobile: false,
     setSelectedFilter: jest.fn(),
   };

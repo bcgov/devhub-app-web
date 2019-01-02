@@ -40,14 +40,14 @@ ShallowWrapper {
           className="d-flex justify-content-center align-items-center"
         >
           <Connect(CardFilterButton)
-            className="btn btn-outline-primary PersonaButton"
+            className="btn btn-outline-primary"
             filterKey="2"
             scrollToTarget="CARDS_CONTAINER"
           >
             I'm a Developer
           </Connect(CardFilterButton)>
           <Connect(CardFilterButton)
-            className="btn btn-outline-success PersonaButton"
+            className="btn btn-outline-success"
             filterKey="1"
             scrollToTarget="CARDS_CONTAINER"
           >
@@ -137,14 +137,14 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <Connect(CardFilterButton)
-              className="btn btn-outline-primary PersonaButton"
+              className="btn btn-outline-primary"
               filterKey="2"
               scrollToTarget="CARDS_CONTAINER"
             >
               I'm a Developer
             </Connect(CardFilterButton)>,
             <Connect(CardFilterButton)
-              className="btn btn-outline-success PersonaButton"
+              className="btn btn-outline-success"
               filterKey="1"
               scrollToTarget="CARDS_CONTAINER"
             >
@@ -161,7 +161,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": "I'm a Developer",
-              "className": "btn btn-outline-primary PersonaButton",
+              "className": "btn btn-outline-primary",
               "filterKey": "2",
               "scrollToTarget": "CARDS_CONTAINER",
             },
@@ -175,7 +175,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": "I'm a Designer",
-              "className": "btn btn-outline-success PersonaButton",
+              "className": "btn btn-outline-success",
               "filterKey": "1",
               "scrollToTarget": "CARDS_CONTAINER",
             },
@@ -299,14 +299,14 @@ ShallowWrapper {
             className="d-flex justify-content-center align-items-center"
           >
             <Connect(CardFilterButton)
-              className="btn btn-outline-primary PersonaButton"
+              className="btn btn-outline-primary"
               filterKey="2"
               scrollToTarget="CARDS_CONTAINER"
             >
               I'm a Developer
             </Connect(CardFilterButton)>
             <Connect(CardFilterButton)
-              className="btn btn-outline-success PersonaButton"
+              className="btn btn-outline-success"
               filterKey="1"
               scrollToTarget="CARDS_CONTAINER"
             >
@@ -396,14 +396,14 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <Connect(CardFilterButton)
-                className="btn btn-outline-primary PersonaButton"
+                className="btn btn-outline-primary"
                 filterKey="2"
                 scrollToTarget="CARDS_CONTAINER"
               >
                 I'm a Developer
               </Connect(CardFilterButton)>,
               <Connect(CardFilterButton)
-                className="btn btn-outline-success PersonaButton"
+                className="btn btn-outline-success"
                 filterKey="1"
                 scrollToTarget="CARDS_CONTAINER"
               >
@@ -420,7 +420,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": "I'm a Developer",
-                "className": "btn btn-outline-primary PersonaButton",
+                "className": "btn btn-outline-primary",
                 "filterKey": "2",
                 "scrollToTarget": "CARDS_CONTAINER",
               },
@@ -434,7 +434,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": "I'm a Designer",
-                "className": "btn btn-outline-success PersonaButton",
+                "className": "btn btn-outline-success",
                 "filterKey": "1",
                 "scrollToTarget": "CARDS_CONTAINER",
               },
