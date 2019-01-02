@@ -7,7 +7,7 @@ import { GITHUB_ISSUES_ROUTE } from '../../constants/routes';
 import { REACT_SCROLL } from '../../constants/ui';
 import styles from './WelcomePanel.module.css';
 
-class WelcomePanel extends Component {
+export class WelcomePanel extends Component {
   render() {
     const { displayWelcome } = this.props;
 
