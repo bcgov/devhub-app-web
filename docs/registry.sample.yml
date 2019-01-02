@@ -1,4 +1,4 @@
-repos:
+sources:
   # - name: Pretty name for your Repo or Project (this will display as the top level source/category
   #         for your content in devhub)
   #   url: path to the repo like: https://github.com/bcgov/design-system/
