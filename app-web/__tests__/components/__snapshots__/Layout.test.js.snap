@@ -27,19 +27,9 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <HelmetWrapper
-          defer={true}
-          encodeSpecialCharacters={true}
-        >
-          <link
-            href="https://portal.nrs.gov.bc.ca/nrs-portal-theme/images/favicon.ico"
-            rel="icon"
-            type="image/x-icon"
-          />
-        </HelmetWrapper>,
         <PrimaryHeader
           hamburgerClicked={[Function]}
-          showHamburger={false}
+          showHamburger={true}
         />,
         "test",
         <PrimaryFooter>
@@ -53,39 +43,10 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "children": <link
-            href="https://portal.nrs.gov.bc.ca/nrs-portal-theme/images/favicon.ico"
-            rel="icon"
-            type="image/x-icon"
-          />,
-          "defer": true,
-          "encodeSpecialCharacters": true,
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "href": "https://portal.nrs.gov.bc.ca/nrs-portal-theme/images/favicon.ico",
-            "rel": "icon",
-            "type": "image/x-icon",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": "link",
-        },
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
         "nodeType": "function",
         "props": Object {
           "hamburgerClicked": [Function],
-          "showHamburger": false,
+          "showHamburger": true,
         },
         "ref": null,
         "rendered": null,
@@ -113,19 +74,9 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <HelmetWrapper
-            defer={true}
-            encodeSpecialCharacters={true}
-          >
-            <link
-              href="https://portal.nrs.gov.bc.ca/nrs-portal-theme/images/favicon.ico"
-              rel="icon"
-              type="image/x-icon"
-            />
-          </HelmetWrapper>,
           <PrimaryHeader
             hamburgerClicked={[Function]}
-            showHamburger={false}
+            showHamburger={true}
           />,
           "test",
           <PrimaryFooter>
@@ -139,39 +90,10 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <link
-              href="https://portal.nrs.gov.bc.ca/nrs-portal-theme/images/favicon.ico"
-              rel="icon"
-              type="image/x-icon"
-            />,
-            "defer": true,
-            "encodeSpecialCharacters": true,
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "href": "https://portal.nrs.gov.bc.ca/nrs-portal-theme/images/favicon.ico",
-              "rel": "icon",
-              "type": "image/x-icon",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": "link",
-          },
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
           "nodeType": "function",
           "props": Object {
             "hamburgerClicked": [Function],
-            "showHamburger": false,
+            "showHamburger": true,
           },
           "ref": null,
           "rendered": null,
