@@ -1,5 +1,4 @@
 .MarkdownBody {
-    padding: 1em 3em;
     word-break: break-word;
 }
 
@@ -57,7 +56,7 @@
 .MarkdownBody td, .MarkdownBody th {  
     border: 1px solid #ccc; /* No more visible border */
     height: 30px; 
-    transition: all 0.3s;  /* Simple transition for hover effect */
+    transition: all 0.15s;  /* Simple transition for hover effect */
 }
 
 .MarkdownBody th {  

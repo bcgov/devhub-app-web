@@ -19,7 +19,7 @@ import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import shortid from 'shortid';
 import PropTypes from 'prop-types';
-import Link from '../UI/Link/Link';
+import Link from '../../UI/Link/Link';
 import styles from './SourceNavigation.module.css';
 // navigation for dynamically created page components
 class SourceNavigation extends Component {

@@ -41,3 +41,10 @@
   padding: 10px;
   align-self: flex-end;
 }
+
+@media screen and (min-width: 768px) {
+  .Header {
+      margin-bottom: 5px;
+      background-color: inherit;
+  }
+}
