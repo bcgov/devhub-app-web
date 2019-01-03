@@ -58,10 +58,6 @@ export class Index extends Component {
 
     return (
       <Layout showHamburger hamburgerClicked={toggleMenu}>
-        <Flag name="features.sourceFiltering">
-          <PrimaryFilter />
-          {menuToggled ? <PrimaryFilter mobile /> : null}
-        </Flag>
         <main role="main" className={[styles.Main, 'container'].join(' ')}>
           <WelcomePanel />
           {/* Element used for react-scroll targeting */}
@@ -125,7 +121,6 @@ export const resourceQuery = graphql`
 const mapStateToProps = state => {
   return {
     nodes: state.siphon.secondaryFilteredNodes,
-    menuToggled: state.ui.mainNavigationToggled,
     filters: state.siphon.filters,
     displayWelcome: !state.ui.welcomePanelWasViewed,
   };
