@@ -12,10 +12,10 @@ import styles from './index.module.css';
 // components
 import { Element } from 'react-scroll';
 import Layout from '../hoc/Layout';
-import PrimaryFilter from '../components/PrimaryFilter/PrimaryFilter';
-import SecondaryFilter from '../components/SecondaryFilter/SecondaryFilter';
+import FilterMenu from '../components/FilterMenu/FilterMenu';
 import Cards from '../components/Cards/Cards';
 import WelcomePanel from '../components/WelcomePanel/WelcomePanel';
+import Sidebar from '../components/Sidebar/Sidebar';
 
 export class Index extends Component {
   componentDidMount() {
@@ -29,7 +29,7 @@ export class Index extends Component {
   }
 
   render() {
-    const { nodes, menuToggled, toggleMenu, filters } = this.props;
+    const { nodes, toggleMenu, filters } = this.props;
     let mappedSiphonNodes = [];
     if (nodes && nodes.length) {
       mappedSiphonNodes = nodes
@@ -60,11 +60,11 @@ export class Index extends Component {
       <Layout showHamburger hamburgerClicked={toggleMenu}>
         <main role="main" className={[styles.Main, 'container'].join(' ')}>
           <WelcomePanel />
+          <FilterMenu filterGroups={groupedFilters} />
           {/* Element used for react-scroll targeting */}
           <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
             <div className={styles.ListContainer}>
-              <SecondaryFilter filterGroups={groupedFilters} />
-              <SecondaryFilter filterGroups={groupedFilters} mobile />
+              <Sidebar filterGroups={groupedFilters} />
               <div className={styles.CardContainer}>
                 <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
               </div>
