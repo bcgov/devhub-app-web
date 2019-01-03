@@ -32,14 +32,18 @@ export class Layout extends React.Component {
 
   render() {
     const { children, hamburgerClicked } = this.props;
+
     return (
       <div className="layout">
-        <PrimaryHeader showHamburger hamburgerClicked={hamburgerClicked} />
+        <PrimaryHeader showHamburger hambuargerClicked={hamburgerClicked} />
         <Flag name={`features.${FLAGS.SOURCE_FILTERING}`}>
           <PrimaryFilter />
         </Flag>
+        {/* hamburger icon controlled menu */}
         <Dropmenu menuToggled />
+
         {children}
+
         <PrimaryFooter />
       </div>
     );

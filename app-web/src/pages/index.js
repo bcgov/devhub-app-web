@@ -12,10 +12,10 @@ import styles from './index.module.css';
 // components
 import { Element } from 'react-scroll';
 import Layout from '../hoc/Layout';
-import FilterMenu from '../components/FilterMenu/FilterMenu';
 import Cards from '../components/Cards/Cards';
-import WelcomePanel from '../components/WelcomePanel/WelcomePanel';
 import Sidebar from '../components/Sidebar/Sidebar';
+import FilterMenu from '../components/FilterMenu/FilterMenu';
+import WelcomePanel from '../components/WelcomePanel/WelcomePanel';
 
 export class Index extends Component {
   componentDidMount() {
@@ -50,6 +50,7 @@ export class Index extends Component {
     const SiphonResources = groupedSiphonData.map(ghData => (
       <Cards key={shortid.generate()} topic={ghData.collectionName} cards={ghData.data} />
     ));
+
     // group filter groups by there title
     let groupedFilters = groupBy(filters, 'title');
     // map the data property that is created from groupBy to filters which is needed
@@ -58,19 +59,21 @@ export class Index extends Component {
 
     return (
       <Layout showHamburger hamburgerClicked={toggleMenu}>
-        <main role="main" className={[styles.Main, 'container'].join(' ')}>
-          <WelcomePanel />
-          <FilterMenu filterGroups={groupedFilters} />
-          {/* Element used for react-scroll targeting */}
-          <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
-            <div className={styles.ListContainer}>
-              <Sidebar filterGroups={groupedFilters} />
-              <div className={styles.CardContainer}>
-                <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
-              </div>
-            </div>
-          </Element>
-        </main>
+        <div className={[styles.MainContainer, 'container'].join(' ')}>
+          <Sidebar filterGroups={groupedFilters} />
+          <div>
+            <WelcomePanel />
+            <FilterMenu filterGroups={groupedFilters} />
+            <main role="main" className={styles.Main}>
+              {/* Element used for react-scroll targeting */}
+              <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
+                <div className={styles.CardContainer}>
+                  <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
+                </div>
+              </Element>
+            </main>
+          </div>
+        </div>
       </Layout>
     );
   }
@@ -121,8 +124,8 @@ export const resourceQuery = graphql`
 const mapStateToProps = state => {
   return {
     nodes: state.siphon.secondaryFilteredNodes,
-    filters: state.siphon.filters,
     displayWelcome: !state.ui.welcomePanelWasViewed,
+    filters: state.siphon.filters,
   };
 };
 
