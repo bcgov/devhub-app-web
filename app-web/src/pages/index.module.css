@@ -71,5 +71,6 @@ touching the header bars */
         padding: 25px 35px 30px;
         margin-top: 96px;
         justify-content: flex-start;
+        flex-direction: row;
     }
 }
