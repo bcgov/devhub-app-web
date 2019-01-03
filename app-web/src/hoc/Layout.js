@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Helmet from 'react-helmet';
 // stylesheets
 import '../assets/styles/index.css';
 // layout local componenets
@@ -27,17 +26,10 @@ export class Layout extends React.Component {
   }
 
   render() {
-    const { children, showHamburger, hamburgerClicked } = this.props;
+    const { children, hamburgerClicked } = this.props;
     return (
       <div className="layout">
-        <Helmet>
-          <link
-            href="https://portal.nrs.gov.bc.ca/nrs-portal-theme/images/favicon.ico"
-            rel="icon"
-            type="image/x-icon"
-          />
-        </Helmet>
-        <PrimaryHeader showHamburger={showHamburger} hamburgerClicked={hamburgerClicked} />
+        <PrimaryHeader showHamburger hamburgerClicked={hamburgerClicked} />
         {children}
         <PrimaryFooter />
       </div>

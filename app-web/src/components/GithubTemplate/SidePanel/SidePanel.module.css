@@ -1,0 +1,16 @@
+.SidePanel {
+  flex: 1 0 200px;
+}
+
+@media screen and (min-width: 768px) {
+  .Header {
+      margin-bottom: 5px;
+      background-color: inherit;
+  }
+
+  .SidePanel {
+      max-width: 250px;
+      background-color: #e0e0e0;
+      margin-left: 1em;
+  }
+}

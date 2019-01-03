@@ -46,6 +46,11 @@ class HTML extends React.Component {
             crossOrigin="anonymous"
           />
           <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" />
+          <link
+            href="https://portal.nrs.gov.bc.ca/nrs-portal-theme/images/favicon.ico"
+            rel="icon"
+            type="image/x-icon"
+          />
           {this.props.headComponents}
           {css}
         </head>

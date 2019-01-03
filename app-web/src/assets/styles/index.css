@@ -1,38 +1,13 @@
-* {
-    margin: 0;
-    box-sizing: border-box;
-  }
-
-body, html {
-  height: 100%;
-  overflow: none;
-}
-
 body {
   font-family: 'Noto Sans', Calibri, Arial, 'Sans Serif';
   margin: 0;
   padding: 0;
   min-width: 320px;
-  overflow-x: auto;
   background-color: #fafafa;
 }
+
 #___gatsby, #___gatsby > div, .layout {
   height: 100%;
-}
-.container {
-  min-height: 100%;
-  box-sizing: border-box;
-  padding-top: 55px;
-  padding-bottom: 20px;
-  margin-bottom: -48px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-}
-
-p {
-  font-weight: 400;
 }
 
 .large-screen {

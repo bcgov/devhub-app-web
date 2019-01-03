@@ -9,52 +9,11 @@
     flex: 1 0 200px;
 }
 
-.Header {
-    background-color: #fff;
-    padding-top: 10px;
-    border-bottom: 1px solid #ccc;
-}
-.Header h1 {
-    font-size: 28px;
-    font-weight: 400;
-    margin: 0 4px;
-    text-align: center;
-    color: #036;
-}
-
-.Header .SourceTags {
-    list-style: none;
-    font-size: 25px;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.SourceTags li {
-    margin: 0 4px;
-    flex-basis: 26px;
-    text-align: center;
-}
-
-.SourceTags a {
-    cursor: pointer;
-    color: #3e3e3e;
-}
-
-.SourceTags a:visited {
-    color: #3e3e3e;
-}
-
-.Header > div {
-    padding: 10px;
-    align-self: flex-end;
-}
-
 .Content {
     background-color: #fff;
     min-width: 250px;
     flex: 1 1 400px;
+    padding: 1em;
 }
 
 @media screen and (min-width: 768px) {
@@ -67,5 +26,9 @@
         max-width: 250px;
         background-color: #e0e0e0;
         margin-left: 1em;
+    }
+
+    .Content {
+        padding: 1em 3em;
     }
 }
