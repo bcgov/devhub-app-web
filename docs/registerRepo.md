@@ -1,157 +1,207 @@
 ---
-description: A guide on how to get your repo registered with the Devhub so that it can display your content.
+description: A guide on how to get your repo or website registered with the Devhub so that it can display your content.
 author: patricksimonian
 image: https://github.com/bcgov/devhub-app-web/blob/master/docs/images/book.png?raw=true
 resourceType: Documentation
+title: Registering With DevHub
 ---
-# Registering Your Repo for Devhub
+>This guide was made to help Content Contributors get their content into the DevHub. If you find any errors within this guide or would like to contribute to it, please start by [creating and issue here](https://github.com/bcgov/devhub-app-web/issues/new/choose)
+> Thanks! - The DevHub Team
 
-Register your repo so that any supported files of your choosing will be viewable in the Devhub.
+## The DevHub
+DevHub aims to become the "Central Nervous System" for the growing gov developer community.
 
-## How It Works
+It will provide a comprehensive inventory of relevant internal and external documentation, open source components, services, APIs and data for internal and external developers who are building government products, or want to build their own products
 
-When you register your repository with the Devhub Repository. On rebuild of the Devhub Application, several processes are kicked off to retrieve any content that may exist in your repo (*specifically content that you choose to provide by means of configuration explained below*).
+### How does it work?
 
-Depending on the configuration of your content files, namely markdown files, the way your content is
-displayed, accessed as well as how it behaves will change.
+The DevHub works by maintaining a ***registry*** of locations to different types of content across the web. Most of this content exists inside of **Github Repositories** but it can also come from other places including **websites**.
 
-***The approach** we are taking is to provide maximum flexibility for content contributors to get
-their content into the devhub with minimum configuration.
+## The Registry and Registering With DevHub
 
-### Key Feature: Collections
+### What is the Registry Actually?
 
-With Collections you can **combine multiple sources under the same name** in the devhub.
+The registry is a special file within the DevHub's repository. It follows special rules and patterns that allows it to fetch content from different sources including Github and Websites.
 
-#### What does that mean?
-
-Let's say you wanted to create a 'story' on how to start off as a mobile app developer in gov. There
-are **many** resources scattered among a few repositories that may help a new comer to mobile app developing.
-
-If you would like these scattered resources to be more **connected** together, you can use the ***collections***
-configuration settings to point to these many repos at the same time in the devhub registry file.
-
-> Remember that you may register multiple sources (repos) in a collection all day till the cows come home, but if they don't contain the correct configurations (such as the proper markdown front matter) it will be ignored by the devhub
-
-So we have identified 2 repositories that can help a mobile app developer. They are:
-- https://github.com/awesomeOwner/mobileRepo1
-- https://github.com/awesomeOwner/signing-ios-app
-
-In the registry file you may register these repos as a **collection** like so:
-
+Here is what a sample registry could look like.
 ```yaml
-# ... = more registrations above
 sources:
-    # ...
-    - name: Starting Out as a Mobile App Dev In Gov # this is the title of your collection
-      attributes: 
-        persona: 'Developer'
-      sourceProperties:
+    name: The Ultimate Gov Guide to React
+    attributes:
+        persona: Developer
+    resourceType: Documentation
+    sourceProperties:
         sources:
-         - sourceType: 'github'
-           resourceType: 'Documenation'
-           sourceProperties:
-            repo: mobileRepo1
-            owner: awesomeOwner
-            url: https://github.com/awesomeOwner/mobileRepo1
-         - sourceType: 'github'
-           resourceType: 'Self-Service Tools'
-           sourceProperties:
-            repo: signing-os-app
-            owner: awesomeOwner
-            url: https://github.com/awesomeOwner/signing-ios-app
+            - sourceType: github
+              sourceProperties:
+                url: https://github.com/org/repo
+                name: react-guide-repo
+                owner: org
+            - sourceType: web
+              sourceProperties:
+                url: https://www.reactjs.org
 ```
-The collection can have metadata applied to it such as **attributes** just like a regular source can.
-It can even have a **resourceType**. If there are any sources within the collection that **do not have a resourceType**,
-they will inherit the **Collection's resourceType**
 
-### Key Feature: Unfurling
+As you can see it is just a configuration file that is in `YAML` format.
 
-Your content, whether it is a markdown file, or a link to an external resource is [unfurled](https://medium.com/slack-developer-blog/everything-you-ever-wanted-to-know-about-unfurling-but-were-afraid-to-ask-or-how-to-make-your-e64b4bb9254).
+### How It Works
 
-## How To Register Your Repo 
+When you register with the Devhub, several processes are kicked off to retrieve any content as defined from within the *registry file*.
 
+Depending on the configuration of the registry as well as any extra configuration as defined within the sources themselves, the sources content will automatically be apart of the DevHub and have a static website generated for it.
 
-We are still ironing out the best solution for registering.
-In the interim please ***fork*** and ***pull request*** to the registry.
+At the end of this process a card is manifested in the devhub that points to the generated static site for your content if applicable.
 
-Please take a look at the [Registry Template](./registry.sample.yml)
-file to get an idea of how you would add your repository to the registry.
-
-In a nutshell it will grab one or more files from your repository, process them, and spit out either a 'card'
 
 <img src="./images/samplecard.png" width="140">
 
-or a card and a page (which the card would navigate too when clicked)
+### How To Register
+>We are still ironing out the best solution for registering.
+In the interim please ***fork*** and ***pull request*** to the registry.
 
-## Supported File Types in Devhub
-- .md (Markdown)
-- .html (HTML)
+Please take a look at the [Registry Template](./registry.sample.yml)
+file to get an idea of how you would add your lines of configuration to the registry.
 
-### Step 1: Include `.devhubignore` File or Add Ignores as Configuration
+There are **two** ways to start adding to the registry file. Adding a sources by **collection** or adding a source **individually**. They both look similar with subtle differences.
 
-The Devhub's Siphon Plugin will attempt to grab **all valid files** from your repository if able.
-For many reasons, this can be an undesirable effect of regsitration. For that reason there are **two** ways
-too 'ignore' unwants files.
+### Registering Individual Sources
+> Before jumping into collections, it is best to understand how to add an individual source since most of the patterns identified here are used within a collection
 
-#### By .devhubignore
-Ensure you have a `.devhubignore` file apart of your repo in the root level of the repo (not within any folders). 
+A indivudal source (and collection for that matter) can be thought as having two levels of configuration.
+There registry level configuration and the source level configuration. 
 
-The `.devhubignore` is a configuration file that tells what files the devhub **should not** process. 
-This is important as you may not want to reveal documentation files such as READMEs to the devhub.
+##### Registry Level Configuration
+> Properties that exist outside of the `sourceProperties` paramater.
 
-By default we already exclude the following files and folders so you will not to place the following within your `.devhubignore` file:
+The following Registry Level Configurations are available:
 
-- openshift
-- CONTRIBUTING.md
-- CODE_OF_CONDUCT.md
-- LICENSE
+- **name**:  The name you would like to represent your source as in the devhub. This is something user's will see so avoid naming it in an unpresentable way such as
+    - bad: `name: 'my-awesome-repo'
+    - good: `name: 'My Awesome Repo'
+- **sourceType**: This tells DevHub how to grab information from your source
+- **sourceProperties**: These are properties as required for a source type **and is not a registry level configuration**
+- **resourceType**: (optional) This is a global resource type, any singular chunk of data (such as a markdown file or a yaml file or a  link to a website) that DevHubg grabs from your source can have it's individual resourceType defaulted to this value see the main readme for valid resource types.
+- **attributes**:
+    - **labels**: a yaml list of labels/tags for all of your sources to inherit
+    - **persona**: a global persona that all sources may inherit, personas are validated against a master list, valid values are: 'Designer', 'Developer', 'Product Owner'
 
-Sample .devhubignore file:
+There are currently **two supported source types** that can be used within the DevHub. 
+- `github`
+- `web`
 
-```
-README.md
-docs/dont_show_this.md
-```
-#### By the 'ignores' Configuration
-Instead of having to create a .devhubignore file, you can **configure** your registry within **inline ignores**.
+##### Source Type Github
+Used to source out 1 to many markdown files from within a repository. Github sources are ***highly configurable***, allowing for maximum customization.
 
-Further down in this article, you will find more detail on how to regsiter with the devhub. For now, let's
-take a look at this code example.
+##### Source Type Web
+Used to source out metadata from an external website. The external website must follow at least one of the common **HTML Unfurl** Specs such as `opengraph`, `twittercard`, `oembed` etc.
 
-```yaml
-sources:
-    -   name: Patricks Design Systen
-        sourceType: 'github'
-        sourceProperties:
-            url: https://github.com/bcgov/devhub-app-web/
-            owner: patricksimonian
-            repo: 'design-system'
-            ignores:
-                - components/
-                - README.md
-                #- /README.md <-- DO NOT start your ignore with a leading slash '/'
-        resourceType: 'Components'
-        attributes:
-        labels:
-            - Repository
-        persona: 'Developer'
-```
+##### Source Level Configurations
+As mentioned, source level configurations exist within the `sourceProperties` paramater.
 
-This is a sample registry. Notice how there is a *yaml* property called **ignores**. This is where
-you can set a list of files/paths you want to ignore. It follows the same conventions
-as a **.githubignore** file and so you can do lazy matching such as `docs/**/*.md`. 
+The following source level configurations are available for source type `github`
 
-### Step 2: Ensuring Your Files Meet Metadata Requirements
+- **url**: the path to your repo
+- **owner**: the owner of the repo    
+- **repo** This is the **actual** repository name
+- **branch** (optional) The branch you would like devhub to source content from
+- **context** (optional) The directory or an array of directories you would like devhub to source content from the repo
+- **file** (optional) The path to a particular file in the repo, if this property is used only one file will be sourced from this registration item
+- **files** (optional) A list of files to retrieve from a repository
+    - file1
+    - docs/file2
+- **ignores** (optional) a list of files or paths to ignore (replaces the need for a .devhubignore file)
 
-Based on what type of file you are choosing to include in the devhub some metadata properties may
-be required. 
+> With the base mandatory configuration of a github source, all valid markdown files from the repository are sourced into the DevHub
+with the exceptions of the ones that are configured not too or are ignored.
 
-#### Markdown Metadata
+The following source level configurations are available for source type `web`
 
-Add Front Matter To Your Markdown Files
-> Last updated: Nov 19th 2018
+- **url**: the path to the website ie https://gatsbyjs.org
 
-Front matter provides extra information that is necessary for Devhub to know ***how*** to process your markdown files. As definitions change for this process, the requirements for what will be needed for your front matter may change.
+#### Registering a Github Source
+
+Here is a simple registry item for a github source.
+
+<img src="./images/simple-github-source.jpeg" />
+
+1. Name: This is the category/title that all markdown files within the repository will be referred to as. Think of it as the common connection between each file. It is used to *group* the resources together on the main page
+2. sourceType: Denotes that this source is github and directs DevHub to use the correct routine for fetching repository content
+
+>SourceProperties: specific parameters based on the sourceType
+
+3. url: path to the github repository
+4. owner: the owner of the repository (can be a user or an organization)
+5. repo: the name of the repository
+6. resourceType: can be one of the 6 valid resourceTypes, this provides extra metadata to organize your content among other content that may exist within the DevHub. This property can be changed on an individual file basis by using the markdown frontmatter `resourceType` property.
+
+#### Ignoring Files Inside of a Repository
+
+There are **many** ways to ignore files from a repository. 
+
+- By a `.devhubignore` file
+
+    The `.devhubignore` is a configuration file that tells what files the devhub **should not** process. 
+    This is important as you may not want to reveal documentation files such as READMEs to the devhub.
+
+
+    If adding a `.devhubignore` file, please add it to the ROOT of your project.
+
+    By default we already exclude the following files and folders so you will not to place the following within your `.devhubignore` file:
+
+    - openshift
+    - CONTRIBUTING.md
+    - CODE_OF_CONDUCT.md
+    - LICENSE
+    - .github
+
+    Sample .devhubignore file:
+
+    ```
+    README.md
+    docs/dont_show_this.md
+    ```
+- By the `ignores` sourceProperty
+
+    Instead of having to create a .devhubignore file, you can **configure** your registry within **inline ignores**.
+
+    Let's take a look at this code example.
+
+    ```yaml
+    sources:
+        -   name: Patricks Design Systen
+            sourceType: 'github'
+            sourceProperties:
+                url: https://github.com/bcgov/devhub-app-web/
+                owner: patricksimonian
+                repo: 'design-system'
+                ignores:
+                    - components/
+                    - README.md
+                    #- /README.md <-- DO NOT start your ignore with a leading slash '/'
+            resourceType: 'Components'
+            attributes:
+            labels:
+                - Repository
+            persona: 'Developer'
+    ```
+> Both `.devhubignore` and the `ignores` sourceProperty follow the same conventions as a `.githubignore` file and so lazy matching is possible (`/docs/**/*.md`)
+
+- By registering only specific files using the `files` or `file` sourceProperty
+
+    If you choose to register only particular files, it circumvents the need for an ignore configuration.
+
+- By setting the ignore property in a markdown file's frontmatter
+    You can also ignore files by adding frontmatter
+    ```markdown
+    ---
+    ignore: true
+    ---
+    ```
+
+### Ensuring Your Markdown Files Are Ready for the Devhub
+Some Markdown Frontmatter is required for your content to be loaded into the DevHub.
+
+Frontmatter provides extra information that is necessary for Devhub to know ***how*** to process your markdown files. As definitions change for this process, the requirements for what will be needed for your front matter may change.
 
 >***TL;DR***
 
@@ -168,88 +218,109 @@ description: short description explaining the content
 ```
 
 **If your markdown content should point to an external resource**
+
 Your markdown file must contain this as apart of its front matter:
 ```markdown
 ---
-description:  a short description
+description:
 resourcePath: https://www.toyoursite.com
 ---
-
 ```
+> It is highly recommended that your 'external resource' follow a UNFURL spec such as
+opengraph or twittercard for the best display results on DevHub
 
-Let's get into detail what each of those **things** are used for in the front matter.
+Valid front matter properties:
 
-#### title (optional)
-The title for your file which is used as the title in the card view inside the devhub. If this is not
-included, the title will be *inferred* by the first header in your markdown code.
+- **title**: (optional)
+    The title for your file which is used as the title in the card view inside the devhub. If this is not
+    included, the title will be *inferred* by the first header (h1 or h2) in your markdown code.
+- **description**: (mandatory)
+    A short description describing what's in this file. This will be used as the short blurb in the card view inside the devhub. (try to limit to 280 character)
+- **resoucePath**: (optional)
+    Tells the devhub to point the user to your resource when they click on the devhub resource card
+    The resourcepath should be a valid hyperlink *ie https://www.example.com*
+- **pageOnly**: (optional)
+    Set to true if you do not want the content to show up in the homepage as an individual card, the content will still be presented in the page view
+- **ignore**: (optional)
+    Set to true if you do not want the content to show up at all
+- **image**: (optional)
+    A valid link to an image, avoid using a *relative* path to an image *ie ../my_image.png* and instead
+    use a *absolute* path such as *https://www.mysite.com/my_image.png*
+- **author**: (optional but recommended)
+    The author of the markdown file (this should be your github username)
+- **persona**: (optional)
+    this will overide and global personas configurations set in the registry, this is used to allow for
+    filtering the markdown files in the devhub by persona (valid personas: 'Developer', 'Designer', 'Product Owner')
+- **resourceType**: (optional)
+    this will override the global resource Type as defined in the registry level configuration
 
-#### description (mandatory)
-A short description describing what's in this file. This will be used as the short blurb in the card view inside the devhub. (try to limit to 280 character)
+#### Registering a Web Source
 
-#### resoucePath (optional)
-Tells the devhub to point the user to your resource when they click on the devhub resource card
-The resourcepath should be a valid hyperlink *ie https://www.example.com*
+Registering a web source is very easy. Here is an example registration item. 
+```yaml
+sources:
+    name: Gatbsy JS
+    sourceType: web
+    sourceProperties: 
+      url: https://gatsbyjs.org
+    resourceType: Documentation
+    attributes:
+      persona: Developer
+```
+A web source will create a card **but not a page** instead, the card points to the external website.
 
-#### pageOnly (optional)
-Set to true if you do not want the content to show up in the homepage as an individual card, the content will still be presented in the page view
+### Registering Collections
 
-#### ignore (optional)
-Set to true if you do not want the content to show up at all
+With Collections you can **combine multiple sources under the same name** in the DevHub.
 
-#### image (optional)
-A valid link to an image, avoid using a *relative* path to an image *ie ../my_image.png* and instead
-use a *absolute* path such as *https://www.mysite.com/my_image.png*
-#### author (optional but recommended)
-The author of the markdown file (this should be your github username)
-#### label1 (optional)
-One of two key value pairs allowed in the preview of a card
-#### value1 (optional)
-Must come inconjuction with `label1`
-#### label2 (optional)
-Last of the two key value pairs allowed in the preview of a card
-#### value2 (optional)
-Must come inconjuction with `label2`
-#### persona (options)
-this will overide and global personas configurations set in the registry, this is used to allow for
-filtering the markdown files in the devhub by persona (valid personas: 'Developer', 'Designer', 'Product Owner')
-#### HTML metadata
-Follow this document on how to add the appropriate metadata to your HTML document. 
+#### What does that mean?
 
-https://medium.com/slack-developer-blog/everything-you-ever-wanted-to-know-about-unfurling-but-were-afraid-to-ask-or-how-to-make-your-e64b4bb9254
+Let's say you wanted to create a 'story' on how to start off as a mobile app developer in gov. There
+are **many** resources scattered among a few repositories that may help a new comer to mobile app developing.
 
-### Step 3: Register your repository
+If you would like these scattered resources to be more **connected** together, you can use the ***collections***
+configuration settings to point to these many repos at the same time in the devhub registry file.
 
-Before your repo's content is taken in by the Devhub, the Devhub needs to know it exists first.
-This is accomplished by 'registering' into the devhub.
+> Remember that you may register multiple sources in a collection all day till the cows come home, but if they don't contain the correct configurations (such as the proper markdown front matter) it will be ignored by the devhub!
 
-#### Valid Registry Properties:
-- `name`  The name you would like to represent your source as in the devhub. This is something user's will see so avoid naming it in an unpresentable way such as
-    - bad: `name: 'my-awesome-repo'
-    - good: `name: 'My Awesome Repo'
-- `sourceType` This tells Siphon how to grab information from your source
-    - Valid Source Types:
-        - 'github'
-- `sourceProperties` These are properties as required for a source type
-    - 'github'
-        - `url`: the path to your repo
-        - `owner`: the owner of the repo    
-        - `repo` This is the **actual** repository name
-        - `branch` (optional) The branch you would like devhub to source content from
-        - `context` (optional) The directory or an array of directories you would like devhub to source content from the repo
-        - `file` (optional) The path to a particular file in the repo, if this property is used only one file will be sourced from this registration item
-        - `files` (optional) A list of files to retrieve from a repository
-            - file1
-            - /docs/file2
-- `resourceType` (optional) This is a global resource type, any singular chunk of data (such as a markdown file or a yaml file or a  link to a website) that Siphon grabs from your source can have it's individual resourceType defaulted to this value
-    - valid resource types: see the main readme
-- `attributes`
-    `labels`: a yaml list of labels/tags for all of your sources to inherit
-    `persona`: a global persona that all sources may inherit, personas are validated against a master list, valid values are: 'Designer', 'Developer', 'Product Owner'
-This will involve making a [Fork of the Devhub](https://github.com/bcgov/devhub-app-web/fork) and Pull Request to the [Devhub Repository's contributor-repository-registry branch](https://github.com/bcgov/devhub-app-web/tree/contributor-repo-registry).
+So we have identified **two** repositories that can help a mobile app developer as well as **one** website. They are:
+- https://github.com/awesomeOwner/mobileRepo1
+- https://github.com/awesomeOwner/signing-ios-app
+- https://medium.com/@bards95/thoughts-after-two-years-as-an-android-developer-d90a27ed00a7
 
-***PULL REQUESTS TO MASTER OR ANY OTHER BRANCH WILL BE IGNORED***
+In the registry file you may register these repos as a **collection** like so:
 
->If this is your first time Forking and or making Pull Requests, more details can be found [here](https://github.com/bcgov/devhub-app-web/blob/master/CONTRIBUTING.md).
+```yaml
+# ... = more registrations above
+sources:
+    # ...
+    - name: Starting Out as a Mobile App Dev In Gov # this is the title of your collection
+      attributes: 
+        persona: 'Developer'
+      sourceProperties:
+        sources:
+         # each '-' identifies an individual source within the collection
+         - sourceType: 'github'
+           resourceType: 'Documenation'
+           sourceProperties:
+            repo: mobileRepo1
+            owner: awesomeOwner
+            url: https://github.com/awesomeOwner/mobileRepo1
+         - sourceType: 'github'
+           resourceType: 'Self-Service Tools'
+           sourceProperties:
+            repo: signing-os-app
+            owner: awesomeOwner
+            url: https://github.com/awesomeOwner/signing-ios-app
+         - sourceType: 'web'
+           resourceType: 'Documentation'
+           sourceProperties:
+              url: 'https://medium.com/@bards95/thoughts-after-two-years-as-an-android-developer-d90a27ed00a7'
+```
+The collection can have metadata applied to it such as **attributes** just like a regular source can.
+It can even have a **resourceType**. If there are any sources within the collection that **do not have a resourceType**,
+they will inherit the **Collection's resourceType**
 
+As you can see, a collection is really a collection of ***individual sources!***
 
 
