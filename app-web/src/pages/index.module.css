@@ -62,7 +62,7 @@ touching the header bars */
     .Main {
         padding: 25px 35px 30px;
     }
-
+    
     .ListContainer {
         justify-content: flex-start;
         flex-direction: row;
