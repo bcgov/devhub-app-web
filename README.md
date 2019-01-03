@@ -108,7 +108,37 @@ Currently, DevHub is a statically generated site (generated using GatsbyJS) and 
 
 ### Workflow
 
-This project follows the [GitHub Flow workflow](https://guides.github.com/introduction/flow/) for managing code branches and releases.
+This project follows the [GitHub Flow workflow](https://guides.github.com/introduction/flow/) for managing code branches and releases.  Details and more specifics of how features are developed and rolled out are described below.
+
+#### Feature Lifecycle and Release Process
+
+As indicated above, the team follows the GitHub approach for managing code and releases.  Accompanying this general approach the team has implemented some specific structures, tools and practices that are described in this section.
+
+##### Branch Structure
+
+In the repo, at any given time, several to many branches may exist, and these can be categorized into a few "types" of branches, used for specific purposes.  Each is outlined below.
+
+* `master` branch: code that has been deployed an accepted in production ends up here.  It is the source from which new feature branches are created.
+* `feature/<#>-<issue-or-user-story-description>` branch: branches named following a similar format to the one shown are "feature branches" and created for the purpose of capturing work related to a single feature, often corresponding to a single, specific user story or issue.  This type of branch is created based on the lastest contents of `master`.
+* `hotfix/<#>-<issue-description>`: a "hotfix" branch for a change required to remediate an urgent problem found in the production instance of the application.  This type of branch would be based on the state of the master branch at the point the code in production was merged into it.
+
+##### Lifecycle
+
+Feature lifecycle is as follows: 
+
+* developer syncs local git repo with latest from `mster` in GitHub
+* developer creates local feature branch following the naming scheme `feature/<#>-<issue-or-user-story-description>` or similar
+* developer implements feature locally and commits new and modified code to feature branch in local repo
+* at any point during their feature development process, the developer may push their feature branch to GitHub
+* throughout their feature development process, developer should rebase or merge from master to ensure a more streamlined experience when the feature is complete or close to completion
+* when the feature is ready to be deployed in the development environment for testing and review by others, the developer pushes their feature branch and creates a GitHub pull request with the feature branch as the source, targeting `master`. 
+* when the pull request is created, the Jenkins pipeline will "kick in", triggering a build of the application incorporating the feature changes. Jenkins will create a "check" in the pull request, corresponding to the executing pipeline.  A link to the pipeline in Jenkins will be included as part of the check displayed in the pull request. 
+* if the build stage completes successfully, a new "dev" instance of the application will be deployed in OpenShift with a unique URL. This URL can be derived based on the pull request number and the following convention: `https://devhub-static-dev-<pull request number>-devhub-dev.pathfinder.gov.bc.ca/`.  At the appropriate time, the pipeline and/or Git will also execute any configured automated checks or tests (code scans; unit, functional, or accessibility tests).
+* if it is determined that the feature is acceptable based on reviewing the feature at the new dev URL, it can be deployed to test or prod using the Jenkins pipeline.
+* once deployed to prod, the feature should be reviewed again at the prod URL.  If accepted, the "cleanup" stage   
+
+
+ 
 
 ### Integration with Taiga via commit messages
 
