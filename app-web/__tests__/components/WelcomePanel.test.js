@@ -17,24 +17,11 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import { shallow } from 'enzyme';
-import { PrimaryFilter } from '../../src/components/PrimaryFilter/PrimaryFilter';
+import { WelcomePanel } from '../../src/components/WelcomePanel/WelcomePanel';
 
-describe('Primary Filter Component', () => {
-  let primaryFilter = null;
-
-  const props = {
-    selectedFilter: 'foo',
-    applyPrimaryFilters: jest.fn(),
-    applySecondaryFilters: jest.fn(),
-    mobile: false,
-    setSelectedFilter: jest.fn(),
-  };
-
-  beforeEach(() => {
-    primaryFilter = shallow(<PrimaryFilter {...props} />);
-  });
-
+describe('WelcomePanel Component', () => {
   test('it matches snapshot', () => {
-    expect(primaryFilter).toMatchSnapshot();
+    const wrapper = shallow(<WelcomePanel displayWelcome={true} />);
+    expect(wrapper).toMatchSnapshot();
   });
 });

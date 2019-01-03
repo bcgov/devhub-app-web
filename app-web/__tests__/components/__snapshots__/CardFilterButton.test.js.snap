@@ -4,12 +4,11 @@ exports[`CardFilterButton Component matches snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <CardFilterButton
+    addFilter={[MockFunction]}
     filterByProperty="filterByProperty"
     filterByValue="filterByValue"
-    filterNodes={[MockFunction]}
-    filterSiphonNodes={[MockFunction]}
-    resetfilter={[MockFunction]}
     scrollToTarget=""
+    unsetFilters={[MockFunction]}
   >
     
   </CardFilterButton>,
@@ -30,9 +29,6 @@ ShallowWrapper {
       "clicked": [Function],
       "filterByProperty": "filterByProperty",
       "filterByValue": "filterByValue",
-      "filterNodes": [MockFunction],
-      "filterSiphonNodes": [MockFunction],
-      "resetfilter": [MockFunction],
       "style": Object {
         "margin": ".7em",
       },
@@ -51,9 +47,6 @@ ShallowWrapper {
         "clicked": [Function],
         "filterByProperty": "filterByProperty",
         "filterByValue": "filterByValue",
-        "filterNodes": [MockFunction],
-        "filterSiphonNodes": [MockFunction],
-        "resetfilter": [MockFunction],
         "style": Object {
           "margin": ".7em",
         },

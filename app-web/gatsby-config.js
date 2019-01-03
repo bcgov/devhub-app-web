@@ -109,6 +109,10 @@ module.exports = {
         ],
       },
     },
+    // this plugin creates a front end search index found at window.__LUNR__
+    // please see npm docs for its usage, it is still up in the air how to implement
+    // the search against the rest of the gatsby app. As of now, data is coming from two sources
+    // the gatsby graphql source on build time, and the LUNR index on run time.
     {
       resolve: `gatsby-plugin-lunr`,
       options: {
