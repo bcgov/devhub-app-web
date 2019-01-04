@@ -12,9 +12,9 @@ import styles from './index.module.css';
 // components
 import { Element } from 'react-scroll';
 import Layout from '../hoc/Layout';
-import PrimaryFilter from '../components/PrimaryFilter/PrimaryFilter';
-import SecondaryFilter from '../components/SecondaryFilter/SecondaryFilter';
 import Cards from '../components/Cards/Cards';
+import Sidebar from '../components/Sidebar/Sidebar';
+import FilterMenu from '../components/FilterMenu/FilterMenu';
 import WelcomePanel from '../components/WelcomePanel/WelcomePanel';
 
 export class Index extends Component {
@@ -29,7 +29,7 @@ export class Index extends Component {
   }
 
   render() {
-    const { nodes, menuToggled, toggleMenu, filters } = this.props;
+    const { nodes, toggleMenu, filters } = this.props;
     let mappedSiphonNodes = [];
     if (nodes && nodes.length) {
       mappedSiphonNodes = nodes
@@ -50,6 +50,7 @@ export class Index extends Component {
     const SiphonResources = groupedSiphonData.map(ghData => (
       <Cards key={shortid.generate()} topic={ghData.collectionName} cards={ghData.data} />
     ));
+
     // group filter groups by there title
     let groupedFilters = groupBy(filters, 'title');
     // map the data property that is created from groupBy to filters which is needed
@@ -58,23 +59,21 @@ export class Index extends Component {
 
     return (
       <Layout showHamburger hamburgerClicked={toggleMenu}>
-        <Flag name="features.sourceFiltering">
-          <PrimaryFilter />
-          {menuToggled ? <PrimaryFilter mobile /> : null}
-        </Flag>
-        <main role="main" className={[styles.Main, 'container'].join(' ')}>
-          <WelcomePanel />
-          {/* Element used for react-scroll targeting */}
-          <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
-            <div className={styles.ListContainer}>
-              <SecondaryFilter filterGroups={groupedFilters} />
-              <SecondaryFilter filterGroups={groupedFilters} mobile />
-              <div className={styles.CardContainer}>
-                <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
-              </div>
-            </div>
-          </Element>
-        </main>
+        <div className={[styles.MainContainer, 'container'].join(' ')}>
+          <Sidebar filterGroups={groupedFilters} />
+          <div>
+            <WelcomePanel />
+            <FilterMenu filterGroups={groupedFilters} />
+            <main role="main" className={styles.Main}>
+              {/* Element used for react-scroll targeting */}
+              <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
+                <div className={styles.CardContainer}>
+                  <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
+                </div>
+              </Element>
+            </main>
+          </div>
+        </div>
       </Layout>
     );
   }
@@ -125,9 +124,8 @@ export const resourceQuery = graphql`
 const mapStateToProps = state => {
   return {
     nodes: state.siphon.secondaryFilteredNodes,
-    menuToggled: state.ui.mainNavigationToggled,
-    filters: state.siphon.filters,
     displayWelcome: !state.ui.welcomePanelWasViewed,
+    filters: state.siphon.filters,
   };
 };
 

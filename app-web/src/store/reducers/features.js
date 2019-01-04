@@ -16,6 +16,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import { createFlagsReducer } from 'flag';
+import FLAGS from '../../constants/featureflags';
 // flags can be booleans or functions as per flag docs
 // https://www.npmjs.com/package/flag
 // there are referenced by the Flag Component using string dot notation
@@ -30,16 +31,16 @@ import { createFlagsReducer } from 'flag';
  */
 export default createFlagsReducer({
   features: {
-    login: false,
-    githubResourceCards: true,
-    pathfinderResourceCards: true,
-    sourceFiltering: true,
+    [FLAGS.LOGIN]: false,
+    [FLAGS.GITHUB_RESOURCE_CARDS]: true,
+    [FLAGS.PATHFINDER_RESOURCE_CARDS]: true,
+    [FLAGS.SOURCE_FILTERING]: true,
     card: {
-      metadata: true,
-      issues: true,
-      repository: true,
-      watch: true,
-      fork: true,
+      [FLAGS.CARD.METADATA]: true,
+      [FLAGS.CARD.ISSUES]: true,
+      [FLAGS.CARD.REPOSITORY]: true,
+      [FLAGS.CARD.WATCH]: true,
+      [FLAGS.CARD.FORK]: true,
     },
   },
 });

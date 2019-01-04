@@ -1,7 +1,7 @@
 .Main {
     padding: 0 15px 30px;
-    margin-top: 50px;
     margin-bottom: 5px;
+    margin-top: 27px;
 }
 
 .Main > h1 {
@@ -31,14 +31,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding-top: 25px;
-}
-
-.ListContainer {
-    display: flex;
-    flex-direction: column;
-    margin-top: 33px;
-    justify-content: center;
 }
 
 .WithBlocker::after {
@@ -58,17 +50,27 @@ touching the header bars */
     margin-top: 33px;
 }
 
+.MainContainer {
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    flex-direction: column;
+}
+
 @media screen and (min-width: 500px) {
     .Main {
-        padding: 25px 35px 30px;
-    }
-    
-    .ListContainer {
-        justify-content: flex-start;
-        flex-direction: row;
+        padding: 10px 0 30px;
+        margin-top: 0;
     }
 
     .CardContainer {
         align-items: flex-start;
+    }
+
+    .MainContainer {
+        padding: 25px 35px 30px;
+        margin-top: 96px;
+        justify-content: flex-start;
+        flex-direction: row;
     }
 }

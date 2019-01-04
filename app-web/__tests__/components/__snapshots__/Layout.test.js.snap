@@ -28,8 +28,17 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <PrimaryHeader
+          hambuargerClicked={[Function]}
           hamburgerClicked={[Function]}
           showHamburger={true}
+        />,
+        <Flag
+          name="features.sourceFiltering"
+        >
+          <Connect(PrimaryFilter) />
+        </Flag>,
+        <Connect(Dropmenu)
+          menuToggled={true}
         />,
         "test",
         <PrimaryFooter>
@@ -45,8 +54,40 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
+          "hambuargerClicked": [Function],
           "hamburgerClicked": [Function],
           "showHamburger": true,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Connect(PrimaryFilter) />,
+          "name": "features.sourceFiltering",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "menuToggled": true,
         },
         "ref": null,
         "rendered": null,
@@ -75,8 +116,17 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <PrimaryHeader
+            hambuargerClicked={[Function]}
             hamburgerClicked={[Function]}
             showHamburger={true}
+          />,
+          <Flag
+            name="features.sourceFiltering"
+          >
+            <Connect(PrimaryFilter) />
+          </Flag>,
+          <Connect(Dropmenu)
+            menuToggled={true}
           />,
           "test",
           <PrimaryFooter>
@@ -92,8 +142,40 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "hambuargerClicked": [Function],
             "hamburgerClicked": [Function],
             "showHamburger": true,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Connect(PrimaryFilter) />,
+            "name": "features.sourceFiltering",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "menuToggled": true,
           },
           "ref": null,
           "rendered": null,
