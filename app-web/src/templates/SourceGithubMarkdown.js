@@ -20,12 +20,13 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import GithubTemplateLayout from '../hoc/GithubTemplateLayout';
+import 'github-markdown-css';
 import styles from './SourceMarkdown.module.css';
 // eslint-disable-next-line
 const SourceGithubMarkdown = ({ data: { devhubSiphon, nav }, location: pathname }) => (
   <GithubTemplateLayout siphonData={devhubSiphon} nav={nav} pathname={pathname}>
     <div
-      className={styles.MarkdownBody}
+      className={[styles.MarkdownBody, 'markdown-body'].join(' ')}
       dangerouslySetInnerHTML={{
         __html: devhubSiphon.childMarkdownRemark.html,
       }}
