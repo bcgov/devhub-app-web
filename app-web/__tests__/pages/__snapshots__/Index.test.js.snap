@@ -127,659 +127,16 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": <div
-        className="MainContainer container"
-      >
-        <Sidebar
-          filterGroups={
-            Array [
-              Object {
-                "data": Array [
-                  Object {
-                    "active": false,
-                    "availableResources": null,
-                    "filterBy": "attributes.persona",
-                    "key": "foo",
-                    "text": "Designers",
-                    "title": "For",
-                    "value": "Designer",
-                  },
-                  Object {
-                    "active": true,
-                    "availableResources": null,
-                    "filterBy": "attributes.persona",
-                    "key": "bar",
-                    "text": "Developers",
-                    "title": "For",
-                    "value": "Developer",
-                  },
-                  Object {
-                    "active": false,
-                    "availableResources": null,
-                    "filterBy": "attributes.persona",
-                    "key": "baz",
-                    "text": "Product Owners",
-                    "title": "For",
-                    "value": "Product Owner",
-                  },
-                ],
-                "filters": Array [
-                  Object {
-                    "active": false,
-                    "availableResources": null,
-                    "filterBy": "attributes.persona",
-                    "key": "foo",
-                    "text": "Designers",
-                    "title": "For",
-                    "value": "Designer",
-                  },
-                  Object {
-                    "active": true,
-                    "availableResources": null,
-                    "filterBy": "attributes.persona",
-                    "key": "bar",
-                    "text": "Developers",
-                    "title": "For",
-                    "value": "Developer",
-                  },
-                  Object {
-                    "active": false,
-                    "availableResources": null,
-                    "filterBy": "attributes.persona",
-                    "key": "baz",
-                    "text": "Product Owners",
-                    "title": "For",
-                    "value": "Product Owner",
-                  },
-                ],
-                "title": "For",
-              },
-            ]
-          }
-        />
-        <div>
-          <Connect(WelcomePanel) />
-          <FilterMenu
-            filterGroups={
-              Array [
-                Object {
-                  "data": Array [
-                    Object {
-                      "active": false,
-                      "availableResources": null,
-                      "filterBy": "attributes.persona",
-                      "key": "foo",
-                      "text": "Designers",
-                      "title": "For",
-                      "value": "Designer",
-                    },
-                    Object {
-                      "active": true,
-                      "availableResources": null,
-                      "filterBy": "attributes.persona",
-                      "key": "bar",
-                      "text": "Developers",
-                      "title": "For",
-                      "value": "Developer",
-                    },
-                    Object {
-                      "active": false,
-                      "availableResources": null,
-                      "filterBy": "attributes.persona",
-                      "key": "baz",
-                      "text": "Product Owners",
-                      "title": "For",
-                      "value": "Product Owner",
-                    },
-                  ],
-                  "filters": Array [
-                    Object {
-                      "active": false,
-                      "availableResources": null,
-                      "filterBy": "attributes.persona",
-                      "key": "foo",
-                      "text": "Designers",
-                      "title": "For",
-                      "value": "Designer",
-                    },
-                    Object {
-                      "active": true,
-                      "availableResources": null,
-                      "filterBy": "attributes.persona",
-                      "key": "bar",
-                      "text": "Developers",
-                      "title": "For",
-                      "value": "Developer",
-                    },
-                    Object {
-                      "active": false,
-                      "availableResources": null,
-                      "filterBy": "attributes.persona",
-                      "key": "baz",
-                      "text": "Product Owners",
-                      "title": "For",
-                      "value": "Product Owner",
-                    },
-                  ],
-                  "title": "For",
-                },
-              ]
-            }
-          />
-          <main
-            className="Main"
-            role="main"
-          >
-            <Element
-              name="CARDS_CONTAINER"
-            >
-              <div
-                className="CardContainer"
-              >
-                <Flag
-                  name="features.githubResourceCards"
-                />
-              </div>
-            </Element>
-          </main>
-        </div>
-      </div>,
-      "hamburgerClicked": undefined,
-      "showHamburger": true,
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": Array [
-          <Sidebar
-            filterGroups={
-              Array [
-                Object {
-                  "data": Array [
-                    Object {
-                      "active": false,
-                      "availableResources": null,
-                      "filterBy": "attributes.persona",
-                      "key": "foo",
-                      "text": "Designers",
-                      "title": "For",
-                      "value": "Designer",
-                    },
-                    Object {
-                      "active": true,
-                      "availableResources": null,
-                      "filterBy": "attributes.persona",
-                      "key": "bar",
-                      "text": "Developers",
-                      "title": "For",
-                      "value": "Developer",
-                    },
-                    Object {
-                      "active": false,
-                      "availableResources": null,
-                      "filterBy": "attributes.persona",
-                      "key": "baz",
-                      "text": "Product Owners",
-                      "title": "For",
-                      "value": "Product Owner",
-                    },
-                  ],
-                  "filters": Array [
-                    Object {
-                      "active": false,
-                      "availableResources": null,
-                      "filterBy": "attributes.persona",
-                      "key": "foo",
-                      "text": "Designers",
-                      "title": "For",
-                      "value": "Designer",
-                    },
-                    Object {
-                      "active": true,
-                      "availableResources": null,
-                      "filterBy": "attributes.persona",
-                      "key": "bar",
-                      "text": "Developers",
-                      "title": "For",
-                      "value": "Developer",
-                    },
-                    Object {
-                      "active": false,
-                      "availableResources": null,
-                      "filterBy": "attributes.persona",
-                      "key": "baz",
-                      "text": "Product Owners",
-                      "title": "For",
-                      "value": "Product Owner",
-                    },
-                  ],
-                  "title": "For",
-                },
-              ]
-            }
-          />,
-          <div>
-            <Connect(WelcomePanel) />
-            <FilterMenu
-              filterGroups={
-                Array [
-                  Object {
-                    "data": Array [
-                      Object {
-                        "active": false,
-                        "availableResources": null,
-                        "filterBy": "attributes.persona",
-                        "key": "foo",
-                        "text": "Designers",
-                        "title": "For",
-                        "value": "Designer",
-                      },
-                      Object {
-                        "active": true,
-                        "availableResources": null,
-                        "filterBy": "attributes.persona",
-                        "key": "bar",
-                        "text": "Developers",
-                        "title": "For",
-                        "value": "Developer",
-                      },
-                      Object {
-                        "active": false,
-                        "availableResources": null,
-                        "filterBy": "attributes.persona",
-                        "key": "baz",
-                        "text": "Product Owners",
-                        "title": "For",
-                        "value": "Product Owner",
-                      },
-                    ],
-                    "filters": Array [
-                      Object {
-                        "active": false,
-                        "availableResources": null,
-                        "filterBy": "attributes.persona",
-                        "key": "foo",
-                        "text": "Designers",
-                        "title": "For",
-                        "value": "Designer",
-                      },
-                      Object {
-                        "active": true,
-                        "availableResources": null,
-                        "filterBy": "attributes.persona",
-                        "key": "bar",
-                        "text": "Developers",
-                        "title": "For",
-                        "value": "Developer",
-                      },
-                      Object {
-                        "active": false,
-                        "availableResources": null,
-                        "filterBy": "attributes.persona",
-                        "key": "baz",
-                        "text": "Product Owners",
-                        "title": "For",
-                        "value": "Product Owner",
-                      },
-                    ],
-                    "title": "For",
-                  },
-                ]
-              }
-            />
-            <main
-              className="Main"
-              role="main"
-            >
-              <Element
-                name="CARDS_CONTAINER"
-              >
-                <div
-                  className="CardContainer"
-                >
-                  <Flag
-                    name="features.githubResourceCards"
-                  />
-                </div>
-              </Element>
-            </main>
-          </div>,
-        ],
-        "className": "MainContainer container",
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "filterGroups": Array [
-              Object {
-                "data": Array [
-                  Object {
-                    "active": false,
-                    "availableResources": null,
-                    "filterBy": "attributes.persona",
-                    "key": "foo",
-                    "text": "Designers",
-                    "title": "For",
-                    "value": "Designer",
-                  },
-                  Object {
-                    "active": true,
-                    "availableResources": null,
-                    "filterBy": "attributes.persona",
-                    "key": "bar",
-                    "text": "Developers",
-                    "title": "For",
-                    "value": "Developer",
-                  },
-                  Object {
-                    "active": false,
-                    "availableResources": null,
-                    "filterBy": "attributes.persona",
-                    "key": "baz",
-                    "text": "Product Owners",
-                    "title": "For",
-                    "value": "Product Owner",
-                  },
-                ],
-                "filters": Array [
-                  Object {
-                    "active": false,
-                    "availableResources": null,
-                    "filterBy": "attributes.persona",
-                    "key": "foo",
-                    "text": "Designers",
-                    "title": "For",
-                    "value": "Designer",
-                  },
-                  Object {
-                    "active": true,
-                    "availableResources": null,
-                    "filterBy": "attributes.persona",
-                    "key": "bar",
-                    "text": "Developers",
-                    "title": "For",
-                    "value": "Developer",
-                  },
-                  Object {
-                    "active": false,
-                    "availableResources": null,
-                    "filterBy": "attributes.persona",
-                    "key": "baz",
-                    "text": "Product Owners",
-                    "title": "For",
-                    "value": "Product Owner",
-                  },
-                ],
-                "title": "For",
-              },
-            ],
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              <Connect(WelcomePanel) />,
-              <FilterMenu
-                filterGroups={
-                  Array [
-                    Object {
-                      "data": Array [
-                        Object {
-                          "active": false,
-                          "availableResources": null,
-                          "filterBy": "attributes.persona",
-                          "key": "foo",
-                          "text": "Designers",
-                          "title": "For",
-                          "value": "Designer",
-                        },
-                        Object {
-                          "active": true,
-                          "availableResources": null,
-                          "filterBy": "attributes.persona",
-                          "key": "bar",
-                          "text": "Developers",
-                          "title": "For",
-                          "value": "Developer",
-                        },
-                        Object {
-                          "active": false,
-                          "availableResources": null,
-                          "filterBy": "attributes.persona",
-                          "key": "baz",
-                          "text": "Product Owners",
-                          "title": "For",
-                          "value": "Product Owner",
-                        },
-                      ],
-                      "filters": Array [
-                        Object {
-                          "active": false,
-                          "availableResources": null,
-                          "filterBy": "attributes.persona",
-                          "key": "foo",
-                          "text": "Designers",
-                          "title": "For",
-                          "value": "Designer",
-                        },
-                        Object {
-                          "active": true,
-                          "availableResources": null,
-                          "filterBy": "attributes.persona",
-                          "key": "bar",
-                          "text": "Developers",
-                          "title": "For",
-                          "value": "Developer",
-                        },
-                        Object {
-                          "active": false,
-                          "availableResources": null,
-                          "filterBy": "attributes.persona",
-                          "key": "baz",
-                          "text": "Product Owners",
-                          "title": "For",
-                          "value": "Product Owner",
-                        },
-                      ],
-                      "title": "For",
-                    },
-                  ]
-                }
-              />,
-              <main
-                className="Main"
-                role="main"
-              >
-                <Element
-                  name="CARDS_CONTAINER"
-                >
-                  <div
-                    className="CardContainer"
-                  >
-                    <Flag
-                      name="features.githubResourceCards"
-                    />
-                  </div>
-                </Element>
-              </main>,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {},
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "filterGroups": Array [
-                  Object {
-                    "data": Array [
-                      Object {
-                        "active": false,
-                        "availableResources": null,
-                        "filterBy": "attributes.persona",
-                        "key": "foo",
-                        "text": "Designers",
-                        "title": "For",
-                        "value": "Designer",
-                      },
-                      Object {
-                        "active": true,
-                        "availableResources": null,
-                        "filterBy": "attributes.persona",
-                        "key": "bar",
-                        "text": "Developers",
-                        "title": "For",
-                        "value": "Developer",
-                      },
-                      Object {
-                        "active": false,
-                        "availableResources": null,
-                        "filterBy": "attributes.persona",
-                        "key": "baz",
-                        "text": "Product Owners",
-                        "title": "For",
-                        "value": "Product Owner",
-                      },
-                    ],
-                    "filters": Array [
-                      Object {
-                        "active": false,
-                        "availableResources": null,
-                        "filterBy": "attributes.persona",
-                        "key": "foo",
-                        "text": "Designers",
-                        "title": "For",
-                        "value": "Designer",
-                      },
-                      Object {
-                        "active": true,
-                        "availableResources": null,
-                        "filterBy": "attributes.persona",
-                        "key": "bar",
-                        "text": "Developers",
-                        "title": "For",
-                        "value": "Developer",
-                      },
-                      Object {
-                        "active": false,
-                        "availableResources": null,
-                        "filterBy": "attributes.persona",
-                        "key": "baz",
-                        "text": "Product Owners",
-                        "title": "For",
-                        "value": "Product Owner",
-                      },
-                    ],
-                    "title": "For",
-                  },
-                ],
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": <Element
-                  name="CARDS_CONTAINER"
-                >
-                  <div
-                    className="CardContainer"
-                  >
-                    <Flag
-                      name="features.githubResourceCards"
-                    />
-                  </div>
-                </Element>,
-                "className": "Main",
-                "role": "main",
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "class",
-                "props": Object {
-                  "children": <div
-                    className="CardContainer"
-                  >
-                    <Flag
-                      name="features.githubResourceCards"
-                    />
-                  </div>,
-                  "name": "CARDS_CONTAINER",
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": <Flag
-                      name="features.githubResourceCards"
-                    />,
-                    "className": "CardContainer",
-                  },
-                  "ref": null,
-                  "rendered": Object {
-                    "instance": null,
-                    "key": undefined,
-                    "nodeType": "class",
-                    "props": Object {
-                      "children": Array [],
-                      "name": "features.githubResourceCards",
-                    },
-                    "ref": null,
-                    "rendered": Array [],
-                    "type": [Function],
-                  },
-                  "type": "div",
-                },
-                "type": [Function],
-              },
-              "type": "main",
-            },
-          ],
-          "type": "div",
-        },
-      ],
-      "type": "div",
-    },
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "children": <div
+      "children": Array [
+        <Flag
+          name="features.sourceFiltering"
+        >
+          <Connect(PrimaryFilter) />
+        </Flag>,
+        <Connect(Dropmenu)
+          menuToggled={true}
+        />,
+        <div
           className="MainContainer container"
         >
           <Sidebar
@@ -936,11 +293,44 @@ ShallowWrapper {
             </main>
           </div>
         </div>,
-        "hamburgerClicked": undefined,
-        "showHamburger": true,
+      ],
+      "hamburgerClicked": undefined,
+      "showHamburger": true,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Connect(PrimaryFilter) />,
+          "name": "features.sourceFiltering",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": [Function],
       },
-      "ref": null,
-      "rendered": Object {
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "menuToggled": true,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
         "instance": null,
         "key": undefined,
         "nodeType": "host",
@@ -1423,6 +813,702 @@ ShallowWrapper {
         ],
         "type": "div",
       },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <Flag
+            name="features.sourceFiltering"
+          >
+            <Connect(PrimaryFilter) />
+          </Flag>,
+          <Connect(Dropmenu)
+            menuToggled={true}
+          />,
+          <div
+            className="MainContainer container"
+          >
+            <Sidebar
+              filterGroups={
+                Array [
+                  Object {
+                    "data": Array [
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "foo",
+                        "text": "Designers",
+                        "title": "For",
+                        "value": "Designer",
+                      },
+                      Object {
+                        "active": true,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "bar",
+                        "text": "Developers",
+                        "title": "For",
+                        "value": "Developer",
+                      },
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "baz",
+                        "text": "Product Owners",
+                        "title": "For",
+                        "value": "Product Owner",
+                      },
+                    ],
+                    "filters": Array [
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "foo",
+                        "text": "Designers",
+                        "title": "For",
+                        "value": "Designer",
+                      },
+                      Object {
+                        "active": true,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "bar",
+                        "text": "Developers",
+                        "title": "For",
+                        "value": "Developer",
+                      },
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "baz",
+                        "text": "Product Owners",
+                        "title": "For",
+                        "value": "Product Owner",
+                      },
+                    ],
+                    "title": "For",
+                  },
+                ]
+              }
+            />
+            <div>
+              <Connect(WelcomePanel) />
+              <FilterMenu
+                filterGroups={
+                  Array [
+                    Object {
+                      "data": Array [
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "foo",
+                          "text": "Designers",
+                          "title": "For",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": true,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "bar",
+                          "text": "Developers",
+                          "title": "For",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "baz",
+                          "text": "Product Owners",
+                          "title": "For",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "filters": Array [
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "foo",
+                          "text": "Designers",
+                          "title": "For",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": true,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "bar",
+                          "text": "Developers",
+                          "title": "For",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "baz",
+                          "text": "Product Owners",
+                          "title": "For",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "title": "For",
+                    },
+                  ]
+                }
+              />
+              <main
+                className="Main"
+                role="main"
+              >
+                <Element
+                  name="CARDS_CONTAINER"
+                >
+                  <div
+                    className="CardContainer"
+                  >
+                    <Flag
+                      name="features.githubResourceCards"
+                    />
+                  </div>
+                </Element>
+              </main>
+            </div>
+          </div>,
+        ],
+        "hamburgerClicked": undefined,
+        "showHamburger": true,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <Connect(PrimaryFilter) />,
+            "name": "features.sourceFiltering",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {},
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "menuToggled": true,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <Sidebar
+                filterGroups={
+                  Array [
+                    Object {
+                      "data": Array [
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "foo",
+                          "text": "Designers",
+                          "title": "For",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": true,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "bar",
+                          "text": "Developers",
+                          "title": "For",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "baz",
+                          "text": "Product Owners",
+                          "title": "For",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "filters": Array [
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "foo",
+                          "text": "Designers",
+                          "title": "For",
+                          "value": "Designer",
+                        },
+                        Object {
+                          "active": true,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "bar",
+                          "text": "Developers",
+                          "title": "For",
+                          "value": "Developer",
+                        },
+                        Object {
+                          "active": false,
+                          "availableResources": null,
+                          "filterBy": "attributes.persona",
+                          "key": "baz",
+                          "text": "Product Owners",
+                          "title": "For",
+                          "value": "Product Owner",
+                        },
+                      ],
+                      "title": "For",
+                    },
+                  ]
+                }
+              />,
+              <div>
+                <Connect(WelcomePanel) />
+                <FilterMenu
+                  filterGroups={
+                    Array [
+                      Object {
+                        "data": Array [
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "foo",
+                            "text": "Designers",
+                            "title": "For",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": true,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "bar",
+                            "text": "Developers",
+                            "title": "For",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "baz",
+                            "text": "Product Owners",
+                            "title": "For",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "filters": Array [
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "foo",
+                            "text": "Designers",
+                            "title": "For",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": true,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "bar",
+                            "text": "Developers",
+                            "title": "For",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "baz",
+                            "text": "Product Owners",
+                            "title": "For",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "title": "For",
+                      },
+                    ]
+                  }
+                />
+                <main
+                  className="Main"
+                  role="main"
+                >
+                  <Element
+                    name="CARDS_CONTAINER"
+                  >
+                    <div
+                      className="CardContainer"
+                    >
+                      <Flag
+                        name="features.githubResourceCards"
+                      />
+                    </div>
+                  </Element>
+                </main>
+              </div>,
+            ],
+            "className": "MainContainer container",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "filterGroups": Array [
+                  Object {
+                    "data": Array [
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "foo",
+                        "text": "Designers",
+                        "title": "For",
+                        "value": "Designer",
+                      },
+                      Object {
+                        "active": true,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "bar",
+                        "text": "Developers",
+                        "title": "For",
+                        "value": "Developer",
+                      },
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "baz",
+                        "text": "Product Owners",
+                        "title": "For",
+                        "value": "Product Owner",
+                      },
+                    ],
+                    "filters": Array [
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "foo",
+                        "text": "Designers",
+                        "title": "For",
+                        "value": "Designer",
+                      },
+                      Object {
+                        "active": true,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "bar",
+                        "text": "Developers",
+                        "title": "For",
+                        "value": "Developer",
+                      },
+                      Object {
+                        "active": false,
+                        "availableResources": null,
+                        "filterBy": "attributes.persona",
+                        "key": "baz",
+                        "text": "Product Owners",
+                        "title": "For",
+                        "value": "Product Owner",
+                      },
+                    ],
+                    "title": "For",
+                  },
+                ],
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <Connect(WelcomePanel) />,
+                  <FilterMenu
+                    filterGroups={
+                      Array [
+                        Object {
+                          "data": Array [
+                            Object {
+                              "active": false,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "foo",
+                              "text": "Designers",
+                              "title": "For",
+                              "value": "Designer",
+                            },
+                            Object {
+                              "active": true,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "bar",
+                              "text": "Developers",
+                              "title": "For",
+                              "value": "Developer",
+                            },
+                            Object {
+                              "active": false,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "baz",
+                              "text": "Product Owners",
+                              "title": "For",
+                              "value": "Product Owner",
+                            },
+                          ],
+                          "filters": Array [
+                            Object {
+                              "active": false,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "foo",
+                              "text": "Designers",
+                              "title": "For",
+                              "value": "Designer",
+                            },
+                            Object {
+                              "active": true,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "bar",
+                              "text": "Developers",
+                              "title": "For",
+                              "value": "Developer",
+                            },
+                            Object {
+                              "active": false,
+                              "availableResources": null,
+                              "filterBy": "attributes.persona",
+                              "key": "baz",
+                              "text": "Product Owners",
+                              "title": "For",
+                              "value": "Product Owner",
+                            },
+                          ],
+                          "title": "For",
+                        },
+                      ]
+                    }
+                  />,
+                  <main
+                    className="Main"
+                    role="main"
+                  >
+                    <Element
+                      name="CARDS_CONTAINER"
+                    >
+                      <div
+                        className="CardContainer"
+                      >
+                        <Flag
+                          name="features.githubResourceCards"
+                        />
+                      </div>
+                    </Element>
+                  </main>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "filterGroups": Array [
+                      Object {
+                        "data": Array [
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "foo",
+                            "text": "Designers",
+                            "title": "For",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": true,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "bar",
+                            "text": "Developers",
+                            "title": "For",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "baz",
+                            "text": "Product Owners",
+                            "title": "For",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "filters": Array [
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "foo",
+                            "text": "Designers",
+                            "title": "For",
+                            "value": "Designer",
+                          },
+                          Object {
+                            "active": true,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "bar",
+                            "text": "Developers",
+                            "title": "For",
+                            "value": "Developer",
+                          },
+                          Object {
+                            "active": false,
+                            "availableResources": null,
+                            "filterBy": "attributes.persona",
+                            "key": "baz",
+                            "text": "Product Owners",
+                            "title": "For",
+                            "value": "Product Owner",
+                          },
+                        ],
+                        "title": "For",
+                      },
+                    ],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <Element
+                      name="CARDS_CONTAINER"
+                    >
+                      <div
+                        className="CardContainer"
+                      >
+                        <Flag
+                          name="features.githubResourceCards"
+                        />
+                      </div>
+                    </Element>,
+                    "className": "Main",
+                    "role": "main",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <div
+                        className="CardContainer"
+                      >
+                        <Flag
+                          name="features.githubResourceCards"
+                        />
+                      </div>,
+                      "name": "CARDS_CONTAINER",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <Flag
+                          name="features.githubResourceCards"
+                        />,
+                        "className": "CardContainer",
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": Array [],
+                          "name": "features.githubResourceCards",
+                        },
+                        "ref": null,
+                        "rendered": Array [],
+                        "type": [Function],
+                      },
+                      "type": "div",
+                    },
+                    "type": [Function],
+                  },
+                  "type": "main",
+                },
+              ],
+              "type": "div",
+            },
+          ],
+          "type": "div",
+        },
+      ],
       "type": [Function],
     },
   ],
