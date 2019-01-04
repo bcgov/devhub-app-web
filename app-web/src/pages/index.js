@@ -7,6 +7,7 @@ import { Flag } from 'flag';
 import * as actions from '../store/actions/actions';
 import { groupBy } from '../utils/dataMassager';
 import { REACT_SCROLL } from '../constants/ui';
+import FLAGS from '../constants/featureflags';
 
 import styles from './index.module.css';
 // components
@@ -16,6 +17,8 @@ import Cards from '../components/Cards/Cards';
 import Sidebar from '../components/Sidebar/Sidebar';
 import FilterMenu from '../components/FilterMenu/FilterMenu';
 import WelcomePanel from '../components/WelcomePanel/WelcomePanel';
+import PrimaryFilter from '../components/PrimaryFilter/PrimaryFilter';
+import Dropmenu from '../components/Dropmenu/Dropmenu';
 
 export class Index extends Component {
   componentDidMount() {
@@ -59,6 +62,11 @@ export class Index extends Component {
 
     return (
       <Layout showHamburger hamburgerClicked={toggleMenu}>
+        <Flag name={`features.${FLAGS.SOURCE_FILTERING}`}>
+          <PrimaryFilter />
+        </Flag>
+        {/* hamburger icon controlled menu */}
+        <Dropmenu menuToggled />
         <div className={[styles.MainContainer, 'container'].join(' ')}>
           <Sidebar filterGroups={groupedFilters} />
           <div>
