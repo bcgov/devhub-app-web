@@ -171,6 +171,30 @@ const filterIgnoredResources = sources =>
   });
 
 /**
+ * simply maps persona to personas as an array
+ * if personas already exists and its valid, persona does not override
+ * @param {Object} attributes the attribute registry item property
+ */
+const normalizePersonas = attributes => {
+  const newAttributes = { ...attributes };
+  if (
+    Object.prototype.hasOwnProperty.call(newAttributes, 'personas') &&
+    TypeCheck.isArrayOf(String, newAttributes.personas)
+  ) {
+    return newAttributes;
+  } else if (
+    Object.prototype.hasOwnProperty.call(newAttributes, 'persona') &&
+    TypeCheck.isString(newAttributes.persona)
+  ) {
+    newAttributes.personas = [newAttributes.persona];
+  } else {
+    newAttributes.personas = [];
+  }
+
+  return newAttributes;
+};
+
+/**
  * creates the list of 'source' objects that are used by the fetch source routine
  * if a source is a collection
  * its child 'sources' inherit attributes from the collection like name, attributes, resourceType
@@ -252,4 +276,5 @@ module.exports = {
   sourcesAreValid,
   mapInheritedSourceAttributes,
   getFetchQueue,
+  normalizePersonas,
 };
