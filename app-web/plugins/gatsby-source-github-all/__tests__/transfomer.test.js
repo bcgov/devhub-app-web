@@ -142,11 +142,11 @@ describe('Transformer System', () => {
     });
 
     it('appends persona metadata property', async () => {
-      expect(file.metadata.persona).not.toBeDefined();
+      expect(file.metadata.personas).not.toBeDefined();
       const result = await markdownPersonaPlugin(file.metadata.extension, file, {
         personas: PERSONAS_LIST,
       });
-      expect(result.metadata.persona).toBeDefined();
+      expect(result.metadata.personas).toBeDefined();
     });
 
     it('appends persona metadata property by front matter first', async () => {
@@ -154,16 +154,16 @@ describe('Transformer System', () => {
       const result = await markdownPersonaPlugin(file.metadata.extension, file, {
         personas: PERSONAS_LIST,
       });
-      expect(result.metadata.persona).toBe('Developer');
+      expect(result.metadata.personas).toEqual(['Developer']);
     });
 
-    it("sets persona metadata property '' when no applicable persona is available", async () => {
+    it('sets persona metadata property [] when no applicable persona is available', async () => {
       file.content = `---\n---`;
-      file.metadata.globalPersona = null;
+      file.metadata.globalPersonas = null;
       const result = await markdownPersonaPlugin(file.metadata.extension, file, {
         personas: PERSONAS_LIST,
       });
-      expect(result.metadata.persona).toBe('');
+      expect(result.metadata.personas).toEqual([]);
     });
 
     it('sets resourcePath if resourceType is repositories', async () => {

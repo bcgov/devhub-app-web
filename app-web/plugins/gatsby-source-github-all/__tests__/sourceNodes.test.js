@@ -167,7 +167,7 @@ describe('gatsby source github all plugin', () => {
       },
       attributes: {
         labels: 'component',
-        persona: [undefined],
+        personas: undefined,
       },
       source: {
         name: 'something/something',

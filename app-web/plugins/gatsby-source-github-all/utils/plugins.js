@@ -246,14 +246,17 @@ const markdownPersonaPlugin = async (extension, file, { personas }) => {
   // grab front matter from md file
   const data = matter(file.content, { delims: '---' });
   const frontmatter = data.data;
-  // is front matter persona type valid?
-  if (frontmatter.persona) {
-    file.metadata.persona = getClosestPersona(frontmatter.persona, personas);
+  // is front matter personas type valid?
+  if (frontmatter.personas && TypeCheck.isArrayOf(String, frontmatter.personas)) {
+    file.metadata.personas = getClosestPersona(frontmatter.personas, personas);
+
+  } else if (frontmatter.persona && TypeCheck.isString(frontmatter.persona)) {
+    file.metadata.personas = getClosestPersona([frontmatter.persona], personas);
     // is there a global persona type this file can inherit?
-  } else if (file.metadata.globalPersona) {
-    file.metadata.persona = getClosestPersona(file.metadata.globalPersona, personas);
+  } else if (file.metadata.globalPersonas) {
+    file.metadata.personas = getClosestPersona(file.metadata.globalPersonas, personas);
   } else {
-    file.metadata.persona = '';
+    file.metadata.personas = [];
   }
   return file;
 };
