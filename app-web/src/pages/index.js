@@ -32,17 +32,15 @@ export class Index extends Component {
     const { nodes, toggleMenu, filters } = this.props;
     let mappedSiphonNodes = [];
     if (nodes && nodes.length) {
-      mappedSiphonNodes = nodes
-        .filter(node => node.childMarkdownRemark && !node.childMarkdownRemark.frontmatter.pageOnly)
-        .map(node => ({
-          ...node.unfurl,
-          resourcePath: node.resource.path,
-          collectionName: node.collection.name,
-          sourcePath: node.source.sourcePath,
-          resourceType: node.resource.type,
-          owner: node.owner,
-          repository: node.source.name,
-        }));
+      mappedSiphonNodes = nodes.map(node => ({
+        ...node.unfurl,
+        resourcePath: node.resource.path,
+        collectionName: node.collection.name,
+        sourcePath: node.source.sourcePath,
+        resourceType: node.resource.type,
+        owner: node.owner,
+        repository: node.source.name,
+      }));
     }
     // group nodes into collections for display purposes
     const groupedSiphonData = groupBy(mappedSiphonNodes, 'collectionName');
@@ -81,7 +79,7 @@ export class Index extends Component {
 
 export const resourceQuery = graphql`
   query resourceQuery {
-    allDevhubSiphon(filter: { internal: { mediaType: { eq: "text/markdown" } } }) {
+    allDevhubSiphon {
       edges {
         node {
           id

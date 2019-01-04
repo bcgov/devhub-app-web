@@ -24,19 +24,24 @@ import Ribbon from './Ribbon';
 import shortid from 'shortid';
 
 const ActionsRibbon = ({ actions, repository, owner }) => {
-  const actionsRibbon = actions.map(config => {
-    const link = config.getHref(repository, owner);
+  let actionsRibbon;
+  if (!repository || !owner) {
+    actionsRibbon = null;
+  } else {
+    actionsRibbon = actions.map(config => {
+      const link = config.getHref(repository, owner);
 
-    return (
-      <Flag key={shortid.generate()} name={config.flag}>
-        <li>
-          <Link to={link} aria-label={config.ariaLabel}>
-            <FontAwesomeIcon icon={config.icon} />
-          </Link>
-        </li>
-      </Flag>
-    );
-  });
+      return (
+        <Flag key={shortid.generate()} name={config.flag}>
+          <li>
+            <Link to={link} aria-label={config.ariaLabel}>
+              <FontAwesomeIcon icon={config.icon} />
+            </Link>
+          </li>
+        </Flag>
+      );
+    });
+  }
   return <Ribbon>{actionsRibbon}</Ribbon>;
 };
 

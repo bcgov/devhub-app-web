@@ -60,3 +60,38 @@ sources:
       labels:
         - Repository
       persona: 'Developer'
+  - name: Github 101
+    resourceType: Documentation
+    attributes:
+      persona: Developer
+    sourceProperties:
+      sources:
+        - sourceType: github
+          sourceProperties:
+            url: https://github.com/patricksimonian/BC-Policy-Framework-For-GitHub
+            owner: patricksimonian
+            repo: BC-Policy-Framework-For-GitHub
+            files:
+              - github/intro.md
+              - BC-Open-Source-Development-Employee-Guide/appropriate-use.md
+              - github/flow.md
+            branch: content-improvments
+        - sourceType: web
+          sourceProperties:
+            url: https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
+        - sourceType: web
+          sourceProperties:
+            url: https://hackernoon.com/a-branching-and-releasing-strategy-that-fits-github-flow-be1b6c48eca2
+        - sourceType: github
+          sourceProperties:
+            url: https://github.com/patricksimonian/BC-Policy-Framework-For-GitHub
+            owner: patricksimonian
+            repo: BC-Policy-Framework-For-GitHub
+            files:
+              - BC-Open-Source-Development-Employee-Guide/Security.md
+              - BC-Open-Source-Development-Employee-Guide/Licenses.md
+              - BC-Open-Source-Development-Employee-Guide/Collaborating-Contributing.md
+              - BC-Gov-Org-HowTo/SAMPLE-CODE_OF_CONDUCT.md
+              - BC-Gov-Org-HowTo/SAMPLE-CONTRIBUTING.md
+              - BC-Gov-Org-HowTo/SAMPLE-README.md
+            branch: content-improvments
