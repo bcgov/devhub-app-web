@@ -57,7 +57,7 @@ const createSiphonNode = (data, id) => ({
   },
   attributes: {
     labels: data.metadata.labels, // labels from source registry
-    persona: data.metadata.persona, // persona from the source registry, see constants for valid personas
+    persona: [data.metadata.persona], // persona from the source registry, see constants for valid personas
   },
   internal: {
     contentDigest: crypto

@@ -18,7 +18,7 @@ export const NODES = [
       type: 'Components',
     },
     attributes: {
-      persona: 'Designer',
+      persona: ['Designer'],
     },
   },
   {
@@ -26,7 +26,7 @@ export const NODES = [
       type: 'Documentation',
     },
     attributes: {
-      persona: 'Developer',
+      persona: ['Developer'],
     },
   },
   {
@@ -34,7 +34,7 @@ export const NODES = [
       type: 'Components',
     },
     attributes: {
-      persona: 'Product Owner',
+      persona: ['Product Owner'],
     },
   },
 ];

@@ -14,6 +14,7 @@ Created by Patrick Simonian
 import * as actionTypes from '../actions/actionTypes';
 import dotProp from 'dot-prop-immutable';
 import defaultFilterGroups from '../../constants/filterGroups';
+import { TypeCheck } from '@bcgov/common-web-utils';
 
 const initialState = {
   nodes: [],
@@ -35,7 +36,14 @@ const initialState = {
  * https://github.com/sindresorhus/dot-prop
  * @param {String} value the value to match against nodes value found by the dot prop
  */
-const dotPropMatchesValue = (node, filterBy, value) => dotProp.get(node, filterBy) === value;
+const dotPropMatchesValue = (node, filterBy, value) => {
+  const prop = dotProp.get(node, filterBy);
+  if (TypeCheck.isArray(prop)) {
+    return prop.some(p => p === value);
+  } else {
+    return prop === value;
+  }
+};
 
 /**
  * Check the number of resources that match a filter
