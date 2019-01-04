@@ -4,7 +4,6 @@ exports[`Layout Component it matches snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Layout
-    hamburgerClicked={[Function]}
     login={[MockFunction]}
     logout={[MockFunction]}
     path="/"
@@ -28,7 +27,6 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <PrimaryHeader
-          hambuargerClicked={[Function]}
           hamburgerClicked={[Function]}
           showHamburger={true}
         />,
@@ -54,7 +52,6 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "hambuargerClicked": [Function],
           "hamburgerClicked": [Function],
           "showHamburger": true,
         },
@@ -116,7 +113,6 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <PrimaryHeader
-            hambuargerClicked={[Function]}
             hamburgerClicked={[Function]}
             showHamburger={true}
           />,
@@ -142,7 +138,6 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "hambuargerClicked": [Function],
             "hamburgerClicked": [Function],
             "showHamburger": true,
           },

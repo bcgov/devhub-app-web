@@ -132,7 +132,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     loadSiphonNodes: nodes => dispatch(actions.loadSiphonNodes(nodes)),
-    toggleMenu: () => dispatch(actions.toggleMainNavigation()),
     hideWelcomeMessage: () => dispatch(actions.setWelcomePanelViewed(true)),
   };
 };

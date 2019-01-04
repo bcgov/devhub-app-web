@@ -31,11 +31,11 @@ export class Layout extends React.Component {
   }
 
   render() {
-    const { children, hamburgerClicked } = this.props;
+    const { children, toggleMenu } = this.props;
 
     return (
       <div className="layout">
-        <PrimaryHeader showHamburger hambuargerClicked={hamburgerClicked} />
+        <PrimaryHeader showHamburger hamburgerClicked={toggleMenu} />
         <Flag name={`features.${FLAGS.SOURCE_FILTERING}`}>
           <PrimaryFilter />
         </Flag>
@@ -55,18 +55,17 @@ Layout.propTypes = {
   useAuth: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
-  showHamburger: PropTypes.bool,
-  hamburgerClicked: PropTypes.func,
+  toggleMenu: PropTypes.func.isRequired,
 };
 
 Layout.defaultProps = {
   showHamburger: false,
-  hamburgerClicked: () => undefined,
 };
 
 const mapDispatchToProps = dispatch => ({
   login: () => dispatch(actions.authenticateSuccess()),
   logout: () => dispatch(actions.authenticateFailed()),
+  toggleMenu: () => dispatch(actions.toggleMainNavigation()),
 });
 
 const mapStateToProps = state => ({
