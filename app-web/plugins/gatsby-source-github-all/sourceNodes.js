@@ -91,10 +91,10 @@ const isSourceCollection = source =>
  * @param {Object} targetSource
  */
 const mapInheritedSourceAttributes = ({ name, attributes, resourceType }, targetSource) => ({
-  attributes: {
+  attributes: normalizeAttributes({
     ...attributes,
     ...targetSource.attributes,
-  },
+  }),
   resourceType,
   name,
   collection: {
@@ -195,6 +195,14 @@ const normalizePersonas = attributes => {
 };
 
 /**
+ * helper to normalize any inconsistencies in the attributes for a registry item
+ * @param {Object} attributes
+ */
+const normalizeAttributes = attributes => {
+  return normalizePersonas(attributes);
+};
+
+/**
  * creates the list of 'source' objects that are used by the fetch source routine
  * if a source is a collection
  * its child 'sources' inherit attributes from the collection like name, attributes, resourceType
@@ -217,6 +225,7 @@ const getFetchQueue = sources => {
       sourcesToFetch = sourcesToFetch.concat([
         {
           ...rootSource,
+          attributes: normalizeAttributes(rootSource.attributes),
           collection: {
             name: rootSource.name,
             type: COLLECTION_TYPES[rootSource.sourceType],
@@ -258,6 +267,7 @@ const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens, source
         .createHash('md5')
         .update(JSON.stringify(file.metadata))
         .digest('hex');
+
       return createNode(createSiphonNode(file, createNodeId(fileHash)));
     });
   } catch (e) {

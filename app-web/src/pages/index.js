@@ -94,7 +94,7 @@ export const resourceQuery = graphql`
         node {
           id
           attributes {
-            persona
+            personas
           }
           collection {
             name
