@@ -224,7 +224,9 @@ describe('gatsby source github all plugin', () => {
     const result = mapInheritedSourceAttributes(rootSource, childSource);
     expect(result.name).toBe(rootSource.name);
     expect(result.resourceType).toBe(rootSource.resourceType);
-    expect(result.attributes).toEqual({});
+    expect(result.attributes).toEqual({
+      personas: [],
+    });
   });
 
   test('creates a fetch queue with collections', () => {
