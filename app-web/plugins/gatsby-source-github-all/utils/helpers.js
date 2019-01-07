@@ -87,15 +87,18 @@ const getClosestResourceType = resourceType => {
 /**
  * returns the closest persona from the array of personas based on the
  * uncontrolled persona (given to us by contributors)
- * @param {String} persona the persona provided by a specific piece of content
+ * @param {Array} personas the personas provided by a specific piece of content
  * @param {Array} personas the valid personas list
  */
-const getClosestPersona = (persona, personas) => {
+const getClosestPersona = (personaList, personas) => {
   const RATING_THRESHOLD = 0.5; // rating is between 0 - 1, we only want a match if it's greater than half.
   // if its blank don't bother checking closeness
-  if (persona === '') return '';
-  const matches = stringSimilarity.findBestMatch(persona, personas);
-  return matches.bestMatch.rating >= RATING_THRESHOLD ? matches.bestMatch.target : '';
+  if (personaList.length === 0) return [];
+
+  return personaList.map(p => {
+    const matches = stringSimilarity.findBestMatch(p, personas);
+    return matches.bestMatch.rating >= RATING_THRESHOLD ? matches.bestMatch.target : '';
+  });
 };
 
 /**

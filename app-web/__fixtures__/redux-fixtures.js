@@ -18,7 +18,7 @@ export const NODES = [
       type: 'Components',
     },
     attributes: {
-      persona: ['Designer'],
+      personas: ['Designer'],
     },
   },
   {
@@ -26,7 +26,7 @@ export const NODES = [
       type: 'Documentation',
     },
     attributes: {
-      persona: ['Developer'],
+      personas: ['Developer'],
     },
   },
   {
@@ -34,14 +34,14 @@ export const NODES = [
       type: 'Components',
     },
     attributes: {
-      persona: ['Product Owner'],
+      personas: ['Product Owner'],
     },
   },
 ];
 
 export const DEFAULT_FILTER_GROUPS = [
   {
-    filterBy: 'attributes.persona',
+    filterBy: 'attributes.personas',
     value: 'Designer',
     text: 'Designers',
     active: false,
@@ -50,7 +50,7 @@ export const DEFAULT_FILTER_GROUPS = [
     title: 'For',
   },
   {
-    filterBy: 'attributes.persona',
+    filterBy: 'attributes.personas',
     value: 'Developer',
     text: 'Developers',
     active: true,
@@ -59,7 +59,7 @@ export const DEFAULT_FILTER_GROUPS = [
     title: 'For',
   },
   {
-    filterBy: 'attributes.persona',
+    filterBy: 'attributes.personas',
     value: 'Product Owner',
     text: 'Product Owners',
     active: false,

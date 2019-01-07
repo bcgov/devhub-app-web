@@ -175,7 +175,14 @@ const validateSourceGithub = source => validateSourceAgainstSchema(source, GITHU
  * @returns {Array} The array of files
  */
 const fetchSourceGithub = async (
-  { sourceType, resourceType, name, sourceProperties, attributes: { labels, persona }, collection },
+  {
+    sourceType,
+    resourceType,
+    name,
+    sourceProperties,
+    attributes: { labels, personas },
+    collection,
+  },
   token,
 ) => {
   const { repo, owner, branch, url } = sourceProperties;
@@ -210,7 +217,7 @@ const fetchSourceGithub = async (
         sourceType,
         resourceType,
         f.html_url,
-        persona,
+        personas,
         collection,
       ),
     )

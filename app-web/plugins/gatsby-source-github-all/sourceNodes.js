@@ -57,7 +57,7 @@ const createSiphonNode = (data, id) => ({
   },
   attributes: {
     labels: data.metadata.labels, // labels from source registry
-    persona: [data.metadata.persona], // persona from the source registry, see constants for valid personas
+    personas: data.metadata.personas, // persona from the source registry, see constants for valid personas
   },
   internal: {
     contentDigest: crypto
@@ -91,10 +91,10 @@ const isSourceCollection = source =>
  * @param {Object} targetSource
  */
 const mapInheritedSourceAttributes = ({ name, attributes, resourceType }, targetSource) => ({
-  attributes: {
+  attributes: normalizeAttributes({
     ...attributes,
     ...targetSource.attributes,
-  },
+  }),
   resourceType,
   name,
   collection: {
@@ -171,6 +171,38 @@ const filterIgnoredResources = sources =>
   });
 
 /**
+ * simply maps persona to personas as an array
+ * if personas already exists and its valid, persona does not override
+ * @param {Object} attributes the attribute registry item property
+ */
+const normalizePersonas = attributes => {
+  const newAttributes = { ...attributes };
+  if (
+    Object.prototype.hasOwnProperty.call(newAttributes, 'personas') &&
+    TypeCheck.isArrayOf(String, newAttributes.personas)
+  ) {
+    return newAttributes;
+  } else if (
+    Object.prototype.hasOwnProperty.call(newAttributes, 'persona') &&
+    TypeCheck.isString(newAttributes.persona)
+  ) {
+    newAttributes.personas = [newAttributes.persona];
+  } else {
+    newAttributes.personas = [];
+  }
+
+  return newAttributes;
+};
+
+/**
+ * helper to normalize any inconsistencies in the attributes for a registry item
+ * @param {Object} attributes
+ */
+const normalizeAttributes = attributes => {
+  return normalizePersonas(attributes);
+};
+
+/**
  * creates the list of 'source' objects that are used by the fetch source routine
  * if a source is a collection
  * its child 'sources' inherit attributes from the collection like name, attributes, resourceType
@@ -193,6 +225,7 @@ const getFetchQueue = sources => {
       sourcesToFetch = sourcesToFetch.concat([
         {
           ...rootSource,
+          attributes: normalizeAttributes(rootSource.attributes),
           collection: {
             name: rootSource.name,
             type: COLLECTION_TYPES[rootSource.sourceType],
@@ -234,6 +267,7 @@ const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens, source
         .createHash('md5')
         .update(JSON.stringify(file.metadata))
         .digest('hex');
+
       return createNode(createSiphonNode(file, createNodeId(fileHash)));
     });
   } catch (e) {
@@ -252,4 +286,5 @@ module.exports = {
   sourcesAreValid,
   mapInheritedSourceAttributes,
   getFetchQueue,
+  normalizePersonas,
 };

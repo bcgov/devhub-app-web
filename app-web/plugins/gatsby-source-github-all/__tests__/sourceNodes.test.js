@@ -25,6 +25,7 @@ import {
   sourcesAreValid,
   mapInheritedSourceAttributes,
   getFetchQueue,
+  normalizePersonas,
 } from '../sourceNodes';
 import { GRAPHQL_NODE_TYPE, COLLECTION_TYPES } from '../utils/constants';
 import {
@@ -166,7 +167,7 @@ describe('gatsby source github all plugin', () => {
       },
       attributes: {
         labels: 'component',
-        persona: [undefined],
+        personas: undefined,
       },
       source: {
         name: 'something/something',
@@ -223,7 +224,9 @@ describe('gatsby source github all plugin', () => {
     const result = mapInheritedSourceAttributes(rootSource, childSource);
     expect(result.name).toBe(rootSource.name);
     expect(result.resourceType).toBe(rootSource.resourceType);
-    expect(result.attributes).toEqual({});
+    expect(result.attributes).toEqual({
+      personas: [],
+    });
   });
 
   test('creates a fetch queue with collections', () => {
@@ -234,5 +237,58 @@ describe('gatsby source github all plugin', () => {
     expect(result2.length).toBe(
       REGISTRY_WITH_COLLECTION.sources[0].sourceProperties.sources.length,
     );
+  });
+
+  test('normalize personas converts persona into personas when alone', () => {
+    const attributes = {
+      persona: 'Designer',
+    };
+
+    const expected = {
+      persona: 'Designer',
+      personas: ['Designer'],
+    };
+
+    expect(normalizePersonas(attributes)).toEqual(expected);
+  });
+
+  test('normalize personas leaves personas unchanged when valid', () => {
+    const attributes = {
+      personas: ['Designer'],
+    };
+
+    const expected = {
+      personas: ['Designer'],
+    };
+
+    expect(normalizePersonas(attributes)).toEqual(expected);
+  });
+
+  test('normalize personas uses personas over persona when there is conflict', () => {
+    const attributes = {
+      personas: ['Designer'],
+      persona: 'Developer',
+    };
+
+    const expected = {
+      personas: ['Designer'],
+      persona: 'Developer',
+    };
+
+    expect(normalizePersonas(attributes)).toEqual(expected);
+  });
+
+  test('normalize personas returns personas as empty array when invalid', () => {
+    const attributes = {
+      personas: 12,
+      persona: 123,
+    };
+
+    const expected = {
+      personas: [],
+      persona: 123,
+    };
+
+    expect(normalizePersonas(attributes)).toEqual(expected);
   });
 });

@@ -15,7 +15,7 @@ Created by Patrick Simonian
 
 export const DEFAULT_FILTERS = {
   PERSONA_DESIGNER: {
-    filterBy: 'attributes.persona',
+    filterBy: 'attributes.personas',
     value: 'Designer',
     text: 'Designers',
     active: false,
@@ -25,7 +25,7 @@ export const DEFAULT_FILTERS = {
     isFilterable: true,
   },
   PERSONA_DEVELOPER: {
-    filterBy: 'attributes.persona',
+    filterBy: 'attributes.personas',
     value: 'Developer',
     text: 'Developers',
     active: false,
@@ -35,7 +35,7 @@ export const DEFAULT_FILTERS = {
     isFilterable: true,
   },
   PERSONA_PRODUCT_OWNER: {
-    filterBy: 'attributes.persona',
+    filterBy: 'attributes.personas',
     value: 'Product Owner',
     text: 'Product Owners',
     active: false,
