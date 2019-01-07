@@ -15,11 +15,35 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import converter from '../../src/utils/gatsby-remark-transform-path';
+import {
+  normalizeFilePath,
+  isRelativePath,
+  converter,
+  getGithubBasePath,
+} from '../../src/utils/gatsby-remark-transform-path';
 import { FILE_QL_NODE, SIPHON_QL_NODE } from '../../__fixtures__/plugin-fixtures';
 
 describe('Gatsby Remark Transform Path Converter Callback', () => {
   describe('Unit Tests', () => {
+    it('normalizes paths', () => {
+      const p1 = 'path1.md';
+      const p2 = '/path1.md';
+      const p3 = '../path1.md';
+      const p4 = './path1.md';
+
+      expect(normalizeFilePath(p1)).toBe('./path1.md');
+      expect(normalizeFilePath(p2)).toBe(p2);
+      expect(normalizeFilePath(p3)).toBe(p3);
+      expect(normalizeFilePath(p4)).toBe(p4);
+    });
+
+    it('returns true if path is relative', () => {
+      expect(isRelativePath('../path')).toBe(true);
+      expect(isRelativePath('./path')).toBe(true);
+      expect(isRelativePath('/path')).toBe(false);
+      expect(isRelativePath('path')).toBe(false);
+    });
+
     it('converts only SourceDevhubGithub nodes', () => {
       const astType = 'image';
       const relativePath = '../images/banana.png';
@@ -27,15 +51,31 @@ describe('Gatsby Remark Transform Path Converter Callback', () => {
 
       expect(transformedPath).toBe(relativePath);
     });
+
     it('returns a a transformed url', () => {
       const astType = 'image';
       const relativePath = '../images/banana.png';
       const transformedPath = converter(astType, relativePath, SIPHON_QL_NODE);
       expect(transformedPath).not.toBe(relativePath);
     });
+
+    it('builds a github uri to the repo', () => {
+      expect(getGithubBasePath('repo', 'owner')).toBe('https://github.com/owner/repo/blob/master/');
+      expect(getGithubBasePath('repo', 'owner', 'dev')).toBe(
+        'https://github.com/owner/repo/blob/dev/',
+      );
+    });
+
+    it('builds github uri with master branch if branch is invalid', () => {
+      expect(getGithubBasePath('repo', 'owner', null)).toBe(
+        'https://github.com/owner/repo/blob/master/',
+      );
+    });
   });
+
   describe('Integration Tests', () => {
     jest.unmock('url');
+    jest.unmock('valid-url');
 
     it('converts relative path to absolute', () => {
       const astType = 'link';
@@ -43,6 +83,15 @@ describe('Gatsby Remark Transform Path Converter Callback', () => {
       const transformedPath = converter(astType, relativePath, SIPHON_QL_NODE);
       const expectedPath =
         'https://github.com/bcgov/design-system/blob/master/components/footer/something.md';
+      expect(transformedPath).toBe(expectedPath);
+    });
+
+    it('converts path with no leading slash to relative', () => {
+      const astType = 'link';
+      const relativePath = 'doc.md';
+      const transformedPath = converter(astType, relativePath, SIPHON_QL_NODE);
+      const expectedPath =
+        'https://github.com/bcgov/design-system/blob/master/components/footer/something/doc.md';
       expect(transformedPath).toBe(expectedPath);
     });
 

@@ -17,9 +17,16 @@ Created by Patrick Simonian
 */
 export const SIPHON_QL_NODE = {
   id: 'd90c1b12-9055-580b-adb3-b29354871657',
-  source: 'design-system',
-  sourceName: 'Design System',
-  sourcePath: 'https://github.com/bcgov/design-system/',
+  source: {
+    name: 'design-system',
+    displayName: 'Design System',
+    sourcePath: 'https://github.com/bcgov/design-system/',
+    type: 'github',
+    _properties: {
+      repo: 'design-system',
+      owner: 'bcgov',
+    },
+  },
   resource: {
     originalSource:
       'https://github.com/bcgov/design-system/blob/master/components/footer/something/README.md',

@@ -1,6 +1,6 @@
 import { groupBy } from '../../src/utils/dataMassager';
 import { SIPHON_QL_NODE } from '../../__fixtures__/plugin-fixtures';
-import converter from '../../src/utils/gatsby-remark-transform-path';
+import { converter } from '../../src/utils/gatsby-remark-transform-path';
 
 describe('Gatsby Remark Transformer Path Converter', () => {
   test('it only transforms sourceDevHubGithub nodes', () => {
