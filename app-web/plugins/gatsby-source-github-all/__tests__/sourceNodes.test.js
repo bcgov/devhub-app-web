@@ -242,9 +242,11 @@ describe('gatsby source github all plugin', () => {
   test('creates a fetch queue with collections', () => {
     const result = getFetchQueue(REGISTRY.sources);
     expect(result.length).toBe(REGISTRY.sources.length);
+    expect(result[0].sources.length).toBe(1);
 
     const result2 = getFetchQueue(REGISTRY_WITH_COLLECTION.sources);
-    expect(result2.length).toBe(
+    expect(result2.length).toBe(REGISTRY_WITH_COLLECTION.sources.length);
+    expect(result2.sources.length).toBe(
       REGISTRY_WITH_COLLECTION.sources[0].sourceProperties.sources.length,
     );
   });
