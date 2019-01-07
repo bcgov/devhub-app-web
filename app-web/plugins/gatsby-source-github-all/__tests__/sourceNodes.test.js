@@ -131,6 +131,11 @@ describe('gatsby source github all plugin', () => {
         labels: 'component',
         originalResourceLocation:
           'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
+        sourceProperties: {
+          branch: 'master',
+          repo: 'foo',
+          owner: 'bar',
+        },
       },
       name: 'test',
       path: '/test.md',
@@ -174,6 +179,11 @@ describe('gatsby source github all plugin', () => {
         displayName: 'something',
         sourcePath: undefined,
         type: undefined,
+        _properties: {
+          branch: 'master',
+          repo: 'foo',
+          owner: 'bar',
+        },
       },
       unfurl: undefined,
       resource: {

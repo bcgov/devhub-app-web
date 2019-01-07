@@ -185,8 +185,12 @@ const filterFilesFromDirectories = entries => {
  * @param {String} repo // the name of the repository
  * @param {String} sourceName // the 'name' given to the source
  * @param {String} sourceURL // the path to the source (ie github url)
- * @param {String} globalResourceType // the global resource type assigned frmo the registry item.attributes.resourceType
+ * @param {String} globalResourceType // the global resource type assigned frmo the registry item.resourceType
  * @param {String} originalResourceLocation // the original path to the resource (ie path to file in repository)
+ * @param {Array} globalPersonas // the global personas assigned from the regsitry item.attributes.personas
+ * @param {Object} collection // the collection details including props like collection.type, collection.name etc
+ * @param {Object} sourceProperties // the source properties inherited by the file describing what arguments were used to
+ * obtain the file
  */
 const applyBaseMetadata = (
   file,
@@ -222,6 +226,7 @@ const applyBaseMetadata = (
       originalResourceLocation,
       globalPersonas,
       collection,
+      sourceProperties,
     },
   };
 };
