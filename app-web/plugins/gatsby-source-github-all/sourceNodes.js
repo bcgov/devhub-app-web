@@ -49,6 +49,7 @@ const createSiphonNode = (data, id) => ({
     displayName: data.metadata.sourceName, // the pretty name of the 'source'
     sourcePath: data.metadata.sourceURL, // the path to the source
     type: data.metadata.sourceType, // the type of the source
+    _properties: data.metadata.sourceProperties, // the source properties mapped to the node from the registry
   },
   resource: {
     path: data.metadata.resourcePath, // either path to a gastby created page based on this node

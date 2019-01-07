@@ -178,20 +178,21 @@ const filterFilesFromDirectories = entries => {
 };
 
 /**
- * applies base meta data to file
- * @param {Object} file
- * @param {Array} labels
- * @param {String} owner
- * @param {String} source
- * @param {String} sourceName
- * @param {String} sourceURL
- * @param {String} resourceType
+ * applies base meta data to file which is used to create a siphon node
+ * @param {Object} file // the github file object
+ * @param {Array} labels // any labels passed in from registry item.attributes.labels
+ * @param {String} owner // the repo owner
+ * @param {String} repo // the name of the repository
+ * @param {String} sourceName // the 'name' given to the source
+ * @param {String} sourceURL // the path to the source (ie github url)
+ * @param {String} globalResourceType // the global resource type assigned frmo the registry item.attributes.resourceType
+ * @param {String} originalResourceLocation // the original path to the resource (ie path to file in repository)
  */
 const applyBaseMetadata = (
   file,
   labels,
   owner,
-  source,
+  repo,
   sourceName,
   sourceURL,
   sourceType,
@@ -199,6 +200,7 @@ const applyBaseMetadata = (
   originalResourceLocation,
   globalPersonas,
   collection,
+  sourceProperties,
 ) => {
   const extension = getExtensionFromName(file.name);
   return {
@@ -207,7 +209,7 @@ const applyBaseMetadata = (
     metadata: {
       labels,
       sourceName,
-      source,
+      source: repo,
       owner,
       name: getNameWithoutExtension(file.name),
       fileType: getNameOfExtensionVerbose(file.name),
