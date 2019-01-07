@@ -64,7 +64,7 @@ const getGithubBasePath = (repo, owner, branch = 'master') => {
  */
 const converter = (astType, path, parentQLnode) => {
   // only convert source devhub nodes
-  if (parentQLnode.internal.type === GRAPHQL_NODE_TYPE) {
+  if (parentQLnode.internal.type === GRAPHQL_NODE_TYPE.SIPHON) {
     // normalize the path so that any paths that have no leading slash are assumed to be relative
     const normalizedPath = normalizeFilePath(path);
     let absolutePath;
