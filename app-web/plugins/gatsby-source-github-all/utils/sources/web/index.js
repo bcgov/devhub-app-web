@@ -58,6 +58,7 @@ const fetchSourceWeb = async ({
         fileType: null,
         owner: unfurl.author,
         mediaType: MEDIATYPES.HTML, // hmm not too sure what should be considered the best media type
+        sourceProperties,
       },
       path: url,
     };

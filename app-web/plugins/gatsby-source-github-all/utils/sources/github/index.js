@@ -219,6 +219,7 @@ const fetchSourceGithub = async (
         f.html_url,
         personas,
         collection,
+        sourceProperties,
       ),
     )
     .map(async f => {
