@@ -78,7 +78,7 @@ const converter = (astType, path, parentQLnode) => {
       const { repo, owner, branch } = parentQLnode.source._properties;
       const baseGithubPath = getGithubBasePath(repo, owner, branch);
       // join the relative normalized path with github base uri
-      absolutePath = url.resolve(baseGithubPath, `.${normalizedPath}`);
+      absolutePath = url.resolve(baseGithubPath, normalizedPath);
     }
     if (astType === 'image') {
       // if the ast type is image we need to add the ?raw=true paramater
