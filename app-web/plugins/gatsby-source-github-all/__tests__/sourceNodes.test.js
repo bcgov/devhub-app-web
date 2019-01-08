@@ -25,6 +25,7 @@ import {
   mapInheritedSourceAttributes,
   getFetchQueue,
   normalizePersonas,
+  processSource,
 } from '../sourceNodes';
 import { createSiphonNode, createCollectionNode } from '../utils/createNode';
 import { GRAPHQL_NODE_TYPE, COLLECTION_TYPES } from '../utils/constants';
@@ -34,8 +35,10 @@ import {
   REGISTRY,
   REGISTRY_WITH_COLLECTION,
   COLLECTION_OBJ_FROM_FETCH_QUEUE,
+  WEB_SOURCE,
+  PROCESSED_WEB_SOURCE,
 } from '../__fixtures__/fixtures';
-import { validateSourceRegistry } from '../utils/fetchSource';
+import { validateSourceRegistry, fetchFromSource } from '../utils/fetchSource';
 
 jest.mock('crypto');
 
@@ -335,5 +338,22 @@ describe('gatsby source github all plugin', () => {
     };
 
     expect(normalizePersonas(attributes)).toEqual(expected);
+  });
+
+  test('returns a list of source node objects', async () => {
+    fetchFromSource.mockReturnValue(Promise.resolve([PROCESSED_WEB_SOURCE]));
+    const createNodeId = jest.fn(() => 1);
+    const createNode = jest.fn(node => node);
+
+    const result = await processSource(WEB_SOURCE, createNodeId, createNode, {});
+
+    expect(result instanceof Array).toBe(true);
+    expect(result.length).toBe(1);
+
+    const node = result[0];
+
+    expect(typeof node).toBe('object');
+    // validate the 'node' has properties that would only exist if the createNode fn was called to create the object
+    expect(node.id).toBeDefined();
   });
 });

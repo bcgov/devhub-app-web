@@ -198,6 +198,27 @@ const getFetchQueue = sources => {
 };
 
 /**
+ * fetches source based on source type and source properties
+ * if source is found to be a collection it recurses over and return
+ * @param {Object} source the source object
+ * @param {Function} createNodeId gatsby fn
+ * @param {Function} createNode gatsby fn
+ * @param {Object} tokens the tokens passed from options
+ * @returns {Array} the list of resources retrieved from the source
+ */
+const processSource = async (source, createNodeId, createNode, tokens) => {
+  const resources = await fetchFromSource(source.sourceType, source, tokens);
+  // any resources that hvae the metadata ignore flag are filtered out to prevent a node being created
+  const filteredResources = filterIgnoredResources(resources);
+
+  return filteredResources.map(resource => {
+    const hash = hashString(JSON.stringify(resource));
+    const id = createNodeId(hash);
+    const node = createNode(createSiphonNode(resource, id));
+    return node;
+  });
+};
+/**
  * event handler for the gatsby source plugin
  * more info https://www.gatsbyjs.org/docs/create-source-plugin/
  * @param {Object} gatsbyEventObject
@@ -249,4 +270,5 @@ module.exports = {
   mapInheritedSourceAttributes,
   getFetchQueue,
   normalizePersonas,
+  processSource,
 };

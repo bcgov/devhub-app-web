@@ -20,7 +20,7 @@ describe('Integration Tests Source Nodes', () => {
     shortid.generate = jest.fn(() => 1);
   });
 
-  test('sourceNodes creates nodes of type DevhubSyphon', async () => {
+  test.skip('sourceNodes creates nodes of type DevhubSyphon', async () => {
     const actions = {
       createNode: node => node,
     };
