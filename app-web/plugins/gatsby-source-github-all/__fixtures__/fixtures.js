@@ -542,7 +542,17 @@ const PROCESSED_WEB_SOURCE = {
   path: 'https://example.com',
 };
 
+// different from the registry with the collection,
+// when the collection is processed through the fetch queue
+// the type property is bound to it based on conditions
+const COLLECTION_OBJ_FROM_FETCH_QUEUE = {
+  type: 'curated',
+  name: 'foo',
+  sources: [],
+};
+
 module.exports = {
+  COLLECTION_OBJ_FROM_FETCH_QUEUE,
   GITHUB_API,
   PROCESSED_FILE_MD,
   PROCESSED_FILE_TXT,
