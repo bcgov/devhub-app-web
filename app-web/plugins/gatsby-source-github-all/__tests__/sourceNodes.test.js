@@ -26,6 +26,7 @@ import {
   getFetchQueue,
   normalizePersonas,
   processSource,
+  processCollection,
 } from '../sourceNodes';
 import { createSiphonNode, createCollectionNode } from '../utils/createNode';
 import { GRAPHQL_NODE_TYPE, COLLECTION_TYPES } from '../utils/constants';
@@ -39,12 +40,18 @@ import {
   PROCESSED_WEB_SOURCE,
 } from '../__fixtures__/fixtures';
 import { validateSourceRegistry, fetchFromSource } from '../utils/fetchSource';
+import { isSourceCollection, hashString } from '../utils/helpers';
 
+jest.mock('../utils/helpers');
 jest.mock('crypto');
-
 jest.mock('../utils/fetchSource.js');
+fetchFromSource.mockReturnValue(Promise.resolve([PROCESSED_WEB_SOURCE]));
 
 describe('gatsby source github all plugin', () => {
+  afterEach(() => {
+    isSourceCollection.mockReset();
+    fetchFromSource.mockClear();
+  });
   const sourceRegistryType = 'SourceRegistryYaml';
   test('filterIgnoreResources returns a filtered set of sources', () => {
     const sources = [
@@ -93,9 +100,10 @@ describe('gatsby source github all plugin', () => {
     expect(() => getRegistry(getNodes, sourceRegistryType)).toThrow('Registry not found');
   });
 
-  test.skip('getRegistry returns with apecified registry yaml file', () => {
+  test('getRegistry returns with apecified registry yaml file', () => {
     const getNodes = jest.fn(() => GRAPHQL_NODES_WITH_REGISTRY);
-    expect(() => getRegistry(getNodes, sourceRegistryType)).toThrow('Registry not found');
+    const registry = getRegistry(getNodes, sourceRegistryType);
+    expect(registry).toBeDefined();
   });
 
   test('checkRegistry returns true if sources are valid', () => {
@@ -197,7 +205,7 @@ describe('gatsby source github all plugin', () => {
         path: undefined,
       },
       internal: {
-        contentDigest: JSON.stringify(file),
+        contentDigest: null, // hashstring called here
         // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate
         // to transformer plugins this node has data they can further process.
         mediaType: 'application/test',
@@ -208,6 +216,8 @@ describe('gatsby source github all plugin', () => {
         content: 'content',
       },
     };
+
+    hashString.mockReturnValue(null);
 
     expect(createSiphonNode(file, '123')).toEqual(expected);
   });
@@ -221,11 +231,11 @@ describe('gatsby source github all plugin', () => {
       children: [],
       parent: null,
       internal: {
-        contentDigest: JSON.stringify(COLLECTION_OBJ_FROM_FETCH_QUEUE),
+        contentDigest: null, // hash string called here
         type: GRAPHQL_NODE_TYPE.COLLECTION,
       },
     };
-
+    hashString.mockReturnValue(null);
     expect(result).toEqual(expected);
   });
 
@@ -233,6 +243,9 @@ describe('gatsby source github all plugin', () => {
     validateSourceRegistry.mockClear();
     validateSourceRegistry.mockReturnValue(true);
     const sources = REGISTRY.sources.concat(REGISTRY_WITH_COLLECTION.sources);
+    // mock returning different values. since the root sources frmo the registry
+    // first source is a regular source and the second is a source collection
+    isSourceCollection.mockReturnValueOnce(false).mockReturnValueOnce(true);
 
     sourcesAreValid(sources);
     expect(validateSourceRegistry).toHaveBeenCalledTimes(3);
@@ -261,11 +274,15 @@ describe('gatsby source github all plugin', () => {
   });
 
   // get fetch queue should return a list of collections that contain a list of sources to fetch
-  test('creates a fetch queue with collections', () => {
+  test('creates a fetch queue with for a source collection', () => {
+    isSourceCollection.mockReturnValue(false);
     const result = getFetchQueue(REGISTRY.sources);
     expect(result.length).toBe(REGISTRY.sources.length);
     expect(result[0].sources.length).toBe(1);
+  });
 
+  test('creates a fetch queue with for a curated collection', () => {
+    isSourceCollection.mockReturnValue(true);
     const result2 = getFetchQueue(REGISTRY_WITH_COLLECTION.sources);
     expect(result2.length).toBe(REGISTRY_WITH_COLLECTION.sources.length);
     expect(result2[0].sources.length).toBe(
@@ -273,16 +290,12 @@ describe('gatsby source github all plugin', () => {
     );
   });
 
-  test('collections within the list have the relevant collection properties', () => {
-    const result = getFetchQueue(REGISTRY.sources);
-    expect(result[0].name).toBeDefined();
-    expect(result[0].type).toBeDefined();
-  });
-
   test('getFetchQueue passes the correct collection type', () => {
+    isSourceCollection.mockReturnValue(false);
     const result = getFetchQueue(REGISTRY.sources);
     expect(result[0].type).toBe(COLLECTION_TYPES.github);
 
+    isSourceCollection.mockReturnValue(true);
     const result2 = getFetchQueue(REGISTRY_WITH_COLLECTION.sources);
     expect(result2[0].type).toBe(COLLECTION_TYPES.CURATED);
   });
@@ -341,10 +354,8 @@ describe('gatsby source github all plugin', () => {
   });
 
   test('returns a list of source node objects', async () => {
-    fetchFromSource.mockReturnValue(Promise.resolve([PROCESSED_WEB_SOURCE]));
     const createNodeId = jest.fn(() => 1);
     const createNode = jest.fn(node => node);
-
     const result = await processSource(WEB_SOURCE, createNodeId, createNode, {});
 
     expect(result instanceof Array).toBe(true);
@@ -355,5 +366,60 @@ describe('gatsby source github all plugin', () => {
     expect(typeof node).toBe('object');
     // validate the 'node' has properties that would only exist if the createNode fn was called to create the object
     expect(node.id).toBeDefined();
+  });
+
+  test('returns a collection object', async () => {
+    const createNodeId = jest.fn(() => 1);
+    const createNode = jest.fn(node => node);
+    const createParentChildLink = jest.fn();
+
+    const result = await processCollection(
+      COLLECTION_OBJ_FROM_FETCH_QUEUE,
+      createNodeId,
+      createNode,
+      createParentChildLink,
+      {},
+    );
+
+    expect(typeof result).toBe('object');
+    // assert we get the original collection properties back
+    expect(result.name).toBe(COLLECTION_OBJ_FROM_FETCH_QUEUE.name);
+    // assert that its actually a grpahql node by again checking if an id was added
+    expect(result.id).toBeDefined();
+  });
+
+  test('calls the fetch source routine for each source in a collection object', async () => {
+    const createNodeId = jest.fn(() => 1);
+    const createNode = jest.fn(node => node);
+    const createParentChildLink = jest.fn();
+
+    await processCollection(
+      COLLECTION_OBJ_FROM_FETCH_QUEUE,
+      createNodeId,
+      createNode,
+      createParentChildLink,
+      {},
+    );
+    // it should be called for as many sources that exist within the collection
+    expect(fetchFromSource).toHaveBeenCalledTimes(COLLECTION_OBJ_FROM_FETCH_QUEUE.sources.length);
+  });
+
+  test('establishes a parent child link for each resource fetched for a collection', async () => {
+    const createNodeId = jest.fn(() => 1);
+    const createNode = jest.fn(node => node);
+    const createParentChildLink = jest.fn();
+
+    const collection = await processCollection(
+      COLLECTION_OBJ_FROM_FETCH_QUEUE,
+      createNodeId,
+      createNode,
+      createParentChildLink,
+      {},
+    );
+
+    // fetch from source returns a single web source node
+    // in total only 1 resource was returned from all sources fetched for the fixtured collection
+    // therefor the createparent child link should only be called once
+    expect(createParentChildLink).toHaveBeenCalledTimes(1);
   });
 });
