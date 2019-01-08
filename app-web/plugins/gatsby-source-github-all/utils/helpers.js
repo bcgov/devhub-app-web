@@ -15,22 +15,23 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
+const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
+const path = require('path');
+const crypto = require('crypto');
+const url = require('url');
+const chalk = require('chalk');
+const shorthash = require('shorthash');
+const stringSimilarity = require('string-similarity');
+const scrape = require('html-metadata');
+const validUrl = require('valid-url');
+const { RESOURCE_TYPES_LIST, UNFURL_TYPES } = require('./constants');
+
 /**
  * returns an idempotent path based on a base path plus a digestable string that is hashed
  * @param {String} base the base path (which is not changed)
  * @param  {...String} digestables comma seperated list of strings which are dsigested by shorthash
  * @returns {String} ie (/mypath, file.md) => /mypath/123dsfakjhdf
  */
-const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
-const path = require('path');
-const url = require('url');
-const chalk = require('chalk');
-const shorthash = require('shorthash');
-const stringSimilarity = require('string-similarity');
-const { RESOURCE_TYPES_LIST, UNFURL_TYPES } = require('./constants');
-const scrape = require('html-metadata');
-const validUrl = require('valid-url');
-
 const createPathWithDigest = (base, ...digestables) => {
   if (!TypeCheck.isString(base)) {
     throw new Error('base must be a string');
@@ -175,7 +176,19 @@ const unfurlWebURI = async uri => {
   return createUnfurlObj(UNFURL_TYPES.EXTERNAL, combinedData);
 };
 
+/**
+ * returns a md5 hash
+ * @param {String} content the string to be hashed
+ * @returns {String} the hash
+ */
+const hashString = content =>
+  crypto
+    .createHash('md5')
+    .update(content)
+    .digest('hex');
+
 module.exports = {
+  hashString,
   createPathWithDigest,
   createUnfurlObj,
   getClosestResourceType,

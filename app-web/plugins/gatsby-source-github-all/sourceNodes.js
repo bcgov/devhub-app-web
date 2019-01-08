@@ -17,9 +17,9 @@
 //
 // Created by Patrick Simonian on 2018-10-12.
 //
-const crypto = require('crypto');
 const _ = require('lodash'); // eslint-disable-line
 const chalk = require('chalk'); // eslint-disable-line
+const { hashString } = require('./utils/helpers');
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
 const { GRAPHQL_NODE_TYPE, COLLECTION_TYPES } = require('./utils/constants');
 const { TypeCheck } = require('@bcgov/common-web-utils');
@@ -61,10 +61,7 @@ const createSiphonNode = (data, id) => ({
     personas: data.metadata.personas, // persona from the source registry, see constants for valid personas
   },
   internal: {
-    contentDigest: crypto
-      .createHash('md5')
-      .update(JSON.stringify(data))
-      .digest('hex'),
+    contentDigest: hashString(JSON.stringify(data)),
     // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate
     // to transformer plugins this node has data they can further process.
     mediaType: data.metadata.mediaType,
@@ -276,11 +273,7 @@ const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens, source
         dataToNodify = filterIgnoredResources(dataToNodify);
         // create nodes
         return dataToNodify.map(file => {
-          const fileHash = crypto
-            .createHash('md5')
-            .update(JSON.stringify(file.metadata))
-            .digest('hex');
-
+          const fileHash = hashString(JSON.stringify(file.metadata));
           return createNode(createSiphonNode(file, createNodeId(fileHash)));
         });
       }),
@@ -293,6 +286,7 @@ const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens, source
     throw e;
   }
 };
+
 module.exports = {
   getRegistry,
   checkRegistry,
