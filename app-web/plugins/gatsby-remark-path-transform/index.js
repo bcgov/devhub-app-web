@@ -18,8 +18,8 @@ Created by Patrick Simonian
 
 const visit = require('unist-util-visit');
 const cheerio = require('cheerio');
+const validURL = require('valid-url');
 const { TypeCheck } = require('@bcgov/common-web-utils');
-const { isRelativePath } = require('./utils/utils');
 const { IMAGE, LINK } = require('./utils/constants');
 
 /**
@@ -44,11 +44,11 @@ const transformRelativePaths = ({ markdownAST, markdownNode, getNode }, { conver
    */
   const visitCB = (nodeType, parentQLNode) => url => {
     // is node url relative?
-    if (isRelativePath(url)) {
-      const absolutePath = converter(nodeType, url, parentQLNode);
-      return absolutePath; // eslint-disable-line
+    if (validURL.isWebUri(url)) {
+      return url;
     }
-    return url;
+    const absolutePath = converter(nodeType, url, parentQLNode);
+    return absolutePath; // eslint-disable-line
   };
 
   const parentQLNode = getNode(markdownNode.parent);

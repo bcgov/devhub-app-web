@@ -18,22 +18,11 @@ Created by Patrick Simonian
 import transformRelativePaths from '../index';
 
 import { GRAPH_QL_PARENT_NODE, MARKDOWN_NODE, IMAGE_AST_RELATIVE } from '../__fixtures__/fixtures';
-// mock isRelativePath
-jest.mock('../utils/utils', () => ({ isRelativePath: jest.fn(() => true) }));
+// valid url mocked to return false
+// the converter callback only calls the converter fn if isWebUri is false
+jest.mock('valid-url', () => ({ isWebUri: jest.fn(() => false) }));
 
 describe('gatsby-remark-path-transform', () => {
-  describe('isRelativePath', () => {
-    const { isRelativePath } = jest.requireActual('../utils/utils');
-    it('returns true if path is relative', () => {
-      expect(isRelativePath('../something')).toBe(true);
-      expect(isRelativePath('./something')).toBe(true);
-    });
-
-    it('returns false if path is absolute', () => {
-      expect(isRelativePath('/something')).toBe(false);
-    });
-  });
-
   describe('transformRelativePaths', () => {
     it("throws if converter option doesn't exist or is not a function", () => {
       expect(() => {
@@ -51,11 +40,14 @@ describe('gatsby-remark-path-transform', () => {
     it('calls converters when a node is visited', () => {
       const converter = jest.fn();
       const getNode = jest.fn();
+
       getNode.mockReturnValue(GRAPH_QL_PARENT_NODE);
       converter.mockReturnValue('URL');
+
       const markdownNode = MARKDOWN_NODE;
       const markdownAST = IMAGE_AST_RELATIVE;
       const oldURL = markdownAST.url;
+
       transformRelativePaths({ getNode, markdownAST, markdownNode }, { converter });
 
       expect(converter).toHaveBeenCalledWith('image', oldURL, GRAPH_QL_PARENT_NODE);
