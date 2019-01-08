@@ -19,59 +19,11 @@
 //
 const _ = require('lodash'); // eslint-disable-line
 const chalk = require('chalk'); // eslint-disable-line
+const { TypeCheck } = require('@bcgov/common-web-utils');
 const { hashString } = require('./utils/helpers');
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
-const { GRAPHQL_NODE_TYPE, COLLECTION_TYPES } = require('./utils/constants');
-const { TypeCheck } = require('@bcgov/common-web-utils');
-
-/**
- * creates a object that is passed to the gatsby create node function
- * many of these properties are assigned by convention
- * @param {Object} data
- * @param {String} id
- */
-const createSiphonNode = (data, id) => ({
-  id,
-  children: [],
-  fileName: data.metadata.fileName,
-  fileType: data.metadata.fileType,
-  name: data.metadata.name,
-  owner: data.metadata.owner,
-  parent: null,
-  path: data.path,
-  unfurl: data.metadata.unfurl, // normalized unfurled content from various sources https://medium.com/slack-developer-blog/everything-you-ever-wanted-to-know-about-unfurling-but-were-afraid-to-ask-or-how-to-make-your-e64b4bb9254
-  collection: {
-    name: data.metadata.collection.name, // name of the collection
-    type: data.metadata.collection.type,
-  },
-  source: {
-    name: data.metadata.source, // the source-name
-    displayName: data.metadata.sourceName, // the pretty name of the 'source'
-    sourcePath: data.metadata.sourceURL, // the path to the source
-    type: data.metadata.sourceType, // the type of the source
-    _properties: data.metadata.sourceProperties, // the source properties mapped to the node from the registry
-  },
-  resource: {
-    path: data.metadata.resourcePath, // either path to a gastby created page based on this node
-    type: data.metadata.resourceType, // the base resource type for this see utils/constants.js
-    originalSource: data.metadata.originalResourceLocation, // the original location of the resource
-  },
-  attributes: {
-    labels: data.metadata.labels, // labels from source registry
-    personas: data.metadata.personas, // persona from the source registry, see constants for valid personas
-  },
-  internal: {
-    contentDigest: hashString(JSON.stringify(data)),
-    // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate
-    // to transformer plugins this node has data they can further process.
-    mediaType: data.metadata.mediaType,
-    // A globally unique node type chosen by the plugin owner.
-    type: GRAPHQL_NODE_TYPE.SIPHON,
-    // Optional field exposing the raw content for this node
-    // that transformer plugins can take and further process.
-    content: data.content,
-  },
-});
+const { COLLECTION_TYPES } = require('./utils/constants');
+const { createSiphonNode } = require('./utils/createNode');
 
 /**
  * returns true/false if source contains more sources

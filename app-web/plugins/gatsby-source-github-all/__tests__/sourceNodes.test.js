@@ -18,7 +18,6 @@
 // Created by Patrick Simonian on 2018-10-12.
 //
 import {
-  createSiphonNode,
   checkRegistry,
   getRegistry,
   filterIgnoredResources,
@@ -27,6 +26,7 @@ import {
   getFetchQueue,
   normalizePersonas,
 } from '../sourceNodes';
+import { createSiphonNode } from '../utils/createNode';
 import { GRAPHQL_NODE_TYPE, COLLECTION_TYPES } from '../utils/constants';
 import {
   GRAPHQL_NODES_WITH_REGISTRY,
