@@ -69,7 +69,7 @@ const createSiphonNode = (data, id) => ({
     // to transformer plugins this node has data they can further process.
     mediaType: data.metadata.mediaType,
     // A globally unique node type chosen by the plugin owner.
-    type: GRAPHQL_NODE_TYPE,
+    type: GRAPHQL_NODE_TYPE.SIPHON,
     // Optional field exposing the raw content for this node
     // that transformer plugins can take and further process.
     content: data.content,
@@ -213,17 +213,26 @@ const normalizeAttributes = attributes => {
  * @param {Array} sources
  */
 const getFetchQueue = sources => {
-  let sourcesToFetch = [];
+  let collectionsToFetch = [];
   sources.forEach(rootSource => {
+    const collection = {
+      name: rootSource.name,
+      sources: [],
+    };
+
     if (isSourceCollection(rootSource)) {
+      collection.type = COLLECTION_TYPES.CURATED;
       // if its a collection, the child sources need some properties from the root source to be
       // mapped to it
       const mappedChildSources = rootSource.sourceProperties.sources.map(childSource =>
         mapInheritedSourceAttributes(rootSource, childSource),
       );
-      sourcesToFetch = sourcesToFetch.concat(mappedChildSources);
+      collection.sources = mappedChildSources;
     } else {
-      sourcesToFetch = sourcesToFetch.concat([
+      // this is a basic source either github or web
+      // we still treat it as its own collection but with a different type
+      collection.type = COLLECTION_TYPES[rootSource.sourceType];
+      collection.sources = [
         {
           ...rootSource,
           attributes: normalizeAttributes(rootSource.attributes),
@@ -232,10 +241,11 @@ const getFetchQueue = sources => {
             type: COLLECTION_TYPES[rootSource.sourceType],
           },
         },
-      ]);
+      ];
     }
+    collectionsToFetch = collectionsToFetch.concat([collection]);
   });
-  return sourcesToFetch;
+  return collectionsToFetch;
 };
 
 /**
@@ -252,25 +262,30 @@ const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens, source
   try {
     // check registry prior to fetching data
     checkRegistry(registry);
-    // map of over registry to flatten any collections that may exist
+    // map of over registry and create a queue of collections to fetch
     const fetchQueue = getFetchQueue(registry.sources);
-    const sources = await Promise.all(
-      fetchQueue.map(source => fetchFromSource(source.sourceType, source, tokens)),
+
+    const collections = await Promise.all(
+      fetchQueue.map(async collection => {
+        const sources = await Promise.all(
+          collection.sources.map(source => fetchFromSource(source.sourceType, source, tokens)),
+        );
+        // sources is an array of arrays [[source data], [source data]] etc
+        // so we flatten it into a 1 dimensional array
+        let dataToNodify = _.flatten(sources, true);
+        dataToNodify = filterIgnoredResources(dataToNodify);
+        // create nodes
+        return dataToNodify.map(file => {
+          const fileHash = crypto
+            .createHash('md5')
+            .update(JSON.stringify(file.metadata))
+            .digest('hex');
+
+          return createNode(createSiphonNode(file, createNodeId(fileHash)));
+        });
+      }),
     );
-
-    // sources is an array of arrays [[source data], [source data]] etc
-    // so we flatten it into a 1 dimensional array
-    let dataToNodify = _.flatten(sources, true);
-    dataToNodify = filterIgnoredResources(dataToNodify);
-    // create nodes
-    return dataToNodify.map(file => {
-      const fileHash = crypto
-        .createHash('md5')
-        .update(JSON.stringify(file.metadata))
-        .digest('hex');
-
-      return createNode(createSiphonNode(file, createNodeId(fileHash)));
-    });
+    return _.flatten(collections, true);
   } catch (e) {
     // failed to retrieve files or some other type of failure
     // eslint-disable-next-line

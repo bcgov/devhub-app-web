@@ -27,6 +27,6 @@ describe('Integration Tests Source Nodes', () => {
     const createNodeId = jest.fn(() => 1);
     const getNodes = jest.fn(() => GRAPHQL_NODES_WITH_REGISTRY);
     const nodes = await sourceNodes({ actions, createNodeId, getNodes }, CONFIG_OPTIONS);
-    expect(nodes.every(node => node.internal.type === GRAPHQL_NODE_TYPE)).toBe(true);
+    expect(nodes.every(node => node.internal.type === GRAPHQL_NODE_TYPE.SIPHON)).toBe(true);
   });
 });

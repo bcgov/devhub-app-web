@@ -48,7 +48,10 @@ const PERSONAS = {
 
 const PERSONAS_LIST = Object.values(PERSONAS);
 
-const GRAPHQL_NODE_TYPE = 'DevhubSiphon';
+const GRAPHQL_NODE_TYPE = {
+  SIPHON: 'DevhubSiphon',
+  COLLECTION: 'DevhubSiphonCollection',
+};
 
 module.exports = {
   UNFURL_TYPES,

@@ -198,7 +198,7 @@ describe('gatsby source github all plugin', () => {
         // to transformer plugins this node has data they can further process.
         mediaType: 'application/test',
         // A globally unique node type chosen by the plugin owner.
-        type: GRAPHQL_NODE_TYPE,
+        type: GRAPHQL_NODE_TYPE.SIPHON,
         // Optional field exposing the raw content for this node
         // that transformer plugins can take and further process.
         content: 'content',
@@ -239,14 +239,31 @@ describe('gatsby source github all plugin', () => {
     });
   });
 
+  // get fetch queue should return a list of collections that contain a list of sources to fetch
   test('creates a fetch queue with collections', () => {
     const result = getFetchQueue(REGISTRY.sources);
     expect(result.length).toBe(REGISTRY.sources.length);
+    expect(result[0].sources.length).toBe(1);
 
     const result2 = getFetchQueue(REGISTRY_WITH_COLLECTION.sources);
-    expect(result2.length).toBe(
+    expect(result2.length).toBe(REGISTRY_WITH_COLLECTION.sources.length);
+    expect(result2[0].sources.length).toBe(
       REGISTRY_WITH_COLLECTION.sources[0].sourceProperties.sources.length,
     );
+  });
+
+  test('collections within the list have the relevant collection properties', () => {
+    const result = getFetchQueue(REGISTRY.sources);
+    expect(result[0].name).toBeDefined();
+    expect(result[0].type).toBeDefined();
+  });
+
+  test('getFetchQueue passes the correct collection type', () => {
+    const result = getFetchQueue(REGISTRY.sources);
+    expect(result[0].type).toBe(COLLECTION_TYPES.github);
+
+    const result2 = getFetchQueue(REGISTRY_WITH_COLLECTION.sources);
+    expect(result2[0].type).toBe(COLLECTION_TYPES.CURATED);
   });
 
   test('normalize personas converts persona into personas when alone', () => {
