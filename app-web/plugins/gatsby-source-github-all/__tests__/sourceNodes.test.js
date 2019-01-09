@@ -18,7 +18,6 @@
 // Created by Patrick Simonian on 2018-10-12.
 //
 import {
-  createSiphonNode,
   checkRegistry,
   getRegistry,
   filterIgnoredResources,
@@ -27,12 +26,14 @@ import {
   getFetchQueue,
   normalizePersonas,
 } from '../sourceNodes';
+import { createSiphonNode, createCollectionNode } from '../utils/createNode';
 import { GRAPHQL_NODE_TYPE, COLLECTION_TYPES } from '../utils/constants';
 import {
   GRAPHQL_NODES_WITH_REGISTRY,
   GRAPHQL_NODES_WITHOUT_REGISTRY,
   REGISTRY,
   REGISTRY_WITH_COLLECTION,
+  COLLECTION_OBJ_FROM_FETCH_QUEUE,
 } from '../__fixtures__/fixtures';
 import { validateSourceRegistry } from '../utils/fetchSource';
 
@@ -206,6 +207,23 @@ describe('gatsby source github all plugin', () => {
     };
 
     expect(createSiphonNode(file, '123')).toEqual(expected);
+  });
+
+  test('createCollectionNode returns an object', () => {
+    const result = createCollectionNode(COLLECTION_OBJ_FROM_FETCH_QUEUE, '123');
+    const expected = {
+      id: '123',
+      name: result.name,
+      type: result.type,
+      children: [],
+      parent: null,
+      internal: {
+        contentDigest: JSON.stringify(COLLECTION_OBJ_FROM_FETCH_QUEUE),
+        type: GRAPHQL_NODE_TYPE.COLLECTION,
+      },
+    };
+
+    expect(result).toEqual(expected);
   });
 
   test('sourcesAreValid handles collections of sources', () => {
