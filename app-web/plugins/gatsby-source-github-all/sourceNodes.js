@@ -73,7 +73,7 @@ const sourcesAreValid = sources => {
     }
   });
 
-  return sourcesToCheck.every(validateSourceRegistry) && sources.every(validateRegistryItem);
+  return sourcesToCheck.every(validateSourceRegistry);
 };
 
 /**
@@ -168,12 +168,12 @@ const getFetchQueue = sources => {
   sources.forEach(rootSource => {
     const collection = {
       name: rootSource.name,
-      description: rootSource.description,
       sources: [],
     };
 
     if (isSourceCollection(rootSource)) {
       collection.type = COLLECTION_TYPES.CURATED;
+      collection.description = rootSource.description;
       // if its a collection, the child sources need some properties from the root source to be
       // mapped to it
       const mappedChildSources = rootSource.sourceProperties.sources.map(childSource =>
@@ -255,6 +255,7 @@ const processCollection = async (
   // flatten source nodes to get a list of all the resources
   const resources = _.flatten(sourceNodes, true);
   const collectionNode = createCollectionNode(collection, id);
+
   await createNode(collectionNode);
   resources.forEach(r => createParentChildLink({ parent: collectionNode, child: r }));
   // establish a parent child link between all resources and the collection node
