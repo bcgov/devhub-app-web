@@ -186,7 +186,7 @@ const validateRegistryItemAgainstSchema = (registryItem, schema) => {
   return error.isValid;
 };
 
-/* validates a registry item's source Properties against a valid schema
+/** validates a registry item's source Properties against a valid schema
  * @param {Object} source the registry source item properties
  * @param {Object} schema has shape { type: String | Boolean | Date etc, required: true/false}
  * @returns {Boolean}
