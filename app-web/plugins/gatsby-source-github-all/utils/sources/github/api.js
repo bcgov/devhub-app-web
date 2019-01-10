@@ -17,6 +17,23 @@ Created by Patrick Simonian
 */
 const fetch = require('node-fetch');
 const { GITHUB_API_ENDPOINT } = require('../../constants');
+
+const fetchRepo = async (repo, owner, token) => {
+  const endPoint = `${GITHUB_API_ENDPOINT}/repos/${owner}/${repo}`;
+  try {
+    const result = await fetch(endPoint, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await result.json();
+    return data;
+  } catch (e) {
+    return {};
+  }
+};
+
 /**
  * Using the recursion param, this
  * function attempts to retrieve all directories/files from a repo
@@ -68,6 +85,7 @@ const fetchFile = async (path, token) => {
 };
 
 module.exports = {
+  fetchRepo,
   fetchFile,
   fetchGithubTree,
 };
