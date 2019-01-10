@@ -20,9 +20,9 @@
 const _ = require('lodash'); // eslint-disable-line
 const chalk = require('chalk'); // eslint-disable-line
 const { TypeCheck } = require('@bcgov/common-web-utils');
-const { hashString, isSourceCollection } = require('./utils/helpers');
+const { hashString, isSourceCollection, validateSourceAgainstSchema } = require('./utils/helpers');
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
-const { COLLECTION_TYPES } = require('./utils/constants');
+const { COLLECTION_TYPES, REGISTRY_ITEM_SCHEMA } = require('./utils/constants');
 const { createSiphonNode, createCollectionNode } = require('./utils/createNode');
 
 /**
@@ -64,6 +64,13 @@ const sourcesAreValid = sources => {
 
   return sourcesToCheck.every(validateSourceRegistry);
 };
+
+/**
+ * @param {Object} registryItem the registry item found within the registry file sources[index]
+ * @returns {Boolean} true if registry item is valid
+ */
+const validateRegistryItem = registryItem =>
+  validateSourceAgainstSchema(registryItem, REGISTRY_ITEM_SCHEMA);
 
 /**
  * validates source registry
@@ -293,4 +300,5 @@ module.exports = {
   normalizePersonas,
   processSource,
   processCollection,
+  validateRegistryItem,
 };

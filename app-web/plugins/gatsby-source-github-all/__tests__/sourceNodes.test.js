@@ -125,6 +125,14 @@ describe('gatsby source github all plugin', () => {
     );
   });
 
+  test('validateRegistryItem returns true if name and sourceProperties exist', () => {
+    const registryItem = {
+      name: 'foo',
+      sourceProperties: {},
+    };
+    expect(validateRegistryItem(registryItem)).toBe(true);
+  });
+
   test('createSiphonNode returns data', () => {
     const file = {
       metadata: {
