@@ -228,8 +228,9 @@ describe('gatsby source github all plugin', () => {
     const result = createCollectionNode(COLLECTION_OBJ_FROM_FETCH_QUEUE, '123');
     const expected = {
       id: '123',
-      name: result.name,
-      type: result.type,
+      name: COLLECTION_OBJ_FROM_FETCH_QUEUE.name,
+      type: COLLECTION_OBJ_FROM_FETCH_QUEUE.type,
+      description: COLLECTION_OBJ_FROM_FETCH_QUEUE.description,
       children: [],
       parent: null,
       internal: {

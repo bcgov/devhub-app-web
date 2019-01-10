@@ -548,6 +548,7 @@ const PROCESSED_WEB_SOURCE = {
 const COLLECTION_OBJ_FROM_FETCH_QUEUE = {
   type: 'curated',
   name: 'foo',
+  description: 'blah',
   sources: [WEB_SOURCE],
 };
 

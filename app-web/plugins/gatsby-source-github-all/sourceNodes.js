@@ -168,6 +168,7 @@ const getFetchQueue = sources => {
   sources.forEach(rootSource => {
     const collection = {
       name: rootSource.name,
+      description: rootSource.description,
       sources: [],
     };
 
