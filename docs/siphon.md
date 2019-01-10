@@ -89,10 +89,12 @@ Example Collection Registry Item:
             repo: foo
             owner: bar
             url: https://github.com/bar/foo
+            file: README.md
       - sourceType: github
         sourceProperties:
             repo: baz
             owner: bar
+            url: https://github.com/bar/baz
             file: README.md
         resourceType: Component
 ```
@@ -273,8 +275,22 @@ the graphQL schema (more on that [here](https://www.gatsbyjs.org/docs/plugin-aut
 
 [Gatsby uses GraphQL](https://www.gatsbyjs.org/docs/graphql/) as a datalayer to render content to a Gatsby Page.
 
-### Siphon's GraphQL Schema
-> last updated Dec 7th 2018
+### Siphon's Collection Node GraphQL Schema
+> last updated Jan 10th 2018
+```javascript
+    id,
+    children, // a list of all child siphonNodes that are related to this collection
+    name, // name of the collection
+    type, // curated, source etc.
+    internal: {
+        contentDigest // a gatsby required property
+        // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate
+        // to transformer plugins this node has data they can further process.
+        type // devhubSiphonCollection
+    }
+```
+### Siphon's Source Node GraphQL Schema
+> last updated Jan 10th 2018
 
 ```javascript
     id, // unique identifier for node
