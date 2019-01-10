@@ -18,7 +18,7 @@ Created by Patrick Simonian
 
 // just a base schema validating root registration properties.
 // nothing internal yet.
-export const REGISTRY_ITEM_SCHEMA = {
+const REGISTRY_ITEM_SCHEMA = {
   name: {
     type: String,
     required: true,
@@ -39,4 +39,8 @@ export const REGISTRY_ITEM_SCHEMA = {
     type: String,
     required: false,
   },
+};
+
+module.exports = {
+  REGISTRY_ITEM_SCHEMA,
 };

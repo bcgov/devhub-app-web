@@ -6,7 +6,7 @@ import {
   CONFIG_OPTIONS,
 } from '../__fixtures__/fixtures';
 import { GRAPHQL_NODE_TYPE } from '../utils/constants';
-import { sourceNodes } from '../sourceNodes';
+import { sourceNodes, validateRegistryItem } from '../sourceNodes';
 import { fetchSourceGithub, validateSourceGithub } from '../utils/sources/github';
 
 jest.mock('../utils/sources/github/index.js');
@@ -18,6 +18,14 @@ describe('Integration Tests Source Nodes', () => {
     validateSourceGithub.mockReturnValue(true);
     // mock out short id generate to consistly return the same id
     shortid.generate = jest.fn(() => 1);
+  });
+
+  test('validateRegistryItem returns true if name and sourceProperties exist', () => {
+    const registryItem = {
+      name: 'foo',
+      sourceProperties: {},
+    };
+    expect(validateRegistryItem(registryItem)).toBe(true);
   });
 
   test('sourceNodes runs without crashing', async () => {

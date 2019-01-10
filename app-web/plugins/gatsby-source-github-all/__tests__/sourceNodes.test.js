@@ -27,6 +27,7 @@ import {
   normalizePersonas,
   processSource,
   processCollection,
+  validateRegistryItem,
 } from '../sourceNodes';
 import { createSiphonNode, createCollectionNode } from '../utils/createNode';
 import { GRAPHQL_NODE_TYPE, COLLECTION_TYPES } from '../utils/constants';
@@ -123,14 +124,6 @@ describe('gatsby source github all plugin', () => {
     expect(() => checkRegistry(REGISTRY)).toThrow(
       'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters',
     );
-  });
-
-  test('validateRegistryItem returns true if name and sourceProperties exist', () => {
-    const registryItem = {
-      name: 'foo',
-      sourceProperties: {},
-    };
-    expect(validateRegistryItem(registryItem)).toBe(true);
   });
 
   test('createSiphonNode returns data', () => {

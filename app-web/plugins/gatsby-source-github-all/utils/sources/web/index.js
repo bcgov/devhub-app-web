@@ -16,14 +16,15 @@ limitations under the License.
 Created by Patrick Simonian
 */
 const { WEB_SOURCE_SCHEMA, MEDIATYPES } = require('../../constants');
-const { validateSourceAgainstSchema, unfurlWebURI } = require('../../helpers');
+const { validateSourcePropertiesAgainstSchema, unfurlWebURI } = require('../../helpers');
 
 /**
  * validates the source properties against the web source schema
  * @param {Object} source the registry source item
  * @returns {Boolean}
  */
-const validateSourceWeb = source => validateSourceAgainstSchema(source, WEB_SOURCE_SCHEMA);
+const validateSourceWeb = source =>
+  validateSourcePropertiesAgainstSchema(source, WEB_SOURCE_SCHEMA);
 
 /**
  * fetches data from a web source
