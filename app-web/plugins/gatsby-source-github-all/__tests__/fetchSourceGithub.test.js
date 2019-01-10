@@ -29,12 +29,9 @@ import {
   isConfigForFetchingFiles,
   createFetchFileRoute,
 } from '../utils/sources/github/helpers';
-import {
-  fetchGithubTree,
-  fetchFile,
-  fetchIgnoreFile,
-  validateSourceGithub,
-} from '../utils/sources/github';
+import { fetchIgnoreFile, validateSourceGithub } from '../utils/sources/github';
+import { fetchGithubTree, fetchFile } from '../utils/sources/github/api';
+
 import fetch from 'node-fetch';
 import { GITHUB_API_ENDPOINT } from '../utils/constants';
 import { GITHUB_API, GITHUB_SOURCE } from '../__fixtures__/fixtures';
