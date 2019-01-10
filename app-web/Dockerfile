@@ -19,7 +19,6 @@ RUN apt-get update && \
 RUN useradd --user-group --create-home --shell /bin/false app
 
 USER app
-#RUN mkdir $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 
 COPY . .
