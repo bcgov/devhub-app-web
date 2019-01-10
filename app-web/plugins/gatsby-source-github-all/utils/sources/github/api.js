@@ -28,7 +28,7 @@ const fetchRepo = async (repo, owner, token) => {
       },
     });
     const data = await result.json();
-    return data;
+    return result.ok ? data : {};
   } catch (e) {
     return {};
   }

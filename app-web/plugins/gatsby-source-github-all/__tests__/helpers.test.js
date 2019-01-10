@@ -9,6 +9,9 @@ import {
 } from '../utils/helpers';
 import { RESOURCE_TYPES } from '../utils/constants';
 
+import { fetchRepo } from '../utils/sources/github/api';
+jest.mock('../utils/sources/github//api');
+
 describe('createPathWithDigest', () => {
   it('throws if base is not a string', () => {
     expect(() => createPathWithDigest(9, '123')).toThrow('base must be a string');
@@ -68,15 +71,16 @@ describe('unfurlWebURI', () => {
   });
 
   describe('getCollectionDescriptionBySourceType', () => {
-    it('returns a string', () => {
+    it('returns a string', async () => {
       const source = {
         sourceType: 'foo',
       };
-
-      expect(typeof getCollectionDescriptionBySourceType(source)).toBe('string');
+      const result = await getCollectionDescriptionBySourceType(source);
+      expect(typeof result).toBe('string');
     });
 
-    it('returns fetches github repo description', () => {
+    it('returns fetches github repo description', async () => {
+      fetchRepo.mockReturnValue(Promise.resolve({ description: 'matt damon' }));
       const source = {
         sourceType: 'github',
         sourceProperties: {
@@ -89,7 +93,8 @@ describe('unfurlWebURI', () => {
         GITHUB_API_TOKEN: 'foo',
       };
 
-      expect(getCollectionDescriptionBySourceType(source, tokens)).toBe('matt damon');
+      const result = await getCollectionDescriptionBySourceType(source, tokens);
+      expect(result).toBe('matt damon');
     });
   });
 

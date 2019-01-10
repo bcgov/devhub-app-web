@@ -25,7 +25,7 @@ const stringSimilarity = require('string-similarity');
 const scrape = require('html-metadata');
 const validUrl = require('valid-url');
 const { RESOURCE_TYPES_LIST, UNFURL_TYPES, SOURCE_TYPES } = require('./constants');
-
+const { fetchRepo } = require('./sources/github/api');
 /**
  * returns an idempotent path based on a base path plus a digestable string that is hashed
  * @param {String} base the base path (which is not changed)
@@ -262,10 +262,12 @@ const newCollection = (collection, props = {}) => ({ ...collection, ...props });
  * @param {Object} source
  * @param {Object} tokens
  */
-const getCollectionDescriptionBySourceType = (source, tokens) => {
+const getCollectionDescriptionBySourceType = async (source, tokens) => {
   switch (source.sourceType) {
     case SOURCE_TYPES.GITHUB:
-      return 'foo';
+      const { repo, owner } = source.sourceProperties;
+      const repoData = await fetchRepo(repo, owner, tokens.GITHUB_API_TOKEN);
+      return repoData.description;
     default:
       return '';
   }
