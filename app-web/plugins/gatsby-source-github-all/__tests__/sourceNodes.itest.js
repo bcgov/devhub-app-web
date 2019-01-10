@@ -28,6 +28,19 @@ describe('Integration Tests Source Nodes', () => {
     expect(validateRegistryItem(registryItem)).toBe(true);
   });
 
+  test("validateRegistry returns false if name or sourceProperties don't exist", () => {
+    const registryItem1 = {
+      sourceProperties: {},
+    };
+
+    const registryItem2 = {
+      name: 'foo',
+    };
+
+    expect(validateRegistryItem(registryItem1)).toBe(false);
+    expect(validateRegistryItem(registryItem2)).toBe(false);
+  });
+
   test('sourceNodes runs without crashing', async () => {
     const actions = {
       createNode: jest.fn(node => node),

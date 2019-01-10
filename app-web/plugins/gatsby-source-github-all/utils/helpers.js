@@ -256,6 +256,7 @@ module.exports = {
   getAbsolutePathFromRelative,
   validateSourcePropertiesAgainstSchema,
   validateRegistryItemAgainstSchema,
+  validateAgainstSchema,
   unfurlWebURI,
   isSourceCollection,
 };
