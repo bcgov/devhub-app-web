@@ -41,7 +41,7 @@ import {
   PROCESSED_WEB_SOURCE,
 } from '../__fixtures__/fixtures';
 import { validateSourceRegistry, fetchFromSource } from '../utils/fetchSource';
-import { isSourceCollection, hashString } from '../utils/helpers';
+import { isSourceCollection, hashString, validateRegistryItemAgainstSchema } from '../utils/helpers';
 
 jest.mock('../utils/helpers');
 jest.mock('crypto');
@@ -109,6 +109,7 @@ describe('gatsby source github all plugin', () => {
 
   test('checkRegistry returns true if sources are valid', () => {
     validateSourceRegistry.mockReturnValue(true);
+    validateRegistryItemAgainstSchema.mockReturnValue(true);
     expect(checkRegistry(REGISTRY)).toBe(true);
   });
 

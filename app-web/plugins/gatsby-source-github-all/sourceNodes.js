@@ -50,6 +50,13 @@ const mapInheritedSourceAttributes = ({ name, attributes, resourceType }, target
 });
 
 /**
+ * @param {Object} registryItem the registry item found within the registry file sources[index]
+ * @returns {Boolean} true if registry item is valid
+ */
+const validateRegistryItem = registryItem =>
+  validateRegistryItemAgainstSchema(registryItem, REGISTRY_ITEM_SCHEMA);
+
+/**
  * loops over sources and validates them based on their type
  * @param {Array} sources the sources
  * @returns {Boolean}
@@ -66,15 +73,8 @@ const sourcesAreValid = sources => {
     }
   });
 
-  return sourcesToCheck.every(validateSourceRegistry);
+  return sourcesToCheck.every(validateSourceRegistry) && sources.every(validateRegistryItem);
 };
-
-/**
- * @param {Object} registryItem the registry item found within the registry file sources[index]
- * @returns {Boolean} true if registry item is valid
- */
-const validateRegistryItem = registryItem =>
-  validateRegistryItemAgainstSchema(registryItem, REGISTRY_ITEM_SCHEMA);
 
 /**
  * validates source registry
