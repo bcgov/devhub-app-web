@@ -39,6 +39,21 @@ sources:
         - Wiki
         - How To
       persona: 'Developer'
+  - name: Platform Services Wiki
+    sourceType: 'github'
+    sourceProperties:
+      url: https://github.com/BCDevOps/platform-services
+      owner: BCDevOps
+      repo: 'platform-services'
+      context: 'wiki'
+    resourceType: 'Documentation'
+    attributes:
+      labels:
+        - Guides
+        - Repository
+        - Wiki
+        - How To
+      persona: 'Developer'
   - name: OpenShift Components
     sourceType: 'github'
     sourceProperties:
