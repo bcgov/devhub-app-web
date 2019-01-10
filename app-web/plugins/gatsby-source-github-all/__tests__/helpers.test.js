@@ -5,6 +5,7 @@ import {
   unfurlWebURI,
   validateAgainstSchema,
   newCollection,
+  getCollectionDescriptionBySourceType,
 } from '../utils/helpers';
 import { RESOURCE_TYPES } from '../utils/constants';
 
@@ -64,6 +65,32 @@ describe('unfurlWebURI', () => {
         error: 'The uri is not valid',
       });
     }
+  });
+
+  describe('getCollectionDescriptionBySourceType', () => {
+    it('returns a string', () => {
+      const source = {
+        sourceType: 'foo',
+      };
+
+      expect(typeof getCollectionDescriptionBySourceType(source)).toBe('string');
+    });
+
+    it('returns fetches github repo description', () => {
+      const source = {
+        sourceType: 'github',
+        sourceProperties: {
+          repo: 'foo',
+          owner: 'bar',
+        },
+      };
+
+      const tokens = {
+        GITHUB_API_TOKEN: 'foo',
+      };
+
+      expect(getCollectionDescriptionBySourceType(source, tokens)).toBe('matt damon');
+    });
   });
 
   describe('validateAgainstSchema', () => {
