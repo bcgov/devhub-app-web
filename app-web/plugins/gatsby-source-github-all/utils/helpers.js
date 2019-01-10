@@ -187,6 +187,15 @@ const hashString = content =>
     .update(content)
     .digest('hex');
 
+/**
+ * returns true/false if source contains more sources
+ * @param {Object} source
+ * @returns {Boolean}
+ */
+const isSourceCollection = source =>
+  Object.prototype.hasOwnProperty.call(source.sourceProperties, 'sources') &&
+  TypeCheck.isArray(source.sourceProperties.sources);
+
 module.exports = {
   hashString,
   createPathWithDigest,
@@ -196,4 +205,5 @@ module.exports = {
   getAbsolutePathFromRelative,
   validateSourceAgainstSchema,
   unfurlWebURI,
+  isSourceCollection,
 };

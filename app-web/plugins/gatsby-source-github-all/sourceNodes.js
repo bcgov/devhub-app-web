@@ -20,19 +20,10 @@
 const _ = require('lodash'); // eslint-disable-line
 const chalk = require('chalk'); // eslint-disable-line
 const { TypeCheck } = require('@bcgov/common-web-utils');
-const { hashString } = require('./utils/helpers');
+const { hashString, isSourceCollection } = require('./utils/helpers');
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
 const { COLLECTION_TYPES } = require('./utils/constants');
-const { createSiphonNode } = require('./utils/createNode');
-
-/**
- * returns true/false if source contains more sources
- * @param {Object} source
- * @returns {Boolean}
- */
-const isSourceCollection = source =>
-  Object.prototype.hasOwnProperty.call(source.sourceProperties, 'sources') &&
-  TypeCheck.isArray(source.sourceProperties.sources);
+const { createSiphonNode, createCollectionNode } = require('./utils/createNode');
 
 /**
  * maps root level attributes to a child 'source'
@@ -198,6 +189,67 @@ const getFetchQueue = sources => {
 };
 
 /**
+ * fetches source based on source type and source properties
+ * if source is found to be a collection it recurses over and return
+ * @param {Object} source the source object
+ * @param {Function} createNodeId gatsby fn
+ * @param {Function} createNode gatsby fn
+ * @param {Object} tokens the tokens passed from options
+ * @returns {Array} the list of resources retrieved from the source
+ */
+const processSource = async (source, createNodeId, createNode, tokens) => {
+  const resources = await fetchFromSource(source.sourceType, source, tokens);
+  // any resources that hvae the metadata ignore flag are filtered out to prevent a node being created
+  const filteredResources = filterIgnoredResources(resources);
+  return Promise.all(
+    filteredResources.map(async resource => {
+      const hash = hashString(JSON.stringify(resource));
+      const id = createNodeId(hash);
+      const siphonNode = createSiphonNode(resource, id);
+      await createNode(siphonNode);
+      return siphonNode;
+    }),
+  );
+};
+
+/**
+ * process the collection and fetches all sources for it
+ * creating a collection node and all source nodes for the collection,
+ * @param {Object} collection the collection
+ * @param {Function} createNodeId gatsby fn
+ * @param {Function} createNode gatsby fn
+ * @param {Function} createParentChildLink gatsby fn
+ * @param {Object} tokens tokens passed from options
+ * @returns {Object} the collection object
+ * {
+ *   ...collectionProperties
+ *   sources: [{...source}]
+ * }
+ */
+const processCollection = async (
+  collection,
+  createNodeId,
+  createNode,
+  createParentChildLink,
+  tokens,
+) => {
+  const hash = hashString(JSON.stringify(collection));
+  // id for collection node
+  const id = createNodeId(hash);
+  // fetch all sources
+  const sourceNodes = await Promise.all(
+    collection.sources.map(source => processSource(source, createNodeId, createNode, tokens)),
+  );
+  // flatten source nodes to get a list of all the resources
+  const resources = _.flatten(sourceNodes, true);
+  const collectionNode = createCollectionNode(collection, id);
+  await createNode(collectionNode);
+  resources.forEach(r => createParentChildLink({ parent: collectionNode, child: r }));
+  // establish a parent child link between all resources and the collection node
+  return collectionNode;
+};
+
+/**
  * event handler for the gatsby source plugin
  * more info https://www.gatsbyjs.org/docs/create-source-plugin/
  * @param {Object} gatsbyEventObject
@@ -207,7 +259,7 @@ const getFetchQueue = sources => {
 const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens, sourceRegistryType }) => {
   // get registry from current nodes
   const registry = getRegistry(getNodes, sourceRegistryType);
-  const { createNode } = actions;
+  const { createNode, createParentChildLink } = actions;
   try {
     // check registry prior to fetching data
     checkRegistry(registry);
@@ -215,22 +267,12 @@ const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens, source
     const fetchQueue = getFetchQueue(registry.sources);
 
     const collections = await Promise.all(
-      fetchQueue.map(async collection => {
-        const sources = await Promise.all(
-          collection.sources.map(source => fetchFromSource(source.sourceType, source, tokens)),
-        );
-        // sources is an array of arrays [[source data], [source data]] etc
-        // so we flatten it into a 1 dimensional array
-        let dataToNodify = _.flatten(sources, true);
-        dataToNodify = filterIgnoredResources(dataToNodify);
-        // create nodes
-        return dataToNodify.map(file => {
-          const fileHash = hashString(JSON.stringify(file.metadata));
-          return createNode(createSiphonNode(file, createNodeId(fileHash)));
-        });
-      }),
+      fetchQueue.map(async collection =>
+        processCollection(collection, createNodeId, createNode, createParentChildLink, tokens),
+      ),
     );
-    return _.flatten(collections, true);
+
+    return collections;
   } catch (e) {
     // failed to retrieve files or some other type of failure
     // eslint-disable-next-line
@@ -249,4 +291,6 @@ module.exports = {
   mapInheritedSourceAttributes,
   getFetchQueue,
   normalizePersonas,
+  processSource,
+  processCollection,
 };

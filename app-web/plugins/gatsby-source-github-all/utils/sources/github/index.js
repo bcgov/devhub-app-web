@@ -186,6 +186,7 @@ const fetchSourceGithub = async (
   token,
 ) => {
   const { repo, owner, branch, url } = sourceProperties;
+
   let filesToFetch = [];
   // how are we sourcing this?
   if (isConfigForFetchingAFile(sourceProperties)) {
@@ -198,6 +199,7 @@ const fetchSourceGithub = async (
     // get files based on the github tree and other configs
     filesToFetch = await getFilesFromRepo(sourceProperties, token);
   }
+
   // actually fetch file contents and transform
   const filesWithContents = fetchFiles(filesToFetch, token);
   const filesResponse = await Promise.all(filesWithContents);
