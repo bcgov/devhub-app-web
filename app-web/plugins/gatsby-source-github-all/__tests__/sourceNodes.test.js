@@ -27,7 +27,6 @@ import {
   normalizePersonas,
   processSource,
   processCollection,
-  validateRegistryItem,
 } from '../sourceNodes';
 import { createSiphonNode, createCollectionNode } from '../utils/createNode';
 import { GRAPHQL_NODE_TYPE, COLLECTION_TYPES } from '../utils/constants';
@@ -41,7 +40,11 @@ import {
   PROCESSED_WEB_SOURCE,
 } from '../__fixtures__/fixtures';
 import { validateSourceRegistry, fetchFromSource } from '../utils/fetchSource';
-import { isSourceCollection, hashString, validateRegistryItemAgainstSchema } from '../utils/helpers';
+import {
+  isSourceCollection,
+  hashString,
+  validateRegistryItemAgainstSchema,
+} from '../utils/helpers';
 
 jest.mock('../utils/helpers');
 jest.mock('crypto');
@@ -412,7 +415,7 @@ describe('gatsby source github all plugin', () => {
     const createNode = jest.fn(node => node);
     const createParentChildLink = jest.fn();
 
-    const collection = await processCollection(
+    await processCollection(
       COLLECTION_OBJ_FROM_FETCH_QUEUE,
       createNodeId,
       createNode,

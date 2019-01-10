@@ -5,7 +5,6 @@ import {
   GRAPHQL_NODES_WITH_REGISTRY,
   CONFIG_OPTIONS,
 } from '../__fixtures__/fixtures';
-import { GRAPHQL_NODE_TYPE } from '../utils/constants';
 import { sourceNodes, validateRegistryItem } from '../sourceNodes';
 import { fetchSourceGithub, validateSourceGithub } from '../utils/sources/github';
 
