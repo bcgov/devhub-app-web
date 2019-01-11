@@ -41,6 +41,8 @@ describe('Integration Tests Source Nodes', () => {
   });
 
   test('sourceNodes runs without crashing', async () => {
+    jest.setTimeout(10000); // increase timeout to 10 seconds from 5 sec default, this seems to help tests
+    // in openshift
     const actions = {
       createNode: jest.fn(node => node),
       createParentChildLink: jest.fn(obj => obj),
