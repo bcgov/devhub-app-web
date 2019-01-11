@@ -74,7 +74,6 @@ const transformRelativePaths = ({ markdownAST, markdownNode, getNode }, { conver
   });
 
   visit(markdownAST, LINK, node => {
-    console.log(node, 'the node!');
     node.url = linkVisitedCB(node.url);
   });
 };
