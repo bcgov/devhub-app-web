@@ -43,8 +43,8 @@ const transformRelativePaths = ({ markdownAST, markdownNode, getNode }, { conver
    * @param {Object} parentQLNode
    */
   const visitCB = (nodeType, parentQLNode) => url => {
-    // is node url relative?
-    if (validURL.isWebUri(url)) {
+    // if its an actual valid link or an anchor don't transform
+    if (validURL.isWebUri(url) || url.indexOf('#') === 0) {
       return url;
     }
     const absolutePath = converter(nodeType, url, parentQLNode);
