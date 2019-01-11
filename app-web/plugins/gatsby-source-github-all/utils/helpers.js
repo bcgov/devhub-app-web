@@ -121,36 +121,87 @@ const getAbsolutePathFromRelative = (relativePath, absolutePath, queryParams) =>
   return absPathObj.toString();
 };
 
-/* validates a registry item's source Properties against a valid schema
+/**
+ * validates an object against a schema
+ * schema is in format
+ * {
+ *  [object key name] : {
+ *    type: [object constructor String | Array | Object etc],
+ *    required: [Boolean]
+ *  }
+ * }
+ * @param {Object} obj the object that is being tested
+ * @param {Object} schema the schema object that is being tested against
+ * @returns {Object} an object containing error messages and isValid property
+ * {
+ *   errors: {Array},
+ *   isValid: {Boolean}
+ * }
+ */
+const validateAgainstSchema = (obj, schema) => {
+  const error = {
+    messages: [],
+  };
+
+  Object.keys(schema).every(key => {
+    const schemaItem = schema[key];
+    let isValid = true;
+    if (schemaItem.required) {
+      isValid =
+        Object.prototype.hasOwnProperty.call(obj, key) && TypeCheck.isA(schemaItem.type, obj[key]);
+      // does this source property have it anyways?
+    } else if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      isValid = TypeCheck.isA(schemaItem.type, obj[key]);
+    }
+
+    if (!isValid) {
+      error.messages.push(
+        `Error Validating Source: failed on property ${key}, received value ${obj[key]}`,
+      );
+    }
+    return isValid;
+  });
+
+  error.isValid = error.messages.length === 0;
+
+  return error;
+};
+
+/**
+ * verifies registry item against schema
+ * @param {Object} registryItem the registry item
+ * @param {Object} schema the schema to test against
+ * @returns {Boolean}
+ */
+const validateRegistryItemAgainstSchema = (registryItem, schema) => {
+  const error = validateAgainstSchema(registryItem, schema);
+  if (!error.isValid) {
+    console.error(
+      chalk`{red.bold \nError Validating Registry item}`,
+      '\n',
+      error.messages.join('\n-'),
+    );
+  }
+
+  return error.isValid;
+};
+
+/** validates a registry item's source Properties against a valid schema
  * @param {Object} source the registry source item properties
  * @param {Object} schema has shape { type: String | Boolean | Date etc, required: true/false}
  * @returns {Boolean}
  */
-const validateSourceAgainstSchema = (source, schema) => {
-  return Object.keys(schema).every(key => {
-    const schemaItem = schema[key];
-    let isValid = true;
+const validateSourcePropertiesAgainstSchema = (source, schema) => {
+  const error = validateAgainstSchema(source.sourceProperties, schema);
+  if (!error.isValid) {
+    console.error(
+      chalk`{red.bold \nError Validating Source type ${source.sourceType}}`,
+      '\n',
+      error.messages.join('\n-'),
+    );
+  }
 
-    if (schemaItem.required) {
-      isValid =
-        Object.prototype.hasOwnProperty.call(source.sourceProperties, key) &&
-        TypeCheck.isA(schemaItem.type, source.sourceProperties[key]);
-      // does this source property have it anyways?
-    } else if (Object.prototype.hasOwnProperty.call(source.sourceProperties, key)) {
-      isValid = TypeCheck.isA(schemaItem.type, source.sourceProperties[key]);
-    }
-
-    if (!isValid) {
-      console.error(
-        chalk`{red.bold \nError Validating Source type ${source.sourceType}} 
-
-       Source failed on validation on source property {yellow.bold ${key}}
-       received value {yellow.bold ${source.sourceProperties[key]}}`,
-      );
-    }
-
-    return isValid;
-  });
+  return error.isValid;
 };
 
 const unfurlWebURI = async uri => {
@@ -203,7 +254,8 @@ module.exports = {
   getClosestResourceType,
   getClosestPersona,
   getAbsolutePathFromRelative,
-  validateSourceAgainstSchema,
+  validateSourcePropertiesAgainstSchema,
+  validateRegistryItemAgainstSchema,
   unfurlWebURI,
   isSourceCollection,
 };

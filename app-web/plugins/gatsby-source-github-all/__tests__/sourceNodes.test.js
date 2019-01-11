@@ -27,6 +27,7 @@ import {
   normalizePersonas,
   processSource,
   processCollection,
+  validateRegistryItem,
 } from '../sourceNodes';
 import { createSiphonNode, createCollectionNode } from '../utils/createNode';
 import { GRAPHQL_NODE_TYPE, COLLECTION_TYPES } from '../utils/constants';

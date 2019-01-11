@@ -1,5 +1,5 @@
 /*
-Copyright 2018 Province of British Columbia
+Copyright 2019 Province of British Columbia
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,9 +15,32 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
+
+// just a base schema validating root registration properties.
+// nothing internal yet.
+const REGISTRY_ITEM_SCHEMA = {
+  name: {
+    type: String,
+    required: true,
+  },
+  sourceProperties: {
+    type: Object,
+    required: true,
+  },
+  resourceType: {
+    type: String,
+    required: false,
+  },
+  attributes: {
+    type: Object,
+    required: false,
+  },
+  description: {
+    type: String,
+    required: false,
+  },
+};
+
 module.exports = {
-  ...require('./siphonNode'),
-  ...require('./sourceGithub'),
-  ...require('./sourceTypes'),
-  ...require('./registry'),
+  REGISTRY_ITEM_SCHEMA,
 };

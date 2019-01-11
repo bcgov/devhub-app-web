@@ -33,7 +33,7 @@ const {
   filterFilesFromDirectories,
   applyBaseMetadata,
 } = require('./helpers');
-const { validateSourceAgainstSchema } = require('../../helpers');
+const { validateSourcePropertiesAgainstSchema } = require('../../helpers');
 
 /**
  * Using the recursion param, this
@@ -162,7 +162,8 @@ const getFilesFromRepo = async ({ repo, owner, branch, context, ignores }, token
  * @param {Object} source
  * @returns {Boolean}
  */
-const validateSourceGithub = source => validateSourceAgainstSchema(source, GITHUB_SOURCE_SCHEMA);
+const validateSourceGithub = source =>
+  validateSourcePropertiesAgainstSchema(source, GITHUB_SOURCE_SCHEMA);
 
 /**
  * returns a flattened array of github files from a repository
