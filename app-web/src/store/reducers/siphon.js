@@ -72,8 +72,8 @@ const dotPropMatchesValue = (node, filterBy, value) => {
 
 /**
  * flattens the List of collection.nodes
- * @param {Immutable.List} collections the collections list
- * @return {Immutable.List} a flattened list of all nodes within all of the collections
+ * @param {Array} collections the collections list
+ * @return {Array} a flattened list of all nodes within all of the collections
  */
 const getAllNodesFromCollections = collections =>
   collections.reduce((acc, collection) => acc.concat(collection.nodes), []);
@@ -101,7 +101,6 @@ export const applyPropsToFilterByResourceCount = (filter, primaryFilteredNodes) 
   // check if this filter has been set to active and if it should remain so
   // this would onyl be the case if the available resources are greater than 0
   newFilter.active = isActive;
-  console.log('newFilter', 'yoyoyoy', newFilter);
   return newFilter;
 };
 
