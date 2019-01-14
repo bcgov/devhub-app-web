@@ -35,7 +35,12 @@ export class Index extends Component {
     const { collections, toggleMenu, filters } = this.props;
 
     const SiphonResources = collections.map(collection => (
-      <Cards key={shortid.generate()} topic={collection.name} cards={collection.nodes} />
+      <Cards
+        key={shortid.generate()}
+        topic={collection.name}
+        description={collection.description}
+        cards={collection.nodes}
+      />
     ));
 
     // group filter groups by there title
@@ -78,6 +83,7 @@ export const resourceQuery = graphql`
         node {
           id
           name
+          description
           nodes: childrenDevhubSiphon {
             id
             name

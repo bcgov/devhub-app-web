@@ -1,20 +1,16 @@
 import React from 'react';
 import shortid from 'shortid';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/fontawesome-free-brands';
 import styles from './Cards.module.css';
 import DefaultCard from './Card/DefaultCard';
 import DocumentCard from './Card/DocumentCard';
 import RepositoryCard from './Card/RepositoryCard';
 import SelfServiceCard from './Card/SelfServiceCard';
 import ComponentCard from './Card/ComponentCard';
-import Link from '../UI/Link/Link';
 import Toggle from './Toggle';
-import { ARIA_LABEL_REPO } from '../../constants/ariaLabels';
 import { LARGE_SCREEN_LIMIT, SMALL_SCREEN_LIMIT, RESOURCE_TYPES } from '../../constants/ui';
 
-const Cards = ({ topic, sourcePath, cards }) => {
+const Cards = ({ topic, description, sourcePath, cards }) => {
   const cardComponents = cards.map(c => {
     switch (c.resource.type) {
       case RESOURCE_TYPES.RESPOSITORIES:
@@ -85,18 +81,12 @@ const Cards = ({ topic, sourcePath, cards }) => {
         );
     }
   });
-  const octoKat =
-    sourcePath === '' ? null : (
-      <Link to={sourcePath} aria-label={ARIA_LABEL_REPO}>
-        <FontAwesomeIcon icon={faGithub} color="#242424" size="1x" />
-      </Link>
-    );
+
   if (cardComponents.length > 0) {
     return (
       <section className={styles.CardsContainer}>
         <div className={styles.TopicContainer}>
           <h1>{topic}</h1>
-          {octoKat}
         </div>
         <div className={styles.LargeView}>
           <Toggle cardComponents={cardComponents} cardLimits={LARGE_SCREEN_LIMIT} />
@@ -113,12 +103,14 @@ const Cards = ({ topic, sourcePath, cards }) => {
 
 Cards.defaultProps = {
   sourcePath: '',
+  description: '',
 };
 
 Cards.propTypes = {
   cards: PropTypes.arrayOf(PropTypes.object).isRequired,
   sourcePath: PropTypes.string,
   topic: PropTypes.string.isRequired,
+  description: PropTypes.string,
 };
 
 export default Cards;
