@@ -107,8 +107,6 @@ const Cards = ({ topic, description, sourcePath, cards }) => {
       CARDS_PER_ROW,
     );
 
-    console.log('achieving ideal limit', idealLimit);
-
     return (
       <section className={styles.CardsContainer}>
         <div className={styles.TopicContainer}>
