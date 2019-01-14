@@ -21,9 +21,9 @@ import * as actionTypes from './actionTypes';
  * Loads graphQL nodes from gatsby data layer into the redux store
  * @param {Array} nodes
  */
-export const loadSiphonNodes = nodes => {
+export const loadSiphonCollections = nodes => {
   return {
-    type: actionTypes.LOAD_SIPHON_NODES,
+    type: actionTypes.LOAD_SIPHON_COLLECTIONS,
     payload: {
       nodes,
     },

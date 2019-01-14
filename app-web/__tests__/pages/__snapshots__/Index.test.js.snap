@@ -4,44 +4,165 @@ exports[`Index Container it matches snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Index
-    data={
-      Object {
-        "allDevhubSiphon": Object {
-          "edges": Array [
+    collections={
+      Array [
+        Object {
+          "name": "Design System",
+          "nodes": Array [
             Object {
-              "node": Object {
-                "childMarkdownRemark": Object {
-                  "frontmatter": Object {
-                    "description": "This is a test description that will be used as the intro blurb to a card",
-                    "title": "",
-                  },
+              "attributes": Object {
+                "personas": Array [
+                  "Designer",
+                ],
+              },
+              "childMarkdownRemark": Object {
+                "frontmatter": Object {
+                  "pageOnly": false,
                 },
-                "id": "1bc91db3-c484-58b5-9700-55c22406950a",
-                "resource": Object {
-                  "path": "/design-system/test",
+              },
+              "resource": Object {
+                "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                "path": "/design-system/Z1bGIqu",
+                "type": "Components",
+              },
+              "source": Object {
+                "displayName": "Design System",
+                "name": "design-system",
+                "sourcePath": "https://github.com/bcgov/design-system/",
+                "type": "github",
+              },
+              "unfurl": Object {
+                "author": "ksingbeil",
+                "data1": "",
+                "data2": "",
+                "description": "What the Design System is and how it works.",
+                "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                "label1": "",
+                "label2": "",
+                "title": "About",
+                "type": "markdown",
+              },
+            },
+            Object {
+              "attributes": Object {
+                "personas": Array [
+                  "Developer",
+                ],
+              },
+              "childMarkdownRemark": Object {
+                "frontmatter": Object {
+                  "pageOnly": false,
                 },
-                "source": Object {
-                  "displayName": "Design System",
-                },
-                "title": "test",
+              },
+              "resource": Object {
+                "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                "path": "/design-system/Z1bGIqu",
+                "type": "Documentation",
+              },
+              "source": Object {
+                "displayName": "Design System",
+                "name": "design-system",
+                "sourcePath": "https://github.com/bcgov/design-system/",
+                "type": "github",
+              },
+              "unfurl": Object {
+                "author": "ksingbeil",
+                "data1": "",
+                "data2": "",
+                "description": "What the Design System is and how it works.",
+                "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                "label1": "",
+                "label2": "",
+                "title": "About",
+                "type": "markdown",
               },
             },
           ],
+          "type": "source",
         },
-        "pathfinder": Object {
-          "data": Object {
-            "organization": Object {
-              "repository": Object {
-                "resources": Object {
-                  "yaml": "entries:
-- {details: \\"test1\\" , originalSource: ../index.html, category: 'What''s Going On Now', link: 'https://github.com/BCDevOps/BCDevOps-Guide', description: 'DevOps PaaS'}
-- {details: \\"test2\\", originalSource: ../index.html, category: Community, link: 'https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all', description: 'DevOps Commons'}
-- {details: \\"test3\\", originalSource: ../index.html, category: Community, link: 'https://www.meetup.com/DevOps-Commons', description: 'DevOps Commons Meetups'}
-",
-                },
+      ]
+    }
+    data={
+      Object {
+        "allDevhubSiphonCollection": Object {
+          "edges": Array [
+            Object {
+              "node": Object {
+                "name": "Design System",
+                "nodes": Array [
+                  Object {
+                    "attributes": Object {
+                      "personas": Array [
+                        "Designer",
+                      ],
+                    },
+                    "childMarkdownRemark": Object {
+                      "frontmatter": Object {
+                        "pageOnly": false,
+                      },
+                    },
+                    "resource": Object {
+                      "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                      "path": "/design-system/Z1bGIqu",
+                      "type": "Components",
+                    },
+                    "source": Object {
+                      "displayName": "Design System",
+                      "name": "design-system",
+                      "sourcePath": "https://github.com/bcgov/design-system/",
+                      "type": "github",
+                    },
+                    "unfurl": Object {
+                      "author": "ksingbeil",
+                      "data1": "",
+                      "data2": "",
+                      "description": "What the Design System is and how it works.",
+                      "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                      "label1": "",
+                      "label2": "",
+                      "title": "About",
+                      "type": "markdown",
+                    },
+                  },
+                  Object {
+                    "attributes": Object {
+                      "personas": Array [
+                        "Developer",
+                      ],
+                    },
+                    "childMarkdownRemark": Object {
+                      "frontmatter": Object {
+                        "pageOnly": false,
+                      },
+                    },
+                    "resource": Object {
+                      "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                      "path": "/design-system/Z1bGIqu",
+                      "type": "Documentation",
+                    },
+                    "source": Object {
+                      "displayName": "Design System",
+                      "name": "design-system",
+                      "sourcePath": "https://github.com/bcgov/design-system/",
+                      "type": "github",
+                    },
+                    "unfurl": Object {
+                      "author": "ksingbeil",
+                      "data1": "",
+                      "data2": "",
+                      "description": "What the Design System is and how it works.",
+                      "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                      "label1": "",
+                      "label2": "",
+                      "title": "About",
+                      "type": "markdown",
+                    },
+                  },
+                ],
+                "type": "source",
               },
             },
-          },
+          ],
         },
       }
     }
@@ -49,8 +170,9 @@ ShallowWrapper {
       Array [
         Object {
           "active": false,
-          "availableResources": null,
+          "availableResources": 0,
           "filterBy": "attributes.personas",
+          "isFilterable": false,
           "key": "foo",
           "text": "Designers",
           "title": "For",
@@ -58,8 +180,9 @@ ShallowWrapper {
         },
         Object {
           "active": true,
-          "availableResources": null,
+          "availableResources": 0,
           "filterBy": "attributes.personas",
+          "isFilterable": false,
           "key": "bar",
           "text": "Developers",
           "title": "For",
@@ -67,8 +190,9 @@ ShallowWrapper {
         },
         Object {
           "active": false,
-          "availableResources": null,
+          "availableResources": 0,
           "filterBy": "attributes.personas",
+          "isFilterable": false,
           "key": "baz",
           "text": "Product Owners",
           "title": "For",
@@ -76,26 +200,84 @@ ShallowWrapper {
         },
       ]
     }
-    loadSiphonNodes={
+    loadCollections={
       [MockFunction] {
         "calls": Array [
           Array [
             Array [
               Object {
-                "childMarkdownRemark": Object {
-                  "frontmatter": Object {
-                    "description": "This is a test description that will be used as the intro blurb to a card",
-                    "title": "",
+                "name": "Design System",
+                "nodes": Array [
+                  Object {
+                    "attributes": Object {
+                      "personas": Array [
+                        "Designer",
+                      ],
+                    },
+                    "childMarkdownRemark": Object {
+                      "frontmatter": Object {
+                        "pageOnly": false,
+                      },
+                    },
+                    "resource": Object {
+                      "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                      "path": "/design-system/Z1bGIqu",
+                      "type": "Components",
+                    },
+                    "source": Object {
+                      "displayName": "Design System",
+                      "name": "design-system",
+                      "sourcePath": "https://github.com/bcgov/design-system/",
+                      "type": "github",
+                    },
+                    "unfurl": Object {
+                      "author": "ksingbeil",
+                      "data1": "",
+                      "data2": "",
+                      "description": "What the Design System is and how it works.",
+                      "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                      "label1": "",
+                      "label2": "",
+                      "title": "About",
+                      "type": "markdown",
+                    },
                   },
-                },
-                "id": "1bc91db3-c484-58b5-9700-55c22406950a",
-                "resource": Object {
-                  "path": "/design-system/test",
-                },
-                "source": Object {
-                  "displayName": "Design System",
-                },
-                "title": "test",
+                  Object {
+                    "attributes": Object {
+                      "personas": Array [
+                        "Developer",
+                      ],
+                    },
+                    "childMarkdownRemark": Object {
+                      "frontmatter": Object {
+                        "pageOnly": false,
+                      },
+                    },
+                    "resource": Object {
+                      "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                      "path": "/design-system/Z1bGIqu",
+                      "type": "Documentation",
+                    },
+                    "source": Object {
+                      "displayName": "Design System",
+                      "name": "design-system",
+                      "sourcePath": "https://github.com/bcgov/design-system/",
+                      "type": "github",
+                    },
+                    "unfurl": Object {
+                      "author": "ksingbeil",
+                      "data1": "",
+                      "data2": "",
+                      "description": "What the Design System is and how it works.",
+                      "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                      "label1": "",
+                      "label2": "",
+                      "title": "About",
+                      "type": "markdown",
+                    },
+                  },
+                ],
+                "type": "source",
               },
             ],
           ],
@@ -146,8 +328,9 @@ ShallowWrapper {
                   "data": Array [
                     Object {
                       "active": false,
-                      "availableResources": null,
+                      "availableResources": 0,
                       "filterBy": "attributes.personas",
+                      "isFilterable": false,
                       "key": "foo",
                       "text": "Designers",
                       "title": "For",
@@ -155,8 +338,9 @@ ShallowWrapper {
                     },
                     Object {
                       "active": true,
-                      "availableResources": null,
+                      "availableResources": 0,
                       "filterBy": "attributes.personas",
+                      "isFilterable": false,
                       "key": "bar",
                       "text": "Developers",
                       "title": "For",
@@ -164,8 +348,9 @@ ShallowWrapper {
                     },
                     Object {
                       "active": false,
-                      "availableResources": null,
+                      "availableResources": 0,
                       "filterBy": "attributes.personas",
+                      "isFilterable": false,
                       "key": "baz",
                       "text": "Product Owners",
                       "title": "For",
@@ -175,8 +360,9 @@ ShallowWrapper {
                   "filters": Array [
                     Object {
                       "active": false,
-                      "availableResources": null,
+                      "availableResources": 0,
                       "filterBy": "attributes.personas",
+                      "isFilterable": false,
                       "key": "foo",
                       "text": "Designers",
                       "title": "For",
@@ -184,8 +370,9 @@ ShallowWrapper {
                     },
                     Object {
                       "active": true,
-                      "availableResources": null,
+                      "availableResources": 0,
                       "filterBy": "attributes.personas",
+                      "isFilterable": false,
                       "key": "bar",
                       "text": "Developers",
                       "title": "For",
@@ -193,8 +380,9 @@ ShallowWrapper {
                     },
                     Object {
                       "active": false,
-                      "availableResources": null,
+                      "availableResources": 0,
                       "filterBy": "attributes.personas",
+                      "isFilterable": false,
                       "key": "baz",
                       "text": "Product Owners",
                       "title": "For",
@@ -215,8 +403,9 @@ ShallowWrapper {
                     "data": Array [
                       Object {
                         "active": false,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "foo",
                         "text": "Designers",
                         "title": "For",
@@ -224,8 +413,9 @@ ShallowWrapper {
                       },
                       Object {
                         "active": true,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "bar",
                         "text": "Developers",
                         "title": "For",
@@ -233,8 +423,9 @@ ShallowWrapper {
                       },
                       Object {
                         "active": false,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "baz",
                         "text": "Product Owners",
                         "title": "For",
@@ -244,8 +435,9 @@ ShallowWrapper {
                     "filters": Array [
                       Object {
                         "active": false,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "foo",
                         "text": "Designers",
                         "title": "For",
@@ -253,8 +445,9 @@ ShallowWrapper {
                       },
                       Object {
                         "active": true,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "bar",
                         "text": "Developers",
                         "title": "For",
@@ -262,8 +455,9 @@ ShallowWrapper {
                       },
                       Object {
                         "active": false,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "baz",
                         "text": "Product Owners",
                         "title": "For",
@@ -287,7 +481,84 @@ ShallowWrapper {
                 >
                   <Flag
                     name="features.githubResourceCards"
-                  />
+                  >
+                    <Cards
+                      cards={
+                        Array [
+                          Object {
+                            "attributes": Object {
+                              "personas": Array [
+                                "Designer",
+                              ],
+                            },
+                            "childMarkdownRemark": Object {
+                              "frontmatter": Object {
+                                "pageOnly": false,
+                              },
+                            },
+                            "resource": Object {
+                              "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                              "path": "/design-system/Z1bGIqu",
+                              "type": "Components",
+                            },
+                            "source": Object {
+                              "displayName": "Design System",
+                              "name": "design-system",
+                              "sourcePath": "https://github.com/bcgov/design-system/",
+                              "type": "github",
+                            },
+                            "unfurl": Object {
+                              "author": "ksingbeil",
+                              "data1": "",
+                              "data2": "",
+                              "description": "What the Design System is and how it works.",
+                              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                              "label1": "",
+                              "label2": "",
+                              "title": "About",
+                              "type": "markdown",
+                            },
+                          },
+                          Object {
+                            "attributes": Object {
+                              "personas": Array [
+                                "Developer",
+                              ],
+                            },
+                            "childMarkdownRemark": Object {
+                              "frontmatter": Object {
+                                "pageOnly": false,
+                              },
+                            },
+                            "resource": Object {
+                              "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                              "path": "/design-system/Z1bGIqu",
+                              "type": "Documentation",
+                            },
+                            "source": Object {
+                              "displayName": "Design System",
+                              "name": "design-system",
+                              "sourcePath": "https://github.com/bcgov/design-system/",
+                              "type": "github",
+                            },
+                            "unfurl": Object {
+                              "author": "ksingbeil",
+                              "data1": "",
+                              "data2": "",
+                              "description": "What the Design System is and how it works.",
+                              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                              "label1": "",
+                              "label2": "",
+                              "title": "About",
+                              "type": "markdown",
+                            },
+                          },
+                        ]
+                      }
+                      sourcePath=""
+                      topic="Design System"
+                    />
+                  </Flag>
                 </div>
               </Element>
             </main>
@@ -343,8 +614,9 @@ ShallowWrapper {
                     "data": Array [
                       Object {
                         "active": false,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "foo",
                         "text": "Designers",
                         "title": "For",
@@ -352,8 +624,9 @@ ShallowWrapper {
                       },
                       Object {
                         "active": true,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "bar",
                         "text": "Developers",
                         "title": "For",
@@ -361,8 +634,9 @@ ShallowWrapper {
                       },
                       Object {
                         "active": false,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "baz",
                         "text": "Product Owners",
                         "title": "For",
@@ -372,8 +646,9 @@ ShallowWrapper {
                     "filters": Array [
                       Object {
                         "active": false,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "foo",
                         "text": "Designers",
                         "title": "For",
@@ -381,8 +656,9 @@ ShallowWrapper {
                       },
                       Object {
                         "active": true,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "bar",
                         "text": "Developers",
                         "title": "For",
@@ -390,8 +666,9 @@ ShallowWrapper {
                       },
                       Object {
                         "active": false,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "baz",
                         "text": "Product Owners",
                         "title": "For",
@@ -412,8 +689,9 @@ ShallowWrapper {
                       "data": Array [
                         Object {
                           "active": false,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "foo",
                           "text": "Designers",
                           "title": "For",
@@ -421,8 +699,9 @@ ShallowWrapper {
                         },
                         Object {
                           "active": true,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "bar",
                           "text": "Developers",
                           "title": "For",
@@ -430,8 +709,9 @@ ShallowWrapper {
                         },
                         Object {
                           "active": false,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "baz",
                           "text": "Product Owners",
                           "title": "For",
@@ -441,8 +721,9 @@ ShallowWrapper {
                       "filters": Array [
                         Object {
                           "active": false,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "foo",
                           "text": "Designers",
                           "title": "For",
@@ -450,8 +731,9 @@ ShallowWrapper {
                         },
                         Object {
                           "active": true,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "bar",
                           "text": "Developers",
                           "title": "For",
@@ -459,8 +741,9 @@ ShallowWrapper {
                         },
                         Object {
                           "active": false,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "baz",
                           "text": "Product Owners",
                           "title": "For",
@@ -484,7 +767,84 @@ ShallowWrapper {
                   >
                     <Flag
                       name="features.githubResourceCards"
-                    />
+                    >
+                      <Cards
+                        cards={
+                          Array [
+                            Object {
+                              "attributes": Object {
+                                "personas": Array [
+                                  "Designer",
+                                ],
+                              },
+                              "childMarkdownRemark": Object {
+                                "frontmatter": Object {
+                                  "pageOnly": false,
+                                },
+                              },
+                              "resource": Object {
+                                "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                "path": "/design-system/Z1bGIqu",
+                                "type": "Components",
+                              },
+                              "source": Object {
+                                "displayName": "Design System",
+                                "name": "design-system",
+                                "sourcePath": "https://github.com/bcgov/design-system/",
+                                "type": "github",
+                              },
+                              "unfurl": Object {
+                                "author": "ksingbeil",
+                                "data1": "",
+                                "data2": "",
+                                "description": "What the Design System is and how it works.",
+                                "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                "label1": "",
+                                "label2": "",
+                                "title": "About",
+                                "type": "markdown",
+                              },
+                            },
+                            Object {
+                              "attributes": Object {
+                                "personas": Array [
+                                  "Developer",
+                                ],
+                              },
+                              "childMarkdownRemark": Object {
+                                "frontmatter": Object {
+                                  "pageOnly": false,
+                                },
+                              },
+                              "resource": Object {
+                                "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                "path": "/design-system/Z1bGIqu",
+                                "type": "Documentation",
+                              },
+                              "source": Object {
+                                "displayName": "Design System",
+                                "name": "design-system",
+                                "sourcePath": "https://github.com/bcgov/design-system/",
+                                "type": "github",
+                              },
+                              "unfurl": Object {
+                                "author": "ksingbeil",
+                                "data1": "",
+                                "data2": "",
+                                "description": "What the Design System is and how it works.",
+                                "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                "label1": "",
+                                "label2": "",
+                                "title": "About",
+                                "type": "markdown",
+                              },
+                            },
+                          ]
+                        }
+                        sourcePath=""
+                        topic="Design System"
+                      />
+                    </Flag>
                   </div>
                 </Element>
               </main>
@@ -504,8 +864,9 @@ ShallowWrapper {
                   "data": Array [
                     Object {
                       "active": false,
-                      "availableResources": null,
+                      "availableResources": 0,
                       "filterBy": "attributes.personas",
+                      "isFilterable": false,
                       "key": "foo",
                       "text": "Designers",
                       "title": "For",
@@ -513,8 +874,9 @@ ShallowWrapper {
                     },
                     Object {
                       "active": true,
-                      "availableResources": null,
+                      "availableResources": 0,
                       "filterBy": "attributes.personas",
+                      "isFilterable": false,
                       "key": "bar",
                       "text": "Developers",
                       "title": "For",
@@ -522,8 +884,9 @@ ShallowWrapper {
                     },
                     Object {
                       "active": false,
-                      "availableResources": null,
+                      "availableResources": 0,
                       "filterBy": "attributes.personas",
+                      "isFilterable": false,
                       "key": "baz",
                       "text": "Product Owners",
                       "title": "For",
@@ -533,8 +896,9 @@ ShallowWrapper {
                   "filters": Array [
                     Object {
                       "active": false,
-                      "availableResources": null,
+                      "availableResources": 0,
                       "filterBy": "attributes.personas",
+                      "isFilterable": false,
                       "key": "foo",
                       "text": "Designers",
                       "title": "For",
@@ -542,8 +906,9 @@ ShallowWrapper {
                     },
                     Object {
                       "active": true,
-                      "availableResources": null,
+                      "availableResources": 0,
                       "filterBy": "attributes.personas",
+                      "isFilterable": false,
                       "key": "bar",
                       "text": "Developers",
                       "title": "For",
@@ -551,8 +916,9 @@ ShallowWrapper {
                     },
                     Object {
                       "active": false,
-                      "availableResources": null,
+                      "availableResources": 0,
                       "filterBy": "attributes.personas",
+                      "isFilterable": false,
                       "key": "baz",
                       "text": "Product Owners",
                       "title": "For",
@@ -581,8 +947,9 @@ ShallowWrapper {
                         "data": Array [
                           Object {
                             "active": false,
-                            "availableResources": null,
+                            "availableResources": 0,
                             "filterBy": "attributes.personas",
+                            "isFilterable": false,
                             "key": "foo",
                             "text": "Designers",
                             "title": "For",
@@ -590,8 +957,9 @@ ShallowWrapper {
                           },
                           Object {
                             "active": true,
-                            "availableResources": null,
+                            "availableResources": 0,
                             "filterBy": "attributes.personas",
+                            "isFilterable": false,
                             "key": "bar",
                             "text": "Developers",
                             "title": "For",
@@ -599,8 +967,9 @@ ShallowWrapper {
                           },
                           Object {
                             "active": false,
-                            "availableResources": null,
+                            "availableResources": 0,
                             "filterBy": "attributes.personas",
+                            "isFilterable": false,
                             "key": "baz",
                             "text": "Product Owners",
                             "title": "For",
@@ -610,8 +979,9 @@ ShallowWrapper {
                         "filters": Array [
                           Object {
                             "active": false,
-                            "availableResources": null,
+                            "availableResources": 0,
                             "filterBy": "attributes.personas",
+                            "isFilterable": false,
                             "key": "foo",
                             "text": "Designers",
                             "title": "For",
@@ -619,8 +989,9 @@ ShallowWrapper {
                           },
                           Object {
                             "active": true,
-                            "availableResources": null,
+                            "availableResources": 0,
                             "filterBy": "attributes.personas",
+                            "isFilterable": false,
                             "key": "bar",
                             "text": "Developers",
                             "title": "For",
@@ -628,8 +999,9 @@ ShallowWrapper {
                           },
                           Object {
                             "active": false,
-                            "availableResources": null,
+                            "availableResources": 0,
                             "filterBy": "attributes.personas",
+                            "isFilterable": false,
                             "key": "baz",
                             "text": "Product Owners",
                             "title": "For",
@@ -653,7 +1025,84 @@ ShallowWrapper {
                     >
                       <Flag
                         name="features.githubResourceCards"
-                      />
+                      >
+                        <Cards
+                          cards={
+                            Array [
+                              Object {
+                                "attributes": Object {
+                                  "personas": Array [
+                                    "Designer",
+                                  ],
+                                },
+                                "childMarkdownRemark": Object {
+                                  "frontmatter": Object {
+                                    "pageOnly": false,
+                                  },
+                                },
+                                "resource": Object {
+                                  "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                  "path": "/design-system/Z1bGIqu",
+                                  "type": "Components",
+                                },
+                                "source": Object {
+                                  "displayName": "Design System",
+                                  "name": "design-system",
+                                  "sourcePath": "https://github.com/bcgov/design-system/",
+                                  "type": "github",
+                                },
+                                "unfurl": Object {
+                                  "author": "ksingbeil",
+                                  "data1": "",
+                                  "data2": "",
+                                  "description": "What the Design System is and how it works.",
+                                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                  "label1": "",
+                                  "label2": "",
+                                  "title": "About",
+                                  "type": "markdown",
+                                },
+                              },
+                              Object {
+                                "attributes": Object {
+                                  "personas": Array [
+                                    "Developer",
+                                  ],
+                                },
+                                "childMarkdownRemark": Object {
+                                  "frontmatter": Object {
+                                    "pageOnly": false,
+                                  },
+                                },
+                                "resource": Object {
+                                  "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                  "path": "/design-system/Z1bGIqu",
+                                  "type": "Documentation",
+                                },
+                                "source": Object {
+                                  "displayName": "Design System",
+                                  "name": "design-system",
+                                  "sourcePath": "https://github.com/bcgov/design-system/",
+                                  "type": "github",
+                                },
+                                "unfurl": Object {
+                                  "author": "ksingbeil",
+                                  "data1": "",
+                                  "data2": "",
+                                  "description": "What the Design System is and how it works.",
+                                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                  "label1": "",
+                                  "label2": "",
+                                  "title": "About",
+                                  "type": "markdown",
+                                },
+                              },
+                            ]
+                          }
+                          sourcePath=""
+                          topic="Design System"
+                        />
+                      </Flag>
                     </div>
                   </Element>
                 </main>,
@@ -680,8 +1129,9 @@ ShallowWrapper {
                       "data": Array [
                         Object {
                           "active": false,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "foo",
                           "text": "Designers",
                           "title": "For",
@@ -689,8 +1139,9 @@ ShallowWrapper {
                         },
                         Object {
                           "active": true,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "bar",
                           "text": "Developers",
                           "title": "For",
@@ -698,8 +1149,9 @@ ShallowWrapper {
                         },
                         Object {
                           "active": false,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "baz",
                           "text": "Product Owners",
                           "title": "For",
@@ -709,8 +1161,9 @@ ShallowWrapper {
                       "filters": Array [
                         Object {
                           "active": false,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "foo",
                           "text": "Designers",
                           "title": "For",
@@ -718,8 +1171,9 @@ ShallowWrapper {
                         },
                         Object {
                           "active": true,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "bar",
                           "text": "Developers",
                           "title": "For",
@@ -727,8 +1181,9 @@ ShallowWrapper {
                         },
                         Object {
                           "active": false,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "baz",
                           "text": "Product Owners",
                           "title": "For",
@@ -756,7 +1211,84 @@ ShallowWrapper {
                     >
                       <Flag
                         name="features.githubResourceCards"
-                      />
+                      >
+                        <Cards
+                          cards={
+                            Array [
+                              Object {
+                                "attributes": Object {
+                                  "personas": Array [
+                                    "Designer",
+                                  ],
+                                },
+                                "childMarkdownRemark": Object {
+                                  "frontmatter": Object {
+                                    "pageOnly": false,
+                                  },
+                                },
+                                "resource": Object {
+                                  "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                  "path": "/design-system/Z1bGIqu",
+                                  "type": "Components",
+                                },
+                                "source": Object {
+                                  "displayName": "Design System",
+                                  "name": "design-system",
+                                  "sourcePath": "https://github.com/bcgov/design-system/",
+                                  "type": "github",
+                                },
+                                "unfurl": Object {
+                                  "author": "ksingbeil",
+                                  "data1": "",
+                                  "data2": "",
+                                  "description": "What the Design System is and how it works.",
+                                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                  "label1": "",
+                                  "label2": "",
+                                  "title": "About",
+                                  "type": "markdown",
+                                },
+                              },
+                              Object {
+                                "attributes": Object {
+                                  "personas": Array [
+                                    "Developer",
+                                  ],
+                                },
+                                "childMarkdownRemark": Object {
+                                  "frontmatter": Object {
+                                    "pageOnly": false,
+                                  },
+                                },
+                                "resource": Object {
+                                  "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                  "path": "/design-system/Z1bGIqu",
+                                  "type": "Documentation",
+                                },
+                                "source": Object {
+                                  "displayName": "Design System",
+                                  "name": "design-system",
+                                  "sourcePath": "https://github.com/bcgov/design-system/",
+                                  "type": "github",
+                                },
+                                "unfurl": Object {
+                                  "author": "ksingbeil",
+                                  "data1": "",
+                                  "data2": "",
+                                  "description": "What the Design System is and how it works.",
+                                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                  "label1": "",
+                                  "label2": "",
+                                  "title": "About",
+                                  "type": "markdown",
+                                },
+                              },
+                            ]
+                          }
+                          sourcePath=""
+                          topic="Design System"
+                        />
+                      </Flag>
                     </div>
                   </Element>,
                   "className": "Main",
@@ -773,7 +1305,84 @@ ShallowWrapper {
                     >
                       <Flag
                         name="features.githubResourceCards"
-                      />
+                      >
+                        <Cards
+                          cards={
+                            Array [
+                              Object {
+                                "attributes": Object {
+                                  "personas": Array [
+                                    "Designer",
+                                  ],
+                                },
+                                "childMarkdownRemark": Object {
+                                  "frontmatter": Object {
+                                    "pageOnly": false,
+                                  },
+                                },
+                                "resource": Object {
+                                  "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                  "path": "/design-system/Z1bGIqu",
+                                  "type": "Components",
+                                },
+                                "source": Object {
+                                  "displayName": "Design System",
+                                  "name": "design-system",
+                                  "sourcePath": "https://github.com/bcgov/design-system/",
+                                  "type": "github",
+                                },
+                                "unfurl": Object {
+                                  "author": "ksingbeil",
+                                  "data1": "",
+                                  "data2": "",
+                                  "description": "What the Design System is and how it works.",
+                                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                  "label1": "",
+                                  "label2": "",
+                                  "title": "About",
+                                  "type": "markdown",
+                                },
+                              },
+                              Object {
+                                "attributes": Object {
+                                  "personas": Array [
+                                    "Developer",
+                                  ],
+                                },
+                                "childMarkdownRemark": Object {
+                                  "frontmatter": Object {
+                                    "pageOnly": false,
+                                  },
+                                },
+                                "resource": Object {
+                                  "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                  "path": "/design-system/Z1bGIqu",
+                                  "type": "Documentation",
+                                },
+                                "source": Object {
+                                  "displayName": "Design System",
+                                  "name": "design-system",
+                                  "sourcePath": "https://github.com/bcgov/design-system/",
+                                  "type": "github",
+                                },
+                                "unfurl": Object {
+                                  "author": "ksingbeil",
+                                  "data1": "",
+                                  "data2": "",
+                                  "description": "What the Design System is and how it works.",
+                                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                  "label1": "",
+                                  "label2": "",
+                                  "title": "About",
+                                  "type": "markdown",
+                                },
+                              },
+                            ]
+                          }
+                          sourcePath=""
+                          topic="Design System"
+                        />
+                      </Flag>
                     </div>,
                     "name": "CARDS_CONTAINER",
                   },
@@ -785,7 +1394,84 @@ ShallowWrapper {
                     "props": Object {
                       "children": <Flag
                         name="features.githubResourceCards"
-                      />,
+                      >
+                        <Cards
+                          cards={
+                            Array [
+                              Object {
+                                "attributes": Object {
+                                  "personas": Array [
+                                    "Designer",
+                                  ],
+                                },
+                                "childMarkdownRemark": Object {
+                                  "frontmatter": Object {
+                                    "pageOnly": false,
+                                  },
+                                },
+                                "resource": Object {
+                                  "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                  "path": "/design-system/Z1bGIqu",
+                                  "type": "Components",
+                                },
+                                "source": Object {
+                                  "displayName": "Design System",
+                                  "name": "design-system",
+                                  "sourcePath": "https://github.com/bcgov/design-system/",
+                                  "type": "github",
+                                },
+                                "unfurl": Object {
+                                  "author": "ksingbeil",
+                                  "data1": "",
+                                  "data2": "",
+                                  "description": "What the Design System is and how it works.",
+                                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                  "label1": "",
+                                  "label2": "",
+                                  "title": "About",
+                                  "type": "markdown",
+                                },
+                              },
+                              Object {
+                                "attributes": Object {
+                                  "personas": Array [
+                                    "Developer",
+                                  ],
+                                },
+                                "childMarkdownRemark": Object {
+                                  "frontmatter": Object {
+                                    "pageOnly": false,
+                                  },
+                                },
+                                "resource": Object {
+                                  "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                  "path": "/design-system/Z1bGIqu",
+                                  "type": "Documentation",
+                                },
+                                "source": Object {
+                                  "displayName": "Design System",
+                                  "name": "design-system",
+                                  "sourcePath": "https://github.com/bcgov/design-system/",
+                                  "type": "github",
+                                },
+                                "unfurl": Object {
+                                  "author": "ksingbeil",
+                                  "data1": "",
+                                  "data2": "",
+                                  "description": "What the Design System is and how it works.",
+                                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                  "label1": "",
+                                  "label2": "",
+                                  "title": "About",
+                                  "type": "markdown",
+                                },
+                              },
+                            ]
+                          }
+                          sourcePath=""
+                          topic="Design System"
+                        />
+                      </Flag>,
                       "className": "CardContainer",
                     },
                     "ref": null,
@@ -794,11 +1480,171 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "class",
                       "props": Object {
-                        "children": Array [],
+                        "children": Array [
+                          <Cards
+                            cards={
+                              Array [
+                                Object {
+                                  "attributes": Object {
+                                    "personas": Array [
+                                      "Designer",
+                                    ],
+                                  },
+                                  "childMarkdownRemark": Object {
+                                    "frontmatter": Object {
+                                      "pageOnly": false,
+                                    },
+                                  },
+                                  "resource": Object {
+                                    "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                    "path": "/design-system/Z1bGIqu",
+                                    "type": "Components",
+                                  },
+                                  "source": Object {
+                                    "displayName": "Design System",
+                                    "name": "design-system",
+                                    "sourcePath": "https://github.com/bcgov/design-system/",
+                                    "type": "github",
+                                  },
+                                  "unfurl": Object {
+                                    "author": "ksingbeil",
+                                    "data1": "",
+                                    "data2": "",
+                                    "description": "What the Design System is and how it works.",
+                                    "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                    "label1": "",
+                                    "label2": "",
+                                    "title": "About",
+                                    "type": "markdown",
+                                  },
+                                },
+                                Object {
+                                  "attributes": Object {
+                                    "personas": Array [
+                                      "Developer",
+                                    ],
+                                  },
+                                  "childMarkdownRemark": Object {
+                                    "frontmatter": Object {
+                                      "pageOnly": false,
+                                    },
+                                  },
+                                  "resource": Object {
+                                    "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                    "path": "/design-system/Z1bGIqu",
+                                    "type": "Documentation",
+                                  },
+                                  "source": Object {
+                                    "displayName": "Design System",
+                                    "name": "design-system",
+                                    "sourcePath": "https://github.com/bcgov/design-system/",
+                                    "type": "github",
+                                  },
+                                  "unfurl": Object {
+                                    "author": "ksingbeil",
+                                    "data1": "",
+                                    "data2": "",
+                                    "description": "What the Design System is and how it works.",
+                                    "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                    "label1": "",
+                                    "label2": "",
+                                    "title": "About",
+                                    "type": "markdown",
+                                  },
+                                },
+                              ]
+                            }
+                            sourcePath=""
+                            topic="Design System"
+                          />,
+                        ],
                         "name": "features.githubResourceCards",
                       },
                       "ref": null,
-                      "rendered": Array [],
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": "0",
+                          "nodeType": "function",
+                          "props": Object {
+                            "cards": Array [
+                              Object {
+                                "attributes": Object {
+                                  "personas": Array [
+                                    "Designer",
+                                  ],
+                                },
+                                "childMarkdownRemark": Object {
+                                  "frontmatter": Object {
+                                    "pageOnly": false,
+                                  },
+                                },
+                                "resource": Object {
+                                  "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                  "path": "/design-system/Z1bGIqu",
+                                  "type": "Components",
+                                },
+                                "source": Object {
+                                  "displayName": "Design System",
+                                  "name": "design-system",
+                                  "sourcePath": "https://github.com/bcgov/design-system/",
+                                  "type": "github",
+                                },
+                                "unfurl": Object {
+                                  "author": "ksingbeil",
+                                  "data1": "",
+                                  "data2": "",
+                                  "description": "What the Design System is and how it works.",
+                                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                  "label1": "",
+                                  "label2": "",
+                                  "title": "About",
+                                  "type": "markdown",
+                                },
+                              },
+                              Object {
+                                "attributes": Object {
+                                  "personas": Array [
+                                    "Developer",
+                                  ],
+                                },
+                                "childMarkdownRemark": Object {
+                                  "frontmatter": Object {
+                                    "pageOnly": false,
+                                  },
+                                },
+                                "resource": Object {
+                                  "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                  "path": "/design-system/Z1bGIqu",
+                                  "type": "Documentation",
+                                },
+                                "source": Object {
+                                  "displayName": "Design System",
+                                  "name": "design-system",
+                                  "sourcePath": "https://github.com/bcgov/design-system/",
+                                  "type": "github",
+                                },
+                                "unfurl": Object {
+                                  "author": "ksingbeil",
+                                  "data1": "",
+                                  "data2": "",
+                                  "description": "What the Design System is and how it works.",
+                                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                  "label1": "",
+                                  "label2": "",
+                                  "title": "About",
+                                  "type": "markdown",
+                                },
+                              },
+                            ],
+                            "sourcePath": "",
+                            "topic": "Design System",
+                          },
+                          "ref": null,
+                          "rendered": null,
+                          "type": [Function],
+                        },
+                      ],
                       "type": [Function],
                     },
                     "type": "div",
@@ -841,8 +1687,9 @@ ShallowWrapper {
                     "data": Array [
                       Object {
                         "active": false,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "foo",
                         "text": "Designers",
                         "title": "For",
@@ -850,8 +1697,9 @@ ShallowWrapper {
                       },
                       Object {
                         "active": true,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "bar",
                         "text": "Developers",
                         "title": "For",
@@ -859,8 +1707,9 @@ ShallowWrapper {
                       },
                       Object {
                         "active": false,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "baz",
                         "text": "Product Owners",
                         "title": "For",
@@ -870,8 +1719,9 @@ ShallowWrapper {
                     "filters": Array [
                       Object {
                         "active": false,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "foo",
                         "text": "Designers",
                         "title": "For",
@@ -879,8 +1729,9 @@ ShallowWrapper {
                       },
                       Object {
                         "active": true,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "bar",
                         "text": "Developers",
                         "title": "For",
@@ -888,8 +1739,9 @@ ShallowWrapper {
                       },
                       Object {
                         "active": false,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "baz",
                         "text": "Product Owners",
                         "title": "For",
@@ -910,8 +1762,9 @@ ShallowWrapper {
                       "data": Array [
                         Object {
                           "active": false,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "foo",
                           "text": "Designers",
                           "title": "For",
@@ -919,8 +1772,9 @@ ShallowWrapper {
                         },
                         Object {
                           "active": true,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "bar",
                           "text": "Developers",
                           "title": "For",
@@ -928,8 +1782,9 @@ ShallowWrapper {
                         },
                         Object {
                           "active": false,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "baz",
                           "text": "Product Owners",
                           "title": "For",
@@ -939,8 +1794,9 @@ ShallowWrapper {
                       "filters": Array [
                         Object {
                           "active": false,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "foo",
                           "text": "Designers",
                           "title": "For",
@@ -948,8 +1804,9 @@ ShallowWrapper {
                         },
                         Object {
                           "active": true,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "bar",
                           "text": "Developers",
                           "title": "For",
@@ -957,8 +1814,9 @@ ShallowWrapper {
                         },
                         Object {
                           "active": false,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "baz",
                           "text": "Product Owners",
                           "title": "For",
@@ -982,7 +1840,84 @@ ShallowWrapper {
                   >
                     <Flag
                       name="features.githubResourceCards"
-                    />
+                    >
+                      <Cards
+                        cards={
+                          Array [
+                            Object {
+                              "attributes": Object {
+                                "personas": Array [
+                                  "Designer",
+                                ],
+                              },
+                              "childMarkdownRemark": Object {
+                                "frontmatter": Object {
+                                  "pageOnly": false,
+                                },
+                              },
+                              "resource": Object {
+                                "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                "path": "/design-system/Z1bGIqu",
+                                "type": "Components",
+                              },
+                              "source": Object {
+                                "displayName": "Design System",
+                                "name": "design-system",
+                                "sourcePath": "https://github.com/bcgov/design-system/",
+                                "type": "github",
+                              },
+                              "unfurl": Object {
+                                "author": "ksingbeil",
+                                "data1": "",
+                                "data2": "",
+                                "description": "What the Design System is and how it works.",
+                                "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                "label1": "",
+                                "label2": "",
+                                "title": "About",
+                                "type": "markdown",
+                              },
+                            },
+                            Object {
+                              "attributes": Object {
+                                "personas": Array [
+                                  "Developer",
+                                ],
+                              },
+                              "childMarkdownRemark": Object {
+                                "frontmatter": Object {
+                                  "pageOnly": false,
+                                },
+                              },
+                              "resource": Object {
+                                "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                "path": "/design-system/Z1bGIqu",
+                                "type": "Documentation",
+                              },
+                              "source": Object {
+                                "displayName": "Design System",
+                                "name": "design-system",
+                                "sourcePath": "https://github.com/bcgov/design-system/",
+                                "type": "github",
+                              },
+                              "unfurl": Object {
+                                "author": "ksingbeil",
+                                "data1": "",
+                                "data2": "",
+                                "description": "What the Design System is and how it works.",
+                                "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                "label1": "",
+                                "label2": "",
+                                "title": "About",
+                                "type": "markdown",
+                              },
+                            },
+                          ]
+                        }
+                        sourcePath=""
+                        topic="Design System"
+                      />
+                    </Flag>
                   </div>
                 </Element>
               </main>
@@ -1038,8 +1973,9 @@ ShallowWrapper {
                       "data": Array [
                         Object {
                           "active": false,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "foo",
                           "text": "Designers",
                           "title": "For",
@@ -1047,8 +1983,9 @@ ShallowWrapper {
                         },
                         Object {
                           "active": true,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "bar",
                           "text": "Developers",
                           "title": "For",
@@ -1056,8 +1993,9 @@ ShallowWrapper {
                         },
                         Object {
                           "active": false,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "baz",
                           "text": "Product Owners",
                           "title": "For",
@@ -1067,8 +2005,9 @@ ShallowWrapper {
                       "filters": Array [
                         Object {
                           "active": false,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "foo",
                           "text": "Designers",
                           "title": "For",
@@ -1076,8 +2015,9 @@ ShallowWrapper {
                         },
                         Object {
                           "active": true,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "bar",
                           "text": "Developers",
                           "title": "For",
@@ -1085,8 +2025,9 @@ ShallowWrapper {
                         },
                         Object {
                           "active": false,
-                          "availableResources": null,
+                          "availableResources": 0,
                           "filterBy": "attributes.personas",
+                          "isFilterable": false,
                           "key": "baz",
                           "text": "Product Owners",
                           "title": "For",
@@ -1107,8 +2048,9 @@ ShallowWrapper {
                         "data": Array [
                           Object {
                             "active": false,
-                            "availableResources": null,
+                            "availableResources": 0,
                             "filterBy": "attributes.personas",
+                            "isFilterable": false,
                             "key": "foo",
                             "text": "Designers",
                             "title": "For",
@@ -1116,8 +2058,9 @@ ShallowWrapper {
                           },
                           Object {
                             "active": true,
-                            "availableResources": null,
+                            "availableResources": 0,
                             "filterBy": "attributes.personas",
+                            "isFilterable": false,
                             "key": "bar",
                             "text": "Developers",
                             "title": "For",
@@ -1125,8 +2068,9 @@ ShallowWrapper {
                           },
                           Object {
                             "active": false,
-                            "availableResources": null,
+                            "availableResources": 0,
                             "filterBy": "attributes.personas",
+                            "isFilterable": false,
                             "key": "baz",
                             "text": "Product Owners",
                             "title": "For",
@@ -1136,8 +2080,9 @@ ShallowWrapper {
                         "filters": Array [
                           Object {
                             "active": false,
-                            "availableResources": null,
+                            "availableResources": 0,
                             "filterBy": "attributes.personas",
+                            "isFilterable": false,
                             "key": "foo",
                             "text": "Designers",
                             "title": "For",
@@ -1145,8 +2090,9 @@ ShallowWrapper {
                           },
                           Object {
                             "active": true,
-                            "availableResources": null,
+                            "availableResources": 0,
                             "filterBy": "attributes.personas",
+                            "isFilterable": false,
                             "key": "bar",
                             "text": "Developers",
                             "title": "For",
@@ -1154,8 +2100,9 @@ ShallowWrapper {
                           },
                           Object {
                             "active": false,
-                            "availableResources": null,
+                            "availableResources": 0,
                             "filterBy": "attributes.personas",
+                            "isFilterable": false,
                             "key": "baz",
                             "text": "Product Owners",
                             "title": "For",
@@ -1179,7 +2126,84 @@ ShallowWrapper {
                     >
                       <Flag
                         name="features.githubResourceCards"
-                      />
+                      >
+                        <Cards
+                          cards={
+                            Array [
+                              Object {
+                                "attributes": Object {
+                                  "personas": Array [
+                                    "Designer",
+                                  ],
+                                },
+                                "childMarkdownRemark": Object {
+                                  "frontmatter": Object {
+                                    "pageOnly": false,
+                                  },
+                                },
+                                "resource": Object {
+                                  "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                  "path": "/design-system/Z1bGIqu",
+                                  "type": "Components",
+                                },
+                                "source": Object {
+                                  "displayName": "Design System",
+                                  "name": "design-system",
+                                  "sourcePath": "https://github.com/bcgov/design-system/",
+                                  "type": "github",
+                                },
+                                "unfurl": Object {
+                                  "author": "ksingbeil",
+                                  "data1": "",
+                                  "data2": "",
+                                  "description": "What the Design System is and how it works.",
+                                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                  "label1": "",
+                                  "label2": "",
+                                  "title": "About",
+                                  "type": "markdown",
+                                },
+                              },
+                              Object {
+                                "attributes": Object {
+                                  "personas": Array [
+                                    "Developer",
+                                  ],
+                                },
+                                "childMarkdownRemark": Object {
+                                  "frontmatter": Object {
+                                    "pageOnly": false,
+                                  },
+                                },
+                                "resource": Object {
+                                  "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                  "path": "/design-system/Z1bGIqu",
+                                  "type": "Documentation",
+                                },
+                                "source": Object {
+                                  "displayName": "Design System",
+                                  "name": "design-system",
+                                  "sourcePath": "https://github.com/bcgov/design-system/",
+                                  "type": "github",
+                                },
+                                "unfurl": Object {
+                                  "author": "ksingbeil",
+                                  "data1": "",
+                                  "data2": "",
+                                  "description": "What the Design System is and how it works.",
+                                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                  "label1": "",
+                                  "label2": "",
+                                  "title": "About",
+                                  "type": "markdown",
+                                },
+                              },
+                            ]
+                          }
+                          sourcePath=""
+                          topic="Design System"
+                        />
+                      </Flag>
                     </div>
                   </Element>
                 </main>
@@ -1199,8 +2223,9 @@ ShallowWrapper {
                     "data": Array [
                       Object {
                         "active": false,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "foo",
                         "text": "Designers",
                         "title": "For",
@@ -1208,8 +2233,9 @@ ShallowWrapper {
                       },
                       Object {
                         "active": true,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "bar",
                         "text": "Developers",
                         "title": "For",
@@ -1217,8 +2243,9 @@ ShallowWrapper {
                       },
                       Object {
                         "active": false,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "baz",
                         "text": "Product Owners",
                         "title": "For",
@@ -1228,8 +2255,9 @@ ShallowWrapper {
                     "filters": Array [
                       Object {
                         "active": false,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "foo",
                         "text": "Designers",
                         "title": "For",
@@ -1237,8 +2265,9 @@ ShallowWrapper {
                       },
                       Object {
                         "active": true,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "bar",
                         "text": "Developers",
                         "title": "For",
@@ -1246,8 +2275,9 @@ ShallowWrapper {
                       },
                       Object {
                         "active": false,
-                        "availableResources": null,
+                        "availableResources": 0,
                         "filterBy": "attributes.personas",
+                        "isFilterable": false,
                         "key": "baz",
                         "text": "Product Owners",
                         "title": "For",
@@ -1276,8 +2306,9 @@ ShallowWrapper {
                           "data": Array [
                             Object {
                               "active": false,
-                              "availableResources": null,
+                              "availableResources": 0,
                               "filterBy": "attributes.personas",
+                              "isFilterable": false,
                               "key": "foo",
                               "text": "Designers",
                               "title": "For",
@@ -1285,8 +2316,9 @@ ShallowWrapper {
                             },
                             Object {
                               "active": true,
-                              "availableResources": null,
+                              "availableResources": 0,
                               "filterBy": "attributes.personas",
+                              "isFilterable": false,
                               "key": "bar",
                               "text": "Developers",
                               "title": "For",
@@ -1294,8 +2326,9 @@ ShallowWrapper {
                             },
                             Object {
                               "active": false,
-                              "availableResources": null,
+                              "availableResources": 0,
                               "filterBy": "attributes.personas",
+                              "isFilterable": false,
                               "key": "baz",
                               "text": "Product Owners",
                               "title": "For",
@@ -1305,8 +2338,9 @@ ShallowWrapper {
                           "filters": Array [
                             Object {
                               "active": false,
-                              "availableResources": null,
+                              "availableResources": 0,
                               "filterBy": "attributes.personas",
+                              "isFilterable": false,
                               "key": "foo",
                               "text": "Designers",
                               "title": "For",
@@ -1314,8 +2348,9 @@ ShallowWrapper {
                             },
                             Object {
                               "active": true,
-                              "availableResources": null,
+                              "availableResources": 0,
                               "filterBy": "attributes.personas",
+                              "isFilterable": false,
                               "key": "bar",
                               "text": "Developers",
                               "title": "For",
@@ -1323,8 +2358,9 @@ ShallowWrapper {
                             },
                             Object {
                               "active": false,
-                              "availableResources": null,
+                              "availableResources": 0,
                               "filterBy": "attributes.personas",
+                              "isFilterable": false,
                               "key": "baz",
                               "text": "Product Owners",
                               "title": "For",
@@ -1348,7 +2384,84 @@ ShallowWrapper {
                       >
                         <Flag
                           name="features.githubResourceCards"
-                        />
+                        >
+                          <Cards
+                            cards={
+                              Array [
+                                Object {
+                                  "attributes": Object {
+                                    "personas": Array [
+                                      "Designer",
+                                    ],
+                                  },
+                                  "childMarkdownRemark": Object {
+                                    "frontmatter": Object {
+                                      "pageOnly": false,
+                                    },
+                                  },
+                                  "resource": Object {
+                                    "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                    "path": "/design-system/Z1bGIqu",
+                                    "type": "Components",
+                                  },
+                                  "source": Object {
+                                    "displayName": "Design System",
+                                    "name": "design-system",
+                                    "sourcePath": "https://github.com/bcgov/design-system/",
+                                    "type": "github",
+                                  },
+                                  "unfurl": Object {
+                                    "author": "ksingbeil",
+                                    "data1": "",
+                                    "data2": "",
+                                    "description": "What the Design System is and how it works.",
+                                    "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                    "label1": "",
+                                    "label2": "",
+                                    "title": "About",
+                                    "type": "markdown",
+                                  },
+                                },
+                                Object {
+                                  "attributes": Object {
+                                    "personas": Array [
+                                      "Developer",
+                                    ],
+                                  },
+                                  "childMarkdownRemark": Object {
+                                    "frontmatter": Object {
+                                      "pageOnly": false,
+                                    },
+                                  },
+                                  "resource": Object {
+                                    "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                    "path": "/design-system/Z1bGIqu",
+                                    "type": "Documentation",
+                                  },
+                                  "source": Object {
+                                    "displayName": "Design System",
+                                    "name": "design-system",
+                                    "sourcePath": "https://github.com/bcgov/design-system/",
+                                    "type": "github",
+                                  },
+                                  "unfurl": Object {
+                                    "author": "ksingbeil",
+                                    "data1": "",
+                                    "data2": "",
+                                    "description": "What the Design System is and how it works.",
+                                    "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                    "label1": "",
+                                    "label2": "",
+                                    "title": "About",
+                                    "type": "markdown",
+                                  },
+                                },
+                              ]
+                            }
+                            sourcePath=""
+                            topic="Design System"
+                          />
+                        </Flag>
                       </div>
                     </Element>
                   </main>,
@@ -1375,8 +2488,9 @@ ShallowWrapper {
                         "data": Array [
                           Object {
                             "active": false,
-                            "availableResources": null,
+                            "availableResources": 0,
                             "filterBy": "attributes.personas",
+                            "isFilterable": false,
                             "key": "foo",
                             "text": "Designers",
                             "title": "For",
@@ -1384,8 +2498,9 @@ ShallowWrapper {
                           },
                           Object {
                             "active": true,
-                            "availableResources": null,
+                            "availableResources": 0,
                             "filterBy": "attributes.personas",
+                            "isFilterable": false,
                             "key": "bar",
                             "text": "Developers",
                             "title": "For",
@@ -1393,8 +2508,9 @@ ShallowWrapper {
                           },
                           Object {
                             "active": false,
-                            "availableResources": null,
+                            "availableResources": 0,
                             "filterBy": "attributes.personas",
+                            "isFilterable": false,
                             "key": "baz",
                             "text": "Product Owners",
                             "title": "For",
@@ -1404,8 +2520,9 @@ ShallowWrapper {
                         "filters": Array [
                           Object {
                             "active": false,
-                            "availableResources": null,
+                            "availableResources": 0,
                             "filterBy": "attributes.personas",
+                            "isFilterable": false,
                             "key": "foo",
                             "text": "Designers",
                             "title": "For",
@@ -1413,8 +2530,9 @@ ShallowWrapper {
                           },
                           Object {
                             "active": true,
-                            "availableResources": null,
+                            "availableResources": 0,
                             "filterBy": "attributes.personas",
+                            "isFilterable": false,
                             "key": "bar",
                             "text": "Developers",
                             "title": "For",
@@ -1422,8 +2540,9 @@ ShallowWrapper {
                           },
                           Object {
                             "active": false,
-                            "availableResources": null,
+                            "availableResources": 0,
                             "filterBy": "attributes.personas",
+                            "isFilterable": false,
                             "key": "baz",
                             "text": "Product Owners",
                             "title": "For",
@@ -1451,7 +2570,84 @@ ShallowWrapper {
                       >
                         <Flag
                           name="features.githubResourceCards"
-                        />
+                        >
+                          <Cards
+                            cards={
+                              Array [
+                                Object {
+                                  "attributes": Object {
+                                    "personas": Array [
+                                      "Designer",
+                                    ],
+                                  },
+                                  "childMarkdownRemark": Object {
+                                    "frontmatter": Object {
+                                      "pageOnly": false,
+                                    },
+                                  },
+                                  "resource": Object {
+                                    "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                    "path": "/design-system/Z1bGIqu",
+                                    "type": "Components",
+                                  },
+                                  "source": Object {
+                                    "displayName": "Design System",
+                                    "name": "design-system",
+                                    "sourcePath": "https://github.com/bcgov/design-system/",
+                                    "type": "github",
+                                  },
+                                  "unfurl": Object {
+                                    "author": "ksingbeil",
+                                    "data1": "",
+                                    "data2": "",
+                                    "description": "What the Design System is and how it works.",
+                                    "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                    "label1": "",
+                                    "label2": "",
+                                    "title": "About",
+                                    "type": "markdown",
+                                  },
+                                },
+                                Object {
+                                  "attributes": Object {
+                                    "personas": Array [
+                                      "Developer",
+                                    ],
+                                  },
+                                  "childMarkdownRemark": Object {
+                                    "frontmatter": Object {
+                                      "pageOnly": false,
+                                    },
+                                  },
+                                  "resource": Object {
+                                    "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                    "path": "/design-system/Z1bGIqu",
+                                    "type": "Documentation",
+                                  },
+                                  "source": Object {
+                                    "displayName": "Design System",
+                                    "name": "design-system",
+                                    "sourcePath": "https://github.com/bcgov/design-system/",
+                                    "type": "github",
+                                  },
+                                  "unfurl": Object {
+                                    "author": "ksingbeil",
+                                    "data1": "",
+                                    "data2": "",
+                                    "description": "What the Design System is and how it works.",
+                                    "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                    "label1": "",
+                                    "label2": "",
+                                    "title": "About",
+                                    "type": "markdown",
+                                  },
+                                },
+                              ]
+                            }
+                            sourcePath=""
+                            topic="Design System"
+                          />
+                        </Flag>
                       </div>
                     </Element>,
                     "className": "Main",
@@ -1468,7 +2664,84 @@ ShallowWrapper {
                       >
                         <Flag
                           name="features.githubResourceCards"
-                        />
+                        >
+                          <Cards
+                            cards={
+                              Array [
+                                Object {
+                                  "attributes": Object {
+                                    "personas": Array [
+                                      "Designer",
+                                    ],
+                                  },
+                                  "childMarkdownRemark": Object {
+                                    "frontmatter": Object {
+                                      "pageOnly": false,
+                                    },
+                                  },
+                                  "resource": Object {
+                                    "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                    "path": "/design-system/Z1bGIqu",
+                                    "type": "Components",
+                                  },
+                                  "source": Object {
+                                    "displayName": "Design System",
+                                    "name": "design-system",
+                                    "sourcePath": "https://github.com/bcgov/design-system/",
+                                    "type": "github",
+                                  },
+                                  "unfurl": Object {
+                                    "author": "ksingbeil",
+                                    "data1": "",
+                                    "data2": "",
+                                    "description": "What the Design System is and how it works.",
+                                    "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                    "label1": "",
+                                    "label2": "",
+                                    "title": "About",
+                                    "type": "markdown",
+                                  },
+                                },
+                                Object {
+                                  "attributes": Object {
+                                    "personas": Array [
+                                      "Developer",
+                                    ],
+                                  },
+                                  "childMarkdownRemark": Object {
+                                    "frontmatter": Object {
+                                      "pageOnly": false,
+                                    },
+                                  },
+                                  "resource": Object {
+                                    "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                    "path": "/design-system/Z1bGIqu",
+                                    "type": "Documentation",
+                                  },
+                                  "source": Object {
+                                    "displayName": "Design System",
+                                    "name": "design-system",
+                                    "sourcePath": "https://github.com/bcgov/design-system/",
+                                    "type": "github",
+                                  },
+                                  "unfurl": Object {
+                                    "author": "ksingbeil",
+                                    "data1": "",
+                                    "data2": "",
+                                    "description": "What the Design System is and how it works.",
+                                    "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                    "label1": "",
+                                    "label2": "",
+                                    "title": "About",
+                                    "type": "markdown",
+                                  },
+                                },
+                              ]
+                            }
+                            sourcePath=""
+                            topic="Design System"
+                          />
+                        </Flag>
                       </div>,
                       "name": "CARDS_CONTAINER",
                     },
@@ -1480,7 +2753,84 @@ ShallowWrapper {
                       "props": Object {
                         "children": <Flag
                           name="features.githubResourceCards"
-                        />,
+                        >
+                          <Cards
+                            cards={
+                              Array [
+                                Object {
+                                  "attributes": Object {
+                                    "personas": Array [
+                                      "Designer",
+                                    ],
+                                  },
+                                  "childMarkdownRemark": Object {
+                                    "frontmatter": Object {
+                                      "pageOnly": false,
+                                    },
+                                  },
+                                  "resource": Object {
+                                    "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                    "path": "/design-system/Z1bGIqu",
+                                    "type": "Components",
+                                  },
+                                  "source": Object {
+                                    "displayName": "Design System",
+                                    "name": "design-system",
+                                    "sourcePath": "https://github.com/bcgov/design-system/",
+                                    "type": "github",
+                                  },
+                                  "unfurl": Object {
+                                    "author": "ksingbeil",
+                                    "data1": "",
+                                    "data2": "",
+                                    "description": "What the Design System is and how it works.",
+                                    "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                    "label1": "",
+                                    "label2": "",
+                                    "title": "About",
+                                    "type": "markdown",
+                                  },
+                                },
+                                Object {
+                                  "attributes": Object {
+                                    "personas": Array [
+                                      "Developer",
+                                    ],
+                                  },
+                                  "childMarkdownRemark": Object {
+                                    "frontmatter": Object {
+                                      "pageOnly": false,
+                                    },
+                                  },
+                                  "resource": Object {
+                                    "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                    "path": "/design-system/Z1bGIqu",
+                                    "type": "Documentation",
+                                  },
+                                  "source": Object {
+                                    "displayName": "Design System",
+                                    "name": "design-system",
+                                    "sourcePath": "https://github.com/bcgov/design-system/",
+                                    "type": "github",
+                                  },
+                                  "unfurl": Object {
+                                    "author": "ksingbeil",
+                                    "data1": "",
+                                    "data2": "",
+                                    "description": "What the Design System is and how it works.",
+                                    "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                    "label1": "",
+                                    "label2": "",
+                                    "title": "About",
+                                    "type": "markdown",
+                                  },
+                                },
+                              ]
+                            }
+                            sourcePath=""
+                            topic="Design System"
+                          />
+                        </Flag>,
                         "className": "CardContainer",
                       },
                       "ref": null,
@@ -1489,11 +2839,171 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "class",
                         "props": Object {
-                          "children": Array [],
+                          "children": Array [
+                            <Cards
+                              cards={
+                                Array [
+                                  Object {
+                                    "attributes": Object {
+                                      "personas": Array [
+                                        "Designer",
+                                      ],
+                                    },
+                                    "childMarkdownRemark": Object {
+                                      "frontmatter": Object {
+                                        "pageOnly": false,
+                                      },
+                                    },
+                                    "resource": Object {
+                                      "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                      "path": "/design-system/Z1bGIqu",
+                                      "type": "Components",
+                                    },
+                                    "source": Object {
+                                      "displayName": "Design System",
+                                      "name": "design-system",
+                                      "sourcePath": "https://github.com/bcgov/design-system/",
+                                      "type": "github",
+                                    },
+                                    "unfurl": Object {
+                                      "author": "ksingbeil",
+                                      "data1": "",
+                                      "data2": "",
+                                      "description": "What the Design System is and how it works.",
+                                      "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                      "label1": "",
+                                      "label2": "",
+                                      "title": "About",
+                                      "type": "markdown",
+                                    },
+                                  },
+                                  Object {
+                                    "attributes": Object {
+                                      "personas": Array [
+                                        "Developer",
+                                      ],
+                                    },
+                                    "childMarkdownRemark": Object {
+                                      "frontmatter": Object {
+                                        "pageOnly": false,
+                                      },
+                                    },
+                                    "resource": Object {
+                                      "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                      "path": "/design-system/Z1bGIqu",
+                                      "type": "Documentation",
+                                    },
+                                    "source": Object {
+                                      "displayName": "Design System",
+                                      "name": "design-system",
+                                      "sourcePath": "https://github.com/bcgov/design-system/",
+                                      "type": "github",
+                                    },
+                                    "unfurl": Object {
+                                      "author": "ksingbeil",
+                                      "data1": "",
+                                      "data2": "",
+                                      "description": "What the Design System is and how it works.",
+                                      "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                      "label1": "",
+                                      "label2": "",
+                                      "title": "About",
+                                      "type": "markdown",
+                                    },
+                                  },
+                                ]
+                              }
+                              sourcePath=""
+                              topic="Design System"
+                            />,
+                          ],
                           "name": "features.githubResourceCards",
                         },
                         "ref": null,
-                        "rendered": Array [],
+                        "rendered": Array [
+                          Object {
+                            "instance": null,
+                            "key": "0",
+                            "nodeType": "function",
+                            "props": Object {
+                              "cards": Array [
+                                Object {
+                                  "attributes": Object {
+                                    "personas": Array [
+                                      "Designer",
+                                    ],
+                                  },
+                                  "childMarkdownRemark": Object {
+                                    "frontmatter": Object {
+                                      "pageOnly": false,
+                                    },
+                                  },
+                                  "resource": Object {
+                                    "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                    "path": "/design-system/Z1bGIqu",
+                                    "type": "Components",
+                                  },
+                                  "source": Object {
+                                    "displayName": "Design System",
+                                    "name": "design-system",
+                                    "sourcePath": "https://github.com/bcgov/design-system/",
+                                    "type": "github",
+                                  },
+                                  "unfurl": Object {
+                                    "author": "ksingbeil",
+                                    "data1": "",
+                                    "data2": "",
+                                    "description": "What the Design System is and how it works.",
+                                    "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                    "label1": "",
+                                    "label2": "",
+                                    "title": "About",
+                                    "type": "markdown",
+                                  },
+                                },
+                                Object {
+                                  "attributes": Object {
+                                    "personas": Array [
+                                      "Developer",
+                                    ],
+                                  },
+                                  "childMarkdownRemark": Object {
+                                    "frontmatter": Object {
+                                      "pageOnly": false,
+                                    },
+                                  },
+                                  "resource": Object {
+                                    "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
+                                    "path": "/design-system/Z1bGIqu",
+                                    "type": "Documentation",
+                                  },
+                                  "source": Object {
+                                    "displayName": "Design System",
+                                    "name": "design-system",
+                                    "sourcePath": "https://github.com/bcgov/design-system/",
+                                    "type": "github",
+                                  },
+                                  "unfurl": Object {
+                                    "author": "ksingbeil",
+                                    "data1": "",
+                                    "data2": "",
+                                    "description": "What the Design System is and how it works.",
+                                    "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                    "label1": "",
+                                    "label2": "",
+                                    "title": "About",
+                                    "type": "markdown",
+                                  },
+                                },
+                              ],
+                              "sourcePath": "",
+                              "topic": "Design System",
+                            },
+                            "ref": null,
+                            "rendered": null,
+                            "type": [Function],
+                          },
+                        ],
                         "type": [Function],
                       },
                       "type": "div",

@@ -1,48 +1,16 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Index } from '../../src/pages/index';
-import { DEFAULT_FILTER_GROUPS } from '../../__fixtures__/redux-fixtures';
+import { DEFAULT_FILTER_GROUPS, COLLECTIONS } from '../../__fixtures__/redux-fixtures';
 describe('Index Container', () => {
   test('it matches snapshot', () => {
+    const nodes = COLLECTIONS.map(c => ({ node: c }));
     const data = {
-      pathfinder: {
-        data: {
-          organization: {
-            repository: {
-              resources: {
-                // eslint-disable-next-line
-                yaml:
-                  "entries:\n- {details: \"test1\" , originalSource: ../index.html, category: 'What''s Going On Now', link: 'https://github.com/BCDevOps/BCDevOps-Guide', description: 'DevOps PaaS'}\n- {details: \"test2\", originalSource: ../index.html, category: Community, link: 'https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all', description: 'DevOps Commons'}\n- {details: \"test3\", originalSource: ../index.html, category: Community, link: 'https://www.meetup.com/DevOps-Commons', description: 'DevOps Commons Meetups'}\n",
-              },
-            },
-          },
-        },
-      },
-      allDevhubSiphon: {
-        edges: [
-          {
-            node: {
-              id: '1bc91db3-c484-58b5-9700-55c22406950a',
-              title: 'test',
-              source: {
-                displayName: 'Design System',
-              },
-              resource: {
-                path: '/design-system/test',
-              },
-              childMarkdownRemark: {
-                frontmatter: {
-                  title: '',
-                  description:
-                    'This is a test description that will be used as the intro blurb to a card',
-                },
-              },
-            },
-          },
-        ],
+      allDevhubSiphonCollection: {
+        edges: nodes,
       },
     };
-    const loadSiphonNodes = jest.fn();
+    const loadSiphonCollections = jest.fn();
     const location = {
       pathname: '/',
     };
@@ -50,7 +18,8 @@ describe('Index Container', () => {
     const wrapper = shallow(
       <Index
         data={data}
-        loadSiphonNodes={loadSiphonNodes}
+        collections={COLLECTIONS}
+        loadCollections={loadSiphonCollections}
         location={location}
         filters={DEFAULT_FILTER_GROUPS}
       />,
