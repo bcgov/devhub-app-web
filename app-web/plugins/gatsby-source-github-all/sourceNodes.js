@@ -25,6 +25,7 @@ const {
   isSourceCollection,
   validateRegistryItemAgainstSchema,
   newCollection,
+  getCollectionDescriptionBySourceType,
 } = require('./utils/helpers');
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
 const { COLLECTION_TYPES, REGISTRY_ITEM_SCHEMA } = require('./utils/constants');
@@ -164,9 +165,10 @@ const normalizeAttributes = attributes => {
  * the child properties take priority
  * @param {Array} sources
  */
-const getFetchQueue = sources => {
-  let collectionsToFetch = [];
-  sources.forEach(rootSource => {
+const getFetchQueue = async (sources, tokens) => {
+  const collectionPromises = sources.map(async source => {
+    const rootSource = { ...source };
+
     let collection = newCollection({
       name: rootSource.name,
       sources: [],
@@ -195,17 +197,18 @@ const getFetchQueue = sources => {
           },
         },
       ];
-
       // this is a basic source either github or web
       // we still treat it as its own collection but with a different type
       collection = newCollection(collection, {
         type: COLLECTION_TYPES[rootSource.sourceType],
+        description: await getCollectionDescriptionBySourceType(rootSource, tokens),
         sources,
       });
     }
-    collectionsToFetch = collectionsToFetch.concat([collection]);
+    return collection;
   });
-  return collectionsToFetch;
+
+  return Promise.all(collectionPromises);
 };
 
 /**
@@ -285,7 +288,7 @@ const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens, source
     // check registry prior to fetching data
     checkRegistry(registry);
     // map of over registry and create a queue of collections to fetch
-    const fetchQueue = getFetchQueue(registry.sources);
+    const fetchQueue = await getFetchQueue(registry.sources, tokens);
 
     const collections = await Promise.all(
       fetchQueue.map(async collection =>

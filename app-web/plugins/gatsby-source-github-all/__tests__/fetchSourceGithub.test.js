@@ -29,12 +29,9 @@ import {
   isConfigForFetchingFiles,
   createFetchFileRoute,
 } from '../utils/sources/github/helpers';
-import {
-  fetchGithubTree,
-  fetchFile,
-  fetchIgnoreFile,
-  validateSourceGithub,
-} from '../utils/sources/github';
+import { fetchIgnoreFile, validateSourceGithub } from '../utils/sources/github';
+import { fetchGithubTree, fetchFile, fetchRepo } from '../utils/sources/github/api';
+
 import fetch from 'node-fetch';
 import { GITHUB_API_ENDPOINT } from '../utils/constants';
 import { GITHUB_API, GITHUB_SOURCE } from '../__fixtures__/fixtures';
@@ -152,6 +149,20 @@ describe('Github API', () => {
         method: 'GET',
       }),
     );
+  });
+
+  test('fetchRepo returns data', async () => {
+    fetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify({ description: 'foo' }))));
+    expect.assertions(1);
+    const res = await fetchRepo();
+    expect(res).toEqual({ description: 'foo' });
+  });
+
+  test('fetchRepo returns data if failed', async () => {
+    // simulating failure
+    const r = new Response(JSON.stringify(GITHUB_API.FAIL), { status: 500 });
+    fetch.mockReturnValue(Promise.reject(r));
+    expect(await fetchRepo()).toEqual({});
   });
 
   test('fetchGithubTree returns data', async () => {

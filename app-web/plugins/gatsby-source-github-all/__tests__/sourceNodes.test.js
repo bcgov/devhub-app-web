@@ -281,29 +281,29 @@ describe('gatsby source github all plugin', () => {
   });
 
   // get fetch queue should return a list of collections that contain a list of sources to fetch
-  test('creates a fetch queue with for a source collection', () => {
+  test('creates a fetch queue with for a source collection', async () => {
     isSourceCollection.mockReturnValue(false);
-    const result = getFetchQueue(REGISTRY.sources);
+    const result = await getFetchQueue(REGISTRY.sources);
     expect(result.length).toBe(REGISTRY.sources.length);
     expect(result[0].sources.length).toBe(1);
   });
 
-  test('creates a fetch queue with for a curated collection', () => {
+  test('creates a fetch queue with for a curated collection', async () => {
     isSourceCollection.mockReturnValue(true);
-    const result2 = getFetchQueue(REGISTRY_WITH_COLLECTION.sources);
+    const result2 = await getFetchQueue(REGISTRY_WITH_COLLECTION.sources);
     expect(result2.length).toBe(REGISTRY_WITH_COLLECTION.sources.length);
     expect(result2[0].sources.length).toBe(
       REGISTRY_WITH_COLLECTION.sources[0].sourceProperties.sources.length,
     );
   });
 
-  test('getFetchQueue passes the correct collection type', () => {
+  test('getFetchQueue passes the correct collection type', async () => {
     isSourceCollection.mockReturnValue(false);
-    const result = getFetchQueue(REGISTRY.sources);
+    const result = await getFetchQueue(REGISTRY.sources);
     expect(result[0].type).toBe(COLLECTION_TYPES.github);
 
     isSourceCollection.mockReturnValue(true);
-    const result2 = getFetchQueue(REGISTRY_WITH_COLLECTION.sources);
+    const result2 = await getFetchQueue(REGISTRY_WITH_COLLECTION.sources);
     expect(result2[0].type).toBe(COLLECTION_TYPES.CURATED);
   });
 

@@ -5,8 +5,12 @@ import {
   unfurlWebURI,
   validateAgainstSchema,
   newCollection,
+  getCollectionDescriptionBySourceType,
 } from '../utils/helpers';
 import { RESOURCE_TYPES } from '../utils/constants';
+
+import { fetchRepo } from '../utils/sources/github/api';
+jest.mock('../utils/sources/github//api');
 
 describe('createPathWithDigest', () => {
   it('throws if base is not a string', () => {
@@ -64,6 +68,34 @@ describe('unfurlWebURI', () => {
         error: 'The uri is not valid',
       });
     }
+  });
+
+  describe('getCollectionDescriptionBySourceType', () => {
+    it('returns a string', async () => {
+      const source = {
+        sourceType: 'foo',
+      };
+      const result = await getCollectionDescriptionBySourceType(source);
+      expect(typeof result).toBe('string');
+    });
+
+    it('returns fetches github repo description', async () => {
+      fetchRepo.mockReturnValue(Promise.resolve({ description: 'matt damon' }));
+      const source = {
+        sourceType: 'github',
+        sourceProperties: {
+          repo: 'foo',
+          owner: 'bar',
+        },
+      };
+
+      const tokens = {
+        GITHUB_API_TOKEN: 'foo',
+      };
+
+      const result = await getCollectionDescriptionBySourceType(source, tokens);
+      expect(result).toBe('matt damon');
+    });
   });
 
   describe('validateAgainstSchema', () => {
