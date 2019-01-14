@@ -8,7 +8,7 @@ import RepositoryCard from './Card/RepositoryCard';
 import SelfServiceCard from './Card/SelfServiceCard';
 import ComponentCard from './Card/ComponentCard';
 import Toggle from './Toggle';
-import { LARGE_SCREEN_LIMIT, SMALL_SCREEN_LIMIT, RESOURCE_TYPES } from '../../constants/ui';
+import { CARD_TOGGLE_LIMIT, RESOURCE_TYPES } from '../../constants/ui';
 
 /**
  * @param {Number} limit the maximum limit of cards to show in toggle component
@@ -16,7 +16,7 @@ import { LARGE_SCREEN_LIMIT, SMALL_SCREEN_LIMIT, RESOURCE_TYPES } from '../../co
  * @param {Number} cardsPerRow
  * @returns {Number} the idea limit
  */
-const getIdealCardsLargeLimit = (limit, numCards, cardsPerRow) => {
+export const getIdealCardsLargeLimit = (limit, numCards, cardsPerRow) => {
   let newLimit = limit;
   while (numCards < newLimit && newLimit - cardsPerRow > 0) {
     newLimit -= cardsPerRow;
@@ -102,10 +102,12 @@ const Cards = ({ topic, description, sourcePath, cards }) => {
     // to ensure cards are 3 per row. When this container is transferred to bootsraps grid system, this
     // will be so.
     const idealLimit = getIdealCardsLargeLimit(
-      LARGE_SCREEN_LIMIT,
+      CARD_TOGGLE_LIMIT.LARGE,
       cardComponents.length,
       CARDS_PER_ROW,
     );
+
+    console.log('achieving ideal limit', idealLimit);
 
     return (
       <section className={styles.CardsContainer}>
@@ -117,7 +119,7 @@ const Cards = ({ topic, description, sourcePath, cards }) => {
           <Toggle cardComponents={cardComponents} cardLimits={idealLimit} />
         </div>
         <div className={styles.MobileView}>
-          <Toggle cardComponents={cardComponents} cardLimits={SMALL_SCREEN_LIMIT} />
+          <Toggle cardComponents={cardComponents} cardLimits={CARD_TOGGLE_LIMIT.SMALL} />
         </div>
       </section>
     );
