@@ -24,6 +24,7 @@ const {
   hashString,
   isSourceCollection,
   validateRegistryItemAgainstSchema,
+  newCollection,
 } = require('./utils/helpers');
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
 const { COLLECTION_TYPES, REGISTRY_ITEM_SCHEMA } = require('./utils/constants');
@@ -166,25 +167,25 @@ const normalizeAttributes = attributes => {
 const getFetchQueue = sources => {
   let collectionsToFetch = [];
   sources.forEach(rootSource => {
-    const collection = {
+    let collection = newCollection({
       name: rootSource.name,
       sources: [],
-    };
+    });
 
     if (isSourceCollection(rootSource)) {
-      collection.type = COLLECTION_TYPES.CURATED;
-      collection.description = rootSource.description;
       // if its a collection, the child sources need some properties from the root source to be
       // mapped to it
       const mappedChildSources = rootSource.sourceProperties.sources.map(childSource =>
         mapInheritedSourceAttributes(rootSource, childSource),
       );
-      collection.sources = mappedChildSources;
+
+      collection = newCollection(collection, {
+        type: COLLECTION_TYPES.CURATED,
+        description: rootSource.description,
+        sources: mappedChildSources,
+      });
     } else {
-      // this is a basic source either github or web
-      // we still treat it as its own collection but with a different type
-      collection.type = COLLECTION_TYPES[rootSource.sourceType];
-      collection.sources = [
+      const sources = [
         {
           ...rootSource,
           attributes: normalizeAttributes(rootSource.attributes),
@@ -194,6 +195,13 @@ const getFetchQueue = sources => {
           },
         },
       ];
+
+      // this is a basic source either github or web
+      // we still treat it as its own collection but with a different type
+      collection = newCollection(collection, {
+        type: COLLECTION_TYPES[rootSource.sourceType],
+        sources,
+      });
     }
     collectionsToFetch = collectionsToFetch.concat([collection]);
   });

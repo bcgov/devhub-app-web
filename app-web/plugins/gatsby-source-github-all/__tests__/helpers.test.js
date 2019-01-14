@@ -4,6 +4,7 @@ import {
   getClosestResourceType,
   unfurlWebURI,
   validateAgainstSchema,
+  newCollection,
 } from '../utils/helpers';
 import { RESOURCE_TYPES } from '../utils/constants';
 
@@ -118,6 +119,23 @@ describe('unfurlWebURI', () => {
       const result = validateAgainstSchema(object, schema);
       expect(result.isValid).toBe(false);
       expect(result.messages.length).toBe(1);
+    });
+  });
+
+  describe('newCollection', () => {
+    it('it binds properties to a new collection object', () => {
+      const collection = {
+        name: 'foo',
+        sources: [],
+      };
+
+      const props = {
+        description: 'bar',
+      };
+
+      const updatedCollection = newCollection(collection, props);
+      expect(updatedCollection).not.toBe(collection);
+      expect(updatedCollection.description).toBe(props.description);
     });
   });
 });

@@ -44,13 +44,14 @@ import {
   isSourceCollection,
   hashString,
   validateRegistryItemAgainstSchema,
+  newCollection,
 } from '../utils/helpers';
 
 jest.mock('../utils/helpers');
 jest.mock('crypto');
 jest.mock('../utils/fetchSource.js');
 fetchFromSource.mockReturnValue(Promise.resolve([PROCESSED_WEB_SOURCE]));
-
+newCollection.mockImplementation((collection, props) => ({ ...collection, ...props }));
 describe('gatsby source github all plugin', () => {
   afterEach(() => {
     isSourceCollection.mockReset();
