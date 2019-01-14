@@ -70,7 +70,9 @@ Infact an individual source like:
 
 Is really just a **special case of a collection**. A ***Source Collection***.
 Each individual node that is created from all of the content that is fetched from the above repo
-shares the same collection name `My Repo`.
+shares the same collection name `My Repo`. In addition other data items are loaded by token this is
+a github repo. Things like a 'description' is automatically loaded from your repository description as
+denoted in github. 
 
 For a 'custom collection', each item could potentially be a repo or an individual file. For all of the
 nodes that are created for these sources, instead of their name being set individually, it is
@@ -79,6 +81,7 @@ inherited by the `name` attribute that was defined in the registry.
 Example Collection Registry Item:
 ```yaml
 - name: My Collection
+  description: 'the best repo there ever was'
   resourceType: Documentation
   attributes:
     persona: Developer
@@ -282,6 +285,7 @@ the graphQL schema (more on that [here](https://www.gatsbyjs.org/docs/plugin-aut
     children, // a list of all child siphonNodes that are related to this collection
     name, // name of the collection
     type, // curated, source etc.
+    description, // a description for the collection as annotated within the registry file
     internal: {
         contentDigest // a gatsby required property
         // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate
