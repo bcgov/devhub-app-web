@@ -12,7 +12,12 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import reducer, { applyPropsToFilterByResourceCount } from '../../src/store/reducers/siphon';
-import { ACTIONS, INITIAL_STATES, COLLECTIONS, DEFAULT_FILTER_GROUPS } from '../../__fixtures__/redux-fixtures';
+import {
+  ACTIONS,
+  INITIAL_STATES,
+  COLLECTIONS,
+  DEFAULT_FILTER_GROUPS,
+} from '../../__fixtures__/redux-fixtures';
 
 describe('reducer', () => {
   it('should return the initial state', () => {

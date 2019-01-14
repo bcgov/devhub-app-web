@@ -249,7 +249,6 @@ const markdownPersonaPlugin = async (extension, file, { personas }) => {
   // is front matter personas type valid?
   if (frontmatter.personas && TypeCheck.isArrayOf(String, frontmatter.personas)) {
     file.metadata.personas = getClosestPersona(frontmatter.personas, personas);
-
   } else if (frontmatter.persona && TypeCheck.isString(frontmatter.persona)) {
     file.metadata.personas = getClosestPersona([frontmatter.persona], personas);
     // is there a global persona type this file can inherit?

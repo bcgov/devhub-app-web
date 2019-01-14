@@ -33,23 +33,7 @@ export class Index extends Component {
 
   render() {
     const { collections, toggleMenu, filters } = this.props;
-    let mappedSiphonNodes = [];
-    // if (collections && collections.length) {
-    //   mappedSiphonNodes = nodes
-    //     .filter(node => node.childMarkdownRemark && !node.childMarkdownRemark.frontmatter.pageOnly)
-    //     .map(node => ({
-    //       ...node.unfurl,
-    //       resourcePath: node.resource.path,
-    //       collectionName: node.collection.name,
-    //       sourcePath: node.source.sourcePath,
-    //       resourceType: node.resource.type,
-    //       owner: node.owner,
-    //       repository: node.source.name,
-    //     }));
-    // }
-    // // group nodes into collections for display purposes
-    // const groupedSiphonData = groupBy(mappedSiphonNodes, 'collectionName');
-    // convert grouped data into their 'collected' cards containers
+
     const SiphonResources = collections.map(collection => (
       <Cards key={shortid.generate()} topic={collection.name} cards={collection.nodes} />
     ));
