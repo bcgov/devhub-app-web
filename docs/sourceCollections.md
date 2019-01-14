@@ -30,6 +30,8 @@ In the registry file you may register these repos as a **collection** like so:
 sources:
     # ...
     - name: Starting Out as a Mobile App Dev In Gov # this is the title of your collection
+      description: 'Standing up an app can be difficult. Where do you start? What are the resources you need? 
+        This guide will help you get started!'
       attributes: 
         persona: 'Developer'
       sourceProperties:

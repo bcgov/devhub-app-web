@@ -43,6 +43,10 @@ sources:
 ```
 
 As you can see it is just a configuration file that is in `YAML` format.
+### Where Is This Registry File?
+> Stay tuned as we may choose to have *multiple* registry files.
+
+It can be found at `/app-web/source-registry/registry.yml`.
 
 ### How It Works
 
@@ -78,6 +82,9 @@ The following Registry Level Configurations are available:
 - **name**:  The name you would like to represent your source as in the devhub. This is something user's will see so avoid naming it in an unpresentable way such as
     - bad: `name: 'my-awesome-repo'
     - good: `name: 'My Awesome Repo'
+- **description**: ***To only be used by collections!*** This gives a description of the collection.
+    A github repository receives this property for free based on the description of the repo as found in
+    github for the repo.
 - **sourceType**: This tells DevHub how to grab information from your source
 - **sourceProperties**: These are properties as required for a source type **and is not a registry level configuration**
 - **resourceType**: (optional) This is a global resource type, any singular chunk of data (such as a markdown file or a yaml file or a  link to a website) that DevHubg grabs from your source can have it's individual resourceType defaulted to this value see the main readme for valid resource types.
@@ -295,6 +302,8 @@ In the registry file you may register these repos as a **collection** like so:
 sources:
     # ...
     - name: Starting Out as a Mobile App Dev In Gov # this is the title of your collection
+      description: 'Standing up an app can be difficult. Where do you start? What are the resources you need? 
+        This guide will help you get started!'
       attributes: 
         persona: 'Developer'
       sourceProperties:
