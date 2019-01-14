@@ -83,7 +83,7 @@ The following Registry Level Configurations are available:
     - bad: `name: 'my-awesome-repo'
     - good: `name: 'My Awesome Repo'
 - **description**: ***To only be used by collections!*** This gives a description of the collection.
-    A github repository get's this property for free based on the description of the repo as found in
+    A github repository receives this property for free based on the description of the repo as found in
     github for the repo.
 - **sourceType**: This tells DevHub how to grab information from your source
 - **sourceProperties**: These are properties as required for a source type **and is not a registry level configuration**
