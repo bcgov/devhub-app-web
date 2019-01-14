@@ -16,17 +16,73 @@ import { LARGE_SCREEN_LIMIT, SMALL_SCREEN_LIMIT, RESOURCE_TYPES } from '../../co
 
 const Cards = ({ topic, sourcePath, cards }) => {
   const cardComponents = cards.map(c => {
-    switch (c.resourceType) {
+    switch (c.resource.type) {
       case RESOURCE_TYPES.RESPOSITORIES:
-        return <RepositoryCard {...c} key={shortid.generate()} />;
+        return (
+          <RepositoryCard
+            repository={c.source.name}
+            owner={c.owner}
+            title={c.unfurl.title}
+            description={c.unfurl.description}
+            resourcePath={c.resource.path}
+            image={c.unfurl.image}
+            resourceType={c.resource.type}
+            author={c.unfurl.author}
+            key={shortid.generate()}
+          />
+        );
       case RESOURCE_TYPES.SELF_SERVICE_TOOLS:
-        return <SelfServiceCard {...c} key={shortid.generate()} />;
+        return (
+          <SelfServiceCard
+            title={c.unfurl.title}
+            description={c.unfurl.description}
+            resourcePath={c.resource.path}
+            image={c.unfurl.image}
+            resourceType={c.resource.type}
+            author={c.unfurl.author}
+            key={shortid.generate()}
+          />
+        );
       case RESOURCE_TYPES.COMPONENTS:
-        return <ComponentCard {...c} key={shortid.generate()} />;
+        return (
+          <ComponentCard
+            repository={c.source.name}
+            owner={c.owner}
+            title={c.unfurl.title}
+            description={c.unfurl.description}
+            resourcePath={c.resource.path}
+            image={c.unfurl.image}
+            resourceType={c.resource.type}
+            author={c.unfurl.author}
+            key={shortid.generate()}
+          />
+        );
       case RESOURCE_TYPES.DOCUMENTATION:
-        return <DocumentCard {...c} key={shortid.generate()} />;
+        return (
+          <DocumentCard
+            repository={c.source.name}
+            owner={c.owner}
+            title={c.unfurl.title}
+            description={c.unfurl.description}
+            resourcePath={c.resource.path}
+            image={c.unfurl.image}
+            resourceType={c.resource.type}
+            author={c.unfurl.author}
+            key={shortid.generate()}
+          />
+        );
       default:
-        return <DefaultCard {...c} key={shortid.generate()} />;
+        return (
+          <DefaultCard
+            title={c.unfurl.title}
+            description={c.unfurl.description}
+            resourcePath={c.resource.path}
+            image={c.unfurl.image}
+            resourceType={c.resource.type}
+            author={c.unfurl.author}
+            key={shortid.generate()}
+          />
+        );
     }
   });
   const octoKat =
@@ -35,20 +91,24 @@ const Cards = ({ topic, sourcePath, cards }) => {
         <FontAwesomeIcon icon={faGithub} color="#242424" size="1x" />
       </Link>
     );
-  return (
-    <section className={styles.CardsContainer}>
-      <div className={styles.TopicContainer}>
-        <h1>{topic}</h1>
-        {octoKat}
-      </div>
-      <div className={styles.LargeView}>
-        <Toggle cardComponents={cardComponents} cardLimits={LARGE_SCREEN_LIMIT} />
-      </div>
-      <div className={styles.MobileView}>
-        <Toggle cardComponents={cardComponents} cardLimits={SMALL_SCREEN_LIMIT} />
-      </div>
-    </section>
-  );
+  if (cardComponents.length > 0) {
+    return (
+      <section className={styles.CardsContainer}>
+        <div className={styles.TopicContainer}>
+          <h1>{topic}</h1>
+          {octoKat}
+        </div>
+        <div className={styles.LargeView}>
+          <Toggle cardComponents={cardComponents} cardLimits={LARGE_SCREEN_LIMIT} />
+        </div>
+        <div className={styles.MobileView}>
+          <Toggle cardComponents={cardComponents} cardLimits={SMALL_SCREEN_LIMIT} />
+        </div>
+      </section>
+    );
+  } else {
+    return null;
+  }
 };
 
 Cards.defaultProps = {

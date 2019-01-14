@@ -23,8 +23,8 @@ import Dropmenu from '../components/Dropmenu/Dropmenu';
 export class Index extends Component {
   componentDidMount() {
     // flatted nodes from graphql
-    const nodes = this.props.data.allDevhubSiphon.edges.map(n => n.node);
-    this.props.loadSiphonNodes(nodes);
+    const collections = this.props.data.allDevhubSiphonCollection.edges.map(c => c.node);
+    this.props.loadCollections(collections);
   }
 
   componentWillUnmount() {
@@ -32,26 +32,10 @@ export class Index extends Component {
   }
 
   render() {
-    const { nodes, toggleMenu, filters } = this.props;
-    let mappedSiphonNodes = [];
-    if (nodes && nodes.length) {
-      mappedSiphonNodes = nodes
-        .filter(node => node.childMarkdownRemark && !node.childMarkdownRemark.frontmatter.pageOnly)
-        .map(node => ({
-          ...node.unfurl,
-          resourcePath: node.resource.path,
-          collectionName: node.collection.name,
-          sourcePath: node.source.sourcePath,
-          resourceType: node.resource.type,
-          owner: node.owner,
-          repository: node.source.name,
-        }));
-    }
-    // group nodes into collections for display purposes
-    const groupedSiphonData = groupBy(mappedSiphonNodes, 'collectionName');
-    // convert grouped data into their 'collected' cards containers
-    const SiphonResources = groupedSiphonData.map(ghData => (
-      <Cards key={shortid.generate()} topic={ghData.collectionName} cards={ghData.data} />
+    const { collections, toggleMenu, filters } = this.props;
+
+    const SiphonResources = collections.map(collection => (
+      <Cards key={shortid.generate()} topic={collection.name} cards={collection.nodes} />
     ));
 
     // group filter groups by there title
@@ -89,38 +73,39 @@ export class Index extends Component {
 
 export const resourceQuery = graphql`
   query resourceQuery {
-    allDevhubSiphon(filter: { internal: { mediaType: { eq: "text/markdown" } } }) {
+    allDevhubSiphonCollection {
       edges {
         node {
           id
-          attributes {
-            personas
-          }
-          collection {
+          name
+          nodes: childrenDevhubSiphon {
+            id
             name
-            type
-          }
-          source {
-            displayName
-            sourcePath
-            type
-            name
-          }
-          owner
-          resource {
-            path
-            type
-          }
-          unfurl {
-            title
-            description
-            type
-            image
-            author
-          }
-          childMarkdownRemark {
-            frontmatter {
-              pageOnly
+            owner
+            attributes {
+              personas
+            }
+            source {
+              displayName
+              sourcePath
+              type
+              name
+            }
+            resource {
+              path
+              type
+            }
+            unfurl {
+              title
+              description
+              type
+              image
+              author
+            }
+            childMarkdownRemark {
+              frontmatter {
+                pageOnly
+              }
             }
           }
         }
@@ -131,7 +116,7 @@ export const resourceQuery = graphql`
 
 const mapStateToProps = state => {
   return {
-    nodes: state.siphon.secondaryFilteredNodes,
+    collections: state.siphon.secondaryFilteredNodes,
     displayWelcome: !state.ui.welcomePanelWasViewed,
     filters: state.siphon.filters,
   };
@@ -139,7 +124,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadSiphonNodes: nodes => dispatch(actions.loadSiphonNodes(nodes)),
+    loadCollections: collections => dispatch(actions.loadSiphonCollections(collections)),
     hideWelcomeMessage: () => dispatch(actions.setWelcomePanelViewed(true)),
   };
 };

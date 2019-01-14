@@ -41,7 +41,6 @@ export const PrimaryFilter = ({
         onClick={() => {
           setSelectedFilter(navConfig.VALUE);
           applyPrimaryFilters(navConfig.SIPHON_PROP, navConfig.VALUE);
-          applySecondaryFilters();
         }}
         aria-label={ARIA_LABEL_FILTER_SELECT}
       >

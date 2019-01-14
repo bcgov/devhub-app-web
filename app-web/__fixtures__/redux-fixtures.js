@@ -12,30 +12,80 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import * as actions from '../src/store/actions/actionTypes';
-export const NODES = [
+export const COLLECTIONS = [
   {
-    resource: {
-      type: 'Components',
-    },
-    attributes: {
-      personas: ['Designer'],
-    },
-  },
-  {
-    resource: {
-      type: 'Documentation',
-    },
-    attributes: {
-      personas: ['Developer'],
-    },
-  },
-  {
-    resource: {
-      type: 'Components',
-    },
-    attributes: {
-      personas: ['Product Owner'],
-    },
+    name: 'Design System',
+    type: 'source',
+    nodes: [
+      {
+        attributes: {
+          personas: ['Designer'],
+        },
+        source: {
+          name: 'design-system',
+          displayName: 'Design System',
+          sourcePath: 'https://github.com/bcgov/design-system/',
+          type: 'github',
+        },
+        resource: {
+          path: '/design-system/Z1bGIqu',
+          type: 'Components',
+          originalSource:
+            'https://github.com/bcgov/design-system/blob/master/components/about/about.md',
+        },
+        unfurl: {
+          type: 'markdown',
+          label1: '',
+          data1: '',
+          label2: '',
+          data2: '',
+          image:
+            'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
+          title: 'About',
+          description: 'What the Design System is and how it works.',
+          author: 'ksingbeil',
+        },
+        childMarkdownRemark: {
+          frontmatter: {
+            pageOnly: false,
+          },
+        },
+      },
+      {
+        attributes: {
+          personas: ['Developer'],
+        },
+        source: {
+          name: 'design-system',
+          displayName: 'Design System',
+          sourcePath: 'https://github.com/bcgov/design-system/',
+          type: 'github',
+        },
+        resource: {
+          path: '/design-system/Z1bGIqu',
+          type: 'Documentation',
+          originalSource:
+            'https://github.com/bcgov/design-system/blob/master/components/about/about.md',
+        },
+        unfurl: {
+          type: 'markdown',
+          label1: '',
+          data1: '',
+          label2: '',
+          data2: '',
+          image:
+            'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
+          title: 'About',
+          description: 'What the Design System is and how it works.',
+          author: 'ksingbeil',
+        },
+        childMarkdownRemark: {
+          frontmatter: {
+            pageOnly: false,
+          },
+        },
+      },
+    ],
   },
 ];
 
@@ -45,7 +95,8 @@ export const DEFAULT_FILTER_GROUPS = [
     value: 'Designer',
     text: 'Designers',
     active: false,
-    availableResources: null,
+    availableResources: 0,
+    isFilterable: false,
     key: 'foo',
     title: 'For',
   },
@@ -54,7 +105,8 @@ export const DEFAULT_FILTER_GROUPS = [
     value: 'Developer',
     text: 'Developers',
     active: true,
-    availableResources: null,
+    availableResources: 0,
+    isFilterable: false,
     key: 'bar',
     title: 'For',
   },
@@ -63,7 +115,8 @@ export const DEFAULT_FILTER_GROUPS = [
     value: 'Product Owner',
     text: 'Product Owners',
     active: false,
-    availableResources: null,
+    availableResources: 0,
+    isFilterable: false,
     key: 'baz',
     title: 'For',
   },
@@ -82,10 +135,10 @@ export const ACTIONS = {
       key: 'bar',
     },
   },
-  LOAD_SIPHON_NODES: {
-    type: actions.LOAD_SIPHON_NODES,
+  LOAD_SIPHON_COLLECTIONS: {
+    type: actions.LOAD_SIPHON_COLLECTIONS,
     payload: {
-      nodes: NODES,
+      nodes: COLLECTIONS,
     },
   },
   TOGGLE_FILTER_GROUP: {
@@ -107,6 +160,9 @@ export const ACTIONS = {
       filteredBy: 'resource.type',
       value: 'All',
     },
+  },
+  FILTER_SIPHON_NODES_BY_LIST: {
+    type: actions.FILTER_SIPHON_NODES_BY_FILTER_LIST,
   },
   SELECT_FILTER_OPTION: {
     type: actions.SET_SELECTED_FILTER_OPTION,
@@ -136,7 +192,7 @@ export const ACTIONS = {
 
 export const INITIAL_STATES = {
   SIPHON: {
-    nodes: [],
+    collections: [],
     primaryFilteredNodes: [],
     secondaryFilteredNodes: [],
     filters: DEFAULT_FILTER_GROUPS,

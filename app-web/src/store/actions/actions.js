@@ -1,6 +1,6 @@
 export { authenticateSuccess, authenticateFailed } from './authActions';
 export {
-  loadSiphonNodes,
+  loadSiphonCollections,
   filterSiphonNodes,
   removeAllFilters,
   addFilter,
