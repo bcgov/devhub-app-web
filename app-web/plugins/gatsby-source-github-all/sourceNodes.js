@@ -24,6 +24,7 @@ const {
   hashString,
   isSourceCollection,
   validateRegistryItemAgainstSchema,
+  newCollection,
 } = require('./utils/helpers');
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
 const { COLLECTION_TYPES, REGISTRY_ITEM_SCHEMA } = require('./utils/constants');
@@ -50,6 +51,13 @@ const mapInheritedSourceAttributes = ({ name, attributes, resourceType }, target
 });
 
 /**
+ * @param {Object} registryItem the registry item found within the registry file sources[index]
+ * @returns {Boolean} true if registry item is valid
+ */
+const validateRegistryItem = registryItem =>
+  validateRegistryItemAgainstSchema(registryItem, REGISTRY_ITEM_SCHEMA);
+
+/**
  * loops over sources and validates them based on their type
  * @param {Array} sources the sources
  * @returns {Boolean}
@@ -68,13 +76,6 @@ const sourcesAreValid = sources => {
 
   return sourcesToCheck.every(validateSourceRegistry);
 };
-
-/**
- * @param {Object} registryItem the registry item found within the registry file sources[index]
- * @returns {Boolean} true if registry item is valid
- */
-const validateRegistryItem = registryItem =>
-  validateRegistryItemAgainstSchema(registryItem, REGISTRY_ITEM_SCHEMA);
 
 /**
  * validates source registry
@@ -166,24 +167,25 @@ const normalizeAttributes = attributes => {
 const getFetchQueue = sources => {
   let collectionsToFetch = [];
   sources.forEach(rootSource => {
-    const collection = {
+    let collection = newCollection({
       name: rootSource.name,
       sources: [],
-    };
+    });
 
     if (isSourceCollection(rootSource)) {
-      collection.type = COLLECTION_TYPES.CURATED;
       // if its a collection, the child sources need some properties from the root source to be
       // mapped to it
       const mappedChildSources = rootSource.sourceProperties.sources.map(childSource =>
         mapInheritedSourceAttributes(rootSource, childSource),
       );
-      collection.sources = mappedChildSources;
+
+      collection = newCollection(collection, {
+        type: COLLECTION_TYPES.CURATED,
+        description: rootSource.description,
+        sources: mappedChildSources,
+      });
     } else {
-      // this is a basic source either github or web
-      // we still treat it as its own collection but with a different type
-      collection.type = COLLECTION_TYPES[rootSource.sourceType];
-      collection.sources = [
+      const sources = [
         {
           ...rootSource,
           attributes: normalizeAttributes(rootSource.attributes),
@@ -193,6 +195,13 @@ const getFetchQueue = sources => {
           },
         },
       ];
+
+      // this is a basic source either github or web
+      // we still treat it as its own collection but with a different type
+      collection = newCollection(collection, {
+        type: COLLECTION_TYPES[rootSource.sourceType],
+        sources,
+      });
     }
     collectionsToFetch = collectionsToFetch.concat([collection]);
   });
@@ -254,6 +263,7 @@ const processCollection = async (
   // flatten source nodes to get a list of all the resources
   const resources = _.flatten(sourceNodes, true);
   const collectionNode = createCollectionNode(collection, id);
+
   await createNode(collectionNode);
   resources.forEach(r => createParentChildLink({ parent: collectionNode, child: r }));
   // establish a parent child link between all resources and the collection node

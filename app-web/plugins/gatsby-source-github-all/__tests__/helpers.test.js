@@ -3,6 +3,8 @@ import {
   createUnfurlObj,
   getClosestResourceType,
   unfurlWebURI,
+  validateAgainstSchema,
+  newCollection,
 } from '../utils/helpers';
 import { RESOURCE_TYPES } from '../utils/constants';
 
@@ -62,5 +64,78 @@ describe('unfurlWebURI', () => {
         error: 'The uri is not valid',
       });
     }
+  });
+
+  describe('validateAgainstSchema', () => {
+    let schema;
+    beforeEach(() => {
+      schema = {
+        foo: {
+          type: String,
+          required: true,
+        },
+        bar: {
+          type: String,
+          required: false,
+        },
+      };
+    });
+
+    it('returns an object with a messages property that is an array', () => {
+      const result = validateAgainstSchema({}, schema);
+      expect(typeof result).toBe('object');
+      expect(result.messages instanceof Array).toBe(true);
+    });
+
+    it('returns an object with an isValid property that is boolean', () => {
+      const result = validateAgainstSchema({}, schema);
+      expect(typeof result).toBe('object');
+      expect(typeof result.isValid).toBe('boolean');
+    });
+
+    it('validates schema and returns true when valid', () => {
+      const object = {
+        foo: 'foo',
+        bar: 'bar',
+      };
+      const result = validateAgainstSchema(object, schema);
+      expect(result.isValid).toBe(true);
+    });
+
+    it('validates not required properties if passed in', () => {
+      const object = {
+        foo: 'foo',
+        bar: 1, // bar is not required but sould be a string
+      };
+      const result = validateAgainstSchema(object, schema);
+      expect(result.isValid).toBe(false);
+      expect(result.messages.length).toBe(1);
+    });
+
+    it('validates required properties', () => {
+      const object = {
+        bar: 'foo',
+      };
+      const result = validateAgainstSchema(object, schema);
+      expect(result.isValid).toBe(false);
+      expect(result.messages.length).toBe(1);
+    });
+  });
+
+  describe('newCollection', () => {
+    it('it binds properties to a new collection object', () => {
+      const collection = {
+        name: 'foo',
+        sources: [],
+      };
+
+      const props = {
+        description: 'bar',
+      };
+
+      const updatedCollection = newCollection(collection, props);
+      expect(updatedCollection).not.toBe(collection);
+      expect(updatedCollection.description).toBe(props.description);
+    });
   });
 });

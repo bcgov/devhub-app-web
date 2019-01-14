@@ -5,7 +5,6 @@ import {
   GRAPHQL_NODES_WITH_REGISTRY,
   CONFIG_OPTIONS,
 } from '../__fixtures__/fixtures';
-import { GRAPHQL_NODE_TYPE } from '../utils/constants';
 import { sourceNodes, validateRegistryItem } from '../sourceNodes';
 import { fetchSourceGithub, validateSourceGithub } from '../utils/sources/github';
 
@@ -26,6 +25,19 @@ describe('Integration Tests Source Nodes', () => {
       sourceProperties: {},
     };
     expect(validateRegistryItem(registryItem)).toBe(true);
+  });
+
+  test("validateRegistry returns false if name or sourceProperties don't exist", () => {
+    const registryItem1 = {
+      sourceProperties: {},
+    };
+
+    const registryItem2 = {
+      name: 'foo',
+    };
+
+    expect(validateRegistryItem(registryItem1)).toBe(false);
+    expect(validateRegistryItem(registryItem2)).toBe(false);
   });
 
   test('sourceNodes runs without crashing', async () => {

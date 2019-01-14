@@ -27,7 +27,6 @@ import {
   normalizePersonas,
   processSource,
   processCollection,
-  validateRegistryItem,
 } from '../sourceNodes';
 import { createSiphonNode, createCollectionNode } from '../utils/createNode';
 import { GRAPHQL_NODE_TYPE, COLLECTION_TYPES } from '../utils/constants';
@@ -41,13 +40,18 @@ import {
   PROCESSED_WEB_SOURCE,
 } from '../__fixtures__/fixtures';
 import { validateSourceRegistry, fetchFromSource } from '../utils/fetchSource';
-import { isSourceCollection, hashString } from '../utils/helpers';
+import {
+  isSourceCollection,
+  hashString,
+  validateRegistryItemAgainstSchema,
+  newCollection,
+} from '../utils/helpers';
 
 jest.mock('../utils/helpers');
 jest.mock('crypto');
 jest.mock('../utils/fetchSource.js');
 fetchFromSource.mockReturnValue(Promise.resolve([PROCESSED_WEB_SOURCE]));
-
+newCollection.mockImplementation((collection, props) => ({ ...collection, ...props }));
 describe('gatsby source github all plugin', () => {
   afterEach(() => {
     isSourceCollection.mockReset();
@@ -109,6 +113,7 @@ describe('gatsby source github all plugin', () => {
 
   test('checkRegistry returns true if sources are valid', () => {
     validateSourceRegistry.mockReturnValue(true);
+    validateRegistryItemAgainstSchema.mockReturnValue(true);
     expect(checkRegistry(REGISTRY)).toBe(true);
   });
 
@@ -227,8 +232,9 @@ describe('gatsby source github all plugin', () => {
     const result = createCollectionNode(COLLECTION_OBJ_FROM_FETCH_QUEUE, '123');
     const expected = {
       id: '123',
-      name: result.name,
-      type: result.type,
+      name: COLLECTION_OBJ_FROM_FETCH_QUEUE.name,
+      type: COLLECTION_OBJ_FROM_FETCH_QUEUE.type,
+      description: COLLECTION_OBJ_FROM_FETCH_QUEUE.description,
       children: [],
       parent: null,
       internal: {
@@ -410,7 +416,7 @@ describe('gatsby source github all plugin', () => {
     const createNode = jest.fn(node => node);
     const createParentChildLink = jest.fn();
 
-    const collection = await processCollection(
+    await processCollection(
       COLLECTION_OBJ_FROM_FETCH_QUEUE,
       createNodeId,
       createNode,

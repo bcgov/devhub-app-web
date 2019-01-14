@@ -247,7 +247,18 @@ const isSourceCollection = source =>
   Object.prototype.hasOwnProperty.call(source.sourceProperties, 'sources') &&
   TypeCheck.isArray(source.sourceProperties.sources);
 
+/**
+ * creates the main collection object
+ * which is used later on to create the collection siphon node
+ * optionally allows to bind props to it later
+ * @param {Object} collection
+ * @param {Object} props
+ * @returns {Object} the new collection object
+ */
+const newCollection = (collection, props = {}) => ({ ...collection, ...props });
+
 module.exports = {
+  newCollection,
   hashString,
   createPathWithDigest,
   createUnfurlObj,
@@ -256,6 +267,7 @@ module.exports = {
   getAbsolutePathFromRelative,
   validateSourcePropertiesAgainstSchema,
   validateRegistryItemAgainstSchema,
+  validateAgainstSchema,
   unfurlWebURI,
   isSourceCollection,
 };
