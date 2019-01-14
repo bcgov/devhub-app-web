@@ -63,6 +63,8 @@ sources:
         - Repository
       persona: 'Developer'
   - name: Github 101
+    description: "Whether you are new to Github as a platform or new to Github in government, here are
+    some great resources and considerations to help you succeed."
     resourceType: Documentation
     attributes:
       persona: Developer
