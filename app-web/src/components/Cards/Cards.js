@@ -87,6 +87,7 @@ const Cards = ({ topic, description, sourcePath, cards }) => {
       <section className={styles.CardsContainer}>
         <div className={styles.TopicContainer}>
           <h1>{topic}</h1>
+          <p>{description}</p>
         </div>
         <div className={styles.LargeView}>
           <Toggle cardComponents={cardComponents} cardLimits={LARGE_SCREEN_LIMIT} />
