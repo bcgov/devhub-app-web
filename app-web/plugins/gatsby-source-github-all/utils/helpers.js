@@ -273,7 +273,70 @@ const getCollectionDescriptionBySourceType = async (source, tokens) => {
   }
 };
 
+/** Position helpers
+ * position is based on a tier mechanism
+ * collection is highest tier
+ * sourc position is second highest
+ * resource third etc.
+ * position [2,3,500]
+ * 2: collection position in registry
+ * 3: source position within collection
+ * 5: resource position within source (tbd by the fetchsource routine for that source type)
+ */
+
+/**
+ * @param {Number} position the position
+ * @param {Array} lastPosition the array of positions
+ * @returns {Array} the new positions array
+ */
+const createPosition = (position, lastPosition = []) => lastPosition.concat([position]);
+
+/**
+ * this is the callback function for Array.map to assign positions to collections
+ * in the order they were entered in the registry
+ * @param {Object} collection
+ * @param {Number} position
+ * @returns {Object} the new collection object + position data
+ */
+const assignPositionToCollection = (collection, position) => ({
+  ...collection,
+  metadata: {
+    position: createPosition(position),
+  },
+});
+
+/**
+ * this is a CLOSURED cb function that assigns position of source in an array.map
+ * based on the position inside of the current collection
+ * @param {Object} collection the collection
+ * @returns {Function} the array map callback function
+ */
+const assignPositionToSource = collection => (source, position) => ({
+  ...source,
+  metadata: {
+    position: createPosition(position, collection.metadata.position), // position at source level is [resource, source]
+  },
+});
+
+/**
+ * this is a CLOSURED cb function that assigns position of resource in an array.map
+ * based on the position inside of the current source
+ * @param {Object} source the collection
+ * @returns {Function} the array map callback function
+ */
+const assignPositionToResource = source => (resource, position) => ({
+  ...resource,
+  metadata: {
+    ...resource.metadata,
+    position: createPosition(position, source.metadata.position),
+  },
+});
+
 module.exports = {
+  assignPositionToResource,
+  createPosition,
+  assignPositionToSource,
+  assignPositionToCollection,
   newCollection,
   hashString,
   createPathWithDigest,

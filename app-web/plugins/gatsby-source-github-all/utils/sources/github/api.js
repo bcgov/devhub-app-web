@@ -62,12 +62,11 @@ const fetchGithubTree = async (repo, owner, token, branch = 'master') => {
  * Fetches contents from file
  * note the media type header, it converts what would have been a
  * b64 encoded string of the file contents into either raw string data or json
- * @param {String} repo
- * @param {String} owner
  * @param {String} path
  * @param {String} token
+ * @param {Object} boundProperties and object properties you want to bind to returned json
  */
-const fetchFile = async (path, token) => {
+const fetchFile = async (path, token, boundProperties) => {
   try {
     const result = await fetch(path, {
       method: 'GET',
@@ -77,7 +76,7 @@ const fetchFile = async (path, token) => {
       },
     });
     const data = await result.json();
-    if (result.ok) return data;
+    if (result.ok) return { ...data, ___metadata: { ...boundProperties } };
     return undefined;
   } catch (e) {
     throw e;

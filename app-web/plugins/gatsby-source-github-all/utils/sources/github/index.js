@@ -34,7 +34,10 @@ const {
   applyBaseMetadata,
 } = require('./helpers');
 const { fetchFile, fetchGithubTree } = require('./api');
-const { validateSourcePropertiesAgainstSchema } = require('../../helpers');
+const {
+  validateSourcePropertiesAgainstSchema,
+  assignPositionToResource,
+} = require('../../helpers');
 
 /**
  * returns array of fetch file promises
@@ -42,7 +45,7 @@ const { validateSourcePropertiesAgainstSchema } = require('../../helpers');
  * @param {*} token github token
  */
 const fetchFiles = (files, token) => {
-  return files.map(f => fetchFile(f, token));
+  return files.map(f => fetchFile(f.path, token, f.metadata));
 };
 /**
  * fetches .devhubignore file from a repo
@@ -86,7 +89,7 @@ const getFilesFromRepo = async ({ repo, owner, branch, context, ignores }, token
     }
     // pass files to filter routine with ignore object and specified context paths
     const filesToFetch = filterFiles(files, ig, context);
-    return filesToFetch.map(f => createFetchFileRoute(repo, owner, f.path, branch));
+    return filesToFetch.map(f => ({ path: createFetchFileRoute(repo, owner, f.path, branch) }));
   } catch (e) {
     console.error(e);
     // eslint-disable-next-line
@@ -134,24 +137,30 @@ const fetchSourceGithub = async (
     sourceProperties,
     attributes: { labels, personas },
     collection,
+    metadata,
   },
   token,
 ) => {
   const { repo, owner, branch, url } = sourceProperties;
+  const source = { metadata };
+  const assignPosToResourceBySource = assignPositionToResource(source);
 
   let filesToFetch = [];
   // how are we sourcing this?
   if (isConfigForFetchingAFile(sourceProperties)) {
     const { file } = sourceProperties;
-    filesToFetch = [createFetchFileRoute(repo, owner, file, branch)];
+    filesToFetch = [{ path: createFetchFileRoute(repo, owner, file, branch) }];
   } else if (isConfigForFetchingFiles(sourceProperties)) {
     // map files list to get fetch file uris
-    filesToFetch = sourceProperties.files.map(f => createFetchFileRoute(repo, owner, f, branch));
+    filesToFetch = sourceProperties.files.map(f => ({
+      path: createFetchFileRoute(repo, owner, f, branch),
+    }));
   } else if (isConfigForFetchingRepo(sourceProperties)) {
     // get files based on the github tree and other configs
     filesToFetch = await getFilesFromRepo(sourceProperties, token);
   }
 
+  filesToFetch = filesToFetch.map((file, index) => assignPosToResourceBySource(file, index));
   // actually fetch file contents and transform
   const filesWithContents = fetchFiles(filesToFetch, token);
   const filesResponse = await Promise.all(filesWithContents);
