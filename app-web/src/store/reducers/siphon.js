@@ -262,8 +262,8 @@ const setCollections = (state, collections) => {
       // lexographic search
       const address1 = getTruePositionFromWeightedScale(a._metadata.position);
       const address2 = getTruePositionFromWeightedScale(b._metadata.position);
-      if (address1 < address2) return 1;
-      if (address1 > address2) return -1;
+      if (address1 < address2) return -1;
+      if (address1 > address2) return 1;
       return 0;
     });
     return c;
