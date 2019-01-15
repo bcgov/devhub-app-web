@@ -26,6 +26,8 @@ const {
   validateRegistryItemAgainstSchema,
   newCollection,
   getCollectionDescriptionBySourceType,
+  assignPositionToCollection,
+  assignPositionToSource,
 } = require('./utils/helpers');
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
 const { COLLECTION_TYPES, REGISTRY_ITEM_SCHEMA } = require('./utils/constants');
@@ -166,19 +168,30 @@ const normalizeAttributes = attributes => {
  * @param {Array} sources
  */
 const getFetchQueue = async (sources, tokens) => {
-  const collectionPromises = sources.map(async source => {
+  const collectionPromises = sources.map(async (source, index) => {
     const rootSource = { ...source };
 
-    let collection = newCollection({
-      name: rootSource.name,
-      sources: [],
-    });
+    let collection = newCollection(
+      assignPositionToCollection(
+        {
+          name: rootSource.name,
+          sources: [],
+        },
+        index,
+      ),
+    );
+    // create function to set source position by collection
+    const setSourcePositionByCollection = assignPositionToSource(collection);
 
     if (isSourceCollection(rootSource)) {
       // if its a collection, the child sources need some properties from the root source to be
       // mapped to it
-      const mappedChildSources = rootSource.sourceProperties.sources.map(childSource =>
-        mapInheritedSourceAttributes(rootSource, childSource),
+      const mappedChildSources = rootSource.sourceProperties.sources.map(
+        (childSource, sourceIndex) =>
+          setSourcePositionByCollection(
+            mapInheritedSourceAttributes(rootSource, childSource),
+            sourceIndex,
+          ),
       );
 
       collection = newCollection(collection, {
@@ -196,7 +209,7 @@ const getFetchQueue = async (sources, tokens) => {
             type: COLLECTION_TYPES[rootSource.sourceType],
           },
         },
-      ];
+      ].map((source, sourceIndex) => setSourcePositionByCollection(source, sourceIndex));
       // this is a basic source either github or web
       // we still treat it as its own collection but with a different type
       collection = newCollection(collection, {

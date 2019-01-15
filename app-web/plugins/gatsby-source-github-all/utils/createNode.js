@@ -25,7 +25,7 @@ const { GRAPHQL_NODE_TYPE } = require('./constants');
  * @param {String} id the unique id
  */
 const createCollectionNode = (collection, id) => {
-  const { name, type, description } = collection;
+  const { name, type, description, metadata } = collection;
 
   return {
     id,
@@ -37,6 +37,9 @@ const createCollectionNode = (collection, id) => {
     internal: {
       contentDigest: hashString(JSON.stringify(collection)),
       type: GRAPHQL_NODE_TYPE.COLLECTION,
+    },
+    _metadata: {
+      position: metadata.position,
     },
   };
 };
@@ -87,6 +90,9 @@ const createSiphonNode = (data, id) => ({
     // Optional field exposing the raw content for this node
     // that transformer plugins can take and further process.
     content: data.content,
+  },
+  _metadata: {
+    position: data.metadata.position,
   },
 });
 

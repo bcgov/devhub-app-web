@@ -16,7 +16,11 @@ limitations under the License.
 Created by Patrick Simonian
 */
 const { WEB_SOURCE_SCHEMA, MEDIATYPES } = require('../../constants');
-const { validateSourcePropertiesAgainstSchema, unfurlWebURI } = require('../../helpers');
+const {
+  validateSourcePropertiesAgainstSchema,
+  unfurlWebURI,
+  assignPositionToResource,
+} = require('../../helpers');
 
 /**
  * validates the source properties against the web source schema
@@ -40,9 +44,14 @@ const fetchSourceWeb = async ({
   sourceProperties,
   attributes,
   collection,
+  metadata,
 }) => {
   const { url } = sourceProperties;
   // fetch information from the url
+  const source = { metadata: { ...metadata } };
+
+  const assignPosToResourceBySource = assignPositionToResource(source);
+
   try {
     const unfurl = await unfurlWebURI(url);
     const siphonData = {
@@ -64,7 +73,7 @@ const fetchSourceWeb = async ({
       path: url,
     };
 
-    return [siphonData];
+    return [siphonData].map((s, index) => assignPosToResourceBySource(s, index));
   } catch (e) {
     console.error(e);
     return [];

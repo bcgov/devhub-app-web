@@ -211,6 +211,7 @@ const applyBaseMetadata = (
     ...file,
     content: Base64.decode(file.content),
     metadata: {
+      ...file.___metadata,
       labels,
       sourceName,
       source: repo,

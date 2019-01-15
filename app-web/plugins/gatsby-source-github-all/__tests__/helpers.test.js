@@ -6,6 +6,10 @@ import {
   validateAgainstSchema,
   newCollection,
   getCollectionDescriptionBySourceType,
+  assignPositionToCollection,
+  assignPositionToResource,
+  assignPositionToSource,
+  createPosition,
 } from '../utils/helpers';
 import { RESOURCE_TYPES } from '../utils/constants';
 
@@ -168,6 +172,67 @@ describe('unfurlWebURI', () => {
       const updatedCollection = newCollection(collection, props);
       expect(updatedCollection).not.toBe(collection);
       expect(updatedCollection.description).toBe(props.description);
+    });
+  });
+
+  describe('position helpers', () => {
+    it('creates a position', () => {
+      expect(createPosition(0)).toEqual([0]);
+      expect(createPosition(0, [0, 0])).toEqual([0, 0, 0]);
+    });
+
+    it('assigns position to a collection', () => {
+      const collection = {
+        foo: 'bar',
+      };
+      const expected = {
+        ...collection,
+        metadata: {
+          position: [0],
+        },
+      };
+
+      expect(assignPositionToCollection(collection, 0)).toEqual(expected);
+    });
+
+    it('returns a cb when assignPositionToSource called', () => {
+      expect(assignPositionToSource({}) instanceof Function).toBe(true);
+    });
+
+    it('returns a cb when assignPositionToResource called', () => {
+      expect(assignPositionToResource({}) instanceof Function).toBe(true);
+    });
+
+    it('assigns position to source when called', () => {
+      const cb = assignPositionToSource({ metadata: { position: [0] } });
+      const source = {
+        foo: 'bar',
+      };
+
+      const expected = {
+        ...source,
+        metadata: {
+          position: [0, 0],
+        },
+      };
+
+      expect(cb(source, 0)).toEqual(expected);
+    });
+
+    it('assigns position to resource when called', () => {
+      const cb = assignPositionToResource({ metadata: { position: [0, 0] } });
+      const resource = {
+        foo: 'bar',
+      };
+
+      const expected = {
+        ...resource,
+        metadata: {
+          position: [0, 0, 0],
+        },
+      };
+
+      expect(cb(resource, 0)).toEqual(expected);
     });
   });
 });

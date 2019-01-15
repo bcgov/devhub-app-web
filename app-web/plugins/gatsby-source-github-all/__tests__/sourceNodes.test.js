@@ -45,6 +45,8 @@ import {
   hashString,
   validateRegistryItemAgainstSchema,
   newCollection,
+  assignPositionToCollection,
+  assignPositionToSource,
 } from '../utils/helpers';
 
 jest.mock('../utils/helpers');
@@ -52,6 +54,12 @@ jest.mock('crypto');
 jest.mock('../utils/fetchSource.js');
 fetchFromSource.mockReturnValue(Promise.resolve([PROCESSED_WEB_SOURCE]));
 newCollection.mockImplementation((collection, props) => ({ ...collection, ...props }));
+assignPositionToCollection.mockImplementation(collection => () => ({
+  metadata: { position: [0] },
+}));
+
+assignPositionToSource.mockImplementation(source => () => ({ metadata: { position: [0, 0] } }));
+
 describe('gatsby source github all plugin', () => {
   afterEach(() => {
     isSourceCollection.mockReset();
@@ -221,6 +229,9 @@ describe('gatsby source github all plugin', () => {
         // that transformer plugins can take and further process.
         content: 'content',
       },
+      _metadata: {
+        position: undefined,
+      },
     };
 
     hashString.mockReturnValue(null);
@@ -240,6 +251,9 @@ describe('gatsby source github all plugin', () => {
       internal: {
         contentDigest: null, // hash string called here
         type: GRAPHQL_NODE_TYPE.COLLECTION,
+      },
+      _metadata: {
+        position: [0],
       },
     };
     hashString.mockReturnValue(null);
