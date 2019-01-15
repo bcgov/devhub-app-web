@@ -95,7 +95,7 @@ describe('Github API', () => {
 
   test('fetchFile returns data', async () => {
     fetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
-    const res = await fetchFile('pathfinder', 'bcdevops', '/readme.md', 'avalidtoken');
+    const res = await fetchFile('https://github.com/pathfinder/foo', 'avalidtoken', {});
     expect(res).toEqual(GITHUB_API.FILE);
     fetchFileSucceeded = true;
   });

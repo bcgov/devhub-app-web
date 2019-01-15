@@ -117,6 +117,7 @@ const GITHUB_API = {
   },
   // sample return from github contents api
   FILE: {
+    ___metadata: {},
     name: 'manifest.json',
     path: 'public/manifest.json',
     sha: 'ef19ec243e739479802a5553d0b38a18ed845307',
@@ -139,6 +140,9 @@ const GITHUB_API = {
   },
   // sample file from github contents file missing description front matter
   BAD_MD_FILE: {
+    metadata: {
+      position: [0, 0],
+    },
     name: 'badfile.md',
     path: 'public/badfile.md',
     sha: 'ef19ec243e739479802a5553d0b38a18ed845307',
@@ -212,6 +216,9 @@ const PROCESSED_FILE_HTML = {
 // rather have a hyperlink to an external resource. That external resource is actually
 // unfurled by one of the file transformer plugins
 const RAW_FILE_MD_WITH_RESOURCEPATH = {
+  ___metadata: {
+    position: [0, 0],
+  },
   name: 'README.md',
   path: 'components/header/README.md',
   sha: '123asdlfjasdf123',
@@ -247,6 +254,9 @@ const RAW_FILE_MD_WITH_RESOURCEPATH = {
 };
 // without resource path frontmatter
 const RAW_FILE_MD = {
+  ___metadata: {
+    position: [0, 0],
+  },
   name: 'README.md',
   path: 'components/header/README.md',
   sha: '123asdlfjasdf123',
@@ -465,6 +475,9 @@ const GRAPHQL_NODES_WITHOUT_REGISTRY = [
 
 //  a sample registry 'item'
 const GITHUB_SOURCE = {
+  metadata: {
+    position: [0, 0],
+  },
   name: 'Design System',
   sourceType: 'github',
   sourceProperties: {
@@ -478,6 +491,9 @@ const GITHUB_SOURCE = {
 };
 // sample web source registry item
 const WEB_SOURCE = {
+  metadata: {
+    position: [0, 0],
+  },
   name: 'Foo',
   sourceType: 'web',
   sourceProperties: {
@@ -491,6 +507,9 @@ const WEB_SOURCE = {
 // another sample registry 'item'
 const GITHUB_SOURCE_WITHIN_INLINE_IGNORES = {
   name: 'Design System',
+  metadata: {
+    position: [0, 0],
+  },
   sourceType: 'github',
   sourceProperties: {
     owner: 'bcgov',
@@ -550,6 +569,9 @@ const COLLECTION_OBJ_FROM_FETCH_QUEUE = {
   name: 'foo',
   description: 'blah',
   sources: [WEB_SOURCE],
+  metadata: {
+    position: [0],
+  },
 };
 
 module.exports = {
