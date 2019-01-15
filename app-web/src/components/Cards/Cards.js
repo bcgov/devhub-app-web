@@ -8,7 +8,7 @@ import RepositoryCard from './Card/RepositoryCard';
 import SelfServiceCard from './Card/SelfServiceCard';
 import ComponentCard from './Card/ComponentCard';
 import Toggle from './Toggle';
-import { CARD_TOGGLE_LIMIT, RESOURCE_TYPES } from '../../constants/ui';
+import { CARD_TOGGLE_LIMIT, RESOURCE_TYPES, CARDS_PER_ROW } from '../../constants/ui';
 
 /**
  * @param {Number} limit the maximum limit of cards to show in toggle component
@@ -98,7 +98,7 @@ const Cards = ({ topic, description, sourcePath, cards }) => {
 
   if (cardComponents.length > 0) {
     // find the ideal large screen limit based on number of cards, and cards rendering per row
-    const CARDS_PER_ROW = 3; // ideally in a true grid system we would have a more concrete styling
+    // ideally in a true grid system we would have a more concrete styling
     // to ensure cards are 3 per row. When this container is transferred to bootsraps grid system, this
     // will be so.
     const idealLimit = getIdealCardsLargeLimit(

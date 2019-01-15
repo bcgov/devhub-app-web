@@ -91,6 +91,8 @@ export const CARD_TOGGLE_LIMIT = {
   SMALL: 1,
 };
 
+export const CARDS_PER_ROW = 3;
+
 export const RESOURCE_TYPES_CONFIG = {
   COMPONENTS: {
     DISPLAY_NAME: 'Components',
