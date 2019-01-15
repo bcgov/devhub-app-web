@@ -86,8 +86,12 @@ export const BANNER_ID = 'dh-banner';
 export const MAIN_NAVIGATION_BTN = 'dh-main-nav';
 
 // for the card toggle component card limit prop
-export const LARGE_SCREEN_LIMIT = 4;
-export const SMALL_SCREEN_LIMIT = 1;
+export const CARD_TOGGLE_LIMIT = {
+  LARGE: 6,
+  SMALL: 1,
+};
+
+export const CARDS_PER_ROW = 3;
 
 export const RESOURCE_TYPES_CONFIG = {
   COMPONENTS: {
