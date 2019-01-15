@@ -103,7 +103,6 @@ describe('reducer', () => {
   });
 
   it('should filter nodes by persona', () => {
-    console.log('checking secondary filters');
     // the default state has a the 'developer' persona filter group active
     const state = {
       ...INITIAL_STATES.SIPHON,
@@ -142,6 +141,19 @@ describe('reducer', () => {
 
   it('calculates position correctly from [0, 1, 1]', () => {
     const position = getTruePositionFromWeightedScale([0, 1, 1]);
-    expect(position).toBe(122);
+    expect(position).toBe('100.20.2');
+  });
+
+  it("positions don't conflict when there are a large number of smaller weighted items", () => {
+    const position1 = getTruePositionFromWeightedScale([2, 1, 1994]);
+    const position2 = getTruePositionFromWeightedScale([3, 0, 0]);
+    // sort positions lexographically
+    const toSort = [position1, position2].sort((a, b) => {
+      if (a < b) return 1;
+      if (a > b) return -1;
+      return 0;
+    });
+    // we should expect position2 to still be ahead of position1
+    expect(toSort).toEqual([position2, position1]);
   });
 });

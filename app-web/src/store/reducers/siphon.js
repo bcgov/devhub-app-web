@@ -32,18 +32,23 @@ const mapWithCallback = (array, cb) => array.map(cb);
 /**
  * from an array of siphon positions
  * [collection, source, resource]
- * we return an integer by weighting each index to a power of ten in reverse order
- * this is because weight is in descending order (high to low) initially
+ * we return an integer by weighting each index to a power of ten
+ * weighting decreases left to right
  * @param {Array} position
- * @returns {Number}
+ * @returns {String} an address of the position based on weight
+ * [0, 2, 5] = 100.30.6
  */
 export const getTruePositionFromWeightedScale = position => {
-  return position.reverse().reduce((sum, val, index) => {
-    const power = index;
-    const multiplier = val + 1; // since positions start at 0, we are adding 1 so that
-    // we don't run into an issue of 0 x 10^index which would lead to bad things
-    return sum + multiplier * Math.pow(10, power);
-  }, 0);
+  return position
+    .reduce((pos, val, index) => {
+      const power = position.length - index - 1;
+
+      const multiplier = val + 1; // since positions start at 0, we are adding 1 so that
+      // we don't run into an issue of 0 x 10^index which would lead to bad things
+
+      return `${pos}.${multiplier * Math.pow(10, power)}`;
+    }, '')
+    .slice(1);
 };
 
 /**
@@ -253,11 +258,14 @@ const setCollections = (state, collections) => {
   const newState = { ...state };
   // sort collection nodes by position
   let sortedCollections = collections.map(c => {
-    c.nodes = c.nodes.sort(
-      (a, b) =>
-        getTruePositionFromWeightedScale(a._metadata.position) -
-        getTruePositionFromWeightedScale(b._metadata.position),
-    );
+    c.nodes = c.nodes.sort((a, b) => {
+      // lexographic search
+      const address1 = getTruePositionFromWeightedScale(a._metadata.position);
+      const address2 = getTruePositionFromWeightedScale(b._metadata.position);
+      if (address1 < address2) return 1;
+      if (address1 > address2) return -1;
+      return 0;
+    });
     return c;
   });
   newState.collections = newCollections(sortedCollections);
