@@ -7,6 +7,13 @@ ShallowWrapper {
     cards={
       Array [
         Object {
+          "_metadata": Object {
+            "position": Array [
+              0,
+              0,
+              0,
+            ],
+          },
           "attributes": Object {
             "personas": Array [
               "Designer",

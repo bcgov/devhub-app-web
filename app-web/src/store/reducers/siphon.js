@@ -30,6 +30,23 @@ const initialState = {
 const mapWithCallback = (array, cb) => array.map(cb);
 
 /**
+ * from an array of siphon positions
+ * [collection, source, resource]
+ * we return an integer by weighting each index to a power of ten in reverse order
+ * this is because weight is in descending order (high to low) initially
+ * @param {Array} position
+ * @returns {Number}
+ */
+export const getTruePositionFromWeightedScale = position => {
+  return position.reverse().reduce((sum, val, index) => {
+    const power = index;
+    const multiplier = val + 1; // since positions start at 0, we are adding 1 so that
+    // we don't run into an issue of 0 x 10^index which would lead to bad things
+    return sum + multiplier * Math.pow(10, power);
+  }, 0);
+};
+
+/**
  * clones a siphon node
  * @param {Object} node the siphon node owned by a collection
  * @returns {Object}
@@ -234,9 +251,18 @@ const resetFilters = state => {
  */
 const setCollections = (state, collections) => {
   const newState = { ...state };
-  newState.collections = newCollections(collections);
+  // sort collection nodes by position
+  let sortedCollections = collections.map(c => {
+    c.nodes = c.nodes.sort(
+      (a, b) =>
+        getTruePositionFromWeightedScale(a._metadata.position) -
+        getTruePositionFromWeightedScale(b._metadata.position),
+    );
+    return c;
+  });
+  newState.collections = newCollections(sortedCollections);
   // nodes will be filtered eventually be resource type which is the top level navigation
-  newState.primaryFilteredNodes = newCollections(collections);
+  newState.primaryFilteredNodes = newCollections(sortedCollections);
   return applySecondaryFilters(newState);
 };
 

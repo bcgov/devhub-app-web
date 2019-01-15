@@ -11,7 +11,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 Created by Patrick Simonian
 */
-import reducer, { applyPropsToFilterByResourceCount } from '../../src/store/reducers/siphon';
+import reducer, {
+  applyPropsToFilterByResourceCount,
+  getTruePositionFromWeightedScale,
+} from '../../src/store/reducers/siphon';
 import {
   ACTIONS,
   INITIAL_STATES,
@@ -135,5 +138,10 @@ describe('reducer', () => {
     // in our fixtured nodes, there are zero nodes that have the product owner persona
     const newFilter = applyPropsToFilterByResourceCount(productOwnerFilter, COLLECTIONS);
     expect(newFilter.active).toBe(false);
+  });
+
+  it('calculates position correctly from [0, 1, 1]', () => {
+    const position = getTruePositionFromWeightedScale([0, 1, 1]);
+    expect(position).toBe(122);
   });
 });

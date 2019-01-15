@@ -18,6 +18,9 @@ export const COLLECTIONS = [
     type: 'source',
     nodes: [
       {
+        _metadata: {
+          position: [0, 0, 0],
+        },
         attributes: {
           personas: ['Designer'],
         },
@@ -52,6 +55,9 @@ export const COLLECTIONS = [
         },
       },
       {
+        _metadata: {
+          position: [0, 0, 1],
+        },
         attributes: {
           personas: ['Developer'],
         },
