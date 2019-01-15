@@ -292,6 +292,9 @@ the graphQL schema (more on that [here](https://www.gatsbyjs.org/docs/plugin-aut
         // to transformer plugins this node has data they can further process.
         type // devhubSiphonCollection
     }
+    metadata: {
+        position {Array} // this is the position of the collection as found within the registry file
+    }
 ```
 ### Siphon's Source Node GraphQL Schema
 > last updated Jan 10th 2018
@@ -349,6 +352,14 @@ the graphQL schema (more on that [here](https://www.gatsbyjs.org/docs/plugin-aut
         // Optional field exposing the raw content for this node
         // that transformer plugins can take and further process.
         content // raw content of file
+    }
+    metadata: {
+        // this position of a siphon node is based on 3 factors
+        // the position of the collection within the registry file that this node belongs too
+        // the position of the source within the collection that this node belongs too
+        // the position of the node itself (also referred to as a resource) within the source
+        // the below example says first collection, second source, fifth resource
+        position {Array} // [0, 2, 5]
     }
 ```
 #### Key Takeaways
