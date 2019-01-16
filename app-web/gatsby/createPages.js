@@ -20,30 +20,56 @@
 
 // create pages based on nodes
 const { resolve } = require('path');
-const { SOURCE_TYPES } = require('../plugins/gatsby-source-github-all/utils/constants');
+const chalk = require('chalk');
+const fs = require('fs');
+const {
+  SOURCE_TYPES,
+  COLLECTION_TEMPLATES,
+} = require('../plugins/gatsby-source-github-all/utils/constants');
 
+const resolvePath = path => resolve(__dirname, path);
 /**
- * Get Templates based on source and media type
+ * Get Templates based on source and collectionTemplate or collection template file path
+ * in the even collection template file path and collection template both exist
+ * the file path supersedes
  * @param {String} source
- * @param {String} mediaType
- * @returns {string} the path to the template
+ * @param {String} collectionTemplate
+ * @param {String} collectionTemplateFilePath
+ * @returns {String} the path to the template
  */
-const getTemplate = (source, mediaType) => {
+const getTemplate = (source, collectionTemplate, collectionTemplateFilePath = null) => {
   const TEMPLATES = {
     [SOURCE_TYPES.GITHUB]: {
-      'text/markdown': resolve(__dirname, '../src/templates/SourceGithubMarkdown.js'),
-      'text/html': resolve(__dirname, '../src/templates/SourceGithubHTML.js'),
+      [COLLECTION_TEMPLATES.DEFAULT]: resolvePath('../src/templates/SourceGithubMarkdown.js'),
+      [COLLECTION_TEMPLATES.OVERVIEW]: resolvePath('../src/templates/SourceGithubMarkdown.js'),
     },
   };
 
+  let templatePath = '';
+  // get source template path for default
   const sourceTemplate = TEMPLATES[source];
   if (sourceTemplate) {
-    return sourceTemplate[mediaType];
+    templatePath = sourceTemplate[collectionTemplate];
   } else {
-    throw new Error(
-      `No Available Template for source type ${source}, this is most likely an issue with Siphon's code base creating nodes with the incorrect source type!`,
-    );
+    throw new Error(chalk`
+      {red.underline No Available Template for source type ${source}!} \n\n 
+      This is most likely an issue with Siphon's code base creating nodes with the incorrect source type!
+      I'd recommend checking the registry and validating all sources and collections have the correct sourcetype
+      where applicable and then sifting through the validation routines to see where things are getting bunged up.`);
   }
+
+  // if there is a collection template file path, try to resolve it and see if exists
+  if (collectionTemplateFilePath) {
+    const filePath = resolvePath(`../src/templates/${collectionTemplateFilePath}`);
+    if (fs.existsSync(filePath)) {
+      templatePath = filePath;
+    } else {
+      // if it doesn't exist change template to default one
+      templatePath = TEMPLATES[source][COLLECTION_TEMPLATES.DEFAULT];
+    }
+  }
+
+  return templatePath;
 };
 
 module.exports = async ({ graphql, actions }) => {
@@ -51,26 +77,30 @@ module.exports = async ({ graphql, actions }) => {
   // main graphql query here
   const devhubData = await graphql(`
     {
-      allDevhubSiphon {
+      allDevhubSiphonCollection {
         edges {
           node {
-            id
-            collection {
-              name
+            name
+            _metadata {
+              template
+              templateFile
             }
-            source {
-              type
-            }
-            resource {
-              path
-            }
-            internal {
-              mediaType
-            }
-            childMarkdownRemark {
-              frontmatter {
-                resourcePath
-                ignore
+            childrenDevhubSiphon {
+              id
+              source {
+                type
+              }
+              resource {
+                path
+              }
+              internal {
+                mediaType
+              }
+              childMarkdownRemark {
+                frontmatter {
+                  resourcePath
+                  ignore
+                }
               }
             }
           }
@@ -78,33 +108,48 @@ module.exports = async ({ graphql, actions }) => {
       }
     }
   `);
-  // // right now we are making an assumption all data here resolved from a markdown file
-  // // and will be treated as so
-  devhubData.data.allDevhubSiphon.edges.forEach(({ node }) => {
-    // only create pages for markdown files and ones that don't have an ignore flag
-    // or a resourcePath (which links the content to an external resource)
-    const isResource =
-      node.childMarkdownRemark &&
-      node.childMarkdownRemark.frontmatter &&
-      node.childMarkdownRemark.frontmatter.resourcePath;
-    const isIgnored =
-      node.childMarkdownRemark &&
-      node.childMarkdownRemark.frontmatter &&
-      node.childMarkdownRemark.frontmatter.ignore;
-    // if file is html these would both resolve to false since there are no meta data properties
-    // for now we are explicitly only creating pages for text/markdown, although html pages
-    // would work, there are many things about presenting html documents that haven't been ironed
-    // out yet but will be in future versions
-    if (!isResource && !isIgnored && node.internal.mediaType === 'text/markdown') {
-      createPage({
-        path: node.resource.path,
-        component: getTemplate(node.source.type, node.internal.mediaType),
-        context: {
-          // Data passed to context is available in page queries as GraphQL variables.
-          id: node.id,
-          collection: node.collection.name,
-        },
-      });
-    }
+  // right now we are making an assumption all data here resolved from a markdown file
+  // and will be treated as so
+  // loop over collections and then nodes
+
+  devhubData.data.allDevhubSiphonCollection.edges.forEach(({ node }) => {
+    const collection = node;
+    // 'node' is the property that holds the collection object after the graphql query has prrocessed
+    node.childrenDevhubSiphon.forEach(siphon => {
+      // only create pages for markdown files and ones that don't have an ignore flag
+      // or a resourcePath (which links the content to an external resource)
+      const isResource =
+        siphon.childMarkdownRemark &&
+        siphon.childMarkdownRemark.frontmatter &&
+        siphon.childMarkdownRemark.frontmatter.resourcePath;
+      const isIgnored =
+        siphon.childMarkdownRemark &&
+        siphon.childMarkdownRemark.frontmatter &&
+        siphon.childMarkdownRemark.frontmatter.ignore;
+      // if file is html these would both resolve to false since there are no meta data properties
+      // for now we are explicitly only creating pages for text/markdown, although html pages
+      // would work, there are many things about presenting html documents that haven't been ironed
+      // out yet but will be in future versions
+      if (!isResource && !isIgnored && siphon.internal.mediaType === 'text/markdown') {
+        try {
+          createPage({
+            path: siphon.resource.path,
+            component: getTemplate(
+              siphon.source.type,
+              collection._metadata.template,
+              collection._metadata.templateFile,
+            ),
+            context: {
+              // Data passed to context is available in page queries as GraphQL variables.
+              id: siphon.id,
+              collection: collection.name,
+            },
+          });
+        } catch (e) {
+          console.error(e); // console error here so message is displayed in a nicer way
+          throw new Error('Error Quiting Build'); // throw to kill gatsby build
+        }
+      }
+    });
   });
 };
