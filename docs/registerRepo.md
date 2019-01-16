@@ -52,7 +52,7 @@ It can be found at `/app-web/source-registry/registry.yml`.
 
 When you register with the Devhub, several processes are kicked off to retrieve any content as defined from within the *registry file*.
 
-Depending on the configuration of the registry as well as any extra configuration as defined within the sources themselves, the sources content will automatically be apart of the DevHub and have a static website generated for it.
+Depending on the configuration of the registry as well as any extra configuration as defined within the sources themselves, the sources content will automatically be apart of the DevHub and have a static website generated for it. The way this static site is presented depends on the **template** that is used. The **template** is configured by you (or on is provided by default) within the registry. More on that later!
 
 At the end of this process a card is manifested in the devhub that points to the generated static site for your content if applicable.
 
@@ -91,6 +91,9 @@ The following Registry Level Configurations are available:
 - **attributes**:
     - **labels**: a yaml list of labels/tags for all of your sources to inherit
     - **persona**: a global persona that all sources may inherit, personas are validated against a master list, valid values are: 'Designer', 'Developer', 'Product Owner'
+- **template**: this is the name of the template you want to use for your source, this will change how it renders in the devhub. The only template type available ***other than the default one*** is 'overview'
+- **templateFile**: the name of the tempalte you would like to use as found in the `/app-web/src/templates/` folder
+> templateFile takes priority in the event template and templateFile both exist in the registry. Also if templateFile fails to find the template specified **it will use the default one.**
 
 There are currently **two supported source types** that can be used within the DevHub. 
 - `github`
