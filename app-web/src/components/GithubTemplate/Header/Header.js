@@ -37,7 +37,7 @@ const Header = ({ title, originalSource, fileName, sourcePath, repo }) => (
         </a>
       </li>
       <li>
-        <a href={`${sourcePath}fork`}>
+        <a href={`${sourcePath}/fork`}>
           <FontAwesomeIcon icon={faCodeBranch} aria-label={`Fork ${repo} on github`} />
         </a>
       </li>

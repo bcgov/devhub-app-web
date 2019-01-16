@@ -20,22 +20,50 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import GithubTemplateLayout from '../hoc/GithubTemplateLayout';
+import Overview from '../components/Collection/Overview';
 import 'github-markdown-css';
 import styles from './SourceMarkdown.module.css';
-// eslint-disable-next-line
-const SourceGithubMarkdownDefault = ({ data: { devhubSiphon, nav }, location: pathname }) => (
-  <GithubTemplateLayout siphonData={devhubSiphon} nav={nav} pathname={pathname}>
-    <div
-      className={[styles.MarkdownBody, 'markdown-body'].join(' ')}
-      dangerouslySetInnerHTML={{
-        __html: devhubSiphon.childMarkdownRemark.html,
-      }}
-    />
-  </GithubTemplateLayout>
-);
+
+/**
+ * if position === [x, 0, 0] then it is first
+ * @param {Array} position the siphon node position
+ * @returns {Boolean}
+ */
+const isFirstResourceInOverview = position => position[1] === 0 && position[2] === 0;
+
+// over template has an overview for the first resource
+const SourceGithubMarkdownOverview = ({
+  data: { devhubSiphon, devhubSiphonCollection, nav },
+  location: pathname,
+}) => {
+  const { description, name } = devhubSiphonCollection;
+  const {
+    _metadata: { position },
+  } = devhubSiphon;
+
+  const overview = isFirstResourceInOverview(position) ? (
+    <Overview title={name} description={description} />
+  ) : null;
+
+  return (
+    <GithubTemplateLayout siphonData={devhubSiphon} nav={nav} pathname={pathname}>
+      {overview}
+      <div
+        className={[styles.MarkdownBody, 'markdown-body'].join(' ')}
+        dangerouslySetInnerHTML={{
+          __html: devhubSiphon.childMarkdownRemark.html,
+        }}
+      />
+    </GithubTemplateLayout>
+  );
+};
 
 export const devhubSiphonMarkdown = graphql`
-  query devhubSiphonMarkdownDefault($id: String!, $collection: String!) {
+  query devhubSiphonMarkdownOverview($id: String!, $collection: String!, $collectionId: String!) {
+    devhubSiphonCollection(id: { eq: $collectionId }) {
+      description
+      name
+    }
     devhubSiphon(id: { eq: $id }) {
       name
       id
@@ -53,6 +81,9 @@ export const devhubSiphonMarkdown = graphql`
       }
       resource {
         originalSource
+      }
+      _metadata {
+        position
       }
       owner
       fileName
@@ -74,4 +105,4 @@ export const devhubSiphonMarkdown = graphql`
   }
 `;
 
-export default SourceGithubMarkdownDefault;
+export default SourceGithubMarkdownOverview;
