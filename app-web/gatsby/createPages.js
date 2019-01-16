@@ -41,7 +41,7 @@ const getTemplate = (source, collectionTemplate, collectionTemplateFilePath = nu
   const TEMPLATES = {
     [SOURCE_TYPES.GITHUB]: {
       [COLLECTION_TEMPLATES.DEFAULT]: resolvePath('../src/templates/SourceGithub_default.js'),
-      [COLLECTION_TEMPLATES.OVERVIEW]: resolvePath('../src/templates/SourceGithub_default.js'),
+      [COLLECTION_TEMPLATES.OVERVIEW]: resolvePath('../src/templates/SourceGithub_overview.js'),
     },
   };
 
@@ -59,7 +59,7 @@ const getTemplate = (source, collectionTemplate, collectionTemplateFilePath = nu
   }
 
   // if there is a collection template file path, try to resolve it and see if exists
-  if (collectionTemplateFilePath) {
+  if (collectionTemplateFilePath !== '') {
     const filePath = resolvePath(`../src/templates/${collectionTemplateFilePath}`);
     if (fs.existsSync(filePath)) {
       templatePath = filePath;
@@ -80,6 +80,7 @@ module.exports = async ({ graphql, actions }) => {
       allDevhubSiphonCollection {
         edges {
           node {
+            id
             name
             _metadata {
               template
@@ -131,18 +132,22 @@ module.exports = async ({ graphql, actions }) => {
       // would work, there are many things about presenting html documents that haven't been ironed
       // out yet but will be in future versions
       if (!isResource && !isIgnored && siphon.internal.mediaType === 'text/markdown') {
+        const template = getTemplate(
+          siphon.source.type,
+          collection._metadata.template,
+          collection._metadata.templateFile,
+        );
+
+        console.log('using template', collection._metadata.template, '\n');
         try {
           createPage({
             path: siphon.resource.path,
-            component: getTemplate(
-              siphon.source.type,
-              collection._metadata.template,
-              collection._metadata.templateFile,
-            ),
+            component: template,
             context: {
               // Data passed to context is available in page queries as GraphQL variables.
               id: siphon.id,
               collection: collection.name,
+              collectionId: collection.id,
             },
           });
         } catch (e) {
