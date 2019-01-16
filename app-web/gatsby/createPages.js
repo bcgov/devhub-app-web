@@ -40,8 +40,8 @@ const resolvePath = path => resolve(__dirname, path);
 const getTemplate = (source, collectionTemplate, collectionTemplateFilePath = null) => {
   const TEMPLATES = {
     [SOURCE_TYPES.GITHUB]: {
-      [COLLECTION_TEMPLATES.DEFAULT]: resolvePath('../src/templates/SourceGithubMarkdown.js'),
-      [COLLECTION_TEMPLATES.OVERVIEW]: resolvePath('../src/templates/SourceGithubMarkdown.js'),
+      [COLLECTION_TEMPLATES.DEFAULT]: resolvePath('../src/templates/SourceGithub_default.js'),
+      [COLLECTION_TEMPLATES.OVERVIEW]: resolvePath('../src/templates/SourceGithub_default.js'),
     },
   };
 
