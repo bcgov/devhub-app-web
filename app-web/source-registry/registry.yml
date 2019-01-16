@@ -9,7 +9,7 @@ sources:
       labels:
         - Components
         - Repository
-      personas: 
+      personas:
         - 'Designer'
         - 'Developer'
     resourceType: 'Components'
@@ -31,6 +31,8 @@ sources:
       url: https://github.com/BCDevOps/openshift-wiki
       owner: BCDevOps
       repo: 'openshift-wiki'
+      ignores:
+      - docs/OCP/OCPServiceDefinition.md
     resourceType: 'Documentation'
     attributes:
       labels:
@@ -112,3 +114,16 @@ sources:
               - BC-Gov-Org-HowTo/SAMPLE-CODE_OF_CONDUCT.md
               - BC-Gov-Org-HowTo/SAMPLE-CONTRIBUTING.md
               - BC-Gov-Org-HowTo/SAMPLE-README.md
+  - name: 'DevOps Platform Service Definitions'
+    description: 'Service Definitions provide concise descriptions of the Services provided by DevOps Platform Services team.'
+    sourceProperties:
+      sources:
+      - sourceType: 'github'
+        resourceType: 'Documentation'
+        sourceProperties:
+          repo: openshift-wiki
+          owner: bcdevops
+          url: https://github.com/BCDevOps/openshift-wiki
+          branch: feature/243-openshift-svc-def
+          files:
+          - docs/OCP/OCPServiceDefinition.md
