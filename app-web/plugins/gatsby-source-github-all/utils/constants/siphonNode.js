@@ -46,6 +46,13 @@ const PERSONAS = {
   PRODUCT_OWNER: 'Product Owner',
 };
 
+const COLLECTION_TEMPLATES = {
+  DEFAULT: 'default',
+  OVERVIEW: 'overview',
+};
+
+const COLLECTION_TEMPLATES_LIST = Object.values(COLLECTION_TEMPLATES);
+
 const PERSONAS_LIST = Object.values(PERSONAS);
 
 const GRAPHQL_NODE_TYPE = {
@@ -61,4 +68,6 @@ module.exports = {
   PERSONAS,
   PERSONAS_LIST,
   GRAPHQL_NODE_TYPE,
+  COLLECTION_TEMPLATES,
+  COLLECTION_TEMPLATES_LIST,
 };

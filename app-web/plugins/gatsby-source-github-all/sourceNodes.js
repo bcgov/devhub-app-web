@@ -28,9 +28,15 @@ const {
   getCollectionDescriptionBySourceType,
   assignPositionToCollection,
   assignPositionToSource,
+  getClosest,
 } = require('./utils/helpers');
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
-const { COLLECTION_TYPES, REGISTRY_ITEM_SCHEMA } = require('./utils/constants');
+const {
+  COLLECTION_TYPES,
+  REGISTRY_ITEM_SCHEMA,
+  COLLECTION_TEMPLATES,
+  COLLECTION_TEMPLATES_LIST,
+} = require('./utils/constants');
 const { createSiphonNode, createCollectionNode } = require('./utils/createNode');
 
 /**
@@ -176,6 +182,10 @@ const getFetchQueue = async (sources, tokens) => {
         {
           name: rootSource.name,
           sources: [],
+          template: rootSource.templateName
+            ? getClosest(rootSource.templateName, COLLECTION_TEMPLATES_LIST)
+            : COLLECTION_TEMPLATES.DEFAULT,
+          templateFile: rootSource.templateFile,
         },
         index,
       ),

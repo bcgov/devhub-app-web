@@ -72,6 +72,12 @@ const createUnfurlObj = (
   };
 };
 
+const getClosest = (value, list) => {
+  const matches = stringSimilarity.findBestMatch(value, list);
+  // only return the best match if its greater than .5 in similarity
+  return matches.bestMatch.rating >= 0.5 ? matches.bestMatch.target : '';
+};
+
 /**
  * returns the closest resourceType from the constant resourceTypes array based on the
  * uncontrolled resourceType (given to us by contributors)
@@ -80,9 +86,7 @@ const createUnfurlObj = (
 const getClosestResourceType = resourceType => {
   // if its blank don't bother checking closeness
   if (resourceType === '') return '';
-  const matches = stringSimilarity.findBestMatch(resourceType, RESOURCE_TYPES_LIST);
-  // only return the best match if its greater than .5 in similarity
-  return matches.bestMatch.rating >= 0.5 ? matches.bestMatch.target : '';
+  return getClosest(resourceType, RESOURCE_TYPES_LIST);
 };
 
 /**
@@ -92,13 +96,11 @@ const getClosestResourceType = resourceType => {
  * @param {Array} personas the valid personas list
  */
 const getClosestPersona = (personaList, personas) => {
-  const RATING_THRESHOLD = 0.5; // rating is between 0 - 1, we only want a match if it's greater than half.
   // if its blank don't bother checking closeness
   if (personaList.length === 0) return [];
 
   return personaList.map(p => {
-    const matches = stringSimilarity.findBestMatch(p, personas);
-    return matches.bestMatch.rating >= RATING_THRESHOLD ? matches.bestMatch.target : '';
+    return getClosest(p, personas);
   });
 };
 
@@ -341,6 +343,7 @@ module.exports = {
   hashString,
   createPathWithDigest,
   createUnfurlObj,
+  getClosest,
   getClosestResourceType,
   getClosestPersona,
   getAbsolutePathFromRelative,

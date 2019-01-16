@@ -21,6 +21,9 @@
 // sample files that may be received when calling github v3 tree api
 // seperating them out in this obj so that we can recycle some of these properties
 // in tests as well as other fixtures
+
+const { COLLECTION_TEMPLATES } = require('../utils/constants');
+
 const TREE_FILES = {
   FILE1: {
     path: 'docs/readme1.md',
@@ -569,6 +572,7 @@ const COLLECTION_OBJ_FROM_FETCH_QUEUE = {
   name: 'foo',
   description: 'blah',
   sources: [WEB_SOURCE],
+  template: COLLECTION_TEMPLATES.DEFAULT,
   metadata: {
     position: [0],
   },
