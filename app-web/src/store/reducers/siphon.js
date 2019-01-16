@@ -36,20 +36,18 @@ const mapWithCallback = (array, cb) => array.map(cb);
  * weighting decreases left to right
  * @param {Array} position
  * @returns {String} an address of the position based on weight
- * [0, 2, 5] = 100.30.6
+ * [0, 2, 5] => '100.30.6' (this allows for easy lexographic sorting)
  */
-export const getTruePositionFromWeightedScale = position => {
-  return position
+export const getTruePositionFromWeightedScale = position =>
+  position
     .reduce((pos, val, index) => {
       const power = position.length - index - 1;
-
       const multiplier = val + 1; // since positions start at 0, we are adding 1 so that
-      // we don't run into an issue of 0 x 10^index which would lead to bad things
+      // we don't run into an issue of 0 x 10^power which would lead to bad things
 
       return `${pos}.${multiplier * Math.pow(10, power)}`;
     }, '')
-    .slice(1);
-};
+    .slice(1); // removing initial '.'
 
 /**
  * clones a siphon node
