@@ -30,6 +30,26 @@ const initialState = {
 const mapWithCallback = (array, cb) => array.map(cb);
 
 /**
+ * from an array of siphon positions
+ * [collection, source, resource]
+ * we return an integer by weighting each index to a power of ten
+ * weighting decreases left to right
+ * @param {Array} position
+ * @returns {String} an address of the position based on weight
+ * [0, 2, 5] => '100.30.6' (this allows for easy lexographic sorting)
+ */
+export const getTruePositionFromWeightedScale = position =>
+  position
+    .reduce((pos, val, index) => {
+      const power = position.length - index - 1;
+      const multiplier = val + 1; // since positions start at 0, we are adding 1 so that
+      // we don't run into an issue of 0 x 10^power which would lead to bad things
+
+      return `${pos}.${multiplier * Math.pow(10, power)}`;
+    }, '')
+    .slice(1); // removing initial '.'
+
+/**
  * clones a siphon node
  * @param {Object} node the siphon node owned by a collection
  * @returns {Object}
@@ -234,9 +254,21 @@ const resetFilters = state => {
  */
 const setCollections = (state, collections) => {
   const newState = { ...state };
-  newState.collections = newCollections(collections);
+  // sort collection nodes by position
+  let sortedCollections = collections.map(c => {
+    c.nodes = c.nodes.sort((a, b) => {
+      // lexographic search
+      const address1 = getTruePositionFromWeightedScale(a._metadata.position);
+      const address2 = getTruePositionFromWeightedScale(b._metadata.position);
+      if (address1 < address2) return -1;
+      if (address1 > address2) return 1;
+      return 0;
+    });
+    return c;
+  });
+  newState.collections = newCollections(sortedCollections);
   // nodes will be filtered eventually be resource type which is the top level navigation
-  newState.primaryFilteredNodes = newCollections(collections);
+  newState.primaryFilteredNodes = newCollections(sortedCollections);
   return applySecondaryFilters(newState);
 };
 

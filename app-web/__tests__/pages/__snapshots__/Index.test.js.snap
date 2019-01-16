@@ -10,6 +10,13 @@ ShallowWrapper {
           "name": "Design System",
           "nodes": Array [
             Object {
+              "_metadata": Object {
+                "position": Array [
+                  0,
+                  0,
+                  0,
+                ],
+              },
               "attributes": Object {
                 "personas": Array [
                   "Designer",
@@ -44,6 +51,13 @@ ShallowWrapper {
               },
             },
             Object {
+              "_metadata": Object {
+                "position": Array [
+                  0,
+                  0,
+                  1,
+                ],
+              },
               "attributes": Object {
                 "personas": Array [
                   "Developer",
@@ -91,6 +105,13 @@ ShallowWrapper {
                 "name": "Design System",
                 "nodes": Array [
                   Object {
+                    "_metadata": Object {
+                      "position": Array [
+                        0,
+                        0,
+                        0,
+                      ],
+                    },
                     "attributes": Object {
                       "personas": Array [
                         "Designer",
@@ -125,6 +146,13 @@ ShallowWrapper {
                     },
                   },
                   Object {
+                    "_metadata": Object {
+                      "position": Array [
+                        0,
+                        0,
+                        1,
+                      ],
+                    },
                     "attributes": Object {
                       "personas": Array [
                         "Developer",
@@ -209,6 +237,13 @@ ShallowWrapper {
                 "name": "Design System",
                 "nodes": Array [
                   Object {
+                    "_metadata": Object {
+                      "position": Array [
+                        0,
+                        0,
+                        0,
+                      ],
+                    },
                     "attributes": Object {
                       "personas": Array [
                         "Designer",
@@ -243,6 +278,13 @@ ShallowWrapper {
                     },
                   },
                   Object {
+                    "_metadata": Object {
+                      "position": Array [
+                        0,
+                        0,
+                        1,
+                      ],
+                    },
                     "attributes": Object {
                       "personas": Array [
                         "Developer",
@@ -486,6 +528,13 @@ ShallowWrapper {
                       cards={
                         Array [
                           Object {
+                            "_metadata": Object {
+                              "position": Array [
+                                0,
+                                0,
+                                0,
+                              ],
+                            },
                             "attributes": Object {
                               "personas": Array [
                                 "Designer",
@@ -520,6 +569,13 @@ ShallowWrapper {
                             },
                           },
                           Object {
+                            "_metadata": Object {
+                              "position": Array [
+                                0,
+                                0,
+                                1,
+                              ],
+                            },
                             "attributes": Object {
                               "personas": Array [
                                 "Developer",
@@ -773,6 +829,13 @@ ShallowWrapper {
                         cards={
                           Array [
                             Object {
+                              "_metadata": Object {
+                                "position": Array [
+                                  0,
+                                  0,
+                                  0,
+                                ],
+                              },
                               "attributes": Object {
                                 "personas": Array [
                                   "Designer",
@@ -807,6 +870,13 @@ ShallowWrapper {
                               },
                             },
                             Object {
+                              "_metadata": Object {
+                                "position": Array [
+                                  0,
+                                  0,
+                                  1,
+                                ],
+                              },
                               "attributes": Object {
                                 "personas": Array [
                                   "Developer",
@@ -1032,6 +1102,13 @@ ShallowWrapper {
                           cards={
                             Array [
                               Object {
+                                "_metadata": Object {
+                                  "position": Array [
+                                    0,
+                                    0,
+                                    0,
+                                  ],
+                                },
                                 "attributes": Object {
                                   "personas": Array [
                                     "Designer",
@@ -1066,6 +1143,13 @@ ShallowWrapper {
                                 },
                               },
                               Object {
+                                "_metadata": Object {
+                                  "position": Array [
+                                    0,
+                                    0,
+                                    1,
+                                  ],
+                                },
                                 "attributes": Object {
                                   "personas": Array [
                                     "Developer",
@@ -1219,6 +1303,13 @@ ShallowWrapper {
                           cards={
                             Array [
                               Object {
+                                "_metadata": Object {
+                                  "position": Array [
+                                    0,
+                                    0,
+                                    0,
+                                  ],
+                                },
                                 "attributes": Object {
                                   "personas": Array [
                                     "Designer",
@@ -1253,6 +1344,13 @@ ShallowWrapper {
                                 },
                               },
                               Object {
+                                "_metadata": Object {
+                                  "position": Array [
+                                    0,
+                                    0,
+                                    1,
+                                  ],
+                                },
                                 "attributes": Object {
                                   "personas": Array [
                                     "Developer",
@@ -1314,6 +1412,13 @@ ShallowWrapper {
                           cards={
                             Array [
                               Object {
+                                "_metadata": Object {
+                                  "position": Array [
+                                    0,
+                                    0,
+                                    0,
+                                  ],
+                                },
                                 "attributes": Object {
                                   "personas": Array [
                                     "Designer",
@@ -1348,6 +1453,13 @@ ShallowWrapper {
                                 },
                               },
                               Object {
+                                "_metadata": Object {
+                                  "position": Array [
+                                    0,
+                                    0,
+                                    1,
+                                  ],
+                                },
                                 "attributes": Object {
                                   "personas": Array [
                                     "Developer",
@@ -1404,6 +1516,13 @@ ShallowWrapper {
                           cards={
                             Array [
                               Object {
+                                "_metadata": Object {
+                                  "position": Array [
+                                    0,
+                                    0,
+                                    0,
+                                  ],
+                                },
                                 "attributes": Object {
                                   "personas": Array [
                                     "Designer",
@@ -1438,6 +1557,13 @@ ShallowWrapper {
                                 },
                               },
                               Object {
+                                "_metadata": Object {
+                                  "position": Array [
+                                    0,
+                                    0,
+                                    1,
+                                  ],
+                                },
                                 "attributes": Object {
                                   "personas": Array [
                                     "Developer",
@@ -1491,6 +1617,13 @@ ShallowWrapper {
                             cards={
                               Array [
                                 Object {
+                                  "_metadata": Object {
+                                    "position": Array [
+                                      0,
+                                      0,
+                                      0,
+                                    ],
+                                  },
                                   "attributes": Object {
                                     "personas": Array [
                                       "Designer",
@@ -1525,6 +1658,13 @@ ShallowWrapper {
                                   },
                                 },
                                 Object {
+                                  "_metadata": Object {
+                                    "position": Array [
+                                      0,
+                                      0,
+                                      1,
+                                    ],
+                                  },
                                   "attributes": Object {
                                     "personas": Array [
                                       "Developer",
@@ -1576,6 +1716,13 @@ ShallowWrapper {
                           "props": Object {
                             "cards": Array [
                               Object {
+                                "_metadata": Object {
+                                  "position": Array [
+                                    0,
+                                    0,
+                                    0,
+                                  ],
+                                },
                                 "attributes": Object {
                                   "personas": Array [
                                     "Designer",
@@ -1610,6 +1757,13 @@ ShallowWrapper {
                                 },
                               },
                               Object {
+                                "_metadata": Object {
+                                  "position": Array [
+                                    0,
+                                    0,
+                                    1,
+                                  ],
+                                },
                                 "attributes": Object {
                                   "personas": Array [
                                     "Developer",
@@ -1853,6 +2007,13 @@ ShallowWrapper {
                         cards={
                           Array [
                             Object {
+                              "_metadata": Object {
+                                "position": Array [
+                                  0,
+                                  0,
+                                  0,
+                                ],
+                              },
                               "attributes": Object {
                                 "personas": Array [
                                   "Designer",
@@ -1887,6 +2048,13 @@ ShallowWrapper {
                               },
                             },
                             Object {
+                              "_metadata": Object {
+                                "position": Array [
+                                  0,
+                                  0,
+                                  1,
+                                ],
+                              },
                               "attributes": Object {
                                 "personas": Array [
                                   "Developer",
@@ -2140,6 +2308,13 @@ ShallowWrapper {
                           cards={
                             Array [
                               Object {
+                                "_metadata": Object {
+                                  "position": Array [
+                                    0,
+                                    0,
+                                    0,
+                                  ],
+                                },
                                 "attributes": Object {
                                   "personas": Array [
                                     "Designer",
@@ -2174,6 +2349,13 @@ ShallowWrapper {
                                 },
                               },
                               Object {
+                                "_metadata": Object {
+                                  "position": Array [
+                                    0,
+                                    0,
+                                    1,
+                                  ],
+                                },
                                 "attributes": Object {
                                   "personas": Array [
                                     "Developer",
@@ -2399,6 +2581,13 @@ ShallowWrapper {
                             cards={
                               Array [
                                 Object {
+                                  "_metadata": Object {
+                                    "position": Array [
+                                      0,
+                                      0,
+                                      0,
+                                    ],
+                                  },
                                   "attributes": Object {
                                     "personas": Array [
                                       "Designer",
@@ -2433,6 +2622,13 @@ ShallowWrapper {
                                   },
                                 },
                                 Object {
+                                  "_metadata": Object {
+                                    "position": Array [
+                                      0,
+                                      0,
+                                      1,
+                                    ],
+                                  },
                                   "attributes": Object {
                                     "personas": Array [
                                       "Developer",
@@ -2586,6 +2782,13 @@ ShallowWrapper {
                             cards={
                               Array [
                                 Object {
+                                  "_metadata": Object {
+                                    "position": Array [
+                                      0,
+                                      0,
+                                      0,
+                                    ],
+                                  },
                                   "attributes": Object {
                                     "personas": Array [
                                       "Designer",
@@ -2620,6 +2823,13 @@ ShallowWrapper {
                                   },
                                 },
                                 Object {
+                                  "_metadata": Object {
+                                    "position": Array [
+                                      0,
+                                      0,
+                                      1,
+                                    ],
+                                  },
                                   "attributes": Object {
                                     "personas": Array [
                                       "Developer",
@@ -2681,6 +2891,13 @@ ShallowWrapper {
                             cards={
                               Array [
                                 Object {
+                                  "_metadata": Object {
+                                    "position": Array [
+                                      0,
+                                      0,
+                                      0,
+                                    ],
+                                  },
                                   "attributes": Object {
                                     "personas": Array [
                                       "Designer",
@@ -2715,6 +2932,13 @@ ShallowWrapper {
                                   },
                                 },
                                 Object {
+                                  "_metadata": Object {
+                                    "position": Array [
+                                      0,
+                                      0,
+                                      1,
+                                    ],
+                                  },
                                   "attributes": Object {
                                     "personas": Array [
                                       "Developer",
@@ -2771,6 +2995,13 @@ ShallowWrapper {
                             cards={
                               Array [
                                 Object {
+                                  "_metadata": Object {
+                                    "position": Array [
+                                      0,
+                                      0,
+                                      0,
+                                    ],
+                                  },
                                   "attributes": Object {
                                     "personas": Array [
                                       "Designer",
@@ -2805,6 +3036,13 @@ ShallowWrapper {
                                   },
                                 },
                                 Object {
+                                  "_metadata": Object {
+                                    "position": Array [
+                                      0,
+                                      0,
+                                      1,
+                                    ],
+                                  },
                                   "attributes": Object {
                                     "personas": Array [
                                       "Developer",
@@ -2858,6 +3096,13 @@ ShallowWrapper {
                               cards={
                                 Array [
                                   Object {
+                                    "_metadata": Object {
+                                      "position": Array [
+                                        0,
+                                        0,
+                                        0,
+                                      ],
+                                    },
                                     "attributes": Object {
                                       "personas": Array [
                                         "Designer",
@@ -2892,6 +3137,13 @@ ShallowWrapper {
                                     },
                                   },
                                   Object {
+                                    "_metadata": Object {
+                                      "position": Array [
+                                        0,
+                                        0,
+                                        1,
+                                      ],
+                                    },
                                     "attributes": Object {
                                       "personas": Array [
                                         "Developer",
@@ -2943,6 +3195,13 @@ ShallowWrapper {
                             "props": Object {
                               "cards": Array [
                                 Object {
+                                  "_metadata": Object {
+                                    "position": Array [
+                                      0,
+                                      0,
+                                      0,
+                                    ],
+                                  },
                                   "attributes": Object {
                                     "personas": Array [
                                       "Designer",
@@ -2977,6 +3236,13 @@ ShallowWrapper {
                                   },
                                 },
                                 Object {
+                                  "_metadata": Object {
+                                    "position": Array [
+                                      0,
+                                      0,
+                                      1,
+                                    ],
+                                  },
                                   "attributes": Object {
                                     "personas": Array [
                                       "Developer",
