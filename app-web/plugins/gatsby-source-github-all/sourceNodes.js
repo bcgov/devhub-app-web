@@ -182,8 +182,8 @@ const getFetchQueue = async (sources, tokens) => {
         {
           name: rootSource.name,
           sources: [],
-          template: rootSource.templateName
-            ? getClosest(rootSource.templateName, COLLECTION_TEMPLATES_LIST)
+          template: rootSource.template
+            ? getClosest(rootSource.template, COLLECTION_TEMPLATES_LIST)
             : COLLECTION_TEMPLATES.DEFAULT,
           templateFile: rootSource.templateFile || '',
         },

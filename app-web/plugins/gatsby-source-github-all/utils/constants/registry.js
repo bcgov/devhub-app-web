@@ -39,7 +39,7 @@ const REGISTRY_ITEM_SCHEMA = {
     type: String,
     required: false,
   },
-  templateName: {
+  template: {
     type: String,
     required: false,
   },
