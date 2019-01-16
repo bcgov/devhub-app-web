@@ -23,6 +23,7 @@ Devhub is a content catalogue generator. **Siphon** is Devhub's main tool that *
     - [GraphQL Intro](#graphql)
     - [The Siphon GraphQL Schema](#siphons-graphql-schema)
     - [Implicit mediaTypes and other Gatsby Plugins](#implicit-media-types-and-their-importance)
+-   [Templates](#Templates)
 
 ## What is it?
 Siphon is actually just a [Gatsby Source Plugin](https://www.gatsbyjs.org/docs/create-source-plugin/) that was locally authored to pull in content from Github Repositories.
@@ -442,3 +443,18 @@ We can see that the remark transformer plugin ***provided*** some extra utility 
 ***CAUTION!***
 
 Just becuase the transformer remark plugin appended a "childMarkdownRemark" property  doesn't mean other transformer plugins will behave similarily!
+
+### Templates
+
+The way your content is presented in the Devhub is entirely up to you! You may choose a template during
+the registration process to tailor how your content is delivered to users. There are a couple of ones
+at this time that can be used but more will be added.
+
+Template Types:
+- **overview**: todo add explanation of overview template
+- **default**: this will render your content out as well as setup navigation for any related resources that are apart of your source/collection
+
+#### Can I Make a Template?
+
+Short answer...***yes!!!***  Please fork and make a PR with your template. For more information on
+templates please see our current templates found within `/app-web/src/templates/` for reference as well as the [Gatsby Docs](https://www.gatsbyjs.org/tutorial/part-seven/#creating-pages)
