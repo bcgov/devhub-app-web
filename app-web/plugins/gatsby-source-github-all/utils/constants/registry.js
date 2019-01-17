@@ -39,6 +39,14 @@ const REGISTRY_ITEM_SCHEMA = {
     type: String,
     required: false,
   },
+  template: {
+    type: String,
+    required: false,
+  },
+  templatePath: {
+    type: String,
+    required: false,
+  },
 };
 
 module.exports = {

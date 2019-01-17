@@ -29,7 +29,7 @@ import {
   processCollection,
 } from '../sourceNodes';
 import { createSiphonNode, createCollectionNode } from '../utils/createNode';
-import { GRAPHQL_NODE_TYPE, COLLECTION_TYPES } from '../utils/constants';
+import { GRAPHQL_NODE_TYPE, COLLECTION_TYPES, COLLECTION_TEMPLATES } from '../utils/constants';
 import {
   GRAPHQL_NODES_WITH_REGISTRY,
   GRAPHQL_NODES_WITHOUT_REGISTRY,
@@ -254,6 +254,8 @@ describe('gatsby source github all plugin', () => {
       },
       _metadata: {
         position: [0],
+        template: COLLECTION_TEMPLATES.DEFAULT,
+        templateFile: undefined,
       },
     };
     hashString.mockReturnValue(null);

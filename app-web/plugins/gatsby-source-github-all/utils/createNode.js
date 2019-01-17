@@ -40,6 +40,8 @@ const createCollectionNode = (collection, id) => {
     },
     _metadata: {
       position: metadata.position,
+      template: collection.template,
+      templateFile: collection.templateFile,
     },
   };
 };
