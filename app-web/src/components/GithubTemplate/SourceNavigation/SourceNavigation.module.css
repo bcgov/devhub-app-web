@@ -1,13 +1,17 @@
 .Navigation {
+    max-height: 100px;
     margin-bottom: 4px;
+    flex: 1 1 auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .Navigation ul {
     padding: 0;
     margin: 0;
     list-style: none;
-    overflow-y: auto;
-    max-height: 100px;
+    overflow-y: scroll;
 }
 
 .Navigation ul li {
@@ -40,10 +44,9 @@
 }
 
 @media screen and (min-width: 600px) {
-    .Navigation ul {
-        max-height: 500px;
+    .Navigation {
+        max-height: none;
     }
-
     .Navigation li[data-active="true"] a {
         transform: translateX(5px);
     }

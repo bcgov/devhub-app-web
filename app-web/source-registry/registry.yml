@@ -27,6 +27,7 @@ sources:
     resourceType: 'Self-Service Tools'
   - name: Open Shift Wiki
     sourceType: 'github'
+    template: overview
     sourceProperties:
       url: https://github.com/BCDevOps/openshift-wiki
       owner: BCDevOps

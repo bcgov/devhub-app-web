@@ -72,6 +72,8 @@
 }
 
 .SidePanel {
+    display: flex;
+    flex-direction: column;
     flex: 1 0 200px;
 }
 
