@@ -1,5 +1,8 @@
 .SidePanel {
   flex: 1 0 200px;
+  background-color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (min-width: 768px) {
@@ -9,8 +12,10 @@
   }
 
   .SidePanel {
-      max-width: 250px;
-      background-color: #e0e0e0;
-      margin-left: 1em;
+      width: 260px;
+      position: fixed;
+      left: 0;
+      bottom: 47px;
+      top: 52px;
   }
 }

@@ -27,6 +27,7 @@ sources:
     resourceType: 'Self-Service Tools'
   - name: Open Shift Wiki
     sourceType: 'github'
+    template: overview
     sourceProperties:
       url: https://github.com/BCDevOps/openshift-wiki
       owner: BCDevOps
@@ -94,7 +95,7 @@ sources:
             owner: bcgov
             repo: BC-Policy-Framework-For-GitHub
             files:
-              - github/intro.md
+              - github/README.md
               - BC-Open-Source-Development-Employee-Guide/appropriate-use.md
               - github/flow.md
         - sourceType: web

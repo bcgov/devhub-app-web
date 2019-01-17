@@ -1,26 +1,29 @@
 .Navigation {
+    max-height: 100px;
     margin-bottom: 4px;
-    margin-left: 1em;
+    flex: 1 1 auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .Navigation ul {
     padding: 0;
     margin: 0;
     list-style: none;
-    overflow-y: auto;
-    max-height: 100px;
-}
-.Navigation ul::-webkit-scrollbar-track {
-    padding: 2px 0;
+    overflow-y: scroll;
 }
 
-.Navigation ul::-webkit-scrollbar {
-    width: 10px;
+.Navigation ul li {
+    padding: 4px .5em;
 }
 
-.Navigation ul::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: #737272;
+.Navigation li[data-active="true"] {
+    text-decoration: underline;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
 
 .Navigation a {
@@ -28,8 +31,12 @@
     color: #2e2e2e;
     display: inline-block;
     width: 100%;
-    padding: 4px;
     text-overflow: ellipsis;
+}
+
+.Navigation a span {
+    margin-left: 5px;
+    color: #1a5a96;
 }
 
 .Navigation a:visited {
@@ -37,7 +44,10 @@
 }
 
 @media screen and (min-width: 600px) {
-    .Navigation ul {
-        max-height: 500px;
+    .Navigation {
+        max-height: none;
+    }
+    .Navigation li[data-active="true"] a {
+        transform: translateX(5px);
     }
 }

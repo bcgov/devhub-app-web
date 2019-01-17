@@ -1,5 +1,4 @@
 .Header {
-  background-color: #fff;
   padding-top: 10px;
   border-bottom: 1px solid #ccc;
 }
@@ -44,7 +43,6 @@
 
 @media screen and (min-width: 768px) {
   .Header {
-      margin-bottom: 5px;
       background-color: inherit;
   }
 }
