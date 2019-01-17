@@ -5,9 +5,8 @@
 .MarkdownBody h4,
 .MarkdownBody h5,
 .MarkdownBody h6 {
-    color: #6d6d6d;
     font-weight: 400;
-    margin: 1em 0 0.6em 0; 
+    margin: 1em 0 0.6em 0;
 }
 
 .MarkdownBody pre {
@@ -28,39 +27,39 @@
     color: #0d553f;
 }
 
-.MarkdownBody table {  
+.MarkdownBody table {
     color: #333;
     font-family: Helvetica, Arial, sans-serif;
-    width: 100%; 
-    border-collapse: 
-    collapse; border-spacing: 0; 
+    width: 100%;
+    border-collapse:
+    collapse; border-spacing: 0;
 }
 
-.MarkdownBody td, .MarkdownBody th {  
+.MarkdownBody td, .MarkdownBody th {
     border: 1px solid #ccc; /* No more visible border */
-    height: 30px; 
+    height: 30px;
     transition: all 0.15s;  /* Simple transition for hover effect */
 }
 
-.MarkdownBody th {  
+.MarkdownBody th {
     background: #a1bdd8;  /* Darken header a bit */
     font-weight: bold;
     text-align: center;
     word-break: initial;
 }
 
-.MarkdownBody td {  
+.MarkdownBody td {
     background: #FAFAFA;
     text-align: center;
 }
 
-/* Cells in even rows (2,4,6...) are one color */        
-.MarkdownBody tr:nth-child(even) td { background: #F1F1F1; }   
+/* Cells in even rows (2,4,6...) are one color */
+.MarkdownBody tr:nth-child(even) td { background: #F1F1F1; }
 
-/* Cells in odd rows (1,3,5...) are another (excludes header cells)  */        
-.MarkdownBody tr:nth-child(odd) td { background: #FEFEFE; }  
+/* Cells in odd rows (1,3,5...) are another (excludes header cells)  */
+.MarkdownBody tr:nth-child(odd) td { background: #FEFEFE; }
 
-.MarkdownBody tr td:hover { background: #bbb; color: #FFF; }  
+.MarkdownBody tr td:hover { background: #bbb; color: #FFF; }
 /* Hover cell effect! */
 
 
