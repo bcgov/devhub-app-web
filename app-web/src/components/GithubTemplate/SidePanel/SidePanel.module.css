@@ -11,6 +11,9 @@
   .SidePanel {
       max-width: 250px;
       background-color: #e0e0e0;
-      margin-left: 1em;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      top: 52px;
   }
 }

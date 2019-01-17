@@ -17,6 +17,10 @@
 }
 
 @media screen and (min-width: 768px) {
+    .TemplateContainer {
+        padding-left: 250px;
+    }
+
     .Header {
         margin-bottom: 5px;
         background-color: inherit;
