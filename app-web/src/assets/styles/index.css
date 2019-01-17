@@ -24,3 +24,8 @@ body {
   }
 }
 
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
