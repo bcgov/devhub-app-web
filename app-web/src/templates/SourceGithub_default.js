@@ -80,10 +80,7 @@ export const devhubSiphonMarkdown = graphql`
       path
     }
     nav: allDevhubSiphon(
-      filter: {
-        collection: { name: { eq: $collection } }
-        internal: { mediaType: { eq: "text/markdown" } }
-      }
+      filter: { collection: { name: { eq: $collection } } }
       sort: { fields: [_metadata___position] }
     ) {
       edges {

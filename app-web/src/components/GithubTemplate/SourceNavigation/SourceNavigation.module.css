@@ -30,6 +30,11 @@
     text-overflow: ellipsis;
 }
 
+.Navigation a span {
+    margin-left: 5px;
+    color: #1a5a96;
+}
+
 .Navigation a:visited {
     color: #2e2e2e;
 }
@@ -38,7 +43,7 @@
     .Navigation ul {
         max-height: 500px;
     }
-    
+
     .Navigation li[data-active="true"] a {
         transform: translateX(5px);
     }

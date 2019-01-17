@@ -17,6 +17,8 @@ Created by Patrick Simonian
 */
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import shortid from 'shortid';
 import PropTypes from 'prop-types';
 import Link from '../../UI/Link/Link';
@@ -34,19 +36,33 @@ class SourceNavigation extends Component {
   render() {
     const { components } = this.props;
     // map over components and generate links
-    const links = components.map(({ node: { unfurl: { title }, resource: { path } } }) => (
-      <li key={shortid.generate()} data-active={this.props.activeLink.pathname === path}>
-        <Link
-          to={path}
-          activeStyle={{
-            backgroundColor: '#fff',
-            textDecoration: 'underline',
-          }}
-        >
-          {title}
-        </Link>
-      </li>
-    ));
+    const links = components.map(
+      ({
+        node: {
+          unfurl: { title },
+          resource: { path },
+          source: { type },
+        },
+      }) => (
+        <li key={shortid.generate()} data-active={this.props.activeLink.pathname === path}>
+          <Link
+            to={path}
+            target={type === 'web' ? '_blank' : ''}
+            activeStyle={{
+              backgroundColor: '#fff',
+              textDecoration: 'underline',
+            }}
+          >
+            {title}
+            {type === 'web' ? (
+              <span>
+                <FontAwesomeIcon icon={faExternalLinkAlt} />
+              </span>
+            ) : null}
+          </Link>
+        </li>
+      ),
+    );
     return (
       <nav className={styles.Navigation}>
         <ul className={styles.List}>{links}</ul>
@@ -62,6 +78,9 @@ export const query = graphql`
     }
     resource {
       path
+    }
+    source {
+      type
     }
   }
 `;
