@@ -1,0 +1,21 @@
+.Overview {
+  padding: 1em;
+  background-color: #fff;
+  box-shadow: 0 0 1px 1px #ccc ;
+}
+.Overview h2 {
+  display: inline-block;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #036;
+}
+.Overview p {
+  margin-bottom: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .Overview {
+    box-shadow: none;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+  }
+}

@@ -18,31 +18,13 @@ Created by Patrick Simonian
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './SidePanel.module.css';
-import SourceNavigation from '../SourceNavigation/SourceNavigation';
-import Header from '../Header/Header';
 
-const SidePanel = ({ siphonData, links, pathname }) => {
-  // don't show nav if there aren't any links
-  const sourceNavigation =
-    links.length > 1 ? <SourceNavigation components={links} activeLink={pathname} /> : null;
-  return (
-    <div className={styles.SidePanel}>
-      <Header
-        title={siphonData.source.displayName}
-        originalSource={siphonData.resource.originalSource}
-        fileName={siphonData.fileName}
-        sourcePath={siphonData.source.sourcePath}
-        repo={siphonData.source.name}
-      />
-      {sourceNavigation}
-    </div>
-  );
-};
+const SidePanel = ({ siphonData, links, pathname, children }) => (
+  <div className={styles.SidePanel}>{children}</div>
+);
 
 SidePanel.propTypes = {
-  siphonData: PropTypes.object.isRequired,
-  links: PropTypes.array.isRequired,
-  pathname: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default SidePanel;

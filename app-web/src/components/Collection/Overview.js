@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './Overview.module.css';
 
 const Overview = ({ description, title }) => (
-  <div>
+  <div className={styles.Overview}>
     <h2>{title}</h2>
     <p>{description}</p>
-    <hr />
   </div>
 );
 

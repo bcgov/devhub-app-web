@@ -19,18 +19,38 @@
 //
 import React from 'react';
 import { graphql } from 'gatsby';
-import GithubTemplateLayout from '../hoc/GithubTemplateLayout';
 import 'github-markdown-css';
 import styles from './SourceMarkdown.module.css';
+
+import GithubTemplateLayout from '../hoc/GithubTemplateLayout';
+import SidePanel from '../components/GithubTemplate/SidePanel/SidePanel';
+import Header from '../components/GithubTemplate/Header/Header';
+import SourceNavigation from '../components/GithubTemplate/SourceNavigation/SourceNavigation';
 // eslint-disable-next-line
 const SourceGithubMarkdownDefault = ({ data: { devhubSiphon, nav }, location: pathname }) => (
   <GithubTemplateLayout siphonData={devhubSiphon} nav={nav} pathname={pathname}>
-    <div
-      className={[styles.MarkdownBody, 'markdown-body'].join(' ')}
-      dangerouslySetInnerHTML={{
-        __html: devhubSiphon.childMarkdownRemark.html,
-      }}
-    />
+    <div className={styles.TemplateContainer}>
+      <SidePanel links={nav.edges} pathname={pathname} siphonData={devhubSiphon}>
+        <Header
+          title={devhubSiphon.source.displayName}
+          originalSource={devhubSiphon.resource.originalSource}
+          fileName={devhubSiphon.fileName}
+          sourcePath={devhubSiphon.source.sourcePath}
+          repo={devhubSiphon.source.name}
+        />
+        {nav.edges.length > 1 ? (
+          <SourceNavigation components={nav.edges} activeLink={pathname} />
+        ) : null}
+      </SidePanel>
+      <main className={styles.Content}>
+        <div
+          className={[styles.MarkdownBody, 'markdown-body'].join(' ')}
+          dangerouslySetInnerHTML={{
+            __html: devhubSiphon.childMarkdownRemark.html,
+          }}
+        />
+      </main>
+    </div>
   </GithubTemplateLayout>
 );
 
