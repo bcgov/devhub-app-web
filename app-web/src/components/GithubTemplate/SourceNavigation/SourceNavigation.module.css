@@ -1,6 +1,5 @@
 .Navigation {
     margin-bottom: 4px;
-    margin-left: 1em;
 }
 
 .Navigation ul {
@@ -11,12 +10,23 @@
     max-height: 100px;
 }
 
+.Navigation ul li {
+    padding: 4px .5em;
+}
+
+.Navigation li[data-active="true"] {
+    text-decoration: underline;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
 .Navigation a {
     overflow: hidden;
     color: #2e2e2e;
     display: inline-block;
     width: 100%;
-    padding: 4px;
     text-overflow: ellipsis;
 }
 
@@ -27,5 +37,9 @@
 @media screen and (min-width: 600px) {
     .Navigation ul {
         max-height: 500px;
+    }
+    
+    .Navigation li[data-active="true"] a {
+        transform: translateX(5px);
     }
 }

@@ -1,5 +1,6 @@
 .SidePanel {
   flex: 1 0 200px;
+  background-color: #e0e0e0;
 }
 
 @media screen and (min-width: 768px) {
@@ -9,8 +10,7 @@
   }
 
   .SidePanel {
-      max-width: 250px;
-      background-color: #e0e0e0;
+      width: 260px;
       position: fixed;
       left: 0;
       bottom: 0;
