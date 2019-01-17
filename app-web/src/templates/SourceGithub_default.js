@@ -64,6 +64,7 @@ export const devhubSiphonMarkdown = graphql`
         collection: { name: { eq: $collection } }
         internal: { mediaType: { eq: "text/markdown" } }
       }
+      sort: { fields: [_metadata___position] }
     ) {
       edges {
         node {
