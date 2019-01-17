@@ -138,7 +138,6 @@ module.exports = async ({ graphql, actions }) => {
           collection._metadata.templateFile,
         );
 
-        console.log('using template', collection._metadata.template, '\n');
         try {
           createPage({
             path: siphon.resource.path,
