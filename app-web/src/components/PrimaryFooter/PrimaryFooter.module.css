@@ -45,3 +45,9 @@
         padding: 0 65px 0 65px;
     }
 }
+
+@media print {
+    .PrimaryFooter {
+        display: none;
+    }
+}
