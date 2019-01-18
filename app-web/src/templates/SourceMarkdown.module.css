@@ -5,6 +5,7 @@
 .MarkdownBody h4,
 .MarkdownBody h5,
 .MarkdownBody h6 {
+    color: #494949;
     font-weight: 400;
     margin: 1em 0 0.6em 0;
 }
