@@ -5,6 +5,7 @@ sources:
       url: https://github.com/bcgov/design-system/
       owner: bcgov
       repo: 'design-system'
+      branch: feature/57-interactive-code-examples
     attributes:
       labels:
         - Components
