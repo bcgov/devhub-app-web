@@ -20,7 +20,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Flag } from 'flag';
 import FLAGS from '../../constants/featureflags';
-import PrimaryFilter from '../PrimaryFilter/PrimaryFilter';
+import PrimaryFilter from '../Navigation/PrimaryFilter';
 
 export const Dropmenu = ({ menuToggled }) => {
   if (menuToggled) {
