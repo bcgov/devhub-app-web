@@ -16,52 +16,40 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
+import Link from '../UI/Link/Link';
 import PropTypes from 'prop-types';
 import styles from './PrimaryFilter.module.css';
 import { connect } from 'react-redux';
 import shortid from 'shortid';
-import * as actions from '../../store/actions/actions';
 import { MAIN_NAV_CONFIG } from '../../constants/ui';
 import { ARIA_LABEL_FILTER_SELECT } from '../../constants/ariaLabels';
 
-export const PrimaryFilter = ({
-  applyPrimaryFilters,
-  selectedFilter,
-  setSelectedFilter,
-  mobile,
-  menuToggled,
-  applySecondaryFilters,
-}) => {
+export const PrimaryFilter = ({ selectedFilter, mobile }) => {
   const filters = MAIN_NAV_CONFIG.map(navConfig => {
-    const activeClass = selectedFilter === navConfig.VALUE ? styles.ActiveFilter : '';
     return (
-      <li
-        key={shortid.generate()}
-        className={activeClass}
-        onClick={() => {
-          setSelectedFilter(navConfig.VALUE);
-          applyPrimaryFilters(navConfig.SIPHON_PROP, navConfig.VALUE);
-        }}
-        aria-label={ARIA_LABEL_FILTER_SELECT}
-      >
-        {navConfig.DISPLAY_NAME}
+      <li key={shortid.generate()}>
+        <Link
+          exact
+          to={navConfig.ROUTE}
+          aria-label={ARIA_LABEL_FILTER_SELECT}
+          activeClassName={styles.ActiveFilter}
+        >
+          {navConfig.DISPLAY_NAME}
+        </Link>
       </li>
     );
   });
 
   return (
-    <div className={styles.PrimaryFilter}>
+    <nav className={styles.PrimaryFilter}>
       <ul className={mobile ? styles.mobileOnly : styles.largeOnly}>{filters}</ul>
-    </div>
+    </nav>
   );
 };
 
 PrimaryFilter.propTypes = {
   mobile: PropTypes.bool,
   selectedFilter: PropTypes.string,
-  applyPrimaryFilters: PropTypes.func.isRequired,
-  applySecondaryFilters: PropTypes.func.isRequired,
-  setSelectedFilter: PropTypes.func.isRequired,
 };
 
 PrimaryFilter.defaultProps = {
@@ -73,15 +61,7 @@ const mapStateToProps = state => ({
   selectedFilter: state.ui.selectedFilterOption,
 });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    applyPrimaryFilters: (filterBy, value) => dispatch(actions.filterSiphonNodes(filterBy, value)),
-    setSelectedFilter: value => dispatch(actions.setSelectedFilterOption(value)),
-    applySecondaryFilters: () => dispatch(actions.filterSiphonNodesByFilterList()),
-  };
-};
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  null,
 )(PrimaryFilter);
