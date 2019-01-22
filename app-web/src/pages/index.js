@@ -17,7 +17,7 @@ import Cards from '../components/Cards/Cards';
 import Sidebar from '../components/Sidebar/Sidebar';
 import FilterMenu from '../components/FilterMenu/FilterMenu';
 import WelcomePanel from '../components/WelcomePanel/WelcomePanel';
-import PrimaryFilter from '../components/PrimaryFilter/PrimaryFilter';
+import PrimaryFilter from '../components/Navigation/PrimaryFilter';
 import Dropmenu from '../components/Dropmenu/Dropmenu';
 
 export class Index extends Component {
