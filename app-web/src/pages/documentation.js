@@ -6,7 +6,7 @@ import { Flag } from 'flag';
 
 import * as actions from '../store/actions/actions';
 import { groupBy } from '../utils/dataMassager';
-import { REACT_SCROLL, SIPHON_RESOURCE_TYPE_PROP } from '../constants/ui';
+import { REACT_SCROLL, SIPHON_RESOURCE_TYPE_PROP, RESOURCE_TYPES } from '../constants/ui';
 import FLAGS from '../constants/featureflags';
 
 import styles from './index.module.css';
@@ -20,7 +20,7 @@ import WelcomePanel from '../components/WelcomePanel/WelcomePanel';
 import PrimaryFilter from '../components/Navigation/PrimaryFilter';
 import Dropmenu from '../components/Dropmenu/Dropmenu';
 
-export class Index extends Component {
+export class Documentation extends Component {
   componentDidMount() {
     // flatted nodes from graphql
     if (!this.props.collectionsLoaded) {
@@ -79,8 +79,8 @@ export class Index extends Component {
   }
 }
 
-export const resourceQuery = graphql`
-  query resourceQuery {
+export const resourceQueryDocumentation = graphql`
+  query resourceQueryDocumentation {
     allDevhubSiphonCollection(sort: { fields: [_metadata___position] }) {
       edges {
         node {
@@ -139,7 +139,7 @@ const mapDispatchToProps = dispatch => {
   return {
     loadCollections: collections => dispatch(actions.loadSiphonCollections(collections)),
     filterCollectionsByResourceType: () =>
-      dispatch(actions.filterSiphonNodes(SIPHON_RESOURCE_TYPE_PROP, 'All')),
+      dispatch(actions.filterSiphonNodes(SIPHON_RESOURCE_TYPE_PROP, RESOURCE_TYPES.DOCUMENTATION)),
     hideWelcomeMessage: () => dispatch(actions.setWelcomePanelViewed(true)),
   };
 };
@@ -147,4 +147,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Index);
+)(Documentation);

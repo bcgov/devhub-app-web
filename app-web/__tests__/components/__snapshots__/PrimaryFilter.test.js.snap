@@ -4,11 +4,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <PrimaryFilter
-    applyPrimaryFilters={[MockFunction]}
-    applySecondaryFilters={[MockFunction]}
     mobile={false}
-    selectedFilter="foo"
-    setSelectedFilter={[MockFunction]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -26,40 +22,55 @@ ShallowWrapper {
       "children": <ul
         className="largeOnly"
       >
-        <li
-          aria-label="Select to filter cards by the resource type"
-          className=""
-          onClick={[Function]}
-        >
-          All
+        <li>
+          <GatsbyLink
+            activeClassName="ActiveFilter"
+            aria-label="Select to filter cards by the resource type"
+            exact={true}
+            to="/"
+          >
+            All
+          </GatsbyLink>
         </li>
-        <li
-          aria-label="Select to filter cards by the resource type"
-          className=""
-          onClick={[Function]}
-        >
-          Components
+        <li>
+          <GatsbyLink
+            activeClassName="ActiveFilter"
+            aria-label="Select to filter cards by the resource type"
+            exact={true}
+            to="/components"
+          >
+            Components
+          </GatsbyLink>
         </li>
-        <li
-          aria-label="Select to filter cards by the resource type"
-          className=""
-          onClick={[Function]}
-        >
-          Documentation
+        <li>
+          <GatsbyLink
+            activeClassName="ActiveFilter"
+            aria-label="Select to filter cards by the resource type"
+            exact={true}
+            to="/documentation"
+          >
+            Documentation
+          </GatsbyLink>
         </li>
-        <li
-          aria-label="Select to filter cards by the resource type"
-          className=""
-          onClick={[Function]}
-        >
-          Self-Service Tools
+        <li>
+          <GatsbyLink
+            activeClassName="ActiveFilter"
+            aria-label="Select to filter cards by the resource type"
+            exact={true}
+            to="/self-service-tools"
+          >
+            Self-Service Tools
+          </GatsbyLink>
         </li>
-        <li
-          aria-label="Select to filter cards by the resource type"
-          className=""
-          onClick={[Function]}
-        >
-          Repositories
+        <li>
+          <GatsbyLink
+            activeClassName="ActiveFilter"
+            aria-label="Select to filter cards by the resource type"
+            exact={true}
+            to="/repositories"
+          >
+            Repositories
+          </GatsbyLink>
         </li>
       </ul>,
       "className": "PrimaryFilter",
@@ -71,40 +82,55 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <li
-            aria-label="Select to filter cards by the resource type"
-            className=""
-            onClick={[Function]}
-          >
-            All
+          <li>
+            <GatsbyLink
+              activeClassName="ActiveFilter"
+              aria-label="Select to filter cards by the resource type"
+              exact={true}
+              to="/"
+            >
+              All
+            </GatsbyLink>
           </li>,
-          <li
-            aria-label="Select to filter cards by the resource type"
-            className=""
-            onClick={[Function]}
-          >
-            Components
+          <li>
+            <GatsbyLink
+              activeClassName="ActiveFilter"
+              aria-label="Select to filter cards by the resource type"
+              exact={true}
+              to="/components"
+            >
+              Components
+            </GatsbyLink>
           </li>,
-          <li
-            aria-label="Select to filter cards by the resource type"
-            className=""
-            onClick={[Function]}
-          >
-            Documentation
+          <li>
+            <GatsbyLink
+              activeClassName="ActiveFilter"
+              aria-label="Select to filter cards by the resource type"
+              exact={true}
+              to="/documentation"
+            >
+              Documentation
+            </GatsbyLink>
           </li>,
-          <li
-            aria-label="Select to filter cards by the resource type"
-            className=""
-            onClick={[Function]}
-          >
-            Self-Service Tools
+          <li>
+            <GatsbyLink
+              activeClassName="ActiveFilter"
+              aria-label="Select to filter cards by the resource type"
+              exact={true}
+              to="/self-service-tools"
+            >
+              Self-Service Tools
+            </GatsbyLink>
           </li>,
-          <li
-            aria-label="Select to filter cards by the resource type"
-            className=""
-            onClick={[Function]}
-          >
-            Repositories
+          <li>
+            <GatsbyLink
+              activeClassName="ActiveFilter"
+              aria-label="Select to filter cards by the resource type"
+              exact={true}
+              to="/repositories"
+            >
+              Repositories
+            </GatsbyLink>
           </li>,
         ],
         "className": "largeOnly",
@@ -116,13 +142,31 @@ ShallowWrapper {
           "key": "0",
           "nodeType": "host",
           "props": Object {
-            "aria-label": "Select to filter cards by the resource type",
-            "children": "All",
-            "className": "",
-            "onClick": [Function],
+            "children": <GatsbyLink
+              activeClassName="ActiveFilter"
+              aria-label="Select to filter cards by the resource type"
+              exact={true}
+              to="/"
+            >
+              All
+            </GatsbyLink>,
           },
           "ref": null,
-          "rendered": "All",
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "activeClassName": "ActiveFilter",
+              "aria-label": "Select to filter cards by the resource type",
+              "children": "All",
+              "exact": true,
+              "to": "/",
+            },
+            "ref": null,
+            "rendered": "All",
+            "type": [Function],
+          },
           "type": "li",
         },
         Object {
@@ -130,13 +174,31 @@ ShallowWrapper {
           "key": "1",
           "nodeType": "host",
           "props": Object {
-            "aria-label": "Select to filter cards by the resource type",
-            "children": "Components",
-            "className": "",
-            "onClick": [Function],
+            "children": <GatsbyLink
+              activeClassName="ActiveFilter"
+              aria-label="Select to filter cards by the resource type"
+              exact={true}
+              to="/components"
+            >
+              Components
+            </GatsbyLink>,
           },
           "ref": null,
-          "rendered": "Components",
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "activeClassName": "ActiveFilter",
+              "aria-label": "Select to filter cards by the resource type",
+              "children": "Components",
+              "exact": true,
+              "to": "/components",
+            },
+            "ref": null,
+            "rendered": "Components",
+            "type": [Function],
+          },
           "type": "li",
         },
         Object {
@@ -144,13 +206,31 @@ ShallowWrapper {
           "key": "2",
           "nodeType": "host",
           "props": Object {
-            "aria-label": "Select to filter cards by the resource type",
-            "children": "Documentation",
-            "className": "",
-            "onClick": [Function],
+            "children": <GatsbyLink
+              activeClassName="ActiveFilter"
+              aria-label="Select to filter cards by the resource type"
+              exact={true}
+              to="/documentation"
+            >
+              Documentation
+            </GatsbyLink>,
           },
           "ref": null,
-          "rendered": "Documentation",
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "activeClassName": "ActiveFilter",
+              "aria-label": "Select to filter cards by the resource type",
+              "children": "Documentation",
+              "exact": true,
+              "to": "/documentation",
+            },
+            "ref": null,
+            "rendered": "Documentation",
+            "type": [Function],
+          },
           "type": "li",
         },
         Object {
@@ -158,13 +238,31 @@ ShallowWrapper {
           "key": "3",
           "nodeType": "host",
           "props": Object {
-            "aria-label": "Select to filter cards by the resource type",
-            "children": "Self-Service Tools",
-            "className": "",
-            "onClick": [Function],
+            "children": <GatsbyLink
+              activeClassName="ActiveFilter"
+              aria-label="Select to filter cards by the resource type"
+              exact={true}
+              to="/self-service-tools"
+            >
+              Self-Service Tools
+            </GatsbyLink>,
           },
           "ref": null,
-          "rendered": "Self-Service Tools",
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "activeClassName": "ActiveFilter",
+              "aria-label": "Select to filter cards by the resource type",
+              "children": "Self-Service Tools",
+              "exact": true,
+              "to": "/self-service-tools",
+            },
+            "ref": null,
+            "rendered": "Self-Service Tools",
+            "type": [Function],
+          },
           "type": "li",
         },
         Object {
@@ -172,19 +270,37 @@ ShallowWrapper {
           "key": "4",
           "nodeType": "host",
           "props": Object {
-            "aria-label": "Select to filter cards by the resource type",
-            "children": "Repositories",
-            "className": "",
-            "onClick": [Function],
+            "children": <GatsbyLink
+              activeClassName="ActiveFilter"
+              aria-label="Select to filter cards by the resource type"
+              exact={true}
+              to="/repositories"
+            >
+              Repositories
+            </GatsbyLink>,
           },
           "ref": null,
-          "rendered": "Repositories",
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "activeClassName": "ActiveFilter",
+              "aria-label": "Select to filter cards by the resource type",
+              "children": "Repositories",
+              "exact": true,
+              "to": "/repositories",
+            },
+            "ref": null,
+            "rendered": "Repositories",
+            "type": [Function],
+          },
           "type": "li",
         },
       ],
       "type": "ul",
     },
-    "type": "div",
+    "type": "nav",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
@@ -195,40 +311,55 @@ ShallowWrapper {
         "children": <ul
           className="largeOnly"
         >
-          <li
-            aria-label="Select to filter cards by the resource type"
-            className=""
-            onClick={[Function]}
-          >
-            All
+          <li>
+            <GatsbyLink
+              activeClassName="ActiveFilter"
+              aria-label="Select to filter cards by the resource type"
+              exact={true}
+              to="/"
+            >
+              All
+            </GatsbyLink>
           </li>
-          <li
-            aria-label="Select to filter cards by the resource type"
-            className=""
-            onClick={[Function]}
-          >
-            Components
+          <li>
+            <GatsbyLink
+              activeClassName="ActiveFilter"
+              aria-label="Select to filter cards by the resource type"
+              exact={true}
+              to="/components"
+            >
+              Components
+            </GatsbyLink>
           </li>
-          <li
-            aria-label="Select to filter cards by the resource type"
-            className=""
-            onClick={[Function]}
-          >
-            Documentation
+          <li>
+            <GatsbyLink
+              activeClassName="ActiveFilter"
+              aria-label="Select to filter cards by the resource type"
+              exact={true}
+              to="/documentation"
+            >
+              Documentation
+            </GatsbyLink>
           </li>
-          <li
-            aria-label="Select to filter cards by the resource type"
-            className=""
-            onClick={[Function]}
-          >
-            Self-Service Tools
+          <li>
+            <GatsbyLink
+              activeClassName="ActiveFilter"
+              aria-label="Select to filter cards by the resource type"
+              exact={true}
+              to="/self-service-tools"
+            >
+              Self-Service Tools
+            </GatsbyLink>
           </li>
-          <li
-            aria-label="Select to filter cards by the resource type"
-            className=""
-            onClick={[Function]}
-          >
-            Repositories
+          <li>
+            <GatsbyLink
+              activeClassName="ActiveFilter"
+              aria-label="Select to filter cards by the resource type"
+              exact={true}
+              to="/repositories"
+            >
+              Repositories
+            </GatsbyLink>
           </li>
         </ul>,
         "className": "PrimaryFilter",
@@ -240,40 +371,55 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": Array [
-            <li
-              aria-label="Select to filter cards by the resource type"
-              className=""
-              onClick={[Function]}
-            >
-              All
+            <li>
+              <GatsbyLink
+                activeClassName="ActiveFilter"
+                aria-label="Select to filter cards by the resource type"
+                exact={true}
+                to="/"
+              >
+                All
+              </GatsbyLink>
             </li>,
-            <li
-              aria-label="Select to filter cards by the resource type"
-              className=""
-              onClick={[Function]}
-            >
-              Components
+            <li>
+              <GatsbyLink
+                activeClassName="ActiveFilter"
+                aria-label="Select to filter cards by the resource type"
+                exact={true}
+                to="/components"
+              >
+                Components
+              </GatsbyLink>
             </li>,
-            <li
-              aria-label="Select to filter cards by the resource type"
-              className=""
-              onClick={[Function]}
-            >
-              Documentation
+            <li>
+              <GatsbyLink
+                activeClassName="ActiveFilter"
+                aria-label="Select to filter cards by the resource type"
+                exact={true}
+                to="/documentation"
+              >
+                Documentation
+              </GatsbyLink>
             </li>,
-            <li
-              aria-label="Select to filter cards by the resource type"
-              className=""
-              onClick={[Function]}
-            >
-              Self-Service Tools
+            <li>
+              <GatsbyLink
+                activeClassName="ActiveFilter"
+                aria-label="Select to filter cards by the resource type"
+                exact={true}
+                to="/self-service-tools"
+              >
+                Self-Service Tools
+              </GatsbyLink>
             </li>,
-            <li
-              aria-label="Select to filter cards by the resource type"
-              className=""
-              onClick={[Function]}
-            >
-              Repositories
+            <li>
+              <GatsbyLink
+                activeClassName="ActiveFilter"
+                aria-label="Select to filter cards by the resource type"
+                exact={true}
+                to="/repositories"
+              >
+                Repositories
+              </GatsbyLink>
             </li>,
           ],
           "className": "largeOnly",
@@ -285,13 +431,31 @@ ShallowWrapper {
             "key": "0",
             "nodeType": "host",
             "props": Object {
-              "aria-label": "Select to filter cards by the resource type",
-              "children": "All",
-              "className": "",
-              "onClick": [Function],
+              "children": <GatsbyLink
+                activeClassName="ActiveFilter"
+                aria-label="Select to filter cards by the resource type"
+                exact={true}
+                to="/"
+              >
+                All
+              </GatsbyLink>,
             },
             "ref": null,
-            "rendered": "All",
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "activeClassName": "ActiveFilter",
+                "aria-label": "Select to filter cards by the resource type",
+                "children": "All",
+                "exact": true,
+                "to": "/",
+              },
+              "ref": null,
+              "rendered": "All",
+              "type": [Function],
+            },
             "type": "li",
           },
           Object {
@@ -299,13 +463,31 @@ ShallowWrapper {
             "key": "1",
             "nodeType": "host",
             "props": Object {
-              "aria-label": "Select to filter cards by the resource type",
-              "children": "Components",
-              "className": "",
-              "onClick": [Function],
+              "children": <GatsbyLink
+                activeClassName="ActiveFilter"
+                aria-label="Select to filter cards by the resource type"
+                exact={true}
+                to="/components"
+              >
+                Components
+              </GatsbyLink>,
             },
             "ref": null,
-            "rendered": "Components",
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "activeClassName": "ActiveFilter",
+                "aria-label": "Select to filter cards by the resource type",
+                "children": "Components",
+                "exact": true,
+                "to": "/components",
+              },
+              "ref": null,
+              "rendered": "Components",
+              "type": [Function],
+            },
             "type": "li",
           },
           Object {
@@ -313,13 +495,31 @@ ShallowWrapper {
             "key": "2",
             "nodeType": "host",
             "props": Object {
-              "aria-label": "Select to filter cards by the resource type",
-              "children": "Documentation",
-              "className": "",
-              "onClick": [Function],
+              "children": <GatsbyLink
+                activeClassName="ActiveFilter"
+                aria-label="Select to filter cards by the resource type"
+                exact={true}
+                to="/documentation"
+              >
+                Documentation
+              </GatsbyLink>,
             },
             "ref": null,
-            "rendered": "Documentation",
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "activeClassName": "ActiveFilter",
+                "aria-label": "Select to filter cards by the resource type",
+                "children": "Documentation",
+                "exact": true,
+                "to": "/documentation",
+              },
+              "ref": null,
+              "rendered": "Documentation",
+              "type": [Function],
+            },
             "type": "li",
           },
           Object {
@@ -327,13 +527,31 @@ ShallowWrapper {
             "key": "3",
             "nodeType": "host",
             "props": Object {
-              "aria-label": "Select to filter cards by the resource type",
-              "children": "Self-Service Tools",
-              "className": "",
-              "onClick": [Function],
+              "children": <GatsbyLink
+                activeClassName="ActiveFilter"
+                aria-label="Select to filter cards by the resource type"
+                exact={true}
+                to="/self-service-tools"
+              >
+                Self-Service Tools
+              </GatsbyLink>,
             },
             "ref": null,
-            "rendered": "Self-Service Tools",
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "activeClassName": "ActiveFilter",
+                "aria-label": "Select to filter cards by the resource type",
+                "children": "Self-Service Tools",
+                "exact": true,
+                "to": "/self-service-tools",
+              },
+              "ref": null,
+              "rendered": "Self-Service Tools",
+              "type": [Function],
+            },
             "type": "li",
           },
           Object {
@@ -341,19 +559,37 @@ ShallowWrapper {
             "key": "4",
             "nodeType": "host",
             "props": Object {
-              "aria-label": "Select to filter cards by the resource type",
-              "children": "Repositories",
-              "className": "",
-              "onClick": [Function],
+              "children": <GatsbyLink
+                activeClassName="ActiveFilter"
+                aria-label="Select to filter cards by the resource type"
+                exact={true}
+                to="/repositories"
+              >
+                Repositories
+              </GatsbyLink>,
             },
             "ref": null,
-            "rendered": "Repositories",
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "activeClassName": "ActiveFilter",
+                "aria-label": "Select to filter cards by the resource type",
+                "children": "Repositories",
+                "exact": true,
+                "to": "/repositories",
+              },
+              "ref": null,
+              "rendered": "Repositories",
+              "type": [Function],
+            },
             "type": "li",
           },
         ],
         "type": "ul",
       },
-      "type": "div",
+      "type": "nav",
     },
   ],
   Symbol(enzyme.__options__): Object {
