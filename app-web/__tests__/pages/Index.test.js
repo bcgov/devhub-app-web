@@ -16,6 +16,7 @@ describe('Index Container', () => {
       },
     };
     const loadSiphonCollections = jest.fn();
+    const filterCollectionsByResourceType = jest.fn();
     const location = {
       pathname: '/',
     };
@@ -27,6 +28,7 @@ describe('Index Container', () => {
         loadCollections={loadSiphonCollections}
         location={location}
         filters={DEFAULT_FILTER_GROUPS}
+        filterCollectionsByResourceType={filterCollectionsByResourceType}
       />,
     );
     expect(wrapper).toMatchSnapshot();

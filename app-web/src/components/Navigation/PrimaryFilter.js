@@ -19,7 +19,6 @@ import React from 'react';
 import Link from '../UI/Link/Link';
 import PropTypes from 'prop-types';
 import styles from './PrimaryFilter.module.css';
-import { connect } from 'react-redux';
 import shortid from 'shortid';
 import { MAIN_NAV_CONFIG } from '../../constants/ui';
 import { ARIA_LABEL_FILTER_SELECT } from '../../constants/ariaLabels';
@@ -49,19 +48,10 @@ export const PrimaryFilter = ({ selectedFilter, mobile }) => {
 
 PrimaryFilter.propTypes = {
   mobile: PropTypes.bool,
-  selectedFilter: PropTypes.string,
 };
 
 PrimaryFilter.defaultProps = {
-  selectedFilter: '',
   mobile: false,
 };
 
-const mapStateToProps = state => ({
-  selectedFilter: state.ui.selectedFilterOption,
-});
-
-export default connect(
-  mapStateToProps,
-  null,
-)(PrimaryFilter);
+export default PrimaryFilter;

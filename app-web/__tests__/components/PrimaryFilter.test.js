@@ -17,17 +17,13 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import { shallow } from 'enzyme';
-import { PrimaryFilter } from '../../src/components/PrimaryFilter/PrimaryFilter';
+import { PrimaryFilter } from '../../src/components/Navigation/PrimaryFilter';
 
 describe('Primary Filter Component', () => {
   let primaryFilter = null;
 
   const props = {
-    selectedFilter: 'foo',
-    applyPrimaryFilters: jest.fn(),
-    applySecondaryFilters: jest.fn(),
     mobile: false,
-    setSelectedFilter: jest.fn(),
   };
 
   beforeEach(() => {
