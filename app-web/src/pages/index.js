@@ -125,7 +125,7 @@ export const resourceQuery = graphql`
 
 const mapStateToProps = state => {
   return {
-    collections: state.siphon.secondaryFilteredNodes,
+    collections: state.siphon.filteredCollections,
     displayWelcome: !state.ui.welcomePanelWasViewed,
     filters: state.siphon.filters,
   };

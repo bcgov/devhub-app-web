@@ -17,9 +17,10 @@ import defaultFilterGroups from '../../constants/filterGroups';
 import { TypeCheck } from '@bcgov/common-web-utils';
 
 const initialState = {
-  collections: [],
-  primaryFilteredNodes: [], // this is filtered by the resource type top level filters
-  secondaryFilteredNodes: [], // subsequent filters using the filter side menu
+  collectionsLoaded: false,
+  _collections: [], // the cached set of ALL collections
+  collections: [], // this is set by the resource type, ie Component/Documentation etc
+  filteredCollections: [], // subsequent filters using the filter side menu
   groupBy: null,
   loading: false,
   error: false,
@@ -168,12 +169,12 @@ const toggleFilter = (state, key, isActive) => {
  */
 const applyPrimaryFilter = (state, filteredBy, value) => {
   // filter the initial nodes based off the main filterBy value
-  let newPrimaryFilteredNodes;
+  let collections;
   // if value is All then primary filtered nodes are reset
   if (value === 'All') {
-    newPrimaryFilteredNodes = newCollections(state.collections);
+    collections = newCollections(state._collections);
   } else {
-    newPrimaryFilteredNodes = state.collections.map(collection => {
+    collections = state._collections.map(collection => {
       const clonedCollection = newCollection(collection);
       const filteredNodes = clonedCollection.nodes.filter(n =>
         dotPropMatchesValue(n, filteredBy, value),
@@ -183,7 +184,7 @@ const applyPrimaryFilter = (state, filteredBy, value) => {
     });
   }
 
-  const newState = { ...state, primaryFilteredNodes: newPrimaryFilteredNodes };
+  const newState = { ...state, collections: collections };
   return applySecondaryFilters(newState);
 };
 
@@ -195,11 +196,11 @@ const applyPrimaryFilter = (state, filteredBy, value) => {
  */
 const applySecondaryFilters = state => {
   const newState = { ...state };
-  newState.primaryFilteredNodes = newCollections(newState.primaryFilteredNodes);
-  newState.secondaryFilteredNodes = newCollections(newState.primaryFilteredNodes);
+  newState.collections = newCollections(newState.collections);
+  newState.filteredCollections = newCollections(newState.collections);
   // get counts of filters and apply other properties based on if count is 0
   newState.filters = newState.filters.map(filter =>
-    applyPropsToFilterByResourceCount(filter, newState.primaryFilteredNodes),
+    applyPropsToFilterByResourceCount(filter, newState.collections),
   );
 
   const filtersToApply = getActiveFilters(newState.filters);
@@ -207,7 +208,7 @@ const applySecondaryFilters = state => {
   // nodes are
   if (filtersToApply.length > 0) {
     // loop over filters and see that atleast one of the filters suceeeds against the node
-    newState.secondaryFilteredNodes = newState.secondaryFilteredNodes.filter(collection => {
+    newState.filteredCollections = newState.filteredCollections.filter(collection => {
       collection.nodes = collection.nodes.filter(n =>
         filtersToApply.some(filter => dotPropMatchesValue(n, filter.filterBy, filter.value)),
       );
@@ -266,9 +267,10 @@ const setCollections = (state, collections) => {
     });
     return c;
   });
-  newState.collections = newCollections(sortedCollections);
+  newState._collections = newCollections(sortedCollections);
+  newState.collectionsLoaded = true;
   // nodes will be filtered eventually be resource type which is the top level navigation
-  newState.primaryFilteredNodes = newCollections(sortedCollections);
+  newState.collections = newCollections(sortedCollections);
   return applySecondaryFilters(newState);
 };
 
