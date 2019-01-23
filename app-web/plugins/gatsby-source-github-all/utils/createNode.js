@@ -51,15 +51,16 @@ const createCollectionNode = (collection, id) => {
  * many of these properties are assigned by convention
  * @param {Object} data the siphon node data
  * @param {String} id the unique id
+ * @param {String} collectionId the collection id that owns this resource
  */
-const createSiphonNode = (data, id) => ({
+const createSiphonNode = (data, id, collectionId) => ({
   id,
   children: [],
   fileName: data.metadata.fileName,
   fileType: data.metadata.fileType,
   name: data.metadata.name,
   owner: data.metadata.owner,
-  parent: null,
+  parent: collectionId,
   path: data.path,
   unfurl: data.metadata.unfurl, // normalized unfurled content from various sources https://medium.com/slack-developer-blog/everything-you-ever-wanted-to-know-about-unfurling-but-were-afraid-to-ask-or-how-to-make-your-e64b4bb9254
   collection: {

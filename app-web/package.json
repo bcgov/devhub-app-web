@@ -9,7 +9,7 @@
   "description": "DevHub aims to become the \"Central Nervous System\" for the growing gov developer community.",
   "license": "Apache-2.0",
   "dependencies": {
-    "@bcgov/common-web-utils": "^0.4.2",
+    "@bcgov/common-web-utils": "^0.5.2",
     "@fortawesome/fontawesome-free-brands": "^5.0.13",
     "@fortawesome/fontawesome-svg-core": "^1.2.8",
     "@fortawesome/free-solid-svg-icons": "^5.5.0",

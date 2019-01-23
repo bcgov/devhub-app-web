@@ -190,7 +190,7 @@ describe('gatsby source github all plugin', () => {
       fileType: 'Markdown',
       name: 'test',
       owner: 'Billy Bob',
-      parent: null,
+      parent: 'foo',
       path: '/test.md',
       collection: {
         name: 'foo',
@@ -236,7 +236,7 @@ describe('gatsby source github all plugin', () => {
 
     hashString.mockReturnValue(null);
 
-    expect(createSiphonNode(file, '123')).toEqual(expected);
+    expect(createSiphonNode(file, '123', 'foo')).toEqual(expected);
   });
 
   test('createCollectionNode returns an object', () => {
