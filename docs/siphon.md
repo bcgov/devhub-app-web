@@ -308,7 +308,9 @@ the graphQL schema (more on that [here](https://www.gatsbyjs.org/docs/plugin-aut
     fileType // the pretty printed name of the file type if exists, .md => Markdown, .yml => YAML, .json => JSON
     name // the file name minus extension
     owner // owner of resource
-    parent // gatsby required attribute, this is null
+    parent {
+        id // gatsby required attribute, this is normally null but in our case holds a reference to the devhubSiphonCollection id this node belongs too 
+    } 
     path // path to the resource
     collection {
         name // name of the collection, this is directly related to the name attribute in the registry
