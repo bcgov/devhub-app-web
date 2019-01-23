@@ -1,0 +1,11 @@
+.Phase {
+  padding: 6px 8px;
+  text-transform: capitalize;
+  color: #026;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.Beta {
+  background-color: #fff;
+}
