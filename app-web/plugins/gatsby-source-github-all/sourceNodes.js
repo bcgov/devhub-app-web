@@ -243,7 +243,7 @@ const getFetchQueue = async (sources, tokens) => {
  * @param {Object} tokens the tokens passed from options
  * @returns {Array} the list of resources retrieved from the source
  */
-const processSource = async (source, createNodeId, createNode, tokens) => {
+const processSource = async (source, createNodeId, createNode, tokens, collectionId) => {
   const resources = await fetchFromSource(source.sourceType, source, tokens);
   // any resources that hvae the metadata ignore flag are filtered out to prevent a node being created
   const filteredResources = filterIgnoredResources(resources);
@@ -251,7 +251,7 @@ const processSource = async (source, createNodeId, createNode, tokens) => {
     filteredResources.map(async resource => {
       const hash = hashString(JSON.stringify(resource));
       const id = createNodeId(hash);
-      const siphonNode = createSiphonNode(resource, id);
+      const siphonNode = createSiphonNode(resource, id, collectionId);
       await createNode(siphonNode);
       return siphonNode;
     }),
@@ -284,7 +284,7 @@ const processCollection = async (
   const id = createNodeId(hash);
   // fetch all sources
   const sourceNodes = await Promise.all(
-    collection.sources.map(source => processSource(source, createNodeId, createNode, tokens)),
+    collection.sources.map(source => processSource(source, createNodeId, createNode, tokens, id)),
   );
   // flatten source nodes to get a list of all the resources
   const resources = _.flatten(sourceNodes, true);
