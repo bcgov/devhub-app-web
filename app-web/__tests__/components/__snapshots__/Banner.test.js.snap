@@ -22,6 +22,9 @@ ShallowWrapper {
       "children": Array [
         <GovLogo />,
         <AppLogo />,
+        <PhaseBanner
+          phase="Beta"
+        />,
       ],
       "className": "Logo",
       "id": "dh-banner",
@@ -47,6 +50,17 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "phase": "Beta",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
     ],
     "type": [Function],
   },
@@ -59,6 +73,9 @@ ShallowWrapper {
         "children": Array [
           <GovLogo />,
           <AppLogo />,
+          <PhaseBanner
+            phase="Beta"
+          />,
         ],
         "className": "Logo",
         "id": "dh-banner",
@@ -80,6 +97,17 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {},
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "phase": "Beta",
+          },
           "ref": null,
           "rendered": null,
           "type": [Function],

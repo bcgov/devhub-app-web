@@ -19,6 +19,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './PhaseBanner.module.css';
 
+// produces a label for the application status...alpha, beta etc
 const PhaseBanner = ({ phase }) => {
   const classNames = [styles.PhaseBanner];
   // eslint-disable-next-line default-case
