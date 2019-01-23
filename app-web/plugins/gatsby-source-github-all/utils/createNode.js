@@ -51,6 +51,7 @@ const createCollectionNode = (collection, id) => {
  * many of these properties are assigned by convention
  * @param {Object} data the siphon node data
  * @param {String} id the unique id
+ * @param {String} collectionId the collection id that owns this resource
  */
 const createSiphonNode = (data, id, collectionId) => ({
   id,
