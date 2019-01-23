@@ -19,10 +19,23 @@
 }
 
 .PrimaryFilter ul li {
-    padding: 10px;
     height: 44px;
     box-sizing: border-box;
-    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.PrimaryFilter ul a {
+    padding: 10px;
+    flex: 1 0 auto;
+    height: 100%;
+    display: inline-block;
+    color: inherit;
+}
+
+.PrimaryFilter ul a:visited {
+    color: inherit;
 }
 
 .PrimaryFilter ul li:not(.ActiveFilter):hover {

@@ -194,6 +194,19 @@ ShallowWrapper {
         },
       }
     }
+    filterCollectionsByResourceType={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+        "results": Array [
+          Object {
+            "isThrow": false,
+            "value": undefined,
+          },
+        ],
+      }
+    }
     filters={
       Array [
         Object {
@@ -355,7 +368,9 @@ ShallowWrapper {
         <Flag
           name="features.sourceFiltering"
         >
-          <Connect(PrimaryFilter) />
+          <PrimaryFilter
+            mobile={false}
+          />
         </Flag>,
         <Connect(Dropmenu)
           menuToggled={true}
@@ -632,15 +647,19 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": <Connect(PrimaryFilter) />,
+          "children": <PrimaryFilter
+            mobile={false}
+          />,
           "name": "features.sourceFiltering",
         },
         "ref": null,
         "rendered": Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
-          "props": Object {},
+          "nodeType": "function",
+          "props": Object {
+            "mobile": false,
+          },
           "ref": null,
           "rendered": null,
           "type": [Function],
@@ -1834,7 +1853,9 @@ ShallowWrapper {
           <Flag
             name="features.sourceFiltering"
           >
-            <Connect(PrimaryFilter) />
+            <PrimaryFilter
+              mobile={false}
+            />
           </Flag>,
           <Connect(Dropmenu)
             menuToggled={true}
@@ -2111,15 +2132,19 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": <Connect(PrimaryFilter) />,
+            "children": <PrimaryFilter
+              mobile={false}
+            />,
             "name": "features.sourceFiltering",
           },
           "ref": null,
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "class",
-            "props": Object {},
+            "nodeType": "function",
+            "props": Object {
+              "mobile": false,
+            },
             "ref": null,
             "rendered": null,
             "type": [Function],
