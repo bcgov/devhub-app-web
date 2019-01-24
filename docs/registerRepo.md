@@ -85,6 +85,9 @@ The following Registry Level Configurations are available:
 - **description**: ***To only be used by collections!*** This gives a description of the collection.
     A github repository receives this property for free based on the description of the repo as found in
     github for the repo.
+- **slug**: (optional) This is the url all of your resources will show under... ie a slug of `my awesome collection` would have all resources found under the url `https://developer.gov.bc.ca/my-awesome-collection/{resource id}`.
+If you choose not provide a slug, one will be made based on the ***name*** for the registry item.
+> it is advised that once you have set a slug value, you avoid changing it. This is because it will break any bookmarks users have made to your resources! 
 - **sourceType**: This tells DevHub how to grab information from your source
 - **sourceProperties**: These are properties as required for a source type **and is not a registry level configuration**
 - **resourceType**: (optional) This is a global resource type, any singular chunk of data (such as a markdown file or a yaml file or a  link to a website) that DevHubg grabs from your source can have it's individual resourceType defaulted to this value see the main readme for valid resource types.

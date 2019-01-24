@@ -27,6 +27,10 @@ const REGISTRY_ITEM_SCHEMA = {
     type: Object,
     required: true,
   },
+  slug: {
+    type: String,
+    required: true,
+  },
   resourceType: {
     type: String,
     required: false,
