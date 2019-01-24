@@ -15,6 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
+const chalk = require('chalk');
 const shortid = require('shortid'); // eslint-disable-line
 const slugify = require('slugify');
 const matter = require('gray-matter'); // eslint-disable-line
@@ -36,6 +37,7 @@ const {
 const { MARKDOWN_FRONTMATTER_SCHEMA, UNFURL_TYPES, RESOURCE_TYPES } = require('./constants');
 
 const slugStore = new Store([], {
+  throwOnConflict: true,
   conflictCb: slug => `\n warning from Siphon! --- The slug ${slug} for a markdown file already
     exists, this is a conflict that will lead to wierd results as more than one siphon node will point
     to the same gatsby page on build. Consider fixing this!`,
@@ -317,7 +319,26 @@ const markdownSlugPlugin = (extension, file) => {
     const frontmatter = data.data;
     let slug = frontmatter.slug || frontmatter.title;
     slug = slugify(slug);
-    slugStore.checkConflict(slug).set(slug, slug);
+    // get the current resource for the store if it exists
+    const currentResource = slugStore.get(slug);
+    try {
+      // if there is a conflict, slugstore has been configd to throw
+      slugStore.checkConflict(slug);
+    } catch (e) {
+      // throwing allows for a more detailed message.
+      console.error(chalk`\n{red.bold WARNING from Siphon!} --- the following markdown file
+         ${JSON.stringify(file.metadata, null, 2)} 
+      has a naming conflict in the slug that is being used to produce a gatsby page. The slug is currently
+      in use by the following resource:
+         ${JSON.stringify(
+           currentResource,
+           null,
+           2,
+         )}. This may cause odd issues for links to the gatsby page if not rectified.`);
+      console.error(e);
+    }
+    // continue to set new slug in store
+    slugStore.set(slug, file.metadata);
     file.metadata.slug = slug;
   }
   return file;
