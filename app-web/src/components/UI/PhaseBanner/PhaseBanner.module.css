@@ -1,0 +1,9 @@
+.PhaseBanner {
+  margin-top: -1em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.Beta {
+  color: #fcba19;
+}
