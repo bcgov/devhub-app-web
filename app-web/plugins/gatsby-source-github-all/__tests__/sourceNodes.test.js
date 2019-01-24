@@ -257,6 +257,7 @@ describe('gatsby source github all plugin', () => {
         slug: COLLECTION_OBJ_FROM_FETCH_QUEUE.slug,
         template: COLLECTION_TEMPLATES.DEFAULT,
         templateFile: undefined,
+        sourceLocations: undefined,
       },
     };
     hashString.mockReturnValue(null);

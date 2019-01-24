@@ -43,6 +43,7 @@ const createCollectionNode = (collection, id) => {
       template: collection.template,
       templateFile: collection.templateFile,
       slug: collection.slug,
+      sourceLocations: collection.sourceLocations,
     },
   };
 };
