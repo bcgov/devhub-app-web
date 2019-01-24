@@ -16,6 +16,7 @@ import {
   getClosestResourceType,
   getClosestPersona,
   unfurlWebURI,
+  mergeUnfurls,
 } from '../utils/helpers';
 jest.mock('../utils/helpers.js');
 
@@ -23,6 +24,7 @@ createUnfurlObj.mockReturnValue({});
 getClosestResourceType.mockReturnValue('');
 getClosestPersona.mockImplementation(persona => persona);
 unfurlWebURI.mockReturnValue({});
+mergeUnfurls.mockImplementation((oldUnfurl, newUnfurl) => newUnfurl);
 
 describe('Transformer System', () => {
   let file = null;
@@ -126,7 +128,18 @@ describe('Transformer System', () => {
       expect(result).toBeDefined();
     });
 
-    it('returns files with unfurl property defined', async () => {
+    it('returns files with unfurl property defined when no original unfurl exists', async () => {
+      // remove the unfurl property
+      file.metadata.unfurl = undefined;
+      file.metadata.resourcePath =
+        'http://www.bloomberg.com/news/articles/2016-05-24/as-zenefits-stumbles-gusto-goes-head-on-by-selling-insurance';
+      const result = await externalLinkUnfurlPlugin(file.metadata.extension, file);
+      expect(result.metadata.unfurl).toBeDefined();
+    });
+
+    it('returns files with unfurl property defined when original unfurl does exist', async () => {
+      // remove the unfurl property
+      file.metadata.unfurl = { title: 'boopity boop' };
       file.metadata.resourcePath =
         'http://www.bloomberg.com/news/articles/2016-05-24/as-zenefits-stumbles-gusto-goes-head-on-by-selling-insurance';
       const result = await externalLinkUnfurlPlugin(file.metadata.extension, file);
