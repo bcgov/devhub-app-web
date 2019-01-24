@@ -38,7 +38,7 @@ const { MARKDOWN_FRONTMATTER_SCHEMA, UNFURL_TYPES, RESOURCE_TYPES } = require('.
 
 const slugStore = new Store([], {
   throwOnConflict: true,
-  conflictCb: slug => `\n warning from Siphon! --- The slug ${slug} for a markdown file already
+  conflictCb: slug => `\nWARNING from Siphon! --- The slug ${slug} for a markdown file already
     exists, this is a conflict that will lead to wierd results as more than one siphon node will point
     to the same gatsby page on build. Consider fixing this!`,
 });
@@ -326,15 +326,24 @@ const markdownSlugPlugin = (extension, file) => {
       slugStore.checkConflict(slug);
     } catch (e) {
       // throwing allows for a more detailed message.
-      console.error(chalk`\n{red.bold WARNING from Siphon!} --- the following markdown file
-         ${JSON.stringify(file.metadata, null, 2)} 
-      has a naming conflict in the slug that is being used to produce a gatsby page. The slug is currently
-      in use by the following resource:
-         ${JSON.stringify(
-           currentResource,
-           null,
-           2,
-         )}. This may cause odd issues for links to the gatsby page if not rectified.`);
+      const produceSummary = metadata =>
+        `Source: ${metadata.sourceName}, fileName: ${metadata.fileName}, title: ${
+          metadata.resourceTitle
+        }`;
+      const currentSummary = produceSummary(currentResource);
+      const conflictingSummary = produceSummary(file.metadata);
+      const warning = chalk`\n
+        {red WARNING from Siphon!} --- markdown file slug conflict {red.bold (slug: ${slug}) } 
+        the following markdown file ---
+        {green ${conflictingSummary}}
+        has a naming conflict in the slug that is being used to produce a gatsby page. 
+        The slug is currently in use by this markdown file ---
+        {green ${currentSummary}}
+        {cyan.bold This may cause odd issues for links to the gatsby page if not rectified.}
+        detailed stack below..
+      `;
+
+      console.error(warning);
       console.error(e);
     }
     // continue to set new slug in store
