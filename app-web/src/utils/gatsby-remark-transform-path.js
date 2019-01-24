@@ -62,9 +62,12 @@ const getGithubBasePath = (repo, owner, branch = 'master') => {
  * @param {String} path 'relative path of astNode
  * @param {Object} parentQLnode 'parent graphQLNode
  */
-const converter = (astType, path, parentQLnode) => {
+const converter = (astType, path, parentQLnode, getNode) => {
   // only convert source devhub nodes
   if (parentQLnode.internal.type === GRAPHQL_NODE_TYPE.SIPHON) {
+    // get collection node
+    const collection = getNode(parentQLnode.parent);
+    const sourceLocations = new Map(collection._metadata.sourceLocations);
     // normalize the path so that any paths that have no leading slash are assumed to be relative
     const normalizedPath = normalizeFilePath(path);
     let absolutePath;
@@ -73,6 +76,12 @@ const converter = (astType, path, parentQLnode) => {
 
     if (isRelativePath(normalizedPath)) {
       absolutePath = url.resolve(urlObj.href, normalizedPath);
+      // we need to check if relative path would match a github path based on the collection
+      // source locations map
+      const internalPagePath = sourceLocations.get(absolutePath);
+      if (internalPagePath) {
+        absolutePath = internalPagePath;
+      }
     } else {
       // if its absolute we need to append path to the base of the github repository endpoint
       const { repo, owner, branch } = parentQLnode.source._properties;

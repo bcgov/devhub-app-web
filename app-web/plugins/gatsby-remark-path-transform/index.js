@@ -25,7 +25,7 @@ const { IMAGE, LINK } = require('./utils/constants');
 /**
  * sifts through ast (see https://www.huynguyen.io/2018-05-remark-gatsby-plugin-part-2/)
  * and converts relative paths to absolute paths for images and links via a converter cb
- * the converter cb receives (ast node type, relative url, parent graphql node)
+ * the converter cb receives (ast node type, relative url, parent graphql node, getNode (to get nodes further up the tree if needed))
  * @param {Object} remark
  * @param {Object} options
  */
@@ -47,7 +47,7 @@ const transformRelativePaths = ({ markdownAST, markdownNode, getNode }, { conver
     if (validURL.isWebUri(url) || url.indexOf('#') === 0) {
       return url;
     }
-    const absolutePath = converter(nodeType, url, parentQLNode);
+    const absolutePath = converter(nodeType, url, parentQLNode, getNode);
     return absolutePath; // eslint-disable-line
   };
 

@@ -50,7 +50,7 @@ describe('gatsby-remark-path-transform', () => {
 
       transformRelativePaths({ getNode, markdownAST, markdownNode }, { converter });
 
-      expect(converter).toHaveBeenCalledWith('image', oldURL, GRAPH_QL_PARENT_NODE);
+      expect(converter).toHaveBeenCalledWith('image', oldURL, GRAPH_QL_PARENT_NODE, getNode);
       // expect url to hvae been changed
       expect(oldURL).not.toBe(markdownAST.url);
     });

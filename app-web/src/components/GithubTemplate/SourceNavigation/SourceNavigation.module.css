@@ -14,19 +14,8 @@
     overflow-y: scroll;
 }
 
-.Navigation ul li {
-    padding: 4px .5em;
-}
-
-.Navigation li[data-active="true"] {
-    text-decoration: underline;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
 .Navigation a {
+    padding: 4px .5em;
     overflow: hidden;
     color: #2e2e2e;
     display: inline-block;
