@@ -126,9 +126,15 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
 
   test('transformer sets pagePath to gatsby create page path by default', async () => {
     const data = matter(mdFile.content);
+
+    mdFile.metadata.collection = {
+      slug: 'foo',
+    };
+
     const {
-      metadata: { source, name },
+      metadata: { source, name, collection },
     } = mdFile;
+
     expect(data.data.resourcePath).not.toBeDefined();
 
     const transformedFile = await fileTransformer(mdFile.metadata.extension, mdFile)
@@ -136,7 +142,9 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
       .resolve();
 
     expect(transformedFile.metadata.resourcePath).toBe(
-      `/${source}/${source}${name}https:/github.com/bcgov/design-system/blob/master/components/header/README.md`,
+      `/${
+        collection.slug
+      }/${source}${name}https:/github.com/bcgov/design-system/blob/master/components/header/README.md`,
     );
   });
 

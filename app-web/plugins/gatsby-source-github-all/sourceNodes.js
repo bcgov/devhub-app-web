@@ -46,7 +46,7 @@ const Store = require('./utils/Store');
  * @param {Object} rootSource
  * @param {Object} targetSource
  */
-const mapInheritedSourceAttributes = ({ name, attributes, resourceType }, targetSource) => ({
+const mapInheritedSourceAttributes = ({ name, attributes, resourceType, slug }, targetSource) => ({
   attributes: normalizeAttributes({
     ...attributes,
     ...targetSource.attributes,
@@ -56,6 +56,7 @@ const mapInheritedSourceAttributes = ({ name, attributes, resourceType }, target
   collection: {
     name,
     type: COLLECTION_TYPES.CURATED,
+    slug,
   },
   ...targetSource,
 });
@@ -210,7 +211,7 @@ const getFetchQueue = async (sources, tokens) => {
       const mappedChildSources = rootSource.sourceProperties.sources.map(
         (childSource, sourceIndex) =>
           setSourcePositionByCollection(
-            mapInheritedSourceAttributes(rootSource, childSource),
+            mapInheritedSourceAttributes({ ...rootSource, slug }, childSource),
             sourceIndex,
           ),
       );
@@ -228,6 +229,7 @@ const getFetchQueue = async (sources, tokens) => {
           collection: {
             name: rootSource.name,
             type: COLLECTION_TYPES[rootSource.sourceType],
+            slug,
           },
         },
       ].map((source, sourceIndex) => setSourcePositionByCollection(source, sourceIndex));
