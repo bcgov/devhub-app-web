@@ -177,7 +177,7 @@ const normalizeAttributes = attributes => {
 const getFetchQueue = async (sources, tokens) => {
   const slugStore = new Store([], {
     conflictCb: slug =>
-      `The collection slug ${slug}, has already been used. This is a warning message, in future versions we may remove your collection on conflict`,
+      chalk`\n{yellow warning from Siphon!} {red.bold ---} The collection slug {yellow.bold ${slug}}, has already been used. This is a warning message, in future versions we may remove your collection on conflicts such as this.`,
   });
 
   const collectionPromises = sources.map(async (source, index) => {
