@@ -127,6 +127,10 @@ with the exceptions of the ones that are configured not too or are ignored.
 The following source level configurations are available for source type `web`
 
 - **url**: the path to the website ie https://gatsbyjs.org
+- **image**: the path to an external image
+- **author**: a github username which loads an avatar as well as a link to the github user profile
+- **description**: a description for the resource
+- **title**: a title for the resource
 
 #### Registering a Github Source
 
@@ -256,6 +260,7 @@ Valid front matter properties:
 - **image**: (optional)
     A valid link to an image, avoid using a *relative* path to an image *ie ../my_image.png* and instead
     use a *absolute* path such as *https://www.mysite.com/my_image.png*
+    or a relative path to an image in your github repository
 - **author**: (optional but recommended)
     The author of the markdown file (this should be your github username)
 - **persona**: (optional)
