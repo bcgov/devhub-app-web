@@ -15,7 +15,7 @@ import {
 import { RESOURCE_TYPES } from '../utils/constants';
 
 import { fetchRepo } from '../utils/sources/github/api';
-jest.mock('../utils/sources/github//api');
+jest.mock('../utils/sources/github/api');
 
 describe('createPathWithDigest', () => {
   it('throws if base is not a string', () => {

@@ -20,6 +20,8 @@ const {
   validateSourcePropertiesAgainstSchema,
   unfurlWebURI,
   assignPositionToResource,
+  mergeUnfurls,
+  createUnfurlObj,
 } = require('../../helpers');
 
 /**
@@ -30,6 +32,8 @@ const {
 const validateSourceWeb = source =>
   validateSourcePropertiesAgainstSchema(source, WEB_SOURCE_SCHEMA);
 
+const extractUnfurlFromSourceProperties = sourceProperties =>
+  createUnfurlObj('local', sourceProperties);
 /**
  * fetches data from a web source
  * based on the configuration passed into the routine
@@ -49,11 +53,12 @@ const fetchSourceWeb = async ({
   const { url } = sourceProperties;
   // fetch information from the url
   const source = { metadata: { ...metadata } };
-
+  const localUnfurl = extractUnfurlFromSourceProperties(sourceProperties);
   const assignPosToResourceBySource = assignPositionToResource(source);
 
   try {
-    const unfurl = await unfurlWebURI(url);
+    const externalUnfurl = await unfurlWebURI(url);
+    const unfurl = mergeUnfurls(localUnfurl, externalUnfurl);
     const siphonData = {
       metadata: {
         unfurl,
@@ -83,4 +88,5 @@ const fetchSourceWeb = async ({
 module.exports = {
   validateSourceWeb,
   fetchSourceWeb,
+  extractUnfurlFromSourceProperties,
 };
