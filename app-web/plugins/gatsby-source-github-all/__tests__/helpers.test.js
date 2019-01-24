@@ -10,6 +10,7 @@ import {
   assignPositionToResource,
   assignPositionToSource,
   createPosition,
+  mergeUnfurls,
 } from '../utils/helpers';
 import { RESOURCE_TYPES } from '../utils/constants';
 
@@ -233,6 +234,35 @@ describe('unfurlWebURI', () => {
       };
 
       expect(cb(resource, 0)).toEqual(expected);
+    });
+  });
+  describe('mergeUnfurls', () => {
+    it('merges unfurls with old unfurls taking priority', () => {
+      const oldUnfurl = createUnfurlObj('internal', {
+        title: 'foo',
+        description: 'blah',
+        author: undefined,
+        image: undefined,
+      });
+
+      const externalUnfurl = {
+        title: 'bar',
+        image: 'cool.png',
+      };
+
+      const expected = {
+        title: 'foo',
+        description: 'blah',
+        image: 'cool.png',
+        author: undefined,
+        data1: undefined,
+        data2: undefined,
+        label1: undefined,
+        label2: undefined,
+        type: 'internal',
+      };
+
+      expect(mergeUnfurls(oldUnfurl, externalUnfurl)).toEqual(expected);
     });
   });
 });
