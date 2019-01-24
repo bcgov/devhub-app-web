@@ -20,6 +20,7 @@
 const _ = require('lodash'); // eslint-disable-line
 const chalk = require('chalk'); // eslint-disable-line
 const { TypeCheck } = require('@bcgov/common-web-utils');
+const slugify = require('slugify');
 const {
   hashString,
   isSourceCollection,
@@ -38,7 +39,7 @@ const {
   COLLECTION_TEMPLATES_LIST,
 } = require('./utils/constants');
 const { createSiphonNode, createCollectionNode } = require('./utils/createNode');
-
+const Store = require('./utils/Store');
 /**
  * maps root level attributes to a child 'source'
  * this only happens for collections that are set in the registry
@@ -174,8 +175,17 @@ const normalizeAttributes = attributes => {
  * @param {Array} sources
  */
 const getFetchQueue = async (sources, tokens) => {
+  const slugStore = new Store([], {
+    conflictCb: slug =>
+      `The collection slug ${slug}, has already been used. This is a warning message, in future versions we may remove your collection on conflict`,
+  });
+
   const collectionPromises = sources.map(async (source, index) => {
     const rootSource = { ...source };
+    const slug = slugify(rootSource.slug || rootSource.name);
+    // check if slug is already in use and if it is print out the warning message as described by
+    // the conflic Cb above
+    slugStore.checkConflict(slug).set(slug, slug);
 
     let collection = newCollection(
       assignPositionToCollection(
@@ -186,6 +196,7 @@ const getFetchQueue = async (sources, tokens) => {
             ? getClosest(rootSource.template, COLLECTION_TEMPLATES_LIST)
             : COLLECTION_TEMPLATES.DEFAULT,
           templateFile: rootSource.templateFile || '',
+          slug,
         },
         index,
       ),
@@ -225,6 +236,7 @@ const getFetchQueue = async (sources, tokens) => {
       collection = newCollection(collection, {
         type: COLLECTION_TYPES[rootSource.sourceType],
         description: await getCollectionDescriptionBySourceType(rootSource, tokens),
+        slug,
         sources,
       });
     }

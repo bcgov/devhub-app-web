@@ -52,4 +52,4 @@ class Store extends Map {
   }
 }
 
-export default Store;
+module.exports = Store;

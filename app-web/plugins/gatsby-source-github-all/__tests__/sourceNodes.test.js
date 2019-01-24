@@ -254,6 +254,7 @@ describe('gatsby source github all plugin', () => {
       },
       _metadata: {
         position: [0],
+        slug: COLLECTION_OBJ_FROM_FETCH_QUEUE.slug,
         template: COLLECTION_TEMPLATES.DEFAULT,
         templateFile: undefined,
       },
