@@ -246,7 +246,8 @@ const mergeUnfurls = (configurationLevelUnfurl, externalUnfurl) => {
     }
   });
   return newUnfurl;
-}
+};
+
 /**
  * returns a md5 hash
  * @param {String} content the string to be hashed
