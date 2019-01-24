@@ -125,10 +125,14 @@ const pagePathPlugin = (extension, file) => {
       return file;
     }
   }
+  let basePath = file.metadata.source;
+  if (file.metadata.collection && file.metadata.collection.slug) {
+    basePath = file.metadata.collection.slug;
+  }
   // no resource path, this file is destined to be turned into a page,
   // the page page is composed of the source name, the title of the file plus an id
   file.metadata.resourcePath = createPathWithDigest(
-    file.metadata.source,
+    basePath,
     file.metadata.source,
     file.metadata.name,
     file.html_url,
