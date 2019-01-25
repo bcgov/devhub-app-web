@@ -30,6 +30,7 @@ export const SIPHON_QL_NODE = {
   resource: {
     originalSource:
       'https://github.com/bcgov/design-system/blob/master/components/footer/something/README.md',
+    path: '/design-system/README_123o8123',
   },
   resourcePath: '/design-system/README_123o8123',
   path: 'components/footer/README.md',
