@@ -146,15 +146,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
       .use(pagePathPlugin)
       .resolve();
 
-<<<<<<< HEAD
-    expect(transformedFile.metadata.resourcePath).toBe(
-      `/${
-        collection.slug
-      }/${source}${name}https:/github.com/bcgov/design-system/blob/master/components/header/README.md`,
-    );
-=======
     expect(transformedFile.metadata.resourcePath).toBe(`/${collection.slug}/${slug}`);
->>>>>>> integrate collection slug into page path creation
   });
 
   test('transformer sets resourceType by the globalResourceType', async () => {
