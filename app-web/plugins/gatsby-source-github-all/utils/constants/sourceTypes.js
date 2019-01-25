@@ -58,6 +58,38 @@ const WEB_SOURCE_SCHEMA = {
     type: String,
     required: true,
   },
+  author: {
+    type: String,
+    required: false,
+  },
+  image: {
+    type: String,
+    required: false,
+  },
+  description: {
+    type: String,
+    required: false,
+  },
+  title: {
+    type: String,
+    required: false,
+  },
+  data1: {
+    type: String,
+    required: false,
+  },
+  label1: {
+    type: String,
+    required: false,
+  },
+  data2: {
+    type: String,
+    required: false,
+  },
+  label2: {
+    type: String,
+    required: false,
+  },
 };
 
 module.exports = {

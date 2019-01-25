@@ -1,16 +1,17 @@
-import { WEB_SOURCE } from '../__fixtures__/fixtures';
-import { validateSourceWeb } from '../utils/sources/web/';
+import { extractUnfurlFromSourceProperties } from '../utils/sources/web/';
+import { createUnfurlObj, mergeUnfurls } from '../utils/helpers';
+jest.mock('../utils/helpers.js');
+
+mergeUnfurls.mockImplementation((oldUnfurl, newUnfurl) => newUnfurl);
+createUnfurlObj.mockImplementation(obj => obj);
 
 describe('sourceType Web', () => {
-  test('validateSourceGithub returns true when valid', () => {
-    expect(validateSourceWeb(WEB_SOURCE)).toBe(true);
-  });
-
-  test('validateSourceWeb returns false when source is invalid', () => {
-    const BAD_SOURCE = {
-      ...WEB_SOURCE,
-      sourceProperties: { url: null },
+  test('extractUnfurlFromSourceProperties returns an unfurl object', () => {
+    const sourceProperties = {
+      url: 'blah',
+      author: 'yo',
+      title: 'boop',
     };
-    expect(validateSourceWeb(BAD_SOURCE)).toBe(false);
+    expect(extractUnfurlFromSourceProperties(sourceProperties)).toBeDefined();
   });
 });

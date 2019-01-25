@@ -230,6 +230,25 @@ const unfurlWebURI = async uri => {
 };
 
 /**
+ * merges unfurls from a configuration setting with ones that are externally sourced
+ * the configuration one takes priority in the merge
+ * @param {Object} configurationLevelUnfurl
+ * @param {Object} externalUnfurl
+ */
+const mergeUnfurls = (configurationLevelUnfurl, externalUnfurl) => {
+  const newUnfurl = {};
+  Object.keys(configurationLevelUnfurl).forEach(key => {
+    const value = configurationLevelUnfurl[key];
+    if (value !== undefined) {
+      newUnfurl[key] = value;
+    } else {
+      newUnfurl[key] = externalUnfurl[key];
+    }
+  });
+  return newUnfurl;
+};
+
+/**
  * returns a md5 hash
  * @param {String} content the string to be hashed
  * @returns {String} the hash
@@ -343,6 +362,7 @@ module.exports = {
   hashString,
   createPathWithDigest,
   createUnfurlObj,
+  mergeUnfurls,
   getClosest,
   getClosestResourceType,
   getClosestPersona,

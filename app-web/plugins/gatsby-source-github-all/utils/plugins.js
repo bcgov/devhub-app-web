@@ -27,6 +27,7 @@ const {
   createUnfurlObj,
   getClosestResourceType,
   getClosestPersona,
+  mergeUnfurls,
   unfurlWebURI,
 } = require('./helpers'); // eslint-disable-line
 const { MARKDOWN_FRONTMATTER_SCHEMA, UNFURL_TYPES, RESOURCE_TYPES } = require('./constants');
@@ -227,7 +228,12 @@ const markdownResourceTypePlugin = (extension, file) => {
 const externalLinkUnfurlPlugin = async (extension, file) => {
   try {
     const unfurl = await unfurlWebURI(file.metadata.resourcePath);
-    file.metadata.unfurl = unfurl;
+    if (Object.prototype.hasOwnProperty.call(file.metadata, 'unfurl') && file.metadata.unfurl) {
+      // if unfurl exists in file already merge the results with the prexsisting unfurl taking priority
+      file.metadata.unfurl = mergeUnfurls(file.metadata.unfurls, unfurl);
+    } else {
+      file.metadata.unfurl = unfurl;
+    }
     return file;
   } catch (e) {
     return file;
