@@ -22,10 +22,32 @@ import { graphql } from 'gatsby';
 import 'github-markdown-css';
 import styles from './SourceMarkdown.module.css';
 
+
+import rehypeReact from "rehype-react"
+import ComponentPreview from "../components/ComponentPreview/ComponentPreview"
+
 import GithubTemplateLayout from '../hoc/GithubTemplateLayout';
 import SidePanel from '../components/GithubTemplate/SidePanel/SidePanel';
 import Header from '../components/GithubTemplate/Header/Header';
 import SourceNavigation from '../components/GithubTemplate/SourceNavigation/SourceNavigation';
+import withNode from '../hoc/withNode'
+
+
+const renderAst = new rehypeReact({
+        createElement: React.createElement,
+        components: { "component-preview": ComponentPreview}
+    }).Compiler;
+
+
+/* below is attempt to adapt to use HOC 'withNode' - result is blank page :(
+const renderAst = function(ast, node) {
+    new rehypeReact({
+        createElement: React.createElement,
+        components: { "component-preview": withNode( { ComponentPreview, node } )}
+    }).Compiler(ast);
+};*/
+
+
 // eslint-disable-next-line
 const SourceGithubMarkdownDefault = ({ data: { devhubSiphon, nav }, location: pathname }) => (
   <GithubTemplateLayout siphonData={devhubSiphon} nav={nav} pathname={pathname}>
@@ -38,17 +60,20 @@ const SourceGithubMarkdownDefault = ({ data: { devhubSiphon, nav }, location: pa
           sourcePath={devhubSiphon.source.sourcePath}
           repo={devhubSiphon.source.name}
         />
-        {nav.edges.length > 1 ? (
+          {nav.edges.length > 1 ? (
           <SourceNavigation components={nav.edges} activeLink={pathname} />
         ) : null}
       </SidePanel>
-      <main className={styles.Content}>
-        <div
-          className={[styles.MarkdownBody, 'markdown-body'].join(' ')}
-          dangerouslySetInnerHTML={{
-            __html: devhubSiphon.childMarkdownRemark.html,
-          }}
-        />
+        <main className={styles.Content}>
+        <div className={[styles.MarkdownBody, 'markdown-body'].join(' ')} >
+            {
+                renderAst(devhubSiphon.childMarkdownRemark.htmlAst)
+
+                /// below is attempt to adapt to use HOC 'withNode' - result is blank page :(
+                // renderAst(devhubSiphon.childMarkdownRemark.htmlAst, devhubSiphon)
+            }
+        </div>
+
       </main>
     </div>
   </GithubTemplateLayout>
@@ -63,7 +88,7 @@ export const devhubSiphonMarkdown = graphql`
         frontmatter {
           title
         }
-        html
+        htmlAst
       }
       source {
         name
