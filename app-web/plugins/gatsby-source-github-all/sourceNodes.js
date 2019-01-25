@@ -31,6 +31,7 @@ const {
   assignPositionToSource,
   getClosest,
 } = require('./utils/helpers');
+const siphonMessenger = require('./utils/console');
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
 const {
   COLLECTION_TYPES,
@@ -126,11 +127,7 @@ const filterIgnoredResources = sources =>
     if (!Object.prototype.hasOwnProperty.call(s.metadata, 'ignore') || !s.metadata.ignore) {
       return true;
     }
-    console.log(
-      chalk`\n The resource {green.bold ${
-        s.metadata.name
-      }} has been flagged as {green.bold 'ignore'} and will not have a Siphon Node created for it`,
-    );
+    console.log(siphonMessenger.resourceIgnored(s.metadata.name));
     return false;
   });
 
@@ -177,8 +174,7 @@ const normalizeAttributes = attributes => {
  */
 const getFetchQueue = async (sources, tokens) => {
   const slugStore = new Store([], {
-    conflictCb: slug =>
-      chalk`\n{red WARNING from Siphon!} {red.bold ---} The collection slug {yellow.bold ${slug}}, has already been used. This is a warning message, in future versions we may remove your collection on conflicts such as this.`,
+    conflictCb: slug => siphonMessenger.collectionSlugConflict(slug),
   });
 
   const collectionPromises = sources.map(async (source, index) => {

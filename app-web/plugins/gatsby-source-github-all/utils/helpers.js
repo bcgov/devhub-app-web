@@ -25,6 +25,7 @@ const stringSimilarity = require('string-similarity');
 const scrape = require('html-metadata');
 const validUrl = require('valid-url');
 const { RESOURCE_TYPES_LIST, UNFURL_TYPES, SOURCE_TYPES } = require('./constants');
+const siphonMessenger = require('./console');
 const { fetchRepo } = require('./sources/github/api');
 /**
  * returns an idempotent path based on a base path plus a digestable string that is hashed
@@ -44,6 +45,11 @@ const createPathWithDigest = (base, ...digestables) => {
   const digested = shorthash.unique(digestables.join(''));
 
   return path.join('/', normalizedBase, digested);
+};
+
+const withUnfurlWarning = (url, unfurl) => {
+  if (!unfurl.title || !unfurl.description) console.log(siphonMessenger.unfurlLacksInfo(url));
+  return unfurl;
 };
 
 /**
@@ -383,4 +389,5 @@ module.exports = {
   unfurlWebURI,
   isSourceCollection,
   getCollectionDescriptionBySourceType,
+  withUnfurlWarning,
 };

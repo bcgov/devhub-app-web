@@ -22,6 +22,7 @@ const {
   assignPositionToResource,
   mergeUnfurls,
   createUnfurlObj,
+  withUnfurlWarning,
 } = require('../../helpers');
 
 /**
@@ -55,10 +56,9 @@ const fetchSourceWeb = async ({
   const source = { metadata: { ...metadata } };
   const localUnfurl = extractUnfurlFromSourceProperties(sourceProperties);
   const assignPosToResourceBySource = assignPositionToResource(source);
-
   try {
     const externalUnfurl = await unfurlWebURI(url);
-    const unfurl = mergeUnfurls(localUnfurl, externalUnfurl);
+    const unfurl = withUnfurlWarning(url, mergeUnfurls(localUnfurl, externalUnfurl));
     const siphonData = {
       metadata: {
         unfurl,
