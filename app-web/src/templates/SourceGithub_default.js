@@ -22,62 +22,54 @@ import { graphql } from 'gatsby';
 import 'github-markdown-css';
 import styles from './SourceMarkdown.module.css';
 
-
-import rehypeReact from "rehype-react"
-import ComponentPreview from "../components/ComponentPreview/ComponentPreview"
+import rehypeReact from 'rehype-react';
+import ComponentPreview from '../components/ComponentPreview/ComponentPreview';
 
 import GithubTemplateLayout from '../hoc/GithubTemplateLayout';
 import SidePanel from '../components/GithubTemplate/SidePanel/SidePanel';
 import Header from '../components/GithubTemplate/Header/Header';
 import SourceNavigation from '../components/GithubTemplate/SourceNavigation/SourceNavigation';
-import withNode from '../hoc/withNode'
-
-
-const renderAst = new rehypeReact({
-        createElement: React.createElement,
-        components: { "component-preview": ComponentPreview}
-    }).Compiler;
-
-
-/* below is attempt to adapt to use HOC 'withNode' - result is blank page :(
-const renderAst = function(ast, node) {
-    new rehypeReact({
-        createElement: React.createElement,
-        components: { "component-preview": withNode( { ComponentPreview, node } )}
-    }).Compiler(ast);
-};*/
-
+import withNode from '../hoc/withNode';
 
 // eslint-disable-next-line
-const SourceGithubMarkdownDefault = ({ data: { devhubSiphon, nav }, location: pathname }) => (
-  <GithubTemplateLayout siphonData={devhubSiphon} nav={nav} pathname={pathname}>
-    <div className={styles.TemplateContainer}>
-      <SidePanel links={nav.edges} pathname={pathname} siphonData={devhubSiphon}>
-        <Header
-          title={devhubSiphon.source.displayName}
-          originalSource={devhubSiphon.resource.originalSource}
-          fileName={devhubSiphon.fileName}
-          sourcePath={devhubSiphon.source.sourcePath}
-          repo={devhubSiphon.source.name}
-        />
+const SourceGithubMarkdownDefault = ({ data: { devhubSiphon, nav }, location: pathname }) => {
+  // bind the devhub siphon data to the preview node
+  const previewWithNode = withNode(devhubSiphon)(ComponentPreview);
+
+  const renderAst = new rehypeReact({
+    createElement: React.createElement,
+    components: { 'component-preview': previewWithNode },
+  }).Compiler;
+
+  return (
+    <GithubTemplateLayout siphonData={devhubSiphon} nav={nav} pathname={pathname}>
+      <div className={styles.TemplateContainer}>
+        <SidePanel links={nav.edges} pathname={pathname} siphonData={devhubSiphon}>
+          <Header
+            title={devhubSiphon.source.displayName}
+            originalSource={devhubSiphon.resource.originalSource}
+            fileName={devhubSiphon.fileName}
+            sourcePath={devhubSiphon.source.sourcePath}
+            repo={devhubSiphon.source.name}
+          />
           {nav.edges.length > 1 ? (
-          <SourceNavigation components={nav.edges} activeLink={pathname} />
-        ) : null}
-      </SidePanel>
+            <SourceNavigation components={nav.edges} activeLink={pathname} />
+          ) : null}
+        </SidePanel>
         <main className={styles.Content}>
-        <div className={[styles.MarkdownBody, 'markdown-body'].join(' ')} >
-            {
-                renderAst(devhubSiphon.childMarkdownRemark.htmlAst)
-
-                /// below is attempt to adapt to use HOC 'withNode' - result is blank page :(
-                // renderAst(devhubSiphon.childMarkdownRemark.htmlAst, devhubSiphon)
-            }
-        </div>
-
-      </main>
-    </div>
-  </GithubTemplateLayout>
-);
+          <div className={[styles.MarkdownBody, 'markdown-body'].join(' ')}>
+            {/* 
+              if there is a tag in the markdown <component-preview> 
+              the renderAst will drop in the rehype component
+              otherwise if not tag exists it is biz as usual
+            */}
+            {renderAst(devhubSiphon.childMarkdownRemark.htmlAst)}
+          </div>
+        </main>
+      </div>
+    </GithubTemplateLayout>
+  );
+};
 
 export const devhubSiphonMarkdown = graphql`
   query devhubSiphonMarkdownDefault($id: String!, $collection: String!) {
