@@ -211,7 +211,17 @@ const unfurlWebURI = async uri => {
   if (!uri || !validUrl.isUri(uri)) {
     throw new Error('The uri is not valid');
   }
-  const data = await scrape(uri);
+  let data;
+  try {
+    data = await scrape(uri);
+  } catch (e) {
+    if (e.message === 'No metadata found in page') {
+      //this is the only case we want to handle and to continue without throwing
+      data = {};
+    } else {
+      throw e;
+    }
+  }
 
   // metadata comes in with properties for each type of unfurl spec (twitter, openGraph etc)
   const combinedData = { ...data.general, ...data.twitter, ...data.openGraph };
