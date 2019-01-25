@@ -74,3 +74,10 @@ export const filterSiphonNodesByFilterList = () => {
     type: actionTypes.FILTER_SIPHON_NODES_BY_FILTER_LIST,
   };
 };
+
+export const setSearchResults = searchResults => {
+  return {
+    type: actionTypes.SET_SEARCH_RESULTS,
+    payload: { searchResults },
+  };
+};

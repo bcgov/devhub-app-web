@@ -12,6 +12,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import * as actions from '../src/store/actions/actionTypes';
+import { LUNR_SEARCH_RESULTS } from './lunr';
 export const COLLECTIONS = [
   {
     name: 'Design System',
@@ -193,6 +194,12 @@ export const ACTIONS = {
   },
   AUTHENTICATE_FAILED: {
     type: actions.AUTHENTICATE_FAILED,
+  },
+  SET_SEARCH_RESULTS: {
+    type: actions.SET_SEARCH_RESULTS,
+    payload: {
+      searchResults: LUNR_SEARCH_RESULTS,
+    },
   },
 };
 

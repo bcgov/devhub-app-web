@@ -81,6 +81,16 @@ export class Index extends Component {
 
 export const resourceQuery = graphql`
   query resourceQuery {
+    allDevhubSiphon {
+      edges {
+        node {
+          id
+          parent {
+            id
+          }
+        }
+      }
+    }
     allDevhubSiphonCollection(sort: { fields: [_metadata___position] }) {
       edges {
         node {
@@ -91,6 +101,9 @@ export const resourceQuery = graphql`
             id
             name
             owner
+            parent {
+              id
+            }
             _metadata {
               position
             }

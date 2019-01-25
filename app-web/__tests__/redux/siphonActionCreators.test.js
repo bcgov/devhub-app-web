@@ -13,6 +13,7 @@ Created by Patrick Simonian
 */
 import * as actions from '../../src/store/actions/actions';
 import { ACTIONS } from '../../__fixtures__/redux-fixtures';
+import { LUNR_SEARCH_RESULTS } from '../../__fixtures__/lunr';
 
 describe('actions', () => {
   it('should create an action to load siphon nodes', () => {
@@ -35,5 +36,9 @@ describe('actions', () => {
   it('should create an action to remove a filter group to filters list', () => {
     const expected = ACTIONS.REMOVE_FILTER;
     expect(actions.removeFilter('bar')).toEqual(expected);
+  });
+
+  it('should create an action to set search results', () => {
+    expect(actions.setSearchResults(LUNR_SEARCH_RESULTS)).toEqual(ACTIONS.SET_SEARCH_RESULTS);
   });
 });
