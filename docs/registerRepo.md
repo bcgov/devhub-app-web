@@ -271,7 +271,8 @@ Valid front matter properties:
     filtering the markdown files in the devhub by persona (valid personas: 'Developer', 'Designer', 'Product Owner')
 - **resourceType**: (optional)
     this will override the global resource Type as defined in the registry level configuration
-
+- **slug**: (optional)
+    this is the way you choose to expose your markdown file as a url. The url is composed of the collection slug, *as described by [registry level configurations above](#registry-level-configuration)*, plus the value of this slug. If no slug is provided a default one is made from the title of the markdown file. 
 #### Registering a Web Source
 
 Registering a web source is very easy. Here is an example registration item. 

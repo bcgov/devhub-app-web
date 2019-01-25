@@ -18,6 +18,7 @@ jest.unmock('remark');
 jest.unmock('string-similarity');
 jest.unmock('gray-matter');
 jest.unmock('../utils/helpers');
+jest.unmock('valid-url');
 
 describe('Integration Tests Gatsby source github all transformer and Plugins', () => {
   let mdFile = PROCESSED_FILE_MD;
@@ -127,12 +128,16 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
   test('transformer sets pagePath to gatsby create page path by default', async () => {
     const data = matter(mdFile.content);
 
-    mdFile.metadata.collection = {
-      slug: 'foo',
+    mdFile.metadata = {
+      ...mdFile.metadata,
+      slug: 'yo yo yo',
+      collection: {
+        slug: 'foo',
+      },
     };
 
     const {
-      metadata: { source, name, collection },
+      metadata: { slug, collection },
     } = mdFile;
 
     expect(data.data.resourcePath).not.toBeDefined();
@@ -141,11 +146,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
       .use(pagePathPlugin)
       .resolve();
 
-    expect(transformedFile.metadata.resourcePath).toBe(
-      `/${
-        collection.slug
-      }/${source}${name}https:/github.com/bcgov/design-system/blob/master/components/header/README.md`,
-    );
+    expect(transformedFile.metadata.resourcePath).toBe(`/${collection.slug}/${slug}`);
   });
 
   test('transformer sets resourceType by the globalResourceType', async () => {

@@ -1,3 +1,4 @@
+import validUrl from 'valid-url';
 import { fileTransformer } from '../utils/transformer';
 import {
   markdownFrontmatterPlugin,
@@ -8,6 +9,7 @@ import {
   externalLinkUnfurlPlugin,
   markdownPersonaPlugin,
   repositoryResourcePathPlugin,
+  markdownSlugPlugin,
 } from '../utils/plugins';
 import { PROCESSED_FILE_MD } from '../__fixtures__/fixtures';
 import { PERSONAS_LIST, RESOURCE_TYPES } from '../utils/constants';
@@ -18,6 +20,7 @@ import {
   unfurlWebURI,
   mergeUnfurls,
 } from '../utils/helpers';
+
 jest.mock('../utils/helpers.js');
 
 createUnfurlObj.mockReturnValue({});
@@ -202,7 +205,7 @@ describe('Transformer System', () => {
           extension: 'md',
         },
       };
-
+      validUrl.isWebUri.mockReturnValueOnce(false);
       const newFile = markDownUnfurlImagePlugin(file.metadata.extension, file);
       expect(newFile.metadata.unfurl.image).toBe(
         'https://github.com/foo/bar/blob/master/components/docs/image.png?raw=true',
@@ -221,7 +224,7 @@ describe('Transformer System', () => {
           extension: 'md',
         },
       };
-
+      validUrl.isWebUri.mockReturnValueOnce(false);
       const newFile = markDownUnfurlImagePlugin(file.metadata.extension, file);
       expect(newFile.metadata.unfurl.image).toBe(
         'https://github.com/foo/bar/blob/master/docs/image.png?raw=true',
@@ -234,10 +237,24 @@ describe('Transformer System', () => {
         html_url: 'https://github.com/foo/bar/blob/master/components/header/readme.md',
         metadata: {
           unfurl: { image },
+          extension: 'md',
         },
       };
+      validUrl.isWebUri.mockReturnValueOnce(true);
       const newFile = markDownUnfurlImagePlugin(file.metadata.extension, file);
       expect(newFile.metadata.unfurl.image).toBe(image);
+    });
+
+    it("applies a slug property based on title if slug doesn't exist", () => {
+      const file = {
+        content: '---\ntitle: foo\n---',
+        metadata: {
+          extension: 'md',
+        },
+      };
+
+      const newFile = markdownSlugPlugin(file.metadata.extension, file);
+      expect(newFile.metadata.slug).toBe('foo');
     });
   });
 });

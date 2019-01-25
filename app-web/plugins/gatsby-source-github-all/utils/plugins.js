@@ -15,15 +15,19 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
+const chalk = require('chalk');
 const shortid = require('shortid'); // eslint-disable-line
+const slugify = require('slugify');
 const matter = require('gray-matter'); // eslint-disable-line
 const visit = require('unist-util-visit'); // eslint-disable-line
 const remark = require('remark'); // eslint-disable-line
 const url = require('url');
+const validUrl = require('valid-url');
 const path = require('path');
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
+const Store = require('./Store');
 const {
-  createPathWithDigest,
+  // createPathWithDigest,
   createUnfurlObj,
   getClosestResourceType,
   getClosestPersona,
@@ -31,6 +35,14 @@ const {
   unfurlWebURI,
 } = require('./helpers'); // eslint-disable-line
 const { MARKDOWN_FRONTMATTER_SCHEMA, UNFURL_TYPES, RESOURCE_TYPES } = require('./constants');
+
+const slugStore = new Store([], {
+  throwOnConflict: true,
+  conflictCb: slug => `\nWARNING from Siphon! --- The slug ${slug} for a markdown file already
+    exists, this is a conflict that will lead to wierd results as more than one siphon node will point
+    to the same gatsby page on build. Consider fixing this!`,
+});
+
 /**
  * applys default front matter properties
  * @param {String} extension
@@ -125,18 +137,27 @@ const pagePathPlugin = (extension, file) => {
       return file;
     }
   }
-  let basePath = file.metadata.source;
+
+  let pagePath = file.metadata.source;
+
   if (file.metadata.collection && file.metadata.collection.slug) {
-    basePath = file.metadata.collection.slug;
+    pagePath = file.metadata.collection.slug;
+  }
+
+  if (file.metadata.slug) {
+    pagePath += `/${file.metadata.slug}`;
   }
   // no resource path, this file is destined to be turned into a page,
   // the page page is composed of the source name, the title of the file plus an id
-  file.metadata.resourcePath = createPathWithDigest(
-    basePath,
-    file.metadata.source,
-    file.metadata.name,
-    file.html_url,
-  );
+  // file.metadata.resourcePath = createPathWithDigest(
+  //   path,
+  //   file.metadata.source,
+  //   file.metadata.name,
+  //   file.html_url,
+  // );
+
+  // new implementation under going testing is a page path based on collection slug / resource slug
+  file.metadata.resourcePath = `/${pagePath}`;
   return file;
 };
 
@@ -174,7 +195,7 @@ const markDownUnfurlImagePlugin = (extension, file) => {
 
   const unfurl = file.metadata.unfurl;
   // if the image paramater is relative, it will be correctly mapped to an absolute path
-  if (TypeCheck.isString(unfurl.image)) {
+  if (TypeCheck.isString(unfurl.image) && !validUrl.isWebUri(unfurl.image)) {
     if (path.isAbsolute(unfurl.image)) {
       // if the path is absolute we need to map the path based of the sourcePath to the repo
       // this plus the absolute path cannot just be joined as the github api follows a convention
@@ -286,6 +307,52 @@ const repositoryResourcePathPlugin = async (extension, file) => {
   return file;
 };
 
+/**
+ * creates the slug metadata property which is used by the pagePathPlugin
+ * @param {String} extension
+ * @param {Object} file
+ */
+const markdownSlugPlugin = (extension, file) => {
+  if (extension === 'md') {
+    // parse front matter
+    const data = matter(file.content, { delimiters: '---' });
+    const frontmatter = data.data;
+    let slug = frontmatter.slug || frontmatter.title;
+    slug = slugify(slug);
+    // get the current resource for the store if it exists
+    const currentResource = slugStore.get(slug);
+    try {
+      // if there is a conflict, slugstore has been configd to throw
+      slugStore.checkConflict(slug);
+    } catch (e) {
+      // throwing allows for a more detailed message.
+      const produceSummary = metadata =>
+        `Source: ${metadata.sourceName}, fileName: ${metadata.fileName}, title: ${
+          metadata.resourceTitle
+        }`;
+      const currentSummary = produceSummary(currentResource);
+      const conflictingSummary = produceSummary(file.metadata);
+      const warning = chalk`\n
+        {red WARNING from Siphon!} --- markdown file slug conflict {red.bold (slug: ${slug}) } 
+        the following markdown file ---
+        {green ${conflictingSummary}}
+        has a naming conflict in the slug that is being used to produce a gatsby page. 
+        The slug is currently in use by this markdown file ---
+        {green ${currentSummary}}
+        {cyan.bold This may cause odd issues for links to the gatsby page if not rectified.}
+        detailed stack below..
+      `;
+
+      console.error(warning);
+      console.error(e);
+    }
+    // continue to set new slug in store
+    slugStore.set(slug, file.metadata);
+    file.metadata.slug = slug;
+  }
+  return file;
+};
+
 module.exports = {
   markdownFrontmatterPlugin,
   markdownUnfurlPlugin,
@@ -295,4 +362,5 @@ module.exports = {
   externalLinkUnfurlPlugin,
   markdownPersonaPlugin,
   repositoryResourcePathPlugin,
+  markdownSlugPlugin,
 };

@@ -63,6 +63,10 @@ const MARKDOWN_FRONTMATTER_SCHEMA = {
     type: String,
     required: false,
   },
+  slug: {
+    type: String,
+    required: false,
+  },
   ignore: {
     type: Boolean,
     required: false,

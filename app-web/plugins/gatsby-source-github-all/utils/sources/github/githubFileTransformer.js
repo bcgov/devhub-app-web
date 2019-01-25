@@ -26,6 +26,7 @@ const {
   markdownPersonaPlugin,
   repositoryResourcePathPlugin,
   markDownUnfurlImagePlugin,
+  markdownSlugPlugin,
 } = require('../../plugins');
 
 const transfomer = (extension, file) => {
@@ -33,6 +34,7 @@ const transfomer = (extension, file) => {
 
   return ft
     .use(markdownFrontmatterPlugin)
+    .use(markdownSlugPlugin)
     .use(pagePathPlugin)
     .use(markdownUnfurlPlugin)
     .use(markdownResourceTypePlugin)
