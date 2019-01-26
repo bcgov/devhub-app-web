@@ -1,3 +1,6 @@
+.MarkdownBody {
+    max-width: 800px;
+}
 
 .MarkdownBody h1,
 .MarkdownBody h2,
