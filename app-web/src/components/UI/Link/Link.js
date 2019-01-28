@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-const GatsbyLink = ({ children, to, ...rest }) => {
+const GatsbyLink = ({ children, to, activeClassName, activeStyle, ...rest }) => {
   // Tailor the following test to your environment.
   // This example assumes that any internal link (intended for Gatsby)
   // will start with exactly one slash, and that anything else is external.
@@ -10,7 +10,7 @@ const GatsbyLink = ({ children, to, ...rest }) => {
   // Use Gatsby Link for internal links, and <a> for rests
   if (internal) {
     return (
-      <Link to={to} {...rest}>
+      <Link to={to} activeStyle={activeStyle} activeClassName={activeClassName} {...rest}>
         {children}
       </Link>
     );
@@ -20,6 +20,11 @@ const GatsbyLink = ({ children, to, ...rest }) => {
       {children}
     </a>
   );
+};
+
+GatsbyLink.defaultProps = {
+  activeClassName: '',
+  activeStyle: {},
 };
 
 export default GatsbyLink;

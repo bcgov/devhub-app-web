@@ -43,6 +43,8 @@ ShallowWrapper {
           className="BodyImage"
         >
           <GatsbyLink
+            activeClassName=""
+            activeStyle={Object {}}
             aria-label="Learn more about this article"
             to="resourcePath"
           >
@@ -82,6 +84,8 @@ ShallowWrapper {
             className="BodyImage"
           >
             <GatsbyLink
+              activeClassName=""
+              activeStyle={Object {}}
               aria-label="Learn more about this article"
               to="resourcePath"
             >
@@ -133,6 +137,8 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": <GatsbyLink
+              activeClassName=""
+              activeStyle={Object {}}
               aria-label="Learn more about this article"
               to="resourcePath"
             >
@@ -152,6 +158,8 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
+              "activeClassName": "",
+              "activeStyle": Object {},
               "aria-label": "Learn more about this article",
               "children": <Img
                 container={[Function]}
@@ -212,6 +220,8 @@ ShallowWrapper {
             className="BodyImage"
           >
             <GatsbyLink
+              activeClassName=""
+              activeStyle={Object {}}
               aria-label="Learn more about this article"
               to="resourcePath"
             >
@@ -251,6 +261,8 @@ ShallowWrapper {
               className="BodyImage"
             >
               <GatsbyLink
+                activeClassName=""
+                activeStyle={Object {}}
                 aria-label="Learn more about this article"
                 to="resourcePath"
               >
@@ -302,6 +314,8 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": <GatsbyLink
+                activeClassName=""
+                activeStyle={Object {}}
                 aria-label="Learn more about this article"
                 to="resourcePath"
               >
@@ -321,6 +335,8 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
+                "activeClassName": "",
+                "activeStyle": Object {},
                 "aria-label": "Learn more about this article",
                 "children": <Img
                   container={[Function]}

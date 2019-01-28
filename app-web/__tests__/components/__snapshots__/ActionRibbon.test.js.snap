@@ -52,6 +52,8 @@ ShallowWrapper {
         >
           <li>
             <GatsbyLink
+              activeClassName=""
+              activeStyle={Object {}}
               aria-label="ariaLabel"
             >
               <FontAwesomeIcon
@@ -90,6 +92,8 @@ ShallowWrapper {
         "props": Object {
           "children": <li>
             <GatsbyLink
+              activeClassName=""
+              activeStyle={Object {}}
               aria-label="ariaLabel"
             >
               <FontAwesomeIcon
@@ -125,6 +129,8 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": <GatsbyLink
+              activeClassName=""
+              activeStyle={Object {}}
               aria-label="ariaLabel"
             >
               <FontAwesomeIcon
@@ -157,6 +163,8 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
+              "activeClassName": "",
+              "activeStyle": Object {},
               "aria-label": "ariaLabel",
               "children": <FontAwesomeIcon
                 border={false}
@@ -232,6 +240,8 @@ ShallowWrapper {
           >
             <li>
               <GatsbyLink
+                activeClassName=""
+                activeStyle={Object {}}
                 aria-label="ariaLabel"
               >
                 <FontAwesomeIcon
@@ -270,6 +280,8 @@ ShallowWrapper {
           "props": Object {
             "children": <li>
               <GatsbyLink
+                activeClassName=""
+                activeStyle={Object {}}
                 aria-label="ariaLabel"
               >
                 <FontAwesomeIcon
@@ -305,6 +317,8 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": <GatsbyLink
+                activeClassName=""
+                activeStyle={Object {}}
                 aria-label="ariaLabel"
               >
                 <FontAwesomeIcon
@@ -337,6 +351,8 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "function",
               "props": Object {
+                "activeClassName": "",
+                "activeStyle": Object {},
                 "aria-label": "ariaLabel",
                 "children": <FontAwesomeIcon
                   border={false}

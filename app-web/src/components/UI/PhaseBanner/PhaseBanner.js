@@ -41,7 +41,7 @@ const PhaseBanner = ({ phase }) => {
   );
 };
 
-PhaseBanner.PropTypes = {
+PhaseBanner.propTypes = {
   phase: PropTypes.string,
 };
 

@@ -21,6 +21,8 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": <GatsbyLink
+        activeClassName=""
+        activeStyle={Object {}}
         to="/"
       >
         banana
@@ -32,6 +34,8 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "function",
       "props": Object {
+        "activeClassName": "",
+        "activeStyle": Object {},
         "children": "banana",
         "to": "/",
       },
@@ -48,6 +52,8 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": <GatsbyLink
+          activeClassName=""
+          activeStyle={Object {}}
           to="/"
         >
           banana
@@ -59,6 +65,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
+          "activeClassName": "",
+          "activeStyle": Object {},
           "children": "banana",
           "to": "/",
         },

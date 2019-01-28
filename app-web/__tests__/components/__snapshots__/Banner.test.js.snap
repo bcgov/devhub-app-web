@@ -19,6 +19,8 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "function",
     "props": Object {
+      "activeClassName": "",
+      "activeStyle": Object {},
       "children": Array [
         <GovLogo />,
         <AppLogo />,
@@ -70,6 +72,8 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "function",
       "props": Object {
+        "activeClassName": "",
+        "activeStyle": Object {},
         "children": Array [
           <GovLogo />,
           <AppLogo />,

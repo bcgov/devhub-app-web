@@ -27,7 +27,7 @@ import styles from './SourceNavigation.module.css';
 class SourceNavigation extends Component {
   componentDidMount() {
     // scroll into view of active link if exists
-    const activeLi = document.querySelector(`.${styles.Navigation} li[data-active="true"]`);
+    const activeLi = document.querySelector(`.${styles.Navigation} a.active`);
     if (activeLi) {
       activeLi.scrollIntoView();
     }
@@ -44,8 +44,10 @@ class SourceNavigation extends Component {
           source: { type },
         },
       }) => (
-        <li key={shortid.generate()} data-active={this.props.activeLink.pathname === path}>
+        <li key={shortid.generate()}>
           <Link
+            exact="true"
+            activeClassName="active"
             to={path}
             target={type === 'web' ? '_blank' : ''}
             activeStyle={{

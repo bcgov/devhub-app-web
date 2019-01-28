@@ -302,6 +302,10 @@ const processCollection = async (
   );
   // flatten source nodes to get a list of all the resources
   const resources = _.flatten(sourceNodes, true);
+  // create a hash map of all resources: resource paths original source against the path created
+  // for a gatsby page
+  collection.sourceLocations = resources.map(r => [r.resource.originalSource, r.resource.path]);
+
   const collectionNode = createCollectionNode(collection, id);
 
   await createNode(collectionNode);
