@@ -29,14 +29,23 @@ export default class ComponentPreview extends React.Component {
   }
 
   async componentDidMount() {
+
+    //pull in the values to retrieve to preview content from GitHub from props, if provided
+    let { owner, repo, path, branch } = this.props;
+
+    //allow for default values - relative to file that has embedded the component -  if values for props not provided
+    owner =  owner || this.props.node.source._properties.owner;
+    repo = repo || this.props.node.source._properties.repo;
+    branch = branch || this.props.node.source._properties.branch;
+
     const githubClient = new Octokit();
 
     try {
       const result = await githubClient.repos.getContents({
-        owner: 'bcgov',
-        repo: 'design-system',
-        path: 'components/primary_button/sample.html',
-        ref: 'feature/57-interactive-code-examples',
+        owner: owner,
+        repo: repo,
+        path: path,
+        ref: branch,
       });
 
       this.setState({

@@ -87,6 +87,11 @@ export const devhubSiphonMarkdown = graphql`
         displayName
         sourcePath
         type
+        _properties {
+          repo
+          branch
+          owner
+        }
       }
       resource {
         originalSource
