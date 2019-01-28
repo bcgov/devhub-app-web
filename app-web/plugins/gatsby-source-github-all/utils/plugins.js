@@ -15,7 +15,6 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-const chalk = require('chalk');
 const shortid = require('shortid'); // eslint-disable-line
 const slugify = require('slugify');
 const matter = require('gray-matter'); // eslint-disable-line
@@ -33,14 +32,12 @@ const {
   getClosestPersona,
   mergeUnfurls,
   unfurlWebURI,
+  withUnfurlWarning,
 } = require('./helpers'); // eslint-disable-line
 const { MARKDOWN_FRONTMATTER_SCHEMA, UNFURL_TYPES, RESOURCE_TYPES } = require('./constants');
-
+const siphonMessenger = require('./console');
 const slugStore = new Store([], {
   throwOnConflict: true,
-  conflictCb: slug => `\nWARNING from Siphon! --- The slug ${slug} for a markdown file already
-    exists, this is a conflict that will lead to wierd results as more than one siphon node will point
-    to the same gatsby page on build. Consider fixing this!`,
 });
 
 /**
@@ -252,13 +249,13 @@ const markdownResourceTypePlugin = (extension, file) => {
  */
 const externalLinkUnfurlPlugin = async (extension, file) => {
   try {
-    const unfurl = await unfurlWebURI(file.metadata.resourcePath);
+    let unfurl = await unfurlWebURI(file.metadata.resourcePath);
     if (Object.prototype.hasOwnProperty.call(file.metadata, 'unfurl') && file.metadata.unfurl) {
       // if unfurl exists in file already merge the results with the prexsisting unfurl taking priority
-      file.metadata.unfurl = mergeUnfurls(file.metadata.unfurls, unfurl);
-    } else {
-      file.metadata.unfurl = unfurl;
+      unfurl = mergeUnfurls(file.metadata.unfurls, unfurl);
     }
+
+    file.metadata.unfurl = withUnfurlWarning(file.metadata.resourcePath, unfurl);
     return file;
   } catch (e) {
     return file;
@@ -330,18 +327,14 @@ const markdownSlugPlugin = (extension, file) => {
         `Source: ${metadata.sourceName}, fileName: ${metadata.fileName}, title: ${
           metadata.resourceTitle
         }`;
+
       const currentSummary = produceSummary(currentResource);
       const conflictingSummary = produceSummary(file.metadata);
-      const warning = chalk`\n
-        {red WARNING from Siphon!} --- markdown file slug conflict {red.bold (slug: ${slug}) } 
-        the following markdown file ---
-        {green ${conflictingSummary}}
-        has a naming conflict in the slug that is being used to produce a gatsby page. 
-        The slug is currently in use by this markdown file ---
-        {green ${currentSummary}}
-        {cyan.bold This may cause odd issues for links to the gatsby page if not rectified.}
-        detailed stack below..
-      `;
+      const warning = siphonMessenger.markdownSlugConflict(
+        slug,
+        conflictingSummary,
+        currentSummary,
+      );
 
       console.error(warning);
       console.error(e);

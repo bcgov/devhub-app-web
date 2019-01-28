@@ -19,6 +19,7 @@ import {
   getClosestPersona,
   unfurlWebURI,
   mergeUnfurls,
+  withUnfurlWarning,
 } from '../utils/helpers';
 
 jest.mock('../utils/helpers.js');
@@ -28,6 +29,7 @@ getClosestResourceType.mockReturnValue('');
 getClosestPersona.mockImplementation(persona => persona);
 unfurlWebURI.mockReturnValue({});
 mergeUnfurls.mockImplementation((oldUnfurl, newUnfurl) => newUnfurl);
+withUnfurlWarning.mockImplementation((url, unfurl) => unfurl);
 
 describe('Transformer System', () => {
   let file = null;
