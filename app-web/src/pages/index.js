@@ -91,6 +91,9 @@ export const resourceQuery = graphql`
             id
             name
             owner
+            parent {
+              id
+            }
             _metadata {
               position
             }

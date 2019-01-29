@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Cards, { getIdealCardsLargeLimit } from '../../src/components/Cards/Cards';
-import { COLLECTIONS } from '../../__fixtures__/redux-fixtures';
+import { COLLECTIONS } from '../../__fixtures__/siphon-fixtures';
 
 describe('Card Component', () => {
   const CARDS = {

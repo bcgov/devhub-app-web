@@ -24,16 +24,16 @@ ShallowWrapper {
               "pageOnly": false,
             },
           },
+          "id": "1",
+          "parent": Object {
+            "id": "collection-1",
+          },
           "resource": Object {
-            "originalSource": "https://github.com/bcgov/design-system/blob/master/components/about/about.md",
             "path": "/design-system/Z1bGIqu",
             "type": "Components",
           },
           "source": Object {
             "displayName": "Design System",
-            "name": "design-system",
-            "sourcePath": "https://github.com/bcgov/design-system/",
-            "type": "github",
           },
           "unfurl": Object {
             "author": "ksingbeil",
@@ -87,7 +87,6 @@ ShallowWrapper {
                   author="ksingbeil"
                   description="What the Design System is and how it works."
                   image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                  repository="design-system"
                   resourcePath="/design-system/Z1bGIqu"
                   resourceType="Components"
                   title="About"
@@ -107,7 +106,6 @@ ShallowWrapper {
                   author="ksingbeil"
                   description="What the Design System is and how it works."
                   image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                  repository="design-system"
                   resourcePath="/design-system/Z1bGIqu"
                   resourceType="Components"
                   title="About"
@@ -176,7 +174,6 @@ ShallowWrapper {
                   author="ksingbeil"
                   description="What the Design System is and how it works."
                   image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                  repository="design-system"
                   resourcePath="/design-system/Z1bGIqu"
                   resourceType="Components"
                   title="About"
@@ -198,7 +195,6 @@ ShallowWrapper {
                 author="ksingbeil"
                 description="What the Design System is and how it works."
                 image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                repository="design-system"
                 resourcePath="/design-system/Z1bGIqu"
                 resourceType="Components"
                 title="About"
@@ -224,7 +220,6 @@ ShallowWrapper {
                   author="ksingbeil"
                   description="What the Design System is and how it works."
                   image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                  repository="design-system"
                   resourcePath="/design-system/Z1bGIqu"
                   resourceType="Components"
                   title="About"
@@ -246,7 +241,6 @@ ShallowWrapper {
                 author="ksingbeil"
                 description="What the Design System is and how it works."
                 image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                repository="design-system"
                 resourcePath="/design-system/Z1bGIqu"
                 resourceType="Components"
                 title="About"
@@ -290,7 +284,6 @@ ShallowWrapper {
                     author="ksingbeil"
                     description="What the Design System is and how it works."
                     image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                    repository="design-system"
                     resourcePath="/design-system/Z1bGIqu"
                     resourceType="Components"
                     title="About"
@@ -310,7 +303,6 @@ ShallowWrapper {
                     author="ksingbeil"
                     description="What the Design System is and how it works."
                     image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                    repository="design-system"
                     resourcePath="/design-system/Z1bGIqu"
                     resourceType="Components"
                     title="About"
@@ -379,7 +371,6 @@ ShallowWrapper {
                     author="ksingbeil"
                     description="What the Design System is and how it works."
                     image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                    repository="design-system"
                     resourcePath="/design-system/Z1bGIqu"
                     resourceType="Components"
                     title="About"
@@ -401,7 +392,6 @@ ShallowWrapper {
                   author="ksingbeil"
                   description="What the Design System is and how it works."
                   image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                  repository="design-system"
                   resourcePath="/design-system/Z1bGIqu"
                   resourceType="Components"
                   title="About"
@@ -427,7 +417,6 @@ ShallowWrapper {
                     author="ksingbeil"
                     description="What the Design System is and how it works."
                     image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                    repository="design-system"
                     resourcePath="/design-system/Z1bGIqu"
                     resourceType="Components"
                     title="About"
@@ -449,7 +438,6 @@ ShallowWrapper {
                   author="ksingbeil"
                   description="What the Design System is and how it works."
                   image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                  repository="design-system"
                   resourcePath="/design-system/Z1bGIqu"
                   resourceType="Components"
                   title="About"

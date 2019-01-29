@@ -1,7 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Index } from '../../src/pages/index';
-import { DEFAULT_FILTER_GROUPS, COLLECTIONS } from '../../__fixtures__/redux-fixtures';
+import { DEFAULT_FILTER_GROUPS } from '../../__fixtures__/redux-fixtures';
+import { COLLECTIONS } from '../../__fixtures__/siphon-fixtures';
+
 describe('Index Container', () => {
   test('it matches snapshot', () => {
     // when you use graphql to load data into the component
