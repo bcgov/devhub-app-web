@@ -27,6 +27,7 @@ ShallowWrapper {
         <input
           onChange={[Function]}
           onFocus={[Function]}
+          onKeyPress={[Function]}
           type="text"
           value=""
         />,
@@ -46,6 +47,7 @@ ShallowWrapper {
         "props": Object {
           "onChange": [Function],
           "onFocus": [Function],
+          "onKeyPress": [Function],
           "type": "text",
           "value": "",
         },
@@ -78,6 +80,7 @@ ShallowWrapper {
           <input
             onChange={[Function]}
             onFocus={[Function]}
+            onKeyPress={[Function]}
             type="text"
             value=""
           />,
@@ -97,6 +100,7 @@ ShallowWrapper {
           "props": Object {
             "onChange": [Function],
             "onFocus": [Function],
+            "onKeyPress": [Function],
             "type": "text",
             "value": "",
           },

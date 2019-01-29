@@ -28,16 +28,9 @@ describe('Search Bar', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('calls keyup handler when keyup event is fired', () => {
-    const wrapper = shallow(searchBar);
-    const input = wrapper.find('input').first();
-    input.simulate('change', { target: { value: 'foo' } });
-    expect(keyupHandled).toHaveBeenCalledWith('foo');
-  });
-
   it('calls the search handler when button is clicked and terms have length', () => {
     const wrapper = mount(searchBar);
-    wrapper.setProps({ terms: 'foo' });
+    wrapper.setState({ terms: 'foo' });
     const button = wrapper.find(Button).first();
     button.find('button').simulate('click');
     expect(search).toHaveBeenCalled();
@@ -46,7 +39,7 @@ describe('Search Bar', () => {
   it("doesn't call search handler when button is clicked and there are no terms ", () => {
     const wrapper = mount(searchBar);
     const button = wrapper.find(Button).first();
-    expect(wrapper.prop('terms')).toBe('');
+    expect(wrapper.state('terms')).toBe('');
     button.find('button').simulate('click');
     expect(search).not.toHaveBeenCalled();
   });
@@ -60,9 +53,10 @@ describe('Search Bar', () => {
 
   it('calls the search handler when enter key is pressed and configured to do so', () => {
     const wrapper = mount(searchBar);
-    wrapper.setProps({ searchOnEnter: true, terms: 'foo' });
+    wrapper.setProps({ searchOnEnter: true });
+    wrapper.setState({ terms: 'foo' });
     const input = wrapper.find('input');
-    input.simulate('change', { target: { value: 'foo' }, key: 'Enter' });
+    input.simulate('keypress', { key: 'Enter' });
     expect(search).toHaveBeenCalledWith('foo');
   });
 });

@@ -22,44 +22,47 @@ import Button from '../UI/Button/Button';
 export class Search extends Component {
   state = {
     touched: false,
+    terms: '',
   };
 
-  shouldComponentUpdate(nextState, nextProps) {
-    return nextProps.terms !== this.props.terms;
-  }
+  handleEnter = e => {
+    if (e.key === 'Enter' && this.props.searchOnEnter) {
+      this.props.onSearch(this.state.terms);
+    }
+  };
 
   handleKeyUp = e => {
     // if enter was pressed
     if (e.target.value.trim().length === 0 && this.state.touched) {
       this.props.onSearchClear();
-    } else if (e.key === 'Enter' && this.props.searchOnEnter) {
-      this.props.onSearch(e.target.value);
-    } else {
-      this.props.onkeyup(e.target.value);
     }
+    this.setState({ terms: e.target.value });
   };
 
   render() {
-    const { terms, onSearch } = this.props;
+    const { onSearch } = this.props;
     return (
       <div>
         <input
           type="text"
-          value={terms}
+          value={this.state.terms}
           onChange={this.handleKeyUp}
+          onKeyPress={this.handleEnter}
           onFocus={() => this.setState({ touched: true })}
         />
-        <Button clicked={() => (terms.trim().length > 0 ? onSearch(terms) : null)}>Search</Button>
+        <Button
+          clicked={() => (this.state.terms.trim().length > 0 ? onSearch(this.state.terms) : null)}
+        >
+          Search
+        </Button>
       </div>
     );
   }
 }
 
 Search.propTypes = {
-  onkeyup: PropTypes.func.isRequired,
   onSearch: PropTypes.func.isRequired,
   onSearchClear: PropTypes.func,
-  terms: PropTypes.string.isRequired,
   searchOnEnter: PropTypes.bool,
 };
 

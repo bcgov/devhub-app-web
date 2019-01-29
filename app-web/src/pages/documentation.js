@@ -94,6 +94,9 @@ export const resourceQueryDocumentation = graphql`
             _metadata {
               position
             }
+            parent {
+              id
+            }
             attributes {
               personas
             }

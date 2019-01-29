@@ -17,17 +17,43 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions/actions';
 import styles from './Sidebar.module.css';
 import SecondaryFilter from '../SecondaryFilter/SecondaryFilter';
+import Search from '../Search/Search';
 
-export const Sidebar = ({ filterGroups }) => (
+export const Sidebar = ({ filterGroups, terms, setSearchTerms, setSearchResults }) => (
   <div className={styles.Sidebar}>
+    <Search
+      searchOnEnter
+      onSearch={terms => {
+        // attempt to search lunr
+        const lunrIndex = window.__LUNR__.en;
+        const results = lunrIndex.index.search(terms);
+        const searchResultsMap = results
+          .map(({ ref }) => lunrIndex.store[ref])
+          .reduce((obj, result) => {
+            obj[result.id] = { ...result };
+            return obj;
+          }, {});
+        setSearchResults(searchResultsMap);
+      }}
+    />
     <SecondaryFilter filterGroups={filterGroups} />
   </div>
 );
 
 Sidebar.propTypes = {
   filterGroups: PropTypes.array.isRequired,
+  terms: PropTypes.string.isRequired,
 };
 
-export default Sidebar;
+const mapDispatchToProps = dispatch => ({
+  setSearchResults: results => dispatch(actions.setSearchResults(results)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Sidebar);

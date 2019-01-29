@@ -21,7 +21,6 @@ const initialState = {
   _collections: [], // the cached set of ALL collections
   collections: [], // this is set by the resource type, ie Component/Documentation etc
   filteredCollections: [], // subsequent filters using the filter side menu
-  searchResults: [],
   groupBy: null,
   loading: false,
   error: false,
@@ -107,6 +106,7 @@ const getAllNodesFromCollections = collections =>
  * @param {Array} results
  */
 const applySearchResultsToPrimaryNodes = (state, results) => {
+  const newState = { ...state };
   // results is an array of siphon ids,
   // filter out siphon nodes where resource type still matches (primary filter nodes)
   let collectionNodes = getAllNodesFromCollections(state.collections);
@@ -119,12 +119,15 @@ const applySearchResultsToPrimaryNodes = (state, results) => {
       if (nodesMap.has(n.parent.id)) {
         currentNodes = nodesMap.get(n.parent.id);
       }
-      nodesMap.set(n.parent.id, currentNodes.concat([n]));
+      nodesMap.set(n.parent.id, currentNodes.concat([{ ...n }]));
     }
   });
   // build filtered nodes back into respective collections
-  state.collections = state.collections.map(c => ({ ...c, nodes: nodesMap.get(c.id) || [] }));
-  return state;
+  newState.filteredCollections = newCollections(state.collections).map(c => ({
+    ...c,
+    nodes: nodesMap.get(c.id) || [],
+  }));
+  return newState;
 };
 
 /**
@@ -296,8 +299,8 @@ const setCollections = (state, collections) => {
   newState._collections = sortedCollections;
   newState.collectionsLoaded = true;
   // nodes will be filtered eventually be resource type which is the top level navigation
-  newState.collections = sortedCollections;
-  newState.filteredCollections = sortedCollections;
+  newState.collections = newCollections(sortedCollections);
+  newState.filteredCollections = newCollections(sortedCollections);
   // get counts of filters and apply other properties based on if count is 0
   newState.filters = newState.filters.map(filter =>
     applyPropsToFilterByResourceCount(filter, newState.collections),
