@@ -62,7 +62,7 @@ describe('Search Bar', () => {
     const wrapper = mount(searchBar);
     wrapper.setProps({ searchOnEnter: true, terms: 'foo' });
     const input = wrapper.find('input');
-    input.simulate('change', { target: { value: 'foo' }, keyCode: 13 });
+    input.simulate('change', { target: { value: 'foo' }, key: 'Enter' });
     expect(search).toHaveBeenCalledWith('foo');
   });
 });

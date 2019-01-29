@@ -32,7 +32,7 @@ export class Search extends Component {
     // if enter was pressed
     if (e.target.value.trim().length === 0 && this.state.touched) {
       this.props.onSearchClear();
-    } else if (e.keyCode === 13 && this.props.searchOnEnter) {
+    } else if (e.key === 'Enter' && this.props.searchOnEnter) {
       this.props.onSearch(e.target.value);
     } else {
       this.props.onkeyup(e.target.value);
