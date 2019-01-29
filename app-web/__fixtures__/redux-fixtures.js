@@ -12,89 +12,8 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import * as actions from '../src/store/actions/actionTypes';
-import { LUNR_SEARCH_RESULTS } from './lunr';
-export const COLLECTIONS = [
-  {
-    name: 'Design System',
-    type: 'source',
-    nodes: [
-      {
-        _metadata: {
-          position: [0, 0, 0],
-        },
-        attributes: {
-          personas: ['Designer'],
-        },
-        source: {
-          name: 'design-system',
-          displayName: 'Design System',
-          sourcePath: 'https://github.com/bcgov/design-system/',
-          type: 'github',
-        },
-        resource: {
-          path: '/design-system/Z1bGIqu',
-          type: 'Components',
-          originalSource:
-            'https://github.com/bcgov/design-system/blob/master/components/about/about.md',
-        },
-        unfurl: {
-          type: 'markdown',
-          label1: '',
-          data1: '',
-          label2: '',
-          data2: '',
-          image:
-            'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
-          title: 'About',
-          description: 'What the Design System is and how it works.',
-          author: 'ksingbeil',
-        },
-        childMarkdownRemark: {
-          frontmatter: {
-            pageOnly: false,
-          },
-        },
-      },
-      {
-        _metadata: {
-          position: [0, 0, 1],
-        },
-        attributes: {
-          personas: ['Developer'],
-        },
-        source: {
-          name: 'design-system',
-          displayName: 'Design System',
-          sourcePath: 'https://github.com/bcgov/design-system/',
-          type: 'github',
-        },
-        resource: {
-          path: '/design-system/Z1bGIqu',
-          type: 'Documentation',
-          originalSource:
-            'https://github.com/bcgov/design-system/blob/master/components/about/about.md',
-        },
-        unfurl: {
-          type: 'markdown',
-          label1: '',
-          data1: '',
-          label2: '',
-          data2: '',
-          image:
-            'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
-          title: 'About',
-          description: 'What the Design System is and how it works.',
-          author: 'ksingbeil',
-        },
-        childMarkdownRemark: {
-          frontmatter: {
-            pageOnly: false,
-          },
-        },
-      },
-    ],
-  },
-];
+import { LUNR_SEARCH_RESULTS_2 } from './lunr';
+import { COLLECTIONS } from './siphon-fixtures';
 
 export const DEFAULT_FILTER_GROUPS = [
   {
@@ -198,7 +117,7 @@ export const ACTIONS = {
   SET_SEARCH_RESULTS: {
     type: actions.SET_SEARCH_RESULTS,
     payload: {
-      searchResults: LUNR_SEARCH_RESULTS,
+      searchResults: LUNR_SEARCH_RESULTS_2,
     },
   },
 };

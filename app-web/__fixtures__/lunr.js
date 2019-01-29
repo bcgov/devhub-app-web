@@ -1,57 +1,32 @@
-export const LUNR_SEARCH_RESULTS = [
-  {
-    title: 'FOO',
-    collectionName: 'Design System',
-    description: 'This is the design system',
-    author: 'bcgov',
-    resourceType: 'Components',
+export const LUNR_SEARCH_RESULTS = {
+  '1': {
     id: '1',
-    collectionId: 'collection-1',
   },
-  {
-    title: 'FOO2',
-    collectionName: 'Design System',
-    description: 'This is the design system foo2',
-    author: 'bcgov',
-    resourceType: 'Components',
+  '2': {
     id: '2',
-    collectionId: 'collection-1',
   },
-  {
-    title: 'FOO3',
-    collectionName: 'Design System',
-    description: 'This is the design system foo3',
-    author: 'bcgov',
-    resourceType: 'Components',
+  '3': {
     id: '3',
-    collectionId: 'collection-1',
   },
-  {
-    title: 'FOO4',
-    collectionName: 'Design System',
-    description: 'This is the design system',
-    author: 'bcgov',
-    resourceType: 'Components',
+  '4': {
     id: '4',
-    collectionId: 'collection-1',
   },
-  {
-    title: 'BAZ1',
-    collectionName: 'Devhub',
-    description: 'This is the devhub',
-    author: 'bcgov',
-    resourceType: 'Documentation',
+  '5': {
     id: '5',
-    collectionId: 'collection-2',
   },
-  {
-    title: 'BAZ2',
-    collectionName: 'Devhub',
-    description: 'This is the devhub again',
-    author: 'bcgov',
-    resourceType: 'Documentation',
+  '6': {
     id: '6',
-    collectionId: 'collection-2',
   },
-];
+};
 
+export const LUNR_SEARCH_RESULTS_2 = {
+  '1': {
+    id: '1',
+  },
+  '2': {
+    id: '2',
+  },
+  '6': {
+    id: '6',
+  },
+};
