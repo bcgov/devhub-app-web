@@ -22,6 +22,9 @@ const initialState = {
   collections: [], // this is set by the resource type, ie Component/Documentation etc
   filteredCollections: [], // subsequent filters using the filter side menu
   groupBy: null,
+  query: '',
+  onSearch: false,
+  searchResultsLength: 0,
   loading: false,
   error: false,
   messages: [],
@@ -106,7 +109,7 @@ const getAllNodesFromCollections = collections =>
  * @param {Array} results
  */
 const applySearchResultsToPrimaryNodes = (state, results) => {
-  const newState = { ...state };
+  const newState = { ...state, searchResultsLength: Object.keys(results).length };
   // results is an array of siphon ids,
   // filter out siphon nodes where resource type still matches (primary filter nodes)
   let collectionNodes = getAllNodesFromCollections(state.collections);
@@ -123,11 +126,11 @@ const applySearchResultsToPrimaryNodes = (state, results) => {
     }
   });
   // build filtered nodes back into respective collections
-  newState.filteredCollections = newCollections(state.collections).map(c => ({
+  newState.collections = newCollections(state.collections).map(c => ({
     ...c,
     nodes: nodesMap.get(c.id) || [],
   }));
-  return newState;
+  return applySecondaryFilters(newState);
 };
 
 /**

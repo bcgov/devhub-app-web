@@ -17,6 +17,7 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { navigate } from 'gatsby';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/actions';
 import styles from './Sidebar.module.css';
@@ -28,16 +29,18 @@ export const Sidebar = ({ filterGroups, terms, setSearchTerms, setSearchResults 
     <Search
       searchOnEnter
       onSearch={terms => {
+        navigate(`/?q=${terms}`);
+        // redirect to / plus query
         // attempt to search lunr
-        const lunrIndex = window.__LUNR__.en;
-        const results = lunrIndex.index.search(terms);
-        const searchResultsMap = results
-          .map(({ ref }) => lunrIndex.store[ref])
-          .reduce((obj, result) => {
-            obj[result.id] = { ...result };
-            return obj;
-          }, {});
-        setSearchResults(searchResultsMap);
+        // const lunrIndex = window.__LUNR__.en;
+        // const results = lunrIndex.index.search(terms);
+        // const searchResultsMap = results
+        //   .map(({ ref }) => lunrIndex.store[ref])
+        //   .reduce((obj, result) => {
+        //     obj[result.id] = { ...result };
+        //     return obj;
+        //   }, {});
+        // setSearchResults(searchResultsMap);
       }}
     />
     <SecondaryFilter filterGroups={filterGroups} />

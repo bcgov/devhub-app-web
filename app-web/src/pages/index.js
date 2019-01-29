@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import shortid from 'shortid';
 import { connect } from 'react-redux';
 import { Flag } from 'flag';
-
+import queryString from 'query-string';
 import * as actions from '../store/actions/actions';
 import { groupBy } from '../utils/dataMassager';
 import { REACT_SCROLL, SIPHON_RESOURCE_TYPE_PROP } from '../constants/ui';
@@ -29,11 +29,26 @@ export class Index extends Component {
     }
     this.props.filterCollectionsByResourceType();
   }
-
+  componentDidUpdate() {
+    const query = queryString.parse(this.props.location.search);
+    if (Object.prototype.hasOwnProperty.call(query, 'q')) {
+      this.props.setSearchResults(this.getSearchResults(query.q));
+    }
+  }
   componentWillUnmount() {
     this.props.hideWelcomeMessage();
   }
-
+  getSearchResults(query) {
+    const lunrIndex = window.__LUNR__.en;
+    const results = lunrIndex.index.search(query);
+    const searchResultsMap = results
+      .map(({ ref }) => lunrIndex.store[ref])
+      .reduce((obj, result) => {
+        obj[result.id] = { ...result };
+        return obj;
+      }, {});
+    return searchResultsMap;
+  }
   render() {
     const { collections, toggleMenu, filters } = this.props;
 
@@ -141,6 +156,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     loadCollections: collections => dispatch(actions.loadSiphonCollections(collections)),
+    setSearchResults: results => dispatch(actions.setSearchResults(results)),
     filterCollectionsByResourceType: () =>
       dispatch(actions.filterSiphonNodes(SIPHON_RESOURCE_TYPE_PROP, 'All')),
     hideWelcomeMessage: () => dispatch(actions.setWelcomePanelViewed(true)),
