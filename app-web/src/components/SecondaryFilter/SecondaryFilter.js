@@ -18,11 +18,18 @@ import shortid from 'shortid';
 import styles from './SecondaryFilter.module.css';
 
 import FilterGroup from './FilterGroup/FilterGroup';
+import { groupBy } from '../../utils/dataMassager';
 
-const SecondaryFilter = ({ filterGroups }) => {
+const SecondaryFilter = ({ filters }) => {
+  // group filter groups by there title
+  let groupedFilters = groupBy(filters, 'title');
+  // map the data property that is created from groupBy to filters which is needed
+  // for the FilterGroup component within Secondary Filter
+  groupedFilters = groupedFilters.map(fg => ({ ...fg, filters: fg.data }));
+
   const filterGroupsComponent = (
     <div className={styles.SecondaryFilter}>
-      {filterGroups.map(fg => (
+      {groupedFilters.map(fg => (
         <FilterGroup {...fg} key={shortid.generate()} />
       ))}
     </div>

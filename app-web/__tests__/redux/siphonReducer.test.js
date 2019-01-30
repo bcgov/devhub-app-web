@@ -172,7 +172,7 @@ describe('reducer', () => {
     expect(toSort).toEqual([position2, position1]);
   });
 
-  it('should handle applying search results', () => {
+  it.skip('should handle applying search results', () => {
     const state = {
       ...INITIAL_STATES.SIPHON,
       _collections: collectionsFixture,

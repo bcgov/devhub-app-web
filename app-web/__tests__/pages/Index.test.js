@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import { Index } from '../../src/pages/index';
 import { DEFAULT_FILTER_GROUPS } from '../../__fixtures__/redux-fixtures';
 import { COLLECTIONS } from '../../__fixtures__/siphon-fixtures';
+jest.mock('react-spinners', () => null);
 
 describe('Index Container', () => {
   test('it matches snapshot', () => {

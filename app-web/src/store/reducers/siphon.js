@@ -21,8 +21,11 @@ const initialState = {
   _collections: [], // the cached set of ALL collections
   collections: [], // this is set by the resource type, ie Component/Documentation etc
   filteredCollections: [], // subsequent filters using the filter side menu
-  searchResults: [],
-  groupBy: null,
+  resourceType: 'All',
+  query: '',
+  searchBarTerms: '',
+  searchResultsLength: null,
+  totalResources: 0,
   loading: false,
   error: false,
   messages: [],
@@ -107,9 +110,10 @@ const getAllNodesFromCollections = collections =>
  * @param {Array} results
  */
 const applySearchResultsToPrimaryNodes = (state, results) => {
+  const newState = { ...state, searchResultsLength: Object.keys(results).length, loading: false };
   // results is an array of siphon ids,
   // filter out siphon nodes where resource type still matches (primary filter nodes)
-  let collectionNodes = getAllNodesFromCollections(state.collections);
+  let collectionNodes = getAllNodesFromCollections(state._collections);
   const nodesMap = new Map();
   collectionNodes.forEach(n => {
     // if node is within results
@@ -119,12 +123,15 @@ const applySearchResultsToPrimaryNodes = (state, results) => {
       if (nodesMap.has(n.parent.id)) {
         currentNodes = nodesMap.get(n.parent.id);
       }
-      nodesMap.set(n.parent.id, currentNodes.concat([n]));
+      nodesMap.set(n.parent.id, currentNodes.concat([{ ...n }]));
     }
   });
   // build filtered nodes back into respective collections
-  state.collections = state.collections.map(c => ({ ...c, nodes: nodesMap.get(c.id) || [] }));
-  return state;
+  newState.collections = newCollections(state._collections).map(c => ({
+    ...c,
+    nodes: nodesMap.get(c.id) || [],
+  }));
+  return applySecondaryFilters(newState);
 };
 
 /**
@@ -296,14 +303,21 @@ const setCollections = (state, collections) => {
   newState._collections = sortedCollections;
   newState.collectionsLoaded = true;
   // nodes will be filtered eventually be resource type which is the top level navigation
-  newState.collections = sortedCollections;
-  newState.filteredCollections = sortedCollections;
+  newState.collections = newCollections(sortedCollections);
+  newState.filteredCollections = newCollections(sortedCollections);
   // get counts of filters and apply other properties based on if count is 0
   newState.filters = newState.filters.map(filter =>
     applyPropsToFilterByResourceCount(filter, newState.collections),
   );
+
+  newState.totalResources = getAllNodesFromCollections(sortedCollections).length;
+
   return newState;
 };
+
+const setSearchQuery = (state, query) => ({ ...state, query, loading: true });
+const setSearchBarTerms = (state, searchBarTerms) => ({ ...state, searchBarTerms });
+const setResourceType = (state, resourceType) => ({ ...state, resourceType });
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -321,6 +335,12 @@ const reducer = (state = initialState, action) => {
       return applySecondaryFilters(state);
     case actionTypes.SET_SEARCH_RESULTS:
       return applySearchResultsToPrimaryNodes(state, action.payload.searchResults);
+    case actionTypes.SET_SEARCH_QUERY:
+      return setSearchQuery(state, action.payload.onSearch);
+    case actionTypes.SET_RESOURCE_TYPE:
+      return setResourceType(state, action.payload.resourceType);
+    case actionTypes.SET_SEARCH_BAR_TERMS:
+      return setSearchBarTerms(state, action.payload.searchBarTerms);
     default:
       return state;
   }

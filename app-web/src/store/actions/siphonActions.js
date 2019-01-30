@@ -81,3 +81,24 @@ export const setSearchResults = searchResults => {
     payload: { searchResults },
   };
 };
+
+export const setSearchQuery = onSearch => {
+  return {
+    type: actionTypes.SET_SEARCH_QUERY,
+    payload: { onSearch },
+  };
+};
+
+export const setResourceType = resourceType => {
+  return {
+    type: actionTypes.SET_RESOURCE_TYPE,
+    payload: { resourceType },
+  };
+};
+
+export const setSearchBarTerms = searchBarTerms => {
+  return {
+    type: actionTypes.SET_SEARCH_BAR_TERMS,
+    payload: { searchBarTerms },
+  };
+};

@@ -16,18 +16,31 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
+import { BeatLoader } from 'react-spinners';
 import PropTypes from 'prop-types';
-import styles from './Sidebar.module.css';
-import SecondaryFilter from '../SecondaryFilter/SecondaryFilter';
 
-export const Sidebar = ({ filters, setOnSearch }) => (
-  <div className={styles.Sidebar}>
-    <SecondaryFilter filters={filters} />
+const Loading = ({ message }) => (
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      fontSize: '14px',
+      padding: '15px',
+    }}
+  >
+    <p style={{ marginBottom: '15px' }}>{message}</p>
+    <BeatLoader />
   </div>
 );
 
-Sidebar.propTypes = {
-  filters: PropTypes.array.isRequired,
+Loading.propTypes = {
+  message: PropTypes.string,
 };
 
-export default Sidebar;
+Loading.defaultProps = {
+  message: null,
+};
+
+export default Loading;

@@ -32,6 +32,7 @@
     height: 100%;
     display: inline-block;
     color: inherit;
+    cursor: pointer;
 }
 
 .PrimaryFilter ul a:visited {

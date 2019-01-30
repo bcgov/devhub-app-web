@@ -1,0 +1,25 @@
+.Search {
+  display: flex;
+  align-items: center;
+}
+
+.Search input {
+  padding: 4px 5px;
+  margin: 10px 10px 10px 0;
+  flex-basis: 250px;
+  flex-grow: 1;
+  border: 2px solid #38598a;
+  border-radius: 3px;
+  padding: 5px;
+  transition: all .25s;
+  max-width: 300px
+}
+
+.Search input:focus {
+  box-shadow: 0 0 2px 1px #38598aad;
+  outline: none;
+}
+
+.Search button {
+  padding: 4px 15px;
+}
