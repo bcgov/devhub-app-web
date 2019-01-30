@@ -194,34 +194,6 @@ const toggleFilter = (state, key, isActive) => {
 };
 
 /**
- * applies resource type filters against all nodes inside of all collections
- * @param {Object} state
- * @param {String} filteredBy
- * @param {String} value
- * @returns {Object} the new state
- */
-const applyPrimaryFilter = (state, filteredBy, value) => {
-  // filter the initial nodes based off the main filterBy value
-  let collections;
-  // if value is All then primary filtered nodes are reset
-  if (value === 'All') {
-    collections = state._collections;
-  } else {
-    collections = state._collections.map(collection => {
-      const clonedCollection = { ...collection };
-      const filteredNodes = clonedCollection.nodes.filter(n =>
-        dotPropMatchesValue(n, filteredBy, value),
-      );
-      clonedCollection.nodes = filteredNodes;
-      return clonedCollection;
-    });
-  }
-
-  const newState = { ...state, collections };
-  return applySecondaryFilters(newState);
-};
-
-/**
  * filters through the primary filtered nodes by the active
  * filters in the state.filters list
  * additionally tallies up how many resources apply to a filter and applies
@@ -322,8 +294,6 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOAD_SIPHON_COLLECTIONS:
       return setCollections(state, action.payload.nodes);
-    case actionTypes.FILTER_SIPHON_NODES:
-      return applyPrimaryFilter(state, action.payload.filteredBy, action.payload.value);
     case actionTypes.ADD_FILTER:
       return addFilter(state, action.payload.key);
     case actionTypes.REMOVE_FILTER:

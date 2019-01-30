@@ -23,11 +23,6 @@ describe('actions', () => {
     );
   });
 
-  it('should create an action to filter siphon nodes', () => {
-    const expected = ACTIONS.FILTER_SIPHON_NODES;
-    expect(actions.filterSiphonNodes('resource.type', 'Components')).toEqual(expected);
-  });
-
   it('should create an action to add a filter group to filters list', () => {
     const expected = ACTIONS.ADD_FILTER;
     expect(actions.addFilter('foo')).toEqual(expected);

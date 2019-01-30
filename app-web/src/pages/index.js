@@ -27,7 +27,6 @@ export class Index extends Component {
       const collections = this.props.data.allDevhubSiphonCollection.edges.map(c => c.node);
       this.props.loadCollections(collections);
     }
-    this.props.filterCollectionsByResourceType();
   }
 
   componentDidUpdate() {
@@ -210,8 +209,6 @@ const mapDispatchToProps = dispatch => {
   return {
     loadCollections: collections => dispatch(actions.loadSiphonCollections(collections)),
     setSearchResults: results => dispatch(actions.setSearchResults(results)),
-    filterCollectionsByResourceType: () =>
-      dispatch(actions.filterSiphonNodes(SIPHON_RESOURCE_TYPE_PROP, 'All')),
     hideWelcomeMessage: () => dispatch(actions.setWelcomePanelViewed(true)),
     setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
     setSearchBarTerms: resourceType => dispatch(actions.setSearchBarTerms(resourceType)),

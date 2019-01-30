@@ -544,19 +544,7 @@ ShallowWrapper {
         },
       }
     }
-    filterCollectionsByResourceType={
-      [MockFunction] {
-        "calls": Array [
-          Array [],
-        ],
-        "results": Array [
-          Object {
-            "isThrow": false,
-            "value": undefined,
-          },
-        ],
-      }
-    }
+    filterCollectionsByResourceType={[MockFunction]}
     filters={
       Array [
         Object {
