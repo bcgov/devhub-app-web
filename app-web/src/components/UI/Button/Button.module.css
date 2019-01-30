@@ -22,12 +22,12 @@
 }
 /* these classes aren't capatalized for ease of using these in dynamic logic */
 .Button.primary {
-    background-color: #E3A82B;
+    background-color: #002663;
     color: #fff;
 }
 
 .Button.secondary {
-    background-color: #002663;
+    background-color: #E3A82B;
     color: #fff;
 }
 

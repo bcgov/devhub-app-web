@@ -39,10 +39,9 @@ const SecondaryFilter = ({ filters }) => {
 };
 
 SecondaryFilter.propTypes = {
-  filterGroups: PropTypes.arrayOf(
+  filters: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
-      filters: PropTypes.array.isRequired,
     }),
   ).isRequired,
 };
