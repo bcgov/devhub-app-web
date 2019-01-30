@@ -41,10 +41,9 @@ const FilterMenu = ({ filters }) => {
 };
 
 FilterMenu.propTypes = {
-  filterGroups: PropTypes.arrayOf(
+  filters: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
-      filters: PropTypes.array.isRequired,
     }),
   ).isRequired,
 };
