@@ -12,6 +12,7 @@ import FLAGS from '../constants/featureflags';
 import styles from './index.module.css';
 // components
 import { Element } from 'react-scroll';
+import Loading from '../components/UI/Loading/Loading';
 import Layout from '../hoc/Layout';
 import Cards from '../components/Cards/Cards';
 import Sidebar from '../components/Sidebar/Sidebar';
@@ -32,12 +33,31 @@ export class Index extends Component {
   componentDidUpdate() {
     const query = queryString.parse(this.props.location.search);
     if (Object.prototype.hasOwnProperty.call(query, 'q')) {
-      this.props.setSearchResults(this.getSearchResults(query.q));
+      const param = decodeURIComponent(query.q);
+      if (param !== this.props.query) {
+        this.props.setSearchQuery(param);
+        // race condition, the lunr index is loaded asyncronously
+        // it is pretty quick to fetch but hangs up occasionally
+        // i've opened an issue to provide a callback when the index has loaded
+        // to avoid this condition
+        const raceFn = setTimeout.bind(
+          null,
+          () => this.props.setSearchResults(this.getSearchResults(param), param),
+          250,
+        );
+        if (Object.prototype.hasOwnProperty.call(window, '__LUNR__')) {
+          this.props.setSearchResults(this.getSearchResults(param), param);
+        } else {
+          raceFn();
+        }
+      }
     }
   }
+
   componentWillUnmount() {
     this.props.hideWelcomeMessage();
   }
+
   getSearchResults(query) {
     const lunrIndex = window.__LUNR__.en;
     const results = lunrIndex.index.search(query);
@@ -81,11 +101,15 @@ export class Index extends Component {
             <FilterMenu filterGroups={groupedFilters} />
             <main role="main" className={styles.Main}>
               {/* Element used for react-scroll targeting */}
-              <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
-                <div className={styles.CardContainer}>
-                  <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
-                </div>
-              </Element>
+              {this.props.loading ? (
+                <Loading message="Loading..." />
+              ) : (
+                <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
+                  <div className={styles.CardContainer}>
+                    <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
+                  </div>
+                </Element>
+              )}
             </main>
           </div>
         </div>
@@ -149,7 +173,9 @@ const mapStateToProps = state => {
     collections: state.siphon.filteredCollections,
     collectionsLoaded: state.siphon.collectionsLoaded,
     displayWelcome: !state.ui.welcomePanelWasViewed,
+    query: state.siphon.query,
     filters: state.siphon.filters,
+    loading: state.siphon.loading,
   };
 };
 
@@ -160,6 +186,7 @@ const mapDispatchToProps = dispatch => {
     filterCollectionsByResourceType: () =>
       dispatch(actions.filterSiphonNodes(SIPHON_RESOURCE_TYPE_PROP, 'All')),
     hideWelcomeMessage: () => dispatch(actions.setWelcomePanelViewed(true)),
+    setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
   };
 };
 

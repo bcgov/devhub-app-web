@@ -16,29 +16,31 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
+import { BeatLoader } from 'react-spinners';
 import PropTypes from 'prop-types';
-import { navigate } from 'gatsby';
-import { connect } from 'react-redux';
-import * as actions from '../../store/actions/actions';
-import styles from './Sidebar.module.css';
-import SecondaryFilter from '../SecondaryFilter/SecondaryFilter';
-import Search from '../Search/Search';
 
-export const Sidebar = ({ filterGroups, setOnSearch }) => (
-  <div className={styles.Sidebar}>
-    <Search
-      searchOnEnter
-      onSearch={terms => {
-        navigate(`/?q=${encodeURIComponent(terms)}`);
-      }}
-    />
-    <SecondaryFilter filterGroups={filterGroups} />
+const Loading = ({ message }) => (
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      fontSize: '14px',
+      padding: '15px',
+    }}
+  >
+    <p style={{ marginBottom: '15px' }}>{message}</p>
+    <BeatLoader />
   </div>
 );
 
-Sidebar.propTypes = {
-  filterGroups: PropTypes.array.isRequired,
-  terms: PropTypes.string.isRequired,
+Loading.propTypes = {
+  message: PropTypes.string,
 };
 
-export default Sidebar;
+Loading.defaultProps = {
+  message: null,
+};
+
+export default Loading;

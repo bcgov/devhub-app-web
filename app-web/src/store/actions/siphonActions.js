@@ -81,3 +81,10 @@ export const setSearchResults = searchResults => {
     payload: { searchResults },
   };
 };
+
+export const setSearchQuery = onSearch => {
+  return {
+    type: actionTypes.SET_SEARCH_QUERY,
+    payload: { onSearch },
+  };
+};

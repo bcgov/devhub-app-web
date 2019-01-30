@@ -7,5 +7,6 @@ export {
   removeFilter,
   filterSiphonNodesByFilterList,
   setSearchResults,
+  setSearchQuery,
 } from './siphonActions';
 export { setSelectedFilterOption, toggleMainNavigation, setWelcomePanelViewed } from './uiActions';

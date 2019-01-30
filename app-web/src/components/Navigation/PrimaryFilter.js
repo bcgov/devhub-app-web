@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /*
 Copyright 2018 Province of British Columbia
 
@@ -16,25 +17,28 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import Link from '../UI/Link/Link';
+import { navigate } from 'gatsby';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions/actions';
 import PropTypes from 'prop-types';
-import styles from './PrimaryFilter.module.css';
 import shortid from 'shortid';
+import styles from './PrimaryFilter.module.css';
 import { MAIN_NAV_CONFIG } from '../../constants/ui';
 import { ARIA_LABEL_FILTER_SELECT } from '../../constants/ariaLabels';
 
-export const PrimaryFilter = ({ selectedFilter, mobile }) => {
+export const PrimaryFilter = ({ selectedFilter, mobile, setOnSearch }) => {
   const filters = MAIN_NAV_CONFIG.map(navConfig => {
     return (
       <li key={shortid.generate()}>
-        <Link
-          exact
-          to={navConfig.ROUTE}
+        <a
           aria-label={ARIA_LABEL_FILTER_SELECT}
           activeClassName={styles.ActiveFilter}
+          onClick={() => {
+            navigate(`/?q=${encodeURIComponent(navConfig.ROUTE)}`);
+          }}
         >
           {navConfig.DISPLAY_NAME}
-        </Link>
+        </a>
       </li>
     );
   });

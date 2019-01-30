@@ -133,6 +133,7 @@ module.exports = {
           { name: 'url' },
           { name: 'source' },
           { name: 'id', store: true },
+          { name: 'resourceType' },
         ],
         // How to resolve each field's value for a supported node type
         resolvers: {
@@ -146,6 +147,8 @@ module.exports = {
             source: node => node.source.displayName,
             id: node => node.id,
             collectionName: node => node.collection.name,
+            resourceType: node => node.resource.type,
+            personas: node => node.attributes.personas.join(' '),
           },
         },
       },

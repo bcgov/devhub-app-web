@@ -23,7 +23,6 @@ const initialState = {
   filteredCollections: [], // subsequent filters using the filter side menu
   groupBy: null,
   query: '',
-  onSearch: false,
   searchResultsLength: 0,
   loading: false,
   error: false,
@@ -109,10 +108,10 @@ const getAllNodesFromCollections = collections =>
  * @param {Array} results
  */
 const applySearchResultsToPrimaryNodes = (state, results) => {
-  const newState = { ...state, searchResultsLength: Object.keys(results).length };
+  const newState = { ...state, searchResultsLength: Object.keys(results).length, loading: false };
   // results is an array of siphon ids,
   // filter out siphon nodes where resource type still matches (primary filter nodes)
-  let collectionNodes = getAllNodesFromCollections(state.collections);
+  let collectionNodes = getAllNodesFromCollections(state._collections);
   const nodesMap = new Map();
   collectionNodes.forEach(n => {
     // if node is within results
@@ -126,7 +125,7 @@ const applySearchResultsToPrimaryNodes = (state, results) => {
     }
   });
   // build filtered nodes back into respective collections
-  newState.collections = newCollections(state.collections).map(c => ({
+  newState.collections = newCollections(state._collections).map(c => ({
     ...c,
     nodes: nodesMap.get(c.id) || [],
   }));
@@ -311,6 +310,8 @@ const setCollections = (state, collections) => {
   return newState;
 };
 
+const setSearchQuery = (state, query) => ({ ...state, query, loading: true });
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOAD_SIPHON_COLLECTIONS:
@@ -327,6 +328,8 @@ const reducer = (state = initialState, action) => {
       return applySecondaryFilters(state);
     case actionTypes.SET_SEARCH_RESULTS:
       return applySearchResultsToPrimaryNodes(state, action.payload.searchResults);
+    case actionTypes.SET_SEARCH_QUERY:
+      return setSearchQuery(state, action.payload.onSearch);
     default:
       return state;
   }
