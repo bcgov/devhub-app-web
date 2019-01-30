@@ -17,35 +17,35 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import { navigate } from 'gatsby';
-import { connect } from 'react-redux';
-import * as actions from '../../store/actions/actions';
+import { Link } from 'gatsby';
+import queryString from 'query-string';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import styles from './PrimaryFilter.module.css';
 import { MAIN_NAV_CONFIG } from '../../constants/ui';
 import { ARIA_LABEL_FILTER_SELECT } from '../../constants/ariaLabels';
 
-export const PrimaryFilter = ({
-  selectedFilter,
-  mobile,
-  setOnSearch,
-  resourceType,
-  setResourceType,
-}) => {
+const queryStringMatchesResourceType = (searchFromLocation, resourceTypeSearch) => {
+  const qs = queryString.parse(searchFromLocation);
+  const resourceTypeQS = queryString.parse(resourceTypeSearch);
+  return qs.q !== undefined && qs.q === resourceTypeQS.q
+    ? { className: styles.ActiveFilter }
+    : null;
+};
+
+export const PrimaryFilter = ({ mobile }) => {
   const filters = MAIN_NAV_CONFIG.map(navConfig => {
+    const searchString = `?q=${encodeURIComponent(navConfig.ROUTE)}`;
     return (
       <li key={shortid.generate()}>
-        <a
+        <Link
+          exact
+          getProps={({ location }) => queryStringMatchesResourceType(location.search, searchString)}
+          to={searchString}
           aria-label={ARIA_LABEL_FILTER_SELECT}
-          className={navConfig.VALUE === resourceType ? styles.ActiveFilter : ''}
-          onClick={() => {
-            setResourceType(navConfig.VALUE);
-            navigate(`/?q=${encodeURIComponent(navConfig.ROUTE)}`);
-          }}
         >
           {navConfig.DISPLAY_NAME}
-        </a>
+        </Link>
       </li>
     );
   });
@@ -65,15 +65,4 @@ PrimaryFilter.defaultProps = {
   mobile: false,
 };
 
-const mapStateToProps = state => ({
-  resourceType: state.siphon.resourceType,
-});
-
-const mapDispatchToProps = dispatch => ({
-  setResourceType: resourceType => dispatch(actions.setResourceType(resourceType)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(PrimaryFilter);
+export default PrimaryFilter;
