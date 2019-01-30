@@ -23,49 +23,54 @@ ShallowWrapper {
         className="largeOnly"
       >
         <li>
-          <a
+          <mockConstructor
             aria-label="Select to filter cards by the resource type"
-            className=""
-            onClick={[Function]}
+            exact={true}
+            getProps={[Function]}
+            to="?q="
           >
             All
-          </a>
+          </mockConstructor>
         </li>
         <li>
-          <a
+          <mockConstructor
             aria-label="Select to filter cards by the resource type"
-            className=""
-            onClick={[Function]}
+            exact={true}
+            getProps={[Function]}
+            to="?q=%2BresourceType%3AComponents"
           >
             Components
-          </a>
+          </mockConstructor>
         </li>
         <li>
-          <a
+          <mockConstructor
             aria-label="Select to filter cards by the resource type"
-            className=""
-            onClick={[Function]}
+            exact={true}
+            getProps={[Function]}
+            to="?q=%2BresourceType%3ADocumentation"
           >
             Documentation
-          </a>
+          </mockConstructor>
         </li>
         <li>
-          <a
+          <mockConstructor
             aria-label="Select to filter cards by the resource type"
-            className=""
-            onClick={[Function]}
+            exact={true}
+            getProps={[Function]}
+            to="?q=%2BresourceType%3ASelf-Service%20Tools"
           >
             Self-Service Tools
-          </a>
+          </mockConstructor>
         </li>
         <li>
-          <a
+          <mockConstructor
             aria-label="Select to filter cards by the resource type"
-            className=""
-            onClick={[Function]}
+            exact={true}
+            getProps={[Function]}
+            to="?q=%2BresourceType%3ARepositories"
           >
             Repositories
-          </a>
+          </mockConstructor>
         </li>
       </ul>,
       "className": "PrimaryFilter",
@@ -78,49 +83,54 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <li>
-            <a
+            <mockConstructor
               aria-label="Select to filter cards by the resource type"
-              className=""
-              onClick={[Function]}
+              exact={true}
+              getProps={[Function]}
+              to="?q="
             >
               All
-            </a>
+            </mockConstructor>
           </li>,
           <li>
-            <a
+            <mockConstructor
               aria-label="Select to filter cards by the resource type"
-              className=""
-              onClick={[Function]}
+              exact={true}
+              getProps={[Function]}
+              to="?q=%2BresourceType%3AComponents"
             >
               Components
-            </a>
+            </mockConstructor>
           </li>,
           <li>
-            <a
+            <mockConstructor
               aria-label="Select to filter cards by the resource type"
-              className=""
-              onClick={[Function]}
+              exact={true}
+              getProps={[Function]}
+              to="?q=%2BresourceType%3ADocumentation"
             >
               Documentation
-            </a>
+            </mockConstructor>
           </li>,
           <li>
-            <a
+            <mockConstructor
               aria-label="Select to filter cards by the resource type"
-              className=""
-              onClick={[Function]}
+              exact={true}
+              getProps={[Function]}
+              to="?q=%2BresourceType%3ASelf-Service%20Tools"
             >
               Self-Service Tools
-            </a>
+            </mockConstructor>
           </li>,
           <li>
-            <a
+            <mockConstructor
               aria-label="Select to filter cards by the resource type"
-              className=""
-              onClick={[Function]}
+              exact={true}
+              getProps={[Function]}
+              to="?q=%2BresourceType%3ARepositories"
             >
               Repositories
-            </a>
+            </mockConstructor>
           </li>,
         ],
         "className": "largeOnly",
@@ -132,28 +142,30 @@ ShallowWrapper {
           "key": "0",
           "nodeType": "host",
           "props": Object {
-            "children": <a
+            "children": <mockConstructor
               aria-label="Select to filter cards by the resource type"
-              className=""
-              onClick={[Function]}
+              exact={true}
+              getProps={[Function]}
+              to="?q="
             >
               All
-            </a>,
+            </mockConstructor>,
           },
           "ref": null,
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
+            "nodeType": "function",
             "props": Object {
               "aria-label": "Select to filter cards by the resource type",
               "children": "All",
-              "className": "",
-              "onClick": [Function],
+              "exact": true,
+              "getProps": [Function],
+              "to": "?q=",
             },
             "ref": null,
             "rendered": "All",
-            "type": "a",
+            "type": [MockFunction],
           },
           "type": "li",
         },
@@ -162,28 +174,30 @@ ShallowWrapper {
           "key": "1",
           "nodeType": "host",
           "props": Object {
-            "children": <a
+            "children": <mockConstructor
               aria-label="Select to filter cards by the resource type"
-              className=""
-              onClick={[Function]}
+              exact={true}
+              getProps={[Function]}
+              to="?q=%2BresourceType%3AComponents"
             >
               Components
-            </a>,
+            </mockConstructor>,
           },
           "ref": null,
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
+            "nodeType": "function",
             "props": Object {
               "aria-label": "Select to filter cards by the resource type",
               "children": "Components",
-              "className": "",
-              "onClick": [Function],
+              "exact": true,
+              "getProps": [Function],
+              "to": "?q=%2BresourceType%3AComponents",
             },
             "ref": null,
             "rendered": "Components",
-            "type": "a",
+            "type": [MockFunction],
           },
           "type": "li",
         },
@@ -192,28 +206,30 @@ ShallowWrapper {
           "key": "2",
           "nodeType": "host",
           "props": Object {
-            "children": <a
+            "children": <mockConstructor
               aria-label="Select to filter cards by the resource type"
-              className=""
-              onClick={[Function]}
+              exact={true}
+              getProps={[Function]}
+              to="?q=%2BresourceType%3ADocumentation"
             >
               Documentation
-            </a>,
+            </mockConstructor>,
           },
           "ref": null,
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
+            "nodeType": "function",
             "props": Object {
               "aria-label": "Select to filter cards by the resource type",
               "children": "Documentation",
-              "className": "",
-              "onClick": [Function],
+              "exact": true,
+              "getProps": [Function],
+              "to": "?q=%2BresourceType%3ADocumentation",
             },
             "ref": null,
             "rendered": "Documentation",
-            "type": "a",
+            "type": [MockFunction],
           },
           "type": "li",
         },
@@ -222,28 +238,30 @@ ShallowWrapper {
           "key": "3",
           "nodeType": "host",
           "props": Object {
-            "children": <a
+            "children": <mockConstructor
               aria-label="Select to filter cards by the resource type"
-              className=""
-              onClick={[Function]}
+              exact={true}
+              getProps={[Function]}
+              to="?q=%2BresourceType%3ASelf-Service%20Tools"
             >
               Self-Service Tools
-            </a>,
+            </mockConstructor>,
           },
           "ref": null,
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
+            "nodeType": "function",
             "props": Object {
               "aria-label": "Select to filter cards by the resource type",
               "children": "Self-Service Tools",
-              "className": "",
-              "onClick": [Function],
+              "exact": true,
+              "getProps": [Function],
+              "to": "?q=%2BresourceType%3ASelf-Service%20Tools",
             },
             "ref": null,
             "rendered": "Self-Service Tools",
-            "type": "a",
+            "type": [MockFunction],
           },
           "type": "li",
         },
@@ -252,28 +270,30 @@ ShallowWrapper {
           "key": "4",
           "nodeType": "host",
           "props": Object {
-            "children": <a
+            "children": <mockConstructor
               aria-label="Select to filter cards by the resource type"
-              className=""
-              onClick={[Function]}
+              exact={true}
+              getProps={[Function]}
+              to="?q=%2BresourceType%3ARepositories"
             >
               Repositories
-            </a>,
+            </mockConstructor>,
           },
           "ref": null,
           "rendered": Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
+            "nodeType": "function",
             "props": Object {
               "aria-label": "Select to filter cards by the resource type",
               "children": "Repositories",
-              "className": "",
-              "onClick": [Function],
+              "exact": true,
+              "getProps": [Function],
+              "to": "?q=%2BresourceType%3ARepositories",
             },
             "ref": null,
             "rendered": "Repositories",
-            "type": "a",
+            "type": [MockFunction],
           },
           "type": "li",
         },
@@ -292,49 +312,54 @@ ShallowWrapper {
           className="largeOnly"
         >
           <li>
-            <a
+            <mockConstructor
               aria-label="Select to filter cards by the resource type"
-              className=""
-              onClick={[Function]}
+              exact={true}
+              getProps={[Function]}
+              to="?q="
             >
               All
-            </a>
+            </mockConstructor>
           </li>
           <li>
-            <a
+            <mockConstructor
               aria-label="Select to filter cards by the resource type"
-              className=""
-              onClick={[Function]}
+              exact={true}
+              getProps={[Function]}
+              to="?q=%2BresourceType%3AComponents"
             >
               Components
-            </a>
+            </mockConstructor>
           </li>
           <li>
-            <a
+            <mockConstructor
               aria-label="Select to filter cards by the resource type"
-              className=""
-              onClick={[Function]}
+              exact={true}
+              getProps={[Function]}
+              to="?q=%2BresourceType%3ADocumentation"
             >
               Documentation
-            </a>
+            </mockConstructor>
           </li>
           <li>
-            <a
+            <mockConstructor
               aria-label="Select to filter cards by the resource type"
-              className=""
-              onClick={[Function]}
+              exact={true}
+              getProps={[Function]}
+              to="?q=%2BresourceType%3ASelf-Service%20Tools"
             >
               Self-Service Tools
-            </a>
+            </mockConstructor>
           </li>
           <li>
-            <a
+            <mockConstructor
               aria-label="Select to filter cards by the resource type"
-              className=""
-              onClick={[Function]}
+              exact={true}
+              getProps={[Function]}
+              to="?q=%2BresourceType%3ARepositories"
             >
               Repositories
-            </a>
+            </mockConstructor>
           </li>
         </ul>,
         "className": "PrimaryFilter",
@@ -347,49 +372,54 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <li>
-              <a
+              <mockConstructor
                 aria-label="Select to filter cards by the resource type"
-                className=""
-                onClick={[Function]}
+                exact={true}
+                getProps={[Function]}
+                to="?q="
               >
                 All
-              </a>
+              </mockConstructor>
             </li>,
             <li>
-              <a
+              <mockConstructor
                 aria-label="Select to filter cards by the resource type"
-                className=""
-                onClick={[Function]}
+                exact={true}
+                getProps={[Function]}
+                to="?q=%2BresourceType%3AComponents"
               >
                 Components
-              </a>
+              </mockConstructor>
             </li>,
             <li>
-              <a
+              <mockConstructor
                 aria-label="Select to filter cards by the resource type"
-                className=""
-                onClick={[Function]}
+                exact={true}
+                getProps={[Function]}
+                to="?q=%2BresourceType%3ADocumentation"
               >
                 Documentation
-              </a>
+              </mockConstructor>
             </li>,
             <li>
-              <a
+              <mockConstructor
                 aria-label="Select to filter cards by the resource type"
-                className=""
-                onClick={[Function]}
+                exact={true}
+                getProps={[Function]}
+                to="?q=%2BresourceType%3ASelf-Service%20Tools"
               >
                 Self-Service Tools
-              </a>
+              </mockConstructor>
             </li>,
             <li>
-              <a
+              <mockConstructor
                 aria-label="Select to filter cards by the resource type"
-                className=""
-                onClick={[Function]}
+                exact={true}
+                getProps={[Function]}
+                to="?q=%2BresourceType%3ARepositories"
               >
                 Repositories
-              </a>
+              </mockConstructor>
             </li>,
           ],
           "className": "largeOnly",
@@ -401,28 +431,30 @@ ShallowWrapper {
             "key": "0",
             "nodeType": "host",
             "props": Object {
-              "children": <a
+              "children": <mockConstructor
                 aria-label="Select to filter cards by the resource type"
-                className=""
-                onClick={[Function]}
+                exact={true}
+                getProps={[Function]}
+                to="?q="
               >
                 All
-              </a>,
+              </mockConstructor>,
             },
             "ref": null,
             "rendered": Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "host",
+              "nodeType": "function",
               "props": Object {
                 "aria-label": "Select to filter cards by the resource type",
                 "children": "All",
-                "className": "",
-                "onClick": [Function],
+                "exact": true,
+                "getProps": [Function],
+                "to": "?q=",
               },
               "ref": null,
               "rendered": "All",
-              "type": "a",
+              "type": [MockFunction],
             },
             "type": "li",
           },
@@ -431,28 +463,30 @@ ShallowWrapper {
             "key": "1",
             "nodeType": "host",
             "props": Object {
-              "children": <a
+              "children": <mockConstructor
                 aria-label="Select to filter cards by the resource type"
-                className=""
-                onClick={[Function]}
+                exact={true}
+                getProps={[Function]}
+                to="?q=%2BresourceType%3AComponents"
               >
                 Components
-              </a>,
+              </mockConstructor>,
             },
             "ref": null,
             "rendered": Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "host",
+              "nodeType": "function",
               "props": Object {
                 "aria-label": "Select to filter cards by the resource type",
                 "children": "Components",
-                "className": "",
-                "onClick": [Function],
+                "exact": true,
+                "getProps": [Function],
+                "to": "?q=%2BresourceType%3AComponents",
               },
               "ref": null,
               "rendered": "Components",
-              "type": "a",
+              "type": [MockFunction],
             },
             "type": "li",
           },
@@ -461,28 +495,30 @@ ShallowWrapper {
             "key": "2",
             "nodeType": "host",
             "props": Object {
-              "children": <a
+              "children": <mockConstructor
                 aria-label="Select to filter cards by the resource type"
-                className=""
-                onClick={[Function]}
+                exact={true}
+                getProps={[Function]}
+                to="?q=%2BresourceType%3ADocumentation"
               >
                 Documentation
-              </a>,
+              </mockConstructor>,
             },
             "ref": null,
             "rendered": Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "host",
+              "nodeType": "function",
               "props": Object {
                 "aria-label": "Select to filter cards by the resource type",
                 "children": "Documentation",
-                "className": "",
-                "onClick": [Function],
+                "exact": true,
+                "getProps": [Function],
+                "to": "?q=%2BresourceType%3ADocumentation",
               },
               "ref": null,
               "rendered": "Documentation",
-              "type": "a",
+              "type": [MockFunction],
             },
             "type": "li",
           },
@@ -491,28 +527,30 @@ ShallowWrapper {
             "key": "3",
             "nodeType": "host",
             "props": Object {
-              "children": <a
+              "children": <mockConstructor
                 aria-label="Select to filter cards by the resource type"
-                className=""
-                onClick={[Function]}
+                exact={true}
+                getProps={[Function]}
+                to="?q=%2BresourceType%3ASelf-Service%20Tools"
               >
                 Self-Service Tools
-              </a>,
+              </mockConstructor>,
             },
             "ref": null,
             "rendered": Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "host",
+              "nodeType": "function",
               "props": Object {
                 "aria-label": "Select to filter cards by the resource type",
                 "children": "Self-Service Tools",
-                "className": "",
-                "onClick": [Function],
+                "exact": true,
+                "getProps": [Function],
+                "to": "?q=%2BresourceType%3ASelf-Service%20Tools",
               },
               "ref": null,
               "rendered": "Self-Service Tools",
-              "type": "a",
+              "type": [MockFunction],
             },
             "type": "li",
           },
@@ -521,28 +559,30 @@ ShallowWrapper {
             "key": "4",
             "nodeType": "host",
             "props": Object {
-              "children": <a
+              "children": <mockConstructor
                 aria-label="Select to filter cards by the resource type"
-                className=""
-                onClick={[Function]}
+                exact={true}
+                getProps={[Function]}
+                to="?q=%2BresourceType%3ARepositories"
               >
                 Repositories
-              </a>,
+              </mockConstructor>,
             },
             "ref": null,
             "rendered": Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "host",
+              "nodeType": "function",
               "props": Object {
                 "aria-label": "Select to filter cards by the resource type",
                 "children": "Repositories",
-                "className": "",
-                "onClick": [Function],
+                "exact": true,
+                "getProps": [Function],
+                "to": "?q=%2BresourceType%3ARepositories",
               },
               "ref": null,
               "rendered": "Repositories",
-              "type": "a",
+              "type": [MockFunction],
             },
             "type": "li",
           },
