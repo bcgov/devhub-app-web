@@ -23,7 +23,7 @@ const initialState = {
   filteredCollections: [], // subsequent filters using the filter side menu
   resourceType: 'All',
   query: '',
-  searchResultsLength: 0,
+  searchResultsLength: null,
   totalResources: 0,
   loading: false,
   error: false,
