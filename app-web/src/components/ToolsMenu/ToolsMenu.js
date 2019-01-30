@@ -34,7 +34,6 @@ const ToolsMenu = ({
   setResourceType,
   setSearchBarTerms,
 }) => {
-  console.log(searchCount);
   return (
     <div className={styles.ToolsMenu}>
       <FilterMenu filters={filters} />

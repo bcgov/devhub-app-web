@@ -60,7 +60,7 @@ export class Search extends Component {
           onFocus={() => this.setState({ touched: true })}
         />
         <Button
-          type="primary"
+          type="secondary"
           aria-label={ARIA_LABEL_SEARCH_BUTTON}
           clicked={() => (this.state.terms.trim().length > 0 ? this.search() : null)}
         >
