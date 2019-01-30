@@ -76,12 +76,6 @@ export const ACTIONS = {
   FILTER_SIPHON_NODES_BY_LIST: {
     type: actions.FILTER_SIPHON_NODES_BY_FILTER_LIST,
   },
-  SELECT_FILTER_OPTION: {
-    type: actions.SET_SELECTED_FILTER_OPTION,
-    payload: {
-      foo: 'bar',
-    },
-  },
   TOGGLE_MAIN_NAVIGATION_ON: {
     type: actions.TOGGLE_MAIN_NAVIGATION,
     payload: {

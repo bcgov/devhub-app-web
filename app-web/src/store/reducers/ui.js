@@ -25,8 +25,6 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.SET_SELECTED_FILTER_OPTION:
-      return { ...state, selectedFilterOption: action.payload };
     case actionTypes.TOGGLE_MAIN_NAVIGATION:
       return { ...state, mainNavigationToggled: !state.mainNavigationToggled };
     case actionTypes.SET_WELCOME_PANEL_VIEWED:

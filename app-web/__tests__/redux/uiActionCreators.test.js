@@ -19,11 +19,6 @@ import * as actions from '../../src/store/actions/actions';
 import { ACTIONS } from '../../__fixtures__/redux-fixtures';
 
 describe('ui action creators', () => {
-  it('should create an action to set selected filter option', () => {
-    const expected = ACTIONS.SELECT_FILTER_OPTION;
-    expect(actions.setSelectedFilterOption(ACTIONS.SELECT_FILTER_OPTION.payload)).toEqual(expected);
-  });
-
   it('should create an action to set main navigiaton toggle', () => {
     const expected = ACTIONS.TOGGLE_MAIN_NAVIGATION_ON;
     expect(actions.toggleMainNavigation(ACTIONS.TOGGLE_MAIN_NAVIGATION_ON.payload.toggled)).toEqual(
