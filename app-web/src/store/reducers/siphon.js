@@ -23,6 +23,7 @@ const initialState = {
   filteredCollections: [], // subsequent filters using the filter side menu
   resourceType: 'All',
   query: '',
+  searchBarTerms: '',
   searchResultsLength: null,
   totalResources: 0,
   loading: false,
@@ -315,6 +316,7 @@ const setCollections = (state, collections) => {
 };
 
 const setSearchQuery = (state, query) => ({ ...state, query, loading: true });
+const setSearchBarTerms = (state, searchBarTerms) => ({ ...state, searchBarTerms });
 const setResourceType = (state, resourceType) => ({ ...state, resourceType });
 
 const reducer = (state = initialState, action) => {
@@ -337,6 +339,8 @@ const reducer = (state = initialState, action) => {
       return setSearchQuery(state, action.payload.onSearch);
     case actionTypes.SET_RESOURCE_TYPE:
       return setResourceType(state, action.payload.resourceType);
+    case actionTypes.SET_SEARCH_BAR_TERMS:
+      return setSearchBarTerms(state, action.payload.searchBarTerms);
     default:
       return state;
   }

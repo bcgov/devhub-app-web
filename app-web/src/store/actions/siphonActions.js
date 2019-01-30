@@ -95,3 +95,10 @@ export const setResourceType = resourceType => {
     payload: { resourceType },
   };
 };
+
+export const setSearchBarTerms = searchBarTerms => {
+  return {
+    type: actionTypes.SET_SEARCH_BAR_TERMS,
+    payload: { searchBarTerms },
+  };
+};

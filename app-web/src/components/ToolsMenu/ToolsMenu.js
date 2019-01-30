@@ -24,9 +24,16 @@ import FilterMenu from './FilterMenu/FilterMenu';
 import SearchFeedback from './SearchFeedback/SearchFeedback';
 import Search from '../Search/Search';
 import styles from './ToolsMenu.module.css';
-import { setResourceType } from '../../store/actions/actions';
+import { setResourceType, setSearchBarTerms } from '../../store/actions/actions';
 
-const ToolsMenu = ({ filters, searchCount, totalNodeCount, setResourceType }) => {
+const ToolsMenu = ({
+  filters,
+  searchCount,
+  totalNodeCount,
+  searchWordLength,
+  setResourceType,
+  setSearchBarTerms,
+}) => {
   console.log(searchCount);
   return (
     <div className={styles.ToolsMenu}>
@@ -37,10 +44,15 @@ const ToolsMenu = ({ filters, searchCount, totalNodeCount, setResourceType }) =>
         onSearch={terms => {
           // set resource type to all since we are searching the entire index
           setResourceType('All');
+          setSearchBarTerms(terms);
           navigate(`/?q=${encodeURIComponent(terms)}`);
         }}
       />
-      <SearchFeedback searchCount={searchCount} totalNodeCount={totalNodeCount} />
+      <SearchFeedback
+        searchCount={searchCount}
+        totalNodeCount={totalNodeCount}
+        searchWordLength={searchWordLength}
+      />
     </div>
   );
 };
@@ -50,12 +62,16 @@ ToolsMenu.propTypes = {
   searchCount: PropTypes.number.isRequired,
   totalNodeCount: PropTypes.number.isRequired,
 };
+const mapStateToProps = state => ({
+  searchWordLength: state.siphon.searchBarTerms.length,
+});
 
 const mapDispatchToProps = dispatch => ({
   setResourceType: resourceType => dispatch(setResourceType(resourceType)),
+  setSearchBarTerms: resourceType => dispatch(setSearchBarTerms(resourceType)),
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(ToolsMenu);

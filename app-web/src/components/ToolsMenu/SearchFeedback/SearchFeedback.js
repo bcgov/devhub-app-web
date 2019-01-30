@@ -19,10 +19,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 
-const SearchFeedback = ({ searchCount, totalNodeCount }) => {
+const SearchFeedback = ({ searchCount, totalNodeCount, searchWordLength }) => {
   let caption = null;
   const path = `/?q=`;
-
   if (searchCount === 0) {
     caption = (
       <p>
@@ -30,7 +29,7 @@ const SearchFeedback = ({ searchCount, totalNodeCount }) => {
         again.
       </p>
     );
-  } else if (searchCount < totalNodeCount) {
+  } else if (searchCount !== null && searchCount < totalNodeCount && searchWordLength > 0) {
     caption = (
       <p>
         Click <Link to={path}>here</Link> to reset.
