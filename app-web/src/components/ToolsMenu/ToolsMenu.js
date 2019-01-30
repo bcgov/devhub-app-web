@@ -15,7 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { navigate } from 'gatsby';
 import { connect } from 'react-redux';
@@ -26,41 +26,50 @@ import Search from '../Search/Search';
 import styles from './ToolsMenu.module.css';
 import { setResourceType, setSearchBarTerms } from '../../store/actions/actions';
 
-const ToolsMenu = ({
-  filters,
-  searchCount,
-  totalNodeCount,
-  searchWordLength,
-  setResourceType,
-  setSearchBarTerms,
-}) => {
-  return (
-    <div className={styles.ToolsMenu}>
-      <FilterMenu filters={filters} />
-      <Search
-        searchOnEnter
-        inputConfig={SEARCH.INPUT}
-        onSearch={terms => {
-          // set resource type to all since we are searching the entire index
-          setResourceType('All');
-          setSearchBarTerms(terms);
-          navigate(`/?q=${encodeURIComponent(terms)}`);
-        }}
-      />
-      <SearchFeedback
-        searchCount={searchCount}
-        totalNodeCount={totalNodeCount}
-        searchWordLength={searchWordLength}
-      />
-    </div>
-  );
-};
+class ToolsMenu extends Component {
+  componentWillUnmount() {
+    // unset search bar terms
+    this.props.setSearchBarTerms('');
+  }
+
+  render() {
+    const {
+      filters,
+      searchCount,
+      totalNodeCount,
+      searchWordLength,
+      setResourceType,
+      setSearchBarTerms,
+    } = this.props;
+    return (
+      <div className={styles.ToolsMenu}>
+        <FilterMenu filters={filters} />
+        <Search
+          searchOnEnter
+          inputConfig={SEARCH.INPUT}
+          onSearch={terms => {
+            // set resource type to all since we are searching the entire index
+            setResourceType('All');
+            setSearchBarTerms(terms);
+            navigate(`/?q=${encodeURIComponent(terms)}`);
+          }}
+        />
+        <SearchFeedback
+          searchCount={searchCount}
+          totalNodeCount={totalNodeCount}
+          searchWordLength={searchWordLength}
+        />
+      </div>
+    );
+  }
+}
 
 ToolsMenu.propTypes = {
   filters: PropTypes.array.isRequired,
   searchCount: PropTypes.number.isRequired,
   totalNodeCount: PropTypes.number.isRequired,
 };
+
 const mapStateToProps = state => ({
   searchWordLength: state.siphon.searchBarTerms.length,
 });
