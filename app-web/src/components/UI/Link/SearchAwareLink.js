@@ -19,13 +19,14 @@ import queryString from 'query-string';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from './Link';
-import Search from '../../Search/Search';
 
-// bootstraps the gatsby link, when the 'to' prop is a relative path,
-// the active class is set based on if the if the query string parameter matches
-// this is not a replacement for the Link component, as setting activeClassName by path matching
-// doesn't work anymore
-export const linkMatchesQueryString = (location, to, activeClassName) => {
+/**
+ * returns true if the to attributes search param exists within the current location search params
+ * @param {Object} location the location prop for the current windo
+ * @param {String} to the actual href used by the link
+ * @returns {Boolean}
+ */
+export const linkMatchesQueryString = (location, to) => {
   // convert to into an URL object
   // at this point we absolutely know that 'to' must be a relative path,
   // there for we prepend a dummy url to it so that it can be processed by URL
@@ -39,13 +40,19 @@ export const linkMatchesQueryString = (location, to, activeClassName) => {
     key => linkQueryString[key] && currentQueryString[key] === linkQueryString[key],
   );
 
-  return matches ? { className: activeClassName } : null;
+  return matches;
 };
 
+// bootstraps the gatsby link, when the 'to' prop is a relative path,
+// the active class is set based on if the if the query string parameter matches
+// this is not a replacement for the Link component, as setting activeClassName by path matching
+// doesn't work anymore
 const SearchAwareLink = ({ activeClassName, children, ...rest }) => (
   <Link
     {...rest}
-    getProps={(location, href) => linkMatchesQueryString(location, href, activeClassName)}
+    getProps={(location, href) =>
+      linkMatchesQueryString(location, href) ? { className: activeClassName } : null
+    }
   >
     {children}
   </Link>
