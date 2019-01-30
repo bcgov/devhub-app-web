@@ -16,10 +16,10 @@ import Loading from '../components/UI/Loading/Loading';
 import Layout from '../hoc/Layout';
 import Cards from '../components/Cards/Cards';
 import Sidebar from '../components/Sidebar/Sidebar';
-import FilterMenu from '../components/FilterMenu/FilterMenu';
 import WelcomePanel from '../components/WelcomePanel/WelcomePanel';
 import PrimaryFilter from '../components/Navigation/PrimaryFilter';
 import Dropmenu from '../components/Dropmenu/Dropmenu';
+import ToolsMenu from '../components/ToolsMenu/ToolsMenu';
 
 export class Index extends Component {
   componentDidMount() {
@@ -30,6 +30,7 @@ export class Index extends Component {
     }
     this.props.filterCollectionsByResourceType();
   }
+
   componentDidUpdate() {
     const query = queryString.parse(this.props.location.search);
     if (Object.prototype.hasOwnProperty.call(query, 'q')) {
@@ -69,8 +70,9 @@ export class Index extends Component {
       }, {});
     return searchResultsMap;
   }
+
   render() {
-    const { collections, toggleMenu, filters } = this.props;
+    const { collections, toggleMenu, filters, searchResultsLength, totalResources } = this.props;
 
     const SiphonResources = collections.map(collection => (
       <Cards
@@ -81,12 +83,6 @@ export class Index extends Component {
       />
     ));
 
-    // group filter groups by there title
-    let groupedFilters = groupBy(filters, 'title');
-    // map the data property that is created from groupBy to filters which is needed
-    // for the FilterGroup component within Secondary Filter
-    groupedFilters = groupedFilters.map(fg => ({ ...fg, filters: fg.data }));
-
     return (
       <Layout showHamburger hamburgerClicked={toggleMenu}>
         <Flag name={`features.${FLAGS.SOURCE_FILTERING}`}>
@@ -95,10 +91,14 @@ export class Index extends Component {
         {/* hamburger icon controlled menu */}
         <Dropmenu menuToggled />
         <div className={[styles.MainContainer, 'container'].join(' ')}>
-          <Sidebar filterGroups={groupedFilters} />
-          <div>
+          <Sidebar filters={filters} />
+          <div className={styles.Right}>
             <WelcomePanel />
-            <FilterMenu filterGroups={groupedFilters} />
+            <ToolsMenu
+              filters={filters}
+              searchCount={searchResultsLength}
+              totalNodeCount={totalResources}
+            />
             <main role="main" className={styles.Main}>
               {/* Element used for react-scroll targeting */}
               {this.props.loading ? (
@@ -176,6 +176,8 @@ const mapStateToProps = state => {
     query: state.siphon.query,
     filters: state.siphon.filters,
     loading: state.siphon.loading,
+    searchResultsLength: state.siphon.searchResultsLength,
+    totalResources: state.siphon.totalResources,
   };
 };
 

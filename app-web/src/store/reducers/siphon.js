@@ -21,9 +21,10 @@ const initialState = {
   _collections: [], // the cached set of ALL collections
   collections: [], // this is set by the resource type, ie Component/Documentation etc
   filteredCollections: [], // subsequent filters using the filter side menu
-  groupBy: null,
+  resourceType: 'All',
   query: '',
   searchResultsLength: 0,
+  totalResources: 0,
   loading: false,
   error: false,
   messages: [],
@@ -307,10 +308,14 @@ const setCollections = (state, collections) => {
   newState.filters = newState.filters.map(filter =>
     applyPropsToFilterByResourceCount(filter, newState.collections),
   );
+
+  newState.totalResources = getAllNodesFromCollections(sortedCollections).length;
+
   return newState;
 };
 
 const setSearchQuery = (state, query) => ({ ...state, query, loading: true });
+const setResourceType = (state, resourceType) => ({ ...state, resourceType });
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -330,6 +335,8 @@ const reducer = (state = initialState, action) => {
       return applySearchResultsToPrimaryNodes(state, action.payload.searchResults);
     case actionTypes.SET_SEARCH_QUERY:
       return setSearchQuery(state, action.payload.onSearch);
+    case actionTypes.SET_RESOURCE_TYPE:
+      return setResourceType(state, action.payload.resourceType);
     default:
       return state;
   }

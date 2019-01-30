@@ -33,6 +33,10 @@
     align-items: center;
 }
 
+.Right {
+    flex-grow: 1;
+}
+
 .WithBlocker::after {
     width: 100%;
     content: "";

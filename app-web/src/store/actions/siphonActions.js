@@ -88,3 +88,10 @@ export const setSearchQuery = onSearch => {
     payload: { onSearch },
   };
 };
+
+export const setResourceType = resourceType => {
+  return {
+    type: actionTypes.SET_RESOURCE_TYPE,
+    payload: { resourceType },
+  };
+};

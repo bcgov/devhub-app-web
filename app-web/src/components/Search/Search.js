@@ -16,7 +16,11 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { ARIA_LABEL_SEARCH_BUTTON, ARIA_LABEL_SEARCH_INPUT } from '../../constants/ariaLabels';
 import PropTypes from 'prop-types';
+import styles from './Search.module.css';
 import Button from '../UI/Button/Button';
 
 export class Search extends Component {
@@ -27,7 +31,7 @@ export class Search extends Component {
 
   handleEnter = e => {
     if (e.key === 'Enter' && this.props.searchOnEnter) {
-      this.props.onSearch(this.state.terms);
+      this.search();
     }
   };
 
@@ -38,22 +42,29 @@ export class Search extends Component {
     }
     this.setState({ terms: e.target.value });
   };
-
+  search = terms => {
+    this.setState({ terms: '' });
+    this.props.onSearch(this.state.terms);
+  };
   render() {
-    const { onSearch } = this.props;
+    const { onSearch, inputConfig } = this.props;
     return (
-      <div>
+      <div className={styles.Search}>
         <input
           type="text"
+          aria-label={ARIA_LABEL_SEARCH_INPUT}
+          {...inputConfig}
           value={this.state.terms}
           onChange={this.handleKeyUp}
           onKeyPress={this.handleEnter}
           onFocus={() => this.setState({ touched: true })}
         />
         <Button
-          clicked={() => (this.state.terms.trim().length > 0 ? onSearch(this.state.terms) : null)}
+          type="primary"
+          aria-label={ARIA_LABEL_SEARCH_BUTTON}
+          clicked={() => (this.state.terms.trim().length > 0 ? this.search() : null)}
         >
-          Search
+          <FontAwesomeIcon icon={faSearch} />
         </Button>
       </div>
     );
@@ -64,11 +75,13 @@ Search.propTypes = {
   onSearch: PropTypes.func.isRequired,
   onSearchClear: PropTypes.func,
   searchOnEnter: PropTypes.bool,
+  inputConfig: PropTypes.object,
 };
 
 Search.defaultProps = {
   onSearchClear: () => undefined,
   searchOnEnter: false,
+  inputConfig: {},
 };
 
 export default Search;

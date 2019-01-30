@@ -17,17 +17,33 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Sidebar.module.css';
-import SecondaryFilter from '../SecondaryFilter/SecondaryFilter';
+import { Link } from 'gatsby';
 
-export const Sidebar = ({ filters, setOnSearch }) => (
-  <div className={styles.Sidebar}>
-    <SecondaryFilter filters={filters} />
-  </div>
-);
+const SearchFeedback = ({ searchCount, totalNodeCount }) => {
+  let caption = null;
+  const path = `/?q=`;
 
-Sidebar.propTypes = {
-  filters: PropTypes.array.isRequired,
+  if (searchCount === 0) {
+    caption = (
+      <p>
+        No resources found :( Click <Link to={path}>here</Link> to reset or otherwise try searching
+        again.
+      </p>
+    );
+  } else if (searchCount < totalNodeCount) {
+    caption = (
+      <p>
+        Click <Link to={path}>here</Link> to reset search.
+      </p>
+    );
+  }
+
+  return <div>{caption}</div>;
 };
 
-export default Sidebar;
+SearchFeedback.propTypes = {
+  searchCount: PropTypes.number.isRequired,
+  totalNodeCount: PropTypes.number.isRequired,
+};
+
+export default SearchFeedback;

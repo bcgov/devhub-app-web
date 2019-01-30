@@ -26,14 +26,21 @@ import styles from './PrimaryFilter.module.css';
 import { MAIN_NAV_CONFIG } from '../../constants/ui';
 import { ARIA_LABEL_FILTER_SELECT } from '../../constants/ariaLabels';
 
-export const PrimaryFilter = ({ selectedFilter, mobile, setOnSearch }) => {
+export const PrimaryFilter = ({
+  selectedFilter,
+  mobile,
+  setOnSearch,
+  resourceType,
+  setResourceType,
+}) => {
   const filters = MAIN_NAV_CONFIG.map(navConfig => {
     return (
       <li key={shortid.generate()}>
         <a
           aria-label={ARIA_LABEL_FILTER_SELECT}
-          activeClassName={styles.ActiveFilter}
+          className={navConfig.VALUE === resourceType ? styles.ActiveFilter : ''}
           onClick={() => {
+            setResourceType(navConfig.VALUE);
             navigate(`/?q=${encodeURIComponent(navConfig.ROUTE)}`);
           }}
         >
@@ -58,4 +65,15 @@ PrimaryFilter.defaultProps = {
   mobile: false,
 };
 
-export default PrimaryFilter;
+const mapStateToProps = state => ({
+  resourceType: state.siphon.resourceType,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setResourceType: resourceType => dispatch(actions.setResourceType(resourceType)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PrimaryFilter);

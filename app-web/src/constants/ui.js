@@ -161,3 +161,11 @@ export const REACT_SCROLL = {
     CARDS_CONTAINER: 'CARDS_CONTAINER',
   },
 };
+
+export const SEARCH = {
+  INPUT: {
+    maxLength: 40,
+    placeholder: 'search',
+    id: 'devhub.search.input',
+  },
+};
