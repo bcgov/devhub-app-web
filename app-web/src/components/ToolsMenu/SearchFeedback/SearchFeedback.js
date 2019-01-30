@@ -33,7 +33,7 @@ const SearchFeedback = ({ searchCount, totalNodeCount }) => {
   } else if (searchCount < totalNodeCount) {
     caption = (
       <p>
-        Click <Link to={path}>here</Link> to reset search.
+        Click <Link to={path}>here</Link> to reset.
       </p>
     );
   }
