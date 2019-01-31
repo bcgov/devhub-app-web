@@ -28,6 +28,7 @@ import { ARIA_LABEL_FILTER_SELECT } from '../../constants/ariaLabels';
 const queryStringMatchesResourceType = (searchFromLocation, resourceTypeSearch) => {
   const qs = queryString.parse(searchFromLocation);
   const resourceTypeQS = queryString.parse(resourceTypeSearch);
+
   return qs.q !== undefined && qs.q === resourceTypeQS.q
     ? { className: styles.ActiveFilter }
     : null;

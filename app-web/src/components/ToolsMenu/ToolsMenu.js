@@ -18,13 +18,11 @@ Created by Patrick Simonian
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { navigate } from 'gatsby';
-import { connect } from 'react-redux';
 import { SEARCH } from '../../constants/ui';
 import FilterMenu from './FilterMenu/FilterMenu';
 import SearchFeedback from './SearchFeedback/SearchFeedback';
 import Search from '../Search/Search';
 import styles from './ToolsMenu.module.css';
-import { setSearchBarTerms } from '../../store/actions/actions';
 
 class ToolsMenu extends Component {
   componentWillUnmount() {
@@ -66,17 +64,8 @@ ToolsMenu.propTypes = {
   filters: PropTypes.array.isRequired,
   searchCount: PropTypes.number.isRequired,
   totalNodeCount: PropTypes.number.isRequired,
+  setSearchBarTerms: PropTypes.func.isRequired,
+  searchWordLength: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = state => ({
-  searchWordLength: state.siphon.searchBarTerms.length,
-});
-
-const mapDispatchToProps = dispatch => ({
-  setSearchBarTerms: resourceType => dispatch(setSearchBarTerms(resourceType)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ToolsMenu);
+export default ToolsMenu;

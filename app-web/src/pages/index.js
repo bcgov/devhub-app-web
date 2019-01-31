@@ -34,7 +34,6 @@ export class Index extends Component {
     const query = queryString.parse(this.props.location.search);
     if (Object.prototype.hasOwnProperty.call(query, 'q')) {
       const param = decodeURIComponent(query.q);
-      const queryBySearch = query.search === 'true';
 
       if (param !== this.props.query) {
         this.props.setSearchQuery(param);
@@ -44,11 +43,11 @@ export class Index extends Component {
         // to avoid this condition
         const raceFn = setTimeout.bind(
           null,
-          () => this.props.setSearchResults(this.getSearchResults(param, queryBySearch), param),
+          () => this.props.setSearchResults(this.getSearchResults(param), param),
           250,
         );
         if (Object.prototype.hasOwnProperty.call(window, '__LUNR__')) {
-          this.props.setSearchResults(this.getSearchResults(param, queryBySearch), param);
+          this.props.setSearchResults(this.getSearchResults(param), param);
         } else {
           raceFn();
         }
@@ -63,15 +62,15 @@ export class Index extends Component {
   /**
    * gets search results from lunr
    * @param {String} query the search string
-   * @param {Boolean} byQuery to dictate which lunr function to use
    */
-  getSearchResults(query, queryBySearch) {
+  getSearchResults(query) {
     const lunrIndex = window.__LUNR__.en;
     let results = [];
-
-    if (queryBySearch) {
+    // attempt to search by parsing query into fields
+    try {
       results = lunrIndex.index.search(query);
-    } else {
+    } catch (e) {
+      // if that fails treat query as plain text and attempt search again
       results = lunrIndex.index.query(function() {
         this.term(query);
       });
@@ -87,7 +86,15 @@ export class Index extends Component {
   }
 
   render() {
-    const { collections, toggleMenu, filters, searchResultsLength, totalResources } = this.props;
+    const {
+      collections,
+      toggleMenu,
+      filters,
+      searchResultsLength,
+      totalResources,
+      setSearchBarTerms,
+      searchWordLength,
+    } = this.props;
 
     const SiphonResources = collections.map(collection => (
       <Cards
@@ -113,6 +120,8 @@ export class Index extends Component {
               filters={filters}
               searchCount={searchResultsLength}
               totalNodeCount={totalResources}
+              setSearchBarTerms={setSearchBarTerms}
+              searchWordLength={searchWordLength}
             />
             <main role="main" className={styles.Main}>
               {/* Element used for react-scroll targeting */}
@@ -193,6 +202,7 @@ const mapStateToProps = state => {
     loading: state.siphon.loading,
     searchResultsLength: state.siphon.searchResultsLength,
     totalResources: state.siphon.totalResources,
+    searchWordLength: state.siphon.searchBarTerms.length,
   };
 };
 
@@ -204,6 +214,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(actions.filterSiphonNodes(SIPHON_RESOURCE_TYPE_PROP, 'All')),
     hideWelcomeMessage: () => dispatch(actions.setWelcomePanelViewed(true)),
     setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
+    setSearchBarTerms: resourceType => dispatch(actions.setSearchBarTerms(resourceType)),
   };
 };
 
