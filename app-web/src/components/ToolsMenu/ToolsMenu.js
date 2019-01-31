@@ -24,7 +24,7 @@ import FilterMenu from './FilterMenu/FilterMenu';
 import SearchFeedback from './SearchFeedback/SearchFeedback';
 import Search from '../Search/Search';
 import styles from './ToolsMenu.module.css';
-import { setResourceType, setSearchBarTerms } from '../../store/actions/actions';
+import { setSearchBarTerms } from '../../store/actions/actions';
 
 class ToolsMenu extends Component {
   componentWillUnmount() {
@@ -38,7 +38,6 @@ class ToolsMenu extends Component {
       searchCount,
       totalNodeCount,
       searchWordLength,
-      setResourceType,
       setSearchBarTerms,
     } = this.props;
     return (
@@ -49,7 +48,6 @@ class ToolsMenu extends Component {
           inputConfig={SEARCH.INPUT}
           onSearch={terms => {
             // set resource type to all since we are searching the entire index
-            setResourceType('All');
             setSearchBarTerms(terms);
             navigate(`/?q=${encodeURIComponent(terms)}`);
           }}
@@ -75,7 +73,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setResourceType: resourceType => dispatch(setResourceType(resourceType)),
   setSearchBarTerms: resourceType => dispatch(setSearchBarTerms(resourceType)),
 });
 

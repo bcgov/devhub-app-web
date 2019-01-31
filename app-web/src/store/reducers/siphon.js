@@ -21,7 +21,6 @@ const initialState = {
   _collections: [], // the cached set of ALL collections
   collections: [], // this is set by the resource type, ie Component/Documentation etc
   filteredCollections: [], // subsequent filters using the filter side menu
-  resourceType: 'All',
   query: '',
   searchBarTerms: '',
   searchResultsLength: null,
@@ -316,8 +315,8 @@ const setCollections = (state, collections) => {
 };
 
 const setSearchQuery = (state, query) => ({ ...state, query, loading: true });
+
 const setSearchBarTerms = (state, searchBarTerms) => ({ ...state, searchBarTerms });
-const setResourceType = (state, resourceType) => ({ ...state, resourceType });
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -337,8 +336,6 @@ const reducer = (state = initialState, action) => {
       return applySearchResultsToPrimaryNodes(state, action.payload.searchResults);
     case actionTypes.SET_SEARCH_QUERY:
       return setSearchQuery(state, action.payload.onSearch);
-    case actionTypes.SET_RESOURCE_TYPE:
-      return setResourceType(state, action.payload.resourceType);
     case actionTypes.SET_SEARCH_BAR_TERMS:
       return setSearchBarTerms(state, action.payload.searchBarTerms);
     default:
