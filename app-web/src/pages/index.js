@@ -34,6 +34,8 @@ export class Index extends Component {
     const query = queryString.parse(this.props.location.search);
     if (Object.prototype.hasOwnProperty.call(query, 'q')) {
       const param = decodeURIComponent(query.q);
+      const queryBySearch = query.search === 'true';
+
       if (param !== this.props.query) {
         this.props.setSearchQuery(param);
         // race condition, the lunr index is loaded asyncronously
@@ -42,11 +44,11 @@ export class Index extends Component {
         // to avoid this condition
         const raceFn = setTimeout.bind(
           null,
-          () => this.props.setSearchResults(this.getSearchResults(param), param),
+          () => this.props.setSearchResults(this.getSearchResults(param, queryBySearch), param),
           250,
         );
         if (Object.prototype.hasOwnProperty.call(window, '__LUNR__')) {
-          this.props.setSearchResults(this.getSearchResults(param), param);
+          this.props.setSearchResults(this.getSearchResults(param, queryBySearch), param);
         } else {
           raceFn();
         }
@@ -58,9 +60,23 @@ export class Index extends Component {
     this.props.hideWelcomeMessage();
   }
 
-  getSearchResults(query) {
+  /**
+   * gets search results from lunr
+   * @param {String} query the search string
+   * @param {Boolean} byQuery to dictate which lunr function to use
+   */
+  getSearchResults(query, queryBySearch) {
     const lunrIndex = window.__LUNR__.en;
-    const results = lunrIndex.index.search(query);
+    let results = [];
+
+    if (queryBySearch) {
+      results = lunrIndex.index.search(query);
+    } else {
+      results = lunrIndex.index.query(function() {
+        this.term(query);
+      });
+    }
+
     const searchResultsMap = results
       .map(({ ref }) => lunrIndex.store[ref])
       .reduce((obj, result) => {
