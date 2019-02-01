@@ -22,37 +22,54 @@ import { graphql } from 'gatsby';
 import 'github-markdown-css';
 import styles from './SourceMarkdown.module.css';
 
+import rehypeReact from 'rehype-react';
+import ComponentPreview from '../components/ComponentPreview/ComponentPreview';
+
 import GithubTemplateLayout from '../hoc/GithubTemplateLayout';
 import SidePanel from '../components/GithubTemplate/SidePanel/SidePanel';
 import Header from '../components/GithubTemplate/Header/Header';
 import SourceNavigation from '../components/GithubTemplate/SourceNavigation/SourceNavigation';
+import withNode from '../hoc/withNode';
+
 // eslint-disable-next-line
-const SourceGithubMarkdownDefault = ({ data: { devhubSiphon, nav }, location: pathname }) => (
-  <GithubTemplateLayout siphonData={devhubSiphon} nav={nav} pathname={pathname}>
-    <div className={styles.TemplateContainer}>
-      <SidePanel links={nav.edges} pathname={pathname} siphonData={devhubSiphon}>
-        <Header
-          title={devhubSiphon.source.displayName}
-          originalSource={devhubSiphon.resource.originalSource}
-          fileName={devhubSiphon.fileName}
-          sourcePath={devhubSiphon.source.sourcePath}
-          repo={devhubSiphon.source.name}
-        />
-        {nav.edges.length > 1 ? (
-          <SourceNavigation components={nav.edges} activeLink={pathname} />
-        ) : null}
-      </SidePanel>
-      <main className={styles.Content}>
-        <div
-          className={[styles.MarkdownBody, 'markdown-body'].join(' ')}
-          dangerouslySetInnerHTML={{
-            __html: devhubSiphon.childMarkdownRemark.html,
-          }}
-        />
-      </main>
-    </div>
-  </GithubTemplateLayout>
-);
+const SourceGithubMarkdownDefault = ({ data: { devhubSiphon, nav }, location: pathname }) => {
+  // bind the devhub siphon data to the preview node
+  const previewWithNode = withNode(devhubSiphon)(ComponentPreview);
+
+  const renderAst = new rehypeReact({
+    createElement: React.createElement,
+    components: { 'component-preview': previewWithNode },
+  }).Compiler;
+
+  return (
+    <GithubTemplateLayout siphonData={devhubSiphon} nav={nav} pathname={pathname}>
+      <div className={styles.TemplateContainer}>
+        <SidePanel links={nav.edges} pathname={pathname} siphonData={devhubSiphon}>
+          <Header
+            title={devhubSiphon.source.displayName}
+            originalSource={devhubSiphon.resource.originalSource}
+            fileName={devhubSiphon.fileName}
+            sourcePath={devhubSiphon.source.sourcePath}
+            repo={devhubSiphon.source.name}
+          />
+          {nav.edges.length > 1 ? (
+            <SourceNavigation components={nav.edges} activeLink={pathname} />
+          ) : null}
+        </SidePanel>
+        <main className={styles.Content}>
+          <div className={[styles.MarkdownBody, 'markdown-body'].join(' ')}>
+            {/* 
+              if there is a tag in the markdown <component-preview> 
+              the renderAst will drop in the rehype component
+              otherwise if not tag exists it is biz as usual
+            */}
+            {renderAst(devhubSiphon.childMarkdownRemark.htmlAst)}
+          </div>
+        </main>
+      </div>
+    </GithubTemplateLayout>
+  );
+};
 
 export const devhubSiphonMarkdown = graphql`
   query devhubSiphonMarkdownDefault($id: String!, $collection: String!) {
@@ -63,13 +80,18 @@ export const devhubSiphonMarkdown = graphql`
         frontmatter {
           title
         }
-        html
+        htmlAst
       }
       source {
         name
         displayName
         sourcePath
         type
+        _properties {
+          repo
+          branch
+          owner
+        }
       }
       resource {
         originalSource
