@@ -942,7 +942,7 @@ ShallowWrapper {
             className="Right"
           >
             <Connect(WelcomePanel) />
-            <Connect(ToolsMenu)
+            <ToolsMenu
               filters={
                 Array [
                   Object {
@@ -1346,7 +1346,7 @@ ShallowWrapper {
               className="Right"
             >
               <Connect(WelcomePanel) />
-              <Connect(ToolsMenu)
+              <ToolsMenu
                 filters={
                   Array [
                     Object {
@@ -1716,7 +1716,7 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <Connect(WelcomePanel) />,
-                <Connect(ToolsMenu)
+                <ToolsMenu
                   filters={
                     Array [
                       Object {
@@ -2083,6 +2083,8 @@ ShallowWrapper {
                     },
                   ],
                   "searchCount": undefined,
+                  "searchWordLength": undefined,
+                  "setSearchBarTerms": undefined,
                   "totalNodeCount": undefined,
                 },
                 "ref": null,
@@ -3551,7 +3553,7 @@ ShallowWrapper {
               className="Right"
             >
               <Connect(WelcomePanel) />
-              <Connect(ToolsMenu)
+              <ToolsMenu
                 filters={
                   Array [
                     Object {
@@ -3955,7 +3957,7 @@ ShallowWrapper {
                 className="Right"
               >
                 <Connect(WelcomePanel) />
-                <Connect(ToolsMenu)
+                <ToolsMenu
                   filters={
                     Array [
                       Object {
@@ -4325,7 +4327,7 @@ ShallowWrapper {
               "props": Object {
                 "children": Array [
                   <Connect(WelcomePanel) />,
-                  <Connect(ToolsMenu)
+                  <ToolsMenu
                     filters={
                       Array [
                         Object {
@@ -4692,6 +4694,8 @@ ShallowWrapper {
                       },
                     ],
                     "searchCount": undefined,
+                    "searchWordLength": undefined,
+                    "setSearchBarTerms": undefined,
                     "totalNodeCount": undefined,
                   },
                   "ref": null,

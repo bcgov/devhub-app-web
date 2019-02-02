@@ -20,8 +20,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 
 const SearchFeedback = ({ searchCount, totalNodeCount, searchWordLength }) => {
-  let caption = null;
   const path = `/?q=`;
+  let caption = null;
   if (searchCount === 0) {
     caption = (
       <p>

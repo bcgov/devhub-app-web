@@ -34,6 +34,7 @@ export class Index extends Component {
     const query = queryString.parse(this.props.location.search);
     if (Object.prototype.hasOwnProperty.call(query, 'q')) {
       const param = decodeURIComponent(query.q);
+
       if (param !== this.props.query) {
         this.props.setSearchQuery(param);
         // race condition, the lunr index is loaded asyncronously
@@ -58,9 +59,23 @@ export class Index extends Component {
     this.props.hideWelcomeMessage();
   }
 
+  /**
+   * gets search results from lunr
+   * @param {String} query the search string
+   */
   getSearchResults(query) {
     const lunrIndex = window.__LUNR__.en;
-    const results = lunrIndex.index.search(query);
+    let results = [];
+    // attempt to search by parsing query into fields
+    try {
+      results = lunrIndex.index.search(query);
+    } catch (e) {
+      // if that fails treat query as plain text and attempt search again
+      results = lunrIndex.index.query(function() {
+        this.term(query);
+      });
+    }
+
     const searchResultsMap = results
       .map(({ ref }) => lunrIndex.store[ref])
       .reduce((obj, result) => {
@@ -71,7 +86,15 @@ export class Index extends Component {
   }
 
   render() {
-    const { collections, toggleMenu, filters, searchResultsLength, totalResources } = this.props;
+    const {
+      collections,
+      toggleMenu,
+      filters,
+      searchResultsLength,
+      totalResources,
+      setSearchBarTerms,
+      searchWordLength,
+    } = this.props;
 
     const SiphonResources = collections.map(collection => (
       <Cards
@@ -97,6 +120,8 @@ export class Index extends Component {
               filters={filters}
               searchCount={searchResultsLength}
               totalNodeCount={totalResources}
+              setSearchBarTerms={setSearchBarTerms}
+              searchWordLength={searchWordLength}
             />
             <main role="main" className={styles.Main}>
               {/* Element used for react-scroll targeting */}
@@ -177,6 +202,7 @@ const mapStateToProps = state => {
     loading: state.siphon.loading,
     searchResultsLength: state.siphon.searchResultsLength,
     totalResources: state.siphon.totalResources,
+    searchWordLength: state.siphon.searchBarTerms.length,
   };
 };
 
@@ -188,6 +214,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(actions.filterSiphonNodes(SIPHON_RESOURCE_TYPE_PROP, 'All')),
     hideWelcomeMessage: () => dispatch(actions.setWelcomePanelViewed(true)),
     setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
+    setSearchBarTerms: resourceType => dispatch(actions.setSearchBarTerms(resourceType)),
   };
 };
 
