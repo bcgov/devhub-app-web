@@ -73,7 +73,7 @@ touching the header bars */
 
     .MainContainer {
         padding: 25px 35px 30px;
-        margin-top: 96px;
+        margin-top: 115px;
         justify-content: flex-start;
         flex-direction: row;
     }
