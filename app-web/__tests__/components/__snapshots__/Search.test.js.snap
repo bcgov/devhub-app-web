@@ -36,7 +36,7 @@ ShallowWrapper {
         <Button
           aria-label="Click to Search"
           clicked={[Function]}
-          type="secondary"
+          type="primary"
         >
           <FontAwesomeIcon
             border={false}
@@ -127,7 +127,7 @@ ShallowWrapper {
             transform={null}
           />,
           "clicked": [Function],
-          "type": "secondary",
+          "type": "primary",
         },
         "ref": null,
         "rendered": Object {
@@ -189,7 +189,7 @@ ShallowWrapper {
           <Button
             aria-label="Click to Search"
             clicked={[Function]}
-            type="secondary"
+            type="primary"
           >
             <FontAwesomeIcon
               border={false}
@@ -280,7 +280,7 @@ ShallowWrapper {
               transform={null}
             />,
             "clicked": [Function],
-            "type": "secondary",
+            "type": "primary",
           },
           "ref": null,
           "rendered": Object {
