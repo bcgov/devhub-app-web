@@ -20,8 +20,8 @@ ShallowWrapper {
       "children": Array [
         <img
           alt="Government of British Columbia"
-          className="large-screen"
-          src="logo.png"
+          className="DesktopLogo large-screen"
+          src="BCID_H_rgb_rev.svg"
         />,
         <img
           alt="Government of British Columbia"
@@ -38,8 +38,8 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "alt": "Government of British Columbia",
-          "className": "large-screen",
-          "src": "logo.png",
+          "className": "DesktopLogo large-screen",
+          "src": "BCID_H_rgb_rev.svg",
         },
         "ref": null,
         "rendered": null,
@@ -70,8 +70,8 @@ ShallowWrapper {
         "children": Array [
           <img
             alt="Government of British Columbia"
-            className="large-screen"
-            src="logo.png"
+            className="DesktopLogo large-screen"
+            src="BCID_H_rgb_rev.svg"
           />,
           <img
             alt="Government of British Columbia"
@@ -88,8 +88,8 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "alt": "Government of British Columbia",
-            "className": "large-screen",
-            "src": "logo.png",
+            "className": "DesktopLogo large-screen",
+            "src": "BCID_H_rgb_rev.svg",
           },
           "ref": null,
           "rendered": null,

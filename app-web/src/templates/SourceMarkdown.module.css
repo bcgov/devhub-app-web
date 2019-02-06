@@ -19,13 +19,15 @@
 }
 
 .MarkdownBody a {
-    color: #00996a;
+    color: #1A5A96;
+    text-decoration: underline;
     font-weight: 600;
-    transition: color .15s ease-in;
 }
 
 .MarkdownBody a:hover {
-    color: #0d553f;
+    color: blue;
+    text-decoration: none;
+
 }
 
 .MarkdownBody table {
@@ -68,7 +70,7 @@
     display: flex;
     flex-wrap: wrap;
     padding-bottom: 50px;
-    padding-top: 52px;
+    padding-top: 75px;
 }
 
 .SidePanel {
