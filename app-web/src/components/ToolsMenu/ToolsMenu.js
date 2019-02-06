@@ -62,7 +62,7 @@ class ToolsMenu extends Component {
 
 ToolsMenu.propTypes = {
   filters: PropTypes.array.isRequired,
-  searchCount: PropTypes.number.isRequired,
+  searchCount: PropTypes.number,
   totalNodeCount: PropTypes.number.isRequired,
   setSearchBarTerms: PropTypes.func.isRequired,
   searchWordLength: PropTypes.number.isRequired,

@@ -41,8 +41,12 @@ const SearchFeedback = ({ searchCount, totalNodeCount, searchWordLength }) => {
 };
 
 SearchFeedback.propTypes = {
-  searchCount: PropTypes.number.isRequired,
+  searchCount: PropTypes.number,
   totalNodeCount: PropTypes.number.isRequired,
+};
+
+SearchFeedback.defaultProps = {
+  searchCount: null,
 };
 
 export default SearchFeedback;

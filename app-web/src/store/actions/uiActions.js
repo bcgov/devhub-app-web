@@ -16,14 +16,6 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import * as actions from './actionTypes';
-// allows for the select drop down in header to be consistently rendered to show selected
-// option between page views
-export const setSelectedFilterOption = option => {
-  return {
-    type: actions.SET_SELECTED_FILTER_OPTION,
-    payload: option,
-  };
-};
 
 // allows the two select drops (for mobile and large screens) to toggle in sync
 export const toggleMainNavigation = toggled => {

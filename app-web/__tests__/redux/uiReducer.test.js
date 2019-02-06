@@ -23,12 +23,6 @@ describe('ui reducer', () => {
     expect(reducer(undefined, {})).toEqual(INITIAL_STATES.UI);
   });
 
-  it('should handle SET_SELECTED_FILTER_OPTION ', () => {
-    expect(INITIAL_STATES.UI.selectedFilterOption).toBe(null);
-    const newState = reducer(INITIAL_STATES.UI, ACTIONS.SELECT_FILTER_OPTION);
-    expect(newState.selectedFilterOption).not.toBe(null);
-  });
-
   it('should handle TOGGLE_MAIN_NAVIGATION', () => {
     expect(INITIAL_STATES.UI.mainNavigationToggled).toBe(false);
     const newState = reducer(INITIAL_STATES.UI, ACTIONS.TOGGLE_MAIN_NAVIGATION_ON);

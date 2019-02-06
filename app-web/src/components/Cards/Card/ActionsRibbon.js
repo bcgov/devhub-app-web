@@ -25,6 +25,7 @@ import shortid from 'shortid';
 
 const ActionsRibbon = ({ actions, repository, owner }) => {
   const actionsRibbon = actions.map(config => {
+    if (repository === null) return null;
     const link = config.getHref(repository, owner);
 
     return (
@@ -50,8 +51,12 @@ ActionsRibbon.propTypes = {
       name: PropTypes.string,
     }).isRequired,
   ),
-  repository: PropTypes.string.isRequired,
+  repository: PropTypes.string,
   owner: PropTypes.string.isRequired,
+};
+
+ActionsRibbon.defaultProps = {
+  repository: null,
 };
 
 export default ActionsRibbon;

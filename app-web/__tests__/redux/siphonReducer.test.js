@@ -34,32 +34,6 @@ describe('reducer', () => {
     expect(newState.collections[0].nodes.length).toBe(collectionsFixture[0].nodes.length);
   });
 
-  it('should handle FILTER SIPHON NODES', () => {
-    const state = {
-      ...INITIAL_STATES.SIPHON,
-      _collections: collectionsFixture,
-      collections: collectionsFixture,
-    };
-
-    // this action filters out all nodes in collections that don't match resource type 'Components'
-    const filteredState = reducer(state, ACTIONS.FILTER_SIPHON_NODES);
-    // in the fixiture there are only 2 nodes, 1 of them having Components therefor only expect
-    // the first collection to have one node left
-    expect(filteredState.collections[0].nodes.length).toBe(4);
-  });
-
-  it('should return all nodes if Filtered value is All', () => {
-    const state = {
-      ...INITIAL_STATES.SIPHON,
-      _collections: collectionsFixture,
-      collections: [],
-    };
-
-    const filteredState = reducer(state, ACTIONS.FILTER_SIPHON_NODES_BY_ALL);
-
-    expect(filteredState.collections[0].nodes.length).toBe(collectionsFixture[0].nodes.length);
-  });
-
   it('should set filter to active when added and if there are available nodes', () => {
     // add some nodes to the initial state
     const state = {

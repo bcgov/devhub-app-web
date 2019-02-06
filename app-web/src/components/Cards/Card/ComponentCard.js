@@ -45,7 +45,7 @@ ComponentCard.propTypes = {
   description: PropTypes.string.isRequired,
   resourcePath: PropTypes.string.isRequired,
   resourceType: PropTypes.string.isRequired,
-  repository: PropTypes.string.isRequired,
+  repository: PropTypes.string,
   owner: PropTypes.string.isRequired,
   image: PropTypes.string,
   author: PropTypes.string,
@@ -54,6 +54,7 @@ ComponentCard.propTypes = {
 ComponentCard.defaultProps = {
   image: '',
   author: '',
+  repository: null,
 };
 
 export default ComponentCard;

@@ -27,7 +27,6 @@ export class Index extends Component {
       const collections = this.props.data.allDevhubSiphonCollection.edges.map(c => c.node);
       this.props.loadCollections(collections);
     }
-    this.props.filterCollectionsByResourceType();
   }
 
   componentDidUpdate() {
@@ -37,20 +36,9 @@ export class Index extends Component {
 
       if (param !== this.props.query) {
         this.props.setSearchQuery(param);
-        // race condition, the lunr index is loaded asyncronously
-        // it is pretty quick to fetch but hangs up occasionally
-        // i've opened an issue to provide a callback when the index has loaded
-        // to avoid this condition
-        const raceFn = setTimeout.bind(
-          null,
-          () => this.props.setSearchResults(this.getSearchResults(param), param),
-          250,
-        );
-        if (Object.prototype.hasOwnProperty.call(window, '__LUNR__')) {
-          this.props.setSearchResults(this.getSearchResults(param), param);
-        } else {
-          raceFn();
-        }
+        this.getSearchResults(param).then(results => {
+          this.props.setSearchResults(results, param);
+        });
       }
     }
   }
@@ -63,8 +51,9 @@ export class Index extends Component {
    * gets search results from lunr
    * @param {String} query the search string
    */
-  getSearchResults(query) {
-    const lunrIndex = window.__LUNR__.en;
+  async getSearchResults(query) {
+    const lunr = await window.__LUNR__.__loaded;
+    const lunrIndex = lunr.en;
     let results = [];
     // attempt to search by parsing query into fields
     try {
@@ -75,13 +64,16 @@ export class Index extends Component {
         this.term(query);
       });
     }
-
+    // search results is an array of reference keys
+    // we need to map those to the index store to get the actual
+    // node ids
     const searchResultsMap = results
       .map(({ ref }) => lunrIndex.store[ref])
       .reduce((obj, result) => {
         obj[result.id] = { ...result };
         return obj;
       }, {});
+
     return searchResultsMap;
   }
 
@@ -210,8 +202,6 @@ const mapDispatchToProps = dispatch => {
   return {
     loadCollections: collections => dispatch(actions.loadSiphonCollections(collections)),
     setSearchResults: results => dispatch(actions.setSearchResults(results)),
-    filterCollectionsByResourceType: () =>
-      dispatch(actions.filterSiphonNodes(SIPHON_RESOURCE_TYPE_PROP, 'All')),
     hideWelcomeMessage: () => dispatch(actions.setWelcomePanelViewed(true)),
     setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
     setSearchBarTerms: resourceType => dispatch(actions.setSearchBarTerms(resourceType)),
