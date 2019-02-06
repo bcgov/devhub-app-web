@@ -204,7 +204,7 @@ const mapDispatchToProps = dispatch => {
     setSearchResults: results => dispatch(actions.setSearchResults(results)),
     hideWelcomeMessage: () => dispatch(actions.setWelcomePanelViewed(true)),
     setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
-    // setSearchBarTerms: resourceType => dispatch(actions.setSearchBarTerms(resourceType)),
+    setSearchBarTerms: resourceType => dispatch(actions.setSearchBarTerms(resourceType)),
   };
 };
 
