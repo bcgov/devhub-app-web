@@ -11,4 +11,5 @@ module.exports = {
     }),
   ),
   StaticQuery: jest.fn(),
+  navigate: jest.fn(),
 };

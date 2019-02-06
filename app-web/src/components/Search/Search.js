@@ -42,12 +42,14 @@ export class Search extends Component {
     }
     this.setState({ terms: e.target.value });
   };
+
   search = terms => {
     this.setState({ terms: '' });
     this.props.onSearch(this.state.terms);
   };
+
   render() {
-    const { onSearch, inputConfig } = this.props;
+    const { inputConfig } = this.props;
     return (
       <div className={styles.Search}>
         <input
