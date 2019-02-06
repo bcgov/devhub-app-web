@@ -1,4 +1,15 @@
-// this is a work around to allow of actual use of Link component
-// https://www.gatsbyjs.org/docs/unit-testing/#testing-components-with-router
-jest.unmock('gatsby');
-module.exports = jest.requireActual('gatsby-link');
+const React = require('react');
+const gatsby = jest.requireActual('gatsby');
+
+module.exports = {
+  ...gatsby,
+  graphql: jest.fn(),
+  Link: jest.fn().mockImplementation(({ to, ...rest }) =>
+    React.createElement('a', {
+      ...rest,
+      href: to,
+    }),
+  ),
+  StaticQuery: jest.fn(),
+  navigate: jest.fn(),
+};
