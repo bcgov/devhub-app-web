@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Flag } from 'flag';
 import queryString from 'query-string';
 import * as actions from '../store/actions/actions';
-import { REACT_SCROLL, SIPHON_RESOURCE_TYPE_PROP } from '../constants/ui';
+import { REACT_SCROLL } from '../constants/ui';
 import FLAGS from '../constants/featureflags';
 
 import styles from './index.module.css';
