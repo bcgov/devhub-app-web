@@ -35,8 +35,19 @@ class SourceNavigation extends Component {
 
   render() {
     const { components } = this.props;
+
     // map over components and generate links
-    const links = components.map(
+    const links = components
+      .sort((a, b) => a.node._metadata.position.localeCompare(b.node._metadata.position))
+      .map(n => n.node);
+    // sorts are broken because of the way the 'ip' is generated.
+    // it should be padded with zero based on the highest number
+    // if there are 30 resources to a source
+    // the resource indicator should be padded with a 0
+    // 1.1.01
+    // 1.1.02
+    console.log(links);;
+    const blah = components.map(
       ({
         node: {
           unfurl: { title },
@@ -67,7 +78,7 @@ class SourceNavigation extends Component {
     );
     return (
       <nav className={styles.Navigation}>
-        <ul className={styles.List}>{links}</ul>
+        <ul className={styles.List}>{blah}</ul>
       </nav>
     );
   }
@@ -83,6 +94,9 @@ export const query = graphql`
     }
     source {
       type
+    }
+    _metadata {
+      position
     }
   }
 `;
