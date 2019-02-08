@@ -45,7 +45,6 @@ class HTML extends React.Component {
             integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
             crossOrigin="anonymous"
           />
-          <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" />
           <link
             href="https://portal.nrs.gov.bc.ca/nrs-portal-theme/images/favicon.ico"
             rel="icon"
