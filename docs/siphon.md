@@ -1,7 +1,7 @@
 ---
 description: An overview of how Devhub's Siphon works
-author: patricksimonian
-image: https://github.com/bcgov/devhub-app-web/blob/master/docs/images/book.png?raw=true
+author: Patrick Simonian
+image: fontawesome:fa-book
 resourceType: Documentation
 ---
 # Siphon

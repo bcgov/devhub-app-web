@@ -25,14 +25,12 @@ import MetadataRibbon from '../components/Cards/Card/MetadataRibbon';
 import Avatar from '../components/UI/Avatar/Avatar';
 import { CARD_CONFIG } from '../constants/ui';
 import { ARIA_LABEL_RESOURCE, ARIA_LABEL_TO_GITHUB_USER } from '../constants/ariaLabels';
-import { getGithubUsernameURL } from '../utils/helpers';
 import styles from '../components/Cards/Card/Card.module.css';
 
 const Card = ({ children, resourceType, resourcePath, title, author }) => (
   <article className={styles.Card}>
     <div className={styles.Head}>
       <Avatar
-        link={getGithubUsernameURL(author)}
         aria-label={ARIA_LABEL_TO_GITHUB_USER}
         src={author}
         size={CARD_CONFIG.avatarIconSize}

@@ -167,3 +167,9 @@ export const SEARCH = {
     id: 'devhub.search.input',
   },
 };
+
+// supported namespace for dynamically generating avatar images or icons
+export const AVATAR_NAMESPACES = {
+  fontawesome: 'fontawesome',
+  github: 'github',
+};

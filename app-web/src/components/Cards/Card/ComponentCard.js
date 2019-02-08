@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DotDotDot from 'react-dotdotdot';
-import Image from 'react-image';
+import NameSpacedImg from '../../UI/NameSpacedImg/NameSpacedImg';
 import styles from './Card.module.css';
 import Card from '../../../hoc/Card';
 import Link from '../../UI/Link/Link';
@@ -25,9 +25,11 @@ const ComponentCard = ({
         <p>{description}</p>
       </DotDotDot>
       <div className={styles.BodyImage}>
-        <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE}>
-          <Image src={image} />
-        </Link>
+        {image && image !== '' ? (
+          <Link to={resourcePath} aria-label={ARIA_LABEL_RESOURCE}>
+            <NameSpacedImg src={image || ''} unstyled />
+          </Link>
+        ) : null}
       </div>
     </div>
     <ActionsRibbon

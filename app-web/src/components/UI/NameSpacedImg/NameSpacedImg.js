@@ -17,13 +17,9 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Avatar from '@pahtaro/react-avatar';
-
-// our supported namespace
-const NAMESPACES = {
-  fontawesome: 'fontawesome',
-  github: 'github',
-};
+import Avatar from 'react-avatar';
+import UriAvatar from '../../../hoc/avatarUri';
+import { AVATAR_NAMESPACES } from '../../../constants/ui';
 
 /**
  * creates a uri which is used by the react avatar component to fetch a source type
@@ -34,18 +30,27 @@ const getAvatarURI = (namespace, src) => `${namespace}://${src}`;
 
 /**
  * returns the appropriate namespaced component
+ * @param {String} namespace
+ * @param {String} src
+ * @param {Object} props
+ * @returns {Component} A react component
  */
-const getNameSpacedComponent = {
-  // we only support solid font awesome iconds
-  [NAMESPACES.fontawesome]: (src, rest) => (
-    <i className={`fas fa-${src}`} {...rest} aria-hidden="true" />
-  ),
-  [NAMESPACES.github]: (src, rest) => (
-    <Avatar uri={getAvatarURI(NAMESPACES.github, src)} {...rest} />
-  ),
+const getNameSpacedComponent = (namespace, src, props) => {
+  let component = null;
+  switch (namespace) {
+    case AVATAR_NAMESPACES.fontawesome:
+      // clean out any icons that reference fa-something
+      // this would be the case if someone copy/pasted from the font awesome website
+      const icon = src.replace('fa-', '');
+      component = <i className={`fas fa-${icon}`} {...props} aria-hidden="true" />;
+      break;
+    default:
+      component = <UriAvatar uri={getAvatarURI(namespace, src)} {...props} />;
+  }
+  return component;
 };
 /**
- * returns true if the src stirng passed in is a supported namespace
+ * returns true if the src string passed in is a supported namespace
  * @param {String} src
  * @returns {Boolean}
  */
@@ -53,32 +58,38 @@ export const srcIsNameSpaced = src => {
   const split = src.split(':');
   // this check prevents things like a uri such as https://... being
   // split and verified as a valid namespace
-  return split.length === 2 && NAMESPACES[split[0]];
+  return split.length === 2 && AVATAR_NAMESPACES[split[0]];
 };
 
-const NameSpacedImg = ({ src, alt, ...rest }) => {
+const NameSpacedImg = ({ src, alt, allowNameFallback, ...rest }) => {
   if (srcIsNameSpaced(src)) {
-    console.log('namespaced?');
     const splitSrc = src.split(':');
     const namespace = splitSrc[0];
     const imgSrc = splitSrc[1];
-    return getNameSpacedComponent[namespace](imgSrc, rest);
+    return getNameSpacedComponent(namespace, imgSrc, rest);
+  } else if (/\.svg/.test(src) || src.indexOf('data:image') === 0) {
+    // is it an svg?
+    return <img src={src} {...rest} alt={alt} />;
+  } else if (/^https?/.test(src) || /\.(png|jpg|gif|jpeg)/.test(src)) {
     // is it just a regular image?
-  } else if (/^https?/.test(src) || /\.(png|svg|jpg|gif|jpeg)$/.test(src)) {
     return <Avatar src={src} {...rest} alt={alt} />;
-  } else {
+  } else if (allowNameFallback) {
     // is it just a name?
+    // ie src = 'Billy Bob', this will render an image with the initials BB
     return <Avatar name={src} {...rest} alt={src} />;
   }
+  return null;
 };
 
 NameSpacedImg.defaultProps = {
   alt: '',
+  allowNameFallback: false,
 };
 
 NameSpacedImg.propTypes = {
   src: PropTypes.string,
   alt: PropTypes.string,
+  allowNameFallback: PropTypes.bool,
 };
 
 export default NameSpacedImg;

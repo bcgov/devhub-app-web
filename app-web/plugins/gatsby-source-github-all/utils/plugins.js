@@ -205,8 +205,8 @@ const markDownUnfurlImagePlugin = (extension, file) => {
       const absPathObj = new url.URL(absPath);
       absPathObj.searchParams.set('raw', true);
       unfurl.image = absPathObj.toString();
-    } else {
-      // if path is relative
+      // if it is a path to an image that is relative
+    } else if (/\.(png|jpg|gif|svg|jpeg)$/.test(unfurl.image)) {
       const absPath = url.resolve(file.html_url, unfurl.image);
       // since these files are from github we need to ensure the raw query paramter is passed into it
       const urlObj = new url.URL(absPath);

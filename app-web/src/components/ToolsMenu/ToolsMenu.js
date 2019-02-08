@@ -19,7 +19,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { navigate } from 'gatsby';
 import { SEARCH } from '../../constants/ui';
-import NameSpacedImg from '../UI/NameSpacedImg/NameSpacedImg';
 import FilterMenu from './FilterMenu/FilterMenu';
 import SearchFeedback from './SearchFeedback/SearchFeedback';
 import Search from '../Search/Search';

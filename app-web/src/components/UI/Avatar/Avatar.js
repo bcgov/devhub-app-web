@@ -20,12 +20,26 @@ import PropTypes from 'prop-types';
 import NameSpacedImage from '../NameSpacedImg/NameSpacedImg';
 import Link from '../Link/Link';
 import styles from './Avatar.module.css';
+import { AVATAR_NAMESPACES } from '../../../constants/ui';
+import { getGithubUsernameURL } from '../../../utils/helpers';
 
-const Avatar = ({ src, link, size, ...rest }) => (
-  <Link className={styles.Avatar} to={link} {...rest}>
-    <NameSpacedImage src={src} size={size} />
-  </Link>
-);
+const Avatar = ({ src, size, ...rest }) => {
+  // check if src is namespaced to github
+  const namespacedSource = src.split(':');
+  if (namespacedSource[0] === AVATAR_NAMESPACES.github && namespacedSource.length === 2) {
+    return (
+      <Link className={styles.Avatar} to={getGithubUsernameURL(namespacedSource[1])} {...rest}>
+        <NameSpacedImage src={src} size={size} />
+      </Link>
+    );
+  } else {
+    return (
+      <div className={styles.Avatar}>
+        <NameSpacedImage src={src} size={size} />
+      </div>
+    );
+  }
+};
 
 Avatar.propTypes = {
   src: PropTypes.string.isRequired,
