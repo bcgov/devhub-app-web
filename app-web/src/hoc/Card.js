@@ -25,7 +25,7 @@ import MetadataRibbon from '../components/Cards/Card/MetadataRibbon';
 import Avatar from '../components/UI/Avatar/Avatar';
 import { CARD_CONFIG } from '../constants/ui';
 import { ARIA_LABEL_RESOURCE, ARIA_LABEL_TO_GITHUB_USER } from '../constants/ariaLabels';
-import { getGithubAvatarFromUsername, getGithubUsernameURL } from '../utils/helpers';
+import { getGithubUsernameURL } from '../utils/helpers';
 import styles from '../components/Cards/Card/Card.module.css';
 
 const Card = ({ children, resourceType, resourcePath, title, author }) => (
@@ -34,9 +34,8 @@ const Card = ({ children, resourceType, resourcePath, title, author }) => (
       <Avatar
         link={getGithubUsernameURL(author)}
         aria-label={ARIA_LABEL_TO_GITHUB_USER}
-        image={getGithubAvatarFromUsername(author, CARD_CONFIG.avatarIconSize)}
-        width={CARD_CONFIG.avatarIconWidth}
-        height={CARD_CONFIG.avatarIconHeight}
+        src={author}
+        size={CARD_CONFIG.avatarIconSize}
       />
       {/* the title for the card */}
       <DotDotDot clamp={CARD_CONFIG.maxTitleLines} tagName="h2">

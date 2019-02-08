@@ -58,9 +58,7 @@ export const CARD_ACTIONS = {
 export const CARD_CONFIG = {
   maxDescriptionLines: 4, // max number of lines before text should be truncated
   maxTitleLines: 2, // similar.
-  avatarIconSize: 200,
-  avatarIconWidth: 45,
-  avatarIconHeight: 45,
+  avatarIconSize: 45,
   actionsRibbon: {
     [RESOURCE_TYPES.RESPOSITORIES]: [
       CARD_ACTIONS.REPOSITORY,

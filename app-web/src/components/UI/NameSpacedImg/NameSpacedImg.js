@@ -58,13 +58,17 @@ export const srcIsNameSpaced = src => {
 
 const NameSpacedImg = ({ src, alt, ...rest }) => {
   if (srcIsNameSpaced(src)) {
+    console.log('namespaced?');
     const splitSrc = src.split(':');
     const namespace = splitSrc[0];
     const imgSrc = splitSrc[1];
     return getNameSpacedComponent[namespace](imgSrc, rest);
+    // is it just a regular image?
+  } else if (/^https?/.test(src) || /\.(png|svg|jpg|gif|jpeg)$/.test(src)) {
+    return <Avatar src={src} {...rest} alt={alt} />;
   } else {
-    // eslint-disable-next-line jsx-a11y/alt-text
-    return <img src={src} {...rest} alt={alt} />;
+    // is it just a name?
+    return <Avatar name={src} {...rest} alt={src} />;
   }
 };
 

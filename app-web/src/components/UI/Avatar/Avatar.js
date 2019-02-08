@@ -17,21 +17,20 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Image from 'react-image';
+import NameSpacedImage from '../NameSpacedImg/NameSpacedImg';
 import Link from '../Link/Link';
 import styles from './Avatar.module.css';
 
-const Avatar = ({ image, link, width, height, ...rest }) => (
+const Avatar = ({ src, link, size, ...rest }) => (
   <Link className={styles.Avatar} to={link} {...rest}>
-    <Image src={image} width={width} height={height} />
+    <NameSpacedImage src={src} size={size} />
   </Link>
 );
 
 Avatar.propTypes = {
-  image: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
   link: PropTypes.string,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
+  size: PropTypes.number.isRequired,
 };
 
 export default Avatar;
