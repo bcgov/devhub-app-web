@@ -16,33 +16,33 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import queryString from 'query-string';
+import PropTypes from 'prop-types';
+import Avatar from '@pahtaro/react-avatar';
 
+// our supported namespace
 const NAMESPACES = {
-  fa: 'fa',
-  gh: 'gh',
+  fontawesome: 'fontawesome',
+  github: 'github',
 };
 
-export const getFontAwesomeIcon = src => {
-  const validStyles = {
-    regular: 'regular',
-    solid: 'solid',
-  };
-  // is there a query param?
-  const ind = src.indexOf('?');
-  const fontStyle = 'far'; // regular weight
-  if (ind > -1) {
-    const query = queryString.parse(src.slice(ind));
-    if (query.style && validStyles[query.style.toLowerCase()]) {
-      // get font style from query param
-    }
-  }
-};
 /**
- * returns the ap
+ * creates a uri which is used by the react avatar component to fetch a source type
+ * @param {String} namespace the name spaced passed in to us
+ * @param {String} src
+ */
+const getAvatarURI = (namespace, src) => `${namespace}://${src}`;
+
+/**
+ * returns the appropriate namespaced component
  */
 const getNameSpacedComponent = {
-  [NAMESPACES.fa]: (src, rest) => <i className={`far fa-${src}`} {...rest} aria-hidden="true" />,
+  // we only support solid font awesome iconds
+  [NAMESPACES.fontawesome]: (src, rest) => (
+    <i className={`fas fa-${src}`} {...rest} aria-hidden="true" />
+  ),
+  [NAMESPACES.github]: (src, rest) => (
+    <Avatar uri={getAvatarURI(NAMESPACES.github, src)} {...rest} />
+  ),
 };
 /**
  * returns true if the src stirng passed in is a supported namespace
@@ -70,6 +70,11 @@ const NameSpacedImg = ({ src, alt, ...rest }) => {
 
 NameSpacedImg.defaultProps = {
   alt: '',
+};
+
+NameSpacedImg.propTypes = {
+  src: PropTypes.string,
+  alt: PropTypes.string,
 };
 
 export default NameSpacedImg;
