@@ -1,3 +1,14 @@
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('../fonts/NotoSans-Regular.woff');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('../fonts/NotoSans-Bold.woff');
+  font-weight: 700;
+}
+
 body {
   font-family: 'Noto Sans', Calibri, Arial, 'Sans Serif';
   margin: 0;
