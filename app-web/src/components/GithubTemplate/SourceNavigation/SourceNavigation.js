@@ -35,11 +35,9 @@ class SourceNavigation extends Component {
 
   render() {
     const { components } = this.props;
-
     // map over components and generate links
     const links = components
       .sort((a, b) => a.node._metadata.position.localeCompare(b.node._metadata.position))
-      .map(n => n.node)
       .map(({ node: { unfurl: { title }, resource: { path }, source: { type } } }) => (
         <li key={shortid.generate()}>
           <Link

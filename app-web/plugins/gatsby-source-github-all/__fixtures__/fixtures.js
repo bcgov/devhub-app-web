@@ -212,6 +212,7 @@ const PROCESSED_FILE_HTML = {
       name: 'foo',
       type: 'bar',
     },
+    position: [0, 0, 2],
   },
 };
 
@@ -335,6 +336,7 @@ const PROCESSED_FILE_MD = {
       name: 'foo',
       type: 'bar',
     },
+    position: [0, 0, 1],
   },
 };
 
@@ -535,6 +537,7 @@ const CONFIG_OPTIONS = {
 
 const PROCESSED_WEB_SOURCE = {
   metadata: {
+    position: [1, 1, 1],
     unfurl: {
       author: 'foo',
       description: 'bar',
