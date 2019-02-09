@@ -21,7 +21,7 @@ ShallowWrapper {
     },
     "ref": null,
     "rendered": "Loading...",
-    "type": "div",
+    "type": "span",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
@@ -33,7 +33,7 @@ ShallowWrapper {
       },
       "ref": null,
       "rendered": "Loading...",
-      "type": "div",
+      "type": "span",
     },
   ],
   Symbol(enzyme.__options__): Object {
