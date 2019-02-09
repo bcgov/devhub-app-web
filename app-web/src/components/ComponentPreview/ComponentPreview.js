@@ -36,7 +36,7 @@ export default class ComponentPreview extends React.Component {
     //allow for default values - relative to file that has embedded the component -  if values for props not provided
     owner =  owner || this.props.node.source._properties.owner;
     repo = repo || this.props.node.source._properties.repo;
-    branch = branch || this.props.node.source._properties.branch;
+    branch = branch || this.props.node.source._properties.branch || 'master';
 
     const githubClient = new Octokit();
 
