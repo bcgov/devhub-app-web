@@ -17,16 +17,13 @@ export const LUNR_SEARCH_RESULTS = {
   '6': {
     id: '6',
   },
+  '7': {
+    id: '7',
+  },
 };
 
 export const LUNR_SEARCH_RESULTS_2 = {
-  '1': {
-    id: '1',
-  },
-  '2': {
-    id: '2',
-  },
-  '6': {
-    id: '6',
+  '7': {
+    id: '7',
   },
 };

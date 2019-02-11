@@ -11,12 +11,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 Created by Patrick Simonian
 */
-import reducer, {
-  applyPropsToFilterByResourceCount,
-  getTruePositionFromWeightedScale,
-} from '../../src/store/reducers/siphon';
+import reducer, { applyPropsToFilterByResourceCount } from '../../src/store/reducers/siphon';
 import { ACTIONS, INITIAL_STATES, DEFAULT_FILTER_GROUPS } from '../../__fixtures__/redux-fixtures';
-import { COLLECTIONS } from '../../__fixtures__/siphon-fixtures';
+import { COLLECTIONS, SIPHON_NODES } from '../../__fixtures__/siphon-fixtures';
+
 describe('reducer', () => {
   let collectionsFixture = [];
   beforeEach(() => {
@@ -47,18 +45,17 @@ describe('reducer', () => {
     expect(filter.active).toBe(true);
   });
 
-  // sometimes when toggling through the primary filters, there may be a secondary filter that
-  // was toggled that doesnt apply to the primary filtered nodes, in that case it should automatically
-  // be unset
   it("should set filter to inactive when added if there aren't any available nodes", () => {
     // the fixtured action ADD_FILTER targets personas that = designer
     // the fixture node that has resource type = documentation does not have this persona
-    const collections = collectionsFixture.filter(n => n.resourceType === 'Documentation');
-    const state = { ...INITIAL_STATES.SIPHON, _collections: collectionsFixture, collections };
-
+    const state = { ...INITIAL_STATES.SIPHON, _collections: collectionsFixture };
+    // first add filter
     const newState = reducer(state, ACTIONS.ADD_FILTER);
-    const filter = newState.filters.find(f => f.key === ACTIONS.ADD_FILTER.payload.key);
-
+    // add filter action toggles the filter with persona = designer
+    // apply search results that doesn't contain any resource with persona designer
+    const nextState = reducer(newState, ACTIONS.SET_SEARCH_RESULTS);
+    // assert filter has been auto set to inactive
+    const filter = nextState.filters.find(f => f.key === ACTIONS.ADD_FILTER.payload.key);
     expect(filter.active).toBe(false);
   });
 
@@ -75,7 +72,9 @@ describe('reducer', () => {
     expect(filter.active).toBe(false);
   });
 
-  it('should filter nodes by persona', () => {
+  // filtering isn't accoomplish by a reducer anymore
+  // this will need to be re written for the memoized reselect selectors
+  it.skip('should filter nodes by persona', () => {
     // the default state has a the 'developer' persona filter group active
     const state = {
       ...INITIAL_STATES.SIPHON,
@@ -90,7 +89,7 @@ describe('reducer', () => {
     ).length;
     //after calling reducer we'd expect the counts of the first collection in the new state
     // to be the same as the count found here
-    const newState = reducer(state, ACTIONS.FILTER_SIPHON_NODES_BY_LIST);
+    const newState = reducer(state, ACTIONS.SET_SEARCH_RESULTS_ALL);
     expect(newState.filteredCollections[0].nodes.length).toBe(numPersonasInFirstCollection);
   });
 
@@ -98,15 +97,11 @@ describe('reducer', () => {
     const personaFilter = DEFAULT_FILTER_GROUPS[0];
     // in our fixtured nodes, there is only one node that has the designer persona attribute
     expect(personaFilter.availableResources).toBe(0);
-    const newFilter = applyPropsToFilterByResourceCount(personaFilter, collectionsFixture);
+    const newFilter = applyPropsToFilterByResourceCount(personaFilter, SIPHON_NODES);
 
     // manually reduce the amount of available resources within the collections
-    const availableResources = collectionsFixture.reduce((acc, collection) => {
-      return (
-        acc +
-        collection.nodes.filter(n => n.attributes.personas.some(p => p === personaFilter.value))
-          .length
-      );
+    const availableResources = SIPHON_NODES.reduce((acc, node) => {
+      return acc + node.attributes.personas.some(p => p === personaFilter.value);
     }, 0);
 
     expect(newFilter.availableResources).toBe(availableResources);
@@ -116,7 +111,7 @@ describe('reducer', () => {
     const personaFilter = DEFAULT_FILTER_GROUPS[0];
 
     expect(personaFilter.isFilterable).toBe(false);
-    const newFilter = applyPropsToFilterByResourceCount(personaFilter, collectionsFixture);
+    const newFilter = applyPropsToFilterByResourceCount(personaFilter, SIPHON_NODES);
     expect(newFilter.isFilterable).toBe(true);
   });
 
@@ -126,24 +121,6 @@ describe('reducer', () => {
     // in our fixtured nodes, there are zero nodes that have the product owner persona
     const newFilter = applyPropsToFilterByResourceCount(productOwnerFilter, collectionsFixture);
     expect(newFilter.active).toBe(false);
-  });
-
-  it('calculates position correctly from [0, 1, 1]', () => {
-    const position = getTruePositionFromWeightedScale([0, 1, 1]);
-    expect(position).toBe('100.20.2');
-  });
-
-  it("positions don't conflict when there are a large number of smaller weighted items", () => {
-    const position1 = getTruePositionFromWeightedScale([2, 1, 1994]);
-    const position2 = getTruePositionFromWeightedScale([3, 0, 0]);
-    // sort positions lexographically
-    const toSort = [position1, position2].sort((a, b) => {
-      if (a < b) return 1;
-      if (a > b) return -1;
-      return 0;
-    });
-    // we should expect position2 to still be ahead of position1
-    expect(toSort).toEqual([position2, position1]);
   });
 
   it.skip('should handle applying search results', () => {

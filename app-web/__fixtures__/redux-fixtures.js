@@ -12,7 +12,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import * as actions from '../src/store/actions/actionTypes';
-import { LUNR_SEARCH_RESULTS_2 } from './lunr';
+import { LUNR_SEARCH_RESULTS, LUNR_SEARCH_RESULTS_2 } from './lunr';
 import { COLLECTIONS } from './siphon-fixtures';
 
 export const DEFAULT_FILTER_GROUPS = [
@@ -98,6 +98,12 @@ export const ACTIONS = {
     type: actions.SET_SEARCH_RESULTS,
     payload: {
       searchResults: LUNR_SEARCH_RESULTS_2,
+    },
+  },
+  SET_SEARCH_RESULTS_ALL: {
+    type: actions.SET_SEARCH_RESULTS,
+    payload: {
+      searchResults: LUNR_SEARCH_RESULTS, // contains results for all nodes in the collections fixture
     },
   },
 };

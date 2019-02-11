@@ -220,6 +220,42 @@ export const DEVHUB_NODE_2 = {
   },
 };
 
+export const DEVHUB_NODE_3 = {
+  id: '7',
+  parent: {
+    id: IDS.DEVHUB,
+  },
+  _metadata: {
+    position: [1, 0, 1],
+  },
+  attributes: {
+    personas: ['Product Owner'],
+  },
+  source: {
+    displayName: 'Design System',
+  },
+  resource: {
+    path: '/design-system/Z1bGIqu',
+    type: 'Documentation',
+  },
+  unfurl: {
+    type: 'markdown',
+    label1: '',
+    data1: '',
+    label2: '',
+    data2: '',
+    image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
+    title: 'About',
+    description: 'What the Design System is and how it works.',
+    author: 'ksingbeil',
+  },
+  childMarkdownRemark: {
+    frontmatter: {
+      pageOnly: false,
+    },
+  },
+};
+
 export const DESIGN_SYSTEM_NODES = [
   DESIGN_SYSTEM_NODE_1,
   DESIGN_SYSTEM_NODE_2,
@@ -227,7 +263,7 @@ export const DESIGN_SYSTEM_NODES = [
   DESIGN_SYSTEM_NODE_4,
 ];
 
-export const DEVHUB_NODES = [DEVHUB_NODE_1, DEVHUB_NODE_2];
+export const DEVHUB_NODES = [DEVHUB_NODE_1, DEVHUB_NODE_2, DEVHUB_NODE_3];
 
 // COLLECTIONS
 export const DESIGN_SYSTEM_COLLECTION = {
