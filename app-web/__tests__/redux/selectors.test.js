@@ -18,7 +18,11 @@ Created by Patrick Simonian
 
 // reselect selector unit tests
 import { STATE } from '../../__fixtures__/redux-fixtures';
-import { SORTED_COLLECTIONS } from '../../__fixtures__/siphon-fixtures';
+import {
+  SORTED_COLLECTIONS,
+  FILTERED_COLLECTIONS,
+  SIPHON_NODES,
+} from '../../__fixtures__/siphon-fixtures';
 import * as selectors from '../../src/store/selectors';
 describe('Reselect Selectors', () => {
   it('returns the siphon state', () => {
@@ -44,5 +48,45 @@ describe('Reselect Selectors', () => {
 
   it('returns collections sorted', () => {
     expect(selectors.selectSortedCollections(STATE)).toEqual(SORTED_COLLECTIONS);
+  });
+
+  it('returns all collections when there are no active filters', () => {
+    const state = {
+      ...STATE,
+      siphon: {
+        ...STATE.siphon,
+        filters: STATE.siphon.filters.map(f => ({ ...f, active: false })),
+      },
+    };
+
+    expect(selectors.selectFilteredCollections(state)).toEqual(SORTED_COLLECTIONS);
+  });
+
+  it('returns filtered collections  there are active filters', () => {
+    expect(selectors.selectFilteredCollections(STATE)).toEqual(FILTERED_COLLECTIONS);
+  });
+
+  it('returns the query', () => {
+    expect(selectors.selectQuery(STATE)).toEqual(STATE.siphon.query);
+  });
+
+  it('returns the search results length', () => {
+    expect(selectors.selectSearchResultsLength(STATE)).toEqual(STATE.siphon.searchResults.length);
+  });
+
+  it('returns the total resource', () => {
+    expect(selectors.selectTotalResources(STATE)).toEqual(SIPHON_NODES.length);
+  });
+
+  it('returns search word length', () => {
+    expect(selectors.selectSearchWordLength(STATE)).toEqual(STATE.siphon.searchBarTerms.length);
+  });
+
+  it('returns show welcome panel', () => {
+    expect(selectors.selectShowWelcomePanel(STATE)).toEqual(!STATE.ui.welcomePanelWasViewed);
+  });
+
+  it('returns siphons loading indicator', () => {
+    expect(selectors.selectSiphonReducerLoading(STATE)).toEqual(STATE.siphon.loading);
   });
 });
