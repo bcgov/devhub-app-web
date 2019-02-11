@@ -16,6 +16,7 @@ limitations under the License.
 Created by Shea Phillips
 */
 import React from 'react';
+import PropTypes from 'prop-types';
 import Octokit from '@octokit/rest';
 
 export default class ComponentPreview extends React.Component {
@@ -80,3 +81,14 @@ export default class ComponentPreview extends React.Component {
         }
     }
 }
+
+ComponentPreview.propTypes = {
+    owner: PropTypes.string,
+    repo: PropTypes.string,
+    path: PropTypes.string
+};
+
+ComponentPreview.defaultProps = {
+    branch: 'master'
+};
+
