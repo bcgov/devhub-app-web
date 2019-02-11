@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { dotPropMatchesValue, filterCollections } from '../reducers/siphon';
+import { filterCollections } from '../reducers/siphon';
 
 const siphonSelector = state => state.siphon;
 const uiSelector = state => state.ui;

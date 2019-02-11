@@ -32,7 +32,6 @@ import {
   selectSearchResultsLength,
   selectTotalResources,
   selectSearchWordLength,
-  selectSortedCollections,
 } from '../store/selectors';
 
 export class Index extends Component {
