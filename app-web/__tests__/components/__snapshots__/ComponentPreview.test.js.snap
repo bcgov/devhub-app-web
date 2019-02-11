@@ -3,7 +3,9 @@
 exports[`ComponentPreview Component matches snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ComponentPreview />,
+  Symbol(enzyme.__unrendered__): <ComponentPreview
+    branch="master"
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -21,7 +23,7 @@ ShallowWrapper {
     },
     "ref": null,
     "rendered": "Loading...",
-    "type": "div",
+    "type": "span",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
@@ -33,7 +35,7 @@ ShallowWrapper {
       },
       "ref": null,
       "rendered": "Loading...",
-      "type": "div",
+      "type": "span",
     },
   ],
   Symbol(enzyme.__options__): Object {
