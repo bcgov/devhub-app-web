@@ -117,6 +117,28 @@ const getAllNodesFromCollections = collections =>
   collections.reduce((acc, collection) => acc.concat(collection.nodes), []);
 
 /**
+ * Check the number of resources that match a filter
+ * and applies count related props to the filter Map
+ * @param {Object} filter
+ * @param {Array} collections
+ */
+export const applyPropsToFilterByResourceCount = (filter, nodes) => {
+  const { filterBy, value } = filter;
+  let newFilter = { ...filter, availableResources: 0 };
+  nodes.forEach(n => {
+    newFilter.availableResources += dotPropMatchesValue(n, filterBy, value);
+  });
+
+  const count = newFilter.availableResources;
+  const isActive = count > 0 && newFilter.active;
+  newFilter.isFilterable = count > 0;
+  // check if this filter has been set to active and if it should remain so
+  // this would onyl be the case if the available resources are greater than 0
+  newFilter.active = isActive;
+  return newFilter;
+};
+
+/**
  *
  * @param {Object} state
  * @param {Array} results
@@ -138,38 +160,25 @@ const applySearchResultsToPrimaryNodes = (state, results) => {
       nodesMap.set(n.parent.id, currentNodes.concat([{ ...n }]));
     }
   });
+
+  // a store of all nodes that passed the filter this is passed into the apply props to filter fn
+  // as an optimization. Soon to be added is a caching mechanism where search terms and newstate collections
+  // are cached in a map of 'search term': [collections]
+  let availableNodes = [];
   // build filtered nodes back into respective collections
-  newState.collections = newCollections(state._collections).map(c => ({
-    ...c,
-    nodes: nodesMap.get(c.id) || [],
-  }));
-
-  return newState;
-};
-
-/**
- * Check the number of resources that match a filter
- * and applies count related props to the filter Map
- * @param {Object} filter
- * @param {Array} primaryFilteredNodes
- */
-export const applyPropsToFilterByResourceCount = (filter, primaryFilteredNodes) => {
-  // get a flattened set of the nodes from all collections to loop over
-  const nodes = getAllNodesFromCollections(primaryFilteredNodes);
-  const { filterBy, value } = filter;
-  let newFilter = { ...filter, availableResources: 0 };
-
-  nodes.forEach(n => {
-    newFilter.availableResources += dotPropMatchesValue(n, filterBy, value);
+  newState.collections = newCollections(state._collections).map(c => {
+    const nodes = nodesMap.get(c.id) || [];
+    // push in the nodes that are being applied to collection into available nodes
+    availableNodes = availableNodes.concat(nodes);
+    return {
+      ...c,
+      nodes,
+    };
   });
-
-  const count = newFilter.availableResources;
-  const isActive = count > 0 && newFilter.active;
-  newFilter.isFilterable = count > 0;
-  // check if this filter has been set to active and if it should remain so
-  // this would onyl be the case if the available resources are greater than 0
-  newFilter.active = isActive;
-  return newFilter;
+  newState.filters = newState.filters.map(f =>
+    applyPropsToFilterByResourceCount(f, availableNodes),
+  );
+  return newState;
 };
 
 /**
