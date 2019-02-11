@@ -13,7 +13,7 @@ Created by Patrick Simonian
 */
 import * as actions from '../src/store/actions/actionTypes';
 import { LUNR_SEARCH_RESULTS, LUNR_SEARCH_RESULTS_2 } from './lunr';
-import { COLLECTIONS, searchResults: LUNR_SEARCH_RESULTS_2, SIPHON_NODES } from './siphon-fixtures';
+import { COLLECTIONS, SIPHON_NODES } from './siphon-fixtures';
 
 export const DEFAULT_FILTER_GROUPS = [
   {
@@ -139,13 +139,13 @@ export const INITIAL_STATES = {
 // the entire appliation state preloaded with some data to simulate
 // many of the actions that are fired on did mount
 export const STATE = {
-  siphon: { 
-    ...INITIAL_STATES.SIPHON, 
-    collections: COLLECTIONS, 
-    searchResults: LUNR_SEARCH_RESULTS_2, 
+  siphon: {
+    ...INITIAL_STATES.SIPHON,
+    collections: COLLECTIONS,
+    searchResults: LUNR_SEARCH_RESULTS_2,
     loaded: true,
     totalResources: SIPHON_NODES.length,
   },
-  ui: {...STATE.UI},
-  auth: {...STATE.AUTH},
-}
+  ui: { ...INITIAL_STATES.UI },
+  auth: { ...INITIAL_STATES.AUTH },
+};

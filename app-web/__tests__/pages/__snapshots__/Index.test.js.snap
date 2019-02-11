@@ -12,11 +12,7 @@ ShallowWrapper {
           "nodes": Array [
             Object {
               "_metadata": Object {
-                "position": Array [
-                  0,
-                  0,
-                  0,
-                ],
+                "position": "000.000.000",
               },
               "attributes": Object {
                 "personas": Array [
@@ -53,11 +49,7 @@ ShallowWrapper {
             },
             Object {
               "_metadata": Object {
-                "position": Array [
-                  0,
-                  0,
-                  1,
-                ],
+                "position": "000.000.001",
               },
               "attributes": Object {
                 "personas": Array [
@@ -94,11 +86,7 @@ ShallowWrapper {
             },
             Object {
               "_metadata": Object {
-                "position": Array [
-                  0,
-                  0,
-                  2,
-                ],
+                "position": "000.000.002",
               },
               "attributes": Object {
                 "personas": Array [
@@ -135,11 +123,7 @@ ShallowWrapper {
             },
             Object {
               "_metadata": Object {
-                "position": Array [
-                  0,
-                  0,
-                  3,
-                ],
+                "position": "000.000.003",
               },
               "attributes": Object {
                 "personas": Array [
@@ -184,11 +168,7 @@ ShallowWrapper {
           "nodes": Array [
             Object {
               "_metadata": Object {
-                "position": Array [
-                  1,
-                  0,
-                  0,
-                ],
+                "position": "001.000.000",
               },
               "attributes": Object {
                 "personas": Array [
@@ -225,11 +205,7 @@ ShallowWrapper {
             },
             Object {
               "_metadata": Object {
-                "position": Array [
-                  1,
-                  0,
-                  1,
-                ],
+                "position": "001.000.001",
               },
               "attributes": Object {
                 "personas": Array [
@@ -266,11 +242,7 @@ ShallowWrapper {
             },
             Object {
               "_metadata": Object {
-                "position": Array [
-                  1,
-                  0,
-                  1,
-                ],
+                "position": "001.000.001",
               },
               "attributes": Object {
                 "personas": Array [
@@ -322,11 +294,7 @@ ShallowWrapper {
                 "nodes": Array [
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        0,
-                        0,
-                        0,
-                      ],
+                      "position": "000.000.000",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -363,11 +331,7 @@ ShallowWrapper {
                   },
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        0,
-                        0,
-                        1,
-                      ],
+                      "position": "000.000.001",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -404,11 +368,7 @@ ShallowWrapper {
                   },
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        0,
-                        0,
-                        2,
-                      ],
+                      "position": "000.000.002",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -445,11 +405,7 @@ ShallowWrapper {
                   },
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        0,
-                        0,
-                        3,
-                      ],
+                      "position": "000.000.003",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -496,11 +452,7 @@ ShallowWrapper {
                 "nodes": Array [
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        1,
-                        0,
-                        0,
-                      ],
+                      "position": "001.000.000",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -537,11 +489,7 @@ ShallowWrapper {
                   },
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        1,
-                        0,
-                        1,
-                      ],
+                      "position": "001.000.001",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -578,11 +526,7 @@ ShallowWrapper {
                   },
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        1,
-                        0,
-                        1,
-                      ],
+                      "position": "001.000.001",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -672,11 +616,7 @@ ShallowWrapper {
                 "nodes": Array [
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        0,
-                        0,
-                        0,
-                      ],
+                      "position": "000.000.000",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -713,11 +653,7 @@ ShallowWrapper {
                   },
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        0,
-                        0,
-                        1,
-                      ],
+                      "position": "000.000.001",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -754,11 +690,7 @@ ShallowWrapper {
                   },
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        0,
-                        0,
-                        2,
-                      ],
+                      "position": "000.000.002",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -795,11 +727,7 @@ ShallowWrapper {
                   },
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        0,
-                        0,
-                        3,
-                      ],
+                      "position": "000.000.003",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -844,11 +772,7 @@ ShallowWrapper {
                 "nodes": Array [
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        1,
-                        0,
-                        0,
-                      ],
+                      "position": "001.000.000",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -885,11 +809,7 @@ ShallowWrapper {
                   },
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        1,
-                        0,
-                        1,
-                      ],
+                      "position": "001.000.001",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -926,11 +846,7 @@ ShallowWrapper {
                   },
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        1,
-                        0,
-                        1,
-                      ],
+                      "position": "001.000.001",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -1107,11 +1023,7 @@ ShallowWrapper {
                         Array [
                           Object {
                             "_metadata": Object {
-                              "position": Array [
-                                0,
-                                0,
-                                0,
-                              ],
+                              "position": "000.000.000",
                             },
                             "attributes": Object {
                               "personas": Array [
@@ -1148,11 +1060,7 @@ ShallowWrapper {
                           },
                           Object {
                             "_metadata": Object {
-                              "position": Array [
-                                0,
-                                0,
-                                1,
-                              ],
+                              "position": "000.000.001",
                             },
                             "attributes": Object {
                               "personas": Array [
@@ -1189,11 +1097,7 @@ ShallowWrapper {
                           },
                           Object {
                             "_metadata": Object {
-                              "position": Array [
-                                0,
-                                0,
-                                2,
-                              ],
+                              "position": "000.000.002",
                             },
                             "attributes": Object {
                               "personas": Array [
@@ -1230,11 +1134,7 @@ ShallowWrapper {
                           },
                           Object {
                             "_metadata": Object {
-                              "position": Array [
-                                0,
-                                0,
-                                3,
-                              ],
+                              "position": "000.000.003",
                             },
                             "attributes": Object {
                               "personas": Array [
@@ -1279,11 +1179,7 @@ ShallowWrapper {
                         Array [
                           Object {
                             "_metadata": Object {
-                              "position": Array [
-                                1,
-                                0,
-                                0,
-                              ],
+                              "position": "001.000.000",
                             },
                             "attributes": Object {
                               "personas": Array [
@@ -1320,11 +1216,7 @@ ShallowWrapper {
                           },
                           Object {
                             "_metadata": Object {
-                              "position": Array [
-                                1,
-                                0,
-                                1,
-                              ],
+                              "position": "001.000.001",
                             },
                             "attributes": Object {
                               "personas": Array [
@@ -1361,11 +1253,7 @@ ShallowWrapper {
                           },
                           Object {
                             "_metadata": Object {
-                              "position": Array [
-                                1,
-                                0,
-                                1,
-                              ],
+                              "position": "001.000.001",
                             },
                             "attributes": Object {
                               "personas": Array [
@@ -1552,11 +1440,7 @@ ShallowWrapper {
                           Array [
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  0,
-                                  0,
-                                  0,
-                                ],
+                                "position": "000.000.000",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -1593,11 +1477,7 @@ ShallowWrapper {
                             },
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  0,
-                                  0,
-                                  1,
-                                ],
+                                "position": "000.000.001",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -1634,11 +1514,7 @@ ShallowWrapper {
                             },
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  0,
-                                  0,
-                                  2,
-                                ],
+                                "position": "000.000.002",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -1675,11 +1551,7 @@ ShallowWrapper {
                             },
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  0,
-                                  0,
-                                  3,
-                                ],
+                                "position": "000.000.003",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -1724,11 +1596,7 @@ ShallowWrapper {
                           Array [
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  1,
-                                  0,
-                                  0,
-                                ],
+                                "position": "001.000.000",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -1765,11 +1633,7 @@ ShallowWrapper {
                             },
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  1,
-                                  0,
-                                  1,
-                                ],
+                                "position": "001.000.001",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -1806,11 +1670,7 @@ ShallowWrapper {
                             },
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  1,
-                                  0,
-                                  1,
-                                ],
+                                "position": "001.000.001",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -1963,11 +1823,7 @@ ShallowWrapper {
                             Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "000.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2004,11 +1860,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "000.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2045,11 +1897,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    2,
-                                  ],
+                                  "position": "000.000.002",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2086,11 +1934,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    3,
-                                  ],
+                                  "position": "000.000.003",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2135,11 +1979,7 @@ ShallowWrapper {
                             Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "001.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2176,11 +2016,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "001.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2217,11 +2053,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "001.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2344,11 +2176,7 @@ ShallowWrapper {
                             Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "000.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2385,11 +2213,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "000.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2426,11 +2250,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    2,
-                                  ],
+                                  "position": "000.000.002",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2467,11 +2287,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    3,
-                                  ],
+                                  "position": "000.000.003",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2516,11 +2332,7 @@ ShallowWrapper {
                             Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "001.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2557,11 +2369,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "001.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2598,11 +2406,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "001.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2665,11 +2469,7 @@ ShallowWrapper {
                             Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "000.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2706,11 +2506,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "000.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2747,11 +2543,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    2,
-                                  ],
+                                  "position": "000.000.002",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2788,11 +2580,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    3,
-                                  ],
+                                  "position": "000.000.003",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2837,11 +2625,7 @@ ShallowWrapper {
                             Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "001.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2878,11 +2662,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "001.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2919,11 +2699,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "001.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2981,11 +2757,7 @@ ShallowWrapper {
                             Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "000.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -3022,11 +2794,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "000.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -3063,11 +2831,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    2,
-                                  ],
+                                  "position": "000.000.002",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -3104,11 +2868,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    3,
-                                  ],
+                                  "position": "000.000.003",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -3153,11 +2913,7 @@ ShallowWrapper {
                             Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "001.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -3194,11 +2950,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "001.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -3235,11 +2987,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "001.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -3294,11 +3042,7 @@ ShallowWrapper {
                               Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "000.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -3335,11 +3079,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "000.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -3376,11 +3116,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      2,
-                                    ],
+                                    "position": "000.000.002",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -3417,11 +3153,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      3,
-                                    ],
+                                    "position": "000.000.003",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -3466,11 +3198,7 @@ ShallowWrapper {
                               Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "001.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -3507,11 +3235,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "001.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -3548,11 +3272,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "001.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -3605,11 +3325,7 @@ ShallowWrapper {
                             "cards": Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "000.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -3646,11 +3362,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "000.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -3687,11 +3399,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    2,
-                                  ],
+                                  "position": "000.000.002",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -3728,11 +3436,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    3,
-                                  ],
+                                  "position": "000.000.003",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -3784,11 +3488,7 @@ ShallowWrapper {
                             "cards": Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "001.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -3825,11 +3525,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "001.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -3866,11 +3562,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "001.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -4046,11 +3738,7 @@ ShallowWrapper {
                           Array [
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  0,
-                                  0,
-                                  0,
-                                ],
+                                "position": "000.000.000",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -4087,11 +3775,7 @@ ShallowWrapper {
                             },
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  0,
-                                  0,
-                                  1,
-                                ],
+                                "position": "000.000.001",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -4128,11 +3812,7 @@ ShallowWrapper {
                             },
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  0,
-                                  0,
-                                  2,
-                                ],
+                                "position": "000.000.002",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -4169,11 +3849,7 @@ ShallowWrapper {
                             },
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  0,
-                                  0,
-                                  3,
-                                ],
+                                "position": "000.000.003",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -4218,11 +3894,7 @@ ShallowWrapper {
                           Array [
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  1,
-                                  0,
-                                  0,
-                                ],
+                                "position": "001.000.000",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -4259,11 +3931,7 @@ ShallowWrapper {
                             },
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  1,
-                                  0,
-                                  1,
-                                ],
+                                "position": "001.000.001",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -4300,11 +3968,7 @@ ShallowWrapper {
                             },
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  1,
-                                  0,
-                                  1,
-                                ],
+                                "position": "001.000.001",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -4491,11 +4155,7 @@ ShallowWrapper {
                             Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "000.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -4532,11 +4192,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "000.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -4573,11 +4229,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    2,
-                                  ],
+                                  "position": "000.000.002",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -4614,11 +4266,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    3,
-                                  ],
+                                  "position": "000.000.003",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -4663,11 +4311,7 @@ ShallowWrapper {
                             Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "001.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -4704,11 +4348,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "001.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -4745,11 +4385,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "001.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -4902,11 +4538,7 @@ ShallowWrapper {
                               Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "000.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -4943,11 +4575,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "000.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -4984,11 +4612,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      2,
-                                    ],
+                                    "position": "000.000.002",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5025,11 +4649,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      3,
-                                    ],
+                                    "position": "000.000.003",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5074,11 +4694,7 @@ ShallowWrapper {
                               Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "001.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5115,11 +4731,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "001.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5156,11 +4768,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "001.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5283,11 +4891,7 @@ ShallowWrapper {
                               Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "000.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5324,11 +4928,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "000.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5365,11 +4965,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      2,
-                                    ],
+                                    "position": "000.000.002",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5406,11 +5002,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      3,
-                                    ],
+                                    "position": "000.000.003",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5455,11 +5047,7 @@ ShallowWrapper {
                               Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "001.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5496,11 +5084,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "001.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5537,11 +5121,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "001.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5604,11 +5184,7 @@ ShallowWrapper {
                               Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "000.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5645,11 +5221,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "000.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5686,11 +5258,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      2,
-                                    ],
+                                    "position": "000.000.002",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5727,11 +5295,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      3,
-                                    ],
+                                    "position": "000.000.003",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5776,11 +5340,7 @@ ShallowWrapper {
                               Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "001.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5817,11 +5377,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "001.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5858,11 +5414,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "001.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5920,11 +5472,7 @@ ShallowWrapper {
                               Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "000.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5961,11 +5509,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "000.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -6002,11 +5546,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      2,
-                                    ],
+                                    "position": "000.000.002",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -6043,11 +5583,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      3,
-                                    ],
+                                    "position": "000.000.003",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -6092,11 +5628,7 @@ ShallowWrapper {
                               Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "001.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -6133,11 +5665,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "001.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -6174,11 +5702,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "001.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -6233,11 +5757,7 @@ ShallowWrapper {
                                 Array [
                                   Object {
                                     "_metadata": Object {
-                                      "position": Array [
-                                        0,
-                                        0,
-                                        0,
-                                      ],
+                                      "position": "000.000.000",
                                     },
                                     "attributes": Object {
                                       "personas": Array [
@@ -6274,11 +5794,7 @@ ShallowWrapper {
                                   },
                                   Object {
                                     "_metadata": Object {
-                                      "position": Array [
-                                        0,
-                                        0,
-                                        1,
-                                      ],
+                                      "position": "000.000.001",
                                     },
                                     "attributes": Object {
                                       "personas": Array [
@@ -6315,11 +5831,7 @@ ShallowWrapper {
                                   },
                                   Object {
                                     "_metadata": Object {
-                                      "position": Array [
-                                        0,
-                                        0,
-                                        2,
-                                      ],
+                                      "position": "000.000.002",
                                     },
                                     "attributes": Object {
                                       "personas": Array [
@@ -6356,11 +5868,7 @@ ShallowWrapper {
                                   },
                                   Object {
                                     "_metadata": Object {
-                                      "position": Array [
-                                        0,
-                                        0,
-                                        3,
-                                      ],
+                                      "position": "000.000.003",
                                     },
                                     "attributes": Object {
                                       "personas": Array [
@@ -6405,11 +5913,7 @@ ShallowWrapper {
                                 Array [
                                   Object {
                                     "_metadata": Object {
-                                      "position": Array [
-                                        1,
-                                        0,
-                                        0,
-                                      ],
+                                      "position": "001.000.000",
                                     },
                                     "attributes": Object {
                                       "personas": Array [
@@ -6446,11 +5950,7 @@ ShallowWrapper {
                                   },
                                   Object {
                                     "_metadata": Object {
-                                      "position": Array [
-                                        1,
-                                        0,
-                                        1,
-                                      ],
+                                      "position": "001.000.001",
                                     },
                                     "attributes": Object {
                                       "personas": Array [
@@ -6487,11 +5987,7 @@ ShallowWrapper {
                                   },
                                   Object {
                                     "_metadata": Object {
-                                      "position": Array [
-                                        1,
-                                        0,
-                                        1,
-                                      ],
+                                      "position": "001.000.001",
                                     },
                                     "attributes": Object {
                                       "personas": Array [
@@ -6544,11 +6040,7 @@ ShallowWrapper {
                               "cards": Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "000.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -6585,11 +6077,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "000.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -6626,11 +6114,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      2,
-                                    ],
+                                    "position": "000.000.002",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -6667,11 +6151,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      3,
-                                    ],
+                                    "position": "000.000.003",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -6723,11 +6203,7 @@ ShallowWrapper {
                               "cards": Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "001.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -6764,11 +6240,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "001.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -6805,11 +6277,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "001.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [

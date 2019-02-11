@@ -10,7 +10,7 @@ export const DESIGN_SYSTEM_NODE_1 = {
     id: IDS.DESIGN_SYSTEM,
   },
   _metadata: {
-    position: [0, 0, 0],
+    position: '000.000.000',
   },
   attributes: {
     personas: ['Designer'],
@@ -46,7 +46,7 @@ export const DESIGN_SYSTEM_NODE_2 = {
     id: IDS.DESIGN_SYSTEM,
   },
   _metadata: {
-    position: [0, 0, 1],
+    position: '000.000.001',
   },
   attributes: {
     personas: ['Designer'],
@@ -82,7 +82,7 @@ export const DESIGN_SYSTEM_NODE_3 = {
     id: IDS.DESIGN_SYSTEM,
   },
   _metadata: {
-    position: [0, 0, 2],
+    position: '000.000.002',
   },
   attributes: {
     personas: ['Designer'],
@@ -118,7 +118,7 @@ export const DESIGN_SYSTEM_NODE_4 = {
     id: IDS.DESIGN_SYSTEM,
   },
   _metadata: {
-    position: [0, 0, 3],
+    position: '000.000.003',
   },
   attributes: {
     personas: ['Developer'],
@@ -154,7 +154,7 @@ export const DEVHUB_NODE_1 = {
     id: IDS.DEVHUB,
   },
   _metadata: {
-    position: [1, 0, 0],
+    position: '001.000.000',
   },
   attributes: {
     personas: ['Developer'],
@@ -190,7 +190,7 @@ export const DEVHUB_NODE_2 = {
     id: IDS.DEVHUB,
   },
   _metadata: {
-    position: [1, 0, 1],
+    position: '001.000.001',
   },
   attributes: {
     personas: ['Developer'],
@@ -226,7 +226,7 @@ export const DEVHUB_NODE_3 = {
     id: IDS.DEVHUB,
   },
   _metadata: {
-    position: [1, 0, 1],
+    position: '001.000.001',
   },
   attributes: {
     personas: ['Product Owner'],
@@ -257,9 +257,9 @@ export const DEVHUB_NODE_3 = {
 };
 
 export const DESIGN_SYSTEM_NODES = [
-  DESIGN_SYSTEM_NODE_1,
-  DESIGN_SYSTEM_NODE_2,
   DESIGN_SYSTEM_NODE_3,
+  DESIGN_SYSTEM_NODE_2,
+  DESIGN_SYSTEM_NODE_1,
   DESIGN_SYSTEM_NODE_4,
 ];
 
@@ -274,6 +274,16 @@ export const DESIGN_SYSTEM_COLLECTION = {
   nodes: DESIGN_SYSTEM_NODES,
 };
 
+export const DESIGN_SYSTEM_COLLECTION_SORTED = {
+  id: IDS.DESIGN_SYSTEM,
+  type: 'default',
+  title: 'Design System',
+  description: 'baz',
+  nodes: DESIGN_SYSTEM_NODES.sort((a, b) =>
+    a._metadata.position.localeCompare(b._metadata.position),
+  ),
+};
+
 export const DEVHUB_COLLECTION = {
   id: IDS.DEVHUB,
   type: 'default',
@@ -285,3 +295,4 @@ export const DEVHUB_COLLECTION = {
 export const SIPHON_NODES = DESIGN_SYSTEM_NODES.concat(DEVHUB_NODES);
 
 export const COLLECTIONS = [DESIGN_SYSTEM_COLLECTION, DEVHUB_COLLECTION];
+export const SORTED_COLLECTIONS = [DESIGN_SYSTEM_COLLECTION_SORTED, DEVHUB_COLLECTION];
