@@ -23,7 +23,7 @@ const initialState = {
   filteredCollections: [], // subsequent filters using the filter side menu
   query: '',
   searchBarTerms: '',
-  searchResultsLength: null,
+  searchResults: [],
   totalResources: 0,
   loading: false,
   error: false,
@@ -32,6 +32,19 @@ const initialState = {
 };
 
 const mapWithCallback = (array, cb) => array.map(cb);
+
+/**
+ * filters all collections nodes based on the filters list
+ * @param {Array} collections
+ * @param {Array} filters
+ */
+export const filterCollections = (collections, filters) =>
+  collections.map(collection => ({
+    ...collection,
+    nodes: collection.nodes.filter(n =>
+      filters.some(filter => dotPropMatchesValue(n, filter.filterBy, filter.value)),
+    ),
+  }));
 
 /**
  * from an array of siphon positions
@@ -86,7 +99,7 @@ const newCollections = collections => mapWithCallback(collections, newCollection
  * https://github.com/sindresorhus/dot-prop
  * @param {String} value the value to match against nodes value found by the dot prop
  */
-const dotPropMatchesValue = (node, filterBy, value) => {
+export const dotPropMatchesValue = (node, filterBy, value) => {
   const prop = dotProp.get(node, filterBy);
   if (TypeCheck.isArray(prop)) {
     return prop.some(p => p === value);
@@ -109,7 +122,7 @@ const getAllNodesFromCollections = collections =>
  * @param {Array} results
  */
 const applySearchResultsToPrimaryNodes = (state, results) => {
-  const newState = { ...state, searchResultsLength: Object.keys(results).length, loading: false };
+  const newState = { ...state, searchResults: results, loading: false };
   // results is an array of siphon ids,
   // filter out siphon nodes where resource type still matches (primary filter nodes)
   let collectionNodes = getAllNodesFromCollections(state._collections);
@@ -130,7 +143,8 @@ const applySearchResultsToPrimaryNodes = (state, results) => {
     ...c,
     nodes: nodesMap.get(c.id) || [],
   }));
-  return applySecondaryFilters(newState);
+
+  return newState;
 };
 
 /**
@@ -229,8 +243,8 @@ const applySecondaryFilters = state => {
  * @param {String} key
  */
 const addFilter = (state, key) => {
-  const newState = toggleFilter(state, key, true);
-  return applySecondaryFilters(newState);
+  return toggleFilter(state, key, true);
+  // return applySecondaryFilters(newState);
 };
 
 /**
@@ -239,8 +253,8 @@ const addFilter = (state, key) => {
  * @param {String} key
  */
 const removeFilter = (state, key) => {
-  const newState = toggleFilter(state, key, false);
-  return applySecondaryFilters(newState);
+  return toggleFilter(state, key, false);
+  // return applySecondaryFilters(newState);
 };
 /**
  * unsets all filters to inactive

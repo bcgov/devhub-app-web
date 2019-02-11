@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
+import { createStructuredSelector } from 'reselect';
 import shortid from 'shortid';
 import { connect } from 'react-redux';
 import { Flag } from 'flag';
 import queryString from 'query-string';
 import * as actions from '../store/actions/actions';
-import { REACT_SCROLL, SIPHON_RESOURCE_TYPE_PROP } from '../constants/ui';
+import { REACT_SCROLL } from '../constants/ui';
 import FLAGS from '../constants/featureflags';
 
 import styles from './index.module.css';
@@ -19,6 +20,20 @@ import WelcomePanel from '../components/WelcomePanel/WelcomePanel';
 import PrimaryFilter from '../components/Navigation/PrimaryFilter';
 import Dropmenu from '../components/Dropmenu/Dropmenu';
 import ToolsMenu from '../components/ToolsMenu/ToolsMenu';
+
+// selectors from reselect
+import {
+  selectFilteredCollections,
+  selectFilters,
+  selectCollectionsLoaded,
+  selectShowWelcomePanel,
+  selectQuery,
+  selectSiphonReducerLoading,
+  selectSearchResultsLength,
+  selectTotalResources,
+  selectSearchWordLength,
+  selectSortedCollections,
+} from '../store/selectors';
 
 export class Index extends Component {
   componentDidMount() {
@@ -184,19 +199,17 @@ export const resourceQuery = graphql`
   }
 `;
 
-const mapStateToProps = state => {
-  return {
-    collections: state.siphon.filteredCollections,
-    collectionsLoaded: state.siphon.collectionsLoaded,
-    displayWelcome: !state.ui.welcomePanelWasViewed,
-    query: state.siphon.query,
-    filters: state.siphon.filters,
-    loading: state.siphon.loading,
-    searchResultsLength: state.siphon.searchResultsLength,
-    totalResources: state.siphon.totalResources,
-    searchWordLength: state.siphon.searchBarTerms.length,
-  };
-};
+const mapStateToProps = createStructuredSelector({
+  collections: selectFilteredCollections,
+  collectionsLoaded: selectCollectionsLoaded,
+  displayWelcome: selectShowWelcomePanel,
+  query: selectQuery,
+  filters: selectFilters,
+  loading: selectSiphonReducerLoading,
+  searchResultsLength: selectSearchResultsLength,
+  totalResources: selectTotalResources,
+  searchWordLength: selectSearchWordLength,
+});
 
 const mapDispatchToProps = dispatch => {
   return {
