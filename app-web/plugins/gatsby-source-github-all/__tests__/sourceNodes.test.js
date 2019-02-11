@@ -47,6 +47,7 @@ import {
   newCollection,
   assignPositionToCollection,
   assignPositionToSource,
+  convertPositionToSortableString,
 } from '../utils/helpers';
 
 jest.mock('../utils/helpers');
@@ -57,6 +58,7 @@ newCollection.mockImplementation((collection, props) => ({ ...collection, ...pro
 assignPositionToCollection.mockImplementation(collection => () => ({
   metadata: { position: [0] },
 }));
+convertPositionToSortableString.mockImplementation((padding, position) => position.join('.'));
 
 assignPositionToSource.mockImplementation(source => () => ({ metadata: { position: [0, 0] } }));
 
@@ -142,6 +144,7 @@ describe('gatsby source github all plugin', () => {
   test('createSiphonNode returns data', () => {
     const file = {
       metadata: {
+        position: [1, 1, 1],
         collection: {
           name: 'foo',
           type: COLLECTION_TYPES.CURATED,
@@ -230,7 +233,7 @@ describe('gatsby source github all plugin', () => {
         content: 'content',
       },
       _metadata: {
-        position: undefined,
+        position: '1.1.1',
       },
     };
 
@@ -253,7 +256,7 @@ describe('gatsby source github all plugin', () => {
         type: GRAPHQL_NODE_TYPE.COLLECTION,
       },
       _metadata: {
-        position: [0],
+        position: COLLECTION_OBJ_FROM_FETCH_QUEUE.metadata.position.join('.'),
         slug: COLLECTION_OBJ_FROM_FETCH_QUEUE.slug,
         template: COLLECTION_TEMPLATES.DEFAULT,
         templateFile: undefined,

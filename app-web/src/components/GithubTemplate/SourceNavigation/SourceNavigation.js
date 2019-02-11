@@ -36,14 +36,9 @@ class SourceNavigation extends Component {
   render() {
     const { components } = this.props;
     // map over components and generate links
-    const links = components.map(
-      ({
-        node: {
-          unfurl: { title },
-          resource: { path },
-          source: { type },
-        },
-      }) => (
+    const links = components
+      .sort((a, b) => a.node._metadata.position.localeCompare(b.node._metadata.position))
+      .map(({ node: { unfurl: { title }, resource: { path }, source: { type } } }) => (
         <li key={shortid.generate()}>
           <Link
             exact="true"
@@ -63,8 +58,7 @@ class SourceNavigation extends Component {
             ) : null}
           </Link>
         </li>
-      ),
-    );
+      ));
     return (
       <nav className={styles.Navigation}>
         <ul className={styles.List}>{links}</ul>
@@ -83,6 +77,9 @@ export const query = graphql`
     }
     source {
       type
+    }
+    _metadata {
+      position
     }
   }
 `;

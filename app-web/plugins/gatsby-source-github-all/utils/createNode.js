@@ -15,7 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-const { hashString } = require('./helpers');
+const { hashString, convertPositionToSortableString } = require('./helpers');
 const { GRAPHQL_NODE_TYPE } = require('./constants');
 
 /**
@@ -39,7 +39,7 @@ const createCollectionNode = (collection, id) => {
       type: GRAPHQL_NODE_TYPE.COLLECTION,
     },
     _metadata: {
-      position: metadata.position,
+      position: convertPositionToSortableString(10, metadata.position),
       template: collection.template,
       templateFile: collection.templateFile,
       slug: collection.slug,
@@ -97,7 +97,7 @@ const createSiphonNode = (data, id, collectionId) => ({
     content: data.content,
   },
   _metadata: {
-    position: data.metadata.position,
+    position: convertPositionToSortableString(10, data.metadata.position),
   },
 });
 

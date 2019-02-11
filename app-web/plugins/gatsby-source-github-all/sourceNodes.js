@@ -326,7 +326,6 @@ const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens, source
     checkRegistry(registry);
     // map of over registry and create a queue of collections to fetch
     const fetchQueue = await getFetchQueue(registry.sources, tokens);
-
     const collections = await Promise.all(
       fetchQueue.map(async collection =>
         processCollection(collection, createNodeId, createNode, createParentChildLink, tokens),

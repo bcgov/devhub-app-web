@@ -369,9 +369,23 @@ const assignPositionToResource = source => (resource, position) => ({
   },
 });
 
+/**
+ * creates a string that is usable in a natural sort
+ * it padds numbers with zeros so that it will sort normally
+ * ie [0, 0, 1], [0, 0, 10] => 0000.0000.0001 , 0000.0000.0010
+ * @param {Array} pos the position array
+ */
+const convertPositionToSortableString = (maxPadding, pos) =>
+  pos.reduce((acc, position, index) => {
+    const posLength = maxPadding - (position + '').length;
+    const paddedPosition = '0'.repeat(posLength) + position;
+    return acc + paddedPosition + '.';
+  }, '');
+
 module.exports = {
   assignPositionToResource,
   createPosition,
+  convertPositionToSortableString,
   assignPositionToSource,
   assignPositionToCollection,
   newCollection,

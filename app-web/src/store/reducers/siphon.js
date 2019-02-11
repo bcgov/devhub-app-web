@@ -262,11 +262,9 @@ const setCollections = (state, collections) => {
   // sort collection nodes by position
   let sortedCollections = collections.map(c => {
     c.nodes = c.nodes.sort((a, b) => {
-      // lexographic search
-      const address1 = getTruePositionFromWeightedScale(a._metadata.position);
-      const address2 = getTruePositionFromWeightedScale(b._metadata.position);
-      if (address1 < address2) return -1;
-      if (address1 > address2) return 1;
+      // lexographic sort
+      if (a._metadata.position < b._metadata.position) return -1;
+      if (a._metadata.position > b._metadata.position) return 1;
       return 0;
     });
     return c;
