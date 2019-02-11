@@ -33,6 +33,24 @@ const initialState = {
 const mapWithCallback = (array, cb) => array.map(cb);
 
 /**
+ * filters through the primary filtered nodes by filters
+ * found from the state.filters list
+ * checks if the dot prop matches the value for a given siphon node
+ * @param {Object} node the siphon node
+ * @param {String} dotProp a dot prop string notiation to access a nested value within the node
+ * https://github.com/sindresorhus/dot-prop
+ * @param {String} value the value to match against nodes value found by the dot prop
+ */
+export const dotPropMatchesValue = (node, filterBy, value) => {
+  const prop = dotProp.get(node, filterBy);
+  if (TypeCheck.isArray(prop)) {
+    return prop.some(p => p === value);
+  } else {
+    return prop === value;
+  }
+};
+
+/**
  * filters all collections nodes based on the filters list
  * @param {Array} collections
  * @param {Array} filters
@@ -68,24 +86,6 @@ const newCollection = collection => ({
  * @returns {Array} the cloned collections
  */
 const newCollections = collections => mapWithCallback(collections, newCollection);
-
-/**
- * filters through the primary filtered nodes by filters
- * found from the state.filters list
- * checks if the dot prop matches the value for a given siphon node
- * @param {Object} node the siphon node
- * @param {String} dotProp a dot prop string notiation to access a nested value within the node
- * https://github.com/sindresorhus/dot-prop
- * @param {String} value the value to match against nodes value found by the dot prop
- */
-export const dotPropMatchesValue = (node, filterBy, value) => {
-  const prop = dotProp.get(node, filterBy);
-  if (TypeCheck.isArray(prop)) {
-    return prop.some(p => p === value);
-  } else {
-    return prop === value;
-  }
-};
 
 /**
  * flattens the List of collection.nodes
