@@ -3,12 +3,8 @@ import shortid from 'shortid';
 import PropTypes from 'prop-types';
 import styles from './Cards.module.css';
 import Card from './Card/Card';
-import DocumentCard from './Card/DocumentCard';
-import RepositoryCard from './Card/RepositoryCard';
-import SelfServiceCard from './Card/SelfServiceCard';
-import ComponentCard from './Card/ComponentCard';
 import Toggle from './Toggle';
-import { CARD_TOGGLE_LIMIT, RESOURCE_TYPES, CARDS_PER_ROW } from '../../constants/ui';
+import { CARD_TOGGLE_LIMIT, CARDS_PER_ROW } from '../../constants/ui';
 
 /**
  * @param {Number} limit the maximum limit of cards to show in toggle component
@@ -25,84 +21,15 @@ export const getIdealCardsLargeLimit = (limit, numCards, cardsPerRow) => {
 };
 
 const Cards = ({ topic, description, sourcePath, cards }) => {
-  const cardComponents = cards.map(c => {
-    return (
-      <Card
-        title={c.unfurl.title}
-        link={c.resource.path}
-        description={c.unfurl.description}
-        resourceType={c.resource.type}
-      />
-    );
-    // switch (c.resource.type) {
-    //   case RESOURCE_TYPES.RESPOSITORIES:
-    //     return (
-    //       <RepositoryCard
-    //         repository={c.source.name}
-    //         owner={c.owner}
-    //         title={c.unfurl.title}
-    //         description={c.unfurl.description}
-    //         resourcePath={c.resource.path}
-    //         image={c.unfurl.image}
-    //         resourceType={c.resource.type}
-    //         author={c.unfurl.author}
-    //         key={shortid.generate()}
-    //       />
-    //     );
-    //   case RESOURCE_TYPES.SELF_SERVICE_TOOLS:
-    //     return (
-    //       <SelfServiceCard
-    //         title={c.unfurl.title}
-    //         description={c.unfurl.description}
-    //         resourcePath={c.resource.path}
-    //         image={c.unfurl.image}
-    //         resourceType={c.resource.type}
-    //         author={c.unfurl.author}
-    //         key={shortid.generate()}
-    //       />
-    //     );
-    //   case RESOURCE_TYPES.COMPONENTS:
-    //     return (
-    //       <ComponentCard
-    //         repository={c.source.name}
-    //         owner={c.owner}
-    //         title={c.unfurl.title}
-    //         description={c.unfurl.description}
-    //         resourcePath={c.resource.path}
-    //         image={c.unfurl.image}
-    //         resourceType={c.resource.type}
-    //         author={c.unfurl.author}
-    //         key={shortid.generate()}
-    //       />
-    //     );
-    //   case RESOURCE_TYPES.DOCUMENTATION:
-    //     return (
-    //       <DocumentCard
-    //         repository={c.source.name}
-    //         owner={c.owner}
-    //         title={c.unfurl.title}
-    //         description={c.unfurl.description}
-    //         resourcePath={c.resource.path}
-    //         image={c.unfurl.image}
-    //         resourceType={c.resource.type}
-    //         author={c.unfurl.author}
-    //         key={shortid.generate()}
-    //       />
-    //     );
-    //   default:
-    //     return (
-    //       <DefaultCard
-    //         title={c.unfurl.title}
-    //         description={c.unfurl.description}
-    //         resourcePath={c.resource.path}
-    //         image={c.unfurl.image}
-    //         resourceType={c.resource.type}
-    //         author={c.unfurl.author}
-    //         key={shortid.generate()}
-    //       />
-    //     );
-    // }
-  });
+  const cardComponents = cards.map(c => (
+    <Card
+      key={shortid.generate()}
+      title={c.unfurl.title}
+      link={c.resource.path}
+      description={c.unfurl.description}
+      resourceType={c.resource.type}
+    />
+  ));
 
   if (cardComponents.length > 0) {
     // find the ideal large screen limit based on number of cards, and cards rendering per row
