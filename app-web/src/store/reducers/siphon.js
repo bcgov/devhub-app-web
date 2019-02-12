@@ -230,12 +230,14 @@ const setCollections = (state, collections) => {
   newState.collectionsLoaded = true;
   // nodes will be filtered eventually be resource type which is the top level navigation
   newState.collections = newCollections(collections);
+  // get all nodes from all collections
+  const allNodes = getAllNodesFromCollections(collections);
   // get counts of filters and apply other properties based on if count is 0
   newState.filters = newState.filters.map(filter =>
-    applyPropsToFilterByResourceCount(filter, newState.collections),
+    applyPropsToFilterByResourceCount(filter, allNodes),
   );
 
-  newState.totalResources = getAllNodesFromCollections(collections).length;
+  newState.totalResources = allNodes.length;
 
   return newState;
 };
