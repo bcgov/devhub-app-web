@@ -3,12 +3,10 @@
 exports[`Card Component matches snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Default Card Component
-    author=""
+  Symbol(enzyme.__unrendered__): <Card
     description="description"
-    image=""
-    resourcePath="resourcePath"
-    resourceType=""
+    link="fofofo"
+    resourceType="resourceType"
     title="title"
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -24,190 +22,62 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "function",
     "props": Object {
-      "author": "",
-      "children": <div
-        className="Body"
+      "activeClassName": "",
+      "activeStyle": Object {},
+      "aria-label": "",
+      "children": <article
+        className="Card"
       >
-        <Dotdotdot
-          clamp={4}
-          className="BodyDescription"
-          tagName="div"
-          truncationChar="…"
-          useNativeClamp={true}
-        >
-          <p>
-            description
-          </p>
-        </Dotdotdot>
         <div
-          className="BodyImage"
+          className="ResourceType"
         >
-          <GatsbyLink
-            activeClassName=""
-            activeStyle={Object {}}
-            aria-label="Learn more about this article"
-            to="resourcePath"
-          >
-            <Img
-              container={[Function]}
-              decode={true}
-              loader={false}
-              src=""
-              unloader={false}
-            />
-          </GatsbyLink>
+          <h4>
+            resourceType
+            <small>
+              <FontAwesomeIcon
+                aria-label=""
+                border={false}
+                className=""
+                fixedWidth={false}
+                flip={null}
+                icon={
+                  Object {
+                    "icon": Array [
+                      576,
+                      512,
+                      Array [],
+                      "f35d",
+                      "M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z",
+                    ],
+                    "iconName": "external-link-alt",
+                    "prefix": "fas",
+                  }
+                }
+                inverse={false}
+                listItem={false}
+                mask={null}
+                pull={null}
+                pulse={false}
+                rotation={null}
+                size={null}
+                spin={false}
+                symbol={false}
+                title=""
+                transform={null}
+              />
+            </small>
+          </h4>
         </div>
-      </div>,
-      "resourcePath": "resourcePath",
-      "resourceType": "",
-      "title": "title",
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": Array [
-          <Dotdotdot
-            clamp={4}
-            className="BodyDescription"
-            tagName="div"
-            truncationChar="…"
-            useNativeClamp={true}
-          >
-            <p>
-              description
-            </p>
-          </Dotdotdot>,
-          <div
-            className="BodyImage"
-          >
-            <GatsbyLink
-              activeClassName=""
-              activeStyle={Object {}}
-              aria-label="Learn more about this article"
-              to="resourcePath"
-            >
-              <Img
-                container={[Function]}
-                decode={true}
-                loader={false}
-                src=""
-                unloader={false}
-              />
-            </GatsbyLink>
-          </div>,
-        ],
-        "className": "Body",
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "children": <p>
-              description
-            </p>,
-            "clamp": 4,
-            "className": "BodyDescription",
-            "tagName": "div",
-            "truncationChar": "…",
-            "useNativeClamp": true,
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "description",
-            },
-            "ref": null,
-            "rendered": "description",
-            "type": "p",
-          },
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": <GatsbyLink
-              activeClassName=""
-              activeStyle={Object {}}
-              aria-label="Learn more about this article"
-              to="resourcePath"
-            >
-              <Img
-                container={[Function]}
-                decode={true}
-                loader={false}
-                src=""
-                unloader={false}
-              />
-            </GatsbyLink>,
-            "className": "BodyImage",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "activeClassName": "",
-              "activeStyle": Object {},
-              "aria-label": "Learn more about this article",
-              "children": <Img
-                container={[Function]}
-                decode={true}
-                loader={false}
-                src=""
-                unloader={false}
-              />,
-              "to": "resourcePath",
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "class",
-              "props": Object {
-                "container": [Function],
-                "decode": true,
-                "loader": false,
-                "src": "",
-                "unloader": false,
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            "type": [Function],
-          },
-          "type": "div",
-        },
-      ],
-      "type": "div",
-    },
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "author": "",
-        "children": <div
+        <header>
+          <h2>
+            title
+          </h2>
+        </header>
+        <div
           className="Body"
         >
           <Dotdotdot
-            clamp={4}
-            className="BodyDescription"
+            clamp={3}
             tagName="div"
             truncationChar="…"
             useNativeClamp={true}
@@ -216,39 +86,289 @@ ShallowWrapper {
               description
             </p>
           </Dotdotdot>
+        </div>
+        <div
+          className="Metadata"
+        />
+      </article>,
+      "className": "Wrapper",
+      "to": "fofofo",
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
           <div
-            className="BodyImage"
+            className="ResourceType"
           >
-            <GatsbyLink
-              activeClassName=""
-              activeStyle={Object {}}
-              aria-label="Learn more about this article"
-              to="resourcePath"
+            <h4>
+              resourceType
+              <small>
+                <FontAwesomeIcon
+                  aria-label=""
+                  border={false}
+                  className=""
+                  fixedWidth={false}
+                  flip={null}
+                  icon={
+                    Object {
+                      "icon": Array [
+                        576,
+                        512,
+                        Array [],
+                        "f35d",
+                        "M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z",
+                      ],
+                      "iconName": "external-link-alt",
+                      "prefix": "fas",
+                    }
+                  }
+                  inverse={false}
+                  listItem={false}
+                  mask={null}
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  size={null}
+                  spin={false}
+                  symbol={false}
+                  title=""
+                  transform={null}
+                />
+              </small>
+            </h4>
+          </div>,
+          <header>
+            <h2>
+              title
+            </h2>
+          </header>,
+          <div
+            className="Body"
+          >
+            <Dotdotdot
+              clamp={3}
+              tagName="div"
+              truncationChar="…"
+              useNativeClamp={true}
             >
-              <Img
-                container={[Function]}
-                decode={true}
-                loader={false}
-                src=""
-                unloader={false}
-              />
-            </GatsbyLink>
-          </div>
-        </div>,
-        "resourcePath": "resourcePath",
-        "resourceType": "",
-        "title": "title",
+              <p>
+                description
+              </p>
+            </Dotdotdot>
+          </div>,
+          <div
+            className="Metadata"
+          />,
+        ],
+        "className": "Card",
       },
       "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": Array [
-            <Dotdotdot
-              clamp={4}
-              className="BodyDescription"
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h4>
+              resourceType
+              <small>
+                <FontAwesomeIcon
+                  aria-label=""
+                  border={false}
+                  className=""
+                  fixedWidth={false}
+                  flip={null}
+                  icon={
+                    Object {
+                      "icon": Array [
+                        576,
+                        512,
+                        Array [],
+                        "f35d",
+                        "M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z",
+                      ],
+                      "iconName": "external-link-alt",
+                      "prefix": "fas",
+                    }
+                  }
+                  inverse={false}
+                  listItem={false}
+                  mask={null}
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  size={null}
+                  spin={false}
+                  symbol={false}
+                  title=""
+                  transform={null}
+                />
+              </small>
+            </h4>,
+            "className": "ResourceType",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                "resourceType",
+                <small>
+                  <FontAwesomeIcon
+                    aria-label=""
+                    border={false}
+                    className=""
+                    fixedWidth={false}
+                    flip={null}
+                    icon={
+                      Object {
+                        "icon": Array [
+                          576,
+                          512,
+                          Array [],
+                          "f35d",
+                          "M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z",
+                        ],
+                        "iconName": "external-link-alt",
+                        "prefix": "fas",
+                      }
+                    }
+                    inverse={false}
+                    listItem={false}
+                    mask={null}
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    symbol={false}
+                    title=""
+                    transform={null}
+                  />
+                </small>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              "resourceType",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <FontAwesomeIcon
+                    aria-label=""
+                    border={false}
+                    className=""
+                    fixedWidth={false}
+                    flip={null}
+                    icon={
+                      Object {
+                        "icon": Array [
+                          576,
+                          512,
+                          Array [],
+                          "f35d",
+                          "M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z",
+                        ],
+                        "iconName": "external-link-alt",
+                        "prefix": "fas",
+                      }
+                    }
+                    inverse={false}
+                    listItem={false}
+                    mask={null}
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    symbol={false}
+                    title=""
+                    transform={null}
+                  />,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "aria-label": "",
+                    "border": false,
+                    "className": "",
+                    "fixedWidth": false,
+                    "flip": null,
+                    "icon": Object {
+                      "icon": Array [
+                        576,
+                        512,
+                        Array [],
+                        "f35d",
+                        "M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z",
+                      ],
+                      "iconName": "external-link-alt",
+                      "prefix": "fas",
+                    },
+                    "inverse": false,
+                    "listItem": false,
+                    "mask": null,
+                    "pull": null,
+                    "pulse": false,
+                    "rotation": null,
+                    "size": null,
+                    "spin": false,
+                    "symbol": false,
+                    "title": "",
+                    "transform": null,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "small",
+              },
+            ],
+            "type": "h4",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <h2>
+              title
+            </h2>,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "title",
+            },
+            "ref": null,
+            "rendered": "title",
+            "type": "h2",
+          },
+          "type": "header",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <Dotdotdot
+              clamp={3}
               tagName="div"
               truncationChar="…"
               useNativeClamp={true}
@@ -257,30 +377,10 @@ ShallowWrapper {
                 description
               </p>
             </Dotdotdot>,
-            <div
-              className="BodyImage"
-            >
-              <GatsbyLink
-                activeClassName=""
-                activeStyle={Object {}}
-                aria-label="Learn more about this article"
-                to="resourcePath"
-              >
-                <Img
-                  container={[Function]}
-                  decode={true}
-                  loader={false}
-                  src=""
-                  unloader={false}
-                />
-              </GatsbyLink>
-            </div>,
-          ],
-          "className": "Body",
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
+            "className": "Body",
+          },
+          "ref": null,
+          "rendered": Object {
             "instance": null,
             "key": undefined,
             "nodeType": "class",
@@ -288,8 +388,7 @@ ShallowWrapper {
               "children": <p>
                 description
               </p>,
-              "clamp": 4,
-              "className": "BodyDescription",
+              "clamp": 3,
               "tagName": "div",
               "truncationChar": "…",
               "useNativeClamp": true,
@@ -308,67 +407,430 @@ ShallowWrapper {
             },
             "type": [Function],
           },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "className": "Metadata",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "div",
+        },
+      ],
+      "type": "article",
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "activeClassName": "",
+        "activeStyle": Object {},
+        "aria-label": "",
+        "children": <article
+          className="Card"
+        >
+          <div
+            className="ResourceType"
+          >
+            <h4>
+              resourceType
+              <small>
+                <FontAwesomeIcon
+                  aria-label=""
+                  border={false}
+                  className=""
+                  fixedWidth={false}
+                  flip={null}
+                  icon={
+                    Object {
+                      "icon": Array [
+                        576,
+                        512,
+                        Array [],
+                        "f35d",
+                        "M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z",
+                      ],
+                      "iconName": "external-link-alt",
+                      "prefix": "fas",
+                    }
+                  }
+                  inverse={false}
+                  listItem={false}
+                  mask={null}
+                  pull={null}
+                  pulse={false}
+                  rotation={null}
+                  size={null}
+                  spin={false}
+                  symbol={false}
+                  title=""
+                  transform={null}
+                />
+              </small>
+            </h4>
+          </div>
+          <header>
+            <h2>
+              title
+            </h2>
+          </header>
+          <div
+            className="Body"
+          >
+            <Dotdotdot
+              clamp={3}
+              tagName="div"
+              truncationChar="…"
+              useNativeClamp={true}
+            >
+              <p>
+                description
+              </p>
+            </Dotdotdot>
+          </div>
+          <div
+            className="Metadata"
+          />
+        </article>,
+        "className": "Wrapper",
+        "to": "fofofo",
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div
+              className="ResourceType"
+            >
+              <h4>
+                resourceType
+                <small>
+                  <FontAwesomeIcon
+                    aria-label=""
+                    border={false}
+                    className=""
+                    fixedWidth={false}
+                    flip={null}
+                    icon={
+                      Object {
+                        "icon": Array [
+                          576,
+                          512,
+                          Array [],
+                          "f35d",
+                          "M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z",
+                        ],
+                        "iconName": "external-link-alt",
+                        "prefix": "fas",
+                      }
+                    }
+                    inverse={false}
+                    listItem={false}
+                    mask={null}
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    symbol={false}
+                    title=""
+                    transform={null}
+                  />
+                </small>
+              </h4>
+            </div>,
+            <header>
+              <h2>
+                title
+              </h2>
+            </header>,
+            <div
+              className="Body"
+            >
+              <Dotdotdot
+                clamp={3}
+                tagName="div"
+                truncationChar="…"
+                useNativeClamp={true}
+              >
+                <p>
+                  description
+                </p>
+              </Dotdotdot>
+            </div>,
+            <div
+              className="Metadata"
+            />,
+          ],
+          "className": "Card",
+        },
+        "ref": null,
+        "rendered": Array [
           Object {
             "instance": null,
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": <GatsbyLink
-                activeClassName=""
-                activeStyle={Object {}}
-                aria-label="Learn more about this article"
-                to="resourcePath"
-              >
-                <Img
-                  container={[Function]}
-                  decode={true}
-                  loader={false}
-                  src=""
-                  unloader={false}
-                />
-              </GatsbyLink>,
-              "className": "BodyImage",
+              "children": <h4>
+                resourceType
+                <small>
+                  <FontAwesomeIcon
+                    aria-label=""
+                    border={false}
+                    className=""
+                    fixedWidth={false}
+                    flip={null}
+                    icon={
+                      Object {
+                        "icon": Array [
+                          576,
+                          512,
+                          Array [],
+                          "f35d",
+                          "M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z",
+                        ],
+                        "iconName": "external-link-alt",
+                        "prefix": "fas",
+                      }
+                    }
+                    inverse={false}
+                    listItem={false}
+                    mask={null}
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    symbol={false}
+                    title=""
+                    transform={null}
+                  />
+                </small>
+              </h4>,
+              "className": "ResourceType",
             },
             "ref": null,
             "rendered": Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "function",
+              "nodeType": "host",
               "props": Object {
-                "activeClassName": "",
-                "activeStyle": Object {},
-                "aria-label": "Learn more about this article",
-                "children": <Img
-                  container={[Function]}
-                  decode={true}
-                  loader={false}
-                  src=""
-                  unloader={false}
-                />,
-                "to": "resourcePath",
+                "children": Array [
+                  "resourceType",
+                  <small>
+                    <FontAwesomeIcon
+                      aria-label=""
+                      border={false}
+                      className=""
+                      fixedWidth={false}
+                      flip={null}
+                      icon={
+                        Object {
+                          "icon": Array [
+                            576,
+                            512,
+                            Array [],
+                            "f35d",
+                            "M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z",
+                          ],
+                          "iconName": "external-link-alt",
+                          "prefix": "fas",
+                        }
+                      }
+                      inverse={false}
+                      listItem={false}
+                      mask={null}
+                      pull={null}
+                      pulse={false}
+                      rotation={null}
+                      size={null}
+                      spin={false}
+                      symbol={false}
+                      title=""
+                      transform={null}
+                    />
+                  </small>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                "resourceType",
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <FontAwesomeIcon
+                      aria-label=""
+                      border={false}
+                      className=""
+                      fixedWidth={false}
+                      flip={null}
+                      icon={
+                        Object {
+                          "icon": Array [
+                            576,
+                            512,
+                            Array [],
+                            "f35d",
+                            "M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z",
+                          ],
+                          "iconName": "external-link-alt",
+                          "prefix": "fas",
+                        }
+                      }
+                      inverse={false}
+                      listItem={false}
+                      mask={null}
+                      pull={null}
+                      pulse={false}
+                      rotation={null}
+                      size={null}
+                      spin={false}
+                      symbol={false}
+                      title=""
+                      transform={null}
+                    />,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {
+                      "aria-label": "",
+                      "border": false,
+                      "className": "",
+                      "fixedWidth": false,
+                      "flip": null,
+                      "icon": Object {
+                        "icon": Array [
+                          576,
+                          512,
+                          Array [],
+                          "f35d",
+                          "M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z",
+                        ],
+                        "iconName": "external-link-alt",
+                        "prefix": "fas",
+                      },
+                      "inverse": false,
+                      "listItem": false,
+                      "mask": null,
+                      "pull": null,
+                      "pulse": false,
+                      "rotation": null,
+                      "size": null,
+                      "spin": false,
+                      "symbol": false,
+                      "title": "",
+                      "transform": null,
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "small",
+                },
+              ],
+              "type": "h4",
+            },
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <h2>
+                title
+              </h2>,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "title",
+              },
+              "ref": null,
+              "rendered": "title",
+              "type": "h2",
+            },
+            "type": "header",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <Dotdotdot
+                clamp={3}
+                tagName="div"
+                truncationChar="…"
+                useNativeClamp={true}
+              >
+                <p>
+                  description
+                </p>
+              </Dotdotdot>,
+              "className": "Body",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <p>
+                  description
+                </p>,
+                "clamp": 3,
+                "tagName": "div",
+                "truncationChar": "…",
+                "useNativeClamp": true,
               },
               "ref": null,
               "rendered": Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "class",
+                "nodeType": "host",
                 "props": Object {
-                  "container": [Function],
-                  "decode": true,
-                  "loader": false,
-                  "src": "",
-                  "unloader": false,
+                  "children": "description",
                 },
                 "ref": null,
-                "rendered": null,
-                "type": [Function],
+                "rendered": "description",
+                "type": "p",
               },
               "type": [Function],
             },
             "type": "div",
           },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "className": "Metadata",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "div",
+          },
         ],
-        "type": "div",
+        "type": "article",
       },
       "type": [Function],
     },

@@ -79,12 +79,9 @@ ShallowWrapper {
           <Toggle
             cardComponents={
               Array [
-                <Component Card Component
-                  author="ksingbeil"
+                <Card
                   description="What the Design System is and how it works."
-                  image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                  repository={null}
-                  resourcePath="/design-system/Z1bGIqu"
+                  link="/design-system/Z1bGIqu"
                   resourceType="Components"
                   title="About"
                 />,
@@ -99,12 +96,9 @@ ShallowWrapper {
           <Toggle
             cardComponents={
               Array [
-                <Component Card Component
-                  author="ksingbeil"
+                <Card
                   description="What the Design System is and how it works."
-                  image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                  repository={null}
-                  resourcePath="/design-system/Z1bGIqu"
+                  link="/design-system/Z1bGIqu"
                   resourceType="Components"
                   title="About"
                 />,
@@ -168,12 +162,9 @@ ShallowWrapper {
           "children": <Toggle
             cardComponents={
               Array [
-                <Component Card Component
-                  author="ksingbeil"
+                <Card
                   description="What the Design System is and how it works."
-                  image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                  repository={null}
-                  resourcePath="/design-system/Z1bGIqu"
+                  link="/design-system/Z1bGIqu"
                   resourceType="Components"
                   title="About"
                 />,
@@ -190,12 +181,9 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "cardComponents": Array [
-              <Component Card Component
-                author="ksingbeil"
+              <Card
                 description="What the Design System is and how it works."
-                image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                repository={null}
-                resourcePath="/design-system/Z1bGIqu"
+                link="/design-system/Z1bGIqu"
                 resourceType="Components"
                 title="About"
               />,
@@ -216,12 +204,9 @@ ShallowWrapper {
           "children": <Toggle
             cardComponents={
               Array [
-                <Component Card Component
-                  author="ksingbeil"
+                <Card
                   description="What the Design System is and how it works."
-                  image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                  repository={null}
-                  resourcePath="/design-system/Z1bGIqu"
+                  link="/design-system/Z1bGIqu"
                   resourceType="Components"
                   title="About"
                 />,
@@ -238,12 +223,9 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "cardComponents": Array [
-              <Component Card Component
-                author="ksingbeil"
+              <Card
                 description="What the Design System is and how it works."
-                image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                repository={null}
-                resourcePath="/design-system/Z1bGIqu"
+                link="/design-system/Z1bGIqu"
                 resourceType="Components"
                 title="About"
               />,
@@ -282,12 +264,9 @@ ShallowWrapper {
             <Toggle
               cardComponents={
                 Array [
-                  <Component Card Component
-                    author="ksingbeil"
+                  <Card
                     description="What the Design System is and how it works."
-                    image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                    repository={null}
-                    resourcePath="/design-system/Z1bGIqu"
+                    link="/design-system/Z1bGIqu"
                     resourceType="Components"
                     title="About"
                   />,
@@ -302,12 +281,9 @@ ShallowWrapper {
             <Toggle
               cardComponents={
                 Array [
-                  <Component Card Component
-                    author="ksingbeil"
+                  <Card
                     description="What the Design System is and how it works."
-                    image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                    repository={null}
-                    resourcePath="/design-system/Z1bGIqu"
+                    link="/design-system/Z1bGIqu"
                     resourceType="Components"
                     title="About"
                   />,
@@ -371,12 +347,9 @@ ShallowWrapper {
             "children": <Toggle
               cardComponents={
                 Array [
-                  <Component Card Component
-                    author="ksingbeil"
+                  <Card
                     description="What the Design System is and how it works."
-                    image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                    repository={null}
-                    resourcePath="/design-system/Z1bGIqu"
+                    link="/design-system/Z1bGIqu"
                     resourceType="Components"
                     title="About"
                   />,
@@ -393,12 +366,9 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "cardComponents": Array [
-                <Component Card Component
-                  author="ksingbeil"
+                <Card
                   description="What the Design System is and how it works."
-                  image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                  repository={null}
-                  resourcePath="/design-system/Z1bGIqu"
+                  link="/design-system/Z1bGIqu"
                   resourceType="Components"
                   title="About"
                 />,
@@ -419,12 +389,9 @@ ShallowWrapper {
             "children": <Toggle
               cardComponents={
                 Array [
-                  <Component Card Component
-                    author="ksingbeil"
+                  <Card
                     description="What the Design System is and how it works."
-                    image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                    repository={null}
-                    resourcePath="/design-system/Z1bGIqu"
+                    link="/design-system/Z1bGIqu"
                     resourceType="Components"
                     title="About"
                   />,
@@ -441,12 +408,9 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "cardComponents": Array [
-                <Component Card Component
-                  author="ksingbeil"
+                <Card
                   description="What the Design System is and how it works."
-                  image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-                  repository={null}
-                  resourcePath="/design-system/Z1bGIqu"
+                  link="/design-system/Z1bGIqu"
                   resourceType="Components"
                   title="About"
                 />,
