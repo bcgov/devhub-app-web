@@ -2,7 +2,7 @@ import React from 'react';
 import shortid from 'shortid';
 import PropTypes from 'prop-types';
 import styles from './Cards.module.css';
-import DefaultCard from './Card/DefaultCard';
+import Card from './Card/Card';
 import DocumentCard from './Card/DocumentCard';
 import RepositoryCard from './Card/RepositoryCard';
 import SelfServiceCard from './Card/SelfServiceCard';
@@ -26,74 +26,82 @@ export const getIdealCardsLargeLimit = (limit, numCards, cardsPerRow) => {
 
 const Cards = ({ topic, description, sourcePath, cards }) => {
   const cardComponents = cards.map(c => {
-    switch (c.resource.type) {
-      case RESOURCE_TYPES.RESPOSITORIES:
-        return (
-          <RepositoryCard
-            repository={c.source.name}
-            owner={c.owner}
-            title={c.unfurl.title}
-            description={c.unfurl.description}
-            resourcePath={c.resource.path}
-            image={c.unfurl.image}
-            resourceType={c.resource.type}
-            author={c.unfurl.author}
-            key={shortid.generate()}
-          />
-        );
-      case RESOURCE_TYPES.SELF_SERVICE_TOOLS:
-        return (
-          <SelfServiceCard
-            title={c.unfurl.title}
-            description={c.unfurl.description}
-            resourcePath={c.resource.path}
-            image={c.unfurl.image}
-            resourceType={c.resource.type}
-            author={c.unfurl.author}
-            key={shortid.generate()}
-          />
-        );
-      case RESOURCE_TYPES.COMPONENTS:
-        return (
-          <ComponentCard
-            repository={c.source.name}
-            owner={c.owner}
-            title={c.unfurl.title}
-            description={c.unfurl.description}
-            resourcePath={c.resource.path}
-            image={c.unfurl.image}
-            resourceType={c.resource.type}
-            author={c.unfurl.author}
-            key={shortid.generate()}
-          />
-        );
-      case RESOURCE_TYPES.DOCUMENTATION:
-        return (
-          <DocumentCard
-            repository={c.source.name}
-            owner={c.owner}
-            title={c.unfurl.title}
-            description={c.unfurl.description}
-            resourcePath={c.resource.path}
-            image={c.unfurl.image}
-            resourceType={c.resource.type}
-            author={c.unfurl.author}
-            key={shortid.generate()}
-          />
-        );
-      default:
-        return (
-          <DefaultCard
-            title={c.unfurl.title}
-            description={c.unfurl.description}
-            resourcePath={c.resource.path}
-            image={c.unfurl.image}
-            resourceType={c.resource.type}
-            author={c.unfurl.author}
-            key={shortid.generate()}
-          />
-        );
-    }
+    return (
+      <Card
+        title={c.unfurl.title}
+        link={c.resource.path}
+        description={c.unfurl.description}
+        resourceType={c.resource.type}
+      />
+    );
+    // switch (c.resource.type) {
+    //   case RESOURCE_TYPES.RESPOSITORIES:
+    //     return (
+    //       <RepositoryCard
+    //         repository={c.source.name}
+    //         owner={c.owner}
+    //         title={c.unfurl.title}
+    //         description={c.unfurl.description}
+    //         resourcePath={c.resource.path}
+    //         image={c.unfurl.image}
+    //         resourceType={c.resource.type}
+    //         author={c.unfurl.author}
+    //         key={shortid.generate()}
+    //       />
+    //     );
+    //   case RESOURCE_TYPES.SELF_SERVICE_TOOLS:
+    //     return (
+    //       <SelfServiceCard
+    //         title={c.unfurl.title}
+    //         description={c.unfurl.description}
+    //         resourcePath={c.resource.path}
+    //         image={c.unfurl.image}
+    //         resourceType={c.resource.type}
+    //         author={c.unfurl.author}
+    //         key={shortid.generate()}
+    //       />
+    //     );
+    //   case RESOURCE_TYPES.COMPONENTS:
+    //     return (
+    //       <ComponentCard
+    //         repository={c.source.name}
+    //         owner={c.owner}
+    //         title={c.unfurl.title}
+    //         description={c.unfurl.description}
+    //         resourcePath={c.resource.path}
+    //         image={c.unfurl.image}
+    //         resourceType={c.resource.type}
+    //         author={c.unfurl.author}
+    //         key={shortid.generate()}
+    //       />
+    //     );
+    //   case RESOURCE_TYPES.DOCUMENTATION:
+    //     return (
+    //       <DocumentCard
+    //         repository={c.source.name}
+    //         owner={c.owner}
+    //         title={c.unfurl.title}
+    //         description={c.unfurl.description}
+    //         resourcePath={c.resource.path}
+    //         image={c.unfurl.image}
+    //         resourceType={c.resource.type}
+    //         author={c.unfurl.author}
+    //         key={shortid.generate()}
+    //       />
+    //     );
+    //   default:
+    //     return (
+    //       <DefaultCard
+    //         title={c.unfurl.title}
+    //         description={c.unfurl.description}
+    //         resourcePath={c.resource.path}
+    //         image={c.unfurl.image}
+    //         resourceType={c.resource.type}
+    //         author={c.unfurl.author}
+    //         key={shortid.generate()}
+    //       />
+    //     );
+    // }
   });
 
   if (cardComponents.length > 0) {

@@ -1,158 +1,64 @@
 .Card {
-    width: 250px;
-    height: 350px;
-    background-color: #fff;
-    /* padding: 14px 17px 32px; */
-    position: relative;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    color: #3b3b3b;
-    flex-shrink: 0;
-    margin: 10px;
-    box-shadow: 0 1px 2px 2px #ccc;
-    transition: box-shadow 0.25s ease-out, transform .25s ease-out;
-  }
+  width: 250px;
+  height: 225px;
+  background: #FFFFFF;
+  border: 1px solid #AFAFAF;
+  box-shadow: 1px 2px 3px 0 rgba(0,0,0,0.25); 
+  border-radius: 1px;
+  padding: 13px 13px calc(13px + 3em);
+  margin: 5px;
+  text-decoration: none;
+  transition: all .25s ease-out;
+  position: relative;
+}
+.Card:hover {
+  transform: translateY(-3px);
+  box-shadow: 1px 3px 3px 0 rgba(0,0,0,0.25);
+}
+.Wrapper {
+  text-decoration: none;
+  color: initial;
+}
 
-  .Card:hover {
-    box-shadow: 0 2px 4px 2px rgba(0, 44, 95, 0.25);
-    transform: translateY(-6px);
-  }
+.Wrapper:focus, .Wrapper:hover {
+  text-decoration: none;
+  color: initial;
+}
 
-  .Card h2 svg {
-    margin-right: 10px;
-    color: #6d6d6d;
-  }  
-  
-  .Card a {
-    color: #242424;
-    text-decoration: none;
-    font-size: 16px;
-    text-transform: capitalize;
-  }
+.Card header h2 {
+  font-weight: 700;
+  font-size: 20px;
+  color: #494949;
+  line-height: 1.3;
+  order: 2;
+  word-break: break-word;
+}
 
-  .Head, .Body, .Foot, .Ribbon {
-    padding: 4px 6px;
-    margin-left: 8px;
-    margin-right: 8px;
-  }
-  .Head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-basis: 62px;
-    border-bottom: 1px solid #ccc;
+.Card  .ResourceType h4 {
+  font-size: 14px; 
+  color: #616265;
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
 
-  }
+.ResourceType small {
+  margin-left: 4px;
+}
 
-  .Head h2 {
-    flex: 1 0 75%;
-    margin: 0;
-    font-weight: 400;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
+.Card p {
+  font-size: 14px; 
+  line-height: 1.4;
+  color: #494949;
+  margin-bottom: 0;
+}
 
-  .Head h2 a {
-    font-size: 20px;
-    display: block;
-    width: 100%;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-
-  .Body {
-    overflow: hidden;
-    display: flex;
-    flex-flow: column nowrap;
-    flex-grow: 1;
-    box-sizing: border-box;
-  }
-
-  .BodyDescription {
-    font-size: 16px;
-    line-height: 1.2em;
-    min-height: 94px;
-  }
-
-  .BodyDescription p {
-    margin-bottom: 0;
-  }
-
-  .Body img {
-    max-height: 100%;
-    max-width: 100%;
-  }
-
-  .BodyImage {
-    margin: 10px 0;
-    text-align: center;
-    max-height: 125px;
-    position: relative;
-    flex-grow: 1;
-  }
-
-  .BodyImage a {
-    position: absolute;
-    width: 100%;
-    display: block;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .Ribbon {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    align-items: center;
-    list-style: none;
-    margin-bottom: 0;
-    padding: 5px 0;
-  }
-
-  .Ribbon li a {
-    font-size: 19px;
-    color: #38598a;
-    transition: color .25s ease-out;
-  }
-
-  .Ribbon li a:hover {
-    color: #00316b;
-  }
-
-  .Card .Ribbon:nth-of-type(1) {
-    border-top: 1px solid #ccc
-  }
-
-  .Card .Ribbon:nth-of-type(2) {
-    border-top: 1px solid #1a5a96
-  }
-
-  .Card .Ribbon:nth-of-type(3) {
-    border-top: 1px solid #5475a7
-  }
-
-  .Card .Ribbon:last-of-type {
-    border-top: none;
-    /* margin-left: 50px; making space for color bars on left */
-  }
-
-  .Ribbon li {
-    margin: 0 5px;
-  }
-  
-  @media screen and (min-width: 500px) {
-    .Card {
-      width: 220px;
-      height: 308px;
-    }
-  }
-
-  @media screen and (min-width: 641px) {
-    .Card {
-      width: 250px;
-      height: 400px;
-    }
-  }
+.Card .Metadata {
+  flex: 0 0 2em; 
+  position: absolute;
+  bottom: 0;
+  padding: 0 13px 13px;
+  height: 3em;
+  left: 0;
+  right: 0;
+}

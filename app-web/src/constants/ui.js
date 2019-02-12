@@ -56,7 +56,7 @@ export const CARD_ACTIONS = {
 };
 
 export const CARD_CONFIG = {
-  maxDescriptionLines: 4, // max number of lines before text should be truncated
+  maxDescriptionLines: 3, // max number of lines before text should be truncated
   maxTitleLines: 2, // similar.
   avatarIconSize: 200,
   avatarIconWidth: 45,
