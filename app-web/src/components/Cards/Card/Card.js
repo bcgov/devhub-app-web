@@ -3,23 +3,23 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import validURL from 'valid-url';
+import DotDotDot from 'react-dotdotdot';
 
 import { Link } from '../../UI/Link';
 import { CARD_CONFIG } from '../../../constants/ui';
-import DotDotDot from 'react-dotdotdot';
-
+import { ARIA_LABEL_RESOURCE, ARIA_LABEL_RESOURCE_TYPE } from '../../../constants/ariaLabels';
 import styles from './Card.module.css';
 
 const Card = ({ title, description, resourceType, link }) => (
-  <Link to={link} aria-label="" className={styles.Wrapper}>
+  <Link to={link} aria-label={ARIA_LABEL_RESOURCE} className={styles.Wrapper}>
     <article className={styles.Card}>
       {!!resourceType ? (
-        <div className={styles.ResourceType}>
+        <div className={styles.ResourceType} aria-label={ARIA_LABEL_RESOURCE_TYPE}>
           <h4>
             {resourceType}
             {validURL.isWebUri(link) ? (
               <small>
-                <FontAwesomeIcon icon={faExternalLinkAlt} aria-label="" />
+                <FontAwesomeIcon icon={faExternalLinkAlt} />
               </small>
             ) : null}
           </h4>
