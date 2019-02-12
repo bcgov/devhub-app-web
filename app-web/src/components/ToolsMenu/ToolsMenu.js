@@ -37,6 +37,7 @@ class ToolsMenu extends Component {
       totalNodeCount,
       searchWordLength,
       setSearchBarTerms,
+      query,
     } = this.props;
     return (
       <div className={styles.ToolsMenu}>
@@ -54,6 +55,7 @@ class ToolsMenu extends Component {
           searchCount={searchCount}
           totalNodeCount={totalNodeCount}
           searchWordLength={searchWordLength}
+          query={query}
         />
       </div>
     );
@@ -66,6 +68,7 @@ ToolsMenu.propTypes = {
   totalNodeCount: PropTypes.number.isRequired,
   setSearchBarTerms: PropTypes.func.isRequired,
   searchWordLength: PropTypes.number.isRequired,
+  query: PropTypes.string.isRequired,
 };
 
 export default ToolsMenu;

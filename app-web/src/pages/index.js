@@ -100,6 +100,7 @@ export class Index extends Component {
       totalResources,
       setSearchBarTerms,
       searchWordLength,
+      query,
     } = this.props;
 
     const SiphonResources = collections.map(collection => (
@@ -126,8 +127,9 @@ export class Index extends Component {
               filters={filters}
               searchCount={searchResultsLength}
               totalNodeCount={totalResources}
-              setSearchBarTerms={setSearchBarTerms}
+              setSearchBarTerms={setSearchBarTerms} // keywords i search bar
               searchWordLength={searchWordLength}
+              query={query} // value from query string
             />
             <main role="main" className={styles.Main}>
               {/* Element used for react-scroll targeting */}

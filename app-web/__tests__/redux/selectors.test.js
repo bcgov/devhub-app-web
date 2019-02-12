@@ -71,7 +71,9 @@ describe('Reselect Selectors', () => {
   });
 
   it('returns the search results length', () => {
-    expect(selectors.selectSearchResultsLength(STATE)).toEqual(STATE.siphon.searchResults.length);
+    expect(selectors.selectSearchResultsLength(STATE)).toEqual(
+      Object.keys(STATE.siphon.searchResults).length,
+    );
   });
 
   it('returns the total resource', () => {
