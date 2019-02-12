@@ -19,10 +19,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 
-const SearchFeedback = ({ searchCount, totalNodeCount, searchWordLength }) => {
+const SearchFeedback = ({ searchCount, totalNodeCount, searchWordLength, query }) => {
   const path = `/?q=`;
   let caption = null;
-  if (searchCount === 0) {
+  // if search results returned nothing and there was a query made
+  if (searchCount === 0 && query !== null) {
     caption = (
       <p>
         No resources found :( Click <Link to={path}>here</Link> to reset or otherwise try searching

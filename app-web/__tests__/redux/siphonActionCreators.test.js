@@ -25,12 +25,12 @@ describe('actions', () => {
 
   it('should create an action to add a filter group to filters list', () => {
     const expected = ACTIONS.ADD_FILTER;
-    expect(actions.addFilter('foo')).toEqual(expected);
+    expect(actions.addFilter(expected.payload.key)).toEqual(expected);
   });
 
   it('should create an action to remove a filter group to filters list', () => {
     const expected = ACTIONS.REMOVE_FILTER;
-    expect(actions.removeFilter('bar')).toEqual(expected);
+    expect(actions.removeFilter(expected.payload.key)).toEqual(expected);
   });
 
   it('should create an action to set search results', () => {

@@ -12,11 +12,7 @@ ShallowWrapper {
           "nodes": Array [
             Object {
               "_metadata": Object {
-                "position": Array [
-                  0,
-                  0,
-                  0,
-                ],
+                "position": "000.000.000",
               },
               "attributes": Object {
                 "personas": Array [
@@ -53,11 +49,7 @@ ShallowWrapper {
             },
             Object {
               "_metadata": Object {
-                "position": Array [
-                  0,
-                  0,
-                  1,
-                ],
+                "position": "000.000.001",
               },
               "attributes": Object {
                 "personas": Array [
@@ -94,11 +86,7 @@ ShallowWrapper {
             },
             Object {
               "_metadata": Object {
-                "position": Array [
-                  0,
-                  0,
-                  2,
-                ],
+                "position": "000.000.002",
               },
               "attributes": Object {
                 "personas": Array [
@@ -135,11 +123,7 @@ ShallowWrapper {
             },
             Object {
               "_metadata": Object {
-                "position": Array [
-                  0,
-                  0,
-                  3,
-                ],
+                "position": "000.000.003",
               },
               "attributes": Object {
                 "personas": Array [
@@ -184,11 +168,7 @@ ShallowWrapper {
           "nodes": Array [
             Object {
               "_metadata": Object {
-                "position": Array [
-                  1,
-                  0,
-                  0,
-                ],
+                "position": "001.000.000",
               },
               "attributes": Object {
                 "personas": Array [
@@ -225,11 +205,7 @@ ShallowWrapper {
             },
             Object {
               "_metadata": Object {
-                "position": Array [
-                  1,
-                  0,
-                  1,
-                ],
+                "position": "001.000.001",
               },
               "attributes": Object {
                 "personas": Array [
@@ -242,6 +218,43 @@ ShallowWrapper {
                 },
               },
               "id": "6",
+              "parent": Object {
+                "id": "collection-2",
+              },
+              "resource": Object {
+                "path": "/design-system/Z1bGIqu",
+                "type": "Documentation",
+              },
+              "source": Object {
+                "displayName": "Design System",
+              },
+              "unfurl": Object {
+                "author": "ksingbeil",
+                "data1": "",
+                "data2": "",
+                "description": "What the Design System is and how it works.",
+                "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                "label1": "",
+                "label2": "",
+                "title": "About",
+                "type": "markdown",
+              },
+            },
+            Object {
+              "_metadata": Object {
+                "position": "001.000.001",
+              },
+              "attributes": Object {
+                "personas": Array [
+                  "Product Owner",
+                ],
+              },
+              "childMarkdownRemark": Object {
+                "frontmatter": Object {
+                  "pageOnly": false,
+                },
+              },
+              "id": "7",
               "parent": Object {
                 "id": "collection-2",
               },
@@ -281,11 +294,7 @@ ShallowWrapper {
                 "nodes": Array [
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        0,
-                        0,
-                        0,
-                      ],
+                      "position": "000.000.000",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -322,11 +331,7 @@ ShallowWrapper {
                   },
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        0,
-                        0,
-                        1,
-                      ],
+                      "position": "000.000.001",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -363,11 +368,7 @@ ShallowWrapper {
                   },
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        0,
-                        0,
-                        2,
-                      ],
+                      "position": "000.000.002",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -404,11 +405,7 @@ ShallowWrapper {
                   },
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        0,
-                        0,
-                        3,
-                      ],
+                      "position": "000.000.003",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -455,11 +452,7 @@ ShallowWrapper {
                 "nodes": Array [
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        1,
-                        0,
-                        0,
-                      ],
+                      "position": "001.000.000",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -496,11 +489,7 @@ ShallowWrapper {
                   },
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        1,
-                        0,
-                        1,
-                      ],
+                      "position": "001.000.001",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -513,6 +502,43 @@ ShallowWrapper {
                       },
                     },
                     "id": "6",
+                    "parent": Object {
+                      "id": "collection-2",
+                    },
+                    "resource": Object {
+                      "path": "/design-system/Z1bGIqu",
+                      "type": "Documentation",
+                    },
+                    "source": Object {
+                      "displayName": "Design System",
+                    },
+                    "unfurl": Object {
+                      "author": "ksingbeil",
+                      "data1": "",
+                      "data2": "",
+                      "description": "What the Design System is and how it works.",
+                      "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                      "label1": "",
+                      "label2": "",
+                      "title": "About",
+                      "type": "markdown",
+                    },
+                  },
+                  Object {
+                    "_metadata": Object {
+                      "position": "001.000.001",
+                    },
+                    "attributes": Object {
+                      "personas": Array [
+                        "Product Owner",
+                      ],
+                    },
+                    "childMarkdownRemark": Object {
+                      "frontmatter": Object {
+                        "pageOnly": false,
+                      },
+                    },
+                    "id": "7",
                     "parent": Object {
                       "id": "collection-2",
                     },
@@ -590,11 +616,7 @@ ShallowWrapper {
                 "nodes": Array [
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        0,
-                        0,
-                        0,
-                      ],
+                      "position": "000.000.000",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -631,11 +653,7 @@ ShallowWrapper {
                   },
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        0,
-                        0,
-                        1,
-                      ],
+                      "position": "000.000.001",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -672,11 +690,7 @@ ShallowWrapper {
                   },
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        0,
-                        0,
-                        2,
-                      ],
+                      "position": "000.000.002",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -713,11 +727,7 @@ ShallowWrapper {
                   },
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        0,
-                        0,
-                        3,
-                      ],
+                      "position": "000.000.003",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -762,11 +772,7 @@ ShallowWrapper {
                 "nodes": Array [
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        1,
-                        0,
-                        0,
-                      ],
+                      "position": "001.000.000",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -803,11 +809,7 @@ ShallowWrapper {
                   },
                   Object {
                     "_metadata": Object {
-                      "position": Array [
-                        1,
-                        0,
-                        1,
-                      ],
+                      "position": "001.000.001",
                     },
                     "attributes": Object {
                       "personas": Array [
@@ -820,6 +822,43 @@ ShallowWrapper {
                       },
                     },
                     "id": "6",
+                    "parent": Object {
+                      "id": "collection-2",
+                    },
+                    "resource": Object {
+                      "path": "/design-system/Z1bGIqu",
+                      "type": "Documentation",
+                    },
+                    "source": Object {
+                      "displayName": "Design System",
+                    },
+                    "unfurl": Object {
+                      "author": "ksingbeil",
+                      "data1": "",
+                      "data2": "",
+                      "description": "What the Design System is and how it works.",
+                      "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                      "label1": "",
+                      "label2": "",
+                      "title": "About",
+                      "type": "markdown",
+                    },
+                  },
+                  Object {
+                    "_metadata": Object {
+                      "position": "001.000.001",
+                    },
+                    "attributes": Object {
+                      "personas": Array [
+                        "Product Owner",
+                      ],
+                    },
+                    "childMarkdownRemark": Object {
+                      "frontmatter": Object {
+                        "pageOnly": false,
+                      },
+                    },
+                    "id": "7",
                     "parent": Object {
                       "id": "collection-2",
                     },
@@ -984,11 +1023,7 @@ ShallowWrapper {
                         Array [
                           Object {
                             "_metadata": Object {
-                              "position": Array [
-                                0,
-                                0,
-                                0,
-                              ],
+                              "position": "000.000.000",
                             },
                             "attributes": Object {
                               "personas": Array [
@@ -1025,11 +1060,7 @@ ShallowWrapper {
                           },
                           Object {
                             "_metadata": Object {
-                              "position": Array [
-                                0,
-                                0,
-                                1,
-                              ],
+                              "position": "000.000.001",
                             },
                             "attributes": Object {
                               "personas": Array [
@@ -1066,11 +1097,7 @@ ShallowWrapper {
                           },
                           Object {
                             "_metadata": Object {
-                              "position": Array [
-                                0,
-                                0,
-                                2,
-                              ],
+                              "position": "000.000.002",
                             },
                             "attributes": Object {
                               "personas": Array [
@@ -1107,11 +1134,7 @@ ShallowWrapper {
                           },
                           Object {
                             "_metadata": Object {
-                              "position": Array [
-                                0,
-                                0,
-                                3,
-                              ],
+                              "position": "000.000.003",
                             },
                             "attributes": Object {
                               "personas": Array [
@@ -1156,11 +1179,7 @@ ShallowWrapper {
                         Array [
                           Object {
                             "_metadata": Object {
-                              "position": Array [
-                                1,
-                                0,
-                                0,
-                              ],
+                              "position": "001.000.000",
                             },
                             "attributes": Object {
                               "personas": Array [
@@ -1197,11 +1216,7 @@ ShallowWrapper {
                           },
                           Object {
                             "_metadata": Object {
-                              "position": Array [
-                                1,
-                                0,
-                                1,
-                              ],
+                              "position": "001.000.001",
                             },
                             "attributes": Object {
                               "personas": Array [
@@ -1214,6 +1229,43 @@ ShallowWrapper {
                               },
                             },
                             "id": "6",
+                            "parent": Object {
+                              "id": "collection-2",
+                            },
+                            "resource": Object {
+                              "path": "/design-system/Z1bGIqu",
+                              "type": "Documentation",
+                            },
+                            "source": Object {
+                              "displayName": "Design System",
+                            },
+                            "unfurl": Object {
+                              "author": "ksingbeil",
+                              "data1": "",
+                              "data2": "",
+                              "description": "What the Design System is and how it works.",
+                              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                              "label1": "",
+                              "label2": "",
+                              "title": "About",
+                              "type": "markdown",
+                            },
+                          },
+                          Object {
+                            "_metadata": Object {
+                              "position": "001.000.001",
+                            },
+                            "attributes": Object {
+                              "personas": Array [
+                                "Product Owner",
+                              ],
+                            },
+                            "childMarkdownRemark": Object {
+                              "frontmatter": Object {
+                                "pageOnly": false,
+                              },
+                            },
+                            "id": "7",
                             "parent": Object {
                               "id": "collection-2",
                             },
@@ -1388,11 +1440,7 @@ ShallowWrapper {
                           Array [
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  0,
-                                  0,
-                                  0,
-                                ],
+                                "position": "000.000.000",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -1429,11 +1477,7 @@ ShallowWrapper {
                             },
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  0,
-                                  0,
-                                  1,
-                                ],
+                                "position": "000.000.001",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -1470,11 +1514,7 @@ ShallowWrapper {
                             },
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  0,
-                                  0,
-                                  2,
-                                ],
+                                "position": "000.000.002",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -1511,11 +1551,7 @@ ShallowWrapper {
                             },
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  0,
-                                  0,
-                                  3,
-                                ],
+                                "position": "000.000.003",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -1560,11 +1596,7 @@ ShallowWrapper {
                           Array [
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  1,
-                                  0,
-                                  0,
-                                ],
+                                "position": "001.000.000",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -1601,11 +1633,7 @@ ShallowWrapper {
                             },
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  1,
-                                  0,
-                                  1,
-                                ],
+                                "position": "001.000.001",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -1618,6 +1646,43 @@ ShallowWrapper {
                                 },
                               },
                               "id": "6",
+                              "parent": Object {
+                                "id": "collection-2",
+                              },
+                              "resource": Object {
+                                "path": "/design-system/Z1bGIqu",
+                                "type": "Documentation",
+                              },
+                              "source": Object {
+                                "displayName": "Design System",
+                              },
+                              "unfurl": Object {
+                                "author": "ksingbeil",
+                                "data1": "",
+                                "data2": "",
+                                "description": "What the Design System is and how it works.",
+                                "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                "label1": "",
+                                "label2": "",
+                                "title": "About",
+                                "type": "markdown",
+                              },
+                            },
+                            Object {
+                              "_metadata": Object {
+                                "position": "001.000.001",
+                              },
+                              "attributes": Object {
+                                "personas": Array [
+                                  "Product Owner",
+                                ],
+                              },
+                              "childMarkdownRemark": Object {
+                                "frontmatter": Object {
+                                  "pageOnly": false,
+                                },
+                              },
+                              "id": "7",
                               "parent": Object {
                                 "id": "collection-2",
                               },
@@ -1758,11 +1823,7 @@ ShallowWrapper {
                             Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "000.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -1799,11 +1860,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "000.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -1840,11 +1897,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    2,
-                                  ],
+                                  "position": "000.000.002",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -1881,11 +1934,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    3,
-                                  ],
+                                  "position": "000.000.003",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -1930,11 +1979,7 @@ ShallowWrapper {
                             Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "001.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -1971,11 +2016,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "001.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -1988,6 +2029,43 @@ ShallowWrapper {
                                   },
                                 },
                                 "id": "6",
+                                "parent": Object {
+                                  "id": "collection-2",
+                                },
+                                "resource": Object {
+                                  "path": "/design-system/Z1bGIqu",
+                                  "type": "Documentation",
+                                },
+                                "source": Object {
+                                  "displayName": "Design System",
+                                },
+                                "unfurl": Object {
+                                  "author": "ksingbeil",
+                                  "data1": "",
+                                  "data2": "",
+                                  "description": "What the Design System is and how it works.",
+                                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                  "label1": "",
+                                  "label2": "",
+                                  "title": "About",
+                                  "type": "markdown",
+                                },
+                              },
+                              Object {
+                                "_metadata": Object {
+                                  "position": "001.000.001",
+                                },
+                                "attributes": Object {
+                                  "personas": Array [
+                                    "Product Owner",
+                                  ],
+                                },
+                                "childMarkdownRemark": Object {
+                                  "frontmatter": Object {
+                                    "pageOnly": false,
+                                  },
+                                },
+                                "id": "7",
                                 "parent": Object {
                                   "id": "collection-2",
                                 },
@@ -2070,6 +2148,7 @@ ShallowWrapper {
                       "value": "Product Owner",
                     },
                   ],
+                  "query": undefined,
                   "searchCount": undefined,
                   "searchWordLength": undefined,
                   "setSearchBarTerms": undefined,
@@ -2098,11 +2177,7 @@ ShallowWrapper {
                             Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "000.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2139,11 +2214,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "000.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2180,11 +2251,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    2,
-                                  ],
+                                  "position": "000.000.002",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2221,11 +2288,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    3,
-                                  ],
+                                  "position": "000.000.003",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2270,11 +2333,7 @@ ShallowWrapper {
                             Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "001.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2311,11 +2370,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "001.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2328,6 +2383,43 @@ ShallowWrapper {
                                   },
                                 },
                                 "id": "6",
+                                "parent": Object {
+                                  "id": "collection-2",
+                                },
+                                "resource": Object {
+                                  "path": "/design-system/Z1bGIqu",
+                                  "type": "Documentation",
+                                },
+                                "source": Object {
+                                  "displayName": "Design System",
+                                },
+                                "unfurl": Object {
+                                  "author": "ksingbeil",
+                                  "data1": "",
+                                  "data2": "",
+                                  "description": "What the Design System is and how it works.",
+                                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                  "label1": "",
+                                  "label2": "",
+                                  "title": "About",
+                                  "type": "markdown",
+                                },
+                              },
+                              Object {
+                                "_metadata": Object {
+                                  "position": "001.000.001",
+                                },
+                                "attributes": Object {
+                                  "personas": Array [
+                                    "Product Owner",
+                                  ],
+                                },
+                                "childMarkdownRemark": Object {
+                                  "frontmatter": Object {
+                                    "pageOnly": false,
+                                  },
+                                },
+                                "id": "7",
                                 "parent": Object {
                                   "id": "collection-2",
                                 },
@@ -2378,11 +2470,7 @@ ShallowWrapper {
                             Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "000.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2419,11 +2507,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "000.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2460,11 +2544,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    2,
-                                  ],
+                                  "position": "000.000.002",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2501,11 +2581,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    3,
-                                  ],
+                                  "position": "000.000.003",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2550,11 +2626,7 @@ ShallowWrapper {
                             Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "001.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2591,11 +2663,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "001.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2608,6 +2676,43 @@ ShallowWrapper {
                                   },
                                 },
                                 "id": "6",
+                                "parent": Object {
+                                  "id": "collection-2",
+                                },
+                                "resource": Object {
+                                  "path": "/design-system/Z1bGIqu",
+                                  "type": "Documentation",
+                                },
+                                "source": Object {
+                                  "displayName": "Design System",
+                                },
+                                "unfurl": Object {
+                                  "author": "ksingbeil",
+                                  "data1": "",
+                                  "data2": "",
+                                  "description": "What the Design System is and how it works.",
+                                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                  "label1": "",
+                                  "label2": "",
+                                  "title": "About",
+                                  "type": "markdown",
+                                },
+                              },
+                              Object {
+                                "_metadata": Object {
+                                  "position": "001.000.001",
+                                },
+                                "attributes": Object {
+                                  "personas": Array [
+                                    "Product Owner",
+                                  ],
+                                },
+                                "childMarkdownRemark": Object {
+                                  "frontmatter": Object {
+                                    "pageOnly": false,
+                                  },
+                                },
+                                "id": "7",
                                 "parent": Object {
                                   "id": "collection-2",
                                 },
@@ -2653,11 +2758,7 @@ ShallowWrapper {
                             Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "000.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2694,11 +2795,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "000.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2735,11 +2832,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    2,
-                                  ],
+                                  "position": "000.000.002",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2776,11 +2869,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    3,
-                                  ],
+                                  "position": "000.000.003",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2825,11 +2914,7 @@ ShallowWrapper {
                             Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "001.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2866,11 +2951,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "001.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -2883,6 +2964,43 @@ ShallowWrapper {
                                   },
                                 },
                                 "id": "6",
+                                "parent": Object {
+                                  "id": "collection-2",
+                                },
+                                "resource": Object {
+                                  "path": "/design-system/Z1bGIqu",
+                                  "type": "Documentation",
+                                },
+                                "source": Object {
+                                  "displayName": "Design System",
+                                },
+                                "unfurl": Object {
+                                  "author": "ksingbeil",
+                                  "data1": "",
+                                  "data2": "",
+                                  "description": "What the Design System is and how it works.",
+                                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                  "label1": "",
+                                  "label2": "",
+                                  "title": "About",
+                                  "type": "markdown",
+                                },
+                              },
+                              Object {
+                                "_metadata": Object {
+                                  "position": "001.000.001",
+                                },
+                                "attributes": Object {
+                                  "personas": Array [
+                                    "Product Owner",
+                                  ],
+                                },
+                                "childMarkdownRemark": Object {
+                                  "frontmatter": Object {
+                                    "pageOnly": false,
+                                  },
+                                },
+                                "id": "7",
                                 "parent": Object {
                                   "id": "collection-2",
                                 },
@@ -2925,11 +3043,7 @@ ShallowWrapper {
                               Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "000.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -2966,11 +3080,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "000.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -3007,11 +3117,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      2,
-                                    ],
+                                    "position": "000.000.002",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -3048,11 +3154,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      3,
-                                    ],
+                                    "position": "000.000.003",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -3097,11 +3199,7 @@ ShallowWrapper {
                               Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "001.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -3138,11 +3236,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "001.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -3155,6 +3249,43 @@ ShallowWrapper {
                                     },
                                   },
                                   "id": "6",
+                                  "parent": Object {
+                                    "id": "collection-2",
+                                  },
+                                  "resource": Object {
+                                    "path": "/design-system/Z1bGIqu",
+                                    "type": "Documentation",
+                                  },
+                                  "source": Object {
+                                    "displayName": "Design System",
+                                  },
+                                  "unfurl": Object {
+                                    "author": "ksingbeil",
+                                    "data1": "",
+                                    "data2": "",
+                                    "description": "What the Design System is and how it works.",
+                                    "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                    "label1": "",
+                                    "label2": "",
+                                    "title": "About",
+                                    "type": "markdown",
+                                  },
+                                },
+                                Object {
+                                  "_metadata": Object {
+                                    "position": "001.000.001",
+                                  },
+                                  "attributes": Object {
+                                    "personas": Array [
+                                      "Product Owner",
+                                    ],
+                                  },
+                                  "childMarkdownRemark": Object {
+                                    "frontmatter": Object {
+                                      "pageOnly": false,
+                                    },
+                                  },
+                                  "id": "7",
                                   "parent": Object {
                                     "id": "collection-2",
                                   },
@@ -3195,11 +3326,7 @@ ShallowWrapper {
                             "cards": Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "000.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -3236,11 +3363,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "000.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -3277,11 +3400,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    2,
-                                  ],
+                                  "position": "000.000.002",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -3318,11 +3437,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    3,
-                                  ],
+                                  "position": "000.000.003",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -3374,11 +3489,7 @@ ShallowWrapper {
                             "cards": Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "001.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -3415,11 +3526,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "001.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -3432,6 +3539,43 @@ ShallowWrapper {
                                   },
                                 },
                                 "id": "6",
+                                "parent": Object {
+                                  "id": "collection-2",
+                                },
+                                "resource": Object {
+                                  "path": "/design-system/Z1bGIqu",
+                                  "type": "Documentation",
+                                },
+                                "source": Object {
+                                  "displayName": "Design System",
+                                },
+                                "unfurl": Object {
+                                  "author": "ksingbeil",
+                                  "data1": "",
+                                  "data2": "",
+                                  "description": "What the Design System is and how it works.",
+                                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                  "label1": "",
+                                  "label2": "",
+                                  "title": "About",
+                                  "type": "markdown",
+                                },
+                              },
+                              Object {
+                                "_metadata": Object {
+                                  "position": "001.000.001",
+                                },
+                                "attributes": Object {
+                                  "personas": Array [
+                                    "Product Owner",
+                                  ],
+                                },
+                                "childMarkdownRemark": Object {
+                                  "frontmatter": Object {
+                                    "pageOnly": false,
+                                  },
+                                },
+                                "id": "7",
                                 "parent": Object {
                                   "id": "collection-2",
                                 },
@@ -3595,11 +3739,7 @@ ShallowWrapper {
                           Array [
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  0,
-                                  0,
-                                  0,
-                                ],
+                                "position": "000.000.000",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -3636,11 +3776,7 @@ ShallowWrapper {
                             },
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  0,
-                                  0,
-                                  1,
-                                ],
+                                "position": "000.000.001",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -3677,11 +3813,7 @@ ShallowWrapper {
                             },
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  0,
-                                  0,
-                                  2,
-                                ],
+                                "position": "000.000.002",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -3718,11 +3850,7 @@ ShallowWrapper {
                             },
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  0,
-                                  0,
-                                  3,
-                                ],
+                                "position": "000.000.003",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -3767,11 +3895,7 @@ ShallowWrapper {
                           Array [
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  1,
-                                  0,
-                                  0,
-                                ],
+                                "position": "001.000.000",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -3808,11 +3932,7 @@ ShallowWrapper {
                             },
                             Object {
                               "_metadata": Object {
-                                "position": Array [
-                                  1,
-                                  0,
-                                  1,
-                                ],
+                                "position": "001.000.001",
                               },
                               "attributes": Object {
                                 "personas": Array [
@@ -3825,6 +3945,43 @@ ShallowWrapper {
                                 },
                               },
                               "id": "6",
+                              "parent": Object {
+                                "id": "collection-2",
+                              },
+                              "resource": Object {
+                                "path": "/design-system/Z1bGIqu",
+                                "type": "Documentation",
+                              },
+                              "source": Object {
+                                "displayName": "Design System",
+                              },
+                              "unfurl": Object {
+                                "author": "ksingbeil",
+                                "data1": "",
+                                "data2": "",
+                                "description": "What the Design System is and how it works.",
+                                "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                "label1": "",
+                                "label2": "",
+                                "title": "About",
+                                "type": "markdown",
+                              },
+                            },
+                            Object {
+                              "_metadata": Object {
+                                "position": "001.000.001",
+                              },
+                              "attributes": Object {
+                                "personas": Array [
+                                  "Product Owner",
+                                ],
+                              },
+                              "childMarkdownRemark": Object {
+                                "frontmatter": Object {
+                                  "pageOnly": false,
+                                },
+                              },
+                              "id": "7",
                               "parent": Object {
                                 "id": "collection-2",
                               },
@@ -3999,11 +4156,7 @@ ShallowWrapper {
                             Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "000.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -4040,11 +4193,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "000.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -4081,11 +4230,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    2,
-                                  ],
+                                  "position": "000.000.002",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -4122,11 +4267,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    0,
-                                    0,
-                                    3,
-                                  ],
+                                  "position": "000.000.003",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -4171,11 +4312,7 @@ ShallowWrapper {
                             Array [
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    0,
-                                  ],
+                                  "position": "001.000.000",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -4212,11 +4349,7 @@ ShallowWrapper {
                               },
                               Object {
                                 "_metadata": Object {
-                                  "position": Array [
-                                    1,
-                                    0,
-                                    1,
-                                  ],
+                                  "position": "001.000.001",
                                 },
                                 "attributes": Object {
                                   "personas": Array [
@@ -4229,6 +4362,43 @@ ShallowWrapper {
                                   },
                                 },
                                 "id": "6",
+                                "parent": Object {
+                                  "id": "collection-2",
+                                },
+                                "resource": Object {
+                                  "path": "/design-system/Z1bGIqu",
+                                  "type": "Documentation",
+                                },
+                                "source": Object {
+                                  "displayName": "Design System",
+                                },
+                                "unfurl": Object {
+                                  "author": "ksingbeil",
+                                  "data1": "",
+                                  "data2": "",
+                                  "description": "What the Design System is and how it works.",
+                                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                  "label1": "",
+                                  "label2": "",
+                                  "title": "About",
+                                  "type": "markdown",
+                                },
+                              },
+                              Object {
+                                "_metadata": Object {
+                                  "position": "001.000.001",
+                                },
+                                "attributes": Object {
+                                  "personas": Array [
+                                    "Product Owner",
+                                  ],
+                                },
+                                "childMarkdownRemark": Object {
+                                  "frontmatter": Object {
+                                    "pageOnly": false,
+                                  },
+                                },
+                                "id": "7",
                                 "parent": Object {
                                   "id": "collection-2",
                                 },
@@ -4369,11 +4539,7 @@ ShallowWrapper {
                               Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "000.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -4410,11 +4576,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "000.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -4451,11 +4613,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      2,
-                                    ],
+                                    "position": "000.000.002",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -4492,11 +4650,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      3,
-                                    ],
+                                    "position": "000.000.003",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -4541,11 +4695,7 @@ ShallowWrapper {
                               Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "001.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -4582,11 +4732,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "001.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -4599,6 +4745,43 @@ ShallowWrapper {
                                     },
                                   },
                                   "id": "6",
+                                  "parent": Object {
+                                    "id": "collection-2",
+                                  },
+                                  "resource": Object {
+                                    "path": "/design-system/Z1bGIqu",
+                                    "type": "Documentation",
+                                  },
+                                  "source": Object {
+                                    "displayName": "Design System",
+                                  },
+                                  "unfurl": Object {
+                                    "author": "ksingbeil",
+                                    "data1": "",
+                                    "data2": "",
+                                    "description": "What the Design System is and how it works.",
+                                    "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                    "label1": "",
+                                    "label2": "",
+                                    "title": "About",
+                                    "type": "markdown",
+                                  },
+                                },
+                                Object {
+                                  "_metadata": Object {
+                                    "position": "001.000.001",
+                                  },
+                                  "attributes": Object {
+                                    "personas": Array [
+                                      "Product Owner",
+                                    ],
+                                  },
+                                  "childMarkdownRemark": Object {
+                                    "frontmatter": Object {
+                                      "pageOnly": false,
+                                    },
+                                  },
+                                  "id": "7",
                                   "parent": Object {
                                     "id": "collection-2",
                                   },
@@ -4681,6 +4864,7 @@ ShallowWrapper {
                         "value": "Product Owner",
                       },
                     ],
+                    "query": undefined,
                     "searchCount": undefined,
                     "searchWordLength": undefined,
                     "setSearchBarTerms": undefined,
@@ -4709,11 +4893,7 @@ ShallowWrapper {
                               Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "000.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -4750,11 +4930,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "000.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -4791,11 +4967,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      2,
-                                    ],
+                                    "position": "000.000.002",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -4832,11 +5004,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      3,
-                                    ],
+                                    "position": "000.000.003",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -4881,11 +5049,7 @@ ShallowWrapper {
                               Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "001.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -4922,11 +5086,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "001.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -4939,6 +5099,43 @@ ShallowWrapper {
                                     },
                                   },
                                   "id": "6",
+                                  "parent": Object {
+                                    "id": "collection-2",
+                                  },
+                                  "resource": Object {
+                                    "path": "/design-system/Z1bGIqu",
+                                    "type": "Documentation",
+                                  },
+                                  "source": Object {
+                                    "displayName": "Design System",
+                                  },
+                                  "unfurl": Object {
+                                    "author": "ksingbeil",
+                                    "data1": "",
+                                    "data2": "",
+                                    "description": "What the Design System is and how it works.",
+                                    "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                    "label1": "",
+                                    "label2": "",
+                                    "title": "About",
+                                    "type": "markdown",
+                                  },
+                                },
+                                Object {
+                                  "_metadata": Object {
+                                    "position": "001.000.001",
+                                  },
+                                  "attributes": Object {
+                                    "personas": Array [
+                                      "Product Owner",
+                                    ],
+                                  },
+                                  "childMarkdownRemark": Object {
+                                    "frontmatter": Object {
+                                      "pageOnly": false,
+                                    },
+                                  },
+                                  "id": "7",
                                   "parent": Object {
                                     "id": "collection-2",
                                   },
@@ -4989,11 +5186,7 @@ ShallowWrapper {
                               Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "000.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5030,11 +5223,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "000.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5071,11 +5260,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      2,
-                                    ],
+                                    "position": "000.000.002",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5112,11 +5297,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      3,
-                                    ],
+                                    "position": "000.000.003",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5161,11 +5342,7 @@ ShallowWrapper {
                               Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "001.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5202,11 +5379,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "001.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5219,6 +5392,43 @@ ShallowWrapper {
                                     },
                                   },
                                   "id": "6",
+                                  "parent": Object {
+                                    "id": "collection-2",
+                                  },
+                                  "resource": Object {
+                                    "path": "/design-system/Z1bGIqu",
+                                    "type": "Documentation",
+                                  },
+                                  "source": Object {
+                                    "displayName": "Design System",
+                                  },
+                                  "unfurl": Object {
+                                    "author": "ksingbeil",
+                                    "data1": "",
+                                    "data2": "",
+                                    "description": "What the Design System is and how it works.",
+                                    "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                    "label1": "",
+                                    "label2": "",
+                                    "title": "About",
+                                    "type": "markdown",
+                                  },
+                                },
+                                Object {
+                                  "_metadata": Object {
+                                    "position": "001.000.001",
+                                  },
+                                  "attributes": Object {
+                                    "personas": Array [
+                                      "Product Owner",
+                                    ],
+                                  },
+                                  "childMarkdownRemark": Object {
+                                    "frontmatter": Object {
+                                      "pageOnly": false,
+                                    },
+                                  },
+                                  "id": "7",
                                   "parent": Object {
                                     "id": "collection-2",
                                   },
@@ -5264,11 +5474,7 @@ ShallowWrapper {
                               Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "000.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5305,11 +5511,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "000.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5346,11 +5548,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      2,
-                                    ],
+                                    "position": "000.000.002",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5387,11 +5585,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      3,
-                                    ],
+                                    "position": "000.000.003",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5436,11 +5630,7 @@ ShallowWrapper {
                               Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "001.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5477,11 +5667,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "001.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5494,6 +5680,43 @@ ShallowWrapper {
                                     },
                                   },
                                   "id": "6",
+                                  "parent": Object {
+                                    "id": "collection-2",
+                                  },
+                                  "resource": Object {
+                                    "path": "/design-system/Z1bGIqu",
+                                    "type": "Documentation",
+                                  },
+                                  "source": Object {
+                                    "displayName": "Design System",
+                                  },
+                                  "unfurl": Object {
+                                    "author": "ksingbeil",
+                                    "data1": "",
+                                    "data2": "",
+                                    "description": "What the Design System is and how it works.",
+                                    "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                    "label1": "",
+                                    "label2": "",
+                                    "title": "About",
+                                    "type": "markdown",
+                                  },
+                                },
+                                Object {
+                                  "_metadata": Object {
+                                    "position": "001.000.001",
+                                  },
+                                  "attributes": Object {
+                                    "personas": Array [
+                                      "Product Owner",
+                                    ],
+                                  },
+                                  "childMarkdownRemark": Object {
+                                    "frontmatter": Object {
+                                      "pageOnly": false,
+                                    },
+                                  },
+                                  "id": "7",
                                   "parent": Object {
                                     "id": "collection-2",
                                   },
@@ -5536,11 +5759,7 @@ ShallowWrapper {
                                 Array [
                                   Object {
                                     "_metadata": Object {
-                                      "position": Array [
-                                        0,
-                                        0,
-                                        0,
-                                      ],
+                                      "position": "000.000.000",
                                     },
                                     "attributes": Object {
                                       "personas": Array [
@@ -5577,11 +5796,7 @@ ShallowWrapper {
                                   },
                                   Object {
                                     "_metadata": Object {
-                                      "position": Array [
-                                        0,
-                                        0,
-                                        1,
-                                      ],
+                                      "position": "000.000.001",
                                     },
                                     "attributes": Object {
                                       "personas": Array [
@@ -5618,11 +5833,7 @@ ShallowWrapper {
                                   },
                                   Object {
                                     "_metadata": Object {
-                                      "position": Array [
-                                        0,
-                                        0,
-                                        2,
-                                      ],
+                                      "position": "000.000.002",
                                     },
                                     "attributes": Object {
                                       "personas": Array [
@@ -5659,11 +5870,7 @@ ShallowWrapper {
                                   },
                                   Object {
                                     "_metadata": Object {
-                                      "position": Array [
-                                        0,
-                                        0,
-                                        3,
-                                      ],
+                                      "position": "000.000.003",
                                     },
                                     "attributes": Object {
                                       "personas": Array [
@@ -5708,11 +5915,7 @@ ShallowWrapper {
                                 Array [
                                   Object {
                                     "_metadata": Object {
-                                      "position": Array [
-                                        1,
-                                        0,
-                                        0,
-                                      ],
+                                      "position": "001.000.000",
                                     },
                                     "attributes": Object {
                                       "personas": Array [
@@ -5749,11 +5952,7 @@ ShallowWrapper {
                                   },
                                   Object {
                                     "_metadata": Object {
-                                      "position": Array [
-                                        1,
-                                        0,
-                                        1,
-                                      ],
+                                      "position": "001.000.001",
                                     },
                                     "attributes": Object {
                                       "personas": Array [
@@ -5766,6 +5965,43 @@ ShallowWrapper {
                                       },
                                     },
                                     "id": "6",
+                                    "parent": Object {
+                                      "id": "collection-2",
+                                    },
+                                    "resource": Object {
+                                      "path": "/design-system/Z1bGIqu",
+                                      "type": "Documentation",
+                                    },
+                                    "source": Object {
+                                      "displayName": "Design System",
+                                    },
+                                    "unfurl": Object {
+                                      "author": "ksingbeil",
+                                      "data1": "",
+                                      "data2": "",
+                                      "description": "What the Design System is and how it works.",
+                                      "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                      "label1": "",
+                                      "label2": "",
+                                      "title": "About",
+                                      "type": "markdown",
+                                    },
+                                  },
+                                  Object {
+                                    "_metadata": Object {
+                                      "position": "001.000.001",
+                                    },
+                                    "attributes": Object {
+                                      "personas": Array [
+                                        "Product Owner",
+                                      ],
+                                    },
+                                    "childMarkdownRemark": Object {
+                                      "frontmatter": Object {
+                                        "pageOnly": false,
+                                      },
+                                    },
+                                    "id": "7",
                                     "parent": Object {
                                       "id": "collection-2",
                                     },
@@ -5806,11 +6042,7 @@ ShallowWrapper {
                               "cards": Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "000.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5847,11 +6079,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "000.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5888,11 +6116,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      2,
-                                    ],
+                                    "position": "000.000.002",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5929,11 +6153,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      0,
-                                      0,
-                                      3,
-                                    ],
+                                    "position": "000.000.003",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -5985,11 +6205,7 @@ ShallowWrapper {
                               "cards": Array [
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      0,
-                                    ],
+                                    "position": "001.000.000",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -6026,11 +6242,7 @@ ShallowWrapper {
                                 },
                                 Object {
                                   "_metadata": Object {
-                                    "position": Array [
-                                      1,
-                                      0,
-                                      1,
-                                    ],
+                                    "position": "001.000.001",
                                   },
                                   "attributes": Object {
                                     "personas": Array [
@@ -6043,6 +6255,43 @@ ShallowWrapper {
                                     },
                                   },
                                   "id": "6",
+                                  "parent": Object {
+                                    "id": "collection-2",
+                                  },
+                                  "resource": Object {
+                                    "path": "/design-system/Z1bGIqu",
+                                    "type": "Documentation",
+                                  },
+                                  "source": Object {
+                                    "displayName": "Design System",
+                                  },
+                                  "unfurl": Object {
+                                    "author": "ksingbeil",
+                                    "data1": "",
+                                    "data2": "",
+                                    "description": "What the Design System is and how it works.",
+                                    "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                                    "label1": "",
+                                    "label2": "",
+                                    "title": "About",
+                                    "type": "markdown",
+                                  },
+                                },
+                                Object {
+                                  "_metadata": Object {
+                                    "position": "001.000.001",
+                                  },
+                                  "attributes": Object {
+                                    "personas": Array [
+                                      "Product Owner",
+                                    ],
+                                  },
+                                  "childMarkdownRemark": Object {
+                                    "frontmatter": Object {
+                                      "pageOnly": false,
+                                    },
+                                  },
+                                  "id": "7",
                                   "parent": Object {
                                     "id": "collection-2",
                                   },

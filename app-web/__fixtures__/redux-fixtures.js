@@ -12,8 +12,8 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import * as actions from '../src/store/actions/actionTypes';
-import { LUNR_SEARCH_RESULTS_2 } from './lunr';
-import { COLLECTIONS } from './siphon-fixtures';
+import { LUNR_SEARCH_RESULTS, LUNR_SEARCH_RESULTS_2 } from './lunr';
+import { COLLECTIONS, SIPHON_NODES } from './siphon-fixtures';
 
 export const DEFAULT_FILTER_GROUPS = [
   {
@@ -100,18 +100,27 @@ export const ACTIONS = {
       searchResults: LUNR_SEARCH_RESULTS_2,
     },
   },
+  SET_SEARCH_RESULTS_ALL: {
+    type: actions.SET_SEARCH_RESULTS,
+    payload: {
+      searchResults: LUNR_SEARCH_RESULTS, // contains results for all nodes in the collections fixture
+    },
+  },
 };
 
 export const INITIAL_STATES = {
   SIPHON: {
-    collections: [],
-    primaryFilteredNodes: [],
-    secondaryFilteredNodes: [],
-    filters: DEFAULT_FILTER_GROUPS,
-    groupBy: null,
+    collectionsLoaded: false,
+    _collections: [], // the cached set of ALL collections
+    collections: [], // this is set by the resource type, ie Component/Documentation etc
+    query: '',
+    searchBarTerms: '',
+    searchResults: [],
+    totalResources: 0,
     loading: false,
     error: false,
     messages: [],
+    filters: DEFAULT_FILTER_GROUPS,
   },
   UI: {
     selectedFilterOption: null,
@@ -125,4 +134,18 @@ export const INITIAL_STATES = {
     error: false,
     messages: [],
   },
+};
+
+// the entire appliation state preloaded with some data to simulate
+// many of the actions that are fired on did mount
+export const STATE = {
+  siphon: {
+    ...INITIAL_STATES.SIPHON,
+    collections: COLLECTIONS,
+    searchResults: LUNR_SEARCH_RESULTS_2,
+    loaded: true,
+    totalResources: SIPHON_NODES.length,
+  },
+  ui: { ...INITIAL_STATES.UI },
+  auth: { ...INITIAL_STATES.AUTH },
 };

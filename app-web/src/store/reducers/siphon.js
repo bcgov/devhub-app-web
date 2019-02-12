@@ -20,10 +20,9 @@ const initialState = {
   collectionsLoaded: false,
   _collections: [], // the cached set of ALL collections
   collections: [], // this is set by the resource type, ie Component/Documentation etc
-  filteredCollections: [], // subsequent filters using the filter side menu
-  query: '',
+  query: null,
   searchBarTerms: '',
-  searchResultsLength: null,
+  searchResults: [],
   totalResources: 0,
   loading: false,
   error: false,
@@ -34,24 +33,35 @@ const initialState = {
 const mapWithCallback = (array, cb) => array.map(cb);
 
 /**
- * from an array of siphon positions
- * [collection, source, resource]
- * we return an integer by weighting each index to a power of ten
- * weighting decreases left to right
- * @param {Array} position
- * @returns {String} an address of the position based on weight
- * [0, 2, 5] => '100.30.6' (this allows for easy lexographic sorting)
+ * filters through the primary filtered nodes by filters
+ * found from the state.filters list
+ * checks if the dot prop matches the value for a given siphon node
+ * @param {Object} node the siphon node
+ * @param {String} dotProp a dot prop string notiation to access a nested value within the node
+ * https://github.com/sindresorhus/dot-prop
+ * @param {String} value the value to match against nodes value found by the dot prop
  */
-export const getTruePositionFromWeightedScale = position =>
-  position
-    .reduce((pos, val, index) => {
-      const power = position.length - index - 1;
-      const multiplier = val + 1; // since positions start at 0, we are adding 1 so that
-      // we don't run into an issue of 0 x 10^power which would lead to bad things
+export const dotPropMatchesValue = (node, filterBy, value) => {
+  const prop = dotProp.get(node, filterBy);
+  if (TypeCheck.isArray(prop)) {
+    return prop.some(p => p === value);
+  } else {
+    return prop === value;
+  }
+};
 
-      return `${pos}.${multiplier * Math.pow(10, power)}`;
-    }, '')
-    .slice(1); // removing initial '.'
+/**
+ * filters all collections nodes based on the filters list
+ * @param {Array} collections
+ * @param {Array} filters
+ */
+export const filterCollections = (collections, filters) =>
+  collections.map(collection => ({
+    ...collection,
+    nodes: collection.nodes.filter(n =>
+      filters.some(filter => dotPropMatchesValue(n, filter.filterBy, filter.value)),
+    ),
+  }));
 
 /**
  * clones a siphon node
@@ -78,24 +88,6 @@ const newCollection = collection => ({
 const newCollections = collections => mapWithCallback(collections, newCollection);
 
 /**
- * filters through the primary filtered nodes by filters
- * found from the state.filters list
- * checks if the dot prop matches the value for a given siphon node
- * @param {Object} node the siphon node
- * @param {String} dotProp a dot prop string notiation to access a nested value within the node
- * https://github.com/sindresorhus/dot-prop
- * @param {String} value the value to match against nodes value found by the dot prop
- */
-const dotPropMatchesValue = (node, filterBy, value) => {
-  const prop = dotProp.get(node, filterBy);
-  if (TypeCheck.isArray(prop)) {
-    return prop.some(p => p === value);
-  } else {
-    return prop === value;
-  }
-};
-
-/**
  * flattens the List of collection.nodes
  * @param {Array} collections the collections list
  * @return {Array} a flattened list of all nodes within all of the collections
@@ -104,12 +96,34 @@ const getAllNodesFromCollections = collections =>
   collections.reduce((acc, collection) => acc.concat(collection.nodes), []);
 
 /**
+ * Check the number of resources that match a filter
+ * and applies count related props to the filter Map
+ * @param {Object} filter
+ * @param {Array} nodes a flattened list of all nodes from available collections
+ */
+export const applyPropsToFilterByResourceCount = (filter, nodes) => {
+  const { filterBy, value } = filter;
+  let newFilter = { ...filter, availableResources: 0 };
+  nodes.forEach(n => {
+    newFilter.availableResources += dotPropMatchesValue(n, filterBy, value);
+  });
+
+  const count = newFilter.availableResources;
+  const isActive = count > 0 && newFilter.active;
+  newFilter.isFilterable = count > 0;
+  // check if this filter has been set to active and if it should remain so
+  // this would onyl be the case if the available resources are greater than 0
+  newFilter.active = isActive;
+  return newFilter;
+};
+
+/**
  *
  * @param {Object} state
  * @param {Array} results
  */
 const applySearchResultsToPrimaryNodes = (state, results) => {
-  const newState = { ...state, searchResultsLength: Object.keys(results).length, loading: false };
+  const newState = { ...state, searchResults: results, loading: false };
   // results is an array of siphon ids,
   // filter out siphon nodes where resource type still matches (primary filter nodes)
   let collectionNodes = getAllNodesFromCollections(state._collections);
@@ -125,44 +139,26 @@ const applySearchResultsToPrimaryNodes = (state, results) => {
       nodesMap.set(n.parent.id, currentNodes.concat([{ ...n }]));
     }
   });
+
+  // a store of all nodes that passed the filter this is passed into the apply props to filter fn
+  // as an optimization. Soon to be added is a caching mechanism where search terms and newstate collections
+  // are cached in a map of 'search term': [collections]
+  let availableNodes = [];
   // build filtered nodes back into respective collections
-  newState.collections = newCollections(state._collections).map(c => ({
-    ...c,
-    nodes: nodesMap.get(c.id) || [],
-  }));
-  return applySecondaryFilters(newState);
-};
-
-/**
- * Check the number of resources that match a filter
- * and applies count related props to the filter Map
- * @param {Object} filter
- * @param {Array} primaryFilteredNodes
- */
-export const applyPropsToFilterByResourceCount = (filter, primaryFilteredNodes) => {
-  // get a flattened set of the nodes from all collections to loop over
-  const nodes = getAllNodesFromCollections(primaryFilteredNodes);
-  const { filterBy, value } = filter;
-  let newFilter = { ...filter, availableResources: 0 };
-
-  nodes.forEach(n => {
-    newFilter.availableResources += dotPropMatchesValue(n, filterBy, value);
+  newState.collections = newCollections(state._collections).map(c => {
+    const nodes = nodesMap.get(c.id) || [];
+    // push in the nodes that are being applied to collection into available nodes
+    availableNodes = availableNodes.concat(nodes);
+    return {
+      ...c,
+      nodes,
+    };
   });
-
-  const count = newFilter.availableResources;
-  const isActive = count > 0 && newFilter.active;
-  newFilter.isFilterable = count > 0;
-  // check if this filter has been set to active and if it should remain so
-  // this would onyl be the case if the available resources are greater than 0
-  newFilter.active = isActive;
-  return newFilter;
+  newState.filters = newState.filters.map(f =>
+    applyPropsToFilterByResourceCount(f, availableNodes),
+  );
+  return newState;
 };
-
-/**
- * returns filter groups that are currently active
- * @param {Array} filters
- */
-const getActiveFilters = filters => filters.filter(fg => fg.active);
 
 /**
  * helper to find a filter group by key
@@ -194,43 +190,13 @@ const toggleFilter = (state, key, isActive) => {
 };
 
 /**
- * filters through the primary filtered nodes by the active
- * filters in the state.filters list
- * additionally tallies up how many resources apply to a filter and applies
- * other metadata for a filter
- */
-const applySecondaryFilters = state => {
-  const newState = { ...state };
-  newState.filteredCollections = newCollections(newState.collections);
-  // get counts of filters and apply other properties based on if count is 0
-  newState.filters = newState.filters.map(filter =>
-    applyPropsToFilterByResourceCount(filter, newState.collections),
-  );
-
-  const filtersToApply = getActiveFilters(newState.filters);
-  // if there aren't any filters to apply, the secondary filtered nodes is reset to what the primary
-  // nodes are
-  if (filtersToApply.length > 0) {
-    // loop over filters and see that atleast one of the filters suceeeds against the node
-    newState.filteredCollections = newState.filteredCollections.map(collection => {
-      collection.nodes = collection.nodes.filter(n =>
-        filtersToApply.some(filter => dotPropMatchesValue(n, filter.filterBy, filter.value)),
-      );
-      return collection;
-    });
-  }
-
-  return newState;
-};
-
-/**
  * adds filter to list of filters
  * @param {Obejct} state
  * @param {String} key
  */
 const addFilter = (state, key) => {
-  const newState = toggleFilter(state, key, true);
-  return applySecondaryFilters(newState);
+  return toggleFilter(state, key, true);
+  // return applySecondaryFilters(newState);
 };
 
 /**
@@ -239,8 +205,8 @@ const addFilter = (state, key) => {
  * @param {String} key
  */
 const removeFilter = (state, key) => {
-  const newState = toggleFilter(state, key, false);
-  return applySecondaryFilters(newState);
+  return toggleFilter(state, key, false);
+  // return applySecondaryFilters(newState);
 };
 /**
  * unsets all filters to inactive
@@ -259,27 +225,19 @@ const resetFilters = state => {
  */
 const setCollections = (state, collections) => {
   const newState = { ...state };
-  // sort collection nodes by position
-  let sortedCollections = collections.map(c => {
-    c.nodes = c.nodes.sort((a, b) => {
-      // lexographic sort
-      if (a._metadata.position < b._metadata.position) return -1;
-      if (a._metadata.position > b._metadata.position) return 1;
-      return 0;
-    });
-    return c;
-  });
-  newState._collections = sortedCollections;
+
+  newState._collections = collections;
   newState.collectionsLoaded = true;
   // nodes will be filtered eventually be resource type which is the top level navigation
-  newState.collections = newCollections(sortedCollections);
-  newState.filteredCollections = newCollections(sortedCollections);
+  newState.collections = newCollections(collections);
+  // get all nodes from all collections
+  const allNodes = getAllNodesFromCollections(collections);
   // get counts of filters and apply other properties based on if count is 0
   newState.filters = newState.filters.map(filter =>
-    applyPropsToFilterByResourceCount(filter, newState.collections),
+    applyPropsToFilterByResourceCount(filter, allNodes),
   );
 
-  newState.totalResources = getAllNodesFromCollections(sortedCollections).length;
+  newState.totalResources = allNodes.length;
 
   return newState;
 };
@@ -298,8 +256,6 @@ const reducer = (state = initialState, action) => {
       return removeFilter(state, action.payload.key);
     case actionTypes.REMOVE_ALL_FILTERS:
       return resetFilters(state);
-    case actionTypes.FILTER_SIPHON_NODES_BY_FILTER_LIST:
-      return applySecondaryFilters(state);
     case actionTypes.SET_SEARCH_RESULTS:
       return applySearchResultsToPrimaryNodes(state, action.payload.searchResults);
     case actionTypes.SET_SEARCH_QUERY:
