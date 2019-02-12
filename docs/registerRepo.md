@@ -299,6 +299,7 @@ are **many** resources scattered among a few repositories that may help a new co
 
 If you would like these scattered resources to be more **connected** together, you can use the ***collections***
 configuration settings to point to these many repos at the same time in the devhub registry file.
+This is accomplished by adding 'repos' or other sources to the `sourceProperties.sources`.
 
 > Remember that you may register multiple sources in a collection all day till the cows come home, but if they don't contain the correct configurations (such as the proper markdown front matter) it will be ignored by the devhub!
 
@@ -319,6 +320,10 @@ sources:
       attributes: 
         persona: 'Developer'
       sourceProperties:
+        collectionSource: 
+            repo: apple
+            owner: fruit-tree
+            file: aboutApples.md
         sources:
          # each '-' identifies an individual source within the collection
          - sourceType: 'github'
@@ -344,4 +349,24 @@ they will inherit the **Collection's resourceType**
 
 As you can see, a collection is really a collection of ***individual sources!***
 
+### What If I want a page for my Collection?
+
+*Good news everyone!* This is possible with the `sourceProperties.collectionSource` configuration.
+
+This configuration will tell siphon to source out a markdown file __in Github__ (no other sources allowed).
+
+It's properties as described in the above example are..
+
+- `repo`
+- `owner`
+- `file`
+- `branch` (optional)
+as you can see this is exactly the same interface as a regular source collection. When siphon detects that the
+collection is looking to source a file it modifies the collection node's content to hold the markdown file content and mimetype appropriately so that `gatsby-transformer-remark` can work on it.
+
+After all is said and done, in the _Gatsby create pages_ routine, a page will be created for the collection
+found at the path `/[collection.slug]`. 
+
+> since we are processing a markdown file into a page, all the markdown rules described above for a regular source
+applies to a collection page. 
 
