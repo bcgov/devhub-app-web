@@ -53,6 +53,27 @@ const REGISTRY_ITEM_SCHEMA = {
   },
 };
 
+// specific validation for the collection.sourceProperties.collectionSource property
+const COLLECTION_SOURCE = {
+  repo: {
+    type: String,
+    required: true,
+  },
+  owner: {
+    type: String,
+    required: true,
+  },
+  file: {
+    type: String,
+    required: true,
+  },
+  branch: {
+    type: String,
+    required: false,
+  },
+};
+
 module.exports = {
   REGISTRY_ITEM_SCHEMA,
+  COLLECTION_SOURCE,
 };

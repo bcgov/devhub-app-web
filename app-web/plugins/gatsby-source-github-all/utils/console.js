@@ -54,11 +54,16 @@ const siphonMessages = (() => {
     {cyan.bold This may cause odd issues for links to the gatsby page if not rectified.}
     detailed stack below..`;
 
+  const collectionSourceFailed = (errors, name) => chalk`
+    ${warning} Attempted to get content for a collection {green.bold ${name}} but was unable to due bad configuration.
+    - ${errors.join('\n- ')}
+  `;
   return {
     unfurlLacksInfo,
     resourceIgnored,
     collectionSlugConflict,
     markdownSlugConflict,
+    collectionSourceFailed,
   };
 })();
 

@@ -1,3 +1,5 @@
+## to do, this is out of date and needs to be reworked to include collections
+## and all the different types of metadata
 sources:
   - name: DevHub
     sourceType: 'github'

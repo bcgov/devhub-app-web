@@ -26,6 +26,7 @@ import {
   getFetchQueue,
   normalizePersonas,
   processSource,
+  getContentForCollection,
   processCollection,
 } from '../sourceNodes';
 import { createSiphonNode, createCollectionNode } from '../utils/createNode';
@@ -38,16 +39,19 @@ import {
   COLLECTION_OBJ_FROM_FETCH_QUEUE,
   WEB_SOURCE,
   PROCESSED_WEB_SOURCE,
+  PROCESSED_FILE_MD,
 } from '../__fixtures__/fixtures';
 import { validateSourceRegistry, fetchFromSource } from '../utils/fetchSource';
 import {
   isSourceCollection,
   hashString,
   validateRegistryItemAgainstSchema,
+  validateAgainstSchema,
   newCollection,
   assignPositionToCollection,
   assignPositionToSource,
   convertPositionToSortableString,
+  assignPositionToResource,
 } from '../utils/helpers';
 
 jest.mock('../utils/helpers');
@@ -58,6 +62,12 @@ newCollection.mockImplementation((collection, props) => ({ ...collection, ...pro
 assignPositionToCollection.mockImplementation(collection => () => ({
   metadata: { position: [0] },
 }));
+
+assignPositionToResource.mockImplementation(source => resource => ({
+  ...resource,
+  metadata: { ...resource.metadata, position: [0] },
+}));
+
 convertPositionToSortableString.mockImplementation((padding, position) => position.join('.'));
 
 assignPositionToSource.mockImplementation(source => () => ({ metadata: { position: [0, 0] } }));
@@ -267,6 +277,39 @@ describe('gatsby source github all plugin', () => {
     expect(result).toEqual(expected);
   });
 
+  test('createCollectionNode returns an internal mime type of markdown plus content is collection content is passed in', () => {
+    const result = createCollectionNode(COLLECTION_OBJ_FROM_FETCH_QUEUE, '123', {
+      content: 'hello world',
+      metadata: {
+        mediaType: 'text/markdown',
+      },
+    });
+
+    const expected = {
+      id: '123',
+      name: COLLECTION_OBJ_FROM_FETCH_QUEUE.name,
+      type: COLLECTION_OBJ_FROM_FETCH_QUEUE.type,
+      description: COLLECTION_OBJ_FROM_FETCH_QUEUE.description,
+      children: [],
+      parent: null,
+      internal: {
+        contentDigest: null, // hash string called here
+        type: GRAPHQL_NODE_TYPE.COLLECTION,
+        content: 'hello world',
+        mediaType: 'text/markdown',
+      },
+      _metadata: {
+        position: COLLECTION_OBJ_FROM_FETCH_QUEUE.metadata.position.join('.'),
+        slug: COLLECTION_OBJ_FROM_FETCH_QUEUE.slug,
+        template: COLLECTION_TEMPLATES.DEFAULT,
+        templateFile: undefined,
+        sourceLocations: undefined,
+      },
+    };
+    hashString.mockReturnValue(null);
+    expect(result).toEqual(expected);
+  });
+
   test('sourcesAreValid handles collections of sources', () => {
     validateSourceRegistry.mockClear();
     validateSourceRegistry.mockReturnValue(true);
@@ -449,5 +492,39 @@ describe('gatsby source github all plugin', () => {
     // in total only 1 resource was returned from all sources fetched for the fixtured collection
     // therefor the createparent child link should only be called once
     expect(createParentChildLink).toHaveBeenCalledTimes(1);
+  });
+
+  test('getContentForCollection returns data', async () => {
+    fetchFromSource.mockReturnValueOnce(Promise.resolve([PROCESSED_FILE_MD]));
+    validateAgainstSchema.mockReturnValueOnce({
+      isValid: true,
+      messages: [],
+    });
+
+    const collectionSource = {
+      repo: 'foo',
+      owner: 'bar',
+      file: 'file.md',
+    };
+
+    const data = await getContentForCollection(collectionSource, { token: 123 }, 'collection name');
+    expect(data).toEqual(PROCESSED_FILE_MD);
+  });
+
+  test('getContentForCollection returns {} when invalid source properties', async () => {
+    fetchFromSource.mockReturnValueOnce(Promise.resolve([PROCESSED_FILE_MD]));
+    validateAgainstSchema.mockReturnValueOnce({
+      isValid: false,
+      messages: [],
+    });
+
+    const collectionSource = {
+      repo: 'foo',
+      owner: 'bar',
+      file: 'file.md',
+    };
+
+    const data = await getContentForCollection(collectionSource, { token: 123 }, 'collection name');
+    expect(data).toEqual({});
   });
 });
