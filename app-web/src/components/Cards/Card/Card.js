@@ -3,10 +3,12 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import validURL from 'valid-url';
+
 import { Link } from '../../UI/Link';
-import styles from './Card.module.css';
 import { CARD_CONFIG } from '../../../constants/ui';
 import DotDotDot from 'react-dotdotdot';
+
+import styles from './Card.module.css';
 
 const Card = ({ title, description, resourceType, link }) => (
   <Link to={link} aria-label="" className={styles.Wrapper}>
