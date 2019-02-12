@@ -1,6 +1,5 @@
 import React from 'react';
 import { withPrefix } from 'gatsby';
-
 let stylesStr;
 if (process.env.NODE_ENV === 'production') {
   try {
@@ -38,12 +37,6 @@ class HTML extends React.Component {
           <link
             href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap-reboot.min.css"
             rel="stylesheet"
-          />
-          <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-            crossOrigin="anonymous"
           />
           <link
             href="https://portal.nrs.gov.bc.ca/nrs-portal-theme/images/favicon.ico"

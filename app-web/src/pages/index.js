@@ -119,7 +119,7 @@ export class Index extends Component {
         </Flag>
         {/* hamburger icon controlled menu */}
         <Dropmenu menuToggled />
-        <div className={[styles.MainContainer].join(' ')}>
+        <div className={[styles.MainContainer, 'container'].join(' ')}>
           <Sidebar filters={filters} />
           <div className={styles.Right}>
             <WelcomePanel />

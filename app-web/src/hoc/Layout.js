@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // stylesheets
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/styles/index.css';
 // layout local componenets
 import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
