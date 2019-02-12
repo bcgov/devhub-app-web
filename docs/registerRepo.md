@@ -4,6 +4,13 @@ author: patricksimonian
 image: https://github.com/bcgov/devhub-app-web/blob/master/docs/images/book.png?raw=true
 resourceType: Documentation
 title: Registering With DevHub
+tags:
+   general: 
+    - collection pages
+    - registering to devhub
+    - siphon
+    - collections
+    - avatars
 ---
 >This guide was made to help Content Contributors get their content into the DevHub. If you find any errors within this guide or would like to contribute to it, please start by [creating and issue here](https://github.com/bcgov/devhub-app-web/issues/new/choose)
 > Thanks! - The DevHub Team
@@ -349,7 +356,7 @@ they will inherit the **Collection's resourceType**
 
 As you can see, a collection is really a collection of ***individual sources!***
 
-### What If I want a page for my Collection?
+### What If I want a page for my Collection? 
 
 *Good news everyone!* This is possible with the `sourceProperties.collectionSource` configuration.
 
