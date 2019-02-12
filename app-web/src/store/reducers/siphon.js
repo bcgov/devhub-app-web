@@ -20,7 +20,7 @@ const initialState = {
   collectionsLoaded: false,
   _collections: [], // the cached set of ALL collections
   collections: [], // this is set by the resource type, ie Component/Documentation etc
-  query: '',
+  query: null,
   searchBarTerms: '',
   searchResults: [],
   totalResources: 0,

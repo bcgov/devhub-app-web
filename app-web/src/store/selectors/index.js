@@ -56,7 +56,7 @@ export const selectQuery = createSelector(
 // used to dictate a feedback message after conducting a search check <SearchFeedback /> for reference
 export const selectSearchResultsLength = createSelector(
   siphonSelector,
-  siphon => siphon.searchResults.length,
+  siphon => Object.keys(siphon.searchResults).length,
 );
 
 // similar as above
