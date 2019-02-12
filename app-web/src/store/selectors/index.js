@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect';
 import { filterCollections } from '../reducers/siphon';
 
-const siphonSelector = state => state.siphon;
-const uiSelector = state => state.ui;
+export const siphonSelector = state => state.siphon;
+export const uiSelector = state => state.ui;
 
-const collectionsSelector = createSelector(
+export const collectionsSelector = createSelector(
   siphonSelector,
   siphon => siphon.collections,
 );
