@@ -30,8 +30,8 @@
   font-size: 20px;
   color: #494949;
   line-height: 1.3;
-  order: 2;
   word-break: break-word;
+  margin-bottom: 0;
 }
 
 .Card  .ResourceType h4 {

@@ -12,7 +12,7 @@
   border-radius: 3px;
   padding: 5px;
   transition: all .25s;
-  max-width: 300px
+  max-width: 500px;
 }
 
 .Search input:focus {

@@ -44,7 +44,7 @@
   display: block;
 }
 
-@media screen and (min-width: 570px) {
+@media screen and (min-width: 600px) {
     .MobileView {
       display: none;
     }

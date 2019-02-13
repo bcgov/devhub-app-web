@@ -56,21 +56,11 @@ export const CARD_ACTIONS = {
 };
 
 export const CARD_CONFIG = {
-  maxDescriptionLines: 3, // max number of lines before text should be truncated
+  maxDescriptionLines: 4, // max number of lines before text should be truncated
   maxTitleLines: 2, // similar.
   avatarIconSize: 200,
   avatarIconWidth: 45,
   avatarIconHeight: 45,
-  actionsRibbon: {
-    [RESOURCE_TYPES.RESPOSITORIES]: [
-      CARD_ACTIONS.REPOSITORY,
-      CARD_ACTIONS.ISSUES,
-      CARD_ACTIONS.FORK,
-      CARD_ACTIONS.WATCH,
-    ],
-    [RESOURCE_TYPES.DOCUMENTATION]: [CARD_ACTIONS.ISSUES],
-    [RESOURCE_TYPES.COMPONENTS]: [CARD_ACTIONS.ISSUES],
-  },
 };
 
 export const buttonTypes = ['primary', 'secondary', 'link'];

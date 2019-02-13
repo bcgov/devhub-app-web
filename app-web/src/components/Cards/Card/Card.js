@@ -26,7 +26,9 @@ const Card = ({ title, description, resourceType, link }) => (
         </div>
       ) : null}
       <header>
-        <h2>{title}</h2>
+        <DotDotDot clamp={CARD_CONFIG.maxTitleLines}>
+          <h2>{title}</h2>
+        </DotDotDot>
       </header>
       <div className={styles.Body}>
         <DotDotDot clamp={CARD_CONFIG.maxDescriptionLines}>

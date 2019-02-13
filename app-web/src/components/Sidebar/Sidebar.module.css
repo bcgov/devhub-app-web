@@ -7,8 +7,8 @@
   border-left: 2px dashed #ccc;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 750px) {
   .Sidebar {
     display: block;
   }
-} 
+}
