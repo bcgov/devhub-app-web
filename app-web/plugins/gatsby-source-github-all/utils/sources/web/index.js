@@ -55,7 +55,6 @@ const fetchSourceWeb = async ({
   // fetch information from the url
   const source = { metadata: { ...metadata } };
   const localUnfurl = extractUnfurlFromSourceProperties(sourceProperties);
-  const assignPosToResourceBySource = assignPositionToResource(source);
   try {
     const externalUnfurl = await unfurlWebURI(url);
     const unfurl = withUnfurlWarning(url, mergeUnfurls(localUnfurl, externalUnfurl));
@@ -78,7 +77,7 @@ const fetchSourceWeb = async ({
       path: url,
     };
 
-    return [siphonData].map((s, index) => assignPosToResourceBySource(s, index));
+    return [siphonData];
   } catch (e) {
     console.error(e);
     return [];

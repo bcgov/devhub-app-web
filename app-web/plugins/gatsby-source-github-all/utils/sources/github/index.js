@@ -130,21 +130,13 @@ const validateSourceGithub = source =>
  * @returns {Array} The array of files
  */
 const fetchSourceGithub = async (
-  {
-    sourceType,
-    resourceType,
-    name,
-    sourceProperties,
-    attributes: { labels, personas },
-    collection,
-    metadata,
-  },
+  { sourceType, resourceType, name, sourceProperties, attributes, collection, metadata },
   token,
 ) => {
   const { repo, owner, branch, url } = sourceProperties;
   const source = { metadata };
-  const assignPosToResourceBySource = assignPositionToResource(source);
-
+  // const assignPosToResourceBySource = assignPositionToResource(source);
+  const { labels, personas } = attributes ? attributes : { labels: null, personas: null };
   let filesToFetch = [];
   // how are we sourcing this?
   if (isConfigForFetchingAFile(sourceProperties)) {
@@ -160,7 +152,7 @@ const fetchSourceGithub = async (
     filesToFetch = await getFilesFromRepo(sourceProperties, token);
   }
 
-  filesToFetch = filesToFetch.map((file, index) => assignPosToResourceBySource(file, index));
+  // filesToFetch = filesToFetch.map((file, index) => assignPosToResourceBySource(file, index));
   // actually fetch file contents and transform
   const filesWithContents = fetchFiles(filesToFetch, token);
   const filesResponse = await Promise.all(filesWithContents);

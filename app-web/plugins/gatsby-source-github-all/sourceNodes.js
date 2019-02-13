@@ -30,6 +30,8 @@ const {
   assignPositionToCollection,
   assignPositionToSource,
   getClosest,
+  assignPositionToResource,
+  validateAgainstSchema,
 } = require('./utils/helpers');
 const siphonMessenger = require('./utils/console');
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
@@ -37,7 +39,9 @@ const {
   COLLECTION_TYPES,
   REGISTRY_ITEM_SCHEMA,
   COLLECTION_TEMPLATES,
+  SOURCE_TYPES,
   COLLECTION_TEMPLATES_LIST,
+  COLLECTION_SOURCE,
 } = require('./utils/constants');
 const { createSiphonNode, createCollectionNode } = require('./utils/createNode');
 const Store = require('./utils/Store');
@@ -189,6 +193,9 @@ const getFetchQueue = async (sources, tokens) => {
         {
           name: rootSource.name,
           sources: [],
+          collectionSource:
+            // applying the attribute property as fetch source github expects to destructure it
+            { ...rootSource.sourceProperties.collectionSource } || null,
           template: rootSource.template
             ? getClosest(rootSource.template, COLLECTION_TEMPLATES_LIST)
             : COLLECTION_TEMPLATES.DEFAULT,
@@ -254,7 +261,9 @@ const getFetchQueue = async (sources, tokens) => {
  * @returns {Array} the list of resources retrieved from the source
  */
 const processSource = async (source, createNodeId, createNode, tokens, collectionId) => {
-  const resources = await fetchFromSource(source.sourceType, source, tokens);
+  let resources = await fetchFromSource(source.sourceType, source, tokens);
+  const assignPosToResourceBySource = assignPositionToResource({ metadata: source.metadata });
+  resources = resources.map((resource, index) => assignPosToResourceBySource(resource, index));
   // any resources that hvae the metadata ignore flag are filtered out to prevent a node being created
   const filteredResources = filterIgnoredResources(resources);
   return Promise.all(
@@ -268,6 +277,28 @@ const processSource = async (source, createNodeId, createNode, tokens, collectio
   );
 };
 
+/**
+ * fetches a github markdown file for a collection and returns the data
+ * @param {*} collectionSource
+ * @param {*} tokens
+ */
+const getContentForCollection = async (collectionSource, tokens, name = '') => {
+  const error = validateAgainstSchema(collectionSource, COLLECTION_SOURCE);
+
+  if (error.isValid) {
+    const source = {
+      attributes: {},
+      sourceProperties: collectionSource,
+    };
+    const file = await fetchFromSource(SOURCE_TYPES.GITHUB, source, tokens);
+    // we should only expect one file to be recieved back since collectionSource uses the
+    // github.file metadata property
+    return file[0];
+  } else {
+    console.log(siphonMessenger.collectionSourceFailed(error.messages, name));
+    return {};
+  }
+};
 /**
  * process the collection and fetches all sources for it
  * creating a collection node and all source nodes for the collection,
@@ -296,13 +327,23 @@ const processCollection = async (
   const sourceNodes = await Promise.all(
     collection.sources.map(source => processSource(source, createNodeId, createNode, tokens, id)),
   );
+
+  let collectionContent;
+  // fetch a github file if has collection source
+  if (!_.isEmpty(collection.collectionSource)) {
+    collectionContent = await getContentForCollection(
+      collection.collectionSource,
+      tokens,
+      collection.name,
+    );
+  }
   // flatten source nodes to get a list of all the resources
   const resources = _.flatten(sourceNodes, true);
   // create a hash map of all resources: resource paths original source against the path created
   // for a gatsby page
   collection.sourceLocations = resources.map(r => [r.resource.originalSource, r.resource.path]);
 
-  const collectionNode = createCollectionNode(collection, id);
+  const collectionNode = createCollectionNode(collection, id, collectionContent);
 
   await createNode(collectionNode);
   resources.forEach(r => createParentChildLink({ parent: collectionNode, child: r }));
@@ -354,4 +395,5 @@ module.exports = {
   processSource,
   processCollection,
   validateRegistryItem,
+  getContentForCollection,
 };

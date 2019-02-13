@@ -24,9 +24,14 @@ const { GRAPHQL_NODE_TYPE } = require('./constants');
  * @param {Object} collection the collection object
  * @param {String} id the unique id
  */
-const createCollectionNode = (collection, id) => {
+const createCollectionNode = (collection, id, collectionContent = null) => {
   const { name, type, description, metadata } = collection;
-
+  const internalContent = collectionContent
+    ? {
+        content: collectionContent.content,
+        mediaType: collectionContent.metadata.mediaType,
+      }
+    : {};
   return {
     id,
     children: [],
@@ -35,6 +40,7 @@ const createCollectionNode = (collection, id) => {
     type,
     description: description || '',
     internal: {
+      ...internalContent,
       contentDigest: hashString(JSON.stringify(collection)),
       type: GRAPHQL_NODE_TYPE.COLLECTION,
     },

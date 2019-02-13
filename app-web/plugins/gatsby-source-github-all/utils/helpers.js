@@ -142,7 +142,7 @@ const getAbsolutePathFromRelative = (relativePath, absolutePath, queryParams) =>
  * @param {Object} schema the schema object that is being tested against
  * @returns {Object} an object containing error messages and isValid property
  * {
- *   errors: {Array},
+ *   messages: {Array},
  *   isValid: {Boolean}
  * }
  */
