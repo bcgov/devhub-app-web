@@ -51,14 +51,18 @@ export class Index extends Component {
       if (param !== this.props.query) {
         this.props.setSearchQuery(param);
         this.getSearchResults(param).then(results => {
-          this.props.setSearchResults(results, param);
+          this.props.setSearchResults(results);
         });
       }
     }
   }
 
   componentWillUnmount() {
+    // prevents welcome message from every showing again as long as local storage state is kept
     this.props.hideWelcomeMessage();
+    // unset set all search properties so that when this page is navigated back to, it looks like a fresh
+    // page
+    this.props.resetSearch();
   }
 
   /**
@@ -219,6 +223,7 @@ const mapDispatchToProps = dispatch => {
     hideWelcomeMessage: () => dispatch(actions.setWelcomePanelViewed(true)),
     setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
     setSearchBarTerms: resourceType => dispatch(actions.setSearchBarTerms(resourceType)),
+    resetSearch: () => dispatch(actions.resetSearch()),
   };
 };
 

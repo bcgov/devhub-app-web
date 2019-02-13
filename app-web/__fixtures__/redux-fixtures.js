@@ -100,6 +100,9 @@ export const ACTIONS = {
       searchResults: LUNR_SEARCH_RESULTS_2,
     },
   },
+  RESET_SEARCH: {
+    type: actions.RESET_SEARCH,
+  },
   SET_SEARCH_RESULTS_ALL: {
     type: actions.SET_SEARCH_RESULTS,
     payload: {

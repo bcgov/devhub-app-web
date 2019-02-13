@@ -54,12 +54,6 @@ export const removeFilter = key => {
   };
 };
 
-export const filterSiphonNodesByFilterList = () => {
-  return {
-    type: actionTypes.FILTER_SIPHON_NODES_BY_FILTER_LIST,
-  };
-};
-
 export const setSearchResults = searchResults => {
   return {
     type: actionTypes.SET_SEARCH_RESULTS,
@@ -80,3 +74,7 @@ export const setSearchBarTerms = searchBarTerms => {
     payload: { searchBarTerms },
   };
 };
+
+export const resetSearch = () => ({
+  type: actionTypes.RESET_SEARCH,
+});

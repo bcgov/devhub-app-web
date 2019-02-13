@@ -12,6 +12,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import * as actions from '../../src/store/actions/actions';
+import * as actionTypes from '../../src/store/actions/actionTypes';
 import { ACTIONS } from '../../__fixtures__/redux-fixtures';
 import { LUNR_SEARCH_RESULTS_2 } from '../../__fixtures__/lunr';
 
@@ -35,5 +36,9 @@ describe('actions', () => {
 
   it('should create an action to set search results', () => {
     expect(actions.setSearchResults(LUNR_SEARCH_RESULTS_2)).toEqual(ACTIONS.SET_SEARCH_RESULTS);
+  });
+
+  it('should create an action to reset search results', () => {
+    expect(actions.resetSearch()).toEqual(ACTIONS.RESET_SEARCH);
   });
 });

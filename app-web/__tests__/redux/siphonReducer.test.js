@@ -123,7 +123,7 @@ describe('reducer', () => {
     expect(newFilter.active).toBe(false);
   });
 
-  it.skip('should handle applying search results', () => {
+  it('should handle applying search results', () => {
     const state = {
       ...INITIAL_STATES.SIPHON,
       _collections: collectionsFixture,
@@ -139,5 +139,21 @@ describe('reducer', () => {
     expect(totalNodes).toEqual(
       Object.keys(ACTIONS.SET_SEARCH_RESULTS.payload.searchResults).length,
     );
+  });
+
+  it('should handle resetting search', () => {
+    const state = {
+      ...INITIAL_STATES.SIPHON,
+      _collections: collectionsFixture,
+      collections: [],
+    };
+
+    const newState = reducer(state, ACTIONS.RESET_SEARCH);
+    // we'd expect that the collections total nodes have been reduced to the length of the search results
+    expect(newState.collections).toEqual(collectionsFixture);
+    expect(newState.searchResults).toEqual({});
+    expect(newState.loading).toBe(false);
+    expect(newState.query).toBe(null);
+    expect(newState.searchBarTerms).toBe('');
   });
 });
