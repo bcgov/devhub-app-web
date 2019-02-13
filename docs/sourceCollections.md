@@ -35,6 +35,12 @@ sources:
       attributes: 
         persona: 'Developer'
       sourceProperties:
+        # point your collection towards a singular markdown file so that it can be presented as its own page
+        sourceCollection:
+          repo: design-system
+          owner: bcgov
+          file: components/about.md
+        # the sources attribute is your interface to source several files underneath this collection
         sources:
          - sourceType: 'github'
            resourceType: 'Documentation'

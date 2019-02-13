@@ -48,7 +48,8 @@ In addition, they lacked the ability to control things like **mime types** for r
 
 Siphon treats collections in the **registry** just like any other **source**. If the fetch queue detects
 a registry item as a ***collection*** it grabs all the sources **within the collection**, extracts them,
-maps the **name** and **other properties** from the collection registry item to them and pushes them into the fetch queue. 
+maps the **name** and **other properties** from the collection registry item to them and pushes them into the fetch queue. In addition if the ***collection*** has a source property, **collectionSource**, it will fetch a
+markdown file to be used as content for the collection page at run time. 
 
 If an items is **not a collection** it is simply pushed into the fetch queue without further processing. 
 
@@ -88,6 +89,10 @@ Example Collection Registry Item:
   attributes:
     persona: Developer
   sourceProperties:
+    collectionSource: 
+        repo: apple
+        owner: fruit-tree
+        file: aboutApples.md
     sources:
       - sourceType: github
         sourceProperties:
@@ -134,6 +139,8 @@ if the child sources have properties assigned they take priority (with the excep
 
 Now that we have processed collections and indvidual sources in the registry as the **same thing**
 they can be processed exactly the same way :)
+
+> More detailed information on collections and how to configure them can be found [here.](./registerRepo.md)
 
 #### Fetch Files From Source
 
