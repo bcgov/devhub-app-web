@@ -24,18 +24,18 @@ ShallowWrapper {
     "props": Object {
       "activeClassName": "",
       "activeStyle": Object {},
-      "aria-label": "",
+      "aria-label": "Learn more about this article",
       "children": <article
         className="Card"
       >
         <div
+          aria-label="The resource type for this card"
           className="ResourceType"
         >
           <h4>
             resourceType
             <small>
               <FontAwesomeIcon
-                aria-label=""
                 border={false}
                 className=""
                 fixedWidth={false}
@@ -102,13 +102,13 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <div
+            aria-label="The resource type for this card"
             className="ResourceType"
           >
             <h4>
               resourceType
               <small>
                 <FontAwesomeIcon
-                  aria-label=""
                   border={false}
                   className=""
                   fixedWidth={false}
@@ -173,11 +173,11 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
+            "aria-label": "The resource type for this card",
             "children": <h4>
               resourceType
               <small>
                 <FontAwesomeIcon
-                  aria-label=""
                   border={false}
                   className=""
                   fixedWidth={false}
@@ -221,7 +221,6 @@ ShallowWrapper {
                 "resourceType",
                 <small>
                   <FontAwesomeIcon
-                    aria-label=""
                     border={false}
                     className=""
                     fixedWidth={false}
@@ -263,7 +262,6 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "children": <FontAwesomeIcon
-                    aria-label=""
                     border={false}
                     className=""
                     fixedWidth={false}
@@ -300,7 +298,6 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "function",
                   "props": Object {
-                    "aria-label": "",
                     "border": false,
                     "className": "",
                     "fixedWidth": false,
@@ -433,18 +430,18 @@ ShallowWrapper {
       "props": Object {
         "activeClassName": "",
         "activeStyle": Object {},
-        "aria-label": "",
+        "aria-label": "Learn more about this article",
         "children": <article
           className="Card"
         >
           <div
+            aria-label="The resource type for this card"
             className="ResourceType"
           >
             <h4>
               resourceType
               <small>
                 <FontAwesomeIcon
-                  aria-label=""
                   border={false}
                   className=""
                   fixedWidth={false}
@@ -511,13 +508,13 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <div
+              aria-label="The resource type for this card"
               className="ResourceType"
             >
               <h4>
                 resourceType
                 <small>
                   <FontAwesomeIcon
-                    aria-label=""
                     border={false}
                     className=""
                     fixedWidth={false}
@@ -582,11 +579,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
+              "aria-label": "The resource type for this card",
               "children": <h4>
                 resourceType
                 <small>
                   <FontAwesomeIcon
-                    aria-label=""
                     border={false}
                     className=""
                     fixedWidth={false}
@@ -630,7 +627,6 @@ ShallowWrapper {
                   "resourceType",
                   <small>
                     <FontAwesomeIcon
-                      aria-label=""
                       border={false}
                       className=""
                       fixedWidth={false}
@@ -672,7 +668,6 @@ ShallowWrapper {
                   "nodeType": "host",
                   "props": Object {
                     "children": <FontAwesomeIcon
-                      aria-label=""
                       border={false}
                       className=""
                       fixedWidth={false}
@@ -709,7 +704,6 @@ ShallowWrapper {
                     "key": undefined,
                     "nodeType": "function",
                     "props": Object {
-                      "aria-label": "",
                       "border": false,
                       "className": "",
                       "fixedWidth": false,
