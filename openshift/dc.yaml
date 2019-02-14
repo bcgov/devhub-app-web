@@ -29,10 +29,10 @@ objects:
       resources:
         requests:
           cpu: '1m'
-          memory: '30MiB'
+          memory: '30Mi'
         limits:
           cpu: '2m'
-          memory: '50MiB'
+          memory: '50Mi'
     template:
       metadata:
         creationTimestamp: null
@@ -50,10 +50,10 @@ objects:
           resources:
             requests:
               cpu: '1m'
-              memory: '30MiB'
+              memory: '30Mi'
             limits:
               cpu: '2m'
-              memory: '50MiB'
+              memory: '50Mi'
           env:
           - name: SSO_BASE_URL
             value: ${SSO_BASE_URL_VALUE}
