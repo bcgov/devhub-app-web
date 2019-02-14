@@ -246,6 +246,24 @@ const setSearchQuery = (state, query) => ({ ...state, query, loading: true });
 
 const setSearchBarTerms = (state, searchBarTerms) => ({ ...state, searchBarTerms });
 
+const resetSearch = state => {
+  const collections = newCollections(state._collections);
+  // get counts of filters and apply other properties based on if count is 0
+  const filters = state.filters.map(filter =>
+    applyPropsToFilterByResourceCount(filter, getAllNodesFromCollections(collections)),
+  );
+
+  return {
+    ...state,
+    collections,
+    filters,
+    searchResults: {},
+    searchBarTerms: '',
+    query: null,
+    loading: false,
+  };
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOAD_SIPHON_COLLECTIONS:
@@ -262,6 +280,8 @@ const reducer = (state = initialState, action) => {
       return setSearchQuery(state, action.payload.onSearch);
     case actionTypes.SET_SEARCH_BAR_TERMS:
       return setSearchBarTerms(state, action.payload.searchBarTerms);
+    case actionTypes.RESET_SEARCH:
+      return resetSearch(state);
     default:
       return state;
   }

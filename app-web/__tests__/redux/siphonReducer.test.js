@@ -95,8 +95,7 @@ describe('reducer', () => {
 
   it('correctly sets available resources count', () => {
     const personaFilter = DEFAULT_FILTER_GROUPS[0];
-    // in our fixtured nodes, there is only one node that has the designer persona attribute
-    expect(personaFilter.availableResources).toBe(0);
+
     const newFilter = applyPropsToFilterByResourceCount(personaFilter, SIPHON_NODES);
 
     // manually reduce the amount of available resources within the collections
@@ -123,7 +122,7 @@ describe('reducer', () => {
     expect(newFilter.active).toBe(false);
   });
 
-  it.skip('should handle applying search results', () => {
+  it('should handle applying search results', () => {
     const state = {
       ...INITIAL_STATES.SIPHON,
       _collections: collectionsFixture,
@@ -138,6 +137,25 @@ describe('reducer', () => {
     // we'd expect that the collections total nodes have been reduced to the length of the search results
     expect(totalNodes).toEqual(
       Object.keys(ACTIONS.SET_SEARCH_RESULTS.payload.searchResults).length,
+    );
+  });
+
+  it('should handle resetting search', () => {
+    const state = {
+      ...INITIAL_STATES.SIPHON,
+      _collections: collectionsFixture,
+      collections: [],
+    };
+
+    const newState = reducer(state, ACTIONS.RESET_SEARCH);
+    // we'd expect that the collections total nodes have been reduced to the length of the search results
+    expect(newState.collections).toEqual(collectionsFixture);
+    expect(newState.searchResults).toEqual({});
+    expect(newState.loading).toBe(false);
+    expect(newState.query).toBe(null);
+    expect(newState.searchBarTerms).toBe('');
+    expect(newState.filters[0].availableResources).toBe(
+      INITIAL_STATES.SIPHON.filters[0].availableResources,
     );
   });
 });

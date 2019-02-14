@@ -4,9 +4,9 @@ export {
   removeAllFilters,
   addFilter,
   removeFilter,
-  filterSiphonNodesByFilterList,
   setSearchResults,
   setSearchQuery,
   setSearchBarTerms,
+  resetSearch,
 } from './siphonActions';
 export { toggleMainNavigation, setWelcomePanelViewed } from './uiActions';

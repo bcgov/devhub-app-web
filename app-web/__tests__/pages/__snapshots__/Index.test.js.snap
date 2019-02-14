@@ -575,7 +575,7 @@ ShallowWrapper {
       Array [
         Object {
           "active": false,
-          "availableResources": 0,
+          "availableResources": 3,
           "filterBy": "attributes.personas",
           "isFilterable": false,
           "key": "foo",
@@ -585,7 +585,7 @@ ShallowWrapper {
         },
         Object {
           "active": true,
-          "availableResources": 0,
+          "availableResources": 3,
           "filterBy": "attributes.personas",
           "isFilterable": false,
           "key": "bar",
@@ -595,7 +595,7 @@ ShallowWrapper {
         },
         Object {
           "active": false,
-          "availableResources": 0,
+          "availableResources": 1,
           "filterBy": "attributes.personas",
           "isFilterable": false,
           "key": "baz",
@@ -934,7 +934,7 @@ ShallowWrapper {
               Array [
                 Object {
                   "active": false,
-                  "availableResources": 0,
+                  "availableResources": 3,
                   "filterBy": "attributes.personas",
                   "isFilterable": false,
                   "key": "foo",
@@ -944,7 +944,7 @@ ShallowWrapper {
                 },
                 Object {
                   "active": true,
-                  "availableResources": 0,
+                  "availableResources": 3,
                   "filterBy": "attributes.personas",
                   "isFilterable": false,
                   "key": "bar",
@@ -954,7 +954,7 @@ ShallowWrapper {
                 },
                 Object {
                   "active": false,
-                  "availableResources": 0,
+                  "availableResources": 1,
                   "filterBy": "attributes.personas",
                   "isFilterable": false,
                   "key": "baz",
@@ -974,7 +974,7 @@ ShallowWrapper {
                 Array [
                   Object {
                     "active": false,
-                    "availableResources": 0,
+                    "availableResources": 3,
                     "filterBy": "attributes.personas",
                     "isFilterable": false,
                     "key": "foo",
@@ -984,7 +984,7 @@ ShallowWrapper {
                   },
                   Object {
                     "active": true,
-                    "availableResources": 0,
+                    "availableResources": 3,
                     "filterBy": "attributes.personas",
                     "isFilterable": false,
                     "key": "bar",
@@ -994,7 +994,7 @@ ShallowWrapper {
                   },
                   Object {
                     "active": false,
-                    "availableResources": 0,
+                    "availableResources": 1,
                     "filterBy": "attributes.personas",
                     "isFilterable": false,
                     "key": "baz",
@@ -1351,7 +1351,7 @@ ShallowWrapper {
                 Array [
                   Object {
                     "active": false,
-                    "availableResources": 0,
+                    "availableResources": 3,
                     "filterBy": "attributes.personas",
                     "isFilterable": false,
                     "key": "foo",
@@ -1361,7 +1361,7 @@ ShallowWrapper {
                   },
                   Object {
                     "active": true,
-                    "availableResources": 0,
+                    "availableResources": 3,
                     "filterBy": "attributes.personas",
                     "isFilterable": false,
                     "key": "bar",
@@ -1371,7 +1371,7 @@ ShallowWrapper {
                   },
                   Object {
                     "active": false,
-                    "availableResources": 0,
+                    "availableResources": 1,
                     "filterBy": "attributes.personas",
                     "isFilterable": false,
                     "key": "baz",
@@ -1391,7 +1391,7 @@ ShallowWrapper {
                   Array [
                     Object {
                       "active": false,
-                      "availableResources": 0,
+                      "availableResources": 3,
                       "filterBy": "attributes.personas",
                       "isFilterable": false,
                       "key": "foo",
@@ -1401,7 +1401,7 @@ ShallowWrapper {
                     },
                     Object {
                       "active": true,
-                      "availableResources": 0,
+                      "availableResources": 3,
                       "filterBy": "attributes.personas",
                       "isFilterable": false,
                       "key": "bar",
@@ -1411,7 +1411,7 @@ ShallowWrapper {
                     },
                     Object {
                       "active": false,
-                      "availableResources": 0,
+                      "availableResources": 1,
                       "filterBy": "attributes.personas",
                       "isFilterable": false,
                       "key": "baz",
@@ -1728,7 +1728,7 @@ ShallowWrapper {
               "filters": Array [
                 Object {
                   "active": false,
-                  "availableResources": 0,
+                  "availableResources": 3,
                   "filterBy": "attributes.personas",
                   "isFilterable": false,
                   "key": "foo",
@@ -1738,7 +1738,7 @@ ShallowWrapper {
                 },
                 Object {
                   "active": true,
-                  "availableResources": 0,
+                  "availableResources": 3,
                   "filterBy": "attributes.personas",
                   "isFilterable": false,
                   "key": "bar",
@@ -1748,7 +1748,7 @@ ShallowWrapper {
                 },
                 Object {
                   "active": false,
-                  "availableResources": 0,
+                  "availableResources": 1,
                   "filterBy": "attributes.personas",
                   "isFilterable": false,
                   "key": "baz",
@@ -1774,7 +1774,7 @@ ShallowWrapper {
                     Array [
                       Object {
                         "active": false,
-                        "availableResources": 0,
+                        "availableResources": 3,
                         "filterBy": "attributes.personas",
                         "isFilterable": false,
                         "key": "foo",
@@ -1784,7 +1784,7 @@ ShallowWrapper {
                       },
                       Object {
                         "active": true,
-                        "availableResources": 0,
+                        "availableResources": 3,
                         "filterBy": "attributes.personas",
                         "isFilterable": false,
                         "key": "bar",
@@ -1794,7 +1794,7 @@ ShallowWrapper {
                       },
                       Object {
                         "active": false,
-                        "availableResources": 0,
+                        "availableResources": 1,
                         "filterBy": "attributes.personas",
                         "isFilterable": false,
                         "key": "baz",
@@ -2119,7 +2119,7 @@ ShallowWrapper {
                   "filters": Array [
                     Object {
                       "active": false,
-                      "availableResources": 0,
+                      "availableResources": 3,
                       "filterBy": "attributes.personas",
                       "isFilterable": false,
                       "key": "foo",
@@ -2129,7 +2129,7 @@ ShallowWrapper {
                     },
                     Object {
                       "active": true,
-                      "availableResources": 0,
+                      "availableResources": 3,
                       "filterBy": "attributes.personas",
                       "isFilterable": false,
                       "key": "bar",
@@ -2139,7 +2139,7 @@ ShallowWrapper {
                     },
                     Object {
                       "active": false,
-                      "availableResources": 0,
+                      "availableResources": 1,
                       "filterBy": "attributes.personas",
                       "isFilterable": false,
                       "key": "baz",
@@ -3650,7 +3650,7 @@ ShallowWrapper {
                 Array [
                   Object {
                     "active": false,
-                    "availableResources": 0,
+                    "availableResources": 3,
                     "filterBy": "attributes.personas",
                     "isFilterable": false,
                     "key": "foo",
@@ -3660,7 +3660,7 @@ ShallowWrapper {
                   },
                   Object {
                     "active": true,
-                    "availableResources": 0,
+                    "availableResources": 3,
                     "filterBy": "attributes.personas",
                     "isFilterable": false,
                     "key": "bar",
@@ -3670,7 +3670,7 @@ ShallowWrapper {
                   },
                   Object {
                     "active": false,
-                    "availableResources": 0,
+                    "availableResources": 1,
                     "filterBy": "attributes.personas",
                     "isFilterable": false,
                     "key": "baz",
@@ -3690,7 +3690,7 @@ ShallowWrapper {
                   Array [
                     Object {
                       "active": false,
-                      "availableResources": 0,
+                      "availableResources": 3,
                       "filterBy": "attributes.personas",
                       "isFilterable": false,
                       "key": "foo",
@@ -3700,7 +3700,7 @@ ShallowWrapper {
                     },
                     Object {
                       "active": true,
-                      "availableResources": 0,
+                      "availableResources": 3,
                       "filterBy": "attributes.personas",
                       "isFilterable": false,
                       "key": "bar",
@@ -3710,7 +3710,7 @@ ShallowWrapper {
                     },
                     Object {
                       "active": false,
-                      "availableResources": 0,
+                      "availableResources": 1,
                       "filterBy": "attributes.personas",
                       "isFilterable": false,
                       "key": "baz",
@@ -4067,7 +4067,7 @@ ShallowWrapper {
                   Array [
                     Object {
                       "active": false,
-                      "availableResources": 0,
+                      "availableResources": 3,
                       "filterBy": "attributes.personas",
                       "isFilterable": false,
                       "key": "foo",
@@ -4077,7 +4077,7 @@ ShallowWrapper {
                     },
                     Object {
                       "active": true,
-                      "availableResources": 0,
+                      "availableResources": 3,
                       "filterBy": "attributes.personas",
                       "isFilterable": false,
                       "key": "bar",
@@ -4087,7 +4087,7 @@ ShallowWrapper {
                     },
                     Object {
                       "active": false,
-                      "availableResources": 0,
+                      "availableResources": 1,
                       "filterBy": "attributes.personas",
                       "isFilterable": false,
                       "key": "baz",
@@ -4107,7 +4107,7 @@ ShallowWrapper {
                     Array [
                       Object {
                         "active": false,
-                        "availableResources": 0,
+                        "availableResources": 3,
                         "filterBy": "attributes.personas",
                         "isFilterable": false,
                         "key": "foo",
@@ -4117,7 +4117,7 @@ ShallowWrapper {
                       },
                       Object {
                         "active": true,
-                        "availableResources": 0,
+                        "availableResources": 3,
                         "filterBy": "attributes.personas",
                         "isFilterable": false,
                         "key": "bar",
@@ -4127,7 +4127,7 @@ ShallowWrapper {
                       },
                       Object {
                         "active": false,
-                        "availableResources": 0,
+                        "availableResources": 1,
                         "filterBy": "attributes.personas",
                         "isFilterable": false,
                         "key": "baz",
@@ -4444,7 +4444,7 @@ ShallowWrapper {
                 "filters": Array [
                   Object {
                     "active": false,
-                    "availableResources": 0,
+                    "availableResources": 3,
                     "filterBy": "attributes.personas",
                     "isFilterable": false,
                     "key": "foo",
@@ -4454,7 +4454,7 @@ ShallowWrapper {
                   },
                   Object {
                     "active": true,
-                    "availableResources": 0,
+                    "availableResources": 3,
                     "filterBy": "attributes.personas",
                     "isFilterable": false,
                     "key": "bar",
@@ -4464,7 +4464,7 @@ ShallowWrapper {
                   },
                   Object {
                     "active": false,
-                    "availableResources": 0,
+                    "availableResources": 1,
                     "filterBy": "attributes.personas",
                     "isFilterable": false,
                     "key": "baz",
@@ -4490,7 +4490,7 @@ ShallowWrapper {
                       Array [
                         Object {
                           "active": false,
-                          "availableResources": 0,
+                          "availableResources": 3,
                           "filterBy": "attributes.personas",
                           "isFilterable": false,
                           "key": "foo",
@@ -4500,7 +4500,7 @@ ShallowWrapper {
                         },
                         Object {
                           "active": true,
-                          "availableResources": 0,
+                          "availableResources": 3,
                           "filterBy": "attributes.personas",
                           "isFilterable": false,
                           "key": "bar",
@@ -4510,7 +4510,7 @@ ShallowWrapper {
                         },
                         Object {
                           "active": false,
-                          "availableResources": 0,
+                          "availableResources": 1,
                           "filterBy": "attributes.personas",
                           "isFilterable": false,
                           "key": "baz",
@@ -4835,7 +4835,7 @@ ShallowWrapper {
                     "filters": Array [
                       Object {
                         "active": false,
-                        "availableResources": 0,
+                        "availableResources": 3,
                         "filterBy": "attributes.personas",
                         "isFilterable": false,
                         "key": "foo",
@@ -4845,7 +4845,7 @@ ShallowWrapper {
                       },
                       Object {
                         "active": true,
-                        "availableResources": 0,
+                        "availableResources": 3,
                         "filterBy": "attributes.personas",
                         "isFilterable": false,
                         "key": "bar",
@@ -4855,7 +4855,7 @@ ShallowWrapper {
                       },
                       Object {
                         "active": false,
-                        "availableResources": 0,
+                        "availableResources": 1,
                         "filterBy": "attributes.personas",
                         "isFilterable": false,
                         "key": "baz",

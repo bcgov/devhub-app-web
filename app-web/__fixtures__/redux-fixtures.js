@@ -21,7 +21,9 @@ export const DEFAULT_FILTER_GROUPS = [
     value: 'Designer',
     text: 'Designers',
     active: false,
-    availableResources: 0,
+    availableResources: SIPHON_NODES.filter(node =>
+      node.attributes.personas.some(persona => persona === 'Designer'),
+    ).length,
     isFilterable: false,
     key: 'foo',
     title: 'For',
@@ -31,7 +33,9 @@ export const DEFAULT_FILTER_GROUPS = [
     value: 'Developer',
     text: 'Developers',
     active: true,
-    availableResources: 0,
+    availableResources: SIPHON_NODES.filter(node =>
+      node.attributes.personas.some(persona => persona === 'Developer'),
+    ).length,
     isFilterable: false,
     key: 'bar',
     title: 'For',
@@ -41,7 +45,9 @@ export const DEFAULT_FILTER_GROUPS = [
     value: 'Product Owner',
     text: 'Product Owners',
     active: false,
-    availableResources: 0,
+    availableResources: SIPHON_NODES.filter(node =>
+      node.attributes.personas.some(persona => persona === 'Product Owner'),
+    ).length,
     isFilterable: false,
     key: 'baz',
     title: 'For',
@@ -99,6 +105,9 @@ export const ACTIONS = {
     payload: {
       searchResults: LUNR_SEARCH_RESULTS_2,
     },
+  },
+  RESET_SEARCH: {
+    type: actions.RESET_SEARCH,
   },
   SET_SEARCH_RESULTS_ALL: {
     type: actions.SET_SEARCH_RESULTS,
