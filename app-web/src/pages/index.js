@@ -16,7 +16,6 @@ import Loading from '../components/UI/Loading/Loading';
 import Layout from '../hoc/Layout';
 import Cards from '../components/Cards/Cards';
 import Sidebar from '../components/Sidebar/Sidebar';
-import WelcomePanel from '../components/WelcomePanel/WelcomePanel';
 import PrimaryFilter from '../components/Navigation/PrimaryFilter';
 import Dropmenu from '../components/Dropmenu/Dropmenu';
 import ToolsMenu from '../components/ToolsMenu/ToolsMenu';
@@ -26,7 +25,6 @@ import {
   selectFilteredCollections,
   selectFilters,
   selectCollectionsLoaded,
-  selectShowWelcomePanel,
   selectQuery,
   selectSiphonReducerLoading,
   selectSearchResultsLength,
@@ -58,8 +56,6 @@ export class Index extends Component {
   }
 
   componentWillUnmount() {
-    // prevents welcome message from every showing again as long as local storage state is kept
-    this.props.hideWelcomeMessage();
     // unset set all search properties so that when this page is navigated back to, it looks like a fresh
     // page
     this.props.resetSearch();
@@ -126,7 +122,6 @@ export class Index extends Component {
         <div className={[styles.MainContainer, 'container'].join(' ')}>
           <Sidebar filters={filters} />
           <div className={styles.Right}>
-            <WelcomePanel />
             <ToolsMenu
               filters={filters}
               searchCount={searchResultsLength}
@@ -207,7 +202,6 @@ export const resourceQuery = graphql`
 const mapStateToProps = createStructuredSelector({
   collections: selectFilteredCollections,
   collectionsLoaded: selectCollectionsLoaded,
-  displayWelcome: selectShowWelcomePanel,
   query: selectQuery,
   filters: selectFilters,
   loading: selectSiphonReducerLoading,
@@ -220,7 +214,6 @@ const mapDispatchToProps = dispatch => {
   return {
     loadCollections: collections => dispatch(actions.loadSiphonCollections(collections)),
     setSearchResults: results => dispatch(actions.setSearchResults(results)),
-    hideWelcomeMessage: () => dispatch(actions.setWelcomePanelViewed(true)),
     setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
     setSearchBarTerms: resourceType => dispatch(actions.setSearchBarTerms(resourceType)),
     resetSearch: () => dispatch(actions.resetSearch()),
