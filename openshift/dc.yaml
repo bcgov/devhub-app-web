@@ -28,10 +28,10 @@ objects:
     strategy:
       resources:
         requests:
-          cpu: '20m'
+          cpu: '1m'
           memory: '30MiB'
         limits:
-          cpu: '35m'
+          cpu: '2m'
           memory: '50MiB'
     template:
       metadata:
@@ -49,10 +49,10 @@ objects:
             protocol: TCP
           resources:
             requests:
-              cpu: '20m'
+              cpu: '1m'
               memory: '30MiB'
             limits:
-              cpu: '35m'
+              cpu: '2m'
               memory: '50MiB'
           env:
           - name: SSO_BASE_URL
