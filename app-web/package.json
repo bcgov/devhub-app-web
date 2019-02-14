@@ -77,6 +77,7 @@
     "prop-types": "^15.6.0",
     "query-string": "^6.2.0",
     "react": "^16.6.3",
+    "react-avatar": "^3.5.0",
     "react-dom": "^16.6.3",
     "react-dotdotdot": "^1.2.3",
     "react-emotion": "^10.0.0",
@@ -101,6 +102,7 @@
     "styled-system": "^3.1.11",
     "unfurl.js": "^1.1.6",
     "unist-util-visit": "^1.4.0",
+    "uri-parser": "^1.0.1",
     "url-parse": "^1.4.4",
     "valid-url": "^1.0.9"
   },
