@@ -49,6 +49,7 @@ objects:
     creationTimestamp: null
     name: ${NAME}${SUFFIX}
   spec:
+    completionDeadlineSeconds: 900 # terminate the build if it takes longer than 900 seconds, our builds are avg 10 minutes as of Feb 2019
     nodeSelector: null
     output:
       to:
