@@ -95,8 +95,7 @@ describe('reducer', () => {
 
   it('correctly sets available resources count', () => {
     const personaFilter = DEFAULT_FILTER_GROUPS[0];
-    // in our fixtured nodes, there is only one node that has the designer persona attribute
-    expect(personaFilter.availableResources).toBe(0);
+
     const newFilter = applyPropsToFilterByResourceCount(personaFilter, SIPHON_NODES);
 
     // manually reduce the amount of available resources within the collections
@@ -155,5 +154,8 @@ describe('reducer', () => {
     expect(newState.loading).toBe(false);
     expect(newState.query).toBe(null);
     expect(newState.searchBarTerms).toBe('');
+    expect(newState.filters[0].availableResources).toBe(
+      INITIAL_STATES.SIPHON.filters[0].availableResources,
+    );
   });
 });

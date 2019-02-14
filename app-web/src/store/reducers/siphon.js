@@ -248,9 +248,15 @@ const setSearchBarTerms = (state, searchBarTerms) => ({ ...state, searchBarTerms
 
 const resetSearch = state => {
   const collections = newCollections(state._collections);
+  // get counts of filters and apply other properties based on if count is 0
+  const filters = state.filters.map(filter =>
+    applyPropsToFilterByResourceCount(filter, getAllNodesFromCollections(collections)),
+  );
+
   return {
     ...state,
     collections,
+    filters,
     searchResults: {},
     searchBarTerms: '',
     query: null,
