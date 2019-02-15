@@ -1,0 +1,18 @@
+.ApplicationHeader {
+  text-align: center;
+  color: #494949;
+}
+
+.ApplicationHeader h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: .5em;
+}
+
+.ApplicationHeader h4 {
+  font-size: 16px;
+  max-width: 525px;
+  margin: 0 auto;
+  padding: 3px;
+  line-height: 1.5em;
+}

@@ -12,6 +12,7 @@ import FLAGS from '../constants/featureflags';
 import styles from './index.module.css';
 // components
 import { Element } from 'react-scroll';
+import ApplicationHeader from '../components/Home/ApplicationHeader';
 import Loading from '../components/UI/Loading/Loading';
 import Layout from '../hoc/Layout';
 import Cards from '../components/Cards/Cards';
@@ -119,6 +120,9 @@ export class Index extends Component {
         </Flag>
         {/* hamburger icon controlled menu */}
         <Dropmenu menuToggled />
+        <div>
+          <ApplicationHeader />
+        </div>
         <div className={[styles.MainContainer, 'container'].join(' ')}>
           <Sidebar filters={filters} />
           <div className={styles.Right}>
