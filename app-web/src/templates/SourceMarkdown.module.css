@@ -11,27 +11,28 @@
     color: #494949;
     font-weight: 700;
     margin: 1em 0 0.6em 0;
-    font-family: 'Noto Sans', Verdana, sans-serif;
     border-bottom: none;
 }
 
-.MarkdownBody h1{
+.MarkdownBody h1 {
   font-size: 37.32px;
 }
-.MarkdownBody h2{
+
+.MarkdownBody h2 {
   font-size: 31.10px;
 }
-.MarkdownBody h3{
+
+.MarkdownBody h3 {
   font-size: 25.92px;
 }
-.MarkdownBody h4{
+
+.MarkdownBody h4 {
   font-size: 21.60px;
 }
 
 .MarkdownBody p {
   color: #494949;
   line-height: 1.6;
-  font-family: 'Noto Sans', Verdana, sans-serif;
   font-size: 18px;
 }
 
