@@ -23,9 +23,9 @@ import styles from './input.module.css';
     usage:
       <Formgroup>
         <Label for=[FOR]>foo</Label>
-        <Checkbox id=[FOR1] />
-        <Checkbox id=[FOR2] />
-        <Checkbox id=[FOR3] />
+        <Checkbox id=[FOR1] {...} />
+        <Checkbox id=[FOR2] {...} />
+        <Checkbox id=[FOR3] {...} />
       </Formgroup>
     please note the 'for' attribute in the label, all id's passed to checkbox must be an increment
     of that value
