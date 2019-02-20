@@ -19,7 +19,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import styles from './FilterMenu.module.css';
 
-import SecondaryFilter from '../../SecondaryFilter/SecondaryFilter';
+import Filters from '../../Filters/Filters';
 
 const FilterMenu = ({ filters }) => {
   return (
@@ -33,7 +33,7 @@ const FilterMenu = ({ filters }) => {
           >
             Filters <FontAwesomeIcon icon={faFilter} />
           </button>
-          {on ? <SecondaryFilter filters={filters} /> : null}
+          {on ? <Filters filters={filters} /> : null}
         </div>
       )}
     </Toggle>

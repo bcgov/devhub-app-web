@@ -18,11 +18,11 @@ Created by Patrick Simonian
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Sidebar.module.css';
-import SecondaryFilter from '../SecondaryFilter/SecondaryFilter';
+import Filters from '../Filters/Filters';
 
 export const Sidebar = ({ filters, setOnSearch }) => (
   <div className={styles.Sidebar}>
-    <SecondaryFilter filters={filters} />
+    <Filters filters={filters} />
   </div>
 );
 

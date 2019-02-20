@@ -15,12 +15,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
-import styles from './SecondaryFilter.module.css';
+import styles from './Filters.module.css';
 
 import FilterGroup from './FilterGroup/FilterGroup';
 import { groupBy } from '../../utils/dataMassager';
 
-const SecondaryFilter = ({ filters }) => {
+const Filters = ({ filters }) => {
   // group filter groups by there title
   let groupedFilters = groupBy(filters, 'title');
   // map the data property that is created from groupBy to filters which is needed
@@ -28,7 +28,7 @@ const SecondaryFilter = ({ filters }) => {
   groupedFilters = groupedFilters.map(fg => ({ ...fg, filters: fg.data }));
 
   const filterGroupsComponent = (
-    <div className={styles.SecondaryFilter}>
+    <div className={styles.Filters}>
       {groupedFilters.map(fg => (
         <FilterGroup {...fg} key={shortid.generate()} />
       ))}
@@ -38,7 +38,7 @@ const SecondaryFilter = ({ filters }) => {
   return filterGroupsComponent;
 };
 
-SecondaryFilter.propTypes = {
+Filters.propTypes = {
   filters: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
@@ -46,4 +46,4 @@ SecondaryFilter.propTypes = {
   ).isRequired,
 };
 
-export default SecondaryFilter;
+export default Filters;
