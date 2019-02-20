@@ -12,56 +12,41 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import * as actions from '../../../store/actions/actions';
-import styles from './FilterGroup.module.css';
 import PropTypes from 'prop-types';
-import {
-  ARIA_LABEL_FILTER_RESOURCE,
-  ARIA_LABEL_RESOURCES_MATCH_FILTER,
-} from '../../../constants/ariaLabels';
+import { connect } from 'react-redux';
+import { FormGroup, Label } from 'reactstrap';
+import * as actions from '../../../store/actions/actions';
+import { ARIA_LABEL_FILTER_RESOURCE } from '../../../constants/ariaLabels';
+import styles from './FilterGroup.module.css';
+
+import Checkbox from '../../UI/Input/Checkbox';
 
 export const FilterGroup = ({ title, filters, addFilter, removeFilter }) => {
   return (
-    <div className={styles.FilterGroup}>
-      <h2>{title}</h2>
-      <ul>
-        {filters.map(filter => {
-          let classNames = [filter.active ? styles.active : ''];
-          //add the ignore class so it looks not clickable
-          if (!filter.isFilterable) {
-            classNames = classNames.concat([styles.Disabled]);
-          }
-
-          return (
-            <li
-              className={classNames.join(' ')}
-              onClick={e => {
-                e.preventDefault();
-                // isFilterarble is based on if there are resources that can be 'filtered' based
-                // on this groups params
-                if (filter.isFilterable) {
-                  filter.active ? removeFilter(filter.key) : addFilter(filter.key);
-                }
-              }}
-              key={filter.key}
-            >
-              {filter.active ? (
-                <FontAwesomeIcon className={styles.Icon} icon={faCheckCircle} />
-              ) : null}
-              <button className={styles.link} aria-label={ARIA_LABEL_FILTER_RESOURCE}>
-                {filter.text}
-              </button>
-              <span className={styles.FilterCount} aria-label={ARIA_LABEL_RESOURCES_MATCH_FILTER}>
-                {filter.availableResources}
-              </span>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <FormGroup className={styles.FormGroup}>
+      <Label for={title} className={styles.Title}>
+        {title}
+      </Label>
+      {filters.map((filter, ind) => {
+        /* 
+          a requirement for custom reactstrap inputs is that the id of the custom input is
+          an incremenet of a top level labels
+          for attribute 
+        */
+        return (
+          <Checkbox
+            id={title + ind}
+            key={filter.key}
+            aria-label={ARIA_LABEL_FILTER_RESOURCE}
+            onChange={e => (filter.active ? removeFilter(filter.key) : addFilter(filter.key))}
+            name={filter.filterBy}
+            label={filter.text}
+            checked={filter.active}
+            disabled={!filter.isFilterable}
+          />
+        );
+      })}
+    </FormGroup>
   );
 };
 
