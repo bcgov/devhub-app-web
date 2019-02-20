@@ -76,7 +76,9 @@ const transformRelativePaths = ({ markdownAST, markdownNode, getNode }, { conver
   visit(markdownAST, LINK, node => {
     node.url = linkVisitedCB(node.url);
   });
-  // return null;
+  // returning null to stop warning messages from remark
+  // http://bluebirdjs.com/docs/warning-explanations.html#warning-a-promise-was-created-in-a-handler-but-was-not-returned-from-it
+  return null;
 };
 
 module.exports = transformRelativePaths;

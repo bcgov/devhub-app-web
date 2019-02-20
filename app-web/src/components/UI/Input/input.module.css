@@ -1,3 +1,6 @@
+/* Design System Input Styling */
+
+/* Bootstrap 4 Custom Input Checkbox Overrides */
 .Checkbox :global(.custom-control-label) {
   cursor: pointer;
 }
@@ -7,6 +10,7 @@
   border-radius: 0;
   background-color: transparent;
 }
+
 .Checkbox :global(.custom-control-input:disabled ~ .custom-control-label::before) {
   border: none;
 }
