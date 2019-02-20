@@ -20,15 +20,19 @@ objects:
     creationTimestamp: null
     name: ${NAME}-static${SUFFIX}
   spec:
+    minReadySeconds: 20 # should be ready for atleast 20 seconds before the container is considered available. This will allow us
+    # to catch any errors on deploy before they are available to the web
     replicas: 2
     selector:
       deploymentconfig: ${NAME}-static${SUFFIX}
     strategy:
       resources:
         requests:
-          cpu: '100m'
+          cpu: '1m'
+          memory: '30Mi'
         limits:
-          cpu: '150m'
+          cpu: '2m'
+          memory: '50Mi'
     template:
       metadata:
         creationTimestamp: null
@@ -45,9 +49,11 @@ objects:
             protocol: TCP
           resources:
             requests:
-              cpu: '100m'
+              cpu: '1m'
+              memory: '30Mi'
             limits:
-              cpu: '150m'
+              cpu: '2m'
+              memory: '50Mi'
           env:
           - name: SSO_BASE_URL
             value: ${SSO_BASE_URL_VALUE}
