@@ -11,6 +11,7 @@ sources:
         - styles/colours/colourpalette.md
         - styles/typography/typography.md
         - styles/Icons/icons.md
+        - components/beta/README.md
         - components/header/README.md
         - components/footer/README.md
         - components/navbar/README.md
