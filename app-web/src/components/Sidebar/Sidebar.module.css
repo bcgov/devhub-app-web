@@ -1,11 +1,7 @@
 .Sidebar {
   display: none;
   flex: 0 0 205px;
-  margin-right: 45px;
-  height: 400px;
   box-sizing: border-box;
-  padding: 10px;
-  border-left: 2px dashed #ccc;
 }
 
 @media screen and (min-width: 600px) {

@@ -1,0 +1,14 @@
+.Filters {
+  display: none;
+  border: 3px solid #ddd;
+  padding: 0 6px;
+}
+
+@media screen and (min-width: 600px) {
+  .Filters {
+    display: block;
+    width: 250px;
+    margin-right: 10px;
+    min-height: 250px;
+  }
+} 
