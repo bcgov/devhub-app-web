@@ -1,4 +1,4 @@
-.PrimaryFilter {
+.Navbar {
     background-color: #38598a;
     color: #FFF;
     position: fixed;
@@ -9,7 +9,7 @@
     z-index: 150;
 }
 
-.PrimaryFilter ul {
+.Navbar ul {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -18,7 +18,7 @@
     justify-content: flex-start;
 }
 
-.PrimaryFilter ul li {
+.Navbar ul li {
     height: 44px;
     box-sizing: border-box;
     display: flex;
@@ -26,7 +26,7 @@
     justify-content: center;
 }
 
-.PrimaryFilter ul a {
+.Navbar ul a {
     padding: 10px;
     flex: 1 0 auto;
     height: 100%;
@@ -35,15 +35,15 @@
     cursor: pointer;
 }
 
-.PrimaryFilter ul a:visited {
+.Navbar ul a:visited {
     color: inherit;
 }
 
-.PrimaryFilter ul li:not(.ActiveFilter):hover {
+.Navbar ul li:not(.ActiveFilter):hover {
     text-decoration: underline;
 }
 
-.PrimaryFilter .largeOnly {
+.Navbar .largeOnly {
     display: none;
 }
 
@@ -53,20 +53,20 @@
 }
 
 @media screen and (min-width: 750px) {
-    .PrimaryFilter {
+    .Navbar {
         padding: 0 65px;
     }
 
-    .PrimaryFilter .mobileOnly {
+    .Navbar .mobileOnly {
         display: none;
     }
 
-    .PrimaryFilter ul li:first-child {
+    .Navbar ul li:first-child {
         flex-basis: 85px;
         text-align: center;
     }
 
-    .PrimaryFilter .largeOnly {
+    .Navbar .largeOnly {
         display: flex;
         align-items: center;
         flex-flow: row wrap;

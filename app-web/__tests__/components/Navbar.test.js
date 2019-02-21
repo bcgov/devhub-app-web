@@ -17,20 +17,20 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import { shallow } from 'enzyme';
-import { PrimaryFilter } from '../../src/components/Navigation/PrimaryFilter';
+import { Navbar } from '../../src/components/Navbar/Navbar';
 
 describe('Primary Filter Component', () => {
-  let primaryFilter = null;
+  let navbar = null;
 
   const props = {
     mobile: false,
   };
 
   beforeEach(() => {
-    primaryFilter = shallow(<PrimaryFilter {...props} />);
+    navbar = shallow(<Navbar {...props} />);
   });
 
   test('it matches snapshot', () => {
-    expect(primaryFilter).toMatchSnapshot();
+    expect(navbar).toMatchSnapshot();
   });
 });

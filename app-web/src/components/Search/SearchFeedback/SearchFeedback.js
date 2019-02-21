@@ -24,12 +24,7 @@ const SearchFeedback = ({ searchCount, totalNodeCount, searchWordLength, query }
   let caption = null;
   // if search results returned nothing and there was a query made
   if (searchCount === 0 && query !== null) {
-    caption = (
-      <p>
-        No resources found :( Click <Link to={path}>here</Link> to reset or otherwise try searching
-        again.
-      </p>
-    );
+    caption = <p>No resources found :( Try searching again.</p>;
   } else if (searchCount !== null && searchCount < totalNodeCount && searchWordLength > 0) {
     caption = (
       <p>

@@ -1,32 +1,28 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { graphql } from 'gatsby';
 import { createStructuredSelector } from 'reselect';
+import queryString from 'query-string';
 import shortid from 'shortid';
 import { connect } from 'react-redux';
-import { Flag } from 'flag';
-import queryString from 'query-string';
-import * as actions from '../store/actions/actions';
 import { REACT_SCROLL } from '../constants/ui';
 import FLAGS from '../constants/featureflags';
+import * as actions from '../store/actions/actions';
 
 import styles from './index.module.css';
 // components
+import { Container } from 'reactstrap';
+import { Flag } from 'flag';
 import { Element } from 'react-scroll';
 import Loading from '../components/UI/Loading/Loading';
 import Layout from '../hoc/Layout';
 import Cards from '../components/Cards/Cards';
-import Sidebar from '../components/Sidebar/Sidebar';
-import WelcomePanel from '../components/WelcomePanel/WelcomePanel';
-import PrimaryFilter from '../components/Navigation/PrimaryFilter';
-import Dropmenu from '../components/Dropmenu/Dropmenu';
-import ToolsMenu from '../components/ToolsMenu/ToolsMenu';
-
+import Masthead from '../components/Home/Masthead';
+import Navbar from '../components/Navbar/Navbar';
 // selectors from reselect
 import {
   selectFilteredCollections,
   selectFilters,
   selectCollectionsLoaded,
-  selectShowWelcomePanel,
   selectQuery,
   selectSiphonReducerLoading,
   selectSearchResultsLength,
@@ -34,7 +30,9 @@ import {
   selectSearchWordLength,
 } from '../store/selectors';
 
-export class Index extends Component {
+import { SEARCH } from '../messages';
+
+export class Index extends PureComponent {
   componentDidMount() {
     // flatted nodes from graphql
     if (!this.props.collectionsLoaded) {
@@ -58,8 +56,6 @@ export class Index extends Component {
   }
 
   componentWillUnmount() {
-    // prevents welcome message from every showing again as long as local storage state is kept
-    this.props.hideWelcomeMessage();
     // unset set all search properties so that when this page is navigated back to, it looks like a fresh
     // page
     this.props.resetSearch();
@@ -99,7 +95,6 @@ export class Index extends Component {
     const {
       collections,
       toggleMenu,
-      filters,
       searchResultsLength,
       totalResources,
       setSearchBarTerms,
@@ -115,39 +110,35 @@ export class Index extends Component {
         cards={collection.nodes}
       />
     ));
-
     return (
       <Layout showHamburger hamburgerClicked={toggleMenu}>
         <Flag name={`features.${FLAGS.SOURCE_FILTERING}`}>
-          <PrimaryFilter />
+          <Navbar />
         </Flag>
-        {/* hamburger icon controlled menu */}
-        <Dropmenu menuToggled />
-        <div className={[styles.MainContainer, 'container'].join(' ')}>
-          <Sidebar filters={filters} />
-          <div className={styles.Right}>
-            <WelcomePanel />
-            <ToolsMenu
-              filters={filters}
-              searchCount={searchResultsLength}
-              totalNodeCount={totalResources}
-              setSearchBarTerms={setSearchBarTerms} // keywords i search bar
-              searchWordLength={searchWordLength}
-              query={query} // value from query string
-            />
+        <div className={styles.MainContainer}>
+          <Masthead
+            searchCount={searchResultsLength}
+            totalNodeCount={totalResources}
+            setSearchBarTerms={setSearchBarTerms} // keywords i search bar
+            searchWordLength={searchWordLength}
+            query={query} // value from query string
+          />
+          <Container fluid>
             <main role="main" className={styles.Main}>
-              {/* Element used for react-scroll targeting */}
               {this.props.loading ? (
                 <Loading message="Loading..." />
-              ) : (
+              ) : searchResultsLength > 0 ? (
                 <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
+                  {/* Element used for react-scroll targeting */}
                   <div className={styles.CardContainer}>
                     <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
                   </div>
                 </Element>
+              ) : (
+                <p>{SEARCH.results.empty.defaultMessage}</p>
               )}
             </main>
-          </div>
+          </Container>
         </div>
       </Layout>
     );
@@ -207,7 +198,6 @@ export const resourceQuery = graphql`
 const mapStateToProps = createStructuredSelector({
   collections: selectFilteredCollections,
   collectionsLoaded: selectCollectionsLoaded,
-  displayWelcome: selectShowWelcomePanel,
   query: selectQuery,
   filters: selectFilters,
   loading: selectSiphonReducerLoading,
@@ -220,7 +210,6 @@ const mapDispatchToProps = dispatch => {
   return {
     loadCollections: collections => dispatch(actions.loadSiphonCollections(collections)),
     setSearchResults: results => dispatch(actions.setSearchResults(results)),
-    hideWelcomeMessage: () => dispatch(actions.setWelcomePanelViewed(true)),
     setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
     setSearchBarTerms: resourceType => dispatch(actions.setSearchBarTerms(resourceType)),
     resetSearch: () => dispatch(actions.resetSearch()),
