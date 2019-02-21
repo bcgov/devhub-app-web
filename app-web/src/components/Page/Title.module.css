@@ -1,0 +1,17 @@
+.Title {
+  color: #494949;
+}
+
+.Title h1 {
+  font-size: 2em;
+  font-weight: 700;
+  margin-bottom: .5em;
+}
+
+.Title h4 {
+  font-size: 1em;
+  max-width: 525px;
+  margin: 0 auto;
+  padding: 3px;
+  line-height: 1.5em;
+}

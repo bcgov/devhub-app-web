@@ -3,7 +3,7 @@
 exports[`Primary Filter Component it matches snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <PrimaryFilter
+  Symbol(enzyme.__unrendered__): <Navbar
     mobile={false}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -73,7 +73,7 @@ ShallowWrapper {
           </mockConstructor>
         </li>
       </ul>,
-      "className": "PrimaryFilter",
+      "className": "Navbar",
     },
     "ref": null,
     "rendered": Object {
@@ -362,7 +362,7 @@ ShallowWrapper {
             </mockConstructor>
           </li>
         </ul>,
-        "className": "PrimaryFilter",
+        "className": "Navbar",
       },
       "ref": null,
       "rendered": Object {
