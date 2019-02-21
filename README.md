@@ -217,17 +217,14 @@ This repository has been configured to send webhooks to a self-hosted Taiga inst
 * to run prettier: `npm run prettify`
 * to run test suites: `npm test`
 
-## Deployment (Docker for Local Development)
+## Deployment (Docker Compose for Local Development)
 
 * Requires **Docker**
-* move into `app-web` directory
-* build image `docker build -t devhub-client .`
-* run image as container with the following volumes (until a better solution is found) 
-```
-docker run -v `pwd`/src:/usr/src/app/src -v `pwd`/plugins:/usr/src/app/plugins -v `pwd`/__tests__:/usr/src/app/__tests__ -v `pwd`/__fixtures__:/usr/src/app/__fixtures__ -v `pwd`/__mocks__:/usr/src/app/__mocks__ -v `pwd`/source-registry:/usr/src/app/source-registry -p 8000:8000 devhub-client
-```
-* **Note** `npm run develop` calls gatsby develop and sets the host with `-H 0.0.0.0`. This is so docker can correctly
-listen for requests on your local machines localhost.
+* move into the root directory for the project (if your are in app-web `cd ../`)
+* run `docker-compose up`
+> if you make changes that do not reflect into the hot reloading (which shouldn't really happen)
+all you will need to do is rebuild the image by ending the current container session and running
+`docker-compose up --build`
 
 ## Deployment (OpenShift)
 

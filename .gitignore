@@ -105,3 +105,6 @@ Thumbs.db
 ######################
 .gradle/
 pipeline/build/
+
+# docker compose artifacts
+.config/

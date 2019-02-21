@@ -29,4 +29,5 @@ RUN npm ci --silent
 
 USER app
 EXPOSE 8000
+
 CMD [ "npm", "run", "dev" ]
