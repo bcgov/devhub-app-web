@@ -78,7 +78,7 @@ export const LOGIN_BTN_ID = 'dh-login';
 export const LOGOUT_BTN_ID = 'dh-logout';
 export const BANNER_ID = 'dh-banner';
 export const MAIN_NAVIGATION_BTN = 'dh-main-nav';
-
+export const SEARCH_INPUT_ID = 'dh-search-input';
 // for the card toggle component card limit prop
 export const CARD_TOGGLE_LIMIT = {
   LARGE: 6,
@@ -165,8 +165,8 @@ export const REACT_SCROLL = {
 export const SEARCH = {
   INPUT: {
     maxLength: 40,
-    placeholder: 'search',
-    id: 'devhub.search.input',
+    id: SEARCH_INPUT_ID,
+    name: `${SEARCH_INPUT_ID}.search`,
   },
 };
 

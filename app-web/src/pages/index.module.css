@@ -1,5 +1,4 @@
 .Main {
-    padding: 0 15px 30px;
     margin-bottom: 5px;
     margin-top: 27px;
 }
@@ -55,15 +54,11 @@ touching the header bars */
 }
 
 .MainContainer {
-    display: flex;
     margin-top: 50px;
-    justify-content: center;
-    flex-direction: column;
 }
 
 @media screen and (min-width: 500px) {
     .Main {
-        padding: 10px 0 30px;
         margin-top: 0;
     }
 
@@ -72,9 +67,6 @@ touching the header bars */
     }
 
     .MainContainer {
-        padding: 25px 35px 30px;
-        margin-top: 115px;
-        justify-content: flex-start;
-        flex-direction: row;
+        margin-top: 112px;
     }
 }

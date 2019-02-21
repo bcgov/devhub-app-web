@@ -1,28 +1,26 @@
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import { createStructuredSelector } from 'reselect';
+import queryString from 'query-string';
 import shortid from 'shortid';
 import { connect } from 'react-redux';
-import { Flag } from 'flag';
-import queryString from 'query-string';
-import * as actions from '../store/actions/actions';
 import { REACT_SCROLL } from '../constants/ui';
 import FLAGS from '../constants/featureflags';
+import * as actions from '../store/actions/actions';
 
 import styles from './index.module.css';
 // components
+import { Container } from 'reactstrap';
+import { Flag } from 'flag';
 import { Element } from 'react-scroll';
-import Title from '../components/Page/Title';
 import Loading from '../components/UI/Loading/Loading';
 import Layout from '../hoc/Layout';
 import Cards from '../components/Cards/Cards';
-import Sidebar from '../components/Sidebar/Sidebar';
+import Masthead from '../components/Home/Masthead';
+// import Sidebar from '../components/Sidebar/Sidebar';
 import Navbar from '../components/Navbar/Navbar';
-import Dropmenu from '../components/Dropmenu/Dropmenu';
-import ToolsMenu from '../components/ToolsMenu/ToolsMenu';
-
-// localizations
-import { HOME } from '../messages';
+// import Dropmenu from '../components/Dropmenu/Dropmenu';
+// import ToolsMenu from '../components/ToolsMenu/ToolsMenu';
 // selectors from reselect
 import {
   selectFilteredCollections,
@@ -98,7 +96,6 @@ export class Index extends Component {
     const {
       collections,
       toggleMenu,
-      filters,
       searchResultsLength,
       totalResources,
       setSearchBarTerms,
@@ -121,35 +118,32 @@ export class Index extends Component {
           <Navbar />
         </Flag>
         {/* hamburger icon controlled menu */}
-        <Dropmenu menuToggled />
-        <div className={[styles.MainContainer, 'container'].join(' ')}>
-          <Title
-            title={HOME.header.title.defaultMessage}
-            subtitle={HOME.header.subtitle.defaultMessage}
+        {/* <Dropmenu menuToggled /> */}
+        {/* <Sidebar filters={filters} /> */}
+        <div className={styles.MainContainer}>
+          <Masthead
+            searchCount={searchResultsLength}
+            totalNodeCount={totalResources}
+            setSearchBarTerms={setSearchBarTerms} // keywords i search bar
+            searchWordLength={searchWordLength}
+            query={query} // value from query string
           />
-          <Sidebar filters={filters} />
-          <div className={styles.Right}>
-            <ToolsMenu
-              filters={filters}
-              searchCount={searchResultsLength}
-              totalNodeCount={totalResources}
-              setSearchBarTerms={setSearchBarTerms} // keywords i search bar
-              searchWordLength={searchWordLength}
-              query={query} // value from query string
-            />
+          <Container fluid>
             <main role="main" className={styles.Main}>
               {/* Element used for react-scroll targeting */}
               {this.props.loading ? (
                 <Loading message="Loading..." />
-              ) : (
+              ) : searchResultsLength > 0 ? (
                 <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
                   <div className={styles.CardContainer}>
                     <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
                   </div>
                 </Element>
+              ) : (
+                <p>No resources found :( try search again.</p>
               )}
             </main>
-          </div>
+          </Container>
         </div>
       </Layout>
     );

@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // stylesheets
-import '../assets/styles/index.css';
+// import '../assets/styles/index.css';
+
+import { Container } from 'reactstrap';
 // layout local componenets
 import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
 import PrimaryFooter from '../components/PrimaryFooter/PrimaryFooter';
@@ -30,13 +32,20 @@ export class Layout extends React.Component {
     const { children, toggleMenu } = this.props;
 
     return (
-      <div className="layout">
+      <Container
+        fluid
+        style={{
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          padding: 0,
+        }}
+      >
         <PrimaryHeader showHamburger hamburgerClicked={toggleMenu} />
-
-        {children}
+        <div style={{ flexGrow: 1 }}>{children}</div>
 
         <PrimaryFooter />
-      </div>
+      </Container>
     );
   }
 }

@@ -32,3 +32,10 @@ export const HOME = {
     },
   },
 };
+
+export const SEARCH = {
+  button: {
+    id: 'SEARCH.button',
+    defaultMessage: 'Search',
+  },
+};
