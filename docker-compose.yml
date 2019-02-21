@@ -1,3 +1,5 @@
+# docker compose for local development
+# this allows for hot reloading of the app
 version: '3'
 services:
   web:
@@ -5,6 +7,8 @@ services:
     env_file: './app-web/.env.production'
     volumes:
       - './app-web/:/home/app'
-      - '/home/app/node_modules'
+      # a hack to ignore node_modules so that local version, 
+      # if existing does not mount ontop of the images installed version
+      - '/home/app/node_modules' 
     ports:
       - '8000:8000'
