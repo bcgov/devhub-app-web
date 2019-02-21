@@ -17,32 +17,32 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Flag } from 'flag';
-import FLAGS from '../../constants/featureflags';
-import Navbar from '../Navbar/Navbar';
+import { CustomInput } from 'reactstrap';
+import styles from './input.module.css';
+// design system custom text input
+const Input = ({ id, type, label, name, checked, ...rest }) => (
+  <CustomInput
+    type={type}
+    id={id}
+    label={label}
+    checked={checked}
+    className={styles.Input}
+    {...rest}
+  />
+);
 
-export const Dropmenu = ({ menuToggled }) => {
-  if (menuToggled) {
-    return (
-      <Flag name={`features.${FLAGS.SOURCE_FILTERING}`}>
-        <Navbar mobile />;
-      </Flag>
-    );
-  }
-
-  return null;
+Input.propTypes = {
+  id: PropTypes.string,
+  onChange: PropTypes.func,
+  label: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+  type: PropTypes.oneOf(['text', 'date', 'email', 'tel', 'number', 'password']),
 };
 
-Dropmenu.propTypes = {
-  menuToggled: PropTypes.bool.isRequired,
+Input.defaultProps = {
+  label: null,
+  type: 'text',
 };
 
-const mapStateToProps = state => ({
-  menuToggled: state.ui.mainNavigationToggled,
-});
-
-export default connect(
-  mapStateToProps,
-  null,
-)(Dropmenu);
+export default Input;

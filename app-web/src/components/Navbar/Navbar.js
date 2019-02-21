@@ -21,7 +21,7 @@ import { Link } from 'gatsby';
 import queryString from 'query-string';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
-import styles from './PrimaryFilter.module.css';
+import styles from './Navbar.module.css';
 import { MAIN_NAV_CONFIG } from '../../constants/ui';
 import { ARIA_LABEL_FILTER_SELECT } from '../../constants/ariaLabels';
 
@@ -34,7 +34,7 @@ const queryStringMatchesResourceType = (searchFromLocation, resourceTypeSearch) 
     : null;
 };
 
-export const PrimaryFilter = ({ mobile }) => {
+export const Navbar = ({ mobile }) => {
   const filters = MAIN_NAV_CONFIG.map(navConfig => {
     const searchString = `?q=${encodeURIComponent(navConfig.ROUTE)}`;
     return (
@@ -52,18 +52,18 @@ export const PrimaryFilter = ({ mobile }) => {
   });
 
   return (
-    <nav className={styles.PrimaryFilter}>
+    <nav className={styles.Navbar}>
       <ul className={mobile ? styles.mobileOnly : styles.largeOnly}>{filters}</ul>
     </nav>
   );
 };
 
-PrimaryFilter.propTypes = {
+Navbar.propTypes = {
   mobile: PropTypes.bool,
 };
 
-PrimaryFilter.defaultProps = {
+Navbar.defaultProps = {
   mobile: false,
 };
 
-export default PrimaryFilter;
+export default Navbar;

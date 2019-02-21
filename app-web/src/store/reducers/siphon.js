@@ -22,7 +22,7 @@ const initialState = {
   collections: [], // this is set by the resource type, ie Component/Documentation etc
   query: null,
   searchBarTerms: '',
-  searchResults: [],
+  searchResults: [null],
   totalResources: 0,
   loading: false,
   error: false,
@@ -236,7 +236,6 @@ const setCollections = (state, collections) => {
   newState.filters = newState.filters.map(filter =>
     applyPropsToFilterByResourceCount(filter, allNodes),
   );
-
   newState.totalResources = allNodes.length;
 
   return newState;

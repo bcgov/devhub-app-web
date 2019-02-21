@@ -71,11 +71,6 @@ export const selectSearchWordLength = createSelector(
   siphon => siphon.searchBarTerms.length,
 );
 
-export const selectShowWelcomePanel = createSelector(
-  uiSelector,
-  ui => !ui.selectWelcomePanelViewd,
-);
-
 export const selectSiphonReducerLoading = createSelector(
   siphonSelector,
   siphon => siphon.loading,

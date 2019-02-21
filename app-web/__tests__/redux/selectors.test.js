@@ -84,10 +84,6 @@ describe('Reselect Selectors', () => {
     expect(selectors.selectSearchWordLength(STATE)).toEqual(STATE.siphon.searchBarTerms.length);
   });
 
-  it('returns show welcome panel', () => {
-    expect(selectors.selectShowWelcomePanel(STATE)).toEqual(!STATE.ui.welcomePanelWasViewed);
-  });
-
   it('returns siphons loading indicator', () => {
     expect(selectors.selectSiphonReducerLoading(STATE)).toEqual(STATE.siphon.loading);
   });

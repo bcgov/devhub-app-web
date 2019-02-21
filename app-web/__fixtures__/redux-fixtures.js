@@ -134,7 +134,6 @@ export const INITIAL_STATES = {
   UI: {
     selectedFilterOption: null,
     mainNavigationToggled: false,
-    welcomePanelWasViewed: false,
   },
   AUTH: {
     isAuthenticated: false,
