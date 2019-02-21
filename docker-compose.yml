@@ -1,0 +1,10 @@
+version: '3'
+services:
+  web:
+    build: './app-web/'
+    env_file: './app-web/.env.production'
+    volumes:
+      - './app-web/:/home/app'
+      - '/home/app/node_modules'
+    ports:
+      - '8000:8000'
