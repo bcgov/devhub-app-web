@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { graphql } from 'gatsby';
 import { createStructuredSelector } from 'reselect';
 import queryString from 'query-string';
@@ -30,7 +30,9 @@ import {
   selectSearchWordLength,
 } from '../store/selectors';
 
-export class Index extends Component {
+import { SEARCH } from '../messages';
+
+export class Index extends PureComponent {
   componentDidMount() {
     // flatted nodes from graphql
     if (!this.props.collectionsLoaded) {
@@ -108,7 +110,6 @@ export class Index extends Component {
         cards={collection.nodes}
       />
     ));
-
     return (
       <Layout showHamburger hamburgerClicked={toggleMenu}>
         <Flag name={`features.${FLAGS.SOURCE_FILTERING}`}>
@@ -134,7 +135,7 @@ export class Index extends Component {
                   </div>
                 </Element>
               ) : (
-                <p>No resources found :( try search again.</p>
+                <p>{SEARCH.results.empty.defaultMessage}</p>
               )}
             </main>
           </Container>

@@ -38,4 +38,10 @@ export const SEARCH = {
     id: 'SEARCH.button',
     defaultMessage: 'Search',
   },
+  results: {
+    empty: {
+      id: 'SEARCH.results.empty',
+      defaultMessage: 'No resources found :( try search again.',
+    },
+  },
 };
