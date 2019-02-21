@@ -16,15 +16,23 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import styles from './ApplicationHeader.module.css';
-const ApplicationHeader = () => (
-  <header className={styles.ApplicationHeader}>
-    <h1>Developers Hub</h1>
-    <h4>
-      Find resources for digital product teams to learn new skills, discover tools and resources,
-      and connect with the developer community
-    </h4>
+import PropTypes from 'prop-types';
+import styles from './Title.module.css';
+
+const Title = ({ title, subtitle }) => (
+  <header className={styles.Title}>
+    <h1>{title}</h1>
+    {subtitle && <h4>{subtitle}</h4>}
   </header>
 );
 
-export default ApplicationHeader;
+Title.propTypes = {
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
+};
+
+Title.defaultProps = {
+  subtitle: null,
+};
+
+export default Title;

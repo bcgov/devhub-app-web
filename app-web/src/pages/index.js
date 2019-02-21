@@ -12,15 +12,17 @@ import FLAGS from '../constants/featureflags';
 import styles from './index.module.css';
 // components
 import { Element } from 'react-scroll';
-import ApplicationHeader from '../components/Home/ApplicationHeader';
+import Title from '../components/Page/Title';
 import Loading from '../components/UI/Loading/Loading';
 import Layout from '../hoc/Layout';
 import Cards from '../components/Cards/Cards';
 import Sidebar from '../components/Sidebar/Sidebar';
-import PrimaryFilter from '../components/Navigation/PrimaryFilter';
+import Navbar from '../components/Navbar/Navbar';
 import Dropmenu from '../components/Dropmenu/Dropmenu';
 import ToolsMenu from '../components/ToolsMenu/ToolsMenu';
 
+// localizations
+import { HOME } from '../messages';
 // selectors from reselect
 import {
   selectFilteredCollections,
@@ -116,14 +118,15 @@ export class Index extends Component {
     return (
       <Layout showHamburger hamburgerClicked={toggleMenu}>
         <Flag name={`features.${FLAGS.SOURCE_FILTERING}`}>
-          <PrimaryFilter />
+          <Navbar />
         </Flag>
         {/* hamburger icon controlled menu */}
         <Dropmenu menuToggled />
-        <div>
-          <ApplicationHeader />
-        </div>
         <div className={[styles.MainContainer, 'container'].join(' ')}>
+          <Title
+            title={HOME.header.title.defaultMessage}
+            subtitle={HOME.header.subtitle.defaultMessage}
+          />
           <Sidebar filters={filters} />
           <div className={styles.Right}>
             <ToolsMenu
