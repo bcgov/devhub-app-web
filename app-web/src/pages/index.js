@@ -17,10 +17,7 @@ import Loading from '../components/UI/Loading/Loading';
 import Layout from '../hoc/Layout';
 import Cards from '../components/Cards/Cards';
 import Masthead from '../components/Home/Masthead';
-// import Sidebar from '../components/Sidebar/Sidebar';
 import Navbar from '../components/Navbar/Navbar';
-// import Dropmenu from '../components/Dropmenu/Dropmenu';
-// import ToolsMenu from '../components/ToolsMenu/ToolsMenu';
 // selectors from reselect
 import {
   selectFilteredCollections,
@@ -117,9 +114,6 @@ export class Index extends Component {
         <Flag name={`features.${FLAGS.SOURCE_FILTERING}`}>
           <Navbar />
         </Flag>
-        {/* hamburger icon controlled menu */}
-        {/* <Dropmenu menuToggled /> */}
-        {/* <Sidebar filters={filters} /> */}
         <div className={styles.MainContainer}>
           <Masthead
             searchCount={searchResultsLength}
@@ -130,11 +124,11 @@ export class Index extends Component {
           />
           <Container fluid>
             <main role="main" className={styles.Main}>
-              {/* Element used for react-scroll targeting */}
               {this.props.loading ? (
                 <Loading message="Loading..." />
               ) : searchResultsLength > 0 ? (
                 <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
+                  {/* Element used for react-scroll targeting */}
                   <div className={styles.CardContainer}>
                     <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
                   </div>

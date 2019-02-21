@@ -23,19 +23,34 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
         <PrimaryHeader
           hamburgerClicked={[Function]}
           showHamburger={true}
         />,
-        "test",
+        <div
+          style={
+            Object {
+              "flexGrow": 1,
+            }
+          }
+        >
+          test
+        </div>,
         <PrimaryFooter>
           
         </PrimaryFooter>,
       ],
-      "className": "layout",
+      "fluid": true,
+      "style": Object {
+        "display": "flex",
+        "flexDirection": "column",
+        "minHeight": "100vh",
+        "padding": 0,
+      },
+      "tag": "div",
     },
     "ref": null,
     "rendered": Array [
@@ -51,7 +66,20 @@ ShallowWrapper {
         "rendered": null,
         "type": [Function],
       },
-      "test",
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "test",
+          "style": Object {
+            "flexGrow": 1,
+          },
+        },
+        "ref": null,
+        "rendered": "test",
+        "type": "div",
+      },
       Object {
         "instance": null,
         "key": undefined,
@@ -64,25 +92,40 @@ ShallowWrapper {
         "type": [Function],
       },
     ],
-    "type": "div",
+    "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "host",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
           <PrimaryHeader
             hamburgerClicked={[Function]}
             showHamburger={true}
           />,
-          "test",
+          <div
+            style={
+              Object {
+                "flexGrow": 1,
+              }
+            }
+          >
+            test
+          </div>,
           <PrimaryFooter>
             
           </PrimaryFooter>,
         ],
-        "className": "layout",
+        "fluid": true,
+        "style": Object {
+          "display": "flex",
+          "flexDirection": "column",
+          "minHeight": "100vh",
+          "padding": 0,
+        },
+        "tag": "div",
       },
       "ref": null,
       "rendered": Array [
@@ -98,7 +141,20 @@ ShallowWrapper {
           "rendered": null,
           "type": [Function],
         },
-        "test",
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "test",
+            "style": Object {
+              "flexGrow": 1,
+            },
+          },
+          "ref": null,
+          "rendered": "test",
+          "type": "div",
+        },
         Object {
           "instance": null,
           "key": undefined,
@@ -111,7 +167,7 @@ ShallowWrapper {
           "type": [Function],
         },
       ],
-      "type": "div",
+      "type": [Function],
     },
   ],
   Symbol(enzyme.__options__): Object {
