@@ -6,11 +6,11 @@ import styles from './GovLogo.module.css';
 
 const GovLogo = () => (
   <Aux>
-  <img
-  src={logo}
-  className={[styles.DesktopLogo, 'large-screen'].join(' ')}
-  alt="Government of British Columbia"
-  />
+    <img
+      src={logo}
+      className={[styles.DesktopLogo, 'large-screen'].join(' ')}
+      alt="Government of British Columbia"
+    />
 
     <img
       src={logoMobile}

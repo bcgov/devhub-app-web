@@ -29,66 +29,64 @@ export default class ComponentPreview extends React.Component {
     };
   }
 
-    async componentDidMount() {
+  async componentDidMount() {
+    //pull in the values to retrieve to preview content from GitHub from props, if provided
+    let { owner, repo, path, branch } = this.props;
 
-        //pull in the values to retrieve to preview content from GitHub from props, if provided
-        let {owner, repo, path, branch} = this.props;
+    //allow for default values - relative to file that has embedded the component -  if values for props not provided
+    owner = owner || this.props.node.source._properties.owner;
+    repo = repo || this.props.node.source._properties.repo;
+    branch = branch || this.props.node.source._properties.branch || 'master';
 
-        //allow for default values - relative to file that has embedded the component -  if values for props not provided
-        owner = owner || this.props.node.source._properties.owner;
-        repo = repo || this.props.node.source._properties.repo;
-        branch = branch || this.props.node.source._properties.branch || 'master';
+    const githubClient = new Octokit();
 
-        const githubClient = new Octokit();
+    try {
+      const result = await githubClient.repos.getContents({
+        owner: owner,
+        repo: repo,
+        path: path,
+        ref: branch,
+      });
 
-        try {
-            const result = await githubClient.repos.getContents({
-                owner: owner,
-                repo: repo,
-                path: path,
-                ref: branch,
-            });
-
-            this.setState({
-                isLoaded: true,
-                sampleContent: result.data.content,
-            });
-        } catch (error) {
-            console.error('Error: ' + error);
-            this.setState({
-                isLoaded: true,
-                error,
-            });
-        }
+      this.setState({
+        isLoaded: true,
+        sampleContent: result.data.content,
+      });
+    } catch (error) {
+      console.error('Error: ' + error);
+      this.setState({
+        isLoaded: true,
+        error,
+      });
     }
+  }
 
-    render() {
-        const {error, isLoaded, sampleContent} = this.state;
+  render() {
+    const { error, isLoaded, sampleContent } = this.state;
 
-        if (error) {
-            return <span>Error {error.message}</span>;
-        } else if (!isLoaded) {
-            return <span>Loading...</span>;
-        } else {
-            return (
-                <iframe
-                    title="Component Preview"
-                    src={'data:text/html;base64,' + sampleContent}
-                    frameBorder={'0'}
-                    {...this.props}
-                />
-            );
-        }
+    if (error) {
+      return <span>Error {error.message}</span>;
+    } else if (!isLoaded) {
+      return <span>Loading...</span>;
+    } else {
+      return (
+        <iframe
+          title="Component Preview"
+          src={'data:text/html;base64,' + sampleContent}
+          frameBorder={'0'}
+          {...this.props}
+        />
+      );
     }
+  }
 }
 
 ComponentPreview.propTypes = {
-    owner: PropTypes.string,
-    repo: PropTypes.string,
-    path: PropTypes.string
+  owner: PropTypes.string,
+  repo: PropTypes.string,
+  path: PropTypes.string,
 };
 
 ComponentPreview.defaultProps = {
-    branch: 'master'
+  branch: 'master',
 };
-
