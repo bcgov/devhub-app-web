@@ -31,6 +31,7 @@ import {
 } from '../store/selectors';
 
 import { SEARCH } from '../messages';
+import ResourcePreview from '../components/ResourcePreview/ResourcePreview';
 
 export class Index extends PureComponent {
   componentDidMount() {
