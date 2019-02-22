@@ -13,12 +13,7 @@ module.exports = {
   pathPrefix: '/images',
   mapping: {},
   plugins: [
-    {
-      resolve: `gatsby-plugin-emotion`,
-      options: {
-        // Accepts all options defined by `babel-plugin-emotion` plugin.
-      },
-    },
+    'gatsby-plugin-emotion',
     // Adding various source folders to the GraphQL layer.
     {
       resolve: 'gatsby-source-filesystem',
