@@ -19,9 +19,8 @@ Created by Patrick Simonian
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { RESOURCES } from '../../../messages';
-import { RESOURCE_TYPES, RESOURCE_TYPES_LIST } from '../../../constants/ui';
+import { css } from '@emotion/core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faUserCircle,
   faPuzzlePiece,
@@ -31,6 +30,9 @@ import {
   faExternalLinkAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/fontawesome-free-brands';
+
+import { RESOURCES } from '../../../messages';
+import { RESOURCE_TYPES, RESOURCE_TYPES_LIST } from '../../../constants/ui';
 // renders the upper ribbon for the card
 const FaIcon = styled(FontAwesomeIcon)`
   color: ${props => props.theme.colors[props.type]};
@@ -39,9 +41,7 @@ const FaIcon = styled(FontAwesomeIcon)`
 const H3 = styled.h3`
   color: #444;
   font-size: 14px;
-  &span {
-    margin: 4px;
-  }
+  font-weight: 400;
 `;
 
 const CardHeader = ({ type, linksToExternal }) => {
@@ -72,7 +72,14 @@ const CardHeader = ({ type, linksToExternal }) => {
   return (
     <div type={type}>
       <H3>
-        <FaIcon type={type} icon={icon} /> <span>{RESOURCES.types[type].defaultMessage}</span>
+        <FaIcon type={type} icon={icon} />{' '}
+        <span
+          css={css`
+            margin: 4px;
+          `}
+        >
+          {RESOURCES.types[type].defaultMessage}
+        </span>
         {linksToExternal && <FontAwesomeIcon icon={faExternalLinkAlt} />}
       </H3>
     </div>
