@@ -82,14 +82,12 @@ const CardImage = styled(Image)`
 `;
 
 const CardImageWrapper = styled.div`
-  max-width: 80%;
   flex: 1 1 auto;
   align-self: center;
   overflow: hidden;
   padding-top: 10px;
   text-align: center;
   display: flex;
-  align-items: center;
 `;
 
 const CardBody = styled.div`
