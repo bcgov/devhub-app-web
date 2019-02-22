@@ -24,14 +24,14 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
-        <div
-          className="Cards"
+        <Row
+          tag="div"
         >
           card1
-        </div>,
+        </Row>,
         <div
           className="ToggleButton"
         >
@@ -48,19 +48,19 @@ ShallowWrapper {
     "rendered": Array [
       Object {
         "instance": null,
-        "key": undefined,
-        "nodeType": "host",
+        "key": "0-0-1",
+        "nodeType": "function",
         "props": Object {
           "children": Array [
             "card1",
           ],
-          "className": "Cards",
+          "tag": "div",
         },
         "ref": null,
         "rendered": Array [
           "card1",
         ],
-        "type": "div",
+        "type": [Function],
       },
       Object {
         "instance": null,
@@ -92,20 +92,20 @@ ShallowWrapper {
         "type": "div",
       },
     ],
-    "type": "div",
+    "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "host",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
-          <div
-            className="Cards"
+          <Row
+            tag="div"
           >
             card1
-          </div>,
+          </Row>,
           <div
             className="ToggleButton"
           >
@@ -122,19 +122,19 @@ ShallowWrapper {
       "rendered": Array [
         Object {
           "instance": null,
-          "key": undefined,
-          "nodeType": "host",
+          "key": "0-0-1",
+          "nodeType": "function",
           "props": Object {
             "children": Array [
               "card1",
             ],
-            "className": "Cards",
+            "tag": "div",
           },
           "ref": null,
           "rendered": Array [
             "card1",
           ],
-          "type": "div",
+          "type": [Function],
         },
         Object {
           "instance": null,
@@ -166,7 +166,7 @@ ShallowWrapper {
           "type": "div",
         },
       ],
-      "type": "div",
+      "type": [Function],
     },
   ],
   Symbol(enzyme.__options__): Object {

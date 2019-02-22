@@ -60,167 +60,413 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
-        <div
-          className="TopicContainer"
+        <Row
+          tag="div"
         >
-          <h1>
-            topic
-          </h1>
-          <p>
-            
-          </p>
-        </div>,
-        <CardHeader
-          linksToExternal={true}
-          type="Documentation"
+          <Col
+            tag="div"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <div
+              className="TopicContainer"
+            >
+              <h1>
+                topic
+              </h1>
+              <p>
+                
+              </p>
+            </div>
+          </Col>
+        </Row>,
+        <Toggle
+          cardComponents={
+            Array [
+              <ForwardRef(render)
+                lg={3}
+                md={4}
+                sm={6}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Card
+                  description={null}
+                  image={null}
+                />
+              </ForwardRef(render)>,
+            ]
+          }
+          cardLimits={4}
         />,
       ],
       "className": "CardsContainer",
+      "fluid": true,
+      "tag": "div",
     },
     "ref": null,
     "rendered": Array [
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "function",
         "props": Object {
-          "children": Array [
-            <h1>
-              topic
-            </h1>,
-            <p>
-              
-            </p>,
-          ],
-          "className": "TopicContainer",
+          "children": <Col
+            tag="div"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            <div
+              className="TopicContainer"
+            >
+              <h1>
+                topic
+              </h1>
+              <p>
+                
+              </p>
+            </div>
+          </Col>,
+          "tag": "div",
         },
         "ref": null,
-        "rendered": Array [
-          Object {
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "children": <div
+              className="TopicContainer"
+            >
+              <h1>
+                topic
+              </h1>
+              <p>
+                
+              </p>
+            </div>,
+            "tag": "div",
+            "widths": Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ],
+          },
+          "ref": null,
+          "rendered": Object {
             "instance": null,
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": "topic",
+              "children": Array [
+                <h1>
+                  topic
+                </h1>,
+                <p>
+                  
+                </p>,
+              ],
+              "className": "TopicContainer",
             },
             "ref": null,
-            "rendered": "topic",
-            "type": "h1",
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "topic",
+                },
+                "ref": null,
+                "rendered": "topic",
+                "type": "h1",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "",
+                },
+                "ref": null,
+                "rendered": "",
+                "type": "p",
+              },
+            ],
+            "type": "div",
           },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "",
-            },
-            "ref": null,
-            "rendered": "",
-            "type": "p",
-          },
-        ],
-        "type": "div",
+          "type": [Function],
+        },
+        "type": [Function],
       },
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
+        "nodeType": "class",
         "props": Object {
-          "linksToExternal": true,
-          "type": "Documentation",
+          "cardComponents": Array [
+            <ForwardRef(render)
+              lg={3}
+              md={4}
+              sm={6}
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <Card
+                description={null}
+                image={null}
+              />
+            </ForwardRef(render)>,
+          ],
+          "cardLimits": 4,
         },
         "ref": null,
         "rendered": null,
         "type": [Function],
       },
     ],
-    "type": "section",
+    "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "host",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
-          <div
-            className="TopicContainer"
+          <Row
+            tag="div"
           >
-            <h1>
-              topic
-            </h1>
-            <p>
-              
-            </p>
-          </div>,
-          <CardHeader
-            linksToExternal={true}
-            type="Documentation"
+            <Col
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <div
+                className="TopicContainer"
+              >
+                <h1>
+                  topic
+                </h1>
+                <p>
+                  
+                </p>
+              </div>
+            </Col>
+          </Row>,
+          <Toggle
+            cardComponents={
+              Array [
+                <ForwardRef(render)
+                  lg={3}
+                  md={4}
+                  sm={6}
+                  tag="div"
+                  widths={
+                    Array [
+                      "xs",
+                      "sm",
+                      "md",
+                      "lg",
+                      "xl",
+                    ]
+                  }
+                >
+                  <Card
+                    description={null}
+                    image={null}
+                  />
+                </ForwardRef(render)>,
+              ]
+            }
+            cardLimits={4}
           />,
         ],
         "className": "CardsContainer",
+        "fluid": true,
+        "tag": "div",
       },
       "ref": null,
       "rendered": Array [
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "function",
           "props": Object {
-            "children": Array [
-              <h1>
-                topic
-              </h1>,
-              <p>
-                
-              </p>,
-            ],
-            "className": "TopicContainer",
+            "children": <Col
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <div
+                className="TopicContainer"
+              >
+                <h1>
+                  topic
+                </h1>
+                <p>
+                  
+                </p>
+              </div>
+            </Col>,
+            "tag": "div",
           },
           "ref": null,
-          "rendered": Array [
-            Object {
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": <div
+                className="TopicContainer"
+              >
+                <h1>
+                  topic
+                </h1>
+                <p>
+                  
+                </p>
+              </div>,
+              "tag": "div",
+              "widths": Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ],
+            },
+            "ref": null,
+            "rendered": Object {
               "instance": null,
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": "topic",
+                "children": Array [
+                  <h1>
+                    topic
+                  </h1>,
+                  <p>
+                    
+                  </p>,
+                ],
+                "className": "TopicContainer",
               },
               "ref": null,
-              "rendered": "topic",
-              "type": "h1",
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "topic",
+                  },
+                  "ref": null,
+                  "rendered": "topic",
+                  "type": "h1",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "",
+                  },
+                  "ref": null,
+                  "rendered": "",
+                  "type": "p",
+                },
+              ],
+              "type": "div",
             },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": "",
-              },
-              "ref": null,
-              "rendered": "",
-              "type": "p",
-            },
-          ],
-          "type": "div",
+            "type": [Function],
+          },
+          "type": [Function],
         },
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
-            "linksToExternal": true,
-            "type": "Documentation",
+            "cardComponents": Array [
+              <ForwardRef(render)
+                lg={3}
+                md={4}
+                sm={6}
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <Card
+                  description={null}
+                  image={null}
+                />
+              </ForwardRef(render)>,
+            ],
+            "cardLimits": 4,
           },
           "ref": null,
           "rendered": null,
           "type": [Function],
         },
       ],
-      "type": "section",
+      "type": [Function],
     },
   ],
   Symbol(enzyme.__options__): Object {

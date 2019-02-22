@@ -20,12 +20,24 @@ ShallowWrapper {
       "children": Array [
         <img
           alt="Government of British Columbia"
-          className="DesktopLogo large-screen"
+          css={
+            Object {
+              "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkdvdkxvZ28uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBVWMiLCJmaWxlIjoiR292TG9nby5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgQXV4IGZyb20gJy4uLy4uLy4uL2hvYy9hdXhpbGxhcnknO1xuaW1wb3J0IGxvZ28gZnJvbSAnLi4vLi4vLi4vYXNzZXRzL2ltYWdlcy9CQ0lEX0hfcmdiX3Jldi5zdmcnO1xuaW1wb3J0IGxvZ29Nb2JpbGUgZnJvbSAnLi4vLi4vLi4vYXNzZXRzL2ltYWdlcy9sb2dvLnN2Zyc7XG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9jb3JlJztcblxuY29uc3QgR292TG9nbyA9ICgpID0+IChcbiAgPEF1eD5cbiAgICA8aW1nXG4gICAgICBzcmM9e2xvZ299XG4gICAgICBjc3M9e2Nzc2BcbiAgICAgICAgd2lkdGg6IDE3NXB4O1xuICAgICAgICBAbWVkaWEgKG1heC13aWR0aDogNDgwcHgpIHtcbiAgICAgICAgICBkaXNwbGF5OiBub25lO1xuICAgICAgICB9XG4gICAgICBgfVxuICAgICAgYWx0PVwiR292ZXJubWVudCBvZiBCcml0aXNoIENvbHVtYmlhXCJcbiAgICAvPlxuXG4gICAgPGltZ1xuICAgICAgc3JjPXtsb2dvTW9iaWxlfVxuICAgICAgY3NzPXtjc3NgXG4gICAgICAgIHdpZHRoOiA1MHB4O1xuICAgICAgICBAbWVkaWEgKG1pbi13aWR0aDogNDgwcHgpIHtcbiAgICAgICAgICBkaXNwbGF5OiBub25lO1xuICAgICAgICB9XG4gICAgICBgfVxuICAgICAgYWx0PVwiR292ZXJubWVudCBvZiBCcml0aXNoIENvbHVtYmlhXCJcbiAgICAvPlxuICA8L0F1eD5cbik7XG5cbmV4cG9ydCBkZWZhdWx0IEdvdkxvZ287XG4iXX0= */",
+              "name": "thimav-GovLogo",
+              "styles": "width:175px;@media (max-width:480px){display:none;}label:GovLogo;",
+            }
+          }
           src="BCID_H_rgb_rev.svg"
         />,
         <img
           alt="Government of British Columbia"
-          className="MobileLogo small-screen"
+          css={
+            Object {
+              "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkdvdkxvZ28uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBcUJjIiwiZmlsZSI6IkdvdkxvZ28uanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IEF1eCBmcm9tICcuLi8uLi8uLi9ob2MvYXV4aWxsYXJ5JztcbmltcG9ydCBsb2dvIGZyb20gJy4uLy4uLy4uL2Fzc2V0cy9pbWFnZXMvQkNJRF9IX3JnYl9yZXYuc3ZnJztcbmltcG9ydCBsb2dvTW9iaWxlIGZyb20gJy4uLy4uLy4uL2Fzc2V0cy9pbWFnZXMvbG9nby5zdmcnO1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSc7XG5cbmNvbnN0IEdvdkxvZ28gPSAoKSA9PiAoXG4gIDxBdXg+XG4gICAgPGltZ1xuICAgICAgc3JjPXtsb2dvfVxuICAgICAgY3NzPXtjc3NgXG4gICAgICAgIHdpZHRoOiAxNzVweDtcbiAgICAgICAgQG1lZGlhIChtYXgtd2lkdGg6IDQ4MHB4KSB7XG4gICAgICAgICAgZGlzcGxheTogbm9uZTtcbiAgICAgICAgfVxuICAgICAgYH1cbiAgICAgIGFsdD1cIkdvdmVybm1lbnQgb2YgQnJpdGlzaCBDb2x1bWJpYVwiXG4gICAgLz5cblxuICAgIDxpbWdcbiAgICAgIHNyYz17bG9nb01vYmlsZX1cbiAgICAgIGNzcz17Y3NzYFxuICAgICAgICB3aWR0aDogNTBweDtcbiAgICAgICAgQG1lZGlhIChtaW4td2lkdGg6IDQ4MHB4KSB7XG4gICAgICAgICAgZGlzcGxheTogbm9uZTtcbiAgICAgICAgfVxuICAgICAgYH1cbiAgICAgIGFsdD1cIkdvdmVybm1lbnQgb2YgQnJpdGlzaCBDb2x1bWJpYVwiXG4gICAgLz5cbiAgPC9BdXg+XG4pO1xuXG5leHBvcnQgZGVmYXVsdCBHb3ZMb2dvO1xuIl19 */",
+              "name": "15296ty-GovLogo",
+              "styles": "width:50px;@media (min-width:480px){display:none;}label:GovLogo;",
+            }
+          }
           src="logo.svg"
         />,
       ],
@@ -38,7 +50,11 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "alt": "Government of British Columbia",
-          "className": "DesktopLogo large-screen",
+          "css": Object {
+            "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkdvdkxvZ28uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBVWMiLCJmaWxlIjoiR292TG9nby5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgQXV4IGZyb20gJy4uLy4uLy4uL2hvYy9hdXhpbGxhcnknO1xuaW1wb3J0IGxvZ28gZnJvbSAnLi4vLi4vLi4vYXNzZXRzL2ltYWdlcy9CQ0lEX0hfcmdiX3Jldi5zdmcnO1xuaW1wb3J0IGxvZ29Nb2JpbGUgZnJvbSAnLi4vLi4vLi4vYXNzZXRzL2ltYWdlcy9sb2dvLnN2Zyc7XG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9jb3JlJztcblxuY29uc3QgR292TG9nbyA9ICgpID0+IChcbiAgPEF1eD5cbiAgICA8aW1nXG4gICAgICBzcmM9e2xvZ299XG4gICAgICBjc3M9e2Nzc2BcbiAgICAgICAgd2lkdGg6IDE3NXB4O1xuICAgICAgICBAbWVkaWEgKG1heC13aWR0aDogNDgwcHgpIHtcbiAgICAgICAgICBkaXNwbGF5OiBub25lO1xuICAgICAgICB9XG4gICAgICBgfVxuICAgICAgYWx0PVwiR292ZXJubWVudCBvZiBCcml0aXNoIENvbHVtYmlhXCJcbiAgICAvPlxuXG4gICAgPGltZ1xuICAgICAgc3JjPXtsb2dvTW9iaWxlfVxuICAgICAgY3NzPXtjc3NgXG4gICAgICAgIHdpZHRoOiA1MHB4O1xuICAgICAgICBAbWVkaWEgKG1pbi13aWR0aDogNDgwcHgpIHtcbiAgICAgICAgICBkaXNwbGF5OiBub25lO1xuICAgICAgICB9XG4gICAgICBgfVxuICAgICAgYWx0PVwiR292ZXJubWVudCBvZiBCcml0aXNoIENvbHVtYmlhXCJcbiAgICAvPlxuICA8L0F1eD5cbik7XG5cbmV4cG9ydCBkZWZhdWx0IEdvdkxvZ287XG4iXX0= */",
+            "name": "thimav-GovLogo",
+            "styles": "width:175px;@media (max-width:480px){display:none;}label:GovLogo;",
+          },
           "src": "BCID_H_rgb_rev.svg",
         },
         "ref": null,
@@ -51,7 +67,11 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "alt": "Government of British Columbia",
-          "className": "MobileLogo small-screen",
+          "css": Object {
+            "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkdvdkxvZ28uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBcUJjIiwiZmlsZSI6IkdvdkxvZ28uanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IEF1eCBmcm9tICcuLi8uLi8uLi9ob2MvYXV4aWxsYXJ5JztcbmltcG9ydCBsb2dvIGZyb20gJy4uLy4uLy4uL2Fzc2V0cy9pbWFnZXMvQkNJRF9IX3JnYl9yZXYuc3ZnJztcbmltcG9ydCBsb2dvTW9iaWxlIGZyb20gJy4uLy4uLy4uL2Fzc2V0cy9pbWFnZXMvbG9nby5zdmcnO1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSc7XG5cbmNvbnN0IEdvdkxvZ28gPSAoKSA9PiAoXG4gIDxBdXg+XG4gICAgPGltZ1xuICAgICAgc3JjPXtsb2dvfVxuICAgICAgY3NzPXtjc3NgXG4gICAgICAgIHdpZHRoOiAxNzVweDtcbiAgICAgICAgQG1lZGlhIChtYXgtd2lkdGg6IDQ4MHB4KSB7XG4gICAgICAgICAgZGlzcGxheTogbm9uZTtcbiAgICAgICAgfVxuICAgICAgYH1cbiAgICAgIGFsdD1cIkdvdmVybm1lbnQgb2YgQnJpdGlzaCBDb2x1bWJpYVwiXG4gICAgLz5cblxuICAgIDxpbWdcbiAgICAgIHNyYz17bG9nb01vYmlsZX1cbiAgICAgIGNzcz17Y3NzYFxuICAgICAgICB3aWR0aDogNTBweDtcbiAgICAgICAgQG1lZGlhIChtaW4td2lkdGg6IDQ4MHB4KSB7XG4gICAgICAgICAgZGlzcGxheTogbm9uZTtcbiAgICAgICAgfVxuICAgICAgYH1cbiAgICAgIGFsdD1cIkdvdmVybm1lbnQgb2YgQnJpdGlzaCBDb2x1bWJpYVwiXG4gICAgLz5cbiAgPC9BdXg+XG4pO1xuXG5leHBvcnQgZGVmYXVsdCBHb3ZMb2dvO1xuIl19 */",
+            "name": "15296ty-GovLogo",
+            "styles": "width:50px;@media (min-width:480px){display:none;}label:GovLogo;",
+          },
           "src": "logo.svg",
         },
         "ref": null,
@@ -70,12 +90,24 @@ ShallowWrapper {
         "children": Array [
           <img
             alt="Government of British Columbia"
-            className="DesktopLogo large-screen"
+            css={
+              Object {
+                "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkdvdkxvZ28uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBVWMiLCJmaWxlIjoiR292TG9nby5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgQXV4IGZyb20gJy4uLy4uLy4uL2hvYy9hdXhpbGxhcnknO1xuaW1wb3J0IGxvZ28gZnJvbSAnLi4vLi4vLi4vYXNzZXRzL2ltYWdlcy9CQ0lEX0hfcmdiX3Jldi5zdmcnO1xuaW1wb3J0IGxvZ29Nb2JpbGUgZnJvbSAnLi4vLi4vLi4vYXNzZXRzL2ltYWdlcy9sb2dvLnN2Zyc7XG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9jb3JlJztcblxuY29uc3QgR292TG9nbyA9ICgpID0+IChcbiAgPEF1eD5cbiAgICA8aW1nXG4gICAgICBzcmM9e2xvZ299XG4gICAgICBjc3M9e2Nzc2BcbiAgICAgICAgd2lkdGg6IDE3NXB4O1xuICAgICAgICBAbWVkaWEgKG1heC13aWR0aDogNDgwcHgpIHtcbiAgICAgICAgICBkaXNwbGF5OiBub25lO1xuICAgICAgICB9XG4gICAgICBgfVxuICAgICAgYWx0PVwiR292ZXJubWVudCBvZiBCcml0aXNoIENvbHVtYmlhXCJcbiAgICAvPlxuXG4gICAgPGltZ1xuICAgICAgc3JjPXtsb2dvTW9iaWxlfVxuICAgICAgY3NzPXtjc3NgXG4gICAgICAgIHdpZHRoOiA1MHB4O1xuICAgICAgICBAbWVkaWEgKG1pbi13aWR0aDogNDgwcHgpIHtcbiAgICAgICAgICBkaXNwbGF5OiBub25lO1xuICAgICAgICB9XG4gICAgICBgfVxuICAgICAgYWx0PVwiR292ZXJubWVudCBvZiBCcml0aXNoIENvbHVtYmlhXCJcbiAgICAvPlxuICA8L0F1eD5cbik7XG5cbmV4cG9ydCBkZWZhdWx0IEdvdkxvZ287XG4iXX0= */",
+                "name": "thimav-GovLogo",
+                "styles": "width:175px;@media (max-width:480px){display:none;}label:GovLogo;",
+              }
+            }
             src="BCID_H_rgb_rev.svg"
           />,
           <img
             alt="Government of British Columbia"
-            className="MobileLogo small-screen"
+            css={
+              Object {
+                "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkdvdkxvZ28uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBcUJjIiwiZmlsZSI6IkdvdkxvZ28uanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IEF1eCBmcm9tICcuLi8uLi8uLi9ob2MvYXV4aWxsYXJ5JztcbmltcG9ydCBsb2dvIGZyb20gJy4uLy4uLy4uL2Fzc2V0cy9pbWFnZXMvQkNJRF9IX3JnYl9yZXYuc3ZnJztcbmltcG9ydCBsb2dvTW9iaWxlIGZyb20gJy4uLy4uLy4uL2Fzc2V0cy9pbWFnZXMvbG9nby5zdmcnO1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSc7XG5cbmNvbnN0IEdvdkxvZ28gPSAoKSA9PiAoXG4gIDxBdXg+XG4gICAgPGltZ1xuICAgICAgc3JjPXtsb2dvfVxuICAgICAgY3NzPXtjc3NgXG4gICAgICAgIHdpZHRoOiAxNzVweDtcbiAgICAgICAgQG1lZGlhIChtYXgtd2lkdGg6IDQ4MHB4KSB7XG4gICAgICAgICAgZGlzcGxheTogbm9uZTtcbiAgICAgICAgfVxuICAgICAgYH1cbiAgICAgIGFsdD1cIkdvdmVybm1lbnQgb2YgQnJpdGlzaCBDb2x1bWJpYVwiXG4gICAgLz5cblxuICAgIDxpbWdcbiAgICAgIHNyYz17bG9nb01vYmlsZX1cbiAgICAgIGNzcz17Y3NzYFxuICAgICAgICB3aWR0aDogNTBweDtcbiAgICAgICAgQG1lZGlhIChtaW4td2lkdGg6IDQ4MHB4KSB7XG4gICAgICAgICAgZGlzcGxheTogbm9uZTtcbiAgICAgICAgfVxuICAgICAgYH1cbiAgICAgIGFsdD1cIkdvdmVybm1lbnQgb2YgQnJpdGlzaCBDb2x1bWJpYVwiXG4gICAgLz5cbiAgPC9BdXg+XG4pO1xuXG5leHBvcnQgZGVmYXVsdCBHb3ZMb2dvO1xuIl19 */",
+                "name": "15296ty-GovLogo",
+                "styles": "width:50px;@media (min-width:480px){display:none;}label:GovLogo;",
+              }
+            }
             src="logo.svg"
           />,
         ],
@@ -88,7 +120,11 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "alt": "Government of British Columbia",
-            "className": "DesktopLogo large-screen",
+            "css": Object {
+              "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkdvdkxvZ28uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBVWMiLCJmaWxlIjoiR292TG9nby5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgQXV4IGZyb20gJy4uLy4uLy4uL2hvYy9hdXhpbGxhcnknO1xuaW1wb3J0IGxvZ28gZnJvbSAnLi4vLi4vLi4vYXNzZXRzL2ltYWdlcy9CQ0lEX0hfcmdiX3Jldi5zdmcnO1xuaW1wb3J0IGxvZ29Nb2JpbGUgZnJvbSAnLi4vLi4vLi4vYXNzZXRzL2ltYWdlcy9sb2dvLnN2Zyc7XG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9jb3JlJztcblxuY29uc3QgR292TG9nbyA9ICgpID0+IChcbiAgPEF1eD5cbiAgICA8aW1nXG4gICAgICBzcmM9e2xvZ299XG4gICAgICBjc3M9e2Nzc2BcbiAgICAgICAgd2lkdGg6IDE3NXB4O1xuICAgICAgICBAbWVkaWEgKG1heC13aWR0aDogNDgwcHgpIHtcbiAgICAgICAgICBkaXNwbGF5OiBub25lO1xuICAgICAgICB9XG4gICAgICBgfVxuICAgICAgYWx0PVwiR292ZXJubWVudCBvZiBCcml0aXNoIENvbHVtYmlhXCJcbiAgICAvPlxuXG4gICAgPGltZ1xuICAgICAgc3JjPXtsb2dvTW9iaWxlfVxuICAgICAgY3NzPXtjc3NgXG4gICAgICAgIHdpZHRoOiA1MHB4O1xuICAgICAgICBAbWVkaWEgKG1pbi13aWR0aDogNDgwcHgpIHtcbiAgICAgICAgICBkaXNwbGF5OiBub25lO1xuICAgICAgICB9XG4gICAgICBgfVxuICAgICAgYWx0PVwiR292ZXJubWVudCBvZiBCcml0aXNoIENvbHVtYmlhXCJcbiAgICAvPlxuICA8L0F1eD5cbik7XG5cbmV4cG9ydCBkZWZhdWx0IEdvdkxvZ287XG4iXX0= */",
+              "name": "thimav-GovLogo",
+              "styles": "width:175px;@media (max-width:480px){display:none;}label:GovLogo;",
+            },
             "src": "BCID_H_rgb_rev.svg",
           },
           "ref": null,
@@ -101,7 +137,11 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "alt": "Government of British Columbia",
-            "className": "MobileLogo small-screen",
+            "css": Object {
+              "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkdvdkxvZ28uanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBcUJjIiwiZmlsZSI6IkdvdkxvZ28uanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IEF1eCBmcm9tICcuLi8uLi8uLi9ob2MvYXV4aWxsYXJ5JztcbmltcG9ydCBsb2dvIGZyb20gJy4uLy4uLy4uL2Fzc2V0cy9pbWFnZXMvQkNJRF9IX3JnYl9yZXYuc3ZnJztcbmltcG9ydCBsb2dvTW9iaWxlIGZyb20gJy4uLy4uLy4uL2Fzc2V0cy9pbWFnZXMvbG9nby5zdmcnO1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSc7XG5cbmNvbnN0IEdvdkxvZ28gPSAoKSA9PiAoXG4gIDxBdXg+XG4gICAgPGltZ1xuICAgICAgc3JjPXtsb2dvfVxuICAgICAgY3NzPXtjc3NgXG4gICAgICAgIHdpZHRoOiAxNzVweDtcbiAgICAgICAgQG1lZGlhIChtYXgtd2lkdGg6IDQ4MHB4KSB7XG4gICAgICAgICAgZGlzcGxheTogbm9uZTtcbiAgICAgICAgfVxuICAgICAgYH1cbiAgICAgIGFsdD1cIkdvdmVybm1lbnQgb2YgQnJpdGlzaCBDb2x1bWJpYVwiXG4gICAgLz5cblxuICAgIDxpbWdcbiAgICAgIHNyYz17bG9nb01vYmlsZX1cbiAgICAgIGNzcz17Y3NzYFxuICAgICAgICB3aWR0aDogNTBweDtcbiAgICAgICAgQG1lZGlhIChtaW4td2lkdGg6IDQ4MHB4KSB7XG4gICAgICAgICAgZGlzcGxheTogbm9uZTtcbiAgICAgICAgfVxuICAgICAgYH1cbiAgICAgIGFsdD1cIkdvdmVybm1lbnQgb2YgQnJpdGlzaCBDb2x1bWJpYVwiXG4gICAgLz5cbiAgPC9BdXg+XG4pO1xuXG5leHBvcnQgZGVmYXVsdCBHb3ZMb2dvO1xuIl19 */",
+              "name": "15296ty-GovLogo",
+              "styles": "width:50px;@media (min-width:480px){display:none;}label:GovLogo;",
+            },
             "src": "logo.svg",
           },
           "ref": null,
