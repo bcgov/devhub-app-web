@@ -128,15 +128,15 @@ export class Index extends PureComponent {
             <main role="main" className={styles.Main}>
               {this.props.loading ? (
                 <Loading message="Loading..." />
-              ) : searchResultsLength > 0 ? (
+              ) : searchResultsLength === 0 && searchWordLength > 0 ? (
+                <p>{SEARCH.results.empty.defaultMessage}</p>
+              ) : (
                 <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
                   {/* Element used for react-scroll targeting */}
                   <div className={styles.CardContainer}>
                     <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
                   </div>
                 </Element>
-              ) : (
-                <p>{SEARCH.results.empty.defaultMessage}</p>
               )}
             </main>
           </Container>
