@@ -18,6 +18,7 @@ Created by Patrick Simonian
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { RESOURCES } from '../../../messages';
 import { RESOURCE_TYPES, RESOURCE_TYPES_LIST } from '../../../constants/ui';
@@ -31,6 +32,18 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/fontawesome-free-brands';
 // renders the upper ribbon for the card
+const FaIcon = styled(FontAwesomeIcon)`
+  color: ${props => props.theme.colors[props.type]};
+`;
+
+const H3 = styled.h3`
+  color: #444;
+  font-size: 14px;
+  &span {
+    margin: 4px;
+  }
+`;
+
 const CardHeader = ({ type, linksToExternal }) => {
   let icon = null;
 
@@ -57,11 +70,11 @@ const CardHeader = ({ type, linksToExternal }) => {
   }
 
   return (
-    <div>
-      <h3>
-        <FontAwesomeIcon icon={icon} /> <span>{RESOURCES.types[type].defaultMessage}</span>
+    <div type={type}>
+      <H3>
+        <FaIcon type={type} icon={icon} /> <span>{RESOURCES.types[type].defaultMessage}</span>
         {linksToExternal && <FontAwesomeIcon icon={faExternalLinkAlt} />}
-      </h3>
+      </H3>
     </div>
   );
 };

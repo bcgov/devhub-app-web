@@ -22,6 +22,7 @@ import validUrl from 'valid-url';
 import DotDotDot from 'react-dotdotdot';
 import Image from 'react-image';
 import { Link } from '../../UI/Link';
+import CardHeader from './CardHeader';
 import Aux from '../../../hoc/auxillary';
 
 import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
@@ -51,7 +52,7 @@ const Card = ({ type, title, description, image, link }) => {
   return (
     <Link to={link}>
       <article>
-        <div>{type}</div>
+        <CardHeader type={type} linksToExternal={isExternal} />
         <DotDotDot clamp={image && description ? 2 : 3} tagName="h2">
           {title}
         </DotDotDot>
