@@ -148,3 +148,70 @@ sources:
           branch: feature/243-openshift-svc-def
           files:
           - docs/OCP/OCPServiceDefinition.md
+  - name: 'Common Services for the Natural Resource Ministries'
+    attributes:
+      personas:
+        - 'Developer'
+        - 'Designer'
+    resourceType: Documentation
+    labels:
+      - 'nrm'
+    sourceProperties:
+      sources:
+       - sourceType: 'github'
+         resourceType: Repository
+         labels:
+           - 'index'
+           - 'upload'
+           - 'store'
+           - 'update'
+           - 'retrieve'
+           - 'attachments'
+           - 'documents'
+         sourceProperties:
+           url: https://github.com/bcgov/document-management-service
+           repo: 'document-management-service'
+           owner: bcgov
+           files:
+             - dms-api-overview.md
+       - sourceType: web
+         sourceProperties:
+           url: https://apistore.nrs.gov.bc.ca/store/apis/info?version=v1&name=dms-api&provider=admin
+           title: 'APIStore Document Management Services'
+           description: 'The swagger for the api'
+           image: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png'
+       - sourceType: 'github'
+         resourceType: Repository       
+         labels:
+           - 'email'
+           - 'sms'
+           - 'messaging'
+         sourceProperties:
+           url: https://github.com/bcgov/common-messaging-service
+           repo: 'common-messaging-service'
+           owner: bcgov
+           files:
+             - cmsg-api-overview.md
+       - sourceType: web
+         sourceProperties:
+           url: https://apistore.nrs.gov.bc.ca/store/apis/info?name=cmsg-messaging-api&version=v1&provider=admin
+           title: 'APIStore Common Messaging Service'
+           description: 'The swagger for the api'
+           image: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png'
+       - sourceType: 'github'
+         resourceType: Repository       
+         labels:
+           - 'document'
+           - 'generation'
+         sourceProperties:
+           url: https://github.com/bcgov/document-generation
+           repo: 'document-generation'
+           owner: bcgov
+           files:
+             - docs/dgen-api-overview.md
+       - sourceType: web
+         sourceProperties:
+           url: https://apistore.nrs.gov.bc.ca/store/apis/info?version=v1&name=dgen-api&provider=admin
+           title: 'APIStore Document Generation'
+           description: 'The swagger for the api'
+           image: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png'
