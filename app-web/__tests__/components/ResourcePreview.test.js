@@ -17,31 +17,28 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import { shallow } from 'enzyme';
-import ActionsRibbon from '../../src/components/Cards/Card/ActionsRibbon';
+import ResourcePreview from '../../src/components/ResourcePreview/ResourcePreview';
 
-describe('Button Component', () => {
-  let wrapper;
+describe('Resource Preview Component', () => {
+  let resourcePreview = null;
 
-  const action = {
-    icon: <i>Icon</i>,
-    flag: 'features.flag',
-    name: 'action',
-    getHref: jest.fn(),
-    ariaLabel: 'ariaLabel',
+  const props = {
+    title: 'foo',
+    link: {
+      to: '/',
+      text: 'bar',
+    },
   };
 
-  const repo = 'repo';
-  const owner = 'owner';
-
   beforeEach(() => {
-    wrapper = shallow(<ActionsRibbon actions={[action]} repository={repo} owner={owner} />);
+    resourcePreview = shallow(
+      <ResourcePreview {...props}>
+        <p>children</p>
+      </ResourcePreview>,
+    );
   });
 
-  it('matches snapshot', () => {
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('calls getHref from an action', () => {
-    expect(action.getHref).toBeCalledWith(repo, owner);
+  test('it matches snapshot', () => {
+    expect(resourcePreview).toMatchSnapshot();
   });
 });
