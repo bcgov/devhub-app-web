@@ -18,6 +18,7 @@ Created by Patrick Simonian
 
 // message objects are formatted to mesh with react-intl, a popular localization library
 // https://github.com/yahoo/react-intl
+import { RESOURCE_TYPES } from '../constants/ui';
 
 export const HOME = {
   header: {
@@ -42,6 +43,35 @@ export const SEARCH = {
     empty: {
       id: 'SEARCH.results.empty',
       defaultMessage: 'No resources found :( try search again.',
+    },
+  },
+};
+
+export const RESOURCES = {
+  types: {
+    [RESOURCE_TYPES.COMPONENTS]: {
+      id: 'RESOURCE_TYPES.COMPONENTS',
+      defaultMessage: 'Component',
+    },
+    [RESOURCE_TYPES.DOCUMENTATION]: {
+      id: 'RESOURCE_TYPES.DOCUMENTATION',
+      defaultMessage: 'Documentation',
+    },
+    [RESOURCE_TYPES.SELF_SERVICE_TOOLS]: {
+      id: 'RESOURCE_TYPES.SELF_SERVICE_TOOLS',
+      defaultMessage: 'Tool',
+    },
+    [RESOURCE_TYPES.PEOPLE]: {
+      id: 'RESOURCE_TYPES.PEOPLE',
+      defaultMessage: 'Contact',
+    },
+    [RESOURCE_TYPES.REPOSITORIES]: {
+      id: 'RESOURCE_TYPES.REPOSITORIES',
+      defaultMessage: 'Repository',
+    },
+    [RESOURCE_TYPES.COLLECTIONS]: {
+      id: 'RESOURCE_TYPES.COLLECTIONS',
+      defaultMessage: 'Collection',
     },
   },
 };

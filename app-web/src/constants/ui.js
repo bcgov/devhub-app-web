@@ -22,6 +22,8 @@ export const RESOURCE_TYPES = {
   DOCUMENTATION: 'Documentation',
   SELF_SERVICE_TOOLS: 'Self-Service Tools',
   REPOSITORIES: 'Repositories',
+  PEOPLE: 'People',
+  COLLECTIONS: 'Collections',
 };
 
 export const RESOURCE_TYPES_LIST = Object.keys(RESOURCE_TYPES).map(key => RESOURCE_TYPES[key]);
