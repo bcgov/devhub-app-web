@@ -21,18 +21,41 @@ import PropTypes from 'prop-types';
 import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
 import DotDotDot from 'react-dotdotdot';
 import Image from 'react-image';
+import { Link } from '../../UI/Link';
+import Aux from '../../../hoc/auxillary';
 
 const Card = ({ type, title, description, image }) => {
   // if there is an image it takes priority
-  const cardBody = (
-    <DotDotDot clamp={3}>
-      <p>{description}</p>
+  let cardBody = (
+    <DotDotDot clamp={3} tagName="p">
+      {description}
     </DotDotDot>
   );
 
-  if (image) {
-    cardBody;
+  if (image && description) {
+    cardBody = (
+      <Aux>
+        <DotDotDot clamp={2} tagName="p">
+          {description}
+        </DotDotDot>
+        <Image src={image} />
+      </Aux>
+    );
+  } else if (image) {
+    cardBody = <Image src={image} />;
   }
+
+  return (
+    <Link to="/">
+      <article>
+        <div>{type}</div>
+        <DotDotDot clamp={image && description ? 2 : 3} tagName="h2">
+          {title}
+        </DotDotDot>
+        {cardBody}
+      </article>
+    </Link>
+  );
 };
 
 Card.propTypes = {
