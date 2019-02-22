@@ -65,6 +65,9 @@ const CardDescription = styled(DotDotDot)`
   margin-bottom: 0;
 `;
 
+// combination of card image and wrapper make images response correctly
+// to the flex container. The card image wrapper can grow/shrink automatically
+// the object-fit scaledown maintains aspect ratio for any type of image
 const CardImage = styled(Image)`
   width: 100%;
   height: auto;
