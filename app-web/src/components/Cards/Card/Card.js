@@ -42,7 +42,7 @@ const CardLinkWrapper = styled(Link)`
 const CardWrapper = styled.article`
   width: 250px;
   height: 225px;
-  margin: 10px;
+  margin: 10px auto;
   border: 1px solid #ccc;
   border-top-color: ${props => props.theme.colors[props.type]};
   border-top-width: 10px;
@@ -146,7 +146,7 @@ const Card = ({ type, title, description, image, link, theme }) => {
 };
 
 Card.propTypes = {
-  type: PropTypes.oneOf([RESOURCE_TYPES_LIST]),
+  type: PropTypes.oneOf(RESOURCE_TYPES_LIST),
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   image: PropTypes.string,

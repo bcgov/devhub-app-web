@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Row } from 'reactstrap';
+import Aux from '../../hoc/auxillary';
 import styles from './Cards.module.css';
 import Button from '../UI/Button/Button';
 
@@ -37,17 +39,27 @@ class Toggle extends Component {
       </Button>
     );
     const { cardComponents, cardLimits } = this.props;
-    const cardShow = this.state.toggled ? cardComponents.length : cardLimits;
+    let maxRows = Math.ceil(cardComponents.length / cardLimits);
+
+    let rows = [];
+    for (let i = 0; i < maxRows; i++) {
+      const start = i * cardLimits;
+      const end = start + cardLimits;
+      rows.push(<Row key={`${i}-${start}-${end}`}>{cardComponents.slice(start, end)}</Row>);
+    }
+
+    const cardShow = this.state.toggled ? rows : rows[0];
+    // show a toggle button ?
     const toggle =
       cardComponents.length > cardLimits ? (
         <div className={styles.ToggleButton}>{toggleIcon}</div>
       ) : null;
 
     return (
-      <div>
-        <div className={styles.Cards}>{cardComponents.slice(0, cardShow)}</div>
+      <Aux>
+        {cardShow}
         {toggle}
-      </div>
+      </Aux>
     );
   }
 }

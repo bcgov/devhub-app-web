@@ -60,7 +60,7 @@ touching the header bars */
 
 @media screen and (min-width: 500px) {
     .Main {
-        margin-top: 0;
+        margin-top: 45px;
     }
 
     /* .CardContainer {

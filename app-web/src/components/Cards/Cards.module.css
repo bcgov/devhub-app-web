@@ -1,11 +1,6 @@
 .CardsContainer {
     margin-bottom: 15px;
-}
-
-.Cards {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
+    max-width: 1100px;
 }
 
 .TopicContainer h1 {
@@ -32,28 +27,27 @@
 }
 
 .ToggleButton {
-  text-align: left;
-  font-size: 17px;
+    text-align: left;
+    font-size: 17px;
 }
 
 .LargeView {
-  display: none;
+    display: none;
 }
 
 .MobileView {
-  display: block;
+    display: block;
 }
 
 @media screen and (min-width: 570px) {
     .MobileView {
-      display: none;
+        display: none;
     }
+
     .LargeView {
-      display: block;
+        display: block;
     }
-    .Cards {
-        justify-content: flex-start;
-    }
+
     .CardsContainer {
         margin-bottom: 20px;
     }

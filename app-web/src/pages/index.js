@@ -133,9 +133,7 @@ export class Index extends PureComponent {
               ) : (
                 <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
                   {/* Element used for react-scroll targeting */}
-                  <div className={styles.CardContainer}>
-                    <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
-                  </div>
+                  <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
                 </Element>
               )}
             </main>
