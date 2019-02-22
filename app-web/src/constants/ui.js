@@ -24,6 +24,8 @@ export const RESOURCE_TYPES = {
   REPOSITORIES: 'Repositories',
 };
 
+export const RESOURCE_TYPES_LIST = Object.keys(RESOURCE_TYPES).map(key => RESOURCE_TYPES[key]);
+
 export const CARD_ACTIONS = {
   REPOSITORY: {
     name: 'Repository',
