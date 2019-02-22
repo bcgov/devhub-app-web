@@ -173,7 +173,7 @@ sources:
            repo: 'document-management-service'
            owner: bcgov
            files:
-             - dms-api-overview.md
+             - docs/dms-api-overview.md
        - sourceType: web
          sourceProperties:
            url: https://apistore.nrs.gov.bc.ca/store/apis/info?version=v1&name=dms-api&provider=admin
@@ -191,7 +191,7 @@ sources:
            repo: 'common-messaging-service'
            owner: bcgov
            files:
-             - cmsg-api-overview.md
+             - docs/cmsg-messaging-api-overview.md
        - sourceType: web
          sourceProperties:
            url: https://apistore.nrs.gov.bc.ca/store/apis/info?name=cmsg-messaging-api&version=v1&provider=admin
