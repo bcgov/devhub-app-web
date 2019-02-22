@@ -41,6 +41,7 @@ const FaIcon = styled(FontAwesomeIcon)`
 const H3 = styled.h3`
   color: #444;
   font-size: 14px;
+  margin-bottom: 0;
   font-weight: 400;
 `;
 
@@ -70,7 +71,11 @@ const CardHeader = ({ type, linksToExternal }) => {
   }
 
   return (
-    <div type={type}>
+    <div
+      css={css`
+        margin-bottom: 4px;
+      `}
+    >
       <H3>
         <FaIcon type={type} icon={icon} />{' '}
         <span
@@ -80,7 +85,11 @@ const CardHeader = ({ type, linksToExternal }) => {
         >
           {RESOURCES.types[type].defaultMessage}
         </span>
-        {linksToExternal && <FontAwesomeIcon icon={faExternalLinkAlt} />}
+        {linksToExternal && (
+          <small>
+            <FontAwesomeIcon icon={faExternalLinkAlt} />
+          </small>
+        )}
       </H3>
     </div>
   );
