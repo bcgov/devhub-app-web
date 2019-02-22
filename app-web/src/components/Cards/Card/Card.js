@@ -73,3 +73,5 @@ Card.defaultProps = {
   description: null,
   image: null,
 };
+
+export default Card;

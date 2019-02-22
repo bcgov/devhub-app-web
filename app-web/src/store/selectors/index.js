@@ -31,12 +31,20 @@ export const selectSortedCollections = createSelector(
   collections =>
     collections.map(collection => ({
       ...collection,
-      nodes: collection.nodes.sort((a, b) => {
-        // lexographic sort of position string
-        if (a._metadata.position < b._metadata.position) return -1;
-        if (a._metadata.position > b._metadata.position) return 1;
-        return 0;
-      }),
+      nodes: collection.nodes
+        .sort((a, b) => {
+          // lexographic sort of position string
+          if (a._metadata.position < b._metadata.position) return -1;
+          if (a._metadata.position > b._metadata.position) return 1;
+          return 0;
+        })
+        .map(node => ({
+          title: node.unfurl.title,
+          description: node.unfurl.description,
+          image: node.unfurl.image,
+          path: node.resource.path,
+          type: node.resource.type,
+        })),
     })),
 );
 

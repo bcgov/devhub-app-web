@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Cards.module.css';
-import CardHeader from './Card/CardHeader';
+import Card from './Card/Card';
 
 /**
  * @param {Number} limit the maximum limit of cards to show in toggle component
@@ -17,9 +17,18 @@ export const getIdealCardsLargeLimit = (limit, numCards, cardsPerRow) => {
   return newLimit;
 };
 
-const Cards = ({ topic, description, sourcePath, cards }) => {
+const Cards = ({ topic, description, cards }) => {
   const cardComponents = cards.map(c => {
-    return <CardHeader key={c.resource.path} linksToExternal type={c.resource.type} />;
+    return (
+      <Card
+        key={c.path}
+        type={c.type}
+        title={c.title}
+        description={c.description}
+        image={c.image}
+        link={c.path}
+      />
+    );
   });
 
   return (
@@ -29,7 +38,7 @@ const Cards = ({ topic, description, sourcePath, cards }) => {
           <h1>{topic}</h1>
           <p>{description}</p>
         </div>
-        <CardHeader type="Documentation" linksToExternal />
+        {cardComponents}
       </section>
     )
   );
