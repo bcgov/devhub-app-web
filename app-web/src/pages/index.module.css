@@ -26,12 +26,12 @@
     line-height: 1.3em;
 }
 
-.CardContainer {
+/* .CardContainer {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-}
+} */
 
 .Right {
     flex-grow: 1;
@@ -63,9 +63,9 @@ touching the header bars */
         margin-top: 0;
     }
 
-    .CardContainer {
+    /* .CardContainer {
         align-items: flex-start;
-    }
+    } */
 
     .MainContainer {
         margin-top: 112px;

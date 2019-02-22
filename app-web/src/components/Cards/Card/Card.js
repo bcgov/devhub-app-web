@@ -47,6 +47,12 @@ const CardWrapper = styled.article`
   border-top-color: ${props => props.theme.colors[props.type]};
   border-top-width: 10px;
   border-radius: 2px;
+  transition: transform 0.25s ease-out;
+  box-shadow: 0 1px 2px 1px #00000026;
+  :hover {
+    box-shadow: 0 2px 2px 1px #00000026;
+    transform: translateY(-2px);
+  }
 `;
 
 const CardTitle = styled(DotDotDot)`
