@@ -18,10 +18,8 @@ Created by Patrick Simonian
 
 // message objects are formatted to mesh with react-intl, a popular localization library
 // https://github.com/yahoo/react-intl
-<<<<<<< HEAD
 import { RESOURCE_TYPES } from '../constants/ui';
-=======
->>>>>>> Update homepage header (#420)
+import { RESOURCE_TYPES } from '../constants/ui';
 
 export const HOME = {
   header: {
@@ -49,7 +47,6 @@ export const SEARCH = {
     },
   },
 };
-<<<<<<< HEAD
 
 export const RESOURCES = {
   types: {
@@ -79,5 +76,3 @@ export const RESOURCES = {
     },
   },
 };
-=======
->>>>>>> Update homepage header (#420)
