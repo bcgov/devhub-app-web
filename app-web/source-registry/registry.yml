@@ -178,7 +178,7 @@ sources:
          sourceProperties:
            url: https://apistore.nrs.gov.bc.ca/store/apis/info?version=v1&name=dms-api&provider=admin
            title: 'APIStore Document Management Services'
-           description: 'The swagger for the api'
+           description: 'The Document Management REST API and Swagger'
            image: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png'
        - sourceType: 'github'
          resourceType: Repository       
@@ -196,12 +196,13 @@ sources:
          sourceProperties:
            url: https://apistore.nrs.gov.bc.ca/store/apis/info?name=cmsg-messaging-api&version=v1&provider=admin
            title: 'APIStore Common Messaging Service'
-           description: 'The swagger for the api'
+           description: 'The Common Messaging REST API and Swagger'
            image: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png'
        - sourceType: 'github'
          resourceType: Repository       
          labels:
            - 'document'
+           - 'pdf'
            - 'generation'
          sourceProperties:
            url: https://github.com/bcgov/document-generation
@@ -213,5 +214,5 @@ sources:
          sourceProperties:
            url: https://apistore.nrs.gov.bc.ca/store/apis/info?version=v1&name=dgen-api&provider=admin
            title: 'APIStore Document Generation'
-           description: 'The swagger for the api'
+           description: 'The Document Generation REST API and Swagger'
            image: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png'
