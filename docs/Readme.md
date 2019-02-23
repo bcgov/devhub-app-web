@@ -7,6 +7,8 @@ ignore: true
 - Contribution Guides
     - [React Components](./components.md)
     - [Siphon Documentation](./siphon.md)
+    - [Theming and Typography](./typography-theming.md)
+    - [Clean Coding](./blog/clean-coding.md)
     - [Feature Flagging](./featureFlags.md)
     - [Gatsby Remark Path Transform Plugin](./gatsby-custom-plugins/gatsby-remark-path-transform.md)
 - Adding Content to DevHub
