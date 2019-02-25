@@ -6,11 +6,10 @@ import {
   faFile,
   faTools,
   faLayerGroup,
-  faExternalLinkAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/fontawesome-free-brands';
-import { RESOURCES } from '../../src/messages';
-import { RESOURCE_TYPES, RESOURCE_TYPES_LIST } from '../../src/constants/ui';
+
+import { RESOURCE_TYPES } from '../../src/constants/ui';
 import CardHeader from '../../src/components/Cards/Card/CardHeader';
 
 import { mountWithTheme } from '../helpers';
