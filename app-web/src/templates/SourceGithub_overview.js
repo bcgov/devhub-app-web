@@ -22,7 +22,7 @@ import { graphql } from 'gatsby';
 import 'github-markdown-css';
 import styles from './SourceMarkdown.module.css';
 
-import GithubTemplateLayout from '../hoc/GithubTemplateLayout';
+import Layout from '../hoc/Layout';
 import Overview from '../components/Collection/Overview';
 import SidePanel from '../components/GithubTemplate/SidePanel/SidePanel';
 import SourceNavigation from '../components/GithubTemplate/SourceNavigation/SourceNavigation';
@@ -34,7 +34,7 @@ const SourceGithubMarkdownOverview = ({
   const { description, name } = devhubSiphonCollection;
 
   return (
-    <GithubTemplateLayout siphonData={devhubSiphon} nav={nav} pathname={pathname}>
+    <Layout siphonData={devhubSiphon} nav={nav} pathname={pathname}>
       <div className={styles.TemplateContainer}>
         <SidePanel links={nav.edges} pathname={pathname} siphonData={devhubSiphon}>
           <Overview title={name} description={description} />
@@ -51,7 +51,7 @@ const SourceGithubMarkdownOverview = ({
           />
         </main>
       </div>
-    </GithubTemplateLayout>
+    </Layout>
   );
 };
 

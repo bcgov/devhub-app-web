@@ -24,7 +24,7 @@ const SidePanel = ({ siphonData, links, pathname, children }) => (
 );
 
 SidePanel.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 export default SidePanel;

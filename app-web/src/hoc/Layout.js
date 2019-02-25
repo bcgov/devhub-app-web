@@ -1,14 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 import { connect } from 'react-redux';
 import { Container } from 'reactstrap';
+import { Flag } from 'flag';
 // layout local componenets
 import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
 import PrimaryFooter from '../components/PrimaryFooter/PrimaryFooter';
+import Navbar from '../components/Navbar/Navbar';
 // redux & auth
 // factory for implicit auth manager instance
 import { create_iam } from '../auth';
 import * as actions from '../store/actions/actions';
+import FLAGS from '../constants/featureflags';
+
+const Wrapper = styled.div`
+  margin-top: 50px;
+  flex-grow: 1;
+  @media (min-width: 767px) {
+    margin-top: 112px;
+  }
+`;
 
 export class Layout extends React.Component {
   componentDidMount() {
@@ -39,7 +51,10 @@ export class Layout extends React.Component {
         }}
       >
         <PrimaryHeader showHamburger hamburgerClicked={toggleMenu} />
-        <div style={{ flexGrow: 1 }}>{children}</div>
+        <Flag name={`features.${FLAGS.SOURCE_FILTERING}`}>
+          <Navbar />
+        </Flag>
+        <Wrapper>{children}</Wrapper>
 
         <PrimaryFooter />
       </Container>

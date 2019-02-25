@@ -24,16 +24,17 @@ import styles from './SourceMarkdown.module.css';
 
 import rehypeReact from 'rehype-react';
 import ComponentPreview from '../components/ComponentPreview/ComponentPreview';
-
-import GithubTemplateLayout from '../hoc/GithubTemplateLayout';
+import { RESOURCE_TYPES } from '../constants/ui';
+import Layout from '../hoc/Layout';
 import SidePanel from '../components/GithubTemplate/SidePanel/SidePanel';
-import Header from '../components/GithubTemplate/Header/Header';
+import Masthead from '../components/GithubTemplate/Masthead/Masthead';
 import SourceNavigation from '../components/GithubTemplate/SourceNavigation/SourceNavigation';
 import withNode from '../hoc/withNode';
 
 // eslint-disable-next-line
-const SourceGithubMarkdownDefault = ({ data: { devhubSiphon, nav }, location: pathname }) => {
+const SourceGithubMarkdownDefault = ({ data: { devhubSiphon, nav, collection}, location: pathname }) => {
   // bind the devhub siphon data to the preview node
+  console.log(nav, collection);
   const previewWithNode = withNode(devhubSiphon)(ComponentPreview);
 
   const renderAst = new rehypeReact({
@@ -42,20 +43,9 @@ const SourceGithubMarkdownDefault = ({ data: { devhubSiphon, nav }, location: pa
   }).Compiler;
 
   return (
-    <GithubTemplateLayout siphonData={devhubSiphon} nav={nav} pathname={pathname}>
-      <div className={styles.TemplateContainer}>
-        <SidePanel links={nav.edges} pathname={pathname} siphonData={devhubSiphon}>
-          <Header
-            title={devhubSiphon.source.displayName}
-            originalSource={devhubSiphon.resource.originalSource}
-            fileName={devhubSiphon.fileName}
-            sourcePath={devhubSiphon.source.sourcePath}
-            repo={devhubSiphon.source.name}
-          />
-          {nav.edges.length > 1 ? (
-            <SourceNavigation components={nav.edges} activeLink={pathname} />
-          ) : null}
-        </SidePanel>
+    <Layout>
+      <div>
+        <Masthead type={RESOURCE_TYPES.COLLECTIONS} title={devhubSiphon.source.displayName} />
         <main className={styles.Content}>
           <div className={[styles.MarkdownBody, 'markdown-body'].join(' ')}>
             {/* 
@@ -67,12 +57,12 @@ const SourceGithubMarkdownDefault = ({ data: { devhubSiphon, nav }, location: pa
           </div>
         </main>
       </div>
-    </GithubTemplateLayout>
+    </Layout>
   );
 };
 
 export const devhubSiphonMarkdown = graphql`
-  query devhubSiphonMarkdownDefault($id: String!, $collection: String!) {
+  query devhubSiphonMarkdownDefault($id: String!, $collectionId: String!) {
     devhubSiphon(id: { eq: $id }) {
       name
       id
@@ -101,14 +91,13 @@ export const devhubSiphonMarkdown = graphql`
       fileType
       path
     }
-    nav: allDevhubSiphon(
-      filter: { collection: { name: { eq: $collection } } }
-      sort: { fields: [_metadata___position] }
-    ) {
-      edges {
-        node {
-          ...NavigationFragment
-        }
+    collection: devhubSiphonCollection(id: { eq: $collectionId }) {
+      name
+      description
+    }
+    nav: devhubSiphonCollection(id: { eq: $collectionId }) {
+      childrenDevhubSiphon {
+        ...NavigationFragment
       }
     }
   }

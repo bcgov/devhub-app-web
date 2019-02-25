@@ -27,7 +27,7 @@ import { HOME } from '../../messages';
 import styles from './Masthead.module.css';
 
 const Masthead = ({ setSearchBarTerms }) => (
-  <div className={styles.Masthead}>
+  <header className={styles.Masthead}>
     <Title
       title={HOME.header.title.defaultMessage}
       subtitle={HOME.header.subtitle.defaultMessage}
@@ -43,7 +43,7 @@ const Masthead = ({ setSearchBarTerms }) => (
         }}
       />
     </div>
-  </div>
+  </header>
 );
 
 Masthead.propTypes = {
