@@ -1,164 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Search Bar matches snapshot 1`] = `
-ShallowWrapper {
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Search
-    inputConfig={Object {}}
-    onSearch={[MockFunction]}
-    onSearchClear={[MockFunction]}
-    onkeyup={[MockFunction]}
-    searchOnEnter={false}
-    terms=""
-  />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateError": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "host",
-    "props": Object {
-      "children": Array [
-        <Input
-          aria-label="Search input field"
-          label={null}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyPress={[Function]}
-          type="text"
-          value=""
-        />,
-        <Button
-          aria-label="Click to Search"
-          clicked={[Function]}
-          type="primary"
-        >
-          Search
-        </Button>,
-      ],
-      "className": "Search",
-    },
-    "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "aria-label": "Search input field",
-          "label": null,
-          "onChange": [Function],
-          "onFocus": [Function],
-          "onKeyPress": [Function],
-          "type": "text",
-          "value": "",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "aria-label": "Click to Search",
-          "children": "Search",
-          "clicked": [Function],
-          "type": "primary",
-        },
-        "ref": null,
-        "rendered": "Search",
-        "type": [Function],
-      },
-    ],
-    "type": "div",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": Array [
-          <Input
-            aria-label="Search input field"
-            label={null}
-            onChange={[Function]}
-            onFocus={[Function]}
-            onKeyPress={[Function]}
-            type="text"
-            value=""
-          />,
-          <Button
-            aria-label="Click to Search"
-            clicked={[Function]}
-            type="primary"
-          >
-            Search
-          </Button>,
-        ],
-        "className": "Search",
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "aria-label": "Search input field",
-            "label": null,
-            "onChange": [Function],
-            "onFocus": [Function],
-            "onKeyPress": [Function],
-            "type": "text",
-            "value": "",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "aria-label": "Click to Search",
-            "children": "Search",
-            "clicked": [Function],
-            "type": "primary",
-          },
-          "ref": null,
-          "rendered": "Search",
-          "type": [Function],
-        },
-      ],
-      "type": "div",
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-        "lifecycles": Object {
-          "componentDidUpdate": Object {
-            "onSetState": true,
-          },
-          "getDerivedStateFromProps": true,
-          "getSnapshotBeforeUpdate": true,
-          "setState": Object {
-            "skipsComponentDidUpdateOnNullish": true,
-          },
-        },
-      },
-    },
-  },
-}
+<div
+  className="Search"
+>
+  <Input
+    aria-label="Search input field"
+    label={null}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyPress={[Function]}
+    type="text"
+    value=""
+  />
+  <Button
+    aria-label="Click to Search"
+    clicked={[Function]}
+    type="primary"
+  >
+    Search
+  </Button>
+</div>
 `;

@@ -8,7 +8,7 @@ const Button = ({ type, children, clicked, ...rest }) => {
   const typeClass = classes[type];
   buttonClasses = buttonClasses.concat([typeClass]);
   return (
-    <button className={buttonClasses.join(' ')} onClick={clicked} {...rest}>
+    <button className={buttonClasses.join(' ')} color={type} onClick={clicked} {...rest}>
       {children}
     </button>
   );
