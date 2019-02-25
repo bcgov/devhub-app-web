@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Row } from 'reactstrap';
+import styled from '@emotion/styled';
 import Aux from '../../hoc/auxillary';
 import styles from './Cards.module.css';
 import Button from '../UI/Button/Button';
+
+const Row = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 -15px;
+  justify-content: center;
+  @media (min-width: 810px) {
+    justify-content: flex-start;
+  }
+`;
 
 /**
  * Toggle component
