@@ -45,7 +45,11 @@ const SourceGithubMarkdownDefault = ({ data: { devhubSiphon, nav, collection}, l
   return (
     <Layout>
       <div>
-        <Masthead type={RESOURCE_TYPES.COLLECTIONS} title={devhubSiphon.source.displayName} />
+        <Masthead
+          type={RESOURCE_TYPES.COLLECTIONS}
+          title={collection.name}
+          description={collection.description}
+        />
         <main className={styles.Content}>
           <div className={[styles.MarkdownBody, 'markdown-body'].join(' ')}>
             {/* 

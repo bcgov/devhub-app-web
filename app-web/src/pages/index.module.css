@@ -26,13 +26,6 @@
     line-height: 1.3em;
 }
 
-/* .CardContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-} */
-
 .Right {
     flex-grow: 1;
 }
@@ -48,26 +41,9 @@
     background-color: #fff;
 }
 
-/* When there isn't a welcome message, add top margin so that the cards container isn't
-touching the header bars */
-.NoWelcome {
-    margin-top: 33px;
-}
-
-.MainContainer {
-    margin-top: 50px;
-}
 
 @media screen and (min-width: 500px) {
     .Main {
         margin-top: 45px;
-    }
-
-    /* .CardContainer {
-        align-items: flex-start;
-    } */
-
-    .MainContainer {
-        margin-top: 112px;
     }
 }
