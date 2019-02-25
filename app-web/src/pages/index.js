@@ -95,7 +95,6 @@ export class Index extends PureComponent {
   render() {
     const {
       collections,
-      toggleMenu,
       searchResultsLength,
       totalResources,
       setSearchBarTerms,
@@ -112,7 +111,7 @@ export class Index extends PureComponent {
       />
     ));
     return (
-      <Layout showHamburger hamburgerClicked={toggleMenu}>
+      <Layout showHamburger>
         <div>
           <Masthead
             searchCount={searchResultsLength}

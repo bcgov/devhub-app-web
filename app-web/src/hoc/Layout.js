@@ -23,6 +23,10 @@ const Wrapper = styled.div`
 `;
 
 export class Layout extends React.Component {
+  state = {
+    menuToggled: false,
+  };
+
   componentDidMount() {
     const implicitAuthManager = create_iam();
     if (this.props.useAuth) {
@@ -50,9 +54,13 @@ export class Layout extends React.Component {
           padding: 0,
         }}
       >
-        <PrimaryHeader showHamburger hamburgerClicked={toggleMenu} />
+        <PrimaryHeader
+          showHamburger
+          hamburgerClicked={() => this.setState({ menuToggled: !this.state.menuToggled })}
+        />
         <Flag name={`features.${FLAGS.SOURCE_FILTERING}`}>
           <Navbar />
+          {this.state.menuToggled && <Navbar mobile />}
         </Flag>
         <Wrapper>{children}</Wrapper>
 
