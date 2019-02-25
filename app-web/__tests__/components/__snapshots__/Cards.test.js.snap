@@ -63,33 +63,16 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": Array [
-        <Row
-          tag="div"
+        <div
+          className="TopicContainer"
         >
-          <Col
-            tag="div"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
-            <div
-              className="TopicContainer"
-            >
-              <h1>
-                topic
-              </h1>
-              <p>
-                
-              </p>
-            </div>
-          </Col>
-        </Row>,
+          <h1>
+            topic
+          </h1>
+          <p>
+            
+          </p>
+        </div>,
         <Toggle
           cardComponents={
             Array [
@@ -97,16 +80,6 @@ ShallowWrapper {
                 lg={3}
                 md={4}
                 sm={6}
-                tag="div"
-                widths={
-                  Array [
-                    "xs",
-                    "sm",
-                    "md",
-                    "lg",
-                    "xl",
-                  ]
-                }
               >
                 <Card
                   description={null}
@@ -119,112 +92,50 @@ ShallowWrapper {
         />,
       ],
       "className": "CardsContainer",
-      "fluid": true,
-      "tag": "div",
     },
     "ref": null,
     "rendered": Array [
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
+        "nodeType": "host",
         "props": Object {
-          "children": <Col
-            tag="div"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
-            <div
-              className="TopicContainer"
-            >
-              <h1>
-                topic
-              </h1>
-              <p>
-                
-              </p>
-            </div>
-          </Col>,
-          "tag": "div",
+          "children": Array [
+            <h1>
+              topic
+            </h1>,
+            <p>
+              
+            </p>,
+          ],
+          "className": "TopicContainer",
         },
         "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": <div
-              className="TopicContainer"
-            >
-              <h1>
-                topic
-              </h1>
-              <p>
-                
-              </p>
-            </div>,
-            "tag": "div",
-            "widths": Array [
-              "xs",
-              "sm",
-              "md",
-              "lg",
-              "xl",
-            ],
-          },
-          "ref": null,
-          "rendered": Object {
+        "rendered": Array [
+          Object {
             "instance": null,
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": Array [
-                <h1>
-                  topic
-                </h1>,
-                <p>
-                  
-                </p>,
-              ],
-              "className": "TopicContainer",
+              "children": "topic",
             },
             "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "topic",
-                },
-                "ref": null,
-                "rendered": "topic",
-                "type": "h1",
-              },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "",
-                },
-                "ref": null,
-                "rendered": "",
-                "type": "p",
-              },
-            ],
-            "type": "div",
+            "rendered": "topic",
+            "type": "h1",
           },
-          "type": [Function],
-        },
-        "type": [Function],
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": "",
+            },
+            "ref": null,
+            "rendered": "",
+            "type": "p",
+          },
+        ],
+        "type": "div",
       },
       Object {
         "instance": null,
@@ -236,16 +147,6 @@ ShallowWrapper {
               lg={3}
               md={4}
               sm={6}
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
             >
               <Card
                 description={null}
@@ -260,7 +161,22 @@ ShallowWrapper {
         "type": [Function],
       },
     ],
-    "type": [Function],
+    "type": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "__emotion_base": "div",
+      "__emotion_forwardProp": undefined,
+      "__emotion_real": [Circular],
+      "__emotion_styles": Array [
+        "label:Container;",
+        "width:100%;padding:0 15px;margin:0 auto;max-width:1100px;margin-bottom:20px;",
+        "@media (min-width: 576px)",
+        "{margin-bottom:15px;}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkNhcmRzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVE0QiIsImZpbGUiOiJDYXJkcy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgUHJvcFR5cGVzIGZyb20gJ3Byb3AtdHlwZXMnO1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQnO1xuaW1wb3J0IENhcmQgZnJvbSAnLi9DYXJkL0NhcmQnO1xuaW1wb3J0IFRvZ2dsZSBmcm9tICcuL1RvZ2dsZSc7XG5pbXBvcnQgeyBFTU9USU9OX0JPT1RTVFJBUF9CUkVBS1BPSU5UUyB9IGZyb20gJy4uLy4uL2NvbnN0YW50cy91aSc7XG5pbXBvcnQgc3R5bGVzIGZyb20gJy4vQ2FyZHMubW9kdWxlLmNzcyc7XG5cbmNvbnN0IENvbnRhaW5lciA9IHN0eWxlZC5kaXZgXG4gIHdpZHRoOiAxMDAlO1xuICBwYWRkaW5nOiAwIDE1cHg7XG4gIG1hcmdpbjogMCBhdXRvO1xuICBtYXgtd2lkdGg6IDExMDBweDtcbiAgbWFyZ2luLWJvdHRvbTogMjBweDtcbiAgJHtFTU9USU9OX0JPT1RTVFJBUF9CUkVBS1BPSU5UUy5zbX0ge1xuICAgIG1hcmdpbi1ib3R0b206IDE1cHg7XG4gIH1cbmA7XG5cbmNvbnN0IENvbCA9IHN0eWxlZC5kaXZgXG4gIHBhZGRpbmc6IDAgNXB4O1xuICBmbGV4OiAwIDAgMzMuMzMzJTtcbiAgJHtFTU9USU9OX0JPT1RTVFJBUF9CUkVBS1BPSU5UUy5tZH0ge1xuICAgIGZsZXgtYmFzaXM6IDMzLjMzMyU7XG4gIH1cbiAgQG1lZGlhIChtaW4td2lkdGg6IDEwNzBweCkge1xuICAgIGZsZXgtYmFzaXM6IDI1JTtcbiAgfVxuYDtcblxuY29uc3QgQ2FyZHMgPSAoeyB0b3BpYywgZGVzY3JpcHRpb24sIGNhcmRzIH0pID0+IHtcbiAgY29uc3QgY2FyZENvbXBvbmVudHMgPSBjYXJkcy5tYXAoYyA9PiB7XG4gICAgcmV0dXJuIChcbiAgICAgIDxDb2wgc209ezZ9IG1kPXs0fSBsZz17M30+XG4gICAgICAgIDxDYXJkXG4gICAgICAgICAgdHlwZT17Yy50eXBlfVxuICAgICAgICAgIHRpdGxlPXtjLnRpdGxlfVxuICAgICAgICAgIGRlc2NyaXB0aW9uPXtjLmRlc2NyaXB0aW9ufVxuICAgICAgICAgIGltYWdlPXtjLmltYWdlfVxuICAgICAgICAgIGxpbms9e2MucGF0aH1cbiAgICAgICAgLz5cbiAgICAgIDwvQ29sPlxuICAgICk7XG4gIH0pO1xuXG4gIHJldHVybiAoXG4gICAgY2FyZENvbXBvbmVudHMubGVuZ3RoID4gMCAmJiAoXG4gICAgICA8Q29udGFpbmVyIGNsYXNzTmFtZT17c3R5bGVzLkNhcmRzQ29udGFpbmVyfT5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9e3N0eWxlcy5Ub3BpY0NvbnRhaW5lcn0+XG4gICAgICAgICAgPGgxPnt0b3BpY308L2gxPlxuICAgICAgICAgIDxwPntkZXNjcmlwdGlvbn08L3A+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8VG9nZ2xlIGNhcmRDb21wb25lbnRzPXtjYXJkQ29tcG9uZW50c30gY2FyZExpbWl0cz17NH0gLz5cbiAgICAgIDwvQ29udGFpbmVyPlxuICAgIClcbiAgKTtcbn07XG5cbkNhcmRzLmRlZmF1bHRQcm9wcyA9IHtcbiAgc291cmNlUGF0aDogJycsXG4gIGRlc2NyaXB0aW9uOiAnJyxcbn07XG5cbkNhcmRzLnByb3BUeXBlcyA9IHtcbiAgY2FyZHM6IFByb3BUeXBlcy5hcnJheU9mKFByb3BUeXBlcy5vYmplY3QpLmlzUmVxdWlyZWQsXG4gIHNvdXJjZVBhdGg6IFByb3BUeXBlcy5zdHJpbmcsXG4gIHRvcGljOiBQcm9wVHlwZXMuc3RyaW5nLmlzUmVxdWlyZWQsXG4gIGRlc2NyaXB0aW9uOiBQcm9wVHlwZXMuc3RyaW5nLFxufTtcblxuZXhwb3J0IGRlZmF1bHQgQ2FyZHM7XG4iXX0= */",
+      ],
+      "defaultProps": undefined,
+      "displayName": "Container",
+      "render": [Function],
+      "withComponent": [Function],
+    },
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
@@ -269,33 +185,16 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <Row
-            tag="div"
+          <div
+            className="TopicContainer"
           >
-            <Col
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <div
-                className="TopicContainer"
-              >
-                <h1>
-                  topic
-                </h1>
-                <p>
-                  
-                </p>
-              </div>
-            </Col>
-          </Row>,
+            <h1>
+              topic
+            </h1>
+            <p>
+              
+            </p>
+          </div>,
           <Toggle
             cardComponents={
               Array [
@@ -303,16 +202,6 @@ ShallowWrapper {
                   lg={3}
                   md={4}
                   sm={6}
-                  tag="div"
-                  widths={
-                    Array [
-                      "xs",
-                      "sm",
-                      "md",
-                      "lg",
-                      "xl",
-                    ]
-                  }
                 >
                   <Card
                     description={null}
@@ -325,112 +214,50 @@ ShallowWrapper {
           />,
         ],
         "className": "CardsContainer",
-        "fluid": true,
-        "tag": "div",
       },
       "ref": null,
       "rendered": Array [
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
+          "nodeType": "host",
           "props": Object {
-            "children": <Col
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
-            >
-              <div
-                className="TopicContainer"
-              >
-                <h1>
-                  topic
-                </h1>
-                <p>
-                  
-                </p>
-              </div>
-            </Col>,
-            "tag": "div",
+            "children": Array [
+              <h1>
+                topic
+              </h1>,
+              <p>
+                
+              </p>,
+            ],
+            "className": "TopicContainer",
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "children": <div
-                className="TopicContainer"
-              >
-                <h1>
-                  topic
-                </h1>
-                <p>
-                  
-                </p>
-              </div>,
-              "tag": "div",
-              "widths": Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ],
-            },
-            "ref": null,
-            "rendered": Object {
+          "rendered": Array [
+            Object {
               "instance": null,
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": Array [
-                  <h1>
-                    topic
-                  </h1>,
-                  <p>
-                    
-                  </p>,
-                ],
-                "className": "TopicContainer",
+                "children": "topic",
               },
               "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "topic",
-                  },
-                  "ref": null,
-                  "rendered": "topic",
-                  "type": "h1",
-                },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "",
-                  },
-                  "ref": null,
-                  "rendered": "",
-                  "type": "p",
-                },
-              ],
-              "type": "div",
+              "rendered": "topic",
+              "type": "h1",
             },
-            "type": [Function],
-          },
-          "type": [Function],
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "",
+              },
+              "ref": null,
+              "rendered": "",
+              "type": "p",
+            },
+          ],
+          "type": "div",
         },
         Object {
           "instance": null,
@@ -442,16 +269,6 @@ ShallowWrapper {
                 lg={3}
                 md={4}
                 sm={6}
-                tag="div"
-                widths={
-                  Array [
-                    "xs",
-                    "sm",
-                    "md",
-                    "lg",
-                    "xl",
-                  ]
-                }
               >
                 <Card
                   description={null}
@@ -466,7 +283,22 @@ ShallowWrapper {
           "type": [Function],
         },
       ],
-      "type": [Function],
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "__emotion_base": "div",
+        "__emotion_forwardProp": undefined,
+        "__emotion_real": [Circular],
+        "__emotion_styles": Array [
+          "label:Container;",
+          "width:100%;padding:0 15px;margin:0 auto;max-width:1100px;margin-bottom:20px;",
+          "@media (min-width: 576px)",
+          "{margin-bottom:15px;}/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkNhcmRzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVE0QiIsImZpbGUiOiJDYXJkcy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG5pbXBvcnQgUHJvcFR5cGVzIGZyb20gJ3Byb3AtdHlwZXMnO1xuaW1wb3J0IHN0eWxlZCBmcm9tICdAZW1vdGlvbi9zdHlsZWQnO1xuaW1wb3J0IENhcmQgZnJvbSAnLi9DYXJkL0NhcmQnO1xuaW1wb3J0IFRvZ2dsZSBmcm9tICcuL1RvZ2dsZSc7XG5pbXBvcnQgeyBFTU9USU9OX0JPT1RTVFJBUF9CUkVBS1BPSU5UUyB9IGZyb20gJy4uLy4uL2NvbnN0YW50cy91aSc7XG5pbXBvcnQgc3R5bGVzIGZyb20gJy4vQ2FyZHMubW9kdWxlLmNzcyc7XG5cbmNvbnN0IENvbnRhaW5lciA9IHN0eWxlZC5kaXZgXG4gIHdpZHRoOiAxMDAlO1xuICBwYWRkaW5nOiAwIDE1cHg7XG4gIG1hcmdpbjogMCBhdXRvO1xuICBtYXgtd2lkdGg6IDExMDBweDtcbiAgbWFyZ2luLWJvdHRvbTogMjBweDtcbiAgJHtFTU9USU9OX0JPT1RTVFJBUF9CUkVBS1BPSU5UUy5zbX0ge1xuICAgIG1hcmdpbi1ib3R0b206IDE1cHg7XG4gIH1cbmA7XG5cbmNvbnN0IENvbCA9IHN0eWxlZC5kaXZgXG4gIHBhZGRpbmc6IDAgNXB4O1xuICBmbGV4OiAwIDAgMzMuMzMzJTtcbiAgJHtFTU9USU9OX0JPT1RTVFJBUF9CUkVBS1BPSU5UUy5tZH0ge1xuICAgIGZsZXgtYmFzaXM6IDMzLjMzMyU7XG4gIH1cbiAgQG1lZGlhIChtaW4td2lkdGg6IDEwNzBweCkge1xuICAgIGZsZXgtYmFzaXM6IDI1JTtcbiAgfVxuYDtcblxuY29uc3QgQ2FyZHMgPSAoeyB0b3BpYywgZGVzY3JpcHRpb24sIGNhcmRzIH0pID0+IHtcbiAgY29uc3QgY2FyZENvbXBvbmVudHMgPSBjYXJkcy5tYXAoYyA9PiB7XG4gICAgcmV0dXJuIChcbiAgICAgIDxDb2wgc209ezZ9IG1kPXs0fSBsZz17M30+XG4gICAgICAgIDxDYXJkXG4gICAgICAgICAgdHlwZT17Yy50eXBlfVxuICAgICAgICAgIHRpdGxlPXtjLnRpdGxlfVxuICAgICAgICAgIGRlc2NyaXB0aW9uPXtjLmRlc2NyaXB0aW9ufVxuICAgICAgICAgIGltYWdlPXtjLmltYWdlfVxuICAgICAgICAgIGxpbms9e2MucGF0aH1cbiAgICAgICAgLz5cbiAgICAgIDwvQ29sPlxuICAgICk7XG4gIH0pO1xuXG4gIHJldHVybiAoXG4gICAgY2FyZENvbXBvbmVudHMubGVuZ3RoID4gMCAmJiAoXG4gICAgICA8Q29udGFpbmVyIGNsYXNzTmFtZT17c3R5bGVzLkNhcmRzQ29udGFpbmVyfT5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9e3N0eWxlcy5Ub3BpY0NvbnRhaW5lcn0+XG4gICAgICAgICAgPGgxPnt0b3BpY308L2gxPlxuICAgICAgICAgIDxwPntkZXNjcmlwdGlvbn08L3A+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8VG9nZ2xlIGNhcmRDb21wb25lbnRzPXtjYXJkQ29tcG9uZW50c30gY2FyZExpbWl0cz17NH0gLz5cbiAgICAgIDwvQ29udGFpbmVyPlxuICAgIClcbiAgKTtcbn07XG5cbkNhcmRzLmRlZmF1bHRQcm9wcyA9IHtcbiAgc291cmNlUGF0aDogJycsXG4gIGRlc2NyaXB0aW9uOiAnJyxcbn07XG5cbkNhcmRzLnByb3BUeXBlcyA9IHtcbiAgY2FyZHM6IFByb3BUeXBlcy5hcnJheU9mKFByb3BUeXBlcy5vYmplY3QpLmlzUmVxdWlyZWQsXG4gIHNvdXJjZVBhdGg6IFByb3BUeXBlcy5zdHJpbmcsXG4gIHRvcGljOiBQcm9wVHlwZXMuc3RyaW5nLmlzUmVxdWlyZWQsXG4gIGRlc2NyaXB0aW9uOiBQcm9wVHlwZXMuc3RyaW5nLFxufTtcblxuZXhwb3J0IGRlZmF1bHQgQ2FyZHM7XG4iXX0= */",
+        ],
+        "defaultProps": undefined,
+        "displayName": "Container",
+        "render": [Function],
+        "withComponent": [Function],
+      },
     },
   ],
   Symbol(enzyme.__options__): Object {

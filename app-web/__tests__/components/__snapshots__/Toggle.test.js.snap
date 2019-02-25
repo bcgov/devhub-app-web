@@ -27,11 +27,9 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": Array [
-        <Row
-          tag="div"
-        >
+        <ForwardRef(render)>
           card1
-        </Row>,
+        </ForwardRef(render)>,
         <div
           className="ToggleButton"
         >
@@ -54,13 +52,29 @@ ShallowWrapper {
           "children": Array [
             "card1",
           ],
-          "tag": "div",
         },
         "ref": null,
         "rendered": Array [
           "card1",
         ],
-        "type": [Function],
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "__emotion_base": "div",
+          "__emotion_forwardProp": undefined,
+          "__emotion_real": [Circular],
+          "__emotion_styles": Array [
+            "label:Row;",
+            Object {
+              "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlRvZ2dsZS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFPc0IiLCJmaWxlIjoiVG9nZ2xlLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0LCB7IENvbXBvbmVudCB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCBQcm9wVHlwZXMgZnJvbSAncHJvcC10eXBlcyc7XG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZCc7XG5pbXBvcnQgQXV4IGZyb20gJy4uLy4uL2hvYy9hdXhpbGxhcnknO1xuaW1wb3J0IHN0eWxlcyBmcm9tICcuL0NhcmRzLm1vZHVsZS5jc3MnO1xuaW1wb3J0IEJ1dHRvbiBmcm9tICcuLi9VSS9CdXR0b24vQnV0dG9uJztcblxuY29uc3QgUm93ID0gc3R5bGVkLmRpdmBcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1mbG93OiByb3cgd3JhcDtcbiAgbWFyZ2luOiAwIC0xNXB4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgQG1lZGlhIChtaW4td2lkdGg6IDgxMHB4KSB7XG4gICAganVzdGlmeS1jb250ZW50OiBmbGV4LXN0YXJ0O1xuICB9XG5gO1xuXG4vKipcbiAqIFRvZ2dsZSBjb21wb25lbnRcbiAqIFRoaXMgY29tcG9uZW50IGhhcyBhbiBhcnJvdyBidXR0b24gdG8gdG9nZ2xlIHRoZSBDYXJkcyB0byBzaG93IGFsbCBvciBjb2xsYXBzZVxuICogQHByb3AgY2FyZENvbXBvbmVudHMgY29udGFpbmluZyBlYWNoIGNhcmRcbiAqIEBwcm9wIGNhcmRMaW1pdHMgc3BlY2lmeSBob3cgbWFueSBjYXJkcyB0byBzaG93cyBhcyBpbml0YWwgdmlld1xuICovXG5jbGFzcyBUb2dnbGUgZXh0ZW5kcyBDb21wb25lbnQge1xuICBzdGF0ZSA9IHtcbiAgICB0b2dnbGVkOiBmYWxzZSxcbiAgfTtcblxuICB0b2dnbGVkSGFuZGxlciA9IHRvZ2dsZWQgPT4gdGhpcy5zZXRTdGF0ZSh7IHRvZ2dsZWQgfSk7XG5cbiAgcmVuZGVyKCkge1xuICAgIGNvbnN0IHRvZ2dsZUljb24gPSB0aGlzLnN0YXRlLnRvZ2dsZWQgPyAoXG4gICAgICA8QnV0dG9uXG4gICAgICAgIHR5cGU9XCJsaW5rXCJcbiAgICAgICAgY2xpY2tlZD17KCkgPT4ge1xuICAgICAgICAgIHRoaXMudG9nZ2xlZEhhbmRsZXIoZmFsc2UpO1xuICAgICAgICB9fVxuICAgICAgPlxuICAgICAgICBDb2xsYXBzZVxuICAgICAgPC9CdXR0b24+XG4gICAgKSA6IChcbiAgICAgIDxCdXR0b25cbiAgICAgICAgdHlwZT1cImxpbmtcIlxuICAgICAgICBjbGlja2VkPXsoKSA9PiB7XG4gICAgICAgICAgdGhpcy50b2dnbGVkSGFuZGxlcih0cnVlKTtcbiAgICAgICAgfX1cbiAgICAgID5cbiAgICAgICAgU2hvdyBBbGxcbiAgICAgIDwvQnV0dG9uPlxuICAgICk7XG4gICAgY29uc3QgeyBjYXJkQ29tcG9uZW50cywgY2FyZExpbWl0cyB9ID0gdGhpcy5wcm9wcztcbiAgICBsZXQgbWF4Um93cyA9IE1hdGguY2VpbChjYXJkQ29tcG9uZW50cy5sZW5ndGggLyBjYXJkTGltaXRzKTtcblxuICAgIGxldCByb3dzID0gW107XG4gICAgZm9yIChsZXQgaSA9IDA7IGkgPCBtYXhSb3dzOyBpKyspIHtcbiAgICAgIGNvbnN0IHN0YXJ0ID0gaSAqIGNhcmRMaW1pdHM7XG4gICAgICBjb25zdCBlbmQgPSBzdGFydCArIGNhcmRMaW1pdHM7XG4gICAgICByb3dzLnB1c2goPFJvdyBrZXk9e2Ake2l9LSR7c3RhcnR9LSR7ZW5kfWB9PntjYXJkQ29tcG9uZW50cy5zbGljZShzdGFydCwgZW5kKX08L1Jvdz4pO1xuICAgIH1cblxuICAgIGNvbnN0IGNhcmRTaG93ID0gdGhpcy5zdGF0ZS50b2dnbGVkID8gcm93cyA6IHJvd3NbMF07XG4gICAgLy8gc2hvdyBhIHRvZ2dsZSBidXR0b24gP1xuICAgIGNvbnN0IHRvZ2dsZSA9XG4gICAgICBjYXJkQ29tcG9uZW50cy5sZW5ndGggPiBjYXJkTGltaXRzID8gKFxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT17c3R5bGVzLlRvZ2dsZUJ1dHRvbn0+e3RvZ2dsZUljb259PC9kaXY+XG4gICAgICApIDogbnVsbDtcblxuICAgIHJldHVybiAoXG4gICAgICA8QXV4PlxuICAgICAgICB7Y2FyZFNob3d9XG4gICAgICAgIHt0b2dnbGV9XG4gICAgICA8L0F1eD5cbiAgICApO1xuICB9XG59XG5cblRvZ2dsZS5wcm9wVHlwZXMgPSB7XG4gIGNhcmRDb21wb25lbnRzOiBQcm9wVHlwZXMuYXJyYXkuaXNSZXF1aXJlZCxcbiAgY2FyZExpbWl0czogUHJvcFR5cGVzLm51bWJlci5pc1JlcXVpcmVkLFxufTtcblxuZXhwb3J0IGRlZmF1bHQgVG9nZ2xlO1xuIl19 */",
+              "name": "1t9hess",
+              "styles": "display:flex;flex-flow:row wrap;margin:0 -15px;justify-content:center;@media (min-width:810px){justify-content:flex-start;}",
+            },
+          ],
+          "defaultProps": undefined,
+          "displayName": "Row",
+          "render": [Function],
+          "withComponent": [Function],
+        },
       },
       Object {
         "instance": null,
@@ -101,11 +115,9 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <Row
-            tag="div"
-          >
+          <ForwardRef(render)>
             card1
-          </Row>,
+          </ForwardRef(render)>,
           <div
             className="ToggleButton"
           >
@@ -128,13 +140,29 @@ ShallowWrapper {
             "children": Array [
               "card1",
             ],
-            "tag": "div",
           },
           "ref": null,
           "rendered": Array [
             "card1",
           ],
-          "type": [Function],
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "__emotion_base": "div",
+            "__emotion_forwardProp": undefined,
+            "__emotion_real": [Circular],
+            "__emotion_styles": Array [
+              "label:Row;",
+              Object {
+                "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlRvZ2dsZS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFPc0IiLCJmaWxlIjoiVG9nZ2xlLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0LCB7IENvbXBvbmVudCB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCBQcm9wVHlwZXMgZnJvbSAncHJvcC10eXBlcyc7XG5pbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZCc7XG5pbXBvcnQgQXV4IGZyb20gJy4uLy4uL2hvYy9hdXhpbGxhcnknO1xuaW1wb3J0IHN0eWxlcyBmcm9tICcuL0NhcmRzLm1vZHVsZS5jc3MnO1xuaW1wb3J0IEJ1dHRvbiBmcm9tICcuLi9VSS9CdXR0b24vQnV0dG9uJztcblxuY29uc3QgUm93ID0gc3R5bGVkLmRpdmBcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1mbG93OiByb3cgd3JhcDtcbiAgbWFyZ2luOiAwIC0xNXB4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgQG1lZGlhIChtaW4td2lkdGg6IDgxMHB4KSB7XG4gICAganVzdGlmeS1jb250ZW50OiBmbGV4LXN0YXJ0O1xuICB9XG5gO1xuXG4vKipcbiAqIFRvZ2dsZSBjb21wb25lbnRcbiAqIFRoaXMgY29tcG9uZW50IGhhcyBhbiBhcnJvdyBidXR0b24gdG8gdG9nZ2xlIHRoZSBDYXJkcyB0byBzaG93IGFsbCBvciBjb2xsYXBzZVxuICogQHByb3AgY2FyZENvbXBvbmVudHMgY29udGFpbmluZyBlYWNoIGNhcmRcbiAqIEBwcm9wIGNhcmRMaW1pdHMgc3BlY2lmeSBob3cgbWFueSBjYXJkcyB0byBzaG93cyBhcyBpbml0YWwgdmlld1xuICovXG5jbGFzcyBUb2dnbGUgZXh0ZW5kcyBDb21wb25lbnQge1xuICBzdGF0ZSA9IHtcbiAgICB0b2dnbGVkOiBmYWxzZSxcbiAgfTtcblxuICB0b2dnbGVkSGFuZGxlciA9IHRvZ2dsZWQgPT4gdGhpcy5zZXRTdGF0ZSh7IHRvZ2dsZWQgfSk7XG5cbiAgcmVuZGVyKCkge1xuICAgIGNvbnN0IHRvZ2dsZUljb24gPSB0aGlzLnN0YXRlLnRvZ2dsZWQgPyAoXG4gICAgICA8QnV0dG9uXG4gICAgICAgIHR5cGU9XCJsaW5rXCJcbiAgICAgICAgY2xpY2tlZD17KCkgPT4ge1xuICAgICAgICAgIHRoaXMudG9nZ2xlZEhhbmRsZXIoZmFsc2UpO1xuICAgICAgICB9fVxuICAgICAgPlxuICAgICAgICBDb2xsYXBzZVxuICAgICAgPC9CdXR0b24+XG4gICAgKSA6IChcbiAgICAgIDxCdXR0b25cbiAgICAgICAgdHlwZT1cImxpbmtcIlxuICAgICAgICBjbGlja2VkPXsoKSA9PiB7XG4gICAgICAgICAgdGhpcy50b2dnbGVkSGFuZGxlcih0cnVlKTtcbiAgICAgICAgfX1cbiAgICAgID5cbiAgICAgICAgU2hvdyBBbGxcbiAgICAgIDwvQnV0dG9uPlxuICAgICk7XG4gICAgY29uc3QgeyBjYXJkQ29tcG9uZW50cywgY2FyZExpbWl0cyB9ID0gdGhpcy5wcm9wcztcbiAgICBsZXQgbWF4Um93cyA9IE1hdGguY2VpbChjYXJkQ29tcG9uZW50cy5sZW5ndGggLyBjYXJkTGltaXRzKTtcblxuICAgIGxldCByb3dzID0gW107XG4gICAgZm9yIChsZXQgaSA9IDA7IGkgPCBtYXhSb3dzOyBpKyspIHtcbiAgICAgIGNvbnN0IHN0YXJ0ID0gaSAqIGNhcmRMaW1pdHM7XG4gICAgICBjb25zdCBlbmQgPSBzdGFydCArIGNhcmRMaW1pdHM7XG4gICAgICByb3dzLnB1c2goPFJvdyBrZXk9e2Ake2l9LSR7c3RhcnR9LSR7ZW5kfWB9PntjYXJkQ29tcG9uZW50cy5zbGljZShzdGFydCwgZW5kKX08L1Jvdz4pO1xuICAgIH1cblxuICAgIGNvbnN0IGNhcmRTaG93ID0gdGhpcy5zdGF0ZS50b2dnbGVkID8gcm93cyA6IHJvd3NbMF07XG4gICAgLy8gc2hvdyBhIHRvZ2dsZSBidXR0b24gP1xuICAgIGNvbnN0IHRvZ2dsZSA9XG4gICAgICBjYXJkQ29tcG9uZW50cy5sZW5ndGggPiBjYXJkTGltaXRzID8gKFxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT17c3R5bGVzLlRvZ2dsZUJ1dHRvbn0+e3RvZ2dsZUljb259PC9kaXY+XG4gICAgICApIDogbnVsbDtcblxuICAgIHJldHVybiAoXG4gICAgICA8QXV4PlxuICAgICAgICB7Y2FyZFNob3d9XG4gICAgICAgIHt0b2dnbGV9XG4gICAgICA8L0F1eD5cbiAgICApO1xuICB9XG59XG5cblRvZ2dsZS5wcm9wVHlwZXMgPSB7XG4gIGNhcmRDb21wb25lbnRzOiBQcm9wVHlwZXMuYXJyYXkuaXNSZXF1aXJlZCxcbiAgY2FyZExpbWl0czogUHJvcFR5cGVzLm51bWJlci5pc1JlcXVpcmVkLFxufTtcblxuZXhwb3J0IGRlZmF1bHQgVG9nZ2xlO1xuIl19 */",
+                "name": "1t9hess",
+                "styles": "display:flex;flex-flow:row wrap;margin:0 -15px;justify-content:center;@media (min-width:810px){justify-content:flex-start;}",
+              },
+            ],
+            "defaultProps": undefined,
+            "displayName": "Row",
+            "render": [Function],
+            "withComponent": [Function],
+          },
         },
         Object {
           "instance": null,
