@@ -39,13 +39,16 @@ const CardLinkWrapper = styled(Link)`
   }
 `;
 
+const DecorativeBar = styled.div`
+  background-color: ${props => props.theme.colors[props.type]};
+  height: 10px;
+`;
+
 const CardWrapper = styled.article`
   width: 250px;
   height: 225px;
   margin: 10px auto;
   border: 1px solid #ccc;
-  border-top-color: ${props => props.theme.colors[props.type]};
-  border-top-width: 10px;
   border-radius: 2px;
   transition: transform 0.25s ease-out;
   box-shadow: 0 1px 2px 1px #00000026;
@@ -130,7 +133,8 @@ const Card = ({ type, title, description, image, link, theme }) => {
 
   return (
     <CardLinkWrapper to={link}>
-      <CardWrapper type={type}>
+      <CardWrapper>
+        <DecorativeBar type={type} />
         <CardBody>
           <CardHeader type={type} linksToExternal={isExternal} />
           <CardTitle clamp={image && description ? 2 : 3} tagName="h2">
