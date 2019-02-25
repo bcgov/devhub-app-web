@@ -1,57 +1,59 @@
 import React from 'react';
-import shortid from 'shortid';
 import PropTypes from 'prop-types';
-import styles from './Cards.module.css';
+import styled from '@emotion/styled';
+import Card from './Card/Card';
 import Toggle from './Toggle';
-import { CARD_TOGGLE_LIMIT, RESOURCE_TYPES, CARDS_PER_ROW } from '../../constants/ui';
+import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
+import styles from './Cards.module.css';
 
-/**
- * @param {Number} limit the maximum limit of cards to show in toggle component
- * @param {Number} numCards the number of cards to render
- * @param {Number} cardsPerRow
- * @returns {Number} the idea limit
- */
-export const getIdealCardsLargeLimit = (limit, numCards, cardsPerRow) => {
-  let newLimit = limit;
-  while (numCards < newLimit && newLimit - cardsPerRow > 0) {
-    newLimit -= cardsPerRow;
+const Container = styled.div`
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+  max-width: 1100px;
+  margin-bottom: 20px;
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.sm} {
+    margin-bottom: 15px;
   }
-  return newLimit;
-};
+`;
 
-const Cards = ({ topic, description, sourcePath, cards }) => {
+const Col = styled.div`
+  padding: 0 5px;
+  flex: 0 0 33.333%;
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.md} {
+    flex-basis: 33.333%;
+  }
+  @media (min-width: 1070px) {
+    flex-basis: 25%;
+  }
+`;
+
+const Cards = ({ topic, description, cards }) => {
   const cardComponents = cards.map(c => {
-    return <p>yo </p>;
+    return (
+      <Col sm={6} md={4} lg={3}>
+        <Card
+          type={c.type}
+          title={c.title}
+          description={c.description}
+          image={c.image}
+          link={c.path}
+        />
+      </Col>
+    );
   });
 
-  if (cardComponents.length > 0) {
-    // find the ideal large screen limit based on number of cards, and cards rendering per row
-    // ideally in a true grid system we would have a more concrete styling
-    // to ensure cards are 3 per row. When this container is transferred to bootsraps grid system, this
-    // will be so.
-    const idealLimit = getIdealCardsLargeLimit(
-      CARD_TOGGLE_LIMIT.LARGE,
-      cardComponents.length,
-      CARDS_PER_ROW,
-    );
-
-    return (
-      <section className={styles.CardsContainer}>
+  return (
+    cardComponents.length > 0 && (
+      <Container className={styles.CardsContainer}>
         <div className={styles.TopicContainer}>
           <h1>{topic}</h1>
           <p>{description}</p>
         </div>
-        <div className={styles.LargeView}>
-          <Toggle cardComponents={cardComponents} cardLimits={idealLimit} />
-        </div>
-        <div className={styles.MobileView}>
-          <Toggle cardComponents={cardComponents} cardLimits={CARD_TOGGLE_LIMIT.SMALL} />
-        </div>
-      </section>
-    );
-  } else {
-    return null;
-  }
+        <Toggle cardComponents={cardComponents} cardLimits={4} />
+      </Container>
+    )
+  );
 };
 
 Cards.defaultProps = {

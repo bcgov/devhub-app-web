@@ -43,8 +43,21 @@ export const selectSortedCollections = createSelector(
 // returns collections filtered
 export const selectFilteredCollections = createSelector(
   [selectSortedCollections, selectActiveFilters],
-  (collections, filters) =>
-    filters.length > 0 ? filterCollections(collections, filters) : collections,
+  (collections, filters) => {
+    let filteredCollections =
+      filters.length > 0 ? filterCollections(collections, filters) : collections;
+    return filteredCollections.map(filteredCollection => ({
+      ...filteredCollection,
+      // this the only data we need for nodes to render cards
+      nodes: filteredCollection.nodes.map(node => ({
+        title: node.unfurl.title,
+        description: node.unfurl.description,
+        image: node.unfurl.image,
+        path: node.resource.path,
+        type: node.resource.type,
+      })),
+    }));
+  },
 );
 
 // search selectors

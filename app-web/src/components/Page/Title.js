@@ -1,5 +1,5 @@
 /*
-Copyright 2018 Province of British Columbia
+Copyright 2019 Province of British Columbia
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,15 +16,23 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-import GovLogo from '../../src/components/UI/GovLogo/GovLogo';
+import PropTypes from 'prop-types';
+import styles from './Title.module.css';
 
-describe('Gov Logo Component', () => {
-  // for some reason this test and this test only is failing with TypeError: (0 , _core.css) is not a function
-  //  all other tests that are utilizing emotion's css function seem to be working fine?
-  it.skip('matches snapshot', () => {
-    const wrapper = shallow(<GovLogo />);
-    expect(toJson(wrapper)).toMatchSnapshot();
-  });
-});
+const Title = ({ title, subtitle }) => (
+  <header className={styles.Title}>
+    <h1>{title}</h1>
+    {subtitle && <h4>{subtitle}</h4>}
+  </header>
+);
+
+Title.propTypes = {
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
+};
+
+Title.defaultProps = {
+  subtitle: null,
+};
+
+export default Title;

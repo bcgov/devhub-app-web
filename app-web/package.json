@@ -19,12 +19,14 @@
     "@octokit/rest": "^16.13.1",
     "acorn": "^6.0.4",
     "autoprefixer": "^9.4.2",
+    "babel-plugin-emotion": "^10.0.7",
     "babel-plugin-styled-components": "^1.9.2",
     "chalk": "^2.4.1",
     "cheerio": "^1.0.0-rc.2",
     "clone": "^2.1.2",
     "dot-prop-immutable": "^1.5.0",
     "dotenv": "^6.2.0",
+    "emotion": "^10.0.7",
     "emotion-theming": "^10.0.7",
     "eslint-config-react-app": "^3.0.5",
     "eslint-plugin-flowtype": "^2.50.3",
@@ -74,7 +76,6 @@
     "metascraper-publisher": "^4.7.0",
     "metascraper-title": "^4.7.0",
     "metascraper-url": "^4.7.0",
-    "normalize.css": "^8.0.1",
     "npm": "^6.6.0",
     "postcss-flexbugs-fixes": "^4.1.0",
     "prismjs": "^1.15.0",
@@ -147,10 +148,10 @@
       "text",
       "html"
     ],
+    "setupTestFrameworkScriptFile": "<rootDir>/config/setupTests.js",
     "setupFiles": [
       "raf/polyfill",
       "jest-localstorage-mock",
-      "<rootDir>/config/setupTests.js",
       "<rootDir>/config/jest/loadershim.js"
     ]
   },
@@ -174,6 +175,7 @@
     "husky": "^1.3.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
+    "jest-emotion": "^10.0.7",
     "jest-localstorage-mock": "^2.3.0",
     "js-beautify": "^1.8.9",
     "prettier": "^1.15.3",

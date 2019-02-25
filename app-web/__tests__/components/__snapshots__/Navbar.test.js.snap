@@ -1,613 +1,72 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Primary Filter Component it matches snapshot 1`] = `
-ShallowWrapper {
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Navbar
-    mobile={false}
-  />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateError": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "host",
-    "props": Object {
-      "children": <ul
-        className="largeOnly"
+<nav
+  className="Navbar"
+>
+  <ul
+    className="largeOnly"
+  >
+    <li
+      key="0"
+    >
+      <mockConstructor
+        aria-label="Select to filter cards by the resource type"
+        exact={true}
+        getProps={[Function]}
+        to="?q="
       >
-        <li>
-          <mockConstructor
-            aria-label="Select to filter cards by the resource type"
-            exact={true}
-            getProps={[Function]}
-            to="?q="
-          >
-            All
-          </mockConstructor>
-        </li>
-        <li>
-          <mockConstructor
-            aria-label="Select to filter cards by the resource type"
-            exact={true}
-            getProps={[Function]}
-            to="?q=%2BresourceType%3AComponents"
-          >
-            Components
-          </mockConstructor>
-        </li>
-        <li>
-          <mockConstructor
-            aria-label="Select to filter cards by the resource type"
-            exact={true}
-            getProps={[Function]}
-            to="?q=%2BresourceType%3ADocumentation"
-          >
-            Documentation
-          </mockConstructor>
-        </li>
-        <li>
-          <mockConstructor
-            aria-label="Select to filter cards by the resource type"
-            exact={true}
-            getProps={[Function]}
-            to="?q=%2BresourceType%3ASelf-Service%20Tools"
-          >
-            Self-Service Tools
-          </mockConstructor>
-        </li>
-        <li>
-          <mockConstructor
-            aria-label="Select to filter cards by the resource type"
-            exact={true}
-            getProps={[Function]}
-            to="?q=%2BresourceType%3ARepositories"
-          >
-            Repositories
-          </mockConstructor>
-        </li>
-      </ul>,
-      "className": "Navbar",
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": Array [
-          <li>
-            <mockConstructor
-              aria-label="Select to filter cards by the resource type"
-              exact={true}
-              getProps={[Function]}
-              to="?q="
-            >
-              All
-            </mockConstructor>
-          </li>,
-          <li>
-            <mockConstructor
-              aria-label="Select to filter cards by the resource type"
-              exact={true}
-              getProps={[Function]}
-              to="?q=%2BresourceType%3AComponents"
-            >
-              Components
-            </mockConstructor>
-          </li>,
-          <li>
-            <mockConstructor
-              aria-label="Select to filter cards by the resource type"
-              exact={true}
-              getProps={[Function]}
-              to="?q=%2BresourceType%3ADocumentation"
-            >
-              Documentation
-            </mockConstructor>
-          </li>,
-          <li>
-            <mockConstructor
-              aria-label="Select to filter cards by the resource type"
-              exact={true}
-              getProps={[Function]}
-              to="?q=%2BresourceType%3ASelf-Service%20Tools"
-            >
-              Self-Service Tools
-            </mockConstructor>
-          </li>,
-          <li>
-            <mockConstructor
-              aria-label="Select to filter cards by the resource type"
-              exact={true}
-              getProps={[Function]}
-              to="?q=%2BresourceType%3ARepositories"
-            >
-              Repositories
-            </mockConstructor>
-          </li>,
-        ],
-        "className": "largeOnly",
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": "0",
-          "nodeType": "host",
-          "props": Object {
-            "children": <mockConstructor
-              aria-label="Select to filter cards by the resource type"
-              exact={true}
-              getProps={[Function]}
-              to="?q="
-            >
-              All
-            </mockConstructor>,
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "aria-label": "Select to filter cards by the resource type",
-              "children": "All",
-              "exact": true,
-              "getProps": [Function],
-              "to": "?q=",
-            },
-            "ref": null,
-            "rendered": "All",
-            "type": [MockFunction],
-          },
-          "type": "li",
-        },
-        Object {
-          "instance": null,
-          "key": "1",
-          "nodeType": "host",
-          "props": Object {
-            "children": <mockConstructor
-              aria-label="Select to filter cards by the resource type"
-              exact={true}
-              getProps={[Function]}
-              to="?q=%2BresourceType%3AComponents"
-            >
-              Components
-            </mockConstructor>,
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "aria-label": "Select to filter cards by the resource type",
-              "children": "Components",
-              "exact": true,
-              "getProps": [Function],
-              "to": "?q=%2BresourceType%3AComponents",
-            },
-            "ref": null,
-            "rendered": "Components",
-            "type": [MockFunction],
-          },
-          "type": "li",
-        },
-        Object {
-          "instance": null,
-          "key": "2",
-          "nodeType": "host",
-          "props": Object {
-            "children": <mockConstructor
-              aria-label="Select to filter cards by the resource type"
-              exact={true}
-              getProps={[Function]}
-              to="?q=%2BresourceType%3ADocumentation"
-            >
-              Documentation
-            </mockConstructor>,
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "aria-label": "Select to filter cards by the resource type",
-              "children": "Documentation",
-              "exact": true,
-              "getProps": [Function],
-              "to": "?q=%2BresourceType%3ADocumentation",
-            },
-            "ref": null,
-            "rendered": "Documentation",
-            "type": [MockFunction],
-          },
-          "type": "li",
-        },
-        Object {
-          "instance": null,
-          "key": "3",
-          "nodeType": "host",
-          "props": Object {
-            "children": <mockConstructor
-              aria-label="Select to filter cards by the resource type"
-              exact={true}
-              getProps={[Function]}
-              to="?q=%2BresourceType%3ASelf-Service%20Tools"
-            >
-              Self-Service Tools
-            </mockConstructor>,
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "aria-label": "Select to filter cards by the resource type",
-              "children": "Self-Service Tools",
-              "exact": true,
-              "getProps": [Function],
-              "to": "?q=%2BresourceType%3ASelf-Service%20Tools",
-            },
-            "ref": null,
-            "rendered": "Self-Service Tools",
-            "type": [MockFunction],
-          },
-          "type": "li",
-        },
-        Object {
-          "instance": null,
-          "key": "4",
-          "nodeType": "host",
-          "props": Object {
-            "children": <mockConstructor
-              aria-label="Select to filter cards by the resource type"
-              exact={true}
-              getProps={[Function]}
-              to="?q=%2BresourceType%3ARepositories"
-            >
-              Repositories
-            </mockConstructor>,
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "aria-label": "Select to filter cards by the resource type",
-              "children": "Repositories",
-              "exact": true,
-              "getProps": [Function],
-              "to": "?q=%2BresourceType%3ARepositories",
-            },
-            "ref": null,
-            "rendered": "Repositories",
-            "type": [MockFunction],
-          },
-          "type": "li",
-        },
-      ],
-      "type": "ul",
-    },
-    "type": "nav",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": <ul
-          className="largeOnly"
-        >
-          <li>
-            <mockConstructor
-              aria-label="Select to filter cards by the resource type"
-              exact={true}
-              getProps={[Function]}
-              to="?q="
-            >
-              All
-            </mockConstructor>
-          </li>
-          <li>
-            <mockConstructor
-              aria-label="Select to filter cards by the resource type"
-              exact={true}
-              getProps={[Function]}
-              to="?q=%2BresourceType%3AComponents"
-            >
-              Components
-            </mockConstructor>
-          </li>
-          <li>
-            <mockConstructor
-              aria-label="Select to filter cards by the resource type"
-              exact={true}
-              getProps={[Function]}
-              to="?q=%2BresourceType%3ADocumentation"
-            >
-              Documentation
-            </mockConstructor>
-          </li>
-          <li>
-            <mockConstructor
-              aria-label="Select to filter cards by the resource type"
-              exact={true}
-              getProps={[Function]}
-              to="?q=%2BresourceType%3ASelf-Service%20Tools"
-            >
-              Self-Service Tools
-            </mockConstructor>
-          </li>
-          <li>
-            <mockConstructor
-              aria-label="Select to filter cards by the resource type"
-              exact={true}
-              getProps={[Function]}
-              to="?q=%2BresourceType%3ARepositories"
-            >
-              Repositories
-            </mockConstructor>
-          </li>
-        </ul>,
-        "className": "Navbar",
-      },
-      "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": Array [
-            <li>
-              <mockConstructor
-                aria-label="Select to filter cards by the resource type"
-                exact={true}
-                getProps={[Function]}
-                to="?q="
-              >
-                All
-              </mockConstructor>
-            </li>,
-            <li>
-              <mockConstructor
-                aria-label="Select to filter cards by the resource type"
-                exact={true}
-                getProps={[Function]}
-                to="?q=%2BresourceType%3AComponents"
-              >
-                Components
-              </mockConstructor>
-            </li>,
-            <li>
-              <mockConstructor
-                aria-label="Select to filter cards by the resource type"
-                exact={true}
-                getProps={[Function]}
-                to="?q=%2BresourceType%3ADocumentation"
-              >
-                Documentation
-              </mockConstructor>
-            </li>,
-            <li>
-              <mockConstructor
-                aria-label="Select to filter cards by the resource type"
-                exact={true}
-                getProps={[Function]}
-                to="?q=%2BresourceType%3ASelf-Service%20Tools"
-              >
-                Self-Service Tools
-              </mockConstructor>
-            </li>,
-            <li>
-              <mockConstructor
-                aria-label="Select to filter cards by the resource type"
-                exact={true}
-                getProps={[Function]}
-                to="?q=%2BresourceType%3ARepositories"
-              >
-                Repositories
-              </mockConstructor>
-            </li>,
-          ],
-          "className": "largeOnly",
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": "0",
-            "nodeType": "host",
-            "props": Object {
-              "children": <mockConstructor
-                aria-label="Select to filter cards by the resource type"
-                exact={true}
-                getProps={[Function]}
-                to="?q="
-              >
-                All
-              </mockConstructor>,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "aria-label": "Select to filter cards by the resource type",
-                "children": "All",
-                "exact": true,
-                "getProps": [Function],
-                "to": "?q=",
-              },
-              "ref": null,
-              "rendered": "All",
-              "type": [MockFunction],
-            },
-            "type": "li",
-          },
-          Object {
-            "instance": null,
-            "key": "1",
-            "nodeType": "host",
-            "props": Object {
-              "children": <mockConstructor
-                aria-label="Select to filter cards by the resource type"
-                exact={true}
-                getProps={[Function]}
-                to="?q=%2BresourceType%3AComponents"
-              >
-                Components
-              </mockConstructor>,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "aria-label": "Select to filter cards by the resource type",
-                "children": "Components",
-                "exact": true,
-                "getProps": [Function],
-                "to": "?q=%2BresourceType%3AComponents",
-              },
-              "ref": null,
-              "rendered": "Components",
-              "type": [MockFunction],
-            },
-            "type": "li",
-          },
-          Object {
-            "instance": null,
-            "key": "2",
-            "nodeType": "host",
-            "props": Object {
-              "children": <mockConstructor
-                aria-label="Select to filter cards by the resource type"
-                exact={true}
-                getProps={[Function]}
-                to="?q=%2BresourceType%3ADocumentation"
-              >
-                Documentation
-              </mockConstructor>,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "aria-label": "Select to filter cards by the resource type",
-                "children": "Documentation",
-                "exact": true,
-                "getProps": [Function],
-                "to": "?q=%2BresourceType%3ADocumentation",
-              },
-              "ref": null,
-              "rendered": "Documentation",
-              "type": [MockFunction],
-            },
-            "type": "li",
-          },
-          Object {
-            "instance": null,
-            "key": "3",
-            "nodeType": "host",
-            "props": Object {
-              "children": <mockConstructor
-                aria-label="Select to filter cards by the resource type"
-                exact={true}
-                getProps={[Function]}
-                to="?q=%2BresourceType%3ASelf-Service%20Tools"
-              >
-                Self-Service Tools
-              </mockConstructor>,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "aria-label": "Select to filter cards by the resource type",
-                "children": "Self-Service Tools",
-                "exact": true,
-                "getProps": [Function],
-                "to": "?q=%2BresourceType%3ASelf-Service%20Tools",
-              },
-              "ref": null,
-              "rendered": "Self-Service Tools",
-              "type": [MockFunction],
-            },
-            "type": "li",
-          },
-          Object {
-            "instance": null,
-            "key": "4",
-            "nodeType": "host",
-            "props": Object {
-              "children": <mockConstructor
-                aria-label="Select to filter cards by the resource type"
-                exact={true}
-                getProps={[Function]}
-                to="?q=%2BresourceType%3ARepositories"
-              >
-                Repositories
-              </mockConstructor>,
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "aria-label": "Select to filter cards by the resource type",
-                "children": "Repositories",
-                "exact": true,
-                "getProps": [Function],
-                "to": "?q=%2BresourceType%3ARepositories",
-              },
-              "ref": null,
-              "rendered": "Repositories",
-              "type": [MockFunction],
-            },
-            "type": "li",
-          },
-        ],
-        "type": "ul",
-      },
-      "type": "nav",
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-        "lifecycles": Object {
-          "componentDidUpdate": Object {
-            "onSetState": true,
-          },
-          "getDerivedStateFromProps": true,
-          "getSnapshotBeforeUpdate": true,
-          "setState": Object {
-            "skipsComponentDidUpdateOnNullish": true,
-          },
-        },
-      },
-    },
-  },
-}
+        All
+      </mockConstructor>
+    </li>
+    <li
+      key="1"
+    >
+      <mockConstructor
+        aria-label="Select to filter cards by the resource type"
+        exact={true}
+        getProps={[Function]}
+        to="?q=%2BresourceType%3AComponents"
+      >
+        Components
+      </mockConstructor>
+    </li>
+    <li
+      key="2"
+    >
+      <mockConstructor
+        aria-label="Select to filter cards by the resource type"
+        exact={true}
+        getProps={[Function]}
+        to="?q=%2BresourceType%3ADocumentation"
+      >
+        Documentation
+      </mockConstructor>
+    </li>
+    <li
+      key="3"
+    >
+      <mockConstructor
+        aria-label="Select to filter cards by the resource type"
+        exact={true}
+        getProps={[Function]}
+        to="?q=%2BresourceType%3ASelf-Service%20Tools"
+      >
+        Self-Service Tools
+      </mockConstructor>
+    </li>
+    <li
+      key="4"
+    >
+      <mockConstructor
+        aria-label="Select to filter cards by the resource type"
+        exact={true}
+        getProps={[Function]}
+        to="?q=%2BresourceType%3ARepositories"
+      >
+        Repositories
+      </mockConstructor>
+    </li>
+  </ul>
+</nav>
 `;

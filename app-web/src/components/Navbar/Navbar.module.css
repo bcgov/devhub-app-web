@@ -20,6 +20,7 @@
 
 .Navbar ul li {
     height: 44px;
+    margin-bottom: 0;
     box-sizing: border-box;
     display: flex;
     align-items: center;

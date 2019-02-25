@@ -1,191 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Layout Component it matches snapshot 1`] = `
-ShallowWrapper {
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Layout
-    login={[MockFunction]}
-    logout={[MockFunction]}
-    path="/"
-    showHamburger={false}
-    useAuth={false}
+<Container
+  fluid={true}
+  style={
+    Object {
+      "display": "flex",
+      "flexDirection": "column",
+      "minHeight": "100vh",
+      "padding": 0,
+    }
+  }
+  tag="div"
+>
+  <PrimaryHeader
+    hamburgerClicked={[Function]}
+    showHamburger={true}
+  />
+  <div
+    style={
+      Object {
+        "flexGrow": 1,
+      }
+    }
   >
     test
-  </Layout>,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateError": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "function",
-    "props": Object {
-      "children": Array [
-        <PrimaryHeader
-          hamburgerClicked={[Function]}
-          showHamburger={true}
-        />,
-        <div
-          style={
-            Object {
-              "flexGrow": 1,
-            }
-          }
-        >
-          test
-        </div>,
-        <PrimaryFooter>
-          
-        </PrimaryFooter>,
-      ],
-      "fluid": true,
-      "style": Object {
-        "display": "flex",
-        "flexDirection": "column",
-        "minHeight": "100vh",
-        "padding": 0,
-      },
-      "tag": "div",
-    },
-    "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "hamburgerClicked": [Function],
-          "showHamburger": true,
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": "test",
-          "style": Object {
-            "flexGrow": 1,
-          },
-        },
-        "ref": null,
-        "rendered": "test",
-        "type": "div",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "children": "",
-        },
-        "ref": null,
-        "rendered": "",
-        "type": [Function],
-      },
-    ],
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "children": Array [
-          <PrimaryHeader
-            hamburgerClicked={[Function]}
-            showHamburger={true}
-          />,
-          <div
-            style={
-              Object {
-                "flexGrow": 1,
-              }
-            }
-          >
-            test
-          </div>,
-          <PrimaryFooter>
-            
-          </PrimaryFooter>,
-        ],
-        "fluid": true,
-        "style": Object {
-          "display": "flex",
-          "flexDirection": "column",
-          "minHeight": "100vh",
-          "padding": 0,
-        },
-        "tag": "div",
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "hamburgerClicked": [Function],
-            "showHamburger": true,
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "test",
-            "style": Object {
-              "flexGrow": 1,
-            },
-          },
-          "ref": null,
-          "rendered": "test",
-          "type": "div",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "children": "",
-          },
-          "ref": null,
-          "rendered": "",
-          "type": [Function],
-        },
-      ],
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-        "lifecycles": Object {
-          "componentDidUpdate": Object {
-            "onSetState": true,
-          },
-          "getDerivedStateFromProps": true,
-          "getSnapshotBeforeUpdate": true,
-          "setState": Object {
-            "skipsComponentDidUpdateOnNullish": true,
-          },
-        },
-      },
-    },
-  },
-}
+  </div>
+  <PrimaryFooter />
+</Container>
 `;

@@ -18,9 +18,9 @@ Created by Patrick Simonian
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { RESOURCES } from '../../../messages';
-import { RESOURCE_TYPES, RESOURCE_TYPES_LIST } from '../../../constants/ui';
+import styled from '@emotion/styled';
+import { css } from '@emotion/core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faUserCircle,
   faPuzzlePiece,
@@ -30,7 +30,21 @@ import {
   faExternalLinkAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/fontawesome-free-brands';
+
+import { RESOURCES } from '../../../messages';
+import { RESOURCE_TYPES, RESOURCE_TYPES_LIST } from '../../../constants/ui';
 // renders the upper ribbon for the card
+const FaIcon = styled(FontAwesomeIcon)`
+  color: ${props => props.theme.colors[props.type]};
+`;
+
+const H3 = styled.h3`
+  color: #444;
+  font-size: 14px;
+  margin-bottom: 0;
+  font-weight: 400;
+`;
+
 const CardHeader = ({ type, linksToExternal }) => {
   let icon = null;
 
@@ -57,11 +71,26 @@ const CardHeader = ({ type, linksToExternal }) => {
   }
 
   return (
-    <div>
-      <h3>
-        <FontAwesomeIcon icon={icon} /> <span>{RESOURCES.types[type].defaultMessage}</span>
-        {linksToExternal && <FontAwesomeIcon icon={faExternalLinkAlt} />}
-      </h3>
+    <div
+      css={css`
+        margin-bottom: 4px;
+      `}
+    >
+      <H3>
+        <FaIcon type={type} icon={icon} />{' '}
+        <span
+          css={css`
+            margin: 4px;
+          `}
+        >
+          {RESOURCES.types[type].defaultMessage}
+        </span>
+        {linksToExternal && (
+          <small>
+            <FontAwesomeIcon icon={faExternalLinkAlt} />
+          </small>
+        )}
+      </H3>
     </div>
   );
 };
