@@ -19,7 +19,6 @@ Created by Patrick Simonian
 // message objects are formatted to mesh with react-intl, a popular localization library
 // https://github.com/yahoo/react-intl
 import { RESOURCE_TYPES } from '../constants/ui';
-import { RESOURCE_TYPES } from '../constants/ui';
 
 export const HOME = {
   header: {

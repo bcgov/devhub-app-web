@@ -65,6 +65,7 @@ const CardTitle = styled(DotDotDot)`
   font-size: 20px;
   color: #494949;
   line-height: 1.3;
+  margin-bottom: 0;
   flex: 0 0 auto;
   word-break: break-word;
 `;
@@ -84,6 +85,7 @@ const CardImage = styled(Image)`
   height: auto;
   object-fit: scale-down;
   max-height: 100%;
+  margin-bottom: 0;
 `;
 
 const CardImageWrapper = styled.div`

@@ -154,20 +154,20 @@ module.exports = {
       },
     },
     {
-        resolve: `gatsby-plugin-prefetch-google-fonts`,
-        options: {
-            fonts: [
-                {
-                  family: 'Noto Sans' // default/included variants are 400,400i,700,700i
-                }
-            ]
-        }
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: 'Noto Sans', // default/included variants are 400,400i,700,700i
+          },
+        ],
+      },
     },
     {
-        resolve: 'gatsby-plugin-typography',
-        options: {
-            pathToConfigModule: 'typography',
-        },
+      resolve: 'gatsby-plugin-typography',
+      options: {
+        pathToConfigModule: 'typography',
+      },
     },
   ],
 };

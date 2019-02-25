@@ -14,6 +14,10 @@
     overflow-y: scroll;
 }
 
+.Navigation ul li {
+    margin-bottom: 0;
+}
+
 .Navigation a {
     padding: 4px .5em;
     overflow: hidden;
@@ -36,6 +40,7 @@
     .Navigation {
         max-height: none;
     }
+
     .Navigation li[data-active="true"] a {
         transform: translateX(5px);
     }
