@@ -18,7 +18,7 @@ Created by Patrick Simonian
 // bootstrap needed styles/themes for the app
 // as well as wrap all components with the root provider, which is a redux store
 // for more info https://github.com/gatsbyjs/gatsby/tree/master/examples/using-redux
-import 'prismjs/themes/prism-tomorrow.css';
+import 'prismjs/themes/prism-solarizedlight.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import './src/assets/styles/fontawesome.css';
 // this hack is to resolve issue https://stackoverflow.com/questions/49781726/react-font-awesome-renders-big-icon-until-scales-down

@@ -26,6 +26,7 @@ import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
 
 const Header = styled.header`
   background-color: #f1f1f1;
+  border-bottom: 1px solid #ccc;
   ${withPadding}
 `;
 

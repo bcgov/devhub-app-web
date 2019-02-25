@@ -25,7 +25,7 @@ import styles from './SourceMarkdown.module.css';
 import Layout from '../hoc/Layout';
 import Overview from '../components/Collection/Overview';
 import SidePanel from '../components/GithubTemplate/SidePanel/SidePanel';
-import SourceNavigation from '../components/GithubTemplate/SourceNavigation/SourceNavigation';
+import Navigation from '../components/GithubTemplate/Navigation/Navigation';
 
 const SourceGithubMarkdownOverview = ({
   data: { devhubSiphon, devhubSiphonCollection, nav },
@@ -39,7 +39,7 @@ const SourceGithubMarkdownOverview = ({
         <SidePanel links={nav.edges} pathname={pathname} siphonData={devhubSiphon}>
           <Overview title={name} description={description} />
           {nav.edges.length > 1 ? (
-            <SourceNavigation components={nav.edges} activeLink={pathname} />
+            <Navigation components={nav.edges} activeLink={pathname} />
           ) : null}
         </SidePanel>
         <main className={styles.Content}>

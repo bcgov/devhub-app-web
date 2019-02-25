@@ -90,8 +90,8 @@ module.exports = {
               classPrefix: 'language-',
               inlineCodeMarker: null,
               aliases: {},
-              showLineNumbers: true,
-              noInlineHighlight: false,
+              showLineNumbers: false,
+              noInlineHighlight: true,
             },
           },
           {
