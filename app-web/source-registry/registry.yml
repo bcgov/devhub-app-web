@@ -169,8 +169,8 @@ sources:
            - 'attachments'
            - 'documents'
          sourceProperties:
-           url: https://github.com/bcgov/document-management-service
-           repo: 'document-management-service'
+           url: https://github.com/bcgov/document-management
+           repo: 'document-management'
            owner: bcgov
            files:
              - docs/dms-api-overview.md
@@ -187,16 +187,16 @@ sources:
            - 'sms'
            - 'messaging'
          sourceProperties:
-           url: https://github.com/bcgov/common-messaging-service
-           repo: 'common-messaging-service'
+           url: https://github.com/bcgov/messaging-service
+           repo: 'messaging-service'
            owner: bcgov
            files:
              - docs/cmsg-messaging-api-overview.md
        - sourceType: web
          sourceProperties:
            url: https://apistore.nrs.gov.bc.ca/store/apis/info?name=cmsg-messaging-api&version=v1&provider=admin
-           title: 'APIStore Common Messaging Service'
-           description: 'The Common Messaging REST API and Swagger'
+           title: 'APIStore Messaging Service'
+           description: 'The Messaging Service REST API and Swagger'
            image: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png'
        - sourceType: 'github'
          resourceType: Repository       
