@@ -15,7 +15,7 @@ import * as actions from '../store/actions/actions';
 import FLAGS from '../constants/featureflags';
 
 const Wrapper = styled.div`
-  margin-top: 50px;
+  margin-top: 65px;
   flex-grow: 1;
   @media (min-width: 767px) {
     margin-top: 112px;

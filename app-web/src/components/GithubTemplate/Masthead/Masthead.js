@@ -19,14 +19,10 @@ Created by Patrick Simonian
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
+import { withPadding } from '../common';
 import CardHeader from '../../Cards/Card/CardHeader';
 import Title from '../../Page/Title';
 import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
-
-const withPadding = css`
-  padding: 20px 45px;
-`;
 
 const Header = styled.header`
   background-color: #f1f1f1;

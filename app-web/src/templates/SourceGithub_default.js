@@ -20,8 +20,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import 'github-markdown-css';
+import styled from '@emotion/styled';
 import styles from './SourceMarkdown.module.css';
-
+import { withPadding } from '../components/GithubTemplate/common';
 import rehypeReact from 'rehype-react';
 import ComponentPreview from '../components/ComponentPreview/ComponentPreview';
 import { RESOURCE_TYPES } from '../constants/ui';
@@ -31,6 +32,13 @@ import Masthead from '../components/GithubTemplate/Masthead/Masthead';
 import SourceNavigation from '../components/GithubTemplate/SourceNavigation/SourceNavigation';
 import withNode from '../hoc/withNode';
 
+const Main = styled.main`
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  ${withPadding}
+`;
 // eslint-disable-next-line
 const SourceGithubMarkdownDefault = ({ data: { devhubSiphon, nav, collection}, location: pathname }) => {
   // bind the devhub siphon data to the preview node
@@ -50,8 +58,8 @@ const SourceGithubMarkdownDefault = ({ data: { devhubSiphon, nav, collection}, l
           title={collection.name}
           description={collection.description}
         />
-        <main className={styles.Content}>
-          <div className={[styles.MarkdownBody, 'markdown-body'].join(' ')}>
+        <Main>
+          <div className={['markdown-body'].join(' ')}>
             {/* 
               if there is a tag in the markdown <component-preview> 
               the renderAst will drop in the rehype component
@@ -59,7 +67,7 @@ const SourceGithubMarkdownDefault = ({ data: { devhubSiphon, nav, collection}, l
             */}
             {renderAst(devhubSiphon.childMarkdownRemark.htmlAst)}
           </div>
-        </main>
+        </Main>
       </div>
     </Layout>
   );
