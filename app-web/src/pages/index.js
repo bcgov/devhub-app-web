@@ -6,7 +6,7 @@ import shortid from 'shortid';
 import { connect } from 'react-redux';
 import { REACT_SCROLL } from '../constants/ui';
 
-import * as actions from '../store/actions/actions';
+import * as actions from '../store/actions';
 
 import styles from './index.module.css';
 // components

@@ -11,7 +11,7 @@ import Navbar from '../components/Navbar/Navbar';
 // redux & auth
 // factory for implicit auth manager instance
 import { create_iam } from '../auth';
-import * as actions from '../store/actions/actions';
+import * as actions from '../store/actions';
 import FLAGS from '../constants/featureflags';
 
 const Wrapper = styled.div`

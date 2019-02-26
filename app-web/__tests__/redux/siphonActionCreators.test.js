@@ -11,7 +11,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 Created by Patrick Simonian
 */
-import * as actions from '../../src/store/actions/actions';
+import * as actions from '../../src/store/actions';
 import * as actionTypes from '../../src/store/actions/actionTypes';
 import { ACTIONS } from '../../__fixtures__/redux-fixtures';
 import { LUNR_SEARCH_RESULTS_2 } from '../../__fixtures__/lunr';
