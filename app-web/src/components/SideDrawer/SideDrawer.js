@@ -87,12 +87,13 @@ const SideDrawer = ({ closeDrawer, children, title }) => (
 
 SideDrawer.propTypes = {
   title: PropTypes.string,
-  toggled: PropTypes.bool.isRequired,
+  children: PropTypes.node,
   closeDrawer: PropTypes.func.isRequired,
 };
 
 SideDrawer.defaultProps = {
   title: '',
+  children: null,
 };
 
 export default SideDrawer;

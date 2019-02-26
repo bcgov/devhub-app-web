@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import SideDrawer from '../../src/components/SideDrawer/SideDrawer';
 
 describe('404 Page', () => {
@@ -19,6 +19,14 @@ describe('404 Page', () => {
     button.simulate('click');
 
     expect(closeDrawer).toHaveBeenCalled();
+  });
+
+  test('it calls drawer close fn when backdrop is clicked', () => {
+    const closeDrawer2 = jest.fn();
+    const wrapper = mount(<SideDrawer title={title} closeDrawer={closeDrawer2} />);
+    const backdrop = wrapper.find('Backdrop');
+    backdrop.simulate('click');
+    expect(closeDrawer2).toHaveBeenCalled();
   });
 
   test('it displays the title when passed in', () => {
