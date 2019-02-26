@@ -32,50 +32,6 @@ sources:
         - 'Designer'
         - 'Developer'
     resourceType: 'Components'
-  - name: Signing Tool
-    sourceType: 'github'
-    sourceProperties:
-      url: https://github.com/bcgov/devhub-signing-web/
-      owner: bcgov
-      repo: 'devhub-signing-web'
-    attributes:
-      labels:
-        - Self Service
-        - Repository
-      persona: 'Developer'
-    resourceType: 'Self-Service Tools'
-  - name: Open Shift Wiki
-    sourceType: 'github'
-    template: overview
-    sourceProperties:
-      url: https://github.com/BCDevOps/openshift-wiki
-      owner: BCDevOps
-      repo: 'openshift-wiki'
-      ignores:
-      - docs/OCP/OCPServiceDefinition.md
-    resourceType: 'Documentation'
-    attributes:
-      labels:
-        - Guides
-        - Repository
-        - Wiki
-        - How To
-      persona: 'Developer'
-  - name: Platform Services Wiki
-    sourceType: 'github'
-    sourceProperties:
-      url: https://github.com/BCDevOps/platform-services
-      owner: BCDevOps
-      repo: 'platform-services'
-      context: 'wiki'
-    resourceType: 'Documentation'
-    attributes:
-      labels:
-        - Guides
-        - Repository
-        - Wiki
-        - How To
-      persona: 'Developer'
   - name: OpenShift Components
     sourceType: 'github'
     sourceProperties:
@@ -87,17 +43,6 @@ sources:
       labels:
         - Repository
         - Components
-      persona: 'Developer'
-  - name: DevHub
-    sourceType: 'github'
-    sourceProperties:
-      url: https://github.com/bcgov/devhub-app-web/
-      owner: bcgov
-      repo: 'devhub-app-web'
-    resourceType: 'Repositories'
-    attributes:
-      labels:
-        - Repository
       persona: 'Developer'
   - name: Github 101
     template: overview
@@ -135,16 +80,3 @@ sources:
               - BC-Gov-Org-HowTo/SAMPLE-CODE_OF_CONDUCT.md
               - BC-Gov-Org-HowTo/SAMPLE-CONTRIBUTING.md
               - BC-Gov-Org-HowTo/SAMPLE-README.md
-  - name: 'DevOps Platform Service Definitions'
-    description: 'Service Definitions provide concise descriptions of the Services provided by DevOps Platform Services team.'
-    sourceProperties:
-      sources:
-      - sourceType: 'github'
-        resourceType: 'Documentation'
-        sourceProperties:
-          repo: openshift-wiki
-          owner: bcdevops
-          url: https://github.com/BCDevOps/openshift-wiki
-          branch: feature/243-openshift-svc-def
-          files:
-          - docs/OCP/OCPServiceDefinition.md
