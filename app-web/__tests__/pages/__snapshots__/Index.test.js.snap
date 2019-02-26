@@ -4,16 +4,7 @@ exports[`Index Container it matches snapshot 1`] = `
 <Connect(Layout)
   showHamburger={true}
 >
-  <Flag
-    name="features.sourceFiltering"
-  >
-    <Navbar
-      mobile={false}
-    />
-  </Flag>
-  <div
-    className="MainContainer"
-  >
+  <div>
     <Masthead />
     <Container
       fluid={true}

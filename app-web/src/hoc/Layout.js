@@ -23,10 +23,6 @@ const Wrapper = styled.div`
 `;
 
 export class Layout extends React.Component {
-  state = {
-    menuToggled: false,
-  };
-
   componentDidMount() {
     const implicitAuthManager = create_iam();
     if (this.props.useAuth) {
@@ -42,7 +38,7 @@ export class Layout extends React.Component {
   }
 
   render() {
-    const { children, toggleMenu } = this.props;
+    const { children, toggleMenu, showMenu } = this.props;
 
     return (
       <Container
@@ -54,13 +50,10 @@ export class Layout extends React.Component {
           padding: 0,
         }}
       >
-        <PrimaryHeader
-          showHamburger
-          hamburgerClicked={() => this.setState({ menuToggled: !this.state.menuToggled })}
-        />
+        <PrimaryHeader showHamburger hamburgerClicked={toggleMenu} />
         <Flag name={`features.${FLAGS.SOURCE_FILTERING}`}>
           <Navbar />
-          {this.state.menuToggled && <Navbar mobile />}
+          {showMenu && <Navbar mobile />}
         </Flag>
         <Wrapper>{children}</Wrapper>
 
@@ -73,13 +66,16 @@ export class Layout extends React.Component {
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
   useAuth: PropTypes.bool.isRequired,
-  login: PropTypes.func.isRequired,
-  logout: PropTypes.func.isRequired,
+  login: PropTypes.func,
+  logout: PropTypes.func,
   toggleMenu: PropTypes.func.isRequired,
 };
 
 Layout.defaultProps = {
   showHamburger: false,
+  useAuth: false,
+  login: () => null,
+  logout: () => null,
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -90,6 +86,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   useAuth: state.flags.features.login,
+  showMenu: state.ui.mainNavigationToggled,
 });
 
 export default connect(
