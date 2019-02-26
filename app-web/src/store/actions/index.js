@@ -10,3 +10,4 @@ export {
   resetSearch,
 } from './siphon';
 export { toggleMainNavigation } from './ui';
+export { loadResources } from './resources';
