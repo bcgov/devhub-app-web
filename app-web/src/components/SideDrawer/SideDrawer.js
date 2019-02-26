@@ -52,11 +52,16 @@ const H2 = styled.h2`
   border-bottom: 1px solid #ccc;
 `;
 
-const Icon = styled(FontAwesomeIcon)`
+const IconButton = styled.button`
   font-size: 1.5em;
   margin-left: 5px;
   align-self: flex-start;
   cursor: pointer;
+  border: none;
+  background: transparent;
+  :focus {
+    outline: none;
+  }
 `;
 
 const Menu = styled.div`
@@ -65,27 +70,33 @@ const Menu = styled.div`
   flex-grow: 1;
 `;
 
-const SideDrawer = ({ closeDrawer, children, title }) => (
-  <Aux>
-    <Backdrop clicked={closeDrawer} />
-    <Div>
-      <H2>
-        <span>{title}</span>
-        <Icon onClick={closeDrawer} icon={faTimes} />
-      </H2>
-      <Menu>{children}</Menu>
-    </Div>
-  </Aux>
-);
+const SideDrawer = ({ closeDrawer, children, title, show }) =>
+  show && (
+    <Aux>
+      <Backdrop clicked={closeDrawer} />
+      <Div>
+        <H2>
+          <span>{title}</span>
+          <IconButton onClick={closeDrawer}>
+            <FontAwesomeIcon icon={faTimes} />
+          </IconButton>
+        </H2>
+        <Menu>{children}</Menu>
+      </Div>
+    </Aux>
+  );
 
 SideDrawer.propTypes = {
   title: PropTypes.string,
-  toggled: PropTypes.bool.isRequired,
+  children: PropTypes.node,
   closeDrawer: PropTypes.func.isRequired,
+  show: PropTypes.bool,
 };
 
 SideDrawer.defaultProps = {
   title: '',
+  children: null,
+  show: false,
 };
 
 export default SideDrawer;
