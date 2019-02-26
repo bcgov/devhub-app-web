@@ -25,6 +25,7 @@ create_iam.mockImplementation(() => ({
   registerHooks: jest.fn(),
   handleOnPageLoad: jest.fn(),
 }));
+
 describe('Layout Component', () => {
   it('can toggle a menu', () => {
     const wrapper = shallow(
