@@ -56,7 +56,6 @@ export class Layout extends React.Component {
           {showMenu && <Navbar mobile />}
         </Flag>
         <Wrapper>{children}</Wrapper>
-
         <PrimaryFooter />
       </Container>
     );

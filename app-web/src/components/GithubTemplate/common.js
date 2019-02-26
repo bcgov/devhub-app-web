@@ -16,8 +16,12 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import { css } from '@emotion/core';
+import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
 // common styles and utils between template components
 
 export const withPadding = css`
-  padding: 20px 45px;
+  padding: 20px 15px;
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.sm} {
+    padding: 20px 45px;
+  }
 `;
