@@ -174,7 +174,7 @@ const fetchSourceGithub = async (
         f.html_url,
         personas,
         collection,
-        sourceProperties,
+          {branch: 'master', ...sourceProperties}, // by default no branch means master, we are setting it explicitly so it exists in ql schema
       ),
     )
     .map(async f => {
