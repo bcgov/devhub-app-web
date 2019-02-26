@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Primary Filter Component it matches snapshot 1`] = `
+<nav
+  className="Navbar"
+>
+  <ul
+    className="largeOnly"
+  >
+    <li
+      key="0"
+    >
+      <mockConstructor
+        aria-label="Select to filter cards by the resource type"
+        exact={true}
+        getProps={[Function]}
+        to="?q="
+      >
+        All
+      </mockConstructor>
+    </li>
+    <li
+      key="1"
+    >
+      <mockConstructor
+        aria-label="Select to filter cards by the resource type"
+        exact={true}
+        getProps={[Function]}
+        to="?q=%2BresourceType%3AComponents"
+      >
+        Components
+      </mockConstructor>
+    </li>
+    <li
+      key="2"
+    >
+      <mockConstructor
+        aria-label="Select to filter cards by the resource type"
+        exact={true}
+        getProps={[Function]}
+        to="?q=%2BresourceType%3ADocumentation"
+      >
+        Documentation
+      </mockConstructor>
+    </li>
+    <li
+      key="3"
+    >
+      <mockConstructor
+        aria-label="Select to filter cards by the resource type"
+        exact={true}
+        getProps={[Function]}
+        to="?q=%2BresourceType%3ASelf-Service%20Tools"
+      >
+        Self-Service Tools
+      </mockConstructor>
+    </li>
+    <li
+      key="4"
+    >
+      <mockConstructor
+        aria-label="Select to filter cards by the resource type"
+        exact={true}
+        getProps={[Function]}
+        to="?q=%2BresourceType%3ARepositories"
+      >
+        Repositories
+      </mockConstructor>
+    </li>
+  </ul>
+</nav>
+`;

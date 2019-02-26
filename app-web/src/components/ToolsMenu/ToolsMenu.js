@@ -20,7 +20,6 @@ import PropTypes from 'prop-types';
 import { navigate } from 'gatsby';
 import { SEARCH } from '../../constants/ui';
 import FilterMenu from './FilterMenu/FilterMenu';
-import SearchFeedback from './SearchFeedback/SearchFeedback';
 import Search from '../Search/Search';
 import styles from './ToolsMenu.module.css';
 
@@ -31,14 +30,7 @@ class ToolsMenu extends Component {
   }
 
   render() {
-    const {
-      filters,
-      searchCount,
-      totalNodeCount,
-      searchWordLength,
-      setSearchBarTerms,
-      query,
-    } = this.props;
+    const { filters, setSearchBarTerms } = this.props;
     return (
       <div className={styles.ToolsMenu}>
         <FilterMenu filters={filters} />
@@ -50,12 +42,6 @@ class ToolsMenu extends Component {
             setSearchBarTerms(terms);
             navigate(`/?q=${encodeURIComponent(terms)}`);
           }}
-        />
-        <SearchFeedback
-          searchCount={searchCount}
-          totalNodeCount={totalNodeCount}
-          searchWordLength={searchWordLength}
-          query={query}
         />
       </div>
     );

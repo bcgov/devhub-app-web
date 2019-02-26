@@ -299,5 +299,13 @@ export const SORTED_COLLECTIONS = [DESIGN_SYSTEM_COLLECTION_SORTED, DEVHUB_COLLE
 // creating a set of filtered collections where there aren't any developers
 export const FILTERED_COLLECTIONS = SORTED_COLLECTIONS.map(collection => ({
   ...collection,
-  nodes: collection.nodes.filter(node => node.attributes.personas[0] === 'Developer'),
+  nodes: collection.nodes
+    .filter(node => node.attributes.personas[0] === 'Developer')
+    .map(node => ({
+      title: node.unfurl.title,
+      description: node.unfurl.description,
+      image: node.unfurl.image,
+      path: node.resource.path,
+      type: node.resource.type,
+    })),
 }));

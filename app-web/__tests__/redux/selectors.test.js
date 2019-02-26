@@ -59,10 +59,21 @@ describe('Reselect Selectors', () => {
       },
     };
 
-    expect(selectors.selectFilteredCollections(state)).toEqual(SORTED_COLLECTIONS);
+    expect(selectors.selectFilteredCollections(state)).toEqual(
+      SORTED_COLLECTIONS.map(collection => ({
+        ...collection,
+        nodes: collection.nodes.map(node => ({
+          title: node.unfurl.title,
+          description: node.unfurl.description,
+          image: node.unfurl.image,
+          path: node.resource.path,
+          type: node.resource.type,
+        })),
+      })),
+    );
   });
 
-  it('returns filtered collections  there are active filters', () => {
+  it('returns filtered collections when there are active filters', () => {
     expect(selectors.selectFilteredCollections(STATE)).toEqual(FILTERED_COLLECTIONS);
   });
 
@@ -82,10 +93,6 @@ describe('Reselect Selectors', () => {
 
   it('returns search word length', () => {
     expect(selectors.selectSearchWordLength(STATE)).toEqual(STATE.siphon.searchBarTerms.length);
-  });
-
-  it('returns show welcome panel', () => {
-    expect(selectors.selectShowWelcomePanel(STATE)).toEqual(!STATE.ui.welcomePanelWasViewed);
   });
 
   it('returns siphons loading indicator', () => {

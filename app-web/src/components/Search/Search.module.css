@@ -1,7 +1,6 @@
 .Search {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 .Search input {
@@ -9,16 +8,8 @@
   padding: 4px 5px;
   flex-basis: 250px;
   flex-grow: 1;
-  border: 2px solid #38598a;
-  border-radius: 3px;
-  padding: 5px;
   transition: all .25s;
   max-width: 400px;
-}
-
-.Search input:focus {
-  box-shadow: 0 0 2px 1px #38598aad;
-  outline: none;
 }
 
 .Search button {

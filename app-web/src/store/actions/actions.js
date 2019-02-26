@@ -9,4 +9,4 @@ export {
   setSearchBarTerms,
   resetSearch,
 } from './siphonActions';
-export { toggleMainNavigation, setWelcomePanelViewed } from './uiActions';
+export { toggleMainNavigation } from './uiActions';

@@ -10,6 +10,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@bcgov/common-web-utils": "^0.5.2",
+    "@emotion/core": "^10.0.7",
+    "@emotion/styled": "^10.0.7",
     "@fortawesome/fontawesome-free-brands": "^5.0.13",
     "@fortawesome/fontawesome-svg-core": "^1.2.8",
     "@fortawesome/free-solid-svg-icons": "^5.5.0",
@@ -17,21 +19,22 @@
     "@octokit/rest": "^16.13.1",
     "acorn": "^6.0.4",
     "autoprefixer": "^9.4.2",
+    "babel-plugin-emotion": "^10.0.7",
     "babel-plugin-styled-components": "^1.9.2",
     "chalk": "^2.4.1",
     "cheerio": "^1.0.0-rc.2",
     "clone": "^2.1.2",
     "dot-prop-immutable": "^1.5.0",
     "dotenv": "^6.2.0",
-    "emotion": "^8.0.8",
-    "emotion-server": "^8.0.8",
+    "emotion": "^10.0.7",
+    "emotion-theming": "^10.0.7",
     "eslint-config-react-app": "^3.0.5",
     "eslint-plugin-flowtype": "^2.50.3",
     "feather-icons": "^3.3.0",
     "flag": "^3.0.0-1",
     "gatsby": "^2.0.64",
     "gatsby-plugin-catch-links": "^2.0.9",
-    "gatsby-plugin-emotion": "^3.0.1",
+    "gatsby-plugin-emotion": "^4.0.4",
     "gatsby-plugin-favicon": "^3.1.4",
     "gatsby-plugin-google-analytics": "^2.0.8",
     "gatsby-plugin-lunr": "^1.4.0",
@@ -73,7 +76,6 @@
     "metascraper-publisher": "^4.7.0",
     "metascraper-title": "^4.7.0",
     "metascraper-url": "^4.7.0",
-    "normalize.css": "^8.0.1",
     "npm": "^6.6.0",
     "postcss-flexbugs-fixes": "^4.1.0",
     "prismjs": "^1.15.0",
@@ -83,7 +85,6 @@
     "react-avatar": "^3.5.0",
     "react-dom": "^16.6.3",
     "react-dotdotdot": "^1.2.3",
-    "react-emotion": "^10.0.0",
     "react-helmet": "^5.2.0",
     "react-image": "^1.5.1",
     "react-redux": "^5.0.0",
@@ -103,7 +104,6 @@
     "shortid": "^2.2.14",
     "slugify": "^1.3.4",
     "string-similarity": "^3.0.0",
-    "styled-components": "^4.1.2",
     "styled-system": "^3.1.11",
     "typography": "^0.16.18",
     "unfurl.js": "^1.1.6",
@@ -148,10 +148,10 @@
       "text",
       "html"
     ],
+    "setupTestFrameworkScriptFile": "<rootDir>/config/setupTests.js",
     "setupFiles": [
       "raf/polyfill",
       "jest-localstorage-mock",
-      "<rootDir>/config/setupTests.js",
       "<rootDir>/config/jest/loadershim.js"
     ]
   },
@@ -175,6 +175,7 @@
     "husky": "^1.3.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
+    "jest-emotion": "^10.0.7",
     "jest-localstorage-mock": "^2.3.0",
     "js-beautify": "^1.8.9",
     "prettier": "^1.15.3",
@@ -187,7 +188,13 @@
     }
   },
   "lint-staged": {
-    "*.js": ["eslint --fix", "git add"],
-    "*.css": ["js-beautify --config .jsbeautifyrc -f *.css", "git add"]
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.css": [
+      "js-beautify --config .jsbeautifyrc -f *.css",
+      "git add"
+    ]
   }
 }

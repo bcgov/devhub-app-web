@@ -13,7 +13,7 @@ module.exports = {
   pathPrefix: '/images',
   mapping: {},
   plugins: [
-    'gatsby-plugin-styled-components',
+    'gatsby-plugin-emotion',
     // Adding various source folders to the GraphQL layer.
     {
       resolve: 'gatsby-source-filesystem',
@@ -90,8 +90,8 @@ module.exports = {
               classPrefix: 'language-',
               inlineCodeMarker: null,
               aliases: {},
-              showLineNumbers: true,
-              noInlineHighlight: false,
+              showLineNumbers: false,
+              noInlineHighlight: true,
             },
           },
           {
@@ -154,20 +154,20 @@ module.exports = {
       },
     },
     {
-        resolve: `gatsby-plugin-prefetch-google-fonts`,
-        options: {
-            fonts: [
-                {
-                  family: 'Noto Sans' // default/included variants are 400,400i,700,700i
-                }
-            ]
-        }
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: 'Noto Sans', // default/included variants are 400,400i,700,700i
+          },
+        ],
+      },
     },
     {
-        resolve: 'gatsby-plugin-typography',
-        options: {
-            pathToConfigModule: 'typography',
-        },
+      resolve: 'gatsby-plugin-typography',
+      options: {
+        pathToConfigModule: 'typography',
+      },
     },
   ],
 };
