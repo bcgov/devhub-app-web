@@ -1,4 +1,4 @@
-import { groupBy } from '../../src/utils/dataHelpers';
+import { groupBy, arrayToMapByProp } from '../../src/utils/dataHelpers';
 
 describe('Data Helpers', () => {
   test('it groups data correctly when passed in the right arguments', () => {
@@ -141,5 +141,53 @@ describe('Data Helpers', () => {
     ];
 
     expect(groupBy(data, 'category')).toEqual(expected);
+  });
+
+  describe('arrayToMapByProp', () => {
+    it('converts an array to a map', () => {
+      const array = [
+        {
+          id: 'foo1',
+          props: {
+            name: 'seana',
+          },
+        },
+        {
+          id: 'foo2',
+          props: {
+            name: 'marty',
+          },
+        },
+        {
+          id: 'foo3',
+          props: {
+            name: 'allison',
+          },
+        },
+      ];
+
+      const expected = {
+        foo1: {
+          id: 'foo1',
+          props: {
+            name: 'seana',
+          },
+        },
+        foo2: {
+          id: 'foo2',
+          props: {
+            name: 'marty',
+          },
+        },
+        foo3: {
+          id: 'foo3',
+          props: {
+            name: 'allison',
+          },
+        },
+      };
+
+      expect(arrayToMapByProp(array, 'id')).toEqual(expected);
+    });
   });
 });

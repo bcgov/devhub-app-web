@@ -51,7 +51,7 @@ export const flattenAllSourceDevhubGithub = edges => edges.map(node => node.node
  * @param {String} by a string identifying a property in a single item within the array
  * @returns {Object} the map like object
  */
-export const ArrayToMapBy = (array, by) =>
+export const arrayToMapByProp = (array, by) =>
   array.reduce((obj, item) => {
     obj[item[by]] = item;
     return obj;
