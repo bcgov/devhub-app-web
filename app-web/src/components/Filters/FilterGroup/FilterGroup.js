@@ -15,7 +15,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormGroup, Label } from 'reactstrap';
-import * as actions from '../../../store/actions/actions';
+import * as actions from '../../../store/actions';
 import { ARIA_LABEL_FILTER_RESOURCE } from '../../../constants/ariaLabels';
 import styles from './FilterGroup.module.css';
 

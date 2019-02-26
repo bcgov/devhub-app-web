@@ -15,7 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import * as actions from '../../src/store/actions/actions';
+import * as actions from '../../src/store/actions';
 import { ACTIONS } from '../../__fixtures__/redux-fixtures';
 
 describe('ui action creators', () => {

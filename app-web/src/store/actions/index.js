@@ -1,4 +1,4 @@
-export { authenticateSuccess, authenticateFailed } from './authActions';
+export { authenticateSuccess, authenticateFailed } from './auth';
 export {
   loadSiphonCollections,
   removeAllFilters,
@@ -8,5 +8,5 @@ export {
   setSearchQuery,
   setSearchBarTerms,
   resetSearch,
-} from './siphonActions';
-export { toggleMainNavigation } from './uiActions';
+} from './siphon';
+export { toggleMainNavigation } from './ui';
