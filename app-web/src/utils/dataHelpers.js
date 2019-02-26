@@ -2,6 +2,7 @@
 // arr = [ {foo: "bar", fruit: "apple"}, {foo: "baer", fruit: "banana"}]
 // groupBy(arr, "fruit") => [{fruit: "apple", data: {foo: "bar", fruit: "apple"}} ..etc]
 import { TypeCheck } from '@bcgov/common-web-utils';
+import { cloneDeep } from 'lodash';
 /**
  * @param {Array} collection
  * @param {String} key
@@ -61,7 +62,7 @@ export const arrayToMapByProp = (array, by) => {
   };
   data.map = array.reduce((obj, item) => {
     data.all.push(item[by]);
-    obj[item[by]] = item;
+    obj[item[by]] = cloneDeep(item);
     return obj;
   }, {});
 

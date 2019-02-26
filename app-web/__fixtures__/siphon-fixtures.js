@@ -1,3 +1,4 @@
+import { arrayToMapByProp } from '../src/utils/dataHelpers';
 const IDS = {
   DESIGN_SYSTEM: 'collection-1',
   DEVHUB: 'collection-2',
@@ -309,3 +310,5 @@ export const FILTERED_COLLECTIONS = SORTED_COLLECTIONS.map(collection => ({
       type: node.resource.type,
     })),
 }));
+
+export const SIPHON_NODES_MAP = arrayToMapByProp(SIPHON_NODES, 'id');

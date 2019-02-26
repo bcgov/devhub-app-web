@@ -16,32 +16,50 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import * as actionTypes from '../actions/actionTypes';
+import { arrayToMapByProp } from '../../utils/dataHelpers';
 import dotProp from 'dot-prop-immutable';
 import defaultFilterGroups from '../../constants/filterGroups';
 import { TypeCheck } from '@bcgov/common-web-utils';
 import { action } from 'popmotion';
 
 const initialState = {
-  collectionsLoaded: false,
-  page: '',
   resources: {
     byId: {},
     allIds: [],
   }, // this is set by the resource type, ie Component/Documentation etc
-  query: null,
-  searchBarTerms: '',
+  query: null, // the persisted search query
+  searchBarTerms: '', // the global state for
   searchResults: [null],
-  totalResources: 0,
   loading: false,
   error: false,
   messages: [],
   filters: defaultFilterGroups,
 };
 
-const resoucesReducer = (state, action) => {
+/**
+ * @param {Object} state
+ * @param {Array} resources the list of resources
+ * @returns {Object} the next state
+ */
+const loadResources = (state, resources) => {
+  // convert resources list to a map by {id: item} key value pairs
+  const resourceMap = arrayToMapByProp(resources, 'id');
+  return {
+    ...state,
+    resources: {
+      byId: resourceMap.map,
+      allIds: resourceMap.all,
+    },
+  };
+};
+
+const resourcesReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOAD_RESOURCES:
+      return loadResources(state, action.payload.resources);
     default:
       return state;
   }
 };
+
+export default resourcesReducer;
