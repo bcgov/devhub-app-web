@@ -1,131 +1,15 @@
+/* very important to have the min width attribute
+    for some reason prism js <code/pre> tags behave strangely and
+    grow to huge widths without this prop being set.
+*/
 .MarkdownBody {
-    max-width: 800px;
-}
-
-.MarkdownBody h1,
-.MarkdownBody h2,
-.MarkdownBody h3,
-.MarkdownBody h4,
-.MarkdownBody h5,
-.MarkdownBody h6 {
-    color: #494949;
-    font-weight: 700;
-    margin: 1em 0 0.6em 0;
-    border-bottom: none;
-}
-
-.MarkdownBody h1 {
-  font-size: 37.32px;
-}
-
-.MarkdownBody h2 {
-  font-size: 31.10px;
-}
-
-.MarkdownBody h3 {
-  font-size: 25.92px;
-}
-
-.MarkdownBody h4 {
-  font-size: 21.60px;
-}
-
-.MarkdownBody p {
-  color: #494949;
-  line-height: 1.6;
-  font-size: 18px;
-}
-
-.MarkdownBody pre {
-    background-color: #2e2e2e;
-}
-
-.MarkdownBody pre > span {
-    padding: 1em 0 0 .5em;
-}
-
-.MarkdownBody a {
-    color: #1A5A96;
-    text-decoration: underline;
-}
-
-.MarkdownBody a:hover {
-    color: blue;
-    text-decoration: none;
-
-}
-
-.MarkdownBody table {
-    color: #333;
-    font-family: 'Noto Sans', Verdana, sans-serif;
-    width: 100%;
-    border-collapse:
-    collapse; border-spacing: 0;
-}
-
-.MarkdownBody td, .MarkdownBody th {
-    border: 1px solid #ccc; /* No more visible border */
-    height: 30px;
-    transition: all 0.15s;  /* Simple transition for hover effect */
-}
-
-.MarkdownBody th {
-    background: #a1bdd8;  /* Darken header a bit */
-    font-weight: bold;
-    text-align: center;
-    word-break: initial;
-}
-
-.MarkdownBody td {
-    background: #FAFAFA;
-    text-align: center;
-}
-
-/* Cells in even rows (2,4,6...) are one color */
-.MarkdownBody tr:nth-child(even) td { background: #F1F1F1; }
-
-/* Cells in odd rows (1,3,5...) are another (excludes header cells)  */
-.MarkdownBody tr:nth-child(odd) td { background: #FEFEFE; }
-
-
-
-.TemplateContainer {
-    display: flex;
-    flex-wrap: wrap;
-    padding-bottom: 50px;
-    padding-top: 75px;
-}
-
-.SidePanel {
-    display: flex;
-    flex-direction: column;
-    flex: 1 0 200px;
-}
-
-.Content {
-    background-color: #fff;
     min-width: 250px;
-    flex: 1 1 400px;
-    padding: 1em;
 }
 
-@media screen and (min-width: 768px) {
-    .TemplateContainer {
-        padding-left: 250px;
-    }
-
-    .Header {
-        margin-bottom: 5px;
-        background-color: inherit;
-    }
-
-    .SidePanel {
-        max-width: 250px;
-        background-color: #e0e0e0;
-        margin-left: 1em;
-    }
-
-    .Content {
-        padding: 1em 3em;
-    }
+/*
+allows iframes to 'flex'
+*/
+.MarkdownBody iframe {
+    width: 100%;
+    min-width: 400px;
 }

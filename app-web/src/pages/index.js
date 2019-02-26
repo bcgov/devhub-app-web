@@ -5,7 +5,7 @@ import queryString from 'query-string';
 import shortid from 'shortid';
 import { connect } from 'react-redux';
 import { REACT_SCROLL } from '../constants/ui';
-import FLAGS from '../constants/featureflags';
+
 import * as actions from '../store/actions/actions';
 
 import styles from './index.module.css';
@@ -17,7 +17,7 @@ import Loading from '../components/UI/Loading/Loading';
 import Layout from '../hoc/Layout';
 import Cards from '../components/Cards/Cards';
 import Masthead from '../components/Home/Masthead';
-import Navbar from '../components/Navbar/Navbar';
+
 // selectors from reselect
 import {
   selectFilteredCollections,
@@ -95,7 +95,6 @@ export class Index extends PureComponent {
   render() {
     const {
       collections,
-      toggleMenu,
       searchResultsLength,
       totalResources,
       setSearchBarTerms,
@@ -112,11 +111,8 @@ export class Index extends PureComponent {
       />
     ));
     return (
-      <Layout showHamburger hamburgerClicked={toggleMenu}>
-        <Flag name={`features.${FLAGS.SOURCE_FILTERING}`}>
-          <Navbar />
-        </Flag>
-        <div className={styles.MainContainer}>
+      <Layout showHamburger>
+        <div>
           <Masthead
             searchCount={searchResultsLength}
             totalNodeCount={totalResources}

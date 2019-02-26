@@ -15,24 +15,13 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './Title.module.css';
+import { css } from '@emotion/core';
+import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
+// common styles and utils between template components
 
-const Title = ({ title, subtitle }) => (
-  <header className={styles.Title}>
-    <h1>{title}</h1>
-    {subtitle && <h4>{subtitle}</h4>}
-  </header>
-);
-
-Title.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
-};
-
-Title.defaultProps = {
-  subtitle: null,
-};
-
-export default Title;
+export const withPadding = css`
+  padding: 20px 15px;
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.sm} {
+    padding: 20px 45px;
+  }
+`;

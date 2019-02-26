@@ -1,14 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 import { connect } from 'react-redux';
 import { Container } from 'reactstrap';
+import { Flag } from 'flag';
 // layout local componenets
 import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
 import PrimaryFooter from '../components/PrimaryFooter/PrimaryFooter';
+import Navbar from '../components/Navbar/Navbar';
 // redux & auth
 // factory for implicit auth manager instance
 import { create_iam } from '../auth';
 import * as actions from '../store/actions/actions';
+import FLAGS from '../constants/featureflags';
+
+const Wrapper = styled.div`
+  margin-top: 65px;
+  flex-grow: 1;
+  @media (min-width: 767px) {
+    margin-top: 112px;
+  }
+`;
 
 export class Layout extends React.Component {
   componentDidMount() {
@@ -26,7 +38,7 @@ export class Layout extends React.Component {
   }
 
   render() {
-    const { children, toggleMenu } = this.props;
+    const { children, toggleMenu, showMenu } = this.props;
 
     return (
       <Container
@@ -39,8 +51,11 @@ export class Layout extends React.Component {
         }}
       >
         <PrimaryHeader showHamburger hamburgerClicked={toggleMenu} />
-        <div style={{ flexGrow: 1 }}>{children}</div>
-
+        <Flag name={`features.${FLAGS.SOURCE_FILTERING}`}>
+          <Navbar />
+          {showMenu && <Navbar mobile />}
+        </Flag>
+        <Wrapper>{children}</Wrapper>
         <PrimaryFooter />
       </Container>
     );
@@ -50,13 +65,16 @@ export class Layout extends React.Component {
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
   useAuth: PropTypes.bool.isRequired,
-  login: PropTypes.func.isRequired,
-  logout: PropTypes.func.isRequired,
+  login: PropTypes.func,
+  logout: PropTypes.func,
   toggleMenu: PropTypes.func.isRequired,
 };
 
 Layout.defaultProps = {
   showHamburger: false,
+  useAuth: false,
+  login: () => null,
+  logout: () => null,
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -67,6 +85,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   useAuth: state.flags.features.login,
+  showMenu: state.ui.mainNavigationToggled,
 });
 
 export default connect(

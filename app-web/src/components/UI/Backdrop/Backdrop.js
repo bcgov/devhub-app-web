@@ -15,24 +15,29 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Title.module.css';
+import styled from '@emotion/styled';
 
-const Title = ({ title, subtitle }) => (
-  <header className={styles.Title}>
-    <h1>{title}</h1>
-    {subtitle && <h4>{subtitle}</h4>}
-  </header>
-);
+const Div = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 250;
+  background-color: rgba(0, 0, 0, 0.35);
+`;
 
-Title.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
+const Backdrop = ({ clicked }) => <Div onClick={clicked} />;
+
+Backdrop.propTypes = {
+  clicked: PropTypes.func,
 };
 
-Title.defaultProps = {
-  subtitle: null,
+Backdrop.defaultProps = {
+  clicked: null,
 };
 
-export default Title;
+export default Backdrop;

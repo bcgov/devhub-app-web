@@ -17,15 +17,16 @@ exports[`Layout Component it matches snapshot 1`] = `
     hamburgerClicked={[Function]}
     showHamburger={true}
   />
-  <div
-    style={
-      Object {
-        "flexGrow": 1,
-      }
-    }
+  <Flag
+    name="features.sourceFiltering"
   >
+    <Navbar
+      mobile={false}
+    />
+  </Flag>
+  <Wrapper>
     test
-  </div>
+  </Wrapper>
   <PrimaryFooter />
 </Container>
 `;

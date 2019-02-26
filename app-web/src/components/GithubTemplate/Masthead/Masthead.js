@@ -15,24 +15,36 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Title.module.css';
+import styled from '@emotion/styled';
+import { withPadding } from '../common';
+import CardHeader from '../../Cards/Card/CardHeader';
+import Title from '../../Page/Title';
+import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
 
-const Title = ({ title, subtitle }) => (
-  <div className={styles.Title}>
-    <h1>{title}</h1>
-    {subtitle && <h4>{subtitle}</h4>}
-  </div>
+const Header = styled.header`
+  background-color: #f1f1f1;
+  border-bottom: 1px solid #ccc;
+  ${withPadding}
+`;
+
+const Masthead = ({ title, description, type }) => (
+  <Header>
+    <CardHeader type={type} />
+    <Title title={title} subtitle={description} />
+  </Header>
 );
 
-Title.propTypes = {
+Masthead.propTypes = {
   title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
+  description: PropTypes.string,
+  type: PropTypes.oneOf(RESOURCE_TYPES_LIST),
 };
 
-Title.defaultProps = {
-  subtitle: null,
+Masthead.defaultProps = {
+  description: '',
 };
 
-export default Title;
+export default Masthead;

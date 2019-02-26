@@ -28,12 +28,13 @@
 }
 
 .Navbar ul a {
-    padding: 10px;
-    flex: 1 0 auto;
-    height: 100%;
-    display: inline-block;
     color: inherit;
     cursor: pointer;
+    display: flex;
+    flex-grow: 1;
+    padding: 0 10px;
+    height: 100%;
+    align-items: center;
 }
 
 .Navbar ul a:visited {
@@ -53,7 +54,7 @@
     border-bottom: 2px solid #fcc219;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 777px) {
     .Navbar {
         padding: 0 65px;
     }
@@ -63,7 +64,7 @@
     }
 
     .Navbar ul li:first-child {
-        flex-basis: 85px;
+        flex-basis: 75px;
         text-align: center;
     }
 
