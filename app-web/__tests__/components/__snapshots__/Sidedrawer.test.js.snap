@@ -4,8 +4,11 @@ exports[`404 Page it matches snapshot 1`] = `
 <Aux>
   <Backdrop
     clicked={[MockFunction]}
+    show={true}
   />
-  <Div>
+  <Drawer
+    pose="show"
+  >
     <H2>
       <span>
         Foo
@@ -46,6 +49,6 @@ exports[`404 Page it matches snapshot 1`] = `
       </IconButton>
     </H2>
     <Menu />
-  </Div>
+  </Drawer>
 </Aux>
 `;
