@@ -41,18 +41,29 @@ export const groupBy = (collection, key) => {
 export const flattenAllSourceDevhubGithub = edges => edges.map(node => node.node);
 
 /**
- * converts an array to a map like object
+ * converts an array to a map like object and stores the list of props as an array
+ * which is useful for lookups
  * ArrayToMap([{id: 'apple', name: 'baz'}, {id: 'banana', name: 'foo'}], 'id')
  * => {
- *  apple: { ... },
- *  banana: { ...}
+ *  map: {
+ *   apple: { ... },
+ *   banana: { ...},
+ *  },
+ *  all: ['apple', 'banana'],
  * }
  * @param {Array} array an array of objects
  * @param {String} by a string identifying a property in a single item within the array
- * @returns {Object} the map like object
+ * @returns {Object} the converted map and a lookup array
  */
-export const arrayToMapByProp = (array, by) =>
-  array.reduce((obj, item) => {
+export const arrayToMapByProp = (array, by) => {
+  const data = {
+    all: [],
+  };
+  data.map = array.reduce((obj, item) => {
+    data.all.push(item[by]);
     obj[item[by]] = item;
     return obj;
   }, {});
+
+  return data;
+};

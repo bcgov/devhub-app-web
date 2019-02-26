@@ -167,24 +167,27 @@ describe('Data Helpers', () => {
       ];
 
       const expected = {
-        foo1: {
-          id: 'foo1',
-          props: {
-            name: 'seana',
+        map: {
+          foo1: {
+            id: 'foo1',
+            props: {
+              name: 'seana',
+            },
+          },
+          foo2: {
+            id: 'foo2',
+            props: {
+              name: 'marty',
+            },
+          },
+          foo3: {
+            id: 'foo3',
+            props: {
+              name: 'allison',
+            },
           },
         },
-        foo2: {
-          id: 'foo2',
-          props: {
-            name: 'marty',
-          },
-        },
-        foo3: {
-          id: 'foo3',
-          props: {
-            name: 'allison',
-          },
-        },
+        all: ['foo1', 'foo2', 'foo3'],
       };
 
       expect(arrayToMapByProp(array, 'id')).toEqual(expected);
