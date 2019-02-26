@@ -20,7 +20,7 @@ import {
   isRelativePath,
   converter,
   getGithubBasePath,
-} from '../../src/utils/gatsby-remark-transform-path';
+} from '../../src/utils/gatsbyRemark';
 import { FILE_QL_NODE, SIPHON_QL_NODE } from '../../__fixtures__/plugin-fixtures';
 
 describe('Gatsby Remark Transform Path Converter Callback', () => {

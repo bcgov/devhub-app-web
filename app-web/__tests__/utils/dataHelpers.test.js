@@ -1,35 +1,6 @@
-import { groupBy } from '../../src/utils/dataMassager';
-import { SIPHON_QL_NODE } from '../../__fixtures__/plugin-fixtures';
-import { converter } from '../../src/utils/gatsby-remark-transform-path';
+import { groupBy, arrayToMapByProp } from '../../src/utils/dataHelpers';
 
-describe('Gatsby Remark Transformer Path Converter', () => {
-  const getNode = jest.fn(() => ({
-    _metadata: {
-      sourceLocations: [],
-    },
-  }));
-
-  test('it only transforms sourceDevHubGithub nodes', () => {
-    const path = './something.png';
-    const astType = 'image';
-    const node = {
-      internal: {
-        type: 'notsourceDevhubGithub',
-      },
-    };
-    expect(converter(astType, path, node, getNode)).toBe(path);
-  });
-
-  test('it returns path on sourceDevhubGithub nodes', () => {
-    const path = './somthing.png';
-    const astType = 'image';
-    const newPath = converter(astType, path, SIPHON_QL_NODE, getNode);
-    expect(typeof newPath).toBe('string');
-    expect(newPath).not.toBe(path);
-  });
-});
-
-describe('Data Massagers', () => {
+describe('Data Helpers', () => {
   test('it groups data correctly when passed in the right arguments', () => {
     const data = [
       {
@@ -170,5 +141,56 @@ describe('Data Massagers', () => {
     ];
 
     expect(groupBy(data, 'category')).toEqual(expected);
+  });
+
+  describe('arrayToMapByProp', () => {
+    it('converts an array to a map', () => {
+      const array = [
+        {
+          id: 'foo1',
+          props: {
+            name: 'seana',
+          },
+        },
+        {
+          id: 'foo2',
+          props: {
+            name: 'marty',
+          },
+        },
+        {
+          id: 'foo3',
+          props: {
+            name: 'allison',
+          },
+        },
+      ];
+
+      const expected = {
+        map: {
+          foo1: {
+            id: 'foo1',
+            props: {
+              name: 'seana',
+            },
+          },
+          foo2: {
+            id: 'foo2',
+            props: {
+              name: 'marty',
+            },
+          },
+          foo3: {
+            id: 'foo3',
+            props: {
+              name: 'allison',
+            },
+          },
+        },
+        all: ['foo1', 'foo2', 'foo3'],
+      };
+
+      expect(arrayToMapByProp(array, 'id')).toEqual(expected);
+    });
   });
 });

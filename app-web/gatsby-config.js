@@ -1,7 +1,7 @@
 require('dotenv').config({
   path: '.env.production',
 });
-const { converter } = require('./src/utils/gatsby-remark-transform-path');
+const { converter } = require('./src/utils/gatsbyRemark');
 // To specify a path of the registry.yaml file, set as env variable
 // This comes as a pair of sourceRegistryType used by gatsby-source-github-all
 const registry_path = process.env.REGISTRY_PATH || '';
@@ -133,7 +133,7 @@ module.exports = {
           { name: 'url' },
           { name: 'source' },
           { name: 'id', store: true },
-          { name: 'resourceType' },
+          { name: 'resourceType', store: true },
         ],
         // How to resolve each field's value for a supported node type
         resolvers: {

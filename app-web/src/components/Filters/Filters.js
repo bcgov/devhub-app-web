@@ -18,7 +18,7 @@ import shortid from 'shortid';
 import styles from './Filters.module.css';
 
 import FilterGroup from './FilterGroup/FilterGroup';
-import { groupBy } from '../../utils/dataMassager';
+import { groupBy } from '../../utils/dataHelpers';
 
 const Filters = ({ filters }) => {
   // group filter groups by there title
