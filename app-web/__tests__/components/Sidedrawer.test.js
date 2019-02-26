@@ -5,9 +5,10 @@ import SideDrawer from '../../src/components/SideDrawer/SideDrawer';
 describe('404 Page', () => {
   let wrapper, closeDrawer;
   let title = 'Foo';
+  let show = true;
   beforeEach(() => {
     closeDrawer = jest.fn();
-    wrapper = shallow(<SideDrawer title={title} closeDrawer={closeDrawer} />);
+    wrapper = shallow(<SideDrawer show={show} title={title} closeDrawer={closeDrawer} />);
   });
 
   test('it matches snapshot', () => {
@@ -23,7 +24,7 @@ describe('404 Page', () => {
 
   test('it calls drawer close fn when backdrop is clicked', () => {
     const closeDrawer2 = jest.fn();
-    const wrapper = mount(<SideDrawer title={title} closeDrawer={closeDrawer2} />);
+    const wrapper = mount(<SideDrawer show={show} title={title} closeDrawer={closeDrawer2} />);
     const backdrop = wrapper.find('Backdrop');
     backdrop.simulate('click');
     expect(closeDrawer2).toHaveBeenCalled();
@@ -40,5 +41,10 @@ describe('404 Page', () => {
 
     wrapper.setProps({ children: child }).update();
     expect(wrapper.containsMatchingElement(child)).toBeTruthy();
+  });
+
+  test('it is empty when show is false', () => {
+    wrapper.setProps({ show: false }).update();
+    expect(wrapper.children().length).toBe(0);
   });
 });

@@ -118,14 +118,13 @@ class SourceGithubMarkdownOverview extends React.Component {
             </div>
           </Main>
         </div>
-        {this.state.sideDrawerToggled && (
-          <SideDrawer
-            title={`${collection.name} Content`}
-            closeDrawer={() => this.toggleMenu(false)}
-          >
-            {navigation}
-          </SideDrawer>
-        )}
+        <SideDrawer
+          show={this.state.sideDrawerToggled}
+          title={`${collection.name} Content`}
+          closeDrawer={() => this.toggleMenu(false)}
+        >
+          {navigation}
+        </SideDrawer>
       </Layout>
     );
   }

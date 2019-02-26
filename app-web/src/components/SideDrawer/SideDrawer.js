@@ -70,30 +70,33 @@ const Menu = styled.div`
   flex-grow: 1;
 `;
 
-const SideDrawer = ({ closeDrawer, children, title }) => (
-  <Aux>
-    <Backdrop clicked={closeDrawer} />
-    <Div>
-      <H2>
-        <span>{title}</span>
-        <IconButton onClick={closeDrawer}>
-          <FontAwesomeIcon icon={faTimes} />
-        </IconButton>
-      </H2>
-      <Menu>{children}</Menu>
-    </Div>
-  </Aux>
-);
+const SideDrawer = ({ closeDrawer, children, title, show }) =>
+  show && (
+    <Aux>
+      <Backdrop clicked={closeDrawer} />
+      <Div>
+        <H2>
+          <span>{title}</span>
+          <IconButton onClick={closeDrawer}>
+            <FontAwesomeIcon icon={faTimes} />
+          </IconButton>
+        </H2>
+        <Menu>{children}</Menu>
+      </Div>
+    </Aux>
+  );
 
 SideDrawer.propTypes = {
   title: PropTypes.string,
   children: PropTypes.node,
   closeDrawer: PropTypes.func.isRequired,
+  show: PropTypes.bool,
 };
 
 SideDrawer.defaultProps = {
   title: '',
   children: null,
+  show: false,
 };
 
 export default SideDrawer;
