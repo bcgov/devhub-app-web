@@ -133,7 +133,7 @@ module.exports = {
           { name: 'url' },
           { name: 'source' },
           { name: 'id', store: true },
-          { name: 'resourceType' },
+          { name: 'resourceType', store: true },
         ],
         // How to resolve each field's value for a supported node type
         resolvers: {

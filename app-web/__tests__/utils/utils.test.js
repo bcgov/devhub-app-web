@@ -1,6 +1,6 @@
-import { groupBy } from '../../src/utils/dataMassager';
+import { groupBy } from '../../src/utils/dataHelpers';
 import { SIPHON_QL_NODE } from '../../__fixtures__/plugin-fixtures';
-import { converter } from '../../src/utils/gatsby-remark-transform-path';
+import { converter } from '../../src/utils/gatsbyRemark';
 
 describe('Gatsby Remark Transformer Path Converter', () => {
   const getNode = jest.fn(() => ({

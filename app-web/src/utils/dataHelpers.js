@@ -39,3 +39,20 @@ export const groupBy = (collection, key) => {
 
 // the raw query return an array of objects that contains a node property
 export const flattenAllSourceDevhubGithub = edges => edges.map(node => node.node);
+
+/**
+ * converts an array to a map like object
+ * ArrayToMap([{id: 'apple', name: 'baz'}, {id: 'banana', name: 'foo'}], 'id')
+ * => {
+ *  apple: { ... },
+ *  banana: { ...}
+ * }
+ * @param {Array} array an array of objects
+ * @param {String} by a string identifying a property in a single item within the array
+ * @returns {Object} the map like object
+ */
+export const ArrayToMapBy = (array, by) =>
+  array.reduce((obj, item) => {
+    obj[item[by]] = item;
+    return obj;
+  }, {});
