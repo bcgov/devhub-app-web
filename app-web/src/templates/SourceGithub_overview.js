@@ -74,7 +74,7 @@ const SideDrawerToggleButton = styled.button`
   }
 `;
 
-class SourceGithubMarkdownDefault extends React.Component {
+class SourceGithubMarkdownOverview extends React.Component {
   state = {
     sideDrawerToggled: false,
   };
@@ -132,7 +132,7 @@ class SourceGithubMarkdownDefault extends React.Component {
 }
 
 export const devhubSiphonMarkdown = graphql`
-  query devhubSiphonMarkdownDefault($id: String!, $collectionId: String!) {
+  query devhubSiphonMarkdownOverview($id: String!, $collectionId: String!) {
     devhubSiphon(id: { eq: $id }) {
       name
       id
@@ -173,4 +173,4 @@ export const devhubSiphonMarkdown = graphql`
   }
 `;
 
-export default SourceGithubMarkdownDefault;
+export default SourceGithubMarkdownOverview;
