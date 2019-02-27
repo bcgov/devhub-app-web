@@ -23,3 +23,52 @@ export const loadResources = resources => ({
     resources,
   },
 });
+
+export const removeAllFilters = () => {
+  return {
+    type: actionTypes.REMOVE_ALL_FILTERS,
+  };
+};
+
+export const addFilter = key => {
+  return {
+    type: actionTypes.ADD_FILTER,
+    payload: {
+      key,
+    },
+  };
+};
+
+export const removeFilter = key => {
+  return {
+    type: actionTypes.REMOVE_FILTER,
+    payload: {
+      key,
+    },
+  };
+};
+
+export const setSearchResults = searchResults => {
+  return {
+    type: actionTypes.SET_SEARCH_RESULTS,
+    payload: { searchResults },
+  };
+};
+
+export const setSearchQuery = query => {
+  return {
+    type: actionTypes.SET_SEARCH_QUERY,
+    payload: { query },
+  };
+};
+
+export const setSearchBarTerms = searchBarTerms => {
+  return {
+    type: actionTypes.SET_SEARCH_BAR_TERMS,
+    payload: { searchBarTerms },
+  };
+};
+
+export const resetSearch = () => ({
+  type: actionTypes.RESET_SEARCH,
+});

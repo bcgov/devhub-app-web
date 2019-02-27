@@ -15,14 +15,19 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import reducer from '../../src/store/reducers/resources';
+import reducer, { applyPropsToFilterByResourceCount } from '../../src/store/reducers/resources';
 import defaultFilters from '../../src/constants/filterGroups';
 import * as actions from '../../src/store/actions';
 import { SIPHON_NODES_MAP, SIPHON_NODES } from '../../__fixtures__/siphon-fixtures';
+import { LUNR_SEARCH_RESULTS_2 } from '../../__fixtures__/lunr';
 
 describe('resources reducer', () => {
   const initialState = {
     resources: {
+      byId: {},
+      allIds: [],
+    },
+    availableResources: {
       byId: {},
       allIds: [],
     },
@@ -46,8 +51,182 @@ describe('resources reducer', () => {
         byId: SIPHON_NODES_MAP.map,
         allIds: SIPHON_NODES_MAP.all,
       },
+      availableResources: {
+        byId: SIPHON_NODES_MAP.map,
+        allIds: SIPHON_NODES_MAP.all,
+      },
     };
 
     expect(reducer(initialState, actions.loadResources(SIPHON_NODES))).toEqual(expectedState);
+  });
+
+  it('should set filter to active when added and if there are available nodes', () => {
+    // add some nodes to the initial state
+    const state = {
+      ...initialState,
+      resources: {
+        byId: SIPHON_NODES_MAP.map,
+        allIds: SIPHON_NODES_MAP.all,
+      },
+      availableResources: {
+        byId: SIPHON_NODES_MAP.map,
+        allIds: SIPHON_NODES_MAP.all,
+      },
+    };
+    // assert all filters are inactive at first
+    expect(state.filters.every(f => !f.active)).toBe(true);
+    const newState = reducer(state, actions.addFilter(defaultFilters[0].key));
+    // find the filter by the key that was passed into action creator
+    const filter = newState.filters.find(f => f.key === defaultFilters[0].key);
+    expect(filter.active).toBe(true);
+  });
+
+  it('should set filter to inactivev when removed', () => {
+    // add some nodes to the initial state
+    const state = {
+      ...initialState,
+      resources: {
+        byId: SIPHON_NODES_MAP.map,
+        allIds: SIPHON_NODES_MAP.all,
+      },
+      availableResources: {
+        byId: SIPHON_NODES_MAP.map,
+        allIds: SIPHON_NODES_MAP.all,
+      },
+      filters: defaultFilters.map((filter, index) =>
+        index === 0 ? { ...filter, active: true } : filter,
+      ),
+    };
+    // assert first filter is preset to true
+    expect(state.filters[0].active).toBe(true);
+    const newState = reducer(state, actions.removeFilter(defaultFilters[0].key));
+    // find the filter by the key that was passed into action creator
+    const filter = newState.filters.find(f => f.key === defaultFilters[0].key);
+    expect(filter.active).toBe(false);
+  });
+
+  it('should set search results whenb search results are set', () => {
+    const state = {
+      ...initialState,
+      resources: {
+        byId: SIPHON_NODES_MAP.map,
+        allIds: SIPHON_NODES_MAP.all,
+      },
+      availableResources: {
+        byId: SIPHON_NODES_MAP.map,
+        allIds: SIPHON_NODES_MAP.all,
+      },
+    };
+    const newState = reducer(state, actions.setSearchResults(LUNR_SEARCH_RESULTS_2));
+
+    expect(newState.searchResults).toEqual(LUNR_SEARCH_RESULTS_2);
+  });
+
+  it('should set available resource when search results are set', () => {
+    const state = {
+      ...initialState,
+      resources: {
+        byId: SIPHON_NODES_MAP.map,
+        allIds: SIPHON_NODES_MAP.all,
+      },
+      availableResources: {
+        byId: SIPHON_NODES_MAP.map,
+        allIds: SIPHON_NODES_MAP.all,
+      },
+    };
+    const newState = reducer(state, actions.setSearchResults(LUNR_SEARCH_RESULTS_2));
+
+    // available resources should have changed
+    const newById = Object.keys(LUNR_SEARCH_RESULTS_2).reduce((obj, id) => {
+      obj[id] = SIPHON_NODES_MAP.map[id];
+      return obj;
+    }, {});
+    const newAllIds = Object.keys(newById);
+    // should only find objects from the search results fixture
+    expect(newState.availableResources.byId).toEqual(newById);
+    expect(newState.availableResources.allIds).toEqual(newAllIds);
+  });
+
+  it('should set search loading to false when search results are set', () => {
+    const state = {
+      ...initialState,
+      resources: {
+        byId: SIPHON_NODES_MAP.map,
+        allIds: SIPHON_NODES_MAP.all,
+      },
+      availableResources: {
+        byId: SIPHON_NODES_MAP.map,
+        allIds: SIPHON_NODES_MAP.all,
+      },
+    };
+    const newState = reducer(state, actions.setSearchResults(LUNR_SEARCH_RESULTS_2));
+
+    expect(newState.loading).toBe(false);
+  });
+
+  it("should set filters isFilterable value to false when search results are set and filter doesn't exist in available resources", () => {
+    const state = {
+      ...initialState,
+      resources: {
+        byId: SIPHON_NODES_MAP.map,
+        allIds: SIPHON_NODES_MAP.all,
+      },
+      availableResources: {
+        byId: SIPHON_NODES_MAP.map,
+        allIds: SIPHON_NODES_MAP.all,
+      },
+    };
+    // assert all filters isFilterable is true by default
+    expect(state.filters.every(f => f.isFilterable));
+    const newState = reducer(state, actions.setSearchResults(LUNR_SEARCH_RESULTS_2));
+    expect(newState.filters.every(f => f.isFilterable)).toBe(false);
+  });
+
+  it('correctly sets available resources count', () => {
+    const personaFilter = defaultFilters[0];
+
+    const newFilter = applyPropsToFilterByResourceCount(personaFilter, SIPHON_NODES);
+
+    // manually reduce the amount of available resources within the collections
+    const availableResources = SIPHON_NODES.reduce((acc, node) => {
+      return acc + node.attributes.personas.some(p => p === personaFilter.value);
+    }, 0);
+
+    expect(newFilter.availableResources).toBe(availableResources);
+  });
+
+  it('correctly sets isFilterable if count > 0', () => {
+    const personaFilter = { ...defaultFilters[0], isFilterable: false };
+    const newFilter = applyPropsToFilterByResourceCount(personaFilter, SIPHON_NODES);
+    expect(newFilter.isFilterable).toBe(true);
+  });
+
+  it('set active to false if count === 0', () => {
+    const productOwnerFilter = { ...defaultFilters[2] };
+    // in our fixtured nodes, there are zero nodes that have the product owner persona
+    const newFilter = applyPropsToFilterByResourceCount(productOwnerFilter, SIPHON_NODES);
+    expect(newFilter.active).toBe(false);
+  });
+
+  it('sets searchBarTerms', () => {
+    const newState = reducer(initialState, actions.setSearchBarTerms('foo'));
+    expect(newState.searchBarTerms).toBe('foo');
+  });
+
+  it('sets query', () => {
+    const newState = reducer(initialState, actions.setSearchQuery('foo'));
+    expect(newState.query).toBe('foo');
+    expect(newState.loading).toBe(true);
+  });
+
+  it('resets all filters', () => {
+    const state = {
+      ...initialState,
+      filters: initialState.filters.map(f => ({ ...f, active: true })),
+    };
+
+    const newState = reducer(state, actions.removeAllFilters());
+
+    expect(newState.filters.every(f => !f.active)).toBe(true);
   });
 });

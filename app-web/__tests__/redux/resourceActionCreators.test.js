@@ -14,6 +14,8 @@ Created by Patrick Simonian
 import * as actions from '../../src/store/actions';
 import * as actionTypes from '../../src/store/actions/actionTypes';
 import { SIPHON_NODES } from '../../__fixtures__/siphon-fixtures';
+import { LUNR_SEARCH_RESULTS_2 } from '../../__fixtures__/lunr';
+import defaultFilters from '../../src/constants/filterGroups';
 
 describe('actions', () => {
   it('should create an action to load siphon nodes', () => {
@@ -25,5 +27,54 @@ describe('actions', () => {
     };
 
     expect(actions.loadResources(SIPHON_NODES)).toEqual(expected);
+  });
+
+  it('should create an action to add a filter group to filters list', () => {
+    const expected = {
+      type: actionTypes.ADD_FILTER,
+      payload: {
+        key: defaultFilters[0].key,
+      },
+    };
+    expect(actions.addFilter(defaultFilters[0].key)).toEqual(expected);
+  });
+
+  it('should create an action to remove a filter group to filters list', () => {
+    const expected = {
+      type: actionTypes.REMOVE_FILTER,
+      payload: {
+        key: defaultFilters[0].key,
+      },
+    };
+
+    expect(actions.removeFilter(defaultFilters[0].key)).toEqual(expected);
+  });
+
+  it('should create an action to remove all filters', () => {
+    const expected = {
+      type: actionTypes.REMOVE_ALL_FILTERS,
+    };
+
+    expect(actions.removeAllFilters()).toEqual(expected);
+  });
+
+  it('should create an action to set search results', () => {
+    const expected = {
+      type: actionTypes.SET_SEARCH_RESULTS,
+      payload: {
+        searchResults: LUNR_SEARCH_RESULTS_2,
+      },
+    };
+    expect(actions.setSearchResults(LUNR_SEARCH_RESULTS_2)).toEqual(expected);
+  });
+
+  it('should create an action to set search query', () => {
+    const expected = {
+      type: actionTypes.SET_SEARCH_QUERY,
+      payload: {
+        query: 'foo',
+      },
+    };
+    expect(actions.setSearchQuery('foo')).toEqual(expected);
   });
 });

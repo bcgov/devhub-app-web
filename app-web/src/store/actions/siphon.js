@@ -53,28 +53,3 @@ export const removeFilter = key => {
     },
   };
 };
-
-export const setSearchResults = searchResults => {
-  return {
-    type: actionTypes.SET_SEARCH_RESULTS,
-    payload: { searchResults },
-  };
-};
-
-export const setSearchQuery = onSearch => {
-  return {
-    type: actionTypes.SET_SEARCH_QUERY,
-    payload: { onSearch },
-  };
-};
-
-export const setSearchBarTerms = searchBarTerms => {
-  return {
-    type: actionTypes.SET_SEARCH_BAR_TERMS,
-    payload: { searchBarTerms },
-  };
-};
-
-export const resetSearch = () => ({
-  type: actionTypes.RESET_SEARCH,
-});
