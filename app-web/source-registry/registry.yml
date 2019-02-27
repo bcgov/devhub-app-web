@@ -169,8 +169,8 @@ sources:
            - 'attachments'
            - 'documents'
          sourceProperties:
-           url: https://github.com/bcgov/document-management
-           repo: 'document-management'
+           url: https://github.com/bcgov/nr-document-management-showcase
+           repo: 'nr-document-management-showcase'
            owner: bcgov
            files:
              - docs/dms-api-overview.md
@@ -187,8 +187,8 @@ sources:
            - 'sms'
            - 'messaging'
          sourceProperties:
-           url: https://github.com/bcgov/messaging-service
-           repo: 'messaging-service'
+           url: https://github.com/bcgov/nr-messaging-service-showcase
+           repo: 'nr-messaging-service-showcase'
            owner: bcgov
            files:
              - docs/cmsg-messaging-api-overview.md
@@ -205,8 +205,8 @@ sources:
            - 'pdf'
            - 'generation'
          sourceProperties:
-           url: https://github.com/bcgov/document-generation
-           repo: 'document-generation'
+           url: https://github.com/bcgov/nr-document-generation-showcase
+           repo: 'nr-document-generation-showcase'
            owner: bcgov
            files:
              - docs/dgen-api-overview.md
