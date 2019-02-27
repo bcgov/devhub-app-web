@@ -287,4 +287,18 @@ describe('resources reducer', () => {
     const newState = reducer(state, actions.resetSearch());
     expect(newState.availableResources).toEqual(state.resources);
   });
+
+  it('sets filters is filterable when reset search is called', () => {
+    const state = {
+      ...initialState,
+      resources: {
+        byId: SIPHON_NODES_MAP.map,
+        allIds: SIPHON_NODES_MAP.all,
+      },
+      filters: defaultFilters.map(f => ({ ...f, isFilterable: false })),
+    };
+
+    const newState = reducer(state, actions.resetSearch());
+    expect(newState.filters.every(f => f.isFilterable)).toBe(true);
+  });
 });
