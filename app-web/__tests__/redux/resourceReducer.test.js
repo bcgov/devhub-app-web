@@ -45,19 +45,28 @@ describe('resources reducer', () => {
   });
 
   it('should handle loading resources', () => {
-    const expectedState = {
+    const resources = {
+      byId: SIPHON_NODES_MAP.map,
+      allIds: SIPHON_NODES_MAP.all,
+    };
+    const availableResources = {
+      byId: SIPHON_NODES_MAP.map,
+      allIds: SIPHON_NODES_MAP.all,
+    };
+    const newState = reducer(initialState, actions.loadResources(SIPHON_NODES));
+    expect(newState.resources).toEqual(resources);
+    expect(newState.availableResources).toEqual(availableResources);
+  });
+
+  it('should set filters to filterable when resources are loaded', () => {
+    const state = {
       ...initialState,
-      resources: {
-        byId: SIPHON_NODES_MAP.map,
-        allIds: SIPHON_NODES_MAP.all,
-      },
-      availableResources: {
-        byId: SIPHON_NODES_MAP.map,
-        allIds: SIPHON_NODES_MAP.all,
-      },
+      filters: defaultFilters.map(f => ({ ...f, isFilterable: false })),
     };
 
-    expect(reducer(initialState, actions.loadResources(SIPHON_NODES))).toEqual(expectedState);
+    const newState = reducer(state, actions.loadResources(SIPHON_NODES));
+
+    expect(newState.filters.every(f => f.isFilterable)).toBe(true);
   });
 
   it('should set filter to active when added and if there are available nodes', () => {
@@ -228,5 +237,54 @@ describe('resources reducer', () => {
     const newState = reducer(state, actions.removeAllFilters());
 
     expect(newState.filters.every(f => !f.active)).toBe(true);
+  });
+
+  it('sets loading to false when reset search is called', () => {
+    const state = {
+      ...initialState,
+      loading: true,
+    };
+
+    const newState = reducer(state, actions.resetSearch());
+
+    expect(newState.loading).toBe(false);
+  });
+
+  it('sets available resources to resources when reset search is called', () => {
+    const state = {
+      ...initialState,
+      resources: {
+        byId: SIPHON_NODES_MAP.map,
+        allIds: SIPHON_NODES_MAP.all,
+      },
+      availableResources: {
+        byId: {
+          foo: 'bar',
+        },
+        allIds: ['foo'],
+      },
+    };
+
+    const newState = reducer(state, actions.resetSearch());
+    expect(newState.availableResources).toEqual(state.resources);
+  });
+
+  it('sets available resources to resources when reset search is called', () => {
+    const state = {
+      ...initialState,
+      resources: {
+        byId: SIPHON_NODES_MAP.map,
+        allIds: SIPHON_NODES_MAP.all,
+      },
+      availableResources: {
+        byId: {
+          foo: 'bar',
+        },
+        allIds: ['foo'],
+      },
+    };
+
+    const newState = reducer(state, actions.resetSearch());
+    expect(newState.availableResources).toEqual(state.resources);
   });
 });

@@ -1,5 +1,5 @@
 export { authenticateSuccess, authenticateFailed } from './auth';
-export { loadSiphonCollections, resetSearch } from './siphon';
+export { loadSiphonCollections } from './siphon';
 export { toggleMainNavigation } from './ui';
 export {
   loadResources,
@@ -9,4 +9,5 @@ export {
   setSearchResults,
   setSearchQuery,
   setSearchBarTerms,
+  resetSearch,
 } from './resources';

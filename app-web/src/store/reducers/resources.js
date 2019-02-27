@@ -164,6 +164,7 @@ const loadResources = (state, resources) => {
       byId: availableResourceMap.map,
       allIds: availableResourceMap.all,
     },
+    filters: state.filters.map(f => applyPropsToFilterByResourceCount(f, resources)),
   };
 };
 
@@ -196,9 +197,50 @@ const applySearchResults = (state, results) => {
   return { ...state, searchResults: results, loading: false, availableResources, filters };
 };
 
+/**
+ * sets the query string
+ * @param {Object} state
+ * @param {String} query
+ * @returns {Object} the new state
+ */
 const setSearchQuery = (state, query) => ({ ...state, query, loading: true });
 
+/**
+ * sets the search bar terms (a global state for the search bar)
+ * @param {Object} state
+ * @param {String} searchBarTerms
+ * @returns {Object} the new state
+ */
 const setSearchBarTerms = (state, searchBarTerms) => ({ ...state, searchBarTerms });
+
+/**
+ * resets search results
+ * @param {Object} state
+ * @returns {Object} the new state
+ */
+const resetSearch = state => {
+  const allResources = getResources(state.resources);
+
+  // clone a copy of all the resources
+  const availableResourcesMap = arrayToMapByProp(allResources, 'id');
+  // get counts of filters and apply other properties based on if count is 0
+  const filters = state.filters.map(filter =>
+    applyPropsToFilterByResourceCount(filter, allResources),
+  );
+
+  return {
+    ...state,
+    availableResources: {
+      byId: availableResourcesMap.map,
+      allIds: availableResourcesMap.all,
+    },
+    filters,
+    searchResults: {},
+    searchBarTerms: '',
+    query: null,
+    loading: false,
+  };
+};
 
 const resourcesReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -216,6 +258,8 @@ const resourcesReducer = (state = initialState, action) => {
       return setSearchQuery(state, action.payload.query);
     case actionTypes.SET_SEARCH_BAR_TERMS:
       return setSearchBarTerms(state, action.payload.searchBarTerms);
+    case actionTypes.RESET_SEARCH:
+      return resetSearch(state);
     default:
       return state;
   }

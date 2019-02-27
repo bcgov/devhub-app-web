@@ -77,4 +77,12 @@ describe('actions', () => {
     };
     expect(actions.setSearchQuery('foo')).toEqual(expected);
   });
+
+  it('should create an action to reset search', () => {
+    const expected = {
+      type: actionTypes.RESET_SEARCH,
+    };
+
+    expect(actions.resetSearch()).toEqual(expected);
+  });
 });
