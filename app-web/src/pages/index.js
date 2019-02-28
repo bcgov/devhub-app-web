@@ -31,11 +31,13 @@ import {
 
 import { SEARCH } from '../messages';
 import ResourcePreview from '../components/ResourcePreview/ResourcePreview';
+import withResourceQuery from '../hoc/withResourceQuery';
 
 export class Index extends PureComponent {
   componentDidMount() {
     // flatted nodes from graphql
     if (!this.props.resourcesLoaded) {
+      // note this.props.data is received from the withResourceQuery Component
       const resources = flattenGatsbyGraphQL(this.props.data.allDevhubSiphon.edges);
       this.props.loadResources(resources);
     }
@@ -141,51 +143,6 @@ export class Index extends PureComponent {
   }
 }
 
-export const resourceQuery = graphql`
-  query resourceQuery {
-    allDevhubSiphon {
-      edges {
-        node {
-          id
-          name
-          owner
-          parent {
-            id
-          }
-          _metadata {
-            position
-          }
-          attributes {
-            personas
-          }
-          source {
-            displayName
-            sourcePath
-            type
-            name
-          }
-          resource {
-            path
-            type
-          }
-          unfurl {
-            title
-            description
-            type
-            image
-            author
-          }
-          childMarkdownRemark {
-            frontmatter {
-              pageOnly
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
 const mapStateToProps = createStructuredSelector({
   resourcesLoaded: selectResourcesLoaded,
   query: selectQuery,
@@ -209,4 +166,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Index);
+)(withResourceQuery(Index)());
