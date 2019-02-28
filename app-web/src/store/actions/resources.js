@@ -1,5 +1,5 @@
 /*
-Copyright 2018 Province of British Columbia
+Copyright 2019 Province of British Columbia
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -17,18 +17,12 @@ Created by Patrick Simonian
 */
 import * as actionTypes from './actionTypes';
 
-/**
- * Loads graphQL nodes from gatsby data layer into the redux store
- * @param {Array} nodes
- */
-export const loadSiphonCollections = nodes => {
-  return {
-    type: actionTypes.LOAD_SIPHON_COLLECTIONS,
-    payload: {
-      nodes,
-    },
-  };
-};
+export const loadResources = resources => ({
+  type: actionTypes.LOAD_RESOURCES,
+  payload: {
+    resources,
+  },
+});
 
 export const removeAllFilters = () => {
   return {
@@ -53,3 +47,28 @@ export const removeFilter = key => {
     },
   };
 };
+
+export const setSearchResults = searchResults => {
+  return {
+    type: actionTypes.SET_SEARCH_RESULTS,
+    payload: { searchResults },
+  };
+};
+
+export const setSearchQuery = query => {
+  return {
+    type: actionTypes.SET_SEARCH_QUERY,
+    payload: { query },
+  };
+};
+
+export const setSearchBarTerms = searchBarTerms => {
+  return {
+    type: actionTypes.SET_SEARCH_BAR_TERMS,
+    payload: { searchBarTerms },
+  };
+};
+
+export const resetSearch = () => ({
+  type: actionTypes.RESET_SEARCH,
+});

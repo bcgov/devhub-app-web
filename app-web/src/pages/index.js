@@ -20,14 +20,15 @@ import Masthead from '../components/Home/Masthead';
 
 // selectors from reselect
 import {
-  selectFilteredCollections,
   selectFilters,
-  selectCollectionsLoaded,
   selectQuery,
-  selectSiphonReducerLoading,
   selectSearchResultsLength,
   selectTotalResources,
   selectSearchWordLength,
+  selectResourcesLoaded,
+  selectResourcesReducerLoading,
+  selectAvailableResources,
+  selectGroupedFilteredAvailableResources,
 } from '../store/selectors';
 
 import { SEARCH } from '../messages';
@@ -36,9 +37,9 @@ import ResourcePreview from '../components/ResourcePreview/ResourcePreview';
 export class Index extends PureComponent {
   componentDidMount() {
     // flatted nodes from graphql
-    if (!this.props.collectionsLoaded) {
-      const collections = this.props.data.allDevhubSiphonCollection.edges.map(c => c.node);
-      this.props.loadCollections(collections);
+    if (!this.props.resourcesLoaded) {
+      const resources = this.props.data.allDevhubSiphon.edges.map(node => node.node);
+      this.props.loadResources(resources);
     }
   }
 
@@ -94,22 +95,24 @@ export class Index extends PureComponent {
 
   render() {
     const {
-      collections,
+      resourcesByType,
       searchResultsLength,
       totalResources,
       setSearchBarTerms,
       searchWordLength,
       query,
     } = this.props;
-
-    const SiphonResources = collections.map(collection => (
-      <Cards
-        key={shortid.generate()}
-        topic={collection.name}
-        description={collection.description}
-        cards={collection.nodes}
-      />
-    ));
+    // const groupedByResourceTypee =
+    const SiphonResources = Object.keys(resourcesByType).map(resourceType => {
+      const resources = resourcesByType[resourceType].map(r => ({
+        type: r.resource.type,
+        title: r.unfurl.title,
+        description: r.unfurl.description,
+        image: r.unfurl.image,
+        path: r.resource.path,
+      }));
+      return <Cards key={shortid.generate()} topic={resourceType} cards={resources} />;
+    });
     return (
       <Layout showHamburger>
         <div>
@@ -142,46 +145,41 @@ export class Index extends PureComponent {
 
 export const resourceQuery = graphql`
   query resourceQuery {
-    allDevhubSiphonCollection(sort: { fields: [_metadata___position] }) {
+    allDevhubSiphon {
       edges {
         node {
           id
           name
-          description
-          nodes: childrenDevhubSiphon {
+          owner
+          parent {
             id
+          }
+          _metadata {
+            position
+          }
+          attributes {
+            personas
+          }
+          source {
+            displayName
+            sourcePath
+            type
             name
-            owner
-            parent {
-              id
-            }
-            _metadata {
-              position
-            }
-            attributes {
-              personas
-            }
-            source {
-              displayName
-              sourcePath
-              type
-              name
-            }
-            resource {
-              path
-              type
-            }
-            unfurl {
-              title
-              description
-              type
-              image
-              author
-            }
-            childMarkdownRemark {
-              frontmatter {
-                pageOnly
-              }
+          }
+          resource {
+            path
+            type
+          }
+          unfurl {
+            title
+            description
+            type
+            image
+            author
+          }
+          childMarkdownRemark {
+            frontmatter {
+              pageOnly
             }
           }
         }
@@ -191,19 +189,18 @@ export const resourceQuery = graphql`
 `;
 
 const mapStateToProps = createStructuredSelector({
-  collections: selectFilteredCollections,
-  collectionsLoaded: selectCollectionsLoaded,
+  resourcesLoaded: selectResourcesLoaded,
   query: selectQuery,
-  filters: selectFilters,
-  loading: selectSiphonReducerLoading,
+  loading: selectResourcesReducerLoading,
   searchResultsLength: selectSearchResultsLength,
   totalResources: selectTotalResources,
   searchWordLength: selectSearchWordLength,
+  resourcesByType: selectGroupedFilteredAvailableResources,
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadCollections: collections => dispatch(actions.loadSiphonCollections(collections)),
+    loadResources: resources => dispatch(actions.loadResources(resources)),
     setSearchResults: results => dispatch(actions.setSearchResults(results)),
     setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
     setSearchBarTerms: resourceType => dispatch(actions.setSearchBarTerms(resourceType)),

@@ -1,17 +1,20 @@
 import { createSelector } from 'reselect';
 import { filterCollections } from '../reducers/siphon';
+import { getResources, filterResources } from '../reducers/resources';
+import groupBy from 'lodash/groupBy';
 
-export const siphonSelector = state => state.siphon;
+export const resourcesSelector = state => state.resources;
+export const historySelector = state => state.history;
 export const uiSelector = state => state.ui;
 
-export const collectionsSelector = createSelector(
-  siphonSelector,
-  siphon => siphon.collections,
+export const selectResources = createSelector(
+  resourcesSelector,
+  resources => getResources(resources.resources),
 );
 
 export const selectFilters = createSelector(
-  siphonSelector,
-  siphon => siphon.filters,
+  resourcesSelector,
+  resources => resources.filters,
 );
 
 // returns all currently active filters
@@ -20,14 +23,43 @@ export const selectActiveFilters = createSelector(
   filters => filters.filter(f => f.active),
 );
 
-export const selectCollectionsLoaded = createSelector(
-  siphonSelector,
-  siphon => siphon.collectionsLoaded,
+export const selectResourcesLoaded = createSelector(
+  resourcesSelector,
+  resources => resources.resourcesLoaded,
 );
 
+export const selectAvailableResources = createSelector(
+  [resourcesSelector, selectResources],
+  (resourcesState, resources) => {
+    // when there is a valid search query
+    if (resourcesState.query !== null) {
+      return getResources(resourcesState.availableResources);
+    } else {
+      return resources;
+    }
+  },
+);
+
+export const selectFilteredAvailableResources = createSelector(
+  [selectActiveFilters, selectAvailableResources],
+  (activeFilters, availableResources) => {
+    if (activeFilters.length === 0) return availableResources;
+    return filterResources(availableResources, activeFilters);
+  },
+);
+
+// groups resources by the resource type
+export const selectGroupedFilteredAvailableResources = createSelector(
+  selectFilteredAvailableResources,
+  availableResources => {
+    console.log(availableResources);
+    const resourceTypeProp = 'resource.type';
+    return groupBy(availableResources, resourceTypeProp);
+  },
+);
 // returns collections where nodes are sorted lexographically by position
 export const selectSortedCollections = createSelector(
-  collectionsSelector,
+  selectResources,
   collections =>
     collections.map(collection => ({
       ...collection,
@@ -62,29 +94,29 @@ export const selectFilteredCollections = createSelector(
 
 // search selectors
 export const selectQuery = createSelector(
-  siphonSelector,
-  siphon => siphon.query,
+  resourcesSelector,
+  resources => resources.query,
 );
 
 // used to dictate a feedback message after conducting a search check <SearchFeedback /> for reference
 export const selectSearchResultsLength = createSelector(
-  siphonSelector,
-  siphon => Object.keys(siphon.searchResults).length,
+  resourcesSelector,
+  resources => Object.keys(resources.searchResults).length,
 );
 
 // similar as above
 export const selectTotalResources = createSelector(
-  siphonSelector,
-  siphon => siphon.totalResources,
+  resourcesSelector,
+  resources => resources.resources.allIds.length,
 );
 
 // similar as above
 export const selectSearchWordLength = createSelector(
-  siphonSelector,
-  siphon => siphon.searchBarTerms.length,
+  resourcesSelector,
+  resources => resources.searchBarTerms.length,
 );
 
-export const selectSiphonReducerLoading = createSelector(
-  siphonSelector,
-  siphon => siphon.loading,
+export const selectResourcesReducerLoading = createSelector(
+  resourcesSelector,
+  resources => resources.loading,
 );

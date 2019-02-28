@@ -24,21 +24,7 @@ describe('actions', () => {
     );
   });
 
-  it('should create an action to add a filter group to filters list', () => {
-    const expected = ACTIONS.ADD_FILTER;
-    expect(actions.addFilter(expected.payload.key)).toEqual(expected);
-  });
-
-  it('should create an action to remove a filter group to filters list', () => {
-    const expected = ACTIONS.REMOVE_FILTER;
-    expect(actions.removeFilter(expected.payload.key)).toEqual(expected);
-  });
-
-  it('should create an action to set search results', () => {
-    expect(actions.setSearchResults(LUNR_SEARCH_RESULTS_2)).toEqual(ACTIONS.SET_SEARCH_RESULTS);
-  });
-
-  it('should create an action to reset search results', () => {
+  it.skip('should create an action to reset search results', () => {
     expect(actions.resetSearch()).toEqual(ACTIONS.RESET_SEARCH);
   });
 });
