@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import { filterCollections } from '../reducers/siphon';
 import { getResources, filterResources } from '../reducers/resources';
 import groupBy from 'lodash/groupBy';
 
@@ -55,40 +54,6 @@ export const selectGroupedFilteredAvailableResources = createSelector(
     console.log(availableResources);
     const resourceTypeProp = 'resource.type';
     return groupBy(availableResources, resourceTypeProp);
-  },
-);
-// returns collections where nodes are sorted lexographically by position
-export const selectSortedCollections = createSelector(
-  selectResources,
-  collections =>
-    collections.map(collection => ({
-      ...collection,
-      nodes: collection.nodes.sort((a, b) => {
-        // lexographic sort of position string
-        if (a._metadata.position < b._metadata.position) return -1;
-        if (a._metadata.position > b._metadata.position) return 1;
-        return 0;
-      }),
-    })),
-);
-
-// returns collections filtered
-export const selectFilteredCollections = createSelector(
-  [selectSortedCollections, selectActiveFilters],
-  (collections, filters) => {
-    let filteredCollections =
-      filters.length > 0 ? filterCollections(collections, filters) : collections;
-    return filteredCollections.map(filteredCollection => ({
-      ...filteredCollection,
-      // this the only data we need for nodes to render cards
-      nodes: filteredCollection.nodes.map(node => ({
-        title: node.unfurl.title,
-        description: node.unfurl.description,
-        image: node.unfurl.image,
-        path: node.resource.path,
-        type: node.resource.type,
-      })),
-    }));
   },
 );
 
