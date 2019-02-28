@@ -51,7 +51,9 @@ export const selectFilteredAvailableResources = createSelector(
 export const selectGroupedFilteredAvailableResources = createSelector(
   selectFilteredAvailableResources,
   availableResources => {
-    console.log(availableResources);
+    // reminder to replace this hardcoded string to the getter method
+    // for the siphon node interface when that is developed!
+    // usage should be like Siphon.getPathToResourceType();
     const resourceTypeProp = 'resource.type';
     return groupBy(availableResources, resourceTypeProp);
   },

@@ -5,7 +5,7 @@ import queryString from 'query-string';
 import shortid from 'shortid';
 import { connect } from 'react-redux';
 import { REACT_SCROLL } from '../constants/ui';
-
+import { flattenGatsbyGraphQL } from '../utils//dataHelpers';
 import * as actions from '../store/actions';
 
 import styles from './index.module.css';
@@ -20,14 +20,12 @@ import Masthead from '../components/Home/Masthead';
 
 // selectors from reselect
 import {
-  selectFilters,
   selectQuery,
   selectSearchResultsLength,
   selectTotalResources,
   selectSearchWordLength,
   selectResourcesLoaded,
   selectResourcesReducerLoading,
-  selectAvailableResources,
   selectGroupedFilteredAvailableResources,
 } from '../store/selectors';
 
@@ -38,7 +36,7 @@ export class Index extends PureComponent {
   componentDidMount() {
     // flatted nodes from graphql
     if (!this.props.resourcesLoaded) {
-      const resources = this.props.data.allDevhubSiphon.edges.map(node => node.node);
+      const resources = flattenGatsbyGraphQL(this.props.data.allDevhubSiphon.edges);
       this.props.loadResources(resources);
     }
   }

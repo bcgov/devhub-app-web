@@ -17,8 +17,9 @@ Created by Patrick Simonian
 */
 import { cloneDeep } from 'lodash';
 
-// the raw query return an array of objects that contains a node property
-export const flattenAllSourceDevhubGithub = edges => edges.map(node => node.node);
+// the raw graph ql query return an array of objects that contains a node property which
+// can be flatten to just return an array of nodes
+export const flattenGatsbyGraphQL = edges => edges.map(node => node.node);
 
 /**
  * converts an array to a map like object and stores the list of props as an array
