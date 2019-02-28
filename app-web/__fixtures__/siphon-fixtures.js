@@ -295,6 +295,11 @@ export const DEVHUB_COLLECTION = {
 
 export const SIPHON_NODES = DESIGN_SYSTEM_NODES.concat(DEVHUB_NODES);
 
+// stubbing in a set of nodes that pass the designer filter
+export const FILTERED_NODES = SIPHON_NODES.filter(
+  node => node.attributes.personas[0] === 'Designer',
+);
+
 export const COLLECTIONS = [DESIGN_SYSTEM_COLLECTION, DEVHUB_COLLECTION];
 export const SORTED_COLLECTIONS = [DESIGN_SYSTEM_COLLECTION_SORTED, DEVHUB_COLLECTION];
 // creating a set of filtered collections where there aren't any developers

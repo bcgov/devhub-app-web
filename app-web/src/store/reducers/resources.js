@@ -32,6 +32,7 @@ const initialState = {
     byId: {},
     allIds: [],
   },
+  resourcesLoaded: false,
   query: null, // the persisted search query
   searchBarTerms: '', // the global state for
   searchResults: [null],
@@ -60,6 +61,16 @@ export const dotPropMatchesValue = (node, filterBy, value) => {
 };
 
 /**
+ * filters all resources nodes based on the active filters list
+ * @param {Array} resources
+ * @param {Array} filters these are assumed to be active filters
+ */
+export const filterResources = (resources, filters) =>
+  resources.filter(resource =>
+    filters.some(filter => dotPropMatchesValue(resource, filter.filterBy, filter.value)),
+  );
+
+/**
  * Check the number of resources that match a filter
  * and applies count related props to the filter Map
  * @param {Object} filter
@@ -86,7 +97,7 @@ export const applyPropsToFilterByResourceCount = (filter, nodes) => {
  * @param {State} state
  * @returns {Array} the list of all resources
  */
-const getResources = resources => resources.allIds.map(id => ({ ...resources.byId[id] }));
+export const getResources = resources => resources.allIds.map(id => ({ ...resources.byId[id] }));
 
 /**
  * helper to find a filter group by key
@@ -164,6 +175,7 @@ const loadResources = (state, resources) => {
       byId: availableResourceMap.map,
       allIds: availableResourceMap.all,
     },
+    resourcesLoaded: true,
     filters: state.filters.map(f => applyPropsToFilterByResourceCount(f, resources)),
   };
 };
@@ -182,15 +194,16 @@ const applySearchResults = (state, results) => {
     allIds: [],
   };
 
+  // this is a temporary list of all resources which is passed into apply props to filter by resource count
+  const availableResourcesList = [];
+
   resultIds.forEach(id => {
-    availableResources.byId[id] = cloneDeep(state.resources.byId[id]);
+    const resource = cloneDeep(state.resources.byId[id]);
+    availableResources.byId[id] = resource;
     availableResources.allIds.push(id);
+    availableResourcesList.push(resource);
   });
 
-  // a store of all nodes that passed the filter this is passed into the apply props to filter fn
-  // as an optimization. Soon to be added is a caching mechanism where search terms and newstate collections
-  // are cached in a map of 'search term': [collections]
-  const availableResourcesList = getResources(availableResources);
   const filters = state.filters.map(f =>
     applyPropsToFilterByResourceCount(f, availableResourcesList),
   );

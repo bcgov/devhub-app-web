@@ -31,6 +31,7 @@ describe('resources reducer', () => {
       byId: {},
       allIds: [],
     },
+    resourcesLoaded: false,
     query: null,
     searchBarTerms: '',
     searchResults: [null],
@@ -56,6 +57,11 @@ describe('resources reducer', () => {
     const newState = reducer(initialState, actions.loadResources(SIPHON_NODES));
     expect(newState.resources).toEqual(resources);
     expect(newState.availableResources).toEqual(availableResources);
+  });
+
+  it('should set resourcesLoaded to true when resource are loaded', () => {
+    const newState = reducer(initialState, actions.loadResources(SIPHON_NODES));
+    expect(newState.resourcesLoaded).toBe(true);
   });
 
   it('should set filters to filterable when resources are loaded', () => {

@@ -18,84 +18,135 @@ Created by Patrick Simonian
 
 // reselect selector unit tests
 import { STATE } from '../../__fixtures__/redux-fixtures';
-import {
-  SORTED_COLLECTIONS,
-  FILTERED_COLLECTIONS,
-  SIPHON_NODES,
-} from '../../__fixtures__/siphon-fixtures';
+import groupBy from 'lodash/groupBy';
+import defaultFilters from '../../src/constants/filterGroups';
+import { FILTERED_NODES, SIPHON_NODES, SIPHON_NODES_MAP } from '../../__fixtures__/siphon-fixtures';
 import * as selectors from '../../src/store/selectors';
 describe('Reselect Selectors', () => {
+  const state = {
+    ...STATE,
+    history: {
+      location: {
+        path: '/',
+      },
+    },
+    resources: {
+      resources: {
+        byId: SIPHON_NODES_MAP.map,
+        allIds: SIPHON_NODES_MAP.all,
+      },
+      availableResources: {
+        byId: {
+          '1': SIPHON_NODES_MAP.map['1'],
+        },
+        allIds: ['1'],
+      },
+      resourcesLoaded: false,
+      query: null,
+      searchBarTerms: '',
+      searchResults: {
+        '1': { id: '1' },
+      },
+      loading: false,
+      error: false,
+      messages: [],
+      filters: defaultFilters,
+    },
+  };
+
   it('returns the siphon state', () => {
-    expect(selectors.siphonSelector(STATE)).toEqual(STATE.siphon);
+    expect(selectors.resourcesSelector(state)).toEqual(state.resources);
   });
 
-  it('returns a list of collections', () => {
-    expect(selectors.collectionsSelector(STATE)).toEqual(STATE.siphon.collections);
+  it('returns a list of resources', () => {
+    expect(selectors.selectResources(state)).toEqual(SIPHON_NODES);
   });
 
   it('returns a list of filters', () => {
-    expect(selectors.selectFilters(STATE)).toEqual(STATE.siphon.filters);
+    expect(selectors.selectFilters(state)).toEqual(state.resources.filters);
   });
 
   it('returns active filters', () => {
-    const activeFilters = STATE.siphon.filters.filter(f => f.active);
-    expect(selectors.selectActiveFilters(STATE)).toEqual(activeFilters);
+    const activeFilters = state.resources.filters.filter(f => f.active);
+    expect(selectors.selectActiveFilters(state)).toEqual(activeFilters);
   });
 
-  it('returns collections loaded', () => {
-    expect(selectors.selectCollectionsLoaded(STATE)).toEqual(STATE.siphon.collectionsLoaded);
+  it('returns resources loaded', () => {
+    expect(selectors.selectResourcesLoaded(state)).toEqual(state.resources.resourcesLoaded);
   });
 
-  it('returns collections sorted', () => {
-    expect(selectors.selectSortedCollections(STATE)).toEqual(SORTED_COLLECTIONS);
+  // it('returns collections sorted', () => {
+  //   expect(selectors.selectSortedCollections(state)).toEqual(SORTED_COLLECTIONS);
+  // });
+  it('returns all resources when there is no search query ', () => {
+    // const resources = [state.resources.availableResources.byId[1]];
+    const resources = state.resources.resources.allIds.map(
+      id => state.resources.resources.byId[id],
+    );
+    expect(selectors.selectAvailableResources(state)).toEqual(resources);
   });
 
-  it('returns all collections when there are no active filters', () => {
-    const state = {
-      ...STATE,
-      siphon: {
-        ...STATE.siphon,
-        filters: STATE.siphon.filters.map(f => ({ ...f, active: false })),
+  it('returns all available resources when there is a search query ', () => {
+    // const resources = [state.resources.availableResources.byId[1]];
+    const id = state.resources.availableResources.allIds[0];
+    const stateWithSearch = {
+      ...state,
+      resources: {
+        ...state.resources,
+        query: 'foo',
+        searchResults: {
+          [id]: 1,
+        },
       },
     };
+    const resources = [state.resources.availableResources.byId[id]];
+    expect(selectors.selectAvailableResources(stateWithSearch)).toEqual(resources);
+  });
 
-    expect(selectors.selectFilteredCollections(state)).toEqual(
-      SORTED_COLLECTIONS.map(collection => ({
-        ...collection,
-        nodes: collection.nodes.map(node => ({
-          title: node.unfurl.title,
-          description: node.unfurl.description,
-          image: node.unfurl.image,
-          path: node.resource.path,
-          type: node.resource.type,
-        })),
-      })),
+  // it('returns all available resources when there are no active filters', () => {
+  //   expect(selectors.selectAvailableResources(state)).toEqual();
+  // });
+
+  it('returns filtered available resources when there are active filters', () => {
+    // set up filters so that designer filter is active
+    const stateWithActiveFilter = {
+      ...state,
+      resources: {
+        ...state.resources,
+        filters: defaultFilters.map(filter =>
+          filter.value === 'Designer' ? { ...filter, active: true } : filter,
+        ),
+      },
+    };
+    expect(selectors.selectFilteredAvailableResources(stateWithActiveFilter)).toEqual(
+      FILTERED_NODES,
     );
   });
 
-  it('returns filtered collections when there are active filters', () => {
-    expect(selectors.selectFilteredCollections(STATE)).toEqual(FILTERED_COLLECTIONS);
+  it('groups available resources by their resource type', () => {
+    const groupedResources = groupBy(SIPHON_NODES, 'resource.type');
+    expect(selectors.selectGroupedFilteredAvailableResources(state)).toEqual(groupedResources);
   });
 
   it('returns the query', () => {
-    expect(selectors.selectQuery(STATE)).toEqual(STATE.siphon.query);
+    expect(selectors.selectQuery(state)).toEqual(state.resources.query);
   });
 
   it('returns the search results length', () => {
-    expect(selectors.selectSearchResultsLength(STATE)).toEqual(
-      Object.keys(STATE.siphon.searchResults).length,
+    expect(selectors.selectSearchResultsLength(state)).toEqual(
+      Object.keys(state.resources.searchResults).length,
     );
   });
 
   it('returns the total resource', () => {
-    expect(selectors.selectTotalResources(STATE)).toEqual(SIPHON_NODES.length);
+    expect(selectors.selectTotalResources(state)).toEqual(SIPHON_NODES.length);
   });
 
   it('returns search word length', () => {
-    expect(selectors.selectSearchWordLength(STATE)).toEqual(STATE.siphon.searchBarTerms.length);
+    expect(selectors.selectSearchWordLength(state)).toEqual(state.resources.searchBarTerms.length);
   });
 
   it('returns siphons loading indicator', () => {
-    expect(selectors.selectSiphonReducerLoading(STATE)).toEqual(STATE.siphon.loading);
+    expect(selectors.selectResourcesReducerLoading(state)).toEqual(state.resources.loading);
   });
 });

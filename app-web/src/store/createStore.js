@@ -23,6 +23,7 @@ import authReducer from './reducers/auth';
 import featuresReducer from './reducers/features';
 import siphonReducer from './reducers/siphon';
 import uiReducer from './reducers/ui';
+import resourcesReducer from './reducers/resources';
 
 /* Redux-persist configuration:
    Please check docs for more details,
@@ -43,6 +44,7 @@ const rootReducer = combineReducers({
   flags: featuresReducer,
   siphon: siphonReducer,
   ui: persistedUIReducer,
+  resources: resourcesReducer,
 });
 
 let composeEnhancers;
