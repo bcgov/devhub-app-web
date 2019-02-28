@@ -21,21 +21,21 @@ import { arrayToMapByProp } from '../../utils/dataHelpers';
 import dotProp from 'dot-prop-immutable';
 import defaultFilterGroups from '../../constants/filterGroups';
 import { TypeCheck } from '@bcgov/common-web-utils';
-import { action } from 'popmotion';
 
 const initialState = {
+  // normalized pattern to grab resources
   resources: {
     byId: {},
     allIds: [],
-  }, // this is set by the resource type, ie Component/Documentation etc
+  },
   availableResources: {
     byId: {},
     allIds: [],
   },
-  resourcesLoaded: false,
-  query: null, // the persisted search query
-  searchBarTerms: '', // the global state for
-  searchResults: [null],
+  resourcesLoaded: false, // set after graphql data has been passed into actions.loadResources
+  query: null, // the search query as found in the url
+  searchBarTerms: '', // the global state for the search bar
+  searchResults: {},
   loading: false,
   error: false,
   messages: [],

@@ -34,7 +34,7 @@ describe('resources reducer', () => {
     resourcesLoaded: false,
     query: null,
     searchBarTerms: '',
-    searchResults: [null],
+    searchResults: {},
     loading: false,
     error: false,
     messages: [],
