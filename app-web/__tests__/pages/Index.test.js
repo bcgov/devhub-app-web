@@ -40,6 +40,7 @@ describe('Index Container', () => {
         totalResources={SIPHON_NODES.length}
         searchWordLength={0}
         data={data}
+        filters={DEFAULT_FILTER_GROUPS}
         resourcesByType={groupBy(SIPHON_NODES, 'resource.type')}
         {...actions}
         location={location}
