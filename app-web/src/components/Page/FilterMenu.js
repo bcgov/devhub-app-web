@@ -1,13 +1,17 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Filters from '../Filters/Filters';
-
+import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
 const FilterContainer = styled.div`
-  flex-basis: 250px;
+  flex: 0 0 200px;
   padding: 5px;
   margin-right: 15px;
   border: 2px solid #ccc;
   min-height: 250px;
+  display: none;
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.sm} {
+    display: block;
+  }
 `;
 
 const FilterMenu = ({ filters }) => (

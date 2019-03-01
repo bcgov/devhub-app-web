@@ -24,6 +24,12 @@ import { navigate } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { SEARCH } from '../../constants/ui';
+import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
+import { SEARCH as SEARCH_MESSAGES } from '../../messages';
+
+import { Alert } from 'reactstrap';
+import { faFilter } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Card from '../Cards/Card/Card';
 import Search from '../Search/Search';
@@ -32,11 +38,15 @@ import Row from '../Cards/Row';
 import Column from '../Cards/Column';
 import Loading from '../UI/Loading/Loading';
 
+const AlertMessage = styled(Alert)`
+  margin: 10px auto;
+`;
+
 const CardsContent = (loading, searchResultsEmpty, resources) => {
   if (loading) {
     return <Loading message="Loading..." />;
   } else if (searchResultsEmpty) {
-    return <p>{SEARCH.results.empty.defaultMessage}</p>;
+    return <AlertMessage color="info">{SEARCH_MESSAGES.results.empty.defaultMessage}</AlertMessage>;
   } else {
     return resources.map(r => (
       <Column
@@ -62,7 +72,25 @@ const SearchContainer = styled.div`
   padding: 0 5px;
 `;
 
-const CardContainer = ({ resources, setSearchBarTerms, loading, searchResultsEmpty, pagePath }) => (
+const FilterSideDrawerToggle = styled.div`
+  background-color: #fafafa;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 5px;
+  display: block;
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.sm} {
+    display: none;
+  }
+`;
+
+const CardContainer = ({
+  resources,
+  setSearchBarTerms,
+  openSideDrawer,
+  loading,
+  searchResultsEmpty,
+  pagePath,
+}) => (
   <Container grid={3}>
     <SearchContainer>
       <Search
@@ -75,6 +103,10 @@ const CardContainer = ({ resources, setSearchBarTerms, loading, searchResultsEmp
         }}
       />
     </SearchContainer>
+    <FilterSideDrawerToggle onClick={openSideDrawer}>
+      <FontAwesomeIcon icon={faFilter} style={{ color: '#026', marginRight: '5px' }} />{' '}
+      <span>Filters</span>
+    </FilterSideDrawerToggle>
     <Row>{CardsContent(loading, searchResultsEmpty, resources)}</Row>
   </Container>
 );
@@ -89,5 +121,7 @@ CardContainer.propTypes = {
       path: PropTypes.string.isRequired,
     }),
   ),
+  searchResultsEmpty: PropTypes.bool.isRequired,
+  openSideDrawer: PropTypes.func.isRequired,
 };
 export default CardContainer;

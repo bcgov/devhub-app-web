@@ -21,8 +21,9 @@ const Row = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  margin: 10px 0;
   @media (min-width: 810px) {
-    justify-content: space-between;
+    justify-content: start;
     }
   }
 `;

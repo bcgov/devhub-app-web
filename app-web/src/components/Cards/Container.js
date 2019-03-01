@@ -18,8 +18,9 @@ Created by Patrick Simonian
 import styled from '@emotion/styled';
 import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
 // represet the grid container the card rows sit in
-const threeCardCol = `${265 * 3}px`;
-const fourCardCol = `${265 * 4}px`;
+// 260 = 250 card width + 5 px margin left and right
+const threeCardCol = `${260 * 3}px`;
+const fourCardCol = `${260 * 4}px`;
 const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
