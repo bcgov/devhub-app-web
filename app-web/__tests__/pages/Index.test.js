@@ -26,6 +26,7 @@ describe('Index Container', () => {
       setSearchQuery: jest.fn(),
       setSearchBarTerms: jest.fn(),
       resetSearch: jest.fn(),
+      setResourceType: jest.fn(),
     };
 
     const location = {

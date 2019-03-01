@@ -72,8 +72,16 @@ export const selectQuery = createSelector(
 
 // used to dictate a feedback message after conducting a search check <SearchFeedback /> for reference
 export const selectSearchResultsLength = createSelector(
-  resourcesSelector,
-  resources => Object.keys(resources.searchResults).length,
+  [resourcesSelector, selectAvailableResources],
+  (resources, availableResources) => {
+    let startCount = Object.keys(resources.searchResults).length;
+    if (resources.resourceType !== null) {
+      const difference = availableResources.filter(r => r.resource.type !== resources.resourceType)
+        .length;
+      startCount -= difference;
+    }
+    return startCount;
+  },
 );
 
 // similar as above

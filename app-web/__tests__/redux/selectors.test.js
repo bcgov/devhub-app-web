@@ -42,6 +42,7 @@ describe('Reselect Selectors', () => {
         },
         allIds: ['1'],
       },
+      resourceType: null,
       resourcesLoaded: false,
       query: null,
       searchBarTerms: '',
@@ -143,6 +144,16 @@ describe('Reselect Selectors', () => {
 
   it('returns the search results length', () => {
     expect(selectors.selectSearchResultsLength(state)).toEqual(
+      Object.keys(state.resources.searchResults).length,
+    );
+  });
+
+  it('returns the search results length for a set resource type', () => {
+    const stateWithResourceType = {
+      ...state,
+      resources: { ...state.resources, resourceType: RESOURCE_TYPES.DOCUMENTATION },
+    };
+    expect(selectors.selectSearchResultsLength(stateWithResourceType)).toBeLessThan(
       Object.keys(state.resources.searchResults).length,
     );
   });
