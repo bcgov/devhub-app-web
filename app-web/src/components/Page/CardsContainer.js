@@ -101,6 +101,10 @@ const CardContainer = ({
           setSearchBarTerms(terms);
           navigate(`${pagePath}/?q=${encodeURIComponent(terms)}`);
         }}
+        onSearchClear={() => {
+          setSearchBarTerms('');
+          navigate(`${pagePath}`);
+        }}
       />
     </SearchContainer>
     <FilterSideDrawerToggle onClick={openSideDrawer}>

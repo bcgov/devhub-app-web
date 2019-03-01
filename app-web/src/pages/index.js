@@ -72,13 +72,14 @@ export class Index extends PureComponent {
     const lunr = await window.__LUNR__.__loaded;
     const lunrIndex = lunr.en;
     let results = [];
+    let searchQuery = `*${query}*`;
     // attempt to search by parsing query into fields
     try {
-      results = lunrIndex.index.search(query);
+      results = lunrIndex.index.search(searchQuery);
     } catch (e) {
       // if that fails treat query as plain text and attempt search again
       results = lunrIndex.index.query(function() {
-        this.term(query);
+        this.term(searchQuery);
       });
     }
     // search results is an array of reference keys
