@@ -8,15 +8,13 @@ import { flattenGatsbyGraphQL } from '../utils//dataHelpers';
 import * as actions from '../store/actions';
 import { COMPONENTS } from '../messages';
 // components
-
-import Loading from '../components/UI/Loading/Loading';
+import Filters from '../components/Filters/Filters';
 import Layout from '../hoc/Layout';
 import Title from '../components/Page/Title';
 import CardsContainer from '../components/Page/CardsContainer';
 import PageContainer from '../components/Page/PageContainer';
 import Main from '../components/Page/Main';
 import FilterMenu from '../components/Page/FilterMenu';
-import ResourcePreview from '../components/ResourcePreview/ResourcePreview';
 import SideDrawer from '../components/SideDrawer/SideDrawer';
 // selectors from reselect
 import {
@@ -132,7 +130,7 @@ export class Component extends PureComponent {
           closeDrawer={() => this.toggleMenu(false)}
           title="Filters"
         >
-          filters here
+          <Filters filters={filters} />
         </SideDrawer>
       </Layout>
     );

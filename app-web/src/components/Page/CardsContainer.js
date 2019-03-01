@@ -76,7 +76,7 @@ const FilterSideDrawerToggle = styled.div`
   background-color: #fafafa;
   border: 1px solid #ccc;
   padding: 10px;
-  margin: 10px 5px;
+  margin: 10px 5px 0;
   display: block;
   ${EMOTION_BOOTSTRAP_BREAKPOINTS.sm} {
     display: none;
