@@ -77,12 +77,17 @@ export const filterResources = (resources, filters) =>
  * and applies count related props to the filter Map
  * @param {Object} filter
  * @param {Array} nodes a flattened list of all nodes from available collections
+ * @param {Array} resourceType the current resource type page, counts will only apply to matching resource types
  */
-export const applyPropsToFilterByResourceCount = (filter, nodes) => {
+export const applyPropsToFilterByResourceCount = (filter, nodes, resourceType = null) => {
   const { filterBy, value } = filter;
   let newFilter = { ...filter, availableResources: 0 };
   nodes.forEach(n => {
-    newFilter.availableResources += dotPropMatchesValue(n, filterBy, value);
+    // only attempt to check if node should be apart of count if it matches the current resource type
+    // or if resource tpye is null (which means we are on the index page)
+    if (resourceType === null || n.resource.type === resourceType) {
+      newFilter.availableResources += dotPropMatchesValue(n, filterBy, value);
+    }
   });
 
   const count = newFilter.availableResources;
@@ -178,7 +183,9 @@ const loadResources = (state, resources) => {
       allIds: availableResourceMap.all,
     },
     resourcesLoaded: true,
-    filters: state.filters.map(f => applyPropsToFilterByResourceCount(f, resources)),
+    filters: state.filters.map(f =>
+      applyPropsToFilterByResourceCount(f, resources, state.resourceType),
+    ),
   };
 };
 
@@ -206,8 +213,9 @@ const applySearchResults = (state, results) => {
     availableResourcesList.push(resource);
   });
 
+  //
   const filters = state.filters.map(f =>
-    applyPropsToFilterByResourceCount(f, availableResourcesList),
+    applyPropsToFilterByResourceCount(f, availableResourcesList, state.resourceType),
   );
   return { ...state, searchResults: results, loading: false, availableResources, filters };
 };
@@ -240,7 +248,7 @@ const resetSearch = state => {
   const availableResourcesMap = arrayToMapByProp(allResources, 'id');
   // get counts of filters and apply other properties based on if count is 0
   const filters = state.filters.map(filter =>
-    applyPropsToFilterByResourceCount(filter, allResources),
+    applyPropsToFilterByResourceCount(filter, allResources, state.resourceType),
   );
 
   return {
