@@ -49,9 +49,9 @@ export class Search extends Component {
   };
 
   render() {
-    const { inputConfig } = this.props;
+    const { inputConfig, css } = this.props;
     return (
-      <div className={styles.Search}>
+      <div className={styles.Search} css={css}>
         <Input
           type="text"
           aria-label={ARIA_LABEL_SEARCH_INPUT}

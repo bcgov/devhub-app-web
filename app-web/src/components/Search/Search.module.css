@@ -1,17 +1,16 @@
 .Search {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .Search input {
-  margin-right: 10px;
-  padding: 4px 5px;
-  flex-basis: 250px;
-  flex-grow: 1;
-  transition: all .25s;
-  max-width: 400px;
+    margin-right: 10px;
+    padding: 4px 5px;
+    flex-basis: 250px;
+    flex-grow: 1;
+    transition: all .25s;
 }
 
 .Search button {
-  padding: 4px 15px;
+    padding: 4px 15px;
 }

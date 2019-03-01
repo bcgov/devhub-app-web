@@ -10,7 +10,6 @@ import * as actions from '../store/actions';
 
 import styles from './index.module.css';
 // components
-import { Container } from 'reactstrap';
 import { Flag } from 'flag';
 import { Element } from 'react-scroll';
 import Loading from '../components/UI/Loading/Loading';
@@ -116,27 +115,19 @@ export class Index extends PureComponent {
     return (
       <Layout showHamburger>
         <div>
-          <Masthead
-            searchCount={searchResultsLength}
-            totalNodeCount={totalResources}
-            setSearchBarTerms={setSearchBarTerms} // keywords i search bar
-            searchWordLength={searchWordLength}
-            query={query} // value from query string
-          />
-          <Container fluid>
-            <main role="main" className={styles.Main}>
-              {this.props.loading ? (
-                <Loading message="Loading..." />
-              ) : searchResultsLength === 0 && searchWordLength > 0 ? (
-                <p>{SEARCH.results.empty.defaultMessage}</p>
-              ) : (
-                <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
-                  {/* Element used for react-scroll targeting */}
-                  <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
-                </Element>
-              )}
-            </main>
-          </Container>
+          <Masthead setSearchBarTerms={setSearchBarTerms} />
+          <main role="main" className={styles.Main}>
+            {this.props.loading ? (
+              <Loading message="Loading..." />
+            ) : searchResultsLength === 0 && searchWordLength > 0 ? (
+              <p>{SEARCH.results.empty.defaultMessage}</p>
+            ) : (
+              <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
+                {/* Element used for react-scroll targeting */}
+                <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
+              </Element>
+            )}
+          </main>
         </div>
       </Layout>
     );

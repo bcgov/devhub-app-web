@@ -1,6 +1,13 @@
 .Main {
     margin-bottom: 5px;
     margin-top: 27px;
+    padding: 0 15px;
+}
+
+.Main>div {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
 }
 
 .Main>h1 {
