@@ -158,8 +158,8 @@ sources:
       sources:
         - sourceType: 'github'
           sourceProperties:
-            url: https://github.com/bcgov/api-specs/geocoder
+            url: https://github.com/bcgov/api-specs
             owner: 'bcgov'
-            repo: geocoder
+            repo: api-specs
             files:
-              - geocoder-developer-guide.md
+              - geocoder/geocoder-developer-guide.md
