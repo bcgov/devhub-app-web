@@ -204,7 +204,7 @@ describe('resources reducer', () => {
 
     const newFilter = applyPropsToFilterByResourceCount(personaFilter, SIPHON_NODES);
 
-    // manually reduce the amount of available resources within the collections
+    // manually reduce the amount of available resources within the siphon nodes
     const availableResources = SIPHON_NODES.reduce((acc, node) => {
       return acc + node.attributes.personas.some(p => p === personaFilter.value);
     }, 0);
@@ -216,6 +216,19 @@ describe('resources reducer', () => {
     const personaFilter = { ...defaultFilters[0], isFilterable: false };
     const newFilter = applyPropsToFilterByResourceCount(personaFilter, SIPHON_NODES);
     expect(newFilter.isFilterable).toBe(true);
+  });
+
+  it('ignores nodes of the incorrect resource type', () => {
+    const personaFilter = { ...defaultFilters[0] };
+    const newFilter = applyPropsToFilterByResourceCount(personaFilter, SIPHON_NODES);
+    const differentFilter = applyPropsToFilterByResourceCount(
+      personaFilter,
+      SIPHON_NODES,
+      RESOURCE_TYPES.DOCUMENTATION, // only count nodes that have this type
+    );
+
+    // we'd expect the available count to be less
+    expect(newFilter.availableResources).toBeGreaterThan(differentFilter.availableResources);
   });
 
   it('set active to false if count === 0', () => {
