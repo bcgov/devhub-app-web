@@ -1,7 +1,6 @@
 // all User Interface related constants
 import { faComment, faEye, faCodeBranch } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/fontawesome-free-brands';
-import { HOME_ROUTE } from './routes';
 
 import {
   getGithubIssuesRoute,
@@ -144,13 +143,6 @@ export const MAIN_NAV_CONFIG = [
     DISPLAY_NAME: RESOURCE_TYPES_CONFIG.REPOSITORIES.DISPLAY_NAME,
     SIPHON_PROP: SIPHON_RESOURCE_TYPE_PROP,
     VALUE: RESOURCE_TYPES_CONFIG.REPOSITORIES.VALUE,
-  },
-];
-
-export const FOOTER_NAVIGATION = [
-  {
-    to: HOME_ROUTE,
-    text: 'home',
   },
 ];
 

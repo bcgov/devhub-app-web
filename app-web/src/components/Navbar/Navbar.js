@@ -18,34 +18,16 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import { Link } from 'gatsby';
-import queryString from 'query-string';
 import PropTypes from 'prop-types';
-import shortid from 'shortid';
 import styles from './Navbar.module.css';
-import { MAIN_NAV_CONFIG } from '../../constants/ui';
-import { ARIA_LABEL_FILTER_SELECT } from '../../constants/ariaLabels';
-
-const queryStringMatchesResourceType = (searchFromLocation, resourceTypeSearch) => {
-  const qs = queryString.parse(searchFromLocation);
-  const resourceTypeQS = queryString.parse(resourceTypeSearch);
-
-  return qs.q !== undefined && qs.q === resourceTypeQS.q
-    ? { className: styles.ActiveFilter }
-    : null;
-};
+import { MAIN_NAV_ROUTES } from '../../constants/routes';
 
 export const Navbar = ({ mobile }) => {
-  const filters = MAIN_NAV_CONFIG.map(navConfig => {
-    const searchString = `?q=${encodeURIComponent(navConfig.ROUTE)}`;
+  const links = Object.keys(MAIN_NAV_ROUTES).map(resourceType => {
     return (
-      <li key={shortid.generate()}>
-        <Link
-          exact
-          getProps={({ location }) => queryStringMatchesResourceType(location.search, searchString)}
-          to={searchString}
-          aria-label={ARIA_LABEL_FILTER_SELECT}
-        >
-          {navConfig.DISPLAY_NAME}
+      <li key={MAIN_NAV_ROUTES[resourceType].to}>
+        <Link exact to={MAIN_NAV_ROUTES[resourceType].to} activeClassName={styles.ActiveFilter}>
+          {MAIN_NAV_ROUTES[resourceType].text}
         </Link>
       </li>
     );
@@ -53,7 +35,7 @@ export const Navbar = ({ mobile }) => {
 
   return (
     <nav className={styles.Navbar}>
-      <ul className={mobile ? styles.mobileOnly : styles.largeOnly}>{filters}</ul>
+      <ul className={mobile ? styles.mobileOnly : styles.largeOnly}>{links}</ul>
     </nav>
   );
 };
