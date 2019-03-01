@@ -19,7 +19,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classes from './PrimaryFooter.module.css';
 import NavigationItems from '../NavigationItems/NavigationItems';
-import { FOOTER_NAVIGATION } from '../../constants/ui';
+import { FOOTER_NAVIGATION } from '../../constants/routes';
 
 const PrimaryFooter = props => (
   <footer className={classes.PrimaryFooter}>
