@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { graphql } from 'gatsby';
 import { createStructuredSelector } from 'reselect';
 import queryString from 'query-string';
 import shortid from 'shortid';
@@ -29,7 +28,6 @@ import {
 } from '../store/selectors';
 
 import { SEARCH } from '../messages';
-import ResourcePreview from '../components/ResourcePreview/ResourcePreview';
 import withResourceQuery from '../hoc/withResourceQuery';
 
 export class Index extends PureComponent {
@@ -99,10 +97,8 @@ export class Index extends PureComponent {
     const {
       resourcesByType,
       searchResultsLength,
-      totalResources,
       setSearchBarTerms,
       searchWordLength,
-      query,
     } = this.props;
     // const groupedByResourceTypee =
     const SiphonResources = Object.keys(resourcesByType).map(resourceType => {
