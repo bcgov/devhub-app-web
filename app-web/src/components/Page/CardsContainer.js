@@ -62,7 +62,7 @@ const SearchContainer = styled.div`
   padding: 0 5px;
 `;
 
-const CardContainer = ({ resources, setSearchBarTerms, loading, searchResultsEmpty }) => (
+const CardContainer = ({ resources, setSearchBarTerms, loading, searchResultsEmpty, pagePath }) => (
   <Container grid={3}>
     <SearchContainer>
       <Search
@@ -71,7 +71,7 @@ const CardContainer = ({ resources, setSearchBarTerms, loading, searchResultsEmp
         onSearch={terms => {
           // set resource type to all since we are searching the entire index
           setSearchBarTerms(terms);
-          navigate(`/?q=${encodeURIComponent(terms)}`);
+          navigate(`${pagePath}/?q=${encodeURIComponent(terms)}`);
         }}
       />
     </SearchContainer>
