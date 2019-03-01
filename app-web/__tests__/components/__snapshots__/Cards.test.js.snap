@@ -16,9 +16,7 @@ exports[`Card Component matches snapshot 1`] = `
     cardComponents={
       Array [
         <ForwardRef(render)
-          lg={3}
-          md={4}
-          sm={6}
+          grid={4}
         >
           <Card
             description={null}
