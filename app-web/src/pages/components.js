@@ -6,15 +6,15 @@ import { connect } from 'react-redux';
 import { RESOURCE_TYPES } from '../constants/ui';
 import { flattenGatsbyGraphQL } from '../utils//dataHelpers';
 import * as actions from '../store/actions';
-
-import styles from './index.module.css';
 import { COMPONENTS } from '../messages';
 // components
+
 import Loading from '../components/UI/Loading/Loading';
 import Layout from '../hoc/Layout';
 import Title from '../components/Page/Title';
 import CardsContainer from '../components/Page/CardsContainer';
 import PageContainer from '../components/Page/PageContainer';
+import FilterMenu from '../components/Page/FilterMenu';
 // selectors from reselect
 import {
   selectQuery,
@@ -24,6 +24,7 @@ import {
   selectResourcesLoaded,
   selectResourcesReducerLoading,
   selectGroupedFilteredAvailableResources,
+  selectFilters,
 } from '../store/selectors';
 
 import { SEARCH } from '../messages';
@@ -92,10 +93,9 @@ export class Component extends PureComponent {
     const {
       resourcesByType,
       searchResultsLength,
-      totalResources,
       setSearchBarTerms,
       searchWordLength,
-      query,
+      filters,
     } = this.props;
 
     const resources = resourcesByType[RESOURCE_TYPES.COMPONENTS].map(r => ({
@@ -114,13 +114,17 @@ export class Component extends PureComponent {
             subtitle={COMPONENTS.header.subtitle.defaultMessage}
           />
           <PageContainer>
-            <div>Filter menu here</div>
+            <FilterMenu filters={filters} />
             {this.props.loading ? (
               <Loading message="Loading..." />
             ) : searchResultsLength === 0 && searchWordLength > 0 ? (
               <p>{SEARCH.results.empty.defaultMessage}</p>
             ) : (
-              <CardsContainer resources={resources} setSearchBarTerms={setSearchBarTerms} />
+              <CardsContainer
+                pagePath={this.props.location.pathname}
+                resources={resources}
+                setSearchBarTerms={setSearchBarTerms}
+              />
             )}
           </PageContainer>
         </main>
@@ -175,6 +179,7 @@ export const resourceQuery2 = graphql`
 `;
 
 const mapStateToProps = createStructuredSelector({
+  filters: selectFilters,
   resourcesLoaded: selectResourcesLoaded,
   query: selectQuery,
   loading: selectResourcesReducerLoading,
