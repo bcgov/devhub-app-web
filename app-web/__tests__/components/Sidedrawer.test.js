@@ -43,8 +43,13 @@ describe('404 Page', () => {
     expect(wrapper.containsMatchingElement(child)).toBeTruthy();
   });
 
-  test('it is empty when show is false', () => {
+  test('it sets backdrop show to false when side drawer show is set to false', () => {
     wrapper.setProps({ show: false }).update();
-    expect(wrapper.children().length).toBe(0);
+    expect(wrapper.find('Backdrop').prop('show')).toBe(false);
+  });
+
+  test('it sets pose prop to hide if show is false', () => {
+    wrapper.setProps({ show: false }).update();
+    expect(wrapper.find('Drawer').prop('pose')).toBe('hide');
   });
 });

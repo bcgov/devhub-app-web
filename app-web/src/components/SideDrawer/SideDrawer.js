@@ -20,6 +20,7 @@ import PropTypes from 'prop-types';
 import Aux from '../../hoc/auxillary';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
+import posed from 'react-pose';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import Backdrop from '../UI/Backdrop/Backdrop';
@@ -28,7 +29,24 @@ const withPadding = css`
   padding: 10px;
 `;
 
-const Div = styled.div`
+// create a pose component that can handle animating
+const SlideInLeft = posed.div({
+  show: {
+    x: 0,
+    transition: {
+      duration: 300,
+    },
+  },
+  hide: {
+    x: '-100%',
+    transition: {
+      duration: 300,
+    },
+  },
+});
+
+// fit posed component into styled component for further styling
+const Drawer = styled(SlideInLeft)`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -37,6 +55,7 @@ const Div = styled.div`
   z-index: 300;
   border-right: 1px solid #ccc;
   display: flex;
+  transform: translateX(-100%);
   flex-flow: column nowrap;
 `;
 
@@ -70,21 +89,20 @@ const Menu = styled.div`
   flex-grow: 1;
 `;
 
-const SideDrawer = ({ closeDrawer, children, title, show }) =>
-  show && (
-    <Aux>
-      <Backdrop clicked={closeDrawer} />
-      <Div>
-        <H2>
-          <span>{title}</span>
-          <IconButton onClick={closeDrawer}>
-            <FontAwesomeIcon icon={faTimes} />
-          </IconButton>
-        </H2>
-        <Menu>{children}</Menu>
-      </Div>
-    </Aux>
-  );
+const SideDrawer = ({ closeDrawer, children, title, show }) => (
+  <Aux>
+    <Backdrop clicked={closeDrawer} show={show} />
+    <Drawer pose={show ? 'show' : 'hide'}>
+      <H2>
+        <span>{title}</span>
+        <IconButton onClick={closeDrawer}>
+          <FontAwesomeIcon icon={faTimes} />
+        </IconButton>
+      </H2>
+      <Menu>{children}</Menu>
+    </Drawer>
+  </Aux>
+);
 
 SideDrawer.propTypes = {
   title: PropTypes.string,
