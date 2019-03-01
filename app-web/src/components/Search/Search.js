@@ -37,18 +37,16 @@ export class Search extends Component {
 
   handleKeyUp = e => {
     // if enter was pressed
-    const terms = e.target.value.trim();
+    const terms = e.target.value;
     if (terms === 0 && this.state.touched) {
       this.props.onSearchClear();
-    } else {
-      this.props.onSearch(terms);
     }
     this.setState({ terms });
   };
 
-  search = terms => {
-    this.setState({ terms: '' });
+  search = () => {
     this.props.onSearch(this.state.terms);
+    this.setState({ terms: '' });
   };
 
   render() {
