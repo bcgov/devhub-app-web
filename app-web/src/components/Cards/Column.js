@@ -16,10 +16,9 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import styled from '@emotion/styled';
-import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
-// represet a 4 column card layout
+
 const Col = styled.div`
-  margin: 0 5px;
+  margin: 0 10px;
   flex: 0 0 250px;
 `;
 

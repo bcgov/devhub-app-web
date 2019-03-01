@@ -70,6 +70,7 @@ const CardsContent = (loading, searchResultsEmpty, resources) => {
 
 const SearchContainer = styled.div`
   padding: 0 5px;
+  margin-bottom: 15px;
 `;
 
 const FilterSideDrawerToggle = styled.div`

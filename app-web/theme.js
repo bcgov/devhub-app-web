@@ -49,7 +49,7 @@ export default {
   breakpoints: {
     // specific breakpoints
     main: {
-      desktop: '@media screen and (min-width: 600px)',
+      desktop: '@media screen and (min-width: 850px)',
     },
   },
 };
