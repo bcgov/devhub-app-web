@@ -17,10 +17,11 @@ Created by Patrick Simonian
 */
 import * as actionTypes from '../actions/actionTypes';
 import cloneDeep from 'lodash/cloneDeep';
-import { arrayToMapByProp } from '../../utils/dataHelpers';
-import dotProp from 'dot-prop-immutable';
-import defaultFilterGroups from '../../constants/filterGroups';
 import { TypeCheck } from '@bcgov/common-web-utils';
+import dotProp from 'dot-prop-immutable';
+import { arrayToMapByProp } from '../../utils/dataHelpers';
+import defaultFilterGroups from '../../constants/filterGroups';
+import { RESOURCE_TYPES } from '../../constants/ui';
 
 const initialState = {
   // normalized pattern to grab resources
@@ -32,6 +33,7 @@ const initialState = {
     byId: {},
     allIds: [],
   },
+  resourceType: null,
   resourcesLoaded: false, // set after graphql data has been passed into actions.loadResources
   query: null, // the search query as found in the url
   searchBarTerms: '', // the global state for the search bar
@@ -273,6 +275,16 @@ const resourcesReducer = (state = initialState, action) => {
       return setSearchBarTerms(state, action.payload.searchBarTerms);
     case actionTypes.RESET_SEARCH:
       return resetSearch(state);
+    case actionTypes.SET_RESOURCE_TYPE:
+      const { type } = action.payload;
+      // type may be coming in from the page path /components etc
+      // convert to upper case so we can get the constant value from the resource types enum
+      // if typpe is from index page we will reset type to be null
+      const resourceType =
+        type === '' || type === null
+          ? initialState.resourceType
+          : RESOURCE_TYPES[type.toUpperCase()];
+      return { ...state, resourceType };
     default:
       return state;
   }

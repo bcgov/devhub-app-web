@@ -20,6 +20,7 @@ import defaultFilters from '../../src/constants/filterGroups';
 import * as actions from '../../src/store/actions';
 import { SIPHON_NODES_MAP, SIPHON_NODES } from '../../__fixtures__/siphon-fixtures';
 import { LUNR_SEARCH_RESULTS_2 } from '../../__fixtures__/lunr';
+import { RESOURCE_TYPES } from '../../src/constants/ui';
 
 describe('resources reducer', () => {
   const initialState = {
@@ -32,6 +33,7 @@ describe('resources reducer', () => {
       allIds: [],
     },
     resourcesLoaded: false,
+    resourceType: null,
     query: null,
     searchBarTerms: '',
     searchResults: {},
@@ -306,5 +308,15 @@ describe('resources reducer', () => {
 
     const newState = reducer(state, actions.resetSearch());
     expect(newState.filters.every(f => f.isFilterable)).toBe(true);
+  });
+
+  it('sets resource type to null when a falsey value or null is passed in', () => {
+    const newState = reducer(initialState, actions.setResourceType(''));
+    expect(newState.resourceType).toBe(null);
+  });
+
+  it('sets resource type when a resource type is passed in', () => {
+    const newState = reducer(initialState, actions.setResourceType(RESOURCE_TYPES.COLLECTIONS));
+    expect(newState.resourceType).toBe(RESOURCE_TYPES.COLLECTIONS);
   });
 });

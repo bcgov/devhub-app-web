@@ -85,4 +85,15 @@ describe('actions', () => {
 
     expect(actions.resetSearch()).toEqual(expected);
   });
+
+  it('should create an action to set resource type', () => {
+    const expected = {
+      type: actionTypes.SET_RESOURCE_TYPE,
+      payload: {
+        type: '',
+      },
+    };
+
+    expect(actions.setResourceType('')).toEqual(expected);
+  });
 });

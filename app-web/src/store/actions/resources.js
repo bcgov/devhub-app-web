@@ -72,3 +72,8 @@ export const setSearchBarTerms = searchBarTerms => {
 export const resetSearch = () => ({
   type: actionTypes.RESET_SEARCH,
 });
+
+export const setResourceType = type => ({
+  type: actionTypes.SET_RESOURCE_TYPE,
+  payload: { type },
+});
