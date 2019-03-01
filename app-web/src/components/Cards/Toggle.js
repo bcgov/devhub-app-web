@@ -1,20 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
 import Aux from '../../hoc/auxillary';
 import styles from './Cards.module.css';
 import Button from '../UI/Button/Button';
-
-const Row = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  margin: 0 -15px;
-  justify-content: center;
-  @media (min-width: 810px) {
-    justify-content: flex-start;
-  }
-`;
-
+import Row from './Row';
 /**
  * Toggle component
  * This component has an arrow button to toggle the Cards to show all or collapse
@@ -55,7 +44,11 @@ class Toggle extends Component {
     for (let i = 0; i < maxRows; i++) {
       const start = i * cardLimits;
       const end = start + cardLimits;
-      rows.push(<Row key={`${i}-${start}-${end}`}>{cardComponents.slice(start, end)}</Row>);
+      rows.push(
+        <Row grid={4} key={`${i}-${start}-${end}`}>
+          {cardComponents.slice(start, end)}
+        </Row>,
+      );
     }
 
     const cardShow = this.state.toggled ? rows : rows[0];

@@ -34,6 +34,20 @@ export const HOME = {
   },
 };
 
+export const COMPONENTS = {
+  header: {
+    title: {
+      id: 'COMPONENTS.header.title',
+      defaultMessage: 'Components',
+    },
+    subtitle: {
+      id: 'COMPONENTS.header.subtitle',
+      defaultMessage:
+        'Components represent the reusable building blocks for systems. They are leveraged during design and development to reduce effort, improve consistency and maintain compliance.',
+    },
+  },
+};
+
 export const SEARCH = {
   button: {
     id: 'SEARCH.button',

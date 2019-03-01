@@ -19,7 +19,6 @@ Created by Patrick Simonian
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
 import validUrl from 'valid-url';
 import DotDotDot from 'react-dotdotdot';
 import Image from 'react-image';
@@ -47,9 +46,10 @@ const DecorativeBar = styled.div`
 const CardWrapper = styled.article`
   width: 250px;
   height: 225px;
-  margin: 10px auto;
+  margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 2px;
+  box-sizing: border-box;
   transition: transform 0.25s ease-out;
   box-shadow: 0 1px 2px 1px #00000026;
   display: flex;

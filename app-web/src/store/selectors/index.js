@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import { getResources, filterResources } from '../reducers/resources';
+import { RESOURCE_TYPES } from '../../constants/ui';
 import groupBy from 'lodash/groupBy';
 
 export const resourcesSelector = state => state.resources;
@@ -51,11 +52,15 @@ export const selectFilteredAvailableResources = createSelector(
 export const selectGroupedFilteredAvailableResources = createSelector(
   selectFilteredAvailableResources,
   availableResources => {
+    const defaultGroups = Object.keys(RESOURCE_TYPES).reduce((grouping, type) => {
+      grouping[RESOURCE_TYPES[type]] = [];
+      return grouping;
+    }, {});
     // reminder to replace this hardcoded string to the getter method
     // for the siphon node interface when that is developed!
     // usage should be like Siphon.getPathToResourceType();
     const resourceTypeProp = 'resource.type';
-    return groupBy(availableResources, resourceTypeProp);
+    return { ...defaultGroups, ...groupBy(availableResources, resourceTypeProp) };
   },
 );
 
