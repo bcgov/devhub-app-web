@@ -148,3 +148,18 @@ sources:
           branch: feature/243-openshift-svc-def
           files:
           - docs/OCP/OCPServiceDefinition.md
+  - name: Location Services
+    template: overview
+    description: 'A suite of web services that locate civic addresses and place names, enable sharing areas of interest and road network routing.'
+    resourceType: Documentation
+    attributes: 
+      persona: 'Developer'
+    sourceProperties:
+      sources:
+        - sourceType: 'github'
+          sourceProperties:
+            url: https://github.com/bcgov/api-specs/geocoder
+            owner: 'bcgov'
+            repo: geocoder
+            files:
+              - geocoder-developer-guide.md
