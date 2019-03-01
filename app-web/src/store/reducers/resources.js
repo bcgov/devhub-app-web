@@ -288,10 +288,7 @@ const resourcesReducer = (state = initialState, action) => {
       // type may be coming in from the page path /components etc
       // convert to upper case so we can get the constant value from the resource types enum
       // if typpe is from index page we will reset type to be null
-      const resourceType =
-        type === '' || type === null
-          ? initialState.resourceType
-          : RESOURCE_TYPES[type.toUpperCase()];
+      const resourceType = type === '' || type === null ? initialState.resourceType : type;
       return { ...state, resourceType };
     default:
       return state;

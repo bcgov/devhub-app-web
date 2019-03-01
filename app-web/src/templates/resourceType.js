@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { RESOURCE_TYPES } from '../constants/ui';
 import { flattenGatsbyGraphQL } from '../utils//dataHelpers';
 import * as actions from '../store/actions';
-import { COMPONENTS } from '../messages';
+import { RESOURCE_TYPE_PAGES } from '../messages';
 // components
 import Filters from '../components/Filters/Filters';
 import Layout from '../hoc/Layout';
@@ -30,7 +30,7 @@ import {
 
 import { mapPagePathToResourceTypeConst } from '../utils/helpers';
 
-export class Component extends PureComponent {
+export class ResourceType extends PureComponent {
   state = {
     sideDrawerToggled: false,
   };
@@ -43,7 +43,9 @@ export class Component extends PureComponent {
       const resources = flattenGatsbyGraphQL(this.props.data.allDevhubSiphon.edges);
       this.props.loadResources(resources);
     }
-    this.props.setResourceType(mapPagePathToResourceTypeConst(this.props.location.pathname));
+    // page context comes from the dynamic create page routine. see gatsby/createPages.js
+    // and https://www.gatsbyjs.org/docs/programmatically-create-pages-from-data/#programmatically-create-pages-from-data
+    this.props.setResourceType(this.props.pageContext.resourceType);
   }
 
   componentDidUpdate() {
@@ -98,9 +100,16 @@ export class Component extends PureComponent {
   }
 
   render() {
-    const { resourcesByType, searchResultsLength, setSearchBarTerms, filters, query } = this.props;
+    const {
+      resourcesByType,
+      searchResultsLength,
+      setSearchBarTerms,
+      filters,
+      query,
+      pageContext, // received from gatsby create pages api, view gatsby/createPages.js for more info
+    } = this.props;
 
-    const resources = resourcesByType[RESOURCE_TYPES.COMPONENTS].map(r => ({
+    const resources = resourcesByType[RESOURCE_TYPES[pageContext.resourceTypeConst]].map(r => ({
       type: r.resource.type,
       title: r.unfurl.title,
       description: r.unfurl.description,
@@ -112,8 +121,8 @@ export class Component extends PureComponent {
       <Layout showHamburger>
         <Main role="main">
           <Title
-            title={COMPONENTS.header.title.defaultMessage}
-            subtitle={COMPONENTS.header.subtitle.defaultMessage}
+            title={RESOURCE_TYPE_PAGES[pageContext.resourceType].header.title.defaultMessage}
+            subtitle={RESOURCE_TYPE_PAGES[pageContext.resourceType].header.subtitle.defaultMessage}
           />
           <PageContainer>
             <FilterMenu filters={filters} />
@@ -208,4 +217,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Component);
+)(ResourceType);
