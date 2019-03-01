@@ -17,13 +17,18 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 import styles from './Title.module.css';
 
+const TitleWrapper = styled.div`
+  margin-bottom: 10px;
+`;
+
 const Title = ({ title, subtitle }) => (
-  <div className={styles.Title}>
+  <TitleWrapper className={styles.Title}>
     <h1>{title}</h1>
     {subtitle && <h4>{subtitle}</h4>}
-  </div>
+  </TitleWrapper>
 );
 
 Title.propTypes = {

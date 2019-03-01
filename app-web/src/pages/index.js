@@ -40,6 +40,8 @@ export class Index extends PureComponent {
       const resources = flattenGatsbyGraphQL(this.props.data.allDevhubSiphon.edges);
       this.props.loadResources(resources);
     }
+    // reset resource type to null since index page views all index pages
+    this.props.setResourceType(null);
   }
 
   componentDidUpdate() {
@@ -151,6 +153,7 @@ const mapDispatchToProps = dispatch => {
     setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
     setSearchBarTerms: resourceType => dispatch(actions.setSearchBarTerms(resourceType)),
     resetSearch: () => dispatch(actions.resetSearch()),
+    setResourceType: type => dispatch(actions.setResourceType(type)),
   };
 };
 

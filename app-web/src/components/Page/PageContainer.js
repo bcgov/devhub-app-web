@@ -20,10 +20,10 @@ Created by Patrick Simonian
  */
 import styled from '@emotion/styled';
 
-const Row = styled.div`
+const PageContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
 `;
 
-export default Row;
+export default PageContainer;

@@ -14,7 +14,10 @@ import Layout from '../hoc/Layout';
 import Title from '../components/Page/Title';
 import CardsContainer from '../components/Page/CardsContainer';
 import PageContainer from '../components/Page/PageContainer';
+import Main from '../components/Page/Main';
 import FilterMenu from '../components/Page/FilterMenu';
+import ResourcePreview from '../components/ResourcePreview/ResourcePreview';
+import SideDrawer from '../components/SideDrawer/SideDrawer';
 // selectors from reselect
 import {
   selectQuery,
@@ -27,16 +30,22 @@ import {
   selectFilters,
 } from '../store/selectors';
 
-import { SEARCH } from '../messages';
-import ResourcePreview from '../components/ResourcePreview/ResourcePreview';
+import { mapPagePathToResourceTypeConst } from '../utils/helpers';
 
 export class Component extends PureComponent {
+  state = {
+    sideDrawerToggled: false,
+  };
+
+  toggleMenu = toggled => this.setState({ sideDrawerToggled: toggled });
+
   componentDidMount() {
     // flatted nodes from graphql
     if (!this.props.resourcesLoaded) {
       const resources = flattenGatsbyGraphQL(this.props.data.allDevhubSiphon.edges);
       this.props.loadResources(resources);
     }
+    this.props.setResourceType(mapPagePathToResourceTypeConst(this.props.location.pathname));
   }
 
   componentDidUpdate() {
@@ -90,13 +99,7 @@ export class Component extends PureComponent {
   }
 
   render() {
-    const {
-      resourcesByType,
-      searchResultsLength,
-      setSearchBarTerms,
-      searchWordLength,
-      filters,
-    } = this.props;
+    const { resourcesByType, searchResultsLength, setSearchBarTerms, filters, query } = this.props;
 
     const resources = resourcesByType[RESOURCE_TYPES.COMPONENTS].map(r => ({
       type: r.resource.type,
@@ -108,26 +111,29 @@ export class Component extends PureComponent {
 
     return (
       <Layout showHamburger>
-        <main role="main" style={{ fontSize: '15px' }}>
+        <Main role="main">
           <Title
             title={COMPONENTS.header.title.defaultMessage}
             subtitle={COMPONENTS.header.subtitle.defaultMessage}
           />
           <PageContainer>
             <FilterMenu filters={filters} />
-            {this.props.loading ? (
-              <Loading message="Loading..." />
-            ) : searchResultsLength === 0 && searchWordLength > 0 ? (
-              <p>{SEARCH.results.empty.defaultMessage}</p>
-            ) : (
-              <CardsContainer
-                pagePath={this.props.location.pathname}
-                resources={resources}
-                setSearchBarTerms={setSearchBarTerms}
-              />
-            )}
+            <CardsContainer
+              searchResultsEmpty={query !== null && searchResultsLength === 0}
+              pagePath={this.props.location.pathname}
+              resources={resources}
+              setSearchBarTerms={setSearchBarTerms}
+              openSideDrawer={() => this.toggleMenu(true)}
+            />
           </PageContainer>
-        </main>
+        </Main>
+        <SideDrawer
+          show={this.state.sideDrawerToggled}
+          closeDrawer={() => this.toggleMenu(false)}
+          title="Filters"
+        >
+          filters here
+        </SideDrawer>
       </Layout>
     );
   }
@@ -196,6 +202,7 @@ const mapDispatchToProps = dispatch => {
     setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
     setSearchBarTerms: resourceType => dispatch(actions.setSearchBarTerms(resourceType)),
     resetSearch: () => dispatch(actions.resetSearch()),
+    setResourceType: type => dispatch(actions.setResourceType(type)),
   };
 };
 
