@@ -3,6 +3,7 @@
 exports[`Toggle Component matches snapshot 1`] = `
 <Aux>
   <Row
+    grid={4}
     key="0-0-1"
   >
     card1
