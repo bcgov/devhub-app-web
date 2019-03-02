@@ -71,6 +71,8 @@ const CardsContent = (loading, searchResultsEmpty, resources) => {
 const SearchContainer = styled.div`
   padding: 0 5px;
   margin-bottom: 15px;
+  max-width: 415px;
+  margin-left: 5px;
 `;
 
 const FilterSideDrawerToggle = styled.div`
