@@ -94,7 +94,7 @@ const CardContainer = ({
   searchResultsEmpty,
   pagePath,
 }) => (
-  <Container grid={3}>
+  <Container>
     <SearchContainer>
       <Search
         searchOnEnter
