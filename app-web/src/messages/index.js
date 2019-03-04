@@ -34,6 +34,73 @@ export const HOME = {
   },
 };
 
+export const RESOURCE_TYPE_PAGES = {
+  [RESOURCE_TYPES.COMPONENTS]: {
+    header: {
+      title: {
+        id: 'COMPONENTS.header.title',
+        defaultMessage: 'Components',
+      },
+      subtitle: {
+        id: 'COMPONENTS.header.subtitle',
+        defaultMessage:
+          'Components represent the reusable building blocks for systems. They are leveraged during design and development to reduce effort, improve consistency and maintain compliance.',
+      },
+    },
+  },
+  [RESOURCE_TYPES.REPOSITORIES]: {
+    header: {
+      title: {
+        id: 'REPOSITORIES.header.title',
+        defaultMessage: 'Github Repositories',
+      },
+      subtitle: {
+        id: 'REPOSITORIES.header.subtitle',
+        defaultMessage: 'Explore past projects for inspiration and trends.',
+      },
+    },
+  },
+  [RESOURCE_TYPES.SELF_SERVICE_TOOLS]: {
+    header: {
+      title: {
+        id: 'SELF_SERVICE_TOOLS.header.title',
+        defaultMessage: 'Tools',
+      },
+      subtitle: {
+        id: 'SELF_SERVICE_TOOLS.header.subtitle',
+        defaultMessage: 'Get started with these self-service tools',
+      },
+    },
+  },
+  [RESOURCE_TYPES.DOCUMENTATION]: {
+    header: {
+      title: {
+        id: 'DOCUMENTATION.header.title',
+        defaultMessage: 'Documentation',
+      },
+      subtitle: {
+        id: 'DOCUMENTATION.header.subtitle',
+        defaultMessage:
+          'Explore documentation to common Government Entities, Protocols and Compliances',
+      },
+    },
+  },
+};
+
+export const COMPONENTS = {
+  header: {
+    title: {
+      id: 'COMPONENTS.header.title',
+      defaultMessage: 'Components',
+    },
+    subtitle: {
+      id: 'COMPONENTS.header.subtitle',
+      defaultMessage:
+        'Components represent the reusable building blocks for systems. They are leveraged during design and development to reduce effort, improve consistency and maintain compliance.',
+    },
+  },
+};
+
 export const SEARCH = {
   button: {
     id: 'SEARCH.button',

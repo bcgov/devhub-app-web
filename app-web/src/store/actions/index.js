@@ -10,4 +10,5 @@ export {
   setSearchQuery,
   setSearchBarTerms,
   resetSearch,
+  setResourceType,
 } from './resources';

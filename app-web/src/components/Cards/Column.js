@@ -15,29 +15,11 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React from 'react';
-import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import styles from './Title.module.css';
 
-const TitleWrapper = styled.div`
-  margin-bottom: 10px;
+const Col = styled.div`
+  margin: 0 10px;
+  flex: 0 0 250px;
 `;
 
-const Title = ({ title, subtitle }) => (
-  <TitleWrapper className={styles.Title}>
-    <h1>{title}</h1>
-    {subtitle && <h4>{subtitle}</h4>}
-  </TitleWrapper>
-);
-
-Title.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
-};
-
-Title.defaultProps = {
-  subtitle: null,
-};
-
-export default Title;
+export default Col;

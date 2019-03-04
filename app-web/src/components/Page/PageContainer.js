@@ -15,29 +15,15 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React from 'react';
-import PropTypes from 'prop-types';
+/**
+ * contains the filter menu, and searchbar/cards container
+ */
 import styled from '@emotion/styled';
-import styles from './Title.module.css';
 
-const TitleWrapper = styled.div`
-  margin-bottom: 10px;
+const PageContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 `;
 
-const Title = ({ title, subtitle }) => (
-  <TitleWrapper className={styles.Title}>
-    <h1>{title}</h1>
-    {subtitle && <h4>{subtitle}</h4>}
-  </TitleWrapper>
-);
-
-Title.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
-};
-
-Title.defaultProps = {
-  subtitle: null,
-};
-
-export default Title;
+export default PageContainer;

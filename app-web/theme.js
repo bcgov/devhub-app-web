@@ -40,4 +40,16 @@ export default {
     [RESOURCE_TYPES.COLLECTIONS]: '#444',
     [RESOURCE_TYPES.REPOSITORIES]: '#6e5494',
   },
+  padding: {
+    main: {
+      mobile: '10px 12px 0 25px;',
+      desktop: '10px 65px',
+    },
+  },
+  breakpoints: {
+    // specific breakpoints
+    main: {
+      desktop: '@media screen and (min-width: 850px)',
+    },
+  },
 };

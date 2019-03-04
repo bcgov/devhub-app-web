@@ -1,21 +1,21 @@
 import React, { PureComponent } from 'react';
+import { graphql } from 'gatsby';
 import { createStructuredSelector } from 'reselect';
 import queryString from 'query-string';
-import shortid from 'shortid';
 import { connect } from 'react-redux';
-import { REACT_SCROLL } from '../constants/ui';
+import { RESOURCE_TYPES } from '../constants/ui';
 import { flattenGatsbyGraphQL } from '../utils//dataHelpers';
 import * as actions from '../store/actions';
-
-import styles from './index.module.css';
+import { RESOURCE_TYPE_PAGES } from '../messages';
 // components
-import { Flag } from 'flag';
-import { Element } from 'react-scroll';
-import Loading from '../components/UI/Loading/Loading';
+import Filters from '../components/Filters/Filters';
 import Layout from '../hoc/Layout';
-import Cards from '../components/Cards/Cards';
-import Masthead from '../components/Home/Masthead';
-
+import Title from '../components/Page/Title';
+import CardsContainer from '../components/Page/CardsContainer';
+import PageContainer from '../components/Page/PageContainer';
+import Main from '../components/Page/Main';
+import FilterMenu from '../components/Page/FilterMenu';
+import SideDrawer from '../components/SideDrawer/SideDrawer';
 // selectors from reselect
 import {
   selectQuery,
@@ -25,21 +25,27 @@ import {
   selectResourcesLoaded,
   selectResourcesReducerLoading,
   selectGroupedFilteredAvailableResources,
+  selectFilters,
 } from '../store/selectors';
 
-import { SEARCH } from '../messages';
-import withResourceQuery from '../hoc/withResourceQuery';
+import { mapPagePathToResourceTypeConst } from '../utils/helpers';
 
-export class Index extends PureComponent {
+export class ResourceType extends PureComponent {
+  state = {
+    sideDrawerToggled: false,
+  };
+
+  toggleMenu = toggled => this.setState({ sideDrawerToggled: toggled });
+
   componentDidMount() {
     // flatted nodes from graphql
     if (!this.props.resourcesLoaded) {
-      // note this.props.data is received from the withResourceQuery Component
       const resources = flattenGatsbyGraphQL(this.props.data.allDevhubSiphon.edges);
       this.props.loadResources(resources);
     }
-    // reset resource type to null since index page views all index pages
-    this.props.setResourceType(null);
+    // page context comes from the dynamic create page routine. see gatsby/createPages.js
+    // and https://www.gatsbyjs.org/docs/programmatically-create-pages-from-data/#programmatically-create-pages-from-data
+    this.props.setResourceType(this.props.pageContext.resourceType);
   }
 
   componentDidUpdate() {
@@ -98,42 +104,96 @@ export class Index extends PureComponent {
       resourcesByType,
       searchResultsLength,
       setSearchBarTerms,
-      searchWordLength,
+      filters,
+      query,
+      pageContext, // received from gatsby create pages api, view gatsby/createPages.js for more info
     } = this.props;
-    // const groupedByResourceTypee =
-    const SiphonResources = Object.keys(resourcesByType).map(resourceType => {
-      const resources = resourcesByType[resourceType].map(r => ({
-        type: r.resource.type,
-        title: r.unfurl.title,
-        description: r.unfurl.description,
-        image: r.unfurl.image,
-        path: r.resource.path,
-      }));
-      return <Cards key={shortid.generate()} topic={resourceType} cards={resources} />;
-    });
+
+    const resources = resourcesByType[RESOURCE_TYPES[pageContext.resourceTypeConst]].map(r => ({
+      type: r.resource.type,
+      title: r.unfurl.title,
+      description: r.unfurl.description,
+      image: r.unfurl.image,
+      path: r.resource.path,
+    }));
+
     return (
       <Layout showHamburger>
-        <div>
-          <Masthead setSearchBarTerms={setSearchBarTerms} />
-          <main role="main" className={styles.Main}>
-            {this.props.loading ? (
-              <Loading message="Loading..." />
-            ) : searchResultsLength === 0 && searchWordLength > 0 ? (
-              <p>{SEARCH.results.empty.defaultMessage}</p>
-            ) : (
-              <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
-                {/* Element used for react-scroll targeting */}
-                <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
-              </Element>
-            )}
-          </main>
-        </div>
+        <Main role="main">
+          <Title
+            title={RESOURCE_TYPE_PAGES[pageContext.resourceType].header.title.defaultMessage}
+            subtitle={RESOURCE_TYPE_PAGES[pageContext.resourceType].header.subtitle.defaultMessage}
+          />
+          <PageContainer>
+            <FilterMenu filters={filters} />
+            <CardsContainer
+              searchResultsEmpty={query !== null && searchResultsLength === 0}
+              pagePath={this.props.location.pathname}
+              resources={resources}
+              setSearchBarTerms={setSearchBarTerms}
+              openSideDrawer={() => this.toggleMenu(true)}
+            />
+          </PageContainer>
+        </Main>
+        <SideDrawer
+          show={this.state.sideDrawerToggled}
+          closeDrawer={() => this.toggleMenu(false)}
+          title="Filters"
+        >
+          <Filters filters={filters} />
+        </SideDrawer>
       </Layout>
     );
   }
 }
 
+export const resourceQuery2 = graphql`
+  query resourceQuery2 {
+    allDevhubSiphon {
+      edges {
+        node {
+          id
+          name
+          owner
+          parent {
+            id
+          }
+          _metadata {
+            position
+          }
+          attributes {
+            personas
+          }
+          source {
+            displayName
+            sourcePath
+            type
+            name
+          }
+          resource {
+            path
+            type
+          }
+          unfurl {
+            title
+            description
+            type
+            image
+            author
+          }
+          childMarkdownRemark {
+            frontmatter {
+              pageOnly
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 const mapStateToProps = createStructuredSelector({
+  filters: selectFilters,
   resourcesLoaded: selectResourcesLoaded,
   query: selectQuery,
   loading: selectResourcesReducerLoading,
@@ -157,4 +217,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withResourceQuery(Index)());
+)(ResourceType);

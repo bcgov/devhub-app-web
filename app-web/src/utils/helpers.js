@@ -18,6 +18,7 @@ Created by Patrick Simonian
 
 import { GITHUB_URL } from '../constants/api';
 import { TypeCheck } from '@bcgov/common-web-utils';
+import { RESOURCE_TYPES } from '../constants/ui';
 
 export const getGithubRepoRoute = (repository, owner) => `${GITHUB_URL}/${owner}/${repository}`;
 
@@ -43,4 +44,17 @@ export const getGithubAvatarFromUsername = (username, size) => {
   }
   const sizeParam = size ? `?size=${size}` : '';
   return `${getGithubUsernameURL(username)}.png${sizeParam}`;
+};
+
+/**
+ * gets the constant resource type related to a page path
+ * @param {String} pathname
+ * @returns {String} the resource type
+ */
+export const mapPagePathToResourceTypeConst = pathname => {
+  // remove all non word characters
+  // path name should come in as '/components' etc
+  const trimmedPath = pathname.replace(/[^\w]+/g, '');
+  // conver to upper case so we can access resource type enum properties
+  return RESOURCE_TYPES[trimmedPath.toUpperCase()];
 };

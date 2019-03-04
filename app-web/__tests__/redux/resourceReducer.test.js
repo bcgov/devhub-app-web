@@ -20,6 +20,7 @@ import defaultFilters from '../../src/constants/filterGroups';
 import * as actions from '../../src/store/actions';
 import { SIPHON_NODES_MAP, SIPHON_NODES } from '../../__fixtures__/siphon-fixtures';
 import { LUNR_SEARCH_RESULTS_2 } from '../../__fixtures__/lunr';
+import { RESOURCE_TYPES } from '../../src/constants/ui';
 
 describe('resources reducer', () => {
   const initialState = {
@@ -32,6 +33,7 @@ describe('resources reducer', () => {
       allIds: [],
     },
     resourcesLoaded: false,
+    resourceType: null,
     query: null,
     searchBarTerms: '',
     searchResults: {},
@@ -202,7 +204,7 @@ describe('resources reducer', () => {
 
     const newFilter = applyPropsToFilterByResourceCount(personaFilter, SIPHON_NODES);
 
-    // manually reduce the amount of available resources within the collections
+    // manually reduce the amount of available resources within the siphon nodes
     const availableResources = SIPHON_NODES.reduce((acc, node) => {
       return acc + node.attributes.personas.some(p => p === personaFilter.value);
     }, 0);
@@ -214,6 +216,19 @@ describe('resources reducer', () => {
     const personaFilter = { ...defaultFilters[0], isFilterable: false };
     const newFilter = applyPropsToFilterByResourceCount(personaFilter, SIPHON_NODES);
     expect(newFilter.isFilterable).toBe(true);
+  });
+
+  it('ignores nodes of the incorrect resource type', () => {
+    const personaFilter = { ...defaultFilters[0] };
+    const newFilter = applyPropsToFilterByResourceCount(personaFilter, SIPHON_NODES);
+    const differentFilter = applyPropsToFilterByResourceCount(
+      personaFilter,
+      SIPHON_NODES,
+      RESOURCE_TYPES.DOCUMENTATION, // only count nodes that have this type
+    );
+
+    // we'd expect the available count to be less
+    expect(newFilter.availableResources).toBeGreaterThan(differentFilter.availableResources);
   });
 
   it('set active to false if count === 0', () => {
@@ -306,5 +321,15 @@ describe('resources reducer', () => {
 
     const newState = reducer(state, actions.resetSearch());
     expect(newState.filters.every(f => f.isFilterable)).toBe(true);
+  });
+
+  it('sets resource type to null when a falsey value or null is passed in', () => {
+    const newState = reducer(initialState, actions.setResourceType(''));
+    expect(newState.resourceType).toBe(null);
+  });
+
+  it('sets resource type when a resource type is passed in', () => {
+    const newState = reducer(initialState, actions.setResourceType(RESOURCE_TYPES.COLLECTIONS));
+    expect(newState.resourceType).toBe(RESOURCE_TYPES.COLLECTIONS);
   });
 });

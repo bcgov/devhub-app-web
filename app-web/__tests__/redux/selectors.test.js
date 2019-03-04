@@ -22,6 +22,7 @@ import groupBy from 'lodash/groupBy';
 import defaultFilters from '../../src/constants/filterGroups';
 import { FILTERED_NODES, SIPHON_NODES, SIPHON_NODES_MAP } from '../../__fixtures__/siphon-fixtures';
 import * as selectors from '../../src/store/selectors';
+import { RESOURCE_TYPES } from '../../src/constants/ui';
 describe('Reselect Selectors', () => {
   const state = {
     ...STATE,
@@ -41,6 +42,7 @@ describe('Reselect Selectors', () => {
         },
         allIds: ['1'],
       },
+      resourceType: null,
       resourcesLoaded: false,
       query: null,
       searchBarTerms: '',
@@ -124,8 +126,16 @@ describe('Reselect Selectors', () => {
   });
 
   it('groups available resources by their resource type', () => {
+    const defaultGroupings = Object.keys(RESOURCE_TYPES).reduce((obj, type) => {
+      obj[RESOURCE_TYPES[type]] = [];
+      return obj;
+    }, {});
+
     const groupedResources = groupBy(SIPHON_NODES, 'resource.type');
-    expect(selectors.selectGroupedFilteredAvailableResources(state)).toEqual(groupedResources);
+    expect(selectors.selectGroupedFilteredAvailableResources(state)).toEqual({
+      ...defaultGroupings,
+      ...groupedResources,
+    });
   });
 
   it('returns the query', () => {
@@ -134,6 +144,16 @@ describe('Reselect Selectors', () => {
 
   it('returns the search results length', () => {
     expect(selectors.selectSearchResultsLength(state)).toEqual(
+      Object.keys(state.resources.searchResults).length,
+    );
+  });
+
+  it('returns the search results length for a set resource type', () => {
+    const stateWithResourceType = {
+      ...state,
+      resources: { ...state.resources, resourceType: RESOURCE_TYPES.DOCUMENTATION },
+    };
+    expect(selectors.selectSearchResultsLength(stateWithResourceType)).toBeLessThan(
       Object.keys(state.resources.searchResults).length,
     );
   });

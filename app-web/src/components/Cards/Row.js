@@ -15,29 +15,16 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React from 'react';
-import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import styles from './Title.module.css';
-
-const TitleWrapper = styled.div`
-  margin-bottom: 10px;
+// represent the flexible row card columns sit in
+const Row = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  @media (min-width: 810px) {
+    justify-content: start;
+    }
+  }
 `;
 
-const Title = ({ title, subtitle }) => (
-  <TitleWrapper className={styles.Title}>
-    <h1>{title}</h1>
-    {subtitle && <h4>{subtitle}</h4>}
-  </TitleWrapper>
-);
-
-Title.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
-};
-
-Title.defaultProps = {
-  subtitle: null,
-};
-
-export default Title;
+export default Row;

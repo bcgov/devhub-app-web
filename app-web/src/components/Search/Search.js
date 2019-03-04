@@ -37,21 +37,22 @@ export class Search extends Component {
 
   handleKeyUp = e => {
     // if enter was pressed
-    if (e.target.value.trim().length === 0 && this.state.touched) {
+    const terms = e.target.value;
+    if (terms === 0 && this.state.touched) {
       this.props.onSearchClear();
     }
-    this.setState({ terms: e.target.value });
+    this.setState({ terms });
   };
 
-  search = terms => {
-    this.setState({ terms: '' });
+  search = () => {
     this.props.onSearch(this.state.terms);
+    this.setState({ terms: '' });
   };
 
   render() {
-    const { inputConfig } = this.props;
+    const { inputConfig, css } = this.props;
     return (
-      <div className={styles.Search}>
+      <div className={styles.Search} css={css}>
         <Input
           type="text"
           aria-label={ARIA_LABEL_SEARCH_INPUT}

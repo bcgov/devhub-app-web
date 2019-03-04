@@ -22,10 +22,22 @@
 const { resolve } = require('path');
 const chalk = require('chalk');
 const fs = require('fs');
+const slugify = require('slugify');
+const snakeCase = require('snake-case');
 const {
   SOURCE_TYPES,
   COLLECTION_TEMPLATES,
 } = require('../plugins/gatsby-source-github-all/utils/constants');
+
+const { RESOURCE_TYPES } = require('../plugins/gatsby-source-github-all/utils/constants');
+
+// configuration to generate pages for the resourcetype page template
+const RESOURCE_TYPE_PAGES = [
+  RESOURCE_TYPES.COMPONENTS,
+  RESOURCE_TYPES.DOCUMENTATION,
+  RESOURCE_TYPES.SELF_SERVICE_TOOLS,
+  RESOURCE_TYPES.REPOSITORIES,
+];
 
 const resolvePath = path => resolve(__dirname, path);
 /**
@@ -72,8 +84,27 @@ const getTemplate = (source, collectionTemplate, collectionTemplateFilePath = nu
   return templatePath;
 };
 
+/**
+ * Creates all common resource type views
+ * @param {Function} createPage the gatsby createpage function
+ */
+const createResourceTypePages = createPage => {
+  const template = resolvePath('../src/templates/resourceType.js');
+  RESOURCE_TYPE_PAGES.forEach(type => {
+    createPage({
+      path: slugify(type.toLowerCase()),
+      context: {
+        resourceTypeConst: snakeCase(type).toUpperCase(),
+        resourceType: type,
+      },
+      component: template,
+    });
+  });
+};
+
 module.exports = async ({ graphql, actions }) => {
   const { createPage } = actions;
+  createResourceTypePages(createPage);
   // main graphql query here
   const devhubData = await graphql(`
     {

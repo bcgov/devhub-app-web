@@ -8,61 +8,56 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     className="largeOnly"
   >
     <li
-      key="0"
+      key="/"
     >
       <mockConstructor
-        aria-label="Select to filter cards by the resource type"
+        activeClassName="ActiveFilter"
         exact={true}
-        getProps={[Function]}
-        to="?q="
+        to="/"
       >
         All
       </mockConstructor>
     </li>
     <li
-      key="1"
+      key="/components"
     >
       <mockConstructor
-        aria-label="Select to filter cards by the resource type"
+        activeClassName="ActiveFilter"
         exact={true}
-        getProps={[Function]}
-        to="?q=%2BresourceType%3AComponents"
+        to="/components"
       >
         Components
       </mockConstructor>
     </li>
     <li
-      key="2"
+      key="/documentation"
     >
       <mockConstructor
-        aria-label="Select to filter cards by the resource type"
+        activeClassName="ActiveFilter"
         exact={true}
-        getProps={[Function]}
-        to="?q=%2BresourceType%3ADocumentation"
+        to="/documentation"
       >
         Documentation
       </mockConstructor>
     </li>
     <li
-      key="3"
+      key="/self-service-tools"
     >
       <mockConstructor
-        aria-label="Select to filter cards by the resource type"
+        activeClassName="ActiveFilter"
         exact={true}
-        getProps={[Function]}
-        to="?q=%2BresourceType%3ASelf-Service%20Tools"
+        to="/self-service-tools"
       >
         Self-Service Tools
       </mockConstructor>
     </li>
     <li
-      key="4"
+      key="/repositories"
     >
       <mockConstructor
-        aria-label="Select to filter cards by the resource type"
+        activeClassName="ActiveFilter"
         exact={true}
-        getProps={[Function]}
-        to="?q=%2BresourceType%3ARepositories"
+        to="/repositories"
       >
         Repositories
       </mockConstructor>
