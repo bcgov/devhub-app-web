@@ -29,7 +29,7 @@ export const HOME = {
     subtitle: {
       id: 'HOME.header.subtitle',
       defaultMessage:
-        'Find resources for digital product teams to learn new sklls, discover tools and resources, and connect with the developer community',
+        'Find resources for digital product teams to learn new skills, discover tools and resources, and connect with the developer community',
     },
   },
 };
