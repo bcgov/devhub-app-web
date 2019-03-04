@@ -10,6 +10,7 @@ import { RESOURCE_TYPE_PAGES } from '../messages';
 // components
 import Filters from '../components/Filters/Filters';
 import Layout from '../hoc/Layout';
+import withResourceQuery from '../hoc/withResourceQuery';
 import Title from '../components/Page/Title';
 import CardsContainer from '../components/Page/CardsContainer';
 import PageContainer from '../components/Page/PageContainer';
@@ -40,8 +41,10 @@ export class ResourceType extends PureComponent {
   componentDidMount() {
     // flatted nodes from graphql
     if (!this.props.resourcesLoaded) {
+      const collections = flattenGatsbyGraphQL(this.props.data.allDevhubSiphonCollection.edges);
+      // note this.props.data is received from the withResourceQuery Component
       const resources = flattenGatsbyGraphQL(this.props.data.allDevhubSiphon.edges);
-      this.props.loadResources(resources);
+      this.props.loadResources(resources, collections);
     }
     // page context comes from the dynamic create page routine. see gatsby/createPages.js
     // and https://www.gatsbyjs.org/docs/programmatically-create-pages-from-data/#programmatically-create-pages-from-data
@@ -147,51 +150,6 @@ export class ResourceType extends PureComponent {
   }
 }
 
-export const resourceQuery2 = graphql`
-  query resourceQuery2 {
-    allDevhubSiphon {
-      edges {
-        node {
-          id
-          name
-          owner
-          parent {
-            id
-          }
-          _metadata {
-            position
-          }
-          attributes {
-            personas
-          }
-          source {
-            displayName
-            sourcePath
-            type
-            name
-          }
-          resource {
-            path
-            type
-          }
-          unfurl {
-            title
-            description
-            type
-            image
-            author
-          }
-          childMarkdownRemark {
-            frontmatter {
-              pageOnly
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
 const mapStateToProps = createStructuredSelector({
   filters: selectFilters,
   resourcesLoaded: selectResourcesLoaded,
@@ -205,7 +163,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadResources: resources => dispatch(actions.loadResources(resources)),
+    loadResources: (resources, collections) =>
+      dispatch(actions.loadResources(resources, collections)),
     setSearchResults: results => dispatch(actions.setSearchResults(results)),
     setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
     setSearchBarTerms: resourceType => dispatch(actions.setSearchBarTerms(resourceType)),
@@ -217,4 +176,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ResourceType);
+)(withResourceQuery(ResourceType)());
