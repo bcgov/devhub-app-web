@@ -70,16 +70,17 @@ const CardsContent = (loading, searchResultsEmpty, resources) => {
 
 const SearchContainer = styled.div`
   padding: 0 5px;
-  margin-bottom: 15px;
-  max-width: 415px;
   margin-left: 5px;
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.sm} {
+    max-width: 415px;
+  }
 `;
 
 const FilterSideDrawerToggle = styled.div`
   background-color: #fafafa;
   border: 1px solid #ccc;
   padding: 10px;
-  margin: 10px 5px 0;
+  margin: 10px 5px 5px;
   display: block;
   ${EMOTION_BOOTSTRAP_BREAKPOINTS.sm} {
     display: none;
