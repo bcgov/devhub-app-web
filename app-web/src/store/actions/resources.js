@@ -17,10 +17,11 @@ Created by Patrick Simonian
 */
 import * as actionTypes from './actionTypes';
 
-export const loadResources = resources => ({
+export const loadResources = (resources, collections) => ({
   type: actionTypes.LOAD_RESOURCES,
   payload: {
     resources,
+    collections,
   },
 });
 

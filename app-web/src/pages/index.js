@@ -34,9 +34,10 @@ export class Index extends PureComponent {
   componentDidMount() {
     // flatted nodes from graphql
     if (!this.props.resourcesLoaded) {
+      const collections = flattenGatsbyGraphQL(this.props.data.allDevhubSiphonCollection.edges);
       // note this.props.data is received from the withResourceQuery Component
       const resources = flattenGatsbyGraphQL(this.props.data.allDevhubSiphon.edges);
-      this.props.loadResources(resources);
+      this.props.loadResources(resources, collections);
     }
     // reset resource type to null since index page views all index pages
     this.props.setResourceType(null);

@@ -13,7 +13,7 @@ Created by Patrick Simonian
 */
 import * as actions from '../../src/store/actions';
 import * as actionTypes from '../../src/store/actions/actionTypes';
-import { SIPHON_NODES } from '../../__fixtures__/siphon-fixtures';
+import { SIPHON_NODES, COLLECTIONS } from '../../__fixtures__/siphon-fixtures';
 import { LUNR_SEARCH_RESULTS_2 } from '../../__fixtures__/lunr';
 import defaultFilters from '../../src/constants/filterGroups';
 
@@ -23,10 +23,11 @@ describe('actions', () => {
       type: actionTypes.LOAD_RESOURCES,
       payload: {
         resources: SIPHON_NODES,
+        collections: COLLECTIONS,
       },
     };
 
-    expect(actions.loadResources(SIPHON_NODES)).toEqual(expected);
+    expect(actions.loadResources(SIPHON_NODES, COLLECTIONS)).toEqual(expected);
   });
 
   it('should create an action to add a filter group to filters list', () => {
