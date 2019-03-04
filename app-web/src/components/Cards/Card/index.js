@@ -21,6 +21,7 @@ import styled from '@emotion/styled';
 import { Link } from '../../UI/Link';
 import DotDotDot from 'react-dotdotdot';
 import Image from 'react-image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const CardLinkWrapper = styled(Link)`
   text-decoration: none;
@@ -34,7 +35,7 @@ export const CardLinkWrapper = styled(Link)`
 
 export const DecorativeBar = styled.div`
   background-color: ${props => props.theme.colors[props.type]};
-  height: 10px;
+  flex: 0 0 10px;
 `;
 
 export const CardWrapper = styled.article`
@@ -98,4 +99,38 @@ export const CardBody = styled.div`
   height: 100%;
   display: flex;
   flex-flow: column nowrap;
+`;
+
+export const CircleIconWrapper = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: relative;
+  background-color: ${props => props.theme.colors[props.type]};
+  color: #fff;
+  font-size: 25px;
+`;
+export const CircleIcon = styled(FontAwesomeIcon)`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+`;
+export const ResourceCountGroup = styled.li`
+  display: flex;
+  align-items: center;
+  flex-wrap: no-wrap;
+  flex: 1 0 50%;
+`;
+
+export const ResourceCountTitle = styled.span`
+  margin-left: 10px;
+`;
+
+export const ResourceCounts = styled.ul`
+  display: flex;
+  flex-flow: row wrap;
+  padding: 6px 10px;
+  margin: 0;
+  flex: 0 0 50%;
 `;

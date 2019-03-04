@@ -15,6 +15,7 @@ import Loading from '../components/UI/Loading/Loading';
 import Layout from '../hoc/Layout';
 import Cards from '../components/Cards/Cards';
 import Masthead from '../components/Home/Masthead';
+import CollectionCard from '../components/Cards/Card/Collection';
 
 // selectors from reselect
 import {
