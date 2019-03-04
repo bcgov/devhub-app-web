@@ -18,13 +18,22 @@ Created by Patrick Simonian
 import reducer, { applyPropsToFilterByResourceCount } from '../../src/store/reducers/resources';
 import defaultFilters from '../../src/constants/filterGroups';
 import * as actions from '../../src/store/actions';
-import { SIPHON_NODES_MAP, SIPHON_NODES } from '../../__fixtures__/siphon-fixtures';
+import {
+  SIPHON_NODES_MAP,
+  SIPHON_NODES,
+  COLLECTIONS_MAP,
+  COLLECTIONS,
+} from '../../__fixtures__/siphon-fixtures';
 import { LUNR_SEARCH_RESULTS_2 } from '../../__fixtures__/lunr';
 import { RESOURCE_TYPES } from '../../src/constants/ui';
 
 describe('resources reducer', () => {
   const initialState = {
     resources: {
+      byId: {},
+      allIds: [],
+    },
+    collections: {
       byId: {},
       allIds: [],
     },
@@ -56,13 +65,20 @@ describe('resources reducer', () => {
       byId: SIPHON_NODES_MAP.map,
       allIds: SIPHON_NODES_MAP.all,
     };
-    const newState = reducer(initialState, actions.loadResources(SIPHON_NODES));
+
+    const collections = {
+      byId: COLLECTIONS_MAP.map,
+      allIds: COLLECTIONS_MAP.all,
+    };
+
+    const newState = reducer(initialState, actions.loadResources(SIPHON_NODES, COLLECTIONS));
     expect(newState.resources).toEqual(resources);
     expect(newState.availableResources).toEqual(availableResources);
+    expect(newState.collections).toEqual(collections);
   });
 
   it('should set resourcesLoaded to true when resource are loaded', () => {
-    const newState = reducer(initialState, actions.loadResources(SIPHON_NODES));
+    const newState = reducer(initialState, actions.loadResources(SIPHON_NODES, COLLECTIONS));
     expect(newState.resourcesLoaded).toBe(true);
   });
 
@@ -72,7 +88,7 @@ describe('resources reducer', () => {
       filters: defaultFilters.map(f => ({ ...f, isFilterable: false })),
     };
 
-    const newState = reducer(state, actions.loadResources(SIPHON_NODES));
+    const newState = reducer(state, actions.loadResources(SIPHON_NODES, COLLECTIONS));
 
     expect(newState.filters.every(f => f.isFilterable)).toBe(true);
   });

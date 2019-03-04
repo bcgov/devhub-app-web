@@ -272,17 +272,7 @@ export const DESIGN_SYSTEM_COLLECTION = {
   type: 'default',
   title: 'Design System',
   description: 'baz',
-  nodes: DESIGN_SYSTEM_NODES,
-};
-
-export const DESIGN_SYSTEM_COLLECTION_SORTED = {
-  id: IDS.DESIGN_SYSTEM,
-  type: 'default',
-  title: 'Design System',
-  description: 'baz',
-  nodes: DESIGN_SYSTEM_NODES.sort((a, b) =>
-    a._metadata.position.localeCompare(b._metadata.position),
-  ),
+  resources: DESIGN_SYSTEM_NODES.map(n => n.id),
 };
 
 export const DEVHUB_COLLECTION = {
@@ -290,7 +280,7 @@ export const DEVHUB_COLLECTION = {
   type: 'default',
   title: 'Devhub',
   description: 'baz',
-  nodes: DEVHUB_NODES,
+  resources: DEVHUB_NODES.map(n => n.id),
 };
 
 export const SIPHON_NODES = DESIGN_SYSTEM_NODES.concat(DEVHUB_NODES);
@@ -301,19 +291,7 @@ export const FILTERED_NODES = SIPHON_NODES.filter(
 );
 
 export const COLLECTIONS = [DESIGN_SYSTEM_COLLECTION, DEVHUB_COLLECTION];
-export const SORTED_COLLECTIONS = [DESIGN_SYSTEM_COLLECTION_SORTED, DEVHUB_COLLECTION];
-// creating a set of filtered collections where there aren't any developers
-export const FILTERED_COLLECTIONS = SORTED_COLLECTIONS.map(collection => ({
-  ...collection,
-  nodes: collection.nodes
-    .filter(node => node.attributes.personas[0] === 'Developer')
-    .map(node => ({
-      title: node.unfurl.title,
-      description: node.unfurl.description,
-      image: node.unfurl.image,
-      path: node.resource.path,
-      type: node.resource.type,
-    })),
-}));
 
 export const SIPHON_NODES_MAP = arrayToMapByProp(SIPHON_NODES, 'id');
+
+export const COLLECTIONS_MAP = arrayToMapByProp(COLLECTIONS, 'id');

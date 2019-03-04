@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import groupBy from 'lodash/groupBy';
 import { Index } from '../../src/pages/index';
 import { DEFAULT_FILTER_GROUPS } from '../../__fixtures__/redux-fixtures';
-import { SIPHON_NODES } from '../../__fixtures__/siphon-fixtures';
+import { SIPHON_NODES, COLLECTIONS } from '../../__fixtures__/siphon-fixtures';
 jest.mock('react-spinners', () => null);
 
 describe('Index Container', () => {
@@ -14,9 +14,13 @@ describe('Index Container', () => {
     // so we map it to resemble what graphql would do when passing the data attribute into
     // this component
     const nodes = SIPHON_NODES.map(c => ({ node: c }));
+    const collections = COLLECTIONS.map(c => ({ node: c }));
     const data = {
       allDevhubSiphon: {
         edges: nodes,
+      },
+      allDevhubSiphonCollection: {
+        edges: collections,
       },
     };
     // mocking redux actions

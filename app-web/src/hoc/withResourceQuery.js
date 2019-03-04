@@ -26,6 +26,18 @@ const withResourceQuery = WrappedComponent => () => props => (
   <StaticQuery
     query={graphql`
       query resourceQuery {
+        allDevhubSiphonCollection {
+          edges {
+            node {
+              id
+              name
+              description
+              resources: childrenDevhubSiphon {
+                id
+              }
+            }
+          }
+        }
         allDevhubSiphon {
           edges {
             node {

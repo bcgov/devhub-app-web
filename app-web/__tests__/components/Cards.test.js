@@ -5,11 +5,11 @@ import { COLLECTIONS } from '../../__fixtures__/siphon-fixtures';
 
 describe('Card Component', () => {
   const CARDS = {
-    DEFAULT: COLLECTIONS[0].nodes[0],
-    REPOSITORY: COLLECTIONS[0].nodes[0],
-    SELF_SERVICE: COLLECTIONS[0].nodes[0],
-    COMPONENT: COLLECTIONS[0].nodes[0],
-    DOCUMENT: COLLECTIONS[0].nodes[0],
+    DEFAULT: COLLECTIONS[0].resources[0],
+    REPOSITORY: COLLECTIONS[0].resources[0],
+    SELF_SERVICE: COLLECTIONS[0].resources[0],
+    COMPONENT: COLLECTIONS[0].resources[0],
+    DOCUMENT: COLLECTIONS[0].resources[0],
   };
 
   it('matches snapshot', () => {

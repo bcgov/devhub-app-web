@@ -34,9 +34,10 @@ export class Index extends PureComponent {
   componentDidMount() {
     // flatted nodes from graphql
     if (!this.props.resourcesLoaded) {
+      const collections = flattenGatsbyGraphQL(this.props.data.allDevhubSiphonCollection.edges);
       // note this.props.data is received from the withResourceQuery Component
       const resources = flattenGatsbyGraphQL(this.props.data.allDevhubSiphon.edges);
-      this.props.loadResources(resources);
+      this.props.loadResources(resources, collections);
     }
     // reset resource type to null since index page views all index pages
     this.props.setResourceType(null);
@@ -145,7 +146,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadResources: resources => dispatch(actions.loadResources(resources)),
+    loadResources: (resources, collections) =>
+      dispatch(actions.loadResources(resources, collections)),
     setSearchResults: results => dispatch(actions.setSearchResults(results)),
     setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
     setSearchBarTerms: resourceType => dispatch(actions.setSearchBarTerms(resourceType)),

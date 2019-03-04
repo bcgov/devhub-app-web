@@ -29,6 +29,10 @@ const initialState = {
     byId: {},
     allIds: [],
   },
+  collections: {
+    byId: {},
+    allIds: [],
+  },
   availableResources: {
     byId: {},
     allIds: [],
@@ -165,15 +169,21 @@ const resetFilters = state => {
 /**
  * @param {Object} state
  * @param {Array} resources the list of resources
+ * @param {Array} collections the list of collections
  * @returns {Object} the next state
  */
-const loadResources = (state, resources) => {
+const loadResources = (state, resources, collections) => {
   // convert resources list to a map by {id: item} key value pairs
   const resourceMap = arrayToMapByProp(resources, 'id');
   // secondary clone for available resources
   const availableResourceMap = arrayToMapByProp(resources, 'id');
+  const collectionsMap = arrayToMapByProp(collections, 'id');
   return {
     ...state,
+    collections: {
+      byId: collectionsMap.map,
+      allIds: collectionsMap.all,
+    },
     resources: {
       byId: resourceMap.map,
       allIds: resourceMap.all,
@@ -268,7 +278,7 @@ const resetSearch = state => {
 const resourcesReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOAD_RESOURCES:
-      return loadResources(state, action.payload.resources);
+      return loadResources(state, action.payload.resources, action.payload.collections);
     case actionTypes.ADD_FILTER:
       return addFilter(state, action.payload.key);
     case actionTypes.REMOVE_FILTER:
@@ -285,9 +295,9 @@ const resourcesReducer = (state = initialState, action) => {
       return resetSearch(state);
     case actionTypes.SET_RESOURCE_TYPE:
       const { type } = action.payload;
-      // type may be coming in from the page path /components etc
-      // convert to upper case so we can get the constant value from the resource types enum
-      // if typpe is from index page we will reset type to be null
+      // if there is on type set it to initial. this must mean we are on the index page
+      // setting resource type is essentially a big 'filter' we don't maintain state of all the
+      // different permutations of groupings and instead do some filtering using reselect
       const resourceType = type === '' || type === null ? initialState.resourceType : type;
       return { ...state, resourceType };
     default:
