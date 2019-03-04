@@ -30,3 +30,10 @@ export {
   selectSearchWordLength,
   selectResourcesReducerLoading,
 } from './resources';
+export { resourcesSelector } from './main';
+export {
+  selectCollections,
+  selectCollectionsWithResources,
+  selectCollectionsWithResourcesGroupedByType,
+  selectLandingPageForCollection,
+} from './collection';

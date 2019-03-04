@@ -20,7 +20,13 @@ Created by Patrick Simonian
 import { STATE } from '../../__fixtures__/redux-fixtures';
 import groupBy from 'lodash/groupBy';
 import defaultFilters from '../../src/constants/filterGroups';
-import { FILTERED_NODES, SIPHON_NODES, SIPHON_NODES_MAP } from '../../__fixtures__/siphon-fixtures';
+import {
+  FILTERED_NODES,
+  SIPHON_NODES,
+  SIPHON_NODES_MAP,
+  COLLECTIONS,
+  COLLECTIONS_MAP,
+} from '../../__fixtures__/siphon-fixtures';
 import * as selectors from '../../src/store/selectors';
 import { RESOURCE_TYPES } from '../../src/constants/ui';
 describe('Reselect Selectors', () => {
@@ -32,6 +38,10 @@ describe('Reselect Selectors', () => {
       },
     },
     resources: {
+      collections: {
+        byId: COLLECTIONS_MAP.map,
+        allIds: COLLECTIONS_MAP.all,
+      },
       resources: {
         byId: SIPHON_NODES_MAP.map,
         allIds: SIPHON_NODES_MAP.all,
@@ -168,5 +178,29 @@ describe('Reselect Selectors', () => {
 
   it('returns siphons loading indicator', () => {
     expect(selectors.selectResourcesReducerLoading(state)).toEqual(state.resources.loading);
+  });
+
+  it('returns collections', () => {
+    expect(selectors.selectCollections(state)).toEqual(COLLECTIONS);
+  });
+
+  it('returns collections with resources', () => {
+    const collectionsWithResources = selectors.selectCollectionsWithResources(state);
+    const collection1Nodes = SIPHON_NODES.filter(
+      node => node.parent.id === collectionsWithResources[0].id,
+    );
+    // we'd expect collections to have resources instead of ids
+    expect(collectionsWithResources[0].resources).toEqual(collection1Nodes);
+  });
+
+  it('returns collections with resources grouped by type', () => {
+    const collectionWithGroupedResources = selectors.selectCollectionsWithResourcesGroupedByType(
+      state,
+    );
+    const collection1Nodes = groupBy(
+      SIPHON_NODES.filter(node => node.parent.id === collectionWithGroupedResources[0].id),
+      'resource.type',
+    );
+    expect(collectionWithGroupedResources[0].resources).toEqual(collection1Nodes);
   });
 });
