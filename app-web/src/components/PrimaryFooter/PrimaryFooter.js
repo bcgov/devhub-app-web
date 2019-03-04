@@ -25,7 +25,18 @@ const PrimaryFooter = () => (
   <footer className={classes.PrimaryFooter}>
     <div className={classes.Container}>
       <NavigationItems items={FOOTER_NAVIGATION} />
-      <img src={devexLogo} alt="Government Of BC" style={{ margin: 0, maxHeight: '50px' }} />
+      <a
+        href="https://bcdevexchange.org"
+        title="BC Dev Exchange"
+        aria-label="View the BC Dev Exchange Organization"
+        style={{
+          display: 'inline-block',
+          margin: '0 5px',
+          width: '50px',
+        }}
+      >
+        <img src={devexLogo} alt="Government Of BC" style={{ margin: 0, maxHeight: '50px' }} />
+      </a>
     </div>
   </footer>
 );
