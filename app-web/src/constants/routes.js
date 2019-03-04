@@ -34,13 +34,6 @@ export const FOOTER_NAVIGATION = [
     to: HOME_ROUTE,
     text: 'home',
   },
-];
-
-export const FOOTER_NAVIGATION = [
-  {
-    to: HOME_ROUTE,
-    text: 'home',
-  },
   {
     to: DISCLAIMER_ROUTE,
     text: 'disclaimer',
