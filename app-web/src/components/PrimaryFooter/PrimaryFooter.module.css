@@ -14,20 +14,20 @@
 }
 
 .Container {
-    height: 50px;
     display: flex;
     align-items: center;
 }
 
 .Container ul {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     flex-grow: 1;
 }
 
 .Container ul li {
     padding: 0 5px;
     text-align: center;
+    margin-bottom: 0;
 }
 
 .Container ul li:nth-child(n + 2) {
