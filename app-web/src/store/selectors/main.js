@@ -16,17 +16,9 @@ limitations under the License.
 Created by Patrick Simonian
 */
 
-export {
-  selectResources,
-  selectFilters,
-  selectActiveFilters,
-  selectResourcesLoaded,
-  selectAvailableResources,
-  selectFilteredAvailableResources,
-  selectGroupedFilteredAvailableResources,
-  selectQuery,
-  selectSearchResultsLength,
-  selectTotalResources,
-  selectSearchWordLength,
-  selectResourcesReducerLoading,
-} from './resources';
+/**
+ * the main state selectors which are passed to other reselect selector compositions
+ */
+export const resourcesSelector = state => state.resources;
+export const historySelector = state => state.history;
+export const uiSelector = state => state.ui;
