@@ -293,3 +293,5 @@ export const FILTERED_NODES = SIPHON_NODES.filter(
 export const COLLECTIONS = [DESIGN_SYSTEM_COLLECTION, DEVHUB_COLLECTION];
 
 export const SIPHON_NODES_MAP = arrayToMapByProp(SIPHON_NODES, 'id');
+
+export const COLLECTIONS_MAP = arrayToMapByProp(COLLECTIONS, 'id');
