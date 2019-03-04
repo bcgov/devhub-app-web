@@ -37,6 +37,16 @@ exports[`Primary Footer Component it matches snapshot 1`] = `
         ]
       }
     />
+    <img
+      alt="Government Of BC"
+      src="devex.svg"
+      style={
+        Object {
+          "margin": 0,
+          "maxHeight": "50px",
+        }
+      }
+    />
   </div>
 </footer>
 `;
