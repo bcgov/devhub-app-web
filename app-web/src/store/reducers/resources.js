@@ -295,9 +295,9 @@ const resourcesReducer = (state = initialState, action) => {
       return resetSearch(state);
     case actionTypes.SET_RESOURCE_TYPE:
       const { type } = action.payload;
-      // type may be coming in from the page path /components etc
-      // convert to upper case so we can get the constant value from the resource types enum
-      // if typpe is from index page we will reset type to be null
+      // if there is on type set it to initial. this must mean we are on the index page
+      // setting resource type is essentially a big 'filter' we don't maintain state of all the
+      // different permutations of groupings and instead do some filtering using reselect
       const resourceType = type === '' || type === null ? initialState.resourceType : type;
       return { ...state, resourceType };
     default:
