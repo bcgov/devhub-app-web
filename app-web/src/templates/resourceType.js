@@ -5,6 +5,7 @@ import queryString from 'query-string';
 import { connect } from 'react-redux';
 import { RESOURCE_TYPES } from '../constants/ui';
 import { flattenGatsbyGraphQL } from '../utils//dataHelpers';
+import { getSearchResults } from '../utils/helpers';
 import * as actions from '../store/actions';
 import { RESOURCE_TYPE_PAGES } from '../messages';
 // components
@@ -77,29 +78,7 @@ export class ResourceType extends PureComponent {
    */
   async getSearchResults(query) {
     const lunr = await window.__LUNR__.__loaded;
-    const lunrIndex = lunr.en;
-    let results = [];
-    let searchQuery = `*${query}*`;
-    // attempt to search by parsing query into fields
-    try {
-      results = lunrIndex.index.search(searchQuery);
-    } catch (e) {
-      // if that fails treat query as plain text and attempt search again
-      results = lunrIndex.index.query(function() {
-        this.term(searchQuery);
-      });
-    }
-    // search results is an array of reference keys
-    // we need to map those to the index store to get the actual
-    // node ids
-    const searchResultsMap = results
-      .map(({ ref }) => lunrIndex.store[ref])
-      .reduce((obj, result) => {
-        obj[result.id] = { ...result };
-        return obj;
-      }, {});
-
-    return searchResultsMap;
+    return getSearchResults(query, lunr);
   }
 
   render() {
