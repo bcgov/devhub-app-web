@@ -146,7 +146,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadResources: resources => dispatch(actions.loadResources(resources)),
+    loadResources: (resources, collections) =>
+      dispatch(actions.loadResources(resources, collections)),
     setSearchResults: results => dispatch(actions.setSearchResults(results)),
     setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
     setSearchBarTerms: resourceType => dispatch(actions.setSearchBarTerms(resourceType)),
