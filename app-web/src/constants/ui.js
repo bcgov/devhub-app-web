@@ -1,7 +1,14 @@
 // all User Interface related constants
 import { faComment, faEye, faCodeBranch } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/fontawesome-free-brands';
-import { HOME_ROUTE } from './routes';
+import {
+  HOME_ROUTE,
+  GITHUB_ISSUES_ROUTE,
+  DISCLAIMER_ROUTE,
+  PRIVACY_ROUTE,
+  ACCESSIBILITY_ROUTE,
+  COPYRIGHT_ROUTE,
+} from './routes';
 
 import {
   getGithubIssuesRoute,
@@ -151,6 +158,26 @@ export const FOOTER_NAVIGATION = [
   {
     to: HOME_ROUTE,
     text: 'home',
+  },
+  {
+    to: DISCLAIMER_ROUTE,
+    text: 'disclaimer',
+  },
+  {
+    to: PRIVACY_ROUTE,
+    text: 'privacy',
+  },
+  {
+    to: ACCESSIBILITY_ROUTE,
+    text: 'accessibility',
+  },
+  {
+    to: COPYRIGHT_ROUTE,
+    text: 'copyright',
+  },
+  {
+    to: GITHUB_ISSUES_ROUTE,
+    text: 'contact us',
   },
 ];
 
