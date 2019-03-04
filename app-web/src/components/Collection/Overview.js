@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 import styles from './Overview.module.css';
 
 const Overview = ({ description, title }) => (

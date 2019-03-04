@@ -62,7 +62,7 @@ const CardHeader = ({ type, linksToExternal }) => {
     case RESOURCE_TYPES.SELF_SERVICE_TOOLS:
       icon = faTools;
       break;
-    case RESOURCE_TYPES.COLLECTIONS:
+    case 'Collections':
       icon = faLayerGroup;
       break;
     case RESOURCE_TYPES.REPOSITORIES:
