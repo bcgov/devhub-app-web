@@ -159,7 +159,7 @@ sources:
             url: https://catalogue.data.gov.bc.ca/
             title: BC Data Catalogue
             description: "The BC Data catalogue helps users to find, understand and explore data. The catalogue also provides contact information so that data users can contact Data Custodians for additional information if required."
-  - name: Community Enablers
+  - name: Community Enablers and Events
     description: "Tools that foster collaboration and communication across the BC Gov developer community."
     resourceType: Self-Service Tools
     attributes:
@@ -181,8 +181,28 @@ sources:
             url: https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all
             author: kelpisland
             title: DevOps Commons Yammer Group
-            description: The DevOps Commons Group in the BC Gov Yammer community is focused on growing and evolving the BCGov DevOps community.
+            description: The DevOps Commons Group in the BC Gov Yammer community is an online community focused on growing and evolving the BCGov DevOps community.
             image: https://upload.wikimedia.org/wikipedia/commons/0/09/Yammer_logo.svg
+        - sourceType: 'web'
+          sourceProperties:
+            url: https://www.meetup.com/DevOps-Commons/
+            title: DevOps Commons MeetUp
+            description: The DevOps Commons MeetUp is the in-person fourm focused on growing and evolving the BCGov DevOps community.
+            image: https://secure.meetupstatic.com/photos/event/3/9/f/f/600_471194847.jpeg
+        - sourceType: 'web'
+          sourceProperties:
+            url: https://www.meetup.com/Cloud-Native-Victoria/
+            title: Cloud Native Victoria MeetUp
+            description: Cloud Native Victoria is the official Cloud Native Computing Foundation (CNCF) Meetup group dedicated to building a strong, open, diverse developer community around the Cloud Native platform and technologies in Victoria.
+            image: https://secure.meetupstatic.com/photos/event/4/f/e/6/highres_453200454.jpeg
+        - sourceType: 'github'
+          sourceProperties:
+            resourceType: 'Documentation'
+            url: https://github.com/bcgov/devhub-resources/
+            owner: bcgov
+            repo: devhub-resources
+            files:
+            - resources/community/events.md
   - name: 'Authentication and Authorization'
     description: 'Technical resources related to implementing authentication and authorization in government applications.'
     resourceType: Documentation
@@ -199,6 +219,13 @@ sources:
           title: 'Red Hat Single Sign On (aka KeyCloak)'
           description: "Red Hat Single Sign On is a modern, developer-friendly single sign on solution implementing the OpenID Connect specification as well as SAML.  The BC Gov implementation provides built-in intregration with IDIR, BCeID and GitHub and allow application developers to quickly meet the authentication needs of their applications. Red Hat SSO is the downstream, commercially supported distribution of the open source KeyCloak product."
           image: 'http://design.jboss.org/keycloak/logo/images/keycloak_logo_600px.svg'
+      - sourceType: 'github'
+        sourceProperties:
+          url: https://github.com/bcdevops/openshift-wiki
+          owner: bcdevops
+          repo: openshift-wiki
+          files:
+          - docs/OCP/RequestSSORealm.md
       - sourceType: 'web'
         sourceProperties:
           url: 'https://sminfo.gov.bc.ca/docs/Provincial%20IDIM%20Program%20-%20Building%20SiteMinder%20Integrated%20Apps%202.0.4.pdf'
@@ -207,7 +234,7 @@ sources:
                         BC Governments SiteMinder infrastructure. \n
                         This document is intended for the architects, designers and developers producing web
                         applications that integrate with the IDIM SiteMinder service.'
-  - name: Reusable Components
+  - name: Developer Toy Box
     sourceType: 'github'
     sourceProperties:
       url: https://github.com/BCDevOps/openshift-components/
