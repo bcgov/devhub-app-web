@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Index Container it matches snapshot 1`] = `
+<Connect(Layout)>
+  hello world
+</Connect(Layout)>
+`;

@@ -24,10 +24,10 @@ import * as selectors from '../store/selectors';
 
 import withResourceQuery from '../hoc/withResourceQuery';
 import Layout from '../hoc/Layout';
-class ComponentsPage extends Component {
+export class CollectionsPage extends Component {
   render() {
     return <Layout>hello world</Layout>;
   }
 }
 
-export default ComponentsPage;
+export default withResourceQuery(CollectionsPage)();
