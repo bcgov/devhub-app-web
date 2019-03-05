@@ -36,6 +36,7 @@ export const CardLinkWrapper = styled(Link)`
 export const DecorativeBar = styled.div`
   background-color: ${props => props.theme.colors[props.type]};
   flex: 0 0 10px;
+  min-height: 10px;
 `;
 
 export const CardWrapper = styled.article`

@@ -84,6 +84,7 @@ Card.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   image: PropTypes.string,
+  link: PropTypes.string.isRequired,
 };
 
 Card.defaultProps = {

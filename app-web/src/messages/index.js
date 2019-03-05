@@ -136,7 +136,7 @@ export const RESOURCES = {
       id: 'RESOURCE_TYPES.REPOSITORIES',
       defaultMessage: 'Repository',
     },
-    [RESOURCE_TYPES.COLLECTIONS]: {
+    Collections: {
       id: 'RESOURCE_TYPES.COLLECTIONS',
       defaultMessage: 'Collection',
     },

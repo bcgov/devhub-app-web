@@ -15,29 +15,32 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
+
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from './Link';
 
-import { ChevronLink } from '../UI/Link';
-import styles from './ResourcePreview.module.css';
-// this is a wrapper component that encapsulates cards for collections or other sizes
-const ResourcePreview = ({ title, link, children }) => (
-  <section className={styles.ResourcePreview}>
-    <h2 className={styles.Title}>{title}</h2>
-    {children}
-    <div className={styles.LinkContainer}>
-      <ChevronLink to={link.to}>{link.text}</ChevronLink>
-    </div>
-  </section>
+const StyledLink = styled(Link)`
+  text-decoration: underline;
+  color: ${props => props.theme.colors.link};
+  font-weight: 400;
+  text-transform: capitalize;
+  padding: 0 4px;
+  margin: 0 2px;
+`;
+
+const ChevronLink = ({ to, children }) => (
+  <StyledLink to={to}>
+    {children} <FontAwesomeIcon icon={faChevronRight} />
+  </StyledLink>
 );
 
-ResourcePreview.propTypes = {
-  title: PropTypes.string.isRequired,
-  link: PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    to: PropTypes.string.isRequired,
-  }),
+ChevronLink.propTypes = {
   children: PropTypes.node.isRequired,
+  to: PropTypes.string.isRequired,
 };
 
-export default ResourcePreview;
+export default ChevronLink;

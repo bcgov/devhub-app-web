@@ -69,7 +69,7 @@ const CardHeader = ({ type, linksToExternal }) => {
       icon = faGithub;
       break;
   }
-
+  console.log(type);
   return (
     <div
       css={css`
