@@ -19,6 +19,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import NavigationItem from './NavigationItem/NavigationItem';
+import devexLogo from '../../assets/images/devex.svg';
 import classes from './NavigationItems.module.css';
 
 const NavigationItems = ({ items }) => {
@@ -26,7 +27,24 @@ const NavigationItems = ({ items }) => {
     <NavigationItem to={item.to} text={item.text} key={shortid.generate()} />
   ));
 
-  return <ul className={classes.NavigationItems}>{navigationitems}</ul>;
+  return (
+    <ul className={classes.NavigationItems}>
+      {navigationitems}
+      <li>
+        <a
+          href="https://bcdevexchange.org"
+          title="BC Dev Exchange"
+          aria-label="View the BC Dev Exchange Organization"
+          style={{
+            display: 'inline-block',
+            width: '125px',
+          }}
+        >
+          <img src={devexLogo} alt="Government Of BC" style={{ margin: 0, maxHeight: '50px' }} />
+        </a>
+      </li>
+    </ul>
+  );
 };
 
 NavigationItems.propTypes = {

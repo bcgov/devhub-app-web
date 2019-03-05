@@ -9,5 +9,29 @@ exports[`Primary Footer Component it matches snapshot 1`] = `
     text="banana"
     to="/"
   />
+  <li>
+    <a
+      aria-label="View the BC Dev Exchange Organization"
+      href="https://bcdevexchange.org"
+      style={
+        Object {
+          "display": "inline-block",
+          "width": "125px",
+        }
+      }
+      title="BC Dev Exchange"
+    >
+      <img
+        alt="Government Of BC"
+        src="devex.svg"
+        style={
+          Object {
+            "margin": 0,
+            "maxHeight": "50px",
+          }
+        }
+      />
+    </a>
+  </li>
 </ul>
 `;

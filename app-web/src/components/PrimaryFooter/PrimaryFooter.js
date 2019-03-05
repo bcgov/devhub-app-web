@@ -16,25 +16,16 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import PropTypes from 'prop-types';
 import classes from './PrimaryFooter.module.css';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import { FOOTER_NAVIGATION } from '../../constants/routes';
 
-const PrimaryFooter = props => (
+const PrimaryFooter = () => (
   <footer className={classes.PrimaryFooter}>
     <div className={classes.Container}>
       <NavigationItems items={FOOTER_NAVIGATION} />
     </div>
   </footer>
 );
-
-PrimaryFooter.propTypes = {
-  children: PropTypes.node,
-};
-
-PrimaryFooter.defaultProps = {
-  children: '',
-};
 
 export default PrimaryFooter;
