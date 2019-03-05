@@ -33,7 +33,6 @@ describe('Index Container', () => {
       setResourceType: jest.fn(),
     };
     const props = {
-      actions,
       data,
       collections: COLLECTIONS.map(c => ({
         ...c,
@@ -45,7 +44,7 @@ describe('Index Container', () => {
       resourcesLoaded: false,
     };
 
-    const wrapper = shallow(<CollectionsPage {...props} />);
+    const wrapper = shallow(<CollectionsPage {...props} {...actions} />);
     expect(wrapper).toMatchSnapshot();
   });
 });
