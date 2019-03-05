@@ -19,15 +19,68 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import * as actions from '../store/actions';
 import * as selectors from '../store/selectors';
 
+import { COLLECTIONS_PAGE } from '../messages';
+import { flattenGatsbyGraphQL } from '../utils//dataHelpers';
+
+import Title from '../components/Page/Title';
+import CollectionPreview from '../components/CollectionPreview/CollectionPreview';
+import Main from '../components/Page/Main';
 import withResourceQuery from '../hoc/withResourceQuery';
 import Layout from '../hoc/Layout';
+
 export class CollectionsPage extends Component {
+  componentDidMount() {
+    // flatted nodes from graphql
+    if (!this.props.resourcesLoaded) {
+      const collections = flattenGatsbyGraphQL(this.props.data.allDevhubSiphonCollection.edges);
+      // note this.props.data is received from the withResourceQuery Component
+      const resources = flattenGatsbyGraphQL(this.props.data.allDevhubSiphon.edges);
+      this.props.loadResources(resources, collections);
+    }
+  }
+
   render() {
-    return <Layout>hello world</Layout>;
+    const { collections } = this.props;
+
+    return (
+      <Layout>
+        <Main>
+          <Title
+            title={COLLECTIONS_PAGE.header.title.defaultMessage}
+            subtitle={COLLECTIONS_PAGE.header.subtitle.defaultMessage}
+          />
+          {collections.map(collection => (
+            <CollectionPreview
+              key={collection.id}
+              title={collection.name}
+              description={collection.description}
+              resources={collection.resources}
+              link={collection.resources[0] && collection.resources[0].resource.path}
+            />
+          ))}
+        </Main>
+      </Layout>
+    );
   }
 }
 
-export default withResourceQuery(CollectionsPage)();
+const mapStateToProps = createStructuredSelector({
+  resourcesLoaded: selectors.selectResourcesLoaded,
+  collections: selectors.selectCollectionsWithResources,
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loadResources: (resources, collections) =>
+      dispatch(actions.loadResources(resources, collections)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withResourceQuery(CollectionsPage)());
