@@ -1,8 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import groupBy from 'lodash/groupBy';
 import { CollectionsPage } from '../../src/pages/collections';
-import { DEFAULT_FILTER_GROUPS } from '../../__fixtures__/redux-fixtures';
 import { SIPHON_NODES, COLLECTIONS } from '../../__fixtures__/siphon-fixtures';
 jest.mock('react-spinners', () => null);
 

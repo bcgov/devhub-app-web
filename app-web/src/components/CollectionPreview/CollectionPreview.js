@@ -70,8 +70,8 @@ const CollectionLinkWrapper = styled.div`
 const CollectionPreview = ({ title, description, link, resources }) => (
   <section
     css={css`
-      max-width: 836px;
-      margin: 15px auto;
+      max-width: 1104px;
+      margin: 20px 15px;
       border: 1px solid #ccc;
     `}
   >
@@ -82,7 +82,7 @@ const CollectionPreview = ({ title, description, link, resources }) => (
 
       {description && <CollectionDescription>{description}</CollectionDescription>}
       <ResourceContainer>
-        {resources.slice(0, 3).map(r => (
+        {resources.slice(0, 4).map(r => (
           <div
             key={r.id}
             css={css`

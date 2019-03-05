@@ -43,7 +43,7 @@ export const COLLECTIONS_PAGE = {
     subtitle: {
       id: 'COLLECTIONS_PAGE.header.subtitle',
       defaultMessage:
-        'Explore resources that have been specially curated to enhance context, detail and accessiblity.',
+        'Explore resources that have been specially curated to enhance context, detail and accessibility.',
     },
   },
 };
