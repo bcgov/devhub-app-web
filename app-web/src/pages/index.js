@@ -4,6 +4,7 @@ import queryString from 'query-string';
 import shortid from 'shortid';
 import { connect } from 'react-redux';
 import { REACT_SCROLL } from '../constants/ui';
+import { MAIN_NAV_ROUTES } from '../constants/routes';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { getSearchResults } from '../utils/helpers';
 import * as actions from '../store/actions';
@@ -14,7 +15,7 @@ import { Flag } from 'flag';
 import { Element } from 'react-scroll';
 import Loading from '../components/UI/Loading/Loading';
 import Layout from '../hoc/Layout';
-import Cards from '../components/Cards/Cards';
+import ResourcePreview from '../components/ResourcePreview/ResourcePreview';
 import Masthead from '../components/Home/Masthead';
 
 // selectors from reselect
@@ -82,14 +83,18 @@ export class Index extends PureComponent {
     } = this.props;
 
     const SiphonResources = Object.keys(resourcesByType).map(resourceType => {
-      const resources = resourcesByType[resourceType].map(r => ({
-        type: r.resource.type,
-        title: r.unfurl.title,
-        description: r.unfurl.description,
-        image: r.unfurl.image,
-        path: r.resource.path,
-      }));
-      return <Cards key={shortid.generate()} topic={resourceType} cards={resources} />;
+      if (resourcesByType[resourceType].length > 0) {
+        console.log(resourcesByType[resourceType]);
+        return (
+          <ResourcePreview
+            key={shortid.generate()}
+            title={resourceType}
+            resources={resourcesByType[resourceType]}
+            link={MAIN_NAV_ROUTES[resourceType]}
+          />
+        );
+      }
+      return null;
     });
 
     return (
