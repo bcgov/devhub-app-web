@@ -7,68 +7,66 @@ exports[`Index Container it matches snapshot 1`] = `
       subtitle="Explore resources that have been specially curated to enhance context, detail and accessiblity."
       title="Collections"
     />
-    <PageContainer>
-      <CollectionPreview
-        description="baz"
-        key="collection-1"
-        link="/"
-        resources={
-          Array [
-            Object {
-              "id": "3",
-              "resource": Object {
-                "path": "/",
-              },
+    <CollectionPreview
+      description="baz"
+      key="collection-1"
+      link="/"
+      resources={
+        Array [
+          Object {
+            "id": "3",
+            "resource": Object {
+              "path": "/",
             },
-            Object {
-              "id": "2",
-              "resource": Object {
-                "path": "/",
-              },
+          },
+          Object {
+            "id": "2",
+            "resource": Object {
+              "path": "/",
             },
-            Object {
-              "id": "1",
-              "resource": Object {
-                "path": "/",
-              },
+          },
+          Object {
+            "id": "1",
+            "resource": Object {
+              "path": "/",
             },
-            Object {
-              "id": "4",
-              "resource": Object {
-                "path": "/",
-              },
+          },
+          Object {
+            "id": "4",
+            "resource": Object {
+              "path": "/",
             },
-          ]
-        }
-      />
-      <CollectionPreview
-        description="baz"
-        key="collection-2"
-        link="/"
-        resources={
-          Array [
-            Object {
-              "id": "5",
-              "resource": Object {
-                "path": "/",
-              },
+          },
+        ]
+      }
+    />
+    <CollectionPreview
+      description="baz"
+      key="collection-2"
+      link="/"
+      resources={
+        Array [
+          Object {
+            "id": "5",
+            "resource": Object {
+              "path": "/",
             },
-            Object {
-              "id": "6",
-              "resource": Object {
-                "path": "/",
-              },
+          },
+          Object {
+            "id": "6",
+            "resource": Object {
+              "path": "/",
             },
-            Object {
-              "id": "7",
-              "resource": Object {
-                "path": "/",
-              },
+          },
+          Object {
+            "id": "7",
+            "resource": Object {
+              "path": "/",
             },
-          ]
-        }
-      />
-    </PageContainer>
+          },
+        ]
+      }
+    />
   </Main>
 </Connect(Layout)>
 `;
