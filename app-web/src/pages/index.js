@@ -102,7 +102,7 @@ export class Index extends PureComponent {
       setSearchBarTerms,
       searchWordLength,
     } = this.props;
-    // const groupedByResourceTypee =
+
     const SiphonResources = Object.keys(resourcesByType).map(resourceType => {
       const resources = resourcesByType[resourceType].map(r => ({
         type: r.resource.type,
@@ -113,6 +113,7 @@ export class Index extends PureComponent {
       }));
       return <Cards key={shortid.generate()} topic={resourceType} cards={resources} />;
     });
+
     return (
       <Layout showHamburger>
         <div>

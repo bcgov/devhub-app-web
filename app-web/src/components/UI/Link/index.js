@@ -1,4 +1,4 @@
 import Link from './Link';
 import SearchAwareLink from './SearchAwareLink';
-
-export { Link, SearchAwareLink };
+import ChevronLink from './ChevronLink';
+export { Link, SearchAwareLink, ChevronLink };

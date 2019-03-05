@@ -272,7 +272,7 @@ export const DESIGN_SYSTEM_COLLECTION = {
   type: 'default',
   title: 'Design System',
   description: 'baz',
-  resources: DESIGN_SYSTEM_NODES.map(n => n.id),
+  resources: DESIGN_SYSTEM_NODES.map(n => ({ id: n.id })),
 };
 
 export const DEVHUB_COLLECTION = {
@@ -280,7 +280,7 @@ export const DEVHUB_COLLECTION = {
   type: 'default',
   title: 'Devhub',
   description: 'baz',
-  resources: DEVHUB_NODES.map(n => n.id),
+  resources: DEVHUB_NODES.map(n => ({ id: n.id })),
 };
 
 export const SIPHON_NODES = DESIGN_SYSTEM_NODES.concat(DEVHUB_NODES);

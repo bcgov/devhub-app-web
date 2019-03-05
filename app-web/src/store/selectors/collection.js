@@ -31,7 +31,11 @@ export const selectCollectionsWithResources = createSelector(
   (collections, resources) =>
     collections.map(collection => ({
       ...collection,
-      resources: collection.resources.map(id => ({ ...resources.resources.byId[id] })),
+      resources: collection.resources.map(resource => {
+        // collections are initialized with resources only having { id: '...' }
+        // this maps the entire resource object to the collection
+        return { ...resources.resources.byId[resource.id] };
+      }),
     })),
 );
 
