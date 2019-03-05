@@ -32,24 +32,20 @@ describe('Index Container', () => {
       resetSearch: jest.fn(),
       setResourceType: jest.fn(),
     };
-
-    const location = {
-      pathname: '/',
+    const props = {
+      actions,
+      data,
+      collections: COLLECTIONS.map(c => ({
+        ...c,
+        resources: c.resources.map(r => ({ ...r, resource: { path: '/' } })),
+      })),
+      location: {
+        pathname: '/collections',
+      },
+      resourcesLoaded: false,
     };
 
-    const wrapper = shallow(
-      <CollectionsPage
-        resourcesLoaded={false}
-        searchResultsLength={0}
-        totalResources={SIPHON_NODES.length}
-        searchWordLength={0}
-        data={data}
-        filters={DEFAULT_FILTER_GROUPS}
-        resourcesByType={groupBy(SIPHON_NODES, 'resource.type')}
-        {...actions}
-        location={location}
-      />,
-    );
+    const wrapper = shallow(<CollectionsPage {...props} />);
     expect(wrapper).toMatchSnapshot();
   });
 });
