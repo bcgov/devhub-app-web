@@ -22,7 +22,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 
 import { RESOURCE_TYPES_LIST, EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
-import { ChevronLink, Link } from '../UI/Link';
+import { ChevronLink } from '../UI/Link';
 import Card from '../Cards/Card/Card';
 import { DecorativeBar, CardTitle, CardDescription } from '../Cards/Card';
 import CardHeader from '../Cards/Card/CardHeader';
