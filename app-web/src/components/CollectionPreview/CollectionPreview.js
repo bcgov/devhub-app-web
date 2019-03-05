@@ -71,6 +71,7 @@ const CollectionPreview = ({ title, description, link, resources }) => (
   <section
     css={css`
       max-width: 836px;
+      margin: 15px auto;
       border: 1px solid #ccc;
     `}
   >
