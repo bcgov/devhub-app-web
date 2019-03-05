@@ -29,10 +29,8 @@
     padding: 0 5px;
     text-align: center;
     margin-bottom: 0;
-}
-
-.Container ul li:nth-child(n + 2) {
-    border-left: 1px solid #4b5e7e;
+    display: flex;
+    align-items: center;
 }
 
 @media screen and (min-width: 600px) {

@@ -17,7 +17,6 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import classes from './PrimaryFooter.module.css';
-import devexLogo from '../../assets/images/devex.svg';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import { FOOTER_NAVIGATION } from '../../constants/routes';
 
@@ -25,18 +24,6 @@ const PrimaryFooter = () => (
   <footer className={classes.PrimaryFooter}>
     <div className={classes.Container}>
       <NavigationItems items={FOOTER_NAVIGATION} />
-      <a
-        href="https://bcdevexchange.org"
-        title="BC Dev Exchange"
-        aria-label="View the BC Dev Exchange Organization"
-        style={{
-          display: 'inline-block',
-          margin: '0 5px',
-          width: '50px',
-        }}
-      >
-        <img src={devexLogo} alt="Government Of BC" style={{ margin: 0, maxHeight: '50px' }} />
-      </a>
     </div>
   </footer>
 );

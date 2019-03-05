@@ -37,29 +37,6 @@ exports[`Primary Footer Component it matches snapshot 1`] = `
         ]
       }
     />
-    <a
-      aria-label="View the BC Dev Exchange Organization"
-      href="https://bcdevexchange.org"
-      style={
-        Object {
-          "display": "inline-block",
-          "margin": "0 5px",
-          "width": "50px",
-        }
-      }
-      title="BC Dev Exchange"
-    >
-      <img
-        alt="Government Of BC"
-        src="devex.svg"
-        style={
-          Object {
-            "margin": 0,
-            "maxHeight": "50px",
-          }
-        }
-      />
-    </a>
   </div>
 </footer>
 `;

@@ -35,5 +35,4 @@ export {
   selectCollections,
   selectCollectionsWithResources,
   selectCollectionsWithResourcesGroupedByType,
-  selectLandingPageForCollection,
 } from './collection';
