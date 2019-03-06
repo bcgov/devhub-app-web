@@ -49,6 +49,9 @@ const CollectionWrapper = styled(CardWrapper)`
   min-height: 300px;
   max-width: 485px;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column nowrap;
 `;
 
 const CollectionBarTitle = styled.div`
@@ -64,6 +67,7 @@ const DecorativeBarTitle = styled.h3`
   font-size: 1em;
   font-weight: 400;
 `;
+
 const Collection = ({
   link,
   title,
