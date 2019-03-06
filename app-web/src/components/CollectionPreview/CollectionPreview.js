@@ -94,7 +94,7 @@ const CollectionPreview = ({ title, description, link, resources }) => (
               title={r.unfurl.title}
               description={r.unfurl.description}
               image={r.unfurl.image}
-              path={r.resource.path}
+              link={r.resource.path}
             />
           </div>
         ))}

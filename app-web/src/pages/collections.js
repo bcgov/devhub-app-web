@@ -30,6 +30,7 @@ import CollectionPreview from '../components/CollectionPreview/CollectionPreview
 import Main from '../components/Page/Main';
 import withResourceQuery from '../hoc/withResourceQuery';
 import Layout from '../hoc/Layout';
+import { getFirstNonExternalResource } from '../utils/helpers';
 
 export class CollectionsPage extends Component {
   componentDidMount() {
@@ -44,7 +45,6 @@ export class CollectionsPage extends Component {
 
   render() {
     const { collections } = this.props;
-
     return (
       <Layout>
         <Main>
@@ -58,7 +58,7 @@ export class CollectionsPage extends Component {
               title={collection.name}
               description={collection.description}
               resources={collection.resources}
-              link={collection.resources[0] && collection.resources[0].resource.path}
+              link={getFirstNonExternalResource(collection.resources)}
             />
           ))}
         </Main>
