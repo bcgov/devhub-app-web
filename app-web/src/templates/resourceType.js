@@ -18,6 +18,8 @@ import PageContainer from '../components/Page/PageContainer';
 import Main from '../components/Page/Main';
 import FilterMenu from '../components/Page/FilterMenu';
 import SideDrawer from '../components/SideDrawer/SideDrawer';
+import NoResources from '../components/UI/NoResources/NoResources';
+import Aux from '../hoc/auxillary';
 // selectors from reselect
 import {
   selectQuery,
@@ -107,14 +109,20 @@ export class ResourceType extends PureComponent {
             subtitle={RESOURCE_TYPE_PAGES[pageContext.resourceType].header.subtitle.defaultMessage}
           />
           <PageContainer>
-            <FilterMenu filters={filters} />
-            <CardsContainer
-              searchResultsEmpty={query !== null && searchResultsLength === 0}
-              pagePath={this.props.location.pathname}
-              resources={resources}
-              setSearchBarTerms={setSearchBarTerms}
-              openSideDrawer={() => this.toggleMenu(true)}
-            />
+            {resources.length > 0 ? (
+              <Aux>
+                <FilterMenu filters={filters} />
+                <CardsContainer
+                  searchResultsEmpty={query !== null && searchResultsLength === 0}
+                  pagePath={this.props.location.pathname}
+                  resources={resources}
+                  setSearchBarTerms={setSearchBarTerms}
+                  openSideDrawer={() => this.toggleMenu(true)}
+                />
+              </Aux>
+            ) : (
+              <NoResources />
+            )}
           </PageContainer>
         </Main>
         <SideDrawer
