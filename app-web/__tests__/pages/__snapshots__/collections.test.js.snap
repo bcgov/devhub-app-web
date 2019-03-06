@@ -10,7 +10,7 @@ exports[`Index Container it matches snapshot 1`] = `
     <CollectionPreview
       description="baz"
       key="collection-1"
-      link="/"
+      link={null}
       resources={
         Array [
           Object {
@@ -43,7 +43,7 @@ exports[`Index Container it matches snapshot 1`] = `
     <CollectionPreview
       description="baz"
       key="collection-2"
-      link="/"
+      link={null}
       resources={
         Array [
           Object {

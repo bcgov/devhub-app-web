@@ -62,6 +62,17 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
         Repositories
       </mockConstructor>
     </li>
+    <li
+      key="/collections"
+    >
+      <mockConstructor
+        activeClassName="ActiveFilter"
+        exact={true}
+        to="/collections"
+      >
+        Collections
+      </mockConstructor>
+    </li>
   </ul>
 </nav>
 `;
