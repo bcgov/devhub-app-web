@@ -18,6 +18,7 @@ Created by Patrick Simonian
 import React from 'react';
 import { shallow } from 'enzyme';
 import ResourcePreview from '../../src/components/ResourcePreview/ResourcePreview';
+import { SIPHON_NODES } from '../../__fixtures__/siphon-fixtures';
 
 describe('Resource Preview Component', () => {
   let resourcePreview = null;
@@ -28,14 +29,11 @@ describe('Resource Preview Component', () => {
       to: '/',
       text: 'bar',
     },
+    resources: SIPHON_NODES,
   };
 
   beforeEach(() => {
-    resourcePreview = shallow(
-      <ResourcePreview {...props}>
-        <p>children</p>
-      </ResourcePreview>,
-    );
+    resourcePreview = shallow(<ResourcePreview {...props} />);
   });
 
   test('it matches snapshot', () => {

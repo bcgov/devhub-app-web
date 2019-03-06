@@ -50,7 +50,7 @@ describe('Card Header Component', () => {
   });
 
   it('renders stacked layers when collection is passed in as type', () => {
-    const wrapper = mountWithTheme(<CardHeader type={RESOURCE_TYPES.COLLECTIONS} />);
+    const wrapper = mountWithTheme(<CardHeader type="Collections" />);
 
     const icon = wrapper.find(FontAwesomeIcon).prop('icon');
     expect(icon).toEqual(faLayerGroup);

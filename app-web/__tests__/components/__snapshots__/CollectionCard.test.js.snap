@@ -67,7 +67,6 @@ exports[`CollectionCard matches snapshot 1`] = `
         null
       </CardDescription>
     </CardBody>
-    <hr />
     <ResourceCounts>
       <ResourceCountGroup>
         <CircleIconWrapper

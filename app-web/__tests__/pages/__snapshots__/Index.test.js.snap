@@ -12,83 +12,304 @@ exports[`Index Container it matches snapshot 1`] = `
       className="Main"
       role="main"
     >
-      <Element
-        name="CARDS_CONTAINER"
-      >
-        <Flag
-          name="features.githubResourceCards"
+      <Aux>
+        <CollectionsContainer />
+        <Element
+          name="CARDS_CONTAINER"
         >
-          <Cards
-            cards={
-              Array [
+          <Flag
+            name="features.githubResourceCards"
+          >
+            <ResourcePreview
+              key="0"
+              link={
                 Object {
-                  "description": "What the Design System is and how it works.",
-                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
-                  "path": "/design-system/Z1bGIqu",
-                  "title": "About",
-                  "type": "Components",
-                },
+                  "text": "Components",
+                  "to": "/components",
+                }
+              }
+              resources={
+                Array [
+                  Object {
+                    "_metadata": Object {
+                      "position": "000.000.002",
+                    },
+                    "attributes": Object {
+                      "personas": Array [
+                        "Designer",
+                      ],
+                    },
+                    "childMarkdownRemark": Object {
+                      "frontmatter": Object {
+                        "pageOnly": false,
+                      },
+                    },
+                    "id": "3",
+                    "parent": Object {
+                      "id": "collection-1",
+                    },
+                    "resource": Object {
+                      "path": "/design-system/Z1bGIqu",
+                      "type": "Components",
+                    },
+                    "source": Object {
+                      "displayName": "Design System",
+                    },
+                    "unfurl": Object {
+                      "author": "ksingbeil",
+                      "data1": "",
+                      "data2": "",
+                      "description": "What the Design System is and how it works.",
+                      "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                      "label1": "",
+                      "label2": "",
+                      "title": "About",
+                      "type": "markdown",
+                    },
+                  },
+                  Object {
+                    "_metadata": Object {
+                      "position": "000.000.001",
+                    },
+                    "attributes": Object {
+                      "personas": Array [
+                        "Designer",
+                      ],
+                    },
+                    "childMarkdownRemark": Object {
+                      "frontmatter": Object {
+                        "pageOnly": false,
+                      },
+                    },
+                    "id": "2",
+                    "parent": Object {
+                      "id": "collection-1",
+                    },
+                    "resource": Object {
+                      "path": "/design-system/Z1bGIqu",
+                      "type": "Components",
+                    },
+                    "source": Object {
+                      "displayName": "Design System",
+                    },
+                    "unfurl": Object {
+                      "author": "ksingbeil",
+                      "data1": "",
+                      "data2": "",
+                      "description": "What the Design System is and how it works.",
+                      "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                      "label1": "",
+                      "label2": "",
+                      "title": "About",
+                      "type": "markdown",
+                    },
+                  },
+                  Object {
+                    "_metadata": Object {
+                      "position": "000.000.000",
+                    },
+                    "attributes": Object {
+                      "personas": Array [
+                        "Designer",
+                      ],
+                    },
+                    "childMarkdownRemark": Object {
+                      "frontmatter": Object {
+                        "pageOnly": false,
+                      },
+                    },
+                    "id": "1",
+                    "parent": Object {
+                      "id": "collection-1",
+                    },
+                    "resource": Object {
+                      "path": "/design-system/Z1bGIqu",
+                      "type": "Components",
+                    },
+                    "source": Object {
+                      "displayName": "Design System",
+                    },
+                    "unfurl": Object {
+                      "author": "ksingbeil",
+                      "data1": "",
+                      "data2": "",
+                      "description": "What the Design System is and how it works.",
+                      "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                      "label1": "",
+                      "label2": "",
+                      "title": "About",
+                      "type": "markdown",
+                    },
+                  },
+                  Object {
+                    "_metadata": Object {
+                      "position": "000.000.003",
+                    },
+                    "attributes": Object {
+                      "personas": Array [
+                        "Developer",
+                      ],
+                    },
+                    "childMarkdownRemark": Object {
+                      "frontmatter": Object {
+                        "pageOnly": false,
+                      },
+                    },
+                    "id": "4",
+                    "parent": Object {
+                      "id": "collection-1",
+                    },
+                    "resource": Object {
+                      "path": "/design-system/Z1bGIqu",
+                      "type": "Components",
+                    },
+                    "source": Object {
+                      "displayName": "Design System",
+                    },
+                    "unfurl": Object {
+                      "author": "ksingbeil",
+                      "data1": "",
+                      "data2": "",
+                      "description": "What the Design System is and how it works.",
+                      "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                      "label1": "",
+                      "label2": "",
+                      "title": "About",
+                      "type": "markdown",
+                    },
+                  },
+                ]
+              }
+              title="Components"
+            />
+            <ResourcePreview
+              key="1"
+              link={
                 Object {
-                  "description": "What the Design System is and how it works.",
-                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
-                  "path": "/design-system/Z1bGIqu",
-                  "title": "About",
-                  "type": "Components",
-                },
-                Object {
-                  "description": "What the Design System is and how it works.",
-                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
-                  "path": "/design-system/Z1bGIqu",
-                  "title": "About",
-                  "type": "Components",
-                },
-                Object {
-                  "description": "What the Design System is and how it works.",
-                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
-                  "path": "/design-system/Z1bGIqu",
-                  "title": "About",
-                  "type": "Components",
-                },
-              ]
-            }
-            description=""
-            key="0"
-            sourcePath=""
-            topic="Components"
-          />
-          <Cards
-            cards={
-              Array [
-                Object {
-                  "description": "What the Design System is and how it works.",
-                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
-                  "path": "/design-system/Z1bGIqu",
-                  "title": "About",
-                  "type": "Documentation",
-                },
-                Object {
-                  "description": "What the Design System is and how it works.",
-                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
-                  "path": "/design-system/Z1bGIqu",
-                  "title": "About",
-                  "type": "Documentation",
-                },
-                Object {
-                  "description": "What the Design System is and how it works.",
-                  "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
-                  "path": "/design-system/Z1bGIqu",
-                  "title": "About",
-                  "type": "Documentation",
-                },
-              ]
-            }
-            description=""
-            key="1"
-            sourcePath=""
-            topic="Documentation"
-          />
-        </Flag>
-      </Element>
+                  "text": "Documentation",
+                  "to": "/documentation",
+                }
+              }
+              resources={
+                Array [
+                  Object {
+                    "_metadata": Object {
+                      "position": "001.000.000",
+                    },
+                    "attributes": Object {
+                      "personas": Array [
+                        "Developer",
+                      ],
+                    },
+                    "childMarkdownRemark": Object {
+                      "frontmatter": Object {
+                        "pageOnly": false,
+                      },
+                    },
+                    "id": "5",
+                    "parent": Object {
+                      "id": "collection-2",
+                    },
+                    "resource": Object {
+                      "path": "/design-system/Z1bGIqu",
+                      "type": "Documentation",
+                    },
+                    "source": Object {
+                      "displayName": "Design System",
+                    },
+                    "unfurl": Object {
+                      "author": "ksingbeil",
+                      "data1": "",
+                      "data2": "",
+                      "description": "What the Design System is and how it works.",
+                      "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                      "label1": "",
+                      "label2": "",
+                      "title": "About",
+                      "type": "markdown",
+                    },
+                  },
+                  Object {
+                    "_metadata": Object {
+                      "position": "001.000.001",
+                    },
+                    "attributes": Object {
+                      "personas": Array [
+                        "Developer",
+                      ],
+                    },
+                    "childMarkdownRemark": Object {
+                      "frontmatter": Object {
+                        "pageOnly": false,
+                      },
+                    },
+                    "id": "6",
+                    "parent": Object {
+                      "id": "collection-2",
+                    },
+                    "resource": Object {
+                      "path": "/design-system/Z1bGIqu",
+                      "type": "Documentation",
+                    },
+                    "source": Object {
+                      "displayName": "Design System",
+                    },
+                    "unfurl": Object {
+                      "author": "ksingbeil",
+                      "data1": "",
+                      "data2": "",
+                      "description": "What the Design System is and how it works.",
+                      "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                      "label1": "",
+                      "label2": "",
+                      "title": "About",
+                      "type": "markdown",
+                    },
+                  },
+                  Object {
+                    "_metadata": Object {
+                      "position": "001.000.001",
+                    },
+                    "attributes": Object {
+                      "personas": Array [
+                        "Product Owner",
+                      ],
+                    },
+                    "childMarkdownRemark": Object {
+                      "frontmatter": Object {
+                        "pageOnly": false,
+                      },
+                    },
+                    "id": "7",
+                    "parent": Object {
+                      "id": "collection-2",
+                    },
+                    "resource": Object {
+                      "path": "/design-system/Z1bGIqu",
+                      "type": "Documentation",
+                    },
+                    "source": Object {
+                      "displayName": "Design System",
+                    },
+                    "unfurl": Object {
+                      "author": "ksingbeil",
+                      "data1": "",
+                      "data2": "",
+                      "description": "What the Design System is and how it works.",
+                      "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+                      "label1": "",
+                      "label2": "",
+                      "title": "About",
+                      "type": "markdown",
+                    },
+                  },
+                ]
+              }
+              title="Documentation"
+            />
+          </Flag>
+        </Element>
+      </Aux>
     </main>
   </div>
 </Connect(Layout)>

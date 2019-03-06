@@ -26,6 +26,7 @@ import {
   SIPHON_NODES_MAP,
   COLLECTIONS,
   COLLECTIONS_MAP,
+  DEFAULT_GROUPINGS,
 } from '../../__fixtures__/siphon-fixtures';
 import * as selectors from '../../src/store/selectors';
 import { RESOURCE_TYPES } from '../../src/constants/ui';
@@ -197,10 +198,14 @@ describe('Reselect Selectors', () => {
     const collectionWithGroupedResources = selectors.selectCollectionsWithResourcesGroupedByType(
       state,
     );
+
     const collection1Nodes = groupBy(
       SIPHON_NODES.filter(node => node.parent.id === collectionWithGroupedResources[0].id),
       'resource.type',
     );
-    expect(collectionWithGroupedResources[0].resources).toEqual(collection1Nodes);
+    expect(collectionWithGroupedResources[0].resources).toEqual({
+      ...DEFAULT_GROUPINGS,
+      ...collection1Nodes,
+    });
   });
 });
