@@ -47,7 +47,6 @@ const H3 = styled.h3`
 
 const CardHeader = ({ type, linksToExternal }) => {
   let icon = null;
-
   // eslint-disable-next-line default-case
   switch (type) {
     case RESOURCE_TYPES.COMPONENTS:

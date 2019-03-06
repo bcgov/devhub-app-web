@@ -19,6 +19,16 @@ Created by Patrick Simonian
 // message objects are formatted to mesh with react-intl, a popular localization library
 // https://github.com/yahoo/react-intl
 import { RESOURCE_TYPES } from '../constants/ui';
+export const NO_RESOURCES = {
+  title: {
+    id: 'NO_RESOURCES.title',
+    defaultMessage: "There aren't any resources here yet.",
+  },
+  description: {
+    id: 'NO_RESOURCES.description',
+    defaultMessage: 'We are working on some really great things however, check back soon!',
+  },
+};
 
 export const HOME = {
   header: {
@@ -47,6 +57,7 @@ export const COLLECTIONS_PAGE = {
     },
   },
 };
+
 export const RESOURCE_TYPE_PAGES = {
   [RESOURCE_TYPES.COMPONENTS]: {
     header: {
@@ -113,6 +124,7 @@ export const SEARCH = {
   },
 };
 
+// used by the card ui
 export const RESOURCES = {
   types: {
     [RESOURCE_TYPES.COMPONENTS]: {

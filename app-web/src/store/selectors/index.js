@@ -35,4 +35,6 @@ export {
   selectCollections,
   selectCollectionsWithResources,
   selectCollectionsWithResourcesGroupedByType,
+  selectCollectionsWithAvailableResourcesGroupedByType,
+  selectCollectionsWithAvailableResources,
 } from './collection';

@@ -1,4 +1,6 @@
 import { arrayToMapByProp } from '../src/utils/dataHelpers';
+import { RESOURCE_TYPES } from '../src/constants/ui';
+
 const IDS = {
   DESIGN_SYSTEM: 'collection-1',
   DEVHUB: 'collection-2',
@@ -295,3 +297,19 @@ export const COLLECTIONS = [DESIGN_SYSTEM_COLLECTION, DEVHUB_COLLECTION];
 export const SIPHON_NODES_MAP = arrayToMapByProp(SIPHON_NODES, 'id');
 
 export const COLLECTIONS_MAP = arrayToMapByProp(COLLECTIONS, 'id');
+
+// some selectors found within /selectors/index.js provide selections of resources grouped by
+// resources types they are combined wth the default grouping set so that all resources
+// have a map of all resource types like so
+/**
+ *
+ * {
+ *  Components: [] no resources so it defaulted to empty,
+ *  Documentation: [{}, {}],
+ *  ...etc
+ * }
+ */
+export const DEFAULT_GROUPINGS = Object.keys(RESOURCE_TYPES).reduce((grouping, type) => {
+  grouping[RESOURCE_TYPES[type]] = [];
+  return grouping;
+}, {});

@@ -22,7 +22,7 @@ import { graphql } from 'gatsby';
 // import 'github-markdown-css';
 import styled from '@emotion/styled';
 import styles from './SourceMarkdown.module.css';
-import { RESOURCE_TYPES, EMOTION_BOOTSTRAP_BREAKPOINTS } from '../constants/ui';
+import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../constants/ui';
 
 import { withPadding } from '../components/GithubTemplate/common';
 import rehypeReact from 'rehype-react';
@@ -98,7 +98,7 @@ class SourceGithubMarkdownOverview extends React.Component {
       <Layout>
         <div>
           <Masthead
-            type={RESOURCE_TYPES.COLLECTIONS}
+            type="Collections"
             title={collection.name}
             description={collection.description}
           />

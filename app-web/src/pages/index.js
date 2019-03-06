@@ -4,6 +4,7 @@ import queryString from 'query-string';
 import shortid from 'shortid';
 import { connect } from 'react-redux';
 import { REACT_SCROLL } from '../constants/ui';
+import { MAIN_NAV_ROUTES } from '../constants/routes';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { getSearchResults } from '../utils/helpers';
 import * as actions from '../store/actions';
@@ -14,7 +15,7 @@ import { Flag } from 'flag';
 import { Element } from 'react-scroll';
 import Loading from '../components/UI/Loading/Loading';
 import Layout from '../hoc/Layout';
-import Cards from '../components/Cards/Cards';
+import ResourcePreview from '../components/ResourcePreview/ResourcePreview';
 import Masthead from '../components/Home/Masthead';
 
 // selectors from reselect
@@ -26,10 +27,13 @@ import {
   selectResourcesLoaded,
   selectResourcesReducerLoading,
   selectGroupedFilteredAvailableResources,
+  selectCollectionsWithAvailableResourcesGroupedByType,
 } from '../store/selectors';
 
 import { SEARCH } from '../messages';
 import withResourceQuery from '../hoc/withResourceQuery';
+import CollectionsContainer from '../components/Page/CollectionsContainer';
+import Aux from '../hoc/auxillary';
 
 export class Index extends PureComponent {
   componentDidMount() {
@@ -79,17 +83,21 @@ export class Index extends PureComponent {
       searchResultsLength,
       setSearchBarTerms,
       searchWordLength,
+      collections,
     } = this.props;
 
     const SiphonResources = Object.keys(resourcesByType).map(resourceType => {
-      const resources = resourcesByType[resourceType].map(r => ({
-        type: r.resource.type,
-        title: r.unfurl.title,
-        description: r.unfurl.description,
-        image: r.unfurl.image,
-        path: r.resource.path,
-      }));
-      return <Cards key={shortid.generate()} topic={resourceType} cards={resources} />;
+      if (resourcesByType[resourceType].length > 0) {
+        return (
+          <ResourcePreview
+            key={shortid.generate()}
+            title={resourceType}
+            resources={resourcesByType[resourceType]}
+            link={MAIN_NAV_ROUTES[resourceType]}
+          />
+        );
+      }
+      return null;
     });
 
     return (
@@ -102,10 +110,13 @@ export class Index extends PureComponent {
             ) : searchResultsLength === 0 && searchWordLength > 0 ? (
               <p>{SEARCH.results.empty.defaultMessage}</p>
             ) : (
-              <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
-                {/* Element used for react-scroll targeting */}
-                <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
-              </Element>
+              <Aux>
+                <CollectionsContainer collections={collections} />
+                <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
+                  {/* Element used for react-scroll targeting */}
+                  <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
+                </Element>
+              </Aux>
             )}
           </main>
         </div>
@@ -122,6 +133,7 @@ const mapStateToProps = createStructuredSelector({
   totalResources: selectTotalResources,
   searchWordLength: selectSearchWordLength,
   resourcesByType: selectGroupedFilteredAvailableResources,
+  collections: selectCollectionsWithAvailableResourcesGroupedByType,
 });
 
 const mapDispatchToProps = dispatch => {
