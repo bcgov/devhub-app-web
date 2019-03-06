@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { graphql } from 'gatsby';
 import { createStructuredSelector } from 'reselect';
 import queryString from 'query-string';
 import { connect } from 'react-redux';
@@ -29,8 +28,6 @@ import {
   selectGroupedFilteredAvailableResources,
   selectFilters,
 } from '../store/selectors';
-
-import { mapPagePathToResourceTypeConst } from '../utils/helpers';
 
 export class ResourceType extends PureComponent {
   state = {

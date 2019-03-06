@@ -27,6 +27,10 @@ export const MAIN_NAV_ROUTES = {
     to: '/repositories',
     text: 'Repositories',
   },
+  COLLECTIONS: {
+    to: '/collections',
+    text: 'Collections',
+  },
 };
 
 export const FOOTER_NAVIGATION = [
