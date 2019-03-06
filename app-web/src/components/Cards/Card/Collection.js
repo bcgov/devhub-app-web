@@ -39,14 +39,16 @@ import { RESOURCE_TYPES } from '../../../constants/ui';
 const CardTitle = styled.h2`
   font-size: 25px;
   font-weight: 700;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   text-transform: capitalize;
 `;
 
 const CollectionWrapper = styled(CardWrapper)`
   color: #444;
-  height: 300px;
-  width: 485px;
+  height: initial;
+  min-height: 300px;
+  max-width: 485px;
+  width: 100%;
 `;
 
 const CollectionBarTitle = styled.div`
@@ -86,7 +88,6 @@ const Collection = ({
           </CardTitle>
           <CardDescription>{description}</CardDescription>
         </CardBody>
-        <hr />
         <ResourceCounts>
           <ResourceCountGroup>
             <CircleIconWrapper type={RESOURCE_TYPES.SELF_SERVICE_TOOLS}>

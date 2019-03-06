@@ -20,29 +20,38 @@ Created by Patrick Simonian
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { navigate } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { SEARCH } from '../../constants/ui';
-import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
-import { SEARCH as SEARCH_MESSAGES } from '../../messages';
 
-import { Alert } from 'reactstrap';
-import { faFilter } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { RESOURCE_TYPES } from '../../constants/ui';
 import Collection from '../Cards/Card/Collection';
 import Container from '../Cards/Container';
 import Row from '../Cards/Row';
 import Column from '../Cards/Column';
-import Loading from '../UI/Loading/Loading';
 
-const CollectionContent = (loading, collections) => {
-  if (loading) {
-    return <Loading message="Loading..." />;
-  } else {
-    return collections.slice(0, 4).map(collection => (
-      <Column
+const StyledTitle = styled.h2`
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  padding: 4px 0;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+  font-weight: 700;
+`;
+
+const ContainerCentered = styled(Container)`
+  margin: 0 auto 15px;
+  align-item: flex-start;
+`;
+
+const StyledColumn = styled(Column)`
+  flex: 0 1 506px;
+`;
+const CollectionContent = collections =>
+  collections
+    .filter(collection => collection.hasResources)
+    .slice(0, 4)
+    .map(collection => (
+      <StyledColumn
         key={collection.id}
         css={css`
           justify-content: center;
@@ -50,22 +59,21 @@ const CollectionContent = (loading, collections) => {
         `}
       >
         <Collection
-          title={collection.title}
+          title={collection.name}
           description={collection.description}
-          documentation={0}
-          repositories={0}
-          components={0}
-          tools={0}
+          documentation={collection.resources[RESOURCE_TYPES.DOCUMENTATION].length}
+          repositories={collection.resources[RESOURCE_TYPES.REPOSITORIES].length}
+          components={collection.resources[RESOURCE_TYPES.COMPONENTS].length}
+          tools={collection.resources[RESOURCE_TYPES.SELF_SERVICE_TOOLS].length}
         />
-      </Column>
+      </StyledColumn>
     ));
-  }
-};
 
-const CollectionsContainer = ({ collections, loading }) => (
-  <Container>
-    <Row>{CollectionContent(loading, collections)}</Row>
-  </Container>
+const CollectionsContainer = ({ collections }) => (
+  <ContainerCentered>
+    <StyledTitle>Collections</StyledTitle>
+    <Row>{CollectionContent(collections)}</Row>
+  </ContainerCentered>
 );
 
 CollectionsContainer.propTypes = {
@@ -78,6 +86,5 @@ CollectionsContainer.propTypes = {
       link: PropTypes.string.isRequired,
     }),
   ),
-  loading: PropTypes.bool.isRequired,
 };
 export default CollectionsContainer;

@@ -27,10 +27,13 @@ import {
   selectResourcesLoaded,
   selectResourcesReducerLoading,
   selectGroupedFilteredAvailableResources,
+  selectCollectionsWithAvailableResourcesGroupedByType,
 } from '../store/selectors';
 
 import { SEARCH } from '../messages';
 import withResourceQuery from '../hoc/withResourceQuery';
+import CollectionsContainer from '../components/Page/CollectionsContainer';
+import Aux from '../hoc/auxillary';
 
 export class Index extends PureComponent {
   componentDidMount() {
@@ -80,11 +83,11 @@ export class Index extends PureComponent {
       searchResultsLength,
       setSearchBarTerms,
       searchWordLength,
+      collections,
     } = this.props;
 
     const SiphonResources = Object.keys(resourcesByType).map(resourceType => {
       if (resourcesByType[resourceType].length > 0) {
-        console.log(resourcesByType[resourceType]);
         return (
           <ResourcePreview
             key={shortid.generate()}
@@ -96,7 +99,7 @@ export class Index extends PureComponent {
       }
       return null;
     });
-
+    console.log(collections);
     return (
       <Layout showHamburger>
         <div>
@@ -107,10 +110,13 @@ export class Index extends PureComponent {
             ) : searchResultsLength === 0 && searchWordLength > 0 ? (
               <p>{SEARCH.results.empty.defaultMessage}</p>
             ) : (
-              <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
-                {/* Element used for react-scroll targeting */}
-                <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
-              </Element>
+              <Aux>
+                <CollectionsContainer collections={collections} />
+                <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
+                  {/* Element used for react-scroll targeting */}
+                  <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
+                </Element>
+              </Aux>
             )}
           </main>
         </div>
@@ -127,6 +133,7 @@ const mapStateToProps = createStructuredSelector({
   totalResources: selectTotalResources,
   searchWordLength: selectSearchWordLength,
   resourcesByType: selectGroupedFilteredAvailableResources,
+  collections: selectCollectionsWithAvailableResourcesGroupedByType,
 });
 
 const mapDispatchToProps = dispatch => {

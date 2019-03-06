@@ -66,7 +66,6 @@ const ResourcePreview = ({ title, link, resources }) => (
       ))}
     </ResourceContainer>
     <div className={styles.LinkContainer}>
-      {console.log('the liink', link)}
       <ChevronLink to={link.to}>{link.text}</ChevronLink>
     </div>
   </section>
