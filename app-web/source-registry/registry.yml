@@ -311,7 +311,8 @@ sources:
            repo: 'nr-document-management-showcase'
            owner: bcgov
            files:
-             - docs/dms-api-overview.md
+             - docs/overview.md
+             - docs/developer-guide.md
        - sourceType: web
          sourceProperties:
            url: https://apistore.nrs.gov.bc.ca/store/apis/info?version=v1&name=dms-api&provider=admin
@@ -329,7 +330,8 @@ sources:
            repo: 'nr-messaging-service-showcase'
            owner: bcgov
            files:
-             - docs/cmsg-messaging-api-overview.md
+             - docs/overview.md
+             - docs/developer-guide.md
        - sourceType: web
          sourceProperties:
            url: https://apistore.nrs.gov.bc.ca/store/apis/info?name=cmsg-messaging-api&version=v1&provider=admin
@@ -347,10 +349,12 @@ sources:
            repo: 'nr-document-generation-showcase'
            owner: bcgov
            files:
-             - docs/dgen-api-overview.md
+             - docs/overview.md
+             - docs/developer-guide.md
        - sourceType: web
          sourceProperties:
            url: https://apistore.nrs.gov.bc.ca/store/apis/info?version=v1&name=dgen-api&provider=admin
            title: 'APIStore Document Generation'
            description: 'The Document Generation REST API and Swagger'
            image: 'https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png'
+           
