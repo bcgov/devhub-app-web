@@ -59,19 +59,9 @@ describe('Toggle Component', () => {
     const cards = ['card1', 'card2', 'card3'];
     const wrapper = shallow(<Toggle cardComponents={cards} cardLimits={cardLimit} />);
 
-    expect(
-      wrapper
-        .find('div')
-        .first()
-        .children().length,
-    ).toBe(1);
+    expect(wrapper.find('.ToggleButton').exists()).toBe(false);
     const wrapper2 = shallow(<Toggle cardComponents={cards} cardLimits={1} />);
 
-    expect(
-      wrapper2
-        .find('div')
-        .first()
-        .children().length,
-    ).toBe(2);
+    expect(wrapper2.find('.ToggleButton').exists()).toBe(true);
   });
 });

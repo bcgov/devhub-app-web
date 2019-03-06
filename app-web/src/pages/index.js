@@ -1,46 +1,51 @@
-import React, { Component } from 'react';
-import { graphql } from 'gatsby';
+import React, { PureComponent } from 'react';
 import { createStructuredSelector } from 'reselect';
+import queryString from 'query-string';
 import shortid from 'shortid';
 import { connect } from 'react-redux';
-import { Flag } from 'flag';
-import queryString from 'query-string';
-import * as actions from '../store/actions/actions';
 import { REACT_SCROLL } from '../constants/ui';
-import FLAGS from '../constants/featureflags';
+import { MAIN_NAV_ROUTES } from '../constants/routes';
+import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
+import { getSearchResults } from '../utils/helpers';
+import * as actions from '../store/actions';
 
 import styles from './index.module.css';
 // components
+import { Flag } from 'flag';
 import { Element } from 'react-scroll';
 import Loading from '../components/UI/Loading/Loading';
 import Layout from '../hoc/Layout';
-import Cards from '../components/Cards/Cards';
-import Sidebar from '../components/Sidebar/Sidebar';
-import WelcomePanel from '../components/WelcomePanel/WelcomePanel';
-import PrimaryFilter from '../components/Navigation/PrimaryFilter';
-import Dropmenu from '../components/Dropmenu/Dropmenu';
-import ToolsMenu from '../components/ToolsMenu/ToolsMenu';
+import ResourcePreview from '../components/ResourcePreview/ResourcePreview';
+import Masthead from '../components/Home/Masthead';
 
 // selectors from reselect
 import {
-  selectFilteredCollections,
-  selectFilters,
-  selectCollectionsLoaded,
-  selectShowWelcomePanel,
   selectQuery,
-  selectSiphonReducerLoading,
   selectSearchResultsLength,
   selectTotalResources,
   selectSearchWordLength,
+  selectResourcesLoaded,
+  selectResourcesReducerLoading,
+  selectGroupedFilteredAvailableResources,
+  selectCollectionsWithAvailableResourcesGroupedByType,
 } from '../store/selectors';
 
-export class Index extends Component {
+import { SEARCH } from '../messages';
+import withResourceQuery from '../hoc/withResourceQuery';
+import CollectionsContainer from '../components/Page/CollectionsContainer';
+import Aux from '../hoc/auxillary';
+
+export class Index extends PureComponent {
   componentDidMount() {
     // flatted nodes from graphql
-    if (!this.props.collectionsLoaded) {
-      const collections = this.props.data.allDevhubSiphonCollection.edges.map(c => c.node);
-      this.props.loadCollections(collections);
+    if (!this.props.resourcesLoaded) {
+      const collections = flattenGatsbyGraphQL(this.props.data.allDevhubSiphonCollection.edges);
+      // note this.props.data is received from the withResourceQuery Component
+      const resources = flattenGatsbyGraphQL(this.props.data.allDevhubSiphon.edges);
+      this.props.loadResources(resources, collections);
     }
+    // reset resource type to null since index page views all index pages
+    this.props.setResourceType(null);
   }
 
   componentDidUpdate() {
@@ -58,8 +63,6 @@ export class Index extends Component {
   }
 
   componentWillUnmount() {
-    // prevents welcome message from every showing again as long as local storage state is kept
-    this.props.hideWelcomeMessage();
     // unset set all search properties so that when this page is navigated back to, it looks like a fresh
     // page
     this.props.resetSearch();
@@ -71,163 +74,81 @@ export class Index extends Component {
    */
   async getSearchResults(query) {
     const lunr = await window.__LUNR__.__loaded;
-    const lunrIndex = lunr.en;
-    let results = [];
-    // attempt to search by parsing query into fields
-    try {
-      results = lunrIndex.index.search(query);
-    } catch (e) {
-      // if that fails treat query as plain text and attempt search again
-      results = lunrIndex.index.query(function() {
-        this.term(query);
-      });
-    }
-    // search results is an array of reference keys
-    // we need to map those to the index store to get the actual
-    // node ids
-    const searchResultsMap = results
-      .map(({ ref }) => lunrIndex.store[ref])
-      .reduce((obj, result) => {
-        obj[result.id] = { ...result };
-        return obj;
-      }, {});
-
-    return searchResultsMap;
+    return getSearchResults(query, lunr);
   }
 
   render() {
     const {
-      collections,
-      toggleMenu,
-      filters,
+      resourcesByType,
       searchResultsLength,
-      totalResources,
       setSearchBarTerms,
       searchWordLength,
-      query,
+      collections,
     } = this.props;
 
-    const SiphonResources = collections.map(collection => (
-      <Cards
-        key={shortid.generate()}
-        topic={collection.name}
-        description={collection.description}
-        cards={collection.nodes}
-      />
-    ));
+    const SiphonResources = Object.keys(resourcesByType).map(resourceType => {
+      if (resourcesByType[resourceType].length > 0) {
+        return (
+          <ResourcePreview
+            key={shortid.generate()}
+            title={resourceType}
+            resources={resourcesByType[resourceType]}
+            link={MAIN_NAV_ROUTES[resourceType]}
+          />
+        );
+      }
+      return null;
+    });
 
     return (
-      <Layout showHamburger hamburgerClicked={toggleMenu}>
-        <Flag name={`features.${FLAGS.SOURCE_FILTERING}`}>
-          <PrimaryFilter />
-        </Flag>
-        {/* hamburger icon controlled menu */}
-        <Dropmenu menuToggled />
-        <div className={[styles.MainContainer, 'container'].join(' ')}>
-          <Sidebar filters={filters} />
-          <div className={styles.Right}>
-            <WelcomePanel />
-            <ToolsMenu
-              filters={filters}
-              searchCount={searchResultsLength}
-              totalNodeCount={totalResources}
-              setSearchBarTerms={setSearchBarTerms} // keywords i search bar
-              searchWordLength={searchWordLength}
-              query={query} // value from query string
-            />
-            <main role="main" className={styles.Main}>
-              {/* Element used for react-scroll targeting */}
-              {this.props.loading ? (
-                <Loading message="Loading..." />
-              ) : (
+      <Layout showHamburger>
+        <div>
+          <Masthead setSearchBarTerms={setSearchBarTerms} />
+          <main role="main" className={styles.Main}>
+            {this.props.loading ? (
+              <Loading message="Loading..." />
+            ) : searchResultsLength === 0 && searchWordLength > 0 ? (
+              <p>{SEARCH.results.empty.defaultMessage}</p>
+            ) : (
+              <Aux>
+                <CollectionsContainer collections={collections} />
                 <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
-                  <div className={styles.CardContainer}>
-                    <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
-                  </div>
+                  {/* Element used for react-scroll targeting */}
+                  <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
                 </Element>
-              )}
-            </main>
-          </div>
+              </Aux>
+            )}
+          </main>
         </div>
       </Layout>
     );
   }
 }
 
-export const resourceQuery = graphql`
-  query resourceQuery {
-    allDevhubSiphonCollection(sort: { fields: [_metadata___position] }) {
-      edges {
-        node {
-          id
-          name
-          description
-          nodes: childrenDevhubSiphon {
-            id
-            name
-            owner
-            parent {
-              id
-            }
-            _metadata {
-              position
-            }
-            attributes {
-              personas
-            }
-            source {
-              displayName
-              sourcePath
-              type
-              name
-            }
-            resource {
-              path
-              type
-            }
-            unfurl {
-              title
-              description
-              type
-              image
-              author
-            }
-            childMarkdownRemark {
-              frontmatter {
-                pageOnly
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
 const mapStateToProps = createStructuredSelector({
-  collections: selectFilteredCollections,
-  collectionsLoaded: selectCollectionsLoaded,
-  displayWelcome: selectShowWelcomePanel,
+  resourcesLoaded: selectResourcesLoaded,
   query: selectQuery,
-  filters: selectFilters,
-  loading: selectSiphonReducerLoading,
+  loading: selectResourcesReducerLoading,
   searchResultsLength: selectSearchResultsLength,
   totalResources: selectTotalResources,
   searchWordLength: selectSearchWordLength,
+  resourcesByType: selectGroupedFilteredAvailableResources,
+  collections: selectCollectionsWithAvailableResourcesGroupedByType,
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadCollections: collections => dispatch(actions.loadSiphonCollections(collections)),
+    loadResources: (resources, collections) =>
+      dispatch(actions.loadResources(resources, collections)),
     setSearchResults: results => dispatch(actions.setSearchResults(results)),
-    hideWelcomeMessage: () => dispatch(actions.setWelcomePanelViewed(true)),
     setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
     setSearchBarTerms: resourceType => dispatch(actions.setSearchBarTerms(resourceType)),
     resetSearch: () => dispatch(actions.resetSearch()),
+    setResourceType: type => dispatch(actions.setResourceType(type)),
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Index);
+)(withResourceQuery(Index)());

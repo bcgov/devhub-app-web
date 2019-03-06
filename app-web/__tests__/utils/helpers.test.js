@@ -19,8 +19,10 @@ import {
   getGithubAvatarFromUsername,
   getGithubUsernameURL,
   getGithubIssuesRoute,
+  mapPagePathToResourceTypeConst,
 } from '../../src/utils/helpers';
 import { GITHUB_URL } from '../../src/constants/api';
+import { RESOURCE_TYPES } from '../../src/constants/ui';
 describe('Helpers', () => {
   test('getGethubIssuesRoute returns a url', () => {
     const repo = 'foo';
@@ -56,5 +58,13 @@ describe('Helpers', () => {
     const expected = '';
 
     expect(getGithubAvatarFromUsername(username)).toBe(expected);
+  });
+
+  test('when passed /components returns Components', () => {
+    expect(mapPagePathToResourceTypeConst('/components')).toBe(RESOURCE_TYPES.COMPONENTS);
+  });
+
+  test("when passed /foo returns undefined because it isn't a valid resource type", () => {
+    expect(mapPagePathToResourceTypeConst('/foo')).toBeUndefined();
   });
 });

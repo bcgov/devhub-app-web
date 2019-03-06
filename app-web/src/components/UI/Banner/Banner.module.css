@@ -7,13 +7,14 @@
 }
 
 .Logo h1 {
-  font-size: 2.0em;
+    font-size: 1.5em;
 }
 
 .Logo:hover {
-  text-decoration: none;
-  color: inherit;
+    text-decoration: none;
+    color: inherit;
 }
+
 .Logo a:visited {
     color: inherit;
 }

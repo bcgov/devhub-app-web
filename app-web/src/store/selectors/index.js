@@ -1,82 +1,40 @@
-import { createSelector } from 'reselect';
-import { filterCollections } from '../reducers/siphon';
+/*
+Copyright 2019 Province of British Columbia
 
-export const siphonSelector = state => state.siphon;
-export const uiSelector = state => state.ui;
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at 
 
-export const collectionsSelector = createSelector(
-  siphonSelector,
-  siphon => siphon.collections,
-);
+   http://www.apache.org/licenses/LICENSE-2.0
 
-export const selectFilters = createSelector(
-  siphonSelector,
-  siphon => siphon.filters,
-);
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
-// returns all currently active filters
-export const selectActiveFilters = createSelector(
+Created by Patrick Simonian
+*/
+
+export {
+  selectResources,
   selectFilters,
-  filters => filters.filter(f => f.active),
-);
-
-export const selectCollectionsLoaded = createSelector(
-  siphonSelector,
-  siphon => siphon.collectionsLoaded,
-);
-
-// returns collections where nodes are sorted lexographically by position
-export const selectSortedCollections = createSelector(
-  collectionsSelector,
-  collections =>
-    collections.map(collection => ({
-      ...collection,
-      nodes: collection.nodes.sort((a, b) => {
-        // lexographic sort of position string
-        if (a._metadata.position < b._metadata.position) return -1;
-        if (a._metadata.position > b._metadata.position) return 1;
-        return 0;
-      }),
-    })),
-);
-
-// returns collections filtered
-export const selectFilteredCollections = createSelector(
-  [selectSortedCollections, selectActiveFilters],
-  (collections, filters) =>
-    filters.length > 0 ? filterCollections(collections, filters) : collections,
-);
-
-// search selectors
-export const selectQuery = createSelector(
-  siphonSelector,
-  siphon => siphon.query,
-);
-
-// used to dictate a feedback message after conducting a search check <SearchFeedback /> for reference
-export const selectSearchResultsLength = createSelector(
-  siphonSelector,
-  siphon => Object.keys(siphon.searchResults).length,
-);
-
-// similar as above
-export const selectTotalResources = createSelector(
-  siphonSelector,
-  siphon => siphon.totalResources,
-);
-
-// similar as above
-export const selectSearchWordLength = createSelector(
-  siphonSelector,
-  siphon => siphon.searchBarTerms.length,
-);
-
-export const selectShowWelcomePanel = createSelector(
-  uiSelector,
-  ui => !ui.selectWelcomePanelViewd,
-);
-
-export const selectSiphonReducerLoading = createSelector(
-  siphonSelector,
-  siphon => siphon.loading,
-);
+  selectActiveFilters,
+  selectResourcesLoaded,
+  selectAvailableResources,
+  selectFilteredAvailableResources,
+  selectGroupedFilteredAvailableResources,
+  selectQuery,
+  selectSearchResultsLength,
+  selectTotalResources,
+  selectSearchWordLength,
+  selectResourcesReducerLoading,
+} from './resources';
+export { resourcesSelector } from './main';
+export {
+  selectCollections,
+  selectCollectionsWithResources,
+  selectCollectionsWithResourcesGroupedByType,
+  selectCollectionsWithAvailableResourcesGroupedByType,
+  selectCollectionsWithAvailableResources,
+} from './collection';

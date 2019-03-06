@@ -33,7 +33,7 @@ const RESOURCE_TYPES = {
   COMPONENTS: 'Components',
   DOCUMENTATION: 'Documentation',
   SELF_SERVICE_TOOLS: 'Self-Service Tools',
-  RESPOSITORIES: 'Repositories',
+  REPOSITORIES: 'Repositories',
   PEOPLE: 'People',
   PROJECTS: 'Projects',
 };

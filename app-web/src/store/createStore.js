@@ -21,8 +21,8 @@ import autoMergeLevel1 from 'redux-persist/lib/stateReconciler/autoMergeLevel1';
 import storage from 'redux-persist/lib/storage';
 import authReducer from './reducers/auth';
 import featuresReducer from './reducers/features';
-import siphonReducer from './reducers/siphon';
 import uiReducer from './reducers/ui';
+import resourcesReducer from './reducers/resources';
 
 /* Redux-persist configuration:
    Please check docs for more details,
@@ -41,21 +41,31 @@ const persistedUIReducer = persistReducer(uiPersistConfig, uiReducer);
 const rootReducer = combineReducers({
   auth: authReducer,
   flags: featuresReducer,
-  siphon: siphonReducer,
   ui: persistedUIReducer,
+  resources: resourcesReducer,
 });
 
 let composeEnhancers;
-let middlewares;
+
+let middlewares = [];
 // apply config to get redux dev tools working
 if (typeof window !== 'undefined') {
   // eslint-disable-next-line
   composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  middlewares = composeEnhancers();
+}
+
+// only log actions in dev
+if (process.env.NODE_ENV === `development`) {
+  const { logger } = require(`redux-logger`);
+
+  middlewares.push(logger);
 }
 
 const createStoreFN = () => {
-  const store = createStore(rootReducer, middlewares);
+  const store = createStore(
+    rootReducer,
+    composeEnhancers && composeEnhancers(applyMiddleware(...middlewares)),
+  );
   const persistor = persistStore(store);
   return { store, persistor };
 };

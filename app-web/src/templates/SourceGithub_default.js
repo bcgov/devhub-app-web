@@ -19,60 +19,119 @@
 //
 import React from 'react';
 import { graphql } from 'gatsby';
-import 'github-markdown-css';
+// import 'github-markdown-css';
+import styled from '@emotion/styled';
 import styles from './SourceMarkdown.module.css';
+import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../constants/ui';
 
+import { withPadding } from '../components/GithubTemplate/common';
 import rehypeReact from 'rehype-react';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ComponentPreview from '../components/ComponentPreview/ComponentPreview';
-
-import GithubTemplateLayout from '../hoc/GithubTemplateLayout';
-import SidePanel from '../components/GithubTemplate/SidePanel/SidePanel';
-import Header from '../components/GithubTemplate/Header/Header';
-import SourceNavigation from '../components/GithubTemplate/SourceNavigation/SourceNavigation';
+import SideDrawer from '../components/SideDrawer/SideDrawer';
+import Layout from '../hoc/Layout';
+import Masthead from '../components/GithubTemplate/Masthead/Masthead';
+import Navigation from '../components/GithubTemplate/Navigation/Navigation';
 import withNode from '../hoc/withNode';
 
-// eslint-disable-next-line
-const SourceGithubMarkdownDefault = ({ data: { devhubSiphon, nav }, location: pathname }) => {
-  // bind the devhub siphon data to the preview node
-  const previewWithNode = withNode(devhubSiphon)(ComponentPreview);
+const Main = styled.main`
+  background-color: #fff;
+  display: flex;
+  max-width: 1200px;
+  flex-direction: column;
+  ${withPadding}
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.md} {
+    flex-direction: row;
+  }
+`;
 
-  const renderAst = new rehypeReact({
-    createElement: React.createElement,
-    components: { 'component-preview': previewWithNode },
-  }).Compiler;
+const SidePanel = styled.nav`
+  flex-flow: column nowrap;
+  flex: 0 0 250px;
+  margin-right: 25px;
+  display: none;
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.md} {
+    display: flex;
+  }
+`;
 
-  return (
-    <GithubTemplateLayout siphonData={devhubSiphon} nav={nav} pathname={pathname}>
-      <div className={styles.TemplateContainer}>
-        <SidePanel links={nav.edges} pathname={pathname} siphonData={devhubSiphon}>
-          <Header
-            title={devhubSiphon.source.displayName}
-            originalSource={devhubSiphon.resource.originalSource}
-            fileName={devhubSiphon.fileName}
-            sourcePath={devhubSiphon.source.sourcePath}
-            repo={devhubSiphon.source.name}
+const SideDrawerToggleButton = styled.button`
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 10px 0;
+  color: ${props => props.theme.primary};
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+  text-align: left;
+  :focus {
+    outline: none;
+  }
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.md} {
+    display: none;
+  }
+`;
+
+class SourceGithubMarkdownDefault extends React.Component {
+  state = {
+    sideDrawerToggled: false,
+  };
+
+  toggleMenu = toggled => this.setState({ sideDrawerToggled: toggled });
+
+  render() {
+    const {
+      data: { devhubSiphon, nav, collection },
+    } = this.props;
+    // bind the devhub siphon data to the preview node
+    const previewWithNode = withNode(devhubSiphon)(ComponentPreview);
+
+    const renderAst = new rehypeReact({
+      createElement: React.createElement,
+      components: { 'component-preview': previewWithNode },
+    }).Compiler;
+
+    const navigation = <Navigation items={nav.items} />;
+    return (
+      <Layout>
+        <div>
+          <Masthead
+            type="Collections"
+            title={collection.name}
+            description={collection.description}
           />
-          {nav.edges.length > 1 ? (
-            <SourceNavigation components={nav.edges} activeLink={pathname} />
-          ) : null}
-        </SidePanel>
-        <main className={styles.Content}>
-          <div className={[styles.MarkdownBody, 'markdown-body'].join(' ')}>
-            {/* 
+          <Main>
+            <SidePanel>{navigation}</SidePanel>
+            <SideDrawerToggleButton onClick={() => this.toggleMenu(true)}>
+              <FontAwesomeIcon icon={faBars} style={{ color: '#026' }} />{' '}
+              <span>{collection.name} Content</span>
+            </SideDrawerToggleButton>
+            <div className={styles.MarkdownBody}>
+              {/* 
               if there is a tag in the markdown <component-preview> 
               the renderAst will drop in the rehype component
               otherwise if not tag exists it is biz as usual
             */}
-            {renderAst(devhubSiphon.childMarkdownRemark.htmlAst)}
-          </div>
-        </main>
-      </div>
-    </GithubTemplateLayout>
-  );
-};
+              {renderAst(devhubSiphon.childMarkdownRemark.htmlAst)}
+            </div>
+          </Main>
+        </div>
+        <SideDrawer
+          show={this.state.sideDrawerToggled}
+          title={`${collection.name} Content`}
+          closeDrawer={() => this.toggleMenu(false)}
+        >
+          {navigation}
+        </SideDrawer>
+      </Layout>
+    );
+  }
+}
 
 export const devhubSiphonMarkdown = graphql`
-  query devhubSiphonMarkdownDefault($id: String!, $collection: String!) {
+  query devhubSiphonMarkdownDefault($id: String!, $collectionId: String!) {
     devhubSiphon(id: { eq: $id }) {
       name
       id
@@ -101,14 +160,13 @@ export const devhubSiphonMarkdown = graphql`
       fileType
       path
     }
-    nav: allDevhubSiphon(
-      filter: { collection: { name: { eq: $collection } } }
-      sort: { fields: [_metadata___position] }
-    ) {
-      edges {
-        node {
-          ...NavigationFragment
-        }
+    collection: devhubSiphonCollection(id: { eq: $collectionId }) {
+      name
+      description
+    }
+    nav: devhubSiphonCollection(id: { eq: $collectionId }) {
+      items: childrenDevhubSiphon {
+        ...NavigationFragment
       }
     }
   }

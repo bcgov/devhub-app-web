@@ -1,26 +1,17 @@
 .Search {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+    display: flex;
+    align-items: center;
 }
 
 .Search input {
-  margin-right: 10px;
-  padding: 4px 5px;
-  flex-basis: 250px;
-  flex-grow: 1;
-  border: 2px solid #38598a;
-  border-radius: 3px;
-  padding: 5px;
-  transition: all .25s;
-  max-width: 400px;
-}
-
-.Search input:focus {
-  box-shadow: 0 0 2px 1px #38598aad;
-  outline: none;
+    margin: 0 4px;
+    padding: 4px 5px;
+    flex-basis: 250px;
+    flex-grow: 1;
+    transition: all .25s;
 }
 
 .Search button {
-  padding: 4px 15px;
+    padding: 4px 15px;
+    margin: 4px;
 }

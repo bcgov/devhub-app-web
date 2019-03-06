@@ -1,3 +1,6 @@
+import { arrayToMapByProp } from '../src/utils/dataHelpers';
+import { RESOURCE_TYPES } from '../src/constants/ui';
+
 const IDS = {
   DESIGN_SYSTEM: 'collection-1',
   DEVHUB: 'collection-2',
@@ -271,17 +274,7 @@ export const DESIGN_SYSTEM_COLLECTION = {
   type: 'default',
   title: 'Design System',
   description: 'baz',
-  nodes: DESIGN_SYSTEM_NODES,
-};
-
-export const DESIGN_SYSTEM_COLLECTION_SORTED = {
-  id: IDS.DESIGN_SYSTEM,
-  type: 'default',
-  title: 'Design System',
-  description: 'baz',
-  nodes: DESIGN_SYSTEM_NODES.sort((a, b) =>
-    a._metadata.position.localeCompare(b._metadata.position),
-  ),
+  resources: DESIGN_SYSTEM_NODES.map(n => ({ id: n.id })),
 };
 
 export const DEVHUB_COLLECTION = {
@@ -289,15 +282,34 @@ export const DEVHUB_COLLECTION = {
   type: 'default',
   title: 'Devhub',
   description: 'baz',
-  nodes: DEVHUB_NODES,
+  resources: DEVHUB_NODES.map(n => ({ id: n.id })),
 };
 
 export const SIPHON_NODES = DESIGN_SYSTEM_NODES.concat(DEVHUB_NODES);
 
+// stubbing in a set of nodes that pass the designer filter
+export const FILTERED_NODES = SIPHON_NODES.filter(
+  node => node.attributes.personas[0] === 'Designer',
+);
+
 export const COLLECTIONS = [DESIGN_SYSTEM_COLLECTION, DEVHUB_COLLECTION];
-export const SORTED_COLLECTIONS = [DESIGN_SYSTEM_COLLECTION_SORTED, DEVHUB_COLLECTION];
-// creating a set of filtered collections where there aren't any developers
-export const FILTERED_COLLECTIONS = SORTED_COLLECTIONS.map(collection => ({
-  ...collection,
-  nodes: collection.nodes.filter(node => node.attributes.personas[0] === 'Developer'),
-}));
+
+export const SIPHON_NODES_MAP = arrayToMapByProp(SIPHON_NODES, 'id');
+
+export const COLLECTIONS_MAP = arrayToMapByProp(COLLECTIONS, 'id');
+
+// some selectors found within /selectors/index.js provide selections of resources grouped by
+// resources types they are combined wth the default grouping set so that all resources
+// have a map of all resource types like so
+/**
+ *
+ * {
+ *  Components: [] no resources so it defaulted to empty,
+ *  Documentation: [{}, {}],
+ *  ...etc
+ * }
+ */
+export const DEFAULT_GROUPINGS = Object.keys(RESOURCE_TYPES).reduce((grouping, type) => {
+  grouping[RESOURCE_TYPES[type]] = [];
+  return grouping;
+}, {});

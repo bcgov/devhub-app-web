@@ -1,157 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Primary Footer Component it matches snapshot 1`] = `
-ShallowWrapper {
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <PrimaryFooter>
-    
-  </PrimaryFooter>,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateError": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "host",
-    "props": Object {
-      "children": <div
-        className="Container"
-      >
-        <NavigationItems
-          items={
-            Array [
-              Object {
-                "text": "home",
-                "to": "/",
-              },
-            ]
-          }
-        />
-      </div>,
-      "className": "PrimaryFooter",
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": <NavigationItems
-          items={
-            Array [
-              Object {
-                "text": "home",
-                "to": "/",
-              },
-            ]
-          }
-        />,
-        "className": "Container",
-      },
-      "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "items": Array [
-            Object {
-              "text": "home",
-              "to": "/",
-            },
-          ],
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      "type": "div",
-    },
-    "type": "footer",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": <div
-          className="Container"
-        >
-          <NavigationItems
-            items={
-              Array [
-                Object {
-                  "text": "home",
-                  "to": "/",
-                },
-              ]
-            }
-          />
-        </div>,
-        "className": "PrimaryFooter",
-      },
-      "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": <NavigationItems
-            items={
-              Array [
-                Object {
-                  "text": "home",
-                  "to": "/",
-                },
-              ]
-            }
-          />,
-          "className": "Container",
-        },
-        "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "function",
-          "props": Object {
-            "items": Array [
-              Object {
-                "text": "home",
-                "to": "/",
-              },
-            ],
+<footer
+  className="PrimaryFooter"
+>
+  <div
+    className="Container"
+  >
+    <NavigationItems
+      items={
+        Array [
+          Object {
+            "text": "home",
+            "to": "/",
           },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        "type": "div",
-      },
-      "type": "footer",
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-        "lifecycles": Object {
-          "componentDidUpdate": Object {
-            "onSetState": true,
+          Object {
+            "text": "disclaimer",
+            "to": "https://www2.gov.bc.ca/gov/content/home/disclaimer",
           },
-          "getDerivedStateFromProps": true,
-          "getSnapshotBeforeUpdate": true,
-          "setState": Object {
-            "skipsComponentDidUpdateOnNullish": true,
+          Object {
+            "text": "privacy",
+            "to": "https://www2.gov.bc.ca/gov/content/home/privacy",
           },
-        },
-      },
-    },
-  },
-}
+          Object {
+            "text": "accessibility",
+            "to": "https://www2.gov.bc.ca/gov/content/home/accessibility",
+          },
+          Object {
+            "text": "copyright",
+            "to": "https://www2.gov.bc.ca/gov/content/home/copyright",
+          },
+          Object {
+            "text": "contact us",
+            "to": "https://github.com/bcgov/devhub-app-web/issues",
+          },
+        ]
+      }
+    />
+  </div>
+</footer>
 `;

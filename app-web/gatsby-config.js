@@ -1,7 +1,7 @@
 require('dotenv').config({
   path: '.env.production',
 });
-const { converter } = require('./src/utils/gatsby-remark-transform-path');
+const { converter } = require('./src/utils/gatsbyRemark');
 // To specify a path of the registry.yaml file, set as env variable
 // This comes as a pair of sourceRegistryType used by gatsby-source-github-all
 const registry_path = process.env.REGISTRY_PATH || '';
@@ -13,7 +13,7 @@ module.exports = {
   pathPrefix: '/images',
   mapping: {},
   plugins: [
-    'gatsby-plugin-styled-components',
+    'gatsby-plugin-emotion',
     // Adding various source folders to the GraphQL layer.
     {
       resolve: 'gatsby-source-filesystem',
@@ -90,8 +90,8 @@ module.exports = {
               classPrefix: 'language-',
               inlineCodeMarker: null,
               aliases: {},
-              showLineNumbers: true,
-              noInlineHighlight: false,
+              showLineNumbers: false,
+              noInlineHighlight: true,
             },
           },
           {
@@ -133,7 +133,7 @@ module.exports = {
           { name: 'url' },
           { name: 'source' },
           { name: 'id', store: true },
-          { name: 'resourceType' },
+          { name: 'resourceType', store: true },
         ],
         // How to resolve each field's value for a supported node type
         resolvers: {
@@ -151,6 +151,22 @@ module.exports = {
             personas: node => node.attributes.personas.join(' '),
           },
         },
+      },
+    },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: 'Noto Sans', // default/included variants are 400,400i,700,700i
+          },
+        ],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-typography',
+      options: {
+        pathToConfigModule: 'typography',
       },
     },
   ],

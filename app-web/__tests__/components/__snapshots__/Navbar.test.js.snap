@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Primary Filter Component it matches snapshot 1`] = `
+<nav
+  className="Navbar"
+>
+  <ul
+    className="largeOnly"
+  >
+    <li
+      key="/"
+    >
+      <mockConstructor
+        activeClassName="ActiveFilter"
+        exact={true}
+        to="/"
+      >
+        All
+      </mockConstructor>
+    </li>
+    <li
+      key="/components"
+    >
+      <mockConstructor
+        activeClassName="ActiveFilter"
+        exact={true}
+        to="/components"
+      >
+        Components
+      </mockConstructor>
+    </li>
+    <li
+      key="/documentation"
+    >
+      <mockConstructor
+        activeClassName="ActiveFilter"
+        exact={true}
+        to="/documentation"
+      >
+        Documentation
+      </mockConstructor>
+    </li>
+    <li
+      key="/self-service-tools"
+    >
+      <mockConstructor
+        activeClassName="ActiveFilter"
+        exact={true}
+        to="/self-service-tools"
+      >
+        Self-Service Tools
+      </mockConstructor>
+    </li>
+    <li
+      key="/repositories"
+    >
+      <mockConstructor
+        activeClassName="ActiveFilter"
+        exact={true}
+        to="/repositories"
+      >
+        Repositories
+      </mockConstructor>
+    </li>
+    <li
+      key="/collections"
+    >
+      <mockConstructor
+        activeClassName="ActiveFilter"
+        exact={true}
+        to="/collections"
+      >
+        Collections
+      </mockConstructor>
+    </li>
+  </ul>
+</nav>
+`;

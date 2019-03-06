@@ -222,9 +222,12 @@ This repository has been configured to send webhooks to a self-hosted Taiga inst
 * Requires **Docker**
 * move into the root directory for the project (if your are in app-web `cd ../`)
 * run `docker-compose up`
-> if you make changes that do not reflect into the hot reloading (which shouldn't really happen)
-all you will need to do is rebuild the image by ending the current container session and running
-`docker-compose up --build`
+> if you make changes that do not reflect into the container, you will need to rebuild the image by ending the current container session and running `docker-compose up --build`,
+alternatively if things like node_modules aren't showing up try
+> 1. `docker-compose up --build`
+> 2. `docker-compose down`
+> 3. `docker-compose up` 
+> credits to: https://stackoverflow.com/a/49357239
 
 ## Deployment (OpenShift)
 

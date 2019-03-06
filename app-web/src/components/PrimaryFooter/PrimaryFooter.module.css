@@ -4,11 +4,6 @@
     padding: 9px 0 10px;
     color: #fff;
     padding: 0 12px 0 25px;
-    position: fixed;
-    z-index: 50;
-    left: 0;
-    bottom: 0;
-    width: 100%;
 }
 
 .PrimaryFooter a {
@@ -19,25 +14,23 @@
 }
 
 .Container {
-    height: 46px;
     display: flex;
     align-items: center;
 }
 
 .Container ul {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     flex-grow: 1;
+    margin: 10px 0;
 }
 
 .Container ul li {
-    padding: 0 5px;
-    flex-basis: 75px;
+    padding: 0 9px;
     text-align: center;
-}
-
-.Container ul li:nth-child(n + 2) {
-    border-left: 1px solid #4b5e7e;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
 }
 
 @media screen and (min-width: 600px) {

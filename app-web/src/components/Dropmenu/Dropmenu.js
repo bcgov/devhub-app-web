@@ -20,13 +20,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Flag } from 'flag';
 import FLAGS from '../../constants/featureflags';
-import PrimaryFilter from '../Navigation/PrimaryFilter';
+import Navbar from '../Navbar/Navbar';
 
 export const Dropmenu = ({ menuToggled }) => {
   if (menuToggled) {
     return (
       <Flag name={`features.${FLAGS.SOURCE_FILTERING}`}>
-        <PrimaryFilter mobile />;
+        <Navbar mobile />;
       </Flag>
     );
   }

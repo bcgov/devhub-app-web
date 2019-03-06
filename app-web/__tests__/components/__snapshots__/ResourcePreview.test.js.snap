@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Resource Preview Component it matches snapshot 1`] = `
+<section
+  className="ResourcePreview"
+>
+  <h2
+    className="Title"
+  >
+    <StyledLink
+      activeClassName=""
+      activeStyle={Object {}}
+      to="/"
+    >
+      foo
+    </StyledLink>
+  </h2>
+  <ResourceContainer>
+    <CardWrapper
+      key="3"
+    >
+      <Card
+        description="What the Design System is and how it works."
+        image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+        link="/design-system/Z1bGIqu"
+        title="About"
+        type="Components"
+      />
+    </CardWrapper>
+    <CardWrapper
+      key="2"
+    >
+      <Card
+        description="What the Design System is and how it works."
+        image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+        link="/design-system/Z1bGIqu"
+        title="About"
+        type="Components"
+      />
+    </CardWrapper>
+    <CardWrapper
+      key="1"
+    >
+      <Card
+        description="What the Design System is and how it works."
+        image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+        link="/design-system/Z1bGIqu"
+        title="About"
+        type="Components"
+      />
+    </CardWrapper>
+    <CardWrapper
+      key="4"
+    >
+      <Card
+        description="What the Design System is and how it works."
+        image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+        link="/design-system/Z1bGIqu"
+        title="About"
+        type="Components"
+      />
+    </CardWrapper>
+  </ResourceContainer>
+  <div
+    className="LinkContainer"
+  >
+    <ChevronLink
+      to="/"
+    >
+      bar
+    </ChevronLink>
+  </div>
+</section>
+`;

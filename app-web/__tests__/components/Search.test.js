@@ -45,7 +45,7 @@ describe('Search Bar', () => {
   });
 
   it('sets touched state if search was touched', () => {
-    const wrapper = shallow(searchBar);
+    const wrapper = mount(searchBar);
     const input = wrapper.find('input').first();
     input.simulate('focus');
     expect(wrapper.state('touched')).toBe(true);

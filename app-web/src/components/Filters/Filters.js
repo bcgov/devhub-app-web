@@ -18,14 +18,17 @@ import shortid from 'shortid';
 import styles from './Filters.module.css';
 
 import FilterGroup from './FilterGroup/FilterGroup';
-import { groupBy } from '../../utils/dataMassager';
+import groupBy from 'lodash/groupBy';
 
 const Filters = ({ filters }) => {
   // group filter groups by there title
   let groupedFilters = groupBy(filters, 'title');
   // map the data property that is created from groupBy to filters which is needed
   // for the FilterGroup component within Secondary Filter
-  groupedFilters = groupedFilters.map(fg => ({ ...fg, filters: fg.data }));
+  groupedFilters = Object.keys(groupedFilters).map(title => ({
+    title: title,
+    filters: groupedFilters[title],
+  }));
 
   const filterGroupsComponent = (
     <div className={styles.Filters}>

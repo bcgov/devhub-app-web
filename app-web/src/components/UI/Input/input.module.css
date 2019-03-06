@@ -25,3 +25,15 @@
   this is default 50%, we want this to be a little larger to meet design system specs */
   background-size: 66%;
 }
+
+
+.Input {
+  border: 2px solid #38598a;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.Input:focus {
+  box-shadow: 0 0 2px 1px #38598aad;
+  outline: none;
+}
