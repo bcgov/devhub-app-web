@@ -34,6 +34,19 @@ export const HOME = {
   },
 };
 
+export const COLLECTIONS_PAGE = {
+  header: {
+    title: {
+      id: 'COLLECTIONS_PAGE.header.title',
+      defaultMessage: 'Collections',
+    },
+    subtitle: {
+      id: 'COLLECTIONS_PAGE.header.subtitle',
+      defaultMessage:
+        'Explore resources that have been specially curated to enhance context, detail and accessibility.',
+    },
+  },
+};
 export const RESOURCE_TYPE_PAGES = {
   [RESOURCE_TYPES.COMPONENTS]: {
     header: {
@@ -83,20 +96,6 @@ export const RESOURCE_TYPE_PAGES = {
         defaultMessage:
           'Explore documentation to common Government Entities, Protocols and Compliances',
       },
-    },
-  },
-};
-
-export const COMPONENTS = {
-  header: {
-    title: {
-      id: 'COMPONENTS.header.title',
-      defaultMessage: 'Components',
-    },
-    subtitle: {
-      id: 'COMPONENTS.header.subtitle',
-      defaultMessage:
-        'Components represent the reusable building blocks for systems. They are leveraged during design and development to reduce effort, improve consistency and maintain compliance.',
     },
   },
 };

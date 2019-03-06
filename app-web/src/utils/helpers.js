@@ -15,7 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-
+import validUrl from 'valid-url';
 import { GITHUB_URL } from '../constants/api';
 import { TypeCheck } from '@bcgov/common-web-utils';
 import { RESOURCE_TYPES } from '../constants/ui';
@@ -95,4 +95,19 @@ export const getSearchResults = async (query, lunr) => {
     }, {});
 
   return searchResultsMap;
+};
+
+/**
+ * returns the first non external page path from a list of resources which
+ * ideally should belong to a particular collection
+ * @param {Array} resources the list of resources
+ */
+export const getFirstNonExternalResource = resources => {
+  for (let i = 0; i < resources.length; i++) {
+    const path = resources[i].resource.path;
+    if (!validUrl.isWebUri(path)) {
+      return path;
+    }
+  }
+  return null;
 };
