@@ -171,6 +171,12 @@ sources:
       sources:
         - sourceType: 'web'
           sourceProperties:
+            url: https://www.bcdevexchange.org
+            title: BC Developers Exchange
+            description: Finding better ways for government and developers to work together.
+            image: https://www.bcdevexchange.org/modules/core/client/img/logo/new-logo-white.svg
+        - sourceType: 'web'
+          sourceProperties:
             url: https://devopspathfinder.slack.com/
             author: kelpisland
             title: DevOps Pathfinder Slack Team
@@ -237,15 +243,15 @@ sources:
   - name: Developer Toy Box
     sourceType: 'github'
     sourceProperties:
-      url: https://github.com/BCDevOps/openshift-components/
-      owner: BCDevOps
-      repo: 'openshift-components'
+          url: https://github.com/BCDevOps/openshift-components/
+          owner: BCDevOps
+          repo: 'openshift-components'
     resourceType: 'Components'
-    attributes:
+          attributes:
       labels:
         - Repository
         - Components
-      persona: 'Developer'
+            persona: 'Developer'
   - name: Data Privacy
     description: Resources to help teams ensure their applications handle personal information in a manner compliant with BC Gov policies and regulations.
     resourceType: 'Documentation'
