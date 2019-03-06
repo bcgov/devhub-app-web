@@ -28,6 +28,7 @@ import Collection from '../Cards/Card/Collection';
 import Container from '../Cards/Container';
 import Row from '../Cards/Row';
 import Column from '../Cards/Column';
+import { getFirstNonExternalResource } from '../../utils/helpers';
 
 const StyledTitle = styled.h2`
   width: 100%;
@@ -50,24 +51,40 @@ const CollectionContent = collections =>
   collections
     .filter(collection => collection.hasResources)
     .slice(0, 4)
-    .map(collection => (
-      <StyledColumn
-        key={collection.id}
-        css={css`
-          justify-content: center;
-          display: flex;
-        `}
-      >
-        <Collection
-          title={collection.name}
-          description={collection.description}
-          documentation={collection.resources[RESOURCE_TYPES.DOCUMENTATION].length}
-          repositories={collection.resources[RESOURCE_TYPES.REPOSITORIES].length}
-          components={collection.resources[RESOURCE_TYPES.COMPONENTS].length}
-          tools={collection.resources[RESOURCE_TYPES.SELF_SERVICE_TOOLS].length}
-        />
-      </StyledColumn>
-    ));
+    .map(collection => {
+      // resources are grouped by type, 'ungroup' them so we can find the first available
+      // non external link to use as the entry page for the collection card
+      const allResources = Object.keys(collection.resources)
+        .reduce((list, key) => {
+          return list.concat(collection.resources[key]);
+        }, [])
+        .sort((a, b) => {
+          // sort to ensure first resource in collection is the entry poitn
+          const position1 = a._metadata.position;
+          const position2 = b._metadata.position;
+          return position1.localeCompare(position2);
+        });
+
+      return (
+        <StyledColumn
+          key={collection.id}
+          css={css`
+            justify-content: center;
+            display: flex;
+          `}
+        >
+          <Collection
+            title={collection.name}
+            description={collection.description}
+            documentation={collection.resources[RESOURCE_TYPES.DOCUMENTATION].length}
+            repositories={collection.resources[RESOURCE_TYPES.REPOSITORIES].length}
+            components={collection.resources[RESOURCE_TYPES.COMPONENTS].length}
+            tools={collection.resources[RESOURCE_TYPES.SELF_SERVICE_TOOLS].length}
+            link={getFirstNonExternalResource(allResources)}
+          />
+        </StyledColumn>
+      );
+    });
 
 const CollectionsContainer = ({ collections }) => (
   <ContainerCentered>

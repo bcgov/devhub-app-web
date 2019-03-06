@@ -96,13 +96,12 @@ export const selectCollectionsWithAvailableResourcesGroupedByType = createSelect
   selectCollectionsWithAvailableResources,
   collectionsWithResources =>
     collectionsWithResources.map(collection => {
-      console.log(collection, 'here');
       const defaultGroups = Object.keys(RESOURCE_TYPES).reduce((grouping, type) => {
         grouping[RESOURCE_TYPES[type]] = [];
         return grouping;
       }, {});
       const groups = { ...defaultGroups, ...groupBy(collection.resources, 'resource.type') };
-      console.log(groups);
+
       return {
         ...collection,
         resources: groups,

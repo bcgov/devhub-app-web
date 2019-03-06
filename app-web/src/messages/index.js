@@ -47,6 +47,7 @@ export const COLLECTIONS_PAGE = {
     },
   },
 };
+
 export const RESOURCE_TYPE_PAGES = {
   [RESOURCE_TYPES.COMPONENTS]: {
     header: {
@@ -113,6 +114,7 @@ export const SEARCH = {
   },
 };
 
+// used by the card ui
 export const RESOURCES = {
   types: {
     [RESOURCE_TYPES.COMPONENTS]: {

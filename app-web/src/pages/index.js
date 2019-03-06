@@ -99,7 +99,7 @@ export class Index extends PureComponent {
       }
       return null;
     });
-    console.log(collections);
+
     return (
       <Layout showHamburger>
         <div>
