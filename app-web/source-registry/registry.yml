@@ -247,11 +247,6 @@ sources:
           owner: BCDevOps
           repo: 'openshift-components'
     resourceType: 'Components'
-          attributes:
-      labels:
-        - Repository
-        - Components
-            persona: 'Developer'
   - name: Data Privacy
     description: Resources to help teams ensure their applications handle personal information in a manner compliant with BC Gov policies and regulations.
     resourceType: 'Documentation'
