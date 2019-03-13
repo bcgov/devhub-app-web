@@ -212,7 +212,6 @@ sources:
             - resources/community/chat_conventions.md
         - sourceType: 'github'
           sourceProperties:
-            resourceType: 'Documentation'
             url: https://github.com/bcgov/reggie-web/
             owner: bcgov
             repo: reggie-web
