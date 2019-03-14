@@ -174,7 +174,7 @@ sources:
             url: https://www.bcdevexchange.org
             title: BC Developers Exchange
             description: Finding better ways for government and developers to work together.
-            image: https://www.bcdevexchange.org/modules/core/client/img/logo/new-logo-white.svg
+            image: https://www.bcdevexchange.org/modules/core/client/img/logo/new-logo.svg
         - sourceType: 'web'
           sourceProperties:
             url: https://devopspathfinder.slack.com/
