@@ -11,25 +11,25 @@ export const MAIN_NAV_ROUTES = {
     to: '/',
     text: 'All',
   },
-  [RESOURCE_TYPES.COMPONENTS]: {
-    to: '/components',
-    text: 'Components',
-  },
-  [RESOURCE_TYPES.DOCUMENTATION]: {
-    to: '/documentation',
-    text: 'Documentation',
+  COLLECTIONS: {
+    to: '/collections',
+    text: 'Collections',
   },
   [RESOURCE_TYPES.SELF_SERVICE_TOOLS]: {
     to: '/self-service-tools',
     text: 'Self-Service Tools',
   },
+  [RESOURCE_TYPES.COMPONENTS]: {
+    to: '/components',
+    text: 'Components',
+  },
   [RESOURCE_TYPES.REPOSITORIES]: {
     to: '/repositories',
     text: 'Repositories',
   },
-  COLLECTIONS: {
-    to: '/collections',
-    text: 'Collections',
+  [RESOURCE_TYPES.DOCUMENTATION]: {
+    to: '/documentation',
+    text: 'Documentation',
   },
 };
 
