@@ -97,7 +97,7 @@ export class ResourceType extends PureComponent {
       image: r.unfurl.image,
       path: r.resource.path,
     }));
-
+    const searchResultsEmpty = query !== null && searchResultsLength === 0;
     return (
       <Layout showHamburger>
         <Main role="main">
@@ -106,11 +106,11 @@ export class ResourceType extends PureComponent {
             subtitle={RESOURCE_TYPE_PAGES[pageContext.resourceType].header.subtitle.defaultMessage}
           />
           <PageContainer>
-            {resources.length > 0 ? (
+            {resources.length > 0 || searchResultsEmpty ? (
               <Aux>
                 <FilterMenu filters={filters} />
                 <CardsContainer
-                  searchResultsEmpty={query !== null && searchResultsLength === 0}
+                  searchResultsEmpty={searchResultsEmpty}
                   pagePath={this.props.location.pathname}
                   resources={resources}
                   setSearchBarTerms={setSearchBarTerms}
