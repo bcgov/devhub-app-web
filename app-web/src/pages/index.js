@@ -1,8 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import queryString from 'query-string';
 import shortid from 'shortid';
 import { connect } from 'react-redux';
+import { Alert } from 'reactstrap';
 import { REACT_SCROLL } from '../constants/ui';
 import { MAIN_NAV_ROUTES } from '../constants/routes';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
@@ -35,7 +37,7 @@ import withResourceQuery from '../hoc/withResourceQuery';
 import CollectionsContainer from '../components/Page/CollectionsContainer';
 import Aux from '../hoc/auxillary';
 
-export class Index extends PureComponent {
+export class Index extends Component {
   componentDidMount() {
     // flatted nodes from graphql
     if (!this.props.resourcesLoaded) {
@@ -52,12 +54,16 @@ export class Index extends PureComponent {
     const query = queryString.parse(this.props.location.search);
     if (Object.prototype.hasOwnProperty.call(query, 'q')) {
       const param = decodeURIComponent(query.q);
-
+      console.log('but im here');
       if (param !== this.props.query) {
+        console.log('but im here again');
         this.props.setSearchQuery(param);
-        this.getSearchResults(param).then(results => {
-          this.props.setSearchResults(results);
-        });
+        console.log('i am here');
+        this.getSearchResults(param)
+          .then(results => {
+            this.props.setSearchResults(results);
+          })
+          .catch(e => console.error(e));
       }
     }
   }
@@ -73,6 +79,7 @@ export class Index extends PureComponent {
    * @param {String} query the search string
    */
   async getSearchResults(query) {
+    console.log('HERE!!', 'yoyoyoyo');
     const lunr = await window.__LUNR__.__loaded;
     return getSearchResults(query, lunr);
   }
@@ -84,6 +91,7 @@ export class Index extends PureComponent {
       setSearchBarTerms,
       searchWordLength,
       collections,
+      loading,
     } = this.props;
 
     const SiphonResources = Object.keys(resourcesByType).map(resourceType => {
@@ -100,15 +108,19 @@ export class Index extends PureComponent {
       return null;
     });
 
+    const noSearchResults = searchResultsLength === 0 && searchWordLength > 0;
+
     return (
       <Layout showHamburger>
         <div>
           <Masthead setSearchBarTerms={setSearchBarTerms} />
           <main role="main" className={styles.Main}>
-            {this.props.loading ? (
+            {loading ? (
               <Loading message="Loading..." />
-            ) : searchResultsLength === 0 && searchWordLength > 0 ? (
-              <p>{SEARCH.results.empty.defaultMessage}</p>
+            ) : noSearchResults ? (
+              <Alert style={{ margin: '10px auto' }} color="info">
+                {SEARCH.results.empty.defaultMessage}
+              </Alert>
             ) : (
               <Aux>
                 <CollectionsContainer collections={collections} />
@@ -146,6 +158,23 @@ const mapDispatchToProps = dispatch => {
     resetSearch: () => dispatch(actions.resetSearch()),
     setResourceType: type => dispatch(actions.setResourceType(type)),
   };
+};
+
+Index.propTypes = {
+  loadResources: PropTypes.func.isRequired,
+  setSearchResults: PropTypes.func.isRequired,
+  setSearchQuery: PropTypes.func.isRequired,
+  setSearchBarTerms: PropTypes.func.isRequired,
+  resetSearch: PropTypes.func.isRequired,
+  setResourceType: PropTypes.func.isRequired,
+  resourcesLoaded: PropTypes.bool.isRequired,
+  query: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
+  searchResultsLength: PropTypes.number.isRequired,
+  totalResources: PropTypes.number.isRequired,
+  searchWordLength: PropTypes.number.isRequired,
+  resourcesByType: PropTypes.object.isRequired,
+  collections: PropTypes.array.isRequired,
 };
 
 export default connect(
