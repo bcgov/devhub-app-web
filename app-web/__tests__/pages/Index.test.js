@@ -1,13 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import groupBy from 'lodash/groupBy';
+import { getSearchResults } from '../../src/utils/helpers';
 import { Index } from '../../src/pages/index';
 import { SIPHON_NODES, COLLECTIONS } from '../../__fixtures__/siphon-fixtures';
 
 jest.mock('react-spinners', () => null);
 jest.mock('../../src/utils/helpers', () => ({
-  getSearchResults: jest.fn(() => ({ '1': { id: '1' } })),
+  getSearchResults: jest.fn(() => Promise.resolve({ '1': { id: '1' } })),
 }));
+
 jest.mock('query-string', () => ({
   parse: jest.fn(() => ({ q: 'foo' })),
 }));
@@ -31,9 +33,10 @@ describe('Index Container', () => {
   // mocking redux actions
   const actions = {
     loadResources: jest.fn(),
-    setSearchResults: jest.fn(),
+    setSearchResults: jest.fn(() => {
+      return 'fofofo';
+    }),
     setSearchQuery: jest.fn(() => {
-      console.log('called search query');
       return true;
     }),
     setSearchBarTerms: jest.fn(),
@@ -81,16 +84,12 @@ describe('Index Container', () => {
     expect(actions.loadResources).toHaveBeenCalled();
   });
 
-  test('when search props updates, it calls search functions', () => {
+  test('when search props updates, it calls search function', async () => {
     const wrapper = shallow(<Index {...props} />);
-    // mock out lunrs global object
-    window.__LUNR__ = { __loaded: Promise.resolve(null) };
-    try {
-      wrapper.setProps({ resourcesLoaded: true });
-    } catch (e) {
-      console.error(e);
-    }
-    expect(actions.setSearchQuery).toHaveBeenCalled();
-    expect(actions.setSearchResults).toHaveBeenCalledWith({ '1': { id: '1' } });
+    wrapper.setProps({ location: { ...location, search: '?q=foo' } });
+    await wrapper.instance().componentDidMount();
+    expect(getSearchResults).toHaveBeenCalled();
+    expect(props.setSearchQuery).toHaveBeenCalled();
+    expect(props.setSearchResults).toHaveBeenCalled();
   });
 });

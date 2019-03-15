@@ -58,7 +58,7 @@ export class ResourceType extends PureComponent {
 
       if (param !== this.props.query) {
         this.props.setSearchQuery(param);
-        this.getSearchResults(param).then(results => {
+        getSearchResults(param).then(results => {
           this.props.setSearchResults(results);
         });
       }
@@ -69,15 +69,6 @@ export class ResourceType extends PureComponent {
     // unset set all search properties so that when this page is navigated back to, it looks like a fresh
     // page
     this.props.resetSearch();
-  }
-
-  /**
-   * gets search results from lunr
-   * @param {String} query the search string
-   */
-  async getSearchResults(query) {
-    const lunr = await window.__LUNR__.__loaded;
-    return getSearchResults(query, lunr);
   }
 
   render() {

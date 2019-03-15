@@ -114,3 +114,11 @@ export const selectResourcesReducerLoading = createSelector(
   resourcesSelector,
   resources => resources.loading,
 );
+
+export const selectSearchResultsExist = createSelector(
+  selectSearchResultsLength,
+  (searchResultsLength, searchWordLength, query) => {
+    console.log(query, searchResultsLength, searchResultsLength > 0);
+    return searchResultsLength > 0;
+  },
+);

@@ -30,6 +30,7 @@ import {
   selectResourcesReducerLoading,
   selectGroupedFilteredAvailableResources,
   selectCollectionsWithAvailableResourcesGroupedByType,
+  selectSearchResultsExist,
 } from '../store/selectors';
 
 import { SEARCH } from '../messages';
@@ -51,21 +52,20 @@ export class Index extends Component {
   }
 
   componentDidUpdate() {
+    console.log('update called!');
     const query = queryString.parse(this.props.location.search);
     if (Object.prototype.hasOwnProperty.call(query, 'q')) {
       const param = decodeURIComponent(query.q);
-      console.log('but im here');
+
       if (param !== this.props.query) {
-        console.log('but im here again');
         this.props.setSearchQuery(param);
-        console.log('i am here');
-        this.getSearchResults(param)
-          .then(results => {
-            this.props.setSearchResults(results);
-          })
-          .catch(e => console.error(e));
+        // returning so that we can test this function
+        return getSearchResults(param).then(results => {
+          this.props.setSearchResults(results);
+        });
       }
     }
+    return null;
   }
 
   componentWillUnmount() {
@@ -74,24 +74,13 @@ export class Index extends Component {
     this.props.resetSearch();
   }
 
-  /**
-   * gets search results from lunr
-   * @param {String} query the search string
-   */
-  async getSearchResults(query) {
-    console.log('HERE!!', 'yoyoyoyo');
-    const lunr = await window.__LUNR__.__loaded;
-    return getSearchResults(query, lunr);
-  }
-
   render() {
     const {
       resourcesByType,
-      searchResultsLength,
       setSearchBarTerms,
-      searchWordLength,
       collections,
       loading,
+      searchResultsExist,
     } = this.props;
 
     const SiphonResources = Object.keys(resourcesByType).map(resourceType => {
@@ -108,8 +97,6 @@ export class Index extends Component {
       return null;
     });
 
-    const noSearchResults = searchResultsLength === 0 && searchWordLength > 0;
-
     return (
       <Layout showHamburger>
         <div>
@@ -117,7 +104,7 @@ export class Index extends Component {
           <main role="main" className={styles.Main}>
             {loading ? (
               <Loading message="Loading..." />
-            ) : noSearchResults ? (
+            ) : !searchResultsExist ? (
               <Alert style={{ margin: '10px auto' }} color="info">
                 {SEARCH.results.empty.defaultMessage}
               </Alert>
@@ -146,6 +133,7 @@ const mapStateToProps = createStructuredSelector({
   searchWordLength: selectSearchWordLength,
   resourcesByType: selectGroupedFilteredAvailableResources,
   collections: selectCollectionsWithAvailableResourcesGroupedByType,
+  searchResultsExist: selectSearchResultsExist,
 });
 
 const mapDispatchToProps = dispatch => {
@@ -175,6 +163,7 @@ Index.propTypes = {
   searchWordLength: PropTypes.number.isRequired,
   resourcesByType: PropTypes.object.isRequired,
   collections: PropTypes.array.isRequired,
+  searchResultsExist: PropTypes.bool.isRequired,
 };
 
 export default connect(
