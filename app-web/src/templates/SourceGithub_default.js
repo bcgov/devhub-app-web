@@ -85,6 +85,7 @@ class SourceGithubMarkdownDefault extends React.Component {
   render() {
     const {
       data: { devhubSiphon, nav, collection },
+      location,
     } = this.props;
     // bind the devhub siphon data to the preview node
     const previewWithNode = withNode(devhubSiphon)(ComponentPreview);
@@ -95,6 +96,11 @@ class SourceGithubMarkdownDefault extends React.Component {
     }).Compiler;
 
     const navigation = <Navigation items={nav.items} />;
+
+    const { repo, owner } = devhubSiphon.source._properties;
+    const { title } = devhubSiphon.childMarkdownRemark.frontmatter;
+    const { originalSource } = devhubSiphon.resource;
+    const { href } = location;
     return (
       <Layout>
         <div>
@@ -110,6 +116,13 @@ class SourceGithubMarkdownDefault extends React.Component {
               <span>{collection.name} Content</span>
             </SideDrawerToggleButton>
             <div className={styles.MarkdownBody}>
+              <Actions
+                repo={repo}
+                owner={owner}
+                pageTitle={title}
+                originalSource={originalSource}
+                devhubPath={href}
+              />
               {/* 
               if there is a tag in the markdown <component-preview> 
               the renderAst will drop in the rehype component
@@ -155,6 +168,7 @@ export const devhubSiphonMarkdown = graphql`
       }
       resource {
         originalSource
+        path
       }
       owner
       fileName
