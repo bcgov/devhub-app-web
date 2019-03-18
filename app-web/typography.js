@@ -5,7 +5,7 @@ const typography = new Typography({
   baseLineHeight: 1.6,
   headerFontFamily: ['Noto Sans', 'Verdana', 'Arial', 'sans-serif'],
   bodyFontFamily: ['Noto Sans', 'Verdana', 'Arial', 'sans-serif'],
-  scaleRatio: 1.2,
+  scaleRatio: 2.074,
 });
 
 export default typography;
