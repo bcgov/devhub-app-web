@@ -7,14 +7,19 @@ import AppLogo from '../AppLogo/AppLogo';
 import PhaseBanner from '../PhaseBanner/PhaseBanner';
 import Link from '../Link/Link';
 import classes from './Banner.module.css';
+import styled from '@emotion/styled';
 
+const StyledLink = styled(Link)`
+  color: #fff;
+  text-decoration: none;
+`;
 const Banner = () => {
   return (
-    <Link id={BANNER_ID} className={classes.Logo} to={HOME_ROUTE}>
+    <StyledLink id={BANNER_ID} className={classes.Logo} to={HOME_ROUTE}>
       <GovLogo />
       <AppLogo />
       <PhaseBanner />
-    </Link>
+    </StyledLink>
   );
 };
 

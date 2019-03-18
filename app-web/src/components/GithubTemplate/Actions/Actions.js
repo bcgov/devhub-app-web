@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { getGithubIssuesRoute } from '../../../utils/helpers';
 import { Link } from '../../UI/Link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/fontawesome-free-brands';
 
 const Container = styled.ul`
   display: flex;
@@ -18,7 +20,7 @@ const LI = styled.li`
   padding: 4px;
   flex: 1 0 45px;
   > a {
-    color: inherit;
+    text-decoration: none;
   }
 `;
 
@@ -51,7 +53,7 @@ const Actions = ({ repo, owner, pageTitle, originalSource, devhubPath }) => (
         id={IDS.issue}
         to={getCannedIssueMessage(repo, owner, pageTitle, originalSource, devhubPath)}
       >
-        Make an Issue
+        <FontAwesomeIcon icon={faGithub} /> Make an Issue
       </Link>
     </LI>
   </Container>

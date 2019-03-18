@@ -18,24 +18,14 @@ Created by Patrick Simonian
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from './Link';
 
-const StyledLink = styled(Link)`
-  text-decoration: underline;
-  color: ${props => props.theme.colors.link};
-  font-weight: 400;
-  text-transform: capitalize;
-  padding: 0 4px;
-  margin: 0 2px;
-`;
-
 const ChevronLink = ({ to, children }) => (
-  <StyledLink to={to}>
+  <Link to={to}>
     {children} <FontAwesomeIcon icon={faChevronRight} />
-  </StyledLink>
+  </Link>
 );
 
 ChevronLink.propTypes = {

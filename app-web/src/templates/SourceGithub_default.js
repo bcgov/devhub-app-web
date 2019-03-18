@@ -116,6 +116,12 @@ class SourceGithubMarkdownDefault extends React.Component {
               <span>{collection.name} Content</span>
             </SideDrawerToggleButton>
             <div className={styles.MarkdownBody}>
+              {/* 
+              if there is a tag in the markdown <component-preview> 
+              the renderAst will drop in the rehype component
+              otherwise if not tag exists it is biz as usual
+            */}
+              {renderAst(devhubSiphon.childMarkdownRemark.htmlAst)}
               <Actions
                 repo={repo}
                 owner={owner}
@@ -123,12 +129,6 @@ class SourceGithubMarkdownDefault extends React.Component {
                 originalSource={originalSource}
                 devhubPath={href}
               />
-              {/* 
-              if there is a tag in the markdown <component-preview> 
-              the renderAst will drop in the rehype component
-              otherwise if not tag exists it is biz as usual
-            */}
-              {renderAst(devhubSiphon.childMarkdownRemark.htmlAst)}
             </div>
           </Main>
         </div>
