@@ -55,8 +55,9 @@ const Actions = ({ repo, owner, pageTitle, originalSource, devhubPath }) => (
       <Link
         id={IDS.issue}
         to={getCannedIssueMessage(repo, owner, pageTitle, originalSource, devhubPath)}
+        aria-label="create an issue for this page on github"
       >
-        <FontAwesomeIcon icon={faGithub} /> Make an Issue
+        <FontAwesomeIcon icon={faGithub} /> Create an Issue
       </Link>
     </LI>
   </Container>
