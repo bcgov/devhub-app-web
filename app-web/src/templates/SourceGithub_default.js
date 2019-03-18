@@ -33,6 +33,7 @@ import SideDrawer from '../components/SideDrawer/SideDrawer';
 import Layout from '../hoc/Layout';
 import Masthead from '../components/GithubTemplate/Masthead/Masthead';
 import Navigation from '../components/GithubTemplate/Navigation/Navigation';
+import Actions from '../components/GithubTemplate/Actions/Actions';
 import withNode from '../hoc/withNode';
 
 const Main = styled.main`
