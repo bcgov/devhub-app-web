@@ -73,8 +73,19 @@ describe('Index Container', () => {
   });
 
   test('when no search results the no search results message is visible', () => {
+    // stub in siphon nodes where none exist
+    const resourcesByType = Object.keys(props.resourcesByType).reduce((resourcesByType, key) => {
+      resourcesByType[key] = [];
+      return resourcesByType;
+    }, {});
+
     const wrapper = shallow(
-      <Index {...props} loading={false} searchResultsLength={0} searchWordLength={5} />,
+      <Index
+        {...props}
+        loading={false}
+        searchResultsExist={false}
+        resourcesByType={resourcesByType}
+      />,
     );
     expect(wrapper.find('Alert').exists()).toBeTruthy();
   });
