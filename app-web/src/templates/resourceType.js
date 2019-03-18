@@ -29,6 +29,8 @@ import {
   selectResourcesReducerLoading,
   selectGroupedFilteredAvailableResources,
   selectFilters,
+  selectSearchResultsExist,
+  selectResourcesExistByType,
 } from '../store/selectors';
 
 export class ResourceType extends PureComponent {
@@ -58,7 +60,7 @@ export class ResourceType extends PureComponent {
 
       if (param !== this.props.query) {
         this.props.setSearchQuery(param);
-        this.getSearchResults(param).then(results => {
+        getSearchResults(param).then(results => {
           this.props.setSearchResults(results);
         });
       }
@@ -71,15 +73,6 @@ export class ResourceType extends PureComponent {
     this.props.resetSearch();
   }
 
-  /**
-   * gets search results from lunr
-   * @param {String} query the search string
-   */
-  async getSearchResults(query) {
-    const lunr = await window.__LUNR__.__loaded;
-    return getSearchResults(query, lunr);
-  }
-
   render() {
     const {
       resourcesByType,
@@ -88,9 +81,11 @@ export class ResourceType extends PureComponent {
       filters,
       query,
       pageContext, // received from gatsby create pages api, view gatsby/createPages.js for more info
+      resourcesExistByType,
     } = this.props;
-
-    const resources = resourcesByType[RESOURCE_TYPES[pageContext.resourceTypeConst]].map(r => ({
+    const resourceTypeConst = RESOURCE_TYPES[pageContext.resourceTypeConst];
+    // grab the specific resources by the resource type associated with this pages context
+    const resources = resourcesByType[resourceTypeConst].map(r => ({
       type: r.resource.type,
       title: r.unfurl.title,
       description: r.unfurl.description,
@@ -98,6 +93,7 @@ export class ResourceType extends PureComponent {
       path: r.resource.path,
     }));
 
+    const searchResultsEmpty = query !== null && searchResultsLength === 0;
     return (
       <Layout showHamburger>
         <Main role="main">
@@ -106,11 +102,11 @@ export class ResourceType extends PureComponent {
             subtitle={RESOURCE_TYPE_PAGES[pageContext.resourceType].header.subtitle.defaultMessage}
           />
           <PageContainer>
-            {resources.length > 0 ? (
+            {resourcesExistByType[resourceTypeConst] > 0 ? (
               <Aux>
                 <FilterMenu filters={filters} />
                 <CardsContainer
-                  searchResultsEmpty={query !== null && searchResultsLength === 0}
+                  searchResultsEmpty={searchResultsEmpty}
                   pagePath={this.props.location.pathname}
                   resources={resources}
                   setSearchBarTerms={setSearchBarTerms}
@@ -143,6 +139,8 @@ const mapStateToProps = createStructuredSelector({
   totalResources: selectTotalResources,
   searchWordLength: selectSearchWordLength,
   resourcesByType: selectGroupedFilteredAvailableResources,
+  resourcesExistByType: selectResourcesExistByType,
+  searchResultsExist: selectSearchResultsExist,
 });
 
 const mapDispatchToProps = dispatch => {

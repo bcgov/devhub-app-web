@@ -23,13 +23,13 @@ import PropTypes from 'prop-types';
 import { navigate } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { SEARCH } from '../../constants/ui';
-import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
-import { SEARCH as SEARCH_MESSAGES } from '../../messages';
-
 import { Alert } from 'reactstrap';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { SEARCH } from '../../constants/ui';
+import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
+import { SEARCH as SEARCH_MESSAGES } from '../../messages';
 
 import Card from '../Cards/Card/Card';
 import Search from '../Search/Search';
@@ -103,7 +103,7 @@ const CardContainer = ({
         onSearch={terms => {
           // set resource type to all since we are searching the entire index
           setSearchBarTerms(terms);
-          navigate(`${pagePath}/?q=${encodeURIComponent(terms)}`);
+          navigate(`${pagePath}?q=${encodeURIComponent(terms)}`);
         }}
         onSearchClear={() => {
           setSearchBarTerms('');

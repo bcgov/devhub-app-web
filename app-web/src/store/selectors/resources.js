@@ -114,3 +114,27 @@ export const selectResourcesReducerLoading = createSelector(
   resourcesSelector,
   resources => resources.loading,
 );
+
+export const selectSearchResultsExist = createSelector(
+  [selectSearchResultsLength, selectSearchWordLength, selectQuery],
+  (searchResultsLength, query) => {
+    console.log(searchResultsLength > 0 && query.length > 0);
+    return searchResultsLength > 0 && query.length > 0;
+  },
+);
+
+export const selectResourcesExistByType = createSelector(
+  selectResources,
+  resources => {
+    const resourceTypeProp = 'resource.type';
+    const groupedResultsByType = groupBy(resources, resourceTypeProp);
+    // map over grouped results and return true/false if results exist
+    return Object.keys(groupedResultsByType).reduce((resultsByType, type) => {
+      // get results from grouping
+      const results = groupedResultsByType[type];
+      resultsByType[type] = results.length > 0;
+      // results for this type exist if either there are results or
+      return resultsByType;
+    }, {});
+  },
+);

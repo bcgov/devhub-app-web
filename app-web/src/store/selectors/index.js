@@ -29,6 +29,8 @@ export {
   selectTotalResources,
   selectSearchWordLength,
   selectResourcesReducerLoading,
+  selectSearchResultsExist,
+  selectResourcesExistByType,
 } from './resources';
 export { resourcesSelector } from './main';
 export {

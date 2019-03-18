@@ -13,7 +13,9 @@ exports[`Index Container it matches snapshot 1`] = `
       role="main"
     >
       <Aux>
-        <CollectionsContainer />
+        <CollectionsContainer
+          collections={Array []}
+        />
         <Element
           name="CARDS_CONTAINER"
         >

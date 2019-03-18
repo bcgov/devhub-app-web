@@ -1,8 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import queryString from 'query-string';
 import shortid from 'shortid';
 import { connect } from 'react-redux';
+import { Alert } from 'reactstrap';
 import { REACT_SCROLL } from '../constants/ui';
 import { MAIN_NAV_ROUTES } from '../constants/routes';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
@@ -28,6 +30,7 @@ import {
   selectResourcesReducerLoading,
   selectGroupedFilteredAvailableResources,
   selectCollectionsWithAvailableResourcesGroupedByType,
+  selectSearchResultsExist,
 } from '../store/selectors';
 
 import { SEARCH } from '../messages';
@@ -35,7 +38,7 @@ import withResourceQuery from '../hoc/withResourceQuery';
 import CollectionsContainer from '../components/Page/CollectionsContainer';
 import Aux from '../hoc/auxillary';
 
-export class Index extends PureComponent {
+export class Index extends Component {
   componentDidMount() {
     // flatted nodes from graphql
     if (!this.props.resourcesLoaded) {
@@ -55,11 +58,13 @@ export class Index extends PureComponent {
 
       if (param !== this.props.query) {
         this.props.setSearchQuery(param);
-        this.getSearchResults(param).then(results => {
+        // returning so that we can test this function
+        return getSearchResults(param).then(results => {
           this.props.setSearchResults(results);
         });
       }
     }
+    return null;
   }
 
   componentWillUnmount() {
@@ -68,25 +73,16 @@ export class Index extends PureComponent {
     this.props.resetSearch();
   }
 
-  /**
-   * gets search results from lunr
-   * @param {String} query the search string
-   */
-  async getSearchResults(query) {
-    const lunr = await window.__LUNR__.__loaded;
-    return getSearchResults(query, lunr);
-  }
-
   render() {
     const {
       resourcesByType,
-      searchResultsLength,
       setSearchBarTerms,
-      searchWordLength,
       collections,
+      loading,
+      searchResultsExist,
     } = this.props;
 
-    const SiphonResources = Object.keys(resourcesByType).map(resourceType => {
+    const siphonResources = Object.keys(resourcesByType).map(resourceType => {
       if (resourcesByType[resourceType].length > 0) {
         return (
           <ResourcePreview
@@ -100,21 +96,25 @@ export class Index extends PureComponent {
       return null;
     });
 
+    const resourcesNotFound = siphonResources.every(r => r === null);
+
     return (
       <Layout showHamburger>
         <div>
           <Masthead setSearchBarTerms={setSearchBarTerms} />
           <main role="main" className={styles.Main}>
-            {this.props.loading ? (
+            {loading ? (
               <Loading message="Loading..." />
-            ) : searchResultsLength === 0 && searchWordLength > 0 ? (
-              <p>{SEARCH.results.empty.defaultMessage}</p>
+            ) : !searchResultsExist && resourcesNotFound ? (
+              <Alert style={{ margin: '10px auto' }} color="info">
+                {SEARCH.results.empty.defaultMessage}
+              </Alert>
             ) : (
               <Aux>
                 <CollectionsContainer collections={collections} />
                 <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
                   {/* Element used for react-scroll targeting */}
-                  <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
+                  <Flag name="features.githubResourceCards">{siphonResources}</Flag>
                 </Element>
               </Aux>
             )}
@@ -134,6 +134,7 @@ const mapStateToProps = createStructuredSelector({
   searchWordLength: selectSearchWordLength,
   resourcesByType: selectGroupedFilteredAvailableResources,
   collections: selectCollectionsWithAvailableResourcesGroupedByType,
+  searchResultsExist: selectSearchResultsExist,
 });
 
 const mapDispatchToProps = dispatch => {
@@ -146,6 +147,24 @@ const mapDispatchToProps = dispatch => {
     resetSearch: () => dispatch(actions.resetSearch()),
     setResourceType: type => dispatch(actions.setResourceType(type)),
   };
+};
+
+Index.propTypes = {
+  loadResources: PropTypes.func.isRequired,
+  setSearchResults: PropTypes.func.isRequired,
+  setSearchQuery: PropTypes.func.isRequired,
+  setSearchBarTerms: PropTypes.func.isRequired,
+  resetSearch: PropTypes.func.isRequired,
+  setResourceType: PropTypes.func.isRequired,
+  resourcesLoaded: PropTypes.bool.isRequired,
+  query: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
+  searchResultsLength: PropTypes.number.isRequired,
+  totalResources: PropTypes.number.isRequired,
+  searchWordLength: PropTypes.number.isRequired,
+  resourcesByType: PropTypes.object.isRequired,
+  collections: PropTypes.array.isRequired,
+  searchResultsExist: PropTypes.bool.isRequired,
 };
 
 export default connect(

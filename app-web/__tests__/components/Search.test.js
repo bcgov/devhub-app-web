@@ -36,14 +36,6 @@ describe('Search Bar', () => {
     expect(search).toHaveBeenCalled();
   });
 
-  it("doesn't call search handler when button is clicked and there are no terms ", () => {
-    const wrapper = mount(searchBar);
-    const button = wrapper.find(Button).first();
-    expect(wrapper.state('terms')).toBe('');
-    button.find('button').simulate('click');
-    expect(search).not.toHaveBeenCalled();
-  });
-
   it('sets touched state if search was touched', () => {
     const wrapper = mount(searchBar);
     const input = wrapper.find('input').first();
