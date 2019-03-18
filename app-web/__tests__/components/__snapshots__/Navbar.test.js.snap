@@ -19,25 +19,14 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
       </mockConstructor>
     </li>
     <li
-      key="/components"
+      key="/collections"
     >
       <mockConstructor
         activeClassName="ActiveFilter"
         exact={true}
-        to="/components"
+        to="/collections"
       >
-        Components
-      </mockConstructor>
-    </li>
-    <li
-      key="/documentation"
-    >
-      <mockConstructor
-        activeClassName="ActiveFilter"
-        exact={true}
-        to="/documentation"
-      >
-        Documentation
+        Collections
       </mockConstructor>
     </li>
     <li
@@ -52,6 +41,17 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
       </mockConstructor>
     </li>
     <li
+      key="/components"
+    >
+      <mockConstructor
+        activeClassName="ActiveFilter"
+        exact={true}
+        to="/components"
+      >
+        Components
+      </mockConstructor>
+    </li>
+    <li
       key="/repositories"
     >
       <mockConstructor
@@ -63,14 +63,14 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
       </mockConstructor>
     </li>
     <li
-      key="/collections"
+      key="/documentation"
     >
       <mockConstructor
         activeClassName="ActiveFilter"
         exact={true}
-        to="/collections"
+        to="/documentation"
       >
-        Collections
+        Documentation
       </mockConstructor>
     </li>
   </ul>
