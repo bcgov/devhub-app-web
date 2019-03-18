@@ -52,7 +52,6 @@ export class Index extends Component {
   }
 
   componentDidUpdate() {
-    console.log('update called!');
     const query = queryString.parse(this.props.location.search);
     if (Object.prototype.hasOwnProperty.call(query, 'q')) {
       const param = decodeURIComponent(query.q);
@@ -83,7 +82,7 @@ export class Index extends Component {
       searchResultsExist,
     } = this.props;
 
-    const SiphonResources = Object.keys(resourcesByType).map(resourceType => {
+    const siphonResources = Object.keys(resourcesByType).map(resourceType => {
       if (resourcesByType[resourceType].length > 0) {
         return (
           <ResourcePreview
@@ -97,6 +96,8 @@ export class Index extends Component {
       return null;
     });
 
+    const resourcesNotFound = siphonResources.every(r => r === null);
+
     return (
       <Layout showHamburger>
         <div>
@@ -104,7 +105,7 @@ export class Index extends Component {
           <main role="main" className={styles.Main}>
             {loading ? (
               <Loading message="Loading..." />
-            ) : !searchResultsExist ? (
+            ) : !searchResultsExist && resourcesNotFound ? (
               <Alert style={{ margin: '10px auto' }} color="info">
                 {SEARCH.results.empty.defaultMessage}
               </Alert>
@@ -113,7 +114,7 @@ export class Index extends Component {
                 <CollectionsContainer collections={collections} />
                 <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
                   {/* Element used for react-scroll targeting */}
-                  <Flag name="features.githubResourceCards">{SiphonResources}</Flag>
+                  <Flag name="features.githubResourceCards">{siphonResources}</Flag>
                 </Element>
               </Aux>
             )}

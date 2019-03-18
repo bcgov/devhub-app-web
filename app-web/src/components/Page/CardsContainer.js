@@ -103,7 +103,7 @@ const CardContainer = ({
         onSearch={terms => {
           // set resource type to all since we are searching the entire index
           setSearchBarTerms(terms);
-          navigate(`${pagePath}/?q=${encodeURIComponent(terms)}`);
+          navigate(`${pagePath}?q=${encodeURIComponent(terms)}`);
         }}
         onSearchClear={() => {
           setSearchBarTerms('');

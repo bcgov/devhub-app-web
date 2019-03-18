@@ -29,6 +29,8 @@ import {
   selectResourcesReducerLoading,
   selectGroupedFilteredAvailableResources,
   selectFilters,
+  selectSearchResultsExist,
+  selectResourcesExistByType,
 } from '../store/selectors';
 
 export class ResourceType extends PureComponent {
@@ -79,15 +81,18 @@ export class ResourceType extends PureComponent {
       filters,
       query,
       pageContext, // received from gatsby create pages api, view gatsby/createPages.js for more info
+      resourcesExistByType,
     } = this.props;
-
-    const resources = resourcesByType[RESOURCE_TYPES[pageContext.resourceTypeConst]].map(r => ({
+    const resourceTypeConst = RESOURCE_TYPES[pageContext.resourceTypeConst];
+    // grab the specific resources by the resource type associated with this pages context
+    const resources = resourcesByType[resourceTypeConst].map(r => ({
       type: r.resource.type,
       title: r.unfurl.title,
       description: r.unfurl.description,
       image: r.unfurl.image,
       path: r.resource.path,
     }));
+
     const searchResultsEmpty = query !== null && searchResultsLength === 0;
     return (
       <Layout showHamburger>
@@ -97,7 +102,7 @@ export class ResourceType extends PureComponent {
             subtitle={RESOURCE_TYPE_PAGES[pageContext.resourceType].header.subtitle.defaultMessage}
           />
           <PageContainer>
-            {resources.length > 0 || searchResultsEmpty ? (
+            {resourcesExistByType[resourceTypeConst] > 0 ? (
               <Aux>
                 <FilterMenu filters={filters} />
                 <CardsContainer
@@ -134,6 +139,8 @@ const mapStateToProps = createStructuredSelector({
   totalResources: selectTotalResources,
   searchWordLength: selectSearchWordLength,
   resourcesByType: selectGroupedFilteredAvailableResources,
+  resourcesExistByType: selectResourcesExistByType,
+  searchResultsExist: selectSearchResultsExist,
 });
 
 const mapDispatchToProps = dispatch => {
