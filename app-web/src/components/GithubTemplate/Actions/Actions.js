@@ -22,6 +22,9 @@ const LI = styled.li`
   > a {
     text-decoration: none;
   }
+  > a:hover {
+    text-decoration: underline;
+  }
 `;
 
 /**
