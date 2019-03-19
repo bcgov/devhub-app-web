@@ -20,24 +20,17 @@ Created by Patrick Simonian
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
 import { RESOURCE_TYPES } from '../../constants/ui';
+import { getFirstNonExternalResource } from '../../utils/helpers';
+
 import Collection from '../Cards/Card/Collection';
 import Container from '../Cards/Container';
 import Row from '../Cards/Row';
 import Column from '../Cards/Column';
-import { getFirstNonExternalResource } from '../../utils/helpers';
-
-const StyledTitle = styled.h2`
-  width: 100%;
-  border-bottom: 1px solid #ccc;
-  padding: 4px 0;
-  margin-bottom: 15px;
-  font-size: 1.5em;
-  font-weight: 700;
-`;
+import { ChevronLink } from '../UI/Link';
+import { Container as PreviewContainer, Title, StyledLink, LinkContainer } from './index';
 
 const ContainerCentered = styled(Container)`
   margin: 0 auto 15px;
@@ -46,7 +39,10 @@ const ContainerCentered = styled(Container)`
 
 const StyledColumn = styled(Column)`
   flex: 0 1 506px;
+  justify-content: center;
+  display: flex;
 `;
+
 const CollectionContent = collections =>
   collections
     .filter(collection => collection.hasResources)
@@ -66,13 +62,7 @@ const CollectionContent = collections =>
         });
 
       return (
-        <StyledColumn
-          key={collection.id}
-          css={css`
-            justify-content: center;
-            display: flex;
-          `}
-        >
+        <StyledColumn key={collection.id}>
           <Collection
             title={collection.name}
             description={collection.description}
@@ -86,11 +76,18 @@ const CollectionContent = collections =>
       );
     });
 
-const CollectionsContainer = ({ collections }) => (
-  <ContainerCentered>
-    <StyledTitle>Collections</StyledTitle>
-    <Row>{CollectionContent(collections)}</Row>
-  </ContainerCentered>
+export const CollectionsContainer = ({ collections, link }) => (
+  <PreviewContainer>
+    <Title>
+      <StyledLink to={link.to}>Collections</StyledLink>
+    </Title>
+    <ContainerCentered>
+      <Row>{CollectionContent(collections)}</Row>
+    </ContainerCentered>
+    <LinkContainer>
+      <ChevronLink to={link.to}>{link.text}</ChevronLink>
+    </LinkContainer>
+  </PreviewContainer>
 );
 
 CollectionsContainer.propTypes = {
@@ -103,5 +100,9 @@ CollectionsContainer.propTypes = {
       link: PropTypes.string.isRequired,
     }),
   ),
+  link: PropTypes.shape({
+    to: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+  }),
 };
 export default CollectionsContainer;

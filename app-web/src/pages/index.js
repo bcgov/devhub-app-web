@@ -17,8 +17,9 @@ import { Flag } from 'flag';
 import { Element } from 'react-scroll';
 import Loading from '../components/UI/Loading/Loading';
 import Layout from '../hoc/Layout';
-import ResourcePreview from '../components/ResourcePreview/ResourcePreview';
-import Masthead from '../components/Home/Masthead';
+import { ResourcePreview, Masthead, CollectionsContainer } from '../components/Home';
+import withResourceQuery from '../hoc/withResourceQuery';
+import Aux from '../hoc/auxillary';
 
 // selectors from reselect
 import {
@@ -34,9 +35,6 @@ import {
 } from '../store/selectors';
 
 import { SEARCH } from '../messages';
-import withResourceQuery from '../hoc/withResourceQuery';
-import CollectionsContainer from '../components/Page/CollectionsContainer';
-import Aux from '../hoc/auxillary';
 
 export class Index extends Component {
   componentDidMount() {
@@ -111,7 +109,10 @@ export class Index extends Component {
               </Alert>
             ) : (
               <Aux>
-                <CollectionsContainer collections={collections} />
+                <CollectionsContainer
+                  collections={collections}
+                  link={MAIN_NAV_ROUTES.COLLECTIONS}
+                />
                 <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
                   {/* Element used for react-scroll targeting */}
                   <Flag name="features.githubResourceCards">{siphonResources}</Flag>

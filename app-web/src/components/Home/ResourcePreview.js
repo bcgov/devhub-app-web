@@ -18,23 +18,14 @@ Created by Patrick Simonian
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import styles from './ResourcePreview.module.css';
 
 import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
-import { ChevronLink, Link } from '../UI/Link';
+import { ChevronLink } from '../UI/Link';
+import { Container, Title, StyledLink, LinkContainer } from './index';
 import Card from '../Cards/Card/Card';
 
 const CardWrapper = styled.div`
   margin: 6px 9px;
-`;
-
-const StyledLink = styled(Link)`
-  color: inherit;
-  text-decoration: none;
-  :hover {
-    color: inherit;
-    text-decoration: none;
-  }
 `;
 
 const ResourceContainer = styled.div`
@@ -46,12 +37,13 @@ const ResourceContainer = styled.div`
     justify-content: flex-start;
   }
 `;
+
 // this is a wrapper component that encapsulates cards for collections or other sizes
-const ResourcePreview = ({ title, link, resources }) => (
-  <section className={styles.ResourcePreview}>
-    <h2 className={styles.Title}>
+export const ResourcePreview = ({ title, link, resources }) => (
+  <Container>
+    <Title>
       <StyledLink to={link.to}>{title}</StyledLink>
-    </h2>
+    </Title>
     <ResourceContainer>
       {resources.slice(0, 4).map(r => (
         <CardWrapper key={r.id}>
@@ -65,10 +57,10 @@ const ResourcePreview = ({ title, link, resources }) => (
         </CardWrapper>
       ))}
     </ResourceContainer>
-    <div className={styles.LinkContainer}>
+    <LinkContainer>
       <ChevronLink to={link.to}>{link.text}</ChevronLink>
-    </div>
-  </section>
+    </LinkContainer>
+  </Container>
 );
 
 ResourcePreview.propTypes = {
