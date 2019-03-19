@@ -26,7 +26,7 @@ describe('Index Container', () => {
     allDevhubSiphon: {
       edges: nodes,
     },
-    allDevhubSiphonCollection: {
+    allDevhubCollection: {
       edges: collections,
     },
   };

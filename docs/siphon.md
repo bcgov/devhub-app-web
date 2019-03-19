@@ -299,7 +299,7 @@ the graphQL schema (more on that [here](https://www.gatsbyjs.org/docs/plugin-aut
         contentDigest // a gatsby required property
         // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate
         // to transformer plugins this node has data they can further process.
-        type // devhubSiphonCollection
+        type // devhubCollection
     }
     metadata: {
         position {Array} // this is the position of the collection as found within the registry file
@@ -316,7 +316,7 @@ the graphQL schema (more on that [here](https://www.gatsbyjs.org/docs/plugin-aut
     name // the file name minus extension
     owner // owner of resource
     parent {
-        id // gatsby required attribute, this is normally null but in our case holds a reference to the devhubSiphonCollection id this node belongs too 
+        id // gatsby required attribute, this is normally null but in our case holds a reference to the devhubCollection id this node belongs too 
     } 
     path // path to the resource
     collection {

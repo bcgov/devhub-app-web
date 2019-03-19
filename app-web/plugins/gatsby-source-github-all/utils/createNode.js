@@ -26,6 +26,7 @@ const { GRAPHQL_NODE_TYPE } = require('./constants');
  */
 const createCollectionNode = (collection, id, collectionContent = null) => {
   const { name, type, description, metadata } = collection;
+
   const internalContent = collectionContent
     ? {
         content: collectionContent.content,

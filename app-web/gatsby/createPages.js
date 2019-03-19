@@ -108,7 +108,7 @@ module.exports = async ({ graphql, actions }) => {
   // main graphql query here
   const devhubData = await graphql(`
     {
-      allDevhubSiphonCollection {
+      allDevhubCollection {
         edges {
           node {
             id
@@ -144,7 +144,7 @@ module.exports = async ({ graphql, actions }) => {
   // and will be treated as so
   // loop over collections and then nodes
 
-  devhubData.data.allDevhubSiphonCollection.edges.forEach(({ node }) => {
+  devhubData.data.allDevhubCollection.edges.forEach(({ node }) => {
     const collection = node;
     // 'node' is the property that holds the collection object after the graphql query has prrocessed
     node.childrenDevhubSiphon.forEach(siphon => {
