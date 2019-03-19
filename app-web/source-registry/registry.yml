@@ -209,6 +209,14 @@ sources:
             repo: devhub-resources
             files:
             - resources/community/events.md
+            - resources/community/chat_conventions.md
+        - sourceType: 'github'
+          sourceProperties:
+            url: https://github.com/bcgov/reggie-web/
+            owner: bcgov
+            repo: reggie-web
+            files:
+            - UserInstructions.md
   - name: 'Authentication and Authorization'
     description: 'Technical resources related to implementing authentication and authorization in government applications.'
     resourceType: Documentation
