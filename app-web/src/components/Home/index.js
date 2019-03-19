@@ -10,11 +10,8 @@ export const Container = styled.section`
 `;
 
 export const Title = styled.h2`
-  font-size: 1.5em;
   padding: 10px 4px;
-  margin-bottom: 10px;
   border-bottom: 1px solid #ccc;
-  font-weight: 600;
 `;
 
 // right aligns the link
