@@ -48,6 +48,9 @@ class HTML extends React.Component {
           />
           {this.props.headComponents}
           {css}
+          {/* inject typography styles lower in the head to over ride bootstrap styles */}
+          {/* https://github.com/KyleAMathews/typography.js/blob/master/packages/typography/src/index.js#L72 */}
+          <style id="typography.js" />
         </head>
         <body {...this.props.bodyAttributes}>
           {this.props.preBodyComponents}
