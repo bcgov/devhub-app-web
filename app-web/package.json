@@ -10,8 +10,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@bcgov/common-web-utils": "^0.5.2",
-    "@emotion/core": "^10.0.7",
-    "@emotion/styled": "^10.0.7",
+    "@emotion/core": "^10.0.9",
+    "@emotion/styled": "^10.0.9",
     "@fortawesome/fontawesome-free-brands": "^5.0.13",
     "@fortawesome/fontawesome-svg-core": "^1.2.8",
     "@fortawesome/free-solid-svg-icons": "^5.5.0",
@@ -32,7 +32,7 @@
     "eslint-plugin-flowtype": "^2.50.3",
     "feather-icons": "^3.3.0",
     "flag": "^3.0.0-1",
-    "gatsby": "^2.0.64",
+    "gatsby": "^2.2.1",
     "gatsby-plugin-catch-links": "^2.0.9",
     "gatsby-plugin-emotion": "^4.0.4",
     "gatsby-plugin-favicon": "^3.1.4",
@@ -81,9 +81,9 @@
     "prismjs": "^1.15.0",
     "prop-types": "^15.6.0",
     "query-string": "^6.2.0",
-    "react": "^16.6.3",
+    "react": "^16.8.4",
     "react-avatar": "^3.5.0",
-    "react-dom": "^16.6.3",
+    "react-dom": "^16.8.4",
     "react-dotdotdot": "^1.2.3",
     "react-helmet": "^5.2.0",
     "react-image": "^1.5.1",
@@ -107,9 +107,7 @@
     "slugify": "^1.3.4",
     "snake-case": "^2.1.0",
     "string-similarity": "^3.0.0",
-    "styled-system": "^3.1.11",
-    "typography": "^0.16.18",
-    "unfurl.js": "^1.1.6",
+    "typography": "^0.16.19",
     "unist-util-visit": "^1.4.0",
     "uri-parser": "^1.0.1",
     "url-parse": "^1.4.4",
@@ -126,8 +124,8 @@
   },
   "jest": {
     "transform": {
-      ".(js|jsx)": "<rootDir>/config/jest/jestPreprocess.js",
-      ".+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/config/fileTransformer.js"
+      ".+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/config/fileTransformer.js",
+      ".(js|jsx)": "<rootDir>/config/jest/jestPreprocess.js"
     },
     "testRegex": "(\\.(i?test|spec))\\.(jsx|js)$",
     "testPathIgnorePatterns": [
@@ -151,7 +149,7 @@
       "text",
       "html"
     ],
-    "setupTestFrameworkScriptFile": "<rootDir>/config/setupTests.js",
+    "setupFilesAfterEnv": ["<rootDir>/config/setupTests.js"],
     "setupFiles": [
       "raf/polyfill",
       "jest-localstorage-mock",
@@ -159,11 +157,10 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.2.0",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^9.0.0",
-    "babel-jest": "^23.6.0",
-    "babel-preset-gatsby": "^0.1.6",
+    "@babel/core": "^7.3.4",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.5.0",
+    "babel-preset-gatsby": "^0.1.9",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.7.0",
     "enzyme-to-json": "^3.3.5",
@@ -177,7 +174,7 @@
     "eslint-plugin-react": "^7.4.0",
     "husky": "^1.3.1",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^23.6.0",
+    "jest": "^24.5.0",
     "jest-emotion": "^10.0.7",
     "jest-localstorage-mock": "^2.3.0",
     "js-beautify": "^1.8.9",
