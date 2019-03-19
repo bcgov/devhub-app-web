@@ -25,7 +25,7 @@ const Container = styled.button`
     outline: none;
   }
   > span {
-    margin-left: 4px;
+    margin: 0 4px;
     font-size: 0.875em;
   }
 `;
