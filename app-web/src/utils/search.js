@@ -19,17 +19,19 @@ Created by Patrick Simonian
 // function takes inspiration from elastic lunr
 // we may replpace lunr with elastic lunr in the future
 
+import nlp from 'wink-nlp-utils';
 /**
  * tokenizes a searchs string based on a reg ex seperator
  * @param {String} query the search query
  * @returns {Array} the list of tokens
  */
 export const tokenizer = query => {
-  return query
-    .toString()
-    .trim()
-    .toLowerCase()
-    .split(/[\s\-]+/);
+  // remove stop words from query
+  const tokens = nlp.string.tokenize(query, true);
+  // filter out punctuation
+  const filtered = tokens.filter(t => t.tag !== 'punctuation').map(t => t.value);
+  // remove stop words (and had it, etc)
+  return nlp.tokens.removeWords(filtered);
 };
 
 /**

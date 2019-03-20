@@ -21,7 +21,6 @@ import { TypeCheck } from '@bcgov/common-web-utils';
 import dotProp from 'dot-prop-immutable';
 import { arrayToMapByProp } from '../../utils/dataHelpers';
 import defaultFilterGroups from '../../constants/filterGroups';
-import { tokenizer } from '../../utils/search';
 
 const initialState = {
   // normalized pattern to grab resources
@@ -40,6 +39,7 @@ const initialState = {
   resourceType: null,
   resourcesLoaded: false, // set after graphql data has been passed into actions.loadResources
   query: null, // the search query as found in the url
+  tokenizedQuery: null,
   searchBarTerms: '', // the global state for the search bar
   searchResults: {},
   loading: false,
@@ -234,9 +234,15 @@ const applySearchResults = (state, results) => {
  * sets the query string by tokenizing all terms into seperate words
  * @param {Object} state
  * @param {String} query
+ * @param {Array} tokenizedQuery the query tokenized with stop words removed
  * @returns {Object} the new state
  */
-const setSearchQuery = (state, query) => ({ ...state, query, loading: true });
+const setSearchQuery = (state, query, tokenizedQuery) => ({
+  ...state,
+  query,
+  tokenizedQuery,
+  loading: true,
+});
 /**
  * sets the search bar terms (a global state for the search bar)
  * @param {Object} state

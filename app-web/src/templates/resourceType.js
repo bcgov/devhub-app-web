@@ -57,17 +57,18 @@ export class ResourceType extends PureComponent {
     const query = queryString.parse(this.props.location.search);
     if (Object.prototype.hasOwnProperty.call(query, 'q')) {
       const param = decodeURIComponent(query.q);
-      // tokenize search query
       const newTokens = tokenizer(param);
-      const oldTokens = this.props.query;
+      const oldTokens = this.props.tokenizedQuery;
       // compare new tokens with old tokens
       if (!oldTokens || newTokens.join() !== oldTokens.join()) {
-        this.props.setSearchQuery(newTokens);
-        getSearchResults(param).then(results => {
+        this.props.setSearchQuery(param, newTokens);
+        // returning so that we can test this function
+        return getSearchResults(param).then(results => {
           this.props.setSearchResults(results);
         });
       }
     }
+    return null;
   }
 
   componentWillUnmount() {

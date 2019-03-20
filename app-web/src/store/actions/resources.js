@@ -56,10 +56,10 @@ export const setSearchResults = searchResults => {
   };
 };
 
-export const setSearchQuery = query => {
+export const setSearchQuery = (query, tokenizedQuery) => {
   return {
     type: actionTypes.SET_SEARCH_QUERY,
-    payload: { query },
+    payload: { query, tokenizedQuery },
   };
 };
 

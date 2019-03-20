@@ -44,6 +44,7 @@ describe('resources reducer', () => {
     resourcesLoaded: false,
     resourceType: null,
     query: null,
+    tokenizedQuery: null,
     searchBarTerms: '',
     searchResults: {},
     loading: false,

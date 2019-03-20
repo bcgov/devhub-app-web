@@ -74,9 +74,10 @@ describe('actions', () => {
       type: actionTypes.SET_SEARCH_QUERY,
       payload: {
         query: 'foo',
+        tokenizedQuery: ['foo'],
       },
     };
-    expect(actions.setSearchQuery('foo')).toEqual(expected);
+    expect(actions.setSearchQuery('foo', ['foo'])).toEqual(expected);
   });
 
   it('should create an action to reset search', () => {
