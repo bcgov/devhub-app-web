@@ -46,20 +46,27 @@ export const getSearchResults = async query => {
     // search results by a partial query using wild cards
     let partialResults = [];
     let searchQueryPartial = `*${query}*`;
+
     // attempt to search by parsing query into fields
+    // by whole query without wild card
     try {
-      partialResults = lunrIndex.index.search(searchQueryPartial);
       results = lunrIndex.index.search(query);
     } catch (e) {
-      console.error(e);
+      results = lunrIndex.index.query(function() {
+        this.term(query);
+      });
+    }
+
+    // by query with wild card
+    try {
+      partialResults = lunrIndex.index.search(searchQueryPartial);
+    } catch (e) {
       // if that fails treat query as plain text and attempt search again
       partialResults = lunrIndex.index.query(function() {
         this.term(searchQueryPartial);
       });
-      results = lunrIndex.index.query(function() {
-        this.term(searchQueryPartial);
-      });
     }
+
     // combine all partial search results with full search results
     results = results.concat(partialResults);
     // search results is an array of reference keys

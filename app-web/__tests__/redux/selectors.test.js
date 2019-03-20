@@ -56,6 +56,7 @@ describe('Reselect Selectors', () => {
       resourceType: null,
       resourcesLoaded: false,
       query: null,
+      tokenizedQuery: ['foo'],
       searchBarTerms: '',
       searchResults: {
         '1': { id: '1' },
@@ -151,6 +152,10 @@ describe('Reselect Selectors', () => {
 
   it('returns the query', () => {
     expect(selectors.selectQuery(state)).toEqual(state.resources.query);
+  });
+
+  it('returns the tokenizedQuery', () => {
+    expect(selectors.selectTokenizedQuery(state)).toEqual(state.resources.tokenizedQuery);
   });
 
   it('returns the search results length', () => {

@@ -32,6 +32,7 @@ import {
   selectGroupedFilteredAvailableResources,
   selectCollectionsWithAvailableResourcesGroupedByType,
   selectSearchResultsExist,
+  selectTokenizedQuery,
 } from '../store/selectors';
 
 import { SEARCH } from '../messages';
@@ -80,6 +81,7 @@ export class Index extends Component {
       collections,
       loading,
       searchResultsExist,
+      tokenizedQuery,
     } = this.props;
 
     const siphonResources = Object.keys(resourcesByType).map(resourceType => {
@@ -101,7 +103,7 @@ export class Index extends Component {
     return (
       <Layout showHamburger>
         <div>
-          <Masthead setSearchBarTerms={setSearchBarTerms} />
+          <Masthead setSearchBarTerms={setSearchBarTerms} query={tokenizedQuery} />
           <main role="main" className={styles.Main}>
             {loading ? (
               <Loading message="Loading..." />
@@ -131,6 +133,7 @@ export class Index extends Component {
 const mapStateToProps = createStructuredSelector({
   resourcesLoaded: selectResourcesLoaded,
   query: selectQuery,
+  tokenizedQuery: selectTokenizedQuery,
   loading: selectResourcesReducerLoading,
   searchResultsLength: selectSearchResultsLength,
   totalResources: selectTotalResources,
@@ -145,7 +148,8 @@ const mapDispatchToProps = dispatch => {
     loadResources: (resources, collections) =>
       dispatch(actions.loadResources(resources, collections)),
     setSearchResults: results => dispatch(actions.setSearchResults(results)),
-    setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
+    setSearchQuery: (query, tokenizedQuery) =>
+      dispatch(actions.setSearchQuery(query, tokenizedQuery)),
     setSearchBarTerms: resourceType => dispatch(actions.setSearchBarTerms(resourceType)),
     resetSearch: () => dispatch(actions.resetSearch()),
     setResourceType: type => dispatch(actions.setResourceType(type)),
@@ -160,7 +164,8 @@ Index.propTypes = {
   resetSearch: PropTypes.func.isRequired,
   setResourceType: PropTypes.func.isRequired,
   resourcesLoaded: PropTypes.bool.isRequired,
-  query: PropTypes.string.isRequired,
+  query: PropTypes.string,
+  tokenizedQuery: PropTypes.arrayOf(PropTypes.string),
   loading: PropTypes.bool.isRequired,
   searchResultsLength: PropTypes.number.isRequired,
   totalResources: PropTypes.number.isRequired,

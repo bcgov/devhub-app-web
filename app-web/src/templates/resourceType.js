@@ -31,6 +31,7 @@ import {
   selectFilters,
   selectSearchResultsExist,
   selectResourcesExistByType,
+  selectTokenizedQuery,
 } from '../store/selectors';
 
 export class ResourceType extends PureComponent {
@@ -84,6 +85,7 @@ export class ResourceType extends PureComponent {
       setSearchBarTerms,
       filters,
       query,
+      tokenizedQuery,
       pageContext, // received from gatsby create pages api, view gatsby/createPages.js for more info
       resourcesExistByType,
     } = this.props;
@@ -114,6 +116,7 @@ export class ResourceType extends PureComponent {
                   pagePath={this.props.location.pathname}
                   resources={resources}
                   setSearchBarTerms={setSearchBarTerms}
+                  query={tokenizedQuery}
                   openSideDrawer={() => this.toggleMenu(true)}
                 />
               </Aux>
@@ -145,6 +148,7 @@ const mapStateToProps = createStructuredSelector({
   resourcesByType: selectGroupedFilteredAvailableResources,
   resourcesExistByType: selectResourcesExistByType,
   searchResultsExist: selectSearchResultsExist,
+  tokenizedQuery: selectTokenizedQuery,
 });
 
 const mapDispatchToProps = dispatch => {
@@ -152,8 +156,8 @@ const mapDispatchToProps = dispatch => {
     loadResources: (resources, collections) =>
       dispatch(actions.loadResources(resources, collections)),
     setSearchResults: results => dispatch(actions.setSearchResults(results)),
-    setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
-    setSearchBarTerms: resourceType => dispatch(actions.setSearchBarTerms(resourceType)),
+    setSearchQuery: (query, tokenizedQuery) =>
+      dispatch(actions.setSearchQuery(query, tokenizedQuery)),
     resetSearch: () => dispatch(actions.resetSearch()),
     setResourceType: type => dispatch(actions.setResourceType(type)),
   };
