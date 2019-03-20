@@ -27,7 +27,6 @@ export {
   selectQuery,
   selectSearchResultsLength,
   selectTotalResources,
-  selectSearchWordLength,
   selectResourcesReducerLoading,
   selectSearchResultsExist,
   selectResourcesExistByType,

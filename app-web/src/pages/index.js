@@ -53,7 +53,6 @@ export class Index extends Component {
     const query = queryString.parse(this.props.location.search);
     if (Object.prototype.hasOwnProperty.call(query, 'q')) {
       const param = decodeURIComponent(query.q);
-
       if (param !== this.props.query) {
         this.props.setSearchQuery(param);
         // returning so that we can test this function
@@ -132,7 +131,6 @@ const mapStateToProps = createStructuredSelector({
   loading: selectResourcesReducerLoading,
   searchResultsLength: selectSearchResultsLength,
   totalResources: selectTotalResources,
-  searchWordLength: selectSearchWordLength,
   resourcesByType: selectGroupedFilteredAvailableResources,
   collections: selectCollectionsWithAvailableResourcesGroupedByType,
   searchResultsExist: selectSearchResultsExist,
@@ -144,7 +142,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(actions.loadResources(resources, collections)),
     setSearchResults: results => dispatch(actions.setSearchResults(results)),
     setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
-    setSearchBarTerms: resourceType => dispatch(actions.setSearchBarTerms(resourceType)),
     resetSearch: () => dispatch(actions.resetSearch()),
     setResourceType: type => dispatch(actions.setResourceType(type)),
   };
@@ -154,7 +151,6 @@ Index.propTypes = {
   loadResources: PropTypes.func.isRequired,
   setSearchResults: PropTypes.func.isRequired,
   setSearchQuery: PropTypes.func.isRequired,
-  setSearchBarTerms: PropTypes.func.isRequired,
   resetSearch: PropTypes.func.isRequired,
   setResourceType: PropTypes.func.isRequired,
   resourcesLoaded: PropTypes.bool.isRequired,
@@ -162,7 +158,6 @@ Index.propTypes = {
   loading: PropTypes.bool.isRequired,
   searchResultsLength: PropTypes.number.isRequired,
   totalResources: PropTypes.number.isRequired,
-  searchWordLength: PropTypes.number.isRequired,
   resourcesByType: PropTypes.object.isRequired,
   collections: PropTypes.array.isRequired,
   searchResultsExist: PropTypes.bool.isRequired,

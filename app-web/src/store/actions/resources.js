@@ -63,13 +63,6 @@ export const setSearchQuery = query => {
   };
 };
 
-export const setSearchBarTerms = searchBarTerms => {
-  return {
-    type: actionTypes.SET_SEARCH_BAR_TERMS,
-    payload: { searchBarTerms },
-  };
-};
-
 export const resetSearch = () => ({
   type: actionTypes.RESET_SEARCH,
 });

@@ -38,7 +38,7 @@ export const Masthead = ({ setSearchBarTerms }) => (
         inputConfig={SEARCH.INPUT}
         onSearch={terms => {
           // set resource type to all since we are searching the entire index
-          setSearchBarTerms(terms);
+          // setSearchBarTerms(terms);
           navigate(`/?q=${encodeURIComponent(terms)}`);
         }}
       />

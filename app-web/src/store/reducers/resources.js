@@ -40,7 +40,6 @@ const initialState = {
   resourceType: null,
   resourcesLoaded: false, // set after graphql data has been passed into actions.loadResources
   query: null, // the search query as found in the url
-  searchBarTerms: '', // the global state for the search bar
   searchResults: {},
   loading: false,
   error: false,
@@ -239,14 +238,6 @@ const applySearchResults = (state, results) => {
 const setSearchQuery = (state, query) => ({ ...state, query, loading: true });
 
 /**
- * sets the search bar terms (a global state for the search bar)
- * @param {Object} state
- * @param {String} searchBarTerms
- * @returns {Object} the new state
- */
-const setSearchBarTerms = (state, searchBarTerms) => ({ ...state, searchBarTerms });
-
-/**
  * resets search results
  * @param {Object} state
  * @returns {Object} the new state
@@ -289,8 +280,6 @@ const resourcesReducer = (state = initialState, action) => {
       return applySearchResults(state, action.payload.searchResults);
     case actionTypes.SET_SEARCH_QUERY:
       return setSearchQuery(state, action.payload.query);
-    case actionTypes.SET_SEARCH_BAR_TERMS:
-      return setSearchBarTerms(state, action.payload.searchBarTerms);
     case actionTypes.RESET_SEARCH:
       return resetSearch(state);
     case actionTypes.SET_RESOURCE_TYPE:

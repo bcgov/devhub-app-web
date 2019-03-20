@@ -104,21 +104,14 @@ export const selectTotalResources = createSelector(
   resources => resources.resources.allIds.length,
 );
 
-// similar as above
-export const selectSearchWordLength = createSelector(
-  resourcesSelector,
-  resources => resources.searchBarTerms.length,
-);
-
 export const selectResourcesReducerLoading = createSelector(
   resourcesSelector,
   resources => resources.loading,
 );
 
 export const selectSearchResultsExist = createSelector(
-  [selectSearchResultsLength, selectSearchWordLength, selectQuery],
+  [selectSearchResultsLength, selectQuery],
   (searchResultsLength, query) => {
-    console.log(searchResultsLength > 0 && query.length > 0);
     return searchResultsLength > 0 && query.length > 0;
   },
 );

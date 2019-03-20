@@ -102,11 +102,9 @@ const CardContainer = ({
         inputConfig={{ ...SEARCH.INPUT, disabled: loading }}
         onSearch={terms => {
           // set resource type to all since we are searching the entire index
-          setSearchBarTerms(terms);
           navigate(`${pagePath}?q=${encodeURIComponent(terms)}`);
         }}
         onSearchClear={() => {
-          setSearchBarTerms('');
           navigate(`${pagePath}`);
         }}
       />
@@ -125,7 +123,7 @@ CardContainer.propTypes = {
       title: PropTypes.string.isRequired,
       type: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
+      image: PropTypes.string,
       path: PropTypes.string.isRequired,
     }),
   ),
