@@ -173,10 +173,6 @@ describe('Reselect Selectors', () => {
     expect(selectors.selectTotalResources(state)).toEqual(SIPHON_NODES.length);
   });
 
-  it('returns search word length', () => {
-    expect(selectors.selectSearchWordLength(state)).toEqual(state.resources.searchBarTerms.length);
-  });
-
   it('returns siphons loading indicator', () => {
     expect(selectors.selectResourcesReducerLoading(state)).toEqual(state.resources.loading);
   });

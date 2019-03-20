@@ -44,7 +44,6 @@ describe('resources reducer', () => {
     resourcesLoaded: false,
     resourceType: null,
     query: null,
-    searchBarTerms: '',
     searchResults: {},
     loading: false,
     error: false,
@@ -252,11 +251,6 @@ describe('resources reducer', () => {
     // in our fixtured nodes, there are zero nodes that have the product owner persona
     const newFilter = applyPropsToFilterByResourceCount(productOwnerFilter, SIPHON_NODES);
     expect(newFilter.active).toBe(false);
-  });
-
-  it('sets searchBarTerms', () => {
-    const newState = reducer(initialState, actions.setSearchBarTerms('foo'));
-    expect(newState.searchBarTerms).toBe('foo');
   });
 
   it('sets query', () => {
