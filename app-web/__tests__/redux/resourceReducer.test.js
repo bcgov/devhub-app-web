@@ -260,7 +260,7 @@ describe('resources reducer', () => {
   });
 
   it('sets query', () => {
-    const newState = reducer(initialState, actions.setSearchQuery('foo'));
+    const newState = reducer(initialState, actions.setSearchQuery(['foo']));
     expect(newState.query).toEqual(['foo']);
     expect(newState.loading).toBe(true);
   });

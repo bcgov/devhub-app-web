@@ -1,13 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import groupBy from 'lodash/groupBy';
-import { getSearchResults } from '../../src/utils/search';
+import { getSearchResults, tokenizer } from '../../src/utils/search';
 import { Index } from '../../src/pages/index';
 import { SIPHON_NODES, COLLECTIONS } from '../../__fixtures__/siphon-fixtures';
 
 jest.mock('react-spinners', () => null);
 jest.mock('../../src/utils/search', () => ({
   getSearchResults: jest.fn(() => Promise.resolve({ '1': { id: '1' } })),
+  tokenizer: jest.fn(() => ['foo']),
 }));
 
 jest.mock('query-string', () => ({
@@ -100,6 +101,7 @@ describe('Index Container', () => {
     wrapper.setProps({ location: { ...location, search: '?q=foo' } });
     await wrapper.instance().componentDidMount();
     expect(getSearchResults).toHaveBeenCalled();
+    expect(tokenizer).toHaveBeenCalled();
     expect(props.setSearchQuery).toHaveBeenCalled();
     expect(props.setSearchResults).toHaveBeenCalled();
   });

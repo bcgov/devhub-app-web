@@ -4,7 +4,7 @@ import queryString from 'query-string';
 import { connect } from 'react-redux';
 import { RESOURCE_TYPES } from '../constants/ui';
 import { flattenGatsbyGraphQL } from '../utils//dataHelpers';
-import { getSearchResults } from '../utils/search';
+import { getSearchResults, tokenizer } from '../utils/search';
 import * as actions from '../store/actions';
 import { RESOURCE_TYPE_PAGES } from '../messages';
 // components
@@ -57,9 +57,12 @@ export class ResourceType extends PureComponent {
     const query = queryString.parse(this.props.location.search);
     if (Object.prototype.hasOwnProperty.call(query, 'q')) {
       const param = decodeURIComponent(query.q);
-
-      if (param !== this.props.query) {
-        this.props.setSearchQuery(param);
+      // tokenize search query
+      const newTokens = tokenizer(param);
+      const oldTokens = this.props.query;
+      // compare new tokens with old tokens
+      if (!oldTokens || newTokens.join() !== oldTokens.join()) {
+        this.props.setSearchQuery(newTokens);
         getSearchResults(param).then(results => {
           this.props.setSearchResults(results);
         });

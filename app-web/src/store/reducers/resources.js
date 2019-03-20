@@ -236,7 +236,7 @@ const applySearchResults = (state, results) => {
  * @param {String} query
  * @returns {Object} the new state
  */
-const setSearchQuery = (state, query) => ({ ...state, query: tokenizer(query), loading: true });
+const setSearchQuery = (state, query) => ({ ...state, query, loading: true });
 /**
  * sets the search bar terms (a global state for the search bar)
  * @param {Object} state

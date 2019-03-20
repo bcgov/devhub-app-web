@@ -8,7 +8,7 @@ import { Alert } from 'reactstrap';
 import { REACT_SCROLL } from '../constants/ui';
 import { MAIN_NAV_ROUTES } from '../constants/routes';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
-import { getSearchResults } from '../utils/search';
+import { getSearchResults, tokenizer } from '../utils/search';
 import * as actions from '../store/actions';
 
 import styles from './index.module.css';
@@ -53,9 +53,11 @@ export class Index extends Component {
     const query = queryString.parse(this.props.location.search);
     if (Object.prototype.hasOwnProperty.call(query, 'q')) {
       const param = decodeURIComponent(query.q);
-
-      if (param !== this.props.query) {
-        this.props.setSearchQuery(param);
+      const newTokens = tokenizer(param);
+      const oldTokens = this.props.query;
+      // compare new tokens with old tokens
+      if (!oldTokens || newTokens.join() !== oldTokens.join()) {
+        this.props.setSearchQuery(newTokens);
         // returning so that we can test this function
         return getSearchResults(param).then(results => {
           this.props.setSearchResults(results);
