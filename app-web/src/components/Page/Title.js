@@ -18,16 +18,24 @@ Created by Patrick Simonian
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import styles from './Title.module.css';
 
 const TitleWrapper = styled.div`
   margin-bottom: 10px;
+  color: #494949;
+`;
+
+const Subtitle = styled.h4`
+  font-size: 1em;
+  max-width: 565px;
+  margin-bottom: 0;
+  padding: 3px;
+  line-height: 1.5em;
 `;
 
 const Title = ({ title, subtitle }) => (
-  <TitleWrapper className={styles.Title}>
+  <TitleWrapper>
     <h1>{title}</h1>
-    {subtitle && <h4>{subtitle}</h4>}
+    {subtitle && <Subtitle>{subtitle}</Subtitle>}
   </TitleWrapper>
 );
 

@@ -1,4 +1,5 @@
 {
+  "end_with_newline": true,
   "beautify.language": {
     "css": ["css"]
   },

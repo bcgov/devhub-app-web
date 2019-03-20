@@ -2,38 +2,42 @@
 
 /* Bootstrap 4 Custom Input Checkbox Overrides */
 .Checkbox :global(.custom-control-label) {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .Checkbox :global(.custom-control-label::before) {
-  border: 2px solid #036;
-  border-radius: 0;
-  background-color: transparent;
+    border: 2px solid #036;
+    border-radius: 0;
+    background-color: transparent;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .Checkbox :global(.custom-control-input:disabled ~ .custom-control-label::before) {
-  border: none;
+    border: none;
 }
 
 .Checkbox :global(.custom-control-input:checked ~ .custom-control-label::before) {
-  background-color: #036;
-  color: #fff;
+    background-color: #036;
+    color: #fff;
 }
 
 .Checkbox :global(.custom-control-input:checked ~ .custom-control-label::after) {
-  /* bootstrap custom checkboxes uses backround size to dictate size of the tick mark
+    /* bootstrap custom checkboxes uses backround size to dictate size of the tick mark
   this is default 50%, we want this to be a little larger to meet design system specs */
-  background-size: 66%;
+    background-size: 66%;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 
 .Input {
-  border: 2px solid #38598a;
-  border-radius: 3px;
-  padding: 5px;
+    border: 2px solid #38598a;
+    border-radius: 3px;
+    padding: 5px;
 }
 
 .Input:focus {
-  box-shadow: 0 0 2px 1px #38598aad;
-  outline: none;
+    box-shadow: 0 0 2px 1px #38598aad;
+    outline: none;
 }

@@ -6,10 +6,6 @@
     margin: 0 10px 0 0;
 }
 
-.Logo h1 {
-    font-size: 1.5em;
-}
-
 .Logo:hover {
     text-decoration: none;
     color: inherit;

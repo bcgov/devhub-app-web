@@ -56,7 +56,6 @@ export const CardWrapper = styled.article`
 `;
 
 export const CardTitle = styled(DotDotDot)`
-  font-weight: 700;
   font-size: 20px;
   color: #494949;
   line-height: 1.3;
@@ -98,6 +97,7 @@ export const CardBody = styled.div`
   padding: 6px 10px;
   height: 100%;
   display: flex;
+  flex: 1 1 auto;
   flex-flow: column nowrap;
 `;
 
@@ -110,12 +110,14 @@ export const CircleIconWrapper = styled.div`
   color: #fff;
   font-size: 25px;
 `;
+
 export const CircleIcon = styled(FontAwesomeIcon)`
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 `;
+
 export const ResourceCountGroup = styled.li`
   display: flex;
   align-items: center;
