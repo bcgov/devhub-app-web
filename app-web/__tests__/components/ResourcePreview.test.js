@@ -17,7 +17,7 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import { shallow } from 'enzyme';
-import ResourcePreview from '../../src/components/ResourcePreview/ResourcePreview';
+import { ResourcePreview } from '../../src/components/Home';
 import { SIPHON_NODES } from '../../__fixtures__/siphon-fixtures';
 
 describe('Resource Preview Component', () => {

@@ -1,12 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Resource Preview Component it matches snapshot 1`] = `
-<section
-  className="ResourcePreview"
->
-  <h2
-    className="Title"
-  >
+<Container>
+  <Title>
     <StyledLink
       activeClassName=""
       activeStyle={Object {}}
@@ -14,7 +10,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
     >
       foo
     </StyledLink>
-  </h2>
+  </Title>
   <ResourceContainer>
     <CardWrapper
       key="3"
@@ -61,14 +57,12 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
       />
     </CardWrapper>
   </ResourceContainer>
-  <div
-    className="LinkContainer"
-  >
+  <LinkContainer>
     <ChevronLink
       to="/"
     >
       bar
     </ChevronLink>
-  </div>
-</section>
+  </LinkContainer>
+</Container>
 `;

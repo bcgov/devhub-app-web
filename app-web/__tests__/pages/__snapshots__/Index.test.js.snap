@@ -15,6 +15,12 @@ exports[`Index Container it matches snapshot 1`] = `
       <Aux>
         <CollectionsContainer
           collections={Array []}
+          link={
+            Object {
+              "text": "Collections",
+              "to": "/collections",
+            }
+          }
         />
         <Element
           name="CARDS_CONTAINER"

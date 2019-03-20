@@ -26,7 +26,7 @@ import { HOME } from '../../messages';
 
 import styles from './Masthead.module.css';
 
-const Masthead = ({ setSearchBarTerms }) => (
+export const Masthead = ({ setSearchBarTerms }) => (
   <header className={styles.Masthead}>
     <Title
       title={HOME.header.title.defaultMessage}
