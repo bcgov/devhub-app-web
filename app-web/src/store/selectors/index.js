@@ -30,6 +30,7 @@ export {
   selectResourcesReducerLoading,
   selectSearchResultsExist,
   selectResourcesExistByType,
+  selectTokenizedQuery,
 } from './resources';
 export { resourcesSelector } from './main';
 export {

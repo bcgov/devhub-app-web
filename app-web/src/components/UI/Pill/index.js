@@ -18,7 +18,6 @@ const Container = styled.button`
   display: flex;
   align-items: center;
   border-color: transparent;
-  text-transform: capitalize;
   border-width: 1px;
   border-style: solid;
   :focus {

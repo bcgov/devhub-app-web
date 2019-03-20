@@ -84,6 +84,11 @@ export const selectQuery = createSelector(
   resources => resources.query,
 );
 
+export const selectTokenizedQuery = createSelector(
+  resourcesSelector,
+  resources => resources.tokenizedQuery,
+);
+
 export const selectSearchResultsLength = createSelector(
   [resourcesSelector, selectAvailableResources],
   (resources, availableResources) => {
