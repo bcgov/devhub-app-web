@@ -21,7 +21,7 @@ import { TypeCheck } from '@bcgov/common-web-utils';
 import dotProp from 'dot-prop-immutable';
 import { arrayToMapByProp } from '../../utils/dataHelpers';
 import defaultFilterGroups from '../../constants/filterGroups';
-import { RESOURCE_TYPES } from '../../constants/ui';
+import { tokenizer } from '../../utils/search';
 
 const initialState = {
   // normalized pattern to grab resources
@@ -231,13 +231,12 @@ const applySearchResults = (state, results) => {
 };
 
 /**
- * sets the query string
+ * sets the query string by tokenizing all terms into seperate words
  * @param {Object} state
  * @param {String} query
  * @returns {Object} the new state
  */
-const setSearchQuery = (state, query) => ({ ...state, query, loading: true });
-
+const setSearchQuery = (state, query) => ({ ...state, query: tokenizer(query), loading: true });
 /**
  * sets the search bar terms (a global state for the search bar)
  * @param {Object} state

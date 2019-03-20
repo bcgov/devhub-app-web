@@ -256,12 +256,12 @@ describe('resources reducer', () => {
 
   it('sets searchBarTerms', () => {
     const newState = reducer(initialState, actions.setSearchBarTerms('foo bar'));
-    expect(newState.searchBarTerms).toBe(['foo', 'bar']);
+    expect(newState.searchBarTerms).toEqual(['foo', 'bar']);
   });
 
   it('sets query', () => {
     const newState = reducer(initialState, actions.setSearchQuery('foo'));
-    expect(newState.query).toBe('foo');
+    expect(newState.query).toEqual(['foo']);
     expect(newState.loading).toBe(true);
   });
 

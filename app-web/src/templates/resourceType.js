@@ -4,7 +4,7 @@ import queryString from 'query-string';
 import { connect } from 'react-redux';
 import { RESOURCE_TYPES } from '../constants/ui';
 import { flattenGatsbyGraphQL } from '../utils//dataHelpers';
-import { getSearchResults } from '../utils/helpers';
+import { getSearchResults } from '../utils/search';
 import * as actions from '../store/actions';
 import { RESOURCE_TYPE_PAGES } from '../messages';
 // components

@@ -8,7 +8,7 @@ import { Alert } from 'reactstrap';
 import { REACT_SCROLL } from '../constants/ui';
 import { MAIN_NAV_ROUTES } from '../constants/routes';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
-import { getSearchResults } from '../utils/helpers';
+import { getSearchResults } from '../utils/search';
 import * as actions from '../store/actions';
 
 import styles from './index.module.css';
