@@ -255,8 +255,8 @@ describe('resources reducer', () => {
   });
 
   it('sets searchBarTerms', () => {
-    const newState = reducer(initialState, actions.setSearchBarTerms('foo'));
-    expect(newState.searchBarTerms).toBe('foo');
+    const newState = reducer(initialState, actions.setSearchBarTerms('foo bar'));
+    expect(newState.searchBarTerms).toBe(['foo', 'bar']);
   });
 
   it('sets query', () => {

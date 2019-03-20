@@ -244,7 +244,10 @@ const setSearchQuery = (state, query) => ({ ...state, query, loading: true });
  * @param {String} searchBarTerms
  * @returns {Object} the new state
  */
-const setSearchBarTerms = (state, searchBarTerms) => ({ ...state, searchBarTerms });
+const setSearchBarTerms = (state, searchBarTerms) => ({
+  ...state,
+  searchBarTerms: searchBarTerms.split(' ').map(term => term.trim()),
+});
 
 /**
  * resets search results
