@@ -168,7 +168,6 @@ export const devhubSiphonMarkdown = graphql`
       }
       resource {
         originalSource
-        path
       }
       owner
       fileName
