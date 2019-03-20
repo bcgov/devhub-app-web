@@ -20,7 +20,7 @@ import PropTypes from 'prop-types';
 import { navigate } from 'gatsby';
 import { SEARCH } from '../../constants/ui';
 import FilterMenu from './FilterMenu/FilterMenu';
-import Search from '../Search/Search';
+import Search from '../Search';
 import styles from './ToolsMenu.module.css';
 
 class ToolsMenu extends Component {

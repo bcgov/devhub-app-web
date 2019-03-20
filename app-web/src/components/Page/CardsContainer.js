@@ -32,7 +32,7 @@ import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
 import { SEARCH as SEARCH_MESSAGES } from '../../messages';
 
 import Card from '../Cards/Card/Card';
-import Search from '../Search/Search';
+import Search from '../Search';
 import Container from '../Cards/Container';
 import Row from '../Cards/Row';
 import Column from '../Cards/Column';
