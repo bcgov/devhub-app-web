@@ -38,3 +38,11 @@ search again, treating the terms as plain text
 - convert any search results into a js plain object 'map' (organized by index id)
 
 - set results in state
+
+
+### Search Pills
+
+Search pills are generated based on the search tokens found within the state. 
+
+When deleting a search pill it removes it from the state and conducts a `navigate(..)` with the remaining
+search token. The above process is triggered again.
