@@ -15,6 +15,11 @@
     color: inherit;
 }
 
-.Logo a:visited {
+.Logo {
+    text-decoration: none;
+    color: #fff;
+}
+
+.Logo:visited {
     color: inherit;
 }

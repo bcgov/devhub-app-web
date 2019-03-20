@@ -1,5 +1,17 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import styled from '@emotion/styled';
+
+const StyledLink = styled(Link)`
+  text-decoration: underline;
+  color: ${props => props.theme.colors.link};
+  font-weight: 400;
+  text-transform: capitalize;
+  padding: 0 4px;
+  margin: 0 2px;
+`;
+
+const Anchor = StyledLink.withComponent('a');
 
 const GatsbyLink = ({ children, to, activeClassName, activeStyle, ...rest }) => {
   // Tailor the following test to your environment.
@@ -10,15 +22,15 @@ const GatsbyLink = ({ children, to, activeClassName, activeStyle, ...rest }) => 
   // Use Gatsby Link for internal links, and <a> for rests
   if (internal) {
     return (
-      <Link to={to} activeStyle={activeStyle} activeClassName={activeClassName} {...rest}>
+      <StyledLink to={to} activeStyle={activeStyle} activeClassName={activeClassName} {...rest}>
         {children}
-      </Link>
+      </StyledLink>
     );
   }
   return (
-    <a href={to} {...rest}>
+    <Anchor href={to} {...rest}>
       {children}
-    </a>
+    </Anchor>
   );
 };
 

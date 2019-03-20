@@ -29,7 +29,7 @@ const LI = styled.li`
 `;
 
 const StyledLink = styled(Link)`
-  color: #1a5a96;
+  text-decoration: none;
 `;
 
 const Icon = styled.small`

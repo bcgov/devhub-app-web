@@ -33,6 +33,7 @@ import SideDrawer from '../components/SideDrawer/SideDrawer';
 import Layout from '../hoc/Layout';
 import Masthead from '../components/GithubTemplate/Masthead/Masthead';
 import Navigation from '../components/GithubTemplate/Navigation/Navigation';
+import Actions from '../components/GithubTemplate/Actions/Actions';
 import withNode from '../hoc/withNode';
 
 const Main = styled.main`
@@ -84,6 +85,7 @@ class SourceGithubMarkdownDefault extends React.Component {
   render() {
     const {
       data: { devhubSiphon, nav, collection },
+      location,
     } = this.props;
     // bind the devhub siphon data to the preview node
     const previewWithNode = withNode(devhubSiphon)(ComponentPreview);
@@ -94,6 +96,11 @@ class SourceGithubMarkdownDefault extends React.Component {
     }).Compiler;
 
     const navigation = <Navigation items={nav.items} />;
+
+    const { repo, owner } = devhubSiphon.source._properties;
+    const { title } = devhubSiphon.childMarkdownRemark.frontmatter;
+    const { originalSource } = devhubSiphon.resource;
+    const { href } = location;
     return (
       <Layout>
         <div>
@@ -115,6 +122,13 @@ class SourceGithubMarkdownDefault extends React.Component {
               otherwise if not tag exists it is biz as usual
             */}
               {renderAst(devhubSiphon.childMarkdownRemark.htmlAst)}
+              <Actions
+                repo={repo}
+                owner={owner}
+                pageTitle={title}
+                originalSource={originalSource}
+                devhubPath={href}
+              />
             </div>
           </Main>
         </div>

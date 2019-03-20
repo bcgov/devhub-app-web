@@ -47,6 +47,24 @@ export const getGithubAvatarFromUsername = (username, size) => {
 };
 
 /**
+ * gets a github issue route with a precanned message as params
+ * @param {String} repo
+ * @param {String} owner
+ * @param {String} pageTitle the title of the resource page
+ * @param {String} originalSource path to the markdown file as found in github
+ * @param {String} devhubPath path to the resource page as found in devhub
+ * @returns {String} the url to the issues route
+ */
+export const getCannedIssueMessage = (repo, owner, pageTitle, originalSource, devhubPath) => {
+  const route = getGithubIssuesRoute(repo, owner);
+  const title = encodeURIComponent(`Devhub Issue: ${pageTitle} [short description here]`);
+  const body = encodeURIComponent(
+    `> path: (do not delete) ${originalSource}\n > (do not delete) devhub page: ${devhubPath}\n\n## Devhub Content Issue\n[description of your issue here]`,
+  );
+  return `${route}/new?title=${title}&body=${body}`;
+};
+
+/**
  * gets the constant resource type related to a page path
  * @param {String} pathname
  * @returns {String} the resource type
