@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Search } from '../../src/components/Search/Search';
+import { Search } from '../../src/components/Search';
 import Button from '../../src/components/UI/Button/Button';
 
 describe('Search Bar', () => {

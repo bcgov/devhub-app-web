@@ -84,7 +84,6 @@ export const selectQuery = createSelector(
   resources => resources.query,
 );
 
-// used to dictate a feedback message after conducting a search check <SearchFeedback /> for reference
 export const selectSearchResultsLength = createSelector(
   [resourcesSelector, selectAvailableResources],
   (resources, availableResources) => {

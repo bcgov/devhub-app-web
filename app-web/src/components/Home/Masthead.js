@@ -20,7 +20,7 @@ import PropTypes from 'prop-types';
 import { navigate } from 'gatsby';
 import Title from '../Page/Title';
 import { SEARCH } from '../../constants/ui';
-import Search from '../Search/Search';
+import Search from '../Search';
 // localizations
 import { HOME } from '../../messages';
 
