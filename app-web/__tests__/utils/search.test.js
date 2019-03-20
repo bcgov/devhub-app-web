@@ -46,7 +46,7 @@ describe('Search Helpers', () => {
     const query1 = 'Hello World!';
     const query2 = ' Hello World!  extra spaces ';
 
-    expect(tokenizer(query1)).toEqual(['hello', 'world!']);
-    expect(tokenizer(query2)).toEqual(['hello', 'world!', 'extra', 'spaces']);
+    expect(tokenizer(query1)).toEqual(['Hello', 'World']);
+    expect(tokenizer(query2)).toEqual(['Hello', 'World', 'extra', 'spaces']);
   });
 });
