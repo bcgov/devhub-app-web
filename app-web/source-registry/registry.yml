@@ -177,13 +177,6 @@ sources:
             image: https://www.bcdevexchange.org/modules/core/client/img/logo/new-logo.svg
         - sourceType: 'web'
           sourceProperties:
-            url: https://devopspathfinder.slack.com/
-            author: kelpisland
-            title: DevOps Pathfinder Slack Team
-            description: The DevOps Pathfinder Slack Team is home of the BC Gov DevOps community.  This is where conversations among developers and Gov product teams happen.  We help each other, share our opinions and experiences, and - of course - share silly cat videos.
-            image: https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.png
-        - sourceType: 'web'
-          sourceProperties:
             url: https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all
             author: kelpisland
             title: DevOps Commons Yammer Group
