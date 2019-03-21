@@ -1,3 +1,80 @@
+// function takes inspiration from elastic lunr
+// we may replpace lunr with elastic lunr in the future
+
+import nlp from 'wink-nlp-utils';
+/**
+ * tokenizes a searchs string and removes punctuation
+ * @param {String} query the search query
+ * @returns {Object} utils helper functions
+ */
+export const tokenizer = function(query) {
+  // remove stop words from query
+  const tokens = nlp.string.tokenize(query, true);
+
+  return {
+    tokens: [...tokens],
+    /**
+     * returns the list of tokens as a array of strings ['foo', 'bar']
+     */
+    terms: function() {
+      return this.tokens.map(t => t.value);
+    },
+    /**
+     * sets the list of tokens minus punctuation
+     * @returns {Object} this (for chaining methods)
+     * usage is tokenizer('foo').withoutPunctuation().terms()
+     */
+    withoutPunctuation: function() {
+      this.tokens = this.tokens.filter(t => t.tag !== 'punctuation');
+      return this;
+    },
+    /**
+     * resets terms to original
+     * @returns {Object} this for method chaining
+     */
+    reset: function() {
+      this.tokens = [...tokens];
+      return this;
+    },
+    /**
+     * removes stop words and returns the remaining terms list
+     * @returns {Array} ['Hello', 'this', 'world'] => ['Hello', 'world]
+     * https://en.wikipedia.org/wiki/Stop_words
+     * ** recommend chaining on filtering puncuation before using this function
+     * tokenizer('hello this world!').withoutPunctuation().withoutStopWords()
+     */
+    withoutStopwords: function() {
+      return nlp.tokens.removeWords(this.terms());
+    },
+  };
+};
+
+/**
+ * takes search string and seperates into grouped query tokens
+ * lunr does not allow logical groupings of search terms. To replicate
+ * a search of (term1 && term2 && term3) || term1 || term2 || term3
+ * this function tokenizes the search string, removes stop words and produces
+ * logical groupings using lunr term presence predicates
+ * @param {String} originalQuery the search string
+ * @param {Array} searchQueries the list of search queries to be used by the search index
+ */
+export const getGroupedQueriesForLunr = originalQuery => {
+  const tokenized = tokenizer(originalQuery);
+  // gets the terms tokenized without stopp words and other useless search terms
+  // 'hello this world!' => ['hello', 'world']
+  const tokenizedTerms = tokenized.withoutPunctuation().withoutStopwords();
+  // original query gets mapped with term presence predicate for lunr searches
+  // this convers the query to ensure all terms are present in search
+  // 'hello world' => 'hello+ world+'
+  const originalQueryWithTermPresence = originalQuery
+    .split(' ')
+    .map(term => term.trim())
+    .join('+ ');
+
+  // return query groupings
+  // adding term presence '+' to end since it would have been missing in join
+  return [`${originalQueryWithTermPresence}+`].concat(tokenizedTerms);
+};
 /**
  * gets search results from lunr
  * @param {String} query the search string
