@@ -112,9 +112,7 @@ const CardContainer = ({
         <SearchPills
           query={query}
           onDelete={term => {
-            // remove token from query list and rebuild navigation
-            const newQuery = query.filter(token => token !== term);
-            navigate(`${pagePath}?q=${encodeURIComponent(newQuery.join(' '))}`);
+            navigate(`${pagePath}?q=`);
           }}
           onClear={() => navigate(`${pagePath}?q=`)}
         />
@@ -140,6 +138,6 @@ CardContainer.propTypes = {
   ),
   searchResultsEmpty: PropTypes.bool.isRequired,
   openSideDrawer: PropTypes.func.isRequired,
-  query: PropTypes.arrayOf(PropTypes.string),
+  query: PropTypes.string,
 };
 export default CardContainer;

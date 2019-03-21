@@ -54,7 +54,7 @@ export class Search extends Component {
   handleKeyUp = e => {
     // if enter was pressed
     const terms = e.target.value;
-    if (terms === 0 && this.state.touched) {
+    if (terms === 0 && this.state.touched && this.props.onSearchClear) {
       this.props.onSearchClear();
     }
     if (e.key !== 'Enter') {
@@ -68,7 +68,7 @@ export class Search extends Component {
   };
 
   render() {
-    const { inputConfig, ...rest } = this.props;
+    const { inputConfig, onSearch, onSearchClear, searchOnEnter, ...rest } = this.props;
     // rest param is mostly used to pass custom styling to the container if necessaary
     return (
       <Container {...rest}>
@@ -97,7 +97,6 @@ Search.propTypes = {
 };
 
 Search.defaultProps = {
-  onSearchClear: () => undefined,
   searchOnEnter: false,
   inputConfig: {},
 };
