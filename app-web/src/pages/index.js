@@ -8,7 +8,7 @@ import { Alert } from 'reactstrap';
 import { REACT_SCROLL } from '../constants/ui';
 import { MAIN_NAV_ROUTES } from '../constants/routes';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
-import { getSearchResults } from '../utils/helpers';
+import { getSearchResults } from '../utils/search';
 import * as actions from '../store/actions';
 
 import styles from './index.module.css';
@@ -77,7 +77,7 @@ export class Index extends Component {
       collections,
       loading,
       searchResultsExist,
-      tokenizedQuery,
+      query,
     } = this.props;
 
     const siphonResources = Object.keys(resourcesByType).map(resourceType => {
@@ -99,7 +99,7 @@ export class Index extends Component {
     return (
       <Layout showHamburger>
         <div>
-          <Masthead setSearchBarTerms={setSearchBarTerms} query={tokenizedQuery} />
+          <Masthead setSearchBarTerms={setSearchBarTerms} query={query} />
           <main role="main" className={styles.Main}>
             {loading ? (
               <Loading message="Loading..." />
@@ -129,7 +129,6 @@ export class Index extends Component {
 const mapStateToProps = createStructuredSelector({
   resourcesLoaded: selectResourcesLoaded,
   query: selectQuery,
-  tokenizedQuery: selectTokenizedQuery,
   loading: selectResourcesReducerLoading,
   searchResultsLength: selectSearchResultsLength,
   totalResources: selectTotalResources,
@@ -158,7 +157,6 @@ Index.propTypes = {
   setResourceType: PropTypes.func.isRequired,
   resourcesLoaded: PropTypes.bool.isRequired,
   query: PropTypes.string,
-  tokenizedQuery: PropTypes.arrayOf(PropTypes.string),
   loading: PropTypes.bool.isRequired,
   searchResultsLength: PropTypes.number.isRequired,
   totalResources: PropTypes.number.isRequired,

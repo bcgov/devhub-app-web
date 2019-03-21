@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import groupBy from 'lodash/groupBy';
-import { getSearchResults } from '../../src/utils/helpers';
+import { getSearchResults } from '../../src/utils/search';
 import { Index } from '../../src/pages/index';
 import { SIPHON_NODES, COLLECTIONS } from '../../__fixtures__/siphon-fixtures';
 
 jest.mock('react-spinners', () => null);
-jest.mock('../../src/utils/helpers', () => ({
+jest.mock('../../src/utils/search', () => ({
   getSearchResults: jest.fn(() => Promise.resolve({ '1': { id: '1' } })),
 }));
 

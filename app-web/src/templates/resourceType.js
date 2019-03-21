@@ -3,8 +3,8 @@ import { createStructuredSelector } from 'reselect';
 import queryString from 'query-string';
 import { connect } from 'react-redux';
 import { RESOURCE_TYPES } from '../constants/ui';
-import { flattenGatsbyGraphQL } from '../utils//dataHelpers';
-import { getSearchResults } from '../utils/helpers';
+import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
+import { getSearchResults } from '../utils/search';
 import * as actions from '../store/actions';
 import { RESOURCE_TYPE_PAGES } from '../messages';
 // components
@@ -79,7 +79,6 @@ export class ResourceType extends PureComponent {
       resourcesByType,
       searchResultsLength,
       filters,
-      query,
       tokenizedQuery,
       pageContext, // received from gatsby create pages api, view gatsby/createPages.js for more info
       resourcesExistByType,
@@ -134,6 +133,7 @@ export class ResourceType extends PureComponent {
 const mapStateToProps = createStructuredSelector({
   filters: selectFilters,
   resourcesLoaded: selectResourcesLoaded,
+  tokenizedQuery: selectTokenizedQuery,
   query: selectQuery,
   loading: selectResourcesReducerLoading,
   searchResultsLength: selectSearchResultsLength,
@@ -141,7 +141,6 @@ const mapStateToProps = createStructuredSelector({
   resourcesByType: selectGroupedFilteredAvailableResources,
   resourcesExistByType: selectResourcesExistByType,
   searchResultsExist: selectSearchResultsExist,
-  tokenizedQuery: selectTokenizedQuery,
 });
 
 const mapDispatchToProps = dispatch => {

@@ -20,13 +20,11 @@ import PropTypes from 'prop-types';
 import { navigate } from 'gatsby';
 import styled from '@emotion/styled';
 import Title from '../Page/Title';
-import { SEARCH } from '../../constants/ui';
+import { SEARCH, EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
 import Search from '../Search';
 import SearchPills from '../Search/SearchPills';
 // localizations
 import { HOME } from '../../messages';
-
-import styles from './Masthead.module.css';
 
 const SearchStyled = styled(Search)`
   font-size: 1.25em;
@@ -41,8 +39,21 @@ const SearchContainer = styled.div`
   max-width: 500px;
 `;
 
-export const Masthead = ({ query }) => (
-  <header className={styles.Masthead}>
+const Container = styled.div`
+  background-color: #fafafa;
+  text-align: center;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  padding: 25px 15px 30px;
+  flex-flow: column nowrap;
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.sm} {
+    padding: 50px 15px 55px;
+  }
+`;
+
+export const Masthead = ({ setSearchBarTerms, query }) => (
+  <Container>
     <Title
       title={HOME.header.title.defaultMessage}
       subtitle={HOME.header.subtitle.defaultMessage}
@@ -60,14 +71,13 @@ export const Masthead = ({ query }) => (
           query={query}
           onDelete={term => {
             // remove token from query list and rebuild navigation
-            const newQuery = query.filter(token => token !== term);
-            navigate(`/?q=${encodeURIComponent(newQuery.join(' '))}`);
+            navigate(`/?q=`);
           }}
-          onClear={() => navigate('/?q=')}
+          showClear={false}
         />
       )}
     </SearchContainer>
-  </header>
+  </Container>
 );
 
 Masthead.propTypes = {
