@@ -31,7 +31,6 @@ import {
   selectFilters,
   selectSearchResultsExist,
   selectResourcesExistByType,
-  selectTokenizedQuery,
 } from '../store/selectors';
 
 export class ResourceType extends PureComponent {
@@ -148,8 +147,7 @@ const mapDispatchToProps = dispatch => {
     loadResources: (resources, collections) =>
       dispatch(actions.loadResources(resources, collections)),
     setSearchResults: results => dispatch(actions.setSearchResults(results)),
-    setSearchQuery: (query, tokenizedQuery) =>
-      dispatch(actions.setSearchQuery(query, tokenizedQuery)),
+    setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
     resetSearch: () => dispatch(actions.resetSearch()),
     setResourceType: type => dispatch(actions.setResourceType(type)),
   };
