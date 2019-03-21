@@ -2,6 +2,7 @@
 // we may replpace lunr with elastic lunr in the future
 
 import nlp from 'wink-nlp-utils';
+import uniq from 'lodash/uniq';
 /**
  * tokenizes a searchs string and removes punctuation
  * @param {String} query the search query
@@ -17,7 +18,7 @@ export const tokenizer = function(query) {
      * returns the list of tokens as a array of strings ['foo', 'bar']
      */
     terms: function() {
-      return this.tokens.map(t => t.value);
+      return uniq(this.tokens.map(t => t.value));
     },
     /**
      * sets the list of tokens minus punctuation

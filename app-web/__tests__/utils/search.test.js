@@ -54,6 +54,13 @@ describe('Search Helpers', () => {
       expect(tokenized2.terms()).toEqual(['Hello', 'World', '!', 'extra', 'spaces']);
     });
 
+    test('when a string is passed it, it gets tokenized into a list without duplicates', () => {
+      const query1 = 'Hello World! World!';
+      const tokenized1 = tokenizer(query1);
+
+      expect(tokenized1.terms()).toEqual(['Hello', 'World', '!']);
+    });
+
     test('when filtering by punctuation it removes it', () => {
       const query1 = 'Hello World!';
       const query2 = ' Hello World!  extra spaces ';
