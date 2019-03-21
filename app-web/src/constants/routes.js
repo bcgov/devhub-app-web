@@ -9,7 +9,7 @@ export const COPYRIGHT_ROUTE = 'https://www2.gov.bc.ca/gov/content/home/copyrigh
 export const MAIN_NAV_ROUTES = {
   ALL: {
     to: '/',
-    text: 'All',
+    text: 'Home',
   },
   COLLECTIONS: {
     to: '/collections',
