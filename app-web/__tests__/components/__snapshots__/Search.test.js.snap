@@ -2,10 +2,7 @@
 
 exports[`Search Bar matches snapshot 1`] = `
 <Container
-  onSearch={[MockFunction]}
-  onSearchClear={[MockFunction]}
   onkeyup={[MockFunction]}
-  searchOnEnter={false}
   terms=""
 >
   <Input
