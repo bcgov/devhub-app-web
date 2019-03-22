@@ -13,6 +13,25 @@ module.exports = {
   pathPrefix: '/images',
   mapping: {},
   plugins: [
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: 'Devhub',
+        short_name: 'Devhub',
+        start_url: '/',
+        background_color: '#fff',
+        theme_color: '#fff',
+        // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
+        // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
+        display: 'standalone',
+        icon: 'static/images/favicon.ico', // This path is relative to the root of the site.
+        // An optional attribute which provides support for CORS check.
+        // If you do not provide a crossOrigin option, it will skip CORS for manifest.
+        // Any invalid keyword or empty string defaults to `anonymous`
+        include_favicon: true,
+      },
+    },
+    'gatsby-plugin-offline',
     'gatsby-plugin-emotion',
     // Adding various source folders to the GraphQL layer.
     {
