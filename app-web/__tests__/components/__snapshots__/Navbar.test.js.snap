@@ -15,7 +15,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
         exact={true}
         to="/"
       >
-        All
+        Home
       </mockConstructor>
     </li>
     <li
@@ -37,7 +37,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
         exact={true}
         to="/self-service-tools"
       >
-        Self-Service Tools
+        Tools
       </mockConstructor>
     </li>
     <li
@@ -59,7 +59,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
         exact={true}
         to="/repositories"
       >
-        Repositories
+        GitHub Repositories
       </mockConstructor>
     </li>
     <li
