@@ -17,7 +17,7 @@ export const MAIN_NAV_ROUTES = {
   },
   [RESOURCE_TYPES.SELF_SERVICE_TOOLS]: {
     to: '/self-service-tools',
-    text: 'Self-Service Tools',
+    text: 'Tools',
   },
   [RESOURCE_TYPES.COMPONENTS]: {
     to: '/components',
@@ -25,7 +25,7 @@ export const MAIN_NAV_ROUTES = {
   },
   [RESOURCE_TYPES.REPOSITORIES]: {
     to: '/repositories',
-    text: 'Repositories',
+    text: 'GitHub Repositories',
   },
   [RESOURCE_TYPES.DOCUMENTATION]: {
     to: '/documentation',
