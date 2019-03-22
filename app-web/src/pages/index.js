@@ -95,7 +95,6 @@ export class Index extends Component {
     });
 
     const resourcesNotFound = siphonResources.every(r => r === null);
-    console.log('search results exists', searchResultsExist);
     return (
       <Layout showHamburger>
         <div>
