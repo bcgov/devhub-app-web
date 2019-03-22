@@ -17,7 +17,7 @@ import FLAGS from '../constants/featureflags';
 const Wrapper = styled.div`
   margin-top: 65px;
   flex-grow: 1;
-  @media (min-width: 767px) {
+  ${props => props.theme.breakpoints.main.desktop} {
     margin-top: 112px;
   }
 `;

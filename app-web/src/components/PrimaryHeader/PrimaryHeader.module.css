@@ -30,7 +30,7 @@
     }
 }
 
-@media screen and (min-width: 777px) {
+@media screen and (min-width: 850px) {
     .PrimaryHeader .Hamburger {
         display: none;
     }
