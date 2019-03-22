@@ -95,7 +95,7 @@ export class Index extends Component {
     });
 
     const resourcesNotFound = siphonResources.every(r => r === null);
-
+    console.log('search results exists', searchResultsExist);
     return (
       <Layout showHamburger>
         <div>
@@ -109,10 +109,12 @@ export class Index extends Component {
               </Alert>
             ) : (
               <Aux>
-                <CollectionsContainer
-                  collections={collections}
-                  link={MAIN_NAV_ROUTES.COLLECTIONS}
-                />
+                {!searchResultsExist && (
+                  <CollectionsContainer
+                    collections={collections}
+                    link={MAIN_NAV_ROUTES.COLLECTIONS}
+                  />
+                )}
                 <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
                   {/* Element used for react-scroll targeting */}
                   <Flag name="features.githubResourceCards">{siphonResources}</Flag>
