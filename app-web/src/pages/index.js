@@ -46,6 +46,8 @@ export class Index extends Component {
     this.props.setResourceType(null);
   }
 
+  // checking search params in did update because did mount only get triggered during navigation
+  // between different pages, navigation to the same page does not trigger an unmount/remount
   componentDidUpdate() {
     const query = queryString.parse(this.props.location.search);
     if (Object.prototype.hasOwnProperty.call(query, 'q')) {
