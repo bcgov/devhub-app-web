@@ -10,7 +10,7 @@ pipeline {
 
   environment {
     OCP_PIPELINE_CLI_URL = 'https://raw.githubusercontent.com/BCDevOps/ocp-cd-pipeline/v0.0.5/src/main/resources/pipeline-cli'
-    OCP_PIPELINE_VERSION = '0.0.5'
+    OCP_PIPELINE_VERSION = '0.0.6'
   }
   stages {
     stage('Build') {
