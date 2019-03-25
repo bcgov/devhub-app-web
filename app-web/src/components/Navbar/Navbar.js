@@ -26,7 +26,11 @@ export const Navbar = ({ mobile }) => {
   const links = Object.keys(MAIN_NAV_ROUTES).map(resourceType => {
     return (
       <li key={MAIN_NAV_ROUTES[resourceType].to}>
-        <Link exact to={MAIN_NAV_ROUTES[resourceType].to} activeClassName={styles.ActiveFilter}>
+        <Link
+          exact="true"
+          to={MAIN_NAV_ROUTES[resourceType].to}
+          activeClassName={styles.ActiveFilter}
+        >
           {MAIN_NAV_ROUTES[resourceType].text}
         </Link>
       </li>

@@ -26,7 +26,7 @@ import { HOME } from '../../messages';
 
 import styles from './Masthead.module.css';
 
-export const Masthead = ({ setSearchBarTerms }) => (
+export const Masthead = () => (
   <header className={styles.Masthead}>
     <Title
       title={HOME.header.title.defaultMessage}
@@ -37,17 +37,11 @@ export const Masthead = ({ setSearchBarTerms }) => (
         searchOnEnter
         inputConfig={SEARCH.INPUT}
         onSearch={terms => {
-          // set resource type to all since we are searching the entire index
-          setSearchBarTerms(terms);
           navigate(`/?q=${encodeURIComponent(terms)}`);
         }}
       />
     </div>
   </header>
 );
-
-Masthead.propTypes = {
-  setSearchBarTerms: PropTypes.func.isRequired,
-};
 
 export default Masthead;

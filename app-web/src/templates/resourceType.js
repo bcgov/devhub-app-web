@@ -77,7 +77,6 @@ export class ResourceType extends PureComponent {
     const {
       resourcesByType,
       searchResultsLength,
-      setSearchBarTerms,
       filters,
       query,
       pageContext, // received from gatsby create pages api, view gatsby/createPages.js for more info
@@ -109,7 +108,6 @@ export class ResourceType extends PureComponent {
                   searchResultsEmpty={searchResultsEmpty}
                   pagePath={this.props.location.pathname}
                   resources={resources}
-                  setSearchBarTerms={setSearchBarTerms}
                   openSideDrawer={() => this.toggleMenu(true)}
                 />
               </Aux>
@@ -137,7 +135,6 @@ const mapStateToProps = createStructuredSelector({
   loading: selectResourcesReducerLoading,
   searchResultsLength: selectSearchResultsLength,
   totalResources: selectTotalResources,
-  searchWordLength: selectSearchWordLength,
   resourcesByType: selectGroupedFilteredAvailableResources,
   resourcesExistByType: selectResourcesExistByType,
   searchResultsExist: selectSearchResultsExist,
@@ -149,7 +146,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(actions.loadResources(resources, collections)),
     setSearchResults: results => dispatch(actions.setSearchResults(results)),
     setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
-    setSearchBarTerms: resourceType => dispatch(actions.setSearchBarTerms(resourceType)),
     resetSearch: () => dispatch(actions.resetSearch()),
     setResourceType: type => dispatch(actions.setResourceType(type)),
   };

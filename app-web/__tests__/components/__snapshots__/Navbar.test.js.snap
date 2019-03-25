@@ -12,7 +12,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     >
       <mockConstructor
         activeClassName="ActiveFilter"
-        exact={true}
+        exact="true"
         to="/"
       >
         Home
@@ -23,7 +23,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     >
       <mockConstructor
         activeClassName="ActiveFilter"
-        exact={true}
+        exact="true"
         to="/collections"
       >
         Collections
@@ -34,7 +34,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     >
       <mockConstructor
         activeClassName="ActiveFilter"
-        exact={true}
+        exact="true"
         to="/self-service-tools"
       >
         Tools
@@ -45,7 +45,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     >
       <mockConstructor
         activeClassName="ActiveFilter"
-        exact={true}
+        exact="true"
         to="/components"
       >
         Components
@@ -56,7 +56,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     >
       <mockConstructor
         activeClassName="ActiveFilter"
-        exact={true}
+        exact="true"
         to="/repositories"
       >
         GitHub Repositories
@@ -67,7 +67,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     >
       <mockConstructor
         activeClassName="ActiveFilter"
-        exact={true}
+        exact="true"
         to="/documentation"
       >
         Documentation
