@@ -280,7 +280,7 @@ const resourcesReducer = (state = initialState, action) => {
     case actionTypes.SET_SEARCH_RESULTS:
       return applySearchResults(state, action.payload.searchResults);
     case actionTypes.SET_SEARCH_QUERY:
-      return setSearchQuery(state, action.payload.query, action.payload.tokenizedQuery);
+      return setSearchQuery(state, action.payload.query);
     case actionTypes.RESET_SEARCH:
       return resetSearch(state);
     case actionTypes.SET_RESOURCE_TYPE:
