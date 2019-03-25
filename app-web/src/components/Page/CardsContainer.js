@@ -32,11 +32,12 @@ import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
 import { SEARCH as SEARCH_MESSAGES } from '../../messages';
 
 import Card from '../Cards/Card/Card';
-import Search from '../Search/Search';
+import Search from '../Search';
 import Container from '../Cards/Container';
 import Row from '../Cards/Row';
 import Column from '../Cards/Column';
 import Loading from '../UI/Loading/Loading';
+import SearchPills from '../Search/SearchPills';
 
 const AlertMessage = styled(Alert)`
   margin: 10px auto;
@@ -89,7 +90,7 @@ const FilterSideDrawerToggle = styled.div`
 
 const CardContainer = ({
   resources,
-  setSearchBarTerms,
+  query,
   openSideDrawer,
   loading,
   searchResultsEmpty,
@@ -101,13 +102,21 @@ const CardContainer = ({
         searchOnEnter
         inputConfig={{ ...SEARCH.INPUT, disabled: loading }}
         onSearch={terms => {
-          // set resource type to all since we are searching the entire index
           navigate(`${pagePath}?q=${encodeURIComponent(terms)}`);
         }}
         onSearchClear={() => {
           navigate(`${pagePath}`);
         }}
       />
+      {query && (
+        <SearchPills
+          query={query}
+          onDelete={term => {
+            navigate(`${pagePath}?q=`);
+          }}
+          onClear={() => navigate(`${pagePath}?q=`)}
+        />
+      )}
     </SearchContainer>
     <FilterSideDrawerToggle onClick={openSideDrawer}>
       <FontAwesomeIcon icon={faFilter} style={{ color: '#026', marginRight: '5px' }} />{' '}
@@ -129,5 +138,6 @@ CardContainer.propTypes = {
   ),
   searchResultsEmpty: PropTypes.bool.isRequired,
   openSideDrawer: PropTypes.func.isRequired,
+  query: PropTypes.string,
 };
 export default CardContainer;

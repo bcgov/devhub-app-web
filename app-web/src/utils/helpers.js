@@ -78,49 +78,6 @@ export const mapPagePathToResourceTypeConst = pathname => {
 };
 
 /**
- * gets search results from lunr
- * @param {String} query the search string
- */
-export const getSearchResults = async query => {
-  if (window && window.__LUNR__) {
-    const lunr = await window.__LUNR__.__loaded;
-    const lunrIndex = lunr.en;
-    let results = [];
-    // search results by a partial query using wild cards
-    let partialResults = [];
-    let searchQueryPartial = `*${query}*`;
-    // attempt to search by parsing query into fields
-    try {
-      partialResults = lunrIndex.index.search(searchQueryPartial);
-      results = lunrIndex.index.search(query);
-    } catch (e) {
-      console.error(e);
-      // if that fails treat query as plain text and attempt search again
-      partialResults = lunrIndex.index.query(function() {
-        this.term(searchQueryPartial);
-      });
-      results = lunrIndex.index.query(function() {
-        this.term(searchQueryPartial);
-      });
-    }
-    // combine all partial search results with full search results
-    results = results.concat(partialResults);
-    // search results is an array of reference keys
-    // we need to map those to the index store to get the actual
-    // node ids
-    const searchResultsMap = results
-      .map(({ ref }) => lunrIndex.store[ref])
-      .reduce((obj, result) => {
-        obj[result.id] = { ...result };
-        return obj;
-      }, {});
-
-    return searchResultsMap;
-  }
-  return {};
-};
-
-/**
  * returns the first non external page path from a list of resources which
  * ideally should belong to a particular collection
  * @param {Array} resources the list of resources

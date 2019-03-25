@@ -3,8 +3,8 @@ import { createStructuredSelector } from 'reselect';
 import queryString from 'query-string';
 import { connect } from 'react-redux';
 import { RESOURCE_TYPES } from '../constants/ui';
-import { flattenGatsbyGraphQL } from '../utils//dataHelpers';
-import { getSearchResults } from '../utils/helpers';
+import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
+import { getSearchResults } from '../utils/search';
 import * as actions from '../store/actions';
 import { RESOURCE_TYPE_PAGES } from '../messages';
 // components
@@ -31,6 +31,7 @@ import {
   selectFilters,
   selectSearchResultsExist,
   selectResourcesExistByType,
+  selectTokenizedQuery,
 } from '../store/selectors';
 
 export class ResourceType extends PureComponent {
@@ -108,6 +109,7 @@ export class ResourceType extends PureComponent {
                   searchResultsEmpty={searchResultsEmpty}
                   pagePath={this.props.location.pathname}
                   resources={resources}
+                  query={query}
                   openSideDrawer={() => this.toggleMenu(true)}
                 />
               </Aux>
@@ -145,7 +147,8 @@ const mapDispatchToProps = dispatch => {
     loadResources: (resources, collections) =>
       dispatch(actions.loadResources(resources, collections)),
     setSearchResults: results => dispatch(actions.setSearchResults(results)),
-    setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
+    setSearchQuery: (query, tokenizedQuery) =>
+      dispatch(actions.setSearchQuery(query, tokenizedQuery)),
     resetSearch: () => dispatch(actions.resetSearch()),
     setResourceType: type => dispatch(actions.setResourceType(type)),
   };

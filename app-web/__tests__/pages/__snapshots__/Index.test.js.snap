@@ -6,6 +6,7 @@ exports[`Index Container it matches snapshot 1`] = `
 >
   <div>
     <Masthead
+      query=""
       setSearchBarTerms={[MockFunction]}
     />
     <main

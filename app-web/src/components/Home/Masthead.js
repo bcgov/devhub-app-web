@@ -18,30 +18,70 @@ Created by Patrick Simonian
 import React from 'react';
 import PropTypes from 'prop-types';
 import { navigate } from 'gatsby';
+import styled from '@emotion/styled';
 import Title from '../Page/Title';
-import { SEARCH } from '../../constants/ui';
-import Search from '../Search/Search';
+import { SEARCH, EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
+import Search from '../Search';
+import SearchPills from '../Search/SearchPills';
 // localizations
 import { HOME } from '../../messages';
 
-import styles from './Masthead.module.css';
+const SearchStyled = styled(Search)`
+  font-size: 1.25em;
+  flex-flow: row wrap;
+  > button {
+    flex-grow: 1;
+  }
+`;
 
-export const Masthead = () => (
-  <header className={styles.Masthead}>
+const SearchContainer = styled.div`
+  width: 100%;
+  max-width: 500px;
+`;
+
+const Container = styled.div`
+  background-color: #fafafa;
+  text-align: center;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  padding: 25px 15px 30px;
+  flex-flow: column nowrap;
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.sm} {
+    padding: 50px 15px 55px;
+  }
+`;
+
+export const Masthead = ({ setSearchBarTerms, query }) => (
+  <Container>
     <Title
       title={HOME.header.title.defaultMessage}
       subtitle={HOME.header.subtitle.defaultMessage}
     />
-    <div className={styles.SearchContainer}>
-      <Search
+    <SearchContainer>
+      <SearchStyled
         searchOnEnter
         inputConfig={SEARCH.INPUT}
         onSearch={terms => {
           navigate(`/?q=${encodeURIComponent(terms)}`);
         }}
       />
-    </div>
-  </header>
+      {query && (
+        <SearchPills
+          query={query}
+          onDelete={term => {
+            // remove token from query list and rebuild navigation
+            navigate(`/?q=`);
+          }}
+          showClear={false}
+        />
+      )}
+    </SearchContainer>
+  </Container>
 );
+
+Masthead.propTypes = {
+  query: PropTypes.arrayOf(PropTypes.string),
+};
 
 export default Masthead;

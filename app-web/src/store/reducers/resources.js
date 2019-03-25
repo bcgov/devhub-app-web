@@ -262,6 +262,7 @@ const resetSearch = state => {
     searchResults: {},
     searchBarTerms: '',
     query: null,
+    tokenizedQuery: null,
     loading: false,
   };
 };

@@ -8,7 +8,7 @@ import { Alert } from 'reactstrap';
 import { REACT_SCROLL } from '../constants/ui';
 import { MAIN_NAV_ROUTES } from '../constants/routes';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
-import { getSearchResults } from '../utils/helpers';
+import { getSearchResults } from '../utils/search';
 import * as actions from '../store/actions';
 
 import styles from './index.module.css';
@@ -26,12 +26,12 @@ import {
   selectQuery,
   selectSearchResultsLength,
   selectTotalResources,
-  selectSearchWordLength,
   selectResourcesLoaded,
   selectResourcesReducerLoading,
   selectGroupedFilteredAvailableResources,
   selectCollectionsWithAvailableResourcesGroupedByType,
   selectSearchResultsExist,
+  selectTokenizedQuery,
 } from '../store/selectors';
 
 import { SEARCH } from '../messages';
@@ -77,6 +77,7 @@ export class Index extends Component {
       collections,
       loading,
       searchResultsExist,
+      query,
     } = this.props;
 
     const siphonResources = Object.keys(resourcesByType).map(resourceType => {
@@ -98,7 +99,7 @@ export class Index extends Component {
     return (
       <Layout showHamburger>
         <div>
-          <Masthead setSearchBarTerms={setSearchBarTerms} />
+          <Masthead setSearchBarTerms={setSearchBarTerms} query={query} />
           <main role="main" className={styles.Main}>
             {loading ? (
               <Loading message="Loading..." />
@@ -141,7 +142,8 @@ const mapDispatchToProps = dispatch => {
     loadResources: (resources, collections) =>
       dispatch(actions.loadResources(resources, collections)),
     setSearchResults: results => dispatch(actions.setSearchResults(results)),
-    setSearchQuery: query => dispatch(actions.setSearchQuery(query)),
+    setSearchQuery: (query, tokenizedQuery) =>
+      dispatch(actions.setSearchQuery(query, tokenizedQuery)),
     resetSearch: () => dispatch(actions.resetSearch()),
     setResourceType: type => dispatch(actions.setResourceType(type)),
   };
@@ -154,7 +156,7 @@ Index.propTypes = {
   resetSearch: PropTypes.func.isRequired,
   setResourceType: PropTypes.func.isRequired,
   resourcesLoaded: PropTypes.bool.isRequired,
-  query: PropTypes.string.isRequired,
+  query: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   searchResultsLength: PropTypes.number.isRequired,
   totalResources: PropTypes.number.isRequired,
