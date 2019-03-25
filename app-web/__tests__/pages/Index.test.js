@@ -58,6 +58,7 @@ describe('Index Container', () => {
     query: '',
     collections: [],
     resourcesByType: groupBy(SIPHON_NODES, 'resource.type'),
+    searchResultsExist: false,
     location,
     ...actions,
   };
@@ -67,40 +68,49 @@ describe('Index Container', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  test('when loading, loading indicator is visible', () => {
-    const wrapper = shallow(<Index {...props} loading={true} />);
-    expect(wrapper.find('Loading').exists()).toBeTruthy();
+  describe('Lifecycle methods', () => {
+    test('calls load resources', () => {
+      shallow(<Index {...props} />);
+      expect(actions.loadResources).toHaveBeenCalled();
+    });
+
+    test('when search props updates, it calls search function', async () => {
+      const wrapper = shallow(<Index {...props} />);
+      wrapper.setProps({ location: { ...location, search: '?q=foo' } });
+      await wrapper.instance().componentDidMount();
+      expect(getSearchResults).toHaveBeenCalled();
+      expect(props.setSearchQuery).toHaveBeenCalled();
+      expect(props.setSearchResults).toHaveBeenCalled();
+    });
   });
 
-  test('when no search results the no search results message is visible', () => {
-    // stub in siphon nodes where none exist
-    const resourcesByType = Object.keys(props.resourcesByType).reduce((resourcesByType, key) => {
-      resourcesByType[key] = [];
-      return resourcesByType;
-    }, {});
+  describe('UI changes', () => {
+    test('when search results exist it does not render collections', () => {
+      const wrapper = shallow(<Index {...props} searchResultsExist={true} />);
+      expect(wrapper.find('CollectionsContainer').exists()).toBeFalsy();
+    });
 
-    const wrapper = shallow(
-      <Index
-        {...props}
-        loading={false}
-        searchResultsExist={false}
-        resourcesByType={resourcesByType}
-      />,
-    );
-    expect(wrapper.find('Alert').exists()).toBeTruthy();
-  });
+    test('when no search results the no search results message is visible', () => {
+      // stub in siphon nodes where none exist
+      const resourcesByType = Object.keys(props.resourcesByType).reduce((resourcesByType, key) => {
+        resourcesByType[key] = [];
+        return resourcesByType;
+      }, {});
 
-  test('calls load resources', () => {
-    shallow(<Index {...props} />);
-    expect(actions.loadResources).toHaveBeenCalled();
-  });
+      const wrapper = shallow(
+        <Index
+          {...props}
+          loading={false}
+          searchResultsExist={false}
+          resourcesByType={resourcesByType}
+        />,
+      );
+      expect(wrapper.find('Alert').exists()).toBeTruthy();
+    });
 
-  test('when search props updates, it calls search function', async () => {
-    const wrapper = shallow(<Index {...props} />);
-    wrapper.setProps({ location: { ...location, search: '?q=foo' } });
-    await wrapper.instance().componentDidMount();
-    expect(getSearchResults).toHaveBeenCalled();
-    expect(props.setSearchQuery).toHaveBeenCalled();
-    expect(props.setSearchResults).toHaveBeenCalled();
+    test('when loading, loading indicator is visible', () => {
+      const wrapper = shallow(<Index {...props} loading={true} />);
+      expect(wrapper.find('Loading').exists()).toBeTruthy();
+    });
   });
 });

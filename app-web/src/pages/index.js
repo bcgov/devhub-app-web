@@ -1,26 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createStructuredSelector } from 'reselect';
 import queryString from 'query-string';
-import shortid from 'shortid';
+
+import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { Alert } from 'reactstrap';
-import { REACT_SCROLL } from '../constants/ui';
+import { Flag } from 'flag';
+
 import { MAIN_NAV_ROUTES } from '../constants/routes';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { getSearchResults } from '../utils/search';
 import * as actions from '../store/actions';
-
-import styles from './index.module.css';
-// components
-import { Flag } from 'flag';
-import { Element } from 'react-scroll';
-import Loading from '../components/UI/Loading/Loading';
-import Layout from '../hoc/Layout';
-import { ResourcePreview, Masthead, CollectionsContainer } from '../components/Home';
-import withResourceQuery from '../hoc/withResourceQuery';
-import Aux from '../hoc/auxillary';
-
+import { SEARCH } from '../messages';
 // selectors from reselect
 import {
   selectQuery,
@@ -34,7 +25,13 @@ import {
   selectTokenizedQuery,
 } from '../store/selectors';
 
-import { SEARCH } from '../messages';
+import Loading from '../components/UI/Loading/Loading';
+import Layout from '../hoc/Layout';
+import { ResourcePreview, Masthead, CollectionsContainer } from '../components/Home';
+import withResourceQuery from '../hoc/withResourceQuery';
+import Aux from '../hoc/auxillary';
+
+import styles from './index.module.css';
 
 export class Index extends Component {
   componentDidMount() {
@@ -49,6 +46,8 @@ export class Index extends Component {
     this.props.setResourceType(null);
   }
 
+  // checking search params in did update because did mount only get triggered during navigation
+  // between different pages, navigation to the same page does not trigger an unmount/remount
   componentDidUpdate() {
     const query = queryString.parse(this.props.location.search);
     if (Object.prototype.hasOwnProperty.call(query, 'q')) {
@@ -70,21 +69,13 @@ export class Index extends Component {
     this.props.resetSearch();
   }
 
-  render() {
-    const {
-      resourcesByType,
-      setSearchBarTerms,
-      collections,
-      loading,
-      searchResultsExist,
-      query,
-    } = this.props;
-
+  getResourcePreviews = () => {
+    const { resourcesByType } = this.props;
     const siphonResources = Object.keys(resourcesByType).map(resourceType => {
       if (resourcesByType[resourceType].length > 0) {
         return (
           <ResourcePreview
-            key={shortid.generate()}
+            key={resourceType}
             title={resourceType}
             resources={resourcesByType[resourceType]}
             link={MAIN_NAV_ROUTES[resourceType]}
@@ -94,31 +85,50 @@ export class Index extends Component {
       return null;
     });
 
+    return siphonResources;
+  };
+
+  getCollectionPreviews = () => {
+    const { collections, searchResultsExist } = this.props;
+    // only show collections if there wasn't a search
+    return (
+      !searchResultsExist && (
+        <CollectionsContainer collections={collections} link={MAIN_NAV_ROUTES.COLLECTIONS} />
+      )
+    );
+  };
+
+  render() {
+    const { setSearchBarTerms, query, loading } = this.props;
+
+    const siphonResources = this.getResourcePreviews();
     const resourcesNotFound = siphonResources.every(r => r === null);
+
+    let content = null;
+
+    if (loading) {
+      content = <Loading message="Loading..." />;
+    } else if (resourcesNotFound) {
+      content = (
+        <Alert style={{ margin: '10px auto' }} color="info">
+          {SEARCH.results.empty.defaultMessage}
+        </Alert>
+      );
+    } else {
+      content = (
+        <Aux>
+          {this.getCollectionPreviews()}
+          <Flag name="features.githubResourceCards">{siphonResources}</Flag>
+        </Aux>
+      );
+    }
 
     return (
       <Layout showHamburger>
         <div>
           <Masthead setSearchBarTerms={setSearchBarTerms} query={query} />
           <main role="main" className={styles.Main}>
-            {loading ? (
-              <Loading message="Loading..." />
-            ) : !searchResultsExist && resourcesNotFound ? (
-              <Alert style={{ margin: '10px auto' }} color="info">
-                {SEARCH.results.empty.defaultMessage}
-              </Alert>
-            ) : (
-              <Aux>
-                <CollectionsContainer
-                  collections={collections}
-                  link={MAIN_NAV_ROUTES.COLLECTIONS}
-                />
-                <Element name={REACT_SCROLL.ELEMENTS.CARDS_CONTAINER}>
-                  {/* Element used for react-scroll targeting */}
-                  <Flag name="features.githubResourceCards">{siphonResources}</Flag>
-                </Element>
-              </Aux>
-            )}
+            {content}
           </main>
         </div>
       </Layout>
