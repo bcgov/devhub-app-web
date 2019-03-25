@@ -8,7 +8,6 @@ export {
   removeFilter,
   setSearchResults,
   setSearchQuery,
-  setSearchBarTerms,
   resetSearch,
   setResourceType,
 } from './resources';

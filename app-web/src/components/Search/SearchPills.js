@@ -3,10 +3,21 @@ import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import Pill from '../UI/Pill';
 import styled from '@emotion/styled';
+import css from '@emotion/css';
+
+const withCursorOnHover = css`
+  > svg {
+    cursor: pointer;
+  }
+`;
 
 const ClearPill = styled(Pill)`
+  ${withCursorOnHover};
   background-color: #fff;
   color: #1b64a0;
+`;
+const SearchPill = styled(Pill)`
+  ${withCursorOnHover};
 `;
 
 const PillContainer = styled.div`
@@ -25,7 +36,7 @@ export const SearchPills = ({ onDelete, query, showClear, onClear }) => {
     return null;
   }
   const pills = [
-    <Pill key={shortid.generate()} label={query} onDelete={onDelete} variant="filled" />,
+    <SearchPill key={shortid.generate()} label={query} onDelete={onDelete} variant="filled" />,
   ];
 
   const clearPill =
