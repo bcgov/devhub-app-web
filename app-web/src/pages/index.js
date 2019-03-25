@@ -99,7 +99,7 @@ export class Index extends Component {
   };
 
   render() {
-    const { setSearchBarTerms, loading } = this.props;
+    const { setSearchBarTerms, query, loading } = this.props;
 
     const siphonResources = this.getResourcePreviews();
     const resourcesNotFound = siphonResources.every(r => r === null);
