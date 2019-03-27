@@ -25,13 +25,13 @@ class HTML extends React.Component {
             name="twitter:description"
             content="DevHub aims to become the &#34;Central Nervous System&#34; for the growing BC Gov developer community."
           />
-          <meta name="twitter:image" content={withPrefix('/images/connected.png')} />
+          <meta name="twitter:image" content={withPrefix('/images/gov-logo-static.png')} />
           <meta name="og:author" content="patricksimonian" />
           <meta
             name="og:description"
             content="DevHub aims to become the &#34;Central Nervous System&#34; for the growing BC Gov developer community."
           />
-          <meta name="og:image" content={withPrefix('/images/connected.png')} />
+          <meta name="og:image" content={withPrefix('/images/gov-logo-static.png')} />
           <meta charSet="utf-8" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
