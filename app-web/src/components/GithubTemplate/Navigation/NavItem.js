@@ -42,7 +42,6 @@ const NavItem = ({ text, isExternal, to }) => (
     <StyledLink
       exact="true"
       to={to}
-      target={isExternal ? '_blank' : ''}
       getProps={({ isCurrent }) => {
         if (isCurrent) {
           return {
