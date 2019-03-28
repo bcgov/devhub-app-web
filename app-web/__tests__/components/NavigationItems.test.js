@@ -19,9 +19,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import NavigationItems from '../../src/components/NavigationItems/NavigationItems';
 import { FOOTER_NAV } from '../../__fixtures__/ui-fixtures';
+
 describe('Primary Footer Component', () => {
   test('it matches snapshot', () => {
-    const wrapper = shallow(<NavigationItems items={FOOTER_NAV} />);
+    const wrapper = shallow(<NavigationItems items={FOOTER_NAV} setToggled={jest.fn()} />);
     expect(wrapper).toMatchSnapshot();
   });
 });

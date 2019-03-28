@@ -1,42 +1,180 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Primary Footer Component it matches snapshot 1`] = `
+exports[`Primary Footer Component it renders and matches snapshot, when the Fair Use button is clicked it triggers the disclaimer 1`] = `
+.emotion-16 {
+  background-color: #036;
+  border-top: 2px solid #fcba19;
+  padding: 9px 0 10px;
+  color: #fff;
+  padding: 0 12px 0 25px;
+}
+
+@media screen and (min-width:600px) {
+  .emotion-16 {
+    padding: 0 65px 0 65px;
+  }
+}
+
+@media print {
+  .emotion-16 {
+    display: none;
+  }
+}
+
+.emotion-14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-14 > ul {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  list-style: none;
+  margin: 10px 0;
+}
+
+.emotion-14 li {
+  padding: 0 9px;
+  text-align: center;
+  margin-bottom: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-0 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  color: #1A5A96;
+  font-weight: 400;
+  text-transform: capitalize;
+  padding: 0 4px;
+  margin: 0 2px;
+}
+
+.emotion-2 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  color: #1A5A96;
+  font-weight: 400;
+  text-transform: capitalize;
+  padding: 0 4px;
+  margin: 0 2px;
+}
+
+.emotion-12 {
+  margin: 0;
+  padding: 0;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  color: inherit;
+  border: none;
+  font-size: 0.813em;
+}
+
+.emotion-12:focus {
+  outline: none;
+}
+
 <footer
-  className="PrimaryFooter"
+  class="emotion-16 emotion-17"
 >
   <div
-    className="Container"
+    class="emotion-14 emotion-15"
   >
-    <NavigationItems
-      items={
-        Array [
-          Object {
-            "text": "home",
-            "to": "/",
-          },
-          Object {
-            "text": "disclaimer",
-            "to": "https://www2.gov.bc.ca/gov/content/home/disclaimer",
-          },
-          Object {
-            "text": "privacy",
-            "to": "https://www2.gov.bc.ca/gov/content/home/privacy",
-          },
-          Object {
-            "text": "accessibility",
-            "to": "https://www2.gov.bc.ca/gov/content/home/accessibility",
-          },
-          Object {
-            "text": "copyright",
-            "to": "https://www2.gov.bc.ca/gov/content/home/copyright",
-          },
-          Object {
-            "text": "contact us",
-            "to": "https://github.com/bcgov/devhub-app-web/issues",
-          },
-        ]
-      }
-    />
+    <ul>
+      <li>
+        <a
+          activeclassname=""
+          activestyle="[object Object]"
+          class="emotion-0 emotion-1"
+          css="[object Object]"
+          href="/"
+        >
+          home
+        </a>
+      </li>
+      <li>
+        <a
+          class="emotion-2 emotion-3"
+          href="https://www2.gov.bc.ca/gov/content/home/disclaimer"
+        >
+          disclaimer
+        </a>
+      </li>
+      <li>
+        <a
+          class="emotion-2 emotion-3"
+          href="https://www2.gov.bc.ca/gov/content/home/privacy"
+        >
+          privacy
+        </a>
+      </li>
+      <li>
+        <a
+          class="emotion-2 emotion-3"
+          href="https://www2.gov.bc.ca/gov/content/home/accessibility"
+        >
+          accessibility
+        </a>
+      </li>
+      <li>
+        <a
+          class="emotion-2 emotion-3"
+          href="https://www2.gov.bc.ca/gov/content/home/copyright"
+        >
+          copyright
+        </a>
+      </li>
+      <li>
+        <a
+          class="emotion-2 emotion-3"
+          href="https://github.com/bcgov/devhub-app-web/issues"
+        >
+          contact us
+        </a>
+      </li>
+      <li>
+        <a
+          aria-label="View the BC Dev Exchange Organization"
+          href="https://bcdevexchange.org"
+          style="display: inline-block; width: 125px;"
+          title="BC Dev Exchange"
+        >
+          <img
+            alt="Government Of BC"
+            src="devex.svg"
+            style="margin: 0px; max-height: 50px;"
+          />
+        </a>
+      </li>
+      <li>
+        <button
+          class="emotion-12 emotion-13"
+        >
+          Fair Use
+        </button>
+      </li>
+    </ul>
   </div>
 </footer>
 `;

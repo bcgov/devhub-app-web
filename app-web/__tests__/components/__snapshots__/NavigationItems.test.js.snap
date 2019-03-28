@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Primary Footer Component it matches snapshot 1`] = `
-<ul
-  className="NavigationItems"
->
+<ul>
   <NavigationItem
     key="0"
     text="banana"
@@ -32,6 +30,13 @@ exports[`Primary Footer Component it matches snapshot 1`] = `
         }
       />
     </a>
+  </li>
+  <li>
+    <LinkButton
+      onClick={[Function]}
+    >
+      Fair Use
+    </LinkButton>
   </li>
 </ul>
 `;
