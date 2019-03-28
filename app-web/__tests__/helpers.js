@@ -25,18 +25,35 @@ Created by Patrick Simonian
 // credit too https://github.com/styled-components/styled-components/issues/1319#issuecomment-345989894
 import React from 'react';
 import { shallow, mount } from 'enzyme';
+import { render } from 'react-testing-library';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../theme';
 
-function wrapWithTheme(fn, children, options) {
+export function wrapWithTheme(fn, children, options) {
   const wrapper = fn(<ThemeProvider theme={theme}>{children}</ThemeProvider>, options);
   return wrapper;
 }
 
+/**
+ * wraps the component being testing with the emotion theme provider
+ * using the react-testing-library render fn
+ */
+export function renderWithTheme() {
+  return wrapWithTheme(render, ...arguments);
+}
+
+/**
+ * wraps the component being testing with the emotion theme provider
+ * using the enzyme shallow fn
+ */
 export function shallowWithTheme() {
   return wrapWithTheme(shallow, ...arguments);
 }
 
+/**
+ * wraps the component being testing with the emotion theme provider
+ * using the enzyme mount fn
+ */
 export function mountWithTheme() {
   return wrapWithTheme(mount, ...arguments);
 }
