@@ -30,6 +30,18 @@ export const NO_RESOURCES = {
   },
 };
 
+export const FAIR_USE_IMAGE_POLICY = {
+  title: {
+    id: 'FAIR_USE_IMAGE_POLICY.title',
+    defaultMessage: 'Fair Use',
+  },
+  body: {
+    id: 'FAIR_USE_IMAGE_POLICY.body',
+    defaultMessage: `All third party trademarks (including logos and icons) referenced by developer.gov.bc.ca remain the property of their respective owners. Unless specifically identified as such, developer.gov.bc.ca use of third party trademarks does not indicate any relationship, sponsorship, or endorsement between The Province of British Columbia and the owners of these trademarks. All references by developer.gov.bc.ca to third party trademarks are to identify the corresponding third party goods and/or services and intended to constitute nominative fair use under applicable trademark laws.
+    If you are a trademark holder and wish to have your intellectual property excluded from developer.gov.bc.ca please contact us at pathfinder@gov.bc.ca`,
+  },
+};
+
 export const HOME = {
   header: {
     title: {

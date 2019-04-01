@@ -18,10 +18,23 @@ Created by Patrick Simonian
 import React from 'react';
 import Link from '../../UI/Link/Link';
 import PropTypes from 'prop-types';
-
+import { css } from '@emotion/core';
 const NavigationItem = ({ to, text }) => (
   <li>
-    <Link to={to}>{text}</Link>
+    <Link
+      to={to}
+      css={css`
+        color: #fff;
+        font-size: 0.813em;
+        text-transform: capitalize;
+        font-weight: normal;
+        :hover {
+          color: #fff;
+        }
+      `}
+    >
+      {text}
+    </Link>
   </li>
 );
 

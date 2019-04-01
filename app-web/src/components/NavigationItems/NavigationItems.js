@@ -20,15 +20,30 @@ import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import NavigationItem from './NavigationItem/NavigationItem';
 import devexLogo from '../../assets/images/devex.svg';
-import classes from './NavigationItems.module.css';
+import styled from '@emotion/styled';
 
-const NavigationItems = ({ items }) => {
+const LinkButton = styled.button`
+  margin: 0;
+  padding: 0;
+  text-decoration: underline;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  color: inherit;
+  border: none;
+  font-size: 0.813em;
+  :focus {
+    outline: none;
+  }
+`;
+
+const NavigationItems = ({ items, setToggled }) => {
   const navigationitems = items.map(item => (
     <NavigationItem to={item.to} text={item.text} key={shortid.generate()} />
   ));
 
   return (
-    <ul className={classes.NavigationItems}>
+    <ul>
       {navigationitems}
       <li>
         <a
@@ -43,6 +58,9 @@ const NavigationItems = ({ items }) => {
           <img src={devexLogo} alt="Government Of BC" style={{ margin: 0, maxHeight: '50px' }} />
         </a>
       </li>
+      <li>
+        <LinkButton onClick={() => setToggled(true)}>Fair Use</LinkButton>
+      </li>
     </ul>
   );
 };
@@ -54,6 +72,7 @@ NavigationItems.propTypes = {
       text: PropTypes.string.isRequired,
     }),
   ),
+  setToggled: PropTypes.func.isRequired,
 };
 
 NavigationItems.defaultProps = {
