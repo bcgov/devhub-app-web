@@ -13,6 +13,6 @@ describe('Disclaimer Component', () => {
   it('matches snapshot', () => {
     const { container } = wrapWithTheme(render, <Disclaimer {...props} />);
 
-    expect(container).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
