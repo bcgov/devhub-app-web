@@ -59,7 +59,7 @@ export const getCannedIssueMessage = (repo, owner, pageTitle, originalSource, de
   const route = getGithubIssuesRoute(repo, owner);
   const title = encodeURIComponent(`Devhub Issue: ${pageTitle} [short description here]`);
   const body = encodeURIComponent(
-    `> path: (do not delete) ${originalSource}\n > (do not delete) devhub page: ${devhubPath}\n\n## Devhub Content Issue\n[description of your issue here]`,
+    `> path: (do not delete) ${originalSource}\n > (do not delete) devhub page: ${devhubPath}\n\n## Devhub Content Issue\n`,
   );
   return `${route}/new?title=${title}&body=${body}`;
 };
