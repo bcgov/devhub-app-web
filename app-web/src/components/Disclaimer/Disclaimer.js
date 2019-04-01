@@ -18,11 +18,11 @@ const withNoCapitalize = css`
 
 const Disclaimer = ({ onClose, open, toggle }) => {
   return (
-    <Modal isOpen={open} toggle={toggle} id={IDS.disclaimer}>
+    <Modal isOpen={open} toggle={toggle} data-testid={IDS.disclaimer}>
       <ModalHeader tag="h2" toggle={toggle}>
         {FAIR_USE_IMAGE_POLICY.title.defaultMessage}
       </ModalHeader>
-      <ModalBody id={IDS.body}>
+      <ModalBody data-testid={IDS.body}>
         All third party trademarks (including logos and icons) referenced by developer.gov.bc.ca
         remain the property of their respective owners. Unless specifically identified as such,
         developer.gov.bc.ca use of third party trademarks does not indicate any relationship,

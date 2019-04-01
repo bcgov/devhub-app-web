@@ -104,8 +104,6 @@ exports[`Primary Footer Component it renders and matches snapshot, when the Fair
     <ul>
       <li>
         <a
-          activeclassname=""
-          activestyle="[object Object]"
           class="emotion-0 emotion-1"
           css="[object Object]"
           href="/"
@@ -175,6 +173,11 @@ exports[`Primary Footer Component it renders and matches snapshot, when the Fair
         </button>
       </li>
     </ul>
+    <div
+      data-testid="disclaimer-modal"
+    >
+      closed
+    </div>
   </div>
 </footer>
 `;

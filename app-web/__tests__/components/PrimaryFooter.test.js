@@ -3,9 +3,15 @@ import { render, fireEvent, cleanup, waitForElement } from 'react-testing-librar
 import 'jest-dom/extend-expect'; // extends jest expect api
 
 import PrimaryFooter from '../../src/components/PrimaryFooter/PrimaryFooter';
+
 import { wrapWithTheme } from '../helpers';
-import { IDS } from '../../src/components/Disclaimer/Disclaimer';
+import Disclaimer from '../../src/components/Disclaimer/Disclaimer';
 // automatically unmount and cleanup DOM after the test is finished.
+jest.mock('../../src/components//Disclaimer/Disclaimer');
+// mock disclaimer unit
+Disclaimer.mockImplementation(({ open }) => (
+  <div data-testid="disclaimer-modal">{open ? 'opened' : 'closed'}</div>
+));
 afterEach(cleanup);
 
 beforeEach(() => {
@@ -21,7 +27,8 @@ describe('Primary Footer Component', () => {
     expect(container.firstChild).toMatchSnapshot();
     fireEvent.click(Disclaimer);
 
-    const Modal = await waitForElement(() => getByTestId(IDS.body));
-    expect(Modal).toHaveAttribute('open', true);
+    const Modal = await waitForElement(() => getByTestId('disclaimer-modal'));
+
+    expect(Modal.textContent).toBe('opened');
   });
 });
