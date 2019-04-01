@@ -7,7 +7,7 @@ import PrimaryFooter from '../../src/components/PrimaryFooter/PrimaryFooter';
 import { wrapWithTheme } from '../helpers';
 import Disclaimer from '../../src/components/Disclaimer/Disclaimer';
 // automatically unmount and cleanup DOM after the test is finished.
-jest.mock('../../src/components//Disclaimer/Disclaimer');
+jest.mock('../../src/components/Disclaimer/Disclaimer');
 // mock disclaimer unit
 Disclaimer.mockImplementation(({ open }) => (
   <div data-testid="disclaimer-modal">{open ? 'opened' : 'closed'}</div>
