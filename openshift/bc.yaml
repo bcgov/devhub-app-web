@@ -160,8 +160,9 @@ parameters:
   name: SOURCE_REPOSITORY_REF
   required: true
   value: WIP
+  # latest node js version as of Apr 2 2019
 - description: NODE_JS_VERSION
   displayName: NODE_JS_VERSION
   name: NODE_JS_VERSION
   required: true
-  value: 10 # latest node js version as of Apr 2 2019
+  value: '10'
