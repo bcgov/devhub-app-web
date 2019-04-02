@@ -275,6 +275,11 @@ export const DESIGN_SYSTEM_COLLECTION = {
   title: 'Design System',
   description: 'baz',
   resources: DESIGN_SYSTEM_NODES.map(n => ({ id: n.id })),
+  childrenDevhubSiphon: DESIGN_SYSTEM_NODES.map(n => ({
+    id: n.id,
+    _metadata: { ...n._metadata },
+    resource: { ...n.resource },
+  })),
 };
 
 export const DEVHUB_COLLECTION = {
@@ -283,6 +288,11 @@ export const DEVHUB_COLLECTION = {
   title: 'Devhub',
   description: 'baz',
   resources: DEVHUB_NODES.map(n => ({ id: n.id })),
+  childrenDevhubSiphon: DEVHUB_NODES.map(n => ({
+    id: n.id,
+    _metadata: { ...n._metadata },
+    resource: { ...n.resource },
+  })),
 };
 
 export const SIPHON_NODES = DESIGN_SYSTEM_NODES.concat(DEVHUB_NODES);
