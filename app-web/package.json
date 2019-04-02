@@ -184,8 +184,8 @@
     "js-beautify": "^1.8.9",
     "prettier": "^1.15.3",
     "raf": "^3.4.1",
-    "react-testing-library": "^6.0.3",
     "react-test-renderer": "^16.6.3",
+    "react-testing-library": "^6.0.3",
     "redux-mock-store": "^1.5.3"
   },
   "husky": {
