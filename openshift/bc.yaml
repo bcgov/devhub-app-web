@@ -164,4 +164,4 @@ parameters:
   displayName: NODE_JS_VERSION
   name: NODE_JS_VERSION
   required: true
-  value: 10.15.3 # latest node js version as of Apr 2 2019 https://hub.docker.com/r/nodeshift/centos7-s2i-nodejs/tags
+  value: 10 # latest node js version as of Apr 2 2019
