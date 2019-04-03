@@ -25,6 +25,10 @@ import groupBy from 'lodash/groupBy';
 export const selectCollections = collections => collections;
 export const selectResources = resources => resources;
 
+const defaultGroups = Object.keys(RESOURCE_TYPES).reduce((grouping, type) => {
+  grouping[RESOURCE_TYPES[type]] = [];
+  return grouping;
+}, {});
 /**
  * giving a list of resources
  * this selector memoizes and returns the resources grouped by resource.type
@@ -35,10 +39,6 @@ export const selectResourcesGroupedByType = () =>
   createSelector(
     selectResources,
     resources => {
-      const defaultGroups = Object.keys(RESOURCE_TYPES).reduce((grouping, type) => {
-        grouping[RESOURCE_TYPES[type]] = [];
-        return grouping;
-      }, {});
       return { ...defaultGroups, ...groupBy(resources, 'resource.type') };
     },
   );
