@@ -205,7 +205,7 @@ This repository has been configured to send webhooks to a self-hosted Taiga inst
 
 ## Deployment (Local Development For App-Web)
 
-* Requires **Node 8** and **npm 6**
+* Requires **Node 10** and **npm 6**
 * Clone this repo
 * Change into app-web project directory
 * run: `npm install`
@@ -219,7 +219,7 @@ This repository has been configured to send webhooks to a self-hosted Taiga inst
 
 ## Deployment (Docker Compose for Local Development)
 
-* Requires **Docker**
+* Requires **Docker** **Docker Compose**
 * move into the root directory for the project (if your are in app-web `cd ../`)
 * run `docker-compose up`
 > if you make changes that do not reflect into the container, you will need to rebuild the image by ending the current container session and running `docker-compose up --build`,
@@ -231,7 +231,7 @@ alternatively if things like node_modules aren't showing up try
 
 ## Deployment (OpenShift)
 
-See (openshift/Readme.md)
+To Do.
 
 ## Getting Help or Reporting an Issue
 
