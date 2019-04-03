@@ -50,6 +50,8 @@ const Main = styled.main`
   }
 `;
 
+const collectionsSelector = selectCollectionsWithResourcesGroupedByType();
+const resourcesSelector = selectResourcesGroupedByType();
 /**
  * returns collection container component so aslong as a search is not being done
  * @param {Array} collections list of collections
@@ -59,7 +61,7 @@ const getCollectionPreviews = (collections, searchResultsExist) => {
   return (
     !searchResultsExist && (
       <CollectionsContainer
-        collections={selectCollectionsWithResourcesGroupedByType(collections)}
+        collections={collectionsSelector(collections)}
         link={MAIN_NAV_ROUTES.COLLECTIONS}
       />
     )
@@ -78,8 +80,8 @@ const getResourcePreviews = (resources, results = []) => {
     resourcesToGroup = intersectionBy(resources, results, 'id');
   }
 
-  // select resources grouped by type using relesect memoization https://github.com/reduxjs/reselect/issues/303
-  const resourcesByType = selectResourcesGroupedByType(resourcesToGroup);
+  // select resources grouped by type using relesect memoization https://github.com/reduxjs/reselect/issues/30
+  const resourcesByType = resourcesSelector(resourcesToGroup);
   const siphonResources = Object.keys(resourcesByType).map(resourceType => {
     if (resourcesByType[resourceType].length > 0) {
       return (
@@ -101,7 +103,7 @@ export const TEST_IDS = {
   alert: 'home-test-alert',
 };
 
-export const Home = ({
+export const Index = ({
   data: {
     allDevhubCollection,
     allDevhubSiphon,
@@ -145,4 +147,4 @@ export const Home = ({
   );
 };
 
-export default withResourceQuery(Home)();
+export default withResourceQuery(Index)();
