@@ -1,6 +1,7 @@
 import React from 'react';
 import queryString from 'query-string';
 import intersectionBy from 'lodash/intersectionBy';
+import isNull from 'lodash/isNull';
 import styled from '@emotion/styled';
 
 import { Alert } from 'reactstrap';
@@ -19,6 +20,7 @@ import {
   selectCollectionsWithResourcesGroupedByType,
   selectResourcesGroupedByType,
 } from '../utils/selectors';
+import { isQueryEmpty } from '../utils/search';
 
 const Main = styled.main`
   margin-bottom: 5px;
@@ -75,7 +77,7 @@ const getCollectionPreviews = (collections, searchResultsExist) => {
  */
 const getResourcePreviews = (resources, results = []) => {
   let resourcesToGroup = resources;
-  if (results.length > 0) {
+  if (!isNull(results) && results.length > 0) {
     // diff out resources by id
     resourcesToGroup = intersectionBy(resources, results, 'id');
   }
@@ -123,7 +125,8 @@ export const Index = ({
   let content = null;
   const siphonResources = getResourcePreviews(flattenGatsbyGraphQL(allDevhubSiphon.edges), results);
 
-  const resourcesNotFound = !results || (results.length === 0 && windowHasQuery);
+  const resourcesNotFound =
+    !isQueryEmpty(query) && (!results || (results.length === 0 && windowHasQuery));
   if (resourcesNotFound) {
     content = (
       <Alert style={{ margin: '10px auto' }} color="info" data-testid={TEST_IDS.alert}>

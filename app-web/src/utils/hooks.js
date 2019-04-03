@@ -13,9 +13,9 @@ Created by Patrick Simonian
 */
 // custom react hooks
 // notes on custom hooks https://reactjs.org/docs/hooks-custom.html
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Index as ElasticLunr } from 'elasticlunr';
-
+import isEqual from 'lodash/isEqual';
 /**
  * custom react hook to perform a search
  * @param {String | Array} query the query param from the url q=
@@ -24,20 +24,22 @@ import { Index as ElasticLunr } from 'elasticlunr';
  * notes on elastic lunr implementation https://github.com/gatsby-contrib/gatsby-plugin-elasticlunr-search
  */
 export const useSearch = (query, staticIndex) => {
-  // load or create index
   const [Index, setIndex] = useState(null);
   const [results, setResults] = useState(null);
-  if (Index === null) {
-    setIndex(ElasticLunr.load(staticIndex));
-  } else {
-    if (results === null) {
-      // Map over each ID and return the full document
+  useEffect(() => {
+    // load or create index
+    if (Index === null) {
+      setIndex(ElasticLunr.load(staticIndex));
+    } else {
       const searchResults = Index.search(query, { expand: true }).map(({ ref }) =>
         Index.documentStore.getDoc(ref),
       );
-      setResults(searchResults);
+      if (!isEqual(results, searchResults)) {
+        // Map over each ID and return the full document
+        setResults(searchResults);
+      }
     }
-  }
+  });
 
   return results;
 };

@@ -1,3 +1,6 @@
+import isString from 'lodash/isString';
+import isArray from 'lodash/isArray';
+
 /**
  * gets search results from lunr
  * @param {String} query the search string
@@ -46,4 +49,19 @@ export const getSearchResults = async query => {
     return searchResultsMap;
   }
   return {};
+};
+
+/**
+ * if query is an empty string returns true
+ * if query is an array of empty strings returns true
+ * @param {Array | String} query
+ * @returns {Boolean}
+ */
+export const isQueryEmpty = query => {
+  if (isString(query)) {
+    return query.trim() === '';
+  } else if (isArray(query)) {
+    return query.filter(q => q.trim() === '').length === 0;
+  }
+  return true;
 };
