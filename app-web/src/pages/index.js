@@ -121,12 +121,16 @@ export const Index = ({
     query = decodeURIComponent(queryParam.q);
     results = useSearch(query, index);
   }
+  // this is defined by ?q='' or ?q=''&q=''..etc
+  // if query is empty we prevent the search results empty from being rendered
+  // in addition the collections container is prevented from not rendering because
+  // the query is present
+  const queryIsEmpty = isQueryEmpty(query);
 
   let content = null;
   const siphonResources = getResourcePreviews(flattenGatsbyGraphQL(allDevhubSiphon.edges), results);
 
-  const resourcesNotFound =
-    !isQueryEmpty(query) && (!results || (results.length === 0 && windowHasQuery));
+  const resourcesNotFound = !queryIsEmpty && (!results || (results.length === 0 && windowHasQuery));
   if (resourcesNotFound) {
     content = (
       <Alert style={{ margin: '10px auto' }} color="info" data-testid={TEST_IDS.alert}>
@@ -136,7 +140,10 @@ export const Index = ({
   } else {
     content = (
       <Aux>
-        {getCollectionPreviews(flattenGatsbyGraphQL(allDevhubCollection.edges), windowHasQuery)}
+        {getCollectionPreviews(
+          flattenGatsbyGraphQL(allDevhubCollection.edges),
+          windowHasQuery && !queryIsEmpty,
+        )}
         {siphonResources}
       </Aux>
     );

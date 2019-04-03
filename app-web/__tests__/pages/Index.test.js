@@ -84,6 +84,36 @@ describe('Home Page', () => {
     expect(Alert).toBeInTheDocument();
   });
 
+  test('when there is an empty search the alert box does not show and all results show instead', () => {
+    queryString.parse.mockReturnValue({});
+    const { container, rerender, queryByTestId, getByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <Index {...props} />
+      </ThemeProvider>,
+    );
+    expect(container.firstChild).toMatchSnapshot();
+    let Alert;
+    Alert = queryByTestId(TEST_IDS.alert);
+    // initially there are valid results and so there should no be no alert
+    expect(Alert).not.toBeInTheDocument();
+    // mock that query string actually finds search values in the url
+    queryString.parse.mockReturnValue({ q: '' });
+    // rerender stubbing no results for resources
+    useSearch.mockReturnValue([]);
+    rerender(
+      <ThemeProvider theme={theme}>
+        <Index {...props} />
+      </ThemeProvider>,
+    );
+    expect(useSearch).toHaveBeenCalled();
+    Alert = queryByTestId(TEST_IDS.alert);
+
+    expect(Alert).not.toBeInTheDocument();
+
+    expect(getByTestId(COLLECTION_TEST_IDS.container)).toBeInTheDocument();
+    expect(getByTestId(RESOURCE_PREVIEW_TEST_IDS.container)).toBeInTheDocument();
+  });
+
   test('when searching, collections disappear if there are results', () => {
     queryString.parse.mockReturnValue({ q: 'foo' });
     useSearch.mockReturnValue([]);
