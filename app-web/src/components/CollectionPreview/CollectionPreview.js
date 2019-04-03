@@ -73,6 +73,7 @@ const CollectionPreview = ({ title, description, link, resources }) => (
       max-width: 1104px;
       margin: 20px 15px;
       border: 1px solid #ccc;
+      border-top: transparent;
     `}
   >
     <CollectionDecorativeBar type="Collections" />
