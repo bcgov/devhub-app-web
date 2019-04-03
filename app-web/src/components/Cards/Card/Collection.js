@@ -90,7 +90,7 @@ const Collection = ({
           <CardTitle clamp={2} tagName="h2">
             {title}
           </CardTitle>
-          <CardDescription>{description}</CardDescription>
+          <CardDescription clamp={3}>{description}</CardDescription>
         </CardBody>
         <ResourceCounts>
           <ResourceCountGroup>

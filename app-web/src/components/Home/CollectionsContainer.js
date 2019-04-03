@@ -93,7 +93,7 @@ CollectionsContainer.propTypes = {
       name: PropTypes.string.isRequired,
       id: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
-      resources: PropTypes.arrayOf(PropTypes.object).isRequired,
+      resources: PropTypes.object.isRequired,
     }),
   ),
   link: PropTypes.shape({

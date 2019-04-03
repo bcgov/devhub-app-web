@@ -32,7 +32,7 @@ import {
 import { faGithub } from '@fortawesome/fontawesome-free-brands';
 
 import { RESOURCES } from '../../../messages';
-import { RESOURCE_TYPES, RESOURCE_TYPES_LIST } from '../../../constants/ui';
+import { RESOURCE_TYPES, RESOURCE_TYPES_LIST, COLLECTIONS } from '../../../constants/ui';
 // renders the upper ribbon for the card
 const FaIcon = styled(FontAwesomeIcon)`
   color: ${props => props.theme.colors[props.type]};
@@ -61,7 +61,7 @@ const CardHeader = ({ type, linksToExternal }) => {
     case RESOURCE_TYPES.SELF_SERVICE_TOOLS:
       icon = faTools;
       break;
-    case 'Collections':
+    case COLLECTIONS:
       icon = faLayerGroup;
       break;
     case RESOURCE_TYPES.REPOSITORIES:
