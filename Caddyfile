@@ -9,20 +9,16 @@ rewrite {
 templates {
   ext   .js
 }
+
 gatsby_cache_control
-header /* {
-  cache-control: public, max-age=0, must-revalidate
-}
-header /public/static {
-  cache-control: public,max-age=31536000,immutable
-}
-header /*.js {
-  cache-control: public,max-age=31536000,immutable
-}
-header /*.css {
-  cache-control: public,max-age=31536000,immutable
+header / {
+  Cache-Control "public, max-age=0, must-revalidate"
 }
 
-header /sw.js {
-  cache-control: public, max-age=0, must-revalidate
+header /public/static {
+  Cache-Control "public, max-age=31536000, immutable"
+}
+
+header /public/static/sw.js {
+  Cache-Control "public, max-age=0, must-revalidate"
 }
