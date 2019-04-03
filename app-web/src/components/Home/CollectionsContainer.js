@@ -27,9 +27,12 @@ import Row from '../Cards/Row';
 import Column from '../Cards/Column';
 import { ChevronLink } from '../UI/Link';
 import { Container as PreviewContainer, Title, StyledLink, LinkContainer } from './index';
+
+// used for react-testing-library dom querying
 export const TEST_IDS = {
   container: 'collections-container',
 };
+
 const ContainerCentered = styled(Container)`
   margin: 0 auto 15px;
   align-item: flex-start;

@@ -81,7 +81,7 @@ export const Masthead = ({ setSearchBarTerms, query }) => (
 );
 
 Masthead.propTypes = {
-  query: PropTypes.arrayOf(PropTypes.string),
+  query: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
 };
 
 export default Masthead;

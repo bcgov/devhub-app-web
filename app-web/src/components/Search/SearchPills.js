@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import shortid from 'shortid';
-import Pill from '../UI/Pill';
 import styled from '@emotion/styled';
 import css from '@emotion/css';
+import isString from 'lodash/isString';
+import isArray from 'lodash/isArray';
+import Pill from '../UI/Pill';
+import shortid from 'shortid';
 
 const withCursorOnHover = css`
   > svg {
@@ -35,9 +37,17 @@ export const SearchPills = ({ onDelete, query, showClear, onClear }) => {
   if (query.length === 0 || (query.length === 1 && query[0] === '')) {
     return null;
   }
-  const pills = [
-    <SearchPill key={shortid.generate()} label={query} onDelete={onDelete} variant="filled" />,
-  ];
+  let pills = [];
+  if (isString(query)) {
+    pills = [
+      <SearchPill key={shortid.generate()} label={query} onDelete={onDelete} variant="filled" />,
+    ];
+  } else if (isArray(query)) {
+    const queries = query;
+    pills = queries.map(query => (
+      <SearchPill key={shortid.generate()} label={query} onDelete={onDelete} variant="filled" />
+    ));
+  }
 
   const clearPill =
     showClear && query.length > 0 ? (
@@ -57,7 +67,7 @@ export const SearchPills = ({ onDelete, query, showClear, onClear }) => {
 
 SearchPills.propTypes = {
   onDelete: PropTypes.func.isRequired,
-  query: PropTypes.string,
+  query: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
   showClear: PropTypes.bool.isRequired,
   onClear: PropTypes.func,
 };
