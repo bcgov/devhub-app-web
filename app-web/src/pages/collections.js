@@ -15,13 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React, { Component } from 'react';
-
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import * as actions from '../store/actions';
-import * as selectors from '../store/selectors';
-
+import React from 'react';
 import { COLLECTIONS_PAGE } from '../messages';
 import { flattenGatsbyGraphQL } from '../utils//dataHelpers';
 
@@ -31,55 +25,41 @@ import Main from '../components/Page/Main';
 import withResourceQuery from '../hoc/withResourceQuery';
 import Layout from '../hoc/Layout';
 import { getFirstNonExternalResource } from '../utils/helpers';
+import { selectCollectionsWithResourcesGroupedByType } from '../utils/selectors';
 
-export class CollectionsPage extends Component {
-  componentDidMount() {
-    // flatted nodes from graphql
-    if (!this.props.resourcesLoaded) {
-      const collections = flattenGatsbyGraphQL(this.props.data.allDevhubCollection.edges);
-      // note this.props.data is received from the withResourceQuery Component
-      const resources = flattenGatsbyGraphQL(this.props.data.allDevhubSiphon.edges);
-      this.props.loadResources(resources, collections);
-    }
-  }
+const collectionsSelector = selectCollectionsWithResourcesGroupedByType();
+export const CollectionsPage = ({ data }) => {
+  const collections = flattenGatsbyGraphQL(data.allDevhubCollection.edges);
+  const collectionWithResources = collectionsSelector(collections);
+  // resources are grouped by type, 'ungroup' them so we can find the first available
+  // non external link to use as the entry page for the collection card
 
-  render() {
-    const { collections } = this.props;
-    return (
-      <Layout>
-        <Main>
-          <Title
-            title={COLLECTIONS_PAGE.header.title.defaultMessage}
-            subtitle={COLLECTIONS_PAGE.header.subtitle.defaultMessage}
+  return (
+    <Layout>
+      <Main>
+        <Title
+          title={COLLECTIONS_PAGE.header.title.defaultMessage}
+          subtitle={COLLECTIONS_PAGE.header.subtitle.defaultMessage}
+        />
+        {collectionWithResources.map(collection => (
+          <CollectionPreview
+            key={collection.id}
+            title={collection.name}
+            description={collection.description}
+            resources={collection.childrenDevhubSiphon}
+            link={getFirstNonExternalResource(
+              collection.childrenDevhubSiphon.sort((a, b) => {
+                // sort to ensure first resource in collection is the entry poitn
+                const position1 = a._metadata.position;
+                const position2 = b._metadata.position;
+                return position1.localeCompare(position2);
+              }),
+            )}
           />
-          {collections.map(collection => (
-            <CollectionPreview
-              key={collection.id}
-              title={collection.name}
-              description={collection.description}
-              resources={collection.resources}
-              link={getFirstNonExternalResource(collection.resources)}
-            />
-          ))}
-        </Main>
-      </Layout>
-    );
-  }
-}
-
-const mapStateToProps = createStructuredSelector({
-  resourcesLoaded: selectors.selectResourcesLoaded,
-  collections: selectors.selectCollectionsWithResources,
-});
-
-const mapDispatchToProps = dispatch => {
-  return {
-    loadResources: (resources, collections) =>
-      dispatch(actions.loadResources(resources, collections)),
-  };
+        ))}
+      </Main>
+    </Layout>
+  );
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withResourceQuery(CollectionsPage)());
+export default withResourceQuery(CollectionsPage)();
