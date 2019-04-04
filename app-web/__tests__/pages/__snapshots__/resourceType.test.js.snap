@@ -194,6 +194,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   height: 225px;
   margin: 10px 0;
   border: 1px solid #ccc;
+  border-top: transparent;
   border-radius: 2px;
   box-sizing: border-box;
   -webkit-transition: -webkit-transform 0.25s ease-out;
