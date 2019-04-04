@@ -1,0 +1,107 @@
+#!/bin/sh
+
+# Docker Build
+# Call from host project dir to build docker image
+
+. "$(dirname $0)/_default.conf"
+cd "$(dirname $0)" || { echo "Could not change to $(dirname $0)"; exit 1; }
+
+
+##### CONSTANTS #####
+GATSD_VERSION="${GATSD_VERSION}"
+SITE_NAME="${SITE_NAME}"
+GATSD_DIRNAME="${GATSD_DIRNAME}"
+WORK_DIR="/${SITE_NAME}"
+GATSD_DIR="${WORK_DIR}/${GATSD_DIRNAME}"
+
+
+##### VARIABLES #####
+gatsd_files="_entry.sh _gatsd.sh _default.conf .bashrc build develop new run serve stage"
+gatsby_dir="$(dirname $(pwd))"
+
+
+##### FLAGS #####
+tag_name=${BUILD_TAG}			# flag -t
+gatsby_port=${GATSBY_PORT}		# flag -p
+gatsby_host=${GATSBY_HOST}		# flag -H
+
+while getopts ":H:t:p:" flag; do
+	case "${flag}" in
+		H) 
+			gatsby_host="${OPTARG}"
+			;;
+		p) 
+			gatsby_port="${OPTARG}"
+			;;
+		t) 
+			tag_name="${OPTARG}"
+			;;
+		*) 
+			echo "ERROR: Invalid flag ${flag}"
+			exit 1
+			;;
+	esac
+done
+shift `expr $OPTIND - 1`
+
+
+##### MAIN #####
+if [ ! -z "$(grep Microsoft /proc/version)" ]; then
+	gatsby_dir=$(wslpath -m ${gatsby_dir})
+	echo "WSL detected. Converted gatsby_dir to ${gatsby_dir}"
+fi
+
+cat << SHIM > _gatsd-shim
+#!/usr/bin/env bash
+
+# GatsD Shim
+# ***GENERATED FILE*** PERMANENT CHANGES MUST BE MADE IN 'docker-build'
+# Shim to gatsby-docker.sh in project dir
+
+${GATSD_DIR}/_gatsd.sh \$@
+SHIM
+
+gatsd_files="${gatsd_files} _gatsd-shim"
+for el in ${gatsd_files}; do
+	chmod +rx "$el"
+done
+
+ed -s .bashrc <<ARG
+/^### START/+,/^### END/-d
+/^### START/a
+export GATSD_VERSION=${GATSD_VERSION}
+export SITE_NAME=${SITE_NAME}
+export WORK_DIR=${WORK_DIR}
+export GATSD_DIR=${GATSD_DIR}
+export GATSD_DIRNAME=${GATSD_DIRNAME}
+export GATSBY_DIR=${gatsby_dir}
+export GATSBY_HOST=${gatsby_host}
+export GATSBY_PORT=${gatsby_port}
+export TAG_NAME=${tag_name}
+.
+w
+q
+ARG
+
+cd .. || { echo "Could not 'cd ..' from $(pwd)"; exit 1; }
+
+#
+# Modify docker build as needed 
+#
+docker build \
+	-f "${GATSD_DIRNAME}/Dockerfile" \
+	-t "${tag_name}" \
+	--build-arg  WORK_DIR="${WORK_DIR}" \
+	--build-arg  SITE_NAME="${SITE_NAME}" \
+	--build-arg  GATSD_DIR="${GATSD_DIR}" \
+	--build-arg  GATSD_DIRNAME="${GATSD_DIRNAME}" \
+	. \
+	&& \
+cat <<- INFO
+	-------------------------------------------------------------------
+	Docker build complete. Run: gatsd/new <site-url>
+	to download initialize a gatsby site from the site-url.
+	NOTE: Only github repo urls can be used (https://github.com/*)
+	NOTE: Name of current working directory will be used for site name
+	-------------------------------------------------------------------
+INFO

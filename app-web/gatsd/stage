@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# GatsD Develop
+# Call from host project dir to serve a local production build
+
+$(dirname $0)/run gatsd stage $@

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# GatsD Build
+# Call from host project dir to run 'gatsby build'
+
+$(dirname $0)/run gatsd build $@

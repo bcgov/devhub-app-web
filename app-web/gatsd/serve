@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# GatsD Serve
+# Call from host project dir to run 'gatsby serve'
+
+$(dirname $0)/run gatsd serve $@
