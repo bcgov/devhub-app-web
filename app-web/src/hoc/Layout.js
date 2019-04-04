@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { Container } from 'reactstrap';
@@ -15,45 +15,36 @@ const Wrapper = styled.div`
   }
 `;
 
-export class Layout extends React.Component {
-  render() {
-    const { children, toggleMenu, showMenu } = this.props;
+const Layout = ({ children }) => {
+  const [menuToggled, setMenuToggled] = useState(false);
 
-    return (
-      <Container
-        fluid
-        style={{
-          minHeight: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          padding: 0,
-        }}
-      >
-        <PrimaryHeader showHamburger hamburgerClicked={toggleMenu} />
+  return (
+    <Container
+      fluid
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        padding: 0,
+      }}
+    >
+      <PrimaryHeader showHamburger hamburgerClicked={() => setMenuToggled(!menuToggled)} />
 
-        <Navbar />
-        {showMenu && <Navbar mobile />}
+      <Navbar />
+      {menuToggled && <Navbar mobile />}
 
-        <Wrapper>{children}</Wrapper>
-        <PrimaryFooter />
-      </Container>
-    );
-  }
-}
+      <Wrapper>{children}</Wrapper>
+      <PrimaryFooter />
+    </Container>
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-  useAuth: PropTypes.bool.isRequired,
-  login: PropTypes.func,
-  logout: PropTypes.func,
-  toggleMenu: PropTypes.func.isRequired,
 };
 
 Layout.defaultProps = {
   showHamburger: false,
-  useAuth: false,
-  login: () => null,
-  logout: () => null,
 };
 
 export default Layout;

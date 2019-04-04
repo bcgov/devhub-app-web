@@ -47,7 +47,7 @@ export const ResourceType = ({
   location,
 }) => {
   const [sideDrawerToggled, setSideDrawerToggled] = useState(false);
-  const [menuToggled, setMenuToggled] = useState(false);
+
   const queryParam = queryString.parse(location.search);
   let query = []; // the search query ie ?q=foo
   let results = []; // the search results if any

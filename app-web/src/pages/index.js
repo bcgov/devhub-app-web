@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import queryString from 'query-string';
 import intersectionBy from 'lodash/intersectionBy';
 import isNull from 'lodash/isNull';
