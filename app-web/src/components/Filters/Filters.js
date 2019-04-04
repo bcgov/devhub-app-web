@@ -23,8 +23,7 @@ import groupBy from 'lodash/groupBy';
 const Filters = ({ filters }) => {
   // group filter groups by there title
   let groupedFilters = groupBy(filters, 'title');
-  // map the data property that is created from groupBy to filters which is needed
-  // for the FilterGroup component within Secondary Filter
+
   groupedFilters = Object.keys(groupedFilters).map(title => ({
     title: title,
     filters: groupedFilters[title],

@@ -14,11 +14,8 @@ Created by Patrick Simonian
 import React from 'react';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
-import isPlainObject from 'lodash/isPlainObject';
-import isEqual from 'lodash/isEqual';
-import intersection from 'lodash/intersection';
 import { FormGroup, Label } from 'reactstrap';
-
+import isEmpty from 'lodash/isEmpty';
 import { ARIA_LABEL_FILTER_RESOURCE } from '../../../constants/ariaLabels';
 import styles from './FilterGroup.module.css';
 
@@ -37,11 +34,31 @@ export const handleNavigatingByFilter = (location, currentFilters, filter, actio
   }
 
   const queryParam = queryString.parse(location.search);
-  queryParam[FILTER_QUERY_PARAM] = filtersForURL.join();
 
-  navigate(`${location.pathname}?${queryString.stringify(queryParam)}`);
+  if (filtersForURL.length > 0) {
+    queryParam[FILTER_QUERY_PARAM] = filtersForURL.join();
+  } else {
+    // if there are no filters for the url delete the property
+    delete queryParam[FILTER_QUERY_PARAM];
+  }
+  const query = isEmpty(queryParam) ? '' : `?${queryString.stringify(queryParam)}`;
+
+  navigate(`${location.pathname}${query}`);
 };
 
+export const TEST_IDS = {
+  title: 'filter-group-title',
+  checkbox: 'filter-group-checkbox',
+};
+/**
+ * Filter Group Component
+ * renders checkboxes around a common theme ('group')
+ * @param {Object} props
+ * @param {String} props.title the title of the group
+ * @param {Array} props.filters the filters which are used to render the checkboxes
+ * @param {Object} props.location the reach router location object, this is provided typically by the with location
+ * prop
+ */
 export const FilterGroup = ({ title, filters, location }) => {
   const queryParam = queryString.parse(location.search);
   let windowHasFilters = Object.prototype.hasOwnProperty.call(queryParam, FILTER_QUERY_PARAM);
@@ -62,7 +79,7 @@ export const FilterGroup = ({ title, filters, location }) => {
 
   return (
     <FormGroup className={styles.FormGroup}>
-      <Label for={title} className={styles.Title}>
+      <Label for={title} className={styles.Title} data-testid={`${TEST_IDS.title}-${title}`}>
         {title}
       </Label>
       {filters.map((filter, ind) => {
@@ -76,6 +93,7 @@ export const FilterGroup = ({ title, filters, location }) => {
           <Checkbox
             id={title + ind}
             key={filter.key}
+            data-testid={`${TEST_IDS.checkbox}-${filter.key}`}
             aria-label={ARIA_LABEL_FILTER_RESOURCE}
             onChange={e =>
               active

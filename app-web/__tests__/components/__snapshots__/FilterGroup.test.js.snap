@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterGroup Component matches snapshot and when the search is empty (?f= null), clicking on a checkbox calls navigate with /foo/?f=[key] 1`] = `
+<div
+  class="FormGroup form-group"
+>
+  <label
+    class="Title"
+    data-testid="filter-group-title-Filter Group"
+    for="Filter Group"
+  >
+    Filter Group
+  </label>
+  <div
+    class="Checkbox custom-checkbox custom-control"
+  >
+    <input
+      aria-label="Filter resources by this value"
+      class="custom-control-input"
+      data-testid="filter-group-checkbox-designer"
+      id="Filter Group0"
+      type="checkbox"
+    />
+    <label
+      class="custom-control-label"
+      for="Filter Group0"
+    >
+      Designers
+    </label>
+  </div>
+  <div
+    class="Checkbox custom-checkbox custom-control"
+  >
+    <input
+      aria-label="Filter resources by this value"
+      class="custom-control-input"
+      data-testid="filter-group-checkbox-developer"
+      id="Filter Group1"
+      type="checkbox"
+    />
+    <label
+      class="custom-control-label"
+      for="Filter Group1"
+    >
+      Developers
+    </label>
+  </div>
+  <div
+    class="Checkbox custom-checkbox custom-control"
+  >
+    <input
+      aria-label="Filter resources by this value"
+      class="custom-control-input"
+      data-testid="filter-group-checkbox-product-owner"
+      id="Filter Group2"
+      type="checkbox"
+    />
+    <label
+      class="custom-control-label"
+      for="Filter Group2"
+    >
+      Product Owners
+    </label>
+  </div>
+</div>
+`;
