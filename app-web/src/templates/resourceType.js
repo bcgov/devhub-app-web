@@ -46,7 +46,7 @@ export const ResourceType = ({
   location,
 }) => {
   const [sideDrawerToggled, setSideDrawerToggled] = useState(false);
-
+  const [menuToggled, setMenuToggled] = useState(false);
   const queryParam = queryString.parse(location.search);
   let query = []; // the search query ie ?q=foo
   let results = []; // the search results if any
@@ -111,7 +111,7 @@ export const ResourceType = ({
   }
 
   return (
-    <Layout showHamburger>
+    <Layout showHamburger toggleMenu={() => setMenuToggled(!menuToggled)} showMenu={menuToggled}>
       <Main role="main">
         <Title
           title={RESOURCE_TYPE_PAGES[pageContext.resourceType].header.title.defaultMessage}
