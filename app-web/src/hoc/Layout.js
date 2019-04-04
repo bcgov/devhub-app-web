@@ -7,6 +7,13 @@ import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
 import PrimaryFooter from '../components/PrimaryFooter/PrimaryFooter';
 import Navbar from '../components/Navbar/Navbar';
 
+const StyledContainer = styled(Container)`
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 0;
+`;
+
 const Wrapper = styled.div`
   margin-top: 65px;
   flex-grow: 1;
@@ -19,15 +26,7 @@ const Layout = ({ children }) => {
   const [menuToggled, setMenuToggled] = useState(false);
 
   return (
-    <Container
-      fluid
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        padding: 0,
-      }}
-    >
+    <StyledContainer fluid>
       <PrimaryHeader showHamburger hamburgerClicked={() => setMenuToggled(!menuToggled)} />
 
       <Navbar />
@@ -35,7 +34,7 @@ const Layout = ({ children }) => {
 
       <Wrapper>{children}</Wrapper>
       <PrimaryFooter />
-    </Container>
+    </StyledContainer>
   );
 };
 
