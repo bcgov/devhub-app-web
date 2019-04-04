@@ -56,8 +56,11 @@ export const ResourceType = ({
   // if window has ?q= value
   if (windowHasQuery) {
     query = decodeURIComponent(queryParam.q);
-    results = useSearch(query, index);
+  } else {
+    query = '';
   }
+
+  results = useSearch(query, index);
   // this is defined by ?q='' or ?q=''&q=''..etc
   // if query is empty we prevent the search results empty from being rendered
   // in addition the collections container is prevented from not rendering because
