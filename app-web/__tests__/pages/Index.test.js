@@ -86,7 +86,7 @@ describe('Home Page', () => {
 
   test('when there is an empty search the alert box does not show and all results show instead', () => {
     queryString.parse.mockReturnValue({});
-    const { container, rerender, queryByTestId, getByTestId } = render(
+    const { container, rerender, queryByTestId } = render(
       <ThemeProvider theme={theme}>
         <Index {...props} />
       </ThemeProvider>,
@@ -110,20 +110,21 @@ describe('Home Page', () => {
 
     expect(Alert).not.toBeInTheDocument();
 
-    expect(getByTestId(COLLECTION_TEST_IDS.container)).toBeInTheDocument();
-    expect(getByTestId(RESOURCE_PREVIEW_TEST_IDS.container)).toBeInTheDocument();
+    expect(queryByTestId(COLLECTION_TEST_IDS.container)).toBeInTheDocument();
+    expect(queryByTestId(RESOURCE_PREVIEW_TEST_IDS.container)).toBeInTheDocument();
   });
 
   test('when searching, collections disappear if there are results', () => {
     queryString.parse.mockReturnValue({ q: 'foo' });
-    useSearch.mockReturnValue([]);
+    useSearch.mockReturnValue([{ id: SIPHON_NODES[0].id }]);
     const { queryByTestId } = render(
       <ThemeProvider theme={theme}>
         <Index {...props} />
       </ThemeProvider>,
     );
 
-    expect(queryByTestId('collections-container')).not.toBeInTheDocument();
+    expect(queryByTestId(COLLECTION_TEST_IDS.container)).not.toBeInTheDocument();
+    expect(queryByTestId(RESOURCE_PREVIEW_TEST_IDS.container)).toBeInTheDocument();
   });
 
   test('when there is no search, collections are visible and cards are visible', () => {

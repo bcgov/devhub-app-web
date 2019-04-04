@@ -52,14 +52,13 @@ const Main = styled.main`
   }
 `;
 
-const collectionsSelector = selectCollectionsWithResourcesGroupedByType();
-const resourcesSelector = selectResourcesGroupedByType();
 /**
  * returns collection container component so aslong as a search is not being done
  * @param {Array} collections list of collections
  * @param {Boolean} searchResultsExist
  */
 const getCollectionPreviews = (collections, searchResultsExist) => {
+  const collectionsSelector = selectCollectionsWithResourcesGroupedByType();
   return (
     !searchResultsExist && (
       <CollectionsContainer
@@ -76,6 +75,7 @@ const getCollectionPreviews = (collections, searchResultsExist) => {
  * @param {Array} results the list of searched resources
  */
 const getResourcePreviews = (resources, results = []) => {
+  const resourcesSelector = selectResourcesGroupedByType();
   let resourcesToGroup = resources;
   if (!isNull(results) && results.length > 0) {
     // diff out resources by id
