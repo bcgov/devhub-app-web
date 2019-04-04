@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import isNull from 'lodash/isNull';
 import intersectionBy from 'lodash/intersectionBy';
-import intersectionWith from 'lodash/intersectionWith';
 import queryString from 'query-string';
 
 import { RESOURCE_TYPES } from '../constants/ui';
@@ -25,6 +24,7 @@ import Aux from '../hoc/auxillary';
 
 // selectors from reselect
 import { selectResourcesGroupedByType } from '../utils/selectors';
+
 import { useSearch } from '../utils/hooks';
 import { isQueryEmpty } from '../utils/search';
 import {
@@ -33,8 +33,10 @@ import {
   isFilterLonely,
 } from '../utils/helpers';
 
+// create a selector instance from the selectResourcesGroupedByType
 const resourcesSelector = selectResourcesGroupedByType();
 
+// generic template page where all 'resource type' pages are generated from
 const ResourceType = ({
   data: {
     allDevhubSiphon,
@@ -80,21 +82,22 @@ const ResourceType = ({
     ...r,
   }));
 
-  // map properties like availableResources and isFilterable to filtergroups based on the current set
-  // of resources
-  let filterGroups = DEFAULT_FILTERS.map(f => setFilterPropsBasedOnResourceCounts(f, resources));
-  // if only one filter isFilterable unset it to false because there is no point in having it togglable
-  // in the ui
-  if (isFilterLonely(filterGroups)) {
-    filterGroups = filterGroups.map(f => ({ ...f, isFilterable: false }));
-  }
-
   const resourcesExist = resourcesByType[resourceTypeConst].length > 0;
 
   // interesect search results with resources
   if (!isNull(results) && results.length > 0) {
     // diff out resources by id
     resources = intersectionBy(resources, results, 'id');
+  }
+
+  const resourcesNotFound = !queryIsEmpty && (!results || (results.length === 0 && windowHasQuery));
+  // map properties like availableResources and isFilterable to filtergroups based on the current set
+  // of resources
+  let filterGroups = DEFAULT_FILTERS.map(f => setFilterPropsBasedOnResourceCounts(f, resources));
+  // if only one filter isFilterable unset it to false because there is no point in having it togglable
+  // in the ui
+  if (isFilterLonely(filterGroups) || resourcesNotFound) {
+    filterGroups = filterGroups.map(f => ({ ...f, isFilterable: false }));
   }
 
   if (resourcesExist && windowHasFilters) {
@@ -106,8 +109,6 @@ const ResourceType = ({
     const activeFilters = intersectionBy(filterGroups, filtersWithKeys, 'key');
     resources = filterResources(resources, activeFilters);
   }
-
-  const resourcesNotFound = !queryIsEmpty && (!results || (results.length === 0 && windowHasQuery));
 
   return (
     <Layout showHamburger>
@@ -138,7 +139,7 @@ const ResourceType = ({
         closeDrawer={() => setSideDrawerToggled(false)}
         title="Filters"
       >
-        <Filters filters={filters} />
+        <Filters filters={filterGroups} />
       </SideDrawer>
     </Layout>
   );
