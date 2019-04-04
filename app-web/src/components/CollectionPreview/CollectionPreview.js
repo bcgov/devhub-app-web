@@ -73,14 +73,15 @@ const CollectionPreview = ({ title, description, link, resources }) => (
       max-width: 1104px;
       margin: 20px 15px;
       border: 1px solid #ccc;
+      border-top: transparent;
     `}
   >
     <CollectionDecorativeBar type="Collections" />
     <CollectionPreviewContainer>
       <CardHeader type="Collections" />
-      <CollectionTitle>{title}</CollectionTitle>
+      <CollectionTitle clamp={2}>{title}</CollectionTitle>
 
-      {description && <CollectionDescription>{description}</CollectionDescription>}
+      {description && <CollectionDescription clamp={3}>{description}</CollectionDescription>}
       <ResourceContainer>
         {resources.slice(0, 4).map(r => (
           <div
@@ -113,10 +114,15 @@ CollectionPreview.propTypes = {
   resources: PropTypes.arrayOf(
     PropTypes.shape({
       type: PropTypes.oneOf(RESOURCE_TYPES_LIST),
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string,
-      image: PropTypes.string,
-      link: PropTypes.string.isRequired,
+      unfurl: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        description: PropTypes.string,
+        image: PropTypes.string,
+      }),
+      resource: PropTypes.shape({
+        path: PropTypes.string.isRequired,
+        type: PropTypes.oneOf(RESOURCE_TYPES_LIST).isRequired,
+      }),
     }),
   ),
 };

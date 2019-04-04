@@ -43,6 +43,11 @@ const withResourceQuery = WrappedComponent => () => props => (
                 _metadata {
                   position
                 }
+                unfurl {
+                  title
+                  description
+                  image
+                }
               }
             }
           }

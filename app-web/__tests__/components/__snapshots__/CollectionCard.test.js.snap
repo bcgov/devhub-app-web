@@ -60,6 +60,7 @@ exports[`CollectionCard matches snapshot 1`] = `
         Title
       </CardTitle>
       <CardDescription
+        clamp={3}
         tagName="div"
         truncationChar="…"
         useNativeClamp={true}

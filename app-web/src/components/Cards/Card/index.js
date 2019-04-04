@@ -43,6 +43,7 @@ export const CardWrapper = styled.article`
   height: 225px;
   margin: 10px 0;
   border: 1px solid #ccc;
+  border-top: transparent;
   border-radius: 2px;
   box-sizing: border-box;
   transition: transform 0.25s ease-out;

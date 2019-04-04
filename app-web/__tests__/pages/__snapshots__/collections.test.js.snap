@@ -14,27 +14,43 @@ exports[`Index Container it matches snapshot 1`] = `
       resources={
         Array [
           Object {
-            "id": "3",
-            "resource": Object {
-              "path": "/",
+            "_metadata": Object {
+              "position": "000.000.000",
             },
-          },
-          Object {
-            "id": "2",
-            "resource": Object {
-              "path": "/",
-            },
-          },
-          Object {
             "id": "1",
             "resource": Object {
-              "path": "/",
+              "path": "/design-system/Z1bGIqu",
+              "type": "Components",
             },
           },
           Object {
+            "_metadata": Object {
+              "position": "000.000.001",
+            },
+            "id": "2",
+            "resource": Object {
+              "path": "/design-system/Z1bGIqu",
+              "type": "Components",
+            },
+          },
+          Object {
+            "_metadata": Object {
+              "position": "000.000.002",
+            },
+            "id": "3",
+            "resource": Object {
+              "path": "/design-system/Z1bGIqu",
+              "type": "Components",
+            },
+          },
+          Object {
+            "_metadata": Object {
+              "position": "000.000.003",
+            },
             "id": "4",
             "resource": Object {
-              "path": "/",
+              "path": "/design-system/Z1bGIqu",
+              "type": "Components",
             },
           },
         ]
@@ -47,21 +63,33 @@ exports[`Index Container it matches snapshot 1`] = `
       resources={
         Array [
           Object {
+            "_metadata": Object {
+              "position": "001.000.000",
+            },
             "id": "5",
             "resource": Object {
-              "path": "/",
+              "path": "/design-system/Z1bGIqu",
+              "type": "Documentation",
             },
           },
           Object {
+            "_metadata": Object {
+              "position": "001.000.001",
+            },
             "id": "6",
             "resource": Object {
-              "path": "/",
+              "path": "/design-system/Z1bGIqu",
+              "type": "Documentation",
             },
           },
           Object {
+            "_metadata": Object {
+              "position": "001.000.001",
+            },
             "id": "7",
             "resource": Object {
-              "path": "/",
+              "path": "/design-system/Z1bGIqu",
+              "type": "Documentation",
             },
           },
         ]
