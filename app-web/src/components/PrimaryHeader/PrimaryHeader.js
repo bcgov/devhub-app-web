@@ -1,18 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Flag } from 'flag';
 import classes from './PrimaryHeader.module.css';
 import Banner from '../UI/Banner/Banner';
 import Hamburger from '../UI/Hamburger/Hamburger';
-import Login from '../Auth/Login/Login';
+// login not being implemented at this time
+// import Login from '../Auth/Login/Login';
 
 export const PrimaryHeader = ({ showHamburger, hamburgerClicked }) => (
   <header className={classes.PrimaryHeader}>
     <Banner />
     <div className={classes.Other}>
-      <Flag name="features.login">
-        <Login />
-      </Flag>
+      {/* <Login /> */}
       {showHamburger ? (
         <Hamburger clicked={hamburgerClicked} className={classes.Hamburger} />
       ) : null}
