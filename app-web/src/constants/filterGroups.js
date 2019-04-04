@@ -12,6 +12,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 // configuration for the secondary filtering mechanism
+export const FILTER_QUERY_PARAM = 'f';
 
 export const DEFAULT_FILTERS = {
   PERSONA_DESIGNER: {
@@ -20,7 +21,7 @@ export const DEFAULT_FILTERS = {
     text: 'Designers',
     active: false,
     availableResources: 0,
-    key: '1',
+    key: 'designer',
     title: 'For',
     isFilterable: true,
   },
@@ -30,7 +31,7 @@ export const DEFAULT_FILTERS = {
     text: 'Developers',
     active: false,
     availableResources: 0,
-    key: '2',
+    key: 'developer',
     title: 'For',
     isFilterable: true,
   },
@@ -40,7 +41,7 @@ export const DEFAULT_FILTERS = {
     text: 'Product Owners',
     active: false,
     availableResources: 0,
-    key: '3',
+    key: 'product-owner',
     title: 'For',
     isFilterable: true,
   },
