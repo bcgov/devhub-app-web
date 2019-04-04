@@ -16,16 +16,8 @@ limitations under the License.
 Created by Patrick Simonian
 */
 
+// not currently implemented
 export default {
-  LOGIN: 'login',
-  GITHUB_RESOURCE_CARDS: 'githubResourceCards',
-  PATHFINDER_RESOURCE_CARDS: 'pathfinderResourceCards',
-  SOURCE_FILTERING: 'sourceFiltering',
-  CARD: {
-    METADATA: 'metadata',
-    ISSUES: 'issues',
-    REPOSITORY: 'repository',
-    WATCH: 'watch',
-    FORK: 'fork',
-  },
+  LOGIN: true,
+  FILTERING: true,
 };
