@@ -96,7 +96,7 @@ describe('Resource Type Template Page', () => {
 
   test('when searching, if there are results the number of cards should reduce', () => {
     queryString.parse.mockReturnValue({});
-    useSearch.mockReturnValue([{ id: SIPHON_NODES[0].id }]);
+    useSearch.mockReturnValue([]);
     const { rerender, queryAllByText } = render(
       <ThemeProvider theme={theme}>
         <ResourceType {...props} location={{ search: '?q=foo' }} />
@@ -106,6 +106,7 @@ describe('Resource Type Template Page', () => {
 
     queryString.parse.mockReturnValue({ q: 'foo' });
 
+    useSearch.mockReturnValue([{ id: SIPHON_NODES[0].id }]);
     rerender(
       <ThemeProvider theme={theme}>
         <ResourceType {...props} />

@@ -88,7 +88,7 @@ export const ResourceType = ({
   const resourcesExist = resourcesByType[resourceTypeConst].length > 0;
 
   // interesect search results with resources
-  if (!isNull(results) && results.length > 0) {
+  if (results && !isNull(results) && results.length > 0) {
     // diff out resources by id
     resources = intersectionBy(resources, results, 'id');
   }

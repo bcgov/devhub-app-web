@@ -402,6 +402,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
             Search
           </button>
         </div>
+        
       </div>
       <div
         class="emotion-10 emotion-11"
