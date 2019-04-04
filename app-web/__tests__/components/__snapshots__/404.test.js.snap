@@ -1,7 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`404 Page it matches snapshot 1`] = `
-<Connect(Layout)>
+<Layout
+  login={[Function]}
+  logout={[Function]}
+  showHamburger={false}
+  useAuth={false}
+>
   <VennDiagram />
-</Connect(Layout)>
+</Layout>
 `;

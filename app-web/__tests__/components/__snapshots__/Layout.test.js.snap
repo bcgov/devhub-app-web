@@ -17,13 +17,9 @@ exports[`Layout Component it matches snapshot 1`] = `
     hamburgerClicked={[Function]}
     showHamburger={true}
   />
-  <Flag
-    name="features.sourceFiltering"
-  >
-    <Navbar
-      mobile={false}
-    />
-  </Flag>
+  <Navbar
+    mobile={false}
+  />
   <Wrapper>
     test
   </Wrapper>
