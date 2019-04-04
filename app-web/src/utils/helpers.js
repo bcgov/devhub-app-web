@@ -16,6 +16,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import validUrl from 'valid-url';
+import dotProp from 'dot-prop';
 import { GITHUB_URL } from '../constants/api';
 import { TypeCheck } from '@bcgov/common-web-utils';
 import { RESOURCE_TYPES } from '../constants/ui';
@@ -90,4 +91,69 @@ export const getFirstNonExternalResource = resources => {
     }
   }
   return null;
+};
+
+/**
+ *
+ * given a nested path to an objects property and an expected value
+ * it returns a boolean based on
+ * if property is an Array => if atleast one value matches in the array it returns true
+ * if property is String => if value matches exactly
+ * an assumption is made that if the prop is an array, its elements are all of type String
+ * @param {Object} node the siphon node
+ * @param {String} dotProp a dot prop string notiation to access a nested value within the node
+ * https://github.com/sindresorhus/dot-prop
+ * @param {String} value the value to match against nodes value found by the dot prop
+ */
+export const dotPropMatchesValue = (node, filterBy, value) => {
+  const prop = dotProp.get(node, filterBy);
+  if (TypeCheck.isArray(prop)) {
+    return prop.some(p => p === value);
+  } else {
+    return prop === value;
+  }
+};
+
+/**
+ * filters all resources nodes based on the active filters list
+ * @param {Array} resources
+ * @param {Array} filters these are assumed to be active filters
+ */
+export const filterResources = (resources, filters) =>
+  resources.filter(resource =>
+    filters.some(filter => dotPropMatchesValue(resource, filter.filterBy, filter.value)),
+  );
+
+/**
+ * given a filter and a set of resources
+ * apply the following props to a new object
+ * - isFilterable: if the count of filterable resources is > 0
+ * - availableResources: the count of filterable resources for the given filter
+ * @param {Object} filter the filter object
+ * @param {Array} nodes all resources
+ * @returns {Object} a new filter object
+ */
+export const setFilterPropsBasedOnResourceCounts = (filter, nodes) => {
+  const { filterBy, value } = filter;
+  let newFilter = { ...filter, availableResources: 0 };
+  nodes.forEach(n => {
+    // only attempt to check if node should be apart of count if it matches the current resource type
+    // or if resource tpye is null (which means we are on the index page)
+    newFilter.availableResources += dotPropMatchesValue(n, filterBy, value);
+  });
+
+  const count = newFilter.availableResources;
+  newFilter.isFilterable = count > 0;
+  // check if this filter has been set to active and if it should remain so
+  // this would onyl be the case if the available resources are greater than 0
+  return newFilter;
+};
+
+/**
+ * checks if only one filter in a set of filters isFilterable
+ * @param {Array} filters
+ */
+export const isFilterLonely = filters => {
+  const numAreFilterable = filters.reduce((sum, filter) => sum + filter.isFilterable, 0);
+  return numAreFilterable === 1;
 };

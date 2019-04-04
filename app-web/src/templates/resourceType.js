@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import isNull from 'lodash/isNull';
 import intersectionBy from 'lodash/intersectionBy';
+import intersectionWith from 'lodash/intersectionWith';
 import queryString from 'query-string';
 
 import { RESOURCE_TYPES } from '../constants/ui';
-import filters from '../constants/filterGroups';
+import DEFAULT_FILTERS, { FILTER_QUERY_PARAM } from '../constants/filterGroups';
 
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { RESOURCE_TYPE_PAGES } from '../messages';
@@ -26,8 +27,14 @@ import Aux from '../hoc/auxillary';
 import { selectResourcesGroupedByType } from '../utils/selectors';
 import { useSearch } from '../utils/hooks';
 import { isQueryEmpty } from '../utils/search';
+import {
+  filterResources,
+  setFilterPropsBasedOnResourceCounts,
+  isFilterLonely,
+} from '../utils/helpers';
 
 const resourcesSelector = selectResourcesGroupedByType();
+
 const ResourceType = ({
   data: {
     allDevhubSiphon,
@@ -37,10 +44,13 @@ const ResourceType = ({
   location,
 }) => {
   const [sideDrawerToggled, setSideDrawerToggled] = useState(false);
+
   const queryParam = queryString.parse(location.search);
-  let query = [];
-  let results = [];
+  let query = []; // the search query ie ?q=foo
+  let results = []; // the search results if any
+  let filters = []; // the filter queury ie ?f=bar&f=foo
   let windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, 'q');
+  let windowHasFilters = Object.prototype.hasOwnProperty.call(queryParam, FILTER_QUERY_PARAM);
   // if window has ?q= value
   if (windowHasQuery) {
     query = decodeURIComponent(queryParam.q);
@@ -55,6 +65,10 @@ const ResourceType = ({
   const resourceTypeConst = RESOURCE_TYPES[pageContext.resourceTypeConst];
 
   const resourcesByType = resourcesSelector(flattenGatsbyGraphQL(allDevhubSiphon.edges));
+
+  if (windowHasFilters) {
+    filters = decodeURIComponent(queryParam[FILTER_QUERY_PARAM]).split(',');
+  }
   // grab the specific resources by the resource type associated with this pages context
   let resources = resourcesByType[resourceTypeConst].map(r => ({
     type: r.resource.type,
@@ -63,7 +77,17 @@ const ResourceType = ({
     image: r.unfurl.image,
     path: r.resource.path,
     id: r.id,
+    ...r,
   }));
+
+  // map properties like availableResources and isFilterable to filtergroups based on the current set
+  // of resources
+  let filterGroups = DEFAULT_FILTERS.map(f => setFilterPropsBasedOnResourceCounts(f, resources));
+  // if only one filter isFilterable unset it to false because there is no point in having it togglable
+  // in the ui
+  if (isFilterLonely(filterGroups)) {
+    filterGroups = filterGroups.map(f => ({ ...f, isFilterable: false }));
+  }
 
   const resourcesExist = resourcesByType[resourceTypeConst].length > 0;
 
@@ -73,7 +97,18 @@ const ResourceType = ({
     resources = intersectionBy(resources, results, 'id');
   }
 
+  if (resourcesExist && windowHasFilters) {
+    // filters are an array of keys as plain strings ['key1', 'key2']
+    // convert filters into and array of objects with a key props so that it is similar to DEFAULT_FILTER's schema
+    // this will allow an intersection to work
+    const filtersWithKeys = filters.map(f => ({ key: f }));
+    // get active filters by filter keys
+    const activeFilters = intersectionBy(filterGroups, filtersWithKeys, 'key');
+    resources = filterResources(resources, activeFilters);
+  }
+
   const resourcesNotFound = !queryIsEmpty && (!results || (results.length === 0 && windowHasQuery));
+
   return (
     <Layout showHamburger>
       <Main role="main">
@@ -84,7 +119,7 @@ const ResourceType = ({
         <PageContainer>
           {resourcesExist ? (
             <Aux>
-              <FilterMenu filters={filters} />
+              <FilterMenu filters={filterGroups} />
               <CardsContainer
                 searchResultsEmpty={resourcesNotFound}
                 pagePath={location.pathname}

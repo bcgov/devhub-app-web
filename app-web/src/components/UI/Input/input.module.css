@@ -1,7 +1,7 @@
 /* Design System Input Styling */
 
 /* Bootstrap 4 Custom Input Checkbox Overrides */
-.Checkbox :global(.custom-control-label) {
+.Checkbox input:not(:disabled)~ :global(.custom-control-label) {
     cursor: pointer;
 }
 
