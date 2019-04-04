@@ -129,6 +129,22 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: '@gatsby-contrib/gatsby-plugin-elasticlunr-search',
+      options: {
+        // Fields to index
+        fields: ['title', 'content', 'description', 'collectionName'],
+        // How to resolve each field`s value for a supported node type
+        resolvers: {
+          DevhubSiphon: {
+            title: node => node.unfurl.title,
+            content: node => node.childMarkdownRemark && node.childMarkdownRemark.rawMarkdownBody,
+            description: node => node.unfurl.description,
+            collectionName: node => node.collection.name,
+          },
+        },
+      },
+    },
     // this plugin creates a front end search index found at window.__LUNR__
     // please see npm docs for its usage, it is still up in the air how to implement
     // the search against the rest of the gatsby app. As of now, data is coming from two sources

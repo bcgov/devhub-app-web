@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Resource Preview Component it matches snapshot 1`] = `
-<Container>
+<Container
+  data-testid="resource-preview-container"
+>
   <Title>
     <StyledLink
       activeClassName=""

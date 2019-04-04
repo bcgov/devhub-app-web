@@ -1,20 +1,34 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import groupBy from 'lodash/groupBy';
-import { getSearchResults } from '../../src/utils/search';
-import { Index } from '../../src/pages/index';
+import { render, cleanup } from 'react-testing-library';
+// this adds custom jest matchers from jest-dom
+import 'jest-dom/extend-expect';
+import queryString from 'query-string';
+import { ThemeProvider } from 'emotion-theming';
+import theme from '../../theme';
+import { Index, TEST_IDS } from '../../src/pages/index';
 import { SIPHON_NODES, COLLECTIONS } from '../../__fixtures__/siphon-fixtures';
+import {
+  SELECT_COLLECTIONS_WITH_RESOURCES_GROUPED_BY_TYPE,
+  SELECT_RESOURCES_GROUPED_BY_TYPE,
+} from '../../__fixtures__/selector-fixtures';
+import { useSearch } from '../../src/utils/hooks';
+import { TEST_IDS as COLLECTION_TEST_IDS } from '../../src/components/Home/CollectionsContainer';
+import { TEST_IDS as RESOURCE_PREVIEW_TEST_IDS } from '../../src/components/Home/ResourcePreview';
 
-jest.mock('react-spinners', () => null);
-jest.mock('../../src/utils/search', () => ({
-  getSearchResults: jest.fn(() => Promise.resolve({ '1': { id: '1' } })),
-}));
+jest.mock('query-string');
+// mock out layout
+jest.mock('../../src/hoc/Layout.js', () => ({ children }) => children);
+// mock out search hook
+jest.mock('../../src/utils/hooks.js');
 
-jest.mock('query-string', () => ({
-  parse: jest.fn(() => ({ q: 'foo' })),
-}));
-
-describe('Index Container', () => {
+describe('Home Page', () => {
+  // mock out non redux selectors
+  jest.doMock('../../src/utils/selectors.js', () => ({
+    selectResourcesGroupedByType: jest.fn(() => SELECT_RESOURCES_GROUPED_BY_TYPE),
+    selectCollectionsWithResourcesGroupedByType: jest.fn(
+      () => SELECT_COLLECTIONS_WITH_RESOURCES_GROUPED_BY_TYPE,
+    ),
+  }));
   // when you use graphql to load data into the component
   // all edges are an object of { node: [graphql object]}
   // the collections fixture is the true data without this extra object field
@@ -22,95 +36,108 @@ describe('Index Container', () => {
   // this component
   const nodes = SIPHON_NODES.map(c => ({ node: c }));
   const collections = COLLECTIONS.map(c => ({ node: c }));
-  const data = {
-    allDevhubSiphon: {
-      edges: nodes,
-    },
-    allDevhubCollection: {
-      edges: collections,
-    },
-  };
-  // mocking redux actions
-  const actions = {
-    loadResources: jest.fn(),
-    setSearchResults: jest.fn(() => {
-      return 'fofofo';
-    }),
-    setSearchQuery: jest.fn(() => {
-      return true;
-    }),
-    setSearchBarTerms: jest.fn(),
-    resetSearch: jest.fn(),
-    setResourceType: jest.fn(),
-  };
-
-  const location = {
-    pathname: '/',
-  };
-
   const props = {
-    loading: false,
-    resourcesLoaded: false,
-    searchResultsLength: 0,
-    totalResources: SIPHON_NODES.length,
-    searchWordLength: 0,
-    data: data,
-    query: '',
-    collections: [],
-    resourcesByType: groupBy(SIPHON_NODES, 'resource.type'),
-    searchResultsExist: false,
-    location,
-    ...actions,
+    data: {
+      allDevhubSiphon: {
+        edges: nodes,
+      },
+      allDevhubCollection: {
+        edges: collections,
+      },
+      siteSearchIndex: {
+        index: {},
+      },
+    },
+    location: {
+      search: '',
+    },
   };
 
-  test('it matches snapshot', () => {
-    const wrapper = shallow(<Index {...props} />);
-    expect(wrapper).toMatchSnapshot();
+  afterEach(() => {
+    cleanup();
   });
 
-  describe('Lifecycle methods', () => {
-    test('calls load resources', () => {
-      shallow(<Index {...props} />);
-      expect(actions.loadResources).toHaveBeenCalled();
-    });
+  test('it matches snapshot, when there is a search and no results an alert box shows up', () => {
+    queryString.parse.mockReturnValue({});
+    const { container, rerender, queryByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <Index {...props} />
+      </ThemeProvider>,
+    );
+    expect(container.firstChild).toMatchSnapshot();
+    let Alert;
+    Alert = queryByTestId(TEST_IDS.alert);
+    // initially there are valid results and so there should no be no alert
+    expect(Alert).not.toBeInTheDocument();
+    // mock that query string actually finds search values in the url
+    queryString.parse.mockReturnValue({ q: 'foo' });
+    // rerender stubbing no results for resources
+    useSearch.mockReturnValue([]);
+    rerender(
+      <ThemeProvider theme={theme}>
+        <Index {...props} />
+      </ThemeProvider>,
+    );
+    expect(useSearch).toHaveBeenCalled();
+    Alert = queryByTestId(TEST_IDS.alert);
 
-    test('when search props updates, it calls search function', async () => {
-      const wrapper = shallow(<Index {...props} />);
-      wrapper.setProps({ location: { ...location, search: '?q=foo' } });
-      await wrapper.instance().componentDidMount();
-      expect(getSearchResults).toHaveBeenCalled();
-      expect(props.setSearchQuery).toHaveBeenCalled();
-      expect(props.setSearchResults).toHaveBeenCalled();
-    });
+    expect(Alert).toBeInTheDocument();
   });
 
-  describe('UI changes', () => {
-    test('when search results exist it does not render collections', () => {
-      const wrapper = shallow(<Index {...props} searchResultsExist={true} />);
-      expect(wrapper.find('CollectionsContainer').exists()).toBeFalsy();
-    });
+  test('when there is an empty search the alert box does not show and all results show instead', () => {
+    queryString.parse.mockReturnValue({});
+    const { container, rerender, queryByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <Index {...props} />
+      </ThemeProvider>,
+    );
+    expect(container.firstChild).toMatchSnapshot();
+    let Alert;
+    Alert = queryByTestId(TEST_IDS.alert);
+    // initially there are valid results and so there should no be no alert
+    expect(Alert).not.toBeInTheDocument();
+    // mock that query string actually finds search values in the url
+    queryString.parse.mockReturnValue({ q: '' });
+    // rerender stubbing no results for resources
+    useSearch.mockReturnValue([]);
+    rerender(
+      <ThemeProvider theme={theme}>
+        <Index {...props} />
+      </ThemeProvider>,
+    );
+    expect(useSearch).toHaveBeenCalled();
+    Alert = queryByTestId(TEST_IDS.alert);
 
-    test('when no search results the no search results message is visible', () => {
-      // stub in siphon nodes where none exist
-      const resourcesByType = Object.keys(props.resourcesByType).reduce((resourcesByType, key) => {
-        resourcesByType[key] = [];
-        return resourcesByType;
-      }, {});
+    expect(Alert).not.toBeInTheDocument();
 
-      const wrapper = shallow(
-        <Index
-          {...props}
-          loading={false}
-          searchResultsExist={false}
-          resourcesByType={resourcesByType}
-        />,
-      );
-      expect(wrapper.find('Alert').exists()).toBeTruthy();
-    });
+    expect(queryByTestId(COLLECTION_TEST_IDS.container)).toBeInTheDocument();
+    expect(queryByTestId(RESOURCE_PREVIEW_TEST_IDS.container)).toBeInTheDocument();
+  });
 
-    test('when loading, loading indicator is visible', () => {
-      const wrapper = shallow(<Index {...props} loading={true} />);
-      expect(wrapper.find('Loading').exists()).toBeTruthy();
-    });
+  test('when searching, collections disappear if there are results', () => {
+    queryString.parse.mockReturnValue({ q: 'foo' });
+    useSearch.mockReturnValue([{ id: SIPHON_NODES[0].id }]);
+    const { queryByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <Index {...props} />
+      </ThemeProvider>,
+    );
+
+    expect(queryByTestId(COLLECTION_TEST_IDS.container)).not.toBeInTheDocument();
+    expect(queryByTestId(RESOURCE_PREVIEW_TEST_IDS.container)).toBeInTheDocument();
+  });
+
+  test('when there is no search, collections are visible and cards are visible', () => {
+    queryString.parse.mockReturnValue({});
+    useSearch.mockReturnValue([]);
+
+    const { getByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <Index {...props} />
+      </ThemeProvider>,
+    );
+
+    expect(getByTestId(COLLECTION_TEST_IDS.container)).toBeInTheDocument();
+    expect(getByTestId(RESOURCE_PREVIEW_TEST_IDS.container)).toBeInTheDocument();
   });
 });

@@ -1,181 +1,160 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import queryString from 'query-string';
+import intersectionBy from 'lodash/intersectionBy';
+import isNull from 'lodash/isNull';
+import styled from '@emotion/styled';
 
-import { createStructuredSelector } from 'reselect';
-import { connect } from 'react-redux';
 import { Alert } from 'reactstrap';
-import { Flag } from 'flag';
 
 import { MAIN_NAV_ROUTES } from '../constants/routes';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
-import { getSearchResults } from '../utils/search';
-import * as actions from '../store/actions';
 import { SEARCH } from '../messages';
-// selectors from reselect
-import {
-  selectQuery,
-  selectSearchResultsLength,
-  selectTotalResources,
-  selectResourcesLoaded,
-  selectResourcesReducerLoading,
-  selectGroupedFilteredAvailableResources,
-  selectCollectionsWithAvailableResourcesGroupedByType,
-  selectSearchResultsExist,
-  selectTokenizedQuery,
-} from '../store/selectors';
 
-import Loading from '../components/UI/Loading/Loading';
 import Layout from '../hoc/Layout';
 import { ResourcePreview, Masthead, CollectionsContainer } from '../components/Home';
 import withResourceQuery from '../hoc/withResourceQuery';
 import Aux from '../hoc/auxillary';
 
-import styles from './index.module.css';
+import { useSearch } from '../utils/hooks';
+import {
+  selectCollectionsWithResourcesGroupedByType,
+  selectResourcesGroupedByType,
+} from '../utils/selectors';
+import { isQueryEmpty } from '../utils/search';
 
-export class Index extends Component {
-  componentDidMount() {
-    // flatted nodes from graphql
-    if (!this.props.resourcesLoaded) {
-      const collections = flattenGatsbyGraphQL(this.props.data.allDevhubCollection.edges);
-      // note this.props.data is received from the withResourceQuery Component
-      const resources = flattenGatsbyGraphQL(this.props.data.allDevhubSiphon.edges);
-      this.props.loadResources(resources, collections);
-    }
-    // reset resource type to null since index page views all index pages
-    this.props.setResourceType(null);
+const Main = styled.main`
+  margin-bottom: 5px;
+  margin-top: 27px;
+  padding: 0 15px;
+  > div {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+  > h1 {
+    margin-top: 0;
+    color: #242424;
+    font-size: 42px;
+    font-weight: 400;
+  }
+  > h2 {
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #5091cd;
+    font-weight: 300;
+  }
+  > p {
+    margin-bottom: 20px;
+    max-width: 738px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.3em;
+  }
+`;
+
+/**
+ * returns collection container component so aslong as a search is not being done
+ * @param {Array} collections list of collections
+ * @param {Boolean} searchResultsExist
+ */
+const getCollectionPreviews = (collections, searchResultsExist) => {
+  const collectionsSelector = selectCollectionsWithResourcesGroupedByType();
+  return (
+    !searchResultsExist && (
+      <CollectionsContainer
+        collections={collectionsSelector(collections)}
+        link={MAIN_NAV_ROUTES.COLLECTIONS}
+      />
+    )
+  );
+};
+
+/**
+ * returns a resource preview components
+ * @param {Array} resources the list of siphon resources
+ * @param {Array} results the list of searched resources
+ */
+const getResourcePreviews = (resources, results = []) => {
+  const resourcesSelector = selectResourcesGroupedByType();
+  let resourcesToGroup = resources;
+  if (!isNull(results) && results.length > 0) {
+    // diff out resources by id
+    resourcesToGroup = intersectionBy(resources, results, 'id');
   }
 
-  // checking search params in did update because did mount only get triggered during navigation
-  // between different pages, navigation to the same page does not trigger an unmount/remount
-  componentDidUpdate() {
-    const query = queryString.parse(this.props.location.search);
-    if (Object.prototype.hasOwnProperty.call(query, 'q')) {
-      const param = decodeURIComponent(query.q);
-      if (param !== this.props.query) {
-        this.props.setSearchQuery(param);
-        // returning so that we can test this function
-        return getSearchResults(param).then(results => {
-          this.props.setSearchResults(results);
-        });
-      }
+  // select resources grouped by type using relesect memoization https://github.com/reduxjs/reselect/issues/30
+  const resourcesByType = resourcesSelector(resourcesToGroup);
+  const siphonResources = Object.keys(resourcesByType).map(resourceType => {
+    if (resourcesByType[resourceType].length > 0) {
+      return (
+        <ResourcePreview
+          key={resourceType}
+          title={resourceType}
+          resources={resourcesByType[resourceType]}
+          link={MAIN_NAV_ROUTES[resourceType]}
+        />
+      );
     }
     return null;
-  }
+  });
 
-  componentWillUnmount() {
-    // unset set all search properties so that when this page is navigated back to, it looks like a fresh
-    // page
-    this.props.resetSearch();
-  }
-
-  getResourcePreviews = () => {
-    const { resourcesByType } = this.props;
-    const siphonResources = Object.keys(resourcesByType).map(resourceType => {
-      if (resourcesByType[resourceType].length > 0) {
-        return (
-          <ResourcePreview
-            key={resourceType}
-            title={resourceType}
-            resources={resourcesByType[resourceType]}
-            link={MAIN_NAV_ROUTES[resourceType]}
-          />
-        );
-      }
-      return null;
-    });
-
-    return siphonResources;
-  };
-
-  getCollectionPreviews = () => {
-    const { collections, searchResultsExist } = this.props;
-    // only show collections if there wasn't a search
-    return (
-      !searchResultsExist && (
-        <CollectionsContainer collections={collections} link={MAIN_NAV_ROUTES.COLLECTIONS} />
-      )
-    );
-  };
-
-  render() {
-    const { setSearchBarTerms, query, loading } = this.props;
-
-    const siphonResources = this.getResourcePreviews();
-    const resourcesNotFound = siphonResources.every(r => r === null);
-
-    let content = null;
-
-    if (loading) {
-      content = <Loading message="Loading..." />;
-    } else if (resourcesNotFound) {
-      content = (
-        <Alert style={{ margin: '10px auto' }} color="info">
-          {SEARCH.results.empty.defaultMessage}
-        </Alert>
-      );
-    } else {
-      content = (
-        <Aux>
-          {this.getCollectionPreviews()}
-          <Flag name="features.githubResourceCards">{siphonResources}</Flag>
-        </Aux>
-      );
-    }
-
-    return (
-      <Layout showHamburger>
-        <div>
-          <Masthead setSearchBarTerms={setSearchBarTerms} query={query} />
-          <main role="main" className={styles.Main}>
-            {content}
-          </main>
-        </div>
-      </Layout>
-    );
-  }
-}
-
-const mapStateToProps = createStructuredSelector({
-  resourcesLoaded: selectResourcesLoaded,
-  query: selectQuery,
-  loading: selectResourcesReducerLoading,
-  searchResultsLength: selectSearchResultsLength,
-  totalResources: selectTotalResources,
-  resourcesByType: selectGroupedFilteredAvailableResources,
-  collections: selectCollectionsWithAvailableResourcesGroupedByType,
-  searchResultsExist: selectSearchResultsExist,
-});
-
-const mapDispatchToProps = dispatch => {
-  return {
-    loadResources: (resources, collections) =>
-      dispatch(actions.loadResources(resources, collections)),
-    setSearchResults: results => dispatch(actions.setSearchResults(results)),
-    setSearchQuery: (query, tokenizedQuery) =>
-      dispatch(actions.setSearchQuery(query, tokenizedQuery)),
-    resetSearch: () => dispatch(actions.resetSearch()),
-    setResourceType: type => dispatch(actions.setResourceType(type)),
-  };
+  return siphonResources;
 };
 
-Index.propTypes = {
-  loadResources: PropTypes.func.isRequired,
-  setSearchResults: PropTypes.func.isRequired,
-  setSearchQuery: PropTypes.func.isRequired,
-  resetSearch: PropTypes.func.isRequired,
-  setResourceType: PropTypes.func.isRequired,
-  resourcesLoaded: PropTypes.bool.isRequired,
-  query: PropTypes.string,
-  loading: PropTypes.bool.isRequired,
-  searchResultsLength: PropTypes.number.isRequired,
-  totalResources: PropTypes.number.isRequired,
-  resourcesByType: PropTypes.object.isRequired,
-  collections: PropTypes.array.isRequired,
-  searchResultsExist: PropTypes.bool.isRequired,
+export const TEST_IDS = {
+  alert: 'home-test-alert',
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withResourceQuery(Index)());
+export const Index = ({
+  data: {
+    allDevhubCollection,
+    allDevhubSiphon,
+    siteSearchIndex: { index },
+  },
+  location,
+}) => {
+  const queryParam = queryString.parse(location.search);
+  let query = [];
+  let results = [];
+  let windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, 'q');
+  if (windowHasQuery) {
+    query = decodeURIComponent(queryParam.q);
+    results = useSearch(query, index);
+  }
+  // this is defined by ?q='' or ?q=''&q=''..etc
+  // if query is empty we prevent the search results empty from being rendered
+  // in addition the collections container is prevented from not rendering because
+  // the query is present
+  const queryIsEmpty = isQueryEmpty(query);
+
+  let content = null;
+  const siphonResources = getResourcePreviews(flattenGatsbyGraphQL(allDevhubSiphon.edges), results);
+
+  const resourcesNotFound = !queryIsEmpty && (!results || (results.length === 0 && windowHasQuery));
+  if (resourcesNotFound) {
+    content = (
+      <Alert style={{ margin: '10px auto' }} color="info" data-testid={TEST_IDS.alert}>
+        {SEARCH.results.empty.defaultMessage}
+      </Alert>
+    );
+  } else {
+    content = (
+      <Aux>
+        {getCollectionPreviews(
+          flattenGatsbyGraphQL(allDevhubCollection.edges),
+          windowHasQuery && !queryIsEmpty,
+        )}
+        {siphonResources}
+      </Aux>
+    );
+  }
+
+  return (
+    <Layout showHamburger>
+      <Masthead query={query} />
+      <Main>{content}</Main>
+    </Layout>
+  );
+};
+
+export default withResourceQuery(Index)();

@@ -5,9 +5,7 @@ let stylesStr;
 if (process.env.NODE_ENV === 'production') {
   try {
     stylesStr = require('!raw-loader!../public/styles.css'); // eslint-disable-line
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (e) {}
 }
 
 class HTML extends React.Component {
@@ -20,6 +18,10 @@ class HTML extends React.Component {
       <html {...this.props.htmlAttributes}>
         <head>
           <title>DevHub</title>
+          <meta
+            name="description"
+            content="DevHub aims to become the &#34;Central Nervous System&#34; for the growing BC Gov developer community."
+          />
           <meta name="twitter:author" content="patricksimonian" />
           <meta
             name="twitter:description"

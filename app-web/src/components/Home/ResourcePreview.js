@@ -38,9 +38,14 @@ const ResourceContainer = styled.div`
   }
 `;
 
+// used by react-testing-library dom querying
+export const TEST_IDS = {
+  container: 'resource-preview-container',
+};
+
 // this is a wrapper component that encapsulates cards for collections or other sizes
 export const ResourcePreview = ({ title, link, resources }) => (
-  <Container>
+  <Container data-testid={TEST_IDS.container}>
     <Title>
       <StyledLink to={link.to}>{title}</StyledLink>
     </Title>
