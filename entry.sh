@@ -14,24 +14,32 @@ else
   if [ ! -e "$GATSBY_DIR/node_modules/" ]
   then
     echo "Node modules is empty. Running npm install..."
-    npm install
+    npm ci
 
   fi
 
 fi
 
 # Decide what to do
-if  [ "$1" == "develop" ]
+if  [ "$1" = "preview" ]
 then
+  rm -rf $GATSBY_DIR/.cache
   rm -rf $GATSBY_DIR/public
   gatsby develop --host 0.0.0.0
 
-elif  [ "$1" == "build" ]
+elif  [ "$1" = "develop" ]
 then
+  rm -rf $GATSBY_DIR/.cache
+  rm -rf $GATSBY_DIR/public
+  gatsby develop --host 0.0.0.0
+
+elif  [ "$1" = "build" ]
+then
+  rm -rf $GATSBY_DIR/.cache
   rm -rf $GATSBY_DIR/public
   gatsby build
 
-elif  [ "$1" == "stage" ]
+elif  [ "$1" = "stage" ]
 then
   rm -rf $GATSBY_DIR/public
   gatsby build
