@@ -19,6 +19,10 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { NO_RESOURCES } from '../../../messages';
 
+export const TEST_IDS = {
+  container: 'no-resources',
+};
+
 const NoResources = styled.div`
   font-size: 28px;
   background-color: #fafafa;
@@ -30,7 +34,7 @@ const NoResources = styled.div`
 `;
 
 export default () => (
-  <NoResources>
+  <NoResources data-testid={TEST_IDS.container}>
     <h2>{NO_RESOURCES.title.defaultMessage}</h2>
     <p>{NO_RESOURCES.description.defaultMessage}</p>
   </NoResources>

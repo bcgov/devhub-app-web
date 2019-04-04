@@ -87,6 +87,8 @@ export const FilterGroup = ({ title, filters, location }) => {
       </Label>
       {filters.map((filter, ind) => {
         const active = urlFiltersIndex[filter.key] !== void 0;
+        // appling a dynamic prop so that we don't end up with disabled='' as an attribute
+        const disabledProp = !filter.isFilterable ? {} : { disabled: true };
         /* 
           a requirement for custom reactstrap inputs is that the id of the custom input is
           an incremenet of a top level labels
@@ -106,7 +108,7 @@ export const FilterGroup = ({ title, filters, location }) => {
             name={filter.filterBy}
             label={filter.text}
             checked={active}
-            disabled={!filter.isFilterable}
+            {...disabledProp}
           />
         );
       })}

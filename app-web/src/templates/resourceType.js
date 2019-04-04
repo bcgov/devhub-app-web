@@ -37,7 +37,7 @@ import {
 const resourcesSelector = selectResourcesGroupedByType();
 
 // generic template page where all 'resource type' pages are generated from
-const ResourceType = ({
+export const ResourceType = ({
   data: {
     allDevhubSiphon,
     siteSearchIndex: { index },
