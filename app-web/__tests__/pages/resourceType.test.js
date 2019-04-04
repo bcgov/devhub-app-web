@@ -60,7 +60,7 @@ describe('Resource Type Template Page', () => {
     cleanup();
   });
 
-  test.skip('it matches snapshot, when there are no resources for the given reosource type the no resource component shows ', () => {
+  test('it matches snapshot, when there are no resources for the given reosource type the no resource component shows ', () => {
     queryString.parse.mockReturnValue({});
     const { container, rerender, queryByTestId } = render(
       <ThemeProvider theme={theme}>
@@ -94,7 +94,7 @@ describe('Resource Type Template Page', () => {
     expect(queryByTestId(NO_RESOURCE_TEST_IDS.container)).toBeInTheDocument();
   });
 
-  test.skip('when searching, if there are results the number of cards should reduce', () => {
+  test('when searching, if there are results the number of cards should reduce', () => {
     queryString.parse.mockReturnValue({});
     useSearch.mockReturnValue([{ id: SIPHON_NODES[0].id }]);
     const { rerender, queryAllByText } = render(
@@ -117,7 +117,7 @@ describe('Resource Type Template Page', () => {
     expect(startingNumCards).toBeGreaterThan(endingNumCards);
   });
 
-  test.skip('when searching, if there are zero results the alert box should show', () => {
+  test('when searching, if there are zero results the alert box should show', () => {
     queryString.parse.mockReturnValue({ q: 'foo' });
     useSearch.mockReturnValue([]);
     const { queryByText } = render(
@@ -130,7 +130,7 @@ describe('Resource Type Template Page', () => {
     expect(Alert).toBeInTheDocument();
   });
 
-  test.skip('when there are filters, the resource count should reduce', () => {
+  test('when there are filters, the resource count should reduce', () => {
     const firstFilterKey = DEFAULT_FILTERS[0].key;
     // mock out query string returning a 'filter'
     queryString.parse.mockReturnValue({});
@@ -159,7 +159,7 @@ describe('Resource Type Template Page', () => {
     expect(startingNumCards).toBeGreaterThan(endingNumCards);
   });
 
-  test.skip('when given the set of resource (by type) where 0 resources are filterable by a given filter, it should be disabled ', () => {
+  test('when given the set of resource (by type) and a given filter is not applicable to the resources (not filterable), it should be disabled ', () => {
     queryString.parse.mockReturnValue({});
     // modify the siphon nodes so that none of them reference the first filter, we should expect then that that filter
     // should be disabled, but the remaining filters should be enabled
@@ -235,8 +235,8 @@ describe('Resource Type Template Page', () => {
     const SecondCheckbox = queryByTestId(`${FILTER_TEST_IDS.checkbox}-${secondFilter.key}`);
     const ThirdCheckbox = queryByTestId(`${FILTER_TEST_IDS.checkbox}-${thirdFilter.key}`);
 
-    expect(FirstCheckBox).not.toHaveAttribute('disabled');
-    expect(SecondCheckbox).not.toHaveAttribute('disabled');
-    expect(ThirdCheckbox).not.toHaveAttribute('disabled');
+    expect(FirstCheckBox).toHaveAttribute('disabled');
+    expect(SecondCheckbox).toHaveAttribute('disabled');
+    expect(ThirdCheckbox).toHaveAttribute('disabled');
   });
 });

@@ -18,7 +18,6 @@ exports[`FilterGroup Component matches snapshot and when the search is empty (?f
       aria-label="Filter resources by this value"
       class="custom-control-input"
       data-testid="filter-group-checkbox-designer"
-      disabled=""
       id="Filter Group0"
       type="checkbox"
     />
@@ -36,7 +35,6 @@ exports[`FilterGroup Component matches snapshot and when the search is empty (?f
       aria-label="Filter resources by this value"
       class="custom-control-input"
       data-testid="filter-group-checkbox-developer"
-      disabled=""
       id="Filter Group1"
       type="checkbox"
     />
@@ -54,7 +52,6 @@ exports[`FilterGroup Component matches snapshot and when the search is empty (?f
       aria-label="Filter resources by this value"
       class="custom-control-input"
       data-testid="filter-group-checkbox-product-owner"
-      disabled=""
       id="Filter Group2"
       type="checkbox"
     />
