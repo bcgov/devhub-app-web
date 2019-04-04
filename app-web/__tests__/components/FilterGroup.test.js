@@ -19,6 +19,7 @@ describe('FilterGroup Component', () => {
   };
 
   const firstFilterKey = DEFAULT_FILTERS[0].key;
+  const secondFilterKey = DEFAULT_FILTERS[1].key;
 
   it('matches snapshot and when the search is empty (?f= null), clicking on a checkbox calls navigate with /foo/?f=[key]', () => {
     const { container, getByTestId } = render(<FilterGroup {...props} />);
@@ -36,7 +37,7 @@ describe('FilterGroup Component', () => {
     );
   });
 
-  it('remove the filter key from the search menu if it already exists', () => {
+  it('removes the filter key from the search string if it already exists and adds a search key in the pattern f=[key1]&f=[key2] if the key does not already exist', () => {
     navigate.mockReset();
     const { getByTestId } = render(
       <FilterGroup
@@ -55,5 +56,15 @@ describe('FilterGroup Component', () => {
     fireEvent.click(Checkbox);
 
     expect(navigate).toHaveBeenCalledWith(`${props.location.pathname}`);
+
+    const SecondCheckbox = getByTestId(`${TEST_IDS.checkbox}-${secondFilterKey}`);
+
+    fireEvent.click(SecondCheckbox);
+
+    expect(navigate).toHaveBeenCalledWith(
+      `${
+        props.location.pathname
+      }?${FILTER_QUERY_PARAM}=${firstFilterKey}&${FILTER_QUERY_PARAM}=${secondFilterKey}`,
+    );
   });
 });

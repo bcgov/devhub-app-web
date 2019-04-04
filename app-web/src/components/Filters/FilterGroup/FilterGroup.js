@@ -36,11 +36,14 @@ export const handleNavigatingByFilter = (location, currentFilters, filter, actio
   const queryParam = queryString.parse(location.search);
 
   if (filtersForURL.length > 0) {
-    queryParam[FILTER_QUERY_PARAM] = filtersForURL.join();
+    queryParam[FILTER_QUERY_PARAM] = filtersForURL;
   } else {
     // if there are no filters for the url delete the property
     delete queryParam[FILTER_QUERY_PARAM];
   }
+  // stringify takes the queryParam object and serializes it into a search string
+  // any props that are of type array become duplicated
+  // { f: [1, 2, 3]} => ?f=1&f=2&f=3
   const query = isEmpty(queryParam) ? '' : `?${queryString.stringify(queryParam)}`;
 
   navigate(`${location.pathname}${query}`);
