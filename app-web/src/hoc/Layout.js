@@ -22,7 +22,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Layout = ({ children }) => {
+export const Layout = ({ children }) => {
   const [menuToggled, setMenuToggled] = useState(false);
 
   return (
@@ -40,10 +40,6 @@ const Layout = ({ children }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-};
-
-Layout.defaultProps = {
-  showHamburger: false,
 };
 
 export default Layout;

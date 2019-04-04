@@ -3,6 +3,7 @@
 exports[`Primary Filter Component it matches snapshot 1`] = `
 <nav
   className="Navbar"
+  data-testid="navbar-regular"
 >
   <ul
     className="largeOnly"
