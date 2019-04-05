@@ -36,13 +36,9 @@ export const EventsPage = ({ data: { allEventbriteEvents } }) => {
   return (
     <Layout>
       <Main>
-        <Title
-          title="Events"
-          subtitle="Check out all the neat things happening within the digital Gov community."
-        />
+        <Title title="Current Events" />
         {currentEvents.length > 0 ? (
           <Aux>
-            <h2>Currrent Events</h2>
             <CardContainer>
               {currentEvents.map(e => (
                 <Event
