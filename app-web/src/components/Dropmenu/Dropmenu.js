@@ -18,17 +18,11 @@ Created by Patrick Simonian
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Flag } from 'flag';
-import FLAGS from '../../constants/featureflags';
 import Navbar from '../Navbar/Navbar';
 
 export const Dropmenu = ({ menuToggled }) => {
   if (menuToggled) {
-    return (
-      <Flag name={`features.${FLAGS.SOURCE_FILTERING}`}>
-        <Navbar mobile />;
-      </Flag>
-    );
+    return <Navbar mobile />;
   }
 
   return null;

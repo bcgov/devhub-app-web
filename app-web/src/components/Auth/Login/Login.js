@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+
 import Button from '../../UI/Button/Button';
 import { LOGOUT_BTN_ID, LOGIN_BTN_ID } from '../../../constants/ui';
 import { create_iam } from '../../../auth';
@@ -43,11 +43,4 @@ Login.defaultProps = {
   isAuthenticated: false,
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
-
-export default connect(
-  mapStateToProps,
-  null,
-)(Login);
+export default Login;

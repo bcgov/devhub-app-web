@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import ToolsMenu from '../../src/components/ToolsMenu/ToolsMenu';
-import { DEFAULT_FILTER_GROUPS } from '../../__fixtures__/redux-fixtures.js';
+import { DEFAULT_FILTER_GROUPS } from '../../src/constants/filterGroups';
 import { navigate } from 'gatsby';
 
 describe('Tools Menu', () => {

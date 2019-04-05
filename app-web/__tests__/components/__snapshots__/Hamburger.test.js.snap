@@ -5,6 +5,7 @@ exports[`Hamburger Component it matches snapshot 1`] = `
   aria-label="Select to filter cards by the resource type"
   border={false}
   className="foo"
+  data-testid="hamburger-icon-button"
   fixedWidth={false}
   flip={null}
   icon={

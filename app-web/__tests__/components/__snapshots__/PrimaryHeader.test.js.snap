@@ -9,12 +9,6 @@ exports[`Primary Header Component it matches snapshot 1`] = `
   />
   <div
     className="Other"
-  >
-    <Flag
-      name="features.login"
-    >
-      <Connect(Login) />
-    </Flag>
-  </div>
+  />
 </header>
 `;

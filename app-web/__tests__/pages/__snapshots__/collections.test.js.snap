@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Index Container it matches snapshot 1`] = `
-<Connect(Layout)>
+<Layout>
   <Main>
     <Title
       subtitle="Explore resources that have been specially curated to enhance context, detail and accessibility."
@@ -96,5 +96,5 @@ exports[`Index Container it matches snapshot 1`] = `
       }
     />
   </Main>
-</Connect(Layout)>
+</Layout>
 `;

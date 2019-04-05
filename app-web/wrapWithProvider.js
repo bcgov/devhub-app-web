@@ -17,20 +17,7 @@ Created by Patrick Simonian
 */
 
 import React from 'react';
-import { Provider } from 'react-redux';
 import { ThemeProvider } from 'emotion-theming';
-import { ConnectedFlagsProvider } from 'flag';
-import { PersistGate } from 'redux-persist/integration/react';
-import createStore from './src/store/createStore';
 import theme from './theme';
 
-const { store, persistor } = createStore();
-export default ({ element }) => (
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <ConnectedFlagsProvider>
-        <ThemeProvider theme={theme}>{element}</ThemeProvider>
-      </ConnectedFlagsProvider>
-    </PersistGate>
-  </Provider>
-);
+export default ({ element }) => <ThemeProvider theme={theme}>{element}</ThemeProvider>;

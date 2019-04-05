@@ -22,6 +22,11 @@ import PropTypes from 'prop-types';
 import styles from './Navbar.module.css';
 import { MAIN_NAV_ROUTES } from '../../constants/routes';
 
+export const TEST_IDS = {
+  mobile: 'navbar-mobile',
+  regular: 'navbar-regular',
+};
+
 export const Navbar = ({ mobile }) => {
   const links = Object.keys(MAIN_NAV_ROUTES).map(resourceType => {
     return (
@@ -38,7 +43,7 @@ export const Navbar = ({ mobile }) => {
   });
 
   return (
-    <nav className={styles.Navbar}>
+    <nav className={styles.Navbar} data-testid={mobile ? TEST_IDS.mobile : TEST_IDS.regular}>
       <ul className={mobile ? styles.mobileOnly : styles.largeOnly}>{links}</ul>
     </nav>
   );

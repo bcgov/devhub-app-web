@@ -65,27 +65,6 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
-    {
-      resolve: 'gatsby-source-github-api',
-      options: {
-        // token required by the Github API
-        token: process.env.GITHUB_TOKEN, // required
-        variables: {},
-        graphQLQuery: `
-        query {
-          organization(login:"BCDevOps") {
-            repository(name: "pathfinder") {
-              name,
-              resources: object(expression: "master:resources.yml") {
-                ...on Blob {
-                  text
-                }
-              }
-            }
-          }
-        }`,
-      },
-    },
     'gatsby-transformer-yaml',
     {
       resolve: 'gatsby-source-github-all',
@@ -141,49 +120,6 @@ module.exports = {
             content: node => node.childMarkdownRemark && node.childMarkdownRemark.rawMarkdownBody,
             description: node => node.unfurl.description,
             collectionName: node => node.collection.name,
-          },
-        },
-      },
-    },
-    // this plugin creates a front end search index found at window.__LUNR__
-    // please see npm docs for its usage, it is still up in the air how to implement
-    // the search against the rest of the gatsby app. As of now, data is coming from two sources
-    // the gatsby graphql source on build time, and the LUNR index on run time.
-    {
-      resolve: `gatsby-plugin-lunr`,
-      options: {
-        languages: [
-          {
-            name: 'en',
-          },
-        ],
-        // Fields to index. If store === true value will be stored in index file.
-        // Attributes for custom indexing logic. See https://lunrjs.com/docs/lunr.Builder.html for details
-        fields: [
-          { name: 'description', attributes: { boost: 20 } },
-          { name: 'content' },
-          { name: 'title', store: true, attributes: { boost: 20 } },
-          { name: 'author' },
-          { name: 'collectionName' },
-          { name: 'url' },
-          { name: 'source' },
-          { name: 'id', store: true },
-          { name: 'resourceType', store: true },
-        ],
-        // How to resolve each field's value for a supported node type
-        resolvers: {
-          // For any node of type MarkdownRemark, list how to resolve the fields' values
-          DevhubSiphon: {
-            title: node => node.unfurl.title,
-            content: node => node.childMarkdownRemark && node.childMarkdownRemark.rawMarkdownBody,
-            url: node => node.resource.path,
-            author: node => node.unfurl.author,
-            description: node => node.unfurl.description,
-            source: node => node.source.displayName,
-            id: node => node.id,
-            collectionName: node => node.collection.name,
-            resourceType: node => node.resource.type,
-            personas: node => node.attributes.personas.join(' '),
           },
         },
       },
