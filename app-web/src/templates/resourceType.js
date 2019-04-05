@@ -115,7 +115,7 @@ export const ResourceType = ({
   }
 
   return (
-    <Layout showHamburger toggleMenu={() => setMenuToggled(!menuToggled)} showMenu={menuToggled}>
+    <Layout>
       <Main role="main">
         <Title
           title={RESOURCE_TYPE_PAGES[pageContext.resourceType].header.title.defaultMessage}

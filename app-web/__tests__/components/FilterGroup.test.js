@@ -37,6 +37,21 @@ describe('FilterGroup Component', () => {
     );
   });
 
+  it('it does not call navigate unless a checkbox has been clicked', () => {
+    navigate.mockReset();
+    render(
+      <FilterGroup
+        {...props}
+        location={{
+          ...props.location,
+          search: `?${FILTER_QUERY_PARAM}=${firstFilterKey}`,
+        }}
+      />,
+    );
+
+    expect(navigate).not.toHaveBeenCalled();
+  });
+
   it('removes the filter key from the search string if it already exists and adds a search key in the pattern f=[key1]&f=[key2] if the key does not already exist', () => {
     navigate.mockReset();
     const { getByTestId } = render(
@@ -49,18 +64,19 @@ describe('FilterGroup Component', () => {
       />,
     );
 
+    // get first checkbox and click it
     const Checkbox = getByTestId(`${TEST_IDS.checkbox}-${firstFilterKey}`);
 
-    expect(navigate).not.toHaveBeenCalled();
-
     fireEvent.click(Checkbox);
-
+    // navigate should be called with that checkboxes 'key' not included
     expect(navigate).toHaveBeenCalledWith(`${props.location.pathname}`);
 
+    // there is no prop change so the FilterGroup still has the search prop for ?f=firstFilter
+    // we get the second checkbox and click that
     const SecondCheckbox = getByTestId(`${TEST_IDS.checkbox}-${secondFilterKey}`);
 
     fireEvent.click(SecondCheckbox);
-
+    // should expect both filters to exist as filter params in the url
     expect(navigate).toHaveBeenCalledWith(
       `${
         props.location.pathname

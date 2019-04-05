@@ -99,7 +99,7 @@ describe('Resource Type Template Page', () => {
     useSearch.mockReturnValue([]);
     const { rerender, queryAllByText } = render(
       <ThemeProvider theme={theme}>
-        <ResourceType {...props} location={{ search: '?q=foo' }} />
+        <ResourceType {...props} />
       </ThemeProvider>,
     );
     const startingNumCards = queryAllByText('Documentation').length;
@@ -123,7 +123,7 @@ describe('Resource Type Template Page', () => {
     useSearch.mockReturnValue([]);
     const { queryByText } = render(
       <ThemeProvider theme={theme}>
-        <ResourceType {...props} location={{ search: '?q=foo' }} />
+        <ResourceType {...props} />
       </ThemeProvider>,
     );
     const Alert = queryByText(SEARCH_MESSAGES.results.empty.defaultMessage);
@@ -148,10 +148,7 @@ describe('Resource Type Template Page', () => {
 
     rerender(
       <ThemeProvider theme={theme}>
-        <ResourceType
-          {...props}
-          location={{ search: `?${FILTER_QUERY_PARAM}}=${firstFilterKey}` }}
-        />
+        <ResourceType {...props} />
       </ThemeProvider>,
     );
 
