@@ -21,6 +21,7 @@ import {
   selectResourcesGroupedByType,
 } from '../utils/selectors';
 import { isQueryEmpty } from '../utils/search';
+import { SEARCH_QUERY_PARAM } from '../constants/search';
 
 const Main = styled.main`
   margin-bottom: 5px;
@@ -116,11 +117,15 @@ export const Index = ({
   const queryParam = queryString.parse(location.search);
   let query = [];
   let results = [];
-  let windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, 'q');
+  let windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, SEARCH_QUERY_PARAM);
+
   if (windowHasQuery) {
-    query = decodeURIComponent(queryParam.q);
-    results = useSearch(query, index);
+    query = decodeURIComponent(queryParam[SEARCH_QUERY_PARAM]);
+  } else {
+    query = '';
   }
+
+  results = useSearch(query, index);
   // this is defined by ?q='' or ?q=''&q=''..etc
   // if query is empty we prevent the search results empty from being rendered
   // in addition the collections container is prevented from not rendering because

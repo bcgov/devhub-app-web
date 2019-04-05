@@ -52,7 +52,7 @@ export const DESIGN_SYSTEM_NODE_2 = {
     position: '000.000.001',
   },
   attributes: {
-    personas: ['Designer'],
+    personas: ['Developer', 'Designer'],
   },
   source: {
     displayName: 'Design System',
@@ -196,7 +196,7 @@ export const DEVHUB_NODE_2 = {
     position: '001.000.001',
   },
   attributes: {
-    personas: ['Developer'],
+    personas: ['Designer', 'Developer'],
   },
   source: {
     displayName: 'Design System',

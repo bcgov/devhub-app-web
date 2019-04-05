@@ -30,6 +30,8 @@ import {
 } from '../../__fixtures__/siphon-fixtures';
 import * as selectors from '../../src/store/selectors';
 import { RESOURCE_TYPES } from '../../src/constants/ui';
+
+// this suite is slated for removal as we are removing redux in the app and hence redux based selectors
 describe('Reselect Selectors', () => {
   const state = {
     ...STATE,
@@ -67,31 +69,31 @@ describe('Reselect Selectors', () => {
     },
   };
 
-  it('returns the siphon state', () => {
+  it.skip('returns the siphon state', () => {
     expect(selectors.resourcesSelector(state)).toEqual(state.resources);
   });
 
-  it('returns a list of resources', () => {
+  it.skip('returns a list of resources', () => {
     expect(selectors.selectResources(state)).toEqual(SIPHON_NODES);
   });
 
-  it('returns a list of filters', () => {
+  it.skip('returns a list of filters', () => {
     expect(selectors.selectFilters(state)).toEqual(state.resources.filters);
   });
 
-  it('returns active filters', () => {
+  it.skip('returns active filters', () => {
     const activeFilters = state.resources.filters.filter(f => f.active);
     expect(selectors.selectActiveFilters(state)).toEqual(activeFilters);
   });
 
-  it('returns resources loaded', () => {
+  it.skip('returns resources loaded', () => {
     expect(selectors.selectResourcesLoaded(state)).toEqual(state.resources.resourcesLoaded);
   });
 
-  // it('returns collections sorted', () => {
+  // it.skip('returns collections sorted', () => {
   //   expect(selectors.selectSortedCollections(state)).toEqual(SORTED_COLLECTIONS);
   // });
-  it('returns all resources when there is no search query ', () => {
+  it.skip('returns all resources when there is no search query ', () => {
     // const resources = [state.resources.availableResources.byId[1]];
     const resources = state.resources.resources.allIds.map(
       id => state.resources.resources.byId[id],
@@ -99,7 +101,7 @@ describe('Reselect Selectors', () => {
     expect(selectors.selectAvailableResources(state)).toEqual(resources);
   });
 
-  it('returns all available resources when there is a search query ', () => {
+  it.skip('returns all available resources when there is a search query ', () => {
     // const resources = [state.resources.availableResources.byId[1]];
     const id = state.resources.availableResources.allIds[0];
     const stateWithSearch = {
@@ -116,11 +118,11 @@ describe('Reselect Selectors', () => {
     expect(selectors.selectAvailableResources(stateWithSearch)).toEqual(resources);
   });
 
-  // it('returns all available resources when there are no active filters', () => {
+  // it.skip('returns all available resources when there are no active filters', () => {
   //   expect(selectors.selectAvailableResources(state)).toEqual();
   // });
 
-  it('returns filtered available resources when there are active filters', () => {
+  it.skip('returns filtered available resources when there are active filters', () => {
     // set up filters so that designer filter is active
     const stateWithActiveFilter = {
       ...state,
@@ -136,7 +138,7 @@ describe('Reselect Selectors', () => {
     );
   });
 
-  it('groups available resources by their resource type', () => {
+  it.skip('groups available resources by their resource type', () => {
     const defaultGroupings = Object.keys(RESOURCE_TYPES).reduce((obj, type) => {
       obj[RESOURCE_TYPES[type]] = [];
       return obj;
@@ -149,17 +151,17 @@ describe('Reselect Selectors', () => {
     });
   });
 
-  it('returns the query', () => {
+  it.skip('returns the query', () => {
     expect(selectors.selectQuery(state)).toEqual(state.resources.query);
   });
 
-  it('returns the search results length', () => {
+  it.skip('returns the search results length', () => {
     expect(selectors.selectSearchResultsLength(state)).toEqual(
       Object.keys(state.resources.searchResults).length,
     );
   });
 
-  it('returns the search results length for a set resource type', () => {
+  it.skip('returns the search results length for a set resource type', () => {
     const stateWithResourceType = {
       ...state,
       resources: { ...state.resources, resourceType: RESOURCE_TYPES.DOCUMENTATION },
@@ -169,19 +171,19 @@ describe('Reselect Selectors', () => {
     );
   });
 
-  it('returns the total resource', () => {
+  it.skip('returns the total resource', () => {
     expect(selectors.selectTotalResources(state)).toEqual(SIPHON_NODES.length);
   });
 
-  it('returns siphons loading indicator', () => {
+  it.skip('returns siphons loading indicator', () => {
     expect(selectors.selectResourcesReducerLoading(state)).toEqual(state.resources.loading);
   });
 
-  it('returns collections', () => {
+  it.skip('returns collections', () => {
     expect(selectors.selectCollections(state)).toEqual(COLLECTIONS);
   });
 
-  it('returns collections with resources', () => {
+  it.skip('returns collections with resources', () => {
     const collectionsWithResources = selectors.selectCollectionsWithResources(state);
     const collection1Nodes = SIPHON_NODES.filter(
       node => node.parent.id === collectionsWithResources[0].id,
@@ -190,7 +192,7 @@ describe('Reselect Selectors', () => {
     expect(collectionsWithResources[0].resources).toEqual(collection1Nodes);
   });
 
-  it('returns collections with resources grouped by type', () => {
+  it.skip('returns collections with resources grouped by type', () => {
     const collectionWithGroupedResources = selectors.selectCollectionsWithResourcesGroupedByType(
       state,
     );

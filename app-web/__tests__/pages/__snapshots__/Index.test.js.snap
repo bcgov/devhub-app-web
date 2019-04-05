@@ -121,6 +121,7 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
         Search
       </button>
     </div>
+    
   </div>
 </div>
 `;
@@ -246,6 +247,7 @@ exports[`Home Page when there is an empty search the alert box does not show and
         Search
       </button>
     </div>
+    
   </div>
 </div>
 `;

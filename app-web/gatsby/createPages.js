@@ -181,6 +181,7 @@ module.exports = async ({ graphql, actions }) => {
             },
           });
         } catch (e) {
+          // eslint-disable-next-line no-console
           console.error(e); // console error here so message is displayed in a nicer way
           throw new Error('Error Quiting Build'); // throw to kill gatsby build
         }

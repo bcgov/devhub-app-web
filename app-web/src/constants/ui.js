@@ -44,6 +44,7 @@ export const SEARCH = {
 };
 
 // supported namespace for dynamically generating avatar images or icons
+// this relates to the Avatar UI Component
 export const AVATAR_NAMESPACES = {
   fontawesome: 'fontawesome',
   github: 'github',
