@@ -5,6 +5,7 @@ import queryString from 'query-string';
 
 import { RESOURCE_TYPES } from '../constants/ui';
 import DEFAULT_FILTERS, { FILTER_QUERY_PARAM } from '../constants/filterGroups';
+import { SEARCH_QUERY_PARAM } from '../constants/search';
 
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { RESOURCE_TYPE_PAGES } from '../messages';
@@ -51,11 +52,11 @@ export const ResourceType = ({
   let query = []; // the search query ie ?q=foo
   let results = []; // the search results if any
   let filters = []; // the filter queury ie ?f=bar&f=foo
-  let windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, 'q');
+  let windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, SEARCH_QUERY_PARAM);
   let windowHasFilters = Object.prototype.hasOwnProperty.call(queryParam, FILTER_QUERY_PARAM);
   // if window has ?q= value
   if (windowHasQuery) {
-    query = decodeURIComponent(queryParam.q);
+    query = decodeURIComponent(queryParam[SEARCH_QUERY_PARAM]);
   } else {
     query = '';
   }
