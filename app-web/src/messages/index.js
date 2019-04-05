@@ -163,5 +163,9 @@ export const RESOURCES = {
       id: 'RESOURCE_TYPES.COLLECTIONS',
       defaultMessage: 'Collection',
     },
+    Events: {
+      id: 'RESOURCE_TYPES.EVENTS',
+      defaultMessage: 'Event',
+    },
   },
 };

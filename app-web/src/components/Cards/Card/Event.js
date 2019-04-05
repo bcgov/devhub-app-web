@@ -6,16 +6,18 @@ import {
   CardBody,
   CardWrapper,
   DecorativeBar,
-  CardHeader,
   CardTitle,
   CardDescription,
   CardImageWrapper,
 } from './index';
 
+import CardHeader from './CardHeader';
+
 const DescriptionContainer = styled.div`
   display: flex;
 `;
-const Event = ({ title, description, where, organizer, image, date, link }) => (
+
+export const Event = ({ title, description, where, organizer, image, date, link }) => (
   <CardWrapper>
     <DecorativeBar type="Events" />
     <CardBody>
@@ -42,3 +44,4 @@ Event.propTypes = {
   date: PropTypes.string,
   link: PropTypes.string,
 };
+export default Event;
