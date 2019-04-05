@@ -44,7 +44,7 @@ export default {
   },
   padding: {
     main: {
-      mobile: '10px 12px 0 25px;',
+      mobile: '10px 12px 0 12px;',
       desktop: '10px 65px',
     },
   },
