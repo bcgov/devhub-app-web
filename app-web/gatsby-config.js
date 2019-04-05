@@ -152,5 +152,12 @@ module.exports = {
         pathToConfigModule: 'typography',
       },
     },
+    // {
+    //   resolve: 'gatsby-source-eventbrite',
+    //   options: {
+    //     organizationId: 928453434,
+    //     accessToken: process.env.EVENT_BRITE_API_KEY,
+    //   },
+    // },
   ],
 };

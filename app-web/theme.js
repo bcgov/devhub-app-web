@@ -39,6 +39,7 @@ export default {
     [RESOURCE_TYPES.SELF_SERVICE_TOOLS]: '#F3BA45',
     Collections: '#444',
     [RESOURCE_TYPES.REPOSITORIES]: '#6e5494',
+    Events: '#f44b42',
     link: '#1A5A96',
   },
   padding: {
