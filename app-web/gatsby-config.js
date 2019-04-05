@@ -12,7 +12,6 @@ module.exports = {
     title: 'DevHub',
   },
   pathPrefix: '/images',
-  mapping: {},
   plugins: [
     {
       resolve: `gatsby-plugin-manifest`,
@@ -152,12 +151,12 @@ module.exports = {
         pathToConfigModule: 'typography',
       },
     },
-    // {
-    //   resolve: 'gatsby-source-eventbrite',
-    //   options: {
-    //     organizationId: 928453434,
-    //     accessToken: process.env.EVENT_BRITE_API_KEY,
-    //   },
-    // },
+    {
+      resolve: 'gatsby-source-eventbrite',
+      options: {
+        organizationId: 228490647317,
+        accessToken: process.env.EVENT_BRITE_API_KEY,
+      },
+    },
   ],
 };
