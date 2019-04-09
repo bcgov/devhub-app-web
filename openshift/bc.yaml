@@ -77,11 +77,11 @@ objects:
               secretKeyRef:
                 name: devhub-gh-token
                 key: GITHUB_TOKEN
-          - name: EVENT_BRITE_API_TOKEN
+          - name: EVENT_BRITE_API_KEY
             valueFrom:
               secretKeyRef:
                 name: devhub-eventbrite-token
-                key: EVENT_BRITE_API_TOKEN
+                key: EVENT_BRITE_API_KEY
         from:
           kind: ImageStreamTag
           name: nodejs:${NODE_JS_VERSION}
