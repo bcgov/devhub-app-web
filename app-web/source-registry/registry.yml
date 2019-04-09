@@ -16,7 +16,10 @@ sources:
         - components/footer/README.md
         - components/navbar/README.md
         - components/primary_button/README.md
+        - components/secondary_button/README.md
+        - components/disabled_button/README.md
         - components/link/README.md
+        - components/callout/callout.md
         - components/radio/README.md
         - components/checkbox/README.md
         - components/dropdown/README.md
