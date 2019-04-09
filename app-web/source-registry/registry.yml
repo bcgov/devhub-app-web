@@ -22,6 +22,7 @@ sources:
         - components/callout/callout.md
         - components/radio/README.md
         - components/checkbox/README.md
+        - components/dropdown/README.md
         - components/text_input/README.md
         - components/textarea/README.md
         - components/about/component_workflow.md
