@@ -80,7 +80,10 @@ export const EventsPage = ({ data: { allEventbriteEvents } }) => {
 
 export const EventData = graphql`
   query EventsQuery {
-    allEventbriteEvents(sort: { fields: [start___local], order: DESC }) {
+    allEventbriteEvents(
+      sort: { fields: [start___local], order: DESC }
+      filter: { listed: { eq: true } }
+    ) {
       edges {
         node {
           id
