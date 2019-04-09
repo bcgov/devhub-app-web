@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import Layout from '../hoc/Layout';
 import Aux from '../hoc/auxillary';
 import Title from '../components/Page/Title';
-import PageContainer from '../components/Page/PageContainer';
 import Main from '../components/Page/Main';
 import NoEvents from '../components/UI/NoEvents';
 import { Event } from '../components/Event';
@@ -36,7 +35,7 @@ export const EventsPage = ({ data: { allEventbriteEvents } }) => {
   return (
     <Layout>
       <Main>
-        <Title title="Current Events" />
+        <Title title="Current Events" subtitle="Click on a card to view it in Eventbrite" />
         {currentEvents.length > 0 ? (
           <Aux>
             <CardContainer>
@@ -82,7 +81,7 @@ export const EventData = graphql`
   query EventsQuery {
     allEventbriteEvents(
       sort: { fields: [start___local], order: DESC }
-      filter: { listed: { eq: true } }
+      filter: { shareable: { eq: true } }
     ) {
       edges {
         node {
@@ -90,6 +89,7 @@ export const EventData = graphql`
           name {
             text
           }
+          url
           start {
             day: local(formatString: "DD")
             month: local(formatString: "MMM")

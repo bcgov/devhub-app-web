@@ -31,6 +31,10 @@ export const MAIN_NAV_ROUTES = {
     to: '/documentation',
     text: 'Documentation',
   },
+  EVENTS: {
+    to: '/events',
+    text: 'Events',
+  },
 };
 
 export const FOOTER_NAVIGATION = [

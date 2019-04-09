@@ -36,8 +36,11 @@ const CardWrapper = styled.article`
 const Header = styled.div`
   flex: 0 0 55%;
   background-image: ${({ image }) => `url(${image})`};
+  border-bottom: 1px solid #ccc;
   background-size: cover;
   border-bottom: 1px solid #ccc;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 const Body = styled.div`

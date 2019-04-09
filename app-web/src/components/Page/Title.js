@@ -22,6 +22,9 @@ import styled from '@emotion/styled';
 const TitleWrapper = styled.div`
   margin-bottom: 10px;
   color: #494949;
+  h1 {
+    margin-bottom: 5px;
+  }
 `;
 
 const Subtitle = styled.h4`
