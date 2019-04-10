@@ -2,9 +2,9 @@
 # this allows for hot reloading of the app
 version: '3'
 services:
-  web:
+  previewer:
     build: '.'
-    env_file: './app-web/.env.production'
+    image: bcgovimages/devhub-previewer
     volumes:
       - './app-web/:/site'
       # a hack to ignore node_modules so that local version, 
@@ -12,3 +12,4 @@ services:
       - '/site/node_modules/'
     ports:
       - '8000:8000'
+    container_name: devhub-previewer
