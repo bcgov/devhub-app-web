@@ -21,3 +21,4 @@ Created by Patrick Simonian
 exports.onCreateWebpackConfig = require('./gatsby/modifyWebpackConfig');
 exports.onCreatePage = require('./gatsby/onCreatePage');
 exports.createPages = require('./gatsby/createPages');
+exports.onPreBootstrap = require('./gatsby/onPreBoostrap');
