@@ -1,0 +1,10 @@
+{
+  "name": "Developer Toy Box",
+  "sourceType": "github",
+  "sourceProperties": {
+    "url": "https://github.com/BCDevOps/openshift-components/",
+    "owner": "BCDevOps",
+    "repo": "openshift-components"
+  },
+  "resourceType": "Components"
+}

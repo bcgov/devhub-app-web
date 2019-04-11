@@ -1,0 +1,63 @@
+{
+  "name": "Code Management",
+  "template": "overview",
+  "description": "Resources related to source code control, GitHub, and open source in BC Gov.",
+  "resourceType": "Documentation",
+  "attributes": {
+    "persona": "Developer"
+  },
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov",
+          "author": "kelpisland",
+          "title": "BC Gov on GitHub",
+          "description": "BC Government's home on GitHub. Open source code developed by and for the BC Government resides here.",
+          "image": "https://github.githubassets.com/images/modules/logos_page/Octocat.png"
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/BC-Policy-Framework-For-GitHub",
+          "owner": "bcgov",
+          "repo": "BC-Policy-Framework-For-GitHub",
+          "files": [
+            "github/README.md",
+            "BC-Open-Source-Development-Employee-Guide/appropriate-use.md",
+            "github/flow.md"
+          ]
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow"
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://hackernoon.com/a-branching-and-releasing-strategy-that-fits-github-flow-be1b6c48eca2"
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/BC-Policy-Framework-For-GitHub",
+          "owner": "bcgov",
+          "repo": "BC-Policy-Framework-For-GitHub",
+          "files": [
+            "BC-Open-Source-Development-Employee-Guide/Licenses.md",
+            "BC-Open-Source-Development-Employee-Guide/Collaborating-Contributing.md",
+            "BC-Gov-Org-HowTo/SAMPLE-CODE_OF_CONDUCT.md",
+            "BC-Gov-Org-HowTo/SAMPLE-CONTRIBUTING.md",
+            "BC-Gov-Org-HowTo/SAMPLE-README.md"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -108,3 +108,6 @@ pipeline/build/
 
 # docker compose artifacts
 .config/
+
+# app registry
+app-web/registry/registry.json

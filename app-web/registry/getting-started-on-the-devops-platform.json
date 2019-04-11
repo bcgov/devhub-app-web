@@ -1,0 +1,66 @@
+{
+  "name": "Getting Started on the DevOps Platform",
+  "description": "Resources to help product team become productive as quickly and effectively as possible when using the BC Gov DevOps OpenShift platform.",
+  "resourceType": "Documentation",
+  "attributes": {
+    "personas": [
+      "Developer"
+    ]
+  },
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/devhub-resources/",
+          "owner": "bcgov",
+          "repo": "devhub-resources",
+          "files": [
+            "resources/alignment/opensource.md",
+            "resources/alignment/architecture_and_tech_stacks.md",
+            "resources/alignment/communication_community_and_support.md"
+          ]
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "title": "OpenShift for Developers eBook",
+          "description": "Get a quick hands-on introduction to OpenShift, the open source Platform as a Service (PaaS) offering from Red Hat®. With this practical guide, you’ll learn the steps necessary to build, deploy, and host a complete real-world application on OpenShift without having to slog through long, detailed explanations of the technologies involved.",
+          "url": "https://www.openshift.com/for-developers/"
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcdevops/openshift-wiki",
+          "owner": "bcdevops",
+          "repo": "openshift-wiki",
+          "files": [
+            "docs/OCP/OCPServiceDefinition.md",
+            "docs/OCP/StartingANewProject.md",
+            "docs/OCP/RequestUserAccess.md",
+            "docs/HowTo/GrantUsersAccessToProject.md"
+          ]
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.openshift.com/container-platform/3.11/dev_guide/index.html",
+          "title": "OpenShift Developer Guide",
+          "description": "This guide is intended for application developers, and provides instructions for setting up and configuring a workstation to develop and deploy applications in an OpenShift Container Platform."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "resourceType": "Self-Service Tool",
+          "title": "OpenShift Developer Console",
+          "description": "This guide is intended for application developers, and provides instructions for setting up and configuring a workstation to develop and deploy applications in an OpenShift Container Platform.",
+          "url": "https://console.pathfinder.gov.bc.ca:8443/console/projects"
+        }
+      }
+    ]
+  }
+}

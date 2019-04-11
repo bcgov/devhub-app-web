@@ -1,0 +1,44 @@
+{
+  "name": "Design System",
+  "sourceType": "github",
+  "sourceProperties": {
+    "url": "https://github.com/bcgov/design-system/",
+    "owner": "bcgov",
+    "repo": "design-system",
+    "files": [
+      "components/about/about.md",
+      "components/about/accessibility.md",
+      "styles/colours/colourpalette.md",
+      "styles/typography/typography.md",
+      "styles/Icons/icons.md",
+      "components/beta/README.md",
+      "components/header/README.md",
+      "components/footer/README.md",
+      "components/navbar/README.md",
+      "components/primary_button/README.md",
+      "components/secondary_button/README.md",
+      "components/disabled_button/README.md",
+      "components/link/README.md",
+      "components/callout/callout.md",
+      "components/radio/README.md",
+      "components/checkbox/README.md",
+      "components/dropdown/README.md",
+      "components/text_input/README.md",
+      "components/textarea/README.md",
+      "components/about/component_workflow.md",
+      "components/about/propose_a_component.md",
+      "components/about/prototyping_tools.md"
+    ]
+  },
+  "attributes": {
+    "labels": [
+      "Components",
+      "Repository"
+    ],
+    "personas": [
+      "Designer",
+      "Developer"
+    ]
+  },
+  "resourceType": "Components"
+}

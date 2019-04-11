@@ -1,0 +1,28 @@
+{
+  "name": "Data Privacy",
+  "description": "Resources to help teams ensure their applications handle personal information in a manner compliant with BC Gov policies and regulations.",
+  "resourceType": "Documentation",
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/devhub-resources/",
+          "owner": "bcgov",
+          "repo": "devhub-resources",
+          "files": [
+            "resources/privacy/privacy_one_pager.md"
+          ]
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "title": "FOIPPA Quick Reference",
+          "description": "A quick reference for important aspects of the Freedom of Information and Protection of Privacy Act.",
+          "url": "https://raw.githubusercontent.com/bcgov/devhub-resources/master/resources/privacy/foippa_quick_reference.pdf"
+        }
+      }
+    ]
+  }
+}
