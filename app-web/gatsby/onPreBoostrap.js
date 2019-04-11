@@ -15,7 +15,14 @@ const readdir = promisify(fs.readdir);
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 
-const joinRegistryFiles = async ({ contextDir = 'source-regsitry' }) => {
+/**
+ * collects all json registry files from a context dir and joins them together into a file
+ * @param {Object} options
+ * @param {String} options.contextDir the path to the directory of registry files relative to app-web
+ */
+const joinRegistryFiles = async options => {
+  const { contextDir } = options;
+
   const directoryPath = `../${contextDir}`;
   const files = await readdir(path.resolve(__dirname, directoryPath));
   const filesContent = await Promise.all(
@@ -48,5 +55,7 @@ const joinRegistryFiles = async ({ contextDir = 'source-regsitry' }) => {
 };
 
 module.exports = async () => {
-  return await joinRegistryFiles({ contextDir: 'registry' });
+  // grab build time configuration for registry process
+  const { registry } = JSON.parse(await readFile(path.join(__dirname, `../devhub.config.json`)));
+  return await joinRegistryFiles(registry);
 };
