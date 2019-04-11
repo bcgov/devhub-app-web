@@ -99,7 +99,7 @@ const sourcesAreValid = sources => {
  * @returns {Boolean} returns true if valid or otherwise throws
  */
 const checkRegistry = registry => {
-  if (!registry.sources || !sourcesAreValid(registry.sources)) {
+  if (!registry || !sourcesAreValid(registry)) {
     throw new Error(
       'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters',
     );
@@ -115,7 +115,7 @@ const checkRegistry = registry => {
 const getRegistry = (getNodes, sourceRegistryType) => {
   const registryFound = getNodes().filter(node => node.internal.type === sourceRegistryType);
   if (registryFound.length > 0) {
-    return registryFound[0];
+    return registryFound;
   }
 
   throw new Error('Registry not found');
@@ -131,6 +131,7 @@ const filterIgnoredResources = sources =>
     if (!Object.prototype.hasOwnProperty.call(s.metadata, 'ignore') || !s.metadata.ignore) {
       return true;
     }
+    // eslint-disable-next-line no-console
     console.log(siphonMessenger.resourceIgnored(s.metadata.name));
     return false;
   });
@@ -295,6 +296,7 @@ const getContentForCollection = async (collectionSource, tokens, name = '') => {
     // github.file metadata property
     return file[0];
   } else {
+    // eslint-disable-next-line no-console
     console.log(siphonMessenger.collectionSourceFailed(error.messages, name));
     return {};
   }
@@ -361,12 +363,13 @@ const processCollection = async (
 const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens, sourceRegistryType }) => {
   // get registry from current nodes
   const registry = getRegistry(getNodes, sourceRegistryType);
+
   const { createNode, createParentChildLink } = actions;
   try {
     // check registry prior to fetching data
     checkRegistry(registry);
     // map of over registry and create a queue of collections to fetch
-    const fetchQueue = await getFetchQueue(registry.sources, tokens);
+    const fetchQueue = await getFetchQueue(registry, tokens);
     const collections = await Promise.all(
       fetchQueue.map(async collection =>
         processCollection(collection, createNodeId, createNode, createParentChildLink, tokens),
