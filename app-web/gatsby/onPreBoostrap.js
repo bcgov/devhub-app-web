@@ -34,7 +34,16 @@ const joinRegistryFiles = async ({ contextDir = 'source-regsitry' }) => {
   // write file back into registry
   await writeFile(
     path.join(__dirname, directoryPath, 'registry.json'),
-    JSON.stringify(joinedJson, null, 2),
+    JSON.stringify(
+      {
+        date: Date.now(),
+        nodeEnv: process.env.NODE_ENV,
+        totalSources: joinedJson.length,
+        sources: joinedJson,
+      },
+      null,
+      2,
+    ),
   );
 };
 
