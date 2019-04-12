@@ -40,6 +40,7 @@ import {
   WEB_SOURCE,
   PROCESSED_WEB_SOURCE,
   PROCESSED_FILE_MD,
+  SOURCE_REGISTRY_TYPE,
 } from '../__fixtures__/fixtures';
 import { validateSourceRegistry, fetchFromSource } from '../utils/fetchSource';
 import {
@@ -77,7 +78,7 @@ describe('gatsby source github all plugin', () => {
     isSourceCollection.mockReset();
     fetchFromSource.mockClear();
   });
-  const sourceRegistryType = 'SourceRegistryYaml';
+
   test('filterIgnoreResources returns a filtered set of sources', () => {
     const sources = [
       {
@@ -115,19 +116,19 @@ describe('gatsby source github all plugin', () => {
 
   test('getRegistry returns the registry', () => {
     const getNodes = jest.fn(() => GRAPHQL_NODES_WITH_REGISTRY);
-    const registry = getRegistry(getNodes, sourceRegistryType);
+    const registry = getRegistry(getNodes, SOURCE_REGISTRY_TYPE);
     expect(registry).toBeDefined();
-    expect(registry.sources.length).toBeGreaterThan(0);
+    expect(registry.length).toBeGreaterThan(0);
   });
 
   test('getRegistry throws if no registry exists', () => {
     const getNodes = jest.fn(() => GRAPHQL_NODES_WITHOUT_REGISTRY);
-    expect(() => getRegistry(getNodes, sourceRegistryType)).toThrow('Registry not found');
+    expect(() => getRegistry(getNodes, SOURCE_REGISTRY_TYPE)).toThrow('Registry not found');
   });
 
-  test('getRegistry returns with apecified registry yaml file', () => {
+  test('getRegistry returns with apecified registry json file', () => {
     const getNodes = jest.fn(() => GRAPHQL_NODES_WITH_REGISTRY);
-    const registry = getRegistry(getNodes, sourceRegistryType);
+    const registry = getRegistry(getNodes, SOURCE_REGISTRY_TYPE);
     expect(registry).toBeDefined();
   });
 
@@ -138,7 +139,7 @@ describe('gatsby source github all plugin', () => {
   });
 
   test("checkRegistry throws if sources don't exist or if sources are invalid", () => {
-    const BAD_REGISTRY = { ...REGISTRY, sources: null };
+    const BAD_REGISTRY = null;
 
     expect(() => checkRegistry(BAD_REGISTRY)).toThrow(
       'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters',
@@ -313,13 +314,12 @@ describe('gatsby source github all plugin', () => {
   test('sourcesAreValid handles collections of sources', () => {
     validateSourceRegistry.mockClear();
     validateSourceRegistry.mockReturnValue(true);
-    const sources = REGISTRY.sources.concat(REGISTRY_WITH_COLLECTION.sources);
-    // mock returning different values. since the root sources frmo the registry
-    // first source is a regular source and the second is a source collection
-    isSourceCollection.mockReturnValueOnce(false).mockReturnValueOnce(true);
+    isSourceCollection.mockReturnValueOnce(true);
 
-    sourcesAreValid(sources);
-    expect(validateSourceRegistry).toHaveBeenCalledTimes(3);
+    sourcesAreValid(REGISTRY_WITH_COLLECTION);
+    expect(validateSourceRegistry).toHaveBeenCalledTimes(
+      REGISTRY_WITH_COLLECTION[0].sourceProperties.sources.length,
+    );
   });
 
   test('maps inherited source props', () => {
@@ -347,27 +347,28 @@ describe('gatsby source github all plugin', () => {
   // get fetch queue should return a list of collections that contain a list of sources to fetch
   test('creates a fetch queue with for a source collection', async () => {
     isSourceCollection.mockReturnValue(false);
-    const result = await getFetchQueue(REGISTRY.sources);
-    expect(result.length).toBe(REGISTRY.sources.length);
+    const result = await getFetchQueue(REGISTRY);
+    expect(result.length).toBe(REGISTRY.length);
     expect(result[0].sources.length).toBe(1);
   });
 
   test('creates a fetch queue with for a curated collection', async () => {
     isSourceCollection.mockReturnValue(true);
-    const result2 = await getFetchQueue(REGISTRY_WITH_COLLECTION.sources);
-    expect(result2.length).toBe(REGISTRY_WITH_COLLECTION.sources.length);
+    const result2 = await getFetchQueue(REGISTRY_WITH_COLLECTION);
+    expect(result2.length).toBe(REGISTRY_WITH_COLLECTION.length);
+
     expect(result2[0].sources.length).toBe(
-      REGISTRY_WITH_COLLECTION.sources[0].sourceProperties.sources.length,
+      REGISTRY_WITH_COLLECTION[0].sourceProperties.sources.length,
     );
   });
 
   test('getFetchQueue passes the correct collection type', async () => {
     isSourceCollection.mockReturnValue(false);
-    const result = await getFetchQueue(REGISTRY.sources);
+    const result = await getFetchQueue(REGISTRY);
     expect(result[0].type).toBe(COLLECTION_TYPES.github);
 
     isSourceCollection.mockReturnValue(true);
-    const result2 = await getFetchQueue(REGISTRY_WITH_COLLECTION.sources);
+    const result2 = await getFetchQueue(REGISTRY_WITH_COLLECTION);
     expect(result2[0].type).toBe(COLLECTION_TYPES.CURATED);
   });
 

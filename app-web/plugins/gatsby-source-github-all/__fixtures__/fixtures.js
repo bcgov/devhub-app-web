@@ -378,78 +378,155 @@ const PROCESSED_FILE_TXT = {
   },
 };
 
-// a sample registry file that has been processed by the gatsby-source-filesystem/gatbsy-transformer-yaml plugins
-const REGISTRY = {
-  id: '/registry.yml absPath of file >>> YAML',
-  sources: [
-    {
-      name: 'Design System',
-      sourceType: 'github',
-      sourceProperties: {
-        owner: 'bcgov',
-        repo: 'design-system',
-        url: 'https://github.com/bcgov/design-system/',
-      },
-      attributes: {
-        labels: ['components'],
-      },
-    },
-  ],
-  internal: {
-    contentDigest: '520538ca86778e449b1db66100137431',
-    type: 'SourceRegistryYaml',
-    owner: 'gatsby-transformer-yaml',
+const SOURCE_REGISTRY_TYPE = 'RegistryJson';
+// sample config options passed into this source plugin from gatsby-config.js
+const CONFIG_OPTIONS = {
+  tokens: {
+    GITHUB_API_TOKEN: '123',
   },
+  sourceRegistryType: SOURCE_REGISTRY_TYPE,
 };
+// a sample registry file that has been processed by the gatsby-source-filesystem/gatbsy-transformer-yaml plugins
+const REGISTRY = [
+  {
+    name: 'Design System',
+    sourceType: 'github',
+    sourceProperties: {
+      url: 'https://github.com/bcgov/design-system/',
+      owner: 'bcgov',
+      repo: 'design-system',
+      files: [
+        'components/about/about.md',
+        'components/about/accessibility.md',
+        'styles/colours/colourpalette.md',
+        'styles/typography/typography.md',
+        'styles/Icons/icons.md',
+        'components/beta/README.md',
+        'components/header/README.md',
+        'components/footer/README.md',
+        'components/navbar/README.md',
+        'components/primary_button/README.md',
+        'components/secondary_button/README.md',
+        'components/disabled_button/README.md',
+        'components/link/README.md',
+        'components/callout/callout.md',
+        'components/radio/README.md',
+        'components/checkbox/README.md',
+        'components/dropdown/README.md',
+        'components/text_input/README.md',
+        'components/textarea/README.md',
+        'components/about/component_workflow.md',
+        'components/about/propose_a_component.md',
+        'components/about/prototyping_tools.md',
+      ],
+    },
+    attributes: {
+      labels: ['Components', 'Repository'],
+      personas: ['Designer', 'Developer'],
+    },
+    resourceType: 'Components',
+  },
+];
 
 // same as above but this registry contains a 'collection' type config
-const REGISTRY_WITH_COLLECTION = {
-  id: '/registry.yml absPath of file >>> YAML',
-  sources: [
-    {
-      name: 'Design System',
-      sourceProperties: {
-        sources: [
-          {
-            sourceType: 'github',
-            sourceProperties: {
-              owner: 'bcgov',
-              repo: 'design-system',
-              url: 'https://github.com/bcgov/design-system/',
-            },
-          },
-          {
-            sourceType: 'github',
-            sourceProperties: {
-              owner: 'bcgov',
-              repo: 'design-system',
-              url: 'https://github.com/bcgov/design-system/',
-            },
-          },
-        ],
-      },
-      attributes: {
-        labels: ['components'],
-      },
+const REGISTRY_WITH_COLLECTION = [
+  {
+    name: 'Authentication and Authorization',
+    description:
+      'Technical resources related to implementing authentication and authorization in government applications.',
+    resourceType: 'Documentation',
+    attributes: {
+      personas: ['Developer'],
     },
-  ],
-  internal: {
-    contentDigest: '520538ca86778e449b1db66100137431',
-    type: 'SourceRegistryYaml',
-    owner: 'gatsby-transformer-yaml',
+    slug: 'collection',
+    template: 'overview',
+    sourceProperties: {
+      sources: [
+        {
+          sourceType: 'web',
+          sourceProperties: {
+            url: 'https://sso.pathfinder.gov.bc.ca/',
+            author: 'cvarjao',
+            title: 'Red Hat Single Sign On (aka KeyCloak)',
+            description:
+              'Red Hat Single Sign On is a modern, developer-friendly single sign on solution implementing the OpenID Connect specification as well as SAML.  The BC Gov implementation provides built-in intregration with IDIR, BCeID and GitHub and allow application developers to quickly meet the authentication needs of their applications. Red Hat SSO is the downstream, commercially supported distribution of the open source KeyCloak product.',
+            image: 'http://design.jboss.org/keycloak/logo/images/keycloak_logo_600px.svg',
+          },
+        },
+        {
+          sourceType: 'github',
+          sourceProperties: {
+            url: 'https://github.com/bcdevops/openshift-wiki',
+            owner: 'bcdevops',
+            repo: 'openshift-wiki',
+            files: ['docs/OCP/RequestSSORealm.md'],
+          },
+        },
+        {
+          sourceType: 'web',
+          sourceProperties: {
+            url:
+              'https://sminfo.gov.bc.ca/docs/Provincial%20IDIM%20Program%20-%20Building%20SiteMinder%20Integrated%20Apps%202.0.4.pdf',
+            title: 'Building SiteMinder Integrated Applications',
+            description:
+              'This document describes the methods that can be used to integrate web applications with the BC Governments SiteMinder infrastructure. \\n This document is intended for the architects, designers and developers producing web applications that integrate with the IDIM SiteMinder service.',
+          },
+        },
+      ],
+    },
   },
-};
+];
 
 // the result of an allFile graphql query, it is filtered in sourceNodes.js to find only the registry file
 // that matches the option passed into this source plugin
 const GRAPHQL_NODES_WITH_REGISTRY = [
   {
-    id: '/registry.yml absPath of file >>> YAML',
-    sources: REGISTRY.sources.concat(REGISTRY_WITH_COLLECTION.sources),
+    name: 'Code Management',
+    description: 'Resources related to source code control, GitHub, and open source in BC Gov.',
+    resourceType: 'Documentation',
+    template: 'overview',
     internal: {
-      contentDigest: '520538ca86778e449b1db66100137431',
-      type: 'SourceRegistryYaml',
-      owner: 'gatsby-transformer-yaml',
+      type: SOURCE_REGISTRY_TYPE,
+    },
+    sourceProperties: {
+      sources: [
+        {
+          sourceType: 'web',
+          sourceProperties: {
+            url: 'https://github.com/bcgov',
+            author: 'kelpisland',
+            title: 'BC Gov on GitHub',
+            description:
+              "BC Government's home on GitHub. Open source code developed by and for the BC Government resides here.",
+            image: 'https://github.githubassets.com/images/modules/logos_page/Octocat.png',
+          },
+        },
+        {
+          sourceType: 'github',
+          sourceProperties: {
+            url: 'https://github.com/bcgov/BC-Policy-Framework-For-GitHub',
+          },
+        },
+        {
+          sourceType: 'web',
+          sourceProperties: {
+            url: 'https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow',
+          },
+        },
+        {
+          sourceType: 'web',
+          sourceProperties: {
+            url:
+              'https://hackernoon.com/a-branching-and-releasing-strategy-that-fits-github-flow-be1b6c48eca2',
+          },
+        },
+        {
+          sourceType: 'github',
+          sourceProperties: {
+            url: 'https://github.com/bcgov/BC-Policy-Framework-For-GitHub',
+          },
+        },
+      ],
     },
   },
   {
@@ -527,14 +604,6 @@ const GITHUB_SOURCE_WITHIN_INLINE_IGNORES = {
   },
 };
 
-// sample config options passed into this source plugin from gatsby-config.js
-const CONFIG_OPTIONS = {
-  tokens: {
-    GITHUB_API_TOKEN: '123',
-  },
-  sourceRegistryType: 'SourceRegistryYaml',
-};
-
 const PROCESSED_WEB_SOURCE = {
   metadata: {
     position: [1, 1, 1],
@@ -583,6 +652,7 @@ const COLLECTION_OBJ_FROM_FETCH_QUEUE = {
 };
 
 module.exports = {
+  SOURCE_REGISTRY_TYPE,
   COLLECTION_OBJ_FROM_FETCH_QUEUE,
   GITHUB_API,
   PROCESSED_FILE_MD,
