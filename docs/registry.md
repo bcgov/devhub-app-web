@@ -2,8 +2,9 @@
 author: Patrick Simonian
 resourceType: Documentation
 personas: 
-  - Developers
-  - Product Owners
+  - Developer
+  - Product Owner
+  - Designer
 labels:
   - devhub
   - content
