@@ -21,8 +21,7 @@ Created by Patrick Simonian
 // users of the system and so we will provide default front matter properties
 // via a plugin
 
-const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
-const clone = require('clone'); // eslint-disable-line
+const cloneDeep = require('lodash/cloneDeep');
 /**
  * takes in file parameters and runs it through plugins that
  * modifies its properties
@@ -31,7 +30,7 @@ const clone = require('clone'); // eslint-disable-line
  * @returns {Object} the file transformed
  */
 const fileTransformer = (fileExtension, originalFile) => {
-  let file = clone(originalFile);
+  let file = cloneDeep(originalFile);
   const plugins = [];
   return {
     use(plugin, options = {}) {
