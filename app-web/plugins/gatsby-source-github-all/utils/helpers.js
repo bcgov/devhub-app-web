@@ -48,6 +48,7 @@ const createPathWithDigest = (base, ...digestables) => {
 };
 
 const withUnfurlWarning = (url, unfurl) => {
+  // eslint-disable-next-line no-console
   if (!unfurl.title || !unfurl.description) console.log(siphonMessenger.unfurlLacksInfo(url));
   return unfurl;
 };
@@ -184,6 +185,7 @@ const validateAgainstSchema = (obj, schema) => {
 const validateRegistryItemAgainstSchema = (registryItem, schema) => {
   const error = validateAgainstSchema(registryItem, schema);
   if (!error.isValid) {
+    // eslint-disable-next-line no-console
     console.error(
       chalk`{red.bold \nError Validating Registry item}`,
       '\n',
@@ -202,6 +204,7 @@ const validateRegistryItemAgainstSchema = (registryItem, schema) => {
 const validateSourcePropertiesAgainstSchema = (source, schema) => {
   const error = validateAgainstSchema(source.sourceProperties, schema);
   if (!error.isValid) {
+    // eslint-disable-next-line no-console
     console.error(
       chalk`{red.bold \nError Validating Source type ${source.sourceType}}`,
       '\n',

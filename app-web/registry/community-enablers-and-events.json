@@ -1,0 +1,77 @@
+{
+  "name": "Community Enablers and Events",
+  "description": "Tools that foster collaboration and communication across the BC Gov developer community.",
+  "resourceType": "Self-Service Tools",
+  "attributes": {
+    "personas": [
+      "Developer",
+      "Designer",
+      "Product Owner"
+    ]
+  },
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://www.bcdevexchange.org",
+          "title": "BC Developers Exchange",
+          "description": "Finding better ways for government and developers to work together.",
+          "image": "https://www.bcdevexchange.org/modules/core/client/img/logo/new-logo.svg"
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
+          "author": "kelpisland",
+          "title": "DevOps Commons Yammer Group",
+          "description": "The DevOps Commons Group in the BC Gov Yammer community is an online community focused on growing and evolving the BCGov DevOps community.",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/0/09/Yammer_logo.svg"
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://www.meetup.com/DevOps-Commons/",
+          "title": "DevOps Commons MeetUp",
+          "description": "The DevOps Commons MeetUp is the in-person fourm focused on growing and evolving the BCGov DevOps community.",
+          "image": "https://secure.meetupstatic.com/photos/event/3/9/f/f/600_471194847.jpeg"
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://www.meetup.com/Cloud-Native-Victoria/",
+          "title": "Cloud Native Victoria MeetUp",
+          "description": "Cloud Native Victoria is the official Cloud Native Computing Foundation (CNCF) Meetup group dedicated to building a strong, open, diverse developer community around the Cloud Native platform and technologies in Victoria.",
+          "image": "https://secure.meetupstatic.com/photos/event/4/f/e/6/highres_453200454.jpeg"
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "resourceType": "Documentation",
+          "url": "https://github.com/bcgov/devhub-resources/",
+          "owner": "bcgov",
+          "repo": "devhub-resources",
+          "files": [
+            "resources/community/events.md",
+            "resources/community/chat_conventions.md"
+          ]
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/reggie-web/",
+          "owner": "bcgov",
+          "repo": "reggie-web",
+          "files": [
+            "UserInstructions.md"
+          ]
+        }
+      }
+    ]
+  }
+}

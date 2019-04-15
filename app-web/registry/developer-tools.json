@@ -1,0 +1,68 @@
+{
+  "name": "Developer Tools",
+  "description": "Tools to assist software developers in building, deploying, and running applications for BC Gov.",
+  "resourceType": "Self-Service Tools",
+  "attributes": {
+    "personas": [
+      "Developer"
+    ]
+  },
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "resourceType": "Self-Service Tool",
+          "title": "OpenShift Developer Console",
+          "description": "This guide is intended for application developers, and provides instructions for setting up and configuring a workstation to develop and deploy applications in an OpenShift Container Platform.",
+          "url": "https://console.pathfinder.gov.bc.ca:8443/console/projects"
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/BCDevOps/openshift-wiki",
+          "owner": "BCDevOps",
+          "repo": "openshift-wiki",
+          "files": [
+            "docs/API/KongAPI.md"
+          ]
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://signing-web-devhub-prod.pathfinder.gov.bc.ca"
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov",
+          "author": "kelpisland",
+          "title": "BC Gov on GitHub",
+          "description": "BC Government's home on GitHub. Open source code developed by and for the BC Government resides here.",
+          "image": "https://github.githubassets.com/images/modules/logos_page/Octocat.png"
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://sso.pathfinder.gov.bc.ca/",
+          "author": "cvarjao",
+          "title": "Red Hat Single Sign On (aka KeyCloak)",
+          "description": "Red Hat Single Sign On is a modern, developer-friendly single sign on solution implementing the OpenID Connect specification as well as SAML.  The BC Gov implementation provides built-in intregration with IDIR, BCeID and GitHub and allow application developers to quickly meet the authentication needs of their applications. Red Hat SSO is the downstream, commercially supported distribution of the open source KeyCloak product.",
+          "image": "https://github.com/keycloak/keycloak-misc/blob/master/logo/keycloak_icon_128px.png?raw=true"
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://catalogue.data.gov.bc.ca/",
+          "title": "BC Data Catalogue",
+          "description": "The BC Data catalogue helps users to find, understand and explore data. The catalogue also provides contact information so that data users can contact Data Custodians for additional information if required."
+        }
+      }
+    ]
+  }
+}
