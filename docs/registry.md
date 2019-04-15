@@ -35,11 +35,11 @@ In order to add content to the Devhub a few things needs to be in order.
 
 ## Registering To The Devhub
 
-Registration of content to the Devhub iis done via `JSON` format configuration files.
+Registration of content to the Devhub is done via `JSON` format configuration files.
 
-> The Devhub assumes you have some knowledge of `JSON` format files.If you are unfamiliar with JSON, it is best to familiarize your self [here](https://www.digitalocean.com/community/tutorials/an-introduction-to-json). 
+> The Devhub assumes you have some knowledge of `JSON` format files. If you are unfamiliar with JSON, it is best to familiarize your self [here](https://www.digitalocean.com/community/tutorials/an-introduction-to-json).
 
-These files are also known as __registry__ files. It is helpful to think of the Devhub as __subscribing__ to your content. It will pull the latest version of it on its next build. 
+These files are also known as __registry__ files. In a nutshell, the registry is like a subscription for the Devhub. Just like subscribing to magazines in real life, instead of receiving a new magazine at the end of the month, whenever the Devhub rebuilds it grabs the latest version of your content as found within its repository.
 
 > If you have contributed to the Devhub in the past, you may have encountered `YAML` formatted configuration files instead of `JSON`.
 We found `YAML` to be more errorprone for content contributes because it is spacing/indent sensitive. `JSON` files, although more 'codey' looking, is more forgiving in this aspect.
@@ -58,9 +58,36 @@ The registry directory/folder contains a series of `JSON` files. Each of these f
 
 We are happy to receive any contributions for our __curated set of topics__. Just fork and pr!
 
+Our current list of topics include:
+
+- Information and Application Security
+  
+  Resources to help teams ensure their applications appropriately design for and manage security in the their code, tools, and processes.
+- Getting Started on the DevOps Platform
+
+  Resources to help product team become productive as quickly and effectively as possible when using the BC Gov DevOps OpenShift platform.
+- Data Privacy
+
+  Resources to help teams ensure their applications handle personal information in a manner compliant with BC Gov policies and regulations.
+- Authentication and Authorization
+
+  Technical resources related to implementing authentication and authorization in government applications.
+- Developer Tools
+
+  Tools to assist software developers in building, deploying, and running applications for BC Gov.
+- Community Enablers and Events
+
+  Tools that foster collaboration and communication across the BC Gov developer community.
+- Code Management
+
+  Resources related to source code control, GitHub, and open source in BC Gov.
+- Developer Toy Box
+
+  A trove of apps/components/stuff/things that are usable by anyone running OpenShift - in particular BC Gov teams "doing" Agile/DevOps.
+
 ### Have an idea for a new Topic?
 
-Please @mention patricksimonian or sheaphillips with your PR or better, contact the Devhub Team in [Rocket Chat](https://chat.pathfinder.gov.bc.ca)
+Please @mention patricksimonian or sheaphillips with your PR or even better, contact the Devhub Team in [Rocket Chat](https://chat.pathfinder.gov.bc.ca)
 
 ## High Level Overview For Contributing to the Devhub
 
