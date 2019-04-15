@@ -91,10 +91,10 @@ Please @mention patricksimonian or sheaphillips with your PR or even better, con
 
 ## High Level Overview For Contributing to the Devhub
 
-There is essentially three steps to get content into the Devhub.
+There is essentially two steps to get content into the Devhub.
 
 1. Modify or add to the __`JSON` configuration files__ found within `app-web/registry` via a Github Pull Request
-2. Ensure the markdown files your are pointing too from within the `JSON` configuration files are ready for the __Devhub__
+2. Ensure the markdown files your are pointing to from within the `JSON` configuration files are ready for the __Devhub__
 
 
 ## Modifying or Adding to the `JSON` configuration files (the registry)
