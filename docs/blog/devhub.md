@@ -61,7 +61,7 @@ into relatable ___Topics___.
 
 <img src="../images/Topics.png" alt="Topics">
 
-Feel free to explore the different topics that we have specially curated by navigating to it from the header.
+Feel free to explore the different topics that we have specially curated by by clicking the __Topics__ link from within the header.
 
 <img src="../images/Header.png" alt="navigation">
 
