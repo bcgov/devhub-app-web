@@ -10,6 +10,11 @@ import Card from '../Cards/Card/Card';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+export const TEST_IDS = {
+  arrowLeft: 'carousel-arrow-left',
+  arrowRight: 'carousel-arrow-right',
+};
+
 const Icon = styled(FontAwesomeIcon)`
   color: ${({ theme }) => theme.colors.primary};
   font-size: 2em;
@@ -18,17 +23,26 @@ const Icon = styled(FontAwesomeIcon)`
 
 /**
  * returns whether or not the arrow buttons should show in the carousel
- * if there are less resources than there are slides per page then the buttons are disabled
+ * based on certain cases the arrow components are returned or not returned
  * @param {Number} numResources the amount of resources within the carousel
+ * @param {Number} index the current page position
  * @param {Number} slidesPerPage the amount of slides being displayed in the carousel
+ * @returns {Object} the arrow props (or not) to be merged into the remaining carousel props
  */
-const showArrow = (numResources, slidesPerPage) =>
-  numResources > slidesPerPage
-    ? {
-        arrowLeft: <Icon icon={faChevronLeft} />,
-        arrowRight: <Icon icon={faChevronRight} />,
-      }
-    : {};
+const showArrow = (numResources, index, slidesPerPage) => {
+  if (numResources <= slidesPerPage) {
+    return {};
+  }
+  const maxPages = Math.ceil(numResources / slidesPerPage);
+  const nominalSlides = maxPages * slidesPerPage;
+  return {
+    arrowLeft: index === 0 ? null : <Icon data-testid={TEST_IDS.arrowLeft} icon={faChevronLeft} />,
+    arrowRight:
+      index + slidesPerPage >= nominalSlides ? null : (
+        <Icon data-testid={TEST_IDS.arrowRight} icon={faChevronRight} />
+      ),
+  };
+};
 
 const CardCarousel = ({ resources }) => {
   const [index, setIndex] = useState(0);
@@ -44,12 +58,11 @@ const CardCarousel = ({ resources }) => {
     />
   ));
 
-  const desktopSettings = {
-    animationSpeed: 500,
+  const settings = {
+    animationSpeed: 125,
     value: index,
     onChange: setIndex,
-
-    ...showArrow(numResources, 3),
+    ...showArrow(numResources, index, 3),
     addArrowClickHandler: true,
     slidesPerPage: 3,
     slidesPerScroll: 3,
@@ -59,12 +72,11 @@ const CardCarousel = ({ resources }) => {
         slidesPerPage: 1,
         slidesPerScroll: 1,
         itemWidth: 250,
-        ...showArrow(numResources, 1),
+        ...showArrow(numResources, index, 1),
       },
     },
   };
-
-  return <Carousel {...desktopSettings}>{slides}</Carousel>;
+  return <Carousel {...settings}>{slides}</Carousel>;
 };
 
 CardCarousel.propTypes = {
