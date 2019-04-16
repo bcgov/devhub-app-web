@@ -9,12 +9,11 @@ labels:
   - help
   - about
   - faq
----
-> Although not necessary to explore the Devhub, many features of this application are closely tied to https://github.com, a social code repository platform. Some features may provide a better experience if you have a github user account.
+date: '2019/04/17'
+title: Welcome to the Devhub
+subtitle: A place to learn, discover and collaborate on digital products within the BC Government.
 
-## Welcome to Devhub
- 
-A place to learn, discover and collaborate on digital products within the BC Government.
+---
 
 ### Who should use this application?
 
@@ -55,6 +54,7 @@ The Devhub aims to solve these problems by:
 
 
 ## Devhub Concepts/How to use
+> Although not necessary to explore the Devhub, many features of this application are closely tied to https://github.com, a social code repository platform. Some features may provide a better experience if you have a github user account.
 
 To make it easier to navigate and discover content, we have _specially grouped_ content
 into relatable ___Topics___.
@@ -106,6 +106,8 @@ There are several ways you can explore content through the Devhub. Some of the p
 that make up the topic. 
 
 ### When There's a Problem
+
+
 
 We are continously improving Devhub as a whole. If there is anything wrong with the Devhub or the content within it, you may raise an issue via a few mechanisms. 
 

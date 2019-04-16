@@ -4,11 +4,11 @@ description: Boost you development with some neat auto linting libraries.
 resourceType: Documentation
 personas: 
   - Developer
-tags:
- - languages:
-  - NodeJS
-  - Javascript
- - Dev Hack
+labels:
+  - languages:
+    - NodeJS
+    - Javascript
+    - Dev Hack
 author: Patrick Simonian
 image: github:patricksimonian 
 ---
