@@ -18,38 +18,38 @@ A place to learn, discover and collaborate on digital products within the BC Gov
 
 ### Who should use this application?
 
-This application is geared towards Developers working on digital products within Gov (with a focus on Agile Development), however there is useful information for anyone interested in BC Gov digital landscape.
+This application is geared towards developers working on digital products within the B.C. Government (with a focus on Agile Development), however there is useful information for anyone interested in the B.C. Government digital landscape.
 
-### What is the Devhub and How does it work?
+### What is the Devhub and how does it work?
 
-The Devhub is content aggregator application. It leverages modern tooling/frameworks to source content across different types of media. This media can be from a markdown file within a Github Repository, a link to a website, events from 3rd party providers and more. We are working towards expanding the types of media Devhub supports to make it immersive, and useful in your workflow.
+The Devhub is a content aggregator application. It leverages modern tooling and frameworks to source content across different types of media. This media can be from a markdown file within a Github Repository, a link to a website, events from 3rd party providers and more. We are working towards expanding the types of media Devhub supports to make it immersive, and useful in your workflow.
 
-Whenever the Devhub is refreshed in production (the live public facing website), it seeks out all the content that it is subscribed too and pulls it into the application.
+Whenever the Devhub is refreshed in production (the live public facing website), it seeks out all the content that it's subscribed too and pulls it into the application.
 
 ### What is problem Devhub is trying to solve?
 
-Whether you are a developer working on a new or existing project; a designer looking for tested specifications on typography, a product owner seeking resources for cloud native development or anyone else who is just interested in the BC Gov digital world and want to learn more, finding the things you need to get your work done can be hard. 
+Whether you are a developer working on a new or existing project; a designer looking for tested specifications on UI components, a product owner seeking resources for cloud native development or anyone else who is just interested in the B.C. Government digital world and want to learn more, finding the things you need to get your work done can be hard. 
 
-The digital landscape is constantly changing and improving. This can be challenging to keep up with if the platform for guidelines/policies is a static word document or of the like. 
+The digital landscape is constantly changing and improving. This can be challenging to keep up with if the platform for guidelines and policies is a static Word document or PDF. 
 
-In addition, a static guideline loses out on key information that is useful whenever working with digital products such as: 
+In addition, static guidance loses out on key information that is useful whenever working with digital products such as: 
 
 - who authored this content?  
 - when was it last updated?  
-- are other teams using this guideline? 
+- are other teams using this guidance? 
   
 
-In other words, can that guideline be trusted to be complete, relevant, and useful?
+In other words, can the guidance be trusted as complete, relevant, and useful?
 
-An additional problem the Devhub is working towards solving is spurring community around digital workflows and products. This includes events. Events in government can be scattered along different platforms which can make them difficult to discover, share and manage.
+An additional problem the Devhub is working towards solving is spurring a community around digital workflows and products. This includes events. Events in government can be scattered along different platforms which can make them difficult to discover, share and manage.
 
 ### How Devhub aims to solve these problems
 
 The Devhub aims to solve these problems by:
  
-- providing a platform that ‘centralizes’ all relevant content related to agile digital product building within government 
+- providing a platform that ‘centralizes’ all relevant content related to agile product development within government 
 - maintains useful links between content such as: who the content may be geared towards, the author of the content, date of last update etc.  
-- spur community to continuously improve guidelines/policies and even the devhub through the Github platform.  
+- engageing the community to continuously improve guidelines, policies and even Devhub itself through the Github platform.  
 - Make it easy and intuitive to find what you need to get your job done
 
 
@@ -79,20 +79,20 @@ Documentation may be sourced from GitHub, other government websites, or external
 
 ### Github Repositories
 
-Github Repositories correspond directly to a BC Gov repository on https://github.com. Resources that
+Github Repositories correspond directly to the B.C. Government repository on [GitHub](https://github.com). Resources that
 are of type 'Github Repository' will allow you to directly access/reference/contribute to the repoositories
 codebase.  
 
 
 ### Components
 
-Components are the reusable building blocks for systems. Designers and developers and will leverage these components as they design and build new systems to reduce the effort required, improve consistency, and ensure compliance.
+Components are the reusable building blocks for digital products. Designers and developers can use these components as they design and build new products to reduce the effort required, improve consistency, and ensure compliance.
 
-Components in the DevHub would include visual components, code libraries, microservices, and code snippets or templates, produced and managed by or for government.
+Components in the DevHub would include visual components, code libraries, microservices, code snippets or templates. They are either produced or managed by or for government.
 
-### Self-Service Tools
+### Tools
 
-Self-Service Tools provide the means for developers to provision, configure, and track the shared services (operated by the DevOps Platform Services Team and others) that they leverage as part of their development processes or production applications.
+Tools provide the means for developers to provision, configure, and track the shared services operated by the DevOps Platform Services Team and others as part of their development processes or production applications.
 
 __Many of these__ tools are hosted outside of the Devhub.
 
@@ -118,4 +118,4 @@ to the author's of that resoruce.
 
 #### When There's a Problem With Devhub
 
-You can raise an issue within the Devhub Repository by visiting https://github.com/bcgov/devhub-app-web/issues
+You can raise an issue within the [Devhub Repository](https://github.com/bcgov/devhub-app-web/issues)
