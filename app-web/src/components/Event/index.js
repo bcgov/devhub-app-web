@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import DotDotDot from 'react-dotdotdot';
-import moment from 'moment';
+import EventLogo from './Logo';
+import { EVENT_TYPES } from '../../constants/ui';
+
 const LinkWrapper = styled.a`
   > * {
     color: initial;
@@ -28,7 +30,7 @@ const CardWrapper = styled.article`
   transition: transform 0.25s ease-out;
   box-shadow: 0 1px 2px 1px #00000026;
   h3 {
-    font-size: 1rem;
+    font-size: 0.85rem;
     text-decoration: none;
     margin-bottom: 1rem;
   }
@@ -49,7 +51,7 @@ const Header = styled.div`
 `;
 
 const Body = styled.div`
-  padding: 1em;
+  padding: 0 1em 1em;
   flex: 1 0 auto;
   display: flex;
   flex-flow: column nowrap;
@@ -95,11 +97,19 @@ const DateLI = styled.li`
   }
 `;
 
-export const Event = ({ title, startDay, startMonth, startYear, image, where, url }) => {
+const EventLogoWrapper = styled.div`
+  margin: 0.25em 0.5em 0.25em auto;
+  flex: 0 0 25px;
+`;
+
+export const Event = ({ title, type, startDay, startMonth, startYear, image, where, url }) => {
   return (
     <LinkWrapper href={url} aria-label={`Check out this event: ${title}`}>
       <CardWrapper>
         <Header image={image} />
+        <EventLogoWrapper>
+          <EventLogo type={type} />
+        </EventLogoWrapper>
         <Body>
           <DotDotDot tagName="h3" clamp={3}>
             {title}
@@ -126,9 +136,12 @@ Event.propTypes = {
   logo: PropTypes.string,
   date: PropTypes.string,
   link: PropTypes.string,
+  type: PropTypes.oneOf(Object.keys(EVENT_TYPES)),
 };
 
 Event.defaultProps = {
   where: 'tbd',
+  type: 'eventbrite',
 };
+
 export default Event;

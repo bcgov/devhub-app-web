@@ -52,10 +52,8 @@ export const EventsPage = ({ data: { allEventbriteEvents } }) => {
         <Title title="Events" subtitle="Check out these upcoming events going on at the CSI Lab" />
         <Blockqoute>
           <p>
-            These events are integrated via <a href="https://eventbrite.com">Eventbrite</a>, a
-            popular event managment platform.
-            <br /> Do you have BC Gov events that you would like to share on the{' '}
-            <strong>Devhub</strong>? Please raise an issue{' '}
+            Do you have BC Gov events that you would like to share on the <strong>Devhub</strong>?
+            Please raise an issue{' '}
             <a href="https://github.com/bcgov/devhub-app-web/issues/new"> here</a> (requires a
             Github account).
           </p>
