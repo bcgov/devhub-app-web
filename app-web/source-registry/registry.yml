@@ -291,3 +291,14 @@ sources:
           repo: BC-Policy-Framework-For-GitHub
           files:
             - BC-Open-Source-Development-Employee-Guide/Security.md
+      - sourceType: 'web'
+        sourceProperties:
+          title: BC Gov Digital Security
+          description: BC Government's digital security source of information.
+          url: https://digitalsecurity.gov.bc.ca/
+      - sourceType: 'web'
+        sourceProperties:
+          title: Cloud Native Application Security
+          description: Application Security in a Cloud Native World.
+          url: https://raw.githubusercontent.com/bcgov/devhub-resources/master/resources/security/BCGov-DevSecOps-Project.pdf
+
