@@ -7,6 +7,8 @@ const LinkWrapper = styled.a`
   > * {
     color: initial;
   }
+  margin: 10px 15px;
+  display: inline-block;
   :hover,
   :focus,
   :visited {
@@ -20,7 +22,6 @@ const CardWrapper = styled.article`
   display: flex;
   flex-flow: column nowrap;
   height: 400px;
-  margin: 10px 15px;
   border-top: transparent;
   border-radius: 2px;
   box-sizing: border-box;
@@ -30,6 +31,10 @@ const CardWrapper = styled.article`
     font-size: 1rem;
     text-decoration: none;
     margin-bottom: 1rem;
+  }
+  :hover {
+    box-shadow: 0 2px 2px 1px #00000026;
+    transform: translateY(-2px);
   }
 `;
 
@@ -117,7 +122,7 @@ export const Event = ({ title, startDay, startMonth, startYear, image, where, ur
 Event.propTypes = {
   title: PropTypes.string.isRequired,
   where: PropTypes.string,
-  organizer: PropTypes.string.isRequired,
+  organizer: PropTypes.string,
   logo: PropTypes.string,
   date: PropTypes.string,
   link: PropTypes.string,
