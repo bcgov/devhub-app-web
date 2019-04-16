@@ -21,11 +21,11 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 
-import { RESOURCE_TYPES_LIST, EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
+import { RESOURCE_TYPES_LIST } from '../../constants/ui';
 import { ChevronLink } from '../UI/Link';
-import Card from '../Cards/Card/Card';
 import { DecorativeBar, CardTitle, CardDescription } from '../Cards/Card';
 import CardHeader from '../Cards/Card/CardHeader';
+import CardCarousel from '../CardCarousel/CardCarousel';
 
 const withPadding = css`
   padding: 0 15px;
@@ -41,16 +41,6 @@ const CollectionPreviewContainer = styled.div`
   padding-bottom: 20px;
 `;
 
-const ResourceContainer = styled.div`
-  padding: 15px 0;
-  border-top: 1px solid #ccc;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  ${EMOTION_BOOTSTRAP_BREAKPOINTS.sm} {
-    justify-content: flex-start;
-  }
-`;
 const CollectionTitle = styled(CardTitle)`
   font-weight: 700;
   margin: 10px 0;
@@ -70,8 +60,8 @@ const CollectionLinkWrapper = styled.div`
 const CollectionPreview = ({ title, description, link, resources }) => (
   <section
     css={css`
-      max-width: 1104px;
-      margin: 20px 15px;
+      max-width: 862px;
+      margin: 20px 0;
       border: 1px solid #ccc;
       border-top: transparent;
     `}
@@ -82,24 +72,7 @@ const CollectionPreview = ({ title, description, link, resources }) => (
       <CollectionTitle clamp={2}>{title}</CollectionTitle>
 
       {description && <CollectionDescription clamp={3}>{description}</CollectionDescription>}
-      <ResourceContainer>
-        {resources.slice(0, 4).map(r => (
-          <div
-            key={r.id}
-            css={css`
-              margin: 6px 9px;
-            `}
-          >
-            <Card
-              type={r.resource.type}
-              title={r.unfurl.title}
-              description={r.unfurl.description}
-              image={r.unfurl.image}
-              link={r.resource.path}
-            />
-          </div>
-        ))}
-      </ResourceContainer>
+      <CardCarousel resources={resources} />
       <CollectionLinkWrapper>
         <ChevronLink to={link}>View Collection</ChevronLink>
       </CollectionLinkWrapper>

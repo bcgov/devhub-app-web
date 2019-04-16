@@ -10,6 +10,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@bcgov/common-web-utils": "^0.5.2",
+    "@brainhubeu/react-carousel": "^1.10.17",
     "@emotion/core": "^10.0.9",
     "@emotion/styled": "^10.0.9",
     "@fortawesome/fontawesome-free-brands": "^5.0.13",
@@ -81,6 +82,7 @@
     "react-helmet": "^5.2.0",
     "react-image": "^2.0.0",
     "react-pose": "^4.0.7",
+    "react-responsive-carousel": "^3.1.47",
     "react-scroll": "^1.7.10",
     "react-select": "^2.1.2",
     "react-spinners": "^0.5.1",
