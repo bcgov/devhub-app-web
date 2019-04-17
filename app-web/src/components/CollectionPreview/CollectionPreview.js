@@ -57,7 +57,7 @@ const CollectionLinkWrapper = styled.div`
   font-size: 1.15em;
 `;
 
-const CollectionPreview = ({ title, description, link, resources }) => (
+const CollectionPreview = ({ title, description, link, resources, ...rest }) => (
   <div
     css={css`
       max-width: 862px;
@@ -65,6 +65,7 @@ const CollectionPreview = ({ title, description, link, resources }) => (
       border: 1px solid #ccc;
       border-top: transparent;
     `}
+    {...rest}
   >
     <CollectionDecorativeBar type="Collections" />
     <CollectionPreviewContainer>

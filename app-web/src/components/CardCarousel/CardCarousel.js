@@ -63,7 +63,7 @@ const CardCarousel = ({ resources }) => {
       key={r.id}
       css={css`
         width: 235px;
-        margin: 0 1em;
+        margin: 10px;
       `}
       type={r.resource.type}
       title={r.unfurl.title}
@@ -81,7 +81,7 @@ const CardCarousel = ({ resources }) => {
     addArrowClickHandler: true,
     slidesPerPage: CARD_CAROUSEL.desktop.slidesPerPage,
     slidesPerScroll: CARD_CAROUSEL.desktop.slidesPerScroll,
-    itemWidth: 265,
+    itemWidth: 251,
     breakpoints: {
       500: {
         slidesPerPage: CARD_CAROUSEL.mobile.slidesPerPage,

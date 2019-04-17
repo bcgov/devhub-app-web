@@ -16,16 +16,10 @@ Created by Patrick Simonian
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
-
-import { RESOURCE_TYPES } from '../../constants/ui';
+import { css } from '@emotion/core';
 import { getFirstNonExternalResource } from '../../utils/helpers';
-
-import Collection from '../Cards/Card/Collection';
 import CollectionPreview from '../CollectionPreview/CollectionPreview';
-import Container from '../Cards/Container';
-import Row from '../Cards/Row';
-import Column from '../Cards/Column';
+
 import { ChevronLink } from '../UI/Link';
 import { Container as PreviewContainer, Title, StyledLink, LinkContainer } from './index';
 
@@ -33,17 +27,6 @@ import { Container as PreviewContainer, Title, StyledLink, LinkContainer } from 
 export const TEST_IDS = {
   container: 'collections-container',
 };
-
-const ContainerCentered = styled(Container)`
-  margin: 0 auto 15px;
-  align-item: flex-start;
-`;
-
-const StyledColumn = styled(Column)`
-  flex: 0 1 506px;
-  justify-content: center;
-  display: flex;
-`;
 
 const CollectionContent = collections =>
   collections
@@ -66,6 +49,10 @@ const CollectionContent = collections =>
           description={collection.description}
           link={getFirstNonExternalResource(allResources)}
           resources={allResources}
+          css={css`
+            max-width: 100%;
+            margin-right: 10px;
+          `}
         />
       );
     });
