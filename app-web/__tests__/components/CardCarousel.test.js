@@ -45,8 +45,8 @@ describe('Card Carousel', () => {
     expect(queryByTestId(TEST_IDS.arrowRight)).not.toBeInTheDocument();
   });
 
-  it('shows the right arrow if there are more than 3 resources when clicked the right arrow disappears since there are no more pages to goto and the left one shows up', async () => {
-    const { queryByTestId, container } = render(
+  it('shows the right arrow if there are more than 3 resources when clicked the right arrow disappears since there are no more pages to goto and the left one shows up', () => {
+    const { queryByTestId } = render(
       <ThemeProvider theme={theme}>
         <CardCarousel
           resources={resources
@@ -65,7 +65,7 @@ describe('Card Carousel', () => {
 
     fireEvent.click(RightArrow);
     // wait for re renders to happen
-    expect(await waitForElement(() => queryByTestId(TEST_IDS.arrowRight))).not.toBeInTheDocument();
-    expect(await waitForElement(() => queryByTestId(TEST_IDS.arrowRight))).toBeInTheDocument();
+    expect(queryByTestId(TEST_IDS.arrowRight)).not.toBeInTheDocument();
+    expect(queryByTestId(TEST_IDS.arrowLeft)).toBeInTheDocument();
   });
 });
