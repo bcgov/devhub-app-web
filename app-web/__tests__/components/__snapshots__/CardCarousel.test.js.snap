@@ -1,0 +1,201 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card Carousel matches snapshot 1`] = `
+.emotion-15 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  color: #1A5A96;
+  font-weight: 400;
+  text-transform: capitalize;
+  padding: 0 4px;
+  margin: 0 2px;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: initial;
+}
+
+.emotion-15:hover {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: initial;
+  cursor: pointer;
+}
+
+.emotion-12 {
+  width: 250px;
+  height: 225px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-top: transparent;
+  border-radius: 2px;
+  box-sizing: border-box;
+  -webkit-transition: -webkit-transform 0.25s ease-out;
+  -webkit-transition: transform 0.25s ease-out;
+  transition: transform 0.25s ease-out;
+  box-shadow: 0 1px 2px 1px #00000026;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  -ms-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+}
+
+.emotion-12:hover {
+  box-shadow: 0 2px 2px 1px #00000026;
+  -webkit-transform: translateY(-2px);
+  -ms-transform: translateY(-2px);
+  transform: translateY(-2px);
+}
+
+.emotion-0 {
+  background-color: #246BD1;
+  -webkit-flex: 0 0 10px;
+  -ms-flex: 0 0 10px;
+  flex: 0 0 10px;
+}
+
+.emotion-10 {
+  padding: 6px 10px;
+  height: 100%;
+  padding: 6px 10px;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  -webkit-flex-flow: column nowrap;
+  -ms-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+}
+
+.emotion-4 {
+  color: #444;
+  font-size: 14px;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+
+.emotion-2 {
+  color: #246BD1;
+}
+
+.emotion-6 {
+  font-size: 20px;
+  color: #494949;
+  line-height: 1.3;
+  margin-bottom: 0;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  word-break: break-word;
+}
+
+.emotion-8 {
+  font-size: 14px;
+  line-height: 1.4;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  margin-bottom: 0;
+}
+
+<div
+  class="BrainhubCarousel"
+>
+  <div
+    class="BrainhubCarousel__trackContainer"
+  >
+    <ul
+      class="BrainhubCarousel__track"
+      style="margin-left: 0px; width: 0px; transform: translateX(0px);"
+    >
+      <li
+        class="BrainhubCarouselItem BrainhubCarouselItem--active"
+        style="padding-right: 0px; padding-left: 0px; width: 265px; max-width: 265px; min-width: 265px;"
+      >
+        <a
+          class="emotion-14 emotion-15 emotion-16"
+          href="/foo"
+        >
+          <article
+            class="emotion-12 emotion-13"
+          >
+            <div
+              class="emotion-0 emotion-1"
+              type="Documentation"
+            />
+            <div
+              class="emotion-10 emotion-11"
+            >
+              <div
+                css="[object Object]"
+              >
+                <h3
+                  class="emotion-4 emotion-5"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="svg-inline--fa fa-file fa-w-12  emotion-2 emotion-3"
+                    data-icon="file"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    type="Documentation"
+                    viewBox="0 0 384 512"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                   
+                  <span
+                    css="[object Object]"
+                  >
+                    Documentation
+                  </span>
+                  <small>
+                    <svg
+                      aria-hidden="true"
+                      class="svg-inline--fa fa-external-link-alt fa-w-18 "
+                      data-icon="external-link-alt"
+                      data-prefix="fas"
+                      focusable="false"
+                      role="img"
+                      viewBox="0 0 576 512"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </small>
+                </h3>
+              </div>
+              <h2
+                class="emotion-6 emotion-7"
+                style="overflow: hidden; text-overflow: ellipsis; webkit-box-orient: vertical; display: -webkit-box; webkit-line-clamp: 3;"
+              >
+                foo
+              </h2>
+              <p
+                class="emotion-8 emotion-9"
+                style="overflow: hidden; text-overflow: ellipsis; webkit-box-orient: vertical; display: -webkit-box; webkit-line-clamp: 3;"
+              >
+                description
+              </p>
+            </div>
+          </article>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

@@ -10,6 +10,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@bcgov/common-web-utils": "^0.5.2",
+    "@brainhubeu/react-carousel": "^1.10.17",
     "@emotion/core": "^10.0.9",
     "@emotion/styled": "^10.0.9",
     "@fortawesome/fontawesome-free-brands": "^5.0.13",
