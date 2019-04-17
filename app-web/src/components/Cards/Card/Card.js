@@ -34,7 +34,7 @@ import Aux from '../../../hoc/auxillary';
 
 import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
 
-const Card = ({ type, title, description, image, link, theme }) => {
+const Card = ({ type, title, description, image, link, ...rest }) => {
   // console.log(theme, type);
   let isExternal = !!validUrl.isWebUri(link);
   // if there is an image it takes priority
@@ -65,7 +65,7 @@ const Card = ({ type, title, description, image, link, theme }) => {
 
   return (
     <CardLinkWrapper to={link}>
-      <CardWrapper>
+      <CardWrapper {...rest}>
         <DecorativeBar type={type} />
         <CardBody>
           <CardHeader type={type} linksToExternal={isExternal} />

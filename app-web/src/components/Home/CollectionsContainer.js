@@ -22,6 +22,7 @@ import { RESOURCE_TYPES } from '../../constants/ui';
 import { getFirstNonExternalResource } from '../../utils/helpers';
 
 import Collection from '../Cards/Card/Collection';
+import CollectionPreview from '../CollectionPreview/CollectionPreview';
 import Container from '../Cards/Container';
 import Row from '../Cards/Row';
 import Column from '../Cards/Column';
@@ -47,7 +48,7 @@ const StyledColumn = styled(Column)`
 const CollectionContent = collections =>
   collections
     .filter(collection => collection.hasResources)
-    .slice(0, 4)
+    .slice(0, 2)
     .map(collection => {
       // resources are grouped by type, 'ungroup' them so we can find the first available
       // non external link to use as the entry page for the collection card
@@ -59,17 +60,13 @@ const CollectionContent = collections =>
       });
 
       return (
-        <StyledColumn key={collection.id}>
-          <Collection
-            title={collection.name}
-            description={collection.description}
-            documentation={collection.resources[RESOURCE_TYPES.DOCUMENTATION].length}
-            repositories={collection.resources[RESOURCE_TYPES.REPOSITORIES].length}
-            components={collection.resources[RESOURCE_TYPES.COMPONENTS].length}
-            tools={collection.resources[RESOURCE_TYPES.SELF_SERVICE_TOOLS].length}
-            link={getFirstNonExternalResource(allResources)}
-          />
-        </StyledColumn>
+        <CollectionPreview
+          key={collection.id}
+          title={collection.name}
+          description={collection.description}
+          link={getFirstNonExternalResource(allResources)}
+          resources={collection.childrenDevhubSiphon}
+        />
       );
     });
 
@@ -78,9 +75,8 @@ export const CollectionsContainer = ({ collections, link }) => (
     <Title>
       <StyledLink to={link.to}>Collections</StyledLink>
     </Title>
-    <ContainerCentered>
-      <Row>{CollectionContent(collections)}</Row>
-    </ContainerCentered>
+
+    {CollectionContent(collections)}
     <LinkContainer>
       <ChevronLink to={link.to}>{link.text}</ChevronLink>
     </LinkContainer>
