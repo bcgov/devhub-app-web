@@ -24,7 +24,6 @@ import { SEARCH, EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
 import Search from '../Search';
 import SearchPills from '../Search/SearchPills';
 // localizations
-import { HOME } from '../../messages';
 import AppLogo from '../UI/AppLogo/AppLogo';
 import css from '@emotion/css';
 
@@ -68,6 +67,7 @@ export const Masthead = ({ query }) => (
     <h4
       css={css`
         max-width: 525px;
+        line-height: 1.2em;
       `}
     >
       One place that brings together resources to help build digital products for the BC Government
