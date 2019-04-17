@@ -42,9 +42,7 @@ const AppLogo = ({ titleConfig, ...rest }) => (
 );
 
 AppLogo.propTypes = {
-  titleConfig: PropTypes.shape({
-    style: PropTypes.object,
-  }),
+  titleConfig: PropTypes.object,
 };
 
 AppLogo.defaultProps = {
