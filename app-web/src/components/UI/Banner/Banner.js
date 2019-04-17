@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { BANNER_ID } from '../../../constants/ui';
 import { HOME_ROUTE } from '../../../constants/routes';
@@ -32,14 +31,6 @@ const Banner = () => {
       <AppLogo />
     </StyledLink>
   );
-};
-
-Banner.propTypes = {
-  navigateOnClickPath: PropTypes.string,
-};
-
-Banner.defaultProps = {
-  navigateOnClickPath: '',
 };
 
 export default Banner;
