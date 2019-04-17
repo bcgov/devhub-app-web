@@ -74,3 +74,11 @@ export const EMOTION_BOOTSTRAP_BREAKPOINTS = BOOTSTRAP_BREAKPOINTS.reduce(
   },
   {},
 );
+
+export const EVENTS = {
+  MAX_PAST_EVENTS: 9,
+};
+
+export const EVENT_TYPES = {
+  eventbrite: 'eventbrite',
+};

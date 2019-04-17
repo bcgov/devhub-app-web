@@ -16,39 +16,25 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-const TitleWrapper = styled.div`
-  margin-bottom: 10px;
-  color: #494949;
-  h1 {
-    margin-bottom: 5px;
-  }
+export const TEST_IDS = {
+  container: 'no-resources',
+};
+
+const NoResources = styled.div`
+  font-size: 28px;
+  background-color: #fafafa;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 2px;
+  color: #444;
+  border: 1px dashed #ccc;
 `;
 
-const Subtitle = styled.h4`
-  font-size: 1em;
-  max-width: 565px;
-  margin-bottom: 0;
-  padding: 3px;
-  line-height: 1.5em;
-`;
-
-const Title = ({ title, subtitle }) => (
-  <TitleWrapper>
-    <h1>{title}</h1>
-    {subtitle && <Subtitle>{subtitle}</Subtitle>}
-  </TitleWrapper>
+export default () => (
+  <NoResources data-testid={TEST_IDS.container}>
+    <h2>Upcoming events are in the works.</h2>
+    <p>Visit again soon :)</p>
+  </NoResources>
 );
-
-Title.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
-};
-
-Title.defaultProps = {
-  subtitle: null,
-};
-
-export default Title;

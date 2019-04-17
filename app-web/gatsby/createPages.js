@@ -102,9 +102,12 @@ const createResourceTypePages = createPage => {
   });
 };
 
-module.exports = async ({ graphql, actions }) => {
-  const { createPage } = actions;
-  createResourceTypePages(createPage);
+/**
+ * creates all the resource pages based on the collection the resource belongs too
+ * @param {Function} createPage the gatsby createpage function
+ * @param {Function} graphql the gatsby graphql function
+ */
+const createResourceComponentPages = async (createPage, graphql) => {
   // main graphql query here
   const devhubData = await graphql(`
     {
@@ -188,4 +191,27 @@ module.exports = async ({ graphql, actions }) => {
       }
     });
   });
+};
+
+/**
+ * attempts to create the evnets page, however if the event brite api key is missing
+ * is creates a placeholder page
+ * @param {Function} createPage the gatsby createpage function
+ */
+const createEventsPage = createPage => {
+  let component = resolvePath('../src/templates/events.js');
+  if (!process.env.EVENT_BRITE_API_KEY) {
+    component = resolvePath('../src/templates/TemplatePlaceholder.js');
+  }
+  createPage({
+    path: 'events',
+    component,
+  });
+};
+
+module.exports = async ({ graphql, actions }) => {
+  const { createPage } = actions;
+  createResourceTypePages(createPage);
+  createResourceComponentPages(createPage, graphql);
+  createEventsPage(createPage);
 };

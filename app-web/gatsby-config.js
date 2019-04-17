@@ -7,12 +7,24 @@ const { converter } = require('./src/utils/gatsbyRemark');
 // This comes as a pair of sourceRegistryType used by gatsby-source-github-all
 // const registry_path = process.env.REGISTRY_PATH || '';
 
+const eventbritePlugin = () =>
+  process.env.EVENT_BRITE_API_KEY
+    ? {
+        resolve: 'gatsby-source-eventbrite',
+        options: {
+          organizationId: 228490647317, //csi lab org id
+          accessToken: process.env.EVENT_BRITE_API_KEY,
+        },
+      }
+    : undefined;
+
+const dynamicPlugins = [eventbritePlugin()];
+
 module.exports = {
   siteMetadata: {
     title: 'DevHub',
   },
   pathPrefix: '/images',
-  mapping: {},
   plugins: [
     {
       resolve: `gatsby-plugin-manifest`,
@@ -152,5 +164,5 @@ module.exports = {
         pathToConfigModule: 'typography',
       },
     },
-  ],
+  ].concat(dynamicPlugins.filter(plugin => plugin !== void 0)),
 };

@@ -4,10 +4,10 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
 .emotion-81 {
   font-size: 15px;
   max-width: 1200px;
-  padding: 10px 12px 0 25px;
+  padding: 10px 12px 0 12px;
 }
 
-@media screen and (min-width:850px) {
+@media screen and (min-width:932px) {
   .emotion-81 {
     padding: 10px 65px;
   }
@@ -16,6 +16,10 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
 .emotion-2 {
   margin-bottom: 10px;
   color: #494949;
+}
+
+.emotion-2 h1 {
+  margin-bottom: 5px;
 }
 
 .emotion-0 {

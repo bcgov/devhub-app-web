@@ -30,6 +30,10 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
   color: #494949;
 }
 
+.emotion-2 h1 {
+  margin-bottom: 5px;
+}
+
 .emotion-0 {
   font-size: 1em;
   max-width: 565px;
@@ -154,6 +158,10 @@ exports[`Home Page when there is an empty search the alert box does not show and
 .emotion-2 {
   margin-bottom: 10px;
   color: #494949;
+}
+
+.emotion-2 h1 {
+  margin-bottom: 5px;
 }
 
 .emotion-0 {

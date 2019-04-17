@@ -18,6 +18,33 @@ Created by Patrick Simonian
 
 // gatsby event hooks
 // https://www.gatsbyjs.org/docs/node-apis/
+const getOrganizationsById = id => {
+  const organizations = {
+    '228490647317': {
+      id: '228490647317',
+      name: 'CSI Lab',
+      first_name: 'CSI',
+      last_name: 'Lab',
+      is_public: false,
+      image_id: '53267936',
+    },
+  };
+  return organizations[id];
+};
+
 exports.onCreateWebpackConfig = require('./gatsby/modifyWebpackConfig');
 exports.onCreatePage = require('./gatsby/onCreatePage');
 exports.createPages = require('./gatsby/createPages');
+exports.createResolvers = ({ createResolvers }) => {
+  const resolvers = {
+    EventbriteEvents: {
+      organization: {
+        type: 'String',
+        resolve: (source, args, context, info) => {
+          return getOrganizationsById(source.organization_id).name;
+        },
+      },
+    },
+  };
+  createResolvers(resolvers);
+};

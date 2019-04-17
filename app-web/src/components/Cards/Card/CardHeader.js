@@ -28,6 +28,7 @@ import {
   faTools,
   faLayerGroup,
   faExternalLinkAlt,
+  faCalendar,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/fontawesome-free-brands';
 
@@ -66,6 +67,9 @@ const CardHeader = ({ type, linksToExternal }) => {
       break;
     case RESOURCE_TYPES.REPOSITORIES:
       icon = faGithub;
+      break;
+    case 'Events':
+      icon = faCalendar;
       break;
   }
 

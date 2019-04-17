@@ -39,18 +39,19 @@ export default {
     [RESOURCE_TYPES.SELF_SERVICE_TOOLS]: '#F3BA45',
     Collections: '#444',
     [RESOURCE_TYPES.REPOSITORIES]: '#6e5494',
+    Events: '#f44b42',
     link: '#1A5A96',
   },
   padding: {
     main: {
-      mobile: '10px 12px 0 25px;',
+      mobile: '10px 12px 0 12px;',
       desktop: '10px 65px',
     },
   },
   breakpoints: {
     // specific breakpoints
     main: {
-      desktop: '@media screen and (min-width: 850px)',
+      desktop: '@media screen and (min-width: 932px)',
     },
   },
 };

@@ -74,6 +74,17 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
         Documentation
       </mockConstructor>
     </li>
+    <li
+      key="/events"
+    >
+      <mockConstructor
+        activeClassName="ActiveFilter"
+        exact="true"
+        to="/events"
+      >
+        Events
+      </mockConstructor>
+    </li>
   </ul>
 </nav>
 `;
