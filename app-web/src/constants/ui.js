@@ -82,3 +82,14 @@ export const EVENTS = {
 export const EVENT_TYPES = {
   eventbrite: 'eventbrite',
 };
+
+export const CARD_CAROUSEL = {
+  mobile: {
+    slidesPerPage: 1,
+    slidesPerScroll: 1,
+  },
+  desktop: {
+    slidesPerPage: 3,
+    slidesPerScroll: 3,
+  },
+};

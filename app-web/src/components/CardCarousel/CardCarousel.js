@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 
-import { RESOURCE_TYPES_LIST } from '../../constants/ui';
+import { RESOURCE_TYPES_LIST, CARD_CAROUSEL } from '../../constants/ui';
 import Card from '../Cards/Card/Card';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -62,17 +62,17 @@ const CardCarousel = ({ resources }) => {
     animationSpeed: 125,
     value: index,
     onChange: setIndex,
-    ...showArrow(numResources, index, 3),
+    ...showArrow(numResources, index, CARD_CAROUSEL.desktop.slidesPerPage),
     addArrowClickHandler: true,
-    slidesPerPage: 3,
-    slidesPerScroll: 3,
+    slidesPerPage: CARD_CAROUSEL.desktop.slidesPerPage,
+    slidesPerScroll: CARD_CAROUSEL.desktop.slidesPerScroll,
     itemWidth: 265,
     breakpoints: {
       500: {
-        slidesPerPage: 1,
-        slidesPerScroll: 1,
+        slidesPerPage: CARD_CAROUSEL.mobile.slidesPerPage,
+        slidesPerScroll: CARD_CAROUSEL.mobile.slidesPerScroll,
         itemWidth: 250,
-        ...showArrow(numResources, index, 1),
+        ...showArrow(numResources, index, CARD_CAROUSEL.mobile.slidesPerPage),
       },
     },
   };

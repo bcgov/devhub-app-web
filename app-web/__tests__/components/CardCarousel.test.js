@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from 'react-testing-library';
+import { render, cleanup, fireEvent, waitForElement } from 'react-testing-library';
 import 'jest-dom/extend-expect';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
@@ -45,8 +45,8 @@ describe('Card Carousel', () => {
     expect(queryByTestId(TEST_IDS.arrowRight)).not.toBeInTheDocument();
   });
 
-  it('shows the right arrow if there are more than 3 resources when clicked the right arrow disappears since there are no more pages to goto', async () => {
-    const { queryByTestId } = render(
+  it('shows the right arrow if there are more than 3 resources when clicked the right arrow disappears since there are no more pages to goto and the left one shows up', async () => {
+    const { queryByTestId, container } = render(
       <ThemeProvider theme={theme}>
         <CardCarousel
           resources={resources
@@ -56,12 +56,16 @@ describe('Card Carousel', () => {
         />
       </ThemeProvider>,
     );
+
     const RightArrow = queryByTestId(TEST_IDS.arrowRight);
-    expect(queryByTestId(TEST_IDS.arrowLeft)).not.toBeInTheDocument();
+    const LeftArrow = queryByTestId(TEST_IDS.arrowLeft);
+
+    expect(LeftArrow).not.toBeInTheDocument();
     expect(RightArrow).toBeInTheDocument();
 
     fireEvent.click(RightArrow);
-
-    expect(RightArrow).not.toBeInTheDocument();
+    // wait for re renders to happen
+    expect(await waitForElement(() => queryByTestId(TEST_IDS.arrowRight))).not.toBeInTheDocument();
+    expect(await waitForElement(() => queryByTestId(TEST_IDS.arrowRight))).toBeInTheDocument();
   });
 });
