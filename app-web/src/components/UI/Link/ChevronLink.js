@@ -22,8 +22,8 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from './Link';
 
-const ChevronLink = ({ to, children }) => (
-  <Link to={to}>
+const ChevronLink = ({ to, children, ...rest }) => (
+  <Link to={to} {...rest}>
     {children} <FontAwesomeIcon icon={faChevronRight} />
   </Link>
 );

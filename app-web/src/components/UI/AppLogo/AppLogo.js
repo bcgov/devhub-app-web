@@ -16,8 +16,39 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import styles from './AppLogo.module.css';
+import PropTypes from 'prop-types';
 
-const AppLogo = () => <h1 className={styles.AppLogo}>DevHub</h1>;
+import styled from '@emotion/styled';
+
+import PhaseBanner from '../PhaseBanner/PhaseBanner';
+
+const H2 = styled.h2`
+  margin: 6px 3px 6px 0;
+  padding: 0px 4px;
+  text-decoration: none;
+  font-size: 1.54912em;
+`;
+
+const Container = styled.div`
+  display: flex;
+  font-size: 1em;
+`;
+
+const AppLogo = ({ titleStyles, ...rest }) => (
+  <Container {...rest}>
+    <H2 {...titleStyles}>DevHub</H2>
+    <PhaseBanner />
+  </Container>
+);
+
+AppLogo.propTypes = {
+  titleStyles: PropTypes.shape({
+    style: PropTypes.object,
+  }),
+};
+
+AppLogo.defaultProps = {
+  titleStyles: {},
+};
 
 export default AppLogo;

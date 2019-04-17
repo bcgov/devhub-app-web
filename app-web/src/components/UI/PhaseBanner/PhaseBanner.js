@@ -17,36 +17,42 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './PhaseBanner.module.css';
+import styled from '@emotion/styled';
 
+export const PHASE_TYPES = {
+  beta: 'beta',
+  alpha: 'alpha',
+};
+
+const Container = styled.div`
+  text-transform: uppercase;
+  font-weight: 600;
+  color: ${({ phase }) => {
+    switch (phase) {
+      case PHASE_TYPES.alpha:
+        return '#fcba19';
+      case PHASE_TYPES.beta:
+        return '#fcba19';
+      default:
+        return 'white';
+    }
+  }};
+`;
 // produces a label for the application status...alpha, beta etc
 const PhaseBanner = ({ phase }) => {
-  const classNames = [styles.PhaseBanner];
-  // eslint-disable-next-line default-case
-  switch (phase.toLowerCase()) {
-    case 'alpha':
-      classNames.push(styles.Alpha);
-      break;
-    case 'beta':
-      classNames.push(styles.Beta);
-      break;
-  }
   return (
-    <div
-      aria-label={`This application is currently in ${phase} phase`}
-      className={classNames.join(' ')}
-    >
+    <Container phase={phase} aria-label={`This application is currently in ${phase} phase`}>
       {phase}
-    </div>
+    </Container>
   );
 };
 
 PhaseBanner.propTypes = {
-  phase: PropTypes.string,
+  phase: PropTypes.oneOf(Object.keys(PHASE_TYPES)),
 };
 
 PhaseBanner.defaultProps = {
-  phase: 'Beta',
+  phase: PHASE_TYPES.beta,
 };
 
 export default PhaseBanner;

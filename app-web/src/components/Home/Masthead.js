@@ -19,12 +19,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { navigate } from 'gatsby';
 import styled from '@emotion/styled';
-import Title from '../Page/Title';
+import { ChevronLink } from '../UI/Link';
 import { SEARCH, EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
 import Search from '../Search';
 import SearchPills from '../Search/SearchPills';
 // localizations
 import { HOME } from '../../messages';
+import AppLogo from '../UI/AppLogo/AppLogo';
+import css from '@emotion/css';
 
 const SearchStyled = styled(Search)`
   font-size: 1.25em;
@@ -52,12 +54,36 @@ const Container = styled.div`
   }
 `;
 
-export const Masthead = ({ setSearchBarTerms, query }) => (
+export const Masthead = ({ query }) => (
   <Container>
-    <Title
-      title={HOME.header.title.defaultMessage}
-      subtitle={HOME.header.subtitle.defaultMessage}
+    <AppLogo
+      css={css`
+        font-size: 1.5em;
+        margin-bottom: 0.5em;
+        ${EMOTION_BOOTSTRAP_BREAKPOINTS.sm} {
+          font-size: 2em;
+        }
+      `}
     />
+    <h4
+      css={css`
+        max-width: 525px;
+      `}
+    >
+      One place that brings together resources to help build digital products for the BC Government
+    </h4>
+
+    <ChevronLink
+      to="/about"
+      css={css`
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 1.5em;
+      `}
+    >
+      How Devhub Works
+    </ChevronLink>
+
     <SearchContainer>
       <SearchStyled
         searchOnEnter
@@ -69,7 +95,7 @@ export const Masthead = ({ setSearchBarTerms, query }) => (
       {query && (
         <SearchPills
           query={query}
-          onDelete={term => {
+          onDelete={() => {
             // remove token from query list and rebuild navigation
             navigate(`/?q=`);
           }}
