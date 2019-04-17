@@ -4,14 +4,12 @@ exports[`Button Component matches snapshot 1`] = `
 <StyledLink
   activeClassName=""
   activeStyle={Object {}}
-  className="Logo"
   id="dh-banner"
   to="/"
 >
   <GovLogo />
-  <AppLogo />
-  <PhaseBanner
-    phase="Beta"
+  <AppLogo
+    titleStyles={Object {}}
   />
 </StyledLink>
 `;

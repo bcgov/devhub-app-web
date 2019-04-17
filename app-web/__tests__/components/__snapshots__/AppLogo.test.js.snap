@@ -1,9 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button Component matches snapshot 1`] = `
-<h1
-  className="AppLogo"
->
-  DevHub
-</h1>
+<Container>
+  <H2>
+    DevHub
+  </H2>
+  <PhaseBanner
+    phase="beta"
+  />
+</Container>
 `;
