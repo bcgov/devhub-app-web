@@ -57,14 +57,15 @@ const CollectionLinkWrapper = styled.div`
   font-size: 1.15em;
 `;
 
-const CollectionPreview = ({ title, description, link, resources }) => (
-  <section
+const CollectionPreview = ({ title, description, link, resources, ...rest }) => (
+  <div
     css={css`
       max-width: 862px;
       margin: 20px 0;
       border: 1px solid #ccc;
       border-top: transparent;
     `}
+    {...rest}
   >
     <CollectionDecorativeBar type="Collections" />
     <CollectionPreviewContainer>
@@ -74,10 +75,10 @@ const CollectionPreview = ({ title, description, link, resources }) => (
       {description && <CollectionDescription clamp={3}>{description}</CollectionDescription>}
       <CardCarousel resources={resources} />
       <CollectionLinkWrapper>
-        <ChevronLink to={link}>View Collection</ChevronLink>
+        <ChevronLink to={link}>View</ChevronLink>
       </CollectionLinkWrapper>
     </CollectionPreviewContainer>
-  </section>
+  </div>
 );
 
 CollectionPreview.propTypes = {

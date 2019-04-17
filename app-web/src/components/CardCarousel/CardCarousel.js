@@ -5,10 +5,15 @@ import styled from '@emotion/styled';
 import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 
-import { RESOURCE_TYPES_LIST, CARD_CAROUSEL } from '../../constants/ui';
+import {
+  RESOURCE_TYPES_LIST,
+  CARD_CAROUSEL,
+  EMOTION_BOOTSTRAP_BREAKPOINTS,
+} from '../../constants/ui';
 import Card from '../Cards/Card/Card';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import css from '@emotion/css';
 
 export const TEST_IDS = {
   arrowLeft: 'carousel-arrow-left',
@@ -16,9 +21,14 @@ export const TEST_IDS = {
 };
 
 const Icon = styled(FontAwesomeIcon)`
-  color: ${({ theme }) => theme.colors.primary};
-  font-size: 2em;
-  cursor: pointer;
+  display: none;
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.sm} {
+    color: ${({ theme }) => theme.colors.primary};
+    font-size: 50px;
+    padding: 0 5px;
+    cursor: pointer;
+    display: block;
+  }
 `;
 
 /**
@@ -47,9 +57,14 @@ const showArrow = (numResources, index, slidesPerPage) => {
 const CardCarousel = ({ resources }) => {
   const [index, setIndex] = useState(0);
   const numResources = resources.length;
+
   const slides = resources.map(r => (
     <Card
       key={r.id}
+      css={css`
+        width: 235px;
+        margin: 10px;
+      `}
       type={r.resource.type}
       title={r.unfurl.title}
       description={r.unfurl.description}
@@ -66,13 +81,11 @@ const CardCarousel = ({ resources }) => {
     addArrowClickHandler: true,
     slidesPerPage: CARD_CAROUSEL.desktop.slidesPerPage,
     slidesPerScroll: CARD_CAROUSEL.desktop.slidesPerScroll,
-    itemWidth: 265,
+    itemWidth: 251,
     breakpoints: {
       500: {
         slidesPerPage: CARD_CAROUSEL.mobile.slidesPerPage,
         slidesPerScroll: CARD_CAROUSEL.mobile.slidesPerScroll,
-        itemWidth: 250,
-        ...showArrow(numResources, index, CARD_CAROUSEL.mobile.slidesPerPage),
       },
     },
   };

@@ -16,15 +16,10 @@ Created by Patrick Simonian
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
-
-import { RESOURCE_TYPES } from '../../constants/ui';
+import { css } from '@emotion/core';
 import { getFirstNonExternalResource } from '../../utils/helpers';
+import CollectionPreview from '../CollectionPreview/CollectionPreview';
 
-import Collection from '../Cards/Card/Collection';
-import Container from '../Cards/Container';
-import Row from '../Cards/Row';
-import Column from '../Cards/Column';
 import { ChevronLink } from '../UI/Link';
 import { Container as PreviewContainer, Title, StyledLink, LinkContainer } from './index';
 
@@ -33,21 +28,10 @@ export const TEST_IDS = {
   container: 'collections-container',
 };
 
-const ContainerCentered = styled(Container)`
-  margin: 0 auto 15px;
-  align-item: flex-start;
-`;
-
-const StyledColumn = styled(Column)`
-  flex: 0 1 506px;
-  justify-content: center;
-  display: flex;
-`;
-
 const CollectionContent = collections =>
   collections
     .filter(collection => collection.hasResources)
-    .slice(0, 4)
+    .slice(0, 2)
     .map(collection => {
       // resources are grouped by type, 'ungroup' them so we can find the first available
       // non external link to use as the entry page for the collection card
@@ -59,17 +43,17 @@ const CollectionContent = collections =>
       });
 
       return (
-        <StyledColumn key={collection.id}>
-          <Collection
-            title={collection.name}
-            description={collection.description}
-            documentation={collection.resources[RESOURCE_TYPES.DOCUMENTATION].length}
-            repositories={collection.resources[RESOURCE_TYPES.REPOSITORIES].length}
-            components={collection.resources[RESOURCE_TYPES.COMPONENTS].length}
-            tools={collection.resources[RESOURCE_TYPES.SELF_SERVICE_TOOLS].length}
-            link={getFirstNonExternalResource(allResources)}
-          />
-        </StyledColumn>
+        <CollectionPreview
+          key={collection.id}
+          title={collection.name}
+          description={collection.description}
+          link={getFirstNonExternalResource(allResources)}
+          resources={allResources}
+          css={css`
+            max-width: 100%;
+            margin-right: 10px;
+          `}
+        />
       );
     });
 
@@ -78,9 +62,8 @@ export const CollectionsContainer = ({ collections, link }) => (
     <Title>
       <StyledLink to={link.to}>Collections</StyledLink>
     </Title>
-    <ContainerCentered>
-      <Row>{CollectionContent(collections)}</Row>
-    </ContainerCentered>
+
+    {CollectionContent(collections)}
     <LinkContainer>
       <ChevronLink to={link.to}>{link.text}</ChevronLink>
     </LinkContainer>

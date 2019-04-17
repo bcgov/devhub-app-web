@@ -30,6 +30,7 @@ describe('General Purpose Selectors', () => {
           id: n.id,
           _metadata: { ...n._metadata },
           resource: { ...n.resource },
+          unfurl: { ...n.unfurl },
         }),
       ),
       'resource.type',

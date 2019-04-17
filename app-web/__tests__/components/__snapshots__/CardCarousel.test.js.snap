@@ -116,7 +116,7 @@ exports[`Card Carousel matches snapshot 1`] = `
     >
       <li
         class="BrainhubCarouselItem BrainhubCarouselItem--active"
-        style="padding-right: 0px; padding-left: 0px; width: 265px; max-width: 265px; min-width: 265px;"
+        style="padding-right: 0px; padding-left: 0px; width: 251px; max-width: 251px; min-width: 251px;"
       >
         <a
           class="emotion-14 emotion-15 emotion-16"
