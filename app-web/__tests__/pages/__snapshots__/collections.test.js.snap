@@ -22,6 +22,17 @@ exports[`Index Container it matches snapshot 1`] = `
               "path": "/design-system/Z1bGIqu",
               "type": "Components",
             },
+            "unfurl": Object {
+              "author": "ksingbeil",
+              "data1": "",
+              "data2": "",
+              "description": "What the Design System is and how it works.",
+              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+              "label1": "",
+              "label2": "",
+              "title": "About",
+              "type": "markdown",
+            },
           },
           Object {
             "_metadata": Object {
@@ -31,6 +42,17 @@ exports[`Index Container it matches snapshot 1`] = `
             "resource": Object {
               "path": "/design-system/Z1bGIqu",
               "type": "Components",
+            },
+            "unfurl": Object {
+              "author": "ksingbeil",
+              "data1": "",
+              "data2": "",
+              "description": "What the Design System is and how it works.",
+              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+              "label1": "",
+              "label2": "",
+              "title": "About",
+              "type": "markdown",
             },
           },
           Object {
@@ -42,6 +64,17 @@ exports[`Index Container it matches snapshot 1`] = `
               "path": "/design-system/Z1bGIqu",
               "type": "Components",
             },
+            "unfurl": Object {
+              "author": "ksingbeil",
+              "data1": "",
+              "data2": "",
+              "description": "What the Design System is and how it works.",
+              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+              "label1": "",
+              "label2": "",
+              "title": "About",
+              "type": "markdown",
+            },
           },
           Object {
             "_metadata": Object {
@@ -51,6 +84,17 @@ exports[`Index Container it matches snapshot 1`] = `
             "resource": Object {
               "path": "/design-system/Z1bGIqu",
               "type": "Components",
+            },
+            "unfurl": Object {
+              "author": "ksingbeil",
+              "data1": "",
+              "data2": "",
+              "description": "What the Design System is and how it works.",
+              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+              "label1": "",
+              "label2": "",
+              "title": "About",
+              "type": "markdown",
             },
           },
         ]
@@ -71,6 +115,17 @@ exports[`Index Container it matches snapshot 1`] = `
               "path": "/design-system/Z1bGIqu",
               "type": "Documentation",
             },
+            "unfurl": Object {
+              "author": "ksingbeil",
+              "data1": "",
+              "data2": "",
+              "description": "What the Design System is and how it works.",
+              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+              "label1": "",
+              "label2": "",
+              "title": "About",
+              "type": "markdown",
+            },
           },
           Object {
             "_metadata": Object {
@@ -81,6 +136,17 @@ exports[`Index Container it matches snapshot 1`] = `
               "path": "/design-system/Z1bGIqu",
               "type": "Documentation",
             },
+            "unfurl": Object {
+              "author": "ksingbeil",
+              "data1": "",
+              "data2": "",
+              "description": "What the Design System is and how it works.",
+              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+              "label1": "",
+              "label2": "",
+              "title": "About",
+              "type": "markdown",
+            },
           },
           Object {
             "_metadata": Object {
@@ -90,6 +156,17 @@ exports[`Index Container it matches snapshot 1`] = `
             "resource": Object {
               "path": "/design-system/Z1bGIqu",
               "type": "Documentation",
+            },
+            "unfurl": Object {
+              "author": "ksingbeil",
+              "data1": "",
+              "data2": "",
+              "description": "What the Design System is and how it works.",
+              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+              "label1": "",
+              "label2": "",
+              "title": "About",
+              "type": "markdown",
             },
           },
         ]

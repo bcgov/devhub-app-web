@@ -73,9 +73,9 @@ const CollectionPreview = ({ title, description, link, resources }) => (
 
       {description && <CollectionDescription clamp={3}>{description}</CollectionDescription>}
       <CardCarousel resources={resources} />
-      {/* <CollectionLinkWrapper>
-        <ChevronLink to={link}>View Collection</ChevronLink>
-      </CollectionLinkWrapper> */}
+      <CollectionLinkWrapper>
+        <ChevronLink to={link}>View</ChevronLink>
+      </CollectionLinkWrapper>
     </CollectionPreviewContainer>
   </div>
 );

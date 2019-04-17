@@ -279,6 +279,7 @@ export const DESIGN_SYSTEM_COLLECTION = {
     id: n.id,
     _metadata: { ...n._metadata },
     resource: { ...n.resource },
+    unfurl: { ...n.unfurl },
   })),
 };
 
@@ -292,6 +293,7 @@ export const DEVHUB_COLLECTION = {
     id: n.id,
     _metadata: { ...n._metadata },
     resource: { ...n.resource },
+    unfurl: { ...n.unfurl },
   })),
 };
 

@@ -65,7 +65,7 @@ const CollectionContent = collections =>
           title={collection.name}
           description={collection.description}
           link={getFirstNonExternalResource(allResources)}
-          resources={collection.childrenDevhubSiphon}
+          resources={allResources}
         />
       );
     });
