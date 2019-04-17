@@ -98,8 +98,15 @@ const DateLI = styled.li`
 `;
 
 const EventLogoWrapper = styled.div`
-  margin: 0.25em 0.5em 0.25em auto;
+  margin: 9px 0 4px;
   flex: 0 0 25px;
+  display: flex;
+  align-items: center;
+  img {
+    margin-left: 0;
+    padding-left: 15px;
+    margin-bottom: 0;
+  }
 `;
 
 export const Event = ({ title, type, startDay, startMonth, startYear, image, where, url }) => {

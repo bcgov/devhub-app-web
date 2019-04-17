@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
 import GatsbyImage from 'gatsby-image';
 import { EVENT_TYPES } from '../../constants/ui';
+
 const EventLogo = ({ type }) => (
   <StaticQuery
     query={graphql`
