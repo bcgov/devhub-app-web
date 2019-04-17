@@ -1,12 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button Component matches snapshot 1`] = `
-<Container>
-  <H2>
+exports[`Applogo Component matches snapshot 1`] = `
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 1em;
+}
+
+.emotion-0 {
+  margin: 6px 3px 6px 0;
+  padding: 0px 4px;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  font-size: 1.54912em;
+}
+
+.emotion-2 {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #fcba19;
+}
+
+<div
+  class="emotion-4 emotion-5"
+>
+  <h2
+    class="emotion-0 emotion-1"
+  >
     DevHub
-  </H2>
-  <PhaseBanner
-    phase="beta"
-  />
-</Container>
+  </h2>
+  <div
+    aria-label="This application is currently in beta phase"
+    class="emotion-2 emotion-3"
+  >
+    beta
+  </div>
+</div>
 `;

@@ -19,14 +19,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { navigate } from 'gatsby';
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 import { ChevronLink } from '../UI/Link';
 import { SEARCH, EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
 import Search from '../Search';
 import SearchPills from '../Search/SearchPills';
 // localizations
 import AppLogo from '../UI/AppLogo/AppLogo';
-import css from '@emotion/css';
-
 const SearchStyled = styled(Search)`
   font-size: 1.25em;
   flex-flow: row wrap;
@@ -59,11 +58,9 @@ export const Masthead = ({ query }) => (
       css={css`
         font-size: 1.5em;
         margin-bottom: 0.5em;
-        ${EMOTION_BOOTSTRAP_BREAKPOINTS.sm} {
-          font-size: 2em;
-        }
       `}
     />
+
     <h4
       css={css`
         max-width: 525px;

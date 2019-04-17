@@ -1,15 +1,116 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button Component matches snapshot 1`] = `
-<StyledLink
-  activeClassName=""
-  activeStyle={Object {}}
+exports[`Banner Component matches snapshot 1`] = `
+.emotion-11 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  color: #1A5A96;
+  font-weight: 400;
+  text-transform: capitalize;
+  padding: 0 4px;
+  margin: 0 2px;
+  color: #fff;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: inherit;
+  margin: 0 10px 0 0;
+}
+
+.emotion-11:hover {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+}
+
+.emotion-11:visited {
+  color: inherit;
+}
+
+.emotion-0 {
+  margin-bottom: 0;
+  width: 175px;
+}
+
+@media (max-width:480px) {
+  .emotion-0 {
+    display: none;
+  }
+}
+
+.emotion-2 {
+  margin-bottom: 0;
+  width: 50px;
+}
+
+@media (min-width:480px) {
+  .emotion-2 {
+    display: none;
+  }
+}
+
+.emotion-8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 1em;
+}
+
+.emotion-4 {
+  margin: 6px 3px 6px 0;
+  padding: 0px 4px;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  font-size: 1.54912em;
+}
+
+.emotion-6 {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #fcba19;
+}
+
+<a
+  class="emotion-10 emotion-11 emotion-12"
+  href="/"
   id="dh-banner"
-  to="/"
 >
-  <GovLogo />
-  <AppLogo
-    titleStyles={Object {}}
+  <img
+    alt="Government of British Columbia"
+    class="emotion-0 emotion-1"
+    src="BCID_H_rgb_rev.svg"
   />
-</StyledLink>
+  <img
+    alt="Government of British Columbia"
+    class="emotion-2 emotion-3"
+    src="logo.svg"
+  />
+  <div
+    class="emotion-8 emotion-9"
+  >
+    <h2
+      class="emotion-4 emotion-5"
+    >
+      DevHub
+    </h2>
+    <div
+      aria-label="This application is currently in beta phase"
+      class="emotion-6 emotion-7"
+    >
+      beta
+    </div>
+  </div>
+</a>
 `;

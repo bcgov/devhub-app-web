@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import 'github-markdown-css';
+import { css } from '@emotion/core';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 
 import Main from '../components/Page/Main';
 import Layout from '../hoc/Layout';
-import css from '@emotion/css';
 
 const MarkdownCSS = css`
   blockquote {

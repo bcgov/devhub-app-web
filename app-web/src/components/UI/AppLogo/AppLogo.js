@@ -34,21 +34,21 @@ const Container = styled.div`
   font-size: 1em;
 `;
 
-const AppLogo = ({ titleStyles, ...rest }) => (
+const AppLogo = ({ titleConfig, ...rest }) => (
   <Container {...rest}>
-    <H2 {...titleStyles}>DevHub</H2>
+    <H2 {...titleConfig}>DevHub</H2>
     <PhaseBanner />
   </Container>
 );
 
 AppLogo.propTypes = {
-  titleStyles: PropTypes.shape({
+  titleConfig: PropTypes.shape({
     style: PropTypes.object,
   }),
 };
 
 AppLogo.defaultProps = {
-  titleStyles: {},
+  titleConfig: {},
 };
 
 export default AppLogo;

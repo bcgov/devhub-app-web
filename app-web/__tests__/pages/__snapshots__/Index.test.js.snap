@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Home Page it matches snapshot, when there is a search and no results an alert box shows up 1`] = `
-.emotion-9 {
+.emotion-13 {
   background-color: #fafafa;
   text-align: center;
   font-size: 16px;
@@ -20,34 +20,49 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
 }
 
 @media (min-width:576px) {
-  .emotion-9 {
+  .emotion-13 {
     padding: 50px 15px 55px;
   }
 }
 
-.emotion-2 {
-  margin-bottom: 10px;
-  color: #494949;
-}
-
-.emotion-2 h1 {
-  margin-bottom: 5px;
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 1em;
 }
 
 .emotion-0 {
-  font-size: 1em;
-  max-width: 565px;
-  margin-bottom: 0;
-  padding: 3px;
-  line-height: 1.5em;
+  margin: 6px 3px 6px 0;
+  padding: 0px 4px;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  font-size: 1.54912em;
 }
 
-.emotion-7 {
+.emotion-2 {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #fcba19;
+}
+
+.emotion-6 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  color: #1A5A96;
+  font-weight: 400;
+  text-transform: capitalize;
+  padding: 0 4px;
+  margin: 0 2px;
+}
+
+.emotion-11 {
   width: 100%;
   max-width: 500px;
 }
 
-.emotion-5 {
+.emotion-9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -62,7 +77,7 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
   flex-flow: row wrap;
 }
 
-.emotion-5 > input {
+.emotion-9 > input {
   margin: 0 4px;
   padding: 4px 5px;
   -webkit-flex-basis: 250px;
@@ -76,12 +91,12 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
   transition: all 0.25s;
 }
 
-.emotion-5 > button {
+.emotion-9 > button {
   padding: 4px 15px;
   margin: 4px;
 }
 
-.emotion-5 > button {
+.emotion-9 > button {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -89,25 +104,56 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
 }
 
 <div
-  class="emotion-9 emotion-10"
+  class="emotion-13 emotion-14"
 >
   <div
-    class="emotion-2 emotion-3"
+    class="emotion-4 emotion-5"
   >
-    <h1>
-      Developers Hub
-    </h1>
-    <h4
+    <h2
       class="emotion-0 emotion-1"
     >
-      Find resources for digital product teams to learn new skills, discover tools and resources, and connect with the developer community
-    </h4>
+      DevHub
+    </h2>
+    <div
+      aria-label="This application is currently in beta phase"
+      class="emotion-2 emotion-3"
+    >
+      beta
+    </div>
   </div>
+  <h4
+    css="[object Object]"
+  >
+    One place that brings together resources to help build digital products for the BC Government
+  </h4>
+  <a
+    class="emotion-6 emotion-7"
+    css="[object Object]"
+    href="/about"
+  >
+    How Devhub Works
+     
+    <svg
+      aria-hidden="true"
+      class="svg-inline--fa fa-chevron-right fa-w-10 "
+      data-icon="chevron-right"
+      data-prefix="fas"
+      focusable="false"
+      role="img"
+      viewBox="0 0 320 512"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+        fill="currentColor"
+      />
+    </svg>
+  </a>
   <div
-    class="emotion-7 emotion-8"
+    class="emotion-11 emotion-12"
   >
     <div
-      class="emotion-4 emotion-5 emotion-6"
+      class="emotion-8 emotion-9 emotion-10"
     >
       <input
         aria-label="Search input field"
@@ -131,7 +177,7 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
 `;
 
 exports[`Home Page when there is an empty search the alert box does not show and all results show instead 1`] = `
-.emotion-9 {
+.emotion-13 {
   background-color: #fafafa;
   text-align: center;
   font-size: 16px;
@@ -150,34 +196,49 @@ exports[`Home Page when there is an empty search the alert box does not show and
 }
 
 @media (min-width:576px) {
-  .emotion-9 {
+  .emotion-13 {
     padding: 50px 15px 55px;
   }
 }
 
-.emotion-2 {
-  margin-bottom: 10px;
-  color: #494949;
-}
-
-.emotion-2 h1 {
-  margin-bottom: 5px;
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 1em;
 }
 
 .emotion-0 {
-  font-size: 1em;
-  max-width: 565px;
-  margin-bottom: 0;
-  padding: 3px;
-  line-height: 1.5em;
+  margin: 6px 3px 6px 0;
+  padding: 0px 4px;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  font-size: 1.54912em;
 }
 
-.emotion-7 {
+.emotion-2 {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #fcba19;
+}
+
+.emotion-6 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  color: #1A5A96;
+  font-weight: 400;
+  text-transform: capitalize;
+  padding: 0 4px;
+  margin: 0 2px;
+}
+
+.emotion-11 {
   width: 100%;
   max-width: 500px;
 }
 
-.emotion-5 {
+.emotion-9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -192,7 +253,7 @@ exports[`Home Page when there is an empty search the alert box does not show and
   flex-flow: row wrap;
 }
 
-.emotion-5 > input {
+.emotion-9 > input {
   margin: 0 4px;
   padding: 4px 5px;
   -webkit-flex-basis: 250px;
@@ -206,12 +267,12 @@ exports[`Home Page when there is an empty search the alert box does not show and
   transition: all 0.25s;
 }
 
-.emotion-5 > button {
+.emotion-9 > button {
   padding: 4px 15px;
   margin: 4px;
 }
 
-.emotion-5 > button {
+.emotion-9 > button {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -219,25 +280,56 @@ exports[`Home Page when there is an empty search the alert box does not show and
 }
 
 <div
-  class="emotion-9 emotion-10"
+  class="emotion-13 emotion-14"
 >
   <div
-    class="emotion-2 emotion-3"
+    class="emotion-4 emotion-5"
   >
-    <h1>
-      Developers Hub
-    </h1>
-    <h4
+    <h2
       class="emotion-0 emotion-1"
     >
-      Find resources for digital product teams to learn new skills, discover tools and resources, and connect with the developer community
-    </h4>
+      DevHub
+    </h2>
+    <div
+      aria-label="This application is currently in beta phase"
+      class="emotion-2 emotion-3"
+    >
+      beta
+    </div>
   </div>
+  <h4
+    css="[object Object]"
+  >
+    One place that brings together resources to help build digital products for the BC Government
+  </h4>
+  <a
+    class="emotion-6 emotion-7"
+    css="[object Object]"
+    href="/about"
+  >
+    How Devhub Works
+     
+    <svg
+      aria-hidden="true"
+      class="svg-inline--fa fa-chevron-right fa-w-10 "
+      data-icon="chevron-right"
+      data-prefix="fas"
+      focusable="false"
+      role="img"
+      viewBox="0 0 320 512"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+        fill="currentColor"
+      />
+    </svg>
+  </a>
   <div
-    class="emotion-7 emotion-8"
+    class="emotion-11 emotion-12"
   >
     <div
-      class="emotion-4 emotion-5 emotion-6"
+      class="emotion-8 emotion-9 emotion-10"
     >
       <input
         aria-label="Search input field"
