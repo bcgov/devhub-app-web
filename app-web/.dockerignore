@@ -9,4 +9,6 @@ Dockerfile
 LICENSE.txt
 README.md
 RELEASE.md
-.env
+.env.production
+.cache
+public

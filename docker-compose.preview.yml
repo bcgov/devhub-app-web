@@ -5,6 +5,8 @@ services:
   previewer:
     build: '.'
     image: bcgovimages/devhub-previewer
+    env_file:
+      - app-web/.env.production
     volumes:
       - './app-web/:/site'
       # a hack to ignore node_modules so that local version, 

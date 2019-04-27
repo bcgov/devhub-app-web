@@ -1,0 +1,9 @@
+app-web/node_modules
+app-web/.vscode
+app-web/.gitignore
+app-web/.editorconfig
+app-web/config
+app-web/Dockerfile
+app-web/.env.production
+app-web/.cache
+app-web/.public
