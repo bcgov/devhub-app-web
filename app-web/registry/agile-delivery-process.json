@@ -5,7 +5,6 @@
     "url": "https://github.com/bcgov/Agile-Delivery-Process",
     "owner": "bcgov",
     "repo": "Agile-Delivery-Process",
-    "ignores": "CODE_OF_CONDUCT.md",
     "files": [
       "README.md",
       "01_Alignment.md",
