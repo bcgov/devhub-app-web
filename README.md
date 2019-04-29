@@ -96,7 +96,7 @@ Here are some of the other components/technologies used by DevHub:
 ## Project Status
 In Development
 ## Documentation
-- [Internal Docs](./docs/README.md)
+- [Internal Docs](docs/README.md)
 - [Authoring Plugins for Remark](https://www.huynguyen.io/2018-05-remark-gatsby-plugin-part-2/)
 ## Security
 
@@ -219,15 +219,13 @@ This repository has been configured to send webhooks to a self-hosted Taiga inst
 
 ## Deployment (Docker Compose for Local Development)
 
-* Requires **Docker** **Docker Compose**
-* move into the root directory for the project (if your are in app-web `cd ../`)
-* run `docker-compose up`
-> if you make changes that do not reflect into the container, you will need to rebuild the image by ending the current container session and running `docker-compose up --build`,
-alternatively if things like node_modules aren't showing up try
-> 1. `docker-compose up --build`
-> 2. `docker-compose down`
-> 3. `docker-compose up` 
-> credits to: https://stackoverflow.com/a/49357239
+* Requires **Docker**  & **Docker Compose** (and for Windows users. some `bash` compatible environment)
+* clone the repo to your workstation
+* from the root of your local repo, run `./preview.sh`
+
+An pre-built "previewer" image will be pulled down from Docker Hub to your local workstation and fired up.  It will likely take a few minutes the first time you do this.  Once the image has been pulled down, DevHub will kick in and process the content defined in the `registry` directory.  After a few minutes, you'll be able to peek at the DevHub running locally at [http://localhost:8000](http://localhost:8000).
+
+At this point, you can modify contents of the `registry` directory (adding resources or topics for example), or rebuild and preview locally based on changes in repositories that area already referenced in the `registry`.  If you make changes to the `registry` or remote content, you willneed to restart the previewer via ^C and running `./preview.sh` again - the hot reload does not apply to `registry` or remote content.
 
 ## Deployment (OpenShift)
 
