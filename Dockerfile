@@ -18,6 +18,7 @@ LABEL summary="$SUMMARY" \
 
 RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
+
 COPY app-web/package.json $INSTALL_PATH
 COPY app-web/package-lock.json $INSTALL_PATH
 
