@@ -10,7 +10,6 @@ ENV LC_ALL=en_US.UTF-8 \
   LANG=en_US.UTF-8
 
 ENV INSTALL_PATH /site
-ENV NODE_ENV production
 ENV GIT_REF $GIT_REF
 
 LABEL summary="$SUMMARY" \
