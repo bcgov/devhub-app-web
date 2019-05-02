@@ -27,7 +27,8 @@
           "owner": "bcdevops",
           "repo": "openshift-wiki",
           "files": [
-            "docs/OCP/RequestSSORealm.md"
+            "docs/OCP/RequestSSORealm.md",
+            "docs/RH-SSO/ServiceDefinition.md"
           ]
         }
       },
