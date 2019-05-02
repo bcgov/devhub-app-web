@@ -1,0 +1,27 @@
+{
+  "name": "Mobile Starter Kit",
+  "description": "Blarb",
+  "resourceType": "Self-Service Tools",
+  "attributes": {
+    "personas": ["Developer"]
+  },
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://signing-web-devhub-prod.pathfinder.gov.bc.ca"
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/mobile-starter-kit",
+          "repo": "mobile-starter-kit",
+          "owner": "bcgov",
+          "files": ["README.md", "ServiceDefinition.md"]
+        }
+      }
+    ]
+  }
+}
