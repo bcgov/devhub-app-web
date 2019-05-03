@@ -166,11 +166,6 @@ parameters:
   name: MATOMO_URL
   required: false
   value: ''
-- description: Location of the Matomo server that the app should post events to.
-  displayName: Matomo URL
-  name: MATOMO_URL
-  required: false
-  value: ''
 - description: URL (route) where this app is deployed
   displayName: Matomo URL
   name: MATOMO_SITE_URL
