@@ -61,6 +61,12 @@ objects:
             value: ${SSO_REALM_NAME_VALUE}
           - name: SSO_CLIENT_ID
             value: ${SSO_CLIENT_ID_VALUE}
+          - name: MATOMO_URL
+            value: ${MATOMO_URL}
+          - name: MATOMO_SITE_URL
+            value: ${MATOMO_SITE_URL}
+          - name: MATOMO_SITE_ID
+            value: ${MATOMO_SITE_ID}
           volumeMounts:
           - name: ${CADDY_VOLUME_NAME}
             mountPath: /etc/Caddyfile
@@ -155,3 +161,23 @@ parameters:
   name: CADDY_VOLUME_NAME
   required: false
   value: web-caddy-config
+- description: Location of the Matomo server that the app should post events to.
+  displayName: Matomo URL
+  name: MATOMO_URL
+  required: false
+  value: ''
+- description: Location of the Matomo server that the app should post events to.
+  displayName: Matomo URL
+  name: MATOMO_URL
+  required: false
+  value: ''
+- description: URL (route) where this app is deployed
+  displayName: Matomo URL
+  name: MATOMO_SITE_URL
+  required: false
+  value: ''
+- description: Identifier for this site within Matomo
+  displayName: Matomo URL
+  name: MATOMO_SITE_ID
+  required: false
+  value: '1'
