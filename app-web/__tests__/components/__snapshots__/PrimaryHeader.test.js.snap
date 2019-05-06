@@ -4,9 +4,7 @@ exports[`Primary Header Component it matches snapshot 1`] = `
 <header
   className="PrimaryHeader"
 >
-  <Banner
-    navigateOnClickPath=""
-  />
+  <Banner />
   <div
     className="Other"
   />
