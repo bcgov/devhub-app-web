@@ -16,12 +16,18 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from 'react-testing-library';
+import { ThemeProvider } from 'emotion-theming';
+import theme from '../../theme';
 import Banner from '../../src/components/UI/Banner/Banner';
 
-describe('Button Component', () => {
+describe('Banner Component', () => {
   it('matches snapshot', () => {
-    const wrapper = shallow(<Banner />);
-    expect(wrapper).toMatchSnapshot();
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Banner />
+      </ThemeProvider>,
+    );
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

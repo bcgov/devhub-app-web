@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PhaseBanner it matches snapshot 1`] = `
-<div
+<Container
   aria-label="This application is currently in Beta phase"
-  className="PhaseBanner Beta"
+  phase="Beta"
 >
   Beta
-</div>
+</Container>
 `;

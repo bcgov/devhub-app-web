@@ -17,6 +17,7 @@ Created by Patrick Simonian
  */
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
+import { sortDevhubTopicsAfterDesignSystem } from '../utils/helpers';
 
 const withResourceQuery = WrappedComponent => () => props => (
   <StaticQuery
@@ -94,7 +95,16 @@ const withResourceQuery = WrappedComponent => () => props => (
         }
       }
     `}
-    render={data => <WrappedComponent data={data} {...props} />}
+    render={data => {
+      const sortedTopics = sortDevhubTopicsAfterDesignSystem(data.allDevhubCollection.edges);
+
+      return (
+        <WrappedComponent
+          data={{ ...data, allDevhubCollection: { edges: sortedTopics } }}
+          {...props}
+        />
+      );
+    }}
   />
 );
 
