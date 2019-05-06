@@ -20,6 +20,7 @@ import dotProp from 'dot-prop';
 import { GITHUB_URL } from '../constants/api';
 import { TypeCheck } from '@bcgov/common-web-utils';
 import { RESOURCE_TYPES } from '../constants/ui';
+import { TOPICS } from '../constants/topics';
 
 export const getGithubRepoRoute = (repository, owner) => `${GITHUB_URL}/${owner}/${repository}`;
 
@@ -156,4 +157,31 @@ export const setFilterPropsBasedOnResourceCounts = (filter, nodes) => {
 export const isFilterLonely = filters => {
   const numAreFilterable = filters.reduce((sum, filter) => sum + filter.isFilterable, 0);
   return numAreFilterable === 1;
+};
+
+// topics are sorted based on our arbitrary config where design system is first and then
+// all other topics sorted lexographically
+/**
+ *
+ * @param {Array} topics the raw topic data (aka collections) as taken from the graphql query
+ * @param {Object} topics[ind] {node: {..., name: {string }}}
+ * @returns {Array} the sorted topics with Design System first!
+ */
+export const sortDevhubTopicsAfterDesignSystem = topics => {
+  // it is unknown what position design system will be since this can change build to build
+  const index = topics.findIndex(topic => topic.node.name === TOPICS.DESIGN_SYSTEM);
+  const designSystem = { ...topics[index] };
+  // remove design system from topics list
+  const topicsWithoutDS = topics.filter(topic => topic.node.name !== TOPICS.DESIGN_SYSTEM);
+
+  const sortedTopics = topicsWithoutDS.sort((topicA, topicB) => {
+    const topicNameA = topicA.node.name.toLowerCase();
+    const topicNameB = topicB.node.name.toLowerCase();
+
+    if (topicNameA < topicNameB) return -1;
+    if (topicNameA > topicNameB) return 1;
+    return 0;
+  });
+
+  return [designSystem].concat(sortedTopics);
 };

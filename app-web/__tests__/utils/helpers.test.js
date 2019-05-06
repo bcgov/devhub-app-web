@@ -20,6 +20,7 @@ import {
   getGithubUsernameURL,
   getGithubIssuesRoute,
   mapPagePathToResourceTypeConst,
+  sortDevhubTopicsAfterDesignSystem,
 } from '../../src/utils/helpers';
 import { GITHUB_URL } from '../../src/constants/api';
 import { RESOURCE_TYPES } from '../../src/constants/ui';
@@ -66,5 +67,22 @@ describe('Helpers', () => {
 
   test("when passed /foo returns undefined because it isn't a valid resource type", () => {
     expect(mapPagePathToResourceTypeConst('/foo')).toBeUndefined();
+  });
+
+  test('it sorts Design System so it is first and then everything else is sorted lexographically', () => {
+    const topics = [
+      { node: { name: 'Blah' } },
+      { node: { name: 'Apple' } },
+      { node: { name: 'Design System' } },
+      { node: { name: 'Foo' } },
+    ];
+    const expected = [
+      { node: { name: 'Design System' } },
+      { node: { name: 'Apple' } },
+      { node: { name: 'Blah' } },
+      { node: { name: 'Foo' } },
+    ];
+
+    expect(sortDevhubTopicsAfterDesignSystem(topics)).toEqual(expected);
   });
 });
