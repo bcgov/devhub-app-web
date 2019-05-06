@@ -22,7 +22,7 @@ export const DESIGN_SYSTEM_NODE_1 = {
     displayName: 'Design System',
   },
   resource: {
-    path: '/design-system/Z1bGIqu',
+    path: '/design-system/Z1bGIqu1',
     type: 'Components',
   },
   unfurl: {
@@ -58,7 +58,7 @@ export const DESIGN_SYSTEM_NODE_2 = {
     displayName: 'Design System',
   },
   resource: {
-    path: '/design-system/Z1bGIqu',
+    path: '/design-system/Z1bGIqu2',
     type: 'Components',
   },
   unfurl: {
@@ -94,7 +94,7 @@ export const DESIGN_SYSTEM_NODE_3 = {
     displayName: 'Design System',
   },
   resource: {
-    path: '/design-system/Z1bGIqu',
+    path: '/design-system/Z1bGIqu3',
     type: 'Components',
   },
   unfurl: {
@@ -130,7 +130,7 @@ export const DESIGN_SYSTEM_NODE_4 = {
     displayName: 'Design System',
   },
   resource: {
-    path: '/design-system/Z1bGIqu',
+    path: '/design-system/Z1bGIqu4',
     type: 'Components',
   },
   unfurl: {
@@ -166,7 +166,7 @@ export const DEVHUB_NODE_1 = {
     displayName: 'Design System',
   },
   resource: {
-    path: '/design-system/Z1bGIqu',
+    path: '/design-system/Z1bGIqu5',
     type: 'Documentation',
   },
   unfurl: {
@@ -202,7 +202,7 @@ export const DEVHUB_NODE_2 = {
     displayName: 'Design System',
   },
   resource: {
-    path: '/design-system/Z1bGIqu',
+    path: '/design-system/Z1bGIqu6',
     type: 'Documentation',
   },
   unfurl: {
@@ -238,7 +238,7 @@ export const DEVHUB_NODE_3 = {
     displayName: 'Design System',
   },
   resource: {
-    path: '/design-system/Z1bGIqu',
+    path: '/design-system/Z1bGIqu7',
     type: 'Documentation',
   },
   unfurl: {

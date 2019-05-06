@@ -86,7 +86,7 @@ describe('Home Page', () => {
 
   test('when there is an empty search the alert box does not show and all results show instead', () => {
     queryString.parse.mockReturnValue({});
-    const { container, rerender, queryByTestId } = render(
+    const { container, rerender, queryByTestId, queryAllByTestId } = render(
       <ThemeProvider theme={theme}>
         <Index {...props} />
       </ThemeProvider>,
@@ -111,33 +111,33 @@ describe('Home Page', () => {
     expect(Alert).not.toBeInTheDocument();
 
     expect(queryByTestId(COLLECTION_TEST_IDS.container)).toBeInTheDocument();
-    expect(queryByTestId(RESOURCE_PREVIEW_TEST_IDS.container)).toBeInTheDocument();
+    expect(queryAllByTestId(RESOURCE_PREVIEW_TEST_IDS.container).length).toBeGreaterThan(0);
   });
 
   test('when searching, collections disappear if there are results', () => {
     queryString.parse.mockReturnValue({ q: 'foo' });
     useSearch.mockReturnValue([{ id: SIPHON_NODES[0].id }]);
-    const { queryByTestId } = render(
+    const { queryByTestId, queryAllByTestId } = render(
       <ThemeProvider theme={theme}>
         <Index {...props} />
       </ThemeProvider>,
     );
 
     expect(queryByTestId(COLLECTION_TEST_IDS.container)).not.toBeInTheDocument();
-    expect(queryByTestId(RESOURCE_PREVIEW_TEST_IDS.container)).toBeInTheDocument();
+    expect(queryAllByTestId(RESOURCE_PREVIEW_TEST_IDS.container).length).toBeGreaterThan(0);
   });
 
   test('when there is no search, collections are visible and cards are visible', () => {
     queryString.parse.mockReturnValue({});
     useSearch.mockReturnValue([]);
 
-    const { getByTestId } = render(
+    const { getByTestId, getAllByTestId } = render(
       <ThemeProvider theme={theme}>
         <Index {...props} />
       </ThemeProvider>,
     );
 
     expect(getByTestId(COLLECTION_TEST_IDS.container)).toBeInTheDocument();
-    expect(getByTestId(RESOURCE_PREVIEW_TEST_IDS.container)).toBeInTheDocument();
+    expect(getAllByTestId(RESOURCE_PREVIEW_TEST_IDS.container).length).toBeGreaterThan(0);
   });
 });

@@ -174,7 +174,7 @@ describe('Resource Type Template Page', () => {
       },
     }));
 
-    const { queryByTestId } = render(
+    const { queryAllByTestId, container } = render(
       <ThemeProvider theme={theme}>
         <ResourceType
           {...props}
@@ -188,13 +188,13 @@ describe('Resource Type Template Page', () => {
       </ThemeProvider>,
     );
 
-    const FirstCheckBox = queryByTestId(`${FILTER_TEST_IDS.checkbox}-${firstFilter.key}`);
-    const SecondCheckbox = queryByTestId(`${FILTER_TEST_IDS.checkbox}-${secondFilter.key}`);
-    const ThirdCheckbox = queryByTestId(`${FILTER_TEST_IDS.checkbox}-${thirdFilter.key}`);
+    const FirstCheckBox = queryAllByTestId(`${FILTER_TEST_IDS.checkbox}-${firstFilter.key}`);
+    const SecondCheckbox = queryAllByTestId(`${FILTER_TEST_IDS.checkbox}-${secondFilter.key}`);
+    const ThirdCheckbox = queryAllByTestId(`${FILTER_TEST_IDS.checkbox}-${thirdFilter.key}`);
 
-    expect(FirstCheckBox).toHaveAttribute('disabled');
-    expect(SecondCheckbox).not.toHaveAttribute('disabled');
-    expect(ThirdCheckbox).not.toHaveAttribute('disabled');
+    expect(FirstCheckBox[0]).toHaveAttribute('disabled');
+    expect(SecondCheckbox[0]).not.toHaveAttribute('disabled');
+    expect(ThirdCheckbox[0]).not.toHaveAttribute('disabled');
   });
 
   test('when given the set of resource (by type) where only 1 filter is filterable, it should be disabled because it is redundant ', () => {
@@ -214,7 +214,7 @@ describe('Resource Type Template Page', () => {
       },
     }));
 
-    const { queryByTestId } = render(
+    const { queryAllByTestId } = render(
       <ThemeProvider theme={theme}>
         <ResourceType
           {...props}
@@ -229,12 +229,12 @@ describe('Resource Type Template Page', () => {
     );
     // technically the first checkbox is filterable, but because it is the only filter available
     // it is disabled since it is redundant
-    const FirstCheckBox = queryByTestId(`${FILTER_TEST_IDS.checkbox}-${firstFilter.key}`);
-    const SecondCheckbox = queryByTestId(`${FILTER_TEST_IDS.checkbox}-${secondFilter.key}`);
-    const ThirdCheckbox = queryByTestId(`${FILTER_TEST_IDS.checkbox}-${thirdFilter.key}`);
+    const FirstCheckBox = queryAllByTestId(`${FILTER_TEST_IDS.checkbox}-${firstFilter.key}`);
+    const SecondCheckbox = queryAllByTestId(`${FILTER_TEST_IDS.checkbox}-${secondFilter.key}`);
+    const ThirdCheckbox = queryAllByTestId(`${FILTER_TEST_IDS.checkbox}-${thirdFilter.key}`);
 
-    expect(FirstCheckBox).toHaveAttribute('disabled');
-    expect(SecondCheckbox).toHaveAttribute('disabled');
-    expect(ThirdCheckbox).toHaveAttribute('disabled');
+    expect(FirstCheckBox[0]).toHaveAttribute('disabled');
+    expect(SecondCheckbox[0]).toHaveAttribute('disabled');
+    expect(ThirdCheckbox[0]).toHaveAttribute('disabled');
   });
 });

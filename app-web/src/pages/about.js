@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import 'github-markdown-css';
 import { css } from '@emotion/core';
 import { graphql } from 'gatsby';

@@ -53,6 +53,7 @@ export default class ComponentPreview extends React.Component {
         sampleContent: result.data.content,
       });
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error: ' + error);
       this.setState({
         isLoaded: true,

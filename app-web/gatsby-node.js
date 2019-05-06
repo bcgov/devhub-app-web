@@ -32,7 +32,6 @@ const getOrganizationsById = id => {
   return organizations[id];
 };
 
-exports.onCreateWebpackConfig = require('./gatsby/modifyWebpackConfig');
 exports.onCreatePage = require('./gatsby/onCreatePage');
 exports.createPages = require('./gatsby/createPages');
 exports.createResolvers = ({ createResolvers }) => {
