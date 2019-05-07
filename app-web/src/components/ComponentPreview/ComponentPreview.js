@@ -38,7 +38,7 @@ export default class ComponentPreview extends React.Component {
     repo = repo || this.props.node.source._properties.repo;
     branch = branch || this.props.node.source._properties.branch || 'master';
 
-    const githubClient = new Octokit();
+    const githubClient = Octokit();
 
     try {
       const result = await githubClient.repos.getContents({
