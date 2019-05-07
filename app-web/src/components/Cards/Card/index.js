@@ -95,7 +95,7 @@ export const CardImageWrapper = styled.div`
 export const CardBody = styled.div`
   padding: 6px 10px;
   height: 100%;
-  padding: 6px 10px;
+  overflow: hidden;
   height: 100%;
   display: flex;
   flex: 1 1 auto;
