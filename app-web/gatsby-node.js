@@ -47,3 +47,5 @@ exports.createResolvers = ({ createResolvers }) => {
   };
   createResolvers(resolvers);
 };
+
+exports.sourceNodes = require('./gatsby/sourceNodes');
