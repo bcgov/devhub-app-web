@@ -181,13 +181,11 @@ exports[`Card Carousel matches snapshot 1`] = `
               </div>
               <h2
                 class="emotion-6 emotion-7"
-                style="overflow: hidden; text-overflow: ellipsis; webkit-box-orient: vertical; display: -webkit-box; webkit-line-clamp: 3;"
               >
                 foo
               </h2>
               <p
                 class="emotion-8 emotion-9"
-                style="overflow: hidden; text-overflow: ellipsis; webkit-box-orient: vertical; display: -webkit-box; webkit-line-clamp: 3;"
               >
                 description
               </p>

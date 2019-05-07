@@ -19,7 +19,7 @@ exports[`Index Container it matches snapshot 1`] = `
             },
             "id": "1",
             "resource": Object {
-              "path": "/design-system/Z1bGIqu",
+              "path": "/design-system/Z1bGIqu1",
               "type": "Components",
             },
             "unfurl": Object {
@@ -40,7 +40,7 @@ exports[`Index Container it matches snapshot 1`] = `
             },
             "id": "2",
             "resource": Object {
-              "path": "/design-system/Z1bGIqu",
+              "path": "/design-system/Z1bGIqu2",
               "type": "Components",
             },
             "unfurl": Object {
@@ -61,7 +61,7 @@ exports[`Index Container it matches snapshot 1`] = `
             },
             "id": "3",
             "resource": Object {
-              "path": "/design-system/Z1bGIqu",
+              "path": "/design-system/Z1bGIqu3",
               "type": "Components",
             },
             "unfurl": Object {
@@ -82,7 +82,7 @@ exports[`Index Container it matches snapshot 1`] = `
             },
             "id": "4",
             "resource": Object {
-              "path": "/design-system/Z1bGIqu",
+              "path": "/design-system/Z1bGIqu4",
               "type": "Components",
             },
             "unfurl": Object {
@@ -112,7 +112,7 @@ exports[`Index Container it matches snapshot 1`] = `
             },
             "id": "5",
             "resource": Object {
-              "path": "/design-system/Z1bGIqu",
+              "path": "/design-system/Z1bGIqu5",
               "type": "Documentation",
             },
             "unfurl": Object {
@@ -133,7 +133,7 @@ exports[`Index Container it matches snapshot 1`] = `
             },
             "id": "6",
             "resource": Object {
-              "path": "/design-system/Z1bGIqu",
+              "path": "/design-system/Z1bGIqu6",
               "type": "Documentation",
             },
             "unfurl": Object {
@@ -154,7 +154,7 @@ exports[`Index Container it matches snapshot 1`] = `
             },
             "id": "7",
             "resource": Object {
-              "path": "/design-system/Z1bGIqu",
+              "path": "/design-system/Z1bGIqu7",
               "type": "Documentation",
             },
             "unfurl": Object {
