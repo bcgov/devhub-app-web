@@ -232,7 +232,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
 .emotion-24 {
   padding: 6px 10px;
   height: 100%;
-  padding: 6px 10px;
+  overflow: hidden;
   height: 100%;
   display: -webkit-box;
   display: -webkit-flex;
