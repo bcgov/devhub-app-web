@@ -200,9 +200,11 @@ const createResourceComponentPages = async (createPage, graphql) => {
  */
 const createEventsPage = createPage => {
   let component = resolvePath('../src/templates/events.js');
+
   if (!process.env.EVENT_BRITE_API_KEY) {
     component = resolvePath('../src/templates/TemplatePlaceholder.js');
   }
+
   createPage({
     path: 'events',
     component,

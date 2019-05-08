@@ -29,6 +29,7 @@ const LI = styled.li`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
+  display: inline-block;
 `;
 
 const Icon = styled.small`
