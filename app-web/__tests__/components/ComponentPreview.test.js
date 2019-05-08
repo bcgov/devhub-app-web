@@ -16,12 +16,32 @@ limitations under the License.
 Created by Shea Phillips
 */
 import React from 'react';
-import { shallow } from 'enzyme';
-import ComponentPreview from '../../src/components/ComponentPreview/ComponentPreview';
+
+import { cleanup, render, waitForElement } from 'react-testing-library';
+import ComponentPreview, { TEST_IDS } from '../../src/components/ComponentPreview/ComponentPreview';
 
 describe('ComponentPreview Component', () => {
-    it('matches snapshot', () => {
-        const wrapper = shallow(<ComponentPreview />);
-        expect(wrapper).toMatchSnapshot();
-    });
+  jest.doMock('@octokit/rest', () => () => ({
+    repos: {
+      getContents: jest.fn(() =>
+        Promise.resolve({ data: { content: `<div>hello world <button>click me</button></div>` } }),
+      ),
+    },
+  }));
+  it('matches snapshot', () => {
+    const props = {
+      path: 'components/header/index.html',
+      node: {
+        source: {
+          _properties: {
+            branch: 'master',
+            owner: 'bcgov',
+            repo: 'devhub-app-web',
+          },
+        },
+      },
+    };
+    const { container } = render(<ComponentPreview {...props} />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
 });

@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ComponentPreview Component matches snapshot 1`] = `
-<span>
+<span
+  data-testid="test-component-preview"
+>
   Loading...
 </span>
 `;
