@@ -24,11 +24,11 @@ import ComponentPreview, { TEST_IDS } from '../../src/components/ComponentPrevie
 jest.unmock('@octokit/rest');
 
 describe('ComponentPreview Component - Integation Tests', () => {
-  it('sets the preview template from github', async () => {
+  it.skip('sets the preview template from github', async () => {
     const props = {
       owner: 'bcgov',
-      repo: 'design-system',
-      path: 'components/header/sample.html',
+      repo: 'devhub-app-web',
+      path: 'app-web/__fixtures__/index.html',
       branch: 'master',
       node: {
         source: {
@@ -40,7 +40,6 @@ describe('ComponentPreview Component - Integation Tests', () => {
         },
       },
     };
-
     const { queryByTestId } = render(<ComponentPreview {...props} />);
     let preview = queryByTestId(TEST_IDS.preview);
     // initially the preview is just a small loader

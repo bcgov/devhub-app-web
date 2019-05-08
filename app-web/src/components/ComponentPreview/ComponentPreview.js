@@ -19,6 +19,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Octokit from '@octokit/rest';
 
+export const TEST_IDS = {
+  preview: 'test-component-preview',
+  iframe: 'test-component-iframe',
+};
+
 export default class ComponentPreview extends React.Component {
   constructor(props) {
     super(props);
@@ -31,14 +36,13 @@ export default class ComponentPreview extends React.Component {
 
   async componentDidMount() {
     //pull in the values to retrieve to preview content from GitHub from props, if provided
-    let { owner, repo, path, branch } = this.props;
-
+    let { owner, repo, path, branch, node, auth } = this.props;
     //allow for default values - relative to file that has embedded the component -  if values for props not provided
-    owner = owner || this.props.node.source._properties.owner;
-    repo = repo || this.props.node.source._properties.repo;
-    branch = branch || this.props.node.source._properties.branch || 'master';
+    owner = owner || node.source._properties.owner;
+    repo = repo || node.source._properties.repo;
+    branch = branch || node.source._properties.branch || 'master';
 
-    const githubClient = Octokit();
+    const githubClient = Octokit({ auth });
 
     try {
       const result = await githubClient.repos.getContents({
@@ -66,13 +70,14 @@ export default class ComponentPreview extends React.Component {
     const { error, isLoaded, sampleContent } = this.state;
 
     if (error) {
-      return <span>Error {error.message}</span>;
+      return <span data-testid={TEST_IDS.preview}>Error {error.message}</span>;
     } else if (!isLoaded) {
-      return <span>Loading...</span>;
+      return <span data-testid={TEST_IDS.preview}>Loading...</span>;
     } else {
       return (
         <iframe
           title="Component Preview"
+          data-testid={TEST_IDS.iframe}
           src={'data:text/html;base64,' + sampleContent}
           frameBorder={'0'}
           {...this.props}
@@ -86,8 +91,10 @@ ComponentPreview.propTypes = {
   owner: PropTypes.string,
   repo: PropTypes.string,
   path: PropTypes.string,
+  auth: PropTypes.string,
 };
 
 ComponentPreview.defaultProps = {
   branch: 'master',
+  auth: '',
 };
