@@ -16,21 +16,20 @@ limitations under the License.
 Created by Shea Phillips
 */
 import React from 'react';
+import { render, waitForElement } from 'react-testing-library';
+import 'jest-dom/extend-expect';
 
-import { cleanup, render, waitForElement } from 'react-testing-library';
 import ComponentPreview, { TEST_IDS } from '../../src/components/ComponentPreview/ComponentPreview';
 
-describe('ComponentPreview Component', () => {
-  jest.doMock('@octokit/rest', () => () => ({
-    repos: {
-      getContents: jest.fn(() =>
-        Promise.resolve({ data: { content: `<div>hello world <button>click me</button></div>` } }),
-      ),
-    },
-  }));
-  it('matches snapshot', () => {
+jest.unmock('@octokit/rest');
+
+describe('ComponentPreview Component - Integation Tests', () => {
+  it('sets the preview template from github', async () => {
     const props = {
-      path: 'components/header/index.html',
+      owner: 'bcgov',
+      repo: 'design-system',
+      path: 'components/header/sample.html',
+      branch: 'master',
       node: {
         source: {
           _properties: {
@@ -41,7 +40,13 @@ describe('ComponentPreview Component', () => {
         },
       },
     };
-    const { container } = render(<ComponentPreview {...props} />);
-    expect(container.firstChild).toMatchSnapshot();
+
+    const { queryByTestId } = render(<ComponentPreview {...props} />);
+    let preview = queryByTestId(TEST_IDS.preview);
+    // initially the preview is just a small loader
+    expect(preview).toBeInTheDocument();
+    // then an iframe is loaded when data is fetched
+    let iframe = await waitForElement(() => queryByTestId(TEST_IDS.iframe));
+    expect(iframe).toBeInTheDocument();
   });
 });
