@@ -59,7 +59,7 @@ exports[`Card Carousel matches snapshot 1`] = `
 .emotion-10 {
   padding: 6px 10px;
   height: 100%;
-  overflow: hidden;
+  overflow: overlay;
   height: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -68,6 +68,7 @@ exports[`Card Carousel matches snapshot 1`] = `
   -webkit-flex: 1 1 auto;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
+  margin-bottom: 10px;
   -webkit-flex-flow: column nowrap;
   -ms-flex-flow: column nowrap;
   flex-flow: column nowrap;

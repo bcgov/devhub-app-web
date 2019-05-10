@@ -35,9 +35,9 @@ import Aux from '../../../hoc/auxillary';
 import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
 
 const Card = ({ type, title, description, image, link, ...rest }) => {
-  // console.log(theme, type);
   let isExternal = !!validUrl.isWebUri(link);
   // if there is an image it takes priority
+
   let cardBody = <CardDescription tagName="p">{description}</CardDescription>;
 
   if (image && description) {

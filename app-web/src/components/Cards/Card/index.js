@@ -95,10 +95,11 @@ export const CardImageWrapper = styled.div`
 export const CardBody = styled.div`
   padding: 6px 10px;
   height: 100%;
-  overflow: hidden;
+  overflow: overlay;
   height: 100%;
   display: flex;
   flex: 1 1 auto;
+  margin-bottom: 10px;
   flex-flow: column nowrap;
 `;
 

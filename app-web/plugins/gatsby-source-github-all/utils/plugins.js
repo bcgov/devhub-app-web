@@ -192,7 +192,11 @@ const markDownUnfurlImagePlugin = (extension, file) => {
 
   const unfurl = file.metadata.unfurl;
   // if the image paramater is relative, it will be correctly mapped to an absolute path
-  if (TypeCheck.isString(unfurl.image) && !validUrl.isWebUri(unfurl.image)) {
+  if (
+    TypeCheck.isString(unfurl.image) &&
+    unfurl.image.trim().length > 0 &&
+    !validUrl.isWebUri(unfurl.image)
+  ) {
     if (path.isAbsolute(unfurl.image)) {
       // if the path is absolute we need to map the path based of the sourcePath to the repo
       // this plus the absolute path cannot just be joined as the github api follows a convention
