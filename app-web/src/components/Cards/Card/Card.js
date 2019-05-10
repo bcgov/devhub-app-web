@@ -38,11 +38,7 @@ const Card = ({ type, title, description, image, link, ...rest }) => {
   // console.log(theme, type);
   let isExternal = !!validUrl.isWebUri(link);
   // if there is an image it takes priority
-  let cardBody = (
-    <CardDescription clamp={3} tagName="p">
-      {description}
-    </CardDescription>
-  );
+  let cardBody = <CardDescription tagName="p">{description}</CardDescription>;
 
   if (image && description) {
     cardBody = (
