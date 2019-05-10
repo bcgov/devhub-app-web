@@ -28,6 +28,7 @@ const NavigationItem = ({ to, text }) => (
         font-size: 0.813em;
         text-transform: capitalize;
         font-weight: normal;
+        text-decoration: none;
         :hover {
           color: #fff;
         }
