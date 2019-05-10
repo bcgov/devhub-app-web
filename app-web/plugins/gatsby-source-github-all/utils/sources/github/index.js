@@ -210,7 +210,7 @@ const flattenGithubFilesToRegistryItems = ({
  * @param {String} sourceProperties.file the path to a file
  */
 const SourceGithub = ({ repo, owner, file }) => ({
-  type: SOURCE_TYPES.GITHUB,
+  sourceType: SOURCE_TYPES.GITHUB,
   sourceProperties: {
     repo,
     owner,

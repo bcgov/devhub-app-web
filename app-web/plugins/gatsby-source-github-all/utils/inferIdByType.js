@@ -22,14 +22,14 @@ const { SOURCE_TYPES } = require('./constants');
  * @param {Object} source the source as found from the registry
  * @returns {String} the infered id
  */
-const inferIdByType = ({ type, sourceProperties }) => {
-  if (type === SOURCE_TYPES.WEB) {
+const inferIdByType = ({ sourceType, sourceProperties }) => {
+  if (sourceType === SOURCE_TYPES.WEB) {
     return sourceProperties.url;
-  } else if (type === SOURCE_TYPES.GITHUB) {
+  } else if (sourceType === SOURCE_TYPES.GITHUB) {
     return `${sourceProperties.repo}-${sourceProperties.file}`;
   }
 
-  throw new Error(`Unable to infer a devhub id from type ${type}`);
+  throw new Error(`Unable to infer a devhub id from type ${sourceType}`);
 };
 
 module.exports = { inferIdByType };

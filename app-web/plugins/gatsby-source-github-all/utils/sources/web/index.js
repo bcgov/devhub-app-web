@@ -93,7 +93,7 @@ const fetchSourceWeb = async ({
  * @param {String} sourceProperties.title
  */
 const SourceWeb = ({ url, ...rest }) => ({
-  type: SOURCE_TYPES.WEB,
+  sourceType: SOURCE_TYPES.WEB,
   sourceProperties: {
     url,
     ...rest,

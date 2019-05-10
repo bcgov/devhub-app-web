@@ -3,7 +3,7 @@ import { inferIdByType } from '../utils/inferIdByType';
 describe('inferIdByType', () => {
   it('returns the url as the id when source type is web', () => {
     const source = {
-      type: 'web',
+      sourceType: 'web',
       sourceProperties: {
         url: 'https://github.com',
       },
@@ -14,7 +14,7 @@ describe('inferIdByType', () => {
 
   it('returns the reponame-pathtofile for source type github', () => {
     const source = {
-      type: 'github',
+      sourceType: 'github',
       sourceProperties: {
         repo: 'foo',
         owner: 'baz',
@@ -29,7 +29,7 @@ describe('inferIdByType', () => {
 
   it('throws if a non supported type is passed in', () => {
     const source = {
-      type: 'foo',
+      sourceType: 'foo',
       sourceProperties: {
         repo: 'foo',
         owner: 'baz',

@@ -431,7 +431,7 @@ describe('Github API', () => {
 
   test('flattenGithubFilesToRegistryItems flattens files', () => {
     const source = {
-      type: 'github',
+      sourceType: 'github',
       sourceProperties: {
         repo: 'foo',
         owner: 'baz',
@@ -445,7 +445,7 @@ describe('Github API', () => {
 
     const expected = [
       {
-        type: 'github',
+        sourceType: 'github',
         sourceProperties: {
           repo: 'foo',
           owner: 'baz',
@@ -457,7 +457,7 @@ describe('Github API', () => {
         resourceType: 'Comoponents',
       },
       {
-        type: 'github',
+        sourceType: 'github',
         sourceProperties: {
           repo: 'foo',
           owner: 'baz',
