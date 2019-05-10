@@ -15,12 +15,68 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-const { SOURCE_TYPES } = require('./constants');
 const {
   isConfigForFetchingFiles, // checks if the source properties for sourcetype github is for fetching multiple files
 } = require('./sources/github/helpers.js');
 const { flattenGithubFilesToRegistryItems } = require('./sources/github');
 const { inferIdByType } = require('./inferIdByType');
+const { validateSourceRegistry } = require('./fetchSource');
+const { REGISTRY_ITEM_SCHEMA, SOURCE_TYPES } = require('./constants');
+const { isSourceCollection, validateRegistryItemAgainstSchema } = require('./helpers');
+/**
+ * @param {Object} registryItem the registry item found within the registry file sources[index]
+ * @returns {Boolean} true if registry item is valid
+ */
+const validateRegistryItem = registryItem =>
+  validateRegistryItemAgainstSchema(registryItem, REGISTRY_ITEM_SCHEMA);
+
+/**
+ * loops over sources and validates them based on their type
+ * @param {Array} sources the sources
+ * @returns {Boolean}
+ */
+const sourcesAreValid = sources => {
+  //firstly flatten out any sources that may contain more sources
+  let sourcesToCheck = [];
+
+  sources.forEach(s => {
+    if (isSourceCollection(s)) {
+      sourcesToCheck = sourcesToCheck.concat(s.sourceProperties.sources);
+    } else {
+      sourcesToCheck = sourcesToCheck.concat([s]);
+    }
+  });
+
+  return sourcesToCheck.every(validateSourceRegistry);
+};
+
+/**
+ * validates source registry
+ * @param {Object} registry the source registry
+ * @returns {Boolean} returns true if valid or otherwise throws
+ */
+const checkRegistry = registry => {
+  if (!registry || !sourcesAreValid(registry)) {
+    throw new Error(
+      'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters',
+    );
+  }
+  return true;
+};
+
+/**
+ * Filter out all nodes to get the ones specify for registry yaml file
+ * @param {Function} getNodes gatsby builtin function to return all nodes
+ * @param {String} sourceRegistryType the internal type refering to registry yaml source
+ */
+const getRegistry = (getNodes, sourceRegistryType) => {
+  const registryFound = getNodes().filter(node => node.internal.type === sourceRegistryType);
+  if (registryFound.length > 0) {
+    return registryFound;
+  }
+
+  throw new Error('Registry not found');
+};
 
 /**
  * registry configuration allows for multiple ways of configuring particular sources
@@ -82,4 +138,10 @@ const extractSourcesFromRegistry = registry => {
   return sources;
 };
 
-module.exports = { extractSourcesFromRegistry, applyInferredIdToSources, expandRegistry };
+module.exports = {
+  extractSourcesFromRegistry,
+  applyInferredIdToSources,
+  expandRegistry,
+  getRegistry,
+  checkRegistry,
+};

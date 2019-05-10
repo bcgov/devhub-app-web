@@ -66,12 +66,12 @@ const mapInheritedSourceAttributes = ({ name, attributes, resourceType, slug }, 
   ...targetSource,
 });
 
-/**
- * @param {Object} registryItem the registry item found within the registry file sources[index]
- * @returns {Boolean} true if registry item is valid
- */
-const validateRegistryItem = registryItem =>
-  validateRegistryItemAgainstSchema(registryItem, REGISTRY_ITEM_SCHEMA);
+// /**
+//  * @param {Object} registryItem the registry item found within the registry file sources[index]
+//  * @returns {Boolean} true if registry item is valid
+//  */
+// const validateRegistryItem = registryItem =>
+//   validateRegistryItemAgainstSchema(registryItem, REGISTRY_ITEM_SCHEMA);
 
 /**
  * loops over sources and validates them based on their type
@@ -397,6 +397,6 @@ module.exports = {
   normalizePersonas,
   processSource,
   processCollection,
-  validateRegistryItem,
+  // validateRegistryItem,
   getContentForCollection,
 };
