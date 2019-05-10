@@ -22,6 +22,7 @@ const {
 } = require('./sources/github/helpers.js');
 const { flattenGithubFilesToRegistryItems } = require('./sources/github');
 const { inferIdByType } = require('./inferIdByType');
+
 /**
  * extracts all sources from the registry and processes them into a flat
  * array
