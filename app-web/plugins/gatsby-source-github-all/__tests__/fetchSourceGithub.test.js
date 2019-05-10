@@ -29,7 +29,11 @@ import {
   isConfigForFetchingFiles,
   createFetchFileRoute,
 } from '../utils/sources/github/helpers';
-import { fetchIgnoreFile, validateSourceGithub } from '../utils/sources/github';
+import {
+  fetchIgnoreFile,
+  validateSourceGithub,
+  flattenGithubFilesToRegistryItems,
+} from '../utils/sources/github';
 import { fetchGithubTree, fetchFile, fetchRepo } from '../utils/sources/github/api';
 
 import fetch from 'node-fetch';
@@ -423,5 +427,49 @@ describe('Github API', () => {
     expect(createFetchFileRoute('foo', 'bar', 'doc.md', 'develop')).toBe(
       `${GITHUB_API_ENDPOINT}/repos/bar/foo/contents/doc.md?ref=develop`,
     );
+  });
+
+  test('flattenGithubFilesToRegistryItems flattens files', () => {
+    const source = {
+      sourceType: 'github',
+      sourceProperties: {
+        repo: 'foo',
+        owner: 'baz',
+        files: ['readme.md', 'docs/readme.md'],
+      },
+      attributes: {
+        personas: ['Developer'],
+      },
+      resourceType: 'Comoponents',
+    };
+
+    const expected = [
+      {
+        sourceType: 'github',
+        sourceProperties: {
+          repo: 'foo',
+          owner: 'baz',
+          file: 'readme.md',
+        },
+        attributes: {
+          personas: ['Developer'],
+        },
+        resourceType: 'Comoponents',
+      },
+      {
+        sourceType: 'github',
+        sourceProperties: {
+          repo: 'foo',
+          owner: 'baz',
+          file: 'docs/readme.md',
+        },
+        attributes: {
+          personas: ['Developer'],
+        },
+        resourceType: 'Comoponents',
+      },
+    ];
+
+    expect(flattenGithubFilesToRegistryItems(source)).toEqual(expected);
   });
 });

@@ -15,11 +15,10 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-const { WEB_SOURCE_SCHEMA, MEDIATYPES } = require('../../constants');
+const { WEB_SOURCE_SCHEMA, MEDIATYPES, SOURCE_TYPES } = require('../../constants');
 const {
   validateSourcePropertiesAgainstSchema,
   unfurlWebURI,
-  assignPositionToResource,
   mergeUnfurls,
   createUnfurlObj,
   withUnfurlWarning,
@@ -52,8 +51,7 @@ const fetchSourceWeb = async ({
   metadata,
 }) => {
   const { url } = sourceProperties;
-  // fetch information from the url
-  const source = { metadata: { ...metadata } };
+
   const localUnfurl = extractUnfurlFromSourceProperties(sourceProperties);
   try {
     const externalUnfurl = await unfurlWebURI(url);
@@ -79,13 +77,32 @@ const fetchSourceWeb = async ({
 
     return [siphonData];
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.error(e);
     return [];
   }
 };
 
+/**
+ * creates a web registry item
+ * @param {Object} sourceProperties
+ * @param {String} sourceProperties.url * required
+ * @param {String} sourceProperties.description
+ * @param {String} sourceProperties.image
+ * @param {String} sourceProperties.author
+ * @param {String} sourceProperties.title
+ */
+const SourceWeb = ({ url, ...rest }) => ({
+  sourceType: SOURCE_TYPES.WEB,
+  sourceProperties: {
+    url,
+    ...rest,
+  },
+});
+
 module.exports = {
   validateSourceWeb,
   fetchSourceWeb,
   extractUnfurlFromSourceProperties,
+  SourceWeb,
 };

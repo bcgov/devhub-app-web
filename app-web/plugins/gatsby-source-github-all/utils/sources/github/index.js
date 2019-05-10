@@ -23,7 +23,7 @@ const { Base64 } = require('js-base64'); // eslint-disable-line
 const fetch = require('node-fetch'); // eslint-disable-line
 const ignore = require('ignore'); // eslint-disable-line
 const transformer = require('./githubFileTransformer');
-const { DEFUALT_IGNORES, GITHUB_SOURCE_SCHEMA } = require('../../constants');
+const { DEFUALT_IGNORES, GITHUB_SOURCE_SCHEMA, SOURCE_TYPES } = require('../../constants');
 const {
   isConfigForFetchingAFile,
   isConfigForFetchingFiles,
@@ -34,10 +34,7 @@ const {
   applyBaseMetadata,
 } = require('./helpers');
 const { fetchFile, fetchGithubTree } = require('./api');
-const {
-  validateSourcePropertiesAgainstSchema,
-  assignPositionToResource,
-} = require('../../helpers');
+const { validateSourcePropertiesAgainstSchema } = require('../../helpers');
 
 /**
  * returns array of fetch file promises
@@ -91,6 +88,7 @@ const getFilesFromRepo = async ({ repo, owner, branch, context, ignores }, token
     const filesToFetch = filterFiles(files, ig, context);
     return filesToFetch.map(f => ({ path: createFetchFileRoute(repo, owner, f.path, branch) }));
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.error(e);
     // eslint-disable-next-line
     console.error(chalk`
@@ -134,8 +132,7 @@ const fetchSourceGithub = async (
   token,
 ) => {
   const { repo, owner, branch, url } = sourceProperties;
-  const source = { metadata };
-  // const assignPosToResourceBySource = assignPositionToResource(source);
+
   const { labels, personas } = attributes ? attributes : { labels: null, personas: null };
   let filesToFetch = [];
   // how are we sourcing this?
@@ -174,7 +171,7 @@ const fetchSourceGithub = async (
         f.html_url,
         personas,
         collection,
-          {branch: 'master', ...sourceProperties}, // by default no branch means master, we are setting it explicitly so it exists in ql schema
+        { branch: 'master', ...sourceProperties }, // by default no branch means master, we are setting it explicitly so it exists in ql schema
       ),
     )
     .map(async f => {
@@ -191,6 +188,36 @@ const fetchSourceGithub = async (
   return postProcessedFiles.filter(f => f !== undefined);
 };
 
+/**
+ * registry items that have the.files attribute need to be flatted to individual sources
+ * so individual ids can be inferred
+ */
+const flattenGithubFilesToRegistryItems = ({
+  sourceProperties: { repo, owner, files = [] },
+  ...rest
+}) =>
+  files.map(file => {
+    return {
+      ...rest,
+      ...SourceGithub({ repo, owner, file }),
+    };
+  });
+/**
+ * creates a github source item
+ * @param {Object} sourceProperties
+ * @param {String} sourceProperties.repo the repo
+ * @param {String} sourceProperties.owner the repo owner
+ * @param {String} sourceProperties.file the path to a file
+ */
+const SourceGithub = ({ repo, owner, file }) => ({
+  sourceType: SOURCE_TYPES.GITHUB,
+  sourceProperties: {
+    repo,
+    owner,
+    file,
+  },
+});
+
 module.exports = {
   getFilesFromRepo,
   fetchSourceGithub,
@@ -199,4 +226,6 @@ module.exports = {
   fetchIgnoreFile,
   filterFilesFromDirectories,
   validateSourceGithub,
+  SourceGithub,
+  flattenGithubFilesToRegistryItems,
 };
