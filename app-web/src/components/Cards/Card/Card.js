@@ -38,23 +38,27 @@ const Card = ({ type, title, description, image, link, ...rest }) => {
   let isExternal = !!validUrl.isWebUri(link);
   // if there is an image it takes priority
 
-  let cardBody = <CardDescription tagName="p">{description}</CardDescription>;
+  let cardBody = (
+    <CardDescription title={description} tagName="p">
+      {description}
+    </CardDescription>
+  );
 
   if (image && description) {
     cardBody = (
       <Aux>
-        <CardDescription clamp={2} tagName="p">
+        <CardDescription title={description} clamp={2} tagName="p">
           {description}
         </CardDescription>
         <CardImageWrapper>
-          <CardImage src={image} />
+          <CardImage src={image} alt={title} />
         </CardImageWrapper>
       </Aux>
     );
   } else if (image) {
     cardBody = (
       <CardImageWrapper>
-        <CardImage src={image} />
+        <CardImage src={image} alt={title} />
       </CardImageWrapper>
     );
   }
@@ -65,7 +69,7 @@ const Card = ({ type, title, description, image, link, ...rest }) => {
         <DecorativeBar type={type} />
         <CardBody>
           <CardHeader type={type} linksToExternal={isExternal} />
-          <CardTitle clamp={image && description ? 2 : 3} tagName="h2">
+          <CardTitle clamp={image && description ? 2 : 3} tagName="h2" title={title}>
             {title}
           </CardTitle>
           {cardBody}
