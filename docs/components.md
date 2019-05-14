@@ -5,15 +5,6 @@ ignore: true
 
 > This project is planned to be a cross over from a traditional react/redux app that you'd generally see scaffolded by create-react-app
 
-## Webpack
-
-Gatsby JS has much of the webpack configurations pre built. 
-
-Things to note: 
-- many 'production' build functions are **only** called during the production build process.
-For example: you would typically see all of your CSS be auto prefixed with all the appropriate vendors in a CRA App during dev however this only occurs in the build phase of a gatsby app.
-- Webpack configurations are not exposable as they can be with CRA's eject script. Instead, functions need to be called in the [gatsby config](../gatsby-config.js) file in order to modify or update configs. Please refer to [these docs](https://www.gatsbyjs.org/docs/add-custom-webpack-config/) for web pack configuration changes. Prior to changing any webpack configs i'd check if gatsby has a plugin for what you are looking to change.
-
 ## Component Design
 
 Although Gatsby is a frame work, it is still very much a living and breathing react app. Therefor I have decided to follow a very popular react component architecture using the container/component design. **Containers** are the 'smart' components and **Components** are the 'dumb/presentational' component.
