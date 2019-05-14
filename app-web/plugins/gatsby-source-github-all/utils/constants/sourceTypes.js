@@ -23,6 +23,10 @@ const SOURCE_TYPES = {
   WEB: 'web',
 };
 
+/**
+ * checks to see if source properties contains correct config for source type github
+ * @param {Object} properties the source properties from the registry
+ */
 const hasFileOrFiles = properties => {
   if (properties.file) {
     return isString(properties.file);

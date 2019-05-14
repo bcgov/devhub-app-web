@@ -19,7 +19,7 @@ describe('Integration Tests Source Nodes', () => {
     shortid.generate = jest.fn(() => 1);
   });
 
-  test.skip('validateRegistryItem returns true if name and sourceProperties exist', () => {
+  test('validateRegistryItem returns true if name and sourceProperties exist', () => {
     const registryItem = {
       name: 'foo',
       sourceProperties: {},

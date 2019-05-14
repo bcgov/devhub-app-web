@@ -29,11 +29,7 @@ import {
   isConfigForFetchingFiles,
   createFetchFileRoute,
 } from '../utils/sources/github/helpers';
-import {
-  fetchIgnoreFile,
-  validateSourceGithub,
-  flattenGithubFilesToRegistryItems,
-} from '../utils/sources/github';
+import { validateSourceGithub, flattenGithubFilesToRegistryItems } from '../utils/sources/github';
 import { fetchGithubTree, fetchFile, fetchRepo } from '../utils/sources/github/api';
 
 import fetch from 'node-fetch';
@@ -92,16 +88,10 @@ beforeEach(() => {
 });
 
 describe('Github API', () => {
-  let fetchFileSucceeded = false;
-  afterAll(() => {
-    fetchFileSucceeded = false;
-  });
-
   test('fetchFile returns data', async () => {
     fetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
     const res = await fetchFile('https://github.com/pathfinder/foo', 'avalidtoken', {});
     expect(res).toEqual(GITHUB_API.FILE);
-    fetchFileSucceeded = true;
   });
 
   test('fetchFile returns undefined when status !== 200', async () => {
@@ -109,50 +99,6 @@ describe('Github API', () => {
     fetch.mockReturnValue(Promise.resolve(r));
     const res = await fetchFile('pathfinder', 'bcdevops', '/readme.md', 'avalidtoken');
     expect(res).toEqual(undefined);
-  });
-
-  test('fetchIgnoreFile returns an array', async () => {
-    if (!fetchFileSucceeded) {
-      throw new Error('fetchIgnoreFile failed because fetchFile failed');
-    }
-    // mock fetch file
-    fetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify(GITHUB_API.IGNORE_FILE))));
-    const ignoreFile = await fetchIgnoreFile();
-
-    expect(ignoreFile).toBeInstanceOf(Array);
-  });
-
-  test('fetchIgnoreFile returns an array if fetch fails', async () => {
-    if (!fetchFileSucceeded) {
-      throw new Error('fetchIgnoreFile failed because fetchFile failed');
-    }
-    // mock fetch file
-    fetch.mockReturnValue(
-      Promise.resolve(new Response(JSON.stringify(GITHUB_API.FAIL), { status: 400 })),
-    );
-    const ignoreFile = await fetchIgnoreFile();
-
-    expect(ignoreFile).toBeInstanceOf(Array);
-  });
-
-  test('fetchIgnoreFile fetches from branch when passed in', async () => {
-    const branch = 'branchA';
-    const token = 'TOKEN';
-    const repo = 'REPO';
-    const owner = 'OWNER';
-    const path = '.devhubignore';
-    fetch.mockReturnValue(Promise.resolve(new Response(JSON.stringify(GITHUB_API.FILE))));
-    await fetchIgnoreFile(repo, owner, token, branch);
-    expect(fetch).toHaveBeenCalledWith(
-      `https://api.github.com/repos/OWNER/REPO/contents/${path}?ref=${branch}`,
-      expect.objectContaining({
-        headers: {
-          Authorization: 'Bearer TOKEN',
-          'X-GitHub-Media-Type': 'Accept: application/vnd.github.v3.raw+json',
-        },
-        method: 'GET',
-      }),
-    );
   });
 
   test('fetchRepo returns data', async () => {
