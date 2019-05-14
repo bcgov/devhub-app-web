@@ -70,6 +70,7 @@ export const CardDescription = styled(DotDotDot)`
   line-height: 1.4;
   flex: 0 0 auto;
   margin-bottom: 0;
+  text-transform: none;
 `;
 
 // combination of card image and wrapper make images response correctly
@@ -95,10 +96,11 @@ export const CardImageWrapper = styled.div`
 export const CardBody = styled.div`
   padding: 6px 10px;
   height: 100%;
-  overflow: hidden;
+  overflow: overlay;
   height: 100%;
   display: flex;
   flex: 1 1 auto;
+  margin-bottom: 10px;
   flex-flow: column nowrap;
 `;
 
