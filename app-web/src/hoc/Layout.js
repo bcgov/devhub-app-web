@@ -6,6 +6,7 @@ import { Container } from 'reactstrap';
 import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
 import PrimaryFooter from '../components/PrimaryFooter/PrimaryFooter';
 import Navbar from '../components/Navbar/Navbar';
+import Helmet from 'react-helmet';
 
 const StyledContainer = styled(Container)`
   min-height: 100vh;
@@ -27,6 +28,10 @@ export const Layout = ({ children }) => {
 
   return (
     <StyledContainer fluid>
+      {/* This is to fix the some of the issues occuring on EI 11, specifically the nav issues*/}
+      <Helmet>
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js" />
+      </Helmet>
       <PrimaryHeader showHamburger hamburgerClicked={() => setMenuToggled(!menuToggled)} />
 
       <Navbar />
