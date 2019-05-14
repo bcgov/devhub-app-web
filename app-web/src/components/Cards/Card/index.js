@@ -70,6 +70,7 @@ export const CardDescription = styled(DotDotDot)`
   line-height: 1.4;
   flex: 0 0 auto;
   margin-bottom: 0;
+  text-transform: none;
 `;
 
 // combination of card image and wrapper make images response correctly
