@@ -17,14 +17,11 @@
 //
 // Created by Patrick Simonian on 2018-10-12.
 //
-const _ = require('lodash'); // eslint-disable-line
-const chalk = require('chalk'); // eslint-disable-line
-const { TypeCheck } = require('@bcgov/common-web-utils');
+const { isArray, isString, every, flatten, isEmpty } = require('lodash');
 const slugify = require('slugify');
 const {
   hashString,
   isSourceCollection,
-  validateRegistryItemAgainstSchema,
   newCollection,
   getCollectionDescriptionBySourceType,
   assignPositionToCollection,
@@ -37,7 +34,6 @@ const siphonMessenger = require('./utils/console');
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
 const {
   COLLECTION_TYPES,
-  REGISTRY_ITEM_SCHEMA,
   COLLECTION_TEMPLATES,
   SOURCE_TYPES,
   COLLECTION_TEMPLATES_LIST,
@@ -45,6 +41,7 @@ const {
 } = require('./utils/constants');
 const { createSiphonNode, createCollectionNode } = require('./utils/createNode');
 const Store = require('./utils/Store');
+const { getRegistry, checkRegistry } = require('./utils/registryHelpers');
 /**
  * maps root level attributes to a child 'source'
  * this only happens for collections that are set in the registry
@@ -94,34 +91,6 @@ const sourcesAreValid = sources => {
 };
 
 /**
- * validates source registry
- * @param {Object} registry the source registry
- * @returns {Boolean} returns true if valid or otherwise throws
- */
-const checkRegistry = registry => {
-  if (!registry || !sourcesAreValid(registry)) {
-    throw new Error(
-      'Error in Gatsby Source Github All: registry is not valid. One or more repos may be missing required parameters',
-    );
-  }
-  return true;
-};
-
-/**
- * Filter out all nodes to get the ones specify for registry yaml file
- * @param {Function} getNodes gatsby builtin function to return all nodes
- * @param {String} sourceRegistryType the internal type refering to registry yaml source
- */
-const getRegistry = (getNodes, sourceRegistryType) => {
-  const registryFound = getNodes().filter(node => node.internal.type === sourceRegistryType);
-  if (registryFound.length > 0) {
-    return registryFound;
-  }
-
-  throw new Error('Registry not found');
-};
-
-/**
  * Filteres out resources that have the ignore metadata property set to true
  * @param {Array} sources
  * @returns {Array} the filtered sources
@@ -145,12 +114,13 @@ const normalizePersonas = attributes => {
   const newAttributes = { ...attributes };
   if (
     Object.prototype.hasOwnProperty.call(newAttributes, 'personas') &&
-    TypeCheck.isArrayOf(String, newAttributes.personas)
+    isArray(newAttributes.personas) &&
+    every(newAttributes.personas, isString)
   ) {
     return newAttributes;
   } else if (
     Object.prototype.hasOwnProperty.call(newAttributes, 'persona') &&
-    TypeCheck.isString(newAttributes.persona)
+    isString(newAttributes.persona)
   ) {
     newAttributes.personas = [newAttributes.persona];
   } else {
@@ -332,7 +302,7 @@ const processCollection = async (
 
   let collectionContent;
   // fetch a github file if has collection source
-  if (!_.isEmpty(collection.collectionSource)) {
+  if (!isEmpty(collection.collectionSource)) {
     collectionContent = await getContentForCollection(
       collection.collectionSource,
       tokens,
@@ -340,7 +310,7 @@ const processCollection = async (
     );
   }
   // flatten source nodes to get a list of all the resources
-  const resources = _.flatten(sourceNodes, true);
+  const resources = flatten(sourceNodes, true);
   // create a hash map of all resources: resource paths original source against the path created
   // for a gatsby page
   collection.sourceLocations = resources.map(r => [r.resource.originalSource, r.resource.path]);
@@ -397,6 +367,5 @@ module.exports = {
   normalizePersonas,
   processSource,
   processCollection,
-  // validateRegistryItem,
   getContentForCollection,
 };

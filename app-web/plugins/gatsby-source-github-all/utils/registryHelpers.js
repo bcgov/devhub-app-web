@@ -21,7 +21,7 @@ const {
 const { flattenGithubFilesToRegistryItems } = require('./sources/github');
 const { inferIdByType } = require('./inferIdByType');
 const { validateSourceRegistry } = require('./fetchSource');
-const { REGISTRY_ITEM_SCHEMA, SOURCE_TYPES } = require('./constants');
+const { SOURCE_TYPES, REGISTRY_ITEM_SCHEMA } = require('./constants');
 const { isSourceCollection, validateRegistryItemAgainstSchema } = require('./helpers');
 /**
  * @param {Object} registryItem the registry item found within the registry file sources[index]
@@ -88,23 +88,29 @@ const getRegistry = (getNodes, sourceRegistryType) => {
  */
 const expandRegistry = registry =>
   registry.map(registryItem => {
-    // expand regisrty item sources
-    registryItem.sources = registryItem.sources.reduce((sources, currentSource) => {
-      if (currentSource.sourceType === SOURCE_TYPES.GITHUB) {
-        // github sources have the convenient interface for registering multiple files in the registry config
-        // they are now expanded to be individual 'source' configs so that they may be indentifiable
-        if (isConfigForFetchingFiles(currentSource.sourceProperties)) {
-          sources = sources.concat(flattenGithubFilesToRegistryItems(currentSource));
+    const item = { ...registryItem, sourceProperties: { ...registryItem.sourceProperties } };
+    // console.log('REGISTRY ITEM START');
+    // console.log(registryItem, 'REGISTRY ITEM END');
+    // expand registry item sources
+    item.sourceProperties.sources = registryItem.sourceProperties.sources.reduce(
+      (sources, currentSource) => {
+        if (currentSource.sourceType === SOURCE_TYPES.GITHUB) {
+          // github sources have the convenient interface for registering multiple files in the registry config
+          // they are now expanded to be individual 'source' configs so that they may be indentifiable
+          if (isConfigForFetchingFiles(currentSource.sourceProperties)) {
+            sources = sources.concat(flattenGithubFilesToRegistryItems(currentSource));
+          } else {
+            sources = sources.concat(currentSource);
+          }
         } else {
           sources = sources.concat(currentSource);
         }
-      } else {
-        sources = sources.concat(currentSource);
-      }
-      return sources;
-    }, []);
+        return sources;
+      },
+      [],
+    );
 
-    return registryItem;
+    return item;
   });
 
 /**
@@ -114,12 +120,13 @@ const expandRegistry = registry =>
  */
 const applyInferredIdToSources = registry =>
   registry.map(registryItem => {
-    registryItem.sources.map(source => ({
+    const item = { ...registryItem, sourceProperties: { ...registryItem.sourceProperties } };
+    item.sourceProperties.sources = registryItem.sourceProperties.sources.map(source => ({
       ...source,
       id: inferIdByType(source),
     }));
 
-    return registryItem;
+    return item;
   });
 /**
  * extracts all sources from the registry and processes them into a flat
@@ -144,4 +151,5 @@ module.exports = {
   expandRegistry,
   getRegistry,
   checkRegistry,
+  validateRegistryItem,
 };
