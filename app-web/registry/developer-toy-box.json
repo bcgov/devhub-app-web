@@ -1,10 +1,17 @@
 {
   "name": "Developer Toy Box",
-  "sourceType": "github",
+  "description": " A trove of apps/components/stuff/things that are usable by anyone running OpenShift - in particular BC Gov teams \"doing\" Agile/DevOps.",
   "sourceProperties": {
-    "url": "https://github.com/BCDevOps/openshift-components/",
-    "owner": "BCDevOps",
-    "repo": "openshift-components"
+    "sources": [
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/BCDevOps/openshift-components/",
+          "owner": "BCDevOps",
+          "repo": "openshift-components"
+        }
+      }  
+    ]
   },
   "resourceType": "Components"
 }
