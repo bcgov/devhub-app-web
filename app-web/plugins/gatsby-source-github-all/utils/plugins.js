@@ -15,15 +15,14 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-const shortid = require('shortid'); // eslint-disable-line
 const slugify = require('slugify');
-const matter = require('gray-matter'); // eslint-disable-line
-const visit = require('unist-util-visit'); // eslint-disable-line
-const remark = require('remark'); // eslint-disable-line
+const matter = require('gray-matter');
+const visit = require('unist-util-visit');
+const remark = require('remark');
 const url = require('url');
 const validUrl = require('valid-url');
 const path = require('path');
-const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
+const { TypeCheck } = require('@bcgov/common-web-utils');
 const Store = require('./Store');
 const {
   // createPathWithDigest,
@@ -302,7 +301,7 @@ const markdownPersonaPlugin = async (extension, file, { personas }) => {
 // this fileTransformer will be refactored to allow sync and async functions to run
 // serially at another time
 const repositoryResourcePathPlugin = async (extension, file) => {
-  if (file.metadata.resourceType === RESOURCE_TYPES.RESPOSITORIES) {
+  if (file.metadata.resourceType === RESOURCE_TYPES.REPOSITORIES) {
     file.metadata.resourcePath = file.metadata.originalResourceLocation;
   }
   return file;
@@ -340,7 +339,9 @@ const markdownSlugPlugin = (extension, file) => {
         currentSummary,
       );
 
+      // eslint-disable-next-line no-console
       console.error(warning);
+      // eslint-disable-next-line no-console
       console.error(e);
     }
     // continue to set new slug in store

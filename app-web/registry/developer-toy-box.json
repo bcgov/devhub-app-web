@@ -11,7 +11,7 @@
           "repo": "openshift-components",
           "file": "README.md"
         },
-        "resourceType": "repository"
+        "resourceType": "repositories"
       }  ,
       {
         "sourceType": "github",

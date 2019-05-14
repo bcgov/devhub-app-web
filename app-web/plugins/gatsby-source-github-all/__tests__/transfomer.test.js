@@ -185,7 +185,7 @@ describe('Transformer System', () => {
     });
 
     it('sets resourcePath if resourceType is repositories', async () => {
-      file.metadata.resourceType = RESOURCE_TYPES.RESPOSITORIES;
+      file.metadata.resourceType = RESOURCE_TYPES.REPOSITORIES;
       file.metadata.resourcePath = undefined;
       file.metadata.originalResourceLocation = 'https://www.google.com';
       const result = await repositoryResourcePathPlugin(file.metadata.extension, file);
