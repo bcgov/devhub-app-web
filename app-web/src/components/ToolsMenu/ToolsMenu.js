@@ -15,7 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { navigate } from 'gatsby';
 import { SEARCH } from '../../constants/ui';
@@ -23,38 +23,21 @@ import FilterMenu from './FilterMenu/FilterMenu';
 import Search from '../Search';
 import styles from './ToolsMenu.module.css';
 
-class ToolsMenu extends Component {
-  componentWillUnmount() {
-    // unset search bar terms
-    this.props.setSearchBarTerms('');
-  }
-
-  render() {
-    const { filters, setSearchBarTerms } = this.props;
-    return (
-      <div className={styles.ToolsMenu}>
-        <FilterMenu filters={filters} />
-        <Search
-          searchOnEnter
-          inputConfig={SEARCH.INPUT}
-          onSearch={terms => {
-            // set resource type to all since we are searching the entire index
-            setSearchBarTerms(terms);
-            navigate(`/?q=${encodeURIComponent(terms)}`);
-          }}
-        />
-      </div>
-    );
-  }
-}
+export const ToolsMenu = ({ filters }) => (
+  <div className={styles.ToolsMenu}>
+    <FilterMenu filters={filters} />
+    <Search
+      searchOnEnter
+      inputConfig={SEARCH.INPUT}
+      onSearch={terms => {
+        navigate(`/?q=${encodeURIComponent(terms)}`);
+      }}
+    />
+  </div>
+);
 
 ToolsMenu.propTypes = {
   filters: PropTypes.array.isRequired,
-  searchCount: PropTypes.number,
-  totalNodeCount: PropTypes.number.isRequired,
-  setSearchBarTerms: PropTypes.func.isRequired,
-  searchWordLength: PropTypes.number.isRequired,
-  query: PropTypes.string.isRequired,
 };
 
 export default ToolsMenu;

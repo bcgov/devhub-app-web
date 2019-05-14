@@ -160,6 +160,7 @@ describe('gatsby source github all plugin', () => {
           name: 'foo',
           type: COLLECTION_TYPES.CURATED,
         },
+        id: 'file-stub-id',
         name: 'test',
         source: 'something/something',
         sourceName: 'something',
@@ -197,60 +198,9 @@ describe('gatsby source github all plugin', () => {
       },
     };
 
-    const expected = {
-      id: '123',
-      children: [],
-      fileName: 'test.md',
-      fileType: 'Markdown',
-      name: 'test',
-      owner: 'Billy Bob',
-      parent: 'foo',
-      path: '/test.md',
-      collection: {
-        name: 'foo',
-        type: COLLECTION_TYPES.CURATED,
-      },
-      attributes: {
-        labels: 'component',
-        personas: undefined,
-      },
-      source: {
-        name: 'something/something',
-        displayName: 'something',
-        sourcePath: undefined,
-        type: undefined,
-        _properties: {
-          branch: 'master',
-          repo: 'foo',
-          owner: 'bar',
-        },
-      },
-      unfurl: undefined,
-      resource: {
-        originalSource:
-          'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
-        type: undefined,
-        path: undefined,
-      },
-      internal: {
-        contentDigest: null, // hashstring called here
-        // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate
-        // to transformer plugins this node has data they can further process.
-        mediaType: 'application/test',
-        // A globally unique node type chosen by the plugin owner.
-        type: GRAPHQL_NODE_TYPE.SIPHON,
-        // Optional field exposing the raw content for this node
-        // that transformer plugins can take and further process.
-        content: 'content',
-      },
-      _metadata: {
-        position: '1.1.1',
-      },
-    };
-
     hashString.mockReturnValue(null);
 
-    expect(createSiphonNode(file, '123', 'foo')).toEqual(expected);
+    expect(createSiphonNode(file, '123', 'foo')).toMatchSnapshot();
   });
 
   test('createCollectionNode returns an object', () => {

@@ -17,7 +17,7 @@
 //
 // Created by Patrick Simonian on 2018-10-12.
 //
-const { isArray, isString, every, flatten, isEmpty } = require('lodash');
+const { isArray, isString, every, flatten, isEmpty, isPlainObject } = require('lodash');
 const slugify = require('slugify');
 const {
   hashString,
@@ -41,7 +41,12 @@ const {
 } = require('./utils/constants');
 const { createSiphonNode, createCollectionNode } = require('./utils/createNode');
 const Store = require('./utils/Store');
-const { getRegistry, checkRegistry } = require('./utils/registryHelpers');
+const {
+  getRegistry,
+  checkRegistry,
+  expandRegistry,
+  applyInferredIdToSources,
+} = require('./utils/registryHelpers');
 /**
  * maps root level attributes to a child 'source'
  * this only happens for collections that are set in the registry
@@ -154,19 +159,22 @@ const getFetchQueue = async (sources, tokens) => {
 
   const collectionPromises = sources.map(async (source, index) => {
     const rootSource = { ...source };
+    const { sourceProperties } = rootSource;
     const slug = slugify(rootSource.slug || rootSource.name);
     // check if slug is already in use and if it is print out the warning message as described by
     // the conflic Cb above
     slugStore.checkConflict(slug).set(slug, slug);
 
+    let collectionSource = null;
+    if (sourceProperties.collectionSource && isPlainObject(sourceProperties.collectionSource)) {
+      collectionSource = { ...sourceProperties.collectionSource };
+    }
     let collection = newCollection(
       assignPositionToCollection(
         {
           name: rootSource.name,
           sources: [],
-          collectionSource:
-            // applying the attribute property as fetch source github expects to destructure it
-            { ...rootSource.sourceProperties.collectionSource } || null,
+          collectionSource,
           template: rootSource.template
             ? getClosest(rootSource.template, COLLECTION_TEMPLATES_LIST)
             : COLLECTION_TEMPLATES.DEFAULT,
@@ -182,12 +190,11 @@ const getFetchQueue = async (sources, tokens) => {
     if (isSourceCollection(rootSource)) {
       // if its a collection, the child sources need some properties from the root source to be
       // mapped to it
-      const mappedChildSources = rootSource.sourceProperties.sources.map(
-        (childSource, sourceIndex) =>
-          setSourcePositionByCollection(
-            mapInheritedSourceAttributes({ ...rootSource, slug }, childSource),
-            sourceIndex,
-          ),
+      const mappedChildSources = sourceProperties.sources.map((childSource, sourceIndex) =>
+        setSourcePositionByCollection(
+          mapInheritedSourceAttributes({ ...rootSource, slug }, childSource),
+          sourceIndex,
+        ),
       );
 
       collection = newCollection(collection, {
@@ -338,8 +345,11 @@ const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens, source
   try {
     // check registry prior to fetching data
     checkRegistry(registry);
+    // expand and collapsed github source configs (translates files [...] into seperate github sources with file: '...')
+    const expandedReg = expandRegistry(registry);
+    const regWithIds = applyInferredIdToSources(expandedReg);
     // map of over registry and create a queue of collections to fetch
-    const fetchQueue = await getFetchQueue(registry, tokens);
+    const fetchQueue = await getFetchQueue(regWithIds, tokens);
     const collections = await Promise.all(
       fetchQueue.map(async collection =>
         processCollection(collection, createNodeId, createNode, createParentChildLink, tokens),

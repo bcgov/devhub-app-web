@@ -47,7 +47,7 @@ const CollectionContent = collections =>
           key={collection.id}
           title={collection.name}
           description={collection.description}
-          link={getFirstNonExternalResource(allResources)}
+          link={{ to: getFirstNonExternalResource(allResources), text: 'View' }}
           resources={allResources}
           css={css`
             max-width: 100%;
@@ -60,7 +60,7 @@ const CollectionContent = collections =>
 export const CollectionsContainer = ({ collections, link }) => (
   <PreviewContainer data-testid={TEST_IDS.container}>
     <Title>
-      <StyledLink to={link.to}>Collections</StyledLink>
+      <StyledLink to={link.to}>Topics</StyledLink>
     </Title>
 
     {CollectionContent(collections)}

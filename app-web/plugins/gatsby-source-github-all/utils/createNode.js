@@ -67,6 +67,7 @@ const createSiphonNode = (data, id, collectionId) => ({
   children: [],
   fileName: data.metadata.fileName,
   fileType: data.metadata.fileType,
+  devhubId: data.metadata.id,
   name: data.metadata.name,
   owner: data.metadata.owner,
   parent: collectionId,

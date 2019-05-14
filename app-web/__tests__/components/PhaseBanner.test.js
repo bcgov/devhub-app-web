@@ -21,7 +21,7 @@ import { shallow } from 'enzyme';
 
 describe('PhaseBanner', () => {
   test('it matches snapshot', () => {
-    const phaseBanner = shallow(<PhaseBanner phase="Beta" />);
+    const phaseBanner = shallow(<PhaseBanner phase="beta" />);
     expect(phaseBanner).toMatchSnapshot();
   });
 });

@@ -48,7 +48,7 @@ const fetchSourceWeb = async ({
   sourceProperties,
   attributes,
   collection,
-  metadata,
+  id,
 }) => {
   const { url } = sourceProperties;
 
@@ -59,6 +59,7 @@ const fetchSourceWeb = async ({
     const siphonData = {
       metadata: {
         unfurl,
+        id,
         resourceType,
         sourceType,
         name,

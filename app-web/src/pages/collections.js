@@ -33,7 +33,6 @@ export const CollectionsPage = ({ data }) => {
   const collectionWithResources = collectionsSelector(collections);
   // resources are grouped by type, 'ungroup' them so we can find the first available
   // non external link to use as the entry page for the collection card
-
   return (
     <Layout>
       <Main>
@@ -47,14 +46,17 @@ export const CollectionsPage = ({ data }) => {
             title={collection.name}
             description={collection.description}
             resources={collection.childrenDevhubSiphon}
-            link={getFirstNonExternalResource(
-              collection.childrenDevhubSiphon.sort((a, b) => {
-                // sort to ensure first resource in collection is the entry poitn
-                const position1 = a._metadata.position;
-                const position2 = b._metadata.position;
-                return position1.localeCompare(position2);
-              }),
-            )}
+            link={{
+              to: getFirstNonExternalResource(
+                collection.childrenDevhubSiphon.sort((a, b) => {
+                  // sort to ensure first resource in collection is the entry poitn
+                  const position1 = a._metadata.position;
+                  const position2 = b._metadata.position;
+                  return position1.localeCompare(position2);
+                }),
+              ),
+              text: 'View',
+            }}
           />
         ))}
       </Main>

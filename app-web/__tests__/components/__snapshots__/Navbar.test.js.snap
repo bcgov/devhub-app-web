@@ -27,7 +27,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
         exact="true"
         to="/collections"
       >
-        Collections
+        Topics
       </mockConstructor>
     </li>
     <li

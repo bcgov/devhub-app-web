@@ -185,6 +185,7 @@ const applyBaseMetadata = (
   globalPersonas,
   collection,
   sourceProperties,
+  id,
 ) => {
   const extension = getExtensionFromName(file.name);
   return {
@@ -208,6 +209,7 @@ const applyBaseMetadata = (
       globalPersonas,
       collection,
       sourceProperties,
+      id,
     },
   };
 };

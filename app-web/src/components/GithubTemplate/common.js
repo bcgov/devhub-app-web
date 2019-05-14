@@ -16,6 +16,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import { css } from '@emotion/core';
+import styled from '@emotion/styled';
 import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
 // common styles and utils between template components
 
@@ -23,5 +24,44 @@ export const withPadding = css`
   padding: 20px 15px;
   ${EMOTION_BOOTSTRAP_BREAKPOINTS.sm} {
     padding: 20px 45px;
+  }
+`;
+
+export const Main = styled.main`
+  background-color: #fff;
+  display: flex;
+  max-width: 1200px;
+  flex-direction: column;
+  ${withPadding}
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.md} {
+    flex-direction: row;
+  }
+`;
+
+export const SidePanel = styled.nav`
+  flex-flow: column nowrap;
+  flex: 0 0 250px;
+  margin-right: 25px;
+  display: none;
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.md} {
+    display: flex;
+  }
+`;
+
+export const SideDrawerToggleButton = styled.button`
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 10px 0;
+  color: ${props => props.theme.primary};
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+  text-align: left;
+  :focus {
+    outline: none;
+  }
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.md} {
+    display: none;
   }
 `;

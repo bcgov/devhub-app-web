@@ -75,7 +75,7 @@ const CollectionPreview = ({ title, description, link, resources, ...rest }) => 
       {description && <CollectionDescription clamp={3}>{description}</CollectionDescription>}
       <CardCarousel resources={resources} />
       <CollectionLinkWrapper>
-        <ChevronLink to={link}>View</ChevronLink>
+        <ChevronLink to={link.to}>{link.text}</ChevronLink>
       </CollectionLinkWrapper>
     </CollectionPreviewContainer>
   </div>
@@ -84,7 +84,7 @@ const CollectionPreview = ({ title, description, link, resources, ...rest }) => 
 CollectionPreview.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
-  link: PropTypes.string.isRequired,
+  link: PropTypes.shape({ to: PropTypes.string, text: PropTypes.string }).isRequired,
   resources: PropTypes.arrayOf(
     PropTypes.shape({
       type: PropTypes.oneOf(RESOURCE_TYPES_LIST),

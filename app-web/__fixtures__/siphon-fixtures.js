@@ -272,7 +272,7 @@ export const DEVHUB_NODES = [DEVHUB_NODE_1, DEVHUB_NODE_2, DEVHUB_NODE_3];
 export const DESIGN_SYSTEM_COLLECTION = {
   id: IDS.DESIGN_SYSTEM,
   type: 'default',
-  title: 'Design System',
+  name: 'Design System',
   description: 'baz',
   resources: DESIGN_SYSTEM_NODES.map(n => ({ id: n.id })),
   childrenDevhubSiphon: DESIGN_SYSTEM_NODES.map(n => ({
@@ -286,7 +286,7 @@ export const DESIGN_SYSTEM_COLLECTION = {
 export const DEVHUB_COLLECTION = {
   id: IDS.DEVHUB,
   type: 'default',
-  title: 'Devhub',
+  name: 'Devhub',
   description: 'baz',
   resources: DEVHUB_NODES.map(n => ({ id: n.id })),
   childrenDevhubSiphon: DEVHUB_NODES.map(n => ({

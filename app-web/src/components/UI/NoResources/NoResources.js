@@ -17,13 +17,12 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import styled from '@emotion/styled';
-import { NO_RESOURCES } from '../../../messages';
 
 export const TEST_IDS = {
   container: 'no-resources',
 };
 
-const NoResources = styled.div`
+export const NoResourcesContainer = styled.div`
   font-size: 28px;
   background-color: #fafafa;
   padding: 20px;
@@ -34,8 +33,8 @@ const NoResources = styled.div`
 `;
 
 export default () => (
-  <NoResources data-testid={TEST_IDS.container}>
-    <h2>{NO_RESOURCES.title.defaultMessage}</h2>
-    <p>{NO_RESOURCES.description.defaultMessage}</p>
-  </NoResources>
+  <NoResourcesContainer data-testid={TEST_IDS.container}>
+    <h2>There aren't any resources here yet.</h2>
+    <p>We are working on some really great things however, check back soon!</p>
+  </NoResourcesContainer>
 );

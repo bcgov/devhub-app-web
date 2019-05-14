@@ -158,6 +158,7 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
       <input
         aria-label="Search input field"
         class="Input custom-text"
+        data-testid="searchbar-input"
         id="dh-search-input"
         maxlength="40"
         type="text"
@@ -167,6 +168,7 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
         aria-label="Click to Search"
         class="Button primary"
         color="primary"
+        data-testid="searchbar-button"
       >
         Search
       </button>
@@ -334,6 +336,7 @@ exports[`Home Page when there is an empty search the alert box does not show and
       <input
         aria-label="Search input field"
         class="Input custom-text"
+        data-testid="searchbar-input"
         id="dh-search-input"
         maxlength="40"
         type="text"
@@ -343,6 +346,7 @@ exports[`Home Page when there is an empty search the alert box does not show and
         aria-label="Click to Search"
         class="Button primary"
         color="primary"
+        data-testid="searchbar-button"
       >
         Search
       </button>

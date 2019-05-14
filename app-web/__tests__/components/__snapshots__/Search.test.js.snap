@@ -1,25 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Search Bar matches snapshot 1`] = `
-<Container
-  onkeyup={[MockFunction]}
-  terms=""
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-0 > input {
+  margin: 0 4px;
+  padding: 4px 5px;
+  -webkit-flex-basis: 250px;
+  -ms-flex-preferred-size: 250px;
+  flex-basis: 250px;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+
+.emotion-0 > button {
+  padding: 4px 15px;
+  margin: 4px;
+}
+
+<div
+  class="emotion-0 emotion-1"
 >
-  <Input
+  <input
     aria-label="Search input field"
-    label={null}
-    onChange={[Function]}
-    onFocus={[Function]}
-    onKeyPress={[Function]}
+    class="Input custom-text"
+    data-testid="searchbar-input"
+    id="baz"
     type="text"
     value=""
   />
-  <Button
+  <button
     aria-label="Click to Search"
-    clicked={[Function]}
-    type="primary"
+    class="Button primary"
+    color="primary"
+    data-testid="searchbar-button"
   >
     Search
-  </Button>
-</Container>
+  </button>
+</div>
 `;

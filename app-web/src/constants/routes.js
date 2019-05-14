@@ -13,7 +13,7 @@ export const MAIN_NAV_ROUTES = {
   },
   COLLECTIONS: {
     to: '/collections',
-    text: 'Collections',
+    text: 'Topics',
   },
   [RESOURCE_TYPES.SELF_SERVICE_TOOLS]: {
     to: '/self-service-tools',
