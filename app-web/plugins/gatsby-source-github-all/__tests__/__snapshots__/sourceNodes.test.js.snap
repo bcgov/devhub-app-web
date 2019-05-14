@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gatsby source github all plugin createSiphonNode returns data 1`] = `
+Object {
+  "_metadata": Object {
+    "position": "1.1.1",
+  },
+  "attributes": Object {
+    "labels": "component",
+    "personas": undefined,
+  },
+  "children": Array [],
+  "collection": Object {
+    "name": "foo",
+    "type": "curated",
+  },
+  "devhubId": "file-stub-id",
+  "fileName": "test.md",
+  "fileType": "Markdown",
+  "id": "123",
+  "internal": Object {
+    "content": "content",
+    "contentDigest": null,
+    "mediaType": "application/test",
+    "type": "DevhubSiphon",
+  },
+  "name": "test",
+  "owner": "Billy Bob",
+  "parent": "foo",
+  "path": "/test.md",
+  "resource": Object {
+    "originalSource": "https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json",
+    "path": undefined,
+    "type": undefined,
+  },
+  "source": Object {
+    "_properties": Object {
+      "branch": "master",
+      "owner": "bar",
+      "repo": "foo",
+    },
+    "displayName": "something",
+    "name": "something/something",
+    "sourcePath": undefined,
+    "type": undefined,
+  },
+  "unfurl": undefined,
+}
+`;
