@@ -566,6 +566,7 @@ const GITHUB_SOURCE = {
     owner: 'bcgov',
     repo: 'design-system',
     url: 'https://github.com/bcgov/design-system/',
+    file: 'README.md',
   },
   attributes: {
     labels: ['components'],

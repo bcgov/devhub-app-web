@@ -58,12 +58,18 @@ const siphonMessages = (() => {
     ${warning} Attempted to get content for a collection {green.bold ${name}} but was unable to due bad configuration.
     - ${errors.join('\n- ')}
   `;
+
+  const deprecatedGithubSourceValidation = () => chalk`
+    ${error} Source Type Github no longer supports fetching files lazily from a repo, use the .files or .file configuration to target specific files
+  `;
+
   return {
     unfurlLacksInfo,
     resourceIgnored,
     collectionSlugConflict,
     markdownSlugConflict,
     collectionSourceFailed,
+    deprecatedGithubSourceValidation,
   };
 })();
 

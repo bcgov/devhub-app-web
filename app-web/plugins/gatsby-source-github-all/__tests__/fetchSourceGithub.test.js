@@ -378,6 +378,18 @@ describe('Github API', () => {
     expect(validateSourceGithub(BAD_SOURCE)).toBe(false);
   });
 
+  test('validateSourceGithub returns false if source type is configuired as the deprecated repo only config', () => {
+    const BAD_SOURCE = {
+      ...GITHUB_SOURCE,
+      sourceProperties: {
+        repo: 'foo',
+        owner: 'bar',
+        url: 'https://github.com/bar/foo',
+      },
+    };
+
+    expect(validateSourceGithub(BAD_SOURCE)).toBe(false);
+  });
   test('isConfigForFetchingRepo returns true if source properties is for a repo', () => {
     const sourceProperties = {
       repo: 'foo',
