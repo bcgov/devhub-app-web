@@ -276,6 +276,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
   margin-bottom: 0;
+  text-transform: none;
 }
 
 .emotion-22 {
