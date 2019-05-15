@@ -1,10 +1,17 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { ThemeProvider } from 'emotion-theming';
+import { render } from 'react-testing-library';
 import { CollectionsPage } from '../../src/pages/collections';
 import { SIPHON_NODES, COLLECTIONS } from '../../__fixtures__/siphon-fixtures';
+import theme from '../../theme';
+import { getFirstNonExternalResource } from '../../src/utils/helpers';
 jest.mock('react-spinners', () => null);
 
-describe('Index Container', () => {
+jest.mock('../../src/utils/helpers.js');
+
+getFirstNonExternalResource.mockReturnValue('foo');
+
+describe('Collections Container', () => {
   test('it matches snapshot', () => {
     // when you use graphql to load data into the component
     // all edges are an object of { node: [graphql object]}
@@ -13,6 +20,7 @@ describe('Index Container', () => {
     // this component
     const nodes = SIPHON_NODES.map(c => ({ node: c }));
     const collections = COLLECTIONS.map(c => ({ node: c }));
+
     const data = {
       allDevhubSiphon: {
         edges: nodes,
@@ -42,7 +50,12 @@ describe('Index Container', () => {
       resourcesLoaded: false,
     };
 
-    const wrapper = shallow(<CollectionsPage {...props} {...actions} />);
-    expect(wrapper).toMatchSnapshot();
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <CollectionsPage {...props} {...actions} />
+      </ThemeProvider>,
+    );
+
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

@@ -14,12 +14,16 @@ import {
 import { useSearch } from '../../src/utils/hooks';
 import { TEST_IDS as COLLECTION_TEST_IDS } from '../../src/components/Home/CollectionsContainer';
 import { TEST_IDS as RESOURCE_PREVIEW_TEST_IDS } from '../../src/components/Home/ResourcePreview';
-
+import { getFirstNonExternalResource } from '../../src/utils/helpers';
 jest.mock('query-string');
 // mock out layout
 jest.mock('../../src/hoc/Layout.js', () => ({ children }) => children);
 // mock out search hook
 jest.mock('../../src/utils/hooks.js');
+
+jest.mock('../../src/utils/helpers.js');
+
+getFirstNonExternalResource.mockReturnValue('foo');
 
 describe('Home Page', () => {
   // mock out non redux selectors
@@ -36,6 +40,7 @@ describe('Home Page', () => {
   // this component
   const nodes = SIPHON_NODES.map(c => ({ node: c }));
   const collections = COLLECTIONS.map(c => ({ node: c }));
+
   const props = {
     data: {
       allDevhubSiphon: {

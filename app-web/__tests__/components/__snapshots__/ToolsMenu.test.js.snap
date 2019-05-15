@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tools Menu renders the tools menu 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-0 > input {
+  margin: 0 4px;
+  padding: 4px 5px;
+  -webkit-flex-basis: 250px;
+  -ms-flex-preferred-size: 250px;
+  flex-basis: 250px;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+
+.emotion-0 > button {
+  padding: 4px 15px;
+  margin: 4px;
+}
+
+<div
+  class="ToolsMenu"
+>
+  <div
+    class="FilterMenu"
+  >
+    <button
+      aria-expanded="false"
+      class="btn btn-link"
+      style="margin: 1px; font-size: 1.2em; text-decoration: none; color: rgb(26, 90, 150);"
+      tabindex="0"
+    >
+      Filters 
+      <svg
+        aria-hidden="true"
+        class="svg-inline--fa fa-filter fa-w-16 "
+        data-icon="filter"
+        data-prefix="fas"
+        focusable="false"
+        role="img"
+        viewBox="0 0 512 512"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    <input
+      aria-label="Search input field"
+      class="Input custom-text"
+      data-testid="searchbar-input"
+      id="dh-search-input"
+      maxlength="40"
+      type="text"
+      value=""
+    />
+    <button
+      aria-label="Click to Search"
+      class="Button primary"
+      color="primary"
+      data-testid="searchbar-button"
+    >
+      Search
+    </button>
+  </div>
+</div>
+`;

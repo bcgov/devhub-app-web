@@ -19,16 +19,6 @@ Created by Patrick Simonian
 // message objects are formatted to mesh with react-intl, a popular localization library
 // https://github.com/yahoo/react-intl
 import { RESOURCE_TYPES } from '../constants/ui';
-export const NO_RESOURCES = {
-  title: {
-    id: 'NO_RESOURCES.title',
-    defaultMessage: "There aren't any resources here yet.",
-  },
-  description: {
-    id: 'NO_RESOURCES.description',
-    defaultMessage: 'We are working on some really great things however, check back soon!',
-  },
-};
 
 export const FAIR_USE_IMAGE_POLICY = {
   title: {

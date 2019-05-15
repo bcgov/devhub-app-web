@@ -1,54 +1,91 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import { Search } from '../../src/components/Search';
-import Button from '../../src/components/UI/Button/Button';
+import { render, cleanup, fireEvent } from 'react-testing-library';
+import { Search, TEST_IDS } from '../../src/components/Search';
+import { ThemeProvider } from 'emotion-theming';
+import theme from '../../theme';
 
 describe('Search Bar', () => {
-  let searchBar;
   const keyupHandled = jest.fn();
   const search = jest.fn();
-  const onSearchClear = jest.fn();
   const terms = '';
+  const sampleText = 'foo';
+  const inputConfig = {
+    name: 'bar',
+    id: 'baz',
+  };
 
   beforeEach(() => {
-    searchBar = (
-      <Search
-        onkeyup={keyupHandled}
-        onSearch={search}
-        onSearchClear={onSearchClear}
-        terms={terms}
-      />
-    );
     search.mockClear();
   });
+  afterEach(cleanup);
 
   it('matches snapshot', () => {
-    const wrapper = shallow(searchBar);
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Search onkeyup={keyupHandled} onSearch={search} terms={terms} inputConfig={inputConfig} />
+      </ThemeProvider>,
+    );
 
-    expect(wrapper).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('calls the search handler when button is clicked and terms have length', () => {
-    const wrapper = mount(searchBar);
-    wrapper.setState({ terms: 'foo' });
-    const button = wrapper.find(Button).first();
-    button.find('button').simulate('click');
+    const { queryByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <Search onkeyup={keyupHandled} onSearch={search} terms={terms} inputConfig={inputConfig} />
+      </ThemeProvider>,
+    );
+
+    const button = queryByTestId(TEST_IDS.button);
+    fireEvent.click(button);
     expect(search).toHaveBeenCalled();
   });
 
-  it('sets touched state if search was touched', () => {
-    const wrapper = mount(searchBar);
-    const input = wrapper.find('input').first();
-    input.simulate('focus');
-    expect(wrapper.state('touched')).toBe(true);
+  it('doesn not call the search handle if the enter key is pressed with searchOnEnter = false', () => {
+    const { queryByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <Search
+          onkeyup={keyupHandled}
+          onSearch={search}
+          terms={terms}
+          inputConfig={inputConfig}
+          searchOnEnter={false}
+        />
+      </ThemeProvider>,
+    );
+
+    let input = queryByTestId(TEST_IDS.input);
+    // change text of input field
+    fireEvent.change(input, { target: { value: sampleText } });
+    // hit enter key
+    // setting charcode to address known issue where keyPress event is not actually being fired
+    // https://github.com/testing-library/react-testing-library/issues/269#issuecomment-455854112
+    fireEvent.keyPress(input, { key: 'Enter', code: 13, charCode: 13 });
+
+    expect(search).not.toHaveBeenCalled();
   });
 
-  it('calls the search handler when enter key is pressed and configured to do so', () => {
-    const wrapper = mount(searchBar);
-    wrapper.setProps({ searchOnEnter: true });
-    wrapper.setState({ terms: 'foo' });
-    const input = wrapper.find('input');
-    input.simulate('keypress', { key: 'Enter' });
-    expect(search).toHaveBeenCalledWith('foo');
+  it(`calls the search handler with ${sampleText} when that text is entered and the enter key is pressed`, () => {
+    const { queryByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <Search
+          onkeyup={keyupHandled}
+          onSearch={search}
+          terms={terms}
+          inputConfig={inputConfig}
+          searchOnEnter={true}
+        />
+      </ThemeProvider>,
+    );
+
+    let input = queryByTestId(TEST_IDS.input);
+    // change text of input field
+    fireEvent.change(input, { target: { value: sampleText } });
+    // hit enter key
+    // setting charcode to address known issue where keyPress event is not actually being fired
+    // https://github.com/testing-library/react-testing-library/issues/269#issuecomment-455854112
+    fireEvent.keyPress(input, { key: 'Enter', code: 13, charCode: 13 });
+
+    expect(search).toHaveBeenCalledWith(sampleText);
   });
 });

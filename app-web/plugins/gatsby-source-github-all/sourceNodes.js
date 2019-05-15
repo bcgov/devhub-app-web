@@ -17,7 +17,7 @@
 //
 // Created by Patrick Simonian on 2018-10-12.
 //
-const { isArray, isString, every, flatten, isEmpty } = require('lodash');
+const { isArray, isString, every, flatten, isEmpty, isPlainObject } = require('lodash');
 const slugify = require('slugify');
 const {
   hashString,
@@ -159,19 +159,22 @@ const getFetchQueue = async (sources, tokens) => {
 
   const collectionPromises = sources.map(async (source, index) => {
     const rootSource = { ...source };
+    const { sourceProperties } = rootSource;
     const slug = slugify(rootSource.slug || rootSource.name);
     // check if slug is already in use and if it is print out the warning message as described by
     // the conflic Cb above
     slugStore.checkConflict(slug).set(slug, slug);
 
+    let collectionSource = null;
+    if (sourceProperties.collectionSource && isPlainObject(sourceProperties.collectionSource)) {
+      collectionSource = { ...sourceProperties.collectionSource };
+    }
     let collection = newCollection(
       assignPositionToCollection(
         {
           name: rootSource.name,
           sources: [],
-          collectionSource:
-            // applying the attribute property as fetch source github expects to destructure it
-            { ...rootSource.sourceProperties.collectionSource } || null,
+          collectionSource,
           template: rootSource.template
             ? getClosest(rootSource.template, COLLECTION_TEMPLATES_LIST)
             : COLLECTION_TEMPLATES.DEFAULT,
@@ -187,12 +190,11 @@ const getFetchQueue = async (sources, tokens) => {
     if (isSourceCollection(rootSource)) {
       // if its a collection, the child sources need some properties from the root source to be
       // mapped to it
-      const mappedChildSources = rootSource.sourceProperties.sources.map(
-        (childSource, sourceIndex) =>
-          setSourcePositionByCollection(
-            mapInheritedSourceAttributes({ ...rootSource, slug }, childSource),
-            sourceIndex,
-          ),
+      const mappedChildSources = sourceProperties.sources.map((childSource, sourceIndex) =>
+        setSourcePositionByCollection(
+          mapInheritedSourceAttributes({ ...rootSource, slug }, childSource),
+          sourceIndex,
+        ),
       );
 
       collection = newCollection(collection, {

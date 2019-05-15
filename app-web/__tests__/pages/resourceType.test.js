@@ -174,7 +174,7 @@ describe('Resource Type Template Page', () => {
       },
     }));
 
-    const { queryAllByTestId, container } = render(
+    const { queryAllByTestId } = render(
       <ThemeProvider theme={theme}>
         <ResourceType
           {...props}

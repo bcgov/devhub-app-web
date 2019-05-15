@@ -104,9 +104,6 @@ const CardContainer = ({
         onSearch={terms => {
           navigate(`${pagePath}?q=${encodeURIComponent(terms)}`);
         }}
-        onSearchClear={() => {
-          navigate(`${pagePath}`);
-        }}
       />
       {query && (
         <SearchPills

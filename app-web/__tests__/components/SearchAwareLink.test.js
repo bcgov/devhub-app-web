@@ -1,12 +1,18 @@
 import React from 'react';
-import { SearchAwareLink, Link } from '../../src/components/UI/Link';
+import { SearchAwareLink } from '../../src/components/UI/Link';
 import { linkMatchesQueryString } from '../../src/components/UI/Link/SearchAwareLink';
-import { shallow, mount } from 'enzyme';
+import { render } from 'react-testing-library';
+import { ThemeProvider } from 'emotion-theming';
+import theme from '../../theme';
 
 describe('Search Aware Link', () => {
   it('renders a Link component', () => {
-    const wrapper = shallow(<SearchAwareLink>foo</SearchAwareLink>);
-    expect(wrapper.find(Link)).toBeDefined();
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <SearchAwareLink activeClassName="bar">foo</SearchAwareLink>
+      </ThemeProvider>,
+    );
+    expect(container.firstChild).toBeDefined();
   });
 
   it('linkMatchesQueryString returns true when strings match', () => {
