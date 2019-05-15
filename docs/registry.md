@@ -10,7 +10,7 @@ labels:
   - content
   - add content
 ---
-## How the Devhub works
+## How The Devhub Works
 
 The Devhub has a ton of information. How does it get there?
 
@@ -20,7 +20,7 @@ Devhub is a [__JAM__](https://jamstack.wtf/) stack. Our primary source of conten
 
 In a nutshell we source content through various sources of data, markdown files within github repositories, eventbrite data, and even static links to websites. All of this is composed and buiilt into static HTML sites at every build of the application. Devhub is 100% static.
 
-## Why we chose to go static
+## Why We Chose To Go Static
 
 As explained in the JAM stack article above, going 100% static has huge performance benefits. Also, our model of content being distributed through __BC GOV__ Github repositories means that you are in control of your content. When you have registered to the Devhub, there is no special process to update your content. Just edit your markdown flies and on the next build of Devhub it will be up!
 

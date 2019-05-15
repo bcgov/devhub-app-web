@@ -16,13 +16,9 @@ limitations under the License.
 Created by Patrick Simonian
 */
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
-const {
-  FILETYPES,
-  MEDIATYPES,
-  GITHUB_API_ENDPOINT,
-  PROCESSABLE_EXTENSIONS,
-} = require('../../constants');
+const { FILETYPES, MEDIATYPES, GITHUB_API_ENDPOINT } = require('../../constants');
 const { Base64 } = require('js-base64'); // eslint-disable-line
+
 /**
  * checks if the sourceProperties that are passed in are for siphoning
  * a repository
@@ -148,22 +144,6 @@ const filterFilesByContext = (files, contextDir) => {
 };
 
 /**
- * filters files by processable extensions as well as the devhubignores
- * @param {Array} files the files
- * @param {Object} ignoreObj the ignore module object
- * @param {Object} contextDir a path or array of paths for get files in a repo
- */
-const filterFiles = (files, ignoreObj, contextDir) => {
-  // filter out files that are not in the context path
-  const fileInContext = contextDir ? filterFilesByContext(files, contextDir) : files;
-  // filter out files that aren't markdown
-  const filteredFiles = filterFilesByExtensions(fileInContext, PROCESSABLE_EXTENSIONS);
-  // filter out files that are apart of ignore
-  const filesToFetch = filteredFiles.filter(file => !ignoreObj.ignores(file.path));
-  return filesToFetch;
-};
-
-/**
  * filters out directories from array of github graph ql entries
  * directories have type of 'tree'
  * @param {Array} entries
@@ -241,7 +221,6 @@ module.exports = {
   getNameWithoutExtension,
   getNameOfExtensionVerbose,
   getMediaTypeByExtension,
-  filterFiles,
   filterFilesByContext,
   filterFilesByExtensions,
   filterFilesFromDirectories,

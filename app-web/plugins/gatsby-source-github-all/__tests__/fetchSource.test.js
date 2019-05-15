@@ -39,10 +39,6 @@ describe('Fetch Source Routine', () => {
     expect(fetchSourceGithub).toHaveBeenCalled();
   });
 
-  test('validateSourceGithub returns false if source type is invalid', () => {
-    expect(validateSourceRegistry(invalidSource)).toBe(false);
-  });
-
   test('validateSourceGithub calls validatesourceGithub if source type is github', () => {
     validateSourceRegistry(GITHUB_SOURCE);
     expect(validateSourceGithub).toHaveBeenCalled();

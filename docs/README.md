@@ -12,4 +12,4 @@ ignore: true
     - [Feature Flagging](./featureFlags.md)
     - [Gatsby Remark Path Transform Plugin](./gatsby-custom-plugins/gatsby-remark-path-transform.md)
 - Adding Content to DevHub
-    - [How to Register Your Repo](./registerRepo.md)
+    - [How to Register Your Repo](./registry.md)

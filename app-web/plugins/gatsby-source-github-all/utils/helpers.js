@@ -16,6 +16,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
+const { isFunction } = require('lodash');
 const path = require('path');
 const crypto = require('crypto');
 const url = require('url');
@@ -156,11 +157,20 @@ const validateAgainstSchema = (obj, schema) => {
     const schemaItem = schema[key];
     let isValid = true;
     if (schemaItem.required) {
-      isValid =
-        Object.prototype.hasOwnProperty.call(obj, key) && TypeCheck.isA(schemaItem.type, obj[key]);
+      if (isFunction(schemaItem.validate)) {
+        isValid = schemaItem.validate(obj);
+      } else {
+        isValid =
+          Object.prototype.hasOwnProperty.call(obj, key) &&
+          TypeCheck.isA(schemaItem.type, obj[key]);
+      }
       // does this source property have it anyways?
     } else if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      isValid = TypeCheck.isA(schemaItem.type, obj[key]);
+      if (isFunction(schemaItem.validate)) {
+        isValid = schemaItem.validate(obj);
+      } else {
+        isValid = TypeCheck.isA(schemaItem.type, obj[key]);
+      }
     }
 
     if (!isValid) {

@@ -15,9 +15,27 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
+
+const { isString, isArray, every } = require('lodash');
+const messages = require('../console');
 const SOURCE_TYPES = {
   GITHUB: 'github',
   WEB: 'web',
+};
+
+/**
+ * checks to see if source properties contains correct config for source type github
+ * @param {Object} properties the source properties from the registry
+ */
+const hasFileOrFiles = properties => {
+  if (properties.file) {
+    return isString(properties.file);
+  } else if (!!properties.files) {
+    return isArray(properties.files) && every(properties.files, isString);
+  }
+  // eslint-disable-next-line no-console
+  console.warn(messages.deprecatedGithubSourceValidation());
+  return false;
 };
 
 const GITHUB_SOURCE_SCHEMA = {
@@ -35,11 +53,13 @@ const GITHUB_SOURCE_SCHEMA = {
   },
   file: {
     type: String,
-    required: false,
+    required: true,
+    validate: hasFileOrFiles,
   },
   files: {
     type: Array,
-    required: false,
+    required: true,
+    validate: hasFileOrFiles,
   },
   // branch to base fetch off of
   branch: {
