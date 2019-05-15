@@ -60,7 +60,7 @@ const CollectionContent = collections =>
 export const CollectionsContainer = ({ collections, link }) => (
   <PreviewContainer data-testid={TEST_IDS.container}>
     <Title>
-      <StyledLink to={link.to}>Collections</StyledLink>
+      <StyledLink to={link.to}>Topics</StyledLink>
     </Title>
 
     {CollectionContent(collections)}

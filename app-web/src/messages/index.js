@@ -60,7 +60,7 @@ export const COLLECTIONS_PAGE = {
   header: {
     title: {
       id: 'COLLECTIONS_PAGE.header.title',
-      defaultMessage: 'Collections',
+      defaultMessage: 'Topics',
     },
     subtitle: {
       id: 'COLLECTIONS_PAGE.header.subtitle',
@@ -161,7 +161,7 @@ export const RESOURCES = {
     },
     Collections: {
       id: 'RESOURCE_TYPES.COLLECTIONS',
-      defaultMessage: 'Collection',
+      defaultMessage: 'Topic',
     },
     Events: {
       id: 'RESOURCE_TYPES.EVENTS',
