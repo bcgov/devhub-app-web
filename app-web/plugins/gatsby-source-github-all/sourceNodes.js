@@ -41,7 +41,12 @@ const {
 } = require('./utils/constants');
 const { createSiphonNode, createCollectionNode } = require('./utils/createNode');
 const Store = require('./utils/Store');
-const { getRegistry, checkRegistry } = require('./utils/registryHelpers');
+const {
+  getRegistry,
+  checkRegistry,
+  expandRegistry,
+  applyInferredIdToSources,
+} = require('./utils/registryHelpers');
 /**
  * maps root level attributes to a child 'source'
  * this only happens for collections that are set in the registry
@@ -338,8 +343,11 @@ const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens, source
   try {
     // check registry prior to fetching data
     checkRegistry(registry);
+    // expand and collapsed github source configs (translates files [...] into seperate github sources with file: '...')
+    const expandedReg = expandRegistry(registry);
+    const regWithIds = applyInferredIdToSources(expandedReg);
     // map of over registry and create a queue of collections to fetch
-    const fetchQueue = await getFetchQueue(registry, tokens);
+    const fetchQueue = await getFetchQueue(regWithIds, tokens);
     const collections = await Promise.all(
       fetchQueue.map(async collection =>
         processCollection(collection, createNodeId, createNode, createParentChildLink, tokens),

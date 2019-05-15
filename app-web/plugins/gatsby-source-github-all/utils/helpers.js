@@ -156,21 +156,15 @@ const validateAgainstSchema = (obj, schema) => {
   Object.keys(schema).every(key => {
     const schemaItem = schema[key];
     let isValid = true;
-    if (schemaItem.required) {
-      if (isFunction(schemaItem.validate)) {
-        isValid = schemaItem.validate(obj);
-      } else {
-        isValid =
-          Object.prototype.hasOwnProperty.call(obj, key) &&
-          TypeCheck.isA(schemaItem.type, obj[key]);
-      }
+    // is there a validator function
+    if (isFunction(schemaItem.validate)) {
+      isValid = schemaItem.validate(obj);
+    } else if (schemaItem.required) {
+      isValid =
+        Object.prototype.hasOwnProperty.call(obj, key) && TypeCheck.isA(schemaItem.type, obj[key]);
       // does this source property have it anyways?
     } else if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      if (isFunction(schemaItem.validate)) {
-        isValid = schemaItem.validate(obj);
-      } else {
-        isValid = TypeCheck.isA(schemaItem.type, obj[key]);
-      }
+      isValid = TypeCheck.isA(schemaItem.type, obj[key]);
     }
 
     if (!isValid) {
