@@ -38,6 +38,10 @@ app {
         id = "${app.name}${app.build.suffix}"
         namespace = app.namespaces.'build'.namespace
         timeoutInSeconds = 60*20 // 20 minutes
+        // as an initial step, these will be set statically at build time.  @todo make them dynamic per-environment
+        matomoURL = "https://matomo-devops-sandbox-dev.pathfinder.gov.bc.ca"
+        matomoSiteURL = "https://developer.gov.bc.ca"
+        matomoSiteId = "1"
         templates = [
             [
                 'file':'openshift/bc.yaml',
