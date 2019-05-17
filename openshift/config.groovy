@@ -50,7 +50,10 @@ app {
                     'SUFFIX': app.build.suffix,
                     'VERSION': app.build.version,
                     'SOURCE_REPOSITORY_URL': app.git.uri,
-                    'SOURCE_REPOSITORY_REF': app.git.ref
+                    'SOURCE_REPOSITORY_REF': app.git.ref,
+                    'MATOMO_URL' : app.build.matomoURL,
+                    'MATOMO_SITE_URL' : app.build.matomoSiteURL,
+                    'MATOMO_SITE_ID' : app.build.matomoSiteId
                 ]
             ], [
                 'file':'openshift/bddstack.bc.json',
