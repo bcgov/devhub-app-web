@@ -1,0 +1,256 @@
+Index: app-web/plugins/gatsby-remark-path-transform/index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/*\nCopyright 2018 Province of British Columbia\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at \n\n   http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n\nCreated by Patrick Simonian\n*/\n\nconst visit = require('unist-util-visit');\nconst cheerio = require('cheerio');\nconst validURL = require('valid-url');\nconst { TypeCheck } = require('@bcgov/common-web-utils');\nconst { IMAGE, LINK } = require('./utils/constants');\n\n/**\n * sifts through ast (see https://www.huynguyen.io/2018-05-remark-gatsby-plugin-part-2/)\n * and converts relative paths to absolute paths for images and links via a converter cb\n * the converter cb receives (ast node type, relative url, parent graphql node, getNode (to get nodes further up the tree if needed))\n * @param {Object} remark\n * @param {Object} options\n */\nconst transformRelativePaths = ({ markdownAST, markdownNode, getNode }, { converter } = {}) => {\n  if (!converter || !TypeCheck.isFunction(converter)) {\n    throw new Error(\n      \"gatsby-remark-path-transform option: 'converter' must be passed in as a function!\",\n    );\n  }\n\n  /**\n   * Closured call back to call that returns the url transformed by the\n   * converter cb or the url on its own if it isn't relative\n   * @param {String} nodeType\n   * @param {Object} parentQLNode\n   */\n  const visitCB = (nodeType, parentQLNode) => url => {\n    // if its an actual valid link or an anchor don't transform\n    if (validURL.isWebUri(url) || url.indexOf('#') === 0) {\n      return url;\n    }\n    const absolutePath = converter(nodeType, url, parentQLNode, getNode);\n    return absolutePath; // eslint-disable-line\n  };\n\n  const parentQLNode = getNode(markdownNode.parent);\n  const imageVisitedCB = visitCB(IMAGE, parentQLNode);\n  const linkVisitedCB = visitCB(LINK, parentQLNode);\n\n  // visit any html nodes and ensure and check for stand alone image tags\n  visit(markdownAST, 'html', node => {\n    const $ = cheerio.load(node.value);\n    const images = $('img');\n\n    images.each((ind, elm) => {\n      const src = $(elm).attr('src');\n      $(elm).attr('src', imageVisitedCB(src));\n    });\n\n    node.value = $.html();\n  });\n\n  // visit link and img ast nodes\n  visit(markdownAST, IMAGE, node => {\n    node.url = imageVisitedCB(node.url);\n  });\n\n  visit(markdownAST, LINK, node => {\n    node.url = linkVisitedCB(node.url);\n  });\n  // return null;\n};\n\nmodule.exports = transformRelativePaths;\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app-web/plugins/gatsby-remark-path-transform/index.js	(revision f6f53ecdff02899b7a69f13314e1abb39a31fc17)
++++ app-web/plugins/gatsby-remark-path-transform/index.js	(date 1549497518000)
+@@ -22,6 +22,14 @@
+ const { TypeCheck } = require('@bcgov/common-web-utils');
+ const { IMAGE, LINK } = require('./utils/constants');
+ 
++const report = require('vfile-reporter');
++const unified = require('unified');
++const remark2retext = require('remark-retext');
++const english = require('retext-english');
++const stringify = require('retext-stringify');
++const spell = require('retext-spell');
++const dictionary = require('dictionary-en-ca');
++
+ /**
+  * sifts through ast (see https://www.huynguyen.io/2018-05-remark-gatsby-plugin-part-2/)
+  * and converts relative paths to absolute paths for images and links via a converter cb
+@@ -76,6 +84,18 @@
+   visit(markdownAST, LINK, node => {
+     node.url = linkVisitedCB(node.url);
+   });
++
++  unified()
++      .use(
++      remark2retext,
++      unified()
++          .use(english)
++          .use(spell, dictionary)
++      )
++      .process(markdownAST, function(err, file) {
++        console.error(report(err || file));
++  });
++
+   // return null;
+ };
+ 
+Index: app-web/package-lock.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app-web/package-lock.json	(revision f6f53ecdff02899b7a69f13314e1abb39a31fc17)
++++ app-web/package-lock.json	(date 1549487062000)
+@@ -5813,6 +5813,11 @@
+         }
+       }
+     },
++    "dictionary-en-ca": {
++      "version": "2.0.0",
++      "resolved": "https://registry.npmjs.org/dictionary-en-ca/-/dictionary-en-ca-2.0.0.tgz",
++      "integrity": "sha512-tX4cmVCddtbU4lwj2T75TQzpKVq8AWnhdg1DSjfTziFlpRhhRDOkkAvZ/B0UuJm3t2SVtMUJeMd2yPKkkxDheA=="
++    },
+     "diff": {
+       "version": "3.5.0",
+       "resolved": "https://registry.npmjs.org/diff/-/diff-3.5.0.tgz",
+@@ -12543,6 +12548,11 @@
+       "resolved": "https://registry.npmjs.org/lodash.get/-/lodash.get-4.4.2.tgz",
+       "integrity": "sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk="
+     },
++    "lodash.includes": {
++      "version": "4.3.0",
++      "resolved": "https://registry.npmjs.org/lodash.includes/-/lodash.includes-4.3.0.tgz",
++      "integrity": "sha1-YLuYqHy5I8aMoeUTJUgzFISfVT8="
++    },
+     "lodash.isequal": {
+       "version": "4.5.0",
+       "resolved": "https://registry.npmjs.org/lodash.isequal/-/lodash.isequal-4.5.0.tgz",
+@@ -13560,6 +13570,14 @@
+       "resolved": "https://registry.npmjs.org/nice-try/-/nice-try-1.0.5.tgz",
+       "integrity": "sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ=="
+     },
++    "nlcst-is-literal": {
++      "version": "1.1.2",
++      "resolved": "https://registry.npmjs.org/nlcst-is-literal/-/nlcst-is-literal-1.1.2.tgz",
++      "integrity": "sha512-eFdFvG7XE/YwPFbRk3ryzinTVGWpAEBQNH/FWc4sVSHXUumZtdSVaJYsz0axK4uF1pmlIAWgYWhzDuQ8NTf79A==",
++      "requires": {
++        "nlcst-to-string": "^2.0.0"
++      }
++    },
+     "nlcst-to-string": {
+       "version": "2.0.2",
+       "resolved": "https://registry.npmjs.org/nlcst-to-string/-/nlcst-to-string-2.0.2.tgz",
+@@ -16895,6 +16913,21 @@
+         "set-blocking": "~2.0.0"
+       }
+     },
++    "nspell": {
++      "version": "2.1.1",
++      "resolved": "https://registry.npmjs.org/nspell/-/nspell-2.1.1.tgz",
++      "integrity": "sha512-ubFjxhpFSHbYVAKFgRarIPQ5H5GfFNVQAjv0bYd+vnG+O2nXZJg8o9rXyIzyXdsOZDEhR/PC/GcINXaW7PEnNw==",
++      "requires": {
++        "is-buffer": "^2.0.0"
++      },
++      "dependencies": {
++        "is-buffer": {
++          "version": "2.0.3",
++          "resolved": "https://registry.npmjs.org/is-buffer/-/is-buffer-2.0.3.tgz",
++          "integrity": "sha512-U15Q7MXTuZlrbymiz95PJpZxu8IlipAp4dtS3wOdgPXx3mqBnslrWU14kxfHB+Py/+2PVKSr37dMAgM2A4uArw=="
++        }
++      }
++    },
+     "nth-check": {
+       "version": "1.0.2",
+       "resolved": "https://registry.npmjs.org/nth-check/-/nth-check-1.0.2.tgz",
+@@ -18749,6 +18782,11 @@
+       "resolved": "https://registry.npmjs.org/querystringify/-/querystringify-2.1.0.tgz",
+       "integrity": "sha512-sluvZZ1YiTLD5jsqZcDmFyV2EwToyXZBfpoVOmktMmW+VEnhgakFHnasVph65fOjGPTWN0Nw3+XQaSeMayr0kg=="
+     },
++    "quotation": {
++      "version": "1.1.1",
++      "resolved": "https://registry.npmjs.org/quotation/-/quotation-1.1.1.tgz",
++      "integrity": "sha512-bjz7kEsfg6D3uMeed+VbeypnooGlX7enMnDbx0KLYEEM8J1k24jk2pc+1nyQ1sExnERz8xKXRSZ0EYNIwLM83g=="
++    },
+     "raf": {
+       "version": "3.4.1",
+       "resolved": "https://registry.npmjs.org/raf/-/raf-3.4.1.tgz",
+@@ -20239,6 +20277,27 @@
+         "unherit": "^1.0.4"
+       }
+     },
++    "retext-spell": {
++      "version": "2.4.0",
++      "resolved": "https://registry.npmjs.org/retext-spell/-/retext-spell-2.4.0.tgz",
++      "integrity": "sha512-k3YHCcHUGESEi6AckQBi8ID3ySsYE8DKRMlnnWhGFiJnHfWKwk+jCLMsxwgRygC0qI91WpYwaeO9wP9kKBECAw==",
++      "requires": {
++        "lodash.includes": "^4.2.0",
++        "nlcst-is-literal": "^1.0.0",
++        "nlcst-to-string": "^2.0.0",
++        "nspell": "^2.0.0",
++        "quotation": "^1.1.0",
++        "unist-util-visit": "^1.0.0"
++      }
++    },
++    "retext-stringify": {
++      "version": "2.0.2",
++      "resolved": "https://registry.npmjs.org/retext-stringify/-/retext-stringify-2.0.2.tgz",
++      "integrity": "sha512-SphWgEipyuEVXRsKqxhUN6+h7H6GNFFjPDxNJs4ZX7HEhizmaXUdHSSuOyRjbY764SH2mMVf+kj8NNpMksfgUA==",
++      "requires": {
++        "nlcst-to-string": "^2.0.0"
++      }
++    },
+     "rgb-regex": {
+       "version": "1.0.1",
+       "resolved": "https://registry.npmjs.org/rgb-regex/-/rgb-regex-1.0.1.tgz",
+@@ -23241,6 +23300,66 @@
+         "unist-util-stringify-position": "^1.1.1"
+       }
+     },
++    "vfile-reporter": {
++      "version": "5.1.1",
++      "resolved": "https://registry.npmjs.org/vfile-reporter/-/vfile-reporter-5.1.1.tgz",
++      "integrity": "sha512-A/cfKvfVmeEmAKx1yyOWggCjC/k184Vkl5pVJAw5CEdppHd5FHBVcdyJ1JBSqIdJjJqyhZY4ZD3JycHr/uwmlA==",
++      "requires": {
++        "repeat-string": "^1.5.0",
++        "string-width": "^2.0.0",
++        "supports-color": "^5.4.0",
++        "unist-util-stringify-position": "^1.0.0",
++        "vfile-sort": "^2.1.2",
++        "vfile-statistics": "^1.1.0"
++      },
++      "dependencies": {
++        "ansi-regex": {
++          "version": "3.0.0",
++          "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-3.0.0.tgz",
++          "integrity": "sha1-7QMXwyIGT3lGbAKWa922Bas32Zg="
++        },
++        "is-fullwidth-code-point": {
++          "version": "2.0.0",
++          "resolved": "https://registry.npmjs.org/is-fullwidth-code-point/-/is-fullwidth-code-point-2.0.0.tgz",
++          "integrity": "sha1-o7MKXE8ZkYMWeqq5O+764937ZU8="
++        },
++        "string-width": {
++          "version": "2.1.1",
++          "resolved": "https://registry.npmjs.org/string-width/-/string-width-2.1.1.tgz",
++          "integrity": "sha512-nOqH59deCq9SRHlxq1Aw85Jnt4w6KvLKqWVik6oA9ZklXLNIOlqg4F2yrT1MVaTjAqvVwdfeZ7w7aCvJD7ugkw==",
++          "requires": {
++            "is-fullwidth-code-point": "^2.0.0",
++            "strip-ansi": "^4.0.0"
++          }
++        },
++        "strip-ansi": {
++          "version": "4.0.0",
++          "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-4.0.0.tgz",
++          "integrity": "sha1-qEeQIusaw2iocTibY1JixQXuNo8=",
++          "requires": {
++            "ansi-regex": "^3.0.0"
++          }
++        },
++        "supports-color": {
++          "version": "5.5.0",
++          "resolved": "https://registry.npmjs.org/supports-color/-/supports-color-5.5.0.tgz",
++          "integrity": "sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==",
++          "requires": {
++            "has-flag": "^3.0.0"
++          }
++        }
++      }
++    },
++    "vfile-sort": {
++      "version": "2.2.0",
++      "resolved": "https://registry.npmjs.org/vfile-sort/-/vfile-sort-2.2.0.tgz",
++      "integrity": "sha512-RgxLXVWrJBWb2GuP8FsSkqK7HmbjXjnI8qx3nD6NTWhsWaelaKvJuxfh1F1d1lkCPD7imo4zzi8cf6IOMgaTnQ=="
++    },
++    "vfile-statistics": {
++      "version": "1.1.2",
++      "resolved": "https://registry.npmjs.org/vfile-statistics/-/vfile-statistics-1.1.2.tgz",
++      "integrity": "sha512-16wAC9eEGXdsD35LX9m/iXCRIZyX5LIrDgDtAF92rbATSqsBRbC4n05e0Rj5vt3XRpcKu0UJeWnTxWsSyvNZ+w=="
++    },
+     "video-extensions": {
+       "version": "1.1.0",
+       "resolved": "https://registry.npmjs.org/video-extensions/-/video-extensions-1.1.0.tgz",
+Index: app-web/package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\n  \"name\": \"developer.gov.bc.ca\",\n  \"version\": \"0.0.1\",\n  \"main\": \"index.js\",\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git://github.com/bcgov/devhub-app-web.git\"\n  },\n  \"description\": \"DevHub aims to become the \\\"Central Nervous System\\\" for the growing gov developer community.\",\n  \"license\": \"Apache-2.0\",\n  \"dependencies\": {\n    \"@bcgov/common-web-utils\": \"^0.5.2\",\n    \"@fortawesome/fontawesome-free-brands\": \"^5.0.13\",\n    \"@fortawesome/fontawesome-svg-core\": \"^1.2.8\",\n    \"@fortawesome/free-solid-svg-icons\": \"^5.5.0\",\n    \"@fortawesome/react-fontawesome\": \"^0.1.3\",\n    \"@octokit/rest\": \"^16.13.1\",\n    \"acorn\": \"^6.0.4\",\n    \"autoprefixer\": \"^9.4.2\",\n    \"babel-plugin-styled-components\": \"^1.9.2\",\n    \"chalk\": \"^2.4.1\",\n    \"cheerio\": \"^1.0.0-rc.2\",\n    \"clone\": \"^2.1.2\",\n    \"dot-prop-immutable\": \"^1.5.0\",\n    \"dotenv\": \"^6.2.0\",\n    \"emotion\": \"^8.0.8\",\n    \"emotion-server\": \"^8.0.8\",\n    \"eslint-config-react-app\": \"^3.0.5\",\n    \"eslint-plugin-flowtype\": \"^2.50.3\",\n    \"feather-icons\": \"^3.3.0\",\n    \"flag\": \"^3.0.0-1\",\n    \"gatsby\": \"^2.0.64\",\n    \"gatsby-plugin-catch-links\": \"^2.0.9\",\n    \"gatsby-plugin-emotion\": \"^3.0.1\",\n    \"gatsby-plugin-favicon\": \"^3.1.4\",\n    \"gatsby-plugin-google-analytics\": \"^2.0.8\",\n    \"gatsby-plugin-lunr\": \"^1.3.0\",\n    \"gatsby-plugin-offline\": \"^2.0.18\",\n    \"gatsby-plugin-postcss\": \"^2.0.2\",\n    \"gatsby-plugin-react-helmet\": \"^3.0.4\",\n    \"gatsby-plugin-sharp\": \"^2.0.14\",\n    \"gatsby-plugin-styled-components\": \"^3.0.4\",\n    \"gatsby-remark-autolink-headers\": \"^2.0.12\",\n    \"gatsby-remark-images\": \"^3.0.1\",\n    \"gatsby-remark-prismjs\": \"^3.1.4\",\n    \"gatsby-source-filesystem\": \"^2.0.11\",\n    \"gatsby-source-github-api\": \"0.0.3\",\n    \"gatsby-transformer-json\": \"^2.1.6\",\n    \"gatsby-transformer-remark\": \"^2.1.15\",\n    \"gatsby-transformer-sharp\": \"^2.1.9\",\n    \"gatsby-transformer-yaml\": \"^2.1.6\",\n    \"github-markdown-css\": \"^2.10.0\",\n    \"got\": \"^9.3.2\",\n    \"hash.js\": \"^1.1.7\",\n    \"html-metadata\": \"^1.7.0\",\n    \"i\": \"^0.3.6\",\n    \"ignore\": \"^5.0.4\",\n    \"js-base64\": \"^2.4.9\",\n    \"js-yaml\": \"^3.12.0\",\n    \"jwt-decode\": \"^2.2.0\",\n    \"lodash\": \"^4.17.11\",\n    \"lunr\": \"^2.3.5\",\n    \"metascraper\": \"^4.7.0\",\n    \"metascraper-author\": \"^4.7.0\",\n    \"metascraper-clearbit-logo\": \"^4.7.0\",\n    \"metascraper-date\": \"^4.7.0\",\n    \"metascraper-description\": \"^4.7.0\",\n    \"metascraper-image\": \"^4.7.0\",\n    \"metascraper-logo\": \"^4.7.0\",\n    \"metascraper-publisher\": \"^4.7.0\",\n    \"metascraper-title\": \"^4.7.0\",\n    \"metascraper-url\": \"^4.7.0\",\n    \"normalize.css\": \"^8.0.1\",\n    \"npm\": \"^6.6.0\",\n    \"postcss-flexbugs-fixes\": \"^4.1.0\",\n    \"prismjs\": \"^1.15.0\",\n    \"prop-types\": \"^15.6.0\",\n    \"query-string\": \"^6.2.0\",\n    \"react\": \"^16.6.3\",\n    \"react-dom\": \"^16.6.3\",\n    \"react-dotdotdot\": \"^1.2.3\",\n    \"react-emotion\": \"^10.0.0\",\n    \"react-helmet\": \"^5.2.0\",\n    \"react-image\": \"^1.5.1\",\n    \"react-redux\": \"^5.0.0\",\n    \"react-router-dom\": \"^4.3.1\",\n    \"react-scroll\": \"^1.7.10\",\n    \"react-select\": \"^2.1.2\",\n    \"react-spinners\": \"^0.5.1\",\n    \"react-toggled\": \"^1.2.7\",\n    \"redux\": \"^3.0.0\",\n    \"redux-persist\": \"^5.10.0\",\n    \"rehype-react\": \"^3.1.0\",\n    \"remark\": \"^10.0.0\",\n    \"shorthash\": \"0.0.2\",\n    \"shortid\": \"^2.2.14\",\n    \"slugify\": \"^1.3.4\",\n    \"string-similarity\": \"^3.0.0\",\n    \"styled-components\": \"^4.1.2\",\n    \"styled-system\": \"^3.1.11\",\n    \"unfurl.js\": \"^1.1.6\",\n    \"unist-util-visit\": \"^1.4.0\",\n    \"url-parse\": \"^1.4.4\",\n    \"valid-url\": \"^1.0.9\"\n  },\n  \"scripts\": {\n    \"dev\": \"node_modules/.bin/gatsby develop -H 0.0.0.0\",\n    \"build\": \"node_modules/.bin/gatsby build\",\n    \"test:watch\": \"jest --watch --env=jsdom\",\n    \"test\": \"jest --env=jsdom\",\n    \"test:ci\": \"CI=true shell-scripts/unit-tests.sh\",\n    \"test:lint\": \"eslint src/\",\n    \"prettify\": \"prettier --write '{./,__{tests,mocks}__}/**/*.+(js|jsx)'\"\n  },\n  \"jest\": {\n    \"transform\": {\n      \".(js|jsx)\": \"<rootDir>/config/jest/jestPreprocess.js\",\n      \".+\\\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$\": \"<rootDir>/config/fileTransformer.js\"\n    },\n    \"testRegex\": \"(\\\\.(i?test|spec))\\\\.(jsx|js)$\",\n    \"testPathIgnorePatterns\": [\n      \"/node_modules/\",\n      \"/.cache/\"\n    ],\n    \"moduleFileExtensions\": [\n      \"jsx\",\n      \"js\",\n      \"module.css\",\n      \".css\",\n      \"json\"\n    ],\n    \"moduleNameMapper\": {\n      \"\\\\.module\\\\.(css|less)$\": \"identity-obj-proxy\",\n      \".(css)$\": \"identity-obj-proxy\"\n    },\n    \"collectCoverage\": true,\n    \"coverageReporters\": [\n      \"lcov\",\n      \"text\",\n      \"html\"\n    ],\n    \"setupFiles\": [\n      \"raf/polyfill\",\n      \"jest-localstorage-mock\",\n      \"<rootDir>/config/setupTests.js\",\n      \"<rootDir>/config/jest/loadershim.js\"\n    ]\n  },\n  \"devDependencies\": {\n    \"@babel/core\": \"^7.2.0\",\n    \"babel-core\": \"^7.0.0-bridge.0\",\n    \"babel-eslint\": \"^9.0.0\",\n    \"babel-jest\": \"^23.6.0\",\n    \"babel-preset-gatsby\": \"^0.1.6\",\n    \"enzyme\": \"^3.1.0\",\n    \"enzyme-adapter-react-16\": \"^1.7.0\",\n    \"enzyme-to-json\": \"^3.3.5\",\n    \"eslint\": \"^5.9.0\",\n    \"eslint-config-airbnb\": \"^17.1.0\",\n    \"eslint-config-prettier\": \"^3.3.0\",\n    \"eslint-loader\": \"^2.1.1\",\n    \"eslint-plugin-import\": \"^2.7.0\",\n    \"eslint-plugin-jsx-a11y\": \"^6.0.2\",\n    \"eslint-plugin-prettier\": \"^3.0.0\",\n    \"eslint-plugin-react\": \"^7.4.0\",\n    \"identity-obj-proxy\": \"^3.0.0\",\n    \"jest\": \"^23.6.0\",\n    \"jest-localstorage-mock\": \"^2.3.0\",\n    \"prettier\": \"^1.15.3\",\n    \"react-test-renderer\": \"^16.6.3\",\n    \"redux-mock-store\": \"^1.5.3\"\n  }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app-web/package.json	(revision f6f53ecdff02899b7a69f13314e1abb39a31fc17)
++++ app-web/package.json	(date 1549487216000)
+@@ -21,6 +21,7 @@
+     "chalk": "^2.4.1",
+     "cheerio": "^1.0.0-rc.2",
+     "clone": "^2.1.2",
++    "dictionary-en-ca": "^2.0.0",
+     "dot-prop-immutable": "^1.5.0",
+     "dotenv": "^6.2.0",
+     "emotion": "^8.0.8",
+@@ -92,6 +93,10 @@
+     "redux-persist": "^5.10.0",
+     "rehype-react": "^3.1.0",
+     "remark": "^10.0.0",
++    "remark-retext": "^3.1.2",
++    "retext-english": "^3.0.2",
++    "retext-spell": "^2.4.0",
++    "retext-stringify": "^2.0.2",
+     "shorthash": "0.0.2",
+     "shortid": "^2.2.14",
+     "slugify": "^1.3.4",
+@@ -101,7 +106,8 @@
+     "unfurl.js": "^1.1.6",
+     "unist-util-visit": "^1.4.0",
+     "url-parse": "^1.4.4",
+-    "valid-url": "^1.0.9"
++    "valid-url": "^1.0.9",
++    "vfile-reporter": "^5.1.1"
+   },
+   "scripts": {
+     "dev": "node_modules/.bin/gatsby develop -H 0.0.0.0",

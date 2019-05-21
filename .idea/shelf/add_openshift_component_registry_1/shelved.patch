@@ -1,0 +1,23 @@
+Index: app-web/source-registry/registry.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>sources:\n  - name: Design System\n    sourceType: 'github'\n    sourceProperties:\n      url: https://github.com/bcgov/design-system/\n      owner: bcgov\n      repo: 'design-system'\n    attributes:\n      labels:\n        - Components\n        - Repository\n  - name: Signing Tool\n    sourceType: 'github'\n    sourceProperties:\n      url: https://github.com/bcgov/devhub-signing-web/\n      owner: bcgov\n      repo: 'devhub-signing-web'\n    attributes:\n      labels:\n        - Self Service\n        - Repository\n  - name: Open Shift Wiki\n    sourceType: 'github'\n    sourceProperties:\n      url: https://github.com/BCDevOps/openshift-wiki\n      owner: BCDevOps\n      repo: 'openshift-wiki'\n    attributes:\n      labels:\n        - Guides\n        - Repository\n        - Wiki\n        - How To\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app-web/source-registry/registry.yml	(revision fe0dd7b937554e01794eef8bbf34f1689ad3da9d)
++++ app-web/source-registry/registry.yml	(date 1542323792000)
+@@ -31,3 +31,13 @@
+         - Repository
+         - Wiki
+         - How To
++  - name: OpenShift Components
++    sourceType: 'github'
++    sourceProperties:
++      url: https://github.com/BCDevOps/openshift-components/
++      owner: BCDevOps
++      repo: 'openshift-components'
++    attributes:
++      labels:
++        - Repository
++        - Components
