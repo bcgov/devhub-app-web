@@ -1,0 +1,310 @@
+{
+  "kind": "Template",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "matomo-template"
+  },
+  "objects": [{
+      "kind": "DeploymentConfig",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${NAME}",
+        "generation": 1,
+        "labels": {
+          "app": "matomo",
+          "service": "${NAME}",
+          "template": "matomo-template"
+        }
+      },
+      "spec": {
+        "strategy": {
+          "type": "Rolling"
+        },
+        "triggers": [{
+            "type": "ConfigChange"
+          },
+          {
+            "type": "ImageChange",
+            "imageChangeParams": {
+              "automatic": true,
+              "containerNames": [
+                "${NAME}"
+              ],
+              "from": {
+                "kind": "ImageStreamTag",
+                "namespace": "${IMAGE_NAMESPACE}",
+                "name": "${SOURCE_IMAGE_NAME}:${TAG_NAME}"
+              }
+            }
+          },
+          {
+            "type": "ImageChange",
+            "imageChangeParams": {
+              "automatic": true,
+              "containerNames": [
+                "${NAME}-proxy"
+              ],
+              "from": {
+                "kind": "ImageStreamTag",
+                "namespace": "${IMAGE_NAMESPACE}",
+                "name": "${SOURCE_IMAGE_NAME}-proxy:${TAG_NAME}"
+              }
+            }
+          }
+        ],
+        "replicas": 1,
+        "test": false,
+        "selector": {
+          "app": "matomo",
+          "deploymentconfig": "${NAME}",
+          "template": "matomo-template"
+        },
+        "template": {
+          "metadata": {
+            "labels": {
+              "app": "matomo",
+              "deploymentconfig": "matomo",
+              "template": "matomo-template"
+            }
+          },
+          "spec": {
+            "volumes": [{
+                "name": "${NAME}-source",
+                "emptyDir": {}
+              },
+              {
+                "name": "${NAME}-config",
+                "persistentVolumeClaim": {
+                  "claimName": "${NAME}-config"
+                }
+              }
+            ],
+            "containers": [{
+                "image": "${SOURCE_IMAGE_NAME}",
+                "imagePullPolicy": "Always",
+                "livenessProbe": {
+                  "failureThreshold": 3,
+                  "initialDelaySeconds": 1,
+                  "periodSeconds": 10,
+                  "successThreshold": 1,
+                  "tcpSocket": {
+                    "port": 9000
+                  },
+                  "timeoutSeconds": 5
+                },
+                "name": "matomo",
+                "ports": [{
+                  "containerPort": 9000,
+                  "protocol": "TCP"
+                }],
+                "readinessProbe": {
+                  "failureThreshold": 3,
+                  "initialDelaySeconds": 1,
+                  "periodSeconds": 10,
+                  "successThreshold": 1,
+                  "tcpSocket": {
+                    "port": 9000
+                  },
+                  "timeoutSeconds": 5
+                },
+                "resources": {},
+                "terminationMessagePath": "/dev/termination-log",
+                "volumeMounts": [{
+                    "mountPath": "/var/www/html",
+                    "name": "matomo-source"
+                  },
+                  {
+                    "mountPath": "/var/www/html/config",
+                    "name": "matomo-config"
+                  }
+                ]
+              },
+              {
+                "image": "${NAME}-proxy",
+                "imagePullPolicy": "Always",
+                "livenessProbe": {
+                  "failureThreshold": 3,
+                  "initialDelaySeconds": 1,
+                  "periodSeconds": 10,
+                  "successThreshold": 1,
+                  "tcpSocket": {
+                    "port": 8080
+                  },
+                  "timeoutSeconds": 1
+                },
+                "name": "${NAME}-proxy",
+                "ports": [{
+                  "containerPort": 8080,
+                  "protocol": "TCP"
+                }],
+                "readinessProbe": {
+                  "failureThreshold": 3,
+                  "initialDelaySeconds": 1,
+                  "periodSeconds": 10,
+                  "successThreshold": 1,
+                  "tcpSocket": {
+                    "port": 8080
+                  },
+                  "timeoutSeconds": 1
+                },
+                "resources": {},
+                "terminationMessagePath": "/dev/termination-log",
+                "volumeMounts": [{
+                  "mountPath": "/var/www/html",
+                  "name": "matomo-source"
+                }]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${NAME}-config",
+        "labels": {
+          "app": "matomo",
+          "name": "${NAME}"
+        }
+      },
+      "spec": {
+        "storageClassName": "${PERSISTENT_VOLUME_CLASS}",
+        "accessModes": [
+          "ReadWriteOnce"
+        ],
+        "resources": {
+          "requests": {
+            "storage": "${PERSISTENT_VOLUME_SIZE}"
+          }
+        }
+      }
+    },
+    {
+      "kind": "Route",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${NAME}",
+        "labels": {
+          "app": "${NAME}",
+          "name": "${NAME}"
+        }
+      },
+      "spec": {
+        "host": "${MATOMO_URL}",
+        "tls": {
+          "insecureEdgeTerminationPolicy": "Redirect",
+          "termination": "edge"
+        },
+        "to": {
+          "kind": "Service",
+          "name": "${NAME}"
+        }
+      }
+    },
+    {
+      "kind": "Service",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${NAME}",
+        "labels": {
+          "app": "matomo",
+          "service": "${NAME}",
+          "template": "matomo-template"
+        }
+      },
+      "spec": {
+        "ports": [{
+          "name": "8080-tcp",
+          "port": 8080,
+          "protocol": "TCP",
+          "targetPort": 8080
+        }],
+        "selector": {
+          "deploymentconfig": "${NAME}"
+        },
+        "type": "ClusterIP",
+        "sessionAffinity": "None"
+      }
+    }
+  ],
+  "parameters": [{
+      "name": "NAME",
+      "displayName": "Name",
+      "description": "The name assigned to all of the OpenShift resources associated to the server instance.",
+      "required": true,
+      "value": "matomo"
+    },
+    {
+      "name": "IMAGE_NAMESPACE",
+      "displayName": "Image Namespace",
+      "required": true,
+      "description": "The namespace of the OpenShift project containing the imagestream for the application.",
+      "value": "myproject"
+    },
+    {
+      "name": "SOURCE_IMAGE_NAME",
+      "displayName": "Source Image Name",
+      "description": "The name of the image to use for this resource.",
+      "required": true,
+      "value": "matomo"
+    },
+    {
+      "name": "TAG_NAME",
+      "displayName": "Environment TAG name",
+      "description": "The TAG name for this environment, e.g., dev, test, prod",
+      "required": true,
+      "value": "prod"
+    },
+    {
+      "name": "MATOMO_URL",
+      "displayName": "Matomo URL",
+      "description": "The public domain endpoint for Matomo. A value will be created by default if not specified.",
+      "required": false,
+      "value": ""
+    },
+    {
+      "name": "PERSISTENT_VOLUME_SIZE",
+      "displayName": "Persistent Volume Size",
+      "description": "The size of the persistent volume , e.g. 512Mi, 1Gi, 2Gi.",
+      "required": true,
+      "value": "1Gi"
+    },
+    {
+      "name": "PERSISTENT_VOLUME_CLASS",
+      "displayName": "Persistent Volume Class name",
+      "description": "The class of the volume; gluster-file, gluster-block, gluster-file-db",
+      "required": false,
+      "value": "gluster-file"
+    },
+    {
+      "name": "CPU_REQUEST",
+      "displayName": "Resources CPU Request",
+      "description": "The resources CPU request (in cores) for this build.",
+      "required": true,
+      "value": "100m"
+    },
+    {
+      "name": "CPU_LIMIT",
+      "displayName": "Resources CPU Limit",
+      "description": "The resources CPU limit (in cores) for this build.",
+      "required": true,
+      "value": "250m"
+    },
+    {
+      "name": "MEMORY_REQUEST",
+      "displayName": "Resources Memory Request",
+      "description": "The resources Memory request (in Mi, Gi, etc) for this build.",
+      "required": true,
+      "value": "100Mi"
+    },
+    {
+      "name": "MEMORY_LIMIT",
+      "displayName": "Resources Memory Limit",
+      "description": "The resources Memory limit (in Mi, Gi, etc) for this build.",
+      "required": true,
+      "value": "512Mi"
+    }
+  ]
+}
