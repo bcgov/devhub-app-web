@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { RESOURCE_TYPES, COLLECTIONS, RESOURCE_TYPES_LIST } from '../../../constants/ui';
+import { RESOURCE_TYPES, COLLECTIONS, RESOURCE_TYPES_LIST, EVENTS } from '../../../constants/ui';
 import styled from '@emotion/styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -38,7 +38,7 @@ export const ResourceTypeIcon = ({ type }) => {
     case RESOURCE_TYPES.REPOSITORIES:
       icon = faGithub;
       break;
-    case 'Events':
+    case EVENTS:
       icon = faCalendar;
       break;
     default:
@@ -49,7 +49,7 @@ export const ResourceTypeIcon = ({ type }) => {
 };
 
 ResourceTypeIcon.propTypes = {
-  type: PropTypes.oneOf(RESOURCE_TYPES_LIST.concat(COLLECTIONS)),
+  type: PropTypes.oneOf(RESOURCE_TYPES_LIST.concat([COLLECTIONS, EVENTS])),
 };
 
 export default ResourceTypeIcon;

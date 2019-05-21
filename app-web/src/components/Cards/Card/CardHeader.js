@@ -20,24 +20,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faUserCircle,
-  faPuzzlePiece,
-  faFile,
-  faTools,
-  faLayerGroup,
-  faExternalLinkAlt,
-  faCalendar,
-} from '@fortawesome/free-solid-svg-icons';
-import { faGithub } from '@fortawesome/fontawesome-free-brands';
+
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { RESOURCES } from '../../../messages';
-import { RESOURCE_TYPES, RESOURCE_TYPES_LIST, COLLECTIONS } from '../../../constants/ui';
-// renders the upper ribbon for the card
-const FaIcon = styled(FontAwesomeIcon)`
-  color: ${props => props.theme.colors[props.type]};
-`;
+import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
+import ResourceTypeIcon from '../../UI/ResourceTypeIcon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const H3 = styled.h3`
   color: #444;
@@ -47,32 +36,6 @@ const H3 = styled.h3`
 `;
 
 const CardHeader = ({ type, linksToExternal }) => {
-  let icon = null;
-  // eslint-disable-next-line default-case
-  switch (type) {
-    case RESOURCE_TYPES.COMPONENTS:
-      icon = faPuzzlePiece;
-      break;
-    case RESOURCE_TYPES.DOCUMENTATION:
-      icon = faFile;
-      break;
-    case RESOURCE_TYPES.PEOPLE:
-      icon = faUserCircle;
-      break;
-    case RESOURCE_TYPES.SELF_SERVICE_TOOLS:
-      icon = faTools;
-      break;
-    case COLLECTIONS:
-      icon = faLayerGroup;
-      break;
-    case RESOURCE_TYPES.REPOSITORIES:
-      icon = faGithub;
-      break;
-    case 'Events':
-      icon = faCalendar;
-      break;
-  }
-
   return (
     <div
       css={css`
@@ -80,7 +43,7 @@ const CardHeader = ({ type, linksToExternal }) => {
       `}
     >
       <H3>
-        <FaIcon type={type} icon={icon} />{' '}
+        <ResourceTypeIcon type={type} />{' '}
         <span
           css={css`
             margin: 4px;
