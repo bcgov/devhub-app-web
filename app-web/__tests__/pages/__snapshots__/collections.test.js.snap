@@ -111,7 +111,7 @@ exports[`Collections Container it matches snapshot 1`] = `
 .emotion-184 {
   font-size: 15px;
   max-width: 1200px;
-  padding: 10px 12px;
+  padding: 10px 10px;
 }
 
 @media screen and (min-width:932px) {
