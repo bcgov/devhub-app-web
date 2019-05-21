@@ -53,7 +53,7 @@ environments {
         vars {
             deployment {
                 env {
-                    name = 'tools'
+                    name = 'prod'
                     id = "pr-${opt.'pr'}"
                 }
                 host = ""
