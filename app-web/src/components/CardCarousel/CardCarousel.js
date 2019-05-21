@@ -7,7 +7,7 @@ import '@brainhubeu/react-carousel/lib/style.css';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import css from '@emotion/css';
-import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/styleTokens';
+import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/designTokens';
 
 import { RESOURCE_TYPES_LIST, CARD_CAROUSEL } from '../../constants/ui';
 

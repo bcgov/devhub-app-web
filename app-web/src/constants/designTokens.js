@@ -4,6 +4,14 @@ export const STYLE_BASE = {
   borderWidth: 1,
 };
 
+// custom font size typing
+// CUSTOM_TYPE.sm => 16px;
+export const CUSTOM_TYPE = {
+  sm: `${STYLE_BASE}px`,
+  md: `${STYLE_BASE * 1.5}px`,
+  lg: `${STYLE_BASE * 2}px`,
+};
+
 export const MAX_SPACE_UNIT_MULTIPLE = 20;
 
 /**
@@ -21,6 +29,8 @@ const getSpacingUnits = (maxSpacingMultiple, spacingFactor) => {
   return spacingUnits;
 };
 
+// creates a object that has multiples of spacing units in pixels
+// SPACING['1x'] => '5px'
 export const SPACING = getSpacingUnits(MAX_SPACE_UNIT_MULTIPLE, STYLE_BASE.spacing);
 
 // bootstrap breakpoints used for emotion custom styled components

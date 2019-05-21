@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Filters from '../Filters/Filters';
-import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/styleTokens';
+import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/designTokens';
+
 const FilterContainer = styled.div`
   flex: 0 0 200px;
   padding: 5px;

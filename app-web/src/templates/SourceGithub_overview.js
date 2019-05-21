@@ -22,7 +22,7 @@ import { graphql } from 'gatsby';
 // import 'github-markdown-css';
 import styled from '@emotion/styled';
 import styles from './SourceMarkdown.module.css';
-import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../constants/styleTokens';
+import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../constants/designTokens';
 
 import { withPadding } from '../components/GithubTemplate/common';
 import rehypeReact from 'rehype-react';

@@ -22,7 +22,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { ChevronLink } from '../UI/Link';
 import { SEARCH } from '../../constants/ui';
-import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/styleTokens';
+import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/designTokens';
 import Search from '../Search';
 import SearchPills from '../Search/SearchPills';
 // localizations

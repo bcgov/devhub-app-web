@@ -29,7 +29,7 @@ Docs on emotion https://emotion.sh/docs/introduction
 when and as needed. This is a slow processes but will lead to better and more maintaible styling in the long run.
 */
 import { RESOURCE_TYPES } from './src/constants/ui';
-import { SPACING } from './src/constants/styleTokens';
+import { SPACING } from './src/constants/designTokens';
 export default {
   colors: {
     primary: '#003366',

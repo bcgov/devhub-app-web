@@ -9,7 +9,7 @@ import NoEvents from '../components/UI/NoEvents';
 import { Event } from '../components/Event';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { EVENTS } from '../constants/ui';
-import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../constants/styleTokens';
+import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../constants/designTokens';
 
 export const TEST_IDS = {
   alert: 'events-container',
