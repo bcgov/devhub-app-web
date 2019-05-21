@@ -16,7 +16,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import styled from '@emotion/styled';
-import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
+import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/designTokens';
 // represet the grid container the card rows sit in
 // 260 = 250 card width + 10 px margin left and right
 const threeCardCol = `${270 * 3}px`;

@@ -19,7 +19,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
+import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/designTokens';
 import { ChevronLink } from '../UI/Link';
 import { Container, Title, StyledLink, LinkContainer } from './index';
 import Card from '../Cards/Card/Card';

@@ -16,12 +16,13 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import { css } from '@emotion/core';
-import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
+import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/designTokens';
+import { SPACING } from '../../constants/designTokens';
 // common styles and utils between template components
 
 export const withPadding = css`
-  padding: 20px 15px;
+  padding: ${SPACING['4x']} ${SPACING['3x']};
   ${EMOTION_BOOTSTRAP_BREAKPOINTS.sm} {
-    padding: 20px 45px;
+    padding: ${SPACING['4x']} ${SPACING['9x']};
   }
 `;

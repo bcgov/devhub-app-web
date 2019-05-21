@@ -28,7 +28,7 @@ import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { SEARCH } from '../../constants/ui';
-import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/ui';
+import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/designTokens';
 import { SEARCH as SEARCH_MESSAGES } from '../../messages';
 
 import Card from '../Cards/Card/Card';
