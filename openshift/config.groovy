@@ -121,32 +121,6 @@ app {
 }
 
 environments {
-    'tools' {
-        vars {
-            deployment {
-                env {
-                    name = 'tools'
-                    id = "pr-${opt.'pr'}"
-                }
-                host = ""
-                suffix = "-tools-${opt.'pr'}"
-                name = "${opt.'deployment-name'?:app.name}"
-                namespace = app.namespaces[env.name].namespace
-                version = "${vars.deployment.name}-${vars.deployment.env.name}-v${opt.'pr'}"
-                templates = [
-                        [
-                                'file': 'openshift/matomo/matomo-db-deploy.json',
-                                'params': [
-                                        'IMAGE_NAMESPACE': app.deployment.namespace,
-                                        'TAG_NAME': 'prod',
-                                        'PERSISTENT_VOLUME_SIZE': '10Gi'
-                                ]
-                        ]
-                ]
-            }
-        }
-    }
-
     'dev' {
         vars {
             deployment {
