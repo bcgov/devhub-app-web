@@ -22,3 +22,28 @@ const getSpacingUnits = (maxSpacingMultiple, spacingFactor) => {
 };
 
 export const SPACING = getSpacingUnits(MAX_SPACE_UNIT_MULTIPLE, STYLE_BASE.spacing);
+
+// bootstrap breakpoints used for emotion custom styled components
+export const BOOTSTRAP_BREAKPOINTS = [
+  { alias: 'sm', width: 576 },
+  { alias: 'md', width: 768 },
+  { alias: 'lg', width: 992 },
+  { alias: 'xl', width: 1200 },
+];
+
+/**
+ * returns an object aliased by bootstrap breakpoint values
+ * {
+ *   sm: @media (min-width: ...)
+ *   md: ...
+ * }
+ * Usage:
+ * https://emotion.sh/docs/media-queries#reusable-media-queries
+ */
+export const EMOTION_BOOTSTRAP_BREAKPOINTS = BOOTSTRAP_BREAKPOINTS.reduce(
+  (breakpoints, currentBp) => {
+    breakpoints[currentBp.alias] = `@media (min-width: ${currentBp.width}px)`;
+    return breakpoints;
+  },
+  {},
+);

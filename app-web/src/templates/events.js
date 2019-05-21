@@ -8,7 +8,8 @@ import Main from '../components/Page/Main';
 import NoEvents from '../components/UI/NoEvents';
 import { Event } from '../components/Event';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
-import { EMOTION_BOOTSTRAP_BREAKPOINTS, EVENTS } from '../constants/ui';
+import { EVENTS } from '../constants/ui';
+import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../constants/styleTokens';
 
 export const TEST_IDS = {
   alert: 'events-container',

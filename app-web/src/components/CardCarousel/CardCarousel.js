@@ -4,16 +4,14 @@ import styled from '@emotion/styled';
 
 import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
-
-import {
-  RESOURCE_TYPES_LIST,
-  CARD_CAROUSEL,
-  EMOTION_BOOTSTRAP_BREAKPOINTS,
-} from '../../constants/ui';
-import Card from '../Cards/Card/Card';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import css from '@emotion/css';
+import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/styleTokens';
+
+import { RESOURCE_TYPES_LIST, CARD_CAROUSEL } from '../../constants/ui';
+
+import Card from '../Cards/Card/Card';
 
 export const TEST_IDS = {
   arrowLeft: 'carousel-arrow-left',
