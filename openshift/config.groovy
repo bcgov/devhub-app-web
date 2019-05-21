@@ -65,6 +65,11 @@ app {
                     'SOURCE_REPOSITORY_URL': app.git.uri,
                     'SOURCE_REPOSITORY_REF': app.git.ref
                 ]
+            ], [
+                    'file':'openshift/matomo/mariadb/mariadb-build.json'
+
+            ], [
+                    'file': 'openshift/matomo/matomo/matomo-build.json'
             ]
         ]
     }
@@ -83,9 +88,16 @@ app {
         ssoURL = "${vars.deployment.ssoURL}"
         ssoClient = "${vars.deployment.ssoClient}"
         ssoRealm = "${vars.deployment.ssoRealm}"
+
+
+
+        // @todo make these work - they are currently ignored because the code that uses them runs at build-time only
+        // values used at runtime by client code to talk to Matomo analytics service
         matomoURL = "${vars.deployment.matomoURL}"
         matomoSiteURL = "${vars.deployment.matomoSiteURL}"
         matomoSiteId = "${vars.deployment.matomoSiteId}"
+
+
 
         timeoutInSeconds = 60*20 // 20 minutes
         templates = [
@@ -109,6 +121,32 @@ app {
 }
 
 environments {
+    'tools' {
+        vars {
+            deployment {
+                env {
+                    name = 'tools'
+                    id = "pr-${opt.'pr'}"
+                }
+                host = ""
+                suffix = "-tools-${opt.'pr'}"
+                name = "${opt.'deployment-name'?:app.name}"
+                namespace = app.namespaces[env.name].namespace
+                version = "${vars.deployment.name}-${vars.deployment.env.name}-v${opt.'pr'}"
+                templates = [
+                        [
+                                'file': 'openshift/matomo/matomo-db-deploy.json',
+                                'params': [
+                                        'IMAGE_NAMESPACE': app.deployment.namespace,
+                                        'TAG_NAME': 'prod',
+                                        'PERSISTENT_VOLUME_SIZE': '10Gi'
+                                ]
+                        ]
+                ]
+            }
+        }
+    }
+
     'dev' {
         vars {
             deployment {
