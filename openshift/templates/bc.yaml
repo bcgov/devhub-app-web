@@ -134,11 +134,11 @@ objects:
               secretKeyRef:
                 name: devhub-eventbrite-token
                 key: EVENT_BRITE_API_KEY
-          - name: MATOMO_URL
+          - name: GATSBY_MATOMO_URL
             value: ${MATOMO_URL}
-          - name: MATOMO_SITE_URL
+          - name: GATSBY_MATOMO_SITE_URL
             value: ${MATOMO_SITE_URL}
-          - name: MATOMO_SITE_ID
+          - name: GATSBY_MATOMO_SITE_ID
             value: ${MATOMO_SITE_ID}
         from:
           kind: ImageStreamTag
