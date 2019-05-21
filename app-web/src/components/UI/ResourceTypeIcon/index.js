@@ -17,6 +17,10 @@ const FaIcon = styled(FontAwesomeIcon)`
   color: ${props => props.theme.colors[props.type]};
 `;
 
+export const TEST_IDS = {
+  icon: 'resource-type-icon',
+};
+
 export const ResourceTypeIcon = ({ type }) => {
   let icon;
   switch (type) {
@@ -45,7 +49,9 @@ export const ResourceTypeIcon = ({ type }) => {
       icon = null;
   }
 
-  return <FaIcon type={type} icon={icon} />;
+  if (!icon) return null;
+
+  return <FaIcon type={type} icon={icon} data-testid={TEST_IDS.icon} />;
 };
 
 ResourceTypeIcon.propTypes = {
