@@ -22,6 +22,17 @@ import { Link } from '../../UI/Link';
 import DotDotDot from 'react-dotdotdot';
 import Image from 'react-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { CUSTOM_TYPE } from '../../../constants/designTokens';
+
+export const designTokens = {
+  description: `
+    font-size: ${CUSTOM_TYPE.sm};
+    line-height: 1.4;
+    flex: 0 0 auto;
+    margin-bottom: 0;
+    text-transform: none;
+  `,
+};
 
 export const CardLinkWrapper = styled(Link)`
   text-decoration: none;
@@ -67,11 +78,7 @@ export const CardTitle = styled(DotDotDot)`
 `;
 
 export const CardDescription = styled(DotDotDot)`
-  font-size: 14px;
-  line-height: 1.4;
-  flex: 0 0 auto;
-  margin-bottom: 0;
-  text-transform: none;
+  ${designTokens.description};
 `;
 
 // combination of card image and wrapper make images response correctly

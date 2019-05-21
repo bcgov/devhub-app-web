@@ -1,5 +1,7 @@
+import { RESOURCE_TYPES } from './ui';
+
 export const STYLE_BASE = {
-  fontSize: 16,
+  fontSize: 14,
   spacing: 5,
   borderWidth: 1,
 };
@@ -7,9 +9,9 @@ export const STYLE_BASE = {
 // custom font size typing
 // CUSTOM_TYPE.sm => 16px;
 export const CUSTOM_TYPE = {
-  sm: `${STYLE_BASE}px`,
-  md: `${STYLE_BASE * 1.5}px`,
-  lg: `${STYLE_BASE * 2}px`,
+  sm: `${STYLE_BASE.fontSize}px`,
+  md: `${STYLE_BASE.fontSize * 1.5}px`,
+  lg: `${STYLE_BASE.fontSize * 2}px`,
 };
 
 export const MAX_SPACE_UNIT_MULTIPLE = 20;
@@ -57,3 +59,44 @@ export const EMOTION_BOOTSTRAP_BREAKPOINTS = BOOTSTRAP_BREAKPOINTS.reduce(
   },
   {},
 );
+
+// COLOR PALETTE TOKENS
+// We have two palettes that are in use
+// the design-system palette https://developer.gov.bc.ca/Design-System/Colour-Palette
+// and our custom devhub palette for further customization
+
+// sample usage would be  (using emotion css)
+// import { DS_PALETTE } from '...'
+// css` border-color: ${DS_PALETTE.brand.yellow}`;
+// bc design-system palette
+export const DS_PALETTE = {
+  brand: {
+    yellow: '#FCBA19',
+    blue: '#003366',
+  },
+  text: {
+    darkgrey: '#494949',
+  },
+  links: {
+    blue: '#1A5A96',
+  },
+  backgrounds: {
+    blue: '#38598A',
+    lightgrey: '#F2F2F2',
+  },
+  red: '#D8292F',
+  green: '#2E8540',
+};
+
+// devhub specific palette
+export const DEVHUB_PALETTE = {
+  primary: DS_PALETTE.brand.blue,
+  [RESOURCE_TYPES.COMPONENTS]: '#4299D2',
+  [RESOURCE_TYPES.DOCUMENTATION]: '#246BD1',
+  [RESOURCE_TYPES.PEOPLE]: '#E17039',
+  [RESOURCE_TYPES.SELF_SERVICE_TOOLS]: '#F3BA45',
+  Collections: '#444',
+  [RESOURCE_TYPES.REPOSITORIES]: '#6e5494',
+  Events: '#f44b42',
+  link: DS_PALETTE.links.blue,
+};

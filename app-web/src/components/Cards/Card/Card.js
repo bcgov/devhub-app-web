@@ -20,6 +20,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import validUrl from 'valid-url';
 import CardHeader from './CardHeader';
+import { css } from '@emotion/core';
 import {
   CardBody,
   CardDescription,
@@ -29,6 +30,7 @@ import {
   CardTitle,
   CardWrapper,
   DecorativeBar,
+  designTokens,
 } from './index';
 import Aux from '../../../hoc/auxillary';
 
@@ -39,9 +41,14 @@ const Card = ({ type, title, description, image, link, ...rest }) => {
   // if there is an image it takes priority
 
   let cardBody = (
-    <CardDescription title={description} tagName="p">
+    <p
+      title={description}
+      css={css`
+        ${designTokens.description}
+      `}
+    >
       {description}
-    </CardDescription>
+    </p>
   );
 
   if (image && description) {
