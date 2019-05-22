@@ -50,6 +50,7 @@ export const CardWrapper = styled.article`
   box-shadow: 0 1px 2px 1px #00000026;
   display: flex;
   flex-flow: column nowrap;
+  overflow: hidden;
   :hover {
     box-shadow: 0 2px 2px 1px #00000026;
     transform: translateY(-2px);

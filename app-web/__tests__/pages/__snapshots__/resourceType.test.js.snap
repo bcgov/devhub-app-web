@@ -213,6 +213,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   -webkit-flex-flow: column nowrap;
   -ms-flex-flow: column nowrap;
   flex-flow: column nowrap;
+  overflow: hidden;
 }
 
 .emotion-26:hover {
