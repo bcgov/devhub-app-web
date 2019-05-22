@@ -22,7 +22,7 @@ objects:
   spec:
     minReadySeconds: 20 # should be ready for atleast 20 seconds before the container is considered available. This will allow us
     # to catch any errors on deploy before they are available to the web
-    replicas: 2
+    replicas: 3
     selector:
       deploymentconfig: ${NAME}-static${SUFFIX}
     strategy:
