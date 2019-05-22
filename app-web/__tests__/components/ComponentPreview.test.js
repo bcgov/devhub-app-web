@@ -17,8 +17,8 @@ Created by Shea Phillips
 */
 import React from 'react';
 
-import { cleanup, render, waitForElement } from 'react-testing-library';
-import ComponentPreview, { TEST_IDS } from '../../src/components/ComponentPreview/ComponentPreview';
+import { render } from 'react-testing-library';
+import ComponentPreview from '../../src/components/ComponentPreview/ComponentPreview';
 
 describe('ComponentPreview Component', () => {
   jest.doMock('@octokit/rest', () => () => ({

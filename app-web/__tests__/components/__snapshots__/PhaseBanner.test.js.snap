@@ -2,9 +2,9 @@
 
 exports[`PhaseBanner it matches snapshot 1`] = `
 <Container
-  aria-label="This application is currently in Beta phase"
-  phase="Beta"
+  aria-label="This application is currently in beta phase"
+  phase="beta"
 >
-  Beta
+  beta
 </Container>
 `;

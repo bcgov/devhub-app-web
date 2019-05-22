@@ -16,25 +16,15 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import styled from '@emotion/styled';
+import { NoResourcesContainer } from '../NoResources/NoResources';
 
 export const TEST_IDS = {
   container: 'no-resources',
 };
 
-const NoResources = styled.div`
-  font-size: 28px;
-  background-color: #fafafa;
-  padding: 20px;
-  margin: 10px;
-  border-radius: 2px;
-  color: #444;
-  border: 1px dashed #ccc;
-`;
-
 export default () => (
-  <NoResources data-testid={TEST_IDS.container}>
+  <NoResourcesContainer data-testid={TEST_IDS.container}>
     <h2>Upcoming events are in the works.</h2>
     <p>Visit again soon :)</p>
-  </NoResources>
+  </NoResourcesContainer>
 );

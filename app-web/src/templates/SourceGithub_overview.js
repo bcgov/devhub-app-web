@@ -19,12 +19,7 @@
 //
 import React from 'react';
 import { graphql } from 'gatsby';
-// import 'github-markdown-css';
-import styled from '@emotion/styled';
 import styles from './SourceMarkdown.module.css';
-import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../constants/designTokens';
-
-import { withPadding } from '../components/GithubTemplate/common';
 import rehypeReact from 'rehype-react';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -35,45 +30,7 @@ import Masthead from '../components/GithubTemplate/Masthead/Masthead';
 import Navigation from '../components/GithubTemplate/Navigation/Navigation';
 import withNode from '../hoc/withNode';
 import Actions from '../components/GithubTemplate/Actions/Actions';
-
-const Main = styled.main`
-  background-color: #fff;
-  display: flex;
-  max-width: 1200px;
-  flex-direction: column;
-  ${withPadding}
-  ${EMOTION_BOOTSTRAP_BREAKPOINTS.md} {
-    flex-direction: row;
-  }
-`;
-
-const SidePanel = styled.nav`
-  flex-flow: column nowrap;
-  flex: 0 0 250px;
-  margin-right: 25px;
-  display: none;
-  ${EMOTION_BOOTSTRAP_BREAKPOINTS.md} {
-    display: flex;
-  }
-`;
-
-const SideDrawerToggleButton = styled.button`
-  border: none;
-  background: transparent;
-  padding: 0;
-  margin: 10px 0;
-  color: ${props => props.theme.primary};
-  border: 1px solid #ccc;
-  padding: 10px;
-  cursor: pointer;
-  text-align: left;
-  :focus {
-    outline: none;
-  }
-  ${EMOTION_BOOTSTRAP_BREAKPOINTS.md} {
-    display: none;
-  }
-`;
+import { Main, SideDrawerToggleButton, SidePanel } from '../components/GithubTemplate/common';
 
 class SourceGithubMarkdownOverview extends React.Component {
   state = {

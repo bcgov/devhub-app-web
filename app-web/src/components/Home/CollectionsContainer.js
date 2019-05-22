@@ -47,7 +47,7 @@ const CollectionContent = collections =>
           key={collection.id}
           title={collection.name}
           description={collection.description}
-          link={getFirstNonExternalResource(allResources)}
+          link={{ to: getFirstNonExternalResource(allResources), text: 'View' }}
           resources={allResources}
           css={css`
             max-width: 100%;

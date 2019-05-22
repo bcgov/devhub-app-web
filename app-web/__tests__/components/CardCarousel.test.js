@@ -1,10 +1,13 @@
 import React from 'react';
-import { render, cleanup, fireEvent, waitForElement } from 'react-testing-library';
+import { render, cleanup, fireEvent } from 'react-testing-library';
 import 'jest-dom/extend-expect';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 import CardCarousel, { TEST_IDS } from '../../src/components/CardCarousel/CardCarousel';
 import { RESOURCE_TYPES } from '../../src/constants/ui';
+
+// mock out card components
+jest.mock('../../src/components/Cards/Card/Card.js', () => () => <div>card</div>);
 
 describe('Card Carousel', () => {
   afterEach(cleanup);

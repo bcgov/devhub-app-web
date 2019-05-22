@@ -15,7 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { SEARCH } from '../../messages';
 import { ARIA_LABEL_SEARCH_BUTTON, ARIA_LABEL_SEARCH_INPUT } from '../../constants/ariaLabels';
@@ -39,59 +39,54 @@ const Container = styled.div`
   }
 `;
 
-export class Search extends Component {
-  state = {
-    touched: false,
-    terms: '',
+export const TEST_IDS = {
+  input: 'searchbar-input',
+  button: 'searchbar-button',
+};
+
+export const Search = ({ onSearch, searchOnEnter, inputConfig, ...rest }) => {
+  const [terms, setTerms] = useState('');
+
+  const search = () => {
+    onSearch(terms);
+    setTerms('');
   };
 
-  handleEnter = e => {
-    if (e.key === 'Enter' && this.props.searchOnEnter) {
-      this.search();
-    }
-  };
-
-  handleKeyUp = e => {
-    // if enter was pressed
-    const terms = e.target.value;
-    if (terms === 0 && this.state.touched && this.props.onSearchClear) {
-      this.props.onSearchClear();
-    }
-    if (e.key !== 'Enter') {
-      this.setState({ terms });
-    }
-  };
-
-  search = () => {
-    this.props.onSearch(this.state.terms);
-    this.setState({ terms: '' });
-  };
-
-  render() {
-    const { inputConfig, onSearch, onSearchClear, searchOnEnter, ...rest } = this.props;
-    // rest param is mostly used to pass custom styling to the container if necessaary
-    return (
-      <Container {...rest}>
-        <Input
-          type="text"
-          aria-label={ARIA_LABEL_SEARCH_INPUT}
-          value={this.state.terms}
-          onChange={this.handleKeyUp}
-          onKeyPress={this.handleEnter}
-          onFocus={() => this.setState({ touched: true })}
-          {...inputConfig}
-        />
-        <Button type="primary" aria-label={ARIA_LABEL_SEARCH_BUTTON} clicked={() => this.search()}>
-          {SEARCH.button.defaultMessage}
-        </Button>
-      </Container>
-    );
-  }
-}
+  return (
+    <Container {...rest}>
+      <Input
+        data-testid={TEST_IDS.input}
+        type="text"
+        aria-label={ARIA_LABEL_SEARCH_INPUT}
+        value={terms}
+        onChange={e => {
+          // if enter was pressed
+          const terms = e.target.value;
+          if (e.key !== 'Enter') {
+            setTerms(terms);
+          }
+        }}
+        onKeyPress={e => {
+          if (e.key === 'Enter' && searchOnEnter) {
+            search();
+          }
+        }}
+        {...inputConfig}
+      />
+      <Button
+        type="primary"
+        aria-label={ARIA_LABEL_SEARCH_BUTTON}
+        clicked={search}
+        data-testid={TEST_IDS.button}
+      >
+        {SEARCH.button.defaultMessage}
+      </Button>
+    </Container>
+  );
+};
 
 Search.propTypes = {
   onSearch: PropTypes.func.isRequired,
-  onSearchClear: PropTypes.func,
   searchOnEnter: PropTypes.bool,
   inputConfig: PropTypes.object,
 };
