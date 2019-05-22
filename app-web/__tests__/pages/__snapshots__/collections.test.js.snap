@@ -227,6 +227,7 @@ exports[`Collections Container it matches snapshot 1`] = `
   -webkit-flex-flow: column nowrap;
   -ms-flex-flow: column nowrap;
   flex-flow: column nowrap;
+  overflow: hidden;
 }
 
 .emotion-41:hover {
