@@ -36,7 +36,7 @@ app {
                 [
                         'file'  : 'openshift/matomo/matomo-db/matomo-db-deploy.json',
                         'params': [
-                                'NAME'                : app.deployment.name,
+                                'NAME'                : 'matomo-db',
                                 'SUFFIX'              : app.deployment.suffix,
                                 'VERSION'             : app.deployment.version,
                                 'IMAGE_NAMESPACE': app.deployment.namespace,
