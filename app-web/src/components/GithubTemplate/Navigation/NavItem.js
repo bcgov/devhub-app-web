@@ -25,6 +25,7 @@ import { Link } from '../../UI/Link';
 const LI = styled.li`
   padding: 8px 4px;
   margin-bottom: 0;
+  line-height: 1.25em;
 `;
 
 const StyledLink = styled(Link)`

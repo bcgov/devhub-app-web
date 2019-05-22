@@ -20,6 +20,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import validUrl from 'valid-url';
 import CardHeader from './CardHeader';
+
 import {
   CardBody,
   CardDescription,
@@ -39,7 +40,7 @@ const Card = ({ type, title, description, image, link, ...rest }) => {
   // if there is an image it takes priority
 
   let cardBody = (
-    <CardDescription title={description} tagName="p">
+    <CardDescription title={description} clamp={15} tagName="p">
       {description}
     </CardDescription>
   );

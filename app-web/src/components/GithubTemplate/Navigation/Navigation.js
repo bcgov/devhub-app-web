@@ -17,23 +17,63 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import { graphql } from 'gatsby';
-import validUrl from 'valid-url';
-import styled from '@emotion/styled';
-import PropTypes from 'prop-types';
-import NavItem from './NavItem';
+import { groupBy } from 'lodash';
+import { RESOURCE_TYPES } from '../../../constants/ui';
+import NavGroup from './NavGroup';
 
-const List = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style: none;
-`;
 // navigation for dynamically created page components
 const Navigation = ({ items }) => {
-  // map over items and generate links
-  const links = items.map(({ unfurl: { title }, resource: { path }, source: { type } }) => (
-    <NavItem key={path} text={title} to={path} isExternal={validUrl.isWebUri(path)} />
-  ));
-  return <List>{links}</List>;
+  const navItems = items.map(item => ({
+    to: item.resource.path,
+    text: item.unfurl.title,
+    type: item.resource.type,
+  }));
+  // group resources by type
+  const groupedResources = groupBy(navItems, 'type');
+
+  const groups = [];
+
+  if (groupedResources[RESOURCE_TYPES.DOCUMENTATION]) {
+    groups.push(
+      <NavGroup
+        type={RESOURCE_TYPES.DOCUMENTATION}
+        key={RESOURCE_TYPES.DOCUMENTATION}
+        items={groupedResources[RESOURCE_TYPES.DOCUMENTATION]}
+      />,
+    );
+  }
+
+  if (groupedResources[RESOURCE_TYPES.COMPONENTS]) {
+    groups.push(
+      <NavGroup
+        type={RESOURCE_TYPES.COMPONENTS}
+        key={RESOURCE_TYPES.COMPONENTS}
+        items={groupedResources[RESOURCE_TYPES.COMPONENTS]}
+      />,
+    );
+  }
+
+  if (groupedResources[RESOURCE_TYPES.SELF_SERVICE_TOOLS]) {
+    groups.push(
+      <NavGroup
+        type={RESOURCE_TYPES.SELF_SERVICE_TOOLS}
+        key={RESOURCE_TYPES.SELF_SERVICE_TOOLS}
+        items={groupedResources[RESOURCE_TYPES.SELF_SERVICE_TOOLS]}
+      />,
+    );
+  }
+
+  if (groupedResources[RESOURCE_TYPES.REPOSITORIES]) {
+    groups.push(
+      <NavGroup
+        type={RESOURCE_TYPES.REPOSITORIES}
+        key={RESOURCE_TYPES.REPOSITORIES}
+        items={groupedResources[RESOURCE_TYPES.REPOSITORIES]}
+      />,
+    );
+  }
+
+  return <div>{groups}</div>;
 };
 
 export const query = graphql`
@@ -43,6 +83,7 @@ export const query = graphql`
     }
     resource {
       path
+      type
     }
     source {
       type
@@ -52,16 +93,5 @@ export const query = graphql`
     }
   }
 `;
-
-Navigation.propTypes = {
-  item: PropTypes.arrayOf(
-    PropTypes.shape({
-      node: PropTypes.shape({
-        resourcePath: PropTypes.string,
-        resourceTitle: PropTypes.string,
-      }),
-    }),
-  ).isRequired,
-};
 
 export default Navigation;
