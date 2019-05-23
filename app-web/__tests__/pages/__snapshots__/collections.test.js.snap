@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Collections Container it matches snapshot 1`] = `
-.emotion-206 {
+.emotion-212 {
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -94,7 +94,7 @@ exports[`Collections Container it matches snapshot 1`] = `
   color: #fcba19;
 }
 
-.emotion-186 {
+.emotion-192 {
   margin-top: 65px;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -103,19 +103,19 @@ exports[`Collections Container it matches snapshot 1`] = `
 }
 
 @media screen and (min-width:932px) {
-  .emotion-186 {
+  .emotion-192 {
     margin-top: 112px;
   }
 }
 
-.emotion-184 {
+.emotion-190 {
   font-size: 15px;
   max-width: 1200px;
   padding: 10px 10px;
 }
 
 @media screen and (min-width:932px) {
-  .emotion-184 {
+  .emotion-190 {
     padding: 10px 65px;
   }
 }
@@ -145,7 +145,7 @@ exports[`Collections Container it matches snapshot 1`] = `
   min-height: 15px;
 }
 
-.emotion-109 {
+.emotion-112 {
   padding: 0 15px;
   padding-top: 10px;
   padding-bottom: 20px;
@@ -162,7 +162,7 @@ exports[`Collections Container it matches snapshot 1`] = `
   color: #444;
 }
 
-.emotion-23 {
+.emotion-26 {
   font-size: 20px;
   color: #494949;
   line-height: 1.3;
@@ -176,7 +176,28 @@ exports[`Collections Container it matches snapshot 1`] = `
   font-size: 26px;
 }
 
-.emotion-25 {
+.emotion-24 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  color: #1A5A96;
+  font-weight: 400;
+  text-transform: capitalize;
+  padding: 0 4px;
+  margin: 0 2px;
+  color: inherit;
+  padding: 0px;
+  margin: 0px;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.emotion-24:hover {
+  color: inherit;
+  -webkit-text-decoration-color: #1a5a96;
+  text-decoration-color: #1a5a96;
+}
+
+.emotion-28 {
   font-size: 14px;
   line-height: 1.4;
   -webkit-flex: 0 0 auto;
@@ -188,7 +209,7 @@ exports[`Collections Container it matches snapshot 1`] = `
   margin-bottom: 15px;
 }
 
-.emotion-44 {
+.emotion-47 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #1A5A96;
@@ -201,14 +222,14 @@ exports[`Collections Container it matches snapshot 1`] = `
   color: initial;
 }
 
-.emotion-44:hover {
+.emotion-47:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   color: initial;
   cursor: pointer;
 }
 
-.emotion-41 {
+.emotion-44 {
   width: 250px;
   height: 225px;
   margin: 10px 0;
@@ -230,21 +251,21 @@ exports[`Collections Container it matches snapshot 1`] = `
   overflow: hidden;
 }
 
-.emotion-41:hover {
+.emotion-44:hover {
   box-shadow: 0 2px 2px 1px #00000026;
   -webkit-transform: translateY(-2px);
   -ms-transform: translateY(-2px);
   transform: translateY(-2px);
 }
 
-.emotion-27 {
+.emotion-30 {
   background-color: #4299D2;
   -webkit-flex: 0 0 10px;
   -ms-flex: 0 0 10px;
   flex: 0 0 10px;
 }
 
-.emotion-39 {
+.emotion-42 {
   padding: 6px 10px;
   height: 100%;
   overflow: overlay;
@@ -262,11 +283,11 @@ exports[`Collections Container it matches snapshot 1`] = `
   flex-flow: column nowrap;
 }
 
-.emotion-29 {
+.emotion-32 {
   color: #4299D2;
 }
 
-.emotion-33 {
+.emotion-36 {
   font-size: 20px;
   color: #494949;
   line-height: 1.3;
@@ -277,7 +298,7 @@ exports[`Collections Container it matches snapshot 1`] = `
   word-break: break-word;
 }
 
-.emotion-35 {
+.emotion-38 {
   font-size: 14px;
   line-height: 1.4;
   -webkit-flex: 0 0 auto;
@@ -287,7 +308,7 @@ exports[`Collections Container it matches snapshot 1`] = `
   text-transform: none;
 }
 
-.emotion-37 {
+.emotion-40 {
   -webkit-flex: 1 1 auto;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
@@ -303,12 +324,12 @@ exports[`Collections Container it matches snapshot 1`] = `
   display: flex;
 }
 
-.emotion-103 {
+.emotion-106 {
   display: none;
 }
 
 @media (min-width:576px) {
-  .emotion-103 {
+  .emotion-106 {
     color: #003366;
     font-size: 50px;
     padding: 0 5px;
@@ -317,12 +338,12 @@ exports[`Collections Container it matches snapshot 1`] = `
   }
 }
 
-.emotion-107 {
+.emotion-110 {
   text-align: right;
   font-size: 1.15em;
 }
 
-.emotion-105 {
+.emotion-108 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #1A5A96;
@@ -332,18 +353,18 @@ exports[`Collections Container it matches snapshot 1`] = `
   margin: 0 2px;
 }
 
-.emotion-121 {
+.emotion-127 {
   background-color: #246BD1;
   -webkit-flex: 0 0 10px;
   -ms-flex: 0 0 10px;
   flex: 0 0 10px;
 }
 
-.emotion-123 {
+.emotion-129 {
   color: #246BD1;
 }
 
-.emotion-204 {
+.emotion-210 {
   background-color: #036;
   border-top: 2px solid #fcba19;
   padding: 9px 0 10px;
@@ -352,18 +373,18 @@ exports[`Collections Container it matches snapshot 1`] = `
 }
 
 @media screen and (min-width:600px) {
-  .emotion-204 {
+  .emotion-210 {
     padding: 0 65px 0 65px;
   }
 }
 
 @media print {
-  .emotion-204 {
+  .emotion-210 {
     display: none;
   }
 }
 
-.emotion-202 {
+.emotion-208 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -374,7 +395,7 @@ exports[`Collections Container it matches snapshot 1`] = `
   align-items: center;
 }
 
-.emotion-202 > ul {
+.emotion-208 > ul {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -386,7 +407,7 @@ exports[`Collections Container it matches snapshot 1`] = `
   margin: 10px 0;
 }
 
-.emotion-202 li {
+.emotion-208 li {
   padding: 0 9px;
   text-align: center;
   margin-bottom: 0;
@@ -400,7 +421,7 @@ exports[`Collections Container it matches snapshot 1`] = `
   align-items: center;
 }
 
-.emotion-188 {
+.emotion-194 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #1A5A96;
@@ -410,7 +431,7 @@ exports[`Collections Container it matches snapshot 1`] = `
   margin: 0 2px;
 }
 
-.emotion-200 {
+.emotion-206 {
   margin: 0;
   padding: 0;
   -webkit-text-decoration: underline;
@@ -423,12 +444,12 @@ exports[`Collections Container it matches snapshot 1`] = `
   font-size: 0.813em;
 }
 
-.emotion-200:focus {
+.emotion-206:focus {
   outline: none;
 }
 
 <div
-  class="emotion-206 emotion-207 container-fluid"
+  class="emotion-212 emotion-213 container-fluid"
 >
   <header
     class="PrimaryHeader"
@@ -552,10 +573,10 @@ exports[`Collections Container it matches snapshot 1`] = `
     </ul>
   </nav>
   <div
-    class="emotion-186 emotion-187"
+    class="emotion-192 emotion-193"
   >
     <main
-      class="emotion-184 emotion-185"
+      class="emotion-190 emotion-191"
     >
       <div
         class="emotion-15 emotion-16"
@@ -577,7 +598,7 @@ exports[`Collections Container it matches snapshot 1`] = `
           type="Collections"
         />
         <div
-          class="emotion-109 emotion-110"
+          class="emotion-112 emotion-113"
         >
           <div
             css="[object Object]"
@@ -610,17 +631,18 @@ exports[`Collections Container it matches snapshot 1`] = `
               </span>
             </h3>
           </div>
-          <a
-            href="foo"
+          <div
+            class="emotion-26 emotion-27"
           >
-            <div
-              class="emotion-23 emotion-24"
+            <a
+              class="emotion-23 emotion-24 emotion-25"
+              href="foo"
             >
               Design System
-            </div>
-          </a>
+            </a>
+          </div>
           <div
-            class="emotion-25 emotion-26"
+            class="emotion-28 emotion-29"
           >
             baz
           </div>
@@ -639,18 +661,18 @@ exports[`Collections Container it matches snapshot 1`] = `
                   style="padding-right: 0px; padding-left: 0px; width: 251px; max-width: 251px; min-width: 251px;"
                 >
                   <a
-                    class="emotion-43 emotion-44 emotion-12"
+                    class="emotion-46 emotion-47 emotion-12"
                     href="/design-system/Z1bGIqu1"
                   >
                     <article
-                      class="emotion-41 emotion-42"
+                      class="emotion-44 emotion-45"
                     >
                       <div
-                        class="emotion-27 emotion-28"
+                        class="emotion-30 emotion-31"
                         type="Components"
                       />
                       <div
-                        class="emotion-39 emotion-40"
+                        class="emotion-42 emotion-43"
                       >
                         <div
                           css="[object Object]"
@@ -660,7 +682,7 @@ exports[`Collections Container it matches snapshot 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-29 emotion-20"
+                              class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-32 emotion-20"
                               data-icon="puzzle-piece"
                               data-prefix="fas"
                               data-testid="resource-type-icon"
@@ -701,17 +723,17 @@ exports[`Collections Container it matches snapshot 1`] = `
                           </h3>
                         </div>
                         <h2
-                          class="emotion-33 emotion-34"
+                          class="emotion-36 emotion-37"
                         >
                           About
                         </h2>
                         <p
-                          class="emotion-35 emotion-36"
+                          class="emotion-38 emotion-39"
                         >
                           What the Design System is and how it works.
                         </p>
                         <div
-                          class="emotion-37 emotion-38"
+                          class="emotion-40 emotion-41"
                         />
                       </div>
                     </article>
@@ -722,18 +744,18 @@ exports[`Collections Container it matches snapshot 1`] = `
                   style="padding-right: 0px; padding-left: 0px; width: 251px; max-width: 251px; min-width: 251px;"
                 >
                   <a
-                    class="emotion-43 emotion-44 emotion-12"
+                    class="emotion-46 emotion-47 emotion-12"
                     href="/design-system/Z1bGIqu2"
                   >
                     <article
-                      class="emotion-41 emotion-42"
+                      class="emotion-44 emotion-45"
                     >
                       <div
-                        class="emotion-27 emotion-28"
+                        class="emotion-30 emotion-31"
                         type="Components"
                       />
                       <div
-                        class="emotion-39 emotion-40"
+                        class="emotion-42 emotion-43"
                       >
                         <div
                           css="[object Object]"
@@ -743,7 +765,7 @@ exports[`Collections Container it matches snapshot 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-29 emotion-20"
+                              class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-32 emotion-20"
                               data-icon="puzzle-piece"
                               data-prefix="fas"
                               data-testid="resource-type-icon"
@@ -784,17 +806,17 @@ exports[`Collections Container it matches snapshot 1`] = `
                           </h3>
                         </div>
                         <h2
-                          class="emotion-33 emotion-34"
+                          class="emotion-36 emotion-37"
                         >
                           About
                         </h2>
                         <p
-                          class="emotion-35 emotion-36"
+                          class="emotion-38 emotion-39"
                         >
                           What the Design System is and how it works.
                         </p>
                         <div
-                          class="emotion-37 emotion-38"
+                          class="emotion-40 emotion-41"
                         />
                       </div>
                     </article>
@@ -805,18 +827,18 @@ exports[`Collections Container it matches snapshot 1`] = `
                   style="padding-right: 0px; padding-left: 0px; width: 251px; max-width: 251px; min-width: 251px;"
                 >
                   <a
-                    class="emotion-43 emotion-44 emotion-12"
+                    class="emotion-46 emotion-47 emotion-12"
                     href="/design-system/Z1bGIqu3"
                   >
                     <article
-                      class="emotion-41 emotion-42"
+                      class="emotion-44 emotion-45"
                     >
                       <div
-                        class="emotion-27 emotion-28"
+                        class="emotion-30 emotion-31"
                         type="Components"
                       />
                       <div
-                        class="emotion-39 emotion-40"
+                        class="emotion-42 emotion-43"
                       >
                         <div
                           css="[object Object]"
@@ -826,7 +848,7 @@ exports[`Collections Container it matches snapshot 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-29 emotion-20"
+                              class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-32 emotion-20"
                               data-icon="puzzle-piece"
                               data-prefix="fas"
                               data-testid="resource-type-icon"
@@ -867,17 +889,17 @@ exports[`Collections Container it matches snapshot 1`] = `
                           </h3>
                         </div>
                         <h2
-                          class="emotion-33 emotion-34"
+                          class="emotion-36 emotion-37"
                         >
                           About
                         </h2>
                         <p
-                          class="emotion-35 emotion-36"
+                          class="emotion-38 emotion-39"
                         >
                           What the Design System is and how it works.
                         </p>
                         <div
-                          class="emotion-37 emotion-38"
+                          class="emotion-40 emotion-41"
                         />
                       </div>
                     </article>
@@ -888,18 +910,18 @@ exports[`Collections Container it matches snapshot 1`] = `
                   style="padding-right: 0px; padding-left: 0px; width: 251px; max-width: 251px; min-width: 251px;"
                 >
                   <a
-                    class="emotion-43 emotion-44 emotion-12"
+                    class="emotion-46 emotion-47 emotion-12"
                     href="/design-system/Z1bGIqu4"
                   >
                     <article
-                      class="emotion-41 emotion-42"
+                      class="emotion-44 emotion-45"
                     >
                       <div
-                        class="emotion-27 emotion-28"
+                        class="emotion-30 emotion-31"
                         type="Components"
                       />
                       <div
-                        class="emotion-39 emotion-40"
+                        class="emotion-42 emotion-43"
                       >
                         <div
                           css="[object Object]"
@@ -909,7 +931,7 @@ exports[`Collections Container it matches snapshot 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-29 emotion-20"
+                              class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-32 emotion-20"
                               data-icon="puzzle-piece"
                               data-prefix="fas"
                               data-testid="resource-type-icon"
@@ -950,17 +972,17 @@ exports[`Collections Container it matches snapshot 1`] = `
                           </h3>
                         </div>
                         <h2
-                          class="emotion-33 emotion-34"
+                          class="emotion-36 emotion-37"
                         >
                           About
                         </h2>
                         <p
-                          class="emotion-35 emotion-36"
+                          class="emotion-38 emotion-39"
                         >
                           What the Design System is and how it works.
                         </p>
                         <div
-                          class="emotion-37 emotion-38"
+                          class="emotion-40 emotion-41"
                         />
                       </div>
                     </article>
@@ -973,7 +995,7 @@ exports[`Collections Container it matches snapshot 1`] = `
             >
               <svg
                 aria-hidden="true"
-                class="svg-inline--fa fa-chevron-right fa-w-10  emotion-103 emotion-104"
+                class="svg-inline--fa fa-chevron-right fa-w-10  emotion-106 emotion-107"
                 data-icon="chevron-right"
                 data-prefix="fas"
                 data-testid="carousel-arrow-right"
@@ -990,10 +1012,10 @@ exports[`Collections Container it matches snapshot 1`] = `
             </div>
           </div>
           <div
-            class="emotion-107 emotion-108"
+            class="emotion-110 emotion-111"
           >
             <a
-              class="emotion-105 emotion-106"
+              class="emotion-108 emotion-25"
               href="foo"
             >
               View
@@ -1025,7 +1047,7 @@ exports[`Collections Container it matches snapshot 1`] = `
           type="Collections"
         />
         <div
-          class="emotion-109 emotion-110"
+          class="emotion-112 emotion-113"
         >
           <div
             css="[object Object]"
@@ -1058,17 +1080,18 @@ exports[`Collections Container it matches snapshot 1`] = `
               </span>
             </h3>
           </div>
-          <a
-            href="foo"
+          <div
+            class="emotion-26 emotion-27"
           >
-            <div
-              class="emotion-23 emotion-24"
+            <a
+              class="emotion-23 emotion-24 emotion-25"
+              href="foo"
             >
               Devhub
-            </div>
-          </a>
+            </a>
+          </div>
           <div
-            class="emotion-25 emotion-26"
+            class="emotion-28 emotion-29"
           >
             baz
           </div>
@@ -1087,18 +1110,18 @@ exports[`Collections Container it matches snapshot 1`] = `
                   style="padding-right: 0px; padding-left: 0px; width: 251px; max-width: 251px; min-width: 251px;"
                 >
                   <a
-                    class="emotion-43 emotion-44 emotion-12"
+                    class="emotion-46 emotion-47 emotion-12"
                     href="/design-system/Z1bGIqu5"
                   >
                     <article
-                      class="emotion-41 emotion-42"
+                      class="emotion-44 emotion-45"
                     >
                       <div
-                        class="emotion-121 emotion-28"
+                        class="emotion-127 emotion-31"
                         type="Documentation"
                       />
                       <div
-                        class="emotion-39 emotion-40"
+                        class="emotion-42 emotion-43"
                       >
                         <div
                           css="[object Object]"
@@ -1108,7 +1131,7 @@ exports[`Collections Container it matches snapshot 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              class="svg-inline--fa fa-file fa-w-12  emotion-123 emotion-20"
+                              class="svg-inline--fa fa-file fa-w-12  emotion-129 emotion-20"
                               data-icon="file"
                               data-prefix="fas"
                               data-testid="resource-type-icon"
@@ -1149,17 +1172,17 @@ exports[`Collections Container it matches snapshot 1`] = `
                           </h3>
                         </div>
                         <h2
-                          class="emotion-33 emotion-34"
+                          class="emotion-36 emotion-37"
                         >
                           About
                         </h2>
                         <p
-                          class="emotion-35 emotion-36"
+                          class="emotion-38 emotion-39"
                         >
                           What the Design System is and how it works.
                         </p>
                         <div
-                          class="emotion-37 emotion-38"
+                          class="emotion-40 emotion-41"
                         />
                       </div>
                     </article>
@@ -1170,18 +1193,18 @@ exports[`Collections Container it matches snapshot 1`] = `
                   style="padding-right: 0px; padding-left: 0px; width: 251px; max-width: 251px; min-width: 251px;"
                 >
                   <a
-                    class="emotion-43 emotion-44 emotion-12"
+                    class="emotion-46 emotion-47 emotion-12"
                     href="/design-system/Z1bGIqu6"
                   >
                     <article
-                      class="emotion-41 emotion-42"
+                      class="emotion-44 emotion-45"
                     >
                       <div
-                        class="emotion-121 emotion-28"
+                        class="emotion-127 emotion-31"
                         type="Documentation"
                       />
                       <div
-                        class="emotion-39 emotion-40"
+                        class="emotion-42 emotion-43"
                       >
                         <div
                           css="[object Object]"
@@ -1191,7 +1214,7 @@ exports[`Collections Container it matches snapshot 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              class="svg-inline--fa fa-file fa-w-12  emotion-123 emotion-20"
+                              class="svg-inline--fa fa-file fa-w-12  emotion-129 emotion-20"
                               data-icon="file"
                               data-prefix="fas"
                               data-testid="resource-type-icon"
@@ -1232,17 +1255,17 @@ exports[`Collections Container it matches snapshot 1`] = `
                           </h3>
                         </div>
                         <h2
-                          class="emotion-33 emotion-34"
+                          class="emotion-36 emotion-37"
                         >
                           About
                         </h2>
                         <p
-                          class="emotion-35 emotion-36"
+                          class="emotion-38 emotion-39"
                         >
                           What the Design System is and how it works.
                         </p>
                         <div
-                          class="emotion-37 emotion-38"
+                          class="emotion-40 emotion-41"
                         />
                       </div>
                     </article>
@@ -1253,18 +1276,18 @@ exports[`Collections Container it matches snapshot 1`] = `
                   style="padding-right: 0px; padding-left: 0px; width: 251px; max-width: 251px; min-width: 251px;"
                 >
                   <a
-                    class="emotion-43 emotion-44 emotion-12"
+                    class="emotion-46 emotion-47 emotion-12"
                     href="/design-system/Z1bGIqu7"
                   >
                     <article
-                      class="emotion-41 emotion-42"
+                      class="emotion-44 emotion-45"
                     >
                       <div
-                        class="emotion-121 emotion-28"
+                        class="emotion-127 emotion-31"
                         type="Documentation"
                       />
                       <div
-                        class="emotion-39 emotion-40"
+                        class="emotion-42 emotion-43"
                       >
                         <div
                           css="[object Object]"
@@ -1274,7 +1297,7 @@ exports[`Collections Container it matches snapshot 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              class="svg-inline--fa fa-file fa-w-12  emotion-123 emotion-20"
+                              class="svg-inline--fa fa-file fa-w-12  emotion-129 emotion-20"
                               data-icon="file"
                               data-prefix="fas"
                               data-testid="resource-type-icon"
@@ -1315,17 +1338,17 @@ exports[`Collections Container it matches snapshot 1`] = `
                           </h3>
                         </div>
                         <h2
-                          class="emotion-33 emotion-34"
+                          class="emotion-36 emotion-37"
                         >
                           About
                         </h2>
                         <p
-                          class="emotion-35 emotion-36"
+                          class="emotion-38 emotion-39"
                         >
                           What the Design System is and how it works.
                         </p>
                         <div
-                          class="emotion-37 emotion-38"
+                          class="emotion-40 emotion-41"
                         />
                       </div>
                     </article>
@@ -1335,10 +1358,10 @@ exports[`Collections Container it matches snapshot 1`] = `
             </div>
           </div>
           <div
-            class="emotion-107 emotion-108"
+            class="emotion-110 emotion-111"
           >
             <a
-              class="emotion-105 emotion-106"
+              class="emotion-108 emotion-25"
               href="foo"
             >
               View
@@ -1365,15 +1388,15 @@ exports[`Collections Container it matches snapshot 1`] = `
     </main>
   </div>
   <footer
-    class="emotion-204 emotion-205"
+    class="emotion-210 emotion-211"
   >
     <div
-      class="emotion-202 emotion-203"
+      class="emotion-208 emotion-209"
     >
       <ul>
         <li>
           <a
-            class="emotion-188 emotion-12"
+            class="emotion-194 emotion-12"
             css="[object Object]"
             href="/"
           >
@@ -1382,7 +1405,7 @@ exports[`Collections Container it matches snapshot 1`] = `
         </li>
         <li>
           <a
-            class="emotion-105 emotion-106"
+            class="emotion-108 emotion-25"
             href="https://www2.gov.bc.ca/gov/content/home/disclaimer"
           >
             disclaimer
@@ -1390,7 +1413,7 @@ exports[`Collections Container it matches snapshot 1`] = `
         </li>
         <li>
           <a
-            class="emotion-105 emotion-106"
+            class="emotion-108 emotion-25"
             href="https://www2.gov.bc.ca/gov/content/home/privacy"
           >
             privacy
@@ -1398,7 +1421,7 @@ exports[`Collections Container it matches snapshot 1`] = `
         </li>
         <li>
           <a
-            class="emotion-105 emotion-106"
+            class="emotion-108 emotion-25"
             href="https://www2.gov.bc.ca/gov/content/home/accessibility"
           >
             accessibility
@@ -1406,7 +1429,7 @@ exports[`Collections Container it matches snapshot 1`] = `
         </li>
         <li>
           <a
-            class="emotion-105 emotion-106"
+            class="emotion-108 emotion-25"
             href="https://www2.gov.bc.ca/gov/content/home/copyright"
           >
             copyright
@@ -1414,7 +1437,7 @@ exports[`Collections Container it matches snapshot 1`] = `
         </li>
         <li>
           <a
-            class="emotion-105 emotion-106"
+            class="emotion-108 emotion-25"
             href="https://github.com/bcgov/devhub-app-web/issues"
           >
             contact us
@@ -1436,7 +1459,7 @@ exports[`Collections Container it matches snapshot 1`] = `
         </li>
         <li>
           <button
-            class="emotion-200 emotion-201"
+            class="emotion-206 emotion-207"
           >
             Fair Use
           </button>

@@ -20,10 +20,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
-import { Link } from 'gatsby';
 
 import { RESOURCE_TYPES_LIST } from '../../constants/ui';
-import { ChevronLink } from '../UI/Link';
+import { ChevronLink, Link } from '../UI/Link';
 import { DecorativeBar, CardTitle, CardDescription } from '../Cards/Card';
 import CardHeader from '../Cards/Card/CardHeader';
 import CardCarousel from '../CardCarousel/CardCarousel';
@@ -58,6 +57,17 @@ const CollectionLinkWrapper = styled.div`
   font-size: 1.15em;
 `;
 
+const TitleLink = styled(Link)`
+  color: inherit;
+  padding: 0px;
+  margin: 0px;
+  text-decoration: none;
+  :hover {
+    color: inherit;
+    text-decoration-color: #1a5a96;
+  }
+`;
+
 const CollectionPreview = ({ title, description, link, resources, ...rest }) => (
   <div
     css={css`
@@ -71,9 +81,9 @@ const CollectionPreview = ({ title, description, link, resources, ...rest }) => 
     <CollectionDecorativeBar type="Collections" />
     <CollectionPreviewContainer>
       <CardHeader type="Collections" />
-      <Link to={link.to}>
-        <CollectionTitle clamp={2}>{title}</CollectionTitle>
-      </Link>
+      <CollectionTitle clamp={2}>
+        <TitleLink to={link.to}>{title}</TitleLink>
+      </CollectionTitle>
       {description && <CollectionDescription clamp={3}>{description}</CollectionDescription>}
       <CardCarousel resources={resources} />
       <CollectionLinkWrapper>

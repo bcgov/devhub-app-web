@@ -25,7 +25,6 @@ export const StyledLink = styled(Link)`
   text-decoration: none;
   :hover {
     color: inherit;
-    text-decoration: underline;
     text-decoration-color: #1a5a96;
   }
 `;
