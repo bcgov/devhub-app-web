@@ -610,11 +610,15 @@ exports[`Collections Container it matches snapshot 1`] = `
               </span>
             </h3>
           </div>
-          <div
-            class="emotion-23 emotion-24"
+          <a
+            href="foo"
           >
-            Design System
-          </div>
+            <div
+              class="emotion-23 emotion-24"
+            >
+              Design System
+            </div>
+          </a>
           <div
             class="emotion-25 emotion-26"
           >
@@ -1054,11 +1058,15 @@ exports[`Collections Container it matches snapshot 1`] = `
               </span>
             </h3>
           </div>
-          <div
-            class="emotion-23 emotion-24"
+          <a
+            href="foo"
           >
-            Devhub
-          </div>
+            <div
+              class="emotion-23 emotion-24"
+            >
+              Devhub
+            </div>
+          </a>
           <div
             class="emotion-25 emotion-26"
           >

@@ -20,6 +20,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
+import { Link } from 'gatsby';
 
 import { RESOURCE_TYPES_LIST } from '../../constants/ui';
 import { ChevronLink } from '../UI/Link';
@@ -70,8 +71,9 @@ const CollectionPreview = ({ title, description, link, resources, ...rest }) => 
     <CollectionDecorativeBar type="Collections" />
     <CollectionPreviewContainer>
       <CardHeader type="Collections" />
-      <CollectionTitle clamp={2}>{title}</CollectionTitle>
-
+      <Link to={link.to}>
+        <CollectionTitle clamp={2}>{title}</CollectionTitle>
+      </Link>
       {description && <CollectionDescription clamp={3}>{description}</CollectionDescription>}
       <CardCarousel resources={resources} />
       <CollectionLinkWrapper>
