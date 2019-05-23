@@ -89,7 +89,7 @@ describe('Home Page', () => {
     expect(Alert).toBeInTheDocument();
   });
 
-  test('when there is an empty search the alert box does not show and all results show instead', () => {
+  test('when there is an empty search the alert box does not show and neither do cards', () => {
     queryString.parse.mockReturnValue({});
     const { container, rerender, queryByTestId, queryAllByTestId } = render(
       <ThemeProvider theme={theme}>
@@ -116,7 +116,8 @@ describe('Home Page', () => {
     expect(Alert).not.toBeInTheDocument();
 
     expect(queryByTestId(COLLECTION_TEST_IDS.container)).toBeInTheDocument();
-    expect(queryAllByTestId(RESOURCE_PREVIEW_TEST_IDS.container).length).toBeGreaterThan(0);
+    expect(queryAllByTestId(RESOURCE_PREVIEW_TEST_IDS.container).length).toBe(0);
+    //The above changed to "toBe(0)" from "toBeGreaterThan(0)" as previews are no longer shown on the home page (unless a valid search has been made)
   });
 
   test('when searching, collections disappear if there are results', () => {
@@ -132,17 +133,16 @@ describe('Home Page', () => {
     expect(queryAllByTestId(RESOURCE_PREVIEW_TEST_IDS.container).length).toBeGreaterThan(0);
   });
 
-  test('when there is no search, collections are visible and cards are visible', () => {
+  test('when there is no search, collections are visible', () => {
     queryString.parse.mockReturnValue({});
     useSearch.mockReturnValue([]);
 
-    const { getByTestId, getAllByTestId } = render(
+    const { getByTestId } = render(
       <ThemeProvider theme={theme}>
         <Index {...props} />
       </ThemeProvider>,
     );
 
     expect(getByTestId(COLLECTION_TEST_IDS.container)).toBeInTheDocument();
-    expect(getAllByTestId(RESOURCE_PREVIEW_TEST_IDS.container).length).toBeGreaterThan(0);
   });
 });
