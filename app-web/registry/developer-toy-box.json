@@ -12,16 +12,31 @@
           "file": "README.md"
         },
         "resourceType": "repositories"
-      }  ,
+      },
       {
         "sourceType": "github",
         "sourceProperties": {
           "url": "https://github.com/BCDevOps/openshift-components/",
           "owner": "BCDevOps",
           "repo": "openshift-components",
-          "files": ["db/oracle-rpm-store/README.md", "db/postgis/README.md", "cicd/jenkins-slave-zap/README.md"]
+          "files": [
+            "db/oracle-rpm-store/README.md",
+            "db/postgis/README.md",
+            "cicd/jenkins-slave-zap/README.md"
+          ]
         }
-      }  
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/BCDevOps/docker-weasyprint/",
+          "owner": "BCDevOps",
+          "repo": "docker-weasyprint",
+          "files": [
+            "README.md"
+          ]
+        }
+      }
     ]
   },
   "resourceType": "Components"
