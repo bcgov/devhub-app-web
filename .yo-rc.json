@@ -1,0 +1,27 @@
+{
+  "generator-bcdk": {
+    "promptValues": {
+      "modules": {
+        "app": {
+          "name": "app",
+          "version": "1.0.0",
+          "environments": {
+            "build": {
+              "namespace": "devhub-tools"
+            },
+            "dev": {
+              "namespace": "devhub-dev"
+            },
+            "test": {
+              "namespace": "devhub-test"
+            },
+            "prod": {
+              "namespace": "devhub-prod"
+            }
+          },
+          "path": "."
+        }
+      }
+    }
+  }
+}
