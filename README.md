@@ -229,7 +229,16 @@ At this point, you can modify contents of the `registry` directory (adding resou
 
 ## Deployment (OpenShift)
 
-To Do.
+### Processing Templates
+
+Time to create all openshift runtime dependancy objects such as secrets, configmaps etc
+
+1. change into the templates directory `cd ./openshift/templates`
+2. inspect each template file paying attention to any parameters that maybe required
+3. run `oc process` against that template plus any required parameters in the __correct namespace__
+> all templates are organized by the namespace suffix name
+
+[tbc please make a pr to complete these instructions]
 
 ## Getting Help or Reporting an Issue
 

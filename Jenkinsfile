@@ -45,7 +45,7 @@ pipeline {
       agent { label 'deploy' }
       steps {
         echo "Functional Test (DEV) ..."
-        sh "unset JAVA_OPTS; pipeline/gradlew --no-build-cache --console=plain --no-daemon -b pipeline/build.gradle cd-functional-test -Pargs.--config=openshift/config.groovy -Pargs.--pr=${CHANGE_ID} -Pargs.--env=dev"
+        sh "unset JAVA_OPTS; bdd/gradlew --no-build-cache --console=plain --no-daemon -b bdd/build.gradle cd-functional-tests -Pargs.--config=openshift/config.groovy -Pargs.--pr=${CHANGE_ID} -Pargs.--env=dev"
       }
     }
 
