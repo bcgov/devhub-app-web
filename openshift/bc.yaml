@@ -23,7 +23,7 @@ objects:
         name: 'registry.access.redhat.com/rhscl/nodejs-8-rhel7:1-22'
       importPolicy: {}
       referencePolicy:
-        type: Source
+        type: Local
 - apiVersion: v1
   kind: ImageStream
   metadata:
