@@ -59,10 +59,11 @@ objects:
     resources:
       requests:
         cpu: 250m
-        memory: 500Mi
+        memory: 2Gi ## memory usage is high because jest test use a lot of memory when running
+        ## we are hoping to move jest tests outside of the assemble script but until we do this will be quite a high request
       limits:
         cpu: 400m
-        memory: 500Mi
+        memory: 4Gi
     source:
       git:
         uri: ${SOURCE_REPOSITORY_URL}
@@ -112,7 +113,7 @@ objects:
         memory: 500Mi
       limits:
         cpu: 400m
-        memory: 500Mi
+        memory: 750Mi
     source:
       dockerfile: |-
         FROM nodejs/build-output:latest
