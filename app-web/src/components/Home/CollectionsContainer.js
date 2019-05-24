@@ -31,7 +31,7 @@ export const TEST_IDS = {
 const CollectionContent = collections =>
   collections
     .filter(collection => collection.hasResources)
-    .slice(0, 2)
+    .slice(0, 3)
     .map(collection => {
       // resources are grouped by type, 'ungroup' them so we can find the first available
       // non external link to use as the entry page for the collection card

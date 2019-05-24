@@ -165,16 +165,21 @@ export const isFilterLonely = filters => {
  *
  * @param {Array} topics the raw topic data (aka collections) as taken from the graphql query
  * @param {Object} topics[ind] {node: {..., name: {string }}}
- * @returns {Array} the sorted topics with Design System first!
+ * @returns {Array} the sorted topics with Featured Cards and Design System first!
  */
-export const sortDevhubTopicsAfterDesignSystem = topics => {
-  // it is unknown what position design system will be since this can change build to build
-  const index = topics.findIndex(topic => topic.node.name === TOPICS.DESIGN_SYSTEM);
-  const designSystem = { ...topics[index] };
-  // remove design system from topics list
-  const topicsWithoutDS = topics.filter(topic => topic.node.name !== TOPICS.DESIGN_SYSTEM);
+export const sortDevhubTopicsAfterDesignSystemAndFeatured = topics => {
+  // it is unknown what position design system and featured cards will be since this can change build to build
+  const featuredIndex = topics.findIndex(topic => topic.node.name === TOPICS.FEATURED_CARDS);
+  const designIndex = topics.findIndex(topic => topic.node.name === TOPICS.DESIGN_SYSTEM);
+  const designSystem = { ...topics[designIndex] };
+  const featuredCards = { ...topics[featuredIndex] };
+  // remove design system from topics list and then featured cards
+  const topicsWithoutDS = topics.filter(topic => topic.node.name !== TOPICS.FEATURED_CARDS);
+  const topicsWithoutDSAndFC = topicsWithoutDS.filter(
+    topic => topic.node.name !== TOPICS.DESIGN_SYSTEM,
+  );
 
-  const sortedTopics = topicsWithoutDS.sort((topicA, topicB) => {
+  const sortedTopics = topicsWithoutDSAndFC.sort((topicA, topicB) => {
     const topicNameA = topicA.node.name.toLowerCase();
     const topicNameB = topicB.node.name.toLowerCase();
 
@@ -183,5 +188,6 @@ export const sortDevhubTopicsAfterDesignSystem = topics => {
     return 0;
   });
 
-  return [designSystem].concat(sortedTopics);
+  //Add featured Cards, then Design System, then the rest of the topics
+  return [featuredCards].concat([designSystem]).concat(sortedTopics);
 };

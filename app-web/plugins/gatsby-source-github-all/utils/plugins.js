@@ -319,11 +319,12 @@ const markdownSlugPlugin = (extension, file) => {
     const frontmatter = data.data;
     let slug = frontmatter.slug || frontmatter.title;
     slug = slugify(slug);
+    let topicTitle = file.metadata.sourceName; //Get the name of the topic
     // get the current resource for the store if it exists
-    const currentResource = slugStore.get(slug);
+    const currentResource = slugStore.get(topicTitle + slug);
     try {
       // if there is a conflict, slugstore has been configd to throw
-      slugStore.checkConflict(slug);
+      slugStore.checkConflict(topicTitle + slug); //Check by topic and slug
     } catch (e) {
       // throwing allows for a more detailed message.
       const produceSummary = metadata =>
@@ -345,7 +346,7 @@ const markdownSlugPlugin = (extension, file) => {
       console.error(e);
     }
     // continue to set new slug in store
-    slugStore.set(slug, file.metadata);
+    slugStore.set(topicTitle + slug, file.metadata);
     file.metadata.slug = slug;
   }
   return file;

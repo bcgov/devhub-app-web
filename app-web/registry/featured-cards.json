@@ -1,0 +1,61 @@
+{
+  "name": "Featured Cards",
+  "description": "A selection of resources we think you will want to know about",
+  "sourceProperties": {
+      "sources": [
+          {
+            "sourceType": "web",
+            "resourceType": "Self-Service Tools",
+            "sourceProperties": {
+              "url": "https://signing-web-devhub-prod.pathfinder.gov.bc.ca"
+            }
+          },
+          {
+            "sourceType": "github",
+            "resourceType": "Documentation",
+            "sourceProperties": {
+              "url": "https://github.com/bcgov/devhub-resources/",
+              "owner": "bcgov",
+              "repo": "devhub-resources",
+              "files": [
+                "resources/community/building-modern-apps.md",
+                "resources/community/chat_conventions.md"
+              ]
+            }
+          },
+          {
+            "sourceType": "web",
+            "resourceType": "Self-Service Tools",
+            "sourceProperties": {
+              "url": "https://www.bcdevexchange.org",
+              "title": "BC Developers Exchange",
+              "description": "Finding better ways for government and developers to work together.",
+              "image": "https://www.bcdevexchange.org/modules/core/client/img/logo/new-logo.svg"
+            }
+          },
+          {
+            "sourceType": "github",
+            "resourceType": "Documentation",
+            "sourceProperties": {
+              "url": "https://github.com/bcgov/reggie-web/",
+              "owner": "bcgov",
+              "repo": "reggie-web",
+              "files": [
+                "UserInstructions.md"
+              ]
+            }
+          }
+        ]
+      },
+      "attributes": {
+        "labels": [
+          "Documentation",
+          "Repository"
+        ],
+        "personas": [
+          "Designer",
+          "Developer",
+          "Product Owner"
+        ]
+      }
+}
