@@ -89,7 +89,7 @@ describe('Home Page', () => {
     expect(Alert).toBeInTheDocument();
   });
 
-  test('when there is an empty search the alert box does not show and neither do cards', () => {
+  test('When a blank search is entered, cards and alerts dont show but topics/collections do', () => {
     queryString.parse.mockReturnValue({});
     const { container, rerender, queryByTestId, queryAllByTestId } = render(
       <ThemeProvider theme={theme}>
