@@ -3,6 +3,7 @@
 export const TOPICS = {
   DESIGN_SYSTEM: 'Design System',
   AGILE_DELIVERY_PROCESS: 'Agile Delivery Process',
+  FEATURED_CARDS: 'Featured Cards',
   AUTHENTICATION_AND_AUTHORIZATION: 'Authentication and Authorization',
   CODE_MANAGEMENT: 'Code Management',
   COMMUNITY_ENABLERS_AND_EVENTS: 'Community Enablers and Events',
