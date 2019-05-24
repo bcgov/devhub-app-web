@@ -58,11 +58,11 @@ objects:
     postCommit: {}
     resources:
       requests:
-        cpu: 1
-        memory: 2Gi
+        cpu: 250m
+        memory: 500Mi
       limits:
-        cpu: 2
-        memory: 4Gi
+        cpu: 400m
+        memory: 500Mi
     source:
       git:
         uri: ${SOURCE_REPOSITORY_URL}
@@ -108,9 +108,11 @@ objects:
     postCommit: {}
     resources:
       requests:
-        cpu: 1
+        cpu: 250m
+        memory: 500Mi
       limits:
-        cpu: 2
+        cpu: 400m
+        memory: 500Mi
     source:
       dockerfile: |-
         FROM nodejs/build-output:latest
