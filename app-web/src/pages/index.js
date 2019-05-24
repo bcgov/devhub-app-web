@@ -136,7 +136,16 @@ export const Index = ({
   const siphonResources = getResourcePreviews(flattenGatsbyGraphQL(allDevhubSiphon.edges), results);
 
   const resourcesNotFound = !queryIsEmpty && (!results || (results.length === 0 && windowHasQuery));
-  if (resourcesNotFound) {
+  if (queryIsEmpty) {
+    content = (
+      <Aux>
+        {getCollectionPreviews(
+          flattenGatsbyGraphQL(allDevhubCollection.edges),
+          windowHasQuery && !queryIsEmpty,
+        )}
+      </Aux>
+    );
+  } else if (resourcesNotFound) {
     content = (
       <Alert style={{ margin: '10px auto' }} color="info" data-testid={TEST_IDS.alert}>
         {SEARCH.results.empty.defaultMessage}

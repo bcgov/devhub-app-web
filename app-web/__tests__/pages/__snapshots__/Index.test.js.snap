@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Home Page it matches snapshot, when there is a search and no results an alert box shows up 1`] = `
+exports[`Home Page When a blank search is entered, cards and alerts dont show but topics/collections do 1`] = `
 .emotion-13 {
   background-color: #fafafa;
   text-align: center;
@@ -178,7 +178,7 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
 </div>
 `;
 
-exports[`Home Page when there is an empty search the alert box does not show and all results show instead 1`] = `
+exports[`Home Page it matches snapshot, when there is a search and no results an alert box shows up 1`] = `
 .emotion-13 {
   background-color: #fafafa;
   text-align: center;
