@@ -154,47 +154,77 @@ This repository has been configured to send webhooks to a self-hosted Taiga inst
 > cmd to update tree (from project root) `tree -I 'node_modules|coverage|.cache|app-web/public' -d -L 3`
 ```
 ├── app-web
-│   ├── __fixtures__
-│   ├── __mocks__
-│   │   └── @bcgov
-│   ├── __tests__
-│   │   ├── components
-│   │   ├── gatsby-plugins
-│   │   ├── pages
-│   │   └── utils
-│   ├── config
-│   │   └── jest
-│   ├── gatsby
-│   ├── plugins
-│   │   ├── gatsby-remark-path-transform
-│   │   └── gatsby-source-github-all
-│   ├── public
-│   │   └── static
-│   ├── shell-scripts
-│   ├── source-registry
-│   └── src
-│       ├── assets
-│       ├── components
-│       ├── constants
-│       ├── hoc
-│       ├── pages
-│       ├── store
-│       ├── templates
-│       └── utils
+│   ├── __fixtures__
+│   ├── __mocks__
+│   │   └── @bcgov
+│   ├── __tests__
+│   │   ├── components
+│   │   ├── gatsby-plugins
+│   │   ├── hoc
+│   │   ├── pages
+│   │   └── utils
+│   ├── blog
+│   ├── config
+│   │   └── jest
+│   ├── gatsby
+│   ├── plugins
+│   │   ├── gatsby-remark-path-transform
+│   │   └── gatsby-source-github-all
+│   ├── public
+│   │   ├── 404
+│   │   ├── Agile-Delivery-Process
+│   │   ├── Authentication-and-Authorization
+│   │   ├── Code-Management
+│   │   ├── Community-Enablers-and-Events
+│   │   ├── Data-Privacy
+│   │   ├── Design-System
+│   │   ├── Developer-Tools
+│   │   ├── Developer-Toy-Box
+│   │   ├── Getting-Started-on-the-DevOps-Platform
+│   │   ├── Information-and-Application-Security
+│   │   ├── Mobile-Starter-Kit
+│   │   ├── about
+│   │   ├── collections
+│   │   ├── components
+│   │   ├── documentation
+│   │   ├── events
+│   │   ├── google-fonts
+│   │   ├── icons
+│   │   ├── images
+│   │   ├── offline-plugin-app-shell-fallback
+│   │   ├── repositories
+│   │   ├── self-service-tools
+│   │   ├── static
+│   │   └── workbox-v3.6.3
+│   ├── registry
+│   ├── shell-scripts
+│   ├── src
+│   │   ├── assets
+│   │   ├── components
+│   │   ├── constants
+│   │   ├── hoc
+│   │   ├── messages
+│   │   ├── pages
+│   │   ├── templates
+│   │   └── utils
+│   └── static
+│       └── images
 ├── docs
-│   ├── gatsby-custom-plugins
-│   └── images
+│   ├── gatsby-custom-plugins
+│   └── images
 ├── functional-tests
-│   ├── gradle
-│   │   └── wrapper
-│   └── src
-│       └── test
+│   ├── gradle
+│   │   └── wrapper
+│   └── src
+│       └── test
 ├── openshift
-└── pipeline
+│   ├── keycloak-scripts
+│   └── templates
+├── pipeline
     ├── gradle
-    │   └── wrapper
+    └── wrapper
     └── src
-        └── groovy
+    └── groovy
 ```
 
 ## Getting Started
