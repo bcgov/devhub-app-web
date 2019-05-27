@@ -107,7 +107,16 @@
                   },
                   "timeoutSeconds": 5
                 },
-                "resources": {},
+                "resources": {
+                  "requests": {
+                    "cpu": "${CPU_REQUEST}",
+                    "memory": "${MEMORY_REQUEST}"
+                  },
+                  "limits": {
+                    "cpu": "${CPU_LIMIT}",
+                    "memory": "${MEMORY_LIMIT}"
+                  }
+                },
                 "terminationMessagePath": "/dev/termination-log",
                 "volumeMounts": [{
                     "mountPath": "/var/www/html",
@@ -147,7 +156,16 @@
                   },
                   "timeoutSeconds": 1
                 },
-                "resources": {},
+                "resources": {
+                  "requests": {
+                    "cpu": "${CPU_REQUEST}",
+                    "memory": "${MEMORY_REQUEST}"
+                  },
+                  "limits": {
+                    "cpu": "${CPU_LIMIT}",
+                    "memory": "${MEMORY_LIMIT}"
+                  }
+                },
                 "terminationMessagePath": "/dev/termination-log",
                 "volumeMounts": [{
                   "mountPath": "/var/www/html",
