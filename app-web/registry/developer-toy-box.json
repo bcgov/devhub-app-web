@@ -80,6 +80,17 @@
             "README.md"
           ]
         }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/BCDevOps/go-crond/",
+          "owner": "BCDevOps",
+          "repo": "go-crond",
+          "files": [
+            "README.md"
+          ]
+        }
       }
     ]
   },
