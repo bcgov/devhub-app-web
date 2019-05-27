@@ -36,7 +36,25 @@
             "README.md"
           ]
         }
+      },
+
+
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/BCDevOps/backup-container/",
+          "owner": "BCDevOps",
+          "repo": "backup-container",
+          "files": [
+            "README.md"
+          ]
+        }
       }
+
+
+
+
+
     ]
   },
   "resourceType": "Components"
