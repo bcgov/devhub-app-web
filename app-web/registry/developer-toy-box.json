@@ -58,6 +58,17 @@
             "README.md"
           ]
         }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/BCDevOps/matomo-openshift/",
+          "owner": "BCDevOps",
+          "repo": "matomo-openshift",
+          "files": [
+            "README.md"
+          ]
+        }
       }
     ]
   },
