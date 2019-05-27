@@ -50,7 +50,8 @@ app {
                                 'NAME'             : 'matomo',
                                 'IMAGE_NAMESPACE': app.deployment.namespace,
                                 'TAG_NAME': 'prod',
-                                'MATOMO_URL' : app.deployment.matomo.host
+                                'MATOMO_URL' :                     'matomo-devhub-prod.pathfinder.gov.bc.ca'
+
                         ]
                 ]
         ]
@@ -65,9 +66,9 @@ environments {
                     name = 'prod'
                     id = "pr-${opt.'pr'}"
                 }
-                matomo {
-                    host = "matomo-devhub-prod.pathfinder.gov.bc.ca"
-                }
+//                matomo {
+//                    host = "matomo-devhub-prod.pathfinder.gov.bc.ca"
+//                }
                 suffix = "-tools-${opt.'pr'}"
                 name = "${opt.'deployment-name' ?: app.name}"
                 namespace = app.namespaces[env.name].namespace
