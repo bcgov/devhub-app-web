@@ -43,6 +43,15 @@ app {
                                 'TAG_NAME': 'prod',
                                 'PERSISTENT_VOLUME_SIZE': '10Gi'
                         ]
+                ],
+                [
+                        'file': 'openshift/matomo/matomo/matomo-deploy.json',
+                        'params': [
+                                'NAME'             : 'matomo',
+                                'IMAGE_NAMESPACE': app.deployment.namespace,
+                                'TAG_NAME': 'prod',
+                                'MATOMO_URL' : app.deployment.matomo.host
+                        ]
                 ]
         ]
     }
@@ -56,7 +65,9 @@ environments {
                     name = 'prod'
                     id = "pr-${opt.'pr'}"
                 }
-                host = ""
+                matomo {
+                    host = "matomo-devhub-prod.pathfinder.gov.bc.ca"
+                }
                 suffix = "-tools-${opt.'pr'}"
                 name = "${opt.'deployment-name' ?: app.name}"
                 namespace = app.namespaces[env.name].namespace
