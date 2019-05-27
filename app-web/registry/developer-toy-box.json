@@ -37,8 +37,6 @@
           ]
         }
       },
-
-
       {
         "sourceType": "github",
         "sourceProperties": {
@@ -49,12 +47,18 @@
             "README.md"
           ]
         }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/BCDevOps/sonarqube/",
+          "owner": "BCDevOps",
+          "repo": "sonarqube",
+          "files": [
+            "README.md"
+          ]
+        }
       }
-
-
-
-
-
     ]
   },
   "resourceType": "Components"
