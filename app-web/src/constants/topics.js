@@ -6,7 +6,7 @@ export const TOPICS = {
   FEATURED_CARDS: 'Featured Cards',
   AUTHENTICATION_AND_AUTHORIZATION: 'Authentication and Authorization',
   CODE_MANAGEMENT: 'Code Management',
-  COMMUNITY_ENABLERS_AND_EVENTS: 'Community Enablers and Events',
+  COMMUNITY_AND_EVENTS: 'Community and Events',
   DATA_PRIVACY: 'Data Privacy',
   DEVELOPER_TOOLS: 'Developer Tools',
   DEVELOPER_TOY_BOX: 'Developer Toy Box',
