@@ -35,7 +35,8 @@
             "dockerfilePath": "${DOCKER_FILE_PATH}",
             "from": {
               "name": "nginx:stable",
-              "kind": "DockerImage"
+              "kind": "DockerImage",
+              "namespace": ""
             }
           }
         },
