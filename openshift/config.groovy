@@ -66,10 +66,17 @@ app {
                     'SOURCE_REPOSITORY_REF': app.git.ref
                 ]
             ], [
-                    'file':'openshift/matomo/mariadb/mariadb-build.json'
-
+                    'file':'openshift/matomo/mariadb/mariadb-build.json',
+                    'params': [
+                            'SUFFIX': app.build.suffix,
+                            'OUTPUT_IMAGE_TAG': app.build.version
+                    ]
             ], [
-                    'file': 'openshift/matomo/matomo/matomo-build.json'
+                    'file': 'openshift/matomo/matomo/matomo-build.json',
+                    'params': [
+                            'SUFFIX': app.build.suffix,
+                            'OUTPUT_IMAGE_TAG': app.build.version
+                    ]
             ] // todo re-introduce managed matomo-proxy - or at least imagestream.
         ]
     }
