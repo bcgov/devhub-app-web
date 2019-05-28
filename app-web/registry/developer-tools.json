@@ -43,6 +43,7 @@
       {
         "sourceType": "web",
         "sourceProperties": {
+          "title": "Mobile Signing",
           "url": "https://signing-web-devhub-prod.pathfinder.gov.bc.ca"
         }
       },

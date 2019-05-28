@@ -58,6 +58,7 @@ describe('Resource Type Template Page', () => {
 
   afterEach(() => {
     cleanup();
+    useSearch.mockClear();
   });
 
   test('it matches snapshot, when there are no resources for the given reosource type the no resource component shows ', () => {
@@ -131,11 +132,36 @@ describe('Resource Type Template Page', () => {
     expect(Alert).toBeInTheDocument();
   });
 
+  test('Cards are not duplicating after multiple searches', () => {
+    queryString.parse.mockReturnValue({ q: 'foo' });
+    useSearch.mockReturnValue([{ id: SIPHON_NODES[0].id }]);
+    const { rerender, queryAllByText } = render(
+      <ThemeProvider theme={theme}>
+        <ResourceType {...props} />
+      </ThemeProvider>,
+    );
+
+    const startingNumCards = queryAllByText('Documentation').length;
+
+    queryString.parse.mockReturnValue({ q: 'foo' });
+    useSearch.mockReturnValue([{ id: SIPHON_NODES[0].id }]);
+    rerender(
+      <ThemeProvider theme={theme}>
+        <ResourceType {...props} />
+      </ThemeProvider>,
+    );
+
+    const endingNumCards = queryAllByText('Documentation').length;
+
+    expect(startingNumCards).toEqual(endingNumCards);
+  });
+
   test('when there are filters, the resource count should reduce', () => {
     const firstFilterKey = DEFAULT_FILTERS[0].key;
     // mock out query string returning a 'filter'
     queryString.parse.mockReturnValue({});
 
+    useSearch.mockReturnValue([]);
     const { queryAllByText, rerender } = render(
       <ThemeProvider theme={theme}>
         <ResourceType {...props} />
@@ -159,6 +185,7 @@ describe('Resource Type Template Page', () => {
 
   test('when given the set of resource (by type) and a given filter is not applicable to the resources (not filterable), it should be disabled ', () => {
     queryString.parse.mockReturnValue({});
+    useSearch.mockReturnValue([]);
     // modify the siphon nodes so that none of them reference the first filter, we should expect then that that filter
     // should be disabled, but the remaining filters should be enabled
     const firstFilter = DEFAULT_FILTERS[0];
