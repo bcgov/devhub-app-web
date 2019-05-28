@@ -69,10 +69,8 @@ app {
                     'file':'openshift/matomo/mariadb/mariadb-build.json'
 
             ], [
-                    'file':'openshift/matomo/matomo-proxy/matomo-proxy-build.json'
-            ], [
                     'file': 'openshift/matomo/matomo/matomo-build.json'
-            ]
+            ] // todo re-introduce managed matomo-proxy - or at least imagestream.
         ]
     }
 
