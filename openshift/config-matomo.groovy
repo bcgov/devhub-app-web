@@ -40,7 +40,7 @@ app {
                                 'SUFFIX'              : app.deployment.suffix,
                                 'VERSION'             : app.deployment.version,
                                 'IMAGE_NAMESPACE': app.deployment.namespace,
-                                'TAG_NAME': 'prod',
+                                'TAG_NAME': app.deployment.version,
                                 'PERSISTENT_VOLUME_SIZE': '10Gi'
                         ]
                 ],
@@ -49,7 +49,7 @@ app {
                         'params': [
                                 'NAME'             : 'matomo',
                                 'IMAGE_NAMESPACE': app.deployment.namespace,
-                                'TAG_NAME': 'prod',
+                                'TAG_NAME': app.deployment.version,
                                 'MATOMO_URL' :                     'matomo-devhub-prod.pathfinder.gov.bc.ca'
 
                         ]
