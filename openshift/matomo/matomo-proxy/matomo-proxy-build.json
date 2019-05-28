@@ -32,7 +32,10 @@
         "strategy": {
           "type": "Docker",
           "dockerStrategy": {
-            "dockerfilePath": "${DOCKER_FILE_PATH}"
+            "dockerfilePath": "${DOCKER_FILE_PATH}",
+            "from": {
+              "kind": "DockerImage"
+            }
           }
         },
         "output": {
