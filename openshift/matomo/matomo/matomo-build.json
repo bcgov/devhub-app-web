@@ -8,7 +8,7 @@
     "kind": "ImageStream",
     "apiVersion": "v1",
     "metadata": {
-      "name": "${BASENAME}${SUFFIX}"
+      "name": "${BASENAME}"
     },
     "spec": {
       "tags": [{
