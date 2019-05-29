@@ -73,6 +73,16 @@ const Navigation = ({ items }) => {
     );
   }
 
+  if (groupedResources[RESOURCE_TYPES.EVENTS]) {
+    groups.push(
+      <NavGroup
+        type={RESOURCE_TYPES.EVENTS}
+        key={RESOURCE_TYPES.EVENTS}
+        items={groupedResources[RESOURCE_TYPES.EVENTS]}
+      />,
+    );
+  }
+
   return <div>{groups}</div>;
 };
 

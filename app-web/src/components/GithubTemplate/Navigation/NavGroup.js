@@ -35,6 +35,7 @@ const titleMapping = {
   [RESOURCE_TYPES.DOCUMENTATION]: 'Documentation',
   [RESOURCE_TYPES.REPOSITORIES]: 'Github Repos',
   [RESOURCE_TYPES.SELF_SERVICE_TOOLS]: 'Tools',
+  [RESOURCE_TYPES.EVENTS]: 'Events',
 };
 
 const NavGroup = ({ type, items }) => {
