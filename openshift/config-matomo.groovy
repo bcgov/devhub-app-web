@@ -64,13 +64,13 @@ environments {
                     name = 'prod'
                     id = "pr-${opt.'pr'}"
                 }
-//                matomo {
+//                matomo { //todo how to make this work?
 //                    host = "matomo-devhub-prod.pathfinder.gov.bc.ca"
 //                }
                 suffix = "-tools-${opt.'pr'}"
                 name = "${opt.'deployment-name' ?: app.name}"
                 namespace = app.namespaces[env.name].namespace
-                version = "${vars.deployment.name}-${vars.deployment.env.name}-v${opt.'pr'}"
+                version = "build-v${opt.'pr'}"
             }
         }
     }
