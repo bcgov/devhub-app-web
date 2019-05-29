@@ -143,7 +143,7 @@ environments {
                 ssoURL = "https://sso-dev.pathfinder.gov.bc.ca"
                 ssoClient = "devhub-web-${opt.'pr'}"
                 ssoRealm = "devhub"
-                matomoURL = "https://matomo-devhub-dev.pathfinder.gov.bc.ca"
+                matomoURL = "https://matomo-devhub-prod.pathfinder.gov.bc.ca"
                 matomoSiteURL = "https://dev-devhub.pathfinder.gov.bc.ca" // todo probably should make this dynamic based on PR
                 matomoSiteId = '1' // events from all dev deployments will appear under the same site id, which we will have to pre-provision
             }
@@ -164,7 +164,7 @@ environments {
                 ssoURL = "https://sso-test.pathfinder.gov.bc.ca"
                 ssoClient = "devhub-web"
                 ssoRealm = "devhub"
-                matomoURL = "https://matomo-devhub-test.pathfinder.gov.bc.ca"
+                matomoURL = "https://matomo-devhub-prod.pathfinder.gov.bc.ca"
                 matomoSiteURL = "https://devhub-static-test-devhub-test.pathfinder.gov.bc.ca"
                 matomoSiteId = '1' // events from all test deployments will appear under the same site id, which we will have to pre-provision
             }
