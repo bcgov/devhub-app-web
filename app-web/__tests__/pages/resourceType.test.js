@@ -14,6 +14,7 @@ import { TEST_IDS as NO_RESOURCE_TEST_IDS } from '../../src/components/UI/NoReso
 import { SEARCH as SEARCH_MESSAGES } from '../../src/messages';
 import DEFAULT_FILTERS, { FILTER_QUERY_PARAM } from '../../src/constants/filterGroups';
 import { TEST_IDS as FILTER_TEST_IDS } from '../../src/components/Filters/FilterGroup/FilterGroup';
+import { RESOURCE_TYPES } from '../../src/constants/ui';
 
 jest.mock('react-spinners', () => () => <div>loading</div>);
 
@@ -72,9 +73,9 @@ describe('Resource Type Template Page', () => {
 
     expect(queryByTestId(NO_RESOURCE_TEST_IDS.container)).not.toBeInTheDocument();
 
-    const newSiphonNodes = SIPHON_NODES.filter(node => node.resource.type !== 'Documentation').map(
-      node => ({ node }),
-    );
+    const newSiphonNodes = SIPHON_NODES.filter(
+      node => node.resource.type !== RESOURCE_TYPES.DOCUMENTATION,
+    ).map(node => ({ node }));
 
     const newprops = {
       ...props,
@@ -103,7 +104,7 @@ describe('Resource Type Template Page', () => {
         <ResourceType {...props} />
       </ThemeProvider>,
     );
-    const startingNumCards = queryAllByText('Documentation').length;
+    const startingNumCards = queryAllByText(RESOURCE_TYPES.DOCUMENTATION).length;
 
     queryString.parse.mockReturnValue({ q: 'foo' });
 
@@ -114,7 +115,7 @@ describe('Resource Type Template Page', () => {
       </ThemeProvider>,
     );
 
-    const endingNumCards = queryAllByText('Documentation').length;
+    const endingNumCards = queryAllByText(RESOURCE_TYPES.DOCUMENTATION).length;
 
     expect(startingNumCards).toBeGreaterThan(endingNumCards);
   });
@@ -141,7 +142,7 @@ describe('Resource Type Template Page', () => {
       </ThemeProvider>,
     );
 
-    const startingNumCards = queryAllByText('Documentation').length;
+    const startingNumCards = queryAllByText(RESOURCE_TYPES.DOCUMENTATION).length;
 
     queryString.parse.mockReturnValue({ q: 'foo' });
     useSearch.mockReturnValue([{ id: SIPHON_NODES[0].id }]);
@@ -151,7 +152,7 @@ describe('Resource Type Template Page', () => {
       </ThemeProvider>,
     );
 
-    const endingNumCards = queryAllByText('Documentation').length;
+    const endingNumCards = queryAllByText(RESOURCE_TYPES.DOCUMENTATION).length;
 
     expect(startingNumCards).toEqual(endingNumCards);
   });
@@ -168,7 +169,7 @@ describe('Resource Type Template Page', () => {
       </ThemeProvider>,
     );
 
-    const startingNumCards = queryAllByText('Documentation').length;
+    const startingNumCards = queryAllByText(RESOURCE_TYPES.DOCUMENTATION).length;
 
     queryString.parse.mockReturnValue({ [FILTER_QUERY_PARAM]: firstFilterKey });
 
@@ -178,7 +179,7 @@ describe('Resource Type Template Page', () => {
       </ThemeProvider>,
     );
 
-    const endingNumCards = queryAllByText('Documentation').length;
+    const endingNumCards = queryAllByText(RESOURCE_TYPES.DOCUMENTATION).length;
 
     expect(startingNumCards).toBeGreaterThan(endingNumCards);
   });

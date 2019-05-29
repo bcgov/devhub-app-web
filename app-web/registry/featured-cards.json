@@ -13,7 +13,7 @@
           },
           {
             "sourceType": "github",
-            "resourceType": "Self-Service Tools",
+            "resourceType": "Documentation",
             "sourceProperties": {
               "url": "https://github.com/bcgov/devhub-resources/",
               "owner": "bcgov",
@@ -36,7 +36,7 @@
           },
           {
             "sourceType": "github",
-            "resourceType": "Self-Service Tools",
+            "resourceType": "Documentation",
             "sourceProperties": {
               "url": "https://github.com/bcgov/reggie-web/",
               "owner": "bcgov",
