@@ -24,6 +24,20 @@ objects:
       importPolicy: {}
       referencePolicy:
         type: Local
+# base image for node js dependancies
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: "${NAME}-base"
+    creationTimestamp: 
+    annotations:
+      description: Nodejs Runtime Image
+    labels:
+      shared: 'true'
+  spec:
+    lookupPolicy:
+      local: false
+# the image stream for the node js build
 - apiVersion: v1
   kind: ImageStream
   metadata:
@@ -43,6 +57,43 @@ objects:
   spec:
     lookupPolicy:
       local: false
+- kind: BuildConfig
+  apiVersion: v1
+  metadata:
+    name: "${NAME}-base${SUFFIX}"
+    creationTimestamp: 
+    labels: {}
+    annotations: {}
+  spec:
+    completionDeadlineSeconds: 1440
+    triggers:
+    - type: ImageChange
+      imageChange: {}
+    - type: ConfigChange
+    runPolicy: SerialLatestOnly
+    source:
+      contextDir: "${DOCKER_IMAGE_DIRECTORY}"
+      type: Binary
+    strategy:
+      type: Docker
+      dockerStrategy:
+        from:
+          kind: ImageStreamTag
+          name: nodejs:${NODE_JS_VERSION}
+          namespace: openshift
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "${NAME}-base:${VERSION}"
+    resources:
+      limits:
+        cpu: 1
+        memory: 2Gi
+      requests:
+        cpu: 1
+        memory: 1Gi
+    postCommit: {}
+    nodeSelector: 
 - apiVersion: v1
   kind: BuildConfig
   metadata:
@@ -58,11 +109,11 @@ objects:
     postCommit: {}
     resources:
       requests:
-        cpu: 250m
+        cpu: 1
         memory: 2Gi ## memory usage is high because jest test use a lot of memory when running
         ## we are hoping to move jest tests outside of the assemble script but until we do this will be quite a high request
       limits:
-        cpu: 400m
+        cpu: 1
         memory: 4Gi
     source:
       git:
@@ -85,8 +136,7 @@ objects:
                 key: EVENT_BRITE_API_KEY
         from:
           kind: ImageStreamTag
-          name: nodejs:${NODE_JS_VERSION}
-          namespace: openshift
+          name: ${NAME}-base:${VERSION}
       type: Source
     triggers:
     - type: ConfigChange
@@ -174,4 +224,9 @@ parameters:
   name: NODE_JS_VERSION
   required: true
   value: '10'
+- description: DOCKER_IMAGE_DIRECTORY
+  displayName: DOCKER_IMAGE_DIRECTORY
+  name: DOCKER_IMAGE_DIRECTORY
+  required: true
+  value: docker-images/nodejs-base
   

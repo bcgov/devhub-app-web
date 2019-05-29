@@ -8,7 +8,7 @@ module.exports = (settings)=>{
   const oc=new OpenShiftClientX(Object.assign({'namespace':phases.build.namespace}, options));
   const phase='build'
   let objects = []
-  const templatesLocalBaseUrl =oc.toFileUrl(path.resolve(__dirname, '../../openshift'))
+  const templatesLocalBaseUrl =oc.toFileUrl(path.resolve(__dirname, '../../openshift/templates'))
 
   // The building of your cool app goes here ▼▼▼
   objects = objects.concat(oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/bc.yaml`, {
@@ -17,7 +17,8 @@ module.exports = (settings)=>{
       'SUFFIX': phases[phase].suffix,
       'VERSION': phases[phase].tag,
       'SOURCE_REPOSITORY_URL': oc.git.http_url,
-      'SOURCE_REPOSITORY_REF': oc.git.ref
+      'SOURCE_REPOSITORY_REF': oc.git.ref,
+      'DOCKER_IMAGE_DIRECTORY': 'docker-images/nodejs-base',
     }
   }))
 
