@@ -43,6 +43,22 @@ exports.createResolvers = ({ createResolvers }) => {
           return getOrganizationsById(source.organization_id).name;
         },
       },
+      siphon: {
+        type: `DevhubSiphon`,
+        resolve: (source, args, context, info) => {
+          return {
+            unfurl: {
+              title: source.name.text,
+              image: source.logo.original.url,
+              description: source.description,
+            },
+            resource: {
+              type: 'Events',
+              path: source.url,
+            },
+          };
+        },
+      },
     },
   };
   createResolvers(resolvers);
