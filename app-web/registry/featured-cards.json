@@ -19,7 +19,6 @@
               "owner": "bcgov",
               "repo": "devhub-resources",
               "files": [
-                "resources/community/building-modern-apps.md",
                 "resources/community/chat_conventions.md"
               ]
             }
