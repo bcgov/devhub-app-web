@@ -62,12 +62,12 @@ objects:
           - name: SSO_CLIENT_ID
             value: ${SSO_CLIENT_ID_VALUE}
           volumeMounts:
-          - name: ${VOLUMN_NAME}
+          - name: ${CADDY_VOLUME_NAME}
             mountPath: /etc/Caddyfile
             readOnly: true
             subPath: Caddyfile
         volumes:
-        - name: ${VOLUMN_NAME}
+        - name: ${CADDY_VOLUME_NAME}
           configMap:
             defaultMode: 420
             name: ${NAME}-caddy
@@ -152,6 +152,6 @@ parameters:
   value: ''
 - description: A volumn used for the caddy from config map
   displayName: volumn name
-  name: VOLUMN_NAME
+  name: CADDY_VOLUME_NAME
   required: false
   value: web-caddy-config

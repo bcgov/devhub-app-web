@@ -26,28 +26,30 @@ const getSsoParamsByEnv = (env, pr) => {
   }
 }
 
+
 module.exports = (settings)=>{
   const phases = settings.phases
   const options= settings.options
   const phase=options.env
   const changeId = phases[phase].changeId
   const oc=new OpenShiftClientX(Object.assign({'namespace':phases[phase].namespace}, options));
-  const templatesLocalBaseUrl =oc.toFileUrl(path.resolve(__dirname, '../../openshift'))
+  const templatesLocalBaseUrl =oc.toFileUrl(path.resolve(__dirname, '../../openshift/templates'))
   let objects = []
 
   // The deployment of your cool app goes here ▼▼▼
-  objects = [oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/bc.yaml`, {
+  objects = oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/dc.yaml`, {
     'param':{
       'NAME': phases[phase].name,
       'SUFFIX': phases[phase].suffix,
       'VERSION': phases[phase].tag,
-      'SOURCE_REPOSITORY_URL': oc.git.http_url,
-      'SOURCE_REPOSITORY_REF': oc.git.ref,
+      'CADDY_VOLUME_NAME': 'web-caddy-config',
       ...getSsoParamsByEnv(phase, changeId),
     }
-  })]
-
+  });
+  // if you want to add more objects from other templates than contact them to objects
+  // objects should be a flat array
   oc.applyRecommendedLabels(objects, phases[phase].name, phase, `${changeId}`, phases[phase].instance)
   oc.importImageStreams(objects, phases[phase].tag, phases.build.namespace, phases.build.tag)
   oc.applyAndDeploy(objects, phases[phase].instance)
 }
+
