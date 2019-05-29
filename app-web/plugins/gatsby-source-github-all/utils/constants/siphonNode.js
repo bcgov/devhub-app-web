@@ -36,6 +36,7 @@ const RESOURCE_TYPES = {
   REPOSITORIES: 'Repositories',
   PEOPLE: 'People',
   PROJECTS: 'Projects',
+  EVENTS: 'Events',
 };
 // Resource Types for Devhub
 const RESOURCE_TYPES_LIST = Object.values(RESOURCE_TYPES);

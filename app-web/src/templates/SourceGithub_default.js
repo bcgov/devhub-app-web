@@ -56,17 +56,19 @@ class SourceGithubMarkdownDefault extends React.Component {
     let navigationItems = nav.items;
 
     if (collection.name === 'Community Enablers and Events') {
-      const eventbriteNavItems = flattenGatsbyGraphQL(communityEvents.edges).map(event => ({
-        unfurl: {
-          title: event.name.text,
-        },
-        resource: {
-          path: event.url,
-          type: RESOURCE_TYPES.EVENTS,
-        },
-      }));
-
-      navigationItems = navigationItems.concat(eventbriteNavItems);
+      const eventbriteNavItems = flattenGatsbyGraphQL(communityEvents.edges);
+      const currentEvents = eventbriteNavItems
+        .filter(e => e.start.daysFromNow <= 0)
+        .map(event => ({
+          unfurl: {
+            title: event.name.text,
+          },
+          resource: {
+            path: event.url,
+            type: RESOURCE_TYPES.EVENTS,
+          },
+        }));
+      navigationItems = navigationItems.concat(currentEvents);
     }
 
     const navigation = <Navigation items={navigationItems} />;
