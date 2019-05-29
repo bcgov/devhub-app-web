@@ -7,6 +7,7 @@
             "sourceType": "web",
             "resourceType": "Self-Service Tools",
             "sourceProperties": {
+              "title": "Mobile Signing",
               "url": "https://signing-web-devhub-prod.pathfinder.gov.bc.ca"
             }
           },
@@ -18,7 +19,6 @@
               "owner": "bcgov",
               "repo": "devhub-resources",
               "files": [
-                "resources/community/building-modern-apps.md",
                 "resources/community/chat_conventions.md"
               ]
             }

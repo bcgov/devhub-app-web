@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import isNull from 'lodash/isNull';
+import uniqBy from 'lodash/uniqBy';
 import intersectionBy from 'lodash/intersectionBy';
 import queryString from 'query-string';
 
@@ -103,6 +104,10 @@ export const ResourceType = ({
   if (isFilterLonely(filterGroups) || resourcesNotFound) {
     filterGroups = filterGroups.map(f => ({ ...f, isFilterable: false }));
   }
+
+  //remove duplicates from the resources
+  //note: resources in many collections will only be shown in one of their many contexts
+  resources = uniqBy(resources, 'title');
 
   if (resourcesExist && windowHasFilters) {
     // filters are an array of keys as plain strings ['key1', 'key2']

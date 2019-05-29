@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Resource Type Template Page it matches snapshot, when there are no resources for the given reosource type the no resource component shows  1`] = `
-.emotion-81 {
+.emotion-39 {
   font-size: 15px;
   max-width: 1200px;
   padding: 10px 10px;
 }
 
 @media screen and (min-width:932px) {
-  .emotion-81 {
+  .emotion-39 {
     padding: 10px 65px;
   }
 }
@@ -30,7 +30,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   line-height: 1.5em;
 }
 
-.emotion-79 {
+.emotion-37 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -62,7 +62,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   }
 }
 
-.emotion-77 {
+.emotion-35 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -76,14 +76,14 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
 }
 
 @media (min-width:576px) {
-  .emotion-77 {
+  .emotion-35 {
     margin-bottom: 15px;
     max-width: 810px;
   }
 }
 
 @media (min-width:768px) {
-  .emotion-77 {
+  .emotion-35 {
     margin-bottom: 15px;
     max-width: 1080px;
   }
@@ -144,7 +144,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   }
 }
 
-.emotion-75 {
+.emotion-33 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -159,7 +159,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
 }
 
 @media (min-width:810px) {
-  .emotion-75 {
+  .emotion-33 {
     -webkit-box-pack: start;
     -webkit-justify-content: start;
     -ms-flex-pack: start;
@@ -297,7 +297,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
 }
 
 <main
-  class="emotion-81 emotion-82"
+  class="emotion-39 emotion-40"
   role="main"
 >
   <div
@@ -313,7 +313,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
     </h4>
   </div>
   <div
-    class="emotion-79 emotion-80"
+    class="emotion-37 emotion-38"
   >
     <div
       class="emotion-4 emotion-5"
@@ -386,7 +386,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
       </div>
     </div>
     <div
-      class="emotion-77 emotion-78"
+      class="emotion-35 emotion-36"
     >
       <div
         class="emotion-8 emotion-9"
@@ -439,7 +439,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
         </span>
       </div>
       <div
-        class="emotion-75 emotion-76"
+        class="emotion-33 emotion-34"
       >
         <div
           class="emotion-31 emotion-32"
@@ -447,170 +447,6 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
           <a
             class="emotion-28 emotion-29 emotion-30"
             href="/design-system/Z1bGIqu5"
-          >
-            <article
-              class="emotion-26 emotion-27"
-            >
-              <div
-                class="emotion-12 emotion-13"
-                type="Documentation"
-              />
-              <div
-                class="emotion-24 emotion-25"
-              >
-                <div
-                  css="[object Object]"
-                >
-                  <h3
-                    class="emotion-16 emotion-17"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="svg-inline--fa fa-file fa-w-12  emotion-14 emotion-15"
-                      data-icon="file"
-                      data-prefix="fas"
-                      data-testid="resource-type-icon"
-                      focusable="false"
-                      role="img"
-                      type="Documentation"
-                      viewBox="0 0 384 512"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                     
-                    <span
-                      css="[object Object]"
-                    >
-                      Documentation
-                    </span>
-                    <small>
-                      <svg
-                        aria-hidden="true"
-                        class="svg-inline--fa fa-external-link-alt fa-w-18 "
-                        data-icon="external-link-alt"
-                        data-prefix="fas"
-                        focusable="false"
-                        role="img"
-                        viewBox="0 0 576 512"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z"
-                          fill="currentColor"
-                        />
-                      </svg>
-                    </small>
-                  </h3>
-                </div>
-                <h2
-                  class="emotion-18 emotion-19"
-                >
-                  About
-                </h2>
-                <p
-                  class="emotion-20 emotion-21"
-                >
-                  What the Design System is and how it works.
-                </p>
-                <div
-                  class="emotion-22 emotion-23"
-                />
-              </div>
-            </article>
-          </a>
-        </div>
-        <div
-          class="emotion-31 emotion-32"
-        >
-          <a
-            class="emotion-28 emotion-29 emotion-30"
-            href="/design-system/Z1bGIqu6"
-          >
-            <article
-              class="emotion-26 emotion-27"
-            >
-              <div
-                class="emotion-12 emotion-13"
-                type="Documentation"
-              />
-              <div
-                class="emotion-24 emotion-25"
-              >
-                <div
-                  css="[object Object]"
-                >
-                  <h3
-                    class="emotion-16 emotion-17"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="svg-inline--fa fa-file fa-w-12  emotion-14 emotion-15"
-                      data-icon="file"
-                      data-prefix="fas"
-                      data-testid="resource-type-icon"
-                      focusable="false"
-                      role="img"
-                      type="Documentation"
-                      viewBox="0 0 384 512"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                     
-                    <span
-                      css="[object Object]"
-                    >
-                      Documentation
-                    </span>
-                    <small>
-                      <svg
-                        aria-hidden="true"
-                        class="svg-inline--fa fa-external-link-alt fa-w-18 "
-                        data-icon="external-link-alt"
-                        data-prefix="fas"
-                        focusable="false"
-                        role="img"
-                        viewBox="0 0 576 512"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z"
-                          fill="currentColor"
-                        />
-                      </svg>
-                    </small>
-                  </h3>
-                </div>
-                <h2
-                  class="emotion-18 emotion-19"
-                >
-                  About
-                </h2>
-                <p
-                  class="emotion-20 emotion-21"
-                >
-                  What the Design System is and how it works.
-                </p>
-                <div
-                  class="emotion-22 emotion-23"
-                />
-              </div>
-            </article>
-          </a>
-        </div>
-        <div
-          class="emotion-31 emotion-32"
-        >
-          <a
-            class="emotion-28 emotion-29 emotion-30"
-            href="/design-system/Z1bGIqu7"
           >
             <article
               class="emotion-26 emotion-27"
