@@ -19,7 +19,8 @@
             "resources/alignment/opensource.md",
             "resources/alignment/architecture_and_tech_stacks.md",
             "resources/alignment/communication_community_and_support.md",
-            "resources/community/building-modern-apps.md"
+            "resources/community/12-factor-apps.md",
+            "resources/community/progressive-web-apps.md"
           ]
         }
       },
