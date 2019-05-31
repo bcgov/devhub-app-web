@@ -35,6 +35,15 @@
             "components/about/prototyping_tools.md"
           ]
         }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/design-system/",
+          "title": "BC Design System",
+          "image": ""
+        },
+        "resourceType": "Repositories"
       }
     ]
   },
