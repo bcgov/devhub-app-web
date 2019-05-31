@@ -4,6 +4,7 @@ export const RESOURCE_TYPES = {
   SELF_SERVICE_TOOLS: 'Self-Service Tools',
   REPOSITORIES: 'Repositories',
   PEOPLE: 'People',
+  EVENTS: 'Events',
 };
 
 // not exactly a resource type but still an important identifier for a 'type' of devhub node
