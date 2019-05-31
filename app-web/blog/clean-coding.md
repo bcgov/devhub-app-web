@@ -5,10 +5,9 @@ resourceType: Documentation
 personas: 
   - Developer
 labels:
-  - languages:
-    - NodeJS
-    - Javascript
-    - Dev Hack
+  - NodeJS
+  - Javascript
+  - Dev Hack
 author: Patrick Simonian
 image: github:patricksimonian 
 ---

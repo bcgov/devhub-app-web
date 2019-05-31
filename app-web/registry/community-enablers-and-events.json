@@ -71,6 +71,15 @@
             "UserInstructions.md"
           ]
         }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/reggie-web/",
+          "title": "Reggie - Rocket Chat Invitation App",
+          "image": ""
+        },
+        "resourceType": "Repositories"
       }
     ]
   }

@@ -46,7 +46,6 @@ const sourcesAreValid = sources => {
       sourcesToCheck = sourcesToCheck.concat([s]);
     }
   });
-
   return sourcesToCheck.every(validateSourceRegistry);
 };
 
