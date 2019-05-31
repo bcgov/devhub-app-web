@@ -21,7 +21,8 @@
               "files": [
                 "resources/community/12-factor-apps.md",
                 "resources/community/progressive-web-apps.md",
-                "resources/community/chat_conventions.md"
+                "resources/community/chat_conventions.md",
+                "resources/pathfinder/what-is-pathfinder.md"
               ]
             }
           },
