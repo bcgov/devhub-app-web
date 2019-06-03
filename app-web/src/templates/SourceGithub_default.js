@@ -33,6 +33,7 @@ import withNode from '../hoc/withNode';
 import { Main, SideDrawerToggleButton, SidePanel } from '../components/GithubTemplate/common';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { RESOURCE_TYPES } from '../constants/ui';
+import { TOPICS } from '../constants/topics';
 
 class SourceGithubMarkdownDefault extends React.Component {
   state = {
@@ -55,7 +56,7 @@ class SourceGithubMarkdownDefault extends React.Component {
     }).Compiler;
     let navigationItems = nav.items;
 
-    if (collection.name === 'Community Enablers and Events') {
+    if (collection.name === TOPICS.COMMUNITY_ENABLERS_AND_EVENTS) {
       const eventbriteNavItems = flattenGatsbyGraphQL(communityEvents.edges);
       const currentEvents = eventbriteNavItems
         .filter(e => e.start.daysFromNow <= 0)
@@ -175,18 +176,6 @@ export const devhubSiphonMarkdown = graphql`
             month: local(formatString: "MMM")
             year: local(formatString: "YYYY")
             daysFromNow: local(difference: "days")
-          }
-          description {
-            html
-          }
-          organization
-          logo {
-            original {
-              url
-            }
-          }
-          venue {
-            name
           }
         }
       }
