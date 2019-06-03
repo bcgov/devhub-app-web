@@ -31,6 +31,9 @@ import Navigation from '../components/GithubTemplate/Navigation/Navigation';
 import Actions from '../components/GithubTemplate/Actions/Actions';
 import withNode from '../hoc/withNode';
 import { Main, SideDrawerToggleButton, SidePanel } from '../components/GithubTemplate/common';
+import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
+import { RESOURCE_TYPES } from '../constants/ui';
+import { TOPICS } from '../constants/topics';
 
 class SourceGithubMarkdownDefault extends React.Component {
   state = {
@@ -41,7 +44,7 @@ class SourceGithubMarkdownDefault extends React.Component {
 
   render() {
     const {
-      data: { devhubSiphon, nav, collection },
+      data: { devhubSiphon, nav, collection, communityEvents },
       location,
     } = this.props;
     // bind the devhub siphon data to the preview node
@@ -51,8 +54,25 @@ class SourceGithubMarkdownDefault extends React.Component {
       createElement: React.createElement,
       components: { 'component-preview': previewWithNode },
     }).Compiler;
+    let navigationItems = nav.items;
 
-    const navigation = <Navigation items={nav.items} />;
+    if (collection.name === TOPICS.COMMUNITY_ENABLERS_AND_EVENTS) {
+      const eventbriteNavItems = flattenGatsbyGraphQL(communityEvents.edges);
+      const currentEvents = eventbriteNavItems
+        .filter(e => e.start.daysFromNow <= 0)
+        .map(event => ({
+          unfurl: {
+            title: event.name.text,
+          },
+          resource: {
+            path: event.url,
+            type: RESOURCE_TYPES.EVENTS,
+          },
+        }));
+      navigationItems = navigationItems.concat(currentEvents);
+    }
+
+    const navigation = <Navigation items={navigationItems} />;
 
     const { repo, owner } = devhubSiphon.source._properties;
     const { title } = devhubSiphon.childMarkdownRemark.frontmatter;
@@ -138,6 +158,26 @@ export const devhubSiphonMarkdown = graphql`
     nav: devhubCollection(id: { eq: $collectionId }) {
       items: childrenDevhubSiphon {
         ...NavigationFragment
+      }
+    }
+    communityEvents: allEventbriteEvents(
+      sort: { fields: [start___local], order: ASC }
+      filter: { shareable: { eq: true } }
+    ) {
+      edges {
+        node {
+          id
+          name {
+            text
+          }
+          url
+          start {
+            day: local(formatString: "DD")
+            month: local(formatString: "MMM")
+            year: local(formatString: "YYYY")
+            daysFromNow: local(difference: "days")
+          }
+        }
       }
     }
   }
