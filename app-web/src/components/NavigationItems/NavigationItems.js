@@ -25,7 +25,6 @@ import styled from '@emotion/styled';
 const LinkButton = styled.button`
   margin: 0;
   padding: 0;
-  text-decoration: underline;
   background: none;
   outline: none;
   cursor: pointer;
@@ -34,6 +33,9 @@ const LinkButton = styled.button`
   font-size: 0.813em;
   :focus {
     outline: none;
+  }
+  :hover {
+    text-decoration: underline;
   }
 `;
 
@@ -46,6 +48,9 @@ const NavigationItems = ({ items, setToggled }) => {
     <ul>
       {navigationitems}
       <li>
+        <LinkButton onClick={() => setToggled(true)}>Fair Use</LinkButton>
+      </li>
+      <li>
         <a
           href="https://bcdevexchange.org"
           title="BC Dev Exchange"
@@ -57,9 +62,6 @@ const NavigationItems = ({ items, setToggled }) => {
         >
           <img src={devexLogo} alt="Government Of BC" style={{ margin: 0, maxHeight: '50px' }} />
         </a>
-      </li>
-      <li>
-        <LinkButton onClick={() => setToggled(true)}>Fair Use</LinkButton>
       </li>
     </ul>
   );

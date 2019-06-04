@@ -81,8 +81,6 @@ exports[`Primary Footer Component it renders and matches snapshot, when the Fair
 .emotion-12 {
   margin: 0;
   padding: 0;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
   background: none;
   outline: none;
   cursor: pointer;
@@ -93,6 +91,11 @@ exports[`Primary Footer Component it renders and matches snapshot, when the Fair
 
 .emotion-12:focus {
   outline: none;
+}
+
+.emotion-12:hover {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
 }
 
 <footer
@@ -152,6 +155,13 @@ exports[`Primary Footer Component it renders and matches snapshot, when the Fair
         </a>
       </li>
       <li>
+        <button
+          class="emotion-12 emotion-13"
+        >
+          Fair Use
+        </button>
+      </li>
+      <li>
         <a
           aria-label="View the BC Dev Exchange Organization"
           href="https://bcdevexchange.org"
@@ -164,13 +174,6 @@ exports[`Primary Footer Component it renders and matches snapshot, when the Fair
             style="margin: 0px; max-height: 50px;"
           />
         </a>
-      </li>
-      <li>
-        <button
-          class="emotion-12 emotion-13"
-        >
-          Fair Use
-        </button>
       </li>
     </ul>
     <div

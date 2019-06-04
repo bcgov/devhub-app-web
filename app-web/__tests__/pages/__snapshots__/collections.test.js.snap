@@ -435,8 +435,6 @@ exports[`Collections Container it matches snapshot 1`] = `
 .emotion-206 {
   margin: 0;
   padding: 0;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
   background: none;
   outline: none;
   cursor: pointer;
@@ -447,6 +445,11 @@ exports[`Collections Container it matches snapshot 1`] = `
 
 .emotion-206:focus {
   outline: none;
+}
+
+.emotion-206:hover {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
 }
 
 <div
@@ -1445,6 +1448,13 @@ exports[`Collections Container it matches snapshot 1`] = `
           </a>
         </li>
         <li>
+          <button
+            class="emotion-206 emotion-207"
+          >
+            Fair Use
+          </button>
+        </li>
+        <li>
           <a
             aria-label="View the BC Dev Exchange Organization"
             href="https://bcdevexchange.org"
@@ -1457,13 +1467,6 @@ exports[`Collections Container it matches snapshot 1`] = `
               style="margin: 0px; max-height: 50px;"
             />
           </a>
-        </li>
-        <li>
-          <button
-            class="emotion-206 emotion-207"
-          >
-            Fair Use
-          </button>
         </li>
       </ul>
     </div>
