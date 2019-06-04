@@ -35,7 +35,7 @@ const Subtitle = styled.h4`
   line-height: 1.5em;
 `;
 
-const Title = ({ title, subtitle }) => (
+export const Title = ({ title, subtitle }) => (
   <TitleWrapper>
     <h1>{title}</h1>
     {subtitle && <Subtitle>{subtitle}</Subtitle>}

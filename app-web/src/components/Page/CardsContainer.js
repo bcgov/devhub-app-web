@@ -88,7 +88,7 @@ const FilterSideDrawerToggle = styled.div`
   }
 `;
 
-const CardContainer = ({
+export const CardsContainer = ({
   resources,
   query,
   openSideDrawer,
@@ -123,7 +123,7 @@ const CardContainer = ({
   </Container>
 );
 
-CardContainer.propTypes = {
+CardsContainer.propTypes = {
   resources: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
@@ -137,4 +137,4 @@ CardContainer.propTypes = {
   openSideDrawer: PropTypes.func.isRequired,
   query: PropTypes.string,
 };
-export default CardContainer;
+export default CardsContainer;
