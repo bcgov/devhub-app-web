@@ -15,7 +15,7 @@ const FilterContainer = styled.div`
   }
 `;
 
-const FilterMenu = ({ filters }) => (
+export const FilterMenu = ({ filters }) => (
   <FilterContainer>
     <Filters filters={filters} />
   </FilterContainer>

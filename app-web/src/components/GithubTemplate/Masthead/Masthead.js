@@ -21,7 +21,7 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { withPadding } from '../common';
 import CardHeader from '../../Cards/Card/CardHeader';
-import Title from '../../Page/Title';
+import { Title } from '../../Page';
 import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
 
 const Header = styled.header`

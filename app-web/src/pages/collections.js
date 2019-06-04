@@ -19,7 +19,7 @@ import React from 'react';
 import { COLLECTIONS_PAGE } from '../messages';
 import { flattenGatsbyGraphQL } from '../utils//dataHelpers';
 
-import Title from '../components/Page/Title';
+import { Title } from '../components/Page';
 import CollectionPreview from '../components/CollectionPreview/CollectionPreview';
 import Main from '../components/Page/Main';
 import withResourceQuery from '../hoc/withResourceQuery';

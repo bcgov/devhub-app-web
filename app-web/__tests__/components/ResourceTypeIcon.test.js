@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { RESOURCE_TYPES, COLLECTIONS, EVENTS } from '../../src/constants/ui';
+import { RESOURCE_TYPES } from '../../src/constants/ui';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 import { render, cleanup } from 'react-testing-library';
@@ -20,6 +20,7 @@ describe('Card Header Component', () => {
   });
 
   it('returns nothing if resourceType is invalid', () => {
+    global.console.error = jest.fn();
     const { queryByTestId } = render(
       <ThemeProvider theme={theme}>
         <ResourceTypeIcon type="blah" />

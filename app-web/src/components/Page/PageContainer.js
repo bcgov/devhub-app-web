@@ -20,7 +20,7 @@ Created by Patrick Simonian
  */
 import styled from '@emotion/styled';
 
-const PageContainer = styled.div`
+export const PageContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;

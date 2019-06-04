@@ -22,35 +22,12 @@ import {
 } from '../utils/selectors';
 import { isQueryEmpty } from '../utils/search';
 import { SEARCH_QUERY_PARAM } from '../constants/search';
+import { SPACING } from '../constants/designTokens';
 
 const Main = styled.main`
-  margin-bottom: 5px;
-  margin-top: 27px;
-  padding: 0 15px;
-  > div {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-  }
-  > h1 {
-    margin-top: 0;
-    color: #242424;
-    font-size: 42px;
-    font-weight: 400;
-  }
-  > h2 {
-    font-size: 14px;
-    margin-bottom: 15px;
-    color: #5091cd;
-    font-weight: 300;
-  }
-  > p {
-    margin-bottom: 20px;
-    max-width: 738px;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.3em;
-  }
+  margin-bottom: ${SPACING['1x']};
+  margin-top: ${SPACING['2x']};
+  padding: 0 ${SPACING['2x']};
 `;
 
 /**

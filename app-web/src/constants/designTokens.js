@@ -12,6 +12,7 @@ export const CUSTOM_TYPE = {
   sm: `${STYLE_BASE.fontSize}px`,
   md: `${STYLE_BASE.fontSize * 1.5}px`,
   lg: `${STYLE_BASE.fontSize * 2}px`,
+  xl: `${STYLE_BASE.fontSize * 3}px`,
 };
 
 export const MAX_SPACE_UNIT_MULTIPLE = 20;

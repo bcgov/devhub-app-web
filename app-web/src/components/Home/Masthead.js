@@ -22,7 +22,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { ChevronLink } from '../UI/Link';
 import { SEARCH } from '../../constants/ui';
-import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/designTokens';
+import { EMOTION_BOOTSTRAP_BREAKPOINTS, SPACING } from '../../constants/designTokens';
 import Search from '../Search';
 import SearchPills from '../Search/SearchPills';
 // localizations
@@ -49,7 +49,7 @@ const Container = styled.div`
   padding: 25px 15px 30px;
   flex-flow: column nowrap;
   ${EMOTION_BOOTSTRAP_BREAKPOINTS.sm} {
-    padding: 50px 15px 55px;
+    padding: ${SPACING['4x']} 15px;
   }
 `;
 

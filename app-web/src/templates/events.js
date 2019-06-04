@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import Layout from '../hoc/Layout';
 import Aux from '../hoc/auxillary';
-import Title from '../components/Page/Title';
+import { Title } from '../components/Page';
 import Main from '../components/Page/Main';
 import NoEvents from '../components/UI/NoEvents';
 import { Event } from '../components/Event';
