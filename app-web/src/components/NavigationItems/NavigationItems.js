@@ -25,7 +25,6 @@ import styled from '@emotion/styled';
 const LinkButton = styled.button`
   margin: 0;
   padding: 0;
-  text-decoration: underline;
   background: none;
   outline: none;
   cursor: pointer;
@@ -34,6 +33,9 @@ const LinkButton = styled.button`
   font-size: 0.813em;
   :focus {
     outline: none;
+  }
+  :hover {
+    text-decoration: underline;
   }
 `;
 

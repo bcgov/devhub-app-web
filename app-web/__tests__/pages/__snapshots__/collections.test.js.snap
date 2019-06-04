@@ -435,8 +435,6 @@ exports[`Collections Container it matches snapshot 1`] = `
 .emotion-206 {
   margin: 0;
   padding: 0;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
   background: none;
   outline: none;
   cursor: pointer;
@@ -447,6 +445,11 @@ exports[`Collections Container it matches snapshot 1`] = `
 
 .emotion-206:focus {
   outline: none;
+}
+
+.emotion-206:hover {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
 }
 
 <div

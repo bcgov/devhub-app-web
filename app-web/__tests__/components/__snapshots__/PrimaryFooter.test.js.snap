@@ -81,8 +81,6 @@ exports[`Primary Footer Component it renders and matches snapshot, when the Fair
 .emotion-12 {
   margin: 0;
   padding: 0;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
   background: none;
   outline: none;
   cursor: pointer;
@@ -93,6 +91,11 @@ exports[`Primary Footer Component it renders and matches snapshot, when the Fair
 
 .emotion-12:focus {
   outline: none;
+}
+
+.emotion-12:hover {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
 }
 
 <footer
