@@ -15,6 +15,18 @@
             "sourceType": "github",
             "resourceType": "Documentation",
             "sourceProperties": {
+              "url": "https://github.com/bcgov/api-guidelines",
+              "owner": "bcgov",
+              "repo": "api-guidelines",
+              "files": [
+                "government-of-british-columbia-api-guidelines.md"
+              ]
+            }
+          },        
+          {
+            "sourceType": "github",
+            "resourceType": "Documentation",
+            "sourceProperties": {
               "url": "https://github.com/bcgov/devhub-resources/",
               "owner": "bcgov",
               "repo": "devhub-resources",
