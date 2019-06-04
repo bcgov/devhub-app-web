@@ -4,6 +4,7 @@ import { RESOURCE_TYPES } from '../src/constants/ui';
 const IDS = {
   DESIGN_SYSTEM: 'collection-1',
   DEVHUB: 'collection-2',
+  EVENT: 'collections-3',
 };
 
 // SIPHON NODES
@@ -296,6 +297,63 @@ export const DEVHUB_COLLECTION = {
     unfurl: { ...n.unfurl },
   })),
 };
+export const EVENT_1 = {
+  description: {
+    html: '<p> This is a test </p>',
+    text: 'This is a test',
+  },
+  id: '45046198392',
+  logo: {
+    original: {
+      url:
+        'https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%…?auto=compress&s=4739975e8d70c9f8af0ee0957df1f5ae',
+    },
+  },
+  name: {
+    text: 'BC Gov CSI Lab - Open House Networking event ',
+  },
+  organization: 'CSI Lab',
+  start: {
+    day: '20',
+    daysFromNow: '2',
+    month: 'Apr',
+    year: '2018',
+  },
+  url: 'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
+  venue: {
+    name: '1012 Douglas St',
+  },
+};
+export const EVENT_2 = {
+  description: {
+    html: '<p> This is also a test </p>',
+    text: 'This is also a test',
+  },
+  id: '61112980570',
+  logo: {
+    original: {
+      url:
+        'https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F41880838%2F228490647317%2F1%2Foriginal.jpg?auto=compress&s=c53f3ef4e5b52e00963afab920fca78e',
+    },
+  },
+  name: {
+    text: "Take a walk on the Agile side: Tour of BC Gov's CSI Lab",
+  },
+  organization: 'CSI Lab',
+  start: {
+    day: '26',
+    daysFromNow: '-500',
+    month: 'Jun',
+    year: '2020',
+  },
+  url:
+    'https://www.eventbrite.ca/e/take-a-walk-on-the-agile-side-tour-of-bc-govs-csi-lab-tickets-61112980570',
+  venue: {
+    name: '1012 Douglas St',
+  },
+};
+
+export const EVENTS = [EVENT_1, EVENT_2];
 
 export const SIPHON_NODES = DESIGN_SYSTEM_NODES.concat(DEVHUB_NODES);
 

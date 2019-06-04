@@ -33,7 +33,7 @@
       },
       {
         "sourceType": "web",
-        "resourceType": "Self-Service Tools",
+        "resourceType": "Events",
         "sourceProperties": {
           "url": "https://www.meetup.com/DevOps-Commons/",
           "title": "DevOps Commons MeetUp",
@@ -43,7 +43,7 @@
       },
       {
         "sourceType": "web",
-        "resourceType": "Self-Service Tools",
+        "resourceType": "Events",
         "sourceProperties": {
           "url": "https://www.meetup.com/Cloud-Native-Victoria/",
           "title": "Cloud Native Victoria MeetUp",
@@ -53,9 +53,8 @@
       },
       {
         "sourceType": "github",
-        "resourceType": "Self-Service Tools",
+        "resourceType": "Events",
         "sourceProperties": {
-          "resourceType": "Documentation",
           "url": "https://github.com/bcgov/devhub-resources/",
           "owner": "bcgov",
           "repo": "devhub-resources",
@@ -68,7 +67,6 @@
         "sourceType": "github",
         "resourceType": "Documentation",
         "sourceProperties": {
-          "resourceType": "Documentation",
           "url": "https://github.com/bcgov/devhub-resources/",
           "owner": "bcgov",
           "repo": "devhub-resources",

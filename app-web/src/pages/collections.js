@@ -40,17 +40,14 @@ const createMetaPosition = (maxPadding, index1, index2) => {
   return paddedPosition1 + '.' + paddedPosition2;
 };
 
-export const CollectionsPage = ({ data }) => {
-  let collections = flattenGatsbyGraphQL(data.allDevhubCollection.edges);
-  const events = flattenGatsbyGraphQL(data.allEventbriteEvents.edges);
-
-  //find the index of the Community and Events topic for the first digit of the metadata position
-  const communityAndEventsIndex = collections.map(e => e.name).indexOf(TOPICS.COMMUNITY_AND_EVENTS);
+//Takes in the collections and events then add the events to the desired collection
+export const addCurrentEventsToCollection = (collections, events, collectionName) => {
+  //find the index of the given topic for the first digit of the metadata position
+  const collectionIndex = collections.map(e => e.name).indexOf(collectionName);
   //find the number of items in the collection for the second digit of the metadata position
   let eventIndex = collections
-    .filter(e => e.name === TOPICS.COMMUNITY_AND_EVENTS)
-    .map(e => e.childrenDevhubSiphon)
-    .flat().length;
+    .filter(e => e.name === collectionName)
+    .flatMap(e => e.childrenDevhubSiphon).length;
   // filter out any events that are passed today
   const currentEvents = events
     .filter(e => e.start.daysFromNow <= 0)
@@ -58,7 +55,7 @@ export const CollectionsPage = ({ data }) => {
       event = {
         unfurl: {
           title: event.name.text,
-          description: `Held on ${event.start.day}: ${event.description.text} asd`,
+          description: `Held on ${event.start.month} ${event.start.day}: ${event.description.text}`,
         },
         resource: {
           path: event.url,
@@ -66,7 +63,7 @@ export const CollectionsPage = ({ data }) => {
         },
         id: event.id,
         _metadata: {
-          position: createMetaPosition(10, communityAndEventsIndex, eventIndex),
+          position: createMetaPosition(10, collectionIndex, eventIndex),
         },
       };
       //increase the eventIndex as we have just added a new item to the collection
@@ -74,9 +71,8 @@ export const CollectionsPage = ({ data }) => {
       return event;
     });
 
-  const collectionsWithEvents = collections.map(collection => {
-    //case for Community and Events, as we will want to add the currentEvents
-    if (collection.name === TOPICS.COMMUNITY_AND_EVENTS) {
+  const collectionsAndEvents = collections.map(collection => {
+    if (collection.name === collectionName) {
       //Add in our EventBriteEvents
       collection.childrenDevhubSiphon = collection.childrenDevhubSiphon.concat(currentEvents);
       //Remove any duplicates, to fix the card duplication isuue
@@ -85,6 +81,17 @@ export const CollectionsPage = ({ data }) => {
     return collection;
   });
 
+  return collectionsAndEvents;
+};
+
+export const CollectionsPage = ({ data }) => {
+  let collections = flattenGatsbyGraphQL(data.allDevhubCollection.edges);
+  const events = flattenGatsbyGraphQL(data.allEventbriteEvents.edges);
+  const collectionsWithEvents = addCurrentEventsToCollection(
+    collections,
+    events,
+    TOPICS.COMMUNITY_AND_EVENTS,
+  );
   // resources are grouped by type, 'ungroup' them so we can find the first available
   // non external link to use as the entry page for the collection card
   return (
