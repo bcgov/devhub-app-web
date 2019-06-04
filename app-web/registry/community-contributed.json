@@ -75,7 +75,92 @@
             "README.md"
           ]
         }
-      }
+      },
+      {
+        "sourceType":"github",
+        "resourceType":"Repository",
+        "labels":[
+            "email",
+            "sms",
+            "messaging"
+        ],
+        "sourceProperties":{
+            "url":"https://github.com/bcgov/nr-messaging-service-showcase",
+            "repo":"nr-messaging-service-showcase",
+            "owner":"bcgov",
+            "files":[
+                "docs/overview.md",
+                "docs/developer-guide.md"
+            ]
+        }
+    },
+    {
+        "sourceType":"web",
+        "sourceProperties":{
+            "url":"https://apistore.nrs.gov.bc.ca/store/apis/info?name=cmsg-messaging-api&version=v1&provider=admin",
+            "title":"APIStore Messaging Service",
+            "description":"The Messaging Service REST API and Swagger",
+            "image":"https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png"
+        }
+    },
+    {
+        "sourceType":"github",
+        "resourceType":"Repository",
+        "labels":[
+            "index",
+            "upload",
+            "store",
+            "update",
+            "retrieve",
+            "attachments",
+            "documents"
+        ],
+        "sourceProperties":{
+            "url":"https://github.com/bcgov/nr-document-management-showcase",
+            "repo":"nr-document-management-showcase",
+            "owner":"bcgov",
+            "files":[
+                "docs/overview.md",
+                "docs/developer-guide.md"
+            ]
+        }
+    },
+    {
+        "sourceType":"web",
+        "sourceProperties":{
+            "url":"https://apistore.nrs.gov.bc.ca/store/apis/info?version=v1&name=dms-api&provider=admin",
+            "title":"APIStore Document Management Services",
+            "description":"The Document Management REST API and Swagger",
+            "image":"https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png"
+        }
+    },
+    {
+        "sourceType":"github",
+        "resourceType":"Repository",
+        "labels":[
+            "document",
+            "pdf",
+            "generation"
+        ],
+        "sourceProperties":{
+            "url":"https://github.com/bcgov/nr-document-generation-showcase",
+            "repo":"nr-document-generation-showcase",
+            "owner":"bcgov",
+            "files":[
+                "docs/overview.md",
+                "docs/developer-guide.md"
+            ]
+        }
+    },
+    {
+        "sourceType":"web",
+        "sourceProperties":{
+            "url":"https://apistore.nrs.gov.bc.ca/store/apis/info?version=v1&name=dgen-api&provider=admin",
+            "title":"APIStore Document Generation",
+            "description":"The Document Generation REST API and Swagger",
+            "image":"https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png"
+        }
+    }
     ]
   }
 }
