@@ -1445,6 +1445,13 @@ exports[`Collections Container it matches snapshot 1`] = `
           </a>
         </li>
         <li>
+          <button
+            class="emotion-206 emotion-207"
+          >
+            Fair Use
+          </button>
+        </li>
+        <li>
           <a
             aria-label="View the BC Dev Exchange Organization"
             href="https://bcdevexchange.org"
@@ -1457,13 +1464,6 @@ exports[`Collections Container it matches snapshot 1`] = `
               style="margin: 0px; max-height: 50px;"
             />
           </a>
-        </li>
-        <li>
-          <button
-            class="emotion-206 emotion-207"
-          >
-            Fair Use
-          </button>
         </li>
       </ul>
     </div>

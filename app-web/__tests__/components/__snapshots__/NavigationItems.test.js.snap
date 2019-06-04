@@ -8,6 +8,13 @@ exports[`Primary Footer Component it matches snapshot 1`] = `
     to="/"
   />
   <li>
+    <LinkButton
+      onClick={[Function]}
+    >
+      Fair Use
+    </LinkButton>
+  </li>
+  <li>
     <a
       aria-label="View the BC Dev Exchange Organization"
       href="https://bcdevexchange.org"
@@ -30,13 +37,6 @@ exports[`Primary Footer Component it matches snapshot 1`] = `
         }
       />
     </a>
-  </li>
-  <li>
-    <LinkButton
-      onClick={[Function]}
-    >
-      Fair Use
-    </LinkButton>
   </li>
 </ul>
 `;
