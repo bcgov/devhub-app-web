@@ -21,7 +21,7 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
 
 @media (min-width:576px) {
   .emotion-13 {
-    padding: 50px 15px 55px;
+    padding: 20px 15px;
   }
 }
 
@@ -199,7 +199,7 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
 
 @media (min-width:576px) {
   .emotion-13 {
-    padding: 50px 15px 55px;
+    padding: 20px 15px;
   }
 }
 
