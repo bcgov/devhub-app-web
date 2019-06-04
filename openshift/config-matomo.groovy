@@ -18,6 +18,39 @@ app {
         commit = ['git', 'rev-parse', 'HEAD'].execute().text.trim()
     }
 
+    build {
+        env {
+            name = "build"
+            id = "pr-${opt.'pr'}"
+        }
+        version = "${app.build.env.name}-v${opt.'pr'}"
+        name = "${opt.'build-name'?:app.name}"
+        suffix = "-pr-${opt.'pr'}"
+        id = "${app.name}${app.build.suffix}"
+        namespace = app.namespaces.'build'.namespace
+        timeoutInSeconds = 60*20 // 20 minutes
+        // as an initial step, these will be set statically at build time.  @todo make them dynamic per-environment
+        matomoURL = "https://matomo-devhub-prod.pathfinder.gov.bc.ca"
+        matomoSiteURL = "https://developer.gov.bc.ca"
+        matomoSiteId = "1"
+        templates = [
+                [
+                        'file':'openshift/matomo/mariadb/mariadb-build.json',
+                        'params': [
+                                'SUFFIX': app.build.suffix,
+                                'OUTPUT_IMAGE_TAG': app.build.version
+                        ]
+                ], [
+                        'file': 'openshift/matomo/matomo/matomo-build.json',
+                        'params': [
+                                'SUFFIX': app.build.suffix,
+                                'OUTPUT_IMAGE_TAG': app.build.version
+                        ]
+                ] // todo re-introduce managed matomo-proxy - or at least imagestream.
+        ]
+    }
+
+
     deployment {
         env {
             name = vars.deployment.env.name // env-name
