@@ -111,3 +111,7 @@ pipeline/build/
 
 # app registry
 app-web/registry/registry.json
+
+# cypress
+app-web/cypress/videosFolder
+app-web/cypress/screenshotsFolder
