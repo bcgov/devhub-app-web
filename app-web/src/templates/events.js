@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import Layout from '../hoc/Layout';
 import Aux from '../hoc/auxillary';
-import { Title } from '../components/Page';
+import Title from '../components/Page/Title';
 import Main from '../components/Page/Main';
 import NoEvents from '../components/UI/NoEvents';
 import { Event } from '../components/Event';
@@ -13,7 +13,14 @@ import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../constants/designTokens';
 import CardCarousel from '../components/CardCarousel/CardCarousel';
 //import cloneDeep from 'lodash/cloneDeep';
 import { Container, LinkContainer } from '../components/home/index';
+import {
+  TitleLink,
+  CollectionTitle,
+  CollectionDescription,
+} from '../components/CollectionPreview/CollectionPreview';
 import { ChevronLink } from '../components/UI/Link';
+import { TOPICS } from '../constants/topics';
+import { getFirstNonExternalResource } from '../utils/helpers';
 //import ResourcePreview from '../components/home/ResourcePreview';
 //import CollectionsContainer from '../components/Home/CollectionsContainer';
 //import merge from 'lodash/merge';
@@ -48,64 +55,17 @@ const CardContainer = styled.div`
   }
 `;
 
-export const EventsPage = ({ data: { allEventbriteEvents, allDevhubSiphon } }) => {
+export const EventsPage = ({ data: { allEventbriteEvents, allDevhubCollection } }) => {
   const events = flattenGatsbyGraphQL(allEventbriteEvents.edges);
   // filter out any events that are passed today
   const currentEvents = events.filter(e => e.start.daysFromNow <= 0);
 
   //Get all the cards on the site
-  const cards = flattenGatsbyGraphQL(allDevhubSiphon.edges);
-  //filter to just get the cards for the Community Enablers and Events topic
-  const communityCards = cards.filter(
-    e => e.source.displayName === 'Community and Events' || e.name === 'Community and Events',
-  );
-
-  //Take the eventbrite events and format their data to be able to be used as a card
-  //let currentCards = cloneDeep(currentEvents);
-  /*currentCards = currentCards.filter(e => delete e.venue).filter(e => delete e.organization);
-  currentCards.forEach(element => {
-    element.unfurl = {
-      title: element.name.text,
-      image: element.logo.original.url,
-      description:
-        element.start.month +
-        ' ' +
-        element.start.day +
-        ': ' +
-        element.description.html.replace(/<[^>]+>/g, ''), //this regular expression removes any sort of HTML related tag
-    };
-    element.resource = { type: 'Self-Service Tools', path: element.url };
-  });*/
-
-  //make this into a function in UTILS
-  const currentCards = currentEvents.map(element => {
-    const EventCards = {
-      unfurl: {
-        title: element.name.text,
-        image: element.logo.original.url,
-        description:
-          element.start.month +
-          ' ' +
-          element.start.day +
-          ': ' +
-          element.description.html.replace(/<[^>]+>/g, ''), //this regular expression removes any sort of HTML related tag
-      },
-      resource: {
-        type: 'Events',
-        path: element.url,
-      },
-    };
-    return EventCards;
-  });
-
-  //add Community and Events cards with the event cards so that they can be used in the same carousel
-  //let i = 0;
-  const finalCards = communityCards.concat(currentCards);
-  /*currentCards.forEach(element => {
-    communityCards.push(currentCards[i]);
-    i++;
-  });*/
-
+  const cards = flattenGatsbyGraphQL(allDevhubCollection.edges);
+  //filter to just get the cards for the Community and Events topic
+  const communityCards = cards
+    .filter(e => e.name === TOPICS.COMMUNITY_AND_EVENTS)
+    .flatMap(e => e.childrenDevhubSiphon);
   // previous events are sorted in descending order
   const previousEvents = events
     .filter(e => e.start.daysFromNow > 0)
@@ -124,14 +84,6 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubSiphon } }) =
             Github account).
           </p>
         </Blockqoute>
-        <ContainerBoarder>
-          <CardCarousel resources={finalCards} />
-          <LinkContainer>
-            <ChevronLink to={'/Community-Enablers-and-Events/BC-Gov-Development-Community-Events'}>
-              View
-            </ChevronLink>
-          </LinkContainer>
-        </ContainerBoarder>
         {currentEvents.length > 0 ? (
           <Aux>
             <CardContainer>
@@ -151,6 +103,24 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubSiphon } }) =
         ) : (
           <NoEvents />
         )}
+        <Aux>
+          <p />
+          <CollectionTitle clamp={2}>
+            <TitleLink to={getFirstNonExternalResource(communityCards)}>
+              {TOPICS.COMMUNITY_AND_EVENTS}
+            </TitleLink>
+          </CollectionTitle>
+          <CollectionDescription clamp={3}>
+            Tools and events that foster collaboration and communication across the BC Gov developer
+            community.
+          </CollectionDescription>
+          <ContainerBoarder>
+            <CardCarousel resources={communityCards} />
+            <LinkContainer>
+              <ChevronLink to={getFirstNonExternalResource(communityCards)}>View</ChevronLink>
+            </LinkContainer>
+          </ContainerBoarder>
+        </Aux>
         <Aux>
           <h2>Past Events</h2>
           <CardContainer pastEvents>
@@ -207,37 +177,29 @@ export const EventData = graphql`
         }
       }
     }
-    allDevhubSiphon {
+    allDevhubCollection {
       edges {
         node {
           id
           name
-          owner
-          parent {
+          description
+          resources: childrenDevhubSiphon {
             id
           }
-          _metadata {
-            position
-          }
-          attributes {
-            personas
-          }
-          source {
-            displayName
-            sourcePath
-            type
-            name
-          }
-          resource {
-            path
-            type
-          }
-          unfurl {
-            title
-            description
-            type
-            image
-            author
+          childrenDevhubSiphon {
+            id
+            resource {
+              type
+              path
+            }
+            _metadata {
+              position
+            }
+            unfurl {
+              title
+              description
+              image
+            }
           }
         }
       }

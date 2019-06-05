@@ -4,7 +4,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
 .emotion-39 {
   font-size: 15px;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0;
   padding: 10px 10px;
 }
 
