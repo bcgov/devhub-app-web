@@ -33,6 +33,10 @@ const Header = styled.header`
   }
 `;
 
+export const TEST_IDS = {
+  title: 'about-title',
+};
+
 const About = ({
   data: {
     file: {
@@ -43,7 +47,7 @@ const About = ({
   return (
     <Layout>
       <Header>
-        <h1>{frontmatter.title}</h1>
+        <h1 data-testid={TEST_IDS.title}>{frontmatter.title}</h1>
         <h4>{frontmatter.subtitle}</h4>
       </Header>
       <Main
