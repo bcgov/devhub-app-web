@@ -11,8 +11,7 @@ import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { EVENTS } from '../constants/ui';
 import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../constants/designTokens';
 import CardCarousel from '../components/CardCarousel/CardCarousel';
-//import cloneDeep from 'lodash/cloneDeep';
-import { Container, LinkContainer } from '../components/home/index';
+import { Container, LinkContainer } from '../components/Home/index';
 import {
   TitleLink,
   CollectionTitle,
@@ -21,9 +20,6 @@ import {
 import { ChevronLink } from '../components/UI/Link';
 import { TOPICS } from '../constants/topics';
 import { getFirstNonExternalResource } from '../utils/helpers';
-//import ResourcePreview from '../components/home/ResourcePreview';
-//import CollectionsContainer from '../components/Home/CollectionsContainer';
-//import merge from 'lodash/merge';
 
 export const TEST_IDS = {
   alert: 'events-container',
