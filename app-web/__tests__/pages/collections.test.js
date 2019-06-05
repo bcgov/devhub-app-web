@@ -1,8 +1,8 @@
 import React from 'react';
 import { ThemeProvider } from 'emotion-theming';
 import { render } from 'react-testing-library';
-import { CollectionsPage } from '../../src/pages/collections';
-import { SIPHON_NODES, COLLECTIONS } from '../../__fixtures__/siphon-fixtures';
+import { addCurrentEventsToCollection, CollectionsPage } from '../../src/pages/collections';
+import { SIPHON_NODES, COLLECTIONS, EVENTS } from '../../__fixtures__/siphon-fixtures';
 import theme from '../../theme';
 import { getFirstNonExternalResource } from '../../src/utils/helpers';
 jest.mock('react-spinners', () => null);
@@ -20,6 +20,7 @@ describe('Collections Container', () => {
     // this component
     const nodes = SIPHON_NODES.map(c => ({ node: c }));
     const collections = COLLECTIONS.map(c => ({ node: c }));
+    const events = EVENTS.map(c => ({ node: c }));
 
     const data = {
       allDevhubSiphon: {
@@ -27,6 +28,9 @@ describe('Collections Container', () => {
       },
       allDevhubCollection: {
         edges: collections,
+      },
+      allEventbriteEvents: {
+        edges: events,
       },
     };
     // mocking redux actions
@@ -57,5 +61,42 @@ describe('Collections Container', () => {
     );
 
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  test('Events concat with collections successfully', () => {
+    const nodes = SIPHON_NODES.map(c => ({ node: c }));
+    const collections = COLLECTIONS.map(c => ({ node: c }));
+    const events = EVENTS.map(c => ({ node: c }));
+
+    const data = {
+      allDevhubSiphon: {
+        edges: nodes,
+      },
+      allDevhubCollection: {
+        edges: collections,
+      },
+      allEventbriteEvents: {
+        edges: events,
+      },
+    };
+    // mocking redux actions
+    const props = {
+      data,
+      collections: COLLECTIONS.map(c => ({
+        ...c,
+        resources: c.resources.map(r => ({ ...r, resource: { path: '/' } })),
+      })),
+      location: {
+        pathname: '/collections',
+      },
+      resourcesLoaded: false,
+    };
+
+    //takes the initial length of the design system cards then calls our method to add events to the topic
+    const initialLength = props.collections[0].childrenDevhubSiphon.length;
+    const cardAndEvents = addCurrentEventsToCollection(COLLECTIONS, EVENTS, 'Design System');
+    const newLength = cardAndEvents[0].childrenDevhubSiphon.length;
+
+    expect(newLength).toBeGreaterThan(initialLength);
   });
 });

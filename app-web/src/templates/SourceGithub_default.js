@@ -56,7 +56,7 @@ class SourceGithubMarkdownDefault extends React.Component {
     }).Compiler;
     let navigationItems = nav.items;
 
-    if (collection.name === TOPICS.COMMUNITY_ENABLERS_AND_EVENTS) {
+    if (collection.name === TOPICS.COMMUNITY_AND_EVENTS) {
       const eventbriteNavItems = flattenGatsbyGraphQL(communityEvents.edges);
       const currentEvents = eventbriteNavItems
         .filter(e => e.start.daysFromNow <= 0)

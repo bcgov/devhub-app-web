@@ -1,7 +1,6 @@
 {
-  "name": "Community Enablers and Events",
-  "description": "Tools that foster collaboration and communication across the BC Gov developer community.",
-  "resourceType": "Self-Service Tools",
+  "name": "Community and Events",
+  "description": "Tools and events that foster collaboration and communication across the BC Gov developer community.",
   "attributes": {
     "personas": [
       "Developer",
@@ -13,6 +12,7 @@
     "sources": [
       {
         "sourceType": "web",
+        "resourceType": "Self-Service Tools",
         "sourceProperties": {
           "url": "https://www.bcdevexchange.org",
           "title": "BC Developers Exchange",
@@ -22,6 +22,7 @@
       },
       {
         "sourceType": "web",
+        "resourceType": "Self-Service Tools",
         "sourceProperties": {
           "url": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
           "author": "kelpisland",
@@ -32,6 +33,7 @@
       },
       {
         "sourceType": "web",
+        "resourceType": "Events",
         "sourceProperties": {
           "url": "https://www.meetup.com/DevOps-Commons/",
           "title": "DevOps Commons MeetUp",
@@ -41,6 +43,7 @@
       },
       {
         "sourceType": "web",
+        "resourceType": "Events",
         "sourceProperties": {
           "url": "https://www.meetup.com/Cloud-Native-Victoria/",
           "title": "Cloud Native Victoria MeetUp",
@@ -50,19 +53,31 @@
       },
       {
         "sourceType": "github",
+        "resourceType": "Events",
         "sourceProperties": {
-          "resourceType": "Documentation",
           "url": "https://github.com/bcgov/devhub-resources/",
           "owner": "bcgov",
           "repo": "devhub-resources",
           "files": [
-            "resources/community/events.md",
+            "resources/community/events.md"
+          ]
+        }
+      },
+      {
+        "sourceType": "github",
+        "resourceType": "Documentation",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/devhub-resources/",
+          "owner": "bcgov",
+          "repo": "devhub-resources",
+          "files": [
             "resources/community/chat_conventions.md"
           ]
         }
       },
       {
         "sourceType": "github",
+        "resourceType": "Documentation",
         "sourceProperties": {
           "url": "https://github.com/bcgov/reggie-web/",
           "owner": "bcgov",

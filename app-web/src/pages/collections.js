@@ -25,12 +25,73 @@ import Main from '../components/Page/Main';
 import withResourceQuery from '../hoc/withResourceQuery';
 import Layout from '../hoc/Layout';
 import { getFirstNonExternalResource } from '../utils/helpers';
-import { selectCollectionsWithResourcesGroupedByType } from '../utils/selectors';
+//import { convertPositionToSortableString } from '../../plugins/gatsby-source-github-all/utils/helpers';
+//import { selectCollectionsWithResourcesGroupedByType } from '../utils/selectors';
+import { RESOURCE_TYPES } from '../constants/ui';
+import uniqBy from 'lodash/uniqBy';
+import { TOPICS } from '../constants/topics';
 
-const collectionsSelector = selectCollectionsWithResourcesGroupedByType();
+//Generates a new metadata postion string, similar to the ones used on the other nodes
+const createMetaPosition = (maxPadding, index1, index2) => {
+  const posLength1 = maxPadding - (index1 + '').length;
+  const posLength2 = maxPadding - (index2 + '').length;
+  const paddedPosition1 = '0'.repeat(posLength1) + index1;
+  const paddedPosition2 = '0'.repeat(posLength2) + index2;
+  return paddedPosition1 + '.' + paddedPosition2;
+};
+
+//Takes in the collections and events then add the events to the desired collection
+export const addCurrentEventsToCollection = (collections, events, collectionName) => {
+  //find the index of the given topic for the first digit of the metadata position
+  const collectionIndex = collections.map(e => e.name).indexOf(collectionName);
+  //find the number of items in the collection for the second digit of the metadata position
+  let eventIndex = collections
+    .filter(e => e.name === collectionName)
+    .flatMap(e => e.childrenDevhubSiphon).length;
+  // filter out any events that are passed today
+  const currentEvents = events
+    .filter(e => e.start.daysFromNow <= 0)
+    .map(event => {
+      event = {
+        unfurl: {
+          title: event.name.text,
+          description: `Held on ${event.start.month} ${event.start.day}: ${event.description.text}`,
+        },
+        resource: {
+          path: event.url,
+          type: RESOURCE_TYPES.EVENTS,
+        },
+        id: event.id,
+        _metadata: {
+          position: createMetaPosition(10, collectionIndex, eventIndex),
+        },
+      };
+      //increase the eventIndex as we have just added a new item to the collection
+      eventIndex++;
+      return event;
+    });
+
+  const collectionsAndEvents = collections.map(collection => {
+    if (collection.name === collectionName) {
+      //Add in our EventBriteEvents
+      collection.childrenDevhubSiphon = collection.childrenDevhubSiphon.concat(currentEvents);
+      //Remove any duplicates, to fix the card duplication isuue
+      collection.childrenDevhubSiphon = uniqBy(collection.childrenDevhubSiphon, 'id');
+    }
+    return collection;
+  });
+
+  return collectionsAndEvents;
+};
+
 export const CollectionsPage = ({ data }) => {
-  const collections = flattenGatsbyGraphQL(data.allDevhubCollection.edges);
-  const collectionWithResources = collectionsSelector(collections);
+  let collections = flattenGatsbyGraphQL(data.allDevhubCollection.edges);
+  const events = flattenGatsbyGraphQL(data.allEventbriteEvents.edges);
+  const collectionsWithEvents = addCurrentEventsToCollection(
+    collections,
+    events,
+    TOPICS.COMMUNITY_AND_EVENTS,
+  );
   // resources are grouped by type, 'ungroup' them so we can find the first available
   // non external link to use as the entry page for the collection card
   return (
@@ -40,7 +101,7 @@ export const CollectionsPage = ({ data }) => {
           title={COLLECTIONS_PAGE.header.title.defaultMessage}
           subtitle={COLLECTIONS_PAGE.header.subtitle.defaultMessage}
         />
-        {collectionWithResources.map(collection => (
+        {collectionsWithEvents.map(collection => (
           <CollectionPreview
             key={collection.id}
             title={collection.name}

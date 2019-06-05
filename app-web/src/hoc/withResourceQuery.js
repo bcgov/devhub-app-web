@@ -53,6 +53,39 @@ const withResourceQuery = WrappedComponent => () => props => (
             }
           }
         }
+        allEventbriteEvents(
+          sort: { fields: [start___local], order: ASC }
+          filter: { shareable: { eq: true } }
+        ) {
+          edges {
+            node {
+              id
+              name {
+                text
+              }
+              url
+              start {
+                day: local(formatString: "DD")
+                month: local(formatString: "MMM")
+                year: local(formatString: "YYYY")
+                daysFromNow: local(difference: "days")
+              }
+              description {
+                html
+                text
+              }
+              organization
+              logo {
+                original {
+                  url
+                }
+              }
+              venue {
+                name
+              }
+            }
+          }
+        }
         allDevhubSiphon {
           edges {
             node {
