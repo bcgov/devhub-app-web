@@ -41,13 +41,13 @@ const CollectionPreviewContainer = styled.div`
   padding-bottom: 20px;
 `;
 
-const CollectionTitle = styled(CardTitle)`
+export const CollectionTitle = styled(CardTitle)`
   font-weight: 700;
   margin: 10px 0;
   font-size: 26px;
 `;
 
-const CollectionDescription = styled(CardDescription)`
+export const CollectionDescription = styled(CardDescription)`
   max-width: 500px;
   margin-bottom: 15px;
 `;
@@ -57,7 +57,7 @@ const CollectionLinkWrapper = styled.div`
   font-size: 1.15em;
 `;
 
-const TitleLink = styled(Link)`
+export const TitleLink = styled(Link)`
   color: inherit;
   padding: 0px;
   margin: 0px;
