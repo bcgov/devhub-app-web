@@ -8,7 +8,7 @@ module.exports = {
     '.(js|jsx)': '<rootDir>/config/jest/jestPreprocess.js',
   },
   testRegex: '(\\.(i?test|spec))\\.(jsx|js)$',
-  testPathIgnorePatterns: ['/node_modules/', '/.cache/'],
+  testPathIgnorePatterns: ['/node_modules/', '/.cache/', '/cypress/'],
   moduleFileExtensions: ['js', 'module.css', '.css', 'json'],
   moduleNameMapper: {
     '\\.module\\.(css|less)$': 'identity-obj-proxy',
