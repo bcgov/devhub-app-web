@@ -113,5 +113,7 @@ pipeline/build/
 app-web/registry/registry.json
 
 # cypress
+app-web/cypress/videos
 app-web/cypress/videosFolder
 app-web/cypress/screenshotsFolder
+app-web/cypress/screenshots
