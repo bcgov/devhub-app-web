@@ -1,0 +1,33 @@
+{
+  "generator-bcdk": {
+    "promptValues": {
+      "modules": {
+        "jenkins": {
+          "path": ".jenkins",
+          "namespace": "devhub-tools",
+          "name": "jenkins",
+          "version": "1.0.0",
+          "environments": {
+            "build": {
+              "namespace": "devhub-tools"
+            },
+            "dev": {
+              "namespace": "devhub-dev"
+            },
+            "test": {
+              "namespace": "devhub-test"
+            },
+            "prod": {
+              "namespace": "devhub-prod"
+            }
+          },
+          "jenkinsJobName": "_jenkins",
+          "github_owner": "bcgov",
+          "github_repo": "devhub-app-web",
+          "jenkinsFilePath": ".jenkins/Jenkinsfile",
+          "uuid": "0c59e2dc-e980-471d-a38f-046596d7e682"
+        }
+      }
+    }
+  }
+}
