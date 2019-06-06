@@ -26,7 +26,7 @@ module.exports = (settings)=>{
       'NAME': phases[phase].name,
       'SUFFIX': phases[phase].suffix,
       'VERSION': phases[phase].tag,
-      'SLAVE_NAME': 'build',
+      'SLAVE_NAME': 'slave',
       'SLAVE_LABELS': 'build deploy test ui-test',
       'SLAVE_EXECUTORS': '3',
       'CPU_REQUEST': '300m',
