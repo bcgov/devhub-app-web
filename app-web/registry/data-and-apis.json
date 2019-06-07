@@ -1,0 +1,70 @@
+{
+  "name": "Data and APIs",
+  "description": "Privince provided Data and API Services",
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/api-guidelines",
+          "owner": "bcgov",
+          "repo": "api-guidelines",
+          "files": [
+            "government-of-british-columbia-api-guidelines.md#api-performance-management",
+            "government-of-british-columbia-api-guidelines.md#api-design",
+            "government-of-british-columbia-api-guidelines.md#api-security",
+            "government-of-british-columbia-api-guidelines.md#api-encoding-and-metadata",
+            "government-of-british-columbia-api-guidelines.md#api-documentation",
+            "government-of-british-columbia-api-guidelines.md#api-consumption",
+            "government-of-british-columbia-api-guidelines.md#api-lifecycle-management",
+            "government-of-british-columbia-api-guidelines.md#api-performance-management"
+          ]
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://catalogue.data.gov.bc.ca/group/bc-government-api-registry",
+          "author": "bcgov",
+          "title": "BC Government API Registry",
+          "description": "The Province of British Columbia API Registry",
+          "image": "https://developer.gov.bc.ca/static/BCID_H_rgb_rev-20eebe74aef7d92e02732a18b6aa6bbb.svg"
+        }
+      },      
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/api-specs",
+          "author": "bcgov",
+          "repo": "api-specs",
+          "image": "https://developer.gov.bc.ca/static/BCID_H_rgb_rev-20eebe74aef7d92e02732a18b6aa6bbb.svg",
+          "files": [
+            "README.md"
+          ]          
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://catalogue.data.gov.bc.ca/",
+          "author": "bcgov",
+          "title": "the B.C. Data Catalogue",
+          "description": "The BC Data catalogue helps users to find, understand and explore data. The catalogue also provides contact information so that data users can contact Data Custodians for additional information if required.",
+          "image": "https://developer.gov.bc.ca/static/BCID_H_rgb_rev-20eebe74aef7d92e02732a18b6aa6bbb.svg"
+        }
+      }      
+    ]
+  },
+  "attributes": {
+    "labels": [
+      "Documentation",
+      "Repository"
+    ],
+    "personas": [
+      "Designer",
+      "Developer",
+      "Product Owner"
+    ]
+  },
+  "resourceType": "Documentation"
+}
