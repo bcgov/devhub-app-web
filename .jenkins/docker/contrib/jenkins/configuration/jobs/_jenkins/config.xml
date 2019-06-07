@@ -34,10 +34,11 @@
           <repoOwner>bcgov</repoOwner>
           <repository>devhub-app-web</repository>
           <traits>
-            <org.jenkinsci.plugins.github__branch__source.ForkPullRequestDiscoveryTrait>
+          <!-- disabling fork discovery - patrick simonian -->
+            <!-- <org.jenkinsci.plugins.github__branch__source.ForkPullRequestDiscoveryTrait>
               <strategyId>2</strategyId>
               <trust class="org.jenkinsci.plugins.github_branch_source.ForkPullRequestDiscoveryTrait$TrustPermission"/>
-            </org.jenkinsci.plugins.github__branch__source.ForkPullRequestDiscoveryTrait>
+            </org.jenkinsci.plugins.github__branch__source.ForkPullRequestDiscoveryTrait> -->
             <org.jenkinsci.plugins.github__branch__source.OriginPullRequestDiscoveryTrait>
               <strategyId>2</strategyId>
             </org.jenkinsci.plugins.github__branch__source.OriginPullRequestDiscoveryTrait>
