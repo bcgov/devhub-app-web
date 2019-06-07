@@ -28,7 +28,7 @@
   <sources class="jenkins.branch.MultiBranchProject$BranchSourceList" plugin="branch-api@2.0.20">
     <data>
       <jenkins.branch.BranchSource>
-        <source class="org.jenkinsci.plugins.github_branch_source.GitHubSCMSource" plugin="github-branch-source@2.3.6">
+        <source class="org.jenkinsci.plugins.github_branch_source.GitHubSCMSource" plugin="github-branch-source@2.5.2">
           <id>0c59e2dc-e980-471d-a38f-046596d7e682</id>
           <credentialsId>github-account</credentialsId>
           <repoOwner>bcgov</repoOwner>
