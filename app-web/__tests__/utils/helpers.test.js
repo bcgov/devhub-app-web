@@ -74,11 +74,11 @@ describe('Helpers', () => {
       { node: { name: 'Blah' } },
       { node: { name: 'Apple' } },
       { node: { name: 'Design System' } },
-      { node: { name: 'Featured Cards' } },
+      { node: { name: 'Featured Resources' } },
       { node: { name: 'Foo' } },
     ];
     const expected = [
-      { node: { name: 'Featured Cards' } },
+      { node: { name: 'Featured Resources' } },
       { node: { name: 'Design System' } },
       { node: { name: 'Apple' } },
       { node: { name: 'Blah' } },
