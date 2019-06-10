@@ -30,10 +30,15 @@ import {
   CardTitle,
   CardWrapper,
   DecorativeBar,
+  EventInfoDiv,
+  EventDate,
+  EventContainer,
+  EventImageWrapper,
 } from './index';
 import Aux from '../../../hoc/auxillary';
 
 import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
+import EventLogo from '../../Event/Logo';
 
 const Card = ({ type, title, description, image, link, ...rest }) => {
   let isExternal = !!validUrl.isWebUri(link);
@@ -45,7 +50,31 @@ const Card = ({ type, title, description, image, link, ...rest }) => {
     </CardDescription>
   );
 
-  if (image && description) {
+  //first check if its an eventbrite event, as in our resolver in gatsby-node.js -> image is set to "eventbrite"
+  if (image === 'eventbrite' && description) {
+    cardBody = (
+      <Aux>
+        <CardDescription title={description} clamp={3} tagName="p">
+          {rest.event.unfurl.description}
+        </CardDescription>
+        <EventContainer>
+          <EventDate>
+            <span>{rest.event.start.month}</span>
+            {rest.event.start.day}
+            <small>{rest.event.start.year}</small>
+          </EventDate>
+          <EventInfoDiv>
+            <li>
+              {rest.event.venue !== null ? rest.event.venue : 'tbd'}
+              <EventImageWrapper>
+                <EventLogo type={image} />
+              </EventImageWrapper>
+            </li>
+          </EventInfoDiv>
+        </EventContainer>
+      </Aux>
+    );
+  } else if (image && description) {
     cardBody = (
       <Aux>
         <CardDescription title={description} clamp={2} tagName="p">

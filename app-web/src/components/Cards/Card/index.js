@@ -23,6 +23,7 @@ import DotDotDot from 'react-dotdotdot';
 import Image from 'react-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CUSTOM_TYPE } from '../../../constants/designTokens';
+import { EventLogoWrapper, DateLI, EventDetailsContainer } from '../../Event';
 
 export const designTokens = {
   description: `
@@ -81,6 +82,14 @@ export const CardDescription = styled(DotDotDot)`
   ${designTokens.description};
 `;
 
+export const EventImageWrapper = styled(EventLogoWrapper)`
+  margin-top: 0px;
+  img {
+    margin-left: -8px;
+    padding-left: 0px;
+  }
+`;
+
 // combination of card image and wrapper make images response correctly
 // to the flex container. The card image wrapper can grow/shrink automatically
 // the object-fit scaledown maintains aspect ratio for any type of image
@@ -99,6 +108,33 @@ export const CardImageWrapper = styled.div`
   padding-top: 10px;
   text-align: center;
   display: flex;
+`;
+
+export const EventInfoDiv = styled.div`
+  > li {
+    margin-bottom: -5px;
+  }
+`;
+
+export const EventDate = styled(DateLI)`
+  border-radius: 0px;
+  border: 0px;
+  margin: 0;
+  > span {
+    margin-top: -15px;
+  }
+  > small {
+    bottom: 0.1em;
+  }
+`;
+
+export const EventContainer = styled(EventDetailsContainer)`
+  margin-top: 5px;
+  margin-left: -15px;
+  overflow: hidden;
+  > li {
+    margin-bottom: 0px;
+  }
 `;
 
 export const CardBody = styled.div`

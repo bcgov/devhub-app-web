@@ -298,6 +298,19 @@ export const DEVHUB_COLLECTION = {
   })),
 };
 export const EVENT_1 = {
+  siphon: {
+    unfurl: {
+      title: 'BC Gov CSI Lab - Open House Networking event ',
+      image: 'eventbrite',
+      description: 'This is a test',
+    },
+    resource: {
+      type: 'Events',
+      path:
+        'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
+    },
+    id: '45046198392',
+  },
   description: {
     html: '<p> This is a test </p>',
     text: 'This is a test',
@@ -325,6 +338,19 @@ export const EVENT_1 = {
   },
 };
 export const EVENT_2 = {
+  siphon: {
+    unfurl: {
+      title: "Take a walk on the Agile side: Tour of BC Gov's CSI Lab",
+      image: 'eventbrite',
+      description: 'This is also a test',
+    },
+    resource: {
+      type: 'Events',
+      path:
+        'https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F41880838%2F228490647317%2F1%2Foriginal.jpg?auto=compress&s=c53f3ef4e5b52e00963afab920fca78e',
+    },
+    id: '61112980570',
+  },
   description: {
     html: '<p> This is also a test </p>',
     text: 'This is also a test',

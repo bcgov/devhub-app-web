@@ -68,6 +68,7 @@ const CardCarousel = ({ resources }) => {
       description={r.unfurl.description}
       image={r.unfurl.image}
       link={r.resource.path}
+      event={r}
     />
   ));
 
