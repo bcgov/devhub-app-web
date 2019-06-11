@@ -43,8 +43,6 @@ module.exports = (settings)=>{
       'SUFFIX': phases[phase].suffix,
       'VERSION': phases[phase].tag,
       'CADDY_VOLUME_NAME': 'web-caddy-config',
-      'SOURCE_REPOSITORY_URL': oc.git.http_url,
-      'SOURCE_REPOSITORY_REF': oc.git.ref,
       ...getSsoParamsByEnv(phase, changeId),
     }
   });
