@@ -57,7 +57,7 @@ pipeline {
         }
 
         stage('Cleanup') {
-            agent { label 'clean' }
+            agent { label 'deploy' }
             input {
                 message "Should we cleanup and merge this pr?"
                 ok "Yes!"
