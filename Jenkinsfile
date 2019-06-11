@@ -64,7 +64,7 @@ pipeline {
             }
             steps {
                 echo "Cleaning ..."
-                sh "cd .pipeline && ./npmw ci && ./npmw run clean -- --pr=${CHANGE_ID} --env=prod"
+                sh "cd .pipeline && ./npmw ci && ./npmw run clean -- --pr=${CHANGE_ID} --env=dev"
             }
         }
     }
