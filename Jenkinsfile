@@ -47,12 +47,24 @@ pipeline {
         stage('Deploy (PROD)') {
             agent { label 'deploy' }
             input {
-                message "Should we continue with deployment to TEST?"
+                message "Should we continue with deployment to PROD?"
                 ok "Yes!"
             }
             steps {
                 echo "Deploying ..."
                 sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=prod"
+            }
+        }
+
+        stage('Cleanup') {
+            agent { label 'clean' }
+            input {
+                message "Should we cleanup?"
+                ok "Yes!"
+            }
+            steps {
+                echo "Cleaning ..."
+                sh "cd .pipeline && ./npmw ci && ./npmw run clean -- --pr=${CHANGE_ID} --env=prod"
             }
         }
     }
