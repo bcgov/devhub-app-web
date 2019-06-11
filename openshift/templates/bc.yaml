@@ -23,7 +23,21 @@ objects:
         name: 'registry.access.redhat.com/rhscl/nodejs-8-rhel7:1-22'
       importPolicy: {}
       referencePolicy:
-        type: Source
+        type: Local
+# base image for node js dependancies
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: "${NAME}-base"
+    creationTimestamp: 
+    annotations:
+      description: Nodejs Runtime Image
+    labels:
+      shared: 'true'
+  spec:
+    lookupPolicy:
+      local: false
+# the image stream for the node js build
 - apiVersion: v1
   kind: ImageStream
   metadata:
@@ -43,13 +57,50 @@ objects:
   spec:
     lookupPolicy:
       local: false
+- kind: BuildConfig
+  apiVersion: v1
+  metadata:
+    name: "${NAME}-base${SUFFIX}"
+    creationTimestamp: 
+    labels: {}
+    annotations: {}
+  spec:
+    completionDeadlineSeconds: 1440
+    triggers:
+    - type: ImageChange
+      imageChange: {}
+    - type: ConfigChange
+    runPolicy: SerialLatestOnly
+    source:
+      contextDir: "${DOCKER_IMAGE_DIRECTORY}"
+      type: Binary
+    strategy:
+      type: Docker
+      dockerStrategy:
+        from:
+          kind: ImageStreamTag
+          name: nodejs:${NODE_JS_VERSION}
+          namespace: openshift
+    output:
+      to:
+        kind: ImageStreamTag
+        name: "${NAME}-base:${VERSION}"
+    resources:
+      limits:
+        cpu: 1
+        memory: 2Gi
+      requests:
+        cpu: 1
+        memory: 1Gi
+    postCommit: {}
+    nodeSelector: 
 - apiVersion: v1
   kind: BuildConfig
   metadata:
     creationTimestamp: null
     name: ${NAME}${SUFFIX}
   spec:
-    completionDeadlineSeconds: 900 # terminate the build if it takes longer than 900 seconds, our builds are avg 10 minutes as of Feb 2019
+    completionDeadlineSeconds: 1500 # terminate the build if it takes longer than 900 seconds, our builds are avg 10 minutes as of Feb 2019
     nodeSelector: null
     output:
       to:
@@ -59,9 +110,10 @@ objects:
     resources:
       requests:
         cpu: 1
-        memory: 2Gi
+        memory: 2Gi ## memory usage is high because jest test use a lot of memory when running
+        ## we are hoping to move jest tests outside of the assemble script but until we do this will be quite a high request
       limits:
-        cpu: 2
+        cpu: 1
         memory: 4Gi
     source:
       git:
@@ -84,8 +136,7 @@ objects:
                 key: EVENT_BRITE_API_KEY
         from:
           kind: ImageStreamTag
-          name: nodejs:${NODE_JS_VERSION}
-          namespace: openshift
+          name: ${NAME}-base:${VERSION}
       type: Source
     triggers:
     - type: ConfigChange
@@ -108,9 +159,11 @@ objects:
     postCommit: {}
     resources:
       requests:
-        cpu: 1
+        cpu: 250m
+        memory: 500Mi
       limits:
-        cpu: 2
+        cpu: 400m
+        memory: 750Mi
     source:
       dockerfile: |-
         FROM nodejs/build-output:latest
@@ -164,11 +217,16 @@ parameters:
   displayName: SOURCE_REPOSITORY_REF
   name: SOURCE_REPOSITORY_REF
   required: true
-  value: WIP
+  value: ''
   # latest node js version as of Apr 2 2019
 - description: NODE_JS_VERSION
   displayName: NODE_JS_VERSION
   name: NODE_JS_VERSION
   required: true
   value: '10'
+- description: DOCKER_IMAGE_DIRECTORY
+  displayName: DOCKER_IMAGE_DIRECTORY
+  name: DOCKER_IMAGE_DIRECTORY
+  required: true
+  value: docker-images/nodejs-base
   

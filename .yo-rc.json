@@ -6,6 +6,15 @@
           "path": ".jenkins",
           "namespace": "devhub-tools",
           "name": "jenkins",
+          "jenkinsJobName": "_jenkins",
+          "github_owner": "bcgov",
+          "github_repo": "devhub-app-web",
+          "jenkinsFilePath": ".jenkins/Jenkinsfile",
+          "uuid": "0c59e2dc-e980-471d-a38f-046596d7e682"
+        },
+        "app": {
+          "path": ".",
+          "name": "app",
           "version": "1.0.0",
           "environments": {
             "build": {
@@ -20,12 +29,7 @@
             "prod": {
               "namespace": "devhub-prod"
             }
-          },
-          "jenkinsJobName": "_jenkins",
-          "github_owner": "bcgov",
-          "github_repo": "devhub-app-web",
-          "jenkinsFilePath": ".jenkins/Jenkinsfile",
-          "uuid": "0c59e2dc-e980-471d-a38f-046596d7e682"
+          }
         }
       }
     }

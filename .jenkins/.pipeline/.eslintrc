@@ -1,0 +1,35 @@
+
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "globals": {
+    "graphql": false
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "plugins": ["prettier"],
+  "rules": {
+    "no-unused-vars": ["error"],
+    "prettier/prettier": ["error"],
+    "linebreak-style": ["warn", "unix"],
+    "semi": ["error", "always"],
+    "indent": "off",
+    "import/no-named-as-default": "off",
+    "no-shadow": "off",
+    "quote-props": "off",
+    "max-len": "off",
+    "react/sort-comp": "off",
+    "no-unused-expressions": "warn",
+    "no-useless-concat": "warn",
+    "block-scoped-var": "error",
+    "consistent-return": "error",
+    "operator-linebreak": "off",
+    "arrow-parens": "off",
+    "eol-last": ["error", "always"]
+  }
+}
