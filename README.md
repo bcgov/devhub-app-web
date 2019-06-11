@@ -121,6 +121,7 @@ In the repo, at any given time, several to many branches may exist, and these ca
 * `master` branch: code that has been deployed an accepted in production ends up here.  It is the source from which new feature branches are created.
 * `feature/<#>-<issue-or-user-story-description>` branch: branches named following a similar format to the one shown are "feature branches" and created for the purpose of capturing work related to a single feature, often corresponding to a single, specific user story or issue.  This type of branch is created based on the lastest contents of `master`.
 * `hotfix/<#>-<issue-description>`: a "hotfix" branch for a change required to remediate an urgent problem found in the production instance of the application.  This type of branch would be based on the state of the master branch at the point the code in production was merged into it.
+* `chore/#-<issue-description>`: chore or housekeeping tasks for the repository
 
 ##### Lifecycle
 
@@ -140,91 +141,94 @@ Feature lifecycle is as follows:
 
  
 
-### Integration with Taiga via commit messages
+### Integration with Zenhub via issues
 
-This repository has been configured to send webhooks to a self-hosted Taiga instance as outlined [here](https://tree.taiga.io/support/integrations/github-integration/).  This allows a couple of useful things:
-
-* close issues and user stories via commit messages as described [here](https://tree.taiga.io/support/integrations/changing-elements-status-via-commit-message/)
-* associate commits with user stories and issues via commits as described [here](https://tree.taiga.io/support/integrations/attach-commits-to-elements-via-commit-message/)
-* create issues in Taiga when created in GitHub 
-
+Any issues that are created within this repository are synced with our Zenhub kanban board.
          
 
 ## Files in this repository
 > cmd to update tree (from project root) `tree -I 'node_modules|coverage|.cache|app-web/public' -d -L 3`
 ```
+.
 ├── app-web
-│   ├── __fixtures__
-│   ├── __mocks__
-│   │   └── @bcgov
-│   ├── __tests__
-│   │   ├── components
-│   │   ├── gatsby-plugins
-│   │   ├── hoc
-│   │   ├── pages
-│   │   └── utils
-│   ├── blog
-│   ├── config
-│   │   └── jest
-│   ├── gatsby
-│   ├── plugins
-│   │   ├── gatsby-remark-path-transform
-│   │   └── gatsby-source-github-all
-│   ├── public
-│   │   ├── 404
-│   │   ├── Agile-Delivery-Process
-│   │   ├── Authentication-and-Authorization
-│   │   ├── Code-Management
-│   │   ├── Community-Enablers-and-Events
-│   │   ├── Data-Privacy
-│   │   ├── Design-System
-│   │   ├── Developer-Tools
-│   │   ├── Developer-Toy-Box
-│   │   ├── Getting-Started-on-the-DevOps-Platform
-│   │   ├── Information-and-Application-Security
-│   │   ├── Mobile-Starter-Kit
-│   │   ├── about
-│   │   ├── collections
-│   │   ├── components
-│   │   ├── documentation
-│   │   ├── events
-│   │   ├── google-fonts
-│   │   ├── icons
-│   │   ├── images
-│   │   ├── offline-plugin-app-shell-fallback
-│   │   ├── repositories
-│   │   ├── self-service-tools
-│   │   ├── static
-│   │   └── workbox-v3.6.3
-│   ├── registry
-│   ├── shell-scripts
-│   ├── src
-│   │   ├── assets
-│   │   ├── components
-│   │   ├── constants
-│   │   ├── hoc
-│   │   ├── messages
-│   │   ├── pages
-│   │   ├── templates
-│   │   └── utils
-│   └── static
-│       └── images
+│   ├── __fixtures__
+│   ├── __mocks__
+│   │   └── @bcgov
+│   ├── __tests__
+│   │   ├── components
+│   │   ├── gatsby-plugins
+│   │   ├── hoc
+│   │   ├── pages
+│   │   └── utils
+│   ├── blog
+│   ├── config
+│   │   └── jest
+│   ├── gatsby
+│   ├── plugins
+│   │   ├── gatsby-remark-path-transform
+│   │   └── gatsby-source-github-all
+│   ├── public
+│   │   ├── 404
+│   │   ├── Agile-Delivery-Process
+│   │   ├── Authentication-and-Authorization
+│   │   ├── Code-Management
+│   │   ├── Community-and-Events
+│   │   ├── Data-Privacy
+│   │   ├── Design-System
+│   │   ├── Developer-Tools
+│   │   ├── Developer-Toy-Box
+│   │   ├── Featured-Cards
+│   │   ├── Getting-Started-on-the-DevOps-Platform
+│   │   ├── Information-and-Application-Security
+│   │   ├── Mobile-Starter-Kit
+│   │   ├── about
+│   │   ├── collections
+│   │   ├── components
+│   │   ├── documentation
+│   │   ├── events
+│   │   ├── google-fonts
+│   │   ├── https:
+│   │   ├── icons
+│   │   ├── images
+│   │   ├── offline-plugin-app-shell-fallback
+│   │   ├── repositories
+│   │   ├── self-service-tools
+│   │   ├── static
+│   │   └── workbox-v3.6.3
+│   ├── registry
+│   ├── shell-scripts
+│   ├── src
+│   │   ├── assets
+│   │   ├── components
+│   │   ├── constants
+│   │   ├── hoc
+│   │   ├── messages
+│   │   ├── pages
+│   │   ├── templates
+│   │   └── utils
+│   └── static
+│       └── images
+├── docker-images
+│   └── nodejs-base
 ├── docs
-│   ├── gatsby-custom-plugins
-│   └── images
+│   ├── gatsby-custom-plugins
+│   └── images
 ├── functional-tests
-│   ├── gradle
-│   │   └── wrapper
-│   └── src
-│       └── test
+│   ├── gradle
+│   │   └── wrapper
+│   └── src
+│       └── test
 ├── openshift
-│   ├── keycloak-scripts
-│   └── templates
-├── pipeline
+│   ├── keycloak-scripts
+│   └── templates
+└── pipeline
     ├── gradle
-    └── wrapper
+    │   └── wrapper
     └── src
-    └── groovy
+        └── groovy
+└── .jenkins
+└── .pipeline
+76 directories
 ```
 
 ## Getting Started
@@ -259,7 +263,33 @@ At this point, you can modify contents of the `registry` directory (adding resou
 
 ## Deployment (OpenShift)
 
-To Do.
+Our application has `nodejs` wrappers around the oc command line. It utilized the [BCDK (BC Developer toolKit)](https://github.com/bcDevOps/bcdk) generator. This generator scaffolded out a runnable jenkins instance via build config and deployment config templates as well as a wrapper.
+
+__Besides the initial deployment of application__, which happens manually, the remaining deployments are handled automatically via the bcdk scaffolded jenkins and node js pipeline.
+
+## To Deploy To Openshift
+
+1. Deploy the Jenkins Instance. 
+
+   a. change into the jenkins node js builder/deployer tool `cd .jenkins/.pipeline/lib`
+   b. explore the `config.js` file this contains some important params that will be passed into the build templates which are located at `openshift/build-master.yaml`, `openshift/build-slave.yaml`
+   c. for some reason I (Patrick) have not be able to use the `--dev-mode` flag of this version of the jenkins bcdk
+   and so you will need to make a live pr to your repository before continuing
+   d. log into oc through the command line and switch projects to your tools name space
+   e. build the live pr, from the `lib` directory run `npm run build --  --pr=<your pr number>`
+   f. observe that the build was succesful by either viewing logs through the oc cli or the openshift console
+   h. when the build is complete you may deploy straight to production (since this is the initial deployment)
+   g. run `npm run deploy -- --pr=<you pr number> --env=prod`
+   i. observe that your build is complete
+
+> please note jobs are built into the image, if you change any jobs  (`docker/contrib.../jobs`), you will need to
+rebuild the image
+
+2. Deploy the application
+> Jenkins should now be looking for prs
+   a. make a pr for your code changes and jenkins should fire off a job to build and deploy the application
+   b. if builds do not fire off, you may build and deploy the application seperately. Process and Apply all templates
+   withing the `openshift/templates` directory
 
 ## Getting Help or Reporting an Issue
 
