@@ -54,7 +54,7 @@
               "namespace": "devhub-prod"
             }
           },
-          "jenkinsJobName": "app",
+          "jenkinsJobName": "realm-o-matic",
           "github_owner": "bcgov",
           "github_repo": "realm-o-matic",
           "jenkinsFilePath": "Jenkinsfile",
