@@ -278,7 +278,6 @@ exports[`Collections Container it matches snapshot 1`] = `
   -webkit-flex: 1 1 auto;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-  margin-bottom: 10px;
   -webkit-flex-flow: column nowrap;
   -ms-flex-flow: column nowrap;
   flex-flow: column nowrap;
@@ -676,7 +675,7 @@ exports[`Collections Container it matches snapshot 1`] = `
                         type="Components"
                       />
                       <div
-                        class="emotion-42 emotion-43"
+                        class="emotion-42 emotion-311"
                       >
                         <div
                           css="[object Object]"
@@ -759,7 +758,7 @@ exports[`Collections Container it matches snapshot 1`] = `
                         type="Components"
                       />
                       <div
-                        class="emotion-42 emotion-43"
+                        class="emotion-42 emotion-311"
                       >
                         <div
                           css="[object Object]"
@@ -842,7 +841,7 @@ exports[`Collections Container it matches snapshot 1`] = `
                         type="Components"
                       />
                       <div
-                        class="emotion-42 emotion-43"
+                        class="emotion-42 emotion-311"
                       >
                         <div
                           css="[object Object]"
@@ -925,7 +924,7 @@ exports[`Collections Container it matches snapshot 1`] = `
                         type="Components"
                       />
                       <div
-                        class="emotion-42 emotion-43"
+                        class="emotion-42 emotion-311"
                       >
                         <div
                           css="[object Object]"
@@ -1125,7 +1124,7 @@ exports[`Collections Container it matches snapshot 1`] = `
                         type="Documentation"
                       />
                       <div
-                        class="emotion-42 emotion-43"
+                        class="emotion-42 emotion-311"
                       >
                         <div
                           css="[object Object]"
@@ -1208,7 +1207,7 @@ exports[`Collections Container it matches snapshot 1`] = `
                         type="Documentation"
                       />
                       <div
-                        class="emotion-42 emotion-43"
+                        class="emotion-42 emotion-311"
                       >
                         <div
                           css="[object Object]"
@@ -1291,7 +1290,7 @@ exports[`Collections Container it matches snapshot 1`] = `
                         type="Documentation"
                       />
                       <div
-                        class="emotion-42 emotion-43"
+                        class="emotion-42 emotion-311"
                       >
                         <div
                           css="[object Object]"

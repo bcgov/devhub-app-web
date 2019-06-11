@@ -24,11 +24,11 @@ import { ChevronLink } from '../UI/Link';
 import { Container, Title, StyledLink, LinkContainer } from './index';
 import Card from '../Cards/Card/Card';
 
-const CardWrapper = styled.div`
+export const CardWrapper = styled.div`
   margin: 6px 9px;
 `;
 
-const ResourceContainer = styled.div`
+export const ResourceContainer = styled.div`
   padding: 15px 0;
   display: flex;
   flex-flow: row wrap;

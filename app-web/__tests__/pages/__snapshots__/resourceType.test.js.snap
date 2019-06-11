@@ -243,7 +243,6 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   -webkit-flex: 1 1 auto;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-  margin-bottom: 10px;
   -webkit-flex-flow: column nowrap;
   -ms-flex-flow: column nowrap;
   flex-flow: column nowrap;
@@ -457,7 +456,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
                 type="Documentation"
               />
               <div
-                class="emotion-24 emotion-25"
+                class="emotion-24 emotion-131"
               >
                 <div
                   css="[object Object]"

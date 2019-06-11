@@ -59,26 +59,23 @@ const withResourceQuery = WrappedComponent => () => props => (
         ) {
           edges {
             node {
-              id
-              name {
-                text
+              siphon {
+                unfurl {
+                  title
+                  description
+                  image
+                }
+                resource {
+                  type
+                  path
+                }
+                id
               }
-              url
               start {
                 day: local(formatString: "DD")
                 month: local(formatString: "MMM")
                 year: local(formatString: "YYYY")
                 daysFromNow: local(difference: "days")
-              }
-              description {
-                html
-                text
-              }
-              organization
-              logo {
-                original {
-                  url
-                }
               }
               venue {
                 name

@@ -57,7 +57,7 @@ const Body = styled.div`
   flex-flow: column nowrap;
 `;
 
-const EventDetailsContainer = styled.ul`
+export const EventDetailsContainer = styled.ul`
   list-style: none;
   display: flex;
   flex-flow: row nowrap;
@@ -70,7 +70,7 @@ const EventDetailsContainer = styled.ul`
   }
 `;
 
-const DateLI = styled.li`
+export const DateLI = styled.li`
   text-align: center;
   width: 4em;
   position: relative;
@@ -97,7 +97,7 @@ const DateLI = styled.li`
   }
 `;
 
-const EventLogoWrapper = styled.div`
+export const EventLogoWrapper = styled.div`
   margin: 9px 0 4px;
   flex: 0 0 25px;
   display: flex;

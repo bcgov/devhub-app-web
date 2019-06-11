@@ -25,9 +25,6 @@ import Main from '../components/Page/Main';
 import withResourceQuery from '../hoc/withResourceQuery';
 import Layout from '../hoc/Layout';
 import { getFirstNonExternalResource } from '../utils/helpers';
-//import { convertPositionToSortableString } from '../../plugins/gatsby-source-github-all/utils/helpers';
-//import { selectCollectionsWithResourcesGroupedByType } from '../utils/selectors';
-import { RESOURCE_TYPES } from '../constants/ui';
 import uniqBy from 'lodash/uniqBy';
 import { TOPICS } from '../constants/topics';
 
@@ -37,7 +34,7 @@ const createMetaPosition = (maxPadding, index1, index2) => {
   const posLength2 = maxPadding - (index2 + '').length;
   const paddedPosition1 = '0'.repeat(posLength1) + index1;
   const paddedPosition2 = '0'.repeat(posLength2) + index2;
-  return paddedPosition1 + '.' + paddedPosition2;
+  return paddedPosition1 + '.' + paddedPosition2 + '.000000000.';
 };
 
 //Takes in the collections and events then add the events to the desired collection
@@ -53,15 +50,11 @@ export const addCurrentEventsToCollection = (collections, events, collectionName
     .filter(e => e.start.daysFromNow <= 0)
     .map(event => {
       event = {
-        unfurl: {
-          title: event.name.text,
-          description: `Held on ${event.start.month} ${event.start.day}: ${event.description.text}`,
-        },
-        resource: {
-          path: event.url,
-          type: RESOURCE_TYPES.EVENTS,
-        },
-        id: event.id,
+        unfurl: event.siphon.unfurl,
+        resource: event.siphon.resource,
+        start: event.start,
+        venue: event.venue.name,
+        id: event.siphon.id,
         _metadata: {
           position: createMetaPosition(10, collectionIndex, eventIndex),
         },
