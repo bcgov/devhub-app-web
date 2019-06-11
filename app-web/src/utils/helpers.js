@@ -169,12 +169,12 @@ export const isFilterLonely = filters => {
  */
 export const sortDevhubTopicsAfterDesignSystemAndFeatured = topics => {
   // it is unknown what position design system and featured cards will be since this can change build to build
-  const featuredIndex = topics.findIndex(topic => topic.node.name === TOPICS.FEATURED_CARDS);
+  const featuredIndex = topics.findIndex(topic => topic.node.name === TOPICS.FEATURED_RESOURCES);
   const designIndex = topics.findIndex(topic => topic.node.name === TOPICS.DESIGN_SYSTEM);
   const designSystem = { ...topics[designIndex] };
-  const featuredCards = { ...topics[featuredIndex] };
+  const featuredResources = { ...topics[featuredIndex] };
   // remove design system from topics list and then featured cards
-  const topicsWithoutDS = topics.filter(topic => topic.node.name !== TOPICS.FEATURED_CARDS);
+  const topicsWithoutDS = topics.filter(topic => topic.node.name !== TOPICS.FEATURED_RESOURCES);
   const topicsWithoutDSAndFC = topicsWithoutDS.filter(
     topic => topic.node.name !== TOPICS.DESIGN_SYSTEM,
   );
@@ -189,5 +189,5 @@ export const sortDevhubTopicsAfterDesignSystemAndFeatured = topics => {
   });
 
   //Add featured Cards, then Design System, then the rest of the topics
-  return [featuredCards].concat([designSystem]).concat(sortedTopics);
+  return [featuredResources].concat([designSystem]).concat(sortedTopics);
 };
