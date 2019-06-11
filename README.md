@@ -270,7 +270,7 @@ __Besides the initial deployment of application__, which happens manually, the r
 ## To Deploy To Openshift
 
 1. Deploy the Jenkins Instance. 
-
+   > info the jenkins job is found at `docker/contrib.../jobs/_jenkins`
    a. change into the jenkins node js builder/deployer tool `cd .jenkins/.pipeline/lib`
    b. explore the `config.js` file this contains some important params that will be passed into the build templates which are located at `openshift/build-master.yaml`, `openshift/build-slave.yaml`
    c. for some reason I (Patrick) have not be able to use the `--dev-mode` flag of this version of the jenkins bcdk
