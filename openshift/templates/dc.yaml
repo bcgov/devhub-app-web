@@ -18,13 +18,13 @@ objects:
   kind: DeploymentConfig
   metadata:
     creationTimestamp: null
-    name: ${NAME}-static
+    name: ${NAME}-static${SUFFIX}
   spec:
     minReadySeconds: 20 # should be ready for atleast 20 seconds before the container is considered available. This will allow us
     # to catch any errors on deploy before they are available to the web
     replicas: 3
     selector:
-      deploymentconfig: ${NAME}-static
+      deploymentconfig: ${NAME}-static${SUFFIX}
     strategy:
       resources:
         requests:
@@ -37,7 +37,7 @@ objects:
       metadata:
         creationTimestamp: null
         labels:
-          deploymentconfig: ${NAME}-static
+          deploymentconfig: ${NAME}-static${SUFFIX}
       spec:
         containers:
         - image: ${NAME}-static:${VERSION}
@@ -86,7 +86,7 @@ objects:
   kind: Service
   metadata:
     creationTimestamp: null
-    name: ${NAME}-static
+    name: ${NAME}-static${SUFFIX}
   spec:
     ports:
     - name: web
@@ -94,14 +94,14 @@ objects:
       protocol: TCP
       targetPort: 2015
     selector:
-      deploymentconfig: ${NAME}-static
+      deploymentconfig: ${NAME}-static${SUFFIX}
 - apiVersion: route.openshift.io/v1
   kind: Route
   metadata:
     annotations:
       haproxy.router.openshift.io/disable_cookies: 'true'
     creationTimestamp: null
-    name: ${NAME}-static
+    name: ${NAME}-static${SUFFIX}
   spec:
     host:
     port:
@@ -111,7 +111,7 @@ objects:
       termination: edge
     to:
       kind: Service
-      name: ${NAME}-static
+      name: ${NAME}-static${SUFFIX}
       weight: 100
     wildcardPolicy: None
 parameters:
