@@ -112,6 +112,7 @@ export const CardImageWrapper = styled.div`
 
 export const EventInfoDiv = styled.div`
   > li {
+    color: #494949;
     margin-bottom: -5px;
   }
 `;
@@ -122,6 +123,8 @@ export const EventDate = styled(DateLI)`
   margin: 0;
   > span {
     margin-top: -15px;
+    color: #494949;
+    font-weight: 1000;
   }
   > small {
     bottom: 0.1em;
@@ -130,8 +133,13 @@ export const EventDate = styled(DateLI)`
 
 export const EventContainer = styled(EventDetailsContainer)`
   margin-top: 5px;
-  margin-left: -15px;
+  margin-bottom: 5px;
+  margin-left: -10px;
   overflow: hidden;
+  background: rgba(229, 229, 229, 0.8);
+  padding-bottom: 6px;
+  padding-top: 5px;
+  width: 100%;
   > li {
     margin-bottom: 0px;
   }
@@ -144,7 +152,6 @@ export const CardBody = styled.div`
   height: 100%;
   display: flex;
   flex: 1 1 auto;
-  margin-bottom: 10px;
   flex-flow: column nowrap;
 `;
 

@@ -16,13 +16,12 @@ export const TEST_IDS = {
   alert: 'events-container',
 };
 
-const Blockqoute = styled.blockquote`
-  padding: 10px;
-  background-color: #f0f0f0;
-  font-size: 14px;
-  font-style: oblique;
-  border-left: 2px solid #38588a;
-  margin: 5px;
+const Header = styled.div`
+  margin-top: 30px;
+`;
+
+const Description = styled.div`
+  padding-left: 3px;
 `;
 
 const CardContainer = styled.div`
@@ -76,14 +75,14 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubCollection } 
     <Layout>
       <Main>
         <Title title="Events" subtitle="Check out these upcoming events going on at the CSI Lab" />
-        <Blockqoute>
+        <Description>
           <p>
             Do you have BC Gov events that you would like to share on the <strong>Devhub</strong>?
             Please raise an issue{' '}
             <a href="https://github.com/bcgov/devhub-app-web/issues/new"> here</a> (requires a
             Github account).
           </p>
-        </Blockqoute>
+        </Description>
         {currentEvents.length > 0 ? (
           <Aux>
             <CardContainer>
@@ -103,9 +102,10 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubCollection } 
         ) : (
           <NoEvents />
         )}
-        <span>&nbsp;&nbsp;</span>
         <Aux>
-          <h2>Past Events</h2>
+          <Header>
+            <h2>Past Events</h2>
+          </Header>
           <CardContainer pastEvents>
             {previousEvents.map(e => (
               <Card
