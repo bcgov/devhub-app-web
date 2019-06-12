@@ -33,6 +33,21 @@
         }
       },
       {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/ocp-sso.wiki",
+          "owner": "bcgov",
+          "repo": "ocp-sso.wiki",
+          "files": [
+            "Attributes.md",
+            "Debugging.md",
+            "Pipeline-V1.md",
+            "Theme-Development.md",
+            "Troubleshooting.md"
+          ]
+        }
+      },
+      {
         "sourceType": "web",
         "sourceProperties": {
           "url": "https://sminfo.gov.bc.ca/docs/Provincial%20IDIM%20Program%20-%20Building%20SiteMinder%20Integrated%20Apps%202.0.4.pdf",
