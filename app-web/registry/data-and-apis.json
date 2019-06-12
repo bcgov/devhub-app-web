@@ -10,14 +10,7 @@
           "owner": "bcgov",
           "repo": "api-guidelines",
           "files": [
-            "government-of-british-columbia-api-guidelines.md#api-performance-management",
-            "government-of-british-columbia-api-guidelines.md#api-design",
-            "government-of-british-columbia-api-guidelines.md#api-security",
-            "government-of-british-columbia-api-guidelines.md#api-encoding-and-metadata",
-            "government-of-british-columbia-api-guidelines.md#api-documentation",
-            "government-of-british-columbia-api-guidelines.md#api-consumption",
-            "government-of-british-columbia-api-guidelines.md#api-lifecycle-management",
-            "government-of-british-columbia-api-guidelines.md#api-performance-management"
+            "government-of-british-columbia-api-guidelines.md"
           ]
         }
       },
