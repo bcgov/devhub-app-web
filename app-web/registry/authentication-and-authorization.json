@@ -35,6 +35,16 @@
       {
         "sourceType": "web",
         "sourceProperties": {
+          "url": "https://github.com/bcgov/ocp-sso/wiki",
+          "author": "cvarjao",
+          "title": "KeyCloak wiki page",
+          "description": "you can find guides and information of config for keycloak here",
+          "image": "http://design.jboss.org/keycloak/logo/images/keycloak_logo_600px.svg"
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
           "url": "https://sminfo.gov.bc.ca/docs/Provincial%20IDIM%20Program%20-%20Building%20SiteMinder%20Integrated%20Apps%202.0.4.pdf",
           "title": "Building SiteMinder Integrated Applications",
           "description": "This document describes the methods that can be used to integrate web applications with the BC Governments SiteMinder infrastructure. \\n This document is intended for the architects, designers and developers producing web applications that integrate with the IDIM SiteMinder service."
