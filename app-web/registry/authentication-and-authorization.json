@@ -33,18 +33,13 @@
         }
       },
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/ocp-sso.wiki",
-          "owner": "bcgov",
-          "repo": "ocp-sso.wiki",
-          "files": [
-            "Attributes.md",
-            "Debugging.md",
-            "Pipeline-V1.md",
-            "Theme-Development.md",
-            "Troubleshooting.md"
-          ]
+          "url": "https://github.com/bcgov/ocp-sso/wiki",
+          "author": "cvarjao",
+          "title": "KeyCloak wiki page",
+          "description": "you can find guides and information of config for keycloak here",
+          "image": "http://design.jboss.org/keycloak/logo/images/keycloak_logo_600px.svg"
         }
       },
       {
