@@ -23,6 +23,7 @@ const isMarkdownRemark = node => node.internal.type === 'MarkdownRemark';
 const isDevhubSiphon = node => node.internal.type === 'DevhubSiphon';
 const isDevhubTopic = node => node.internal.type === 'DevhubTopic';
 const isEventbriteEvents = node => node.internal.type === 'EventbriteEvents';
+const isRegistryJson = node => node.internal.type === 'RegistryJson';
 
 module.exports = {
   isGithubRaw,
@@ -30,4 +31,5 @@ module.exports = {
   isDevhubSiphon,
   isDevhubTopic,
   isEventbriteEvents,
+  isRegistryJson,
 };
