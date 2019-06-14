@@ -21,7 +21,7 @@
           "owner": "bcgov",
           "title": "BC Government API Registry",
           "description": "The Province of British Columbia API Registry",
-          "image": "https://developer.gov.bc.ca/static/BCID_H_rgb_rev-20eebe74aef7d92e02732a18b6aa6bbb.svg"
+          "image": "https://developer.gov.bc.ca/images/gov-logo-static.png"
         }
       },      
       {
@@ -30,7 +30,7 @@
           "url": "https://github.com/bcgov/api-specs",
           "owner": "bcgov",
           "repo": "api-specs",
-          "image": "https://developer.gov.bc.ca/static/BCID_H_rgb_rev-20eebe74aef7d92e02732a18b6aa6bbb.svg",
+          "image": "https://developer.gov.bc.ca/images/gov-logo-static.png",
           "files": [
             "README.md"
           ]          
@@ -43,7 +43,7 @@
           "owner": "bcgov",
           "title": "the B.C. Data Catalogue",
           "description": "The BC Data catalogue helps users to find, understand and explore data. The catalogue also provides contact information so that data users can contact Data Custodians for additional information if required.",
-          "image": "https://developer.gov.bc.ca/static/BCID_H_rgb_rev-20eebe74aef7d92e02732a18b6aa6bbb.svg"
+          "image": "https://developer.gov.bc.ca/images/gov-logo-static.png"
         }
       }      
     ]
