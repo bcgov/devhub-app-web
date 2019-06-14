@@ -3,6 +3,7 @@ require('dotenv').config({
 });
 const { registry } = require('./devhub.config.json');
 const { converter } = require('./gatsby/utils/gatsbyRemark');
+const { getFilesFromRegistry } = require('./gatsby/utils/githubRaw');
 // To specify a path of the registry.yaml file, set as env variable
 // This comes as a pair of sourceRegistryType used by gatsby-source-github-all
 // const registry_path = process.env.REGISTRY_PATH || '';
@@ -23,6 +24,9 @@ const dynamicPlugins = [eventbritePlugin()];
 module.exports = {
   siteMetadata: {
     title: 'DevHub',
+  },
+  mapping: {
+    'GithubRaw._xxboundProperties.topics': 'DevhubCollection.name',
   },
   pathPrefix: '/images',
   plugins: [
@@ -138,6 +142,13 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-source-github-raw',
+      options: {
+        githubAccessToken: process.env.GITHUB_TOKEN,
+        files: getFilesFromRegistry,
+      },
+    },
+    {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
@@ -215,14 +226,14 @@ module.exports = {
       },
     },
     {
-        resolve: 'gatsby-plugin-matomo',
-        options: {
-            siteId: process.env.GATSBY_MATOMO_SITE_ID,
-            matomoUrl: process.env.GATSBY_MATOMO_URL,
-            siteUrl: process.env.GATSBY_MATOMO_SITE_URL,
-            localScript: '/scripts/matomo.js',
-            dev: true
-        }
-    }
+      resolve: 'gatsby-plugin-matomo',
+      options: {
+        siteId: process.env.GATSBY_MATOMO_SITE_ID,
+        matomoUrl: process.env.GATSBY_MATOMO_URL,
+        siteUrl: process.env.GATSBY_MATOMO_SITE_URL,
+        localScript: '/scripts/matomo.js',
+        dev: true,
+      },
+    },
   ].concat(dynamicPlugins.filter(plugin => plugin !== void 0)),
 };
