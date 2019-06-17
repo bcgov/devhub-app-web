@@ -61,6 +61,25 @@ exports.createResolvers = ({ createResolvers }) => {
         },
       },
     },
+    MeetupEvent: {
+      siphon: {
+        type: `DevhubSiphon`,
+        resolve: (source, args, context, info) => {
+          return {
+            unfurl: {
+              title: source.name,
+              image: 'meetup',
+              description: source.description.replace(/<[^>]+>/g, ''),
+            },
+            resource: {
+              type: 'Events',
+              path: source.link,
+            },
+            id: source.id,
+          };
+        },
+      },
+    },
   };
   createResolvers(resolvers);
 };

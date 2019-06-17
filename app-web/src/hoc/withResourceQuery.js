@@ -83,6 +83,32 @@ const withResourceQuery = WrappedComponent => () => props => (
             }
           }
         }
+        meetupGroup {
+          childrenMeetupEvent {
+            siphon {
+              unfurl {
+                title
+                description
+                image
+              }
+              resource {
+                type
+                path
+              }
+              id
+            }
+            day: local_date(formatString: "DD")
+            month: local_date(formatString: "MMM")
+            year: local_date(formatString: "YYYY")
+            daysFromNow: local_date(difference: "days")
+            status
+            link
+            description
+            venue {
+              address_1
+            }
+          }
+        }
         allDevhubSiphon {
           edges {
             node {

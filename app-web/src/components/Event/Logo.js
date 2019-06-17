@@ -11,11 +11,16 @@ const EventLogo = ({ type }) => (
         eventbrite: file(relativePath: { eq: "eventbrite.png" }) {
           ...eventTypeLogo
         }
+        meetup: file(relativePath: { eq: "MeetUp.png" }) {
+          ...meetUpTypeLogo
+        }
       }
     `}
     render={data => {
       if (type === EVENT_TYPES.eventbrite) {
         return <GatsbyImage fixed={data.eventbrite.childImageSharp.fixed} />;
+      } else if (type === 'meetup') {
+        return <GatsbyImage fixed={data.meetup.childImageSharp.fixed} />;
       }
       return null;
     }}
@@ -29,7 +34,17 @@ EventLogo.propTypes = {
 export const EventTypeLogo = graphql`
   fragment eventTypeLogo on File {
     childImageSharp {
-      fixed(width: 85, quality: 100) {
+      fixed(width: 85, height: 20, quality: 100) {
+        ...GatsbyImageSharpFixed
+      }
+    }
+  }
+`;
+
+export const MeetUpTypeLogo = graphql`
+  fragment meetUpTypeLogo on File {
+    childImageSharp {
+      fixed(width: 55, height: 25, quality: 100) {
         ...GatsbyImageSharpFixed
       }
     }

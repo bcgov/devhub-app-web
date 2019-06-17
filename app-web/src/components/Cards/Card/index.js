@@ -90,6 +90,12 @@ export const EventImageWrapper = styled(EventLogoWrapper)`
   }
 `;
 
+export const MeetupImageWrapper = styled(EventLogoWrapper)`
+  margin: -1px 0px 5px 0px;
+  img {
+    padding-left: 0px;
+  }
+`;
 // combination of card image and wrapper make images response correctly
 // to the flex container. The card image wrapper can grow/shrink automatically
 // the object-fit scaledown maintains aspect ratio for any type of image
@@ -113,7 +119,7 @@ export const CardImageWrapper = styled.div`
 export const EventInfoDiv = styled.div`
   > li {
     color: #494949;
-    margin-bottom: -5px;
+    margin-bottom: 0px;
   }
 `;
 
@@ -132,13 +138,10 @@ export const EventDate = styled(DateLI)`
 `;
 
 export const EventContainer = styled(EventDetailsContainer)`
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: auto;
+  margin-bottom: auto !important;
   margin-left: -10px;
-  overflow: hidden;
   background: rgba(229, 229, 229, 0.8);
-  padding-bottom: 6px;
-  padding-top: 5px;
   width: 100%;
   > li {
     margin-bottom: 0px;

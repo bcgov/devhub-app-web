@@ -27,6 +27,15 @@ module.exports = {
   pathPrefix: '/images',
   plugins: [
     {
+      resolve: `gatsby-source-meetup`,
+      options: {
+        key: process.env.MEETUP_API_KEY,
+        groupUrlName: 'DevOps-Commons',
+        status: 'upcoming,past',
+        desc: 'true',
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: 'Devhub',

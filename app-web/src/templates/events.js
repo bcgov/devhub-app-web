@@ -37,7 +37,7 @@ const CardContainer = styled.div`
   }
 `;
 
-//Formats eventbrite data into something usable along side collection resources by the card component
+//Formats eventbrite data into something usable by the card component
 const formatEvents = events => {
   return events.map(event => {
     event = {
@@ -51,11 +51,31 @@ const formatEvents = events => {
   });
 };
 
-export const EventsPage = ({ data: { allEventbriteEvents, allDevhubCollection } }) => {
+//Formats meetup data into the identical format as the formatEvents function
+const formatMeetUps = meetups => {
+  return meetups.map(meetup => {
+    meetup = {
+      unfurl: meetup.siphon.unfurl,
+      resource: meetup.siphon.resource,
+      id: meetup.siphon.id,
+      venue: meetup.venue.address_1,
+      start: {
+        day: meetup.day,
+        month: meetup.month,
+        year: meetup.year,
+        daysFromNow: meetup.daysFromNow,
+      },
+    };
+    return meetup;
+  });
+};
+
+export const EventsPage = ({ data: { allEventbriteEvents, allDevhubCollection, meetupGroup } }) => {
   const events = flattenGatsbyGraphQL(allEventbriteEvents.edges);
+  const meetUps = formatMeetUps(meetupGroup.childrenMeetupEvent);
   // filter out any events that are passed today
   const currentEvents = formatEvents(events.filter(e => e.start.daysFromNow <= 0));
-
+  const currentMeetups = meetUps.filter(e => e.start.daysFromNow <= 0);
   //Get all the cards on the site
   const cards = flattenGatsbyGraphQL(allDevhubCollection.edges);
   //filter to just get the cards for the Community and Events topic
@@ -64,12 +84,11 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubCollection } 
     .flatMap(e => e.childrenDevhubSiphon)
     .filter(e => e.resource.type === RESOURCE_TYPES.EVENTS);
   // previous events are sorted in descending order
-  const previousEvents = formatEvents(
-    events
-      .filter(e => e.start.daysFromNow > 0)
-      .sort((a, b) => a.start.daysFromNow / 1 - b.start.daysFromNow / 1)
-      .splice(0, EVENTS.MAX_PAST_EVENTS),
-  );
+  const previousEventsAndMeetUps = formatEvents(events)
+    .concat(formatMeetUps(meetupGroup.childrenMeetupEvent))
+    .filter(e => e.start.daysFromNow > 0)
+    .sort((a, b) => a.start.daysFromNow / 1 - b.start.daysFromNow / 1)
+    .splice(0, EVENTS.MAX_PAST_EVENTS);
 
   return (
     <Layout>
@@ -86,17 +105,20 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubCollection } 
         {currentEvents.length > 0 ? (
           <Aux>
             <CardContainer>
-              {communityCards.concat(currentEvents).map(e => (
-                <Card
-                  key={e.id}
-                  type={e.resource.type}
-                  title={e.unfurl.title}
-                  description={e.unfurl.description}
-                  image={e.unfurl.image}
-                  link={e.resource.path}
-                  event={e}
-                />
-              ))}
+              {communityCards
+                .concat(currentEvents)
+                .concat(currentMeetups)
+                .map(e => (
+                  <Card
+                    key={e.id}
+                    type={e.resource.type}
+                    title={e.unfurl.title}
+                    description={e.unfurl.description}
+                    image={e.unfurl.image}
+                    link={e.resource.path}
+                    event={e}
+                  />
+                ))}
             </CardContainer>
           </Aux>
         ) : (
@@ -107,7 +129,7 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubCollection } 
             <h2>Past Events</h2>
           </Header>
           <CardContainer pastEvents>
-            {previousEvents.map(e => (
+            {previousEventsAndMeetUps.map(e => (
               <Card
                 key={e.id}
                 type={e.resource.type}
@@ -154,6 +176,32 @@ export const EventData = graphql`
           venue {
             name
           }
+        }
+      }
+    }
+    meetupGroup {
+      childrenMeetupEvent {
+        siphon {
+          unfurl {
+            title
+            description
+            image
+          }
+          resource {
+            type
+            path
+          }
+          id
+        }
+        day: local_date(formatString: "DD")
+        month: local_date(formatString: "MMM")
+        year: local_date(formatString: "YYYY")
+        daysFromNow: local_date(difference: "days")
+        status
+        link
+        description
+        venue {
+          address_1
         }
       }
     }
