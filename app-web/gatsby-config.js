@@ -36,6 +36,15 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-meetup`,
+      options: {
+        key: process.env.MEETUP_API_KEY,
+        groupUrlName: 'Cloud-Native-Victoria',
+        status: 'upcoming,past',
+        desc: 'true',
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: 'Devhub',

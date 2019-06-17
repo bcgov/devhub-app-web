@@ -70,9 +70,15 @@ const formatMeetUps = meetups => {
   });
 };
 
-export const EventsPage = ({ data: { allEventbriteEvents, allDevhubCollection, meetupGroup } }) => {
+export const EventsPage = ({
+  data: { allEventbriteEvents, allDevhubCollection, meetupGroup, allMeetupGroup },
+}) => {
   const events = flattenGatsbyGraphQL(allEventbriteEvents.edges);
-  const meetUps = formatMeetUps(meetupGroup.childrenMeetupEvent);
+  const meetUps = formatMeetUps(
+    flattenGatsbyGraphQL(allMeetupGroup.edges).flatMap(meetups => {
+      return meetups.childrenMeetupEvent;
+    }),
+  );
   // filter out any events that are passed today
   const currentEvents = formatEvents(events.filter(e => e.start.daysFromNow <= 0));
   const currentMeetups = meetUps.filter(e => e.start.daysFromNow <= 0);
@@ -83,9 +89,13 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubCollection, m
     .filter(e => e.name === TOPICS.COMMUNITY_AND_EVENTS)
     .flatMap(e => e.childrenDevhubSiphon)
     .filter(e => e.resource.type === RESOURCE_TYPES.EVENTS);
+  //sort all the info so that event show up from soonest to farthest away
+  const currentEventsMeetUpsAndCards = communityCards.concat(
+    currentEvents.concat(currentMeetups).sort((a, b) => b.start.daysFromNow - a.start.daysFromNow),
+  );
   // previous events are sorted in descending order
   const previousEventsAndMeetUps = formatEvents(events)
-    .concat(formatMeetUps(meetupGroup.childrenMeetupEvent))
+    .concat(meetUps)
     .filter(e => e.start.daysFromNow > 0)
     .sort((a, b) => a.start.daysFromNow / 1 - b.start.daysFromNow / 1)
     .splice(0, EVENTS.MAX_PAST_EVENTS);
@@ -105,20 +115,17 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubCollection, m
         {currentEvents.length > 0 ? (
           <Aux>
             <CardContainer>
-              {communityCards
-                .concat(currentEvents)
-                .concat(currentMeetups)
-                .map(e => (
-                  <Card
-                    key={e.id}
-                    type={e.resource.type}
-                    title={e.unfurl.title}
-                    description={e.unfurl.description}
-                    image={e.unfurl.image}
-                    link={e.resource.path}
-                    event={e}
-                  />
-                ))}
+              {currentEventsMeetUpsAndCards.map(e => (
+                <Card
+                  key={e.id}
+                  type={e.resource.type}
+                  title={e.unfurl.title}
+                  description={e.unfurl.description}
+                  image={e.unfurl.image}
+                  link={e.resource.path}
+                  event={e}
+                />
+              ))}
             </CardContainer>
           </Aux>
         ) : (
@@ -179,29 +186,33 @@ export const EventData = graphql`
         }
       }
     }
-    meetupGroup {
-      childrenMeetupEvent {
-        siphon {
-          unfurl {
-            title
+    allMeetupGroup {
+      edges {
+        node {
+          childrenMeetupEvent {
+            siphon {
+              unfurl {
+                title
+                description
+                image
+              }
+              resource {
+                type
+                path
+              }
+              id
+            }
+            day: local_date(formatString: "DD")
+            month: local_date(formatString: "MMM")
+            year: local_date(formatString: "YYYY")
+            daysFromNow: local_date(difference: "days")
+            status
+            link
             description
-            image
+            venue {
+              address_1
+            }
           }
-          resource {
-            type
-            path
-          }
-          id
-        }
-        day: local_date(formatString: "DD")
-        month: local_date(formatString: "MMM")
-        year: local_date(formatString: "YYYY")
-        daysFromNow: local_date(difference: "days")
-        status
-        link
-        description
-        venue {
-          address_1
         }
       }
     }

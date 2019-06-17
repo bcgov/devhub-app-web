@@ -16,72 +16,8 @@ limitations under the License.
 Created by Patrick Simonian
 */
 
-// gatsby event hooks
-// https://www.gatsbyjs.org/docs/node-apis/
-const getOrganizationsById = id => {
-  const organizations = {
-    '228490647317': {
-      id: '228490647317',
-      name: 'CSI Lab',
-      first_name: 'CSI',
-      last_name: 'Lab',
-      is_public: false,
-      image_id: '53267936',
-    },
-  };
-  return organizations[id];
-};
-
 exports.onCreatePage = require('./gatsby/onCreatePage');
 exports.createPages = require('./gatsby/createPages');
-exports.createResolvers = ({ createResolvers }) => {
-  const resolvers = {
-    EventbriteEvents: {
-      organization: {
-        type: 'String',
-        resolve: (source, args, context, info) => {
-          return getOrganizationsById(source.organization_id).name;
-        },
-      },
-      siphon: {
-        type: `DevhubSiphon`,
-        resolve: (source, args, context, info) => {
-          return {
-            unfurl: {
-              title: source.name.text,
-              image: 'eventbrite',
-              description: source.description.text,
-            },
-            resource: {
-              type: 'Events',
-              path: source.url,
-            },
-            id: source.id,
-          };
-        },
-      },
-    },
-    MeetupEvent: {
-      siphon: {
-        type: `DevhubSiphon`,
-        resolve: (source, args, context, info) => {
-          return {
-            unfurl: {
-              title: source.name,
-              image: 'meetup',
-              description: source.description.replace(/<[^>]+>/g, ''),
-            },
-            resource: {
-              type: 'Events',
-              path: source.link,
-            },
-            id: source.id,
-          };
-        },
-      },
-    },
-  };
-  createResolvers(resolvers);
-};
+exports.createResolvers = require('./gatsby/createResolvers');
 
 exports.sourceNodes = require('./gatsby/sourceNodes');

@@ -297,6 +297,7 @@ export const DEVHUB_COLLECTION = {
     unfurl: { ...n.unfurl },
   })),
 };
+
 export const EVENT_1 = {
   siphon: {
     unfurl: {
@@ -380,41 +381,77 @@ export const EVENT_2 = {
 };
 
 export const MEETUP_1 = {
-  day: '20',
-  daysFromNow: '-2',
-  description:
-    "Join us for a Product Spotlight featuring ZenHub! With 3+ CSI Lab teams already using ZenHub, and other interested, we thought it would be a great idea to get the ZenHub team in the CSI Lab to provide a deep dive into their product. What is ZenHub?ZenHub is browser extension that adds robust project management features directly into GitHub's UI, making centralized collaboration on GitHub faster, more visual, and less cluttered. With ZenHub installed, your team stays lean and agile: you can plan sprints, create epics, and visualize your workflow without leaving GitHub. More details here: https://www.zenhub.com/ ",
-  link: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
-  month: 'Jun',
-  siphon: {
-    id: 'dc8d7fd6-86c4-5967-836b-88754b4fa399',
-    resource: {
-      path: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
-      type: 'Events',
-    },
-    unfurl: {
-      description:
-        "Join us for a Product Spotlight featuring ZenHub! With 3+ CSI Lab teams already using ZenHub, and other interested, we thought it would be a great idea to get the ZenHub team in the CSI Lab to provide a deep dive into their product. What is ZenHub?ZenHub is browser extension that adds robust project management features directly into GitHub's UI, making centralized collaboration on GitHub faster, more visual, and less cluttered. With ZenHub installed, your team stays lean and agile: you can plan sprints, create epics, and visualize your workflow without leaving GitHub. More details here: https://www.zenhub.com/ ",
-      image: 'meetup',
-      title: 'Product Spotlight: ZenHub',
-    },
-  },
-  start: {
+  childrenMeetupEvent: {
     day: '20',
     daysFromNow: '-2',
+    description:
+      "Join us for a Product Spotlight featuring ZenHub! With 3+ CSI Lab teams already using ZenHub, and other interested, we thought it would be a great idea to get the ZenHub team in the CSI Lab to provide a deep dive into their product. What is ZenHub?ZenHub is browser extension that adds robust project management features directly into GitHub's UI, making centralized collaboration on GitHub faster, more visual, and less cluttered. With ZenHub installed, your team stays lean and agile: you can plan sprints, create epics, and visualize your workflow without leaving GitHub. More details here: https://www.zenhub.com/ ",
+    link: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
     month: 'Jun',
+    siphon: {
+      id: 'dc8d7fd6-86c4-5967-836b-88754b4fa399',
+      resource: {
+        path: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
+        type: 'Events',
+      },
+      unfurl: {
+        description:
+          "Join us for a Product Spotlight featuring ZenHub! With 3+ CSI Lab teams already using ZenHub, and other interested, we thought it would be a great idea to get the ZenHub team in the CSI Lab to provide a deep dive into their product. What is ZenHub?ZenHub is browser extension that adds robust project management features directly into GitHub's UI, making centralized collaboration on GitHub faster, more visual, and less cluttered. With ZenHub installed, your team stays lean and agile: you can plan sprints, create epics, and visualize your workflow without leaving GitHub. More details here: https://www.zenhub.com/ ",
+        image: 'meetup',
+        title: 'Product Spotlight: ZenHub',
+      },
+    },
+    start: {
+      day: '20',
+      daysFromNow: '-2',
+      month: 'Jun',
+      year: '2019',
+    },
+    status: 'upcoming',
+    venue: {
+      address_1: '3rd Floor 1012 Douglas St.',
+      name: '',
+    },
     year: '2019',
   },
-  status: 'upcoming',
-  venue: {
-    address_1: '3rd Floor 1012 Douglas St.',
-    name: '',
+};
+
+export const MEETUP_2 = {
+  childrenMeetupEvent: {
+    day: '30',
+    daysFromNow: '20',
+    description: 'test description',
+    link: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
+    month: 'Jun',
+    siphon: {
+      id: 'dc8d7fd6-86c4-5967-836b-88754b4fa399',
+      resource: {
+        path: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
+        type: 'Events',
+      },
+      unfurl: {
+        description: 'test description',
+        image: 'meetup',
+        title: 'Product Spotlight: ZenHub',
+      },
+    },
+    start: {
+      day: '30',
+      daysFromNow: '20',
+      month: 'May',
+      year: '2019',
+    },
+    status: 'upcoming',
+    venue: {
+      address_1: '3rd Floor 1012 Douglas St.',
+      name: '',
+    },
+    year: '2019',
   },
-  year: '2019',
 };
 
 export const EVENTS = [EVENT_1, EVENT_2];
-export const MEETUPS = [MEETUP_1];
+export const MEETUP_NODES = [MEETUP_1, MEETUP_2];
 
 export const SIPHON_NODES = DESIGN_SYSTEM_NODES.concat(DEVHUB_NODES);
 
