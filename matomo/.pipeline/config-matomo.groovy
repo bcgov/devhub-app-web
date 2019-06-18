@@ -76,7 +76,7 @@ app {
                         ]
                 ],
                 [
-                        'file': 'config-matomo.groovy/matomo/matomo-deploy.json',
+                        'file': 'matomo/openshift/matomo/matomo-deploy.json',
                         'params': [
                                 'NAME'             : 'matomo',
                                 'IMAGE_NAMESPACE': app.deployment.namespace,
