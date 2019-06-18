@@ -35,13 +35,13 @@ app {
         matomoSiteId = "1"
         templates = [
                 [
-                        'file':'openshift/matomo/mariadb/mariadb-build.json',
+                        'file':'matomo/openshift/mariadb/mariadb-build.json',
                         'params': [
                                 'SUFFIX': app.build.suffix,
                                 'OUTPUT_IMAGE_TAG': app.build.version
                         ]
                 ], [
-                        'file': 'openshift/matomo/matomo/matomo-build.json',
+                        'file': 'matomo/openshift/matomo/matomo-build.json',
                         'params': [
                                 'SUFFIX': app.build.suffix,
                                 'OUTPUT_IMAGE_TAG': app.build.version
@@ -67,7 +67,7 @@ app {
         timeoutInSeconds = 60 * 20 // 20 minutes
         templates = [
                 [
-                        'file'  : 'openshift/matomo/matomo-db/matomo-db-deploy.json',
+                        'file'  : 'matomo/openshift/matomo-db/matomo-db-deploy.json',
                         'params': [
                                 'NAME'                : 'matomo-db',
                                 'IMAGE_NAMESPACE': app.deployment.namespace,
@@ -76,7 +76,7 @@ app {
                         ]
                 ],
                 [
-                        'file': 'openshift/matomo/matomo/matomo-deploy.json',
+                        'file': 'config-matomo.groovy/matomo/matomo-deploy.json',
                         'params': [
                                 'NAME'             : 'matomo',
                                 'IMAGE_NAMESPACE': app.deployment.namespace,
