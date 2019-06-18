@@ -31,7 +31,7 @@ export const MAIN_NAV_ROUTES = {
     to: '/documentation',
     text: 'Documentation',
   },
-  EVENTS: {
+  [RESOURCE_TYPES.EVENTS]: {
     to: '/events',
     text: 'Events',
   },
