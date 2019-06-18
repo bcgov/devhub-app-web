@@ -68,7 +68,7 @@ module.exports = ({ createResolvers }) => {
             unfurl: {
               title: source.name,
               image: 'meetup',
-              description: source.description.replace(/<[^>]+>/g, ''),
+              description: source.description.replace(/<[^>]+>/g, '').replace(/&amp;/g, 'and'),
             },
             resource: {
               type: 'Events',
