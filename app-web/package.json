@@ -37,7 +37,6 @@
     "gatsby-plugin-matomo": "^0.7.2",
     "gatsby-plugin-offline": "^2.1.1",
     "gatsby-plugin-postcss": "^2.0.2",
-    "gatsby-plugin-matomo": "^0.7.0",
     "gatsby-plugin-prefetch-google-fonts": "^1.4.2",
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-sharp": "^2.0.37",
