@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f117e4a4-7142-4b12-8ee2-0e6a477b6f07" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name=".eslintrc" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.eslintrc">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="package-lock.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/package-lock.json">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/@types/node/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/@types/unist/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/@types/vfile-message/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/@types/vfile/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/ansi-regex/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/array-iterate/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/automated-readability/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/bail/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/ccount/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/character-entities-html4/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/character-entities-legacy/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/co/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/coleman-liau/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/collapse-white-space/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/comma-separated-tokens/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/cuss/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/dale-chall-formula/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/dale-chall/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/detab/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/dictionary-en-ca/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/extend/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/flesch/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/gunning-fog/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/has-flag/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/hast-util-is-element/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/hast-util-to-html/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/hast-util-whitespace/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/html-void-elements/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/inherits/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/irregular-plurals/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/is-alphabetical/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/is-alphanumerical/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/is-buffer/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/is-decimal/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/is-fullwidth-code-point/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/is-hexadecimal/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/is-plain-obj/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/lodash.difference/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/lodash.includes/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/lodash.intersection/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/mdast-comment-marker/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/mdast-util-definitions/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/mdast-util-heading-style/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/mdast-util-to-hast/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/mdast-util-to-string/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/mdurl/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/nlcst-is-literal/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/nlcst-normalize/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/nlcst-search/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/nlcst-to-string/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/normalize-strings/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/nspell/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/object-assign/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/object-keys/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/parse-english/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/parse-latin/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/plur/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/pluralize/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/property-information/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/quotation/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/rehype-stringify/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-blockquote-indentation/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-code-block-style/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-definition-case/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-definition-spacing/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-emphasis-marker/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-fenced-code-flag/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-fenced-code-marker/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-file-extension/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-final-definition/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-hard-break-spaces/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-heading-increment/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-heading-style/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-link-title-style/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-list-item-content-indent/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-list-item-indent/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-list-item-spacing/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-maximum-heading-length/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-maximum-line-length/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-no-auto-link-without-protocol/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-no-blockquote-without-marker/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-no-consecutive-blank-lines/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-no-duplicate-headings/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-no-emphasis-as-heading/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-no-file-name-articles/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-no-file-name-consecutive-dashes/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-no-file-name-irregular-characters/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-no-file-name-mixed-case/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-no-file-name-outer-dashes/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-no-heading-punctuation/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-no-inline-padding/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-no-literal-urls/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-no-multiple-toplevel-headings/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-no-shell-dollars/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-no-shortcut-reference-image/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-no-shortcut-reference-link/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-no-table-indentation/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-ordered-list-marker-style/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-ordered-list-marker-value/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-rule-style/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-strong-marker/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-table-cell-padding/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-table-pipe-alignment/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-table-pipes/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint-unordered-list-marker-style/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-lint/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-message-control/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-preset-lint-markdown-style-guide/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/remark-rehype/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/repeat-string/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/replace-ext/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/retext-english/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/retext-equality/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/retext-profanities/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/retext-readability/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/retext-spell/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/retext-stringify/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/sliced/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/smog-formula/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/space-separated-tokens/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/spache-formula/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/spache/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/string-width/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/stringify-entities/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/strip-ansi/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/supports-color/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/syllable/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/to-vfile/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/trim-lines/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/trim/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/trough/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/unherit/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/unified-lint-rule/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/unified-message-control/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/unified/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/unist-builder/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/unist-util-generated/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/unist-util-is/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/unist-util-modify-children/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/unist-util-position/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/unist-util-stringify-position/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/unist-util-visit-children/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/unist-util-visit-parents/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/unist-util-visit/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/vfile-location/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/vfile-message/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/vfile-reporter/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/vfile-sort/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/vfile-statistics/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/vfile/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/wrapped/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/x-is-string/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-plugin-retext/node_modules/xtend/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-remark-path-transform/package.json" />
+      <path value="$PROJECT_DIR$/plugins/gatsby-source-github-all/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="23" />
+    <option name="width" value="1680" />
+    <option name="height" value="1027" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="app-web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="app-web" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/node_modules/eslint" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <properties />
+      <listeners />
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f117e4a4-7142-4b12-8ee2-0e6a477b6f07" name="Default" comment="" />
+      <created>1555439484020</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1555439484020</updated>
+      <workItem from="1555439493137" duration="191000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="191000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
+    <layout>
+      <window_info anchor="right" id="PlantUML" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info id="Image Layers" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.3296582" />
+      <window_info id="Capture Tool" />
+      <window_info id="Designer" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24969475" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="SciView" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/.eslintrc">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>Python 3.6.2 virtualenv at ~/.virtualenvs/myosb</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

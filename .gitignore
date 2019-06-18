@@ -111,3 +111,6 @@ pipeline/build/
 
 # app registry
 app-web/registry/registry.json
+
+# IntelliJ file
+.idea

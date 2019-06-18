@@ -1,0 +1,18 @@
+Index: app-web/Dockerfile
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>FROM node:8\n\nARG NODE_MAJOR_VERSION=8\nARG NODE_VERSION=8.14.0\nARG APP_VERSION=2.3.0\n\nENV INSTALL_PATH /home/app\nENV SUMMARY=\"Devhub App Web ${APP_VERSION}\"  \\\n  DESCRIPTION=\"Devhub App Web ${APP_VERSION} running node nodejs ${NODE_VERSION} on Alpine Linux\"\nENV LC_ALL=en_US.UTF-8 \\\n  LANG=en_US.UTF-8 \n\nLABEL summary=\"$SUMMARY\" \\\n  description=\"$DESCRIPTION\"\n\nRUN apt-get update && \\\n  yes | apt-get upgrade\n\nRUN useradd --user-group --create-home --shell /bin/false app\n\nUSER app\nWORKDIR $INSTALL_PATH\n\nCOPY . .\nUSER root\nRUN chown -R app:app $INSTALL_PATH\n\nRUN npm ci --silent\n\nEXPOSE 8000\n\nCMD [ \"npm\", \"run\", \"dev\" ]
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app-web/Dockerfile	(revision d1a2112c607d9b900746cf03fd5308304c68cab9)
++++ app-web/Dockerfile	(date 1551823940000)
+@@ -25,7 +25,7 @@
+ USER root
+ RUN chown -R app:app $INSTALL_PATH
+ 
+-RUN npm ci --silent
++RUN npm install
+ 
+ EXPOSE 8000
+ 

@@ -80,7 +80,7 @@ This resource is a little tricky and the definition/scope is evolving.  However,
 
 ## Technical Details
 
-This application was scaffolded using [GatsbyJS](https://github.com/gatsbyjs/gatsby).
+This application is a static site and is generated using [GatsbyJS](https://github.com/gatsbyjs/gatsby).
 
 Here are some of the other components/technologies used by DevHub: 
 

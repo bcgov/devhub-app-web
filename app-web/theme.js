@@ -25,7 +25,7 @@ docs on theming is here https://emotion.sh/docs/theming#___gatsby
 
 Docs on emotion https://emotion.sh/docs/introduction
 
---- the idea is to introduce emotion early and slowly replace css modules with emotion styled components
+--- our idea is to introduce emotion early and slowly replace css modules with emotion styled components
 when and as needed. This is a slow processes but will lead to better and more maintaible styling in the long run.
 */
 

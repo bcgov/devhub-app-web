@@ -29,7 +29,7 @@ objects:
   apiVersion: v1
   metadata:
     name: "${NAME}-base"
-    creationTimestamp: 
+    creationTimestamp:
     annotations:
       description: Nodejs Runtime Image
     labels:
@@ -61,7 +61,7 @@ objects:
   apiVersion: v1
   metadata:
     name: "${NAME}-base${SUFFIX}"
-    creationTimestamp: 
+    creationTimestamp:
     labels: {}
     annotations: {}
   spec:
@@ -93,7 +93,7 @@ objects:
         cpu: 1
         memory: 1Gi
     postCommit: {}
-    nodeSelector: 
+    nodeSelector:
 - apiVersion: v1
   kind: BuildConfig
   metadata:
@@ -134,6 +134,12 @@ objects:
               secretKeyRef:
                 name: devhub-eventbrite-token
                 key: EVENT_BRITE_API_KEY
+          - name: GATSBY_MATOMO_URL
+            value: ${MATOMO_URL}
+          - name: GATSBY_MATOMO_SITE_URL
+            value: ${MATOMO_SITE_URL}
+          - name: GATSBY_MATOMO_SITE_ID
+            value: ${MATOMO_SITE_ID}
         from:
           kind: ImageStreamTag
           name: ${NAME}-base:${VERSION}
@@ -229,4 +235,18 @@ parameters:
   name: DOCKER_IMAGE_DIRECTORY
   required: true
   value: docker-images/nodejs-base
-  
+- description: Location of the Matomo server that the app should post events to.
+  displayName: Matomo URL
+  name: MATOMO_URL
+  required: false
+  value: ''
+- description: URL (route) where this app is deployed
+  displayName: Matomo URL
+  name: MATOMO_SITE_URL
+  required: false
+  value: ''
+- description: Identifier for this site within Matomo
+  displayName: Matomo URL
+  name: MATOMO_SITE_ID
+  required: false
+  value: '1'

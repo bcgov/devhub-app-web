@@ -1,0 +1,49 @@
+pipeline {
+  agent none
+  options {
+    disableResume()
+  }
+
+  environment {
+    OCP_PIPELINE_CLI_URL = 'https://raw.githubusercontent.com/BCDevOps/ocp-cd-pipeline/v0.0.5/src/main/resources/pipeline-cli'
+    OCP_PIPELINE_VERSION = '0.0.6'
+  }
+  stages {
+    stage('Build Matomo Images and Imagestreams') {
+      agent { label 'build' }
+      steps {
+        echo "Aborting all running jobs ..."
+        script {
+          abortAllPreviousBuildInProgress(currentBuild)
+        }
+        echo "Building ..."
+        sh "curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s build --config=matomo/.pipeline/config-matomo.groovy --pr=${CHANGE_ID}"
+      }
+    }
+
+    stage('Deploy Matomo') {
+          agent { label 'deploy' }
+          steps {
+            echo "Deploying services in TOOLS..."
+            sh "curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s deploy --config=matomo/.pipeline/config-matomo.groovy --pr=${CHANGE_ID} --env=prod"
+          }
+        }
+
+    stage('Verification/Cleanup') {
+      agent { label 'deploy' }
+      input {
+        message "Should we continue with cleanup, merge, and close PR?"
+        ok "Yes!"
+      }
+      steps {
+        echo "Cleaning ..."
+        sh "curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s cleanup --config=matomo/.pipeline/config-matomo.groovy --pr=${CHANGE_ID}"
+        script {
+          String mergeMethod=("master".equalsIgnoreCase(env.CHANGE_TARGET))?'merge':'squash'
+          echo "Merging (using '${mergeMethod}' method) and closing PR"
+          bcgov.GitHubHelper.mergeAndClosePullRequest(this, mergeMethod)
+        }
+      }
+    }
+  }
+}
