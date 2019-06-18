@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7b87bc96-805b-4bc0-9041-a19119c06457" name="Default" comment="Resolving diffs in DC.">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app-web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/app-web/package.json" afterDir="false" />
+    <list default="true" id="7b87bc96-805b-4bc0-9041-a19119c06457" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/devhub-app-web.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/-_move_dockefile_out_of_the_way_for_now_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/-_move_dockefile_out_of_the_way_for_now_/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/-_move_dockefile_out_of_the_way_for_now_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/-_move_dockefile_out_of_the_way_for_now_1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/-_move_dockefile_out_of_the_way_for_now_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/-_move_dockefile_out_of_the_way_for_now_2/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/-_move_dockefile_out_of_the_way_for_now_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/-_move_dockefile_out_of_the_way_for_now_3/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/add_openshift_component_registry_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/add_openshift_component_registry_/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/add_openshift_component_registry_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/add_openshift_component_registry_1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/changes_that_derive_github_path_etc__from_node_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/changes_that_derive_github_path_etc__from_node_/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/retext-experimentation.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/retext-experimentation/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,51 +51,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="theme.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app-web/theme.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Jenkinsfile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Jenkinsfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="60">
+              <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bc.yaml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/openshift/templates/bc.yaml">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="config.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.jenkins/docker/contrib/jenkins/configuration/jobs/realm-o-matic/config.xml">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app-web/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="unit-tests.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app-web/shell-scripts/unit-tests.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Jenkinsfile" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.jenkins/Jenkinsfile">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="config.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.jenkins/docker/contrib/jenkins/configuration/jobs/matomo/config.xml">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="build-previewer.sh" pinned="false" current-in-tab="false">
@@ -84,14 +74,45 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="docker-compose.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docker-compose.yml">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
       <file leaf-file-name="preview.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/preview.sh">
           <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="docker-compose.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app-web/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1350">
+              <caret line="90" column="24" selection-start-line="90" selection-start-column="24" selection-end-line="90" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="112" column="5" selection-start-line="112" selection-start-column="5" selection-end-line="112" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" column="24" lean-forward="true" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -105,7 +126,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Toy</find>
       <find>node</find>
       <find>No such container</find>
       <find>GITHUB_TOKEN</find>
@@ -135,6 +155,7 @@
       <find>{NAME}</find>
       <find>tag</find>
       <find>_jenkins</find>
+      <find>wiki</find>
     </findStrings>
     <replaceStrings>
       <replace>matomoSiteURL</replace>
@@ -157,7 +178,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="bug/683-missing-network-doc" />
       </map>
     </option>
     <option name="RESET_MODE" value="HARD" />
@@ -395,7 +416,6 @@
       <path value="$PROJECT_DIR$/app-web/plugins/gatsby-remark-path-transform/package.json" />
       <path value="$PROJECT_DIR$/app-web/plugins/gatsby-source-github-all/package.json" />
       <path value="$PROJECT_DIR$/docker-images/nodejs-base/package.json" />
-      <path value="$PROJECT_DIR$/matomo/.pipeline/package.json" />
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -413,8 +433,8 @@
     </navigator>
     <panes>
       <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -425,13 +445,12 @@
             <path>
               <item name="devhub-app-web" type="b2602c69:ProjectViewProjectNode" />
               <item name="devhub-app-web" type="462c0819:PsiDirectoryNode" />
-              <item name="app-web" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="devhub-app-web" type="b2602c69:ProjectViewProjectNode" />
               <item name="devhub-app-web" type="462c0819:PsiDirectoryNode" />
               <item name="app-web" type="462c0819:PsiDirectoryNode" />
-              <item name="shell-scripts" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -451,15 +470,15 @@
     <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app-web/src/components/ComponentPreview" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/jenkins/base/configuration/jobs" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/openshift" />
       <recent name="$PROJECT_DIR$/app-web/plugins/gatsby-retext" />
       <recent name="$PROJECT_DIR$/app-web/__tests__/components" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app-web/src/components/ComponentPreview" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -569,13 +588,6 @@
       <workItem from="1558994851290" duration="20421000" />
       <workItem from="1559669601260" duration="9029000" />
       <workItem from="1559925906113" duration="9737000" />
-    </task>
-    <task id="LOCAL-00058" summary="fix indent error.">
-      <created>1551833040211</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1551833040211</updated>
     </task>
     <task id="LOCAL-00059" summary="registry update to include security infographic in Security Collection.">
       <created>1552517773921</created>
@@ -913,11 +925,18 @@
       <option name="project" value="LOCAL" />
       <updated>1559672373897</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="Adding OCP networking reference.">
+      <created>1560891726843</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1560891726844</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="497693000" />
+    <option name="totallyTimeSpent" value="498668000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -937,19 +956,20 @@
       <window_info anchor="right" id="Palette&#9;" order="10" />
       <window_info id="Image Layers" order="5" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.510989" side_tool="true" weight="0.42888644" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.508547" side_tool="true" weight="0.42888644" />
       <window_info anchor="right" id="Maven Projects" order="5" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.495116" weight="0.41786107" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="11" sideWeight="0.4969475" visible="true" weight="0.41786107" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="13" sideWeight="0.489011" visible="true" weight="0.42888644" />
+      <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.491453" weight="0.42888644" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49227798" visible="true" weight="0.33760685" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4903475" visible="true" weight="0.34188035" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="7" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.33737597" />
       <window_info anchor="right" id="SciView" order="6" />
-      <window_info id="Structure" order="1" sideWeight="0.507722" side_tool="true" weight="0.32967034" />
+      <window_info id="Structure" order="1" sideWeight="0.5096525" side_tool="true" weight="0.34188035" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Favorites" order="4" side_tool="true" />
@@ -1004,11 +1024,10 @@
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.508547" side_tool="true" weight="0.42888644" />
       <window_info anchor="right" x="0" y="0" width="370" height="827" id="Documentation" order="9" side_tool="true" weight="0.32967034" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49227798" visible="true" weight="0.33760685" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.4969475" weight="0.41786107" />
       <window_info anchor="right" id="Maven Projects" order="5" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49227798" visible="true" weight="0.33760685" />
       <window_info anchor="right" id="SciView" order="6" />
       <window_info anchor="right" id="Database" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -1016,6 +1035,7 @@
       <window_info anchor="right" id="Palette&#9;" order="10" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Structure" order="1" sideWeight="0.507722" side_tool="true" weight="0.32967034" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.33737597" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
     </layout-to-restore>
@@ -1080,8 +1100,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Adding missing openshift artifacts." />
-    <MESSAGE value="adding stage to Jenkinsfile to deploy service to `tools` environment" />
     <MESSAGE value="adding separate config file for matomo so we don't end up deploying the whole app alongside the analytics service." />
     <MESSAGE value="fix env name typo" />
     <MESSAGE value="fix deployment name" />
@@ -1105,7 +1123,9 @@
     <MESSAGE value="Updating Jenkinsfile for matomo - now isolated from devhub app." />
     <MESSAGE value="Applying latest changes from master prior to generating new Jenkins job." />
     <MESSAGE value="Resolving diffs in DC." />
-    <option name="LAST_COMMIT_MESSAGE" value="Resolving diffs in DC." />
+    <MESSAGE value="Adding OCP networking reference." />
+    <MESSAGE value="Un-tracking intellij files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Un-tracking intellij files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1113,8 +1133,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app-web/src/config.json" />
-    <entry file="file://$PROJECT_DIR$/app-web/gatsby-config.js" />
     <entry file="file://$PROJECT_DIR$/app-web/static/scripts/matomo.js" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -1128,9 +1146,7 @@
     <entry file="file://$PROJECT_DIR$/openshift/keycloak-scripts/kc-create-client.sh" />
     <entry file="file://$PROJECT_DIR$/openshift/matomo/matomo/matomo-deploy.json" />
     <entry file="file://$PROJECT_DIR$/openshift/matomo/matomo-db/matomo-db-deploy.json" />
-    <entry file="file://$PROJECT_DIR$/openshift/matomo/matomo-proxy/dive.log">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/openshift/matomo/matomo-proxy/dive.log" />
     <entry file="file://$PROJECT_DIR$/openshift/matomo/matomo-proxy/matomo-proxy-build.json" />
     <entry file="file://$PROJECT_DIR$/app-web/.env.production">
       <provider selected="true" editor-type-id="text-editor">
@@ -1166,30 +1182,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Jenkinsfile-matomo">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/openshift/config-matomo.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/openshift/matomo/matomo/matomo-build.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/openshift/matomo/mariadb/mariadb-build.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Jenkinsfile-matomo" />
+    <entry file="file://$PROJECT_DIR$/openshift/config-matomo.groovy" />
+    <entry file="file://$PROJECT_DIR$/openshift/matomo/matomo/matomo-build.json" />
+    <entry file="file://$PROJECT_DIR$/openshift/matomo/mariadb/mariadb-build.json" />
     <entry file="file://$PROJECT_DIR$/.jenkins/.pipeline/build.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1197,13 +1193,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/openshift/config.groovy" />
-    <entry file="file://$PROJECT_DIR$/app-web/theme.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/openshift/dc.yaml" />
     <entry file="file://$PROJECT_DIR$/openshift/bc.yaml" />
     <entry file="file://$PROJECT_DIR$/.jenkins/docker/contrib/jenkins/configuration/jobs/_jenkins/config.xml">
@@ -1219,18 +1208,10 @@
     <entry file="file://$PROJECT_DIR$/matomo/Jenkinsfile">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/matomo/.pipeline/build.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/matomo/.pipeline/clean.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/matomo/.pipeline/deploy.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/matomo/.pipeline/lib/build.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/matomo/.pipeline/build.js" />
+    <entry file="file://$PROJECT_DIR$/matomo/.pipeline/clean.js" />
+    <entry file="file://$PROJECT_DIR$/matomo/.pipeline/deploy.js" />
+    <entry file="file://$PROJECT_DIR$/matomo/.pipeline/lib/build.js" />
     <entry file="file://$PROJECT_DIR$/.jenkins/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SECOND">
@@ -1241,20 +1222,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.yo-rc.json">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="115" column="5" selection-start-line="115" selection-start-column="5" selection-end-line="115" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Jenkinsfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/openshift/templates/bc.yaml">
       <provider selected="true" editor-type-id="text-editor" />
@@ -1268,15 +1235,6 @@
     <entry file="file://$PROJECT_DIR$/.jenkins/docker/contrib/jenkins/configuration/jobs/matomo/config.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/build-previewer.sh">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preview.sh">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app-web/shell-scripts/unit-tests.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -1284,10 +1242,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app-web/package.json">
+    <entry file="file://$PROJECT_DIR$/app-web/registry/getting-started-on-the-devops-platform.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="46" column="9" lean-forward="true" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app-web/theme.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+          <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Jenkinsfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build-previewer.sh">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preview.sh">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app-web/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="90" column="24" selection-start-line="90" selection-start-column="24" selection-end-line="90" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="112" column="5" selection-start-line="112" selection-start-column="5" selection-end-line="112" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="24" lean-forward="true" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
         </state>
       </provider>
     </entry>
