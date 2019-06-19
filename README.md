@@ -22,6 +22,30 @@ The resources will be collected into curated various focused kits/collections of
 
 It will also provide a aeans to seed “prosumer”/community behaviours. For example, it will be possible to view source/fork/comment/PR on many of the elements in the DevHub.
 
+## How Resources Are Sourced and Connected Together (from the developer's prespective)
+
+Resources are sourced via a set of __Gatsby Source Plugins__. These plugins are installed through npm (or sourced locally) and then declared within `gatsby-config.js`. 
+
+To link nodes together there are a couple of different constructs that are being utilized. 
+
+### Registry JSON Files
+
+The registry is the current way files are sourced from github, they are collection by the `gatsby-source-github-all` plugin (soon to be replaced with `gatsby-source-github-raw`) and go through some processes to link resources into relatable topics. 
+
+### Extending Nodes With Fields and Mapping Them Together
+> mapping nodes https://www.gatsbyjs.org/docs/gatsby-config/#mapping-node-types
+
+Gatsby has several provisions for automatically linking unlike nodes together based on some conventions. 
+The one that we are currently trying out is _mapping_ nodes together. 
+
+Within `gatsby/createNode.js` are a set of functions that extend different _source plugins_ to draw out
+some normalized abstractions. For example, we have markdown files representing _Topics_ (found within `/topics`)
+and the set of registry files declaring what resources belong inside of a topic. The `gatsby-source-github-all` creates nodes of type `DevhubCollection` (the former name for a Topic): a __slug__ and __content__ property
+are extended from this node using `createNodeField`. Subsequently, the `id` frontmatter property of each topic markdown node (`/topics/agile-development.md` for example) is extended. The `id` field from the markdown node is mapped to the DevhubCollection `content` field and is thus ___linked___ together:)
+
+An amazingly detailed and professional schematic can be found [here](./docs/images/connecting-nodes.jpg)
+
+
 ## Resource Types
  
 The currently imagined resource types are as follows:
