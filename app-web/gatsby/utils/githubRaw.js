@@ -20,6 +20,7 @@ const flatten = require('lodash/flatten');
 
 const getFilesFromRegistry = getNodes => {
   const nodes = getNodes();
+  const sourceToTopicMap = {};
   // get RegistryJson nodes
   const registry = nodes.filter(isRegistryJson);
   // spit out all github sources from the registry while maintaining references to the
@@ -53,11 +54,19 @@ const getFilesFromRegistry = getNodes => {
     // flatten out all urls since a single source can produce many urls
     return [flatten(urls), topic];
   });
+  // map out urls to their respective topics since this is 1 to many relationship
+  resolvedGitSources.forEach(([urls, topic]) => {
+    urls.forEach(u => {
+      if (Object.prototype.hasOwnProperty.call(sourceToTopicMap, u)) {
+        sourceToTopicMap[u].push(topic);
+      } else {
+        sourceToTopicMap[u] = [topic];
+      }
+    });
+  });
   // convert into the files array required by the gatsby github raw plugin
   // [[url1, url2], topic] => [{url: url1, topic}, {url: url2, topic}]
-  return flatten(
-    resolvedGitSources.map(([urls, topic]) => urls.map(url => ({ url, topics: [topic] }))),
-  );
+  return Object.keys(sourceToTopicMap).map(url => ({ url, topics: sourceToTopicMap[url] }));
 };
 
 module.exports = { getFilesFromRegistry };

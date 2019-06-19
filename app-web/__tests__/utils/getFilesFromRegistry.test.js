@@ -40,6 +40,15 @@ describe('getFilesFromRegistry', () => {
               file: 'README.md',
             },
           },
+          {
+            sourceType: 'github',
+            sourceProperties: {
+              url: 'https://github.com/bcgov/Agile-Delivery-Process',
+              owner: 'bcgov',
+              repo: 'Agile-Delivery-Process',
+              files: ['README.md'],
+            },
+          },
         ],
       },
     },
@@ -51,7 +60,7 @@ describe('getFilesFromRegistry', () => {
     const expected = [
       {
         url: 'https://github.com/bcgov/Agile-Delivery-Process/blob/master/README.md',
-        topics: ['Registry Item 1'],
+        topics: ['Registry Item 1', 'Registry Item 2'],
       },
       {
         url: 'https://github.com/bcgov/Agile-Delivery-Process/blob/master/foo.md',
