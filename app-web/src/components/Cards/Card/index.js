@@ -51,8 +51,8 @@ export const DecorativeBar = styled.div`
 `;
 
 export const CardWrapper = styled.article`
-  width: 250px;
-  height: 225px;
+  width: 265px;
+  height: 238.5px;
   margin: 10px 0;
   border: 1px solid #ccc;
   border-top: transparent;
@@ -138,8 +138,7 @@ export const EventDate = styled(DateLI)`
 `;
 
 export const EventContainer = styled(EventDetailsContainer)`
-  margin-top: auto;
-  margin-bottom: auto;
+  height: 64px;
   margin-left: -10px;
   background: rgba(229, 229, 229, 0.8);
   width: 100%;
@@ -151,7 +150,7 @@ export const EventContainer = styled(EventDetailsContainer)`
 export const CardBody = styled.div`
   padding: 6px 10px;
   height: 100%;
-  overflow: overlay;
+  overflow: hidden;
   height: 100%;
   display: flex;
   flex: 1 1 auto;
