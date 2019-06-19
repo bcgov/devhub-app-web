@@ -139,7 +139,7 @@ export const EventDate = styled(DateLI)`
 
 export const EventContainer = styled(EventDetailsContainer)`
   margin-top: auto;
-  margin-bottom: auto !important;
+  margin-bottom: auto;
   margin-left: -10px;
   background: rgba(229, 229, 229, 0.8);
   width: 100%;

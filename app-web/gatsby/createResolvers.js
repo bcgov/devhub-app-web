@@ -15,8 +15,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-// Created by Patrick Simonian on 2018-10-12.
+// Created by Derek Siemens
 //
+
 // gatsby event hooks
 // https://www.gatsbyjs.org/docs/node-apis/
 const getOrganizationsById = id => {
