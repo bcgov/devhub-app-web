@@ -16,10 +16,24 @@ limitations under the License.
 Created by Patrick Simonian
 */
 const htmlToFormattedText = require('html-to-formatted-text');
+const { isDevhubCollection, isMarkdownRemark } = require('./utils/validators.js');
+const shortid = require('shortid');
+const slugify = require('slugify');
 
 module.exports = ({ node, actions }) => {
   const { createNodeField } = actions;
+  if (isDevhubCollection(node)) {
+    // add a content field that the markdown topics will map too
+    createNodeField({ node, name: 'content', value: node.name });
+    // to help with page path creation, we adapt a slug from the collection/topic name
+    // because collections/topics are held within this repo they SHOULD be unique
+    createNodeField({ node, name: 'slug', value: slugify(node.name) });
+  }
 
+  if (isMarkdownRemark(node)) {
+    // normalize ids if they exist
+    createNodeField({ node, name: 'id', value: node.frontmatter.id || shortid.generate() });
+  }
   if (node.internal.type === 'MeetupEvent') {
     // normalize meetup event data
     createNodeField({ node, name: 'name', value: node.name });
