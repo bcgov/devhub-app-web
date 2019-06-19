@@ -99,6 +99,7 @@ module.exports = {
   },
   mapping: {
     'GithubRaw._xxboundProperties.topics': 'DevhubCollection.name',
+    'DevhubCollection.fields.content': 'MarkdownRemark.fields.id',
   },
   pathPrefix: '/images',
   plugins: [
@@ -136,6 +137,13 @@ module.exports = {
       options: {
         name: 'registry',
         path: `${__dirname}/${registry.contextDir}`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'registry',
+        path: `${__dirname}/topics`,
       },
     },
     {
