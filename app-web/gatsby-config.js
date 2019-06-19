@@ -27,6 +27,51 @@ module.exports = {
   pathPrefix: '/images',
   plugins: [
     {
+      resolve: `gatsby-source-meetup`,
+      options: {
+        key: process.env.MEETUP_API_KEY,
+        groupUrlName: 'DevOps-Commons',
+        status: 'upcoming,past',
+        desc: 'true',
+      },
+    },
+    {
+      resolve: `gatsby-source-meetup`,
+      options: {
+        key: process.env.MEETUP_API_KEY,
+        groupUrlName: 'Cloud-Native-Victoria',
+        status: 'upcoming,past',
+        desc: 'true',
+      },
+    },
+    {
+      resolve: `gatsby-source-meetup`,
+      options: {
+        key: process.env.MEETUP_API_KEY,
+        groupUrlName: 'bcgov-uxguild',
+        status: 'upcoming,past',
+        desc: 'true',
+      },
+    },
+    {
+      resolve: `gatsby-source-meetup`,
+      options: {
+        key: process.env.MEETUP_API_KEY,
+        groupUrlName: 'meetup-group-GjYRUnKV',
+        status: 'upcoming,past',
+        desc: 'true',
+      },
+    },
+    {
+      resolve: `gatsby-source-meetup`,
+      options: {
+        key: process.env.MEETUP_API_KEY,
+        groupUrlName: 'Social-Club-for-Innovative-Public-Servants-SCIPS',
+        status: 'upcoming,past',
+        desc: 'true',
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: 'Devhub',

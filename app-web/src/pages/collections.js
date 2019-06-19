@@ -80,9 +80,27 @@ export const addCurrentEventsToCollection = (collections, events, collectionName
 export const CollectionsPage = ({ data }) => {
   let collections = flattenGatsbyGraphQL(data.allDevhubCollection.edges);
   const events = flattenGatsbyGraphQL(data.allEventbriteEvents.edges);
+  const meetUps = flattenGatsbyGraphQL(data.allMeetupGroup.edges)
+    .flatMap(meetups => {
+      return meetups.childrenMeetupEvent;
+    })
+    .map(meetup => {
+      meetup.start = {
+        day: meetup.day,
+        month: meetup.month,
+        year: meetup.year,
+        daysFromNow: meetup.daysFromNow,
+      };
+      meetup.venue.name = meetup.venue.address_1;
+      return meetup;
+    });
+  //sort events so they show up soonest to farthest away
+  const eventsAndMeetupsSorted = events
+    .concat(meetUps)
+    .sort((a, b) => b.start.daysFromNow - a.start.daysFromNow);
   const collectionsWithEvents = addCurrentEventsToCollection(
     collections,
-    events,
+    eventsAndMeetupsSorted,
     TOPICS.COMMUNITY_AND_EVENTS,
   );
   // resources are grouped by type, 'ungroup' them so we can find the first available

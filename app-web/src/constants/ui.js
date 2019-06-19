@@ -57,6 +57,7 @@ export const EVENTS = {
 
 export const EVENT_TYPES = {
   eventbrite: 'eventbrite',
+  meetup: 'meetup',
 };
 
 export const CARD_CAROUSEL = {

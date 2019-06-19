@@ -37,7 +37,7 @@ const CardContainer = styled.div`
   }
 `;
 
-//Formats eventbrite data into something usable along side collection resources by the card component
+//Formats eventbrite data into something usable by the card component
 const formatEvents = events => {
   return events.map(event => {
     event = {
@@ -51,11 +51,37 @@ const formatEvents = events => {
   });
 };
 
-export const EventsPage = ({ data: { allEventbriteEvents, allDevhubCollection } }) => {
+//Formats meetup data into the identical format as the formatEvents function
+const formatMeetUps = meetups => {
+  return meetups.map(meetup => {
+    meetup = {
+      unfurl: meetup.siphon.unfurl,
+      resource: meetup.siphon.resource,
+      id: meetup.siphon.id,
+      venue: meetup.venue.address_1,
+      start: {
+        day: meetup.day,
+        month: meetup.month,
+        year: meetup.year,
+        daysFromNow: meetup.daysFromNow,
+      },
+    };
+    return meetup;
+  });
+};
+
+export const EventsPage = ({
+  data: { allEventbriteEvents, allDevhubCollection, meetupGroup, allMeetupGroup },
+}) => {
   const events = flattenGatsbyGraphQL(allEventbriteEvents.edges);
+  const meetUps = formatMeetUps(
+    flattenGatsbyGraphQL(allMeetupGroup.edges).flatMap(meetups => {
+      return meetups.childrenMeetupEvent;
+    }),
+  );
   // filter out any events that are passed today
   const currentEvents = formatEvents(events.filter(e => e.start.daysFromNow <= 0));
-
+  const currentMeetups = meetUps.filter(e => e.start.daysFromNow <= 0);
   //Get all the cards on the site
   const cards = flattenGatsbyGraphQL(allDevhubCollection.edges);
   //filter to just get the cards for the Community and Events topic
@@ -63,13 +89,16 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubCollection } 
     .filter(e => e.name === TOPICS.COMMUNITY_AND_EVENTS)
     .flatMap(e => e.childrenDevhubSiphon)
     .filter(e => e.resource.type === RESOURCE_TYPES.EVENTS);
-  // previous events are sorted in descending order
-  const previousEvents = formatEvents(
-    events
-      .filter(e => e.start.daysFromNow > 0)
-      .sort((a, b) => a.start.daysFromNow / 1 - b.start.daysFromNow / 1)
-      .splice(0, EVENTS.MAX_PAST_EVENTS),
+  //sort all the info so that event show up from soonest to farthest away
+  const currentEventsMeetUpsAndCards = communityCards.concat(
+    currentEvents.concat(currentMeetups).sort((a, b) => b.start.daysFromNow - a.start.daysFromNow),
   );
+  // previous events are sorted in descending order
+  const previousEventsAndMeetUps = formatEvents(events)
+    .concat(meetUps)
+    .filter(e => e.start.daysFromNow > 0)
+    .sort((a, b) => a.start.daysFromNow / 1 - b.start.daysFromNow / 1)
+    .splice(0, EVENTS.MAX_PAST_EVENTS);
 
   return (
     <Layout>
@@ -86,7 +115,7 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubCollection } 
         {currentEvents.length > 0 ? (
           <Aux>
             <CardContainer>
-              {communityCards.concat(currentEvents).map(e => (
+              {currentEventsMeetUpsAndCards.map(e => (
                 <Card
                   key={e.id}
                   type={e.resource.type}
@@ -107,7 +136,7 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubCollection } 
             <h2>Past Events</h2>
           </Header>
           <CardContainer pastEvents>
-            {previousEvents.map(e => (
+            {previousEventsAndMeetUps.map(e => (
               <Card
                 key={e.id}
                 type={e.resource.type}
@@ -153,6 +182,36 @@ export const EventData = graphql`
           }
           venue {
             name
+          }
+        }
+      }
+    }
+    allMeetupGroup {
+      edges {
+        node {
+          childrenMeetupEvent {
+            siphon {
+              unfurl {
+                title
+                description
+                image
+              }
+              resource {
+                type
+                path
+              }
+              id
+            }
+            day: local_date(formatString: "DD")
+            month: local_date(formatString: "MMM")
+            year: local_date(formatString: "YYYY")
+            daysFromNow: local_date(difference: "days")
+            status
+            link
+            description
+            venue {
+              address_1
+            }
           }
         }
       }

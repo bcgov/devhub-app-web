@@ -129,6 +129,11 @@ objects:
               secretKeyRef:
                 name: devhub-gh-token
                 key: GITHUB_TOKEN
+          - name: MEETUP_API_KEY
+            valueFrom: 
+              secretKeyRef:
+                name: devhub-meetup-token
+                key: MEETUP_API_KEY
           - name: EVENT_BRITE_API_KEY
             valueFrom:
               secretKeyRef:

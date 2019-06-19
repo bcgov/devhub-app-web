@@ -34,6 +34,7 @@ import {
   EventDate,
   EventContainer,
   EventImageWrapper,
+  MeetupImageWrapper,
 } from './index';
 import Aux from '../../../hoc/auxillary';
 
@@ -69,6 +70,29 @@ const Card = ({ type, title, description, image, link, ...rest }) => {
               <EventImageWrapper>
                 <EventLogo type={image} />
               </EventImageWrapper>
+            </li>
+          </EventInfoDiv>
+        </EventContainer>
+      </Aux>
+    );
+  } else if (image === 'meetup' && description) {
+    cardBody = (
+      <Aux>
+        <CardDescription title={description} clamp={3} tagName="p">
+          {rest.event.unfurl.description}
+        </CardDescription>
+        <EventContainer>
+          <EventDate>
+            <span>{rest.event.start.month}</span>
+            {rest.event.start.day}
+            <small>{rest.event.start.year}</small>
+          </EventDate>
+          <EventInfoDiv>
+            <li>
+              {rest.event.venue !== null ? rest.event.venue : 'tbd'}
+              <MeetupImageWrapper>
+                <EventLogo type={image} />
+              </MeetupImageWrapper>
             </li>
           </EventInfoDiv>
         </EventContainer>

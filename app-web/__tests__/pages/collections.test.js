@@ -2,7 +2,12 @@ import React from 'react';
 import { ThemeProvider } from 'emotion-theming';
 import { render } from 'react-testing-library';
 import { addCurrentEventsToCollection, CollectionsPage } from '../../src/pages/collections';
-import { SIPHON_NODES, COLLECTIONS, EVENTS } from '../../__fixtures__/siphon-fixtures';
+import {
+  SIPHON_NODES,
+  COLLECTIONS,
+  EVENTS,
+  MEETUP_NODES,
+} from '../../__fixtures__/siphon-fixtures';
 import theme from '../../theme';
 import { getFirstNonExternalResource } from '../../src/utils/helpers';
 jest.mock('react-spinners', () => null);
@@ -21,7 +26,7 @@ describe('Collections Container', () => {
     const nodes = SIPHON_NODES.map(c => ({ node: c }));
     const collections = COLLECTIONS.map(c => ({ node: c }));
     const events = EVENTS.map(c => ({ node: c }));
-
+    const meetups = MEETUP_NODES.map(c => ({ node: c }));
     const data = {
       allDevhubSiphon: {
         edges: nodes,
@@ -31,6 +36,9 @@ describe('Collections Container', () => {
       },
       allEventbriteEvents: {
         edges: events,
+      },
+      allMeetupGroup: {
+        edges: meetups,
       },
     };
     // mocking redux actions
