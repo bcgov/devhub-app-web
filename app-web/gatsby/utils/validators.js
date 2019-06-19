@@ -24,10 +24,12 @@ const isDevhubSiphon = node => node.internal.type === 'DevhubSiphon';
 const isDevhubTopic = node => node.internal.type === 'DevhubTopic';
 const isEventbriteEvents = node => node.internal.type === 'EventbriteEvents';
 const isRegistryJson = node => node.internal.type === 'RegistryJson';
+const isMarkdownRemarkFrontmatter = node => node.internal.type === 'MarkdownRemarkFrontmatter';
 
 module.exports = {
   isGithubRaw,
   isMarkdownRemark,
+  isMarkdownRemarkFrontmatter,
   isDevhubSiphon,
   isDevhubTopic,
   isEventbriteEvents,
