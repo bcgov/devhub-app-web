@@ -25,13 +25,7 @@ pipeline {
                 sh "cd .jenkins/.pipeline && ./npmw ci && ./npmw run build -- --pr=${CHANGE_ID}"
             }
         }
-        stage('Deploy (DEV)') {
-            agent { label 'deploy' }
-            steps {
-                echo "Deploying ..."
-                sh "cd .jenkins/.pipeline && ./npmw ci && DEBUG=info* ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev"
-            }
-        }
+        
         stage('Deploy (PROD)') {
             agent { label 'deploy' }
             input {
