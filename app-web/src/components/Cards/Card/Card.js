@@ -53,7 +53,7 @@ const Card = ({ type, title, description, image, link, ...rest }) => {
   //Little if statement to change the amount of lines we want to clamp based on if the title takes 1 or two lines
   let clampAmount = 4;
   //if takes one line.......
-  if (title.length < 24) {
+  if (title.length < 23) {
     clampAmount = 5;
   }
 
