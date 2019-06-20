@@ -3,7 +3,7 @@
 exports[`Resource Type Template Page it matches snapshot, when there are no resources for the given reosource type the no resource component shows  1`] = `
 .emotion-39 {
   font-size: 15px;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0;
   padding: 10px 10px;
 }
@@ -196,8 +196,8 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
 }
 
 .emotion-26 {
-  width: 250px;
-  height: 225px;
+  width: 265px;
+  height: 238.5px;
   margin: 10px 0;
   border: 1px solid #ccc;
   border-top: transparent;
@@ -234,7 +234,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
 .emotion-24 {
   padding: 6px 10px;
   height: 100%;
-  overflow: overlay;
+  overflow: hidden;
   height: 100%;
   display: -webkit-box;
   display: -webkit-flex;
