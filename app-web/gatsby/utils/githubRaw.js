@@ -55,6 +55,7 @@ const getFilesFromRegistry = getNodes => {
     return [flatten(urls), topic];
   });
   // map out urls to their respective topics since this is 1 to many relationship
+  // ends up with structure that is similar to this => {url1: [topicA, topicB]}
   resolvedGitSources.forEach(([urls, topic]) => {
     urls.forEach(u => {
       if (Object.prototype.hasOwnProperty.call(sourceToTopicMap, u)) {
@@ -64,8 +65,8 @@ const getFilesFromRegistry = getNodes => {
       }
     });
   });
-  // convert into the files array required by the gatsby github raw plugin
-  // [[url1, url2], topic] => [{url: url1, topic}, {url: url2, topic}]
+  // convert sourceToTopicMap to an array in the expected structure for the github raw plugin
+  // {url1: [topicA, topicB]} => [{url: url1, topics: [topicA, topicB]}]
   return Object.keys(sourceToTopicMap).map(url => ({ url, topics: sourceToTopicMap[url] }));
 };
 
