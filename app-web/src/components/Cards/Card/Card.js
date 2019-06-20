@@ -50,12 +50,18 @@ const Card = ({ type, title, description, image, link, ...rest }) => {
       {description}
     </CardDescription>
   );
+  //Little if statement to change the amount of lines we want to clamp based on if the title takes 1 or two lines
+  let clampAmount = 4;
+  //if takes one line.......
+  if (title.length < 24) {
+    clampAmount = 5;
+  }
 
   //first check if its an eventbrite event, as in our resolver in gatsby-node.js -> image is set to "eventbrite"
   if (image === 'eventbrite' && description) {
     cardBody = (
       <Aux>
-        <CardDescription title={description} clamp={4} tagName="p">
+        <CardDescription title={description} clamp={clampAmount} tagName="p">
           {rest.event.unfurl.description}
         </CardDescription>
         <EventContainer>
@@ -78,7 +84,7 @@ const Card = ({ type, title, description, image, link, ...rest }) => {
   } else if (image === 'meetup' && description) {
     cardBody = (
       <Aux>
-        <CardDescription title={description} clamp={4} tagName="p">
+        <CardDescription title={description} clamp={clampAmount} tagName="p">
           {rest.event.unfurl.description}
         </CardDescription>
         <EventContainer>

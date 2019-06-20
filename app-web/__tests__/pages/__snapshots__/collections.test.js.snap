@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Collections Container it matches snapshot 1`] = `
-.emotion-214 {
+.emotion-212 {
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -94,7 +94,7 @@ exports[`Collections Container it matches snapshot 1`] = `
   color: #fcba19;
 }
 
-.emotion-194 {
+.emotion-192 {
   margin-top: 65px;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -103,20 +103,20 @@ exports[`Collections Container it matches snapshot 1`] = `
 }
 
 @media screen and (min-width:932px) {
-  .emotion-194 {
+  .emotion-192 {
     margin-top: 112px;
   }
 }
 
-.emotion-192 {
+.emotion-190 {
   font-size: 15px;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0;
   padding: 10px 10px;
 }
 
 @media screen and (min-width:932px) {
-  .emotion-192 {
+  .emotion-190 {
     padding: 10px 65px;
   }
 }
@@ -364,7 +364,7 @@ exports[`Collections Container it matches snapshot 1`] = `
   color: #246BD1;
 }
 
-.emotion-212 {
+.emotion-210 {
   background-color: #036;
   border-top: 2px solid #fcba19;
   padding: 9px 0 10px;
@@ -373,18 +373,18 @@ exports[`Collections Container it matches snapshot 1`] = `
 }
 
 @media screen and (min-width:600px) {
-  .emotion-212 {
+  .emotion-210 {
     padding: 0 65px 0 65px;
   }
 }
 
 @media print {
-  .emotion-212 {
+  .emotion-210 {
     display: none;
   }
 }
 
-.emotion-210 {
+.emotion-208 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -395,7 +395,7 @@ exports[`Collections Container it matches snapshot 1`] = `
   align-items: center;
 }
 
-.emotion-210 > ul {
+.emotion-208 > ul {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -407,7 +407,7 @@ exports[`Collections Container it matches snapshot 1`] = `
   margin: 10px 0;
 }
 
-.emotion-210 li {
+.emotion-208 li {
   padding: 0 9px;
   text-align: center;
   margin-bottom: 0;
@@ -421,7 +421,7 @@ exports[`Collections Container it matches snapshot 1`] = `
   align-items: center;
 }
 
-.emotion-196 {
+.emotion-194 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #1A5A96;
@@ -431,7 +431,7 @@ exports[`Collections Container it matches snapshot 1`] = `
   margin: 0 2px;
 }
 
-.emotion-208 {
+.emotion-206 {
   margin: 0;
   padding: 0;
   background: none;
@@ -442,17 +442,17 @@ exports[`Collections Container it matches snapshot 1`] = `
   font-size: 0.813em;
 }
 
-.emotion-208:focus {
+.emotion-206:focus {
   outline: none;
 }
 
-.emotion-208:hover {
+.emotion-206:hover {
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
 <div
-  class="emotion-214 emotion-215 container-fluid"
+  class="emotion-212 emotion-213 container-fluid"
 >
   <header
     class="PrimaryHeader"
@@ -576,10 +576,10 @@ exports[`Collections Container it matches snapshot 1`] = `
     </ul>
   </nav>
   <div
-    class="emotion-194 emotion-195"
+    class="emotion-192 emotion-193"
   >
     <main
-      class="emotion-192 emotion-193"
+      class="emotion-190 emotion-191"
     >
       <div
         class="emotion-15 emotion-16"
@@ -1359,26 +1359,6 @@ exports[`Collections Container it matches snapshot 1`] = `
                 </li>
               </ul>
             </div>
-            <div
-              class="BrainhubCarousel__customArrows BrainhubCarousel__custom-arrowRight"
-            >
-              <svg
-                aria-hidden="true"
-                class="svg-inline--fa fa-chevron-right fa-w-10  emotion-106 emotion-107"
-                data-icon="chevron-right"
-                data-prefix="fas"
-                data-testid="carousel-arrow-right"
-                focusable="false"
-                role="img"
-                viewBox="0 0 320 512"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
           </div>
           <div
             class="emotion-110 emotion-111"
@@ -1411,15 +1391,15 @@ exports[`Collections Container it matches snapshot 1`] = `
     </main>
   </div>
   <footer
-    class="emotion-212 emotion-213"
+    class="emotion-210 emotion-211"
   >
     <div
-      class="emotion-210 emotion-211"
+      class="emotion-208 emotion-209"
     >
       <ul>
         <li>
           <a
-            class="emotion-196 emotion-12"
+            class="emotion-194 emotion-12"
             css="[object Object]"
             href="/"
           >
@@ -1468,7 +1448,7 @@ exports[`Collections Container it matches snapshot 1`] = `
         </li>
         <li>
           <button
-            class="emotion-208 emotion-209"
+            class="emotion-206 emotion-207"
           >
             Fair Use
           </button>
