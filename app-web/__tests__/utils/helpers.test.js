@@ -20,7 +20,7 @@ import {
   getGithubUsernameURL,
   getGithubIssuesRoute,
   mapPagePathToResourceTypeConst,
-  sortDevhubTopicsAfterDesignSystemAndFeatured,
+  sortDevhubTopicsAfterSelectedTopics,
 } from '../../src/utils/helpers';
 import { GITHUB_URL } from '../../src/constants/api';
 import { RESOURCE_TYPES } from '../../src/constants/ui';
@@ -69,22 +69,24 @@ describe('Helpers', () => {
     expect(mapPagePathToResourceTypeConst('/foo')).toBeUndefined();
   });
 
-  test('it sorts Featured Cards and Design System so they are first and then everything else is sorted lexographically', () => {
+  test('it sorts Featured Cards, Design System and Getting Started on the DevOps Patform so they are first and then everything else is sorted lexographically', () => {
     const topics = [
       { node: { name: 'Blah' } },
       { node: { name: 'Apple' } },
       { node: { name: 'Design System' } },
       { node: { name: 'Featured Resources' } },
+      { node: { name: 'Getting Started on the DevOps Platform' } },
       { node: { name: 'Foo' } },
     ];
     const expected = [
       { node: { name: 'Featured Resources' } },
       { node: { name: 'Design System' } },
+      { node: { name: 'Getting Started on the DevOps Platform' } },
       { node: { name: 'Apple' } },
       { node: { name: 'Blah' } },
       { node: { name: 'Foo' } },
     ];
 
-    expect(sortDevhubTopicsAfterDesignSystemAndFeatured(topics)).toEqual(expected);
+    expect(sortDevhubTopicsAfterSelectedTopics(topics)).toEqual(expected);
   });
 });
