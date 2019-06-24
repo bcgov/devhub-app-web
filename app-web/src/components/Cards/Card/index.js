@@ -50,6 +50,21 @@ export const DecorativeBar = styled.div`
   flex: 0 0 10px;
 `;
 
+export const HeaderPathBar = styled.div`
+  background-color: ${props => props.theme.colors[props.type]};
+  flex: 0 0 10px;
+  padding-bottom: 10px;
+`;
+
+export const PathBarTitle = styled.div`
+  font-size: 20px;
+  color: #494949;
+  line-height: 1.3;
+  margin-bottom: 5px;
+  flex: 0 0 auto;
+  word-break: break-word;
+`;
+
 export const CardWrapper = styled.article`
   width: 265px;
   height: 238.5px;
@@ -80,6 +95,7 @@ export const CardTitle = styled(DotDotDot)`
 
 export const CardDescription = styled(DotDotDot)`
   ${designTokens.description};
+  color: rgb(0, 0, 0);
 `;
 
 export const EventImageWrapper = styled(EventLogoWrapper)`
