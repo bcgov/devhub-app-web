@@ -8,7 +8,7 @@ module.exports = (settings) => {
     const oc = new OpenShiftClientX(Object.assign({'namespace': phases.build.namespace}, options));
     const phase = 'build'
     let objects = []
-    const templatesLocalBaseUrl = oc.toFileUrl(path.resolve(__dirname, '../openshift'))
+    const templatesLocalBaseUrl = oc.toFileUrl(path.resolve(__dirname, '../../openshift'))
 
     // The building of your cool app goes here ▼▼▼
     objects = objects.concat(oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/mariadb/mariadb-build.json`, {
