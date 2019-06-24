@@ -10,6 +10,21 @@
   "sourceProperties": {
     "sources": [
       {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/devhub-resources/",
+          "owner": "bcgov",
+          "repo": "devhub-resources",
+          "files": [
+            "resources/alignment/opensource.md",
+            "resources/alignment/architecture_and_tech_stacks.md",
+            "resources/alignment/communication_community_and_support.md",
+            "resources/community/12-factor-apps.md",
+            "resources/community/progressive-web-apps.md"
+          ]
+        }
+      },
+      {
         "sourceType": "web",
         "sourceProperties": {
           "title": "OpenShift Interactive Learning Portal",
@@ -71,21 +86,6 @@
           "title": "OpenShift Developer Console",
           "description": "This guide is intended for application developers, and provides instructions for setting up and configuring a workstation to develop and deploy applications in an OpenShift Container Platform.",
           "url": "https://console.pathfinder.gov.bc.ca:8443/console/projects"
-        }
-      },
-      {
-        "sourceType": "github",
-        "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-resources/",
-          "owner": "bcgov",
-          "repo": "devhub-resources",
-          "files": [
-            "resources/alignment/opensource.md",
-            "resources/alignment/architecture_and_tech_stacks.md",
-            "resources/alignment/communication_community_and_support.md",
-            "resources/community/12-factor-apps.md",
-            "resources/community/progressive-web-apps.md"
-          ]
         }
       }
     ]
