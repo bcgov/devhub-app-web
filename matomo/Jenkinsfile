@@ -21,36 +21,19 @@ pipeline {
                     abortAllPreviousBuildInProgress(currentBuild)
                 }
                 echo "Building ..."
-                sh "cd .pipeline && ./npmw ci && ./npmw run build -- --pr=${CHANGE_ID}"
+                sh "cd matomo/.pipeline && ./npmw ci && ./npmw run build -- --pr=${CHANGE_ID}"
             }
         }
-        stage('Deploy (DEV)') {
-            agent { label 'deploy' }
-            steps {
-                echo "Deploying ..."
-                sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev"
-            }
-        }
-        stage('Deploy (TEST)') {
-            agent { label 'deploy' }
-            input {
-                message "Should we continue with deployment to TEST?"
-                ok "Yes!"
-            }
-            steps {
-                echo "Deploying ..."
-                sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=test"
-            }
-        }
+
         stage('Deploy (PROD)') {
             agent { label 'deploy' }
             input {
-                message "Should we continue with deployment to TEST?"
+                message "Should we continue with deployment to PROD?"
                 ok "Yes!"
             }
             steps {
                 echo "Deploying ..."
-                sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=prod"
+                sh "cd matomo/.pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=prod"
             }
         }
     }
