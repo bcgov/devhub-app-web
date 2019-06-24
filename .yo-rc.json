@@ -99,7 +99,7 @@
           "jenkinsJobName": "matomo",
           "github_owner": "bcgov",
           "github_repo": "devhub-app-web",
-          "jenkinsFilePath": "Jenkinsfile",
+          "jenkinsFilePath": "matomo/Jenkinsfile",
           "uuid": "8c1bf2ae-7b11-4810-a571-8283f23684db"
         }
       }
