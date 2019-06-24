@@ -29,7 +29,7 @@
     <data>
       <jenkins.branch.BranchSource>
         <source class="org.jenkinsci.plugins.github_branch_source.GitHubSCMSource" plugin="github-branch-source@2.3.6">
-          <id>81b5af34-6fcd-466d-a9c4-266d74efcbcd</id>
+          <id>8c1bf2ae-7b11-4810-a571-8283f23684db</id>
           <credentialsId>github-account</credentialsId>
           <repoOwner>bcgov</repoOwner>
           <repository>devhub-app-web</repository>
@@ -56,6 +56,6 @@
   </sources>
   <factory class="org.jenkinsci.plugins.workflow.multibranch.WorkflowBranchProjectFactory">
     <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
-    <scriptPath>matomo/Jenkinsfile</scriptPath>
+    <scriptPath>Jenkinsfile</scriptPath>
   </factory>
 </org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject>

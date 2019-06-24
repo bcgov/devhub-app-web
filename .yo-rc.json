@@ -83,6 +83,24 @@
           "github_repo": "realm-o-matic",
           "jenkinsFilePath": "Jenkinsfile",
           "uuid": "24d58602-f531-46b9-b07a-94f3b73d7e4f"
+        },
+        "matomo": {
+          "name": "matomo",
+          "version": "1.0.0",
+          "path": "matomo",
+          "environments": {
+            "build": {
+              "namespace": "devhub-tools"
+            },
+            "prod": {
+              "namespace": "devhub-tools"
+            }
+          },
+          "jenkinsJobName": "matomo",
+          "github_owner": "bcgov",
+          "github_repo": "devhub-app-web",
+          "jenkinsFilePath": "Jenkinsfile",
+          "uuid": "8c1bf2ae-7b11-4810-a571-8283f23684db"
         }
       }
     }
