@@ -206,6 +206,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   flex: 0 0 auto;
   margin-bottom: 0;
   text-transform: none;
+  color: rgb(0,0,0);
   max-width: 500px;
   margin-bottom: 15px;
 }
@@ -269,8 +270,7 @@ exports[`Topics Container it matches snapshot 1`] = `
 .emotion-42 {
   padding: 6px 10px;
   height: 100%;
-  overflow: hidden;
-  height: 100%;
+  overflow: scroll;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -306,6 +306,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   flex: 0 0 auto;
   margin-bottom: 0;
   text-transform: none;
+  color: rgb(0,0,0);
 }
 
 .emotion-40 {
@@ -669,13 +670,15 @@ exports[`Topics Container it matches snapshot 1`] = `
                   >
                     <article
                       class="emotion-44 emotion-45"
+                      title="About"
+                      type="Components"
                     >
                       <div
                         class="emotion-30 emotion-31"
                         type="Components"
                       />
                       <div
-                        class="emotion-42 emotion-312"
+                        class="emotion-42 emotion-314"
                       >
                         <div
                           css="[object Object]"
@@ -706,7 +709,9 @@ exports[`Topics Container it matches snapshot 1`] = `
                             >
                               Component
                             </span>
-                            <small>
+                            <small
+                              css="[object Object]"
+                            >
                               <svg
                                 aria-hidden="true"
                                 class="svg-inline--fa fa-external-link-alt fa-w-18 "
@@ -736,7 +741,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                           What the Design System is and how it works.
                         </p>
                         <div
-                          class="emotion-40 emotion-41"
+                          class="emotion-40 emotion-310"
                         />
                       </div>
                     </article>
@@ -752,13 +757,15 @@ exports[`Topics Container it matches snapshot 1`] = `
                   >
                     <article
                       class="emotion-44 emotion-45"
+                      title="About"
+                      type="Components"
                     >
                       <div
                         class="emotion-30 emotion-31"
                         type="Components"
                       />
                       <div
-                        class="emotion-42 emotion-312"
+                        class="emotion-42 emotion-314"
                       >
                         <div
                           css="[object Object]"
@@ -789,7 +796,9 @@ exports[`Topics Container it matches snapshot 1`] = `
                             >
                               Component
                             </span>
-                            <small>
+                            <small
+                              css="[object Object]"
+                            >
                               <svg
                                 aria-hidden="true"
                                 class="svg-inline--fa fa-external-link-alt fa-w-18 "
@@ -819,7 +828,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                           What the Design System is and how it works.
                         </p>
                         <div
-                          class="emotion-40 emotion-41"
+                          class="emotion-40 emotion-310"
                         />
                       </div>
                     </article>
@@ -835,13 +844,15 @@ exports[`Topics Container it matches snapshot 1`] = `
                   >
                     <article
                       class="emotion-44 emotion-45"
+                      title="About"
+                      type="Components"
                     >
                       <div
                         class="emotion-30 emotion-31"
                         type="Components"
                       />
                       <div
-                        class="emotion-42 emotion-312"
+                        class="emotion-42 emotion-314"
                       >
                         <div
                           css="[object Object]"
@@ -872,7 +883,9 @@ exports[`Topics Container it matches snapshot 1`] = `
                             >
                               Component
                             </span>
-                            <small>
+                            <small
+                              css="[object Object]"
+                            >
                               <svg
                                 aria-hidden="true"
                                 class="svg-inline--fa fa-external-link-alt fa-w-18 "
@@ -902,7 +915,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                           What the Design System is and how it works.
                         </p>
                         <div
-                          class="emotion-40 emotion-41"
+                          class="emotion-40 emotion-310"
                         />
                       </div>
                     </article>
@@ -918,13 +931,15 @@ exports[`Topics Container it matches snapshot 1`] = `
                   >
                     <article
                       class="emotion-44 emotion-45"
+                      title="About"
+                      type="Components"
                     >
                       <div
                         class="emotion-30 emotion-31"
                         type="Components"
                       />
                       <div
-                        class="emotion-42 emotion-312"
+                        class="emotion-42 emotion-314"
                       >
                         <div
                           css="[object Object]"
@@ -955,7 +970,9 @@ exports[`Topics Container it matches snapshot 1`] = `
                             >
                               Component
                             </span>
-                            <small>
+                            <small
+                              css="[object Object]"
+                            >
                               <svg
                                 aria-hidden="true"
                                 class="svg-inline--fa fa-external-link-alt fa-w-18 "
@@ -985,7 +1002,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                           What the Design System is and how it works.
                         </p>
                         <div
-                          class="emotion-40 emotion-41"
+                          class="emotion-40 emotion-310"
                         />
                       </div>
                     </article>
@@ -1118,13 +1135,15 @@ exports[`Topics Container it matches snapshot 1`] = `
                   >
                     <article
                       class="emotion-44 emotion-45"
+                      title="About"
+                      type="Documentation"
                     >
                       <div
                         class="emotion-127 emotion-31"
                         type="Documentation"
                       />
                       <div
-                        class="emotion-42 emotion-312"
+                        class="emotion-42 emotion-314"
                       >
                         <div
                           css="[object Object]"
@@ -1155,7 +1174,9 @@ exports[`Topics Container it matches snapshot 1`] = `
                             >
                               Documentation
                             </span>
-                            <small>
+                            <small
+                              css="[object Object]"
+                            >
                               <svg
                                 aria-hidden="true"
                                 class="svg-inline--fa fa-external-link-alt fa-w-18 "
@@ -1185,7 +1206,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                           What the Design System is and how it works.
                         </p>
                         <div
-                          class="emotion-40 emotion-41"
+                          class="emotion-40 emotion-310"
                         />
                       </div>
                     </article>
@@ -1201,13 +1222,15 @@ exports[`Topics Container it matches snapshot 1`] = `
                   >
                     <article
                       class="emotion-44 emotion-45"
+                      title="About"
+                      type="Documentation"
                     >
                       <div
                         class="emotion-127 emotion-31"
                         type="Documentation"
                       />
                       <div
-                        class="emotion-42 emotion-312"
+                        class="emotion-42 emotion-314"
                       >
                         <div
                           css="[object Object]"
@@ -1238,7 +1261,9 @@ exports[`Topics Container it matches snapshot 1`] = `
                             >
                               Documentation
                             </span>
-                            <small>
+                            <small
+                              css="[object Object]"
+                            >
                               <svg
                                 aria-hidden="true"
                                 class="svg-inline--fa fa-external-link-alt fa-w-18 "
@@ -1268,7 +1293,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                           What the Design System is and how it works.
                         </p>
                         <div
-                          class="emotion-40 emotion-41"
+                          class="emotion-40 emotion-310"
                         />
                       </div>
                     </article>
@@ -1284,13 +1309,15 @@ exports[`Topics Container it matches snapshot 1`] = `
                   >
                     <article
                       class="emotion-44 emotion-45"
+                      title="About"
+                      type="Documentation"
                     >
                       <div
                         class="emotion-127 emotion-31"
                         type="Documentation"
                       />
                       <div
-                        class="emotion-42 emotion-312"
+                        class="emotion-42 emotion-314"
                       >
                         <div
                           css="[object Object]"
@@ -1321,7 +1348,9 @@ exports[`Topics Container it matches snapshot 1`] = `
                             >
                               Documentation
                             </span>
-                            <small>
+                            <small
+                              css="[object Object]"
+                            >
                               <svg
                                 aria-hidden="true"
                                 class="svg-inline--fa fa-external-link-alt fa-w-18 "
@@ -1351,7 +1380,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                           What the Design System is and how it works.
                         </p>
                         <div
-                          class="emotion-40 emotion-41"
+                          class="emotion-40 emotion-310"
                         />
                       </div>
                     </article>

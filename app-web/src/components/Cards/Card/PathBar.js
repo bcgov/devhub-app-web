@@ -30,12 +30,13 @@ const PathDiv = styled.div`
   padding-bottom: 5px;
 `;
 
+//When given the correct input, it returns a component which has a list of the places a resource is shown
 export const PathBar = ({ showPath, type, links }) => {
   if (showPath === true) {
     return (
       <div>
         <HeaderPathBar type={type}>
-          <PathBarTitle>View this resource in...</PathBarTitle>
+          <PathBarTitle>Where would you like to view this resource?</PathBarTitle>
           <PathDiv>
             {links.map(link => {
               return (

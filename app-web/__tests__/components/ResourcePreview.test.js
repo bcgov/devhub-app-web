@@ -18,7 +18,11 @@ Created by Patrick Simonian
 import React from 'react';
 import { shallow } from 'enzyme';
 import { ResourcePreview } from '../../src/components/Home';
-import { SIPHON_NODES } from '../../__fixtures__/siphon-fixtures';
+import { SIPHON_NODES, ResourceData } from '../../__fixtures__/siphon-fixtures';
+import { useStaticQuery } from 'gatsby';
+jest.mock('gatsby');
+
+useStaticQuery.mockReturnValue(ResourceData);
 
 describe('Resource Preview Component', () => {
   let resourcePreview = null;

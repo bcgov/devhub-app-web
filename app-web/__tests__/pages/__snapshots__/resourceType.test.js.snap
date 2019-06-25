@@ -234,8 +234,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
 .emotion-24 {
   padding: 6px 10px;
   height: 100%;
-  overflow: hidden;
-  height: 100%;
+  overflow: scroll;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -278,6 +277,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   flex: 0 0 auto;
   margin-bottom: 0;
   text-transform: none;
+  color: rgb(0,0,0);
 }
 
 .emotion-22 {
@@ -450,13 +450,15 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
           >
             <article
               class="emotion-26 emotion-27"
+              title="About"
+              type="Documentation"
             >
               <div
                 class="emotion-12 emotion-13"
                 type="Documentation"
               />
               <div
-                class="emotion-24 emotion-132"
+                class="emotion-24 emotion-134"
               >
                 <div
                   css="[object Object]"
@@ -487,7 +489,9 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
                     >
                       Documentation
                     </span>
-                    <small>
+                    <small
+                      css="[object Object]"
+                    >
                       <svg
                         aria-hidden="true"
                         class="svg-inline--fa fa-external-link-alt fa-w-18 "
@@ -517,7 +521,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
                   What the Design System is and how it works.
                 </p>
                 <div
-                  class="emotion-22 emotion-23"
+                  class="emotion-22 emotion-130"
                 />
               </div>
             </article>

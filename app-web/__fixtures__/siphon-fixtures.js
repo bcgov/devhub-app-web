@@ -462,6 +462,49 @@ export const MEETUP_2 = {
   },
 };
 
+export const ResourceData = {
+  allDevhubCollection: {
+    edges: [
+      {
+        node: {
+          name: 'Agile Delivery Process',
+          childrenDevhubSiphon: [
+            {
+              collection: {
+                name: 'Agile Delivery Process',
+              },
+              resource: {
+                path: '/Agile-Delivery-Process/Agile-Delivery-Process',
+              },
+              unfurl: {
+                title: 'Agile Delivery Process',
+              },
+            },
+          ],
+        },
+      },
+      {
+        node: {
+          name: 'Featured Resources',
+          childrenDevhubSiphon: [
+            {
+              collection: {
+                name: 'Featured Resources',
+              },
+              resource: {
+                path: 'https://signing-web-devhub-prod.pathfinder.gov.bc.ca',
+              },
+              unfurl: {
+                title: 'Mobile Signing',
+              },
+            },
+          ],
+        },
+      },
+    ],
+  },
+};
+
 export const EVENTS = [EVENT_1, EVENT_2];
 export const MEETUP_NODES = [MEETUP_1, MEETUP_2];
 

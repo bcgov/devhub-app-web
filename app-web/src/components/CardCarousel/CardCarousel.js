@@ -79,9 +79,10 @@ export const FindPaths = title => {
       }
     }
   `);
-  const allCards = flattenGatsbyGraphQL(ResourceData.allDevhubCollection.edges)
-    .map(collection => collection.childrenDevhubSiphon)
-    .flat();
+  const allCards = flattenGatsbyGraphQL(ResourceData.allDevhubCollection.edges).flatMap(
+    collection => collection.childrenDevhubSiphon,
+  );
+
   const duplicateCards = allCards.filter(card => card.unfurl.title === title);
   const paths = duplicateCards.map(path => {
     path = {

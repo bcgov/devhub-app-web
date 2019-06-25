@@ -6,7 +6,11 @@ import queryString from 'query-string';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 import { Index, TEST_IDS } from '../../src/pages/index';
+<<<<<<< HEAD
 import { SIPHON_NODES, TOPICS, EVENTS, MEETUP_NODES } from '../../__fixtures__/siphon-fixtures';
+=======
+import { SIPHON_NODES, COLLECTIONS, ResourceData } from '../../__fixtures__/siphon-fixtures';
+>>>>>>> Touching things up and updating tests + snapshots
 import {
   SELECT_TOPICS_WITH_RESOURCES_GROUPED_BY_TYPE,
   SELECT_RESOURCES_GROUPED_BY_TYPE,
@@ -15,7 +19,9 @@ import { useSearch } from '../../src/utils/hooks';
 import { TEST_IDS as TOPIC_TEST_IDS } from '../../src/components/Home/TopicsContainer';
 import { TEST_IDS as RESOURCE_PREVIEW_TEST_IDS } from '../../src/components/Home/ResourcePreview';
 import { getFirstNonExternalResource } from '../../src/utils/helpers';
+import { useStaticQuery } from 'gatsby';
 jest.mock('query-string');
+jest.mock('gatsby');
 // mock out layout
 jest.mock('../../src/hoc/Layout.js', () => ({ children }) => children);
 // mock out search hook
@@ -24,6 +30,7 @@ jest.mock('../../src/utils/hooks.js');
 jest.mock('../../src/utils/helpers.js');
 
 getFirstNonExternalResource.mockReturnValue('foo');
+useStaticQuery.mockReturnValue(ResourceData);
 
 describe('Home Page', () => {
   // mock out non redux selectors
@@ -137,7 +144,16 @@ describe('Home Page', () => {
       </ThemeProvider>,
     );
 
+<<<<<<< HEAD
     expect(queryByTestId(TOPIC_TEST_IDS.container)).not.toBeInTheDocument();
+=======
+    //useStaticQuery.mockReturnValue({
+    //ResourceData: { allDevhubCollection: { edges: { node: '' } } },
+    //});
+    //useStaticQuery.mockReturnValue(props.ResourceData);
+
+    expect(queryByTestId(COLLECTION_TEST_IDS.container)).not.toBeInTheDocument();
+>>>>>>> Touching things up and updating tests + snapshots
     expect(queryAllByTestId(RESOURCE_PREVIEW_TEST_IDS.container).length).toBeGreaterThan(0);
   });
 

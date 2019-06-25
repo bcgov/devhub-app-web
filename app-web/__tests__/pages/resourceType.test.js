@@ -6,7 +6,11 @@ import queryString from 'query-string';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 import { ResourceType } from '../../src/templates/resourceType';
+<<<<<<< HEAD
 import { SIPHON_NODES, TOPICS } from '../../__fixtures__/siphon-fixtures';
+=======
+import { SIPHON_NODES, COLLECTIONS, ResourceData } from '../../__fixtures__/siphon-fixtures';
+>>>>>>> Touching things up and updating tests + snapshots
 import { SELECT_RESOURCES_GROUPED_BY_TYPE } from '../../__fixtures__/selector-fixtures';
 import { useSearch } from '../../src/utils/hooks';
 
@@ -15,14 +19,17 @@ import { SEARCH as SEARCH_MESSAGES } from '../../src/messages';
 import DEFAULT_FILTERS, { FILTER_QUERY_PARAM } from '../../src/constants/filterGroups';
 import { TEST_IDS as FILTER_TEST_IDS } from '../../src/components/Filters/FilterGroup/FilterGroup';
 import { RESOURCE_TYPES } from '../../src/constants/ui';
+import { useStaticQuery } from 'gatsby';
 
 jest.mock('react-spinners', () => () => <div>loading</div>);
-
+jest.mock('gatsby');
 jest.mock('query-string');
 // mock out layout
 jest.mock('../../src/hoc/Layout.js', () => ({ children }) => children);
 // mock out search hook
 jest.mock('../../src/utils/hooks.js');
+
+useStaticQuery.mockReturnValue(ResourceData);
 
 describe('Resource Type Template Page', () => {
   // mock out non redux selectors

@@ -21,7 +21,7 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 
-import { faExternalLinkAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faExternalLinkAlt, faTimes, faProjectDiagram } from '@fortawesome/free-solid-svg-icons';
 
 import { RESOURCES } from '../../../messages';
 import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
@@ -67,7 +67,7 @@ const CardHeader = ({ type, linksToExternal, showPathIcon, showXIcon }) => {
         )}
         {showPathIcon && (
           <small>
-            <ResourceTypeIcon type={'Collections'} />
+            <FontAwesomeIcon icon={faProjectDiagram} />
           </small>
         )}
         {showXIcon && (
