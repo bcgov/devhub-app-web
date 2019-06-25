@@ -77,7 +77,9 @@ Example:
  * @param {String} astNodeType is only 'image' or 'link'
  * @param {String} relativePath 
  * @param {Object} parentQLNode
- * @param {Function} getNode gatsby getNode function
+ * @param {Object} actions gatsby get node functions
+ * @param {Function} actions.getNodes gatsby get node functions
+ * @param {Function} actions.getNode gatsby get node functions
  */
 const converter = (astNodeType, relativePath, parentQLNode) => {
     if(parentQLNode.internal.type === 'myParentNode') {
