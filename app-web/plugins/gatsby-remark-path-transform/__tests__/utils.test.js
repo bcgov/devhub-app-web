@@ -40,6 +40,7 @@ describe('gatsby-remark-path-transform', () => {
     it('calls converters when a node is visited', () => {
       const converter = jest.fn();
       const getNode = jest.fn();
+      const getNodes = jest.fn();
 
       getNode.mockReturnValue(GRAPH_QL_PARENT_NODE);
       converter.mockReturnValue('URL');
@@ -48,9 +49,12 @@ describe('gatsby-remark-path-transform', () => {
       const markdownAST = IMAGE_AST_RELATIVE;
       const oldURL = markdownAST.url;
 
-      transformRelativePaths({ getNode, markdownAST, markdownNode }, { converter });
+      transformRelativePaths({ getNode, markdownAST, markdownNode, getNodes }, { converter });
 
-      expect(converter).toHaveBeenCalledWith('image', oldURL, GRAPH_QL_PARENT_NODE, getNode);
+      expect(converter).toHaveBeenCalledWith('image', oldURL, GRAPH_QL_PARENT_NODE, {
+        getNode,
+        getNodes,
+      });
       // expect url to hvae been changed
       expect(oldURL).not.toBe(markdownAST.url);
     });
