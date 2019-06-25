@@ -21,7 +21,7 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 
-import { faExternalLinkAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faExternalLinkAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { RESOURCES } from '../../../messages';
 import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
@@ -35,7 +35,12 @@ const H3 = styled.h3`
   font-weight: 400;
 `;
 
-const CardHeader = ({ type, linksToExternal, manyPaths }) => {
+const Hide = styled.div`
+  float: right;
+  margin-bottom: 0;
+`;
+
+const CardHeader = ({ type, linksToExternal, showPathIcon, showXIcon }) => {
   return (
     <div
       css={css`
@@ -60,10 +65,15 @@ const CardHeader = ({ type, linksToExternal, manyPaths }) => {
             <FontAwesomeIcon icon={faExternalLinkAlt} />
           </small>
         )}
-        {manyPaths && (
+        {showPathIcon && (
           <small>
-            <FontAwesomeIcon icon={faPlus} />
+            <ResourceTypeIcon type={'Collections'} />
           </small>
+        )}
+        {showXIcon && (
+          <Hide>
+            <FontAwesomeIcon icon={faTimes} />
+          </Hide>
         )}
       </H3>
     </div>

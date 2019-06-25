@@ -54,6 +54,7 @@ export const HeaderPathBar = styled.div`
   background-color: ${props => props.theme.colors[props.type]};
   flex: 0 0 10px;
   padding-bottom: 10px;
+  overflow: auto;
 `;
 
 export const PathBarTitle = styled.div`
@@ -164,11 +165,10 @@ export const EventContainer = styled(EventDetailsContainer)`
   }
 `;
 
-export const CardBody = styled.div`
+export const CardBodyDiv = styled.div`
   padding: 6px 10px;
   height: 100%;
-  overflow: hidden;
-  height: 100%;
+  overflow: scroll;
   display: flex;
   flex: 1 1 auto;
   flex-flow: column nowrap;

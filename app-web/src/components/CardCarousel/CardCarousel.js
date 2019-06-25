@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import { graphql } from 'gatsby';
 
 import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
@@ -12,6 +13,8 @@ import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/designTokens';
 import { RESOURCE_TYPES_LIST, CARD_CAROUSEL } from '../../constants/ui';
 
 import Card from '../Cards/Card/Card';
+import { useStaticQuery } from 'gatsby';
+import { flattenGatsbyGraphQL } from '../../utils/dataHelpers';
 
 export const TEST_IDS = {
   arrowLeft: 'carousel-arrow-left',
@@ -50,6 +53,45 @@ const showArrow = (numResources, index, slidesPerPage) => {
         <Icon data-testid={TEST_IDS.arrowRight} icon={faChevronRight} />
       ),
   };
+};
+
+//Takes the title of a card and returns the other places where this card can be found
+export const FindPaths = title => {
+  const ResourceData = useStaticQuery(graphql`
+    query ResourceQuery {
+      allDevhubCollection {
+        edges {
+          node {
+            name
+            childrenDevhubSiphon {
+              collection {
+                name
+              }
+              resource {
+                path
+              }
+              unfurl {
+                title
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+  const allCards = flattenGatsbyGraphQL(ResourceData.allDevhubCollection.edges)
+    .map(collection => collection.childrenDevhubSiphon)
+    .flat();
+  const duplicateCards = allCards.filter(card => card.unfurl.title === title);
+  const paths = duplicateCards.map(path => {
+    path = {
+      name: path.collection.name,
+      link: path.resource.path,
+    };
+    return path;
+  });
+
+  return paths;
 };
 
 const CardCarousel = ({ resources }) => {

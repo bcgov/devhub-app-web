@@ -1,5 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+<<<<<<< HEAD
 exports[`Resource Preview Component it matches snapshot 1`] = `
 <Container
   data-testid="resource-preview-container"
@@ -326,3 +327,6 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
   </LinkContainer>
 </Container>
 `;
+=======
+exports[`Resource Preview Component it matches snapshot 1`] = `null`;
+>>>>>>> Experimenting with UI

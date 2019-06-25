@@ -18,59 +18,43 @@ Created by Derek Siemens
 
 import React from 'react';
 import styled from '@emotion/styled';
-import { HeaderPathBar, DecorativeBar, PathBarTitle } from '.';
+import { HeaderPathBar, PathBarTitle } from '.';
 import { Link } from '../../UI/Link';
+import { css } from '@emotion/core';
 
 const PathDiv = styled.div`
   float: left;
   width: 100%;
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid black;
+  font-weight: 400;
+  font-size: 15px;
+  padding-bottom: 5px;
 `;
-/*
-export const FindPaths = () => {
-  const ResourceData = useStaticQuery(graphql`
-    query ResourceQuery {
-      allDevhubCollection {
-        edges {
-          node {
-            name
-            childrenDevhubSiphon {
-              resource {
-                path
-              }
-              unfurl {
-                title
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
-  console.log(ResourceData.ResourceQuery);
-};*/
 
-export const PathBar = ({ Paths, type, links }) => {
-  if (Paths === true) {
+export const PathBar = ({ showPath, type, links }) => {
+  if (showPath === true) {
     return (
       <div>
-        <DecorativeBar type={type}>
-          <HeaderPathBar type={type}>
-            <PathBarTitle>What Topic would you like to see this resource in?</PathBarTitle>
-            <PathDiv>
-              {links.map(link => {
-                return (
-                  <Link to={link.link} key={link.name}>
-                    {link.name}
-                    <br />
-                  </Link>
-                );
-              })}
-            </PathDiv>
-          </HeaderPathBar>
-        </DecorativeBar>
+        <HeaderPathBar type={type}>
+          <PathBarTitle>View this resource in...</PathBarTitle>
+          <PathDiv>
+            {links.map(link => {
+              return (
+                <Link
+                  to={link.link}
+                  key={link.name}
+                  css={css`
+                    display: inline-block;
+                    padding-bottom: 2px;
+                    padding-right: auto;
+                  `}
+                >
+                  {link.name}
+                  <br />
+                </Link>
+              );
+            })}
+          </PathDiv>
+        </HeaderPathBar>
       </div>
     );
   } else {

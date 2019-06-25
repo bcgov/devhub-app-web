@@ -23,6 +23,8 @@ import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/designTokens';
 import { ChevronLink } from '../UI/Link';
 import { Container, Title, StyledLink, LinkContainer } from './index';
 import Card from '../Cards/Card/Card';
+import { FindPaths } from '../CardCarousel/CardCarousel';
+import { css } from '@emotion/core';
 
 export const CardWrapper = styled.div`
   margin: 6px 9px;
@@ -50,17 +52,20 @@ export const ResourcePreview = ({ title, link, resources }) => (
       <StyledLink to={link.to}>{title}</StyledLink>
     </Title>
     <ResourceContainer>
-      {resources.slice(0, 6).map(r => (
-        <CardWrapper key={r.id}>
-          <Card
-            type={r.resource.type}
-            title={r.unfurl.title}
-            description={r.unfurl.description}
-            image={r.unfurl.image}
-            link={r.resource.path}
-            event={r}
-          />
-        </CardWrapper>
+    {resources.slice(0, 6).map(r => (
+        <Card
+          css={css`
+            margin: 42px 3px;
+          `}
+          key={r.id}
+          type={r.resource.type}
+          title={r.unfurl.title}
+          description={r.unfurl.description}
+          image={r.unfurl.image}
+          link={r.resource.path}
+          event={r}
+          paths={FindPaths(r.unfurl.title)}
+        />
       ))}
     </ResourceContainer>
     <LinkContainer>

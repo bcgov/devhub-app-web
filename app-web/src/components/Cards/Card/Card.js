@@ -23,146 +23,50 @@ import CardHeader from './CardHeader';
 import { PathBar } from './PathBar';
 import { css } from '@emotion/core';
 
-import {
-  CardBody,
-  CardDescription,
-  CardImage,
-  CardImageWrapper,
-  CardLinkWrapper,
-  CardTitle,
-  CardWrapper,
-  EventInfoDiv,
-  EventDate,
-  EventContainer,
-  EventImageWrapper,
-  MeetupImageWrapper,
-  DecorativeBar,
-} from './index';
-import Aux from '../../../hoc/auxillary';
-
+import { CardBodyDiv, CardLinkWrapper, CardWrapper, DecorativeBar } from './index';
 import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
-import EventLogo from '../../Event/Logo';
+import { CardBody } from './CardBody';
 
 class Card extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { pathsExist: false };
+    this.state = { showPaths: false };
   }
 
   handleClick = () => {
-    this.setState({ pathsExist: !this.state.pathsExist });
+    this.setState({ showPaths: !this.state.showPaths });
   };
 
   render() {
-    let cardBody = (
-      <CardDescription title={this.props.description} clamp={6} tagName="p">
-        {this.props.description}
-      </CardDescription>
-    );
     let isExternal = !!validUrl.isWebUri(this.props.link);
 
-    //Little if statement to change the amount of lines we want to clamp based on if the title takes 1 or two lines
-    let clampAmount = 4;
-    //if takes one line.......
-    if (this.props.title.length < 23) {
-      clampAmount = 5;
-    }
-
-    //first check if its an eventbrite event, as in our resolver in gatsby-node.js -> image is set to "eventbrite"
-    if (this.props.image === 'eventbrite' && this.props.description) {
-      cardBody = (
-        <Aux>
-          <CardDescription title={this.props.description} clamp={clampAmount} tagName="p">
-            {this.props.event.unfurl.description}
-          </CardDescription>
-          <EventContainer>
-            <EventDate>
-              <span>{this.props.event.start.month}</span>
-              {this.props.event.start.day}
-              <small>{this.props.event.start.year}</small>
-            </EventDate>
-            <EventInfoDiv>
-              <li>
-                {this.props.event.venue !== null ? this.props.event.venue : 'tbd'}
-                <EventImageWrapper>
-                  <EventLogo type={this.props.image} />
-                </EventImageWrapper>
-              </li>
-            </EventInfoDiv>
-          </EventContainer>
-        </Aux>
-      );
-    } else if (this.props.image === 'meetup' && this.props.description) {
-      cardBody = (
-        <Aux>
-          <CardDescription title={this.props.description} clamp={clampAmount} tagName="p">
-            {this.props.event.unfurl.description}
-          </CardDescription>
-          <EventContainer>
-            <EventDate>
-              <span>{this.props.event.start.month}</span>
-              {this.props.event.start.day}
-              <small>{this.props.event.start.year}</small>
-            </EventDate>
-            <EventInfoDiv>
-              <li>
-                {this.props.event.venue !== null ? this.props.event.venue : 'tbd'}
-                <MeetupImageWrapper>
-                  <EventLogo type={this.props.image} />
-                </MeetupImageWrapper>
-              </li>
-            </EventInfoDiv>
-          </EventContainer>
-        </Aux>
-      );
-    } else if (this.props.image && this.props.description) {
-      cardBody = (
-        <Aux>
-          <CardDescription title={this.props.description} clamp={2} tagName="p">
-            {this.props.description}
-          </CardDescription>
-          <CardImageWrapper>
-            <CardImage src={this.props.image} alt={this.props.title} />
-          </CardImageWrapper>
-        </Aux>
-      );
-    } else if (this.props.image) {
-      cardBody = (
-        <CardImageWrapper>
-          <CardImage src={this.props.image} alt={this.props.title} />
-        </CardImageWrapper>
-      );
-    }
-    let links = [
-      { link: 'http://0.0.0.0:8000/collections', name: 'Collections' },
-      {
-        link: 'http://0.0.0.0:8000/Community-and-Events/BC-Gov-Development-Community-Events',
-        name: 'Community and Events',
-      },
-    ];
-
-    if (links.length > 1) {
+    if (this.props.paths !== undefined && this.props.paths.length > 1 && !isExternal) {
       return (
         <div
-          onClick={this.handleClick}
           css={css`
-            margin: 0 6px 0 6px;
+            padding: 0 4px;
+            margin: 0 2px;
           `}
+          onClick={this.handleClick}
         >
           <CardWrapper {...this.props}>
             <DecorativeBar type={this.props.type} />
-            <CardBody>
-              <PathBar Paths={this.state.pathsExist} links={links} />
-              <CardHeader type={this.props.type} linksToExternal={isExternal} manyPaths={true} />
-              <CardTitle
-                clamp={this.props.image && this.props.description ? 2 : 3}
-                tagName="h2"
+            <CardBodyDiv>
+              <CardHeader
+                type={this.props.type}
+                linksToExternal={isExternal}
+                showPathIcon={true}
+                showXIcon={this.state.showPaths}
+              />
+              <PathBar showPath={this.state.showPaths} links={this.props.paths} />
+              <CardBody
                 title={this.props.title}
-              >
-                {this.props.title}
-              </CardTitle>
-              {cardBody}
-            </CardBody>
+                description={this.props.description}
+                image={this.props.image}
+                event={this.props.event}
+                showBody={!this.state.showPaths}
+              />
+            </CardBodyDiv>
           </CardWrapper>
         </div>
       );
@@ -171,18 +75,16 @@ class Card extends React.Component {
         <CardLinkWrapper to={this.props.link}>
           <CardWrapper {...this.props}>
             <DecorativeBar type={this.props.type} />
-            <CardBody>
-              <PathBar Paths={this.state.pathsExist} links={links} />
-              <CardHeader type={this.props.type} linksToExternal={isExternal} manyPaths={false} />
-              <CardTitle
-                clamp={this.props.image && this.props.description ? 2 : 3}
-                tagName="h2"
+            <CardBodyDiv>
+              <CardHeader type={this.props.type} linksToExternal={isExternal} />
+              <CardBody
                 title={this.props.title}
-              >
-                {this.props.title}
-              </CardTitle>
-              {cardBody}
-            </CardBody>
+                description={this.props.description}
+                image={this.props.image}
+                event={this.props.event}
+                showBody={true}
+              />
+            </CardBodyDiv>
           </CardWrapper>
         </CardLinkWrapper>
       );

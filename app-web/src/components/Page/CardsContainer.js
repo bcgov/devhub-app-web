@@ -38,6 +38,7 @@ import Row from '../Cards/Row';
 import Column from '../Cards/Column';
 import Loading from '../UI/Loading/Loading';
 import SearchPills from '../Search/SearchPills';
+import { FindPaths } from '../CardCarousel/CardCarousel';
 
 const AlertMessage = styled(Alert)`
   margin: 10px auto;
@@ -63,6 +64,7 @@ const CardsContent = (loading, searchResultsEmpty, resources) => {
           description={r.description}
           image={r.image}
           link={r.path}
+          paths={FindPaths(r.title)}
         />
       </Column>
     ));

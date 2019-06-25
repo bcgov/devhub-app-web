@@ -11,6 +11,7 @@ import { EVENTS, RESOURCE_TYPES } from '../constants/ui';
 import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../constants/designTokens';
 import { TOPICS } from '../constants/topics';
 import Card from '../components/Cards/Card/Card';
+import { FindPaths } from '../components/CardCarousel/CardCarousel';
 
 export const TEST_IDS = {
   alert: 'events-container',
@@ -124,6 +125,7 @@ export const EventsPage = ({
                   image={e.unfurl.image}
                   link={e.resource.path}
                   event={e}
+                  paths={FindPaths(e.unfurl.title)}
                 />
               ))}
             </CardContainer>
@@ -145,6 +147,7 @@ export const EventsPage = ({
                 image={e.unfurl.image}
                 link={e.resource.path}
                 event={e}
+                paths={FindPaths(e.unfurl.title)}
               />
             ))}
           </CardContainer>
