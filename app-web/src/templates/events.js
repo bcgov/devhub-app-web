@@ -58,7 +58,7 @@ const formatMeetUps = meetups => {
       unfurl: meetup.siphon.unfurl,
       resource: meetup.siphon.resource,
       id: meetup.siphon.id,
-      venue: meetup.venue.address_1,
+      venue: meetup.fields.location,
       start: {
         day: meetup.day,
         month: meetup.month,
@@ -201,6 +201,9 @@ export const EventData = graphql`
                 path
               }
               id
+            }
+            fields {
+              location
             }
             day: local_date(formatString: "DD")
             month: local_date(formatString: "MMM")

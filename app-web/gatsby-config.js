@@ -44,15 +44,18 @@ module.exports = {
         desc: 'true',
       },
     },
-    {
-      resolve: `gatsby-source-meetup`,
-      options: {
-        key: process.env.MEETUP_API_KEY,
-        groupUrlName: 'bcgov-uxguild',
-        status: 'upcoming,past',
-        desc: 'true',
-      },
-    },
+    // toggling off ux guild events since they are private now
+    // need clarity from Davis Levine if he would like these events to surface
+    // in devhub
+    // {
+    //   resolve: `gatsby-source-meetup`,
+    //   options: {
+    //     key: process.env.MEETUP_API_KEY,
+    //     groupUrlName: 'bcgov-uxguild',
+    //     status: 'upcoming,past',
+    //     desc: 'true',
+    //   },
+    // },
     {
       resolve: `gatsby-source-meetup`,
       options: {
@@ -215,14 +218,14 @@ module.exports = {
       },
     },
     {
-        resolve: 'gatsby-plugin-matomo',
-        options: {
-            siteId: process.env.GATSBY_MATOMO_SITE_ID,
-            matomoUrl: process.env.GATSBY_MATOMO_URL,
-            siteUrl: process.env.GATSBY_MATOMO_SITE_URL,
-            localScript: '/scripts/matomo.js',
-            dev: true
-        }
-    }
+      resolve: 'gatsby-plugin-matomo',
+      options: {
+        siteId: process.env.GATSBY_MATOMO_SITE_ID,
+        matomoUrl: process.env.GATSBY_MATOMO_URL,
+        siteUrl: process.env.GATSBY_MATOMO_SITE_URL,
+        localScript: '/scripts/matomo.js',
+        dev: true,
+      },
+    },
   ].concat(dynamicPlugins.filter(plugin => plugin !== void 0)),
 };

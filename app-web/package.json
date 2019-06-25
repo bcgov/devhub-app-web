@@ -55,6 +55,7 @@
     "gatsby-transformer-yaml": "^2.1.12",
     "github-markdown-css": "^3.0.1",
     "html-metadata": "^1.7.0",
+    "html-to-formatted-text": "^2.7.0",
     "ignore": "^5.1.1",
     "install": "^0.12.2",
     "js-base64": "^2.4.9",

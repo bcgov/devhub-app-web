@@ -19,5 +19,5 @@ Created by Patrick Simonian
 exports.onCreatePage = require('./gatsby/onCreatePage');
 exports.createPages = require('./gatsby/createPages');
 exports.createResolvers = require('./gatsby/createResolvers');
-
+exports.onCreateNode = require('./gatsby/onCreateNode');
 exports.sourceNodes = require('./gatsby/sourceNodes');

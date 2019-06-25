@@ -19,7 +19,7 @@ const EventLogo = ({ type }) => (
     render={data => {
       if (type === EVENT_TYPES.eventbrite) {
         return <GatsbyImage fixed={data.eventbrite.childImageSharp.fixed} />;
-      } else if (type === 'meetup') {
+      } else if (type === EVENT_TYPES.meetup) {
         return <GatsbyImage fixed={data.meetup.childImageSharp.fixed} />;
       }
       return null;
