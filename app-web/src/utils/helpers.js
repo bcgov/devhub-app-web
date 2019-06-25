@@ -179,10 +179,12 @@ export const sortDevhubTopicsAfterSelectedTopics = topics => {
   const featuredResources = { ...topics[featuredIndex] };
   const devOpsPlatform = { ...topics[devOpsPlatformIndex] };
   // remove selected topics
-  const topicsWithoutSelectedTopics = topics
-    .filter(topic => topic.node.name !== TOPICS.FEATURED_RESOURCES)
-    .filter(topic => topic.node.name !== TOPICS.DESIGN_SYSTEM)
-    .filter(topic => topic.node.name !== TOPICS.GETTING_STARTED_ON_THE_DEVOPS_PLATFORM);
+  const topicsWithoutSelectedTopics = topics.filter(
+    topic =>
+      topic.node.name !== TOPICS.FEATURED_RESOURCES &&
+      topic.node.name !== TOPICS.DESIGN_SYSTEM &&
+      topic.node.name !== TOPICS.GETTING_STARTED_ON_THE_DEVOPS_PLATFORM,
+  );
 
   const sortedTopics = topicsWithoutSelectedTopics.sort((topicA, topicB) => {
     const topicNameA = topicA.node.name.toLowerCase();
