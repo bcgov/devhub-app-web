@@ -85,14 +85,18 @@ export const CollectionsPage = ({ data }) => {
       return meetups.childrenMeetupEvent;
     })
     .map(meetup => {
-      meetup.start = {
-        day: meetup.day,
-        month: meetup.month,
-        year: meetup.year,
-        daysFromNow: meetup.daysFromNow,
+      return {
+        ...meetup,
+        start: {
+          day: meetup.day,
+          month: meetup.month,
+          year: meetup.year,
+          daysFromNow: meetup.daysFromNow,
+        },
+        venue: {
+          name: meetup.fields.location,
+        },
       };
-      meetup.venue.name = meetup.venue.address_1;
-      return meetup;
     });
   //sort events so they show up soonest to farthest away
   const eventsAndMeetupsSorted = events

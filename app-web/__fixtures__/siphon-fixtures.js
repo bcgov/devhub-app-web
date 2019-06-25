@@ -412,6 +412,12 @@ export const MEETUP_1 = {
       address_1: '3rd Floor 1012 Douglas St.',
       name: '',
     },
+    fields: {
+      location: '3rd Floor 1012 Douglas St.',
+      description: 'test description',
+      name: 'bar',
+      link: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
+    },
     year: '2019',
   },
 };
@@ -445,6 +451,12 @@ export const MEETUP_2 = {
     venue: {
       address_1: '3rd Floor 1012 Douglas St.',
       name: '',
+    },
+    fields: {
+      location: '3rd Floor 1012 Douglas St.',
+      description: 'test description',
+      name: 'foo',
+      link: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
     },
     year: '2019',
   },

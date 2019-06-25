@@ -67,13 +67,13 @@ module.exports = ({ createResolvers }) => {
         resolve: (source, args, context, info) => {
           return {
             unfurl: {
-              title: source.name,
+              title: source.fields.name,
               image: 'meetup',
-              description: source.description.replace(/<[^>]+>/g, '').replace(/&amp;/g, 'and'),
+              description: source.fields.description,
             },
             resource: {
               type: 'Events',
-              path: source.link,
+              path: source.fields.link,
             },
             id: source.id,
           };
