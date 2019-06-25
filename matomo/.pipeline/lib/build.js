@@ -13,7 +13,7 @@ module.exports = (settings) => {
     // The building of your cool app goes here ▼▼▼
     objects = objects.concat(oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/mariadb/mariadb-build.json`, {
         'param': {
-            'NAME': phases[phase].name,
+            'NAME': 'mariadb',
             'SUFFIX': phases[phase].suffix,
             'VERSION': phases[phase].tag
         }
