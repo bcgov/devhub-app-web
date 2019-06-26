@@ -9,7 +9,7 @@
 			"kind": "ImageStream",
 			"apiVersion": "v1",
 			"metadata": {
-				"name": "${NAME}"
+				"name": "${NAME}-db"
 			},
 			"spec": {
 				"tags": [
