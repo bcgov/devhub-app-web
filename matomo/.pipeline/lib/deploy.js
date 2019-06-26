@@ -12,7 +12,7 @@ module.exports = (settings)=>{
   var objects = []
 
   // The deployment of your cool app goes here ▼▼▼
-	objects = oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/matomo-db/matomo-db-depoy.json`, {
+	objects = oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/matomo-db/matomo-db-deploy.json`, {
 		'param':{
 			'NAME': phases[phase].name,
 			'SUFFIX': phases[phase].suffix,
