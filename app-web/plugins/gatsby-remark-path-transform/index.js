@@ -50,7 +50,10 @@ const transformRelativePaths = (
     if (validURL.isWebUri(url) || url.indexOf('#') === 0) {
       return url;
     }
-    const absolutePath = converter(nodeType, url, parentQLNode, { getNode, getNodes });
+    const absolutePath = converter(nodeType, url, markdownNode, parentQLNode, {
+      getNode,
+      getNodes,
+    });
     return absolutePath; // eslint-disable-line
   };
 

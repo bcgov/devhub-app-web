@@ -67,21 +67,26 @@ This plugin is called for every image and link in the markdown file that has a r
 `converter` receives the following parameters from the plugin when called:
 - the ast node type ('image' || 'link')
 - the relative path for the ast node  ('../../something.png')
+- the remark node
 - the parent graphql node of the remark node 
     - gatsby transformer remark transforms source nodes and becomes a child of the source node
     - we are passing in the parent node of the remark node since it may contain useful data that
     your call back may need to process the relative path. 
+- gatsby actions
+    - getNode
+    - getNodes
 Example:
 ```javascript
 /**
  * @param {String} astNodeType is only 'image' or 'link'
  * @param {String} relativePath 
+ * @param {Object} markdownNode
  * @param {Object} parentQLNode
  * @param {Object} actions gatsby get node functions
  * @param {Function} actions.getNodes gatsby get node functions
  * @param {Function} actions.getNode gatsby get node functions
  */
-const converter = (astNodeType, relativePath, parentQLNode) => {
+const converter = (astNodeType, relativePath, markdownNode, parentQLNode) => {
     if(parentQLNode.internal.type === 'myParentNode') {
         if(astNodeType === 'image') {
             // grab file from relative path
