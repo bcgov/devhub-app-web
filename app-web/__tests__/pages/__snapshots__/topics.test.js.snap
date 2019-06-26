@@ -670,8 +670,6 @@ exports[`Topics Container it matches snapshot 1`] = `
                   >
                     <article
                       class="emotion-44 emotion-45"
-                      title="About"
-                      type="Components"
                     >
                       <div
                         class="emotion-30 emotion-31"
@@ -757,8 +755,6 @@ exports[`Topics Container it matches snapshot 1`] = `
                   >
                     <article
                       class="emotion-44 emotion-45"
-                      title="About"
-                      type="Components"
                     >
                       <div
                         class="emotion-30 emotion-31"
@@ -844,8 +840,6 @@ exports[`Topics Container it matches snapshot 1`] = `
                   >
                     <article
                       class="emotion-44 emotion-45"
-                      title="About"
-                      type="Components"
                     >
                       <div
                         class="emotion-30 emotion-31"
@@ -931,8 +925,6 @@ exports[`Topics Container it matches snapshot 1`] = `
                   >
                     <article
                       class="emotion-44 emotion-45"
-                      title="About"
-                      type="Components"
                     >
                       <div
                         class="emotion-30 emotion-31"
@@ -1135,8 +1127,6 @@ exports[`Topics Container it matches snapshot 1`] = `
                   >
                     <article
                       class="emotion-44 emotion-45"
-                      title="About"
-                      type="Documentation"
                     >
                       <div
                         class="emotion-127 emotion-31"
@@ -1222,8 +1212,6 @@ exports[`Topics Container it matches snapshot 1`] = `
                   >
                     <article
                       class="emotion-44 emotion-45"
-                      title="About"
-                      type="Documentation"
                     >
                       <div
                         class="emotion-127 emotion-31"
@@ -1309,8 +1297,6 @@ exports[`Topics Container it matches snapshot 1`] = `
                   >
                     <article
                       class="emotion-44 emotion-45"
-                      title="About"
-                      type="Documentation"
                     >
                       <div
                         class="emotion-127 emotion-31"

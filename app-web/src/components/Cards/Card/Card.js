@@ -16,7 +16,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import validUrl from 'valid-url';
 import CardHeader from './CardHeader';
@@ -25,72 +25,64 @@ import { css } from '@emotion/core';
 
 import { CardBodyDiv, CardLinkWrapper, CardWrapper, DecorativeBar } from './index';
 import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
-import { CardBody } from './CardBody';
+import CardBody from './CardBody';
 
-class Card extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { showPaths: false };
+const Card = ({ type, title, description, image, link, paths, ...rest }) => {
+  let [showPaths, updateBool] = useState(false);
+  let isExternal = !!validUrl.isWebUri(link);
+
+  //This checks if the given card is shown in serveral collections or if its an external link
+  //if its neither, we do not want to show the paths/there wouldnt be any
+  if (paths !== undefined && paths.length > 1 && !isExternal) {
+    return (
+      <div
+        css={css`
+          padding: 0 4px;
+          margin: 0 2px;
+        `}
+        onClick={() => updateBool(!showPaths)}
+      >
+        <CardWrapper {...rest}>
+          <DecorativeBar type={type} />
+          <CardBodyDiv>
+            <CardHeader
+              type={type}
+              linksToExternal={isExternal}
+              showPathIcon={true}
+              showXIcon={showPaths}
+            />
+            <PathBar showPath={showPaths} links={paths} />
+            <CardBody
+              title={title}
+              description={description}
+              image={image}
+              event={rest.event}
+              showBody={!showPaths}
+            />
+          </CardBodyDiv>
+        </CardWrapper>
+      </div>
+    );
+  } else {
+    return (
+      <CardLinkWrapper to={link}>
+        <CardWrapper {...rest}>
+          <DecorativeBar type={type} />
+          <CardBodyDiv>
+            <CardHeader type={type} linksToExternal={isExternal} />
+            <CardBody
+              title={title}
+              description={description}
+              image={image}
+              event={rest.event}
+              showBody={true}
+            />
+          </CardBodyDiv>
+        </CardWrapper>
+      </CardLinkWrapper>
+    );
   }
-
-  handleClick = () => {
-    this.setState({ showPaths: !this.state.showPaths });
-  };
-
-  render() {
-    let isExternal = !!validUrl.isWebUri(this.props.link);
-
-    if (this.props.paths !== undefined && this.props.paths.length > 1 && !isExternal) {
-      return (
-        <div
-          css={css`
-            padding: 0 4px;
-            margin: 0 2px;
-          `}
-          onClick={this.handleClick}
-        >
-          <CardWrapper {...this.props}>
-            <DecorativeBar type={this.props.type} />
-            <CardBodyDiv>
-              <CardHeader
-                type={this.props.type}
-                linksToExternal={isExternal}
-                showPathIcon={true}
-                showXIcon={this.state.showPaths}
-              />
-              <PathBar showPath={this.state.showPaths} links={this.props.paths} />
-              <CardBody
-                title={this.props.title}
-                description={this.props.description}
-                image={this.props.image}
-                event={this.props.event}
-                showBody={!this.state.showPaths}
-              />
-            </CardBodyDiv>
-          </CardWrapper>
-        </div>
-      );
-    } else {
-      return (
-        <CardLinkWrapper to={this.props.link}>
-          <CardWrapper {...this.props}>
-            <DecorativeBar type={this.props.type} />
-            <CardBodyDiv>
-              <CardHeader type={this.props.type} linksToExternal={isExternal} />
-              <CardBody
-                title={this.props.title}
-                description={this.props.description}
-                image={this.props.image}
-                event={this.props.event}
-                showBody={true}
-              />
-            </CardBodyDiv>
-          </CardWrapper>
-        </CardLinkWrapper>
-      );
-    }
-  }
-}
+};
 
 Card.propTypes = {
   type: PropTypes.oneOf(RESOURCE_TYPES_LIST),

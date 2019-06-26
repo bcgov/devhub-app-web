@@ -38,7 +38,7 @@ import Row from '../Cards/Row';
 import Column from '../Cards/Column';
 import Loading from '../UI/Loading/Loading';
 import SearchPills from '../Search/SearchPills';
-import { FindPaths } from '../CardCarousel/CardCarousel';
+import { FindPaths } from '../Cards/Card/PathBar';
 
 const AlertMessage = styled(Alert)`
   margin: 10px auto;

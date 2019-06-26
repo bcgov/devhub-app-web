@@ -32,102 +32,82 @@ import {
 import Aux from '../../../hoc/auxillary';
 import EventLogo from '../../Event/Logo';
 
-class EventBody extends React.Component {
-  render() {
-    return (
-      <EventContainer>
-        <EventDate>
-          <span>{this.props.event.start.month}</span>
-          {this.props.event.start.day}
-          <small>{this.props.event.start.year}</small>
-        </EventDate>
-        <EventInfoDiv>
-          <li>
-            {this.props.event.venue !== null ? this.props.event.venue : 'tbd'}
-            <this.props.componentType>
-              <EventLogo type={this.props.image} />
-            </this.props.componentType>
-          </li>
-        </EventInfoDiv>
-      </EventContainer>
-    );
+//returns the event inforamtion as a component for the bottom of the card
+const EventBody = ({ image, event, ComponentType }) => {
+  return (
+    <EventContainer>
+      <EventDate>
+        <span>{event.start.month}</span>
+        {event.start.day}
+        <small>{event.start.year}</small>
+      </EventDate>
+      <EventInfoDiv>
+        <li>
+          {event.venue !== null ? event.venue : 'tbd'}
+          <ComponentType>
+            <EventLogo type={image} />
+          </ComponentType>
+        </li>
+      </EventInfoDiv>
+    </EventContainer>
+  );
+};
+
+//Returns the content for the body of a resource card, case for if the resource is an event
+const CardBody = ({ title, description, image, showBody, event }) => {
+  let cardBody = (
+    <CardDescription title={description} clamp={6} tagName="p">
+      {description}
+    </CardDescription>
+  );
+
+  //Little if statement to change the amount of lines we want to clamp based on if the title takes 1 or two lines
+  let clampAmount = 4;
+  if (title.length < 23) {
+    clampAmount = 5;
   }
-}
 
-export class CardBody extends React.Component {
-  render() {
-    let cardBody = (
-      <CardDescription title={this.props.description} clamp={6} tagName="p">
-        {this.props.description}
-      </CardDescription>
+  //first check if its an eventbrite event or meetup, as in our resolver in gatsby-node.js -> image is set to "eventbrite" if eventbrite - 'meetup' if meetup
+  if ((image === 'eventbrite' || image === 'meetup') && description) {
+    const ImageWrapper = image === 'eventbrite' ? EventImageWrapper : MeetupImageWrapper;
+    cardBody = (
+      <Aux>
+        <CardDescription title={description} clamp={clampAmount} tagName="p">
+          {event.unfurl.description}
+        </CardDescription>
+        <EventBody event={event} image={image} ComponentType={ImageWrapper} />
+      </Aux>
     );
-
-    //Little if statement to change the amount of lines we want to clamp based on if the title takes 1 or two lines
-    let clampAmount = 4;
-    if (this.props.title.length < 23) {
-      clampAmount = 5;
-    }
-
-    //first check if its an eventbrite event, as in our resolver in gatsby-node.js -> image is set to "eventbrite"
-    if (this.props.image === 'eventbrite' && this.props.description) {
-      cardBody = (
-        <Aux>
-          <CardDescription title={this.props.description} clamp={clampAmount} tagName="p">
-            {this.props.event.unfurl.description}
-          </CardDescription>
-          <EventBody
-            event={this.props.event}
-            image={this.props.image}
-            componentType={EventImageWrapper}
-          />
-        </Aux>
-      );
-    } else if (this.props.image === 'meetup' && this.props.description) {
-      cardBody = (
-        <Aux>
-          <CardDescription title={this.props.description} clamp={clampAmount} tagName="p">
-            {this.props.event.unfurl.description}
-          </CardDescription>
-          <EventBody
-            event={this.props.event}
-            image={this.props.image}
-            componentType={MeetupImageWrapper}
-          />
-        </Aux>
-      );
-    } else if (this.props.image && this.props.description) {
-      cardBody = (
-        <Aux>
-          <CardDescription title={this.props.description} clamp={2} tagName="p">
-            {this.props.description}
-          </CardDescription>
-          <CardImageWrapper>
-            <CardImage src={this.props.image} alt={this.props.title} />
-          </CardImageWrapper>
-        </Aux>
-      );
-    } else if (this.props.image) {
-      cardBody = (
+  } else if (image && description) {
+    cardBody = (
+      <Aux>
+        <CardDescription title={description} clamp={2} tagName="p">
+          {description}
+        </CardDescription>
         <CardImageWrapper>
-          <CardImage src={this.props.image} alt={this.props.title} />
+          <CardImage src={image} alt={title} />
         </CardImageWrapper>
-      );
-    }
-    if (this.props.showBody) {
-      return (
-        <>
-          <CardTitle
-            clamp={this.props.image && this.props.description ? 2 : 3}
-            tagName="h2"
-            title={this.props.title}
-          >
-            {this.props.title}
-          </CardTitle>
-          {cardBody}
-        </>
-      );
-    } else {
-      return <div />;
-    }
+      </Aux>
+    );
+  } else if (image) {
+    cardBody = (
+      <CardImageWrapper>
+        <CardImage src={image} alt={title} />
+      </CardImageWrapper>
+    );
   }
-}
+  if (showBody) {
+    return (
+      <>
+        <CardTitle clamp={image && description ? 2 : 3} tagName="h2" title={title}>
+          {title}
+        </CardTitle>
+        {cardBody}
+      </>
+    );
+  } else {
+    return <div />;
+  }
+};
+
+export default CardBody;

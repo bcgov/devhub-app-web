@@ -23,8 +23,8 @@ import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/designTokens';
 import { ChevronLink } from '../UI/Link';
 import { Container, Title, StyledLink, LinkContainer } from './index';
 import Card from '../Cards/Card/Card';
-import { FindPaths } from '../CardCarousel/CardCarousel';
 import { css } from '@emotion/core';
+import { FindPaths } from '../Cards/Card/PathBar';
 
 export const CardWrapper = styled.div`
   margin: 6px 9px;

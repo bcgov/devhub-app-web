@@ -11,7 +11,7 @@ import { EVENTS, RESOURCE_TYPES } from '../constants/ui';
 import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../constants/designTokens';
 import { TOPICS } from '../constants/topics';
 import Card from '../components/Cards/Card/Card';
-import { FindPaths } from '../components/CardCarousel/CardCarousel';
+import { FindPaths } from '../components/Cards/Card/PathBar';
 
 export const TEST_IDS = {
   alert: 'events-container',

@@ -21,6 +21,9 @@ import styled from '@emotion/styled';
 import { HeaderPathBar, PathBarTitle } from '.';
 import { Link } from '../../UI/Link';
 import { css } from '@emotion/core';
+import { flattenGatsbyGraphQL } from '../../../utils/dataHelpers';
+import { useStaticQuery } from 'gatsby';
+import { graphql } from 'gatsby';
 
 const PathDiv = styled.div`
   float: left;
@@ -30,7 +33,48 @@ const PathDiv = styled.div`
   padding-bottom: 5px;
 `;
 
-//When given the correct input, it returns a component which has a list of the places a resource is shown
+//Takes the title of a card and returns the other places where this card can be found
+//used as input for the PathBar function
+export const FindPaths = title => {
+  const ResourceData = useStaticQuery(graphql`
+    query ResourceQuery {
+      allDevhubCollection {
+        edges {
+          node {
+            name
+            childrenDevhubSiphon {
+              collection {
+                name
+              }
+              resource {
+                path
+              }
+              unfurl {
+                title
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+  const allCards = flattenGatsbyGraphQL(ResourceData.allDevhubCollection.edges).flatMap(
+    collection => collection.childrenDevhubSiphon,
+  );
+
+  const duplicateCards = allCards.filter(card => card.unfurl.title === title);
+  const paths = duplicateCards.map(path => {
+    path = {
+      name: path.collection.name,
+      link: path.resource.path,
+    };
+    return path;
+  });
+
+  return paths;
+};
+
+//This returns a component which has a list of the places a resource is shown if the showPath boolean is true (if the card has been clicked)
 export const PathBar = ({ showPath, type, links }) => {
   if (showPath === true) {
     return (
