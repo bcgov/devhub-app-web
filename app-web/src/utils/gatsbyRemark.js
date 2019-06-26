@@ -58,11 +58,11 @@ const getGithubBasePath = (repo, owner, branch = 'master') => {
  * this is the converter callback used within
  * the gatsby-remark-transform-path plugin
  * see gatsby-config.js for details on its implementation
- * @param {String} astType 'as per plugin docs this will only ever be 'image' or 'link'
+ * @param {String} astType 'as per plugin docs this will only ever be 'image', 'video' or 'link'
  * @param {String} path 'relative path of astNode
  * @param {Object} parentQLnode 'parent graphQLNode
  */
-const converter = (astType, path, parentQLnode, getNode) => {
+const converter = (astType, path, parentQLnode, { getNode }) => {
   // only convert source devhub nodes
   if (parentQLnode.internal.type === GRAPHQL_NODE_TYPE.SIPHON) {
     // get collection node

@@ -58,7 +58,7 @@ describe('Gatsby Remark Transform Path Converter Callback', () => {
     it('converts only SourceDevhubGithub nodes', () => {
       const astType = 'image';
       const relativePath = '../images/banana.png';
-      const transformedPath = converter(astType, relativePath, FILE_QL_NODE, getNode);
+      const transformedPath = converter(astType, relativePath, FILE_QL_NODE, { getNode });
 
       expect(transformedPath).toBe(relativePath);
     });
@@ -66,7 +66,7 @@ describe('Gatsby Remark Transform Path Converter Callback', () => {
     it('returns a a transformed url', () => {
       const astType = 'image';
       const relativePath = '../images/banana.png';
-      const transformedPath = converter(astType, relativePath, SIPHON_QL_NODE, getNode);
+      const transformedPath = converter(astType, relativePath, SIPHON_QL_NODE, { getNode });
       expect(transformedPath).not.toBe(relativePath);
     });
 
@@ -92,7 +92,7 @@ describe('Gatsby Remark Transform Path Converter Callback', () => {
       const astType = 'link';
       const relativePath = '../something.md';
 
-      const transformedPath = converter(astType, relativePath, SIPHON_QL_NODE, getNode);
+      const transformedPath = converter(astType, relativePath, SIPHON_QL_NODE, { getNode });
       const expectedPath =
         'https://github.com/bcgov/design-system/blob/master/components/footer/something.md';
       expect(transformedPath).toBe(expectedPath);
@@ -101,7 +101,7 @@ describe('Gatsby Remark Transform Path Converter Callback', () => {
     it('converts path with no leading slash to relative', () => {
       const astType = 'link';
       const relativePath = 'doc.md';
-      const transformedPath = converter(astType, relativePath, SIPHON_QL_NODE, getNode);
+      const transformedPath = converter(astType, relativePath, SIPHON_QL_NODE, { getNode });
       const expectedPath =
         'https://github.com/bcgov/design-system/blob/master/components/footer/something/doc.md';
       expect(transformedPath).toBe(expectedPath);
@@ -110,7 +110,7 @@ describe('Gatsby Remark Transform Path Converter Callback', () => {
     it('converts relative path for image to absolute with raw paramater', () => {
       const astType = 'image';
       const relativePath = '../banana.png';
-      const transformedPath = converter(astType, relativePath, SIPHON_QL_NODE, getNode);
+      const transformedPath = converter(astType, relativePath, SIPHON_QL_NODE, { getNode });
       const expectedPath =
         'https://github.com/bcgov/design-system/blob/master/components/footer/banana.png?raw=true';
       expect(transformedPath).toBe(expectedPath);
@@ -119,7 +119,7 @@ describe('Gatsby Remark Transform Path Converter Callback', () => {
     it('converts a relative path to a gatsby page path if it exists in source locations', () => {
       const astType = 'link';
       const relativePath = './foo.md';
-      const transformedPath = converter(astType, relativePath, SIPHON_QL_NODE, getNode);
+      const transformedPath = converter(astType, relativePath, SIPHON_QL_NODE, { getNode });
       expect(transformedPath).toBe('/foo/foo');
     });
   });

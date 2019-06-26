@@ -29,7 +29,10 @@ const { IMAGE, LINK } = require('./utils/constants');
  * @param {Object} remark
  * @param {Object} options
  */
-const transformRelativePaths = ({ markdownAST, markdownNode, getNode }, { converter } = {}) => {
+const transformRelativePaths = (
+  { markdownAST, markdownNode, getNode, getNodes },
+  { converter } = {},
+) => {
   if (!converter || !TypeCheck.isFunction(converter)) {
     throw new Error(
       "gatsby-remark-path-transform option: 'converter' must be passed in as a function!",
@@ -47,7 +50,7 @@ const transformRelativePaths = ({ markdownAST, markdownNode, getNode }, { conver
     if (validURL.isWebUri(url) || url.indexOf('#') === 0) {
       return url;
     }
-    const absolutePath = converter(nodeType, url, parentQLNode, getNode);
+    const absolutePath = converter(nodeType, url, parentQLNode, { getNode, getNodes });
     return absolutePath; // eslint-disable-line
   };
 
