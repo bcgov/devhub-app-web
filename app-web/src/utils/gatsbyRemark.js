@@ -62,7 +62,7 @@ const getGithubBasePath = (repo, owner, branch = 'master') => {
  * @param {String} path 'relative path of astNode
  * @param {Object} parentQLnode 'parent graphQLNode
  */
-const converter = (astType, path, parentQLnode, { getNode }) => {
+const converter = (astType, path, markdownNode, parentQLnode, { getNode }) => {
   // only convert source devhub nodes
   if (parentQLnode.internal.type === GRAPHQL_NODE_TYPE.SIPHON) {
     // get collection node
