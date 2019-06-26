@@ -165,21 +165,28 @@ export const isFilterLonely = filters => {
  *
  * @param {Array} topics the raw topic data (aka collections) as taken from the graphql query
  * @param {Object} topics[ind] {node: {..., name: {string }}}
- * @returns {Array} the sorted topics with Featured Cards and Design System first!
+ * @returns {Array} the sorted topics with Featured Cards, Design System and Getting Started on the DevOps Platform first!
  */
-export const sortDevhubTopicsAfterDesignSystemAndFeatured = topics => {
-  // it is unknown what position design system and featured cards will be since this can change build to build
+export const sortDevhubTopicsAfterSelectedTopics = topics => {
+  // it is unknown what position the selected topcs will be since this can change build to build
   const featuredIndex = topics.findIndex(topic => topic.node.name === TOPICS.FEATURED_RESOURCES);
   const designIndex = topics.findIndex(topic => topic.node.name === TOPICS.DESIGN_SYSTEM);
-  const designSystem = { ...topics[designIndex] };
-  const featuredResources = { ...topics[featuredIndex] };
-  // remove design system from topics list and then featured cards
-  const topicsWithoutDS = topics.filter(topic => topic.node.name !== TOPICS.FEATURED_RESOURCES);
-  const topicsWithoutDSAndFC = topicsWithoutDS.filter(
-    topic => topic.node.name !== TOPICS.DESIGN_SYSTEM,
+  const devOpsPlatformIndex = topics.findIndex(
+    topic => topic.node.name === TOPICS.GETTING_STARTED_ON_THE_DEVOPS_PLATFORM,
   );
 
-  const sortedTopics = topicsWithoutDSAndFC.sort((topicA, topicB) => {
+  const designSystem = { ...topics[designIndex] };
+  const featuredResources = { ...topics[featuredIndex] };
+  const devOpsPlatform = { ...topics[devOpsPlatformIndex] };
+  // remove selected topics
+  const topicsWithoutSelectedTopics = topics.filter(
+    topic =>
+      topic.node.name !== TOPICS.FEATURED_RESOURCES &&
+      topic.node.name !== TOPICS.DESIGN_SYSTEM &&
+      topic.node.name !== TOPICS.GETTING_STARTED_ON_THE_DEVOPS_PLATFORM,
+  );
+
+  const sortedTopics = topicsWithoutSelectedTopics.sort((topicA, topicB) => {
     const topicNameA = topicA.node.name.toLowerCase();
     const topicNameB = topicB.node.name.toLowerCase();
 
@@ -188,6 +195,9 @@ export const sortDevhubTopicsAfterDesignSystemAndFeatured = topics => {
     return 0;
   });
 
-  //Add featured Cards, then Design System, then the rest of the topics
-  return [featuredResources].concat([designSystem]).concat(sortedTopics);
+  //Add featured Cards, Design System, Getting Started on the DevOps Platform and then the rest of the topics
+  return [featuredResources]
+    .concat([designSystem])
+    .concat([devOpsPlatform])
+    .concat(sortedTopics);
 };
