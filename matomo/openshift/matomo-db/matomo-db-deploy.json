@@ -52,7 +52,7 @@
         "replicas": 1,
         "test": false,
         "selector": {
-          "name": "${NAME}-db"
+          "name": "${NAME}${SUFFIX}-db"
         },
         "template": {
           "metadata": {
