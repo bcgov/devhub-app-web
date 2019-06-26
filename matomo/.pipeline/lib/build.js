@@ -13,8 +13,7 @@ module.exports = (settings) => {
     // The building of your cool app goes here ▼▼▼
     objects = objects.concat(oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/mariadb/mariadb-build.json`, {
         'param': {
-            'NAME': 'mariadb',
-            'SUFFIX': phases[phase].suffix,
+            'NAME': phases[phase].name,
             'VERSION': phases[phase].tag
         }
     }));
@@ -22,7 +21,6 @@ module.exports = (settings) => {
     objects = objects.concat(oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/matomo/matomo-build.json`, {
         'param': {
             'NAME': phases[phase].name,
-            'SUFFIX': phases[phase].suffix,
             'VERSION': phases[phase].tag
         }
     }));

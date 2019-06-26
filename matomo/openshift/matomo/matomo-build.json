@@ -8,7 +8,7 @@
     "kind": "ImageStream",
     "apiVersion": "v1",
     "metadata": {
-      "name": "${NAME}"
+      "name": "${NAME}-app"
     },
     "spec": {
       "tags": [{
@@ -29,12 +29,6 @@
       "description": "The NAME assigned to all of the frontend objects defined in this template.",
       "required": true,
       "value": "matomo"
-    },
-    {
-    "name": "SUFFIX",
-    "displayName": "Name Suffix",
-    "description": "A suffix to be appended to the NAME of the frontend objects defined in this template.",
-    "required": true
     },
     {
       "name": "VERSION",

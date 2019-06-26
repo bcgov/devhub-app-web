@@ -12,6 +12,15 @@ module.exports = (settings)=>{
   var objects = []
 
   // The deployment of your cool app goes here ▼▼▼
+	objects = oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/matomo-db/matomo-db-depoy.json`, {
+		'param':{
+			'NAME': phases[phase].name,
+			'SUFFIX': phases[phase].suffix,
+			'VERSION': phases[phase].tag,
+			'IMAGE_NAMESPACE': phases[phase].namespace,
+			'PERSISTENT_VOLUME_SIZE': '10Gi'
+		}
+	});
 
   oc.applyRecommendedLabels(objects, phases[phase].name, phase, `${changeId}`, phases[phase].instance)
   oc.importImageStreams(objects, phases[phase].tag, phases.build.namespace, phases.build.tag)
