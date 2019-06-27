@@ -65,6 +65,12 @@
       "value": "matomo-proxy"
     },
     {
+      "name": "SUFFIX",
+      "displayName": "A name suffix used for all objects",
+      "required": false,
+      "value": "dev"
+    },
+    {
       "name": "GIT_REPO_URL",
       "displayName": "Git Repo URL",
       "description": "The URL to your GIT repo.",
