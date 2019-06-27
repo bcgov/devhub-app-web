@@ -4,15 +4,28 @@
   "metadata": {
     "name": "matomo-template"
   },
-  "objects": [{
+  "objects": [
+    {
+      "kind": "ImageStream",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${NAME}-app"
+      },
+      "spec": {
+        "lookupPolicy": {
+          "local": false
+        }
+      }
+    },
+    {
       "kind": "DeploymentConfig",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${NAME}",
+        "name": "${NAME}${SUFFIX}-app",
         "generation": 1,
         "labels": {
-          "app": "matomo",
-          "service": "${NAME}",
+          "app": "${NAME}",
+          "service": "${NAME}${SUFFIX}-app",
           "template": "matomo-template"
         }
       },
@@ -20,7 +33,8 @@
         "strategy": {
           "type": "Rolling"
         },
-        "triggers": [{
+        "triggers": [
+          {
             "type": "ConfigChange"
           },
           {
@@ -28,12 +42,12 @@
             "imageChangeParams": {
               "automatic": true,
               "containerNames": [
-                "${NAME}"
+                "${NAME}${SUFFIX}-app"
               ],
               "from": {
                 "kind": "ImageStreamTag",
                 "namespace": "${IMAGE_NAMESPACE}",
-                "name": "${SOURCE_IMAGE_NAME}:${TAG_NAME}"
+                "name": "${NAME}-app:${VERSION}"
               }
             }
           },
@@ -47,7 +61,7 @@
               "from": {
                 "kind": "ImageStreamTag",
                 "namespace": "${IMAGE_NAMESPACE}",
-                "name": "${SOURCE_IMAGE_NAME}-proxy:${TAG_NAME}"
+                "name": "${NAME}-proxy:${VERSION}"
               }
             }
           }
@@ -56,31 +70,33 @@
         "test": false,
         "selector": {
           "app": "matomo",
-          "deploymentconfig": "${NAME}",
+          "deploymentconfig": "${NAME}${SUFFIX}-app",
           "template": "matomo-template"
         },
         "template": {
           "metadata": {
             "labels": {
-              "app": "matomo",
-              "deploymentconfig": "matomo",
+              "app": "${NAME}",
+              "deploymentconfig": "${NAME}${SUFFIX}-app",
               "template": "matomo-template"
             }
           },
           "spec": {
-            "volumes": [{
+            "volumes": [
+              {
                 "name": "${NAME}-source",
                 "emptyDir": {}
               },
               {
                 "name": "${NAME}-config",
                 "persistentVolumeClaim": {
-                  "claimName": "${NAME}-config"
+                  "claimName": "${NAME}${SUFFIX}-app-config"
                 }
               }
             ],
-            "containers": [{
-                "image": "${SOURCE_IMAGE_NAME}",
+            "containers": [
+              {
+                "image": "",
                 "imagePullPolicy": "Always",
                 "livenessProbe": {
                   "failureThreshold": 3,
@@ -92,11 +108,13 @@
                   },
                   "timeoutSeconds": 5
                 },
-                "name": "matomo",
-                "ports": [{
-                  "containerPort": 9000,
-                  "protocol": "TCP"
-                }],
+                "name": "${NAME}${SUFFIX}-app",
+                "ports": [
+                  {
+                    "containerPort": 9000,
+                    "protocol": "TCP"
+                  }
+                ],
                 "readinessProbe": {
                   "failureThreshold": 3,
                   "initialDelaySeconds": 1,
@@ -118,7 +136,8 @@
                   }
                 },
                 "terminationMessagePath": "/dev/termination-log",
-                "volumeMounts": [{
+                "volumeMounts": [
+                  {
                     "mountPath": "/var/www/html",
                     "name": "matomo-source"
                   },
@@ -129,7 +148,7 @@
                 ]
               },
               {
-                "image": "${NAME}-proxy",
+                "image": "",
                 "imagePullPolicy": "Always",
                 "livenessProbe": {
                   "failureThreshold": 3,
@@ -142,10 +161,12 @@
                   "timeoutSeconds": 1
                 },
                 "name": "${NAME}-proxy",
-                "ports": [{
-                  "containerPort": 8080,
-                  "protocol": "TCP"
-                }],
+                "ports": [
+                  {
+                    "containerPort": 8080,
+                    "protocol": "TCP"
+                  }
+                ],
                 "readinessProbe": {
                   "failureThreshold": 3,
                   "initialDelaySeconds": 1,
@@ -167,10 +188,12 @@
                   }
                 },
                 "terminationMessagePath": "/dev/termination-log",
-                "volumeMounts": [{
-                  "mountPath": "/var/www/html",
-                  "name": "matomo-source"
-                }]
+                "volumeMounts": [
+                  {
+                    "mountPath": "/var/www/html",
+                    "name": "matomo-source"
+                  }
+                ]
               }
             ]
           }
@@ -181,10 +204,10 @@
       "kind": "PersistentVolumeClaim",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${NAME}-config",
+        "name": "${NAME}${SUFFIX}-app-config",
         "labels": {
           "app": "matomo",
-          "name": "${NAME}"
+          "name": "${NAME}${SUFFIX}-app-config"
         }
       },
       "spec": {
@@ -203,10 +226,10 @@
       "kind": "Route",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${NAME}",
+        "name": "${NAME}${SUFFIX}-app",
         "labels": {
           "app": "${NAME}",
-          "name": "${NAME}"
+          "name": "${NAME}${SUFFIX}-app"
         }
       },
       "spec": {
@@ -217,7 +240,7 @@
         },
         "to": {
           "kind": "Service",
-          "name": "${NAME}"
+          "name": "${NAME}${SUFFIX}-app"
         }
       }
     },
@@ -225,29 +248,32 @@
       "kind": "Service",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${NAME}",
+        "name": "${NAME}${SUFFIX}-app",
         "labels": {
-          "app": "matomo",
-          "service": "${NAME}",
+          "app": "${NAME}",
+          "service": "${NAME}${SUFFIX}-app",
           "template": "matomo-template"
         }
       },
       "spec": {
-        "ports": [{
-          "name": "8080-tcp",
-          "port": 8080,
-          "protocol": "TCP",
-          "targetPort": 8080
-        }],
+        "ports": [
+          {
+            "name": "8080-tcp",
+            "port": 8080,
+            "protocol": "TCP",
+            "targetPort": 8080
+          }
+        ],
         "selector": {
-          "deploymentconfig": "${NAME}"
+          "deploymentconfig": "${NAME}${SUFFIX}-app"
         },
         "type": "ClusterIP",
         "sessionAffinity": "None"
       }
     }
   ],
-  "parameters": [{
+  "parameters": [
+    {
       "name": "NAME",
       "displayName": "Name",
       "description": "The name assigned to all of the OpenShift resources associated to the server instance.",
@@ -255,25 +281,24 @@
       "value": "matomo"
     },
     {
+      "name": "SUFFIX",
+      "displayName": "A name suffix used for all objects",
+      "required": false,
+      "value": "dev"
+    },
+    {
+      "name": "VERSION",
+      "displayName": "Environment TAG name",
+      "description": "The TAG name for this environment, e.g., dev, test, prod",
+      "required": true,
+      "value": "prod"
+    },
+    {
       "name": "IMAGE_NAMESPACE",
       "displayName": "Image Namespace",
       "required": true,
       "description": "The namespace of the OpenShift project containing the imagestream for the application.",
       "value": "myproject"
-    },
-    {
-      "name": "SOURCE_IMAGE_NAME",
-      "displayName": "Source Image Name",
-      "description": "The name of the image to use for this resource.",
-      "required": true,
-      "value": "matomo"
-    },
-    {
-      "name": "TAG_NAME",
-      "displayName": "Environment TAG name",
-      "description": "The TAG name for this environment, e.g., dev, test, prod",
-      "required": true,
-      "value": "prod"
     },
     {
       "name": "MATOMO_URL",

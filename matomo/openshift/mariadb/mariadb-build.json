@@ -1,68 +1,66 @@
 {
-  "kind": "Template",
-  "apiVersion": "v1",
-  "metadata": {
-    "name": "${BASENAME}-imagestream-template"
-  },
-  "objects": [{
-    "kind": "ImageStream",
-    "apiVersion": "v1",
-    "metadata": {
-      "name": "${BASENAME}"
-    },
-    "spec": {
-      "tags": [{
-        "name": "${OUTPUT_IMAGE_TAG}",
-        "from": {
-          "kind": "${SOURCE_IMAGE_KIND}",
-          "name": "${SOURCE_IMAGE_NAME}:${SOURCE_IMAGE_TAG}"
-        },
-        "importPolicy": {
-          "scheduled": true
-        }
-      }]
-    }
-  }],
-  "parameters": [{
-    "name": "BASENAME",
-    "displayName": "Basename",
-    "description": "The basename assigned to all of the frontend objects defined in this template.",
-    "required": true,
-    "value": "mariadb"
-  },
-    {
-      "name": "SUFFIX",
-      "displayName": "Name Suffix",
-      "description": "A suffix to be appended to the basename of the frontend objects defined in this template.",
-      "required": true
-    },
-    {
-      "name": "OUTPUT_IMAGE_TAG",
-      "displayName": "Output Image Tag",
-      "description": "The tag given to the built image.",
-      "required": true,
-      "value": "latest"
-    },
-    {
-      "name": "SOURCE_IMAGE_KIND",
-      "displayName": "Source Image Kind",
-      "description": "The 'kind' (type) of the  source image; typically ImageStreamTag, or DockerImage.",
-      "required": true,
-      "value": "DockerImage"
-    },
-    {
-      "name": "SOURCE_IMAGE_NAME",
-      "displayName": "Source Image Name",
-      "description": "The name of the source image.",
-      "required": true,
-      "value": "registry.access.redhat.com/rhscl/mariadb-102-rhel7"
-    },
-    {
-      "name": "SOURCE_IMAGE_TAG",
-      "displayName": "Source Image Tag",
-      "description": "The tag of the source image.",
-      "required": true,
-      "value": "latest"
-    }
-  ]
+	"kind": "Template",
+	"apiVersion": "v1",
+	"metadata": {
+		"name": "${NAME}-imagestream-template"
+	},
+	"objects": [
+		{
+			"kind": "ImageStream",
+			"apiVersion": "v1",
+			"metadata": {
+				"name": "${NAME}-db"
+			},
+			"spec": {
+				"tags": [
+					{
+						"name": "${VERSION}",
+						"from": {
+							"kind": "${SOURCE_IMAGE_KIND}",
+							"name": "${SOURCE_IMAGE_NAME}:${SOURCE_IMAGE_TAG}"
+						},
+						"importPolicy": {
+							"scheduled": true
+						}
+					}
+				]
+			}
+		}
+	],
+	"parameters": [
+		{
+			"name": "NAME",
+			"displayName": "NAME",
+			"description": "The NAME assigned to all of the frontend objects defined in this template.",
+			"required": true
+		},
+		{
+			"name": "VERSION",
+			"displayName": "Output Image Tag",
+			"description": "The tag given to the built image.",
+			"required": true,
+			"value": "latest"
+		},
+		{
+			"name": "SOURCE_IMAGE_KIND",
+			"displayName": "Source Image Kind",
+			"description": "The 'kind' (type) of the  source image; typically ImageStreamTag, or DockerImage.",
+			"required": true,
+			"value": "DockerImage"
+		},
+		{
+			"name": "SOURCE_IMAGE_NAME",
+			"displayName": "Source Image Name",
+			"description": "The name of the source image.",
+			"required": true,
+			"value": "registry.access.redhat.com/rhscl/mariadb-102-rhel7"
+		},
+		{
+			"name": "SOURCE_IMAGE_TAG",
+			"displayName": "Source Image Tag",
+			"description": "The tag of the source image.",
+			"required": true,
+			"value": "latest"
+		}
+	]
 }
