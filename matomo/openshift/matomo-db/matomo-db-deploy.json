@@ -41,7 +41,7 @@
               "from": {
                 "kind": "ImageStreamTag",
                 "namespace": "${IMAGE_NAMESPACE}",
-                "name": "${SOURCE_IMAGE_NAME}:${VERSION}"
+                "name": "${NAME}-db:${VERSION}"
               }
             }
           },
