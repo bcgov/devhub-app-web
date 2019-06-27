@@ -22,7 +22,7 @@ module.exports = (settings) => {
         }
     });
 
-    objects.contact(oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/matomo/matomo-deploy.json`, {
+    objects.concat(oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/matomo/matomo-deploy.json`, {
         'param': {
             'NAME': phases[phase].name,
             'SUFFIX': phases[phase].suffix,
