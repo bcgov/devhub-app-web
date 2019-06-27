@@ -12,7 +12,7 @@ module.exports = (settings) => {
     var objects = []
 
     // The deployment of your cool app goes here ▼▼▼
-    objects = oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/matomo-db/matomo-db-deploy.json`, {
+    objects = objects.concat(oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/matomo-db/matomo-db-deploy.json`, {
         'param': {
             'NAME': phases[phase].name,
             'SUFFIX': phases[phase].suffix,
@@ -20,9 +20,9 @@ module.exports = (settings) => {
             'IMAGE_NAMESPACE': phases[phase].namespace,
             'PERSISTENT_VOLUME_SIZE': '10Gi'
         }
-    });
+    }));
 
-    objects.concat(oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/matomo/matomo-deploy.json`, {
+    objects = objects.concat(oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/matomo/matomo-deploy.json`, {
         'param': {
             'NAME': phases[phase].name,
             'SUFFIX': phases[phase].suffix,
