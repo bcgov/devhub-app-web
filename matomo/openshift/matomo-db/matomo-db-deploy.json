@@ -10,6 +10,18 @@
   },
   "objects": [
     {
+      "kind": "ImageStream",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${NAME}-db"
+      },
+      "spec": {
+        "lookupPolicy": {
+          "local": false
+        }
+      }
+    },
+    {
       "kind": "DeploymentConfig",
       "apiVersion": "v1",
       "metadata": {
