@@ -8,14 +8,14 @@
       "kind": "ImageStream",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${NAME}"
+        "name": "${NAME}-proxy"
       }
     },
     {
       "kind": "BuildConfig",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${NAME}",
+        "name": "${NAME}${SUFFIX}-proxy",
         "labels": {
           "app": "${NAME}"
         }
@@ -38,7 +38,7 @@
         "output": {
           "to": {
             "kind": "ImageStreamTag",
-            "name": "${NAME}:${OUTPUT_IMAGE_TAG}"
+            "name": "${NAME}-proxy:${VERSION}"
           }
         },
         "resources": {
@@ -79,7 +79,7 @@
       "value": "master"
     },
     {
-      "name": "OUTPUT_IMAGE_TAG",
+      "name": "VERSION",
       "displayName": "Output Image Tag",
       "description": "The tag given to the built image.",
       "required": true,

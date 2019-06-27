@@ -18,6 +18,13 @@ module.exports = (settings) => {
         }
     }));
 
+    objects = objects.concat(oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/matomo-proxy/matomo-proxy-build.json`, {
+        'param': {
+            'NAME': phases[phase].name,
+            'VERSION': phases[phase].tag
+        }
+    }));
+
     objects = objects.concat(oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/matomo/matomo-build.json`, {
         'param': {
             'NAME': phases[phase].name,
