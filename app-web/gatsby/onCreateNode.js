@@ -16,6 +16,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 const htmlToFormattedText = require('html-to-formatted-text');
+const { isArray, isString } = require('lodash');
 const visit = require('unist-util-visit');
 const remark = require('remark');
 
@@ -54,30 +55,41 @@ module.exports = ({ node, actions }) => {
       }
     });
 
+    let labels = [];
+    // assert the shape of labels in frontmatter
+    if (Object.prototype.hasOwnProperty(node.frontmatter, 'labels')) {
+      if (isArray(node.frontmatter.labels) && node.frontmatter.every(isString)) {
+        labels = node.frontmatter.labels;
+      } else if (isString(node.frontmatter.labels)) {
+        // split by any commas and trim
+        labels = node.frontmatter.labels.split().map(text => text.trim());
+      }
+    }
+
     createNodeField({
       node,
       name: 'title',
       value: node.frontmatter.title ? node.frontmatter.title : title,
     });
+
     createNodeField({
       node,
       name: 'description',
       value: node.frontmatter.description ? node.frontmatter.description : '',
     });
+
     createNodeField({
       node,
       name: 'image',
       value: node.frontmatter.image ? node.frontmatter.image : '',
     });
+
     createNodeField({
       node,
       name: 'labels',
-      value: !node.frontmatter.labels
-        ? ['']
-        : Array.isArray(node.frontmatter.labels)
-        ? node.frontmatter.labels
-        : node.frontmatter.labels.split(),
+      value: labels,
     });
+
     createNodeField({
       node,
       name: 'author',
