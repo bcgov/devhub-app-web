@@ -1,0 +1,37 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.25">
+  <actions/>
+  <displayName>signing-api-pipeline</displayName>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <io.fabric8.jenkins.openshiftsync.BuildConfigProjectProperty plugin="openshift-sync@1.0.27">
+      <uid>ebe03094-d3ec-11e8-80d1-0050568348cc</uid>
+      <namespace>devhub-tools</namespace>
+      <name>signing-api-pipeline</name>
+      <resourceVersion>759964169</resourceVersion>
+      <buildRunPolicy>Parallel</buildRunPolicy>
+    </io.fabric8.jenkins.openshiftsync.BuildConfigProjectProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@2.56">
+    <scm class="hudson.plugins.git.GitSCM" plugin="git@3.9.1">
+      <configVersion>2</configVersion>
+      <userRemoteConfigs class="singleton-list">
+        <hudson.plugins.git.UserRemoteConfig>
+          <url>https://github.com/bcgov/devhub-signing-api.git</url>
+        </hudson.plugins.git.UserRemoteConfig>
+      </userRemoteConfigs>
+      <branches class="singleton-list">
+        <hudson.plugins.git.BranchSpec>
+          <name>master</name>
+        </hudson.plugins.git.BranchSpec>
+      </branches>
+      <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+      <submoduleCfg class="empty-list"/>
+      <extensions/>
+    </scm>
+    <scriptPath>Jenkinsfile</scriptPath>
+    <lightweight>false</lightweight>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>
