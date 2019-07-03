@@ -1,7 +1,7 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.25">
   <actions/>
-  <displayName>signing-web-pipeline</displayName>
+  <displayName>Mobile Signing App Web UI Pipeline</displayName>
   <keepDependencies>false</keepDependencies>
   <properties>
     <io.fabric8.jenkins.openshiftsync.BuildConfigProjectProperty plugin="openshift-sync@1.0.27">
