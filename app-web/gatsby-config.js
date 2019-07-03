@@ -139,17 +139,6 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-yaml',
     {
-      resolve: 'gatsby-source-github-all',
-      options: {
-        tokens: {
-          GITHUB_API_TOKEN: process.env.GITHUB_TOKEN,
-        },
-        // If REGISTRY_PATH is set specifically, include this REGISTRY_TYPE as an env var
-        // Format convention: camalcase of the sub path + 'Yaml'
-        sourceRegistryType: 'RegistryJson',
-      },
-    },
-    {
       resolve: 'gatsby-source-github-raw',
       options: {
         githubAccessToken: process.env.GITHUB_TOKEN,
@@ -190,6 +179,17 @@ module.exports = {
           },
           'gatsby-plugin-catch-links',
         ],
+      },
+    },
+    {
+      resolve: 'gatsby-source-github-all',
+      options: {
+        tokens: {
+          GITHUB_API_TOKEN: process.env.GITHUB_TOKEN,
+        },
+        // If REGISTRY_PATH is set specifically, include this REGISTRY_TYPE as an env var
+        // Format convention: camalcase of the sub path + 'Yaml'
+        sourceRegistryType: 'RegistryJson',
       },
     },
     {
