@@ -24,7 +24,7 @@ import { isQueryEmpty } from '../utils/search';
 import { SEARCH_QUERY_PARAM } from '../constants/search';
 import { SPACING } from '../constants/designTokens';
 import uniqBy from 'lodash/uniqBy';
-import { formatEvents } from '../templates/events';
+import { formatEvents, formatMeetUps } from '../templates/events';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -90,6 +90,7 @@ export const Index = ({
     allDevhubCollection,
     allDevhubSiphon,
     allEventbriteEvents,
+    allMeetupGroup,
     siteSearchIndex: { index },
   },
   location,
@@ -107,8 +108,16 @@ export const Index = ({
 
   results = useSearch(query, index);
   results = uniqBy(results, 'id');
+
   const allEvents = flattenGatsbyGraphQL(allEventbriteEvents.edges);
   const currentEvents = formatEvents(allEvents.filter(e => e.start.daysFromNow <= 0));
+  const allMeetups = formatMeetUps(
+    flattenGatsbyGraphQL(allMeetupGroup.edges).flatMap(meetups => {
+      return meetups.childrenMeetupEvent;
+    }),
+  );
+  const currentMeetups = allMeetups.filter(e => e.start.daysFromNow <= 0);
+  const eventsAndMeetups = currentEvents.concat(currentMeetups);
 
   //const currentEvents = formatEvents(events.filter(e => e.start.daysFromNow <= 0));
   // this is defined by ?q='' or ?q=''&q=''..etc
@@ -120,7 +129,7 @@ export const Index = ({
   let content = null;
 
   const siphonResources = getResourcePreviews(
-    flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(currentEvents),
+    flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(eventsAndMeetups),
     results,
   );
 

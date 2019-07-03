@@ -52,7 +52,7 @@ export const formatEvents = events => {
 };
 
 //Formats meetup data into the identical format as the formatEvents function
-const formatMeetUps = meetups => {
+export const formatMeetUps = meetups => {
   return meetups.map(meetup => {
     meetup = {
       unfurl: meetup.siphon.unfurl,

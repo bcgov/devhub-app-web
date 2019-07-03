@@ -177,7 +177,7 @@ module.exports = {
       resolve: '@gatsby-contrib/gatsby-plugin-elasticlunr-search',
       options: {
         // Fields to index
-        fields: ['title', 'content', 'description', 'collectionName', 'siphon', 'labels', 'author'],
+        fields: ['title', 'content', 'description', 'collectionName', 'labels', 'author'],
         // How to resolve each field`s value for a supported node type
         resolvers: {
           MarkdownRemark: {
@@ -196,7 +196,10 @@ module.exports = {
           EventbriteEvents: {
             title: node => node.name.text,
             description: node => node.description.text,
-            start: node => node.start,
+          },
+          MeetupEvent: {
+            title: node => node.name,
+            description: node => node.description,
           },
         },
       },
