@@ -19,7 +19,12 @@ const htmlToFormattedText = require('html-to-formatted-text');
 const { isArray, isString } = require('lodash');
 const visit = require('unist-util-visit');
 const remark = require('remark');
-const { isDevhubCollection, isMarkdownRemark, isGithubRaw } = require('./utils/validators.js');
+const {
+  isDevhubCollection,
+  isMarkdownRemark,
+  isGithubRaw,
+  isMeetupEvent,
+} = require('./utils/validators.js');
 const slugify = require('slugify');
 
 module.exports = ({ node, actions, getNode }) => {
@@ -32,7 +37,7 @@ module.exports = ({ node, actions, getNode }) => {
     createNodeField({ node, name: 'slug', value: slugify(node.name) });
   }
 
-  if (node.internal.type === 'MeetupEvent') {
+  if (isMeetupEvent(node)) {
     // normalize meetup event data
     createNodeField({ node, name: 'name', value: node.name });
     createNodeField({
@@ -51,6 +56,7 @@ module.exports = ({ node, actions, getNode }) => {
       value: node.venue ? node.venue.address_1 : '',
     });
   }
+
   if (isMarkdownRemark(node)) {
     const parentNode = getNode(node.parent);
 
