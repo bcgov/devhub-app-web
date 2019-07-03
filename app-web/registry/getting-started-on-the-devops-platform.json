@@ -59,8 +59,8 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/bcdevops/openshift-wiki",
-          "owner": "bcdevops",
+          "url": "https://github.com/bcDevOps/openshift-wiki",
+          "owner": "bcDevOps",
           "repo": "openshift-wiki",
           "files": [
             "docs/OCP/OCPServiceDefinition.md",
