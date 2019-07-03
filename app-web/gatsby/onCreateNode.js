@@ -19,11 +19,14 @@ const htmlToFormattedText = require('html-to-formatted-text');
 const { isArray, isString } = require('lodash');
 const visit = require('unist-util-visit');
 const remark = require('remark');
+const { RESOURCE_TYPES, PERSONAS_LIST } = require('../src/constants/ui');
 const {
   isDevhubCollection,
   isMarkdownRemark,
   isGithubRaw,
   isMeetupEvent,
+  getClosestResourceType,
+  getClosestPersona,
 } = require('./utils/validators.js');
 const slugify = require('slugify');
 
@@ -123,7 +126,43 @@ module.exports = ({ node, actions, getNode }) => {
         name: 'slug',
         value: slugify(slug),
       });
-      // add resource type
+      // add resource type, initially it is set to the topic resource type
+      let resourceType = parentNode.___boundProperties.topicResourceType;
+
+      // if frontmatter resourcetype is valid we set it
+      if (node.frontmatter.resourceType) {
+        resourceType = getClosestResourceType(node.frontmatter.resourceType);
+      }
+      // there is a chance tthe front matter resource type is invalid in the sense that it is mispelled/or not apart of the
+      // resource types list
+      if (!resourceType) {
+        resourceType = RESOURCE_TYPES.DOCUMENTATION;
+      }
+
+      createNodeField({
+        node: parentNode,
+        name: 'resourceType',
+        value: resourceType,
+      });
+
+      // adding personas
+      // add resource type, initially it is set to the topic resource type
+      let personas = parentNode.___boundProperties.topicPersonas;
+      // if frontmatter resourcetype is valid we set it
+      if (node.frontmatter.personas) {
+        personas = getClosestPersona(PERSONAS_LIST, node.frontmatter.personas);
+      }
+      // there is a chance tthe front matter resource type is invalid in the sense that it is mispelled/or not apart of the
+      // resource types list
+      if (!personas) {
+        personas = [];
+      }
+
+      createNodeField({
+        node: parentNode,
+        name: 'personas',
+        value: personas,
+      });
     }
   }
 };
