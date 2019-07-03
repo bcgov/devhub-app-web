@@ -116,12 +116,14 @@ module.exports = ({ node, actions, getNode }) => {
 
     if (isGithubRaw(parentNode)) {
       const slug = node.frontmatter.title ? node.frontmatter.title : title;
+      // const resourceType = node.frontmatter.resourceType ? getClosest
       // add a slug for page paths if exists
       createNodeField({
         node: parentNode,
         name: 'slug',
         value: slugify(slug),
       });
+      // add resource type
     }
   }
 };
