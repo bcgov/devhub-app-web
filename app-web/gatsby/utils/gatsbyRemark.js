@@ -110,19 +110,24 @@ const converter = (astType, path, markdownNode, parentQLnode, { getNode, getNode
     const normalizedPath = normalizeFilePath(path);
     const nodes = converter.__githubRaw;
     let absolutePath;
-    // map out all nodes
+
     if (isRelativePath(normalizedPath)) {
       absolutePath = url.resolve(parentQLnode.html_url, normalizedPath);
-      // // we need to check if relative path would match a github path based on the collection
-      // // source locations map
+      // we need to check if relative path would match a github path that exists withiin the
+      // github raw node set
       const githubRawNodeThatMatches = nodes.find(n => {
         return n.html_url.toLowerCase() === absolutePath.toLowerCase();
       });
 
       if (githubRawNodeThatMatches) {
-        absolutePath = `/${slugify(githubRawNodeThatMatches.___boundProperties.topics[0])}/${
-          githubRawNodeThatMatches.fields.slug
-        }`;
+        // currently we are just assuming the link is from the first topic, this will cause an
+        // ux issue where all links that are sourced from multiple topics will lead to possibly incorrect
+        // topics, that beings said, in order to fix this requires a run time solution as we are unsure
+        // which link this path belongs too. If this really becomes an issue we can fix it then
+        const basePath = slugify(githubRawNodeThatMatches.___boundProperties.topics[0]);
+        const pageComponentSlug = githubRawNodeThatMatches.fields.slug;
+
+        absolutePath = `/${basePath}/${pageComponentSlug}`;
       }
     } else {
       // if its absolute we need to append path to the base of the github repository endpoint
