@@ -23,6 +23,7 @@ const getFilesFromRegistry = getNodes => {
   const sourceToTopicMap = {};
   // get RegistryJson nodes
   const registry = nodes.filter(isRegistryJson);
+
   // spit out all github sources from the registry while maintaining references to the
   // topics they belong too
   const gitsources = registry.reduce((sources, registryItem) => {
