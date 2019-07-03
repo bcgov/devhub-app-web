@@ -92,6 +92,9 @@
             "build": {
               "namespace": "devhub-tools"
             },
+            "dev": {
+              "namespace": "devhub-tools"
+            },
             "prod": {
               "namespace": "devhub-tools"
             }
