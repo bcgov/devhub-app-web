@@ -19,7 +19,7 @@ const url = require('url');
 const { TypeCheck } = require('@bcgov/common-web-utils');
 const { GRAPHQL_NODE_TYPE } = require('../../plugins/gatsby-source-github-all/utils/constants');
 const { URL } = url;
-
+const slugify = require('slugify');
 /**
  * normalizes the file path by the following rules:
  * relative = no change
@@ -54,6 +54,7 @@ const getGithubBasePath = (repo, owner, branch = 'master') => {
   branch = TypeCheck.isString(branch) ? branch : 'master';
   return `https://github.com/${owner}/${repo}/blob/${branch}/`;
 };
+
 /**
  * this is the converter callback used within
  * the gatsby-remark-transform-path plugin
@@ -62,7 +63,7 @@ const getGithubBasePath = (repo, owner, branch = 'master') => {
  * @param {String} path 'relative path of astNode
  * @param {Object} parentQLnode 'parent graphQLNode
  */
-const converter = (astType, path, markdownNode, parentQLnode, { getNode }) => {
+const converter = (astType, path, markdownNode, parentQLnode, { getNode, getNodes }) => {
   // only convert source devhub nodes
   if (parentQLnode.internal.type === GRAPHQL_NODE_TYPE.SIPHON) {
     // get collection node
@@ -89,6 +90,52 @@ const converter = (astType, path, markdownNode, parentQLnode, { getNode }) => {
       // join the relative normalized path with github base uri
       absolutePath = url.resolve(baseGithubPath, normalizedPath);
     }
+    if (astType === 'image') {
+      // if the ast type is image we need to add the ?raw=true paramater
+      // because the github absolute source is actually only the path to
+      // where the source image is presented and not to the actual image itself
+      const absPathObj = new URL(absolutePath);
+      absPathObj.searchParams.set('raw', true);
+      absolutePath = absPathObj.toString();
+    }
+    return absolutePath;
+  }
+  if (parentQLnode.internal.type === 'GithubRaw') {
+    // get all github raw nodes and curry
+    if (!converter.__githubRaw) {
+      converter.__githubRaw = getNodes().filter(n => n.internal.type === 'GithubRaw');
+    }
+
+    // normalize the path so that any paths that have no leading slash are assumed to be relative
+    const normalizedPath = normalizeFilePath(path);
+    const nodes = converter.__githubRaw;
+    let absolutePath;
+    // map out all nodes
+    if (isRelativePath(normalizedPath)) {
+      absolutePath = url.resolve(parentQLnode.html_url, normalizedPath);
+      // // we need to check if relative path would match a github path based on the collection
+      // // source locations map
+      const githubRawNodeThatMatches = nodes.find(n => {
+        return n.html_url.toLowerCase() === absolutePath.toLowerCase();
+      });
+
+      if (githubRawNodeThatMatches) {
+        absolutePath = `/${slugify(githubRawNodeThatMatches.___boundProperties.topics[0])}/${
+          githubRawNodeThatMatches.fields.slug
+        }`;
+      }
+    } else {
+      // if its absolute we need to append path to the base of the github repository endpoint
+      // url formatted as https://github.com/owner/repo/blob/branch
+      // eslint-disable-next-line no-unused-vars
+      const [owner, repo, blob, branch] = parentQLnode.html_url
+        .replace('https://github.com/', '')
+        .split('/');
+      const baseGithubPath = getGithubBasePath(repo, owner, branch);
+      // join the relative normalized path with github base uri
+      absolutePath = url.resolve(baseGithubPath, normalizedPath);
+    }
+
     if (astType === 'image') {
       // if the ast type is image we need to add the ?raw=true paramater
       // because the github absolute source is actually only the path to

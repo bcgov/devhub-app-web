@@ -19,11 +19,10 @@ const htmlToFormattedText = require('html-to-formatted-text');
 const { isArray, isString } = require('lodash');
 const visit = require('unist-util-visit');
 const remark = require('remark');
-const { isDevhubCollection, isMarkdownRemark } = require('./utils/validators.js');
-const shortid = require('shortid');
+const { isDevhubCollection, isMarkdownRemark, isGithubRaw } = require('./utils/validators.js');
 const slugify = require('slugify');
 
-module.exports = ({ node, actions }) => {
+module.exports = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
   if (isDevhubCollection(node)) {
     // add a content field that the markdown topics will map too
@@ -33,10 +32,6 @@ module.exports = ({ node, actions }) => {
     createNodeField({ node, name: 'slug', value: slugify(node.name) });
   }
 
-  if (isMarkdownRemark(node)) {
-    // normalize ids if they exist
-    createNodeField({ node, name: 'id', value: node.frontmatter.id || shortid.generate() });
-  }
   if (node.internal.type === 'MeetupEvent') {
     // normalize meetup event data
     createNodeField({ node, name: 'name', value: node.name });
@@ -55,7 +50,10 @@ module.exports = ({ node, actions }) => {
       name: 'location',
       value: node.venue ? node.venue.address_1 : '',
     });
-  } else if (node.internal.type === 'MarkdownRemark') {
+  }
+  if (isMarkdownRemark(node)) {
+    const parentNode = getNode(node.parent);
+
     let title = node.frontmatter.title;
     const ast = remark.parse(node.internal.content);
     //if our title is blank, visit will search through the content for a usable and reasonable title
@@ -109,5 +107,15 @@ module.exports = ({ node, actions }) => {
       name: 'author',
       value: node.frontmatter.author ? node.frontmatter.author : '',
     });
+
+    if (isGithubRaw(parentNode)) {
+      const slug = node.frontmatter.title ? node.frontmatter.title : title;
+      // add a slug for page paths if exists
+      createNodeField({
+        node: parentNode,
+        name: 'slug',
+        value: slugify(slug),
+      });
+    }
   }
 };
