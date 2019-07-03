@@ -23,6 +23,8 @@ import {
 import { isQueryEmpty } from '../utils/search';
 import { SEARCH_QUERY_PARAM } from '../constants/search';
 import { SPACING } from '../constants/designTokens';
+import uniqBy from 'lodash/uniqBy';
+import { formatEvents } from '../templates/events';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -87,6 +89,7 @@ export const Index = ({
   data: {
     allDevhubCollection,
     allDevhubSiphon,
+    allEventbriteEvents,
     siteSearchIndex: { index },
   },
   location,
@@ -103,6 +106,11 @@ export const Index = ({
   }
 
   results = useSearch(query, index);
+  results = uniqBy(results, 'id');
+  const allEvents = flattenGatsbyGraphQL(allEventbriteEvents.edges);
+  const currentEvents = formatEvents(allEvents.filter(e => e.start.daysFromNow <= 0));
+
+  //const currentEvents = formatEvents(events.filter(e => e.start.daysFromNow <= 0));
   // this is defined by ?q='' or ?q=''&q=''..etc
   // if query is empty we prevent the search results empty from being rendered
   // in addition the collections container is prevented from not rendering because
@@ -110,7 +118,11 @@ export const Index = ({
   const queryIsEmpty = isQueryEmpty(query);
 
   let content = null;
-  const siphonResources = getResourcePreviews(flattenGatsbyGraphQL(allDevhubSiphon.edges), results);
+
+  const siphonResources = getResourcePreviews(
+    flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(currentEvents),
+    results,
+  );
 
   const resourcesNotFound = !queryIsEmpty && (!results || (results.length === 0 && windowHasQuery));
   if (queryIsEmpty) {

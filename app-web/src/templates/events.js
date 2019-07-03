@@ -38,7 +38,7 @@ const CardContainer = styled.div`
 `;
 
 //Formats eventbrite data into something usable by the card component
-const formatEvents = events => {
+export const formatEvents = events => {
   return events.map(event => {
     event = {
       unfurl: event.siphon.unfurl,
@@ -202,6 +202,7 @@ export const EventData = graphql`
               }
               id
             }
+            id
             fields {
               location
             }
