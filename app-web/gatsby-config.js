@@ -146,13 +146,6 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-source-github-raw',
-      options: {
-        githubAccessToken: process.env.GITHUB_TOKEN,
-        files: getFilesFromRegistry,
-      },
-    },
-    {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
