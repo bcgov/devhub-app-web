@@ -106,8 +106,10 @@
     "yamljs": "^0.3.0"
   },
   "scripts": {
-    "dev": "node_modules/.bin/gatsby develop -H 0.0.0.0",
-    "build": "node_modules/.bin/gatsby build",
+    "build": "npx --node-arg '-r esm' gatsby build",
+    "dev": "npx --node-arg '-r esm' gatsby develop -H 0.0.0.0",
+    "start": "npx --node-arg '-r esm' npm run dev -H 0.0.0.0",
+    "serve": "npx --node-arg '-r esm' gatsby serve",
     "test:watch": "jest --watch --env=jsdom",
     "test": "jest --env=jsdom",
     "test:ci": "CI=true shell-scripts/unit-tests.sh",
