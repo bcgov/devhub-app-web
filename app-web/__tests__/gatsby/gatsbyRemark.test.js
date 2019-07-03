@@ -1,5 +1,5 @@
-import { SIPHON_QL_NODE } from '../../__fixtures__/plugin-fixtures';
-import { converter } from '../../gatsby/utils/gatsbyRemark';
+import { SIPHON_QL_NODE } from '../../../__fixtures__/plugin-fixtures';
+import { converter } from '../../../gatsby/utils/gatsbyRemark';
 
 describe('Gatsby Remark Transformer Path Converter', () => {
   const markdownNode = {

@@ -1,4 +1,4 @@
-import { getFilesFromRegistry } from '../../gatsby/utils/githubRaw';
+import { getFilesFromRegistry } from '../../../gatsby/utils/githubRaw';
 
 describe('getFilesFromRegistry', () => {
   const registry = [
