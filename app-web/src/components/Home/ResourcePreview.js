@@ -50,7 +50,7 @@ export const ResourcePreview = ({ title, link, resources }) => (
       <StyledLink to={link.to}>{title}</StyledLink>
     </Title>
     <ResourceContainer>
-      {resources.map(r => (
+      {resources.slice(0, 4).map(r => (
         <CardWrapper key={r.id}>
           <Card
             type={r.resource.type}
