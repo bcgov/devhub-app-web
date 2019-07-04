@@ -26,6 +26,7 @@ import isEqual from 'lodash/isEqual';
 export const useSearch = (query, staticIndex) => {
   const [Index, setIndex] = useState(null);
   const [results, setResults] = useState(null);
+<<<<<<< HEAD
   useEffect(() => {
     // load or create index
     if (Index === null) {
@@ -45,6 +46,30 @@ export const useSearch = (query, staticIndex) => {
       if (!isEqual(results, searchResults)) {
         // Map over each ID and return the full document
         setResults(searchResults);
+=======
+
+  useEffect(
+    () => {
+      // load or create index
+      if (Index === null) {
+        setIndex(ElasticLunr.load(staticIndex));
+      } else {
+        const searchResults = Index.search(query, {
+          fields: {
+            title: { boost: 4 },
+            content: { boost: 1 },
+            description: { boost: 1 },
+            collectionName: { boost: 2 },
+            labels: { boost: 4 },
+            author: { boost: 2 },
+          },
+          expand: true,
+        }).map(({ ref }) => Index.documentStore.getDoc(ref));
+        if (!isEqual(results, searchResults)) {
+          // Map over each ID and return the full document
+          setResults(searchResults);
+        }
+>>>>>>> Pr review fix
       }
     }
   });
