@@ -28,14 +28,19 @@ const getFilesFromRegistry = getNodes => {
   // topics they belong too
   const gitsources = registry.reduce((sources, registryItem) => {
     const gitsources = registryItem.sourceProperties.sources.filter(s => s.sourceType === 'github');
-    sources.push([gitsources, registryItem.name]);
+    sources.push([
+      gitsources,
+      registryItem.name,
+      registryItem.resourceType || null,
+      registryItem.attributes.personas || [],
+    ]);
     return sources;
   }, []);
 
   // resolve git sources into a list of uris
   // [[{source1, source2}], topic] => [[url1, url2], topic]
   const resolvedGitSources = gitsources.map(gs => {
-    const [sources, topic] = gs;
+    const [sources, topic, topicResourceType, topicPersonas] = gs;
 
     let urls = sources.map(source => {
       const {
@@ -53,22 +58,30 @@ const getFilesFromRegistry = getNodes => {
       return [];
     });
     // flatten out all urls since a single source can produce many urls
-    return [flatten(urls), topic];
+    return [flatten(urls), topic, topicResourceType, topicPersonas];
   });
   // map out urls to their respective topics since this is 1 to many relationship
-  // ends up with structure that is similar to this => {url1: [topicA, topicB]}
-  resolvedGitSources.forEach(([urls, topic]) => {
+  // ends up with structure that is similar to this => {url1: {topics: [topicA, topicB], ...other props}}
+  resolvedGitSources.forEach(([urls, topic, topicResourceType, topicPersonas]) => {
     urls.forEach(u => {
       if (Object.prototype.hasOwnProperty.call(sourceToTopicMap, u)) {
-        sourceToTopicMap[u].push(topic);
+        sourceToTopicMap[u].topics.push(topic);
       } else {
-        sourceToTopicMap[u] = [topic];
+        sourceToTopicMap[u] = { topics: [topic], topicResourceType, topicPersonas };
       }
     });
   });
   // convert sourceToTopicMap to an array in the expected structure for the github raw plugin
-  // {url1: [topicA, topicB]} => [{url: url1, topics: [topicA, topicB]}]
-  return Object.keys(sourceToTopicMap).map(url => ({ url, topics: sourceToTopicMap[url] }));
+  // {url1: [topicA, topicB]} => [{url: url1, topics: [topicA, topicB], ...other props}]
+  return Object.keys(sourceToTopicMap).map(url => ({
+    url,
+    topics: sourceToTopicMap[url].topics,
+    topicResourceType: sourceToTopicMap[url].topicResourceType, // the following props are being bound to cascade
+    // resource types/personas from the collection to the individual resource, this preserves a feature of
+    // providing reasonable defaults for resource type/personas if they dont exist inside the github raw nodes
+    // markdown frontmatter
+    topicPersonas: sourceToTopicMap[url].topicPersonas,
+  }));
 };
 
 module.exports = { getFilesFromRegistry };
