@@ -28,5 +28,10 @@
       }
     ]
   },
-  "resourceType": "Components"
+  "resourceType": "Components",
+  "attributes": {
+    "personas": [
+      "Developer"
+    ]
+  }
 }
