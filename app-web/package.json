@@ -109,7 +109,6 @@
   "scripts": {
     "build": "npx --node-arg '-r esm' gatsby build",
     "dev": "npx --node-arg '-r esm' gatsby develop -H 0.0.0.0",
-    "start": "npx --node-arg '-r esm' npm run dev -H 0.0.0.0",
     "serve": "npx --node-arg '-r esm' gatsby serve",
     "test:watch": "jest --watch --env=jsdom",
     "test": "jest --env=jsdom",
