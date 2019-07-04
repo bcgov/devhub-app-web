@@ -25,7 +25,7 @@ Created by Patrick Simonian
 // credit too https://github.com/styled-components/styled-components/issues/1319#issuecomment-345989894
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../theme';
 
@@ -36,7 +36,7 @@ export function wrapWithTheme(fn, children, options) {
 
 /**
  * wraps the component being testing with the emotion theme provider
- * using the react-testing-library render fn
+ * using the @testing-library/react render fn
  */
 export function renderWithTheme() {
   return wrapWithTheme(render, ...arguments);

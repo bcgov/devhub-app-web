@@ -3,7 +3,7 @@ import React from 'react';
 import { RESOURCE_TYPES } from '../../src/constants/ui';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
-import { render, cleanup } from 'react-testing-library';
+import { render, cleanup } from '@testing-library/react';
 import ResourceTypeIcon, { TEST_IDS } from '../../src/components/UI/ResourceTypeIcon';
 import 'jest-dom/extend-expect';
 describe('Card Header Component', () => {

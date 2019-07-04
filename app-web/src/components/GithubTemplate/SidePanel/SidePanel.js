@@ -18,12 +18,6 @@ Created by Patrick Simonian
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './SidePanel.module.css';
-import styled from '@emotion/styled';
-
-const Div = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-`;
 
 const SidePanel = ({ siphonData, links, pathname, children }) => (
   <div className={styles.SidePanel}>{children}</div>

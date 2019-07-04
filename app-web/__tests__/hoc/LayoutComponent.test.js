@@ -16,7 +16,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import { render, fireEvent } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 import 'jest-dom/extend-expect';
 import { Layout } from '../../src/hoc/Layout';
 import { ThemeProvider } from 'emotion-theming';

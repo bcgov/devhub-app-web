@@ -16,7 +16,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 import Banner from '../../src/components/UI/Banner/Banner';

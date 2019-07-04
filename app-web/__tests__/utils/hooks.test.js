@@ -1,6 +1,6 @@
 import React from 'react';
 import 'jest-dom/extend-expect';
-import { render, waitForElement } from 'react-testing-library';
+import { render, waitForElement } from '@testing-library/react';
 import { useSearch } from '../../src/utils/hooks';
 import { Index } from 'elasticlunr';
 

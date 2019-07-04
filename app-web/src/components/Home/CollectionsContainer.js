@@ -23,7 +23,7 @@ import CollectionPreview from '../CollectionPreview/CollectionPreview';
 import { ChevronLink } from '../UI/Link';
 import { Container as PreviewContainer, Title, StyledLink, LinkContainer } from './index';
 
-// used for react-testing-library dom querying
+// used for @testing-library/react dom querying
 export const TEST_IDS = {
   container: 'collections-container',
 };
