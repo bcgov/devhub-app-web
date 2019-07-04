@@ -26,14 +26,28 @@ const withResourceQuery = WrappedComponent => () => props => (
         siteSearchIndex {
           index
         }
+
         allDevhubCollection {
           edges {
             node {
               id
               name
               description
-              resources: childrenDevhubSiphon {
-                id
+              fields {
+                githubRaw {
+                  id
+                  fields {
+                    resourceType
+                  }
+                  childMarkdownRemark {
+                    fields {
+                      title
+                      description
+                      image
+                      author
+                    }
+                  }
+                }
               }
               childrenDevhubSiphon {
                 id
@@ -125,7 +139,8 @@ const withResourceQuery = WrappedComponent => () => props => (
               _metadata {
                 position
               }
-              attributes {
+              fields {
+                resourceType
                 personas
               }
               source {
