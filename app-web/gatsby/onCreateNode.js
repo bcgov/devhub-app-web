@@ -30,7 +30,7 @@ const {
 } = require('./utils/validators.js');
 const slugify = require('slugify');
 
-module.exports = ({ node, actions, getNode }) => {
+module.exports = ({ node, actions, getNode, getNodes }) => {
   const { createNodeField } = actions;
   if (isDevhubCollection(node)) {
     // add a content field that the markdown topics will map too
@@ -38,6 +38,15 @@ module.exports = ({ node, actions, getNode }) => {
     // to help with page path creation, we adapt a slug from the collection/topic name
     // because collections/topics are held within this repo they SHOULD be unique
     createNodeField({ node, name: 'slug', value: slugify(node.name) });
+
+    const ghRawNodes = getNodes().filter(isGithubRaw);
+
+    // bind gh raw nodes that match this topic
+    const nodesThatHaveTopic = ghRawNodes
+      .filter(n => n.___boundProperties.topics.includes(node.name))
+      .map(n => n.id);
+
+    createNodeField({ node, name: 'githubRaw', value: nodesThatHaveTopic });
   }
 
   if (isMeetupEvent(node)) {
