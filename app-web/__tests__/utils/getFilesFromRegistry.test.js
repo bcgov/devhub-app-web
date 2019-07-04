@@ -7,6 +7,10 @@ describe('getFilesFromRegistry', () => {
         type: 'RegistryJson',
       },
       name: 'Registry Item 1',
+      resourceType: 'Documentation',
+      attributes: {
+        personas: ['Developer'],
+      },
       description: 'An agile process for teams to deliver digital services',
       sourceProperties: {
         sources: [
@@ -27,6 +31,10 @@ describe('getFilesFromRegistry', () => {
         type: 'RegistryJson',
       },
       name: 'Registry Item 2',
+      resourceType: 'Components',
+      attributes: {
+        personas: ['Designer'],
+      },
       description: 'An agile process for teams to deliver digital services',
       sourceProperties: {
         sources: [
@@ -61,14 +69,20 @@ describe('getFilesFromRegistry', () => {
       {
         url: 'https://github.com/bcgov/Agile-Delivery-Process/blob/master/README.md',
         topics: ['Registry Item 1', 'Registry Item 2'],
+        topicPersonas: ['Developer'],
+        topicResourceType: 'Documentation',
       },
       {
         url: 'https://github.com/bcgov/Agile-Delivery-Process/blob/master/foo.md',
         topics: ['Registry Item 1'],
+        topicPersonas: ['Developer'],
+        topicResourceType: 'Documentation',
       },
       {
         url: 'https://github.com/bar/foo/blob/baz/README.md',
         topics: ['Registry Item 2'],
+        topicPersonas: ['Designer'],
+        topicResourceType: 'Components',
       },
     ];
     expect(getFilesFromRegistry(getNode)).toEqual(expected);
