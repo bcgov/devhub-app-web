@@ -31,7 +31,15 @@ export const useSearch = (query, staticIndex) => {
     if (Index === null) {
       setIndex(ElasticLunr.load(staticIndex));
     } else {
-      const searchResults = Index.search(query, { expand: true }).map(({ ref }) =>
+      const searchResults = Index.search(query, { fields: {
+        title: { boost: 4 },
+        content: { boost: 1 },
+        description: { boost: 1 },
+        collectionName: { boost: 2 },
+        labels: { boost: 2 },
+        author: { boost: 2 },
+      },
+      expand: true, }).map(({ ref }) =>
         Index.documentStore.getDoc(ref),
       );
       if (!isEqual(results, searchResults)) {

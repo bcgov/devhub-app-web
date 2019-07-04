@@ -215,6 +215,107 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
         type="Components"
       />
     </CardWrapper>
+    <CardWrapper
+      key="5"
+    >
+      <Card
+        description="What the Design System is and how it works."
+        event={
+          Object {
+            "_metadata": Object {
+              "position": "001.000.000",
+            },
+            "attributes": Object {
+              "personas": Array [
+                "Developer",
+              ],
+            },
+            "childMarkdownRemark": Object {
+              "frontmatter": Object {
+                "pageOnly": false,
+              },
+            },
+            "id": "5",
+            "parent": Object {
+              "id": "collection-2",
+            },
+            "resource": Object {
+              "path": "/design-system/Z1bGIqu5",
+              "type": "Documentation",
+            },
+            "source": Object {
+              "displayName": "Design System",
+            },
+            "unfurl": Object {
+              "author": "ksingbeil",
+              "data1": "",
+              "data2": "",
+              "description": "What the Design System is and how it works.",
+              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+              "label1": "",
+              "label2": "",
+              "title": "About",
+              "type": "markdown",
+            },
+          }
+        }
+        image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+        link="/design-system/Z1bGIqu5"
+        title="About"
+        type="Documentation"
+      />
+    </CardWrapper>
+    <CardWrapper
+      key="6"
+    >
+      <Card
+        description="What the Design System is and how it works."
+        event={
+          Object {
+            "_metadata": Object {
+              "position": "001.000.001",
+            },
+            "attributes": Object {
+              "personas": Array [
+                "Designer",
+                "Developer",
+              ],
+            },
+            "childMarkdownRemark": Object {
+              "frontmatter": Object {
+                "pageOnly": false,
+              },
+            },
+            "id": "6",
+            "parent": Object {
+              "id": "collection-2",
+            },
+            "resource": Object {
+              "path": "/design-system/Z1bGIqu6",
+              "type": "Documentation",
+            },
+            "source": Object {
+              "displayName": "Design System",
+            },
+            "unfurl": Object {
+              "author": "ksingbeil",
+              "data1": "",
+              "data2": "",
+              "description": "What the Design System is and how it works.",
+              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+              "label1": "",
+              "label2": "",
+              "title": "About",
+              "type": "markdown",
+            },
+          }
+        }
+        image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+        link="/design-system/Z1bGIqu6"
+        title="About"
+        type="Documentation"
+      />
+    </CardWrapper>
   </ResourceContainer>
   <LinkContainer>
     <ChevronLink

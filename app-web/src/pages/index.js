@@ -25,6 +25,7 @@ import { SEARCH_QUERY_PARAM } from '../constants/search';
 import { SPACING } from '../constants/designTokens';
 import uniqBy from 'lodash/uniqBy';
 import { formatEvents, formatMeetUps } from '../templates/events';
+import { RESOURCE_TYPES } from '../constants/ui';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -50,6 +51,17 @@ const getCollectionPreviews = (collections, searchResultsExist) => {
 };
 
 /**
+ * returns the resources but without duplicates, based on title as the same resource in different topics will have different id's
+ * there is one exception to when we do want resources with the same title though, that being events - thus events are return unchanged
+ */
+const getUniqueResources = resources => {
+  let events = resources.filter(resource => resource.resource.type === RESOURCE_TYPES.EVENTS);
+  let allButEvents = resources.filter(resource => resource.resource.type !== RESOURCE_TYPES.EVENTS);
+  allButEvents = uniqBy(allButEvents, 'unfurl.title');
+  return allButEvents.concat(events);
+};
+
+/**
  * returns a resource preview components
  * @param {Array} resources the list of siphon resources
  * @param {Array} results the list of searched resources
@@ -62,6 +74,7 @@ const getResourcePreviews = (resources, results = []) => {
     resourcesToGroup = intersectionBy(resources, results, 'id');
   }
 
+  resourcesToGroup = getUniqueResources(resourcesToGroup).slice(0, 15);
   // select resources grouped by type using relesect memoization https://github.com/reduxjs/reselect/issues/30
   const resourcesByType = resourcesSelector(resourcesToGroup);
   const siphonResources = Object.keys(resourcesByType).map(resourceType => {
@@ -107,7 +120,6 @@ export const Index = ({
   }
 
   results = useSearch(query, index);
-  results = uniqBy(results, 'id');
 
   const allEvents = flattenGatsbyGraphQL(allEventbriteEvents.edges);
   const currentEvents = formatEvents(allEvents.filter(e => e.start.daysFromNow <= 0));
@@ -119,7 +131,6 @@ export const Index = ({
   const currentMeetups = allMeetups.filter(e => e.start.daysFromNow <= 0);
   const eventsAndMeetups = currentEvents.concat(currentMeetups);
 
-  //const currentEvents = formatEvents(events.filter(e => e.start.daysFromNow <= 0));
   // this is defined by ?q='' or ?q=''&q=''..etc
   // if query is empty we prevent the search results empty from being rendered
   // in addition the collections container is prevented from not rendering because

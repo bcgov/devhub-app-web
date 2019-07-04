@@ -182,7 +182,7 @@ module.exports = {
         resolvers: {
           MarkdownRemark: {
             title: node => node.fields.title,
-            content: node => node.fields.content,
+            content: node => node.fields.content.slice(0, 700),
             description: node => node.fields.description,
             labels: node => node.fields.labels,
             author: node => node.fields.author,
@@ -192,6 +192,7 @@ module.exports = {
             title: node => node.unfurl.title,
             description: node => node.unfurl.description,
             collectionName: node => node.collection.name,
+            labels: node => node.attributes.labels,
           },
           EventbriteEvents: {
             title: node => node.name.text,
