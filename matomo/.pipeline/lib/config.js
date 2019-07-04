@@ -23,7 +23,8 @@ const phases = {
         suffix: `-dev-${changeId}`,
         instance: `${name}-dev-${changeId}`,
         version: `${version}-${changeId}`,
-        tag: `dev-${version}-${changeId}`
+        tag: `dev-${version}-${changeId}`,
+        host: `${name}-${changeId}.pathfinder.gov.bc.ca`
     },
     prod: {
         namespace: 'devhub-tools',
@@ -33,7 +34,8 @@ const phases = {
         suffix: `-prod`,
         instance: `${name}-prod`,
         version: `${version}`,
-        tag: `prod-${version}`
+        tag: `prod-${version}`,
+        host: 'matomo-devhub-prod.pathfinder.gov.bc.ca'
     },
 };
 
