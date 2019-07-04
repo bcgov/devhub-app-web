@@ -16,7 +16,7 @@ export const FILTER_QUERY_PARAM = 'f';
 
 export const DEFAULT_FILTERS = {
   PERSONA_DESIGNER: {
-    filterBy: 'attributes.personas',
+    filterBy: 'fields.personas',
     value: 'Designer',
     text: 'Designers',
     active: false,
@@ -26,7 +26,7 @@ export const DEFAULT_FILTERS = {
     isFilterable: true,
   },
   PERSONA_DEVELOPER: {
-    filterBy: 'attributes.personas',
+    filterBy: 'fields.personas',
     value: 'Developer',
     text: 'Developers',
     active: false,
@@ -36,7 +36,7 @@ export const DEFAULT_FILTERS = {
     isFilterable: true,
   },
   PERSONA_PRODUCT_OWNER: {
-    filterBy: 'attributes.personas',
+    filterBy: 'fields.personas',
     value: 'Product Owner',
     text: 'Product Owners',
     active: false,
