@@ -2,6 +2,12 @@
   "name": "Data Privacy",
   "description": "Resources to help teams ensure their applications handle personal information in a manner compliant with BC Gov policies and regulations.",
   "resourceType": "Documentation",
+  "attributes": {
+    "personas": [
+      "Developer",
+      "Product Owner"
+    ]
+  },
   "sourceProperties": {
     "sources": [
       {
