@@ -37,7 +37,7 @@ objects:
         Cache-Control "public, max-age=31536000, immutable"
       }
 
-      header /public/static/sw.js {
+      header /sw.js {
         # special js file that should not be cached for offline mode
         Cache-Control "public, max-age=0, must-revalidate"
       }
