@@ -100,6 +100,7 @@ module.exports = {
   mapping: {
     'GithubRaw._xxboundProperties.topics': 'DevhubCollection.name',
     'DevhubCollection.fields.content': 'MarkdownRemark.fields.id',
+    'DevhubCollection.fields.githubRaw': 'GithubRaw.id',
   },
   pathPrefix: '/images',
   plugins: [
