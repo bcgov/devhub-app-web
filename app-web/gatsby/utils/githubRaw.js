@@ -28,11 +28,13 @@ const getFilesFromRegistry = getNodes => {
   // topics they belong too
   const gitsources = registry.reduce((sources, registryItem) => {
     const gitsources = registryItem.sourceProperties.sources.filter(s => s.sourceType === 'github');
+    const personas = registryItem.attributes && registryItem.attributes.personas;
+
     sources.push([
       gitsources,
       registryItem.name,
       registryItem.resourceType || null,
-      registryItem.attributes.personas || [],
+      personas || [],
     ]);
     return sources;
   }, []);
