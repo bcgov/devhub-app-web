@@ -49,9 +49,6 @@ const withResourceQuery = WrappedComponent => () => props => (
                   }
                 }
               }
-              resources: childrenDevhubSiphon {
-                id
-              }
               childrenDevhubSiphon {
                 id
                 resource {
