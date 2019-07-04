@@ -22,6 +22,7 @@ const remark = require('remark');
 const { RESOURCE_TYPES, PERSONAS_LIST } = require('../src/constants/ui');
 const {
   isDevhubCollection,
+  isDevhubSiphon,
   isMarkdownRemark,
   isGithubRaw,
   isMeetupEvent,
@@ -47,6 +48,11 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       .map(n => n.id);
 
     createNodeField({ node, name: 'githubRaw', value: nodesThatHaveTopic });
+  }
+
+  if (isDevhubSiphon(node)) {
+    createNodeField({ node, name: 'personas', value: node.attributes.personas || [] });
+    createNodeField({ node, name: 'resourceType', value: node.resource.type || [] });
   }
 
   if (isMeetupEvent(node)) {
