@@ -139,7 +139,8 @@ const withResourceQuery = WrappedComponent => () => props => (
               _metadata {
                 position
               }
-              attributes {
+              fields {
+                resourceType
                 personas
               }
               source {
