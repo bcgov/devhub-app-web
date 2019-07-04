@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from 'react-testing-library';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import { Search, TEST_IDS } from '../../src/components/Search';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
@@ -59,7 +59,7 @@ describe('Search Bar', () => {
     fireEvent.change(input, { target: { value: sampleText } });
     // hit enter key
     // setting charcode to address known issue where keyPress event is not actually being fired
-    // https://github.com/testing-library/react-testing-library/issues/269#issuecomment-455854112
+    // https://github.com/testing-library/@testing-library/react/issues/269#issuecomment-455854112
     fireEvent.keyPress(input, { key: 'Enter', code: 13, charCode: 13 });
 
     expect(search).not.toHaveBeenCalled();
@@ -83,7 +83,7 @@ describe('Search Bar', () => {
     fireEvent.change(input, { target: { value: sampleText } });
     // hit enter key
     // setting charcode to address known issue where keyPress event is not actually being fired
-    // https://github.com/testing-library/react-testing-library/issues/269#issuecomment-455854112
+    // https://github.com/testing-library/@testing-library/react/issues/269#issuecomment-455854112
     fireEvent.keyPress(input, { key: 'Enter', code: 13, charCode: 13 });
 
     expect(search).toHaveBeenCalledWith(sampleText);

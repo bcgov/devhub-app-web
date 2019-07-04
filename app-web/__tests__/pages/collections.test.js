@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'emotion-theming';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { addCurrentEventsToCollection, CollectionsPage } from '../../src/pages/collections';
 import {
   SIPHON_NODES,

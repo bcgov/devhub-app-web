@@ -1,7 +1,7 @@
 import React from 'react';
 import { SearchAwareLink } from '../../src/components/UI/Link';
 import { linkMatchesQueryString } from '../../src/components/UI/Link/SearchAwareLink';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 

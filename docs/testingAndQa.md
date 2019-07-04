@@ -1,7 +1,7 @@
 # Testing and QA
 
 As of March 2019 we are transitioning out of enzyme as our component testing library to instead use
-`react-testing-library` which is more lightweight solution. 
+`@testing-library/react` which is more lightweight solution. 
 
 ## The Motivation
 
@@ -14,5 +14,5 @@ box with these features.
 ## Ongoing development
 
 There are MANY tests utilizing enzyme and obviously we cannot take on the task of re writing these
-into react-testing-library all at once. For the time being only NEW tests will be based of this new framework. 
+into @testing-library/react all at once. For the time being only NEW tests will be based of this new framework. 
 
