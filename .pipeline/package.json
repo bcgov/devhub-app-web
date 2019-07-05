@@ -19,5 +19,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "pipeline-cli": "git+https://github.com/BCDevOps/pipeline-cli.git#v1.1"
+  },
+  "devDependencies": {
+    "husky": "^3.0.0"
   }
 }
