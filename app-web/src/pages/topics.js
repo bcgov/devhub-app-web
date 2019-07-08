@@ -20,7 +20,7 @@ import { COLLECTIONS_PAGE } from '../messages';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 
 import { Title } from '../components/Page';
-import CollectionPreview from '../components/CollectionPreview/CollectionPreview';
+import TopicPreview from '../components/TopicPreview/TopicPreview';
 import Main from '../components/Page/Main';
 import withResourceQuery from '../hoc/withResourceQuery';
 import Layout from '../hoc/Layout';
@@ -117,7 +117,7 @@ export const CollectionsPage = ({ data }) => {
           subtitle={COLLECTIONS_PAGE.header.subtitle.defaultMessage}
         />
         {collectionsWithEvents.map(collection => (
-          <CollectionPreview
+          <TopicPreview
             key={collection.id}
             title={collection.name}
             description={collection.description}

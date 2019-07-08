@@ -18,7 +18,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { getFirstNonExternalResource } from '../../utils/helpers';
-import CollectionPreview from '../CollectionPreview/CollectionPreview';
+import TopicPreview from '../TopicPreview/TopicPreview';
 
 import { ChevronLink } from '../UI/Link';
 import { Container as PreviewContainer, Title, StyledLink, LinkContainer } from './index';
@@ -43,7 +43,7 @@ const CollectionContent = collections =>
       });
 
       return (
-        <CollectionPreview
+        <TopicPreview
           key={collection.id}
           title={collection.name}
           description={collection.description}
