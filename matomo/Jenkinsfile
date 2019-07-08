@@ -1,7 +1,7 @@
 pipeline {
     agent none
     environment {
-            COMPONENT_NAME = 'Matomo'
+            COMPONENT_NAME = 'Matomo Analytics'
             COMPONENT_HOME = 'matomo'
             BUILD_TRIGGER_INCLUDES = '^matomo/'
         }
