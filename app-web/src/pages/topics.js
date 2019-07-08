@@ -17,7 +17,7 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import { COLLECTIONS_PAGE } from '../messages';
-import { flattenGatsbyGraphQL } from '../utils//dataHelpers';
+import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 
 import { Title } from '../components/Page';
 import CollectionPreview from '../components/CollectionPreview/CollectionPreview';

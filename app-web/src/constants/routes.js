@@ -11,8 +11,8 @@ export const MAIN_NAV_ROUTES = {
     to: '/',
     text: 'Home',
   },
-  COLLECTIONS: {
-    to: '/collections',
+  TOPICS: {
+    to: '/topics',
     text: 'Topics',
   },
   [RESOURCE_TYPES.SELF_SERVICE_TOOLS]: {

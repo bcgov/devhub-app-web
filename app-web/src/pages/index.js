@@ -44,7 +44,7 @@ const getCollectionPreviews = (collections, searchResultsExist) => {
     !searchResultsExist && (
       <CollectionsContainer
         collections={collectionsSelector(collections)}
-        link={MAIN_NAV_ROUTES.COLLECTIONS}
+        link={MAIN_NAV_ROUTES.TOPICS}
       />
     )
   );

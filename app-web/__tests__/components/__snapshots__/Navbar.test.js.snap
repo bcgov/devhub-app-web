@@ -20,12 +20,12 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
       </mockConstructor>
     </li>
     <li
-      key="/collections"
+      key="/topics"
     >
       <mockConstructor
         activeClassName="ActiveFilter"
         exact="true"
-        to="/collections"
+        to="/topics"
       >
         Topics
       </mockConstructor>

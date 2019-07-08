@@ -1,7 +1,12 @@
 import React from 'react';
 import { ThemeProvider } from 'emotion-theming';
+<<<<<<< HEAD
 import { render } from 'react-testing-library';
 import { addCurrentEventsToCollection, CollectionsPage } from '../../src/pages/collections';
+=======
+import { render } from '@testing-library/react';
+import { addCurrentEventsToCollection, CollectionsPage } from '../../src/pages/topics';
+>>>>>>> Changing the page route from /collections to /topics
 import {
   SIPHON_NODES,
   COLLECTIONS,

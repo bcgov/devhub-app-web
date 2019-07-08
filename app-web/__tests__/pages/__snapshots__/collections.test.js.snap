@@ -528,7 +528,7 @@ exports[`Collections Container it matches snapshot 1`] = `
       <li>
         <a
           exact="true"
-          href="/collections"
+          href="/topics"
         >
           Topics
         </a>
