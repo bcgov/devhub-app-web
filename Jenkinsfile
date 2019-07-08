@@ -3,7 +3,7 @@ pipeline {
     environment {
         COMPONENT_NAME = 'DevHub web app'
         COMPONENT_HOME = '/'
-        BUILD_TRIGGER_EXCLUDES = '^.jenkins/\|^matomo/'
+        BUILD_TRIGGER_EXCLUDES = "^.jenkins/\|^matomo/"
     }
     options {
         disableResume()
