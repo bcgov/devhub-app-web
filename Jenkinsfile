@@ -1,5 +1,9 @@
 pipeline {
     agent none
+    environment {
+        COMPONENT_HOME = '/'
+        BUILD_TRIGGER_EXCLUDES = '^.jenkins/||^matomo/'
+    }
     options {
         disableResume()
     }
@@ -10,12 +14,12 @@ pipeline {
                 script { 
                     // only continue build if changes are relevant to the application 
                     // ie changes that are particualr to configuring the jenkins pipeline should not be included
-                    def filesInThisCommitAsString = sh(script:"git diff --name-only HEAD~1..HEAD | grep -v '^.jenkins/' || echo -n ''", returnStatus: false, returnStdout: true).trim()
+                    def filesInThisCommitAsString = sh(script:"git diff --name-only HEAD~1..HEAD | grep -v '$BUILD_TRIGGER_EXCLUDES' || echo -n ''", returnStatus: false, returnStdout: true).trim()
                     def hasChangesInPath = (filesInThisCommitAsString.length() > 0)
                     echo "${filesInThisCommitAsString}"
                     if (!currentBuild.rawBuild.getCauses()[0].toString().contains('UserIdCause') && !hasChangesInPath){
                         currentBuild.rawBuild.delete()
-                        error("No changes detected in the path /[^.jenkins]/")
+                        error("No changes detected in the component path.")
                     }
                 }
                 echo "Aborting all running jobs ..."
