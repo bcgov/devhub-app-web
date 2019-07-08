@@ -16,7 +16,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 const { EVENT_BRITE_EVENT } = require('../__fixtures__/eventbrite');
-//const { MEETUP_EVENT } = require('../__fixtures__/meetup');
+const { MEETUP_GROUP } = require('../__fixtures__/meetup');
 
 module.exports = ({ actions, createNodeId, createContentDigest }) => {
   const { createNode } = actions;
@@ -48,15 +48,14 @@ module.exports = ({ actions, createNodeId, createContentDigest }) => {
       },
     });
   }
-  /*if(!process.env.MEETUP_API_KEY && process.env.NODE_ENV === 'development') {
+  if (!process.env.MEETUP_API_KEY && process.env.NODE_ENV === 'development') {
     const id = createNodeId('MEETUP_API_KEY');
-
     createNode({
-      ...MEETUP_EVENT,
+      ...MEETUP_GROUP,
       id,
       internal: {
-        ...MEETUP_EVENT.internal,
-        contentDigest: MEETUP_EVENT.internal.contentDigest,
+        ...MEETUP_GROUP.internal,
+        contentDigest: MEETUP_GROUP.internal.contentDigest,
       },
     });
   } else {
@@ -71,5 +70,5 @@ module.exports = ({ actions, createNodeId, createContentDigest }) => {
         contentDigest: createContentDigest('bar'),
       },
     });
-  }*/
+  }
 };
