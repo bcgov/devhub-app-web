@@ -17,7 +17,7 @@ import {
   SELECT_RESOURCES_GROUPED_BY_TYPE,
 } from '../../__fixtures__/selector-fixtures';
 import { useSearch } from '../../src/utils/hooks';
-import { TEST_IDS as COLLECTION_TEST_IDS } from '../../src/components/Home/CollectionsContainer';
+import { TEST_IDS as COLLECTION_TEST_IDS } from '../../src/components/Home/TopicsContainer';
 import { TEST_IDS as RESOURCE_PREVIEW_TEST_IDS } from '../../src/components/Home/ResourcePreview';
 import { getFirstNonExternalResource } from '../../src/utils/helpers';
 jest.mock('query-string');

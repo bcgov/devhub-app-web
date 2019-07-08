@@ -11,7 +11,7 @@ import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { SEARCH } from '../messages';
 
 import Layout from '../hoc/Layout';
-import { ResourcePreview, Masthead, CollectionsContainer } from '../components/Home';
+import { ResourcePreview, Masthead, TopicsContainer } from '../components/Home';
 import withResourceQuery from '../hoc/withResourceQuery';
 import Aux from '../hoc/auxillary';
 
@@ -42,7 +42,7 @@ const getCollectionPreviews = (collections, searchResultsExist) => {
   const collectionsSelector = selectCollectionsWithResourcesGroupedByType();
   return (
     !searchResultsExist && (
-      <CollectionsContainer
+      <TopicsContainer
         collections={collectionsSelector(collections)}
         link={MAIN_NAV_ROUTES.TOPICS}
       />

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Link } from '../UI/Link';
 // common components
-// usage import {Container, CollectionsContainer} from 'path to /components/Home'
+// usage import {Container, TopicsContainer} from 'path to /components/Home'
 
 export const Container = styled.section`
   margin: 0 auto 15px;
@@ -29,6 +29,6 @@ export const StyledLink = styled(Link)`
   }
 `;
 
-export { CollectionsContainer } from './CollectionsContainer';
+export { TopicsContainer } from './TopicsContainer';
 export { Masthead } from './Masthead';
 export { ResourcePreview } from './ResourcePreview';

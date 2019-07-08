@@ -28,7 +28,7 @@ export const TEST_IDS = {
   container: 'collections-container',
 };
 
-const CollectionContent = collections =>
+const TopicContent = collections =>
   collections
     .filter(collection => collection.hasResources)
     .slice(0, 4)
@@ -57,20 +57,20 @@ const CollectionContent = collections =>
       );
     });
 
-export const CollectionsContainer = ({ collections, link }) => (
+export const TopicsContainer = ({ collections, link }) => (
   <PreviewContainer data-testid={TEST_IDS.container}>
     <Title>
       <StyledLink to={link.to}>Topics</StyledLink>
     </Title>
 
-    {CollectionContent(collections)}
+    {TopicContent(collections)}
     <LinkContainer>
       <ChevronLink to={link.to}>{link.text}</ChevronLink>
     </LinkContainer>
   </PreviewContainer>
 );
 
-CollectionsContainer.propTypes = {
+TopicsContainer.propTypes = {
   collections: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -84,4 +84,4 @@ CollectionsContainer.propTypes = {
     text: PropTypes.string.isRequired,
   }),
 };
-export default CollectionsContainer;
+export default TopicsContainer;
