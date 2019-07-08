@@ -65,10 +65,11 @@ const TemplatePlaceholder = ({ location: { pathname } }) => (
         redirects the page create function to point to this placeholder template.
       </p>
       <p>
-        In addition, the <code>sourceNodes</code> api is also run on every build and adds a filler{' '}
-        <b>EventbriteEvent</b> graph ql node to prevent failure of the app if the relevant
-        Eventbrite credentials are not available. Although the <i>events</i> template is not used to
-        build a page, it is still evaluated by gatsby as described by
+        In addition, the <code>sourceNodes</code> api is also run on every build and adds filler{' '}
+        <b>EventbriteEvent</b> and <b>MeetupEvent</b> graph ql nodes to prevent failure of the app
+        if the relevant Eventbrite and Meetup credentials are not available. Although the{' '}
+        <i>events</i> template is not used to build a page, it is still evaluated by gatsby as
+        described by
         <a href="https://github.com/bcgov/devhub-app-web/issues/604"> this Github issue</a>.
       </p>
       <h2>Why all this trouble?</h2>
