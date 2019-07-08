@@ -1,6 +1,7 @@
 pipeline {
     agent none
     environment {
+            COMPONENT_NAME = 'Matomo'
             COMPONENT_HOME = 'matomo'
             BUILD_TRIGGER_INCLUDES = '^matomo/'
         }
@@ -17,10 +18,10 @@ pipeline {
                     echo "${filesInThisCommitAsString}"
                     if (!currentBuild.rawBuild.getCauses()[0].toString().contains('UserIdCause') && !hasChangesInPath){
                         currentBuild.rawBuild.delete()
-                        error("No changes detected in the component path.")
+                        error("No changes detected in the component path for $COMPONENT_NAME.")
                     }
                 }
-                echo "Aborting all running jobs ..."
+                echo "Aborting all running jobs for $COMPONENT_NAME..."
                 script {
                     abortAllPreviousBuildInProgress(currentBuild)
                 }
