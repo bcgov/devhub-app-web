@@ -16,7 +16,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import { COLLECTIONS_PAGE } from '../messages';
+import { TOPICS_PAGE } from '../messages';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 
 import { Title } from '../components/Page';
@@ -37,14 +37,13 @@ const createMetaPosition = (maxPadding, index1, index2) => {
   return paddedPosition1 + '.' + paddedPosition2 + '.000000000.';
 };
 
-//Takes in the collections and events then add the events to the desired collection
-export const addCurrentEventsToCollection = (collections, events, collectionName) => {
+//Takes in the topics and events then add the events to the desired topic
+export const addCurrentEventsToTopic = (topics, events, topicName) => {
   //find the index of the given topic for the first digit of the metadata position
-  const collectionIndex = collections.map(e => e.name).indexOf(collectionName);
-  //find the number of items in the collection for the second digit of the metadata position
-  let eventIndex = collections
-    .filter(e => e.name === collectionName)
-    .flatMap(e => e.childrenDevhubSiphon).length;
+  const topicIndex = topics.map(e => e.name).indexOf(topicName);
+  //find the number of items in the topic for the second digit of the metadata position
+  let eventIndex = topics.filter(e => e.name === topicName).flatMap(e => e.childrenDevhubSiphon)
+    .length;
   // filter out any events that are passed today
   const currentEvents = events
     .filter(e => e.start.daysFromNow <= 0)
@@ -56,29 +55,29 @@ export const addCurrentEventsToCollection = (collections, events, collectionName
         venue: event.venue.name,
         id: event.siphon.id,
         _metadata: {
-          position: createMetaPosition(10, collectionIndex, eventIndex),
+          position: createMetaPosition(10, topicIndex, eventIndex),
         },
       };
-      //increase the eventIndex as we have just added a new item to the collection
+      //increase the eventIndex as we have just added a new item to the topic
       eventIndex++;
       return event;
     });
 
-  const collectionsAndEvents = collections.map(collection => {
-    if (collection.name === collectionName) {
+  const topicsAndEvents = topics.map(topic => {
+    if (topic.name === topicName) {
       //Add in our EventBriteEvents
-      collection.childrenDevhubSiphon = collection.childrenDevhubSiphon.concat(currentEvents);
+      topic.childrenDevhubSiphon = topic.childrenDevhubSiphon.concat(currentEvents);
       //Remove any duplicates, to fix the card duplication isuue
-      collection.childrenDevhubSiphon = uniqBy(collection.childrenDevhubSiphon, 'id');
+      topic.childrenDevhubSiphon = uniqBy(topic.childrenDevhubSiphon, 'id');
     }
-    return collection;
+    return topic;
   });
 
-  return collectionsAndEvents;
+  return topicsAndEvents;
 };
 
-export const CollectionsPage = ({ data }) => {
-  let collections = flattenGatsbyGraphQL(data.allDevhubCollection.edges);
+export const TopicsPage = ({ data }) => {
+  let topics = flattenGatsbyGraphQL(data.allDevhubCollection.edges);
   const events = flattenGatsbyGraphQL(data.allEventbriteEvents.edges);
   const meetUps = flattenGatsbyGraphQL(data.allMeetupGroup.edges)
     .flatMap(meetups => {
@@ -102,8 +101,8 @@ export const CollectionsPage = ({ data }) => {
   const eventsAndMeetupsSorted = events
     .concat(meetUps)
     .sort((a, b) => b.start.daysFromNow - a.start.daysFromNow);
-  const collectionsWithEvents = addCurrentEventsToCollection(
-    collections,
+  const topicsWithEvents = addCurrentEventsToTopic(
+    topics,
     eventsAndMeetupsSorted,
     TOPICS.COMMUNITY_AND_EVENTS,
   );
@@ -113,19 +112,19 @@ export const CollectionsPage = ({ data }) => {
     <Layout>
       <Main>
         <Title
-          title={COLLECTIONS_PAGE.header.title.defaultMessage}
-          subtitle={COLLECTIONS_PAGE.header.subtitle.defaultMessage}
+          title={TOPICS_PAGE.header.title.defaultMessage}
+          subtitle={TOPICS_PAGE.header.subtitle.defaultMessage}
         />
-        {collectionsWithEvents.map(collection => (
+        {topicsWithEvents.map(topic => (
           <TopicPreview
-            key={collection.id}
-            title={collection.name}
-            description={collection.description}
-            resources={collection.childrenDevhubSiphon}
+            key={topic.id}
+            title={topic.name}
+            description={topic.description}
+            resources={topic.childrenDevhubSiphon}
             link={{
               to: getFirstNonExternalResource(
-                collection.childrenDevhubSiphon.sort((a, b) => {
-                  // sort to ensure first resource in collection is the entry poitn
+                topic.childrenDevhubSiphon.sort((a, b) => {
+                  // sort to ensure first resource in topic is the entry poitn
                   const position1 = a._metadata.position;
                   const position2 = b._metadata.position;
                   return position1.localeCompare(position2);
@@ -140,4 +139,4 @@ export const CollectionsPage = ({ data }) => {
   );
 };
 
-export default withResourceQuery(CollectionsPage)();
+export default withResourceQuery(TopicsPage)();
