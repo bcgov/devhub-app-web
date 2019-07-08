@@ -28,7 +28,7 @@ module.exports = (settings) => {
             'SUFFIX': phases[phase].suffix,
             'VERSION': phases[phase].tag,
             'IMAGE_NAMESPACE': phases[phase].namespace,
-            'MATOMO_URL': 'matomo-devhub-prod.pathfinder.gov.bc.ca'
+            'MATOMO_URL': phases[phase].host
         }
     }));
 
