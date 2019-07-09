@@ -177,23 +177,30 @@ module.exports = {
       resolve: '@gatsby-contrib/gatsby-plugin-elasticlunr-search',
       options: {
         // Fields to index
-        fields: [
-          'title',
-          'content',
-          'description',
-          'collectionName',
-          'sourceName',
-          'sourceDisplayName',
-        ],
+        fields: ['title', 'content', 'description', 'collectionName', 'labels', 'author'],
         // How to resolve each field`s value for a supported node type
         resolvers: {
+          MarkdownRemark: {
+            title: node => node.fields.title,
+            content: node => node.fields.content.slice(0, 700),
+            description: node => node.fields.description,
+            labels: node => node.fields.labels,
+            author: node => node.fields.author,
+            id: node => node.parent,
+          },
           DevhubSiphon: {
             title: node => node.unfurl.title,
-            content: node => node.childMarkdownRemark && node.childMarkdownRemark.rawMarkdownBody,
             description: node => node.unfurl.description,
             collectionName: node => node.collection.name,
-            sourceName: node => node.source.name,
-            sourceDisplayName: node => node.source.displayName,
+            labels: node => node.attributes.labels,
+          },
+          EventbriteEvents: {
+            title: node => node.name.text,
+            description: node => node.description.text,
+          },
+          MeetupEvent: {
+            title: node => node.name,
+            description: node => node.description,
           },
         },
       },

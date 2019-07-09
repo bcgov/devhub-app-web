@@ -95,5 +95,11 @@ module.exports = ({ node, actions }) => {
       name: 'author',
       value: node.frontmatter.author ? node.frontmatter.author : '',
     });
+
+    createNodeField({
+      node,
+      name: 'content',
+      value: node.internal.content ? node.internal.content : '',
+    });
   }
 };

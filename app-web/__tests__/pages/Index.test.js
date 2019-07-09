@@ -6,7 +6,12 @@ import queryString from 'query-string';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 import { Index, TEST_IDS } from '../../src/pages/index';
-import { SIPHON_NODES, COLLECTIONS } from '../../__fixtures__/siphon-fixtures';
+import {
+  SIPHON_NODES,
+  COLLECTIONS,
+  EVENTS,
+  MEETUP_NODES,
+} from '../../__fixtures__/siphon-fixtures';
 import {
   SELECT_COLLECTIONS_WITH_RESOURCES_GROUPED_BY_TYPE,
   SELECT_RESOURCES_GROUPED_BY_TYPE,
@@ -40,6 +45,8 @@ describe('Home Page', () => {
   // this component
   const nodes = SIPHON_NODES.map(c => ({ node: c }));
   const collections = COLLECTIONS.map(c => ({ node: c }));
+  const events = EVENTS.map(c => ({ node: c }));
+  const meetups = MEETUP_NODES.map(c => ({ node: c }));
 
   const props = {
     data: {
@@ -48,6 +55,12 @@ describe('Home Page', () => {
       },
       allDevhubCollection: {
         edges: collections,
+      },
+      allEventbriteEvents: {
+        edges: events,
+      },
+      allMeetupGroup: {
+        edges: meetups,
       },
       siteSearchIndex: {
         index: {},
