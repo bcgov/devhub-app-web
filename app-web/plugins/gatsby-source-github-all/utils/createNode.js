@@ -20,17 +20,17 @@ const { GRAPHQL_NODE_TYPE } = require('./constants');
 
 /**
  * creates the object that is passed into the gatsby create node function
- * to create a siphon collection node type
- * @param {Object} collection the collection object
+ * to create a siphon topic node type
+ * @param {Object} topic the topic object
  * @param {String} id the unique id
  */
-const createCollectionNode = (collection, id, collectionContent = null) => {
-  const { name, type, description, metadata } = collection;
+const createTopicNode = (topic, id, topicContent = null) => {
+  const { name, type, description, metadata } = topic;
 
-  const internalContent = collectionContent
+  const internalContent = topicContent
     ? {
-        content: collectionContent.content,
-        mediaType: collectionContent.metadata.mediaType,
+        content: topicContent.content,
+        mediaType: topicContent.metadata.mediaType,
       }
     : {};
   return {
@@ -42,15 +42,15 @@ const createCollectionNode = (collection, id, collectionContent = null) => {
     description: description || '',
     internal: {
       ...internalContent,
-      contentDigest: hashString(JSON.stringify(collection)),
-      type: GRAPHQL_NODE_TYPE.COLLECTION,
+      contentDigest: hashString(JSON.stringify(topic)),
+      type: GRAPHQL_NODE_TYPE.TOPIC,
     },
     _metadata: {
       position: convertPositionToSortableString(10, metadata.position),
-      template: collection.template,
-      templateFile: collection.templateFile,
-      slug: collection.slug,
-      sourceLocations: collection.sourceLocations,
+      template: topic.template,
+      templateFile: topic.templateFile,
+      slug: topic.slug,
+      sourceLocations: topic.sourceLocations,
     },
   };
 };
@@ -60,9 +60,9 @@ const createCollectionNode = (collection, id, collectionContent = null) => {
  * many of these properties are assigned by convention
  * @param {Object} data the siphon node data
  * @param {String} id the unique id
- * @param {String} collectionId the collection id that owns this resource
+ * @param {String} topicId the topic id that owns this resource
  */
-const createSiphonNode = (data, id, collectionId) => ({
+const createSiphonNode = (data, id, topicId) => ({
   id,
   children: [],
   fileName: data.metadata.fileName,
@@ -70,11 +70,11 @@ const createSiphonNode = (data, id, collectionId) => ({
   devhubId: data.metadata.id,
   name: data.metadata.name,
   owner: data.metadata.owner,
-  parent: collectionId,
+  parent: topicId,
   path: data.path,
   unfurl: data.metadata.unfurl, // normalized unfurled content from various sources https://medium.com/slack-developer-blog/everything-you-ever-wanted-to-know-about-unfurling-but-were-afraid-to-ask-or-how-to-make-your-e64b4bb9254
   collection: {
-    name: data.metadata.collection.name, // name of the collection
+    name: data.metadata.collection.name, // name of the topic
     type: data.metadata.collection.type,
   },
   source: {
@@ -111,5 +111,5 @@ const createSiphonNode = (data, id, collectionId) => ({
 
 module.exports = {
   createSiphonNode,
-  createCollectionNode,
+  createTopicNode,
 };

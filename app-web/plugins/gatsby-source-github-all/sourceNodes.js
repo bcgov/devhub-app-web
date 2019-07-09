@@ -33,13 +33,13 @@ const {
 const siphonMessenger = require('./utils/console');
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
 const {
-  COLLECTION_TYPES,
-  COLLECTION_TEMPLATES,
+  TOPIC_TYPES,
+  TOPIC_TEMPLATES,
   SOURCE_TYPES,
-  COLLECTION_TEMPLATES_LIST,
+  TOPIC_TEMPLATES_LIST,
   TOPIC_SOURCE,
 } = require('./utils/constants');
-const { createSiphonNode, createCollectionNode } = require('./utils/createNode');
+const { createSiphonNode, createTopicNode } = require('./utils/createNode');
 const Store = require('./utils/Store');
 const {
   getRegistry,
@@ -62,7 +62,7 @@ const mapInheritedSourceAttributes = ({ name, attributes, resourceType, slug }, 
   name,
   collection: {
     name,
-    type: COLLECTION_TYPES.CURATED,
+    type: TOPIC_TEMPLATES.CURATED,
     slug,
   },
   ...targetSource,
@@ -154,7 +154,7 @@ const normalizeAttributes = attributes => {
  */
 const getFetchQueue = async (sources, tokens) => {
   const slugStore = new Store([], {
-    conflictCb: slug => siphonMessenger.collectionSlugConflict(slug),
+    conflictCb: slug => siphonMessenger.topicSlugConflict(slug),
   });
 
   const collectionPromises = sources.map(async (source, index) => {
@@ -176,8 +176,8 @@ const getFetchQueue = async (sources, tokens) => {
           sources: [],
           collectionSource,
           template: rootSource.template
-            ? getClosest(rootSource.template, COLLECTION_TEMPLATES_LIST)
-            : COLLECTION_TEMPLATES.DEFAULT,
+            ? getClosest(rootSource.template, TOPIC_TEMPLATES_LIST)
+            : TOPIC_TEMPLATES.DEFAULT,
           templateFile: rootSource.templateFile || '',
           slug,
         },
@@ -198,7 +198,7 @@ const getFetchQueue = async (sources, tokens) => {
       );
 
       collection = newCollection(collection, {
-        type: COLLECTION_TYPES.CURATED,
+        type: TOPIC_TYPES.CURATED,
         description: rootSource.description,
         sources: mappedChildSources,
       });
@@ -209,7 +209,7 @@ const getFetchQueue = async (sources, tokens) => {
           attributes: normalizeAttributes(rootSource.attributes),
           collection: {
             name: rootSource.name,
-            type: COLLECTION_TYPES[rootSource.sourceType],
+            type: TOPIC_TYPES[rootSource.sourceType],
             slug,
           },
         },
@@ -217,7 +217,7 @@ const getFetchQueue = async (sources, tokens) => {
       // this is a basic source either github or web
       // we still treat it as its own collection but with a different type
       collection = newCollection(collection, {
-        type: COLLECTION_TYPES[rootSource.sourceType],
+        type: TOPIC_TYPES[rootSource.sourceType],
         description: await getCollectionDescriptionBySourceType(rootSource, tokens),
         slug,
         sources,
@@ -274,7 +274,7 @@ const getContentForCollection = async (collectionSource, tokens, name = '') => {
     return file[0];
   } else {
     // eslint-disable-next-line no-console
-    console.log(siphonMessenger.collectionSourceFailed(error.messages, name));
+    console.log(siphonMessenger.topicSourceFailed(error.messages, name));
     return {};
   }
 };
@@ -322,7 +322,7 @@ const processCollection = async (
   // for a gatsby page
   collection.sourceLocations = resources.map(r => [r.resource.originalSource, r.resource.path]);
 
-  const collectionNode = createCollectionNode(collection, id, collectionContent);
+  const collectionNode = createTopicNode(collection, id, collectionContent);
 
   await createNode(collectionNode);
   resources.forEach(r => createParentChildLink({ parent: collectionNode, child: r }));

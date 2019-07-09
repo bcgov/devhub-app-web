@@ -22,7 +22,7 @@
 // seperating them out in this obj so that we can recycle some of these properties
 // in tests as well as other fixtures
 
-const { COLLECTION_TEMPLATES } = require('../utils/constants');
+const { TOPIC_TEMPLATES } = require('../utils/constants');
 
 const TREE_FILES = {
   FILE1: {
@@ -646,7 +646,7 @@ const COLLECTION_OBJ_FROM_FETCH_QUEUE = {
   slug: 'foo',
   description: 'blah',
   sources: [WEB_SOURCE],
-  template: COLLECTION_TEMPLATES.DEFAULT,
+  template: TOPIC_TEMPLATES.DEFAULT,
   metadata: {
     position: [0],
   },

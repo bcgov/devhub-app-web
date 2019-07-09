@@ -29,8 +29,8 @@ import {
   getContentForCollection,
   processCollection,
 } from '../sourceNodes';
-import { createSiphonNode, createCollectionNode } from '../utils/createNode';
-import { GRAPHQL_NODE_TYPE, COLLECTION_TYPES, COLLECTION_TEMPLATES } from '../utils/constants';
+import { createSiphonNode, createTopicNode } from '../utils/createNode';
+import { GRAPHQL_NODE_TYPE, TOPIC_TYPES, TOPIC_TEMPLATES } from '../utils/constants';
 import {
   GRAPHQL_NODES_WITH_REGISTRY,
   GRAPHQL_NODES_WITHOUT_REGISTRY,
@@ -158,7 +158,7 @@ describe('gatsby source github all plugin', () => {
         position: [1, 1, 1],
         collection: {
           name: 'foo',
-          type: COLLECTION_TYPES.CURATED,
+          type: TOPIC_TYPES.CURATED,
         },
         id: 'file-stub-id',
         name: 'test',
@@ -203,8 +203,8 @@ describe('gatsby source github all plugin', () => {
     expect(createSiphonNode(file, '123', 'foo')).toMatchSnapshot();
   });
 
-  test('createCollectionNode returns an object', () => {
-    const result = createCollectionNode(COLLECTION_OBJ_FROM_FETCH_QUEUE, '123');
+  test('createTopicNode returns an object', () => {
+    const result = createTopicNode(COLLECTION_OBJ_FROM_FETCH_QUEUE, '123');
     const expected = {
       id: '123',
       name: COLLECTION_OBJ_FROM_FETCH_QUEUE.name,
@@ -214,12 +214,12 @@ describe('gatsby source github all plugin', () => {
       parent: null,
       internal: {
         contentDigest: null, // hash string called here
-        type: GRAPHQL_NODE_TYPE.COLLECTION,
+        type: GRAPHQL_NODE_TYPE.TOPIC,
       },
       _metadata: {
         position: COLLECTION_OBJ_FROM_FETCH_QUEUE.metadata.position.join('.'),
         slug: COLLECTION_OBJ_FROM_FETCH_QUEUE.slug,
-        template: COLLECTION_TEMPLATES.DEFAULT,
+        template: TOPIC_TEMPLATES.DEFAULT,
         templateFile: undefined,
         sourceLocations: undefined,
       },
@@ -228,8 +228,8 @@ describe('gatsby source github all plugin', () => {
     expect(result).toEqual(expected);
   });
 
-  test('createCollectionNode returns an internal mime type of markdown plus content is collection content is passed in', () => {
-    const result = createCollectionNode(COLLECTION_OBJ_FROM_FETCH_QUEUE, '123', {
+  test('createTopicNode returns an internal mime type of markdown plus content is collection content is passed in', () => {
+    const result = createTopicNode(COLLECTION_OBJ_FROM_FETCH_QUEUE, '123', {
       content: 'hello world',
       metadata: {
         mediaType: 'text/markdown',
@@ -245,14 +245,14 @@ describe('gatsby source github all plugin', () => {
       parent: null,
       internal: {
         contentDigest: null, // hash string called here
-        type: GRAPHQL_NODE_TYPE.COLLECTION,
+        type: GRAPHQL_NODE_TYPE.TOPIC,
         content: 'hello world',
         mediaType: 'text/markdown',
       },
       _metadata: {
         position: COLLECTION_OBJ_FROM_FETCH_QUEUE.metadata.position.join('.'),
         slug: COLLECTION_OBJ_FROM_FETCH_QUEUE.slug,
-        template: COLLECTION_TEMPLATES.DEFAULT,
+        template: TOPIC_TEMPLATES.DEFAULT,
         templateFile: undefined,
         sourceLocations: undefined,
       },
@@ -315,11 +315,11 @@ describe('gatsby source github all plugin', () => {
   test('getFetchQueue passes the correct collection type', async () => {
     isSourceCollection.mockReturnValue(false);
     const result = await getFetchQueue(REGISTRY);
-    expect(result[0].type).toBe(COLLECTION_TYPES.github);
+    expect(result[0].type).toBe(TOPIC_TYPES.github);
 
     isSourceCollection.mockReturnValue(true);
     const result2 = await getFetchQueue(REGISTRY_WITH_COLLECTION);
-    expect(result2[0].type).toBe(COLLECTION_TYPES.CURATED);
+    expect(result2[0].type).toBe(TOPIC_TYPES.CURATED);
   });
 
   test('normalize personas converts persona into personas when alone', () => {
