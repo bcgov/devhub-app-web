@@ -33,7 +33,7 @@ module.exports = (settings)=>{
   const phase=options.env
   const changeId = phases[phase].changeId
   const oc=new OpenShiftClientX(Object.assign({'namespace':phases[phase].namespace}, options));
-  const templatesLocalBaseUrl =oc.toFileUrl(path.resolve(__dirname, '../../openshift/templates'))
+  const templatesLocalBaseUrl =oc.toFileUrl(path.resolve(__dirname, '../../../openshift/templates'))
   let objects = []
 
   // The deployment of your cool app goes here ▼▼▼
