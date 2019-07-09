@@ -38,7 +38,7 @@ export const ResourceContainer = styled.div`
   }
 `;
 
-// used by @testing-library/react dom querying
+// used by react-testing-library dom querying
 export const TEST_IDS = {
   container: 'resource-preview-container',
 };

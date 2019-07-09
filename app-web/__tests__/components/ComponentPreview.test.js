@@ -17,7 +17,7 @@ Created by Shea Phillips
 */
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { render } from 'react-testing-library';
 import ComponentPreview from '../../src/components/ComponentPreview/ComponentPreview';
 
 describe('ComponentPreview Component', () => {
