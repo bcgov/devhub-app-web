@@ -6,7 +6,7 @@ import queryString from 'query-string';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 import { ResourceType } from '../../src/templates/resourceType';
-import { SIPHON_NODES, COLLECTIONS } from '../../__fixtures__/siphon-fixtures';
+import { SIPHON_NODES, TOPICS } from '../../__fixtures__/siphon-fixtures';
 import { SELECT_RESOURCES_GROUPED_BY_TYPE } from '../../__fixtures__/selector-fixtures';
 import { useSearch } from '../../src/utils/hooks';
 
@@ -31,18 +31,18 @@ describe('Resource Type Template Page', () => {
   }));
   // when you use graphql to load data into the component
   // all edges are an object of { node: [graphql object]}
-  // the collections fixture is the true data without this extra object field
+  // the topics fixture is the true data without this extra object field
   // so we map it to resemble what graphql would do when passing the data attribute into
   // this component
   const nodes = SIPHON_NODES.map(c => ({ node: c }));
-  const collections = COLLECTIONS.map(c => ({ node: c }));
+  const topics = TOPICS.map(c => ({ node: c }));
   const props = {
     data: {
       allDevhubSiphon: {
         edges: nodes,
       },
       allDevhubCollection: {
-        edges: collections,
+        edges: topics,
       },
       siteSearchIndex: {
         index: {},

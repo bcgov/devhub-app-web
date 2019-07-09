@@ -46,7 +46,7 @@ export const selectResourcesGroupedByType = () =>
 /**
  * groups resources in a collection by type
  */
-export const selectCollectionsWithResourcesGroupedByType = () =>
+export const selectTopicsWithResourcesGroupedByType = () =>
   createSelector(
     selectCollections,
     collectionsWithResources =>

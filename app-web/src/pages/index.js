@@ -17,7 +17,7 @@ import Aux from '../hoc/auxillary';
 
 import { useSearch } from '../utils/hooks';
 import {
-  selectCollectionsWithResourcesGroupedByType,
+  selectTopicsWithResourcesGroupedByType,
   selectResourcesGroupedByType,
 } from '../utils/selectors';
 import { isQueryEmpty } from '../utils/search';
@@ -39,7 +39,7 @@ const Main = styled.main`
  * @param {Boolean} searchResultsExist
  */
 const getCollectionPreviews = (collections, searchResultsExist) => {
-  const collectionsSelector = selectCollectionsWithResourcesGroupedByType();
+  const collectionsSelector = selectTopicsWithResourcesGroupedByType();
   return (
     !searchResultsExist && (
       <TopicsContainer

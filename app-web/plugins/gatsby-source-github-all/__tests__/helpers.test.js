@@ -160,8 +160,8 @@ describe('unfurlWebURI', () => {
   });
 
   describe('newTopic', () => {
-    it('it binds properties to a new collection object', () => {
-      const collection = {
+    it('it binds properties to a new topic object', () => {
+      const topic = {
         name: 'foo',
         sources: [],
       };
@@ -170,9 +170,9 @@ describe('unfurlWebURI', () => {
         description: 'bar',
       };
 
-      const updatedCollection = newTopic(collection, props);
-      expect(updatedCollection).not.toBe(collection);
-      expect(updatedCollection.description).toBe(props.description);
+      const updatedTopic = newTopic(topic, props);
+      expect(updatedTopic).not.toBe(topic);
+      expect(updatedTopic.description).toBe(props.description);
     });
   });
 
@@ -182,18 +182,18 @@ describe('unfurlWebURI', () => {
       expect(createPosition(0, [0, 0])).toEqual([0, 0, 0]);
     });
 
-    it('assigns position to a collection', () => {
-      const collection = {
+    it('assigns position to a topic', () => {
+      const topic = {
         foo: 'bar',
       };
       const expected = {
-        ...collection,
+        ...topic,
         metadata: {
           position: [0],
         },
       };
 
-      expect(assignPositionToTopic(collection, 0)).toEqual(expected);
+      expect(assignPositionToTopic(topic, 0)).toEqual(expected);
     });
 
     it('returns a cb when assignPositionToSource called', () => {

@@ -273,7 +273,7 @@ export const SELECT_RESOURCES_GROUPED_BY_TYPE = {
   People: [],
 };
 
-export const SELECT_COLLECTIONS_WITH_RESOURCES_GROUPED_BY_TYPE = [
+export const SELECT_TOPICS_WITH_RESOURCES_GROUPED_BY_TYPE = [
   {
     id: 'collection-1',
     type: 'default',

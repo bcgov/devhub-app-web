@@ -35,8 +35,8 @@ import {
   GRAPHQL_NODES_WITH_REGISTRY,
   GRAPHQL_NODES_WITHOUT_REGISTRY,
   REGISTRY,
-  REGISTRY_WITH_COLLECTION,
-  COLLECTION_OBJ_FROM_FETCH_QUEUE,
+  REGISTRY_WITH_TOPIC,
+  TOPIC_OBJ_FROM_FETCH_QUEUE,
   WEB_SOURCE,
   PROCESSED_WEB_SOURCE,
   PROCESSED_FILE_MD,
@@ -204,12 +204,12 @@ describe('gatsby source github all plugin', () => {
   });
 
   test('createTopicNode returns an object', () => {
-    const result = createTopicNode(COLLECTION_OBJ_FROM_FETCH_QUEUE, '123');
+    const result = createTopicNode(TOPIC_OBJ_FROM_FETCH_QUEUE, '123');
     const expected = {
       id: '123',
-      name: COLLECTION_OBJ_FROM_FETCH_QUEUE.name,
-      type: COLLECTION_OBJ_FROM_FETCH_QUEUE.type,
-      description: COLLECTION_OBJ_FROM_FETCH_QUEUE.description,
+      name: TOPIC_OBJ_FROM_FETCH_QUEUE.name,
+      type: TOPIC_OBJ_FROM_FETCH_QUEUE.type,
+      description: TOPIC_OBJ_FROM_FETCH_QUEUE.description,
       children: [],
       parent: null,
       internal: {
@@ -217,8 +217,8 @@ describe('gatsby source github all plugin', () => {
         type: GRAPHQL_NODE_TYPE.TOPIC,
       },
       _metadata: {
-        position: COLLECTION_OBJ_FROM_FETCH_QUEUE.metadata.position.join('.'),
-        slug: COLLECTION_OBJ_FROM_FETCH_QUEUE.slug,
+        position: TOPIC_OBJ_FROM_FETCH_QUEUE.metadata.position.join('.'),
+        slug: TOPIC_OBJ_FROM_FETCH_QUEUE.slug,
         template: TOPIC_TEMPLATES.DEFAULT,
         templateFile: undefined,
         sourceLocations: undefined,
@@ -229,7 +229,7 @@ describe('gatsby source github all plugin', () => {
   });
 
   test('createTopicNode returns an internal mime type of markdown plus content is collection content is passed in', () => {
-    const result = createTopicNode(COLLECTION_OBJ_FROM_FETCH_QUEUE, '123', {
+    const result = createTopicNode(TOPIC_OBJ_FROM_FETCH_QUEUE, '123', {
       content: 'hello world',
       metadata: {
         mediaType: 'text/markdown',
@@ -238,9 +238,9 @@ describe('gatsby source github all plugin', () => {
 
     const expected = {
       id: '123',
-      name: COLLECTION_OBJ_FROM_FETCH_QUEUE.name,
-      type: COLLECTION_OBJ_FROM_FETCH_QUEUE.type,
-      description: COLLECTION_OBJ_FROM_FETCH_QUEUE.description,
+      name: TOPIC_OBJ_FROM_FETCH_QUEUE.name,
+      type: TOPIC_OBJ_FROM_FETCH_QUEUE.type,
+      description: TOPIC_OBJ_FROM_FETCH_QUEUE.description,
       children: [],
       parent: null,
       internal: {
@@ -250,8 +250,8 @@ describe('gatsby source github all plugin', () => {
         mediaType: 'text/markdown',
       },
       _metadata: {
-        position: COLLECTION_OBJ_FROM_FETCH_QUEUE.metadata.position.join('.'),
-        slug: COLLECTION_OBJ_FROM_FETCH_QUEUE.slug,
+        position: TOPIC_OBJ_FROM_FETCH_QUEUE.metadata.position.join('.'),
+        slug: TOPIC_OBJ_FROM_FETCH_QUEUE.slug,
         template: TOPIC_TEMPLATES.DEFAULT,
         templateFile: undefined,
         sourceLocations: undefined,
@@ -266,9 +266,9 @@ describe('gatsby source github all plugin', () => {
     validateSourceRegistry.mockReturnValue(true);
     isSourceTopic.mockReturnValueOnce(true);
 
-    sourcesAreValid(REGISTRY_WITH_COLLECTION);
+    sourcesAreValid(REGISTRY_WITH_TOPIC);
     expect(validateSourceRegistry).toHaveBeenCalledTimes(
-      REGISTRY_WITH_COLLECTION[0].sourceProperties.sources.length,
+      REGISTRY_WITH_TOPIC[0].sourceProperties.sources.length,
     );
   });
 
@@ -304,12 +304,10 @@ describe('gatsby source github all plugin', () => {
 
   test('creates a fetch queue with for a curated collection', async () => {
     isSourceTopic.mockReturnValue(true);
-    const result2 = await getFetchQueue(REGISTRY_WITH_COLLECTION);
-    expect(result2.length).toBe(REGISTRY_WITH_COLLECTION.length);
+    const result2 = await getFetchQueue(REGISTRY_WITH_TOPIC);
+    expect(result2.length).toBe(REGISTRY_WITH_TOPIC.length);
 
-    expect(result2[0].sources.length).toBe(
-      REGISTRY_WITH_COLLECTION[0].sourceProperties.sources.length,
-    );
+    expect(result2[0].sources.length).toBe(REGISTRY_WITH_TOPIC[0].sourceProperties.sources.length);
   });
 
   test('getFetchQueue passes the correct collection type', async () => {
@@ -318,7 +316,7 @@ describe('gatsby source github all plugin', () => {
     expect(result[0].type).toBe(TOPIC_TYPES.github);
 
     isSourceTopic.mockReturnValue(true);
-    const result2 = await getFetchQueue(REGISTRY_WITH_COLLECTION);
+    const result2 = await getFetchQueue(REGISTRY_WITH_TOPIC);
     expect(result2[0].type).toBe(TOPIC_TYPES.CURATED);
   });
 
@@ -396,7 +394,7 @@ describe('gatsby source github all plugin', () => {
     const createParentChildLink = jest.fn();
 
     const result = await processTopic(
-      COLLECTION_OBJ_FROM_FETCH_QUEUE,
+      TOPIC_OBJ_FROM_FETCH_QUEUE,
       createNodeId,
       createNode,
       createParentChildLink,
@@ -405,7 +403,7 @@ describe('gatsby source github all plugin', () => {
 
     expect(typeof result).toBe('object');
     // assert we get the original collection properties back
-    expect(result.name).toBe(COLLECTION_OBJ_FROM_FETCH_QUEUE.name);
+    expect(result.name).toBe(TOPIC_OBJ_FROM_FETCH_QUEUE.name);
     // assert that its actually a grpahql node by again checking if an id was added
     expect(result.id).toBeDefined();
   });
@@ -416,14 +414,14 @@ describe('gatsby source github all plugin', () => {
     const createParentChildLink = jest.fn();
 
     await processTopic(
-      COLLECTION_OBJ_FROM_FETCH_QUEUE,
+      TOPIC_OBJ_FROM_FETCH_QUEUE,
       createNodeId,
       createNode,
       createParentChildLink,
       {},
     );
     // it should be called for as many sources that exist within the collection
-    expect(fetchFromSource).toHaveBeenCalledTimes(COLLECTION_OBJ_FROM_FETCH_QUEUE.sources.length);
+    expect(fetchFromSource).toHaveBeenCalledTimes(TOPIC_OBJ_FROM_FETCH_QUEUE.sources.length);
   });
 
   test('establishes a parent child link for each resource fetched for a collection', async () => {
@@ -432,7 +430,7 @@ describe('gatsby source github all plugin', () => {
     const createParentChildLink = jest.fn();
 
     await processTopic(
-      COLLECTION_OBJ_FROM_FETCH_QUEUE,
+      TOPIC_OBJ_FROM_FETCH_QUEUE,
       createNodeId,
       createNode,
       createParentChildLink,

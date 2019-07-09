@@ -428,8 +428,8 @@ const REGISTRY = [
   },
 ];
 
-// same as above but this registry contains a 'collection' type config
-const REGISTRY_WITH_COLLECTION = [
+// same as above but this registry contains a 'topic' type config
+const REGISTRY_WITH_TOPIC = [
   {
     name: 'Authentication and Authorization',
     description:
@@ -637,10 +637,10 @@ const PROCESSED_WEB_SOURCE = {
   path: 'https://example.com',
 };
 
-// different from the registry with the collection,
-// when the collection is processed through the fetch queue
+// different from the registry with the topic,
+// when the topic is processed through the fetch queue
 // the type property is bound to it based on conditions
-const COLLECTION_OBJ_FROM_FETCH_QUEUE = {
+const TOPIC_OBJ_FROM_FETCH_QUEUE = {
   type: 'curated',
   name: 'foo',
   slug: 'foo',
@@ -654,7 +654,7 @@ const COLLECTION_OBJ_FROM_FETCH_QUEUE = {
 
 module.exports = {
   SOURCE_REGISTRY_TYPE,
-  COLLECTION_OBJ_FROM_FETCH_QUEUE,
+  TOPIC_OBJ_FROM_FETCH_QUEUE,
   GITHUB_API,
   PROCESSED_FILE_MD,
   PROCESSED_FILE_TXT,
@@ -665,7 +665,7 @@ module.exports = {
   GRAPHQL_NODES_WITH_REGISTRY,
   GRAPHQL_NODES_WITHOUT_REGISTRY,
   REGISTRY,
-  REGISTRY_WITH_COLLECTION,
+  REGISTRY_WITH_TOPIC,
   GITHUB_SOURCE,
   WEB_SOURCE,
   GITHUB_SOURCE_WITHIN_INLINE_IGNORES,

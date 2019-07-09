@@ -6,14 +6,18 @@ import queryString from 'query-string';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 import { Index, TEST_IDS } from '../../src/pages/index';
+<<<<<<< HEAD
 import {
   SIPHON_NODES,
   COLLECTIONS,
   EVENTS,
   MEETUP_NODES,
 } from '../../__fixtures__/siphon-fixtures';
+=======
+import { SIPHON_NODES, TOPICS } from '../../__fixtures__/siphon-fixtures';
+>>>>>>> Even more, lots of test updates this time
 import {
-  SELECT_COLLECTIONS_WITH_RESOURCES_GROUPED_BY_TYPE,
+  SELECT_TOPICS_WITH_RESOURCES_GROUPED_BY_TYPE,
   SELECT_RESOURCES_GROUPED_BY_TYPE,
 } from '../../__fixtures__/selector-fixtures';
 import { useSearch } from '../../src/utils/hooks';
@@ -34,27 +38,27 @@ describe('Home Page', () => {
   // mock out non redux selectors
   jest.doMock('../../src/utils/selectors.js', () => ({
     selectResourcesGroupedByType: jest.fn(() => SELECT_RESOURCES_GROUPED_BY_TYPE),
-    selectCollectionsWithResourcesGroupedByType: jest.fn(
-      () => SELECT_COLLECTIONS_WITH_RESOURCES_GROUPED_BY_TYPE,
+    selectTopicsWithResourcesGroupedByType: jest.fn(
+      () => SELECT_TOPICS_WITH_RESOURCES_GROUPED_BY_TYPE,
     ),
   }));
   // when you use graphql to load data into the component
   // all edges are an object of { node: [graphql object]}
-  // the collections fixture is the true data without this extra object field
+  // the topics fixture is the true data without this extra object field
   // so we map it to resemble what graphql would do when passing the data attribute into
   // this component
   const nodes = SIPHON_NODES.map(c => ({ node: c }));
-  const collections = COLLECTIONS.map(c => ({ node: c }));
+  const topics = TOPICS.map(c => ({ node: c }));
   const events = EVENTS.map(c => ({ node: c }));
   const meetups = MEETUP_NODES.map(c => ({ node: c }));
-
+  
   const props = {
     data: {
       allDevhubSiphon: {
         edges: nodes,
       },
       allDevhubCollection: {
-        edges: collections,
+        edges: topics,
       },
       allEventbriteEvents: {
         edges: events,
@@ -102,7 +106,7 @@ describe('Home Page', () => {
     expect(Alert).toBeInTheDocument();
   });
 
-  test('When a blank search is entered, cards and alerts dont show but topics/collections do', () => {
+  test('When a blank search is entered, cards and alerts dont show but topics do', () => {
     queryString.parse.mockReturnValue({});
     const { container, rerender, queryByTestId, queryAllByTestId } = render(
       <ThemeProvider theme={theme}>
@@ -133,7 +137,7 @@ describe('Home Page', () => {
     //The above changed to "toBe(0)" from "toBeGreaterThan(0)" as previews are no longer shown on the home page (unless a valid search has been made)
   });
 
-  test('when searching, collections disappear if there are results', () => {
+  test('when searching, topics disappear if there are results', () => {
     queryString.parse.mockReturnValue({ q: 'foo' });
     useSearch.mockReturnValue([{ id: SIPHON_NODES[0].id }]);
     const { queryByTestId, queryAllByTestId } = render(
@@ -146,7 +150,7 @@ describe('Home Page', () => {
     expect(queryAllByTestId(RESOURCE_PREVIEW_TEST_IDS.container).length).toBeGreaterThan(0);
   });
 
-  test('when there is no search, collections are visible', () => {
+  test('when there is no search, topics are visible', () => {
     queryString.parse.mockReturnValue({});
     useSearch.mockReturnValue([]);
 
