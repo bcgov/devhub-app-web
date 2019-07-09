@@ -287,26 +287,26 @@ const hashString = content =>
  * @param {Object} source
  * @returns {Boolean}
  */
-const isSourceCollection = source =>
+const isSourceTopic = source =>
   Object.prototype.hasOwnProperty.call(source.sourceProperties, 'sources') &&
   TypeCheck.isArray(source.sourceProperties.sources);
 
 /**
- * creates the main collection object
- * which is used later on to create the collection siphon node
+ * creates the main topic object
+ * which is used later on to create the topic siphon node
  * optionally allows to bind props to it later
- * @param {Object} collection
+ * @param {Object} topic
  * @param {Object} props
- * @returns {Object} the new collection object
+ * @returns {Object} the new topic object
  */
-const newCollection = (collection, props = {}) => ({ ...collection, ...props });
+const newTopic = (topic, props = {}) => ({ ...topic, ...props });
 
 /** returns a description based on source type
  * for example, github would retrieve the repo description
  * @param {Object} source
  * @param {Object} tokens
  */
-const getCollectionDescriptionBySourceType = async (source, tokens) => {
+const getTopicDescriptionBySourceType = async (source, tokens) => {
   switch (source.sourceType) {
     case SOURCE_TYPES.GITHUB:
       const { repo, owner } = source.sourceProperties;
@@ -319,12 +319,12 @@ const getCollectionDescriptionBySourceType = async (source, tokens) => {
 
 /** Position helpers
  * position is based on a tier mechanism
- * collection is highest tier
+ * topic is highest tier
  * sourc position is second highest
  * resource third etc.
  * position [2,3,500]
- * 2: collection position in registry
- * 3: source position within collection
+ * 2: topic position in registry
+ * 3: source position within topic
  * 5: resource position within source (tbd by the fetchsource routine for that source type)
  */
 
@@ -336,14 +336,14 @@ const getCollectionDescriptionBySourceType = async (source, tokens) => {
 const createPosition = (position, lastPosition = []) => lastPosition.concat([position]);
 
 /**
- * this is the callback function for Array.map to assign positions to collections
+ * this is the callback function for Array.map to assign positions to topics
  * in the order they were entered in the registry
- * @param {Object} collection
+ * @param {Object} topic
  * @param {Number} position
- * @returns {Object} the new collection object + position data
+ * @returns {Object} the new topic object + position data
  */
-const assignPositionToCollection = (collection, position) => ({
-  ...collection,
+const assignPositionToTopic = (topic, position) => ({
+  ...topic,
   metadata: {
     position: createPosition(position),
   },
@@ -351,21 +351,21 @@ const assignPositionToCollection = (collection, position) => ({
 
 /**
  * this is a CLOSURED cb function that assigns position of source in an array.map
- * based on the position inside of the current collection
- * @param {Object} collection the collection
+ * based on the position inside of the current topic
+ * @param {Object} topic the topic
  * @returns {Function} the array map callback function
  */
-const assignPositionToSource = collection => (source, position) => ({
+const assignPositionToSource = topic => (source, position) => ({
   ...source,
   metadata: {
-    position: createPosition(position, collection.metadata.position), // position at source level is [resource, source]
+    position: createPosition(position, topic.metadata.position), // position at source level is [resource, source]
   },
 });
 
 /**
  * this is a CLOSURED cb function that assigns position of resource in an array.map
  * based on the position inside of the current source
- * @param {Object} source the collection
+ * @param {Object} source the topic
  * @returns {Function} the array map callback function
  */
 const assignPositionToResource = source => (resource, position) => ({
@@ -394,8 +394,8 @@ module.exports = {
   createPosition,
   convertPositionToSortableString,
   assignPositionToSource,
-  assignPositionToCollection,
-  newCollection,
+  assignPositionToTopic,
+  newTopic,
   hashString,
   createPathWithDigest,
   createUnfurlObj,
@@ -408,7 +408,7 @@ module.exports = {
   validateRegistryItemAgainstSchema,
   validateAgainstSchema,
   unfurlWebURI,
-  isSourceCollection,
-  getCollectionDescriptionBySourceType,
+  isSourceTopic,
+  getTopicDescriptionBySourceType,
   withUnfurlWarning,
 };

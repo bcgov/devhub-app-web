@@ -4,9 +4,9 @@ import {
   getClosestResourceType,
   unfurlWebURI,
   validateAgainstSchema,
-  newCollection,
-  getCollectionDescriptionBySourceType,
-  assignPositionToCollection,
+  newTopic,
+  getTopicDescriptionBySourceType,
+  assignPositionToTopic,
   assignPositionToResource,
   assignPositionToSource,
   createPosition,
@@ -75,12 +75,12 @@ describe('unfurlWebURI', () => {
     }
   });
 
-  describe('getCollectionDescriptionBySourceType', () => {
+  describe('getTopicDescriptionBySourceType', () => {
     it('returns a string', async () => {
       const source = {
         sourceType: 'foo',
       };
-      const result = await getCollectionDescriptionBySourceType(source);
+      const result = await getTopicDescriptionBySourceType(source);
       expect(typeof result).toBe('string');
     });
 
@@ -98,7 +98,7 @@ describe('unfurlWebURI', () => {
         GITHUB_API_TOKEN: 'foo',
       };
 
-      const result = await getCollectionDescriptionBySourceType(source, tokens);
+      const result = await getTopicDescriptionBySourceType(source, tokens);
       expect(result).toBe('matt damon');
     });
   });
@@ -159,7 +159,7 @@ describe('unfurlWebURI', () => {
     });
   });
 
-  describe('newCollection', () => {
+  describe('newTopic', () => {
     it('it binds properties to a new collection object', () => {
       const collection = {
         name: 'foo',
@@ -170,7 +170,7 @@ describe('unfurlWebURI', () => {
         description: 'bar',
       };
 
-      const updatedCollection = newCollection(collection, props);
+      const updatedCollection = newTopic(collection, props);
       expect(updatedCollection).not.toBe(collection);
       expect(updatedCollection.description).toBe(props.description);
     });
@@ -193,7 +193,7 @@ describe('unfurlWebURI', () => {
         },
       };
 
-      expect(assignPositionToCollection(collection, 0)).toEqual(expected);
+      expect(assignPositionToTopic(collection, 0)).toEqual(expected);
     });
 
     it('returns a cb when assignPositionToSource called', () => {

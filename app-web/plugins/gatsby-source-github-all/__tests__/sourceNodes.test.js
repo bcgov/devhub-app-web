@@ -26,8 +26,8 @@ import {
   getFetchQueue,
   normalizePersonas,
   processSource,
-  getContentForCollection,
-  processCollection,
+  getContentForTopic,
+  processTopic,
 } from '../sourceNodes';
 import { createSiphonNode, createTopicNode } from '../utils/createNode';
 import { GRAPHQL_NODE_TYPE, TOPIC_TYPES, TOPIC_TEMPLATES } from '../utils/constants';
@@ -44,12 +44,12 @@ import {
 } from '../__fixtures__/fixtures';
 import { validateSourceRegistry, fetchFromSource } from '../utils/fetchSource';
 import {
-  isSourceCollection,
+  isSourceTopic,
   hashString,
   validateRegistryItemAgainstSchema,
   validateAgainstSchema,
-  newCollection,
-  assignPositionToCollection,
+  newTopic,
+  assignPositionToTopic,
   assignPositionToSource,
   convertPositionToSortableString,
   assignPositionToResource,
@@ -59,8 +59,8 @@ jest.mock('../utils/helpers');
 jest.mock('crypto');
 jest.mock('../utils/fetchSource.js');
 fetchFromSource.mockReturnValue(Promise.resolve([PROCESSED_WEB_SOURCE]));
-newCollection.mockImplementation((collection, props) => ({ ...collection, ...props }));
-assignPositionToCollection.mockImplementation(collection => () => ({
+newTopic.mockImplementation((collection, props) => ({ ...collection, ...props }));
+assignPositionToTopic.mockImplementation(collection => () => ({
   metadata: { position: [0] },
 }));
 
@@ -75,7 +75,7 @@ assignPositionToSource.mockImplementation(source => () => ({ metadata: { positio
 
 describe('gatsby source github all plugin', () => {
   afterEach(() => {
-    isSourceCollection.mockReset();
+    isSourceTopic.mockReset();
     fetchFromSource.mockClear();
   });
 
@@ -264,7 +264,7 @@ describe('gatsby source github all plugin', () => {
   test('sourcesAreValid handles collections of sources', () => {
     validateSourceRegistry.mockClear();
     validateSourceRegistry.mockReturnValue(true);
-    isSourceCollection.mockReturnValueOnce(true);
+    isSourceTopic.mockReturnValueOnce(true);
 
     sourcesAreValid(REGISTRY_WITH_COLLECTION);
     expect(validateSourceRegistry).toHaveBeenCalledTimes(
@@ -296,14 +296,14 @@ describe('gatsby source github all plugin', () => {
 
   // get fetch queue should return a list of collections that contain a list of sources to fetch
   test('creates a fetch queue with for a source collection', async () => {
-    isSourceCollection.mockReturnValue(false);
+    isSourceTopic.mockReturnValue(false);
     const result = await getFetchQueue(REGISTRY);
     expect(result.length).toBe(REGISTRY.length);
     expect(result[0].sources.length).toBe(1);
   });
 
   test('creates a fetch queue with for a curated collection', async () => {
-    isSourceCollection.mockReturnValue(true);
+    isSourceTopic.mockReturnValue(true);
     const result2 = await getFetchQueue(REGISTRY_WITH_COLLECTION);
     expect(result2.length).toBe(REGISTRY_WITH_COLLECTION.length);
 
@@ -313,11 +313,11 @@ describe('gatsby source github all plugin', () => {
   });
 
   test('getFetchQueue passes the correct collection type', async () => {
-    isSourceCollection.mockReturnValue(false);
+    isSourceTopic.mockReturnValue(false);
     const result = await getFetchQueue(REGISTRY);
     expect(result[0].type).toBe(TOPIC_TYPES.github);
 
-    isSourceCollection.mockReturnValue(true);
+    isSourceTopic.mockReturnValue(true);
     const result2 = await getFetchQueue(REGISTRY_WITH_COLLECTION);
     expect(result2[0].type).toBe(TOPIC_TYPES.CURATED);
   });
@@ -395,7 +395,7 @@ describe('gatsby source github all plugin', () => {
     const createNode = jest.fn(node => node);
     const createParentChildLink = jest.fn();
 
-    const result = await processCollection(
+    const result = await processTopic(
       COLLECTION_OBJ_FROM_FETCH_QUEUE,
       createNodeId,
       createNode,
@@ -415,7 +415,7 @@ describe('gatsby source github all plugin', () => {
     const createNode = jest.fn(node => node);
     const createParentChildLink = jest.fn();
 
-    await processCollection(
+    await processTopic(
       COLLECTION_OBJ_FROM_FETCH_QUEUE,
       createNodeId,
       createNode,
@@ -431,7 +431,7 @@ describe('gatsby source github all plugin', () => {
     const createNode = jest.fn(node => node);
     const createParentChildLink = jest.fn();
 
-    await processCollection(
+    await processTopic(
       COLLECTION_OBJ_FROM_FETCH_QUEUE,
       createNodeId,
       createNode,
@@ -445,7 +445,7 @@ describe('gatsby source github all plugin', () => {
     expect(createParentChildLink).toHaveBeenCalledTimes(1);
   });
 
-  test('getContentForCollection returns data', async () => {
+  test('getContentForTopic returns data', async () => {
     fetchFromSource.mockReturnValueOnce(Promise.resolve([PROCESSED_FILE_MD]));
     validateAgainstSchema.mockReturnValueOnce({
       isValid: true,
@@ -458,11 +458,11 @@ describe('gatsby source github all plugin', () => {
       file: 'file.md',
     };
 
-    const data = await getContentForCollection(collectionSource, { token: 123 }, 'collection name');
+    const data = await getContentForTopic(collectionSource, { token: 123 }, 'collection name');
     expect(data).toEqual(PROCESSED_FILE_MD);
   });
 
-  test('getContentForCollection returns {} when invalid source properties', async () => {
+  test('getContentForTopic returns {} when invalid source properties', async () => {
     fetchFromSource.mockReturnValueOnce(Promise.resolve([PROCESSED_FILE_MD]));
     validateAgainstSchema.mockReturnValueOnce({
       isValid: false,
@@ -475,7 +475,7 @@ describe('gatsby source github all plugin', () => {
       file: 'file.md',
     };
 
-    const data = await getContentForCollection(collectionSource, { token: 123 }, 'collection name');
+    const data = await getContentForTopic(collectionSource, { token: 123 }, 'collection name');
     expect(data).toEqual({});
   });
 });
