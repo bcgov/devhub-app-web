@@ -119,7 +119,7 @@ objects:
       git:
         uri: ${SOURCE_REPOSITORY_URL}
         ref: ${SOURCE_REPOSITORY_REF}
-      contextDir: 'app-web'
+      contextDir: 'web'
       type: Git
     strategy:
       sourceStrategy:
