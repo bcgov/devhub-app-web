@@ -54,7 +54,7 @@ const REGISTRY_ITEM_SCHEMA = {
 };
 
 // specific validation for the collection.sourceProperties.collectionSource property
-const COLLECTION_SOURCE = {
+const TOPIC_SOURCE = {
   repo: {
     type: String,
     required: true,
@@ -75,5 +75,5 @@ const COLLECTION_SOURCE = {
 
 module.exports = {
   REGISTRY_ITEM_SCHEMA,
-  COLLECTION_SOURCE,
+  TOPIC_SOURCE,
 };

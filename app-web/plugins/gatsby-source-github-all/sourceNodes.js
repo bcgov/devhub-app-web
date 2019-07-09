@@ -37,7 +37,7 @@ const {
   COLLECTION_TEMPLATES,
   SOURCE_TYPES,
   COLLECTION_TEMPLATES_LIST,
-  COLLECTION_SOURCE,
+  TOPIC_SOURCE,
 } = require('./utils/constants');
 const { createSiphonNode, createCollectionNode } = require('./utils/createNode');
 const Store = require('./utils/Store');
@@ -261,7 +261,7 @@ const processSource = async (source, createNodeId, createNode, tokens, collectio
  * @param {*} tokens
  */
 const getContentForCollection = async (collectionSource, tokens, name = '') => {
-  const error = validateAgainstSchema(collectionSource, COLLECTION_SOURCE);
+  const error = validateAgainstSchema(collectionSource, TOPIC_SOURCE);
 
   if (error.isValid) {
     const source = {

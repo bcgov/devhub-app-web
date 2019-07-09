@@ -107,7 +107,7 @@ export const TopicsPage = ({ data }) => {
     TOPICS.COMMUNITY_AND_EVENTS,
   );
   // resources are grouped by type, 'ungroup' them so we can find the first available
-  // non external link to use as the entry page for the collection card
+  // non external link to use as the entry page for the topic card
   return (
     <Layout>
       <Main>

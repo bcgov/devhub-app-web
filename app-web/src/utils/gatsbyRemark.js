@@ -65,9 +65,9 @@ const getGithubBasePath = (repo, owner, branch = 'master') => {
 const converter = (astType, path, markdownNode, parentQLnode, { getNode }) => {
   // only convert source devhub nodes
   if (parentQLnode.internal.type === GRAPHQL_NODE_TYPE.SIPHON) {
-    // get collection node
-    const collection = getNode(parentQLnode.parent);
-    const sourceLocations = new Map(collection._metadata.sourceLocations);
+    // get topic node
+    const topic = getNode(parentQLnode.parent);
+    const sourceLocations = new Map(topic._metadata.sourceLocations);
     // normalize the path so that any paths that have no leading slash are assumed to be relative
     const normalizedPath = normalizeFilePath(path);
     let absolutePath;
@@ -76,7 +76,7 @@ const converter = (astType, path, markdownNode, parentQLnode, { getNode }) => {
 
     if (isRelativePath(normalizedPath)) {
       absolutePath = url.resolve(urlObj.href, normalizedPath);
-      // we need to check if relative path would match a github path based on the collection
+      // we need to check if relative path would match a github path based on the topic
       // source locations map
       const internalPagePath = sourceLocations.get(absolutePath);
       if (internalPagePath) {
