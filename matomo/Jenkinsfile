@@ -1,5 +1,10 @@
 pipeline {
     agent none
+    environment {
+            COMPONENT_NAME = 'Matomo Analytics'
+            COMPONENT_HOME = 'matomo'
+            BUILD_TRIGGER_INCLUDES = '^matomo/'
+        }
     options {
         disableResume()
     }
@@ -8,27 +13,27 @@ pipeline {
             agent { label 'build' }
             steps {
                 script {
-                    def filesInThisCommitAsString = sh(script:"git diff --name-only HEAD~1..HEAD | grep -v '^.jenkins/' || echo -n ''", returnStatus: false, returnStdout: true).trim()
+                    def filesInThisCommitAsString = sh(script:"git diff --name-only HEAD~1..HEAD | grep  '$BUILD_TRIGGER_INCLUDES' || echo -n ''", returnStatus: false, returnStdout: true).trim()
                     def hasChangesInPath = (filesInThisCommitAsString.length() > 0)
                     echo "${filesInThisCommitAsString}"
                     if (!currentBuild.rawBuild.getCauses()[0].toString().contains('UserIdCause') && !hasChangesInPath){
                         currentBuild.rawBuild.delete()
-                        error("No changes detected in the path ('^.jenkins/')")
+                        error("No changes detected in the component path for $COMPONENT_NAME.")
                     }
                 }
-                echo "Aborting all running jobs ..."
+                echo "Aborting all running jobs for $COMPONENT_NAME..."
                 script {
                     abortAllPreviousBuildInProgress(currentBuild)
                 }
                 echo "Building ..."
-                sh "cd matomo/.pipeline && ./npmw ci && ./npmw run build -- --pr=${CHANGE_ID}"
+                sh "cd $COMPONENT_HOME/.pipeline && ./npmw ci && ./npmw run build -- --pr=${CHANGE_ID}"
             }
         }
         stage('Deploy (DEV)') {
             agent { label 'deploy' }
             steps {
                 echo "Deploying ..."
-                sh "cd matomo/.pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev"
+                sh "cd $COMPONENT_HOME/.pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev"
             }
         }
         stage('Deploy (PROD)') {
@@ -39,7 +44,7 @@ pipeline {
             }
             steps {
                 echo "Deploying ..."
-                sh "cd matomo/.pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=prod"
+                sh "cd $COMPONENT_HOME/.pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=prod"
             }
         }
     }
