@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render } from 'react-testing-library';
 import { wrapWithTheme } from '../helpers';
 import Disclaimer from '../../src/components/Disclaimer/Disclaimer';
 

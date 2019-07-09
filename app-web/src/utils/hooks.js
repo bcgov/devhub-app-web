@@ -26,26 +26,20 @@ import isEqual from 'lodash/isEqual';
 export const useSearch = (query, staticIndex) => {
   const [Index, setIndex] = useState(null);
   const [results, setResults] = useState(null);
-  useEffect(
-    () => {
-      // load or create index
-      if (Index === null) {
-        setIndex(ElasticLunr.load(staticIndex));
-      } else {
-        const searchResults = Index.search(query, { expand: true }).map(({ ref }) =>
-          Index.documentStore.getDoc(ref),
-        );
-        if (!isEqual(results, searchResults)) {
-          // Map over each ID and return the full document
-          setResults(searchResults);
-        }
+  useEffect(() => {
+    // load or create index
+    if (Index === null) {
+      setIndex(ElasticLunr.load(staticIndex));
+    } else {
+      const searchResults = Index.search(query, { expand: true }).map(({ ref }) =>
+        Index.documentStore.getDoc(ref),
+      );
+      if (!isEqual(results, searchResults)) {
+        // Map over each ID and return the full document
+        setResults(searchResults);
       }
-    },
-    [Index, query, results, staticIndex],
-    staticIndex,
-    query,
-    results,
-  );
+    }
+  });
 
   return results;
 };

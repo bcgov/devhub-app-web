@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, cleanup } from 'react-testing-library';
 // this adds custom jest matchers from jest-dom
 import 'jest-dom/extend-expect';
 import queryString from 'query-string';
