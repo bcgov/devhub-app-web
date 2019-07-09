@@ -58,7 +58,7 @@ const getUniqueResources = resources => {
   let events = resources.filter(resource => resource.resource.type === RESOURCE_TYPES.EVENTS);
   let allButEvents = resources.filter(resource => resource.resource.type !== RESOURCE_TYPES.EVENTS);
   allButEvents = uniqBy(allButEvents, 'unfurl.title');
-  return allButEvents.concat(events);
+  return allButEvents.slice(0, 15).concat(events);
 };
 
 /**
@@ -74,7 +74,7 @@ const getResourcePreviews = (resources, results = []) => {
     resourcesToGroup = intersectionBy(resources, results, 'id');
   }
 
-  resourcesToGroup = getUniqueResources(resourcesToGroup).slice(0, 15);
+  resourcesToGroup = getUniqueResources(resourcesToGroup);
   // select resources grouped by type using relesect memoization https://github.com/reduxjs/reselect/issues/30
   const resourcesByType = resourcesSelector(resourcesToGroup);
   const siphonResources = Object.keys(resourcesByType).map(resourceType => {
