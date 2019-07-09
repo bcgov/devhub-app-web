@@ -205,7 +205,7 @@ const transformedFile = fileTransformer(extension, file)
 ```
 ### Transformer Plugin Authoring
 ***not to be confused with a gatsby-transformer plugin!!!***
-Plugins should be written in [plugins.js](../app-web/plugins/gatsby-source-github-all/utils/plugins.js).
+Plugins should be written in [plugins.js](../web/plugins/gatsby-source-github-all/utils/plugins.js).
 Unless there is a time the file is too cumbersome and seperating the plugins into seperate files is necessary.
 
 Plugins receive all files that were fetched inside of the repo. For that reason, it is ***recommended***
@@ -467,4 +467,4 @@ Template Types:
 #### Can I Make a Template?
 
 Short answer...***yes!!!***  Please fork and make a PR with your template. For more information on
-templates please see our current templates found within `/app-web/src/templates/` for reference as well as the [Gatsby Docs](https://www.gatsbyjs.org/tutorial/part-seven/#creating-pages)
+templates please see our current templates found within `/web/src/templates/` for reference as well as the [Gatsby Docs](https://www.gatsbyjs.org/tutorial/part-seven/#creating-pages)

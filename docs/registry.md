@@ -48,7 +48,7 @@ We found `YAML` to be more errorprone for content contributes because it is spac
 
 The location of the __configuration files__ can be found within the [devhub repo](https://github.com/bcgov/devhub-app-web)
 
-It is located within `app-web/registry/`.
+It is located within `web/registry/`.
 
 ## How it is organized
 
@@ -93,7 +93,7 @@ Please @mention patricksimonian or sheaphillips with your PR or even better, con
 
 There is essentially two steps to get content into the Devhub.
 
-1. Modify or add to the __`JSON` configuration files__ found within `app-web/registry` via a Github Pull Request
+1. Modify or add to the __`JSON` configuration files__ found within `web/registry` via a Github Pull Request
 2. Ensure the markdown files your are pointing to from within the `JSON` configuration files are ready for the __Devhub__
 
 

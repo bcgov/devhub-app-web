@@ -9,7 +9,7 @@ In a nut shell
 
 ## How Does Devhub Use Them?
 
-We started implementing this at the mid point of the projects lifecycle to help with maintaining consistency within our UI development. There is a file found at `src/app-web/constants/designTokens.js`
+We started implementing this at the mid point of the projects lifecycle to help with maintaining consistency within our UI development. There is a file found at `src/constants/designTokens.js`
 
 Where all tokens are housed.
 
