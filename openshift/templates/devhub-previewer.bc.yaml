@@ -43,30 +43,12 @@ objects:
     strategy:
       sourceStrategy:
         env:
-          - name: GITHUB_TOKEN
-            valueFrom:
-              secretKeyRef:
-                name: devhub-gh-token
-                key: GITHUB_TOKEN
-          - name: MEETUP_API_KEY
-            valueFrom: 
-              secretKeyRef:
-                name: devhub-meetup-token
-                key: MEETUP_API_KEY
-          - name: EVENT_BRITE_API_KEY
-            valueFrom:
-              secretKeyRef:
-                name: devhub-eventbrite-token
-                key: EVENT_BRITE_API_KEY
-          - name: GATSBY_MATOMO_URL
-            value: ${MATOMO_URL}
-          - name: GATSBY_MATOMO_SITE_URL
-            value: ${MATOMO_SITE_URL}
-          - name: GATSBY_MATOMO_SITE_ID
-            value: ${MATOMO_SITE_ID}
+          - name: NODE_ENV
+            value: development
         from:
           kind: ImageStreamTag
-          name: ${NAME}-base:${VERSION}
+          name: nodejs:${NODE_JS_VERSION}
+          namespace: openshift
       type: Source
     triggers:
     - type: ConfigChange
@@ -84,11 +66,6 @@ parameters:
   name: DOCKER_IMAGE
   required: true
   value: registry.hub.docker.com/bcgovimages/devhub-previewer:latest
-- description: A name suffix used for all objects
-  displayName: Suffix
-  name: SUFFIX
-  required: false
-  value: -dev
 - description: A version used for the image tags
   displayName: version
   name: VERSION
@@ -110,21 +87,6 @@ parameters:
   name: NODE_JS_VERSION
   required: true
   value: '10'
-- description: Location of the Matomo server that the app should post events to.
-  displayName: Matomo URL
-  name: MATOMO_URL
-  required: false
-  value: ''
-- description: URL (route) where this app is deployed
-  displayName: Matomo URL
-  name: MATOMO_SITE_URL
-  required: false
-  value: ''
-- description: Identifier for this site within Matomo
-  displayName: Matomo URL
-  name: MATOMO_SITE_ID
-  required: false
-  value: '1'
 - description: Dockerhub Push Secret
   displayName: dockerhub secret
   name: DOCKERHUB_SECRET
