@@ -228,7 +228,7 @@ describe('gatsby source github all plugin', () => {
     expect(result).toEqual(expected);
   });
 
-  test('createTopicNode returns an internal mime type of markdown plus content is collection content is passed in', () => {
+  test('createTopicNode returns an internal mime type of markdown plus content is topic content is passed in', () => {
     const result = createTopicNode(TOPIC_OBJ_FROM_FETCH_QUEUE, '123', {
       content: 'hello world',
       metadata: {
@@ -261,7 +261,7 @@ describe('gatsby source github all plugin', () => {
     expect(result).toEqual(expected);
   });
 
-  test('sourcesAreValid handles collections of sources', () => {
+  test('sourcesAreValid handles topics of sources', () => {
     validateSourceRegistry.mockClear();
     validateSourceRegistry.mockReturnValue(true);
     isSourceTopic.mockReturnValueOnce(true);
@@ -294,15 +294,15 @@ describe('gatsby source github all plugin', () => {
     });
   });
 
-  // get fetch queue should return a list of collections that contain a list of sources to fetch
-  test('creates a fetch queue with for a source collection', async () => {
+  // get fetch queue should return a list of topics that contain a list of sources to fetch
+  test('creates a fetch queue with for a source topic', async () => {
     isSourceTopic.mockReturnValue(false);
     const result = await getFetchQueue(REGISTRY);
     expect(result.length).toBe(REGISTRY.length);
     expect(result[0].sources.length).toBe(1);
   });
 
-  test('creates a fetch queue with for a curated collection', async () => {
+  test('creates a fetch queue with for a curated topic', async () => {
     isSourceTopic.mockReturnValue(true);
     const result2 = await getFetchQueue(REGISTRY_WITH_TOPIC);
     expect(result2.length).toBe(REGISTRY_WITH_TOPIC.length);
@@ -310,7 +310,7 @@ describe('gatsby source github all plugin', () => {
     expect(result2[0].sources.length).toBe(REGISTRY_WITH_TOPIC[0].sourceProperties.sources.length);
   });
 
-  test('getFetchQueue passes the correct collection type', async () => {
+  test('getFetchQueue passes the correct topic type', async () => {
     isSourceTopic.mockReturnValue(false);
     const result = await getFetchQueue(REGISTRY);
     expect(result[0].type).toBe(TOPIC_TYPES.github);
@@ -388,7 +388,7 @@ describe('gatsby source github all plugin', () => {
     expect(node.id).toBeDefined();
   });
 
-  test('returns a collection object', async () => {
+  test('returns a topic object', async () => {
     const createNodeId = jest.fn(() => 1);
     const createNode = jest.fn(node => node);
     const createParentChildLink = jest.fn();
@@ -402,13 +402,13 @@ describe('gatsby source github all plugin', () => {
     );
 
     expect(typeof result).toBe('object');
-    // assert we get the original collection properties back
+    // assert we get the original topic properties back
     expect(result.name).toBe(TOPIC_OBJ_FROM_FETCH_QUEUE.name);
     // assert that its actually a grpahql node by again checking if an id was added
     expect(result.id).toBeDefined();
   });
 
-  test('calls the fetch source routine for each source in a collection object', async () => {
+  test('calls the fetch source routine for each source in a topic object', async () => {
     const createNodeId = jest.fn(() => 1);
     const createNode = jest.fn(node => node);
     const createParentChildLink = jest.fn();
@@ -420,11 +420,11 @@ describe('gatsby source github all plugin', () => {
       createParentChildLink,
       {},
     );
-    // it should be called for as many sources that exist within the collection
+    // it should be called for as many sources that exist within the topic
     expect(fetchFromSource).toHaveBeenCalledTimes(TOPIC_OBJ_FROM_FETCH_QUEUE.sources.length);
   });
 
-  test('establishes a parent child link for each resource fetched for a collection', async () => {
+  test('establishes a parent child link for each resource fetched for a topic', async () => {
     const createNodeId = jest.fn(() => 1);
     const createNode = jest.fn(node => node);
     const createParentChildLink = jest.fn();
@@ -438,7 +438,7 @@ describe('gatsby source github all plugin', () => {
     );
 
     // fetch from source returns a single web source node
-    // in total only 1 resource was returned from all sources fetched for the fixtured collection
+    // in total only 1 resource was returned from all sources fetched for the fixtured topic
     // therefor the createparent child link should only be called once
     expect(createParentChildLink).toHaveBeenCalledTimes(1);
   });
@@ -450,13 +450,13 @@ describe('gatsby source github all plugin', () => {
       messages: [],
     });
 
-    const collectionSource = {
+    const topicSource = {
       repo: 'foo',
       owner: 'bar',
       file: 'file.md',
     };
 
-    const data = await getContentForTopic(collectionSource, { token: 123 }, 'collection name');
+    const data = await getContentForTopic(topicSource, { token: 123 }, 'collection name');
     expect(data).toEqual(PROCESSED_FILE_MD);
   });
 
@@ -467,13 +467,13 @@ describe('gatsby source github all plugin', () => {
       messages: [],
     });
 
-    const collectionSource = {
+    const topicSource = {
       repo: 'foo',
       owner: 'bar',
       file: 'file.md',
     };
 
-    const data = await getContentForTopic(collectionSource, { token: 123 }, 'collection name');
+    const data = await getContentForTopic(topicSource, { token: 123 }, 'collection name');
     expect(data).toEqual({});
   });
 });

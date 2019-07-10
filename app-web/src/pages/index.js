@@ -34,18 +34,15 @@ const Main = styled.main`
 `;
 
 /**
- * returns collection container component so aslong as a search is not being done
- * @param {Array} collections list of collections
+ * returns topics container component so aslong as a search is not being done
+ * @param {Array} collections list of collections also known as topics
  * @param {Boolean} searchResultsExist
  */
-const getCollectionPreviews = (collections, searchResultsExist) => {
-  const collectionsSelector = selectTopicsWithResourcesGroupedByType();
+const getTopicPreviews = (collections, searchResultsExist) => {
+  const topicsSelector = selectTopicsWithResourcesGroupedByType();
   return (
     !searchResultsExist && (
-      <TopicsContainer
-        collections={collectionsSelector(collections)}
-        link={MAIN_NAV_ROUTES.TOPICS}
-      />
+      <TopicsContainer collections={topicsSelector(collections)} link={MAIN_NAV_ROUTES.TOPICS} />
     )
   );
 };
@@ -133,7 +130,7 @@ export const Index = ({
 
   // this is defined by ?q='' or ?q=''&q=''..etc
   // if query is empty we prevent the search results empty from being rendered
-  // in addition the collections container is prevented from not rendering because
+  // in addition the topics container is prevented from not rendering because
   // the query is present
   const queryIsEmpty = isQueryEmpty(query);
 
@@ -148,7 +145,7 @@ export const Index = ({
   if (queryIsEmpty) {
     content = (
       <Aux>
-        {getCollectionPreviews(
+        {getTopicPreviews(
           flattenGatsbyGraphQL(allDevhubCollection.edges),
           windowHasQuery && !queryIsEmpty,
         )}
@@ -163,7 +160,7 @@ export const Index = ({
   } else {
     content = (
       <Aux>
-        {getCollectionPreviews(
+        {getTopicPreviews(
           flattenGatsbyGraphQL(allDevhubCollection.edges),
           windowHasQuery && !queryIsEmpty,
         )}

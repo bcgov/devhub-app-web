@@ -21,7 +21,7 @@ import {
   SELECT_RESOURCES_GROUPED_BY_TYPE,
 } from '../../__fixtures__/selector-fixtures';
 import { useSearch } from '../../src/utils/hooks';
-import { TEST_IDS as COLLECTION_TEST_IDS } from '../../src/components/Home/TopicsContainer';
+import { TEST_IDS as TOPIC_TEST_IDS } from '../../src/components/Home/TopicsContainer';
 import { TEST_IDS as RESOURCE_PREVIEW_TEST_IDS } from '../../src/components/Home/ResourcePreview';
 import { getFirstNonExternalResource } from '../../src/utils/helpers';
 jest.mock('query-string');
@@ -132,7 +132,7 @@ describe('Home Page', () => {
 
     expect(Alert).not.toBeInTheDocument();
 
-    expect(queryByTestId(COLLECTION_TEST_IDS.container)).toBeInTheDocument();
+    expect(queryByTestId(TOPIC_TEST_IDS.container)).toBeInTheDocument();
     expect(queryAllByTestId(RESOURCE_PREVIEW_TEST_IDS.container).length).toBe(0);
     //The above changed to "toBe(0)" from "toBeGreaterThan(0)" as previews are no longer shown on the home page (unless a valid search has been made)
   });
@@ -146,7 +146,7 @@ describe('Home Page', () => {
       </ThemeProvider>,
     );
 
-    expect(queryByTestId(COLLECTION_TEST_IDS.container)).not.toBeInTheDocument();
+    expect(queryByTestId(TOPIC_TEST_IDS.container)).not.toBeInTheDocument();
     expect(queryAllByTestId(RESOURCE_PREVIEW_TEST_IDS.container).length).toBeGreaterThan(0);
   });
 
@@ -160,6 +160,6 @@ describe('Home Page', () => {
       </ThemeProvider>,
     );
 
-    expect(getByTestId(COLLECTION_TEST_IDS.container)).toBeInTheDocument();
+    expect(getByTestId(TOPIC_TEST_IDS.container)).toBeInTheDocument();
   });
 });

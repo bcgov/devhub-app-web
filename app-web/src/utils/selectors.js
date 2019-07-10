@@ -22,7 +22,7 @@ import { RESOURCE_TYPES } from '../constants/ui';
 import groupBy from 'lodash/groupBy';
 
 // the following to fns are essentially stubs, this mocks the behaviour of a created selector
-export const selectCollections = collections => collections;
+export const selectTopics = collections => collections;
 export const selectResources = resources => resources;
 
 const defaultGroups = Object.keys(RESOURCE_TYPES).reduce((grouping, type) => {
@@ -44,19 +44,19 @@ export const selectResourcesGroupedByType = () =>
   );
 
 /**
- * groups resources in a collection by type
+ * groups resources in a topic by type
  */
 export const selectTopicsWithResourcesGroupedByType = () =>
   createSelector(
-    selectCollections,
-    collectionsWithResources =>
-      collectionsWithResources.map(collection => {
+    selectTopics,
+    topicsWithResources =>
+      topicsWithResources.map(topic => {
         // combine a set of default groups to the result of the groupby
-        // so that all collections have all resource type groups
+        // so that all topics have all resource type groups
         const selector = selectResourcesGroupedByType();
-        const groups = selector(collection.childrenDevhubSiphon);
+        const groups = selector(topic.childrenDevhubSiphon);
         return {
-          ...collection,
+          ...topic,
           resources: groups,
           hasResources: !Object.keys(groups).every(group => groups[group].length === 0),
         };

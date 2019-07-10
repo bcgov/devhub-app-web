@@ -8,13 +8,13 @@ export const RESOURCE_TYPES = {
 };
 
 // not exactly a resource type but still an important identifier for a 'type' of devhub node
-// this will change in devhub v3 when all nodes, resources/collections/and more are treated as
+// this will change in devhub v3 when all nodes, resources/topics/and more are treated as
 // equal
-export const COLLECTIONS = 'Collections';
+export const TOPICS = 'Collections';
 
 export const RESOURCE_TYPES_LIST = Object.keys(RESOURCE_TYPES)
   .map(key => RESOURCE_TYPES[key])
-  .concat(COLLECTIONS);
+  .concat(TOPICS);
 
 export const buttonTypes = ['primary', 'secondary', 'link'];
 export const LOGIN_BTN_ID = 'dh-login';
