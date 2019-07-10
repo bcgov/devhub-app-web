@@ -10,6 +10,7 @@
     "clean": "node clean.js",
     "deploy": "node deploy.js",
     "build-previewer": "node build-previewer.js",
+    "test:lint": "eslint --fix .",
     "version": "echo \"node@$(node --version) ($(which node))\" && echo \"npm@$(npm --version) ($(which npm))\" && npm ls"
   },
   "repository": {
@@ -18,7 +19,12 @@
   },
   "author": "",
   "license": "Apache-2.0",
-  "dependencies": {
-    "pipeline-cli": "git+https://github.com/BCDevOps/pipeline-cli.git#v1.1"
+  "devDependencies": {
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.0.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "pipeline-cli": "git+https://github.com/BCDevOps/pipeline-cli.git#v1.1",
+    "prettier": "^1.18.2"
   }
 }

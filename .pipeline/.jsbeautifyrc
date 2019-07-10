@@ -1,0 +1,7 @@
+{
+  "end_with_newline": true,
+  "beautify.language": {
+    "css": ["css"]
+  },
+  "beautify.ignore": ["node_modules/", "**/*.js", "__tests__/", ".cache/", "coverage/", "public/"]
+}
