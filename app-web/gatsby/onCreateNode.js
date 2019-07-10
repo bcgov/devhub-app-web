@@ -21,7 +21,7 @@ const visit = require('unist-util-visit');
 const remark = require('remark');
 const { RESOURCE_TYPES, PERSONAS_LIST } = require('../src/constants/ui');
 const {
-  isDevhubCollection,
+  isDevhubTopic,
   isDevhubSiphon,
   isMarkdownRemark,
   isGithubRaw,
@@ -33,7 +33,7 @@ const slugify = require('slugify');
 
 module.exports = ({ node, actions, getNode, getNodes }) => {
   const { createNodeField } = actions;
-  if (isDevhubCollection(node)) {
+  if (isDevhubTopic(node)) {
     // add a content field that the markdown topics will map too
     createNodeField({ node, name: 'content', value: node.name });
     // to help with page path creation, we adapt a slug from the collection/topic name
