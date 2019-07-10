@@ -6,16 +6,7 @@ import queryString from 'query-string';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 import { Index, TEST_IDS } from '../../src/pages/index';
-<<<<<<< HEAD
-import {
-  SIPHON_NODES,
-  COLLECTIONS,
-  EVENTS,
-  MEETUP_NODES,
-} from '../../__fixtures__/siphon-fixtures';
-=======
-import { SIPHON_NODES, TOPICS } from '../../__fixtures__/siphon-fixtures';
->>>>>>> Even more, lots of test updates this time
+import { SIPHON_NODES, TOPICS, EVENTS, MEETUP_NODES } from '../../__fixtures__/siphon-fixtures';
 import {
   SELECT_TOPICS_WITH_RESOURCES_GROUPED_BY_TYPE,
   SELECT_RESOURCES_GROUPED_BY_TYPE,
@@ -51,7 +42,7 @@ describe('Home Page', () => {
   const topics = TOPICS.map(c => ({ node: c }));
   const events = EVENTS.map(c => ({ node: c }));
   const meetups = MEETUP_NODES.map(c => ({ node: c }));
-  
+
   const props = {
     data: {
       allDevhubSiphon: {

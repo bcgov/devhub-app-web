@@ -34,9 +34,9 @@ const TopicContent = collections =>
     .slice(0, 4)
     .map(collection => {
       // resources are grouped by type, 'ungroup' them so we can find the first available
-      // non external link to use as the entry page for the collection card
+      // non external link to use as the entry page for the topic card
       const allResources = collection.childrenDevhubSiphon.sort((a, b) => {
-        // sort to ensure first resource in collection is the entry poitn
+        // sort to ensure first resource in topic is the entry point
         const position1 = a._metadata.position;
         const position2 = b._metadata.position;
         return position1.localeCompare(position2);
