@@ -71,5 +71,13 @@ pipeline {
                 sh "cd .pipeline && ./npmw ci && ./npmw run clean -- --pr=${CHANGE_ID} --env=dev"
             }
         }
+
+        stage('Push Preview Image to Docker Hub') {
+            agent { label 'deploy' }
+            steps {
+                echo "Pushing a 'development' version of the app to dockerhub ..."
+                sh "cd .pipeline && ./npmw ci && ./npmw run build-preview -- --pr=${CHANGE_ID}"
+            }
+        }
     }
 }

@@ -9,6 +9,7 @@
     "build": "node build.js",
     "clean": "node clean.js",
     "deploy": "node deploy.js",
+    "build-previewer": "node build-previewer.js",
     "version": "echo \"node@$(node --version) ($(which node))\" && echo \"npm@$(npm --version) ($(which npm))\" && npm ls"
   },
   "repository": {
