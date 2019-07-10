@@ -40,8 +40,8 @@ The one that we are currently trying out is _mapping_ nodes together.
 
 Within `gatsby/createNode.js` are a set of functions that extend different _source plugins_ to draw out
 some normalized abstractions. For example, we have markdown files representing _Topics_ (found within `/topics`)
-and the set of registry files declaring what resources belong inside of a topic. The `gatsby-source-github-all` creates nodes of type `DevhubCollection` (the former name for a Topic): a __slug__ and __content__ property
-are extended from this node using `createNodeField`. Subsequently, the `id` frontmatter property of each topic markdown node (`/topics/agile-development.md` for example) is extended. The `id` field from the markdown node is mapped to the DevhubCollection `content` field and is thus ___linked___ together:)
+and the set of registry files declaring what resources belong inside of a topic. The `gatsby-source-github-all` creates nodes of type `DevhubTopic` (the former name for a Topic): a __slug__ and __content__ property
+are extended from this node using `createNodeField`. Subsequently, the `id` frontmatter property of each topic markdown node (`/topics/agile-development.md` for example) is extended. The `id` field from the markdown node is mapped to the DevhubTopic `content` field and is thus ___linked___ together:)
 
 An amazingly detailed and professional schematic can be found [here](./docs/images/connecting-nodes.jpg)
 
