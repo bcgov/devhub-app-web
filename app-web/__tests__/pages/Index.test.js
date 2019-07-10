@@ -6,11 +6,13 @@ import queryString from 'query-string';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 import { Index, TEST_IDS } from '../../src/pages/index';
-<<<<<<< HEAD
-import { SIPHON_NODES, TOPICS, EVENTS, MEETUP_NODES } from '../../__fixtures__/siphon-fixtures';
-=======
-import { SIPHON_NODES, COLLECTIONS, ResourceData } from '../../__fixtures__/siphon-fixtures';
->>>>>>> Touching things up and updating tests + snapshots
+import {
+  SIPHON_NODES,
+  TOPICS,
+  EVENTS,
+  MEETUP_NODES,
+  ResourceData,
+} from '../../__fixtures__/siphon-fixtures';
 import {
   SELECT_TOPICS_WITH_RESOURCES_GROUPED_BY_TYPE,
   SELECT_RESOURCES_GROUPED_BY_TYPE,
@@ -144,16 +146,7 @@ describe('Home Page', () => {
       </ThemeProvider>,
     );
 
-<<<<<<< HEAD
     expect(queryByTestId(TOPIC_TEST_IDS.container)).not.toBeInTheDocument();
-=======
-    //useStaticQuery.mockReturnValue({
-    //ResourceData: { allDevhubCollection: { edges: { node: '' } } },
-    //});
-    //useStaticQuery.mockReturnValue(props.ResourceData);
-
-    expect(queryByTestId(COLLECTION_TEST_IDS.container)).not.toBeInTheDocument();
->>>>>>> Touching things up and updating tests + snapshots
     expect(queryAllByTestId(RESOURCE_PREVIEW_TEST_IDS.container).length).toBeGreaterThan(0);
   });
 
