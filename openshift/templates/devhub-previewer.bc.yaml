@@ -1,0 +1,132 @@
+# =========== Notes ============
+# in order to push to docker hub, docker credentials are needed
+# the following command will create a docker hub secret
+# oc create secret dockerhub ~/.docker/config.json
+apiVersion: v1
+kind: Template
+metadata:
+  creationTimestamp: null
+  name: devhub-previewer-bc-template
+labels:
+  template: devhub-app-web
+objects:
+# push devhub/nodejs image to docker
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    creationTimestamp: null
+    name: ${NAME}-previewer
+  spec:
+    completionDeadlineSeconds: 1500 # terminate the build if it takes longer than 900 seconds, our builds are avg 10 minutes as of Feb 2019
+    nodeSelector: null
+    output:
+      to:
+        kind: DockerImage
+        name: ${DOCKER_IMAGE}
+      pushSecret: 
+        name: ${DOCKERHUB_SECRET}
+    postCommit: {}
+    resources:
+      requests:
+        cpu: 1
+        memory: 2Gi ## memory usage is high because jest test use a lot of memory when running
+        ## we are hoping to move jest tests outside of the assemble script but until we do this will be quite a high request
+      limits:
+        cpu: 1
+        memory: 4Gi
+    source:
+      git:
+        uri: ${SOURCE_REPOSITORY_URL}
+        ref: ${SOURCE_REPOSITORY_REF}
+      contextDir: 'app-web'
+      type: Git
+    strategy:
+      sourceStrategy:
+        env:
+          - name: GITHUB_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: devhub-gh-token
+                key: GITHUB_TOKEN
+          - name: MEETUP_API_KEY
+            valueFrom: 
+              secretKeyRef:
+                name: devhub-meetup-token
+                key: MEETUP_API_KEY
+          - name: EVENT_BRITE_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: devhub-eventbrite-token
+                key: EVENT_BRITE_API_KEY
+          - name: GATSBY_MATOMO_URL
+            value: ${MATOMO_URL}
+          - name: GATSBY_MATOMO_SITE_URL
+            value: ${MATOMO_SITE_URL}
+          - name: GATSBY_MATOMO_SITE_ID
+            value: ${MATOMO_SITE_ID}
+        from:
+          kind: ImageStreamTag
+          name: ${NAME}-base:${VERSION}
+      type: Source
+    triggers:
+    - type: ConfigChange
+    - imageChange: {}
+      type: ImageChange
+# push devhub/nodejs image to docker
+parameters:
+- description: A name used for all objects
+  displayName: Name
+  name: NAME
+  required: true
+  value: devhub
+- description: The name used for the 'preview' image pushed to dockerhub, ie (registry.hub.docker.com/bcgovimages/devhub-previewer:latest)
+  displayName: Name
+  name: DOCKER_IMAGE
+  required: true
+  value: registry.hub.docker.com/bcgovimages/devhub-previewer:latest
+- description: A name suffix used for all objects
+  displayName: Suffix
+  name: SUFFIX
+  required: false
+  value: -dev
+- description: A version used for the image tags
+  displayName: version
+  name: VERSION
+  required: true
+  value: v1.0.0
+- description: SOURCE_REPOSITORY_URL
+  displayName: SOURCE_REPOSITORY_URL
+  name: SOURCE_REPOSITORY_URL
+  required: true
+  value: https://github.com/bcgov/devhub-app-web.git
+- description: SOURCE_REPOSITORY_REF
+  displayName: SOURCE_REPOSITORY_REF
+  name: SOURCE_REPOSITORY_REF
+  required: true
+  value: ''
+  # latest node js version as of Apr 2 2019
+- description: NODE_JS_VERSION
+  displayName: NODE_JS_VERSION
+  name: NODE_JS_VERSION
+  required: true
+  value: '10'
+- description: Location of the Matomo server that the app should post events to.
+  displayName: Matomo URL
+  name: MATOMO_URL
+  required: false
+  value: ''
+- description: URL (route) where this app is deployed
+  displayName: Matomo URL
+  name: MATOMO_SITE_URL
+  required: false
+  value: ''
+- description: Identifier for this site within Matomo
+  displayName: Matomo URL
+  name: MATOMO_SITE_ID
+  required: false
+  value: '1'
+- description: Dockerhub Push Secret
+  displayName: dockerhub secret
+  name: DOCKERHUB_SECRET
+  required: true
+  value: dockerhub-registry
