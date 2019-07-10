@@ -76,7 +76,7 @@ pipeline {
             agent { label 'deploy' }
             steps {
                 echo "Pushing a 'development' version of the app to dockerhub ..."
-                sh "cd .pipeline && ./npmw ci && ./npmw run build-preview -- --pr=${CHANGE_ID}"
+                sh "cd .pipeline && ./npmw ci && ./npmw run build-previewer -- --pr=${CHANGE_ID}"
             }
         }
     }
