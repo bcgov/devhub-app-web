@@ -43,7 +43,7 @@ export const TEST_IDS = {
   container: 'resource-preview-container',
 };
 
-// this is a wrapper component that encapsulates cards for collections or other sizes
+// this is a wrapper component that encapsulates cards for topics or other sizes
 export const ResourcePreview = ({ title, link, resources }) => (
   <Container data-testid={TEST_IDS.container}>
     <Title>

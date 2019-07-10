@@ -23,7 +23,7 @@ const UNFURL_TYPES = {
   EXTERNAL: 'external',
 };
 // source types that map to fetch routines
-const COLLECTION_TYPES = {
+const TOPIC_TYPES = {
   [SOURCE_TYPES.GITHUB]: 'source',
   [SOURCE_TYPES.WEB]: 'source',
   CURATED: 'curated',
@@ -47,28 +47,28 @@ const PERSONAS = {
   PRODUCT_OWNER: 'Product Owner',
 };
 
-const COLLECTION_TEMPLATES = {
+const TOPIC_TEMPLATES = {
   DEFAULT: 'default',
   OVERVIEW: 'overview',
 };
 
-const COLLECTION_TEMPLATES_LIST = Object.values(COLLECTION_TEMPLATES);
+const TOPIC_TEMPLATES_LIST = Object.values(TOPIC_TEMPLATES);
 
 const PERSONAS_LIST = Object.values(PERSONAS);
 
 const GRAPHQL_NODE_TYPE = {
   SIPHON: 'DevhubSiphon',
-  COLLECTION: 'DevhubCollection',
+  TOPIC: 'DevhubCollection',
 };
 
 module.exports = {
   UNFURL_TYPES,
-  COLLECTION_TYPES,
+  TOPIC_TYPES,
   RESOURCE_TYPES,
   RESOURCE_TYPES_LIST,
   PERSONAS,
   PERSONAS_LIST,
   GRAPHQL_NODE_TYPE,
-  COLLECTION_TEMPLATES,
-  COLLECTION_TEMPLATES_LIST,
+  TOPIC_TEMPLATES,
+  TOPIC_TEMPLATES_LIST,
 };

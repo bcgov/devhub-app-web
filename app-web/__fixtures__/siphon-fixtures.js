@@ -269,8 +269,8 @@ export const DESIGN_SYSTEM_NODES = [
 
 export const DEVHUB_NODES = [DEVHUB_NODE_1, DEVHUB_NODE_2, DEVHUB_NODE_3];
 
-// COLLECTIONS
-export const DESIGN_SYSTEM_COLLECTION = {
+// TOPICS
+export const DESIGN_SYSTEM_TOPIC = {
   id: IDS.DESIGN_SYSTEM,
   type: 'default',
   name: 'Design System',
@@ -284,7 +284,7 @@ export const DESIGN_SYSTEM_COLLECTION = {
   })),
 };
 
-export const DEVHUB_COLLECTION = {
+export const DEVHUB_TOPIC = {
   id: IDS.DEVHUB,
   type: 'default',
   name: 'Devhub',
@@ -472,11 +472,11 @@ export const FILTERED_NODES = SIPHON_NODES.filter(
   node => node.attributes.personas[0] === 'Designer',
 );
 
-export const COLLECTIONS = [DESIGN_SYSTEM_COLLECTION, DEVHUB_COLLECTION];
+export const TOPICS = [DESIGN_SYSTEM_TOPIC, DEVHUB_TOPIC];
 
 export const SIPHON_NODES_MAP = arrayToMapByProp(SIPHON_NODES, 'id');
 
-export const COLLECTIONS_MAP = arrayToMapByProp(COLLECTIONS, 'id');
+export const TOPICS_MAP = arrayToMapByProp(TOPICS, 'id');
 
 // some selectors found within /selectors/index.js provide selections of resources grouped by
 // resources types they are combined wth the default grouping set so that all resources

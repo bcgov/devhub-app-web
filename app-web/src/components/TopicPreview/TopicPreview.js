@@ -31,28 +31,28 @@ const withPadding = css`
   padding: 0 15px;
 `;
 
-const CollectionDecorativeBar = styled(DecorativeBar)`
+const TopicDecorativeBar = styled(DecorativeBar)`
   min-height: 15px;
 `;
 
-const CollectionPreviewContainer = styled.div`
+const TopicPreviewContainer = styled.div`
   ${withPadding};
   padding-top: 10px;
   padding-bottom: 20px;
 `;
 
-export const CollectionTitle = styled(CardTitle)`
+export const TopicTitle = styled(CardTitle)`
   font-weight: 700;
   margin: 10px 0;
   font-size: 26px;
 `;
 
-export const CollectionDescription = styled(CardDescription)`
+export const TopicDescription = styled(CardDescription)`
   max-width: 500px;
   margin-bottom: 15px;
 `;
 
-const CollectionLinkWrapper = styled.div`
+const TopicLinkWrapper = styled.div`
   text-align: right;
   font-size: 1.15em;
 `;
@@ -68,7 +68,7 @@ export const TitleLink = styled(Link)`
   }
 `;
 
-const CollectionPreview = ({ title, description, link, resources, ...rest }) => (
+const TopicPreview = ({ title, description, link, resources, ...rest }) => (
   <div
     css={css`
       max-width: 862px;
@@ -78,22 +78,22 @@ const CollectionPreview = ({ title, description, link, resources, ...rest }) => 
     `}
     {...rest}
   >
-    <CollectionDecorativeBar type="Collections" />
-    <CollectionPreviewContainer>
+    <TopicDecorativeBar type="Collections" />
+    <TopicPreviewContainer>
       <CardHeader type="Collections" />
-      <CollectionTitle clamp={2}>
+      <TopicTitle clamp={2}>
         <TitleLink to={link.to}>{title}</TitleLink>
-      </CollectionTitle>
-      {description && <CollectionDescription clamp={3}>{description}</CollectionDescription>}
+      </TopicTitle>
+      {description && <TopicDescription clamp={3}>{description}</TopicDescription>}
       <CardCarousel resources={resources} />
-      <CollectionLinkWrapper>
+      <TopicLinkWrapper>
         <ChevronLink to={link.to}>{link.text}</ChevronLink>
-      </CollectionLinkWrapper>
-    </CollectionPreviewContainer>
+      </TopicLinkWrapper>
+    </TopicPreviewContainer>
   </div>
 );
 
-CollectionPreview.propTypes = {
+TopicPreview.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   link: PropTypes.shape({ to: PropTypes.string, text: PropTypes.string }).isRequired,
@@ -113,8 +113,8 @@ CollectionPreview.propTypes = {
   ),
 };
 
-CollectionPreview.defaultProps = {
+TopicPreview.defaultProps = {
   description: null,
 };
 
-export default CollectionPreview;
+export default TopicPreview;

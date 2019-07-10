@@ -39,9 +39,9 @@ const siphonMessages = (() => {
     ${advisory} The resource {green.bold ${resource}} has been flagged as
     {green.bold 'ignore'} and will not have a Siphon Node created for it`;
 
-  const collectionSlugConflict = slug => chalk`
-    ${warning} The collection slug {yellow.bold ${slug}} has already been used.
-    This is a warning message. In future versions we may remove your collection
+  const topicSlugConflict = slug => chalk`
+    ${warning} The topic slug {yellow.bold ${slug}} has already been used.
+    This is a warning message. In future versions we may remove your topic
     on conflicts such as this.`;
 
   const markdownSlugConflict = (slug, conflictingSummary, currentSummary) => chalk`
@@ -54,8 +54,8 @@ const siphonMessages = (() => {
     {cyan.bold This may cause odd issues for links to the gatsby page if not rectified.}
     detailed stack below..`;
 
-  const collectionSourceFailed = (errors, name) => chalk`
-    ${warning} Attempted to get content for a collection {green.bold ${name}} but was unable to due bad configuration.
+  const topicSourceFailed = (errors, name) => chalk`
+    ${warning} Attempted to get content for a topic {green.bold ${name}} but was unable to due bad configuration.
     - ${errors.join('\n- ')}
   `;
 
@@ -66,9 +66,9 @@ const siphonMessages = (() => {
   return {
     unfurlLacksInfo,
     resourceIgnored,
-    collectionSlugConflict,
+    topicSlugConflict,
     markdownSlugConflict,
-    collectionSourceFailed,
+    topicSourceFailed,
     deprecatedGithubSourceValidation,
   };
 })();

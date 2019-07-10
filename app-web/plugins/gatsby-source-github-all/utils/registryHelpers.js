@@ -22,7 +22,7 @@ const { flattenGithubFilesToRegistryItems } = require('./sources/github');
 const { inferIdByType } = require('./inferIdByType');
 const { validateSourceRegistry } = require('./fetchSource');
 const { SOURCE_TYPES, REGISTRY_ITEM_SCHEMA } = require('./constants');
-const { isSourceCollection, validateRegistryItemAgainstSchema } = require('./helpers');
+const { isSourceTopic, validateRegistryItemAgainstSchema } = require('./helpers');
 /**
  * @param {Object} registryItem the registry item found within the registry file sources[index]
  * @returns {Boolean} true if registry item is valid
@@ -40,7 +40,7 @@ const sourcesAreValid = sources => {
   let sourcesToCheck = [];
 
   sources.forEach(s => {
-    if (isSourceCollection(s)) {
+    if (isSourceTopic(s)) {
       sourcesToCheck = sourcesToCheck.concat(s.sourceProperties.sources);
     } else {
       sourcesToCheck = sourcesToCheck.concat([s]);

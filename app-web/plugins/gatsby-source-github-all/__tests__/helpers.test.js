@@ -4,9 +4,9 @@ import {
   getClosestResourceType,
   unfurlWebURI,
   validateAgainstSchema,
-  newCollection,
-  getCollectionDescriptionBySourceType,
-  assignPositionToCollection,
+  newTopic,
+  getTopicDescriptionBySourceType,
+  assignPositionToTopic,
   assignPositionToResource,
   assignPositionToSource,
   createPosition,
@@ -75,12 +75,12 @@ describe('unfurlWebURI', () => {
     }
   });
 
-  describe('getCollectionDescriptionBySourceType', () => {
+  describe('getTopicDescriptionBySourceType', () => {
     it('returns a string', async () => {
       const source = {
         sourceType: 'foo',
       };
-      const result = await getCollectionDescriptionBySourceType(source);
+      const result = await getTopicDescriptionBySourceType(source);
       expect(typeof result).toBe('string');
     });
 
@@ -98,7 +98,7 @@ describe('unfurlWebURI', () => {
         GITHUB_API_TOKEN: 'foo',
       };
 
-      const result = await getCollectionDescriptionBySourceType(source, tokens);
+      const result = await getTopicDescriptionBySourceType(source, tokens);
       expect(result).toBe('matt damon');
     });
   });
@@ -159,9 +159,9 @@ describe('unfurlWebURI', () => {
     });
   });
 
-  describe('newCollection', () => {
-    it('it binds properties to a new collection object', () => {
-      const collection = {
+  describe('newTopic', () => {
+    it('it binds properties to a new topic object', () => {
+      const topic = {
         name: 'foo',
         sources: [],
       };
@@ -170,9 +170,9 @@ describe('unfurlWebURI', () => {
         description: 'bar',
       };
 
-      const updatedCollection = newCollection(collection, props);
-      expect(updatedCollection).not.toBe(collection);
-      expect(updatedCollection.description).toBe(props.description);
+      const updatedTopic = newTopic(topic, props);
+      expect(updatedTopic).not.toBe(topic);
+      expect(updatedTopic.description).toBe(props.description);
     });
   });
 
@@ -182,18 +182,18 @@ describe('unfurlWebURI', () => {
       expect(createPosition(0, [0, 0])).toEqual([0, 0, 0]);
     });
 
-    it('assigns position to a collection', () => {
-      const collection = {
+    it('assigns position to a topic', () => {
+      const topic = {
         foo: 'bar',
       };
       const expected = {
-        ...collection,
+        ...topic,
         metadata: {
           position: [0],
         },
       };
 
-      expect(assignPositionToCollection(collection, 0)).toEqual(expected);
+      expect(assignPositionToTopic(topic, 0)).toEqual(expected);
     });
 
     it('returns a cb when assignPositionToSource called', () => {

@@ -18,7 +18,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { getFirstNonExternalResource } from '../../utils/helpers';
-import CollectionPreview from '../CollectionPreview/CollectionPreview';
+import TopicPreview from '../TopicPreview/TopicPreview';
 
 import { ChevronLink } from '../UI/Link';
 import { Container as PreviewContainer, Title, StyledLink, LinkContainer } from './index';
@@ -28,22 +28,22 @@ export const TEST_IDS = {
   container: 'collections-container',
 };
 
-const CollectionContent = collections =>
+const TopicContent = collections =>
   collections
     .filter(collection => collection.hasResources)
     .slice(0, 4)
     .map(collection => {
       // resources are grouped by type, 'ungroup' them so we can find the first available
-      // non external link to use as the entry page for the collection card
+      // non external link to use as the entry page for the topic card
       const allResources = collection.childrenDevhubSiphon.sort((a, b) => {
-        // sort to ensure first resource in collection is the entry poitn
+        // sort to ensure first resource in topic is the entry point
         const position1 = a._metadata.position;
         const position2 = b._metadata.position;
         return position1.localeCompare(position2);
       });
 
       return (
-        <CollectionPreview
+        <TopicPreview
           key={collection.id}
           title={collection.name}
           description={collection.description}
@@ -57,20 +57,20 @@ const CollectionContent = collections =>
       );
     });
 
-export const CollectionsContainer = ({ collections, link }) => (
+export const TopicsContainer = ({ collections, link }) => (
   <PreviewContainer data-testid={TEST_IDS.container}>
     <Title>
       <StyledLink to={link.to}>Topics</StyledLink>
     </Title>
 
-    {CollectionContent(collections)}
+    {TopicContent(collections)}
     <LinkContainer>
       <ChevronLink to={link.to}>{link.text}</ChevronLink>
     </LinkContainer>
   </PreviewContainer>
 );
 
-CollectionsContainer.propTypes = {
+TopicsContainer.propTypes = {
   collections: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -84,4 +84,4 @@ CollectionsContainer.propTypes = {
     text: PropTypes.string.isRequired,
   }),
 };
-export default CollectionsContainer;
+export default TopicsContainer;

@@ -61,7 +61,7 @@ export const ResourceType = ({
   results = useSearch(query, index);
   // this is defined by ?q='' or ?q=''&q=''..etc
   // if query is empty we prevent the search results empty from being rendered
-  // in addition the collections container is prevented from not rendering because
+  // in addition the topics container is prevented from not rendering because
   // the query is present
   const queryIsEmpty = isQueryEmpty(query);
 
@@ -102,7 +102,7 @@ export const ResourceType = ({
   }
 
   //remove duplicates from the resources
-  //note: resources in many collections will only be shown in one of their many contexts
+  //note: resources in many topics will only be shown in one of their many contexts
   resources = uniqBy(resources, 'title');
 
   if (resourcesExist && windowHasFilters) {

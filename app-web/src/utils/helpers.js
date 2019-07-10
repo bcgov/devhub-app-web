@@ -81,7 +81,7 @@ export const mapPagePathToResourceTypeConst = pathname => {
 
 /**
  * returns the first non external page path from a list of resources which
- * ideally should belong to a particular collection
+ * ideally should belong to a particular topic
  * @param {Array} resources the list of resources
  */
 export const getFirstNonExternalResource = resources => {
@@ -163,7 +163,7 @@ export const isFilterLonely = filters => {
 // all other topics sorted lexographically
 /**
  *
- * @param {Array} topics the raw topic data (aka collections) as taken from the graphql query
+ * @param {Array} topics the raw topic data (aka topics) as taken from the graphql query
  * @param {Object} topics[ind] {node: {..., name: {string }}}
  * @returns {Array} the sorted topics with Featured Cards, Design System and Getting Started on the DevOps Platform first!
  */

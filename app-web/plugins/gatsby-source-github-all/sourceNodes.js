@@ -21,10 +21,10 @@ const { isArray, isString, every, flatten, isEmpty, isPlainObject } = require('l
 const slugify = require('slugify');
 const {
   hashString,
-  isSourceCollection,
-  newCollection,
-  getCollectionDescriptionBySourceType,
-  assignPositionToCollection,
+  isSourceTopic,
+  newTopic,
+  getTopicDescriptionBySourceType,
+  assignPositionToTopic,
   assignPositionToSource,
   getClosest,
   assignPositionToResource,
@@ -33,13 +33,13 @@ const {
 const siphonMessenger = require('./utils/console');
 const { fetchFromSource, validateSourceRegistry } = require('./utils/fetchSource');
 const {
-  COLLECTION_TYPES,
-  COLLECTION_TEMPLATES,
+  TOPIC_TYPES,
+  TOPIC_TEMPLATES,
   SOURCE_TYPES,
-  COLLECTION_TEMPLATES_LIST,
-  COLLECTION_SOURCE,
+  TOPIC_TEMPLATES_LIST,
+  TOPIC_SOURCE,
 } = require('./utils/constants');
-const { createSiphonNode, createCollectionNode } = require('./utils/createNode');
+const { createSiphonNode, createTopicNode } = require('./utils/createNode');
 const Store = require('./utils/Store');
 const {
   getRegistry,
@@ -49,7 +49,7 @@ const {
 } = require('./utils/registryHelpers');
 /**
  * maps root level attributes to a child 'source'
- * this only happens for collections that are set in the registry
+ * this only happens for topics that are set in the registry
  * @param {Object} rootSource
  * @param {Object} targetSource
  */
@@ -62,7 +62,7 @@ const mapInheritedSourceAttributes = ({ name, attributes, resourceType, slug }, 
   name,
   collection: {
     name,
-    type: COLLECTION_TYPES.CURATED,
+    type: TOPIC_TEMPLATES.CURATED,
     slug,
   },
   ...targetSource,
@@ -85,7 +85,7 @@ const sourcesAreValid = sources => {
   let sourcesToCheck = [];
 
   sources.forEach(s => {
-    if (isSourceCollection(s)) {
+    if (isSourceTopic(s)) {
       sourcesToCheck = sourcesToCheck.concat(s.sourceProperties.sources);
     } else {
       sourcesToCheck = sourcesToCheck.concat([s]);
@@ -145,8 +145,8 @@ const normalizeAttributes = attributes => {
 
 /**
  * creates the list of 'source' objects that are used by the fetch source routine
- * if a source is a collection
- * its child 'sources' inherit attributes from the collection like name, attributes, resourceType
+ * if a source is a topic
+ * its child 'sources' inherit attributes from the topic like name, attributes, resourceType
  * and then is flattened out along with all other sources
  * if the child sources have properties (with the exception of name) that conflict with the parent
  * the child properties take priority
@@ -154,10 +154,10 @@ const normalizeAttributes = attributes => {
  */
 const getFetchQueue = async (sources, tokens) => {
   const slugStore = new Store([], {
-    conflictCb: slug => siphonMessenger.collectionSlugConflict(slug),
+    conflictCb: slug => siphonMessenger.topicSlugConflict(slug),
   });
 
-  const collectionPromises = sources.map(async (source, index) => {
+  const topicPromises = sources.map(async (source, index) => {
     const rootSource = { ...source };
     const { sourceProperties } = rootSource;
     const slug = slugify(rootSource.slug || rootSource.name);
@@ -165,40 +165,40 @@ const getFetchQueue = async (sources, tokens) => {
     // the conflic Cb above
     slugStore.checkConflict(slug).set(slug, slug);
 
-    let collectionSource = null;
-    if (sourceProperties.collectionSource && isPlainObject(sourceProperties.collectionSource)) {
-      collectionSource = { ...sourceProperties.collectionSource };
+    let topicSource = null;
+    if (sourceProperties.topicSource && isPlainObject(sourceProperties.topicSource)) {
+      topicSource = { ...sourceProperties.topicSource };
     }
-    let collection = newCollection(
-      assignPositionToCollection(
+    let topic = newTopic(
+      assignPositionToTopic(
         {
           name: rootSource.name,
           sources: [],
-          collectionSource,
+          topicSource,
           template: rootSource.template
-            ? getClosest(rootSource.template, COLLECTION_TEMPLATES_LIST)
-            : COLLECTION_TEMPLATES.DEFAULT,
+            ? getClosest(rootSource.template, TOPIC_TEMPLATES_LIST)
+            : TOPIC_TEMPLATES.DEFAULT,
           templateFile: rootSource.templateFile || '',
           slug,
         },
         index,
       ),
     );
-    // create function to set source position by collection
-    const setSourcePositionByCollection = assignPositionToSource(collection);
+    // create function to set source position by topic
+    const setSourcePositionByTopic = assignPositionToSource(topic);
 
-    if (isSourceCollection(rootSource)) {
-      // if its a collection, the child sources need some properties from the root source to be
+    if (isSourceTopic(rootSource)) {
+      // if its a topic, the child sources need some properties from the root source to be
       // mapped to it
       const mappedChildSources = sourceProperties.sources.map((childSource, sourceIndex) =>
-        setSourcePositionByCollection(
+        setSourcePositionByTopic(
           mapInheritedSourceAttributes({ ...rootSource, slug }, childSource),
           sourceIndex,
         ),
       );
 
-      collection = newCollection(collection, {
-        type: COLLECTION_TYPES.CURATED,
+      topic = newTopic(topic, {
+        type: TOPIC_TYPES.CURATED,
         description: rootSource.description,
         sources: mappedChildSources,
       });
@@ -209,36 +209,36 @@ const getFetchQueue = async (sources, tokens) => {
           attributes: normalizeAttributes(rootSource.attributes),
           collection: {
             name: rootSource.name,
-            type: COLLECTION_TYPES[rootSource.sourceType],
+            type: TOPIC_TYPES[rootSource.sourceType],
             slug,
           },
         },
-      ].map((source, sourceIndex) => setSourcePositionByCollection(source, sourceIndex));
+      ].map((source, sourceIndex) => setSourcePositionByTopic(source, sourceIndex));
       // this is a basic source either github or web
-      // we still treat it as its own collection but with a different type
-      collection = newCollection(collection, {
-        type: COLLECTION_TYPES[rootSource.sourceType],
-        description: await getCollectionDescriptionBySourceType(rootSource, tokens),
+      // we still treat it as its own topic but with a different type
+      topic = newTopic(topic, {
+        type: TOPIC_TYPES[rootSource.sourceType],
+        description: await getTopicDescriptionBySourceType(rootSource, tokens),
         slug,
         sources,
       });
     }
-    return collection;
+    return topic;
   });
 
-  return Promise.all(collectionPromises);
+  return Promise.all(topicPromises);
 };
 
 /**
  * fetches source based on source type and source properties
- * if source is found to be a collection it recurses over and return
+ * if source is found to be a topic it recurses over and return
  * @param {Object} source the source object
  * @param {Function} createNodeId gatsby fn
  * @param {Function} createNode gatsby fn
  * @param {Object} tokens the tokens passed from options
  * @returns {Array} the list of resources retrieved from the source
  */
-const processSource = async (source, createNodeId, createNode, tokens, collectionId) => {
+const processSource = async (source, createNodeId, createNode, tokens, topicId) => {
   let resources = await fetchFromSource(source.sourceType, source, tokens);
   const assignPosToResourceBySource = assignPositionToResource({ metadata: source.metadata });
   resources = resources.map((resource, index) => assignPosToResourceBySource(resource, index));
@@ -248,7 +248,7 @@ const processSource = async (source, createNodeId, createNode, tokens, collectio
     filteredResources.map(async resource => {
       const hash = hashString(JSON.stringify(resource));
       const id = createNodeId(hash);
-      const siphonNode = createSiphonNode(resource, id, collectionId);
+      const siphonNode = createSiphonNode(resource, id, topicId);
       await createNode(siphonNode);
       return siphonNode;
     }),
@@ -256,78 +256,68 @@ const processSource = async (source, createNodeId, createNode, tokens, collectio
 };
 
 /**
- * fetches a github markdown file for a collection and returns the data
- * @param {*} collectionSource
+ * fetches a github markdown file for a topic and returns the data
+ * @param {*} topicSource
  * @param {*} tokens
  */
-const getContentForCollection = async (collectionSource, tokens, name = '') => {
-  const error = validateAgainstSchema(collectionSource, COLLECTION_SOURCE);
+const getContentForTopic = async (topicSource, tokens, name = '') => {
+  const error = validateAgainstSchema(topicSource, TOPIC_SOURCE);
 
   if (error.isValid) {
     const source = {
       attributes: {},
-      sourceProperties: collectionSource,
+      sourceProperties: topicSource,
     };
     const file = await fetchFromSource(SOURCE_TYPES.GITHUB, source, tokens);
-    // we should only expect one file to be recieved back since collectionSource uses the
+    // we should only expect one file to be recieved back since topicSource uses the
     // github.file metadata property
     return file[0];
   } else {
     // eslint-disable-next-line no-console
-    console.log(siphonMessenger.collectionSourceFailed(error.messages, name));
+    console.log(siphonMessenger.topicSourceFailed(error.messages, name));
     return {};
   }
 };
 /**
- * process the collection and fetches all sources for it
- * creating a collection node and all source nodes for the collection,
- * @param {Object} collection the collection
+ * process the topic and fetches all sources for it
+ * creating a topic node and all source nodes for the topic,
+ * @param {Object} topic the topic
  * @param {Function} createNodeId gatsby fn
  * @param {Function} createNode gatsby fn
  * @param {Function} createParentChildLink gatsby fn
  * @param {Object} tokens tokens passed from options
- * @returns {Object} the collection object
+ * @returns {Object} the topic object
  * {
- *   ...collectionProperties
+ *   ...topicProperties
  *   sources: [{...source}]
  * }
  */
-const processCollection = async (
-  collection,
-  createNodeId,
-  createNode,
-  createParentChildLink,
-  tokens,
-) => {
-  const hash = hashString(JSON.stringify(collection));
-  // id for collection node
+const processTopic = async (topic, createNodeId, createNode, createParentChildLink, tokens) => {
+  const hash = hashString(JSON.stringify(topic));
+  // id for topic node
   const id = createNodeId(hash);
   // fetch all sources
   const sourceNodes = await Promise.all(
-    collection.sources.map(source => processSource(source, createNodeId, createNode, tokens, id)),
+    topic.sources.map(source => processSource(source, createNodeId, createNode, tokens, id)),
   );
 
-  let collectionContent;
-  // fetch a github file if has collection source
-  if (!isEmpty(collection.collectionSource)) {
-    collectionContent = await getContentForCollection(
-      collection.collectionSource,
-      tokens,
-      collection.name,
-    );
+  let topicContent;
+  // fetch a github file if has topic source
+  if (!isEmpty(topic.topicSource)) {
+    topicContent = await getContentForTopic(topic.topicSource, tokens, topic.name);
   }
   // flatten source nodes to get a list of all the resources
   const resources = flatten(sourceNodes, true);
   // create a hash map of all resources: resource paths original source against the path created
   // for a gatsby page
-  collection.sourceLocations = resources.map(r => [r.resource.originalSource, r.resource.path]);
+  topic.sourceLocations = resources.map(r => [r.resource.originalSource, r.resource.path]);
 
-  const collectionNode = createCollectionNode(collection, id, collectionContent);
+  const topicNode = createTopicNode(topic, id, topicContent);
 
-  await createNode(collectionNode);
-  resources.forEach(r => createParentChildLink({ parent: collectionNode, child: r }));
-  // establish a parent child link between all resources and the collection node
-  return collectionNode;
+  await createNode(topicNode);
+  resources.forEach(r => createParentChildLink({ parent: topicNode, child: r }));
+  // establish a parent child link between all resources and the topic node
+  return topicNode;
 };
 
 /**
@@ -348,15 +338,15 @@ const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens, source
     // expand and collapsed github source configs (translates files [...] into seperate github sources with file: '...')
     const expandedReg = expandRegistry(registry);
     const regWithIds = applyInferredIdToSources(expandedReg);
-    // map of over registry and create a queue of collections to fetch
+    // map of over registry and create a queue of topics to fetch
     const fetchQueue = await getFetchQueue(regWithIds, tokens);
-    const collections = await Promise.all(
-      fetchQueue.map(async collection =>
-        processCollection(collection, createNodeId, createNode, createParentChildLink, tokens),
+    const topics = await Promise.all(
+      fetchQueue.map(async topic =>
+        processTopic(topic, createNodeId, createNode, createParentChildLink, tokens),
       ),
     );
 
-    return collections;
+    return topics;
   } catch (e) {
     // failed to retrieve files or some other type of failure
     // eslint-disable-next-line
@@ -376,6 +366,6 @@ module.exports = {
   getFetchQueue,
   normalizePersonas,
   processSource,
-  processCollection,
-  getContentForCollection,
+  processTopic,
+  getContentForTopic,
 };

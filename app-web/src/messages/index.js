@@ -46,14 +46,14 @@ export const HOME = {
   },
 };
 
-export const COLLECTIONS_PAGE = {
+export const TOPICS_PAGE = {
   header: {
     title: {
-      id: 'COLLECTIONS_PAGE.header.title',
+      id: 'TOPICS_PAGE.header.title',
       defaultMessage: 'Topics',
     },
     subtitle: {
-      id: 'COLLECTIONS_PAGE.header.subtitle',
+      id: 'TOPICS_PAGE.header.subtitle',
       defaultMessage:
         'Explore resources that have been specially curated to enhance context, detail and accessibility.',
     },

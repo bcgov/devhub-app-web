@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Collections Container it matches snapshot 1`] = `
+exports[`Topics Container it matches snapshot 1`] = `
 .emotion-212 {
   min-height: 100vh;
   display: -webkit-box;
@@ -528,7 +528,7 @@ exports[`Collections Container it matches snapshot 1`] = `
       <li>
         <a
           exact="true"
-          href="/collections"
+          href="/topics"
         >
           Topics
         </a>

@@ -26,7 +26,7 @@ const slugify = require('slugify');
 const snakeCase = require('snake-case');
 const {
   SOURCE_TYPES,
-  COLLECTION_TEMPLATES,
+  TOPIC_TEMPLATES,
 } = require('../plugins/gatsby-source-github-all/utils/constants');
 
 const { RESOURCE_TYPES } = require('../plugins/gatsby-source-github-all/utils/constants');
@@ -41,19 +41,19 @@ const RESOURCE_TYPE_PAGES = [
 
 const resolvePath = path => resolve(__dirname, path);
 /**
- * Get Templates based on source and collectionTemplate or collection template file path
- * in the even collection template file path and collection template both exist
+ * Get Templates based on source and topicTemplate or topic template file path
+ * in the even topic template file path and topic template both exist
  * the file path supersedes
  * @param {String} source
- * @param {String} collectionTemplate
- * @param {String} collectionTemplateFilePath
+ * @param {String} topicTemplate
+ * @param {String} topicTemplateFilePath
  * @returns {String} the path to the template
  */
-const getTemplate = (source, collectionTemplate, collectionTemplateFilePath = null) => {
+const getTemplate = (source, topicTemplate, topicTemplateFilePath = null) => {
   const TEMPLATES = {
     [SOURCE_TYPES.GITHUB]: {
-      [COLLECTION_TEMPLATES.DEFAULT]: resolvePath('../src/templates/SourceGithub_default.js'),
-      [COLLECTION_TEMPLATES.OVERVIEW]: resolvePath('../src/templates/SourceGithub_overview.js'),
+      [TOPIC_TEMPLATES.DEFAULT]: resolvePath('../src/templates/SourceGithub_default.js'),
+      [TOPIC_TEMPLATES.OVERVIEW]: resolvePath('../src/templates/SourceGithub_overview.js'),
     },
   };
 
@@ -61,23 +61,23 @@ const getTemplate = (source, collectionTemplate, collectionTemplateFilePath = nu
   // get source template path for default
   const sourceTemplate = TEMPLATES[source];
   if (sourceTemplate) {
-    templatePath = sourceTemplate[collectionTemplate];
+    templatePath = sourceTemplate[topicTemplate];
   } else {
     throw new Error(chalk`
       {red.underline No Available Template for source type ${source}!} \n\n 
       This is most likely an issue with Siphon's code base creating nodes with the incorrect source type!
-      I'd recommend checking the registry and validating all sources and collections have the correct sourcetype
+      I'd recommend checking the registry and validating all sources and topics have the correct sourcetype
       where applicable and then sifting through the validation routines to see where things are getting bunged up.`);
   }
 
-  // if there is a collection template file path, try to resolve it and see if exists
-  if (collectionTemplateFilePath !== '') {
-    const filePath = resolvePath(`../src/templates/${collectionTemplateFilePath}`);
+  // if there is a topic template file path, try to resolve it and see if exists
+  if (topicTemplateFilePath !== '') {
+    const filePath = resolvePath(`../src/templates/${topicTemplateFilePath}`);
     if (fs.existsSync(filePath)) {
       templatePath = filePath;
     } else {
       // if it doesn't exist change template to default one
-      templatePath = TEMPLATES[source][COLLECTION_TEMPLATES.DEFAULT];
+      templatePath = TEMPLATES[source][TOPIC_TEMPLATES.DEFAULT];
     }
   }
 
@@ -103,7 +103,7 @@ const createResourceTypePages = createPage => {
 };
 
 /**
- * creates all the resource pages based on the collection the resource belongs too
+ * creates all the resource pages based on the topic the resource belongs too
  * @param {Function} createPage the gatsby createpage function
  * @param {Function} graphql the gatsby graphql function
  */
@@ -145,11 +145,11 @@ const createResourceComponentPages = async (createPage, graphql) => {
   `);
   // right now we are making an assumption all data here resolved from a markdown file
   // and will be treated as so
-  // loop over collections and then nodes
+  // loop over topics and then nodes
 
   devhubData.data.allDevhubCollection.edges.forEach(({ node }) => {
-    const collection = node;
-    // 'node' is the property that holds the collection object after the graphql query has prrocessed
+    const topic = node;
+    // 'node' is the property that holds the topic object after the graphql query has prrocessed
     node.childrenDevhubSiphon.forEach(siphon => {
       // only create pages for markdown files and ones that don't have an ignore flag
       // or a resourcePath (which links the content to an external resource)
@@ -168,8 +168,8 @@ const createResourceComponentPages = async (createPage, graphql) => {
       if (!isResource && !isIgnored && siphon.internal.mediaType === 'text/markdown') {
         const template = getTemplate(
           siphon.source.type,
-          collection._metadata.template,
-          collection._metadata.templateFile,
+          topic._metadata.template,
+          topic._metadata.templateFile,
         );
 
         try {
@@ -179,8 +179,8 @@ const createResourceComponentPages = async (createPage, graphql) => {
             context: {
               // Data passed to context is available in page queries as GraphQL variables.
               id: siphon.id,
-              collection: collection.name,
-              collectionId: collection.id,
+              collection: topic.name,
+              collectionId: topic.id,
             },
           });
         } catch (e) {

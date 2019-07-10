@@ -26,17 +26,17 @@ import {
   getFetchQueue,
   normalizePersonas,
   processSource,
-  getContentForCollection,
-  processCollection,
+  getContentForTopic,
+  processTopic,
 } from '../sourceNodes';
-import { createSiphonNode, createCollectionNode } from '../utils/createNode';
-import { GRAPHQL_NODE_TYPE, COLLECTION_TYPES, COLLECTION_TEMPLATES } from '../utils/constants';
+import { createSiphonNode, createTopicNode } from '../utils/createNode';
+import { GRAPHQL_NODE_TYPE, TOPIC_TYPES, TOPIC_TEMPLATES } from '../utils/constants';
 import {
   GRAPHQL_NODES_WITH_REGISTRY,
   GRAPHQL_NODES_WITHOUT_REGISTRY,
   REGISTRY,
-  REGISTRY_WITH_COLLECTION,
-  COLLECTION_OBJ_FROM_FETCH_QUEUE,
+  REGISTRY_WITH_TOPIC,
+  TOPIC_OBJ_FROM_FETCH_QUEUE,
   WEB_SOURCE,
   PROCESSED_WEB_SOURCE,
   PROCESSED_FILE_MD,
@@ -44,12 +44,12 @@ import {
 } from '../__fixtures__/fixtures';
 import { validateSourceRegistry, fetchFromSource } from '../utils/fetchSource';
 import {
-  isSourceCollection,
+  isSourceTopic,
   hashString,
   validateRegistryItemAgainstSchema,
   validateAgainstSchema,
-  newCollection,
-  assignPositionToCollection,
+  newTopic,
+  assignPositionToTopic,
   assignPositionToSource,
   convertPositionToSortableString,
   assignPositionToResource,
@@ -59,8 +59,8 @@ jest.mock('../utils/helpers');
 jest.mock('crypto');
 jest.mock('../utils/fetchSource.js');
 fetchFromSource.mockReturnValue(Promise.resolve([PROCESSED_WEB_SOURCE]));
-newCollection.mockImplementation((collection, props) => ({ ...collection, ...props }));
-assignPositionToCollection.mockImplementation(collection => () => ({
+newTopic.mockImplementation((collection, props) => ({ ...collection, ...props }));
+assignPositionToTopic.mockImplementation(collection => () => ({
   metadata: { position: [0] },
 }));
 
@@ -75,7 +75,7 @@ assignPositionToSource.mockImplementation(source => () => ({ metadata: { positio
 
 describe('gatsby source github all plugin', () => {
   afterEach(() => {
-    isSourceCollection.mockReset();
+    isSourceTopic.mockReset();
     fetchFromSource.mockClear();
   });
 
@@ -158,7 +158,7 @@ describe('gatsby source github all plugin', () => {
         position: [1, 1, 1],
         collection: {
           name: 'foo',
-          type: COLLECTION_TYPES.CURATED,
+          type: TOPIC_TYPES.CURATED,
         },
         id: 'file-stub-id',
         name: 'test',
@@ -203,23 +203,23 @@ describe('gatsby source github all plugin', () => {
     expect(createSiphonNode(file, '123', 'foo')).toMatchSnapshot();
   });
 
-  test('createCollectionNode returns an object', () => {
-    const result = createCollectionNode(COLLECTION_OBJ_FROM_FETCH_QUEUE, '123');
+  test('createTopicNode returns an object', () => {
+    const result = createTopicNode(TOPIC_OBJ_FROM_FETCH_QUEUE, '123');
     const expected = {
       id: '123',
-      name: COLLECTION_OBJ_FROM_FETCH_QUEUE.name,
-      type: COLLECTION_OBJ_FROM_FETCH_QUEUE.type,
-      description: COLLECTION_OBJ_FROM_FETCH_QUEUE.description,
+      name: TOPIC_OBJ_FROM_FETCH_QUEUE.name,
+      type: TOPIC_OBJ_FROM_FETCH_QUEUE.type,
+      description: TOPIC_OBJ_FROM_FETCH_QUEUE.description,
       children: [],
       parent: null,
       internal: {
         contentDigest: null, // hash string called here
-        type: GRAPHQL_NODE_TYPE.COLLECTION,
+        type: GRAPHQL_NODE_TYPE.TOPIC,
       },
       _metadata: {
-        position: COLLECTION_OBJ_FROM_FETCH_QUEUE.metadata.position.join('.'),
-        slug: COLLECTION_OBJ_FROM_FETCH_QUEUE.slug,
-        template: COLLECTION_TEMPLATES.DEFAULT,
+        position: TOPIC_OBJ_FROM_FETCH_QUEUE.metadata.position.join('.'),
+        slug: TOPIC_OBJ_FROM_FETCH_QUEUE.slug,
+        template: TOPIC_TEMPLATES.DEFAULT,
         templateFile: undefined,
         sourceLocations: undefined,
       },
@@ -228,8 +228,8 @@ describe('gatsby source github all plugin', () => {
     expect(result).toEqual(expected);
   });
 
-  test('createCollectionNode returns an internal mime type of markdown plus content is collection content is passed in', () => {
-    const result = createCollectionNode(COLLECTION_OBJ_FROM_FETCH_QUEUE, '123', {
+  test('createTopicNode returns an internal mime type of markdown plus content is topic content is passed in', () => {
+    const result = createTopicNode(TOPIC_OBJ_FROM_FETCH_QUEUE, '123', {
       content: 'hello world',
       metadata: {
         mediaType: 'text/markdown',
@@ -238,21 +238,21 @@ describe('gatsby source github all plugin', () => {
 
     const expected = {
       id: '123',
-      name: COLLECTION_OBJ_FROM_FETCH_QUEUE.name,
-      type: COLLECTION_OBJ_FROM_FETCH_QUEUE.type,
-      description: COLLECTION_OBJ_FROM_FETCH_QUEUE.description,
+      name: TOPIC_OBJ_FROM_FETCH_QUEUE.name,
+      type: TOPIC_OBJ_FROM_FETCH_QUEUE.type,
+      description: TOPIC_OBJ_FROM_FETCH_QUEUE.description,
       children: [],
       parent: null,
       internal: {
         contentDigest: null, // hash string called here
-        type: GRAPHQL_NODE_TYPE.COLLECTION,
+        type: GRAPHQL_NODE_TYPE.TOPIC,
         content: 'hello world',
         mediaType: 'text/markdown',
       },
       _metadata: {
-        position: COLLECTION_OBJ_FROM_FETCH_QUEUE.metadata.position.join('.'),
-        slug: COLLECTION_OBJ_FROM_FETCH_QUEUE.slug,
-        template: COLLECTION_TEMPLATES.DEFAULT,
+        position: TOPIC_OBJ_FROM_FETCH_QUEUE.metadata.position.join('.'),
+        slug: TOPIC_OBJ_FROM_FETCH_QUEUE.slug,
+        template: TOPIC_TEMPLATES.DEFAULT,
         templateFile: undefined,
         sourceLocations: undefined,
       },
@@ -261,14 +261,14 @@ describe('gatsby source github all plugin', () => {
     expect(result).toEqual(expected);
   });
 
-  test('sourcesAreValid handles collections of sources', () => {
+  test('sourcesAreValid handles topics of sources', () => {
     validateSourceRegistry.mockClear();
     validateSourceRegistry.mockReturnValue(true);
-    isSourceCollection.mockReturnValueOnce(true);
+    isSourceTopic.mockReturnValueOnce(true);
 
-    sourcesAreValid(REGISTRY_WITH_COLLECTION);
+    sourcesAreValid(REGISTRY_WITH_TOPIC);
     expect(validateSourceRegistry).toHaveBeenCalledTimes(
-      REGISTRY_WITH_COLLECTION[0].sourceProperties.sources.length,
+      REGISTRY_WITH_TOPIC[0].sourceProperties.sources.length,
     );
   });
 
@@ -294,32 +294,30 @@ describe('gatsby source github all plugin', () => {
     });
   });
 
-  // get fetch queue should return a list of collections that contain a list of sources to fetch
-  test('creates a fetch queue with for a source collection', async () => {
-    isSourceCollection.mockReturnValue(false);
+  // get fetch queue should return a list of topics that contain a list of sources to fetch
+  test('creates a fetch queue with for a source topic', async () => {
+    isSourceTopic.mockReturnValue(false);
     const result = await getFetchQueue(REGISTRY);
     expect(result.length).toBe(REGISTRY.length);
     expect(result[0].sources.length).toBe(1);
   });
 
-  test('creates a fetch queue with for a curated collection', async () => {
-    isSourceCollection.mockReturnValue(true);
-    const result2 = await getFetchQueue(REGISTRY_WITH_COLLECTION);
-    expect(result2.length).toBe(REGISTRY_WITH_COLLECTION.length);
+  test('creates a fetch queue with for a curated topic', async () => {
+    isSourceTopic.mockReturnValue(true);
+    const result2 = await getFetchQueue(REGISTRY_WITH_TOPIC);
+    expect(result2.length).toBe(REGISTRY_WITH_TOPIC.length);
 
-    expect(result2[0].sources.length).toBe(
-      REGISTRY_WITH_COLLECTION[0].sourceProperties.sources.length,
-    );
+    expect(result2[0].sources.length).toBe(REGISTRY_WITH_TOPIC[0].sourceProperties.sources.length);
   });
 
-  test('getFetchQueue passes the correct collection type', async () => {
-    isSourceCollection.mockReturnValue(false);
+  test('getFetchQueue passes the correct topic type', async () => {
+    isSourceTopic.mockReturnValue(false);
     const result = await getFetchQueue(REGISTRY);
-    expect(result[0].type).toBe(COLLECTION_TYPES.github);
+    expect(result[0].type).toBe(TOPIC_TYPES.github);
 
-    isSourceCollection.mockReturnValue(true);
-    const result2 = await getFetchQueue(REGISTRY_WITH_COLLECTION);
-    expect(result2[0].type).toBe(COLLECTION_TYPES.CURATED);
+    isSourceTopic.mockReturnValue(true);
+    const result2 = await getFetchQueue(REGISTRY_WITH_TOPIC);
+    expect(result2[0].type).toBe(TOPIC_TYPES.CURATED);
   });
 
   test('normalize personas converts persona into personas when alone', () => {
@@ -390,13 +388,13 @@ describe('gatsby source github all plugin', () => {
     expect(node.id).toBeDefined();
   });
 
-  test('returns a collection object', async () => {
+  test('returns a topic object', async () => {
     const createNodeId = jest.fn(() => 1);
     const createNode = jest.fn(node => node);
     const createParentChildLink = jest.fn();
 
-    const result = await processCollection(
-      COLLECTION_OBJ_FROM_FETCH_QUEUE,
+    const result = await processTopic(
+      TOPIC_OBJ_FROM_FETCH_QUEUE,
       createNodeId,
       createNode,
       createParentChildLink,
@@ -404,35 +402,35 @@ describe('gatsby source github all plugin', () => {
     );
 
     expect(typeof result).toBe('object');
-    // assert we get the original collection properties back
-    expect(result.name).toBe(COLLECTION_OBJ_FROM_FETCH_QUEUE.name);
+    // assert we get the original topic properties back
+    expect(result.name).toBe(TOPIC_OBJ_FROM_FETCH_QUEUE.name);
     // assert that its actually a grpahql node by again checking if an id was added
     expect(result.id).toBeDefined();
   });
 
-  test('calls the fetch source routine for each source in a collection object', async () => {
+  test('calls the fetch source routine for each source in a topic object', async () => {
     const createNodeId = jest.fn(() => 1);
     const createNode = jest.fn(node => node);
     const createParentChildLink = jest.fn();
 
-    await processCollection(
-      COLLECTION_OBJ_FROM_FETCH_QUEUE,
+    await processTopic(
+      TOPIC_OBJ_FROM_FETCH_QUEUE,
       createNodeId,
       createNode,
       createParentChildLink,
       {},
     );
-    // it should be called for as many sources that exist within the collection
-    expect(fetchFromSource).toHaveBeenCalledTimes(COLLECTION_OBJ_FROM_FETCH_QUEUE.sources.length);
+    // it should be called for as many sources that exist within the topic
+    expect(fetchFromSource).toHaveBeenCalledTimes(TOPIC_OBJ_FROM_FETCH_QUEUE.sources.length);
   });
 
-  test('establishes a parent child link for each resource fetched for a collection', async () => {
+  test('establishes a parent child link for each resource fetched for a topic', async () => {
     const createNodeId = jest.fn(() => 1);
     const createNode = jest.fn(node => node);
     const createParentChildLink = jest.fn();
 
-    await processCollection(
-      COLLECTION_OBJ_FROM_FETCH_QUEUE,
+    await processTopic(
+      TOPIC_OBJ_FROM_FETCH_QUEUE,
       createNodeId,
       createNode,
       createParentChildLink,
@@ -440,42 +438,42 @@ describe('gatsby source github all plugin', () => {
     );
 
     // fetch from source returns a single web source node
-    // in total only 1 resource was returned from all sources fetched for the fixtured collection
+    // in total only 1 resource was returned from all sources fetched for the fixtured topic
     // therefor the createparent child link should only be called once
     expect(createParentChildLink).toHaveBeenCalledTimes(1);
   });
 
-  test('getContentForCollection returns data', async () => {
+  test('getContentForTopic returns data', async () => {
     fetchFromSource.mockReturnValueOnce(Promise.resolve([PROCESSED_FILE_MD]));
     validateAgainstSchema.mockReturnValueOnce({
       isValid: true,
       messages: [],
     });
 
-    const collectionSource = {
+    const topicSource = {
       repo: 'foo',
       owner: 'bar',
       file: 'file.md',
     };
 
-    const data = await getContentForCollection(collectionSource, { token: 123 }, 'collection name');
+    const data = await getContentForTopic(topicSource, { token: 123 }, 'collection name');
     expect(data).toEqual(PROCESSED_FILE_MD);
   });
 
-  test('getContentForCollection returns {} when invalid source properties', async () => {
+  test('getContentForTopic returns {} when invalid source properties', async () => {
     fetchFromSource.mockReturnValueOnce(Promise.resolve([PROCESSED_FILE_MD]));
     validateAgainstSchema.mockReturnValueOnce({
       isValid: false,
       messages: [],
     });
 
-    const collectionSource = {
+    const topicSource = {
       repo: 'foo',
       owner: 'bar',
       file: 'file.md',
     };
 
-    const data = await getContentForCollection(collectionSource, { token: 123 }, 'collection name');
+    const data = await getContentForTopic(topicSource, { token: 123 }, 'collection name');
     expect(data).toEqual({});
   });
 });
