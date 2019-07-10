@@ -16,30 +16,27 @@ There are a few things that need to be sorted in order to push images to externa
 that was followed is [here](https://blog.openshift.com/pushing-application-images-to-an-external-registry/).
 
 To Summarize you require:
-- check if you have a docker registry secret within your set of secrets in the tools name space already
-it should look something like `builder-dockercfg-dfkjalsdfja`
-If you do not have a secret..
-  - create a secret within your tools name space that contains the docker registry secret
-    `oc create secret docker-registry dockerhub-registry --docker-server=DOCKER_REGISTRY_SERVER --docker-username=DOCKER_USER --docker-password=DOCKER_PASSWORD --docker-email=DOCKER_EMAIL`
-  - then the `<tools namespace>/builder` service account will need a reference to this secret
-  ```yaml
-  # builder sa yaml
-  apiVersion: v1
-  imagePullSecrets:
-  - name: builder-dockercfg-dfsdfsd
-  kind: ServiceAccount
-  metadata:
-    creationTimestamp: 2018-07-17T18:53:23Z
-    name: builder
-    namespace: devhub-tools
-    resourceVersion: "857494024"
-    selfLink: /api/v1/namespaces/devhub-tools/serviceaccounts/builder
-    uid: ae8f88f3-89f2-11e8-9dd8-0050568379a2
-  secrets:
-  - name: builder-token-adsfasd
-  - name: builder-dockercfg-fsadfasdfasd
-  - name: #<secret name here> 
-  ```
+- create a secret within your tools name space that contains the docker registry secret
+  `oc create secret docker-registry dockerhub --docker-server=DOCKER_REGISTRY_SERVER --docker-username=DOCKER_USER --docker-password=DOCKER_PASSWORD --docker-email=DOCKER_EMAIL`
+- then the `<tools namespace>/builder` service account will need a reference to this secret
+```yaml
+# builder sa yaml
+apiVersion: v1
+imagePullSecrets:
+- name: builder-dockercfg-dfsdfsd
+kind: ServiceAccount
+metadata:
+  creationTimestamp: 2018-07-17T18:53:23Z
+  name: builder
+  namespace: devhub-tools
+  resourceVersion: "857494024"
+  selfLink: /api/v1/namespaces/devhub-tools/serviceaccounts/builder
+  uid: ae8f88f3-89f2-11e8-9dd8-0050568379a2
+secrets:
+- name: builder-token-adsfasd
+- name: builder-dockercfg-fsadfasdfasd
+- name: #<secret name here> 
+```
 
 - The build config output strategy must reference `DockerImage` and point to the correct image in Dockerhub
 in addition the push secret must also be referenced
