@@ -1,6 +1,6 @@
 import {
   isMarkdownRemark,
-  isDevhubCollection,
+  isDevhubTopic,
   isDevhubSiphon,
   isEventbriteEvents,
   isGithubRaw,
@@ -17,8 +17,8 @@ describe('Validators', () => {
       expect(isMarkdownRemark(node('MarkdownRemark'))).toBe(true);
       expect(isMarkdownRemark(node('MarkdownRemark2'))).toBe(false);
 
-      expect(isDevhubCollection(node('DevhubCollection'))).toBe(true);
-      expect(isDevhubCollection(node('DevhubCollection2'))).toBe(false);
+      expect(isDevhubTopic(node('DevhubTopic'))).toBe(true);
+      expect(isDevhubTopic(node('DevhubTopic2'))).toBe(false);
 
       expect(isDevhubSiphon(node('DevhubSiphon'))).toBe(true);
       expect(isDevhubSiphon(node('DevhubSiphon2'))).toBe(false);
