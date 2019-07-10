@@ -21,13 +21,13 @@ Created by Patrick Simonian
 const isGithubRaw = node => node.internal.type === 'GithubRaw';
 const isMarkdownRemark = node => node.internal.type === 'MarkdownRemark';
 const isDevhubSiphon = node => node.internal.type === 'DevhubSiphon';
-const isDevhubCollection = node => node.internal.type === 'DevhubCollection';
+const isDevhubTopic = node => node.internal.type === 'DevhubTopic';
 const isEventbriteEvents = node => node.internal.type === 'EventbriteEvents';
 
 module.exports = {
   isGithubRaw,
   isMarkdownRemark,
   isDevhubSiphon,
-  isDevhubCollection,
+  isDevhubTopic,
   isEventbriteEvents,
 };

@@ -132,11 +132,11 @@ export const devhubSiphonMarkdown = graphql`
       fileType
       path
     }
-    collection: devhubCollection(id: { eq: $collectionId }) {
+    collection: devhubTopic(id: { eq: $collectionId }) {
       name
       description
     }
-    nav: devhubCollection(id: { eq: $collectionId }) {
+    nav: devhubTopic(id: { eq: $collectionId }) {
       items: childrenDevhubSiphon {
         ...NavigationFragment
       }

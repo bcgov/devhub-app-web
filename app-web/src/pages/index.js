@@ -97,7 +97,7 @@ export const TEST_IDS = {
 
 export const Index = ({
   data: {
-    allDevhubCollection,
+    allDevhubTopic,
     allDevhubSiphon,
     allEventbriteEvents,
     allMeetupGroup,
@@ -146,7 +146,7 @@ export const Index = ({
     content = (
       <Aux>
         {getTopicPreviews(
-          flattenGatsbyGraphQL(allDevhubCollection.edges),
+          flattenGatsbyGraphQL(allDevhubTopic.edges),
           windowHasQuery && !queryIsEmpty,
         )}
       </Aux>
@@ -161,7 +161,7 @@ export const Index = ({
     content = (
       <Aux>
         {getTopicPreviews(
-          flattenGatsbyGraphQL(allDevhubCollection.edges),
+          flattenGatsbyGraphQL(allDevhubTopic.edges),
           windowHasQuery && !queryIsEmpty,
         )}
         {siphonResources}

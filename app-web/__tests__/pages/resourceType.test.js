@@ -41,7 +41,7 @@ describe('Resource Type Template Page', () => {
       allDevhubSiphon: {
         edges: nodes,
       },
-      allDevhubCollection: {
+      allDevhubTopic: {
         edges: topics,
       },
       siteSearchIndex: {
