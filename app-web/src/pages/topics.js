@@ -77,7 +77,7 @@ export const addCurrentEventsToTopic = (topics, events, topicName) => {
 };
 
 export const TopicsPage = ({ data }) => {
-  let topics = flattenGatsbyGraphQL(data.allDevhubCollection.edges);
+  let topics = flattenGatsbyGraphQL(data.allDevhubTopic.edges);
   const events = flattenGatsbyGraphQL(data.allEventbriteEvents.edges);
   const meetUps = flattenGatsbyGraphQL(data.allMeetupGroup.edges)
     .flatMap(meetups => {

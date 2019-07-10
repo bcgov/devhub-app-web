@@ -48,7 +48,7 @@ describe('Home Page', () => {
       allDevhubSiphon: {
         edges: nodes,
       },
-      allDevhubCollection: {
+      allDevhubTopic: {
         edges: topics,
       },
       allEventbriteEvents: {

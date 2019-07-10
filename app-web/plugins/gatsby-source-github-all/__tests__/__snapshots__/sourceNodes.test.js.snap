@@ -10,10 +10,6 @@ Object {
     "personas": undefined,
   },
   "children": Array [],
-  "collection": Object {
-    "name": "foo",
-    "type": "curated",
-  },
   "devhubId": "file-stub-id",
   "fileName": "test.md",
   "fileType": "Markdown",
@@ -43,6 +39,10 @@ Object {
     "name": "something/something",
     "sourcePath": undefined,
     "type": undefined,
+  },
+  "topic": Object {
+    "name": "foo",
+    "type": "curated",
   },
   "unfurl": undefined,
 }

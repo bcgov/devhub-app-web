@@ -36,7 +36,7 @@ export const useSearch = (query, staticIndex) => {
           title: { boost: 4 },
           content: { boost: 1 },
           description: { boost: 1 },
-          collectionName: { boost: 2 },
+          topicName: { boost: 2 },
           labels: { boost: 2 },
           author: { boost: 2 },
         },

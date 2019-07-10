@@ -36,7 +36,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
             },
             "id": "3",
             "parent": Object {
-              "id": "collection-1",
+              "id": "topic-1",
             },
             "resource": Object {
               "path": "/design-system/Z1bGIqu3",
@@ -87,7 +87,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
             },
             "id": "2",
             "parent": Object {
-              "id": "collection-1",
+              "id": "topic-1",
             },
             "resource": Object {
               "path": "/design-system/Z1bGIqu2",
@@ -137,7 +137,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
             },
             "id": "1",
             "parent": Object {
-              "id": "collection-1",
+              "id": "topic-1",
             },
             "resource": Object {
               "path": "/design-system/Z1bGIqu1",
@@ -187,7 +187,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
             },
             "id": "4",
             "parent": Object {
-              "id": "collection-1",
+              "id": "topic-1",
             },
             "resource": Object {
               "path": "/design-system/Z1bGIqu4",
@@ -237,7 +237,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
             },
             "id": "5",
             "parent": Object {
-              "id": "collection-2",
+              "id": "topic-2",
             },
             "resource": Object {
               "path": "/design-system/Z1bGIqu5",
@@ -288,7 +288,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
             },
             "id": "6",
             "parent": Object {
-              "id": "collection-2",
+              "id": "topic-2",
             },
             "resource": Object {
               "path": "/design-system/Z1bGIqu6",

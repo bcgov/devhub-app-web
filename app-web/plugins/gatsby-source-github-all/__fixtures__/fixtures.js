@@ -208,7 +208,7 @@ const PROCESSED_FILE_HTML = {
     fileName: 'README.md',
     mediaType: 'text/markdown',
     extension: 'md',
-    collection: {
+    topic: {
       name: 'foo',
       type: 'bar',
     },
@@ -292,7 +292,7 @@ const RAW_FILE_MD = {
     fileName: 'README.md',
     mediaType: 'text/markdown',
     extension: 'md',
-    collection: {
+    topic: {
       name: 'foo',
       type: 'bar',
     },
@@ -332,7 +332,7 @@ const PROCESSED_FILE_MD = {
     mediaType: 'text/markdown',
     extension: 'md',
     globalPersona: 'Designer',
-    collection: {
+    topic: {
       name: 'foo',
       type: 'bar',
     },
@@ -371,7 +371,7 @@ const PROCESSED_FILE_TXT = {
     fileName: 'README.txt',
     mediaType: 'text/markdown',
     extension: 'txt',
-    collection: {
+    topic: {
       name: 'foo',
       type: 'bar',
     },
@@ -438,7 +438,7 @@ const REGISTRY_WITH_TOPIC = [
     attributes: {
       personas: ['Developer'],
     },
-    slug: 'collection',
+    slug: 'topic',
     template: 'overview',
     sourceProperties: {
       sources: [
@@ -623,7 +623,7 @@ const PROCESSED_WEB_SOURCE = {
     attributes: {
       persona: 'Developer',
     },
-    collection: {
+    topic: {
       name: 'web source',
       type: 'source',
     },

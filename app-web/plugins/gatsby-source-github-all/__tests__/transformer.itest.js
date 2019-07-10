@@ -131,13 +131,13 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
     mdFile.metadata = {
       ...mdFile.metadata,
       slug: 'yo yo yo',
-      collection: {
+      topic: {
         slug: 'foo',
       },
     };
 
     const {
-      metadata: { slug, collection },
+      metadata: { slug, topic },
     } = mdFile;
 
     expect(data.data.resourcePath).not.toBeDefined();
@@ -146,7 +146,7 @@ describe('Integration Tests Gatsby source github all transformer and Plugins', (
       .use(pagePathPlugin)
       .resolve();
 
-    expect(transformedFile.metadata.resourcePath).toBe(`/${collection.slug}/${slug}`);
+    expect(transformedFile.metadata.resourcePath).toBe(`/${topic.slug}/${slug}`);
   });
 
   test('transformer sets resourceType by the globalResourceType', async () => {

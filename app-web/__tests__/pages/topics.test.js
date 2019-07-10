@@ -26,7 +26,7 @@ describe('Topics Container', () => {
       allDevhubSiphon: {
         edges: nodes,
       },
-      allDevhubCollection: {
+      allDevhubTopic: {
         edges: topics,
       },
       allEventbriteEvents: {
@@ -75,7 +75,7 @@ describe('Topics Container', () => {
       allDevhubSiphon: {
         edges: nodes,
       },
-      allDevhubCollection: {
+      allDevhubTopic: {
         edges: topics,
       },
       allEventbriteEvents: {

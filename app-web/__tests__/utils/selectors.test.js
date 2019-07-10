@@ -23,7 +23,7 @@ describe('General Purpose Selectors', () => {
     const selector = selectTopicsWithResourcesGroupedByType();
     const topicWithGroupedResources = selector(TOPICS);
     const topic1Nodes = groupBy(
-      // mapping to only have id, _metadata, resource as in the future, the graphql query for AllDevhubCollection
+      // mapping to only have id, _metadata, resource as in the future, the graphql query for AllDevhubTopic
       // will be modified to query for childrenDevhubSiphon { id, _metadata, resouce }
       SIPHON_NODES.filter(node => node.parent.id === topicWithGroupedResources[0].id).map(n => ({
         id: n.id,

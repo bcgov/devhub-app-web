@@ -16,7 +16,7 @@ export const SELECT_RESOURCES_GROUPED_BY_TYPE = {
     {
       id: '3',
       parent: {
-        id: 'collection-1',
+        id: 'topic-1',
       },
       _metadata: {
         position: '000.000.002',
@@ -52,7 +52,7 @@ export const SELECT_RESOURCES_GROUPED_BY_TYPE = {
     {
       id: '2',
       parent: {
-        id: 'collection-1',
+        id: 'topic-1',
       },
       _metadata: {
         position: '000.000.001',
@@ -88,7 +88,7 @@ export const SELECT_RESOURCES_GROUPED_BY_TYPE = {
     {
       id: '1',
       parent: {
-        id: 'collection-1',
+        id: 'topic-1',
       },
       _metadata: {
         position: '000.000.000',
@@ -124,7 +124,7 @@ export const SELECT_RESOURCES_GROUPED_BY_TYPE = {
     {
       id: '4',
       parent: {
-        id: 'collection-1',
+        id: 'topic-1',
       },
       _metadata: {
         position: '000.000.003',
@@ -162,7 +162,7 @@ export const SELECT_RESOURCES_GROUPED_BY_TYPE = {
     {
       id: '5',
       parent: {
-        id: 'collection-2',
+        id: 'topic-2',
       },
       _metadata: {
         position: '001.000.000',
@@ -198,7 +198,7 @@ export const SELECT_RESOURCES_GROUPED_BY_TYPE = {
     {
       id: '6',
       parent: {
-        id: 'collection-2',
+        id: 'topic-2',
       },
       _metadata: {
         position: '001.000.001',
@@ -234,7 +234,7 @@ export const SELECT_RESOURCES_GROUPED_BY_TYPE = {
     {
       id: '7',
       parent: {
-        id: 'collection-2',
+        id: 'topic-2',
       },
       _metadata: {
         position: '001.000.001',
@@ -275,7 +275,7 @@ export const SELECT_RESOURCES_GROUPED_BY_TYPE = {
 
 export const SELECT_TOPICS_WITH_RESOURCES_GROUPED_BY_TYPE = [
   {
-    id: 'collection-1',
+    id: 'topic-1',
     type: 'default',
     title: 'Design System',
     description: 'baz',
@@ -352,7 +352,7 @@ export const SELECT_TOPICS_WITH_RESOURCES_GROUPED_BY_TYPE = [
     hasResources: true,
   },
   {
-    id: 'collection-2',
+    id: 'topic-2',
     type: 'default',
     title: 'Devhub',
     description: 'baz',

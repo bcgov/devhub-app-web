@@ -78,9 +78,9 @@ const TopicPreview = ({ title, description, link, resources, ...rest }) => (
     `}
     {...rest}
   >
-    <TopicDecorativeBar type="Collections" />
+    <TopicDecorativeBar type="Topics" />
     <TopicPreviewContainer>
-      <CardHeader type="Collections" />
+      <CardHeader type="Topics" />
       <TopicTitle clamp={2}>
         <TitleLink to={link.to}>{title}</TitleLink>
       </TopicTitle>

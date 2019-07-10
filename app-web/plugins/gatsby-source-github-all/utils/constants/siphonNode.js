@@ -58,7 +58,7 @@ const PERSONAS_LIST = Object.values(PERSONAS);
 
 const GRAPHQL_NODE_TYPE = {
   SIPHON: 'DevhubSiphon',
-  TOPIC: 'DevhubCollection',
+  TOPIC: 'DevhubTopic',
 };
 
 module.exports = {

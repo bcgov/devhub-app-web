@@ -35,14 +35,14 @@ const Main = styled.main`
 
 /**
  * returns topics container component so aslong as a search is not being done
- * @param {Array} collections list of collections also known as topics
+ * @param {Array} topics list of topics also known as topics
  * @param {Boolean} searchResultsExist
  */
-const getTopicPreviews = (collections, searchResultsExist) => {
+const getTopicPreviews = (topics, searchResultsExist) => {
   const topicsSelector = selectTopicsWithResourcesGroupedByType();
   return (
     !searchResultsExist && (
-      <TopicsContainer collections={topicsSelector(collections)} link={MAIN_NAV_ROUTES.TOPICS} />
+      <TopicsContainer topics={topicsSelector(topics)} link={MAIN_NAV_ROUTES.TOPICS} />
     )
   );
 };
@@ -97,7 +97,7 @@ export const TEST_IDS = {
 
 export const Index = ({
   data: {
-    allDevhubCollection,
+    allDevhubTopic,
     allDevhubSiphon,
     allEventbriteEvents,
     allMeetupGroup,
@@ -146,7 +146,7 @@ export const Index = ({
     content = (
       <Aux>
         {getTopicPreviews(
-          flattenGatsbyGraphQL(allDevhubCollection.edges),
+          flattenGatsbyGraphQL(allDevhubTopic.edges),
           windowHasQuery && !queryIsEmpty,
         )}
       </Aux>
@@ -161,7 +161,7 @@ export const Index = ({
     content = (
       <Aux>
         {getTopicPreviews(
-          flattenGatsbyGraphQL(allDevhubCollection.edges),
+          flattenGatsbyGraphQL(allDevhubTopic.edges),
           windowHasQuery && !queryIsEmpty,
         )}
         {siphonResources}

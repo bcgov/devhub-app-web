@@ -44,7 +44,7 @@ class SourceGithubMarkdownDefault extends React.Component {
 
   render() {
     const {
-      data: { devhubSiphon, nav, collection, communityEvents },
+      data: { devhubSiphon, nav, topic, communityEvents },
       location,
     } = this.props;
     // bind the devhub siphon data to the preview node
@@ -56,7 +56,7 @@ class SourceGithubMarkdownDefault extends React.Component {
     }).Compiler;
     let navigationItems = nav.items;
 
-    if (collection.name === TOPICS.COMMUNITY_AND_EVENTS) {
+    if (topic.name === TOPICS.COMMUNITY_AND_EVENTS) {
       const eventbriteNavItems = flattenGatsbyGraphQL(communityEvents.edges);
       const currentEvents = eventbriteNavItems
         .filter(e => e.start.daysFromNow <= 0)
@@ -81,16 +81,12 @@ class SourceGithubMarkdownDefault extends React.Component {
     return (
       <Layout>
         <div>
-          <Masthead
-            type="Collections"
-            title={collection.name}
-            description={collection.description}
-          />
+          <Masthead type="Topics" title={topic.name} description={topic.description} />
           <Main>
             <SidePanel>{navigation}</SidePanel>
             <SideDrawerToggleButton onClick={() => this.toggleMenu(true)}>
               <FontAwesomeIcon icon={faBars} style={{ color: '#026' }} />{' '}
-              <span>{collection.name} Content</span>
+              <span>{topic.name} Content</span>
             </SideDrawerToggleButton>
             <div className={styles.MarkdownBody}>
               {/* 
@@ -111,7 +107,7 @@ class SourceGithubMarkdownDefault extends React.Component {
         </div>
         <SideDrawer
           show={this.state.sideDrawerToggled}
-          title={`${collection.name} Content`}
+          title={`${topic.name} Content`}
           closeDrawer={() => this.toggleMenu(false)}
         >
           {navigation}
@@ -122,7 +118,7 @@ class SourceGithubMarkdownDefault extends React.Component {
 }
 
 export const devhubSiphonMarkdown = graphql`
-  query devhubSiphonMarkdownDefault($id: String!, $collectionId: String!) {
+  query devhubSiphonMarkdownDefault($id: String!, $topicId: String!) {
     devhubSiphon(id: { eq: $id }) {
       name
       id
@@ -151,11 +147,11 @@ export const devhubSiphonMarkdown = graphql`
       fileType
       path
     }
-    collection: devhubCollection(id: { eq: $collectionId }) {
+    topic: devhubTopic(id: { eq: $topicId }) {
       name
       description
     }
-    nav: devhubCollection(id: { eq: $collectionId }) {
+    nav: devhubTopic(id: { eq: $topicId }) {
       items: childrenDevhubSiphon {
         ...NavigationFragment
       }

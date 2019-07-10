@@ -91,9 +91,7 @@ const markdownFrontmatterPlugin = (extension, file) => {
       // if propery required and frontmatter doesn't have it
       if (property.required && valueIsInvalid) {
         throw new Error(
-          `\nFrontmatter key '${key}' is required but ${file.metadata.fileName} for source ${
-            file.metadata.source
-          } is missing it and will be ignored`,
+          `\nFrontmatter key '${key}' is required but ${file.metadata.fileName} for source ${file.metadata.source} is missing it and will be ignored`,
         );
         // is there a defaultable value we can provide
       } else if (valueIsInvalid && DEFAULTS[key]) {
@@ -136,8 +134,8 @@ const pagePathPlugin = (extension, file) => {
 
   let pagePath = file.metadata.source;
 
-  if (file.metadata.collection && file.metadata.collection.slug) {
-    pagePath = file.metadata.collection.slug;
+  if (file.metadata.topic && file.metadata.topic.slug) {
+    pagePath = file.metadata.topic.slug;
   }
 
   if (file.metadata.slug) {
@@ -152,7 +150,7 @@ const pagePathPlugin = (extension, file) => {
   //   file.html_url,
   // );
 
-  // new implementation under going testing is a page path based on collection slug / resource slug
+  // new implementation under going testing is a page path based on topic slug / resource slug
   file.metadata.resourcePath = `/${pagePath}`;
   return file;
 };
@@ -328,9 +326,7 @@ const markdownSlugPlugin = (extension, file) => {
     } catch (e) {
       // throwing allows for a more detailed message.
       const produceSummary = metadata =>
-        `Source: ${metadata.sourceName}, fileName: ${metadata.fileName}, title: ${
-          metadata.resourceTitle
-        }`;
+        `Source: ${metadata.sourceName}, fileName: ${metadata.fileName}, title: ${metadata.resourceTitle}`;
 
       const currentSummary = produceSummary(currentResource);
       const conflictingSummary = produceSummary(file.metadata);

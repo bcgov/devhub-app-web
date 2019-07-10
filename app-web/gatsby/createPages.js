@@ -111,7 +111,7 @@ const createResourceComponentPages = async (createPage, graphql) => {
   // main graphql query here
   const devhubData = await graphql(`
     {
-      allDevhubCollection {
+      allDevhubTopic {
         edges {
           node {
             id
@@ -147,7 +147,7 @@ const createResourceComponentPages = async (createPage, graphql) => {
   // and will be treated as so
   // loop over topics and then nodes
 
-  devhubData.data.allDevhubCollection.edges.forEach(({ node }) => {
+  devhubData.data.allDevhubTopic.edges.forEach(({ node }) => {
     const topic = node;
     // 'node' is the property that holds the topic object after the graphql query has prrocessed
     node.childrenDevhubSiphon.forEach(siphon => {
@@ -179,8 +179,8 @@ const createResourceComponentPages = async (createPage, graphql) => {
             context: {
               // Data passed to context is available in page queries as GraphQL variables.
               id: siphon.id,
-              collection: topic.name,
-              collectionId: topic.id,
+              topic: topic.name,
+              topicId: topic.id,
             },
           });
         } catch (e) {

@@ -26,7 +26,7 @@ const withResourceQuery = WrappedComponent => () => props => (
         siteSearchIndex {
           index
         }
-        allDevhubCollection {
+        allDevhubTopic {
           edges {
             node {
               id
@@ -156,13 +156,10 @@ const withResourceQuery = WrappedComponent => () => props => (
       }
     `}
     render={data => {
-      const sortedTopics = sortDevhubTopicsAfterSelectedTopics(data.allDevhubCollection.edges);
+      const sortedTopics = sortDevhubTopicsAfterSelectedTopics(data.allDevhubTopic.edges);
 
       return (
-        <WrappedComponent
-          data={{ ...data, allDevhubCollection: { edges: sortedTopics } }}
-          {...props}
-        />
+        <WrappedComponent data={{ ...data, allDevhubTopic: { edges: sortedTopics } }} {...props} />
       );
     }}
   />

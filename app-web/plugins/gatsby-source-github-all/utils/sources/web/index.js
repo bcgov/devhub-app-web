@@ -47,7 +47,7 @@ const fetchSourceWeb = async ({
   name,
   sourceProperties,
   attributes,
-  collection,
+  topic,
   id,
 }) => {
   const { url } = sourceProperties;
@@ -64,7 +64,7 @@ const fetchSourceWeb = async ({
         sourceType,
         name,
         ...attributes,
-        collection,
+        topic,
         resourcePath: url,
         originalResourceLocation: url,
         fileName: null,

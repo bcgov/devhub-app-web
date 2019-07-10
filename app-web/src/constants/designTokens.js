@@ -96,7 +96,7 @@ export const DEVHUB_PALETTE = {
   [RESOURCE_TYPES.DOCUMENTATION]: '#246BD1',
   [RESOURCE_TYPES.PEOPLE]: '#E17039',
   [RESOURCE_TYPES.SELF_SERVICE_TOOLS]: '#F3BA45',
-  Collections: '#444',
+  Topics: '#444',
   [RESOURCE_TYPES.REPOSITORIES]: '#6e5494',
   Events: '#f44b42',
   link: DS_PALETTE.links.blue,

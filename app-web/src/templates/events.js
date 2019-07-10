@@ -71,7 +71,7 @@ export const formatMeetUps = meetups => {
 };
 
 export const EventsPage = ({
-  data: { allEventbriteEvents, allDevhubCollection, meetupGroup, allMeetupGroup },
+  data: { allEventbriteEvents, allDevhubTopic, meetupGroup, allMeetupGroup },
 }) => {
   const events = flattenGatsbyGraphQL(allEventbriteEvents.edges);
   const meetUps = formatMeetUps(
@@ -83,7 +83,7 @@ export const EventsPage = ({
   const currentEvents = formatEvents(events.filter(e => e.start.daysFromNow <= 0));
   const currentMeetups = meetUps.filter(e => e.start.daysFromNow <= 0);
   //Get all the cards on the site
-  const cards = flattenGatsbyGraphQL(allDevhubCollection.edges);
+  const cards = flattenGatsbyGraphQL(allDevhubTopic.edges);
   //filter to just get the cards for the Community and Events topic
   const communityCards = cards
     .filter(e => e.name === TOPICS.COMMUNITY_AND_EVENTS)
@@ -220,7 +220,7 @@ export const EventData = graphql`
         }
       }
     }
-    allDevhubCollection {
+    allDevhubTopic {
       edges {
         node {
           id

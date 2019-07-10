@@ -2,9 +2,9 @@ import { arrayToMapByProp } from '../src/utils/dataHelpers';
 import { RESOURCE_TYPES } from '../src/constants/ui';
 
 const IDS = {
-  DESIGN_SYSTEM: 'collection-1',
-  DEVHUB: 'collection-2',
-  EVENT: 'collections-3',
+  DESIGN_SYSTEM: 'topic-1',
+  DEVHUB: 'topic-2',
+  EVENT: 'topics-3',
 };
 
 // SIPHON NODES

@@ -57,7 +57,7 @@ const validateSourceGithub = source =>
  * @returns {Array} The array of files
  */
 const fetchSourceGithub = async (
-  { sourceType, resourceType, name, sourceProperties, attributes, collection, id },
+  { sourceType, resourceType, name, sourceProperties, attributes, topic, id },
   token,
 ) => {
   const { repo, owner, branch, url } = sourceProperties;
@@ -96,7 +96,7 @@ const fetchSourceGithub = async (
         resourceType,
         f.html_url,
         personas,
-        collection,
+        topic,
         { branch: 'master', ...sourceProperties }, // by default no branch means master, we are setting it explicitly so it exists in ql schema
         id,
       ),

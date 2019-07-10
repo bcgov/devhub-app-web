@@ -59,8 +59,8 @@ jest.mock('../utils/helpers');
 jest.mock('crypto');
 jest.mock('../utils/fetchSource.js');
 fetchFromSource.mockReturnValue(Promise.resolve([PROCESSED_WEB_SOURCE]));
-newTopic.mockImplementation((collection, props) => ({ ...collection, ...props }));
-assignPositionToTopic.mockImplementation(collection => () => ({
+newTopic.mockImplementation((topic, props) => ({ ...topic, ...props }));
+assignPositionToTopic.mockImplementation(topic => () => ({
   metadata: { position: [0] },
 }));
 
@@ -156,7 +156,7 @@ describe('gatsby source github all plugin', () => {
     const file = {
       metadata: {
         position: [1, 1, 1],
-        collection: {
+        topic: {
           name: 'foo',
           type: TOPIC_TYPES.CURATED,
         },
@@ -456,7 +456,7 @@ describe('gatsby source github all plugin', () => {
       file: 'file.md',
     };
 
-    const data = await getContentForTopic(topicSource, { token: 123 }, 'collection name');
+    const data = await getContentForTopic(topicSource, { token: 123 }, 'topic name');
     expect(data).toEqual(PROCESSED_FILE_MD);
   });
 
@@ -473,7 +473,7 @@ describe('gatsby source github all plugin', () => {
       file: 'file.md',
     };
 
-    const data = await getContentForTopic(topicSource, { token: 123 }, 'collection name');
+    const data = await getContentForTopic(topicSource, { token: 123 }, 'topic name');
     expect(data).toEqual({});
   });
 });

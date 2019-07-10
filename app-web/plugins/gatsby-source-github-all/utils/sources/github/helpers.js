@@ -168,7 +168,7 @@ const filterFilesFromDirectories = entries => {
  * @param {String} globalResourceType // the global resource type assigned frmo the registry item.resourceType
  * @param {String} originalResourceLocation // the original path to the resource (ie path to file in repository)
  * @param {Array} globalPersonas // the global personas assigned from the regsitry item.attributes.personas
- * @param {Object} collection // the collection details including props like collection.type, collection.name etc also called a topic
+ * @param {Object} topic // the topic details including props like topic.type, topic.name etc also called a topic
  * @param {Object} sourceProperties // the source properties inherited by the file describing what arguments were used to
  * obtain the file
  */
@@ -183,7 +183,7 @@ const applyBaseMetadata = (
   globalResourceType,
   originalResourceLocation,
   globalPersonas,
-  collection,
+  topic,
   sourceProperties,
   id,
 ) => {
@@ -207,7 +207,7 @@ const applyBaseMetadata = (
       globalResourceType,
       originalResourceLocation,
       globalPersonas,
-      collection,
+      topic,
       sourceProperties,
       id,
     },
