@@ -31,7 +31,7 @@ const Card = ({ type, title, description, image, link, paths, ...rest }) => {
   let [showPaths, updateBool] = useState(false);
   let isExternal = !!validUrl.isWebUri(link);
 
-  //This checks if the given card is shown in serveral collections or if its an external link
+  //This checks if the given card is shown in serveral topics or if its an external link
   //if its neither, we do not want to show the paths/there wouldnt be any
   if (paths !== undefined && paths.length > 1 && !isExternal) {
     return (

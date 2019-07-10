@@ -1,9 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Touching things up and updating tests + snapshots
 exports[`Resource Preview Component it matches snapshot 1`] = `
 <Container
   data-testid="resource-preview-container"
@@ -18,319 +14,54 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
     </StyledLink>
   </Title>
   <ResourceContainer>
-<<<<<<< HEAD
-    <CardWrapper
-      key="3"
-    >
-      <Card
-        description="What the Design System is and how it works."
-        event={
-          Object {
-            "_metadata": Object {
-              "position": "000.000.002",
-            },
-            "attributes": Object {
-              "personas": Array [
-                "Designer",
-              ],
-            },
-            "childMarkdownRemark": Object {
-              "frontmatter": Object {
-                "pageOnly": false,
-              },
-            },
-            "id": "3",
-            "parent": Object {
-              "id": "topic-1",
-            },
-            "resource": Object {
-              "path": "/design-system/Z1bGIqu3",
-              "type": "Components",
-            },
-            "source": Object {
-              "displayName": "Design System",
-            },
-            "unfurl": Object {
-              "author": "ksingbeil",
-              "data1": "",
-              "data2": "",
-              "description": "What the Design System is and how it works.",
-              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
-              "label1": "",
-              "label2": "",
-              "title": "About",
-              "type": "markdown",
-            },
-          }
-        }
-        image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-        link="/design-system/Z1bGIqu3"
-        title="About"
-        type="Components"
-      />
-    </CardWrapper>
-    <CardWrapper
-      key="2"
-    >
-      <Card
-        description="What the Design System is and how it works."
-        event={
-          Object {
-            "_metadata": Object {
-              "position": "000.000.001",
-            },
-            "attributes": Object {
-              "personas": Array [
-                "Developer",
-                "Designer",
-              ],
-            },
-            "childMarkdownRemark": Object {
-              "frontmatter": Object {
-                "pageOnly": false,
-              },
-            },
-            "id": "2",
-            "parent": Object {
-              "id": "topic-1",
-            },
-            "resource": Object {
-              "path": "/design-system/Z1bGIqu2",
-              "type": "Components",
-            },
-            "source": Object {
-              "displayName": "Design System",
-            },
-            "unfurl": Object {
-              "author": "ksingbeil",
-              "data1": "",
-              "data2": "",
-              "description": "What the Design System is and how it works.",
-              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
-              "label1": "",
-              "label2": "",
-              "title": "About",
-              "type": "markdown",
-            },
-          }
-        }
-        image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-        link="/design-system/Z1bGIqu2"
-        title="About"
-        type="Components"
-      />
-    </CardWrapper>
-    <CardWrapper
-      key="1"
-    >
-      <Card
-        description="What the Design System is and how it works."
-        event={
-          Object {
-            "_metadata": Object {
-              "position": "000.000.000",
-            },
-            "attributes": Object {
-              "personas": Array [
-                "Designer",
-              ],
-            },
-            "childMarkdownRemark": Object {
-              "frontmatter": Object {
-                "pageOnly": false,
-              },
-            },
-            "id": "1",
-            "parent": Object {
-              "id": "topic-1",
-            },
-            "resource": Object {
-              "path": "/design-system/Z1bGIqu1",
-              "type": "Components",
-            },
-            "source": Object {
-              "displayName": "Design System",
-            },
-            "unfurl": Object {
-              "author": "ksingbeil",
-              "data1": "",
-              "data2": "",
-              "description": "What the Design System is and how it works.",
-              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
-              "label1": "",
-              "label2": "",
-              "title": "About",
-              "type": "markdown",
-            },
-          }
-        }
-        image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-        link="/design-system/Z1bGIqu1"
-        title="About"
-        type="Components"
-      />
-    </CardWrapper>
-    <CardWrapper
-      key="4"
-    >
-      <Card
-        description="What the Design System is and how it works."
-        event={
-          Object {
-            "_metadata": Object {
-              "position": "000.000.003",
-            },
-            "attributes": Object {
-              "personas": Array [
-                "Developer",
-              ],
-            },
-            "childMarkdownRemark": Object {
-              "frontmatter": Object {
-                "pageOnly": false,
-              },
-            },
-            "id": "4",
-            "parent": Object {
-              "id": "topic-1",
-            },
-            "resource": Object {
-              "path": "/design-system/Z1bGIqu4",
-              "type": "Components",
-            },
-            "source": Object {
-              "displayName": "Design System",
-            },
-            "unfurl": Object {
-              "author": "ksingbeil",
-              "data1": "",
-              "data2": "",
-              "description": "What the Design System is and how it works.",
-              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
-              "label1": "",
-              "label2": "",
-              "title": "About",
-              "type": "markdown",
-            },
-          }
-        }
-        image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-        link="/design-system/Z1bGIqu4"
-        title="About"
-        type="Components"
-      />
-    </CardWrapper>
-    <CardWrapper
-      key="5"
-    >
-      <Card
-        description="What the Design System is and how it works."
-        event={
-          Object {
-            "_metadata": Object {
-              "position": "001.000.000",
-            },
-            "attributes": Object {
-              "personas": Array [
-                "Developer",
-              ],
-            },
-            "childMarkdownRemark": Object {
-              "frontmatter": Object {
-                "pageOnly": false,
-              },
-            },
-            "id": "5",
-            "parent": Object {
-              "id": "topic-2",
-            },
-            "resource": Object {
-              "path": "/design-system/Z1bGIqu5",
-              "type": "Documentation",
-            },
-            "source": Object {
-              "displayName": "Design System",
-            },
-            "unfurl": Object {
-              "author": "ksingbeil",
-              "data1": "",
-              "data2": "",
-              "description": "What the Design System is and how it works.",
-              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
-              "label1": "",
-              "label2": "",
-              "title": "About",
-              "type": "markdown",
-            },
-          }
-        }
-        image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-        link="/design-system/Z1bGIqu5"
-        title="About"
-        type="Documentation"
-      />
-    </CardWrapper>
-    <CardWrapper
-      key="6"
-    >
-      <Card
-        description="What the Design System is and how it works."
-        event={
-          Object {
-            "_metadata": Object {
-              "position": "001.000.001",
-            },
-            "attributes": Object {
-              "personas": Array [
-                "Designer",
-                "Developer",
-              ],
-            },
-            "childMarkdownRemark": Object {
-              "frontmatter": Object {
-                "pageOnly": false,
-              },
-            },
-            "id": "6",
-            "parent": Object {
-              "id": "topic-2",
-            },
-            "resource": Object {
-              "path": "/design-system/Z1bGIqu6",
-              "type": "Documentation",
-            },
-            "source": Object {
-              "displayName": "Design System",
-            },
-            "unfurl": Object {
-              "author": "ksingbeil",
-              "data1": "",
-              "data2": "",
-              "description": "What the Design System is and how it works.",
-              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
-              "label1": "",
-              "label2": "",
-              "title": "About",
-              "type": "markdown",
-            },
-          }
-        }
-        image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-        link="/design-system/Z1bGIqu6"
-        title="About"
-        type="Documentation"
-      />
-    </CardWrapper>
-=======
     <Card
       css={
         Object {
-          "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJlc291cmNlUHJldmlldy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUF3RGtCIiwiZmlsZSI6IlJlc291cmNlUHJldmlldy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG5Db3B5cmlnaHQgMjAxOSBQcm92aW5jZSBvZiBCcml0aXNoIENvbHVtYmlhXG5cbkxpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSBcIkxpY2Vuc2VcIik7XG55b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdCBpbiBjb21wbGlhbmNlIHdpdGggdGhlIExpY2Vuc2UuXG5Zb3UgbWF5IG9idGFpbiBhIGNvcHkgb2YgdGhlIExpY2Vuc2UgYXQgXG5cbiAgIGh0dHA6Ly93d3cuYXBhY2hlLm9yZy9saWNlbnNlcy9MSUNFTlNFLTIuMFxuXG5Vbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlXG5kaXN0cmlidXRlZCB1bmRlciB0aGUgTGljZW5zZSBpcyBkaXN0cmlidXRlZCBvbiBhbiBcIkFTIElTXCIgQkFTSVMsXG5XSVRIT1VUIFdBUlJBTlRJRVMgT1IgQ09ORElUSU9OUyBPRiBBTlkgS0lORCwgZWl0aGVyIGV4cHJlc3Mgb3IgaW1wbGllZC5cblNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmRcbmxpbWl0YXRpb25zIHVuZGVyIHRoZSBMaWNlbnNlLlxuXG5DcmVhdGVkIGJ5IFBhdHJpY2sgU2ltb25pYW5cbiovXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJztcbmltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkJztcblxuaW1wb3J0IHsgRU1PVElPTl9CT09UU1RSQVBfQlJFQUtQT0lOVFMgfSBmcm9tICcuLi8uLi9jb25zdGFudHMvZGVzaWduVG9rZW5zJztcbmltcG9ydCB7IENoZXZyb25MaW5rIH0gZnJvbSAnLi4vVUkvTGluayc7XG5pbXBvcnQgeyBDb250YWluZXIsIFRpdGxlLCBTdHlsZWRMaW5rLCBMaW5rQ29udGFpbmVyIH0gZnJvbSAnLi9pbmRleCc7XG5pbXBvcnQgQ2FyZCBmcm9tICcuLi9DYXJkcy9DYXJkL0NhcmQnO1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSc7XG5pbXBvcnQgeyBGaW5kUGF0aHMgfSBmcm9tICcuLi9DYXJkcy9DYXJkL1BhdGhCYXInO1xuXG5leHBvcnQgY29uc3QgQ2FyZFdyYXBwZXIgPSBzdHlsZWQuZGl2YFxuICBtYXJnaW46IDZweCA5cHg7XG5gO1xuXG5leHBvcnQgY29uc3QgUmVzb3VyY2VDb250YWluZXIgPSBzdHlsZWQuZGl2YFxuICBwYWRkaW5nOiAxNXB4IDA7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZmxvdzogcm93IHdyYXA7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAke0VNT1RJT05fQk9PVFNUUkFQX0JSRUFLUE9JTlRTLnNtfSB7XG4gICAganVzdGlmeS1jb250ZW50OiBmbGV4LXN0YXJ0O1xuICB9XG5gO1xuXG4vLyB1c2VkIGJ5IHJlYWN0LXRlc3RpbmctbGlicmFyeSBkb20gcXVlcnlpbmdcbmV4cG9ydCBjb25zdCBURVNUX0lEUyA9IHtcbiAgY29udGFpbmVyOiAncmVzb3VyY2UtcHJldmlldy1jb250YWluZXInLFxufTtcblxuLy8gdGhpcyBpcyBhIHdyYXBwZXIgY29tcG9uZW50IHRoYXQgZW5jYXBzdWxhdGVzIGNhcmRzIGZvciBjb2xsZWN0aW9ucyBvciBvdGhlciBzaXplc1xuZXhwb3J0IGNvbnN0IFJlc291cmNlUHJldmlldyA9ICh7IHRpdGxlLCBsaW5rLCByZXNvdXJjZXMgfSkgPT4gKFxuICA8Q29udGFpbmVyIGRhdGEtdGVzdGlkPXtURVNUX0lEUy5jb250YWluZXJ9PlxuICAgIDxUaXRsZT5cbiAgICAgIDxTdHlsZWRMaW5rIHRvPXtsaW5rLnRvfT57dGl0bGV9PC9TdHlsZWRMaW5rPlxuICAgIDwvVGl0bGU+XG4gICAgPFJlc291cmNlQ29udGFpbmVyPlxuICAgICAge3Jlc291cmNlcy5zbGljZSgwLCA0KS5tYXAociA9PiAoXG4gICAgICAgIDxDYXJkXG4gICAgICAgICAgY3NzPXtjc3NgXG4gICAgICAgICAgICBtYXJnaW46IDQycHggM3B4O1xuICAgICAgICAgIGB9XG4gICAgICAgICAga2V5PXtyLmlkfVxuICAgICAgICAgIHR5cGU9e3IucmVzb3VyY2UudHlwZX1cbiAgICAgICAgICB0aXRsZT17ci51bmZ1cmwudGl0bGV9XG4gICAgICAgICAgZGVzY3JpcHRpb249e3IudW5mdXJsLmRlc2NyaXB0aW9ufVxuICAgICAgICAgIGltYWdlPXtyLnVuZnVybC5pbWFnZX1cbiAgICAgICAgICBsaW5rPXtyLnJlc291cmNlLnBhdGh9XG4gICAgICAgICAgcGF0aHM9e0ZpbmRQYXRocyhyLnVuZnVybC50aXRsZSl9XG4gICAgICAgIC8+XG4gICAgICApKX1cbiAgICA8L1Jlc291cmNlQ29udGFpbmVyPlxuICAgIDxMaW5rQ29udGFpbmVyPlxuICAgICAgPENoZXZyb25MaW5rIHRvPXtsaW5rLnRvfT57bGluay50ZXh0fTwvQ2hldnJvbkxpbms+XG4gICAgPC9MaW5rQ29udGFpbmVyPlxuICA8L0NvbnRhaW5lcj5cbik7XG5cblJlc291cmNlUHJldmlldy5wcm9wVHlwZXMgPSB7XG4gIHRpdGxlOiBQcm9wVHlwZXMuc3RyaW5nLmlzUmVxdWlyZWQsXG4gIGxpbms6IFByb3BUeXBlcy5zaGFwZSh7XG4gICAgdGV4dDogUHJvcFR5cGVzLnN0cmluZy5pc1JlcXVpcmVkLFxuICAgIHRvOiBQcm9wVHlwZXMuc3RyaW5nLmlzUmVxdWlyZWQsXG4gIH0pLFxuICByZXNvdXJjZXM6IFByb3BUeXBlcy5hcnJheU9mKFByb3BUeXBlcy5vYmplY3QpLmlzUmVxdWlyZWQsXG59O1xuXG5leHBvcnQgZGVmYXVsdCBSZXNvdXJjZVByZXZpZXc7XG4iXX0= */",
+          "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJlc291cmNlUHJldmlldy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUF3RGtCIiwiZmlsZSI6IlJlc291cmNlUHJldmlldy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG5Db3B5cmlnaHQgMjAxOSBQcm92aW5jZSBvZiBCcml0aXNoIENvbHVtYmlhXG5cbkxpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSBcIkxpY2Vuc2VcIik7XG55b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdCBpbiBjb21wbGlhbmNlIHdpdGggdGhlIExpY2Vuc2UuXG5Zb3UgbWF5IG9idGFpbiBhIGNvcHkgb2YgdGhlIExpY2Vuc2UgYXQgXG5cbiAgIGh0dHA6Ly93d3cuYXBhY2hlLm9yZy9saWNlbnNlcy9MSUNFTlNFLTIuMFxuXG5Vbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlXG5kaXN0cmlidXRlZCB1bmRlciB0aGUgTGljZW5zZSBpcyBkaXN0cmlidXRlZCBvbiBhbiBcIkFTIElTXCIgQkFTSVMsXG5XSVRIT1VUIFdBUlJBTlRJRVMgT1IgQ09ORElUSU9OUyBPRiBBTlkgS0lORCwgZWl0aGVyIGV4cHJlc3Mgb3IgaW1wbGllZC5cblNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmRcbmxpbWl0YXRpb25zIHVuZGVyIHRoZSBMaWNlbnNlLlxuXG5DcmVhdGVkIGJ5IFBhdHJpY2sgU2ltb25pYW5cbiovXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJztcbmltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkJztcblxuaW1wb3J0IHsgRU1PVElPTl9CT09UU1RSQVBfQlJFQUtQT0lOVFMgfSBmcm9tICcuLi8uLi9jb25zdGFudHMvZGVzaWduVG9rZW5zJztcbmltcG9ydCB7IENoZXZyb25MaW5rIH0gZnJvbSAnLi4vVUkvTGluayc7XG5pbXBvcnQgeyBDb250YWluZXIsIFRpdGxlLCBTdHlsZWRMaW5rLCBMaW5rQ29udGFpbmVyIH0gZnJvbSAnLi9pbmRleCc7XG5pbXBvcnQgQ2FyZCBmcm9tICcuLi9DYXJkcy9DYXJkL0NhcmQnO1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSc7XG5pbXBvcnQgeyBGaW5kUGF0aHMgfSBmcm9tICcuLi9DYXJkcy9DYXJkL1BhdGhCYXInO1xuXG5leHBvcnQgY29uc3QgQ2FyZFdyYXBwZXIgPSBzdHlsZWQuZGl2YFxuICBtYXJnaW46IDZweCA5cHg7XG5gO1xuXG5leHBvcnQgY29uc3QgUmVzb3VyY2VDb250YWluZXIgPSBzdHlsZWQuZGl2YFxuICBwYWRkaW5nOiAxNXB4IDA7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZmxvdzogcm93IHdyYXA7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAke0VNT1RJT05fQk9PVFNUUkFQX0JSRUFLUE9JTlRTLnNtfSB7XG4gICAganVzdGlmeS1jb250ZW50OiBmbGV4LXN0YXJ0O1xuICB9XG5gO1xuXG4vLyB1c2VkIGJ5IHJlYWN0LXRlc3RpbmctbGlicmFyeSBkb20gcXVlcnlpbmdcbmV4cG9ydCBjb25zdCBURVNUX0lEUyA9IHtcbiAgY29udGFpbmVyOiAncmVzb3VyY2UtcHJldmlldy1jb250YWluZXInLFxufTtcblxuLy8gdGhpcyBpcyBhIHdyYXBwZXIgY29tcG9uZW50IHRoYXQgZW5jYXBzdWxhdGVzIGNhcmRzIGZvciB0b3BpY3Mgb3Igb3RoZXIgc2l6ZXNcbmV4cG9ydCBjb25zdCBSZXNvdXJjZVByZXZpZXcgPSAoeyB0aXRsZSwgbGluaywgcmVzb3VyY2VzIH0pID0+IChcbiAgPENvbnRhaW5lciBkYXRhLXRlc3RpZD17VEVTVF9JRFMuY29udGFpbmVyfT5cbiAgICA8VGl0bGU+XG4gICAgICA8U3R5bGVkTGluayB0bz17bGluay50b30+e3RpdGxlfTwvU3R5bGVkTGluaz5cbiAgICA8L1RpdGxlPlxuICAgIDxSZXNvdXJjZUNvbnRhaW5lcj5cbiAgICB7cmVzb3VyY2VzLnNsaWNlKDAsIDYpLm1hcChyID0+IChcbiAgICAgICAgPENhcmRcbiAgICAgICAgICBjc3M9e2Nzc2BcbiAgICAgICAgICAgIG1hcmdpbjogNDJweCAzcHg7XG4gICAgICAgICAgYH1cbiAgICAgICAgICBrZXk9e3IuaWR9XG4gICAgICAgICAgdHlwZT17ci5yZXNvdXJjZS50eXBlfVxuICAgICAgICAgIHRpdGxlPXtyLnVuZnVybC50aXRsZX1cbiAgICAgICAgICBkZXNjcmlwdGlvbj17ci51bmZ1cmwuZGVzY3JpcHRpb259XG4gICAgICAgICAgaW1hZ2U9e3IudW5mdXJsLmltYWdlfVxuICAgICAgICAgIGxpbms9e3IucmVzb3VyY2UucGF0aH1cbiAgICAgICAgICBldmVudD17cn1cbiAgICAgICAgICBwYXRocz17RmluZFBhdGhzKHIudW5mdXJsLnRpdGxlKX1cbiAgICAgICAgLz5cbiAgICAgICkpfVxuICAgIDwvUmVzb3VyY2VDb250YWluZXI+XG4gICAgPExpbmtDb250YWluZXI+XG4gICAgICA8Q2hldnJvbkxpbmsgdG89e2xpbmsudG99PntsaW5rLnRleHR9PC9DaGV2cm9uTGluaz5cbiAgICA8L0xpbmtDb250YWluZXI+XG4gIDwvQ29udGFpbmVyPlxuKTtcblxuUmVzb3VyY2VQcmV2aWV3LnByb3BUeXBlcyA9IHtcbiAgdGl0bGU6IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcbiAgbGluazogUHJvcFR5cGVzLnNoYXBlKHtcbiAgICB0ZXh0OiBQcm9wVHlwZXMuc3RyaW5nLmlzUmVxdWlyZWQsXG4gICAgdG86IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcbiAgfSksXG4gIHJlc291cmNlczogUHJvcFR5cGVzLmFycmF5T2YoUHJvcFR5cGVzLm9iamVjdCkuaXNSZXF1aXJlZCxcbn07XG5cbmV4cG9ydCBkZWZhdWx0IFJlc291cmNlUHJldmlldztcbiJdfQ== */",
           "name": "114v0ed-ResourcePreview",
           "styles": "margin:42px 3px;label:ResourcePreview;",
         }
       }
       description="What the Design System is and how it works."
+      event={
+        Object {
+          "_metadata": Object {
+            "position": "000.000.002",
+          },
+          "attributes": Object {
+            "personas": Array [
+              "Designer",
+            ],
+          },
+          "childMarkdownRemark": Object {
+            "frontmatter": Object {
+              "pageOnly": false,
+            },
+          },
+          "id": "3",
+          "parent": Object {
+            "id": "topic-1",
+          },
+          "resource": Object {
+            "path": "/design-system/Z1bGIqu3",
+            "type": "Components",
+          },
+          "source": Object {
+            "displayName": "Design System",
+          },
+          "unfurl": Object {
+            "author": "ksingbeil",
+            "data1": "",
+            "data2": "",
+            "description": "What the Design System is and how it works.",
+            "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+            "label1": "",
+            "label2": "",
+            "title": "About",
+            "type": "markdown",
+          },
+        }
+      }
       image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
       key="3"
       link="/design-system/Z1bGIqu3"
@@ -341,12 +72,52 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
     <Card
       css={
         Object {
-          "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJlc291cmNlUHJldmlldy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUF3RGtCIiwiZmlsZSI6IlJlc291cmNlUHJldmlldy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG5Db3B5cmlnaHQgMjAxOSBQcm92aW5jZSBvZiBCcml0aXNoIENvbHVtYmlhXG5cbkxpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSBcIkxpY2Vuc2VcIik7XG55b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdCBpbiBjb21wbGlhbmNlIHdpdGggdGhlIExpY2Vuc2UuXG5Zb3UgbWF5IG9idGFpbiBhIGNvcHkgb2YgdGhlIExpY2Vuc2UgYXQgXG5cbiAgIGh0dHA6Ly93d3cuYXBhY2hlLm9yZy9saWNlbnNlcy9MSUNFTlNFLTIuMFxuXG5Vbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlXG5kaXN0cmlidXRlZCB1bmRlciB0aGUgTGljZW5zZSBpcyBkaXN0cmlidXRlZCBvbiBhbiBcIkFTIElTXCIgQkFTSVMsXG5XSVRIT1VUIFdBUlJBTlRJRVMgT1IgQ09ORElUSU9OUyBPRiBBTlkgS0lORCwgZWl0aGVyIGV4cHJlc3Mgb3IgaW1wbGllZC5cblNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmRcbmxpbWl0YXRpb25zIHVuZGVyIHRoZSBMaWNlbnNlLlxuXG5DcmVhdGVkIGJ5IFBhdHJpY2sgU2ltb25pYW5cbiovXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJztcbmltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkJztcblxuaW1wb3J0IHsgRU1PVElPTl9CT09UU1RSQVBfQlJFQUtQT0lOVFMgfSBmcm9tICcuLi8uLi9jb25zdGFudHMvZGVzaWduVG9rZW5zJztcbmltcG9ydCB7IENoZXZyb25MaW5rIH0gZnJvbSAnLi4vVUkvTGluayc7XG5pbXBvcnQgeyBDb250YWluZXIsIFRpdGxlLCBTdHlsZWRMaW5rLCBMaW5rQ29udGFpbmVyIH0gZnJvbSAnLi9pbmRleCc7XG5pbXBvcnQgQ2FyZCBmcm9tICcuLi9DYXJkcy9DYXJkL0NhcmQnO1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSc7XG5pbXBvcnQgeyBGaW5kUGF0aHMgfSBmcm9tICcuLi9DYXJkcy9DYXJkL1BhdGhCYXInO1xuXG5leHBvcnQgY29uc3QgQ2FyZFdyYXBwZXIgPSBzdHlsZWQuZGl2YFxuICBtYXJnaW46IDZweCA5cHg7XG5gO1xuXG5leHBvcnQgY29uc3QgUmVzb3VyY2VDb250YWluZXIgPSBzdHlsZWQuZGl2YFxuICBwYWRkaW5nOiAxNXB4IDA7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZmxvdzogcm93IHdyYXA7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAke0VNT1RJT05fQk9PVFNUUkFQX0JSRUFLUE9JTlRTLnNtfSB7XG4gICAganVzdGlmeS1jb250ZW50OiBmbGV4LXN0YXJ0O1xuICB9XG5gO1xuXG4vLyB1c2VkIGJ5IHJlYWN0LXRlc3RpbmctbGlicmFyeSBkb20gcXVlcnlpbmdcbmV4cG9ydCBjb25zdCBURVNUX0lEUyA9IHtcbiAgY29udGFpbmVyOiAncmVzb3VyY2UtcHJldmlldy1jb250YWluZXInLFxufTtcblxuLy8gdGhpcyBpcyBhIHdyYXBwZXIgY29tcG9uZW50IHRoYXQgZW5jYXBzdWxhdGVzIGNhcmRzIGZvciBjb2xsZWN0aW9ucyBvciBvdGhlciBzaXplc1xuZXhwb3J0IGNvbnN0IFJlc291cmNlUHJldmlldyA9ICh7IHRpdGxlLCBsaW5rLCByZXNvdXJjZXMgfSkgPT4gKFxuICA8Q29udGFpbmVyIGRhdGEtdGVzdGlkPXtURVNUX0lEUy5jb250YWluZXJ9PlxuICAgIDxUaXRsZT5cbiAgICAgIDxTdHlsZWRMaW5rIHRvPXtsaW5rLnRvfT57dGl0bGV9PC9TdHlsZWRMaW5rPlxuICAgIDwvVGl0bGU+XG4gICAgPFJlc291cmNlQ29udGFpbmVyPlxuICAgICAge3Jlc291cmNlcy5zbGljZSgwLCA0KS5tYXAociA9PiAoXG4gICAgICAgIDxDYXJkXG4gICAgICAgICAgY3NzPXtjc3NgXG4gICAgICAgICAgICBtYXJnaW46IDQycHggM3B4O1xuICAgICAgICAgIGB9XG4gICAgICAgICAga2V5PXtyLmlkfVxuICAgICAgICAgIHR5cGU9e3IucmVzb3VyY2UudHlwZX1cbiAgICAgICAgICB0aXRsZT17ci51bmZ1cmwudGl0bGV9XG4gICAgICAgICAgZGVzY3JpcHRpb249e3IudW5mdXJsLmRlc2NyaXB0aW9ufVxuICAgICAgICAgIGltYWdlPXtyLnVuZnVybC5pbWFnZX1cbiAgICAgICAgICBsaW5rPXtyLnJlc291cmNlLnBhdGh9XG4gICAgICAgICAgcGF0aHM9e0ZpbmRQYXRocyhyLnVuZnVybC50aXRsZSl9XG4gICAgICAgIC8+XG4gICAgICApKX1cbiAgICA8L1Jlc291cmNlQ29udGFpbmVyPlxuICAgIDxMaW5rQ29udGFpbmVyPlxuICAgICAgPENoZXZyb25MaW5rIHRvPXtsaW5rLnRvfT57bGluay50ZXh0fTwvQ2hldnJvbkxpbms+XG4gICAgPC9MaW5rQ29udGFpbmVyPlxuICA8L0NvbnRhaW5lcj5cbik7XG5cblJlc291cmNlUHJldmlldy5wcm9wVHlwZXMgPSB7XG4gIHRpdGxlOiBQcm9wVHlwZXMuc3RyaW5nLmlzUmVxdWlyZWQsXG4gIGxpbms6IFByb3BUeXBlcy5zaGFwZSh7XG4gICAgdGV4dDogUHJvcFR5cGVzLnN0cmluZy5pc1JlcXVpcmVkLFxuICAgIHRvOiBQcm9wVHlwZXMuc3RyaW5nLmlzUmVxdWlyZWQsXG4gIH0pLFxuICByZXNvdXJjZXM6IFByb3BUeXBlcy5hcnJheU9mKFByb3BUeXBlcy5vYmplY3QpLmlzUmVxdWlyZWQsXG59O1xuXG5leHBvcnQgZGVmYXVsdCBSZXNvdXJjZVByZXZpZXc7XG4iXX0= */",
+          "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJlc291cmNlUHJldmlldy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUF3RGtCIiwiZmlsZSI6IlJlc291cmNlUHJldmlldy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG5Db3B5cmlnaHQgMjAxOSBQcm92aW5jZSBvZiBCcml0aXNoIENvbHVtYmlhXG5cbkxpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSBcIkxpY2Vuc2VcIik7XG55b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdCBpbiBjb21wbGlhbmNlIHdpdGggdGhlIExpY2Vuc2UuXG5Zb3UgbWF5IG9idGFpbiBhIGNvcHkgb2YgdGhlIExpY2Vuc2UgYXQgXG5cbiAgIGh0dHA6Ly93d3cuYXBhY2hlLm9yZy9saWNlbnNlcy9MSUNFTlNFLTIuMFxuXG5Vbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlXG5kaXN0cmlidXRlZCB1bmRlciB0aGUgTGljZW5zZSBpcyBkaXN0cmlidXRlZCBvbiBhbiBcIkFTIElTXCIgQkFTSVMsXG5XSVRIT1VUIFdBUlJBTlRJRVMgT1IgQ09ORElUSU9OUyBPRiBBTlkgS0lORCwgZWl0aGVyIGV4cHJlc3Mgb3IgaW1wbGllZC5cblNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmRcbmxpbWl0YXRpb25zIHVuZGVyIHRoZSBMaWNlbnNlLlxuXG5DcmVhdGVkIGJ5IFBhdHJpY2sgU2ltb25pYW5cbiovXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJztcbmltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkJztcblxuaW1wb3J0IHsgRU1PVElPTl9CT09UU1RSQVBfQlJFQUtQT0lOVFMgfSBmcm9tICcuLi8uLi9jb25zdGFudHMvZGVzaWduVG9rZW5zJztcbmltcG9ydCB7IENoZXZyb25MaW5rIH0gZnJvbSAnLi4vVUkvTGluayc7XG5pbXBvcnQgeyBDb250YWluZXIsIFRpdGxlLCBTdHlsZWRMaW5rLCBMaW5rQ29udGFpbmVyIH0gZnJvbSAnLi9pbmRleCc7XG5pbXBvcnQgQ2FyZCBmcm9tICcuLi9DYXJkcy9DYXJkL0NhcmQnO1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSc7XG5pbXBvcnQgeyBGaW5kUGF0aHMgfSBmcm9tICcuLi9DYXJkcy9DYXJkL1BhdGhCYXInO1xuXG5leHBvcnQgY29uc3QgQ2FyZFdyYXBwZXIgPSBzdHlsZWQuZGl2YFxuICBtYXJnaW46IDZweCA5cHg7XG5gO1xuXG5leHBvcnQgY29uc3QgUmVzb3VyY2VDb250YWluZXIgPSBzdHlsZWQuZGl2YFxuICBwYWRkaW5nOiAxNXB4IDA7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZmxvdzogcm93IHdyYXA7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAke0VNT1RJT05fQk9PVFNUUkFQX0JSRUFLUE9JTlRTLnNtfSB7XG4gICAganVzdGlmeS1jb250ZW50OiBmbGV4LXN0YXJ0O1xuICB9XG5gO1xuXG4vLyB1c2VkIGJ5IHJlYWN0LXRlc3RpbmctbGlicmFyeSBkb20gcXVlcnlpbmdcbmV4cG9ydCBjb25zdCBURVNUX0lEUyA9IHtcbiAgY29udGFpbmVyOiAncmVzb3VyY2UtcHJldmlldy1jb250YWluZXInLFxufTtcblxuLy8gdGhpcyBpcyBhIHdyYXBwZXIgY29tcG9uZW50IHRoYXQgZW5jYXBzdWxhdGVzIGNhcmRzIGZvciB0b3BpY3Mgb3Igb3RoZXIgc2l6ZXNcbmV4cG9ydCBjb25zdCBSZXNvdXJjZVByZXZpZXcgPSAoeyB0aXRsZSwgbGluaywgcmVzb3VyY2VzIH0pID0+IChcbiAgPENvbnRhaW5lciBkYXRhLXRlc3RpZD17VEVTVF9JRFMuY29udGFpbmVyfT5cbiAgICA8VGl0bGU+XG4gICAgICA8U3R5bGVkTGluayB0bz17bGluay50b30+e3RpdGxlfTwvU3R5bGVkTGluaz5cbiAgICA8L1RpdGxlPlxuICAgIDxSZXNvdXJjZUNvbnRhaW5lcj5cbiAgICB7cmVzb3VyY2VzLnNsaWNlKDAsIDYpLm1hcChyID0+IChcbiAgICAgICAgPENhcmRcbiAgICAgICAgICBjc3M9e2Nzc2BcbiAgICAgICAgICAgIG1hcmdpbjogNDJweCAzcHg7XG4gICAgICAgICAgYH1cbiAgICAgICAgICBrZXk9e3IuaWR9XG4gICAgICAgICAgdHlwZT17ci5yZXNvdXJjZS50eXBlfVxuICAgICAgICAgIHRpdGxlPXtyLnVuZnVybC50aXRsZX1cbiAgICAgICAgICBkZXNjcmlwdGlvbj17ci51bmZ1cmwuZGVzY3JpcHRpb259XG4gICAgICAgICAgaW1hZ2U9e3IudW5mdXJsLmltYWdlfVxuICAgICAgICAgIGxpbms9e3IucmVzb3VyY2UucGF0aH1cbiAgICAgICAgICBldmVudD17cn1cbiAgICAgICAgICBwYXRocz17RmluZFBhdGhzKHIudW5mdXJsLnRpdGxlKX1cbiAgICAgICAgLz5cbiAgICAgICkpfVxuICAgIDwvUmVzb3VyY2VDb250YWluZXI+XG4gICAgPExpbmtDb250YWluZXI+XG4gICAgICA8Q2hldnJvbkxpbmsgdG89e2xpbmsudG99PntsaW5rLnRleHR9PC9DaGV2cm9uTGluaz5cbiAgICA8L0xpbmtDb250YWluZXI+XG4gIDwvQ29udGFpbmVyPlxuKTtcblxuUmVzb3VyY2VQcmV2aWV3LnByb3BUeXBlcyA9IHtcbiAgdGl0bGU6IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcbiAgbGluazogUHJvcFR5cGVzLnNoYXBlKHtcbiAgICB0ZXh0OiBQcm9wVHlwZXMuc3RyaW5nLmlzUmVxdWlyZWQsXG4gICAgdG86IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcbiAgfSksXG4gIHJlc291cmNlczogUHJvcFR5cGVzLmFycmF5T2YoUHJvcFR5cGVzLm9iamVjdCkuaXNSZXF1aXJlZCxcbn07XG5cbmV4cG9ydCBkZWZhdWx0IFJlc291cmNlUHJldmlldztcbiJdfQ== */",
           "name": "114v0ed-ResourcePreview",
           "styles": "margin:42px 3px;label:ResourcePreview;",
         }
       }
       description="What the Design System is and how it works."
+      event={
+        Object {
+          "_metadata": Object {
+            "position": "000.000.001",
+          },
+          "attributes": Object {
+            "personas": Array [
+              "Developer",
+              "Designer",
+            ],
+          },
+          "childMarkdownRemark": Object {
+            "frontmatter": Object {
+              "pageOnly": false,
+            },
+          },
+          "id": "2",
+          "parent": Object {
+            "id": "topic-1",
+          },
+          "resource": Object {
+            "path": "/design-system/Z1bGIqu2",
+            "type": "Components",
+          },
+          "source": Object {
+            "displayName": "Design System",
+          },
+          "unfurl": Object {
+            "author": "ksingbeil",
+            "data1": "",
+            "data2": "",
+            "description": "What the Design System is and how it works.",
+            "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+            "label1": "",
+            "label2": "",
+            "title": "About",
+            "type": "markdown",
+          },
+        }
+      }
       image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
       key="2"
       link="/design-system/Z1bGIqu2"
@@ -357,12 +128,51 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
     <Card
       css={
         Object {
-          "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJlc291cmNlUHJldmlldy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUF3RGtCIiwiZmlsZSI6IlJlc291cmNlUHJldmlldy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG5Db3B5cmlnaHQgMjAxOSBQcm92aW5jZSBvZiBCcml0aXNoIENvbHVtYmlhXG5cbkxpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSBcIkxpY2Vuc2VcIik7XG55b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdCBpbiBjb21wbGlhbmNlIHdpdGggdGhlIExpY2Vuc2UuXG5Zb3UgbWF5IG9idGFpbiBhIGNvcHkgb2YgdGhlIExpY2Vuc2UgYXQgXG5cbiAgIGh0dHA6Ly93d3cuYXBhY2hlLm9yZy9saWNlbnNlcy9MSUNFTlNFLTIuMFxuXG5Vbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlXG5kaXN0cmlidXRlZCB1bmRlciB0aGUgTGljZW5zZSBpcyBkaXN0cmlidXRlZCBvbiBhbiBcIkFTIElTXCIgQkFTSVMsXG5XSVRIT1VUIFdBUlJBTlRJRVMgT1IgQ09ORElUSU9OUyBPRiBBTlkgS0lORCwgZWl0aGVyIGV4cHJlc3Mgb3IgaW1wbGllZC5cblNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmRcbmxpbWl0YXRpb25zIHVuZGVyIHRoZSBMaWNlbnNlLlxuXG5DcmVhdGVkIGJ5IFBhdHJpY2sgU2ltb25pYW5cbiovXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJztcbmltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkJztcblxuaW1wb3J0IHsgRU1PVElPTl9CT09UU1RSQVBfQlJFQUtQT0lOVFMgfSBmcm9tICcuLi8uLi9jb25zdGFudHMvZGVzaWduVG9rZW5zJztcbmltcG9ydCB7IENoZXZyb25MaW5rIH0gZnJvbSAnLi4vVUkvTGluayc7XG5pbXBvcnQgeyBDb250YWluZXIsIFRpdGxlLCBTdHlsZWRMaW5rLCBMaW5rQ29udGFpbmVyIH0gZnJvbSAnLi9pbmRleCc7XG5pbXBvcnQgQ2FyZCBmcm9tICcuLi9DYXJkcy9DYXJkL0NhcmQnO1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSc7XG5pbXBvcnQgeyBGaW5kUGF0aHMgfSBmcm9tICcuLi9DYXJkcy9DYXJkL1BhdGhCYXInO1xuXG5leHBvcnQgY29uc3QgQ2FyZFdyYXBwZXIgPSBzdHlsZWQuZGl2YFxuICBtYXJnaW46IDZweCA5cHg7XG5gO1xuXG5leHBvcnQgY29uc3QgUmVzb3VyY2VDb250YWluZXIgPSBzdHlsZWQuZGl2YFxuICBwYWRkaW5nOiAxNXB4IDA7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZmxvdzogcm93IHdyYXA7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAke0VNT1RJT05fQk9PVFNUUkFQX0JSRUFLUE9JTlRTLnNtfSB7XG4gICAganVzdGlmeS1jb250ZW50OiBmbGV4LXN0YXJ0O1xuICB9XG5gO1xuXG4vLyB1c2VkIGJ5IHJlYWN0LXRlc3RpbmctbGlicmFyeSBkb20gcXVlcnlpbmdcbmV4cG9ydCBjb25zdCBURVNUX0lEUyA9IHtcbiAgY29udGFpbmVyOiAncmVzb3VyY2UtcHJldmlldy1jb250YWluZXInLFxufTtcblxuLy8gdGhpcyBpcyBhIHdyYXBwZXIgY29tcG9uZW50IHRoYXQgZW5jYXBzdWxhdGVzIGNhcmRzIGZvciBjb2xsZWN0aW9ucyBvciBvdGhlciBzaXplc1xuZXhwb3J0IGNvbnN0IFJlc291cmNlUHJldmlldyA9ICh7IHRpdGxlLCBsaW5rLCByZXNvdXJjZXMgfSkgPT4gKFxuICA8Q29udGFpbmVyIGRhdGEtdGVzdGlkPXtURVNUX0lEUy5jb250YWluZXJ9PlxuICAgIDxUaXRsZT5cbiAgICAgIDxTdHlsZWRMaW5rIHRvPXtsaW5rLnRvfT57dGl0bGV9PC9TdHlsZWRMaW5rPlxuICAgIDwvVGl0bGU+XG4gICAgPFJlc291cmNlQ29udGFpbmVyPlxuICAgICAge3Jlc291cmNlcy5zbGljZSgwLCA0KS5tYXAociA9PiAoXG4gICAgICAgIDxDYXJkXG4gICAgICAgICAgY3NzPXtjc3NgXG4gICAgICAgICAgICBtYXJnaW46IDQycHggM3B4O1xuICAgICAgICAgIGB9XG4gICAgICAgICAga2V5PXtyLmlkfVxuICAgICAgICAgIHR5cGU9e3IucmVzb3VyY2UudHlwZX1cbiAgICAgICAgICB0aXRsZT17ci51bmZ1cmwudGl0bGV9XG4gICAgICAgICAgZGVzY3JpcHRpb249e3IudW5mdXJsLmRlc2NyaXB0aW9ufVxuICAgICAgICAgIGltYWdlPXtyLnVuZnVybC5pbWFnZX1cbiAgICAgICAgICBsaW5rPXtyLnJlc291cmNlLnBhdGh9XG4gICAgICAgICAgcGF0aHM9e0ZpbmRQYXRocyhyLnVuZnVybC50aXRsZSl9XG4gICAgICAgIC8+XG4gICAgICApKX1cbiAgICA8L1Jlc291cmNlQ29udGFpbmVyPlxuICAgIDxMaW5rQ29udGFpbmVyPlxuICAgICAgPENoZXZyb25MaW5rIHRvPXtsaW5rLnRvfT57bGluay50ZXh0fTwvQ2hldnJvbkxpbms+XG4gICAgPC9MaW5rQ29udGFpbmVyPlxuICA8L0NvbnRhaW5lcj5cbik7XG5cblJlc291cmNlUHJldmlldy5wcm9wVHlwZXMgPSB7XG4gIHRpdGxlOiBQcm9wVHlwZXMuc3RyaW5nLmlzUmVxdWlyZWQsXG4gIGxpbms6IFByb3BUeXBlcy5zaGFwZSh7XG4gICAgdGV4dDogUHJvcFR5cGVzLnN0cmluZy5pc1JlcXVpcmVkLFxuICAgIHRvOiBQcm9wVHlwZXMuc3RyaW5nLmlzUmVxdWlyZWQsXG4gIH0pLFxuICByZXNvdXJjZXM6IFByb3BUeXBlcy5hcnJheU9mKFByb3BUeXBlcy5vYmplY3QpLmlzUmVxdWlyZWQsXG59O1xuXG5leHBvcnQgZGVmYXVsdCBSZXNvdXJjZVByZXZpZXc7XG4iXX0= */",
+          "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJlc291cmNlUHJldmlldy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUF3RGtCIiwiZmlsZSI6IlJlc291cmNlUHJldmlldy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG5Db3B5cmlnaHQgMjAxOSBQcm92aW5jZSBvZiBCcml0aXNoIENvbHVtYmlhXG5cbkxpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSBcIkxpY2Vuc2VcIik7XG55b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdCBpbiBjb21wbGlhbmNlIHdpdGggdGhlIExpY2Vuc2UuXG5Zb3UgbWF5IG9idGFpbiBhIGNvcHkgb2YgdGhlIExpY2Vuc2UgYXQgXG5cbiAgIGh0dHA6Ly93d3cuYXBhY2hlLm9yZy9saWNlbnNlcy9MSUNFTlNFLTIuMFxuXG5Vbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlXG5kaXN0cmlidXRlZCB1bmRlciB0aGUgTGljZW5zZSBpcyBkaXN0cmlidXRlZCBvbiBhbiBcIkFTIElTXCIgQkFTSVMsXG5XSVRIT1VUIFdBUlJBTlRJRVMgT1IgQ09ORElUSU9OUyBPRiBBTlkgS0lORCwgZWl0aGVyIGV4cHJlc3Mgb3IgaW1wbGllZC5cblNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmRcbmxpbWl0YXRpb25zIHVuZGVyIHRoZSBMaWNlbnNlLlxuXG5DcmVhdGVkIGJ5IFBhdHJpY2sgU2ltb25pYW5cbiovXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJztcbmltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkJztcblxuaW1wb3J0IHsgRU1PVElPTl9CT09UU1RSQVBfQlJFQUtQT0lOVFMgfSBmcm9tICcuLi8uLi9jb25zdGFudHMvZGVzaWduVG9rZW5zJztcbmltcG9ydCB7IENoZXZyb25MaW5rIH0gZnJvbSAnLi4vVUkvTGluayc7XG5pbXBvcnQgeyBDb250YWluZXIsIFRpdGxlLCBTdHlsZWRMaW5rLCBMaW5rQ29udGFpbmVyIH0gZnJvbSAnLi9pbmRleCc7XG5pbXBvcnQgQ2FyZCBmcm9tICcuLi9DYXJkcy9DYXJkL0NhcmQnO1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSc7XG5pbXBvcnQgeyBGaW5kUGF0aHMgfSBmcm9tICcuLi9DYXJkcy9DYXJkL1BhdGhCYXInO1xuXG5leHBvcnQgY29uc3QgQ2FyZFdyYXBwZXIgPSBzdHlsZWQuZGl2YFxuICBtYXJnaW46IDZweCA5cHg7XG5gO1xuXG5leHBvcnQgY29uc3QgUmVzb3VyY2VDb250YWluZXIgPSBzdHlsZWQuZGl2YFxuICBwYWRkaW5nOiAxNXB4IDA7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZmxvdzogcm93IHdyYXA7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAke0VNT1RJT05fQk9PVFNUUkFQX0JSRUFLUE9JTlRTLnNtfSB7XG4gICAganVzdGlmeS1jb250ZW50OiBmbGV4LXN0YXJ0O1xuICB9XG5gO1xuXG4vLyB1c2VkIGJ5IHJlYWN0LXRlc3RpbmctbGlicmFyeSBkb20gcXVlcnlpbmdcbmV4cG9ydCBjb25zdCBURVNUX0lEUyA9IHtcbiAgY29udGFpbmVyOiAncmVzb3VyY2UtcHJldmlldy1jb250YWluZXInLFxufTtcblxuLy8gdGhpcyBpcyBhIHdyYXBwZXIgY29tcG9uZW50IHRoYXQgZW5jYXBzdWxhdGVzIGNhcmRzIGZvciB0b3BpY3Mgb3Igb3RoZXIgc2l6ZXNcbmV4cG9ydCBjb25zdCBSZXNvdXJjZVByZXZpZXcgPSAoeyB0aXRsZSwgbGluaywgcmVzb3VyY2VzIH0pID0+IChcbiAgPENvbnRhaW5lciBkYXRhLXRlc3RpZD17VEVTVF9JRFMuY29udGFpbmVyfT5cbiAgICA8VGl0bGU+XG4gICAgICA8U3R5bGVkTGluayB0bz17bGluay50b30+e3RpdGxlfTwvU3R5bGVkTGluaz5cbiAgICA8L1RpdGxlPlxuICAgIDxSZXNvdXJjZUNvbnRhaW5lcj5cbiAgICB7cmVzb3VyY2VzLnNsaWNlKDAsIDYpLm1hcChyID0+IChcbiAgICAgICAgPENhcmRcbiAgICAgICAgICBjc3M9e2Nzc2BcbiAgICAgICAgICAgIG1hcmdpbjogNDJweCAzcHg7XG4gICAgICAgICAgYH1cbiAgICAgICAgICBrZXk9e3IuaWR9XG4gICAgICAgICAgdHlwZT17ci5yZXNvdXJjZS50eXBlfVxuICAgICAgICAgIHRpdGxlPXtyLnVuZnVybC50aXRsZX1cbiAgICAgICAgICBkZXNjcmlwdGlvbj17ci51bmZ1cmwuZGVzY3JpcHRpb259XG4gICAgICAgICAgaW1hZ2U9e3IudW5mdXJsLmltYWdlfVxuICAgICAgICAgIGxpbms9e3IucmVzb3VyY2UucGF0aH1cbiAgICAgICAgICBldmVudD17cn1cbiAgICAgICAgICBwYXRocz17RmluZFBhdGhzKHIudW5mdXJsLnRpdGxlKX1cbiAgICAgICAgLz5cbiAgICAgICkpfVxuICAgIDwvUmVzb3VyY2VDb250YWluZXI+XG4gICAgPExpbmtDb250YWluZXI+XG4gICAgICA8Q2hldnJvbkxpbmsgdG89e2xpbmsudG99PntsaW5rLnRleHR9PC9DaGV2cm9uTGluaz5cbiAgICA8L0xpbmtDb250YWluZXI+XG4gIDwvQ29udGFpbmVyPlxuKTtcblxuUmVzb3VyY2VQcmV2aWV3LnByb3BUeXBlcyA9IHtcbiAgdGl0bGU6IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcbiAgbGluazogUHJvcFR5cGVzLnNoYXBlKHtcbiAgICB0ZXh0OiBQcm9wVHlwZXMuc3RyaW5nLmlzUmVxdWlyZWQsXG4gICAgdG86IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcbiAgfSksXG4gIHJlc291cmNlczogUHJvcFR5cGVzLmFycmF5T2YoUHJvcFR5cGVzLm9iamVjdCkuaXNSZXF1aXJlZCxcbn07XG5cbmV4cG9ydCBkZWZhdWx0IFJlc291cmNlUHJldmlldztcbiJdfQ== */",
           "name": "114v0ed-ResourcePreview",
           "styles": "margin:42px 3px;label:ResourcePreview;",
         }
       }
       description="What the Design System is and how it works."
+      event={
+        Object {
+          "_metadata": Object {
+            "position": "000.000.000",
+          },
+          "attributes": Object {
+            "personas": Array [
+              "Designer",
+            ],
+          },
+          "childMarkdownRemark": Object {
+            "frontmatter": Object {
+              "pageOnly": false,
+            },
+          },
+          "id": "1",
+          "parent": Object {
+            "id": "topic-1",
+          },
+          "resource": Object {
+            "path": "/design-system/Z1bGIqu1",
+            "type": "Components",
+          },
+          "source": Object {
+            "displayName": "Design System",
+          },
+          "unfurl": Object {
+            "author": "ksingbeil",
+            "data1": "",
+            "data2": "",
+            "description": "What the Design System is and how it works.",
+            "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+            "label1": "",
+            "label2": "",
+            "title": "About",
+            "type": "markdown",
+          },
+        }
+      }
       image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
       key="1"
       link="/design-system/Z1bGIqu1"
@@ -373,12 +183,51 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
     <Card
       css={
         Object {
-          "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJlc291cmNlUHJldmlldy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUF3RGtCIiwiZmlsZSI6IlJlc291cmNlUHJldmlldy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG5Db3B5cmlnaHQgMjAxOSBQcm92aW5jZSBvZiBCcml0aXNoIENvbHVtYmlhXG5cbkxpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSBcIkxpY2Vuc2VcIik7XG55b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdCBpbiBjb21wbGlhbmNlIHdpdGggdGhlIExpY2Vuc2UuXG5Zb3UgbWF5IG9idGFpbiBhIGNvcHkgb2YgdGhlIExpY2Vuc2UgYXQgXG5cbiAgIGh0dHA6Ly93d3cuYXBhY2hlLm9yZy9saWNlbnNlcy9MSUNFTlNFLTIuMFxuXG5Vbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlXG5kaXN0cmlidXRlZCB1bmRlciB0aGUgTGljZW5zZSBpcyBkaXN0cmlidXRlZCBvbiBhbiBcIkFTIElTXCIgQkFTSVMsXG5XSVRIT1VUIFdBUlJBTlRJRVMgT1IgQ09ORElUSU9OUyBPRiBBTlkgS0lORCwgZWl0aGVyIGV4cHJlc3Mgb3IgaW1wbGllZC5cblNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmRcbmxpbWl0YXRpb25zIHVuZGVyIHRoZSBMaWNlbnNlLlxuXG5DcmVhdGVkIGJ5IFBhdHJpY2sgU2ltb25pYW5cbiovXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJztcbmltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkJztcblxuaW1wb3J0IHsgRU1PVElPTl9CT09UU1RSQVBfQlJFQUtQT0lOVFMgfSBmcm9tICcuLi8uLi9jb25zdGFudHMvZGVzaWduVG9rZW5zJztcbmltcG9ydCB7IENoZXZyb25MaW5rIH0gZnJvbSAnLi4vVUkvTGluayc7XG5pbXBvcnQgeyBDb250YWluZXIsIFRpdGxlLCBTdHlsZWRMaW5rLCBMaW5rQ29udGFpbmVyIH0gZnJvbSAnLi9pbmRleCc7XG5pbXBvcnQgQ2FyZCBmcm9tICcuLi9DYXJkcy9DYXJkL0NhcmQnO1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSc7XG5pbXBvcnQgeyBGaW5kUGF0aHMgfSBmcm9tICcuLi9DYXJkcy9DYXJkL1BhdGhCYXInO1xuXG5leHBvcnQgY29uc3QgQ2FyZFdyYXBwZXIgPSBzdHlsZWQuZGl2YFxuICBtYXJnaW46IDZweCA5cHg7XG5gO1xuXG5leHBvcnQgY29uc3QgUmVzb3VyY2VDb250YWluZXIgPSBzdHlsZWQuZGl2YFxuICBwYWRkaW5nOiAxNXB4IDA7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZmxvdzogcm93IHdyYXA7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAke0VNT1RJT05fQk9PVFNUUkFQX0JSRUFLUE9JTlRTLnNtfSB7XG4gICAganVzdGlmeS1jb250ZW50OiBmbGV4LXN0YXJ0O1xuICB9XG5gO1xuXG4vLyB1c2VkIGJ5IHJlYWN0LXRlc3RpbmctbGlicmFyeSBkb20gcXVlcnlpbmdcbmV4cG9ydCBjb25zdCBURVNUX0lEUyA9IHtcbiAgY29udGFpbmVyOiAncmVzb3VyY2UtcHJldmlldy1jb250YWluZXInLFxufTtcblxuLy8gdGhpcyBpcyBhIHdyYXBwZXIgY29tcG9uZW50IHRoYXQgZW5jYXBzdWxhdGVzIGNhcmRzIGZvciBjb2xsZWN0aW9ucyBvciBvdGhlciBzaXplc1xuZXhwb3J0IGNvbnN0IFJlc291cmNlUHJldmlldyA9ICh7IHRpdGxlLCBsaW5rLCByZXNvdXJjZXMgfSkgPT4gKFxuICA8Q29udGFpbmVyIGRhdGEtdGVzdGlkPXtURVNUX0lEUy5jb250YWluZXJ9PlxuICAgIDxUaXRsZT5cbiAgICAgIDxTdHlsZWRMaW5rIHRvPXtsaW5rLnRvfT57dGl0bGV9PC9TdHlsZWRMaW5rPlxuICAgIDwvVGl0bGU+XG4gICAgPFJlc291cmNlQ29udGFpbmVyPlxuICAgICAge3Jlc291cmNlcy5zbGljZSgwLCA0KS5tYXAociA9PiAoXG4gICAgICAgIDxDYXJkXG4gICAgICAgICAgY3NzPXtjc3NgXG4gICAgICAgICAgICBtYXJnaW46IDQycHggM3B4O1xuICAgICAgICAgIGB9XG4gICAgICAgICAga2V5PXtyLmlkfVxuICAgICAgICAgIHR5cGU9e3IucmVzb3VyY2UudHlwZX1cbiAgICAgICAgICB0aXRsZT17ci51bmZ1cmwudGl0bGV9XG4gICAgICAgICAgZGVzY3JpcHRpb249e3IudW5mdXJsLmRlc2NyaXB0aW9ufVxuICAgICAgICAgIGltYWdlPXtyLnVuZnVybC5pbWFnZX1cbiAgICAgICAgICBsaW5rPXtyLnJlc291cmNlLnBhdGh9XG4gICAgICAgICAgcGF0aHM9e0ZpbmRQYXRocyhyLnVuZnVybC50aXRsZSl9XG4gICAgICAgIC8+XG4gICAgICApKX1cbiAgICA8L1Jlc291cmNlQ29udGFpbmVyPlxuICAgIDxMaW5rQ29udGFpbmVyPlxuICAgICAgPENoZXZyb25MaW5rIHRvPXtsaW5rLnRvfT57bGluay50ZXh0fTwvQ2hldnJvbkxpbms+XG4gICAgPC9MaW5rQ29udGFpbmVyPlxuICA8L0NvbnRhaW5lcj5cbik7XG5cblJlc291cmNlUHJldmlldy5wcm9wVHlwZXMgPSB7XG4gIHRpdGxlOiBQcm9wVHlwZXMuc3RyaW5nLmlzUmVxdWlyZWQsXG4gIGxpbms6IFByb3BUeXBlcy5zaGFwZSh7XG4gICAgdGV4dDogUHJvcFR5cGVzLnN0cmluZy5pc1JlcXVpcmVkLFxuICAgIHRvOiBQcm9wVHlwZXMuc3RyaW5nLmlzUmVxdWlyZWQsXG4gIH0pLFxuICByZXNvdXJjZXM6IFByb3BUeXBlcy5hcnJheU9mKFByb3BUeXBlcy5vYmplY3QpLmlzUmVxdWlyZWQsXG59O1xuXG5leHBvcnQgZGVmYXVsdCBSZXNvdXJjZVByZXZpZXc7XG4iXX0= */",
+          "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJlc291cmNlUHJldmlldy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUF3RGtCIiwiZmlsZSI6IlJlc291cmNlUHJldmlldy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG5Db3B5cmlnaHQgMjAxOSBQcm92aW5jZSBvZiBCcml0aXNoIENvbHVtYmlhXG5cbkxpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSBcIkxpY2Vuc2VcIik7XG55b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdCBpbiBjb21wbGlhbmNlIHdpdGggdGhlIExpY2Vuc2UuXG5Zb3UgbWF5IG9idGFpbiBhIGNvcHkgb2YgdGhlIExpY2Vuc2UgYXQgXG5cbiAgIGh0dHA6Ly93d3cuYXBhY2hlLm9yZy9saWNlbnNlcy9MSUNFTlNFLTIuMFxuXG5Vbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlXG5kaXN0cmlidXRlZCB1bmRlciB0aGUgTGljZW5zZSBpcyBkaXN0cmlidXRlZCBvbiBhbiBcIkFTIElTXCIgQkFTSVMsXG5XSVRIT1VUIFdBUlJBTlRJRVMgT1IgQ09ORElUSU9OUyBPRiBBTlkgS0lORCwgZWl0aGVyIGV4cHJlc3Mgb3IgaW1wbGllZC5cblNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmRcbmxpbWl0YXRpb25zIHVuZGVyIHRoZSBMaWNlbnNlLlxuXG5DcmVhdGVkIGJ5IFBhdHJpY2sgU2ltb25pYW5cbiovXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJztcbmltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkJztcblxuaW1wb3J0IHsgRU1PVElPTl9CT09UU1RSQVBfQlJFQUtQT0lOVFMgfSBmcm9tICcuLi8uLi9jb25zdGFudHMvZGVzaWduVG9rZW5zJztcbmltcG9ydCB7IENoZXZyb25MaW5rIH0gZnJvbSAnLi4vVUkvTGluayc7XG5pbXBvcnQgeyBDb250YWluZXIsIFRpdGxlLCBTdHlsZWRMaW5rLCBMaW5rQ29udGFpbmVyIH0gZnJvbSAnLi9pbmRleCc7XG5pbXBvcnQgQ2FyZCBmcm9tICcuLi9DYXJkcy9DYXJkL0NhcmQnO1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSc7XG5pbXBvcnQgeyBGaW5kUGF0aHMgfSBmcm9tICcuLi9DYXJkcy9DYXJkL1BhdGhCYXInO1xuXG5leHBvcnQgY29uc3QgQ2FyZFdyYXBwZXIgPSBzdHlsZWQuZGl2YFxuICBtYXJnaW46IDZweCA5cHg7XG5gO1xuXG5leHBvcnQgY29uc3QgUmVzb3VyY2VDb250YWluZXIgPSBzdHlsZWQuZGl2YFxuICBwYWRkaW5nOiAxNXB4IDA7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZmxvdzogcm93IHdyYXA7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAke0VNT1RJT05fQk9PVFNUUkFQX0JSRUFLUE9JTlRTLnNtfSB7XG4gICAganVzdGlmeS1jb250ZW50OiBmbGV4LXN0YXJ0O1xuICB9XG5gO1xuXG4vLyB1c2VkIGJ5IHJlYWN0LXRlc3RpbmctbGlicmFyeSBkb20gcXVlcnlpbmdcbmV4cG9ydCBjb25zdCBURVNUX0lEUyA9IHtcbiAgY29udGFpbmVyOiAncmVzb3VyY2UtcHJldmlldy1jb250YWluZXInLFxufTtcblxuLy8gdGhpcyBpcyBhIHdyYXBwZXIgY29tcG9uZW50IHRoYXQgZW5jYXBzdWxhdGVzIGNhcmRzIGZvciB0b3BpY3Mgb3Igb3RoZXIgc2l6ZXNcbmV4cG9ydCBjb25zdCBSZXNvdXJjZVByZXZpZXcgPSAoeyB0aXRsZSwgbGluaywgcmVzb3VyY2VzIH0pID0+IChcbiAgPENvbnRhaW5lciBkYXRhLXRlc3RpZD17VEVTVF9JRFMuY29udGFpbmVyfT5cbiAgICA8VGl0bGU+XG4gICAgICA8U3R5bGVkTGluayB0bz17bGluay50b30+e3RpdGxlfTwvU3R5bGVkTGluaz5cbiAgICA8L1RpdGxlPlxuICAgIDxSZXNvdXJjZUNvbnRhaW5lcj5cbiAgICB7cmVzb3VyY2VzLnNsaWNlKDAsIDYpLm1hcChyID0+IChcbiAgICAgICAgPENhcmRcbiAgICAgICAgICBjc3M9e2Nzc2BcbiAgICAgICAgICAgIG1hcmdpbjogNDJweCAzcHg7XG4gICAgICAgICAgYH1cbiAgICAgICAgICBrZXk9e3IuaWR9XG4gICAgICAgICAgdHlwZT17ci5yZXNvdXJjZS50eXBlfVxuICAgICAgICAgIHRpdGxlPXtyLnVuZnVybC50aXRsZX1cbiAgICAgICAgICBkZXNjcmlwdGlvbj17ci51bmZ1cmwuZGVzY3JpcHRpb259XG4gICAgICAgICAgaW1hZ2U9e3IudW5mdXJsLmltYWdlfVxuICAgICAgICAgIGxpbms9e3IucmVzb3VyY2UucGF0aH1cbiAgICAgICAgICBldmVudD17cn1cbiAgICAgICAgICBwYXRocz17RmluZFBhdGhzKHIudW5mdXJsLnRpdGxlKX1cbiAgICAgICAgLz5cbiAgICAgICkpfVxuICAgIDwvUmVzb3VyY2VDb250YWluZXI+XG4gICAgPExpbmtDb250YWluZXI+XG4gICAgICA8Q2hldnJvbkxpbmsgdG89e2xpbmsudG99PntsaW5rLnRleHR9PC9DaGV2cm9uTGluaz5cbiAgICA8L0xpbmtDb250YWluZXI+XG4gIDwvQ29udGFpbmVyPlxuKTtcblxuUmVzb3VyY2VQcmV2aWV3LnByb3BUeXBlcyA9IHtcbiAgdGl0bGU6IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcbiAgbGluazogUHJvcFR5cGVzLnNoYXBlKHtcbiAgICB0ZXh0OiBQcm9wVHlwZXMuc3RyaW5nLmlzUmVxdWlyZWQsXG4gICAgdG86IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcbiAgfSksXG4gIHJlc291cmNlczogUHJvcFR5cGVzLmFycmF5T2YoUHJvcFR5cGVzLm9iamVjdCkuaXNSZXF1aXJlZCxcbn07XG5cbmV4cG9ydCBkZWZhdWx0IFJlc291cmNlUHJldmlldztcbiJdfQ== */",
           "name": "114v0ed-ResourcePreview",
           "styles": "margin:42px 3px;label:ResourcePreview;",
         }
       }
       description="What the Design System is and how it works."
+      event={
+        Object {
+          "_metadata": Object {
+            "position": "000.000.003",
+          },
+          "attributes": Object {
+            "personas": Array [
+              "Developer",
+            ],
+          },
+          "childMarkdownRemark": Object {
+            "frontmatter": Object {
+              "pageOnly": false,
+            },
+          },
+          "id": "4",
+          "parent": Object {
+            "id": "topic-1",
+          },
+          "resource": Object {
+            "path": "/design-system/Z1bGIqu4",
+            "type": "Components",
+          },
+          "source": Object {
+            "displayName": "Design System",
+          },
+          "unfurl": Object {
+            "author": "ksingbeil",
+            "data1": "",
+            "data2": "",
+            "description": "What the Design System is and how it works.",
+            "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+            "label1": "",
+            "label2": "",
+            "title": "About",
+            "type": "markdown",
+          },
+        }
+      }
       image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
       key="4"
       link="/design-system/Z1bGIqu4"
@@ -386,7 +235,117 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
       title="About"
       type="Components"
     />
->>>>>>> Touching things up and updating tests + snapshots
+    <Card
+      css={
+        Object {
+          "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJlc291cmNlUHJldmlldy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUF3RGtCIiwiZmlsZSI6IlJlc291cmNlUHJldmlldy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG5Db3B5cmlnaHQgMjAxOSBQcm92aW5jZSBvZiBCcml0aXNoIENvbHVtYmlhXG5cbkxpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSBcIkxpY2Vuc2VcIik7XG55b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdCBpbiBjb21wbGlhbmNlIHdpdGggdGhlIExpY2Vuc2UuXG5Zb3UgbWF5IG9idGFpbiBhIGNvcHkgb2YgdGhlIExpY2Vuc2UgYXQgXG5cbiAgIGh0dHA6Ly93d3cuYXBhY2hlLm9yZy9saWNlbnNlcy9MSUNFTlNFLTIuMFxuXG5Vbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlXG5kaXN0cmlidXRlZCB1bmRlciB0aGUgTGljZW5zZSBpcyBkaXN0cmlidXRlZCBvbiBhbiBcIkFTIElTXCIgQkFTSVMsXG5XSVRIT1VUIFdBUlJBTlRJRVMgT1IgQ09ORElUSU9OUyBPRiBBTlkgS0lORCwgZWl0aGVyIGV4cHJlc3Mgb3IgaW1wbGllZC5cblNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmRcbmxpbWl0YXRpb25zIHVuZGVyIHRoZSBMaWNlbnNlLlxuXG5DcmVhdGVkIGJ5IFBhdHJpY2sgU2ltb25pYW5cbiovXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJztcbmltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkJztcblxuaW1wb3J0IHsgRU1PVElPTl9CT09UU1RSQVBfQlJFQUtQT0lOVFMgfSBmcm9tICcuLi8uLi9jb25zdGFudHMvZGVzaWduVG9rZW5zJztcbmltcG9ydCB7IENoZXZyb25MaW5rIH0gZnJvbSAnLi4vVUkvTGluayc7XG5pbXBvcnQgeyBDb250YWluZXIsIFRpdGxlLCBTdHlsZWRMaW5rLCBMaW5rQ29udGFpbmVyIH0gZnJvbSAnLi9pbmRleCc7XG5pbXBvcnQgQ2FyZCBmcm9tICcuLi9DYXJkcy9DYXJkL0NhcmQnO1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSc7XG5pbXBvcnQgeyBGaW5kUGF0aHMgfSBmcm9tICcuLi9DYXJkcy9DYXJkL1BhdGhCYXInO1xuXG5leHBvcnQgY29uc3QgQ2FyZFdyYXBwZXIgPSBzdHlsZWQuZGl2YFxuICBtYXJnaW46IDZweCA5cHg7XG5gO1xuXG5leHBvcnQgY29uc3QgUmVzb3VyY2VDb250YWluZXIgPSBzdHlsZWQuZGl2YFxuICBwYWRkaW5nOiAxNXB4IDA7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZmxvdzogcm93IHdyYXA7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAke0VNT1RJT05fQk9PVFNUUkFQX0JSRUFLUE9JTlRTLnNtfSB7XG4gICAganVzdGlmeS1jb250ZW50OiBmbGV4LXN0YXJ0O1xuICB9XG5gO1xuXG4vLyB1c2VkIGJ5IHJlYWN0LXRlc3RpbmctbGlicmFyeSBkb20gcXVlcnlpbmdcbmV4cG9ydCBjb25zdCBURVNUX0lEUyA9IHtcbiAgY29udGFpbmVyOiAncmVzb3VyY2UtcHJldmlldy1jb250YWluZXInLFxufTtcblxuLy8gdGhpcyBpcyBhIHdyYXBwZXIgY29tcG9uZW50IHRoYXQgZW5jYXBzdWxhdGVzIGNhcmRzIGZvciB0b3BpY3Mgb3Igb3RoZXIgc2l6ZXNcbmV4cG9ydCBjb25zdCBSZXNvdXJjZVByZXZpZXcgPSAoeyB0aXRsZSwgbGluaywgcmVzb3VyY2VzIH0pID0+IChcbiAgPENvbnRhaW5lciBkYXRhLXRlc3RpZD17VEVTVF9JRFMuY29udGFpbmVyfT5cbiAgICA8VGl0bGU+XG4gICAgICA8U3R5bGVkTGluayB0bz17bGluay50b30+e3RpdGxlfTwvU3R5bGVkTGluaz5cbiAgICA8L1RpdGxlPlxuICAgIDxSZXNvdXJjZUNvbnRhaW5lcj5cbiAgICB7cmVzb3VyY2VzLnNsaWNlKDAsIDYpLm1hcChyID0+IChcbiAgICAgICAgPENhcmRcbiAgICAgICAgICBjc3M9e2Nzc2BcbiAgICAgICAgICAgIG1hcmdpbjogNDJweCAzcHg7XG4gICAgICAgICAgYH1cbiAgICAgICAgICBrZXk9e3IuaWR9XG4gICAgICAgICAgdHlwZT17ci5yZXNvdXJjZS50eXBlfVxuICAgICAgICAgIHRpdGxlPXtyLnVuZnVybC50aXRsZX1cbiAgICAgICAgICBkZXNjcmlwdGlvbj17ci51bmZ1cmwuZGVzY3JpcHRpb259XG4gICAgICAgICAgaW1hZ2U9e3IudW5mdXJsLmltYWdlfVxuICAgICAgICAgIGxpbms9e3IucmVzb3VyY2UucGF0aH1cbiAgICAgICAgICBldmVudD17cn1cbiAgICAgICAgICBwYXRocz17RmluZFBhdGhzKHIudW5mdXJsLnRpdGxlKX1cbiAgICAgICAgLz5cbiAgICAgICkpfVxuICAgIDwvUmVzb3VyY2VDb250YWluZXI+XG4gICAgPExpbmtDb250YWluZXI+XG4gICAgICA8Q2hldnJvbkxpbmsgdG89e2xpbmsudG99PntsaW5rLnRleHR9PC9DaGV2cm9uTGluaz5cbiAgICA8L0xpbmtDb250YWluZXI+XG4gIDwvQ29udGFpbmVyPlxuKTtcblxuUmVzb3VyY2VQcmV2aWV3LnByb3BUeXBlcyA9IHtcbiAgdGl0bGU6IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcbiAgbGluazogUHJvcFR5cGVzLnNoYXBlKHtcbiAgICB0ZXh0OiBQcm9wVHlwZXMuc3RyaW5nLmlzUmVxdWlyZWQsXG4gICAgdG86IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcbiAgfSksXG4gIHJlc291cmNlczogUHJvcFR5cGVzLmFycmF5T2YoUHJvcFR5cGVzLm9iamVjdCkuaXNSZXF1aXJlZCxcbn07XG5cbmV4cG9ydCBkZWZhdWx0IFJlc291cmNlUHJldmlldztcbiJdfQ== */",
+          "name": "114v0ed-ResourcePreview",
+          "styles": "margin:42px 3px;label:ResourcePreview;",
+        }
+      }
+      description="What the Design System is and how it works."
+      event={
+        Object {
+          "_metadata": Object {
+            "position": "001.000.000",
+          },
+          "attributes": Object {
+            "personas": Array [
+              "Developer",
+            ],
+          },
+          "childMarkdownRemark": Object {
+            "frontmatter": Object {
+              "pageOnly": false,
+            },
+          },
+          "id": "5",
+          "parent": Object {
+            "id": "topic-2",
+          },
+          "resource": Object {
+            "path": "/design-system/Z1bGIqu5",
+            "type": "Documentation",
+          },
+          "source": Object {
+            "displayName": "Design System",
+          },
+          "unfurl": Object {
+            "author": "ksingbeil",
+            "data1": "",
+            "data2": "",
+            "description": "What the Design System is and how it works.",
+            "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+            "label1": "",
+            "label2": "",
+            "title": "About",
+            "type": "markdown",
+          },
+        }
+      }
+      image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+      key="5"
+      link="/design-system/Z1bGIqu5"
+      paths={Array []}
+      title="About"
+      type="Documentation"
+    />
+    <Card
+      css={
+        Object {
+          "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlJlc291cmNlUHJldmlldy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUF3RGtCIiwiZmlsZSI6IlJlc291cmNlUHJldmlldy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG5Db3B5cmlnaHQgMjAxOSBQcm92aW5jZSBvZiBCcml0aXNoIENvbHVtYmlhXG5cbkxpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSBcIkxpY2Vuc2VcIik7XG55b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdCBpbiBjb21wbGlhbmNlIHdpdGggdGhlIExpY2Vuc2UuXG5Zb3UgbWF5IG9idGFpbiBhIGNvcHkgb2YgdGhlIExpY2Vuc2UgYXQgXG5cbiAgIGh0dHA6Ly93d3cuYXBhY2hlLm9yZy9saWNlbnNlcy9MSUNFTlNFLTIuMFxuXG5Vbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlXG5kaXN0cmlidXRlZCB1bmRlciB0aGUgTGljZW5zZSBpcyBkaXN0cmlidXRlZCBvbiBhbiBcIkFTIElTXCIgQkFTSVMsXG5XSVRIT1VUIFdBUlJBTlRJRVMgT1IgQ09ORElUSU9OUyBPRiBBTlkgS0lORCwgZWl0aGVyIGV4cHJlc3Mgb3IgaW1wbGllZC5cblNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmRcbmxpbWl0YXRpb25zIHVuZGVyIHRoZSBMaWNlbnNlLlxuXG5DcmVhdGVkIGJ5IFBhdHJpY2sgU2ltb25pYW5cbiovXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IFByb3BUeXBlcyBmcm9tICdwcm9wLXR5cGVzJztcbmltcG9ydCBzdHlsZWQgZnJvbSAnQGVtb3Rpb24vc3R5bGVkJztcblxuaW1wb3J0IHsgRU1PVElPTl9CT09UU1RSQVBfQlJFQUtQT0lOVFMgfSBmcm9tICcuLi8uLi9jb25zdGFudHMvZGVzaWduVG9rZW5zJztcbmltcG9ydCB7IENoZXZyb25MaW5rIH0gZnJvbSAnLi4vVUkvTGluayc7XG5pbXBvcnQgeyBDb250YWluZXIsIFRpdGxlLCBTdHlsZWRMaW5rLCBMaW5rQ29udGFpbmVyIH0gZnJvbSAnLi9pbmRleCc7XG5pbXBvcnQgQ2FyZCBmcm9tICcuLi9DYXJkcy9DYXJkL0NhcmQnO1xuaW1wb3J0IHsgY3NzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSc7XG5pbXBvcnQgeyBGaW5kUGF0aHMgfSBmcm9tICcuLi9DYXJkcy9DYXJkL1BhdGhCYXInO1xuXG5leHBvcnQgY29uc3QgQ2FyZFdyYXBwZXIgPSBzdHlsZWQuZGl2YFxuICBtYXJnaW46IDZweCA5cHg7XG5gO1xuXG5leHBvcnQgY29uc3QgUmVzb3VyY2VDb250YWluZXIgPSBzdHlsZWQuZGl2YFxuICBwYWRkaW5nOiAxNXB4IDA7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZmxvdzogcm93IHdyYXA7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAke0VNT1RJT05fQk9PVFNUUkFQX0JSRUFLUE9JTlRTLnNtfSB7XG4gICAganVzdGlmeS1jb250ZW50OiBmbGV4LXN0YXJ0O1xuICB9XG5gO1xuXG4vLyB1c2VkIGJ5IHJlYWN0LXRlc3RpbmctbGlicmFyeSBkb20gcXVlcnlpbmdcbmV4cG9ydCBjb25zdCBURVNUX0lEUyA9IHtcbiAgY29udGFpbmVyOiAncmVzb3VyY2UtcHJldmlldy1jb250YWluZXInLFxufTtcblxuLy8gdGhpcyBpcyBhIHdyYXBwZXIgY29tcG9uZW50IHRoYXQgZW5jYXBzdWxhdGVzIGNhcmRzIGZvciB0b3BpY3Mgb3Igb3RoZXIgc2l6ZXNcbmV4cG9ydCBjb25zdCBSZXNvdXJjZVByZXZpZXcgPSAoeyB0aXRsZSwgbGluaywgcmVzb3VyY2VzIH0pID0+IChcbiAgPENvbnRhaW5lciBkYXRhLXRlc3RpZD17VEVTVF9JRFMuY29udGFpbmVyfT5cbiAgICA8VGl0bGU+XG4gICAgICA8U3R5bGVkTGluayB0bz17bGluay50b30+e3RpdGxlfTwvU3R5bGVkTGluaz5cbiAgICA8L1RpdGxlPlxuICAgIDxSZXNvdXJjZUNvbnRhaW5lcj5cbiAgICB7cmVzb3VyY2VzLnNsaWNlKDAsIDYpLm1hcChyID0+IChcbiAgICAgICAgPENhcmRcbiAgICAgICAgICBjc3M9e2Nzc2BcbiAgICAgICAgICAgIG1hcmdpbjogNDJweCAzcHg7XG4gICAgICAgICAgYH1cbiAgICAgICAgICBrZXk9e3IuaWR9XG4gICAgICAgICAgdHlwZT17ci5yZXNvdXJjZS50eXBlfVxuICAgICAgICAgIHRpdGxlPXtyLnVuZnVybC50aXRsZX1cbiAgICAgICAgICBkZXNjcmlwdGlvbj17ci51bmZ1cmwuZGVzY3JpcHRpb259XG4gICAgICAgICAgaW1hZ2U9e3IudW5mdXJsLmltYWdlfVxuICAgICAgICAgIGxpbms9e3IucmVzb3VyY2UucGF0aH1cbiAgICAgICAgICBldmVudD17cn1cbiAgICAgICAgICBwYXRocz17RmluZFBhdGhzKHIudW5mdXJsLnRpdGxlKX1cbiAgICAgICAgLz5cbiAgICAgICkpfVxuICAgIDwvUmVzb3VyY2VDb250YWluZXI+XG4gICAgPExpbmtDb250YWluZXI+XG4gICAgICA8Q2hldnJvbkxpbmsgdG89e2xpbmsudG99PntsaW5rLnRleHR9PC9DaGV2cm9uTGluaz5cbiAgICA8L0xpbmtDb250YWluZXI+XG4gIDwvQ29udGFpbmVyPlxuKTtcblxuUmVzb3VyY2VQcmV2aWV3LnByb3BUeXBlcyA9IHtcbiAgdGl0bGU6IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcbiAgbGluazogUHJvcFR5cGVzLnNoYXBlKHtcbiAgICB0ZXh0OiBQcm9wVHlwZXMuc3RyaW5nLmlzUmVxdWlyZWQsXG4gICAgdG86IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcbiAgfSksXG4gIHJlc291cmNlczogUHJvcFR5cGVzLmFycmF5T2YoUHJvcFR5cGVzLm9iamVjdCkuaXNSZXF1aXJlZCxcbn07XG5cbmV4cG9ydCBkZWZhdWx0IFJlc291cmNlUHJldmlldztcbiJdfQ== */",
+          "name": "114v0ed-ResourcePreview",
+          "styles": "margin:42px 3px;label:ResourcePreview;",
+        }
+      }
+      description="What the Design System is and how it works."
+      event={
+        Object {
+          "_metadata": Object {
+            "position": "001.000.001",
+          },
+          "attributes": Object {
+            "personas": Array [
+              "Designer",
+              "Developer",
+            ],
+          },
+          "childMarkdownRemark": Object {
+            "frontmatter": Object {
+              "pageOnly": false,
+            },
+          },
+          "id": "6",
+          "parent": Object {
+            "id": "topic-2",
+          },
+          "resource": Object {
+            "path": "/design-system/Z1bGIqu6",
+            "type": "Documentation",
+          },
+          "source": Object {
+            "displayName": "Design System",
+          },
+          "unfurl": Object {
+            "author": "ksingbeil",
+            "data1": "",
+            "data2": "",
+            "description": "What the Design System is and how it works.",
+            "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+            "label1": "",
+            "label2": "",
+            "title": "About",
+            "type": "markdown",
+          },
+        }
+      }
+      image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+      key="6"
+      link="/design-system/Z1bGIqu6"
+      paths={Array []}
+      title="About"
+      type="Documentation"
+    />
   </ResourceContainer>
   <LinkContainer>
     <ChevronLink
@@ -397,9 +356,3 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
   </LinkContainer>
 </Container>
 `;
-<<<<<<< HEAD
-=======
-exports[`Resource Preview Component it matches snapshot 1`] = `null`;
->>>>>>> Experimenting with UI
-=======
->>>>>>> Touching things up and updating tests + snapshots

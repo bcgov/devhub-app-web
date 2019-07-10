@@ -463,14 +463,14 @@ export const MEETUP_2 = {
 };
 
 export const ResourceData = {
-  allDevhubCollection: {
+  allDevhubTopic: {
     edges: [
       {
         node: {
           name: 'Agile Delivery Process',
           childrenDevhubSiphon: [
             {
-              collection: {
+              topic: {
                 name: 'Agile Delivery Process',
               },
               resource: {
@@ -488,7 +488,7 @@ export const ResourceData = {
           name: 'Featured Resources',
           childrenDevhubSiphon: [
             {
-              collection: {
+              topic: {
                 name: 'Featured Resources',
               },
               resource: {

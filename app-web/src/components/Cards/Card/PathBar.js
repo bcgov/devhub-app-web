@@ -38,12 +38,12 @@ const PathDiv = styled.div`
 export const FindPaths = title => {
   const ResourceData = useStaticQuery(graphql`
     query ResourceQuery {
-      allDevhubCollection {
+      allDevhubTopic {
         edges {
           node {
             name
             childrenDevhubSiphon {
-              collection {
+              topic {
                 name
               }
               resource {
@@ -58,14 +58,14 @@ export const FindPaths = title => {
       }
     }
   `);
-  const allCards = flattenGatsbyGraphQL(ResourceData.allDevhubCollection.edges).flatMap(
-    collection => collection.childrenDevhubSiphon,
+  const allCards = flattenGatsbyGraphQL(ResourceData.allDevhubTopic.edges).flatMap(
+    topic => topic.childrenDevhubSiphon,
   );
 
   const duplicateCards = allCards.filter(card => card.unfurl.title === title);
   const paths = duplicateCards.map(path => {
     path = {
-      name: path.collection.name,
+      name: path.topic.name,
       link: path.resource.path,
     };
     return path;
