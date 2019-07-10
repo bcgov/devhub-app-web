@@ -53,11 +53,44 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
   if (isDevhubSiphon(node)) {
     createNodeField({ node, name: 'personas', value: node.attributes.personas || [] });
     createNodeField({ node, name: 'resourceType', value: node.resource.type || [] });
+
+    createNodeField({
+      node,
+      name: 'title',
+      value: node.unfurl.title
+    });
+  
+    createNodeField({
+      node,
+      name: 'description',
+      value: node.unfurl.description,
+    });
+  
+    createNodeField({
+      node,
+      name: 'image',
+      value: node.unfurl.image,
+    });
+
+    createNodeField({
+      node,
+      name: 'author',
+      value: node.unfurl.author
+    });
+
+    // no labels applied to siphon nodes, siphon nodes are filtered to only show 'source' type web
+    // this is because siphon is getting deprecated, and eventaully source type web SHOULD be replaced
+    // by a source plugin specifically made for that source type
+    createNodeField({
+      node,
+      name: 'labels',
+      value: []
+    });
   }
 
   if (isMeetupEvent(node)) {
     // normalize meetup event data
-    createNodeField({ node, name: 'name', value: node.name });
+    createNodeField({ node, name: 'title', value: node.name });
     createNodeField({
       node,
       name: 'description',
@@ -183,6 +216,36 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
         node: parentNode,
         name: 'personas',
         value: personas,
+      });
+
+      createNodeField({
+        node: parentNode,
+        name: 'title',
+        value: node.frontmatter.title ? node.frontmatter.title : title,
+      });
+  
+      createNodeField({
+        node: parentNode,
+        name: 'description',
+        value: node.frontmatter.description ? node.frontmatter.description : '',
+      });
+  
+      createNodeField({
+        node: parentNode,
+        name: 'image',
+        value: node.frontmatter.image ? node.frontmatter.image : '',
+      });
+  
+      createNodeField({
+        node: parentNode,
+        name: 'labels',
+        value: labels,
+      });
+  
+      createNodeField({
+        node: parentNode,
+        name: 'author',
+        value: node.frontmatter.author ? node.frontmatter.author : '',
       });
     }
   }
