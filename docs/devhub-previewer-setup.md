@@ -18,6 +18,7 @@ that was followed is [here](https://blog.openshift.com/pushing-application-image
 To Summarize you require:
 - create a secret within your tools name space that contains the docker registry secret
   `oc create secret docker-registry dockerhub --docker-server=DOCKER_REGISTRY_SERVER --docker-username=DOCKER_USER --docker-password=DOCKER_PASSWORD --docker-email=DOCKER_EMAIL`
+  > you will need org access to bcgovimages in order for your credentials to have access to push images
 - then the `<tools namespace>/builder` service account will need a reference to this secret
 ```yaml
 # builder sa yaml
