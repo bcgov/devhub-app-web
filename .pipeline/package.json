@@ -24,7 +24,24 @@
     "eslint": "^6.0.1",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^3.0.0",
+    "lint-staged": "^9.2.0",
     "pipeline-cli": "git+https://github.com/BCDevOps/pipeline-cli.git#v1.1",
     "prettier": "^1.18.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.css": [
+      "js-beautify --config .jsbeautifyrc -f *.css",
+      "git add"
+    ]
   }
 }

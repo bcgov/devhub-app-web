@@ -23,7 +23,6 @@ module.exports = settings => {
         MATOMO_URL: 'https://matomo-devhub-prod.pathfinder.gov.bc.ca',
         MATOMO_SITE_URL: 'https://developer.gov.bc.ca',
         MATOMO_SITE_ID: '1',
-        PREVIEW_NAME: 'devhub-previewer',
       },
     }),
   );
