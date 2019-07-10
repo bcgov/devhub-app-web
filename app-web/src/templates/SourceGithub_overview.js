@@ -41,7 +41,7 @@ class SourceGithubMarkdownOverview extends React.Component {
 
   render() {
     const {
-      data: { devhubSiphon, nav, collection },
+      data: { devhubSiphon, nav, topic },
       location,
     } = this.props;
     // bind the devhub siphon data to the preview node
@@ -61,16 +61,12 @@ class SourceGithubMarkdownOverview extends React.Component {
     return (
       <Layout>
         <div>
-          <Masthead
-            type="Collections"
-            title={collection.name}
-            description={collection.description}
-          />
+          <Masthead type="Topics" title={topic.name} description={topic.description} />
           <Main>
             <SidePanel>{navigation}</SidePanel>
             <SideDrawerToggleButton onClick={() => this.toggleMenu(true)}>
               <FontAwesomeIcon icon={faBars} style={{ color: '#026' }} />{' '}
-              <span>{collection.name} Content</span>
+              <span>{topic.name} Content</span>
             </SideDrawerToggleButton>
             <div className={styles.MarkdownBody}>
               {/* 
@@ -91,7 +87,7 @@ class SourceGithubMarkdownOverview extends React.Component {
         </div>
         <SideDrawer
           show={this.state.sideDrawerToggled}
-          title={`${collection.name} Content`}
+          title={`${topic.name} Content`}
           closeDrawer={() => this.toggleMenu(false)}
         >
           {navigation}
@@ -102,7 +98,7 @@ class SourceGithubMarkdownOverview extends React.Component {
 }
 
 export const devhubSiphonMarkdown = graphql`
-  query devhubSiphonMarkdownOverview($id: String!, $collectionId: String!) {
+  query devhubSiphonMarkdownOverview($id: String!, $topicId: String!) {
     devhubSiphon(id: { eq: $id }) {
       name
       id
@@ -132,11 +128,11 @@ export const devhubSiphonMarkdown = graphql`
       fileType
       path
     }
-    collection: devhubTopic(id: { eq: $collectionId }) {
+    topic: devhubTopic(id: { eq: $topicId }) {
       name
       description
     }
-    nav: devhubTopic(id: { eq: $collectionId }) {
+    nav: devhubTopic(id: { eq: $topicId }) {
       items: childrenDevhubSiphon {
         ...NavigationFragment
       }

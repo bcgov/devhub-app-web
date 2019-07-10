@@ -598,7 +598,7 @@ exports[`Topics Container it matches snapshot 1`] = `
       >
         <div
           class="emotion-17 emotion-18"
-          type="Collections"
+          type="Topics"
         />
         <div
           class="emotion-112 emotion-113"
@@ -617,7 +617,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                 data-testid="resource-type-icon"
                 focusable="false"
                 role="img"
-                type="Collections"
+                type="Topics"
                 viewBox="0 0 512 512"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -1047,7 +1047,7 @@ exports[`Topics Container it matches snapshot 1`] = `
       >
         <div
           class="emotion-17 emotion-18"
-          type="Collections"
+          type="Topics"
         />
         <div
           class="emotion-112 emotion-113"
@@ -1066,7 +1066,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                 data-testid="resource-type-icon"
                 focusable="false"
                 role="img"
-                type="Collections"
+                type="Topics"
                 viewBox="0 0 512 512"
                 xmlns="http://www.w3.org/2000/svg"
               >

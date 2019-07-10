@@ -149,8 +149,8 @@ export const RESOURCES = {
       id: 'RESOURCE_TYPES.REPOSITORIES',
       defaultMessage: 'Repository',
     },
-    Collections: {
-      id: 'RESOURCE_TYPES.COLLECTIONS',
+    Topics: {
+      id: 'RESOURCE_TYPES.TOPICS',
       defaultMessage: 'Topic',
     },
     Events: {

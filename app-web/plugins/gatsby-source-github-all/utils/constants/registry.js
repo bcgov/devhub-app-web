@@ -53,7 +53,7 @@ const REGISTRY_ITEM_SCHEMA = {
   },
 };
 
-// specific validation for the collection.sourceProperties.collectionSource property
+// specific validation for the topic.sourceProperties.topicSource property
 const TOPIC_SOURCE = {
   repo: {
     type: String,

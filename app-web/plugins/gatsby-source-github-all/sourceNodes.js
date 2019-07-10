@@ -60,7 +60,7 @@ const mapInheritedSourceAttributes = ({ name, attributes, resourceType, slug }, 
   }),
   resourceType,
   name,
-  collection: {
+  topic: {
     name,
     type: TOPIC_TEMPLATES.CURATED,
     slug,
@@ -207,7 +207,7 @@ const getFetchQueue = async (sources, tokens) => {
         {
           ...rootSource,
           attributes: normalizeAttributes(rootSource.attributes),
-          collection: {
+          topic: {
             name: rootSource.name,
             type: TOPIC_TYPES[rootSource.sourceType],
             slug,

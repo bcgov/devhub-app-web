@@ -18,7 +18,7 @@ It will also be a platform through which government teams can share their develo
 
 It will provide an inventory of ongoing open product development products, components and teams
 
-The resources will be collected into curated various focused kits/collections of resources needed to build particular types of systems, assist teams at a point in their lifecycle, support persona specific-workflows, etc. 
+The resources will be collected into curated various focused kits/topics of resources needed to build particular types of systems, assist teams at a point in their lifecycle, support persona specific-workflows, etc. 
 
 It will also provide a aeans to seed “prosumer”/community behaviours. For example, it will be possible to view source/fork/comment/PR on many of the elements in the DevHub.
 
@@ -33,7 +33,7 @@ The currently imagined resource types are as follows:
 * People
 * Projects
 
-There is also the concept of a set of potentially heterogeneous resources that we are calling a "Collection". For example, a   
+There is also the concept of a set of potentially heterogeneous resources that we are calling a "Topic". For example, a   
 
 ### Documentation
 
@@ -182,7 +182,7 @@ Any issues that are created within this repository are synced with our Zenhub ka
 │   │   ├── Information-and-Application-Security
 │   │   ├── Mobile-Starter-Kit
 │   │   ├── about
-│   │   ├── collections
+│   │   ├── topics
 │   │   ├── components
 │   │   ├── documentation
 │   │   ├── events

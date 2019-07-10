@@ -25,17 +25,17 @@ import { Container as PreviewContainer, Title, StyledLink, LinkContainer } from 
 
 // used for react-testing-library dom querying
 export const TEST_IDS = {
-  container: 'collections-container',
+  container: 'topics-container',
 };
 
-const TopicContent = collections =>
-  collections
-    .filter(collection => collection.hasResources)
+const TopicContent = topics =>
+  topics
+    .filter(topic => topic.hasResources)
     .slice(0, 4)
-    .map(collection => {
+    .map(topic => {
       // resources are grouped by type, 'ungroup' them so we can find the first available
       // non external link to use as the entry page for the topic card
-      const allResources = collection.childrenDevhubSiphon.sort((a, b) => {
+      const allResources = topic.childrenDevhubSiphon.sort((a, b) => {
         // sort to ensure first resource in topic is the entry point
         const position1 = a._metadata.position;
         const position2 = b._metadata.position;
@@ -44,9 +44,9 @@ const TopicContent = collections =>
 
       return (
         <TopicPreview
-          key={collection.id}
-          title={collection.name}
-          description={collection.description}
+          key={topic.id}
+          title={topic.name}
+          description={topic.description}
           link={{ to: getFirstNonExternalResource(allResources), text: 'View' }}
           resources={allResources}
           css={css`
@@ -57,13 +57,13 @@ const TopicContent = collections =>
       );
     });
 
-export const TopicsContainer = ({ collections, link }) => (
+export const TopicsContainer = ({ topics, link }) => (
   <PreviewContainer data-testid={TEST_IDS.container}>
     <Title>
       <StyledLink to={link.to}>Topics</StyledLink>
     </Title>
 
-    {TopicContent(collections)}
+    {TopicContent(topics)}
     <LinkContainer>
       <ChevronLink to={link.to}>{link.text}</ChevronLink>
     </LinkContainer>
@@ -71,7 +71,7 @@ export const TopicsContainer = ({ collections, link }) => (
 );
 
 TopicsContainer.propTypes = {
-  collections: PropTypes.arrayOf(
+  topics: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       id: PropTypes.string.isRequired,

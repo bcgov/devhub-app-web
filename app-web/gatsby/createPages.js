@@ -179,8 +179,8 @@ const createResourceComponentPages = async (createPage, graphql) => {
             context: {
               // Data passed to context is available in page queries as GraphQL variables.
               id: siphon.id,
-              collection: topic.name,
-              collectionId: topic.id,
+              topic: topic.name,
+              topicId: topic.id,
             },
           });
         } catch (e) {

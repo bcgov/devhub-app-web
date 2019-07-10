@@ -22,7 +22,7 @@ import { RESOURCE_TYPES } from '../constants/ui';
 import groupBy from 'lodash/groupBy';
 
 // the following to fns are essentially stubs, this mocks the behaviour of a created selector
-export const selectTopics = collections => collections;
+export const selectTopics = topics => topics;
 export const selectResources = resources => resources;
 
 const defaultGroups = Object.keys(RESOURCE_TYPES).reduce((grouping, type) => {
