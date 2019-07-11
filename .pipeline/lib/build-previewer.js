@@ -1,36 +1,39 @@
 'use strict';
-const { OpenShiftClientX } = require('pipeline-cli');
+const { OpenShiftClientX, OpenShiftClient } = require('pipeline-cli');
 const path = require('path');
 
-module.exports = settings => {
+module.exports = async settings => {
   const phases = settings.phases;
   const options = settings.options;
-  const oc = new OpenShiftClientX(Object.assign({ namespace: phases.build.namespace }, options));
+  const ocX = new OpenShiftClientX(Object.assign({ namespace: phases.build.namespace }, options));
   const phase = 'prod';
   let objects = [];
-  const templatesLocalBaseUrl = oc.toFileUrl(path.resolve(__dirname, '../../openshift/templates'));
+  const templatesLocalBaseUrl = ocX.toFileUrl(path.resolve(__dirname, '../../openshift/templates'));
 
   // The building of your cool app goes here ▼▼▼
   objects = objects.concat(
-    oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/devhub-previewer.bc.yaml`, {
+    ocX.processDeploymentTemplate(`${templatesLocalBaseUrl}/devhub-previewer.bc.yaml`, {
       param: {
         NAME: phases[phase].name,
-        SUFFIX: phases[phase].suffix,
         VERSION: phases[phase].tag,
-        SOURCE_REPOSITORY_URL: oc.git.http_url,
-        SOURCE_REPOSITORY_REF: oc.git.ref,
+        SOURCE_REPOSITORY_URL: ocX.git.http_url,
+        SOURCE_REPOSITORY_REF: ocX.git.ref,
         DOCKER_IMAGE: 'registry.hub.docker.com/bcgovimages/devhub-previewer:latest',
         DOCKERHUB_SECRET: 'dockerhub',
       },
     }),
   );
 
-  oc.applyRecommendedLabels(
+  objects = ocX.applyRecommendedLabels(
     objects,
     phases[phase].name,
     phase,
     phases[phase].changeId,
     phases[phase].instance,
   );
-  oc.applyAndBuild(objects);
+  const oc = new OpenShiftClient(Object.assign({ namespace: phases.build.namespace }, options));
+  // using parent OpenshiftClient Instance since its base methods do not validate objects
+  oc.apply(objects);
+  console.log('building previewer');
+  oc.startBuild(objects);
 };
