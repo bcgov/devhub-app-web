@@ -84,7 +84,7 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
     createNodeField({
       node,
       name: 'labels',
-      value: []
+      value: ['website'] // stubbing in a static label to preserve this field from being created
     });
   }
 
