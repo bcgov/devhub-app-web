@@ -67,7 +67,7 @@ module.exports = ({ createResolvers }) => {
         resolve: (source, args, context, info) => {
           return {
             unfurl: {
-              title: source.fields.name,
+              title: source.fields.title,
               image: 'meetup',
               description: source.fields.description,
             },
