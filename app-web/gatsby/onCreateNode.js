@@ -92,9 +92,13 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       value: ['website'] // stubbing in a static label to preserve this field from being created
     });
   }
+  if (isEventbriteEvents(node)) {
+    createNodeField({node, name: 'topics', value: ['Community and Events']});
+  }
 
   if (isMeetupEvent(node)) {
     // normalize meetup event data
+    createNodeField({node, name: 'topics', value: ['Community and Events']});
     createNodeField({ node, name: 'title', value: node.name });
     createNodeField({
       node,
