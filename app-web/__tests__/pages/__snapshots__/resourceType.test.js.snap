@@ -338,6 +338,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
               aria-label="Filter resources by this value"
               class="custom-control-input"
               data-testid="filter-group-checkbox-designer"
+              disabled=""
               id="For0"
               type="checkbox"
             />
@@ -355,6 +356,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
               aria-label="Filter resources by this value"
               class="custom-control-input"
               data-testid="filter-group-checkbox-developer"
+              disabled=""
               id="For1"
               type="checkbox"
             />
@@ -372,6 +374,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
               aria-label="Filter resources by this value"
               class="custom-control-input"
               data-testid="filter-group-checkbox-product-owner"
+              disabled=""
               id="For2"
               type="checkbox"
             />
