@@ -196,8 +196,7 @@ describe('Resource Type Template Page', () => {
     // these filters filter by attributes.personas which is an array value inside of the nodes
     const siphonNodesNotFilterableByFirstFilter = SIPHON_NODES.map(node => ({
       ...node,
-      attributes: {
-        ...node.attributes,
+      fields: {
         personas: node.attributes.personas.filter(p => p !== firstFilter.value),
       },
     }));
@@ -236,9 +235,11 @@ describe('Resource Type Template Page', () => {
     // these filters filter by attributes.personas which is an array value inside of the nodes
     const siphonNodesNotFilterableByFirstFilter = SIPHON_NODES.map(node => ({
       ...node,
+      fields: {
+        personas: [firstFilter.value], // set in so all nodes have the same filter value
+      },
       attributes: {
         ...node.attributes,
-        personas: [firstFilter.value], // set in so all nodes have the same filter value
       },
     }));
 
