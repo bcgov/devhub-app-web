@@ -25,6 +25,7 @@ const {
   isDevhubSiphon,
   isMarkdownRemark,
   isGithubRaw,
+  isEventbriteEvents,
   isMeetupEvent,
   getClosestResourceType,
   getClosestPersona,
@@ -92,8 +93,14 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       value: ['website'] // stubbing in a static label to preserve this field from being created
     });
   }
+  
   if (isEventbriteEvents(node)) {
     createNodeField({node, name: 'topics', value: ['Community and Events']});
+    createNodeField({
+      node,
+      name: 'resourceType',
+      value: RESOURCE_TYPES.EVENTS,
+    });
   }
 
   if (isMeetupEvent(node)) {
@@ -114,6 +121,11 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       node,
       name: 'location',
       value: node.venue ? node.venue.address_1 : '',
+    });
+    createNodeField({
+      node,
+      name: 'resourceType',
+      value: RESOURCE_TYPES.EVENTS,
     });
   }
 
