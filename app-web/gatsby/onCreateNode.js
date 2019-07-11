@@ -32,6 +32,22 @@ const {
 } = require('./utils/validators.js');
 const slugify = require('slugify');
 
+/**
+ * on create node for many source/transformer plugins there are a set of fields that are created
+ * which are normalized. This allows a set of cards to be produced from different datastructures
+ * using a common interface.
+ * NORMALIZED FIELDS
+ * title: <String> the card title
+ * description: <String> short summary
+ * slug: <String> the page path if not pointing to an external resource
+ * standalonePagePath: <String>
+ * author: <String>
+ * personas: [<String>]
+ * labels: [<String>]
+ * topics: if not already a topic [<String>]
+ * image: <String>
+ * 
+ */
 module.exports = ({ node, actions, getNode, getNodes }) => {
   const { createNodeField } = actions;
   
