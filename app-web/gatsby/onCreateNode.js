@@ -33,6 +33,11 @@ const slugify = require('slugify');
 
 module.exports = ({ node, actions, getNode, getNodes }) => {
   const { createNodeField } = actions;
+  
+  if (isGithubRaw(node)) {
+    createNodeField({node, name: 'topics', value: node.___boundProperties.topics});
+  }
+
   if (isDevhubTopic(node)) {
     // add a content field that the markdown topics will map too
     createNodeField({ node, name: 'content', value: node.name });
