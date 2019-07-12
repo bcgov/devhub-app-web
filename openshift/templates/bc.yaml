@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Template
 metadata:
   creationTimestamp: null
-  name: jenkins
+  name: devhub-app-web-bc-template
 labels:
   template: devhub-app-web
 objects:

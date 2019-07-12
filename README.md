@@ -236,7 +236,8 @@ Any issues that are created within this repository are synced with our Zenhub ka
 * change into app-web project directory
 * copy and update your env file
 * `cp .env.production.example .env.production`
-
+* set up a secret to allow the openshift builder service account to push devhub 'dev mode' images to
+  docker hub, instructions [here](./docs/devhub-previewer-setup.md)
 ## Deployment (Local Development For App-Web)
 
 * Requires **Node 10** and **npm 6**
