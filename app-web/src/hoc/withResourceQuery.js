@@ -62,6 +62,9 @@ const withResourceQuery = WrappedComponent => () => props => (
                   description
                   image
                 }
+                fields {
+                  resourceType
+                }
               }
             }
           }
@@ -72,6 +75,9 @@ const withResourceQuery = WrappedComponent => () => props => (
         ) {
           edges {
             node {
+              fields {
+                resourceType
+              }
               siphon {
                 unfurl {
                   title
@@ -121,6 +127,7 @@ const withResourceQuery = WrappedComponent => () => props => (
                   location
                   description
                   link
+                  resourceType
                 }
               }
             }
