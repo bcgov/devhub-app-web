@@ -65,6 +65,21 @@ const expandRegistry = registry =>
     return item;
   });
 
+/**
+ * split apart sources from their topics so that we have a flat list of sources
+ * @param {Array} expandedRegistry 
+ * @returns {Array} the flattened sources
+ */
+const flattenExpandedRegistry = (expandedRegistry) => expandedRegistry.reduce((sources, registryItem) => {
+  const personas = registryItem.attributes && registryItem.attributes.personas;
+  const flattenedSources = registryItem.sourceProperties.sources.map(s => ({
+    source: s,
+    topic: registryItem.name,
+    topicResourceType: registryItem.resourceType,
+    topicPersonas: personas || [],
+  }))
+  return sources.concat(flattenedSources);
+}, []);
 
 const getFilesFromRegistry = getNodes => {
   const nodes = getNodes();
@@ -76,7 +91,7 @@ const getFilesFromRegistry = getNodes => {
   // [{sourceProperties: { files: [A, B]}}] => [{sourceProperties: { file: A}}, {sourceProperties: { file: B}}]
   const expandedRegistry = expandRegistry(registry);
 
-  // split apart sources from their topics so that we have a flat list of sources
+  // 
   const sources = expandedRegistry.reduce((sources, registryItem) => {
     const personas = registryItem.attributes && registryItem.attributes.personas;
     const flattenedSources = registryItem.sourceProperties.sources.map(s => ({
@@ -134,4 +149,4 @@ const getFilesFromRegistry = getNodes => {
   }));
 };
 
-module.exports = { getFilesFromRegistry, expandRegistry };
+module.exports = { getFilesFromRegistry, expandRegistry, flattenExpandedRegistry };
