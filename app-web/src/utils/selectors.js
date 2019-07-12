@@ -39,7 +39,7 @@ export const selectResourcesGroupedByType = () =>
   createSelector(
     selectResources,
     resources => {
-      return { ...defaultGroups, ...groupBy(resources, 'resource.type') };
+      return { ...defaultGroups, ...groupBy(resources, 'fields.resourceType') };
     },
   );
 

@@ -117,6 +117,12 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       name: 'resourceType',
       value: RESOURCE_TYPES.EVENTS,
     });
+    createNodeField({ node, name: 'title', value: node.name.text });
+    createNodeField({
+      node,
+      name: 'description',
+      value: node.description.text,
+    });
   }
 
   if (isMeetupEvent(node)) {
