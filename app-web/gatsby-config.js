@@ -99,7 +99,8 @@ module.exports = {
   },
   mapping: {
     'GithubRaw.fields.topics': 'DevhubTopic.name',
-    'DevhubTopic.fields.content': 'MarkdownRemark.fields.id',
+    'DevhubSiphon.fields.topics': 'DevhubTopic.name',
+    'DevhubTopic.fields.content': 'MarkdownRemark.fields.id', // topic page content mapping
     'DevhubTopic.fields.githubRaw': 'GithubRaw.id',
   },
   pathPrefix: '/images',
