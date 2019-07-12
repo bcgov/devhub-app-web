@@ -98,7 +98,7 @@ module.exports = {
     title: 'DevHub',
   },
   mapping: {
-    'GithubRaw._xxboundProperties.topics': 'DevhubTopic.name',
+    'GithubRaw.fields.topics': 'DevhubTopic.name',
     'DevhubTopic.fields.content': 'MarkdownRemark.fields.id',
     'DevhubTopic.fields.githubRaw': 'GithubRaw.id',
   },
@@ -236,10 +236,10 @@ module.exports = {
             id: node => node.parent,
           },
           DevhubSiphon: {
-            title: node => node.unfurl.title,
-            description: node => node.unfurl.description,
+            title: node => node.fields.title,
+            description: node => node.fields.description,
             topicName: node => node.topic.name,
-            labels: node => node.attributes.labels,
+            labels: node => node.fields.labels,
           },
           EventbriteEvents: {
             title: node => node.name.text,

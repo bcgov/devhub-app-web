@@ -26,6 +26,9 @@ export const DESIGN_SYSTEM_NODE_1 = {
     path: '/design-system/Z1bGIqu1',
     type: 'Components',
   },
+  fields: {
+    resourceType: 'Components',
+  },
   unfurl: {
     type: 'markdown',
     label1: '',
@@ -61,6 +64,9 @@ export const DESIGN_SYSTEM_NODE_2 = {
   resource: {
     path: '/design-system/Z1bGIqu2',
     type: 'Components',
+  },
+  fields: {
+    resourceType: 'Components',
   },
   unfurl: {
     type: 'markdown',
@@ -98,6 +104,9 @@ export const DESIGN_SYSTEM_NODE_3 = {
     path: '/design-system/Z1bGIqu3',
     type: 'Components',
   },
+  fields: {
+    resourceType: 'Components',
+  },
   unfurl: {
     type: 'markdown',
     label1: '',
@@ -133,6 +142,9 @@ export const DESIGN_SYSTEM_NODE_4 = {
   resource: {
     path: '/design-system/Z1bGIqu4',
     type: 'Components',
+  },
+  fields: {
+    resourceType: 'Components',
   },
   unfurl: {
     type: 'markdown',
@@ -170,6 +182,9 @@ export const DEVHUB_NODE_1 = {
     path: '/design-system/Z1bGIqu5',
     type: 'Documentation',
   },
+  fields: {
+    resourceType: 'Documentation',
+  },
   unfurl: {
     type: 'markdown',
     label1: '',
@@ -206,6 +221,9 @@ export const DEVHUB_NODE_2 = {
     path: '/design-system/Z1bGIqu6',
     type: 'Documentation',
   },
+  fields: {
+    resourceType: 'Documentation',
+  },
   unfurl: {
     type: 'markdown',
     label1: '',
@@ -241,6 +259,9 @@ export const DEVHUB_NODE_3 = {
   resource: {
     path: '/design-system/Z1bGIqu7',
     type: 'Documentation',
+  },
+  fields: {
+    resourceType: 'Documentation',
   },
   unfurl: {
     type: 'markdown',
@@ -284,6 +305,7 @@ export const DESIGN_SYSTEM_TOPIC = {
   })),
 };
 
+
 export const DEVHUB_TOPIC = {
   id: IDS.DEVHUB,
   type: 'default',
@@ -307,8 +329,10 @@ export const EVENT_1 = {
     },
     resource: {
       type: 'Events',
-      path:
-        'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
+      path: 'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
+    },
+    fields: {
+      resourceType: 'Events',
     },
     id: '45046198392',
   },
@@ -345,10 +369,12 @@ export const EVENT_2 = {
       image: 'eventbrite',
       description: 'This is also a test',
     },
+    fields: {
+      resourceType: 'Events',
+    },
     resource: {
       type: 'Events',
-      path:
-        'https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F41880838%2F228490647317%2F1%2Foriginal.jpg?auto=compress&s=c53f3ef4e5b52e00963afab920fca78e',
+      path: 'https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F41880838%2F228490647317%2F1%2Foriginal.jpg?auto=compress&s=c53f3ef4e5b52e00963afab920fca78e',
     },
     id: '61112980570',
   },
@@ -394,6 +420,9 @@ export const MEETUP_1 = {
         path: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
         type: 'Events',
       },
+      fields: {
+        resourceType: 'Events',
+      },
       unfurl: {
         description:
           "Join us for a Product Spotlight featuring ZenHub! With 3+ CSI Lab teams already using ZenHub, and other interested, we thought it would be a great idea to get the ZenHub team in the CSI Lab to provide a deep dive into their product. What is ZenHub?ZenHub is browser extension that adds robust project management features directly into GitHub's UI, making centralized collaboration on GitHub faster, more visual, and less cluttered. With ZenHub installed, your team stays lean and agile: you can plan sprints, create epics, and visualize your workflow without leaving GitHub. More details here: https://www.zenhub.com/ ",
@@ -434,6 +463,9 @@ export const MEETUP_2 = {
       resource: {
         path: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
         type: 'Events',
+      },
+      fields: {
+        resourceType: 'Events',
       },
       unfurl: {
         description: 'test description',

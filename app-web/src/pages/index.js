@@ -72,6 +72,8 @@ const getResourcePreviews = (resources, results = []) => {
   }
 
   resourcesToGroup = getUniqueResources(resourcesToGroup);
+
+  
   // select resources grouped by type using relesect memoization https://github.com/reduxjs/reselect/issues/30
   const resourcesByType = resourcesSelector(resourcesToGroup);
   const siphonResources = Object.keys(resourcesByType).map(resourceType => {
