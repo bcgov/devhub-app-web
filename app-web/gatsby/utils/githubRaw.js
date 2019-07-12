@@ -122,7 +122,6 @@ const getFilesFromRegistry = getNodes => {
       }
   });
   // convert sourceToTopicMap to an array in the expected structure for the github raw plugin
-  // {url1: [topicA, topicB]} => [{url: url1, topics: [topicA, topicB], ...other props}]
   return Object.keys(sourceToTopicMap).map(url => ({
     url,
     topics: sourceToTopicMap[url].topics,
