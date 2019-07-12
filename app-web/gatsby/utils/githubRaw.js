@@ -17,64 +17,111 @@ Created by Patrick Simonian
 */
 const { isRegistryJson } = require('./validators');
 const flatten = require('lodash/flatten');
+const isArray = require('lodash/isArray');
+
+/**
+ * registry configuration allows for multiple ways of configuring particular sources
+ * for example github sources can grab a file or files
+ * this function normalizes these configurations and 'expands' any condensed configurations
+ * suchs as the github source files property
+ * @param {Array} registry the registry
+ * @returns {Array} the expanded registry
+ */
+const expandRegistry = registry =>
+  registry.map(registryItem => {
+    const item = { ...registryItem, sourceProperties: { ...registryItem.sourceProperties } };
+    // console.log('REGISTRY ITEM START');
+    // console.log(registryItem, 'REGISTRY ITEM END');
+    // expand registry item sources
+    item.sourceProperties.sources = registryItem.sourceProperties.sources.reduce(
+      (sources, currentSource) => {
+        if (currentSource.sourceType === 'github') {
+          // github sources have the convenient interface for registering multiple files in the registry config
+          // they are now expanded to be individual 'source' configs so that they may be indentifiable
+          if (isArray(currentSource.sourceProperties.files)) {
+            const {repo, owner} = currentSource.sourceProperties;
+            const flattenedSources = currentSource.sourceProperties.files.map(file => {
+              return {
+                sourceType: 'github',
+                sourceProperties: {
+                  repo,
+                  owner,
+                  file,
+                }
+              }
+            })
+            sources = sources.concat(flattenedSources);
+          } else {
+            sources = sources.concat(currentSource);
+          }
+        } else {
+          sources = sources.concat(currentSource);
+        }
+        return sources;
+      },
+      [],
+    );
+
+    return item;
+  });
+
 
 const getFilesFromRegistry = getNodes => {
   const nodes = getNodes();
   const sourceToTopicMap = {};
   // get RegistryJson nodes
   const registry = nodes.filter(isRegistryJson);
+  // expand registry so that any items that list multiple files (for source: github)
+  // are spread into individual objects
+  // [{sourceProperties: { files: [A, B]}}] => [{sourceProperties: { file: A}}, {sourceProperties: { file: B}}]
+  const expandedRegistry = expandRegistry(registry);
 
-  // spit out all github sources from the registry while maintaining references to the
-  // topics they belong too
-  const gitsources = registry.reduce((sources, registryItem) => {
-    const gitsources = registryItem.sourceProperties.sources.filter(s => s.sourceType === 'github');
+  // split apart sources from their topics so that we have a flat list of sources
+  const sources = expandedRegistry.reduce((sources, registryItem) => {
     const personas = registryItem.attributes && registryItem.attributes.personas;
-
-    sources.push([
-      gitsources,
-      registryItem.name,
-      registryItem.resourceType || null,
-      personas || [],
-    ]);
-    return sources;
+    const flattenedSources = registryItem.sourceProperties.sources.map(s => ({
+      source: s,
+      topic: registryItem.name,
+      topicResourceType: registryItem.resourceType,
+      topicPersonas: personas || [],
+    }))
+    return sources.concat(flattenedSources);
   }, []);
 
-  // resolve git sources into a list of uris
-  // [[{source1, source2}], topic] => [[url1, url2], topic]
-  const resolvedGitSources = gitsources.map(gs => {
-    const [sources, topic, topicResourceType, topicPersonas] = gs;
 
-    let urls = sources.map(source => {
+  // add position metadata to github urls and set non github source types to null
+  // so that they are filterable
+  const resolvedGitSources = sources.map((s, ind) => {
+    const {source, topic, topicResourceType, topicPersonas} = s;
+
+    if(source.sourceType === 'github') {
       const {
-        sourceProperties: { repo, owner, branch, file, files },
+        sourceProperties: { repo, owner, branch, file },
       } = source;
+        
       const fileBranch = branch ? branch : 'master';
-      // since sources can have many files we need to check to see what type of config they are using
-      if (file) {
-        return `https://github.com/${owner}/${repo}/blob/${fileBranch}/${file}`;
-      } else if (files) {
-        return files.map(f => {
-          return `https://github.com/${owner}/${repo}/blob/${fileBranch}/${f}`;
-        });
+      return {
+        url: `https://github.com/${owner}/${repo}/blob/${fileBranch}/${file}`,
+        position: ind,
+        topic, topicResourceType, topicPersonas,
       }
-      return [];
-    });
-    // flatten out all urls since a single source can produce many urls
-    return [flatten(urls), topic, topicResourceType, topicPersonas];
-  });
+    } else {
+      // web source types are ignored
+      return null;
+    }
+  }).filter(s => s !== null);   // filter out web types 
+
   // map out urls to their respective topics since this is 1 to many relationship
   // ends up with structure that is similar to this => {url1: {topics: [topicA, topicB], ...other props}}
-  resolvedGitSources.forEach(([urls, topic, topicResourceType, topicPersonas]) => {
-    urls.forEach(u => {
-      if (Object.prototype.hasOwnProperty.call(sourceToTopicMap, u)) {
-        sourceToTopicMap[u].topics.push(topic);
+  resolvedGitSources.forEach(({url, topic, topicResourceType, topicPersonas, position}) => {
+
+      if (Object.prototype.hasOwnProperty.call(sourceToTopicMap, url)) {
+        sourceToTopicMap[url].topics.push(topic);
       } else {
-        sourceToTopicMap[u] = { topics: [topic], topicResourceType, topicPersonas };
+        sourceToTopicMap[url] = { topics: [topic], topicResourceType, topicPersonas, position: position };
       }
-    });
   });
   // convert sourceToTopicMap to an array in the expected structure for the github raw plugin
-  // {url1: [topicA, topicB]} => [{url: url1, topics: [topicA, topicB], ...other props}]
   return Object.keys(sourceToTopicMap).map(url => ({
     url,
     topics: sourceToTopicMap[url].topics,
@@ -83,7 +130,8 @@ const getFilesFromRegistry = getNodes => {
     // providing reasonable defaults for resource type/personas if they dont exist inside the github raw nodes
     // markdown frontmatter
     topicPersonas: sourceToTopicMap[url].topicPersonas,
+    position: sourceToTopicMap[url].position
   }));
 };
 
-module.exports = { getFilesFromRegistry };
+module.exports = { getFilesFromRegistry, expandRegistry };
