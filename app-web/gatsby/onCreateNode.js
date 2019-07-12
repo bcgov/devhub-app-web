@@ -241,6 +241,18 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
         name: 'slug',
         value: slugify(slug),
       });
+
+      const topics = parentNode.___boundProperties.topics;
+      const pagePaths = topics.map(t => `${slugify(t)}/${slugify(slug)}`);
+      // all github raw nodes have a page path that is just the individual resource
+      // the others are based off of the topics it belongs too
+      createNodeField({
+        node: parentNode,
+        name: 'pagePaths',
+        value: [slugify(slug)].concat(pagePaths),
+      });
+
+      
       // add resource type, initially it is set to the topic resource type
       let resourceType = parentNode.___boundProperties.topicResourceType;
 
