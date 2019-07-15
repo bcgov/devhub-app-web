@@ -26,6 +26,7 @@ import { SPACING } from '../constants/designTokens';
 import uniqBy from 'lodash/uniqBy';
 import { formatEvents, formatMeetUps } from '../templates/events';
 import { RESOURCE_TYPES } from '../constants/ui';
+var converter = require('number-to-words');
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -55,7 +56,7 @@ const getUniqueResources = resources => {
   let events = resources.filter(resource => resource.resource.type === RESOURCE_TYPES.EVENTS);
   let allButEvents = resources.filter(resource => resource.resource.type !== RESOURCE_TYPES.EVENTS);
   allButEvents = uniqBy(allButEvents, 'unfurl.title');
-  return allButEvents.slice(0, 15).concat(events);
+  return allButEvents.concat(events);
 };
 
 /**
@@ -73,15 +74,27 @@ const getResourcePreviews = (resources, results = []) => {
 
   resourcesToGroup = getUniqueResources(resourcesToGroup);
   // select resources grouped by type using relesect memoization https://github.com/reduxjs/reselect/issues/30
-  const resourcesByType = resourcesSelector(resourcesToGroup);
+  let resourcesByType = resourcesSelector(resourcesToGroup);
+
   const siphonResources = Object.keys(resourcesByType).map(resourceType => {
+    let linkWithCounter;
     if (resourcesByType[resourceType].length > 0) {
+      if (resourcesByType[resourceType].length > 6) {
+        linkWithCounter = {
+          to: MAIN_NAV_ROUTES[resourceType].to,
+          text: `View all ${converter.toWords(
+            resourcesByType[resourceType].length,
+          )} results for ${resourceType}`,
+        };
+      } else {
+        linkWithCounter = MAIN_NAV_ROUTES[resourceType];
+      }
       return (
         <ResourcePreview
           key={resourceType}
           title={resourceType}
           resources={resourcesByType[resourceType]}
-          link={MAIN_NAV_ROUTES[resourceType]}
+          link={linkWithCounter}
         />
       );
     }
