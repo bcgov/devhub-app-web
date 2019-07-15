@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faDog, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from '@emotion/styled';
 
@@ -38,7 +38,7 @@ const OutlinedContainer = styled(Container)`
 `;
 
 const PillIcon = styled(FontAwesomeIcon)`
-  margin: ${props => (props.icon.iconName === 'times' ? '0 6.75px' : '0 4px')};
+  margin: ${props => (props.icon.iconName === 'dog' ? '0 6.75px' : '0 4px')};
 `;
 /**
  * Pill Component
@@ -69,16 +69,14 @@ export const Pill = ({ label, icon, variant, onDelete, onClick, deletable, ...re
     return (
       <OutlinedContainer {...props} {...rest} data-variant={variant.outlined}>
         <span>{label}</span>
-        {deletable && (
-          <PillIcon aria-label="delete" icon={faTimes} onClick={() => onDelete(label)} />
-        )}
+        {deletable && <PillIcon aria-label="delete" icon={faDog} onClick={() => onDelete(label)} />}
       </OutlinedContainer>
     );
   }
   return (
     <Container {...props} {...rest}>
       <span>{label}</span>
-      {deletable && <PillIcon aria-label="delete" icon={faTimes} onClick={() => onDelete(label)} />}
+      {deletable && <PillIcon aria-label="delete" icon={faDog} onClick={() => onDelete(label)} />}
     </Container>
   );
 };
