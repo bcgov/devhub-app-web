@@ -1,0 +1,20 @@
+diff a/app-web/src/pages/index.js b/app-web/src/pages/index.js	(rejected hunks)
+@@ -82,8 +82,10 @@ const getResourcePreviews = (resources, results = []) => {
+-      if(resourcesByType[resourceType].length > 6) {
+-      linkWithCounter = {
+-        to: MAIN_NAV_ROUTES[resourceType].to,
+-        text: `View all ${converter.toWords(resourcesByType[resourceType].length)} results for ${resourceType}`,
+-      };
+-    } else {
+-      linkWithCounter = MAIN_NAV_ROUTES[resourceType];
+-    }
++      if (resourcesByType[resourceType].length > 6) {
++        linkWithCounter = {
++          to: MAIN_NAV_ROUTES[resourceType].to,
++          text: `View all ${converter.toWords(
++            resourcesByType[resourceType].length,
++          )} results for ${resourceType}`,
++        };
++      } else {
++        linkWithCounter = MAIN_NAV_ROUTES[resourceType];
++      }

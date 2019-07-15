@@ -63,32 +63,33 @@ const getUniqueResources = resources => {
  * returns a resource preview components
  * @param {Array} resources the list of siphon resources
  * @param {Array} results the list of searched resources
+ * @param {string} query the search query
  */
-const getResourcePreviews = (resources, results = []) => {
+const getResourcePreviews = (resources, query, results = []) => {
   const resourcesSelector = selectResourcesGroupedByType();
   let resourcesToGroup = resources;
   if (!isNull(results) && results.length > 0) {
     // diff out resources by id
     resourcesToGroup = intersectionBy(resources, results, 'id');
   }
-
   resourcesToGroup = getUniqueResources(resourcesToGroup);
+
   // select resources grouped by type using relesect memoization https://github.com/reduxjs/reselect/issues/30
   let resourcesByType = resourcesSelector(resourcesToGroup);
-
   const siphonResources = Object.keys(resourcesByType).map(resourceType => {
     let linkWithCounter;
+    // The resourceSearchPath will give you the string of the query as its shown in the URL
+    // ex: '?q=Open%20Shift' so that we can use it in the link for each resourceType result
+    // It opperates under the assumption that there will be 3 occurences of '/' before such a string
+    let resourceSearchPath = window.location.href.split('/');
+    resourceSearchPath = resourceSearchPath[3];
     if (resourcesByType[resourceType].length > 0) {
-      if (resourcesByType[resourceType].length > 6) {
-        linkWithCounter = {
-          to: MAIN_NAV_ROUTES[resourceType].to,
-          text: `View all ${converter.toWords(
-            resourcesByType[resourceType].length,
-          )} results for ${resourceType}`,
-        };
-      } else {
-        linkWithCounter = MAIN_NAV_ROUTES[resourceType];
-      }
+      linkWithCounter = {
+        to: `${MAIN_NAV_ROUTES[resourceType].to}${resourceSearchPath}`,
+        text: `View all ${converter.toWords(
+          resourcesByType[resourceType].length,
+        )} ${resourceType} results for ${query}`,
+      };
       return (
         <ResourcePreview
           key={resourceType}
@@ -151,6 +152,7 @@ export const Index = ({
 
   const siphonResources = getResourcePreviews(
     flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(eventsAndMeetups),
+    query,
     results,
   );
 
