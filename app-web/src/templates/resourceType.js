@@ -142,6 +142,7 @@ export const ResourceType = ({
       <SideDrawer
         show={sideDrawerToggled}
         closeDrawer={() => setSideDrawerToggled(false)}
+        addContent={false}
         title="Filters"
       >
         <Filters filters={filterGroups} />
