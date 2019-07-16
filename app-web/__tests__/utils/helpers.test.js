@@ -21,9 +21,12 @@ import {
   getGithubIssuesRoute,
   mapPagePathToResourceTypeConst,
   sortDevhubTopicsAfterSelectedTopics,
+  getTextAndLink,
 } from '../../src/utils/helpers';
 import { GITHUB_URL } from '../../src/constants/api';
 import { RESOURCE_TYPES } from '../../src/constants/ui';
+import { DEVHUB_NODE_1, DEVHUB_NODE_2 } from '../../__fixtures__/siphon-fixtures';
+
 describe('Helpers', () => {
   test('getGethubIssuesRoute returns a url', () => {
     const repo = 'foo';
@@ -88,5 +91,36 @@ describe('Helpers', () => {
     ];
 
     expect(sortDevhubTopicsAfterSelectedTopics(topics)).toEqual(expected);
+  });
+  describe('getTextAndLink', () => {
+    Object.defineProperty(window, 'location', {
+      value: {
+        search: '?q=mobile',
+      },
+    });
+    test('When given resourceType "Documentation" and a collection of resources grouped by type, it should return a link object', () => {
+      const expected = {
+        to: '/documentation?q=mobile',
+        text: 'two results found',
+      };
+      const resourceType = RESOURCE_TYPES.DOCUMENTATION;
+      const resourcesByType = {
+        [RESOURCE_TYPES.DOCUMENTATION]: [DEVHUB_NODE_1, DEVHUB_NODE_2],
+      };
+
+      expect(getTextAndLink(resourceType, resourcesByType)).toEqual(expected);
+    });
+    test('When only one result is found for a given resourceType, the link string should have "result found" instead of "results found"', () => {
+      const expected = {
+        to: '/documentation?q=mobile',
+        text: 'one result found',
+      };
+      const resourceType = RESOURCE_TYPES.DOCUMENTATION;
+      const resourcesByType = {
+        [RESOURCE_TYPES.DOCUMENTATION]: [DEVHUB_NODE_1],
+      };
+
+      expect(getTextAndLink(resourceType, resourcesByType)).toEqual(expected);
+    });
   });
 });

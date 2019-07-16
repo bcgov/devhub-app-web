@@ -21,6 +21,8 @@ import { GITHUB_URL } from '../constants/api';
 import { TypeCheck } from '@bcgov/common-web-utils';
 import { RESOURCE_TYPES } from '../constants/ui';
 import { TOPICS } from '../constants/topics';
+import converter from 'number-to-words';
+import { MAIN_NAV_ROUTES } from '../constants/routes';
 
 export const getGithubRepoRoute = (repository, owner) => `${GITHUB_URL}/${owner}/${repository}`;
 
@@ -34,6 +36,32 @@ export const getGithubWatchRoute = (repository, owner) =>
   `${getGithubRepoRoute(repository, owner)}/subscription`;
 
 export const getGithubUsernameURL = username => `${GITHUB_URL}/${username}`;
+
+/**
+ * returns the text and path being used for the link in the ResourcePreview below
+ * the text will be reflective of the resourceType and is sensitive to different search result # cases
+ * the link takes you to the corresponding resource type page but with the search active on that page
+ * @param {String} resourceType the given resource type (event, documentation etc)
+ * @param {Object} resourcesByType collection of resources for search results, grouped by type
+ * @returns {Object}
+ */
+export const getTextAndLink = (resourceType, resourcesByType) => {
+  const numOfResults = converter.toWords(resourcesByType[resourceType].length);
+  // The resourceSearchPath will give you the string of the query as its used in the URL
+  // ex: '?q=Open%20Shift' so that we can use it in the link for each resourceType result
+  let resourceSearchPath = window.location.search;
+  //default values
+  let textAndPath = {
+    to: `${MAIN_NAV_ROUTES[resourceType].to}${resourceSearchPath}`,
+    text: `${numOfResults} results found`,
+  };
+  //changes pluralization if only one result is found
+  if (resourcesByType[resourceType].length === 1) {
+    textAndPath.text = `${numOfResults} result found`;
+  }
+  return textAndPath;
+};
+
 /**
  * returns a github username image url
  * @param {String} username

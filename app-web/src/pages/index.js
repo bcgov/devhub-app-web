@@ -26,7 +26,7 @@ import { SPACING } from '../constants/designTokens';
 import uniqBy from 'lodash/uniqBy';
 import { formatEvents, formatMeetUps } from '../templates/events';
 import { RESOURCE_TYPES } from '../constants/ui';
-var converter = require('number-to-words');
+import { getTextAndLink } from '../utils/helpers';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -60,43 +60,6 @@ const getUniqueResources = resources => {
 };
 
 /**
- * returns the text and path being used for the link in the ResourcePreview below
- * the text will be reflective of the resourceType and is sensitive to different search result # cases
- * the link takes you to the corresponding resource type page but with the search active on that page
- * @param {String} resourceType the given resource type (event, documentation etc)
- */
-const getTextAndLink = (resourceType, resourcesByType) => {
-  // The resourceSearchPath will give you the string of the query as its used in the URL
-  // ex: '?q=Open%20Shift' so that we can use it in the link for each resourceType result
-  let resourceSearchPath = window.location.search;
-
-  const numOfResults = converter.toWords(resourcesByType[resourceType].length);
-  //default values
-  let textAndPath = {
-    to: `${MAIN_NAV_ROUTES[resourceType].to}${resourceSearchPath}`,
-    text: `${numOfResults} ${resourceType} found`,
-  };
-
-  //these statements catch exceptions for the default values involving pluralization
-  if (resourcesByType[resourceType].length === 1 && resourceType !== RESOURCE_TYPES.DOCUMENTATION) {
-    if (resourceType === RESOURCE_TYPES.REPOSITORIES) {
-      textAndPath.text = `${numOfResults} respository found`;
-    } else {
-      //remove the 's' off the resource type name
-      textAndPath.text = `${numOfResults} ${resourceType.slice(0, -1)} found`;
-    }
-  } else if (resourceType === RESOURCE_TYPES.DOCUMENTATION) {
-    if (resourcesByType[resourceType].length === 1) {
-      textAndPath.text = `${numOfResults} piece of ${resourceType} found`;
-    } else {
-      textAndPath.text = `${numOfResults} pieces of ${resourceType} found`;
-    }
-  }
-
-  return textAndPath;
-};
-
-/**
  * returns a resource preview components
  * @param {Array} resources the list of siphon resources
  * @param {Array} results the list of searched resources
@@ -115,7 +78,7 @@ const getResourcePreviews = (resources, query, results = []) => {
   let resourcesByType = resourcesSelector(resourcesToGroup);
   const siphonResources = Object.keys(resourcesByType).map(resourceType => {
     if (resourcesByType[resourceType].length > 0) {
-      const linkWithCounter = getTextAndLink(resourceType, resourcesByType);
+      let linkWithCounter = getTextAndLink(resourceType, resourcesByType);
       return (
         <ResourcePreview
           key={resourceType}

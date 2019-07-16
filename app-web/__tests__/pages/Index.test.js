@@ -14,7 +14,7 @@ import {
 import { useSearch } from '../../src/utils/hooks';
 import { TEST_IDS as TOPIC_TEST_IDS } from '../../src/components/Home/TopicsContainer';
 import { TEST_IDS as RESOURCE_PREVIEW_TEST_IDS } from '../../src/components/Home/ResourcePreview';
-import { getFirstNonExternalResource } from '../../src/utils/helpers';
+import { getFirstNonExternalResource, getTextAndLink } from '../../src/utils/helpers';
 jest.mock('query-string');
 // mock out layout
 jest.mock('../../src/hoc/Layout.js', () => ({ children }) => children);
@@ -24,6 +24,7 @@ jest.mock('../../src/utils/hooks.js');
 jest.mock('../../src/utils/helpers.js');
 
 getFirstNonExternalResource.mockReturnValue('foo');
+getTextAndLink.mockReturnValue({ to: '/documentation?q=mobile', text: 'two results found' });
 
 describe('Home Page', () => {
   // mock out non redux selectors
