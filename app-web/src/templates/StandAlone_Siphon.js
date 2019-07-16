@@ -18,13 +18,23 @@ Created by Derek Siemens
 
 import React from 'react';
 import Layout from '../hoc/Layout';
-import { Main } from '../components/Page';
+import { Main, Title } from '../components/Page';
+import CardHeader from '../components/Cards/Card/CardHeader';
+import validUrl from 'valid-url';
+import rehypeReact from 'rehype-react';
 
-export const standAloneResource = ({ info }) => {
+export const standAloneResource = siphonNode => {
+  const isExternal = !!validUrl.isWebURI(siphonNode.path);
+  const renderAst = new rehypeReact({
+    createElement: React.createElement,
+  }).Compiler;
+
   return (
     <Layout>
       <Main>
-        <p>stuff</p>
+        <CardHeader type={siphonNode.resource.type} linksToExternal={isExternal} />
+        <Title title={siphonNode.unfurl.title} />
+        {renderAst(siphonNode.childMarkdownRemark.htmlAst)}
       </Main>
     </Layout>
   );
