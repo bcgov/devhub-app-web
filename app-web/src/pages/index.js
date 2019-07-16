@@ -52,9 +52,9 @@ const getTopicPreviews = (topics, searchResultsExist) => {
  * there is one exception to when we do want resources with the same title though, that being events - thus events are return unchanged
  */
 const getUniqueResources = resources => {
-  let events = resources.filter(resource => resource.resource.type === RESOURCE_TYPES.EVENTS);
-  let allButEvents = resources.filter(resource => resource.resource.type !== RESOURCE_TYPES.EVENTS);
-  allButEvents = uniqBy(allButEvents, 'unfurl.title');
+  let events = resources.filter(resource => resource.fields.resourceType === RESOURCE_TYPES.EVENTS);
+  let allButEvents = resources.filter(resource => resource.fields.resourceType !== RESOURCE_TYPES.EVENTS);
+  allButEvents = uniqBy(allButEvents, 'fields.title');
   return allButEvents.slice(0, 15).concat(events);
 };
 
@@ -70,8 +70,7 @@ const getResourcePreviews = (resources, results = []) => {
     // diff out resources by id
     resourcesToGroup = intersectionBy(resources, results, 'id');
   }
-
-  resourcesToGroup = getUniqueResources(resourcesToGroup);
+  // resourcesToGroup = getUniqueResources(resourcesToGroup);
   // select resources grouped by type using relesect memoization https://github.com/reduxjs/reselect/issues/30
   const resourcesByType = resourcesSelector(resourcesToGroup);
   const siphonResources = Object.keys(resourcesByType).map(resourceType => {
@@ -101,6 +100,7 @@ export const Index = ({
     allDevhubSiphon,
     allEventbriteEvents,
     allMeetupGroup,
+    allGithubRaw,
     siteSearchIndex: { index },
   },
   location,
@@ -137,7 +137,7 @@ export const Index = ({
   let content = null;
 
   const siphonResources = getResourcePreviews(
-    flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(eventsAndMeetups),
+    flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(eventsAndMeetups).concat(flattenGatsbyGraphQL(allGithubRaw.edges)),
     results,
   );
 

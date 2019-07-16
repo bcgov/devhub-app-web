@@ -26,6 +26,21 @@ const withResourceQuery = WrappedComponent => () => props => (
         siteSearchIndex {
           index
         }
+        allGithubRaw {
+          edges {
+            node {
+              id
+              fields {
+                resourceType
+                title
+                description
+                image
+                pagePaths
+                slug
+              }
+            }
+          }
+        }
         allDevhubTopic {
           edges {
             node {
@@ -60,6 +75,9 @@ const withResourceQuery = WrappedComponent => () => props => (
                 }
                 fields {
                   resourceType
+                  pagePaths
+                  title
+                  description
                 }
               }
             }
@@ -75,6 +93,8 @@ const withResourceQuery = WrappedComponent => () => props => (
                 resourceType
                 title
                 description
+                pagePaths
+                image
               }
               siphon {
                 unfurl {
@@ -127,6 +147,8 @@ const withResourceQuery = WrappedComponent => () => props => (
                   link
                   resourceType
                   title
+                  pagePaths
+                  image
                 }
               }
             }
