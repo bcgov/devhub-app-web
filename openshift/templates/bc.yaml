@@ -6,37 +6,6 @@ metadata:
 labels:
   template: devhub-app-web
 objects:
-- apiVersion: v1
-  kind: ImageStream
-  metadata:
-    creationTimestamp: null
-    labels:
-      shared: true
-    name: rhscl-nodejs-8-rhel7
-  spec:
-    lookupPolicy:
-      local: false
-    tags:
-    - name: 8.1-22
-      from:
-        kind: DockerImage
-        name: 'registry.access.redhat.com/rhscl/nodejs-8-rhel7:1-22'
-      importPolicy: {}
-      referencePolicy:
-        type: Local
-# base image for node js dependancies
-- kind: ImageStream
-  apiVersion: v1
-  metadata:
-    name: "${NAME}-base"
-    creationTimestamp:
-    annotations:
-      description: Nodejs Runtime Image
-    labels:
-      shared: 'true'
-  spec:
-    lookupPolicy:
-      local: false
 # the image stream for the node js build
 - apiVersion: v1
   kind: ImageStream
@@ -57,43 +26,6 @@ objects:
   spec:
     lookupPolicy:
       local: false
-- kind: BuildConfig
-  apiVersion: v1
-  metadata:
-    name: "${NAME}-base${SUFFIX}"
-    creationTimestamp:
-    labels: {}
-    annotations: {}
-  spec:
-    completionDeadlineSeconds: 1440
-    triggers:
-    - type: ImageChange
-      imageChange: {}
-    - type: ConfigChange
-    runPolicy: SerialLatestOnly
-    source:
-      contextDir: "${DOCKER_IMAGE_DIRECTORY}"
-      type: Binary
-    strategy:
-      type: Docker
-      dockerStrategy:
-        from:
-          kind: ImageStreamTag
-          name: nodejs:${NODE_JS_VERSION}
-          namespace: openshift
-    output:
-      to:
-        kind: ImageStreamTag
-        name: "${NAME}-base:${VERSION}"
-    resources:
-      limits:
-        cpu: 1
-        memory: 2Gi
-      requests:
-        cpu: 1
-        memory: 1Gi
-    postCommit: {}
-    nodeSelector:
 - apiVersion: v1
   kind: BuildConfig
   metadata:
@@ -147,13 +79,15 @@ objects:
             value: ${MATOMO_SITE_ID}
         from:
           kind: ImageStreamTag
-          name: ${NAME}-base:${VERSION}
+          name: nodejs:${NODE_JS_VERSION}
+          namespace: openshift
+        incremental: true
       type: Source
     triggers:
     - type: ConfigChange
     - imageChange: {}
       type: ImageChange
-#Chainned build
+#Chained build - combine output from node-based gatsby build with a lightweight caddy runtime image.
 - apiVersion: v1
   kind: BuildConfig
   metadata:

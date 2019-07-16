@@ -10,7 +10,7 @@ image: https://github.com/bcgov/devhub-app-web/blob/master/docs/images/book.png?
  
 ## DevHub Intro
 
-DevHub aims to become the "Central Nervous System" for the growing gov developer community.
+DevHub aims to become the "Central Nervous System" for the growing gov developer community.  We also describe it    like a "wayfinding" tool for digital product teams. 
 
 It will provide a comprehensive inventory of relevant internal and external documentation, open source components, services, APIs and data for internal and external developers who are building government products, or want to build their own products
 
