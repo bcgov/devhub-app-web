@@ -8,7 +8,7 @@ const IDS = {
 };
 
 // SIPHON NODES
-export const DESIGN_SYSTEM_NODE_1 = {
+export const DESIGN_SYSTEM_SIPHON_NODE_1 = {
   id: '1',
   parent: {
     id: IDS.DESIGN_SYSTEM,
@@ -47,7 +47,7 @@ export const DESIGN_SYSTEM_NODE_1 = {
   },
 };
 
-export const DESIGN_SYSTEM_NODE_2 = {
+export const DESIGN_SYSTEM_SIPHON_NODE_2 = {
   id: '2',
   parent: {
     id: IDS.DESIGN_SYSTEM,
@@ -86,7 +86,7 @@ export const DESIGN_SYSTEM_NODE_2 = {
   },
 };
 
-export const DESIGN_SYSTEM_NODE_3 = {
+export const DESIGN_SYSTEM_SIPHON_NODE_3 = {
   id: '3',
   parent: {
     id: IDS.DESIGN_SYSTEM,
@@ -125,7 +125,7 @@ export const DESIGN_SYSTEM_NODE_3 = {
   },
 };
 
-export const DESIGN_SYSTEM_NODE_4 = {
+export const DESIGN_SYSTEM_SIPHON_NODE_4 = {
   id: '4',
   parent: {
     id: IDS.DESIGN_SYSTEM,
@@ -164,7 +164,7 @@ export const DESIGN_SYSTEM_NODE_4 = {
   },
 };
 
-export const DEVHUB_NODE_1 = {
+export const DEVHUB_SIPHON_NODE_1 = {
   id: '5',
   parent: {
     id: IDS.DEVHUB,
@@ -203,7 +203,7 @@ export const DEVHUB_NODE_1 = {
   },
 };
 
-export const DEVHUB_NODE_2 = {
+export const DEVHUB_SIPHON_NODE_2 = {
   id: '6',
   parent: {
     id: IDS.DEVHUB,
@@ -242,7 +242,7 @@ export const DEVHUB_NODE_2 = {
   },
 };
 
-export const DEVHUB_NODE_3 = {
+export const DEVHUB_SIPHON_NODE_3 = {
   id: '7',
   parent: {
     id: IDS.DEVHUB,
@@ -281,14 +281,70 @@ export const DEVHUB_NODE_3 = {
   },
 };
 
-export const DESIGN_SYSTEM_NODES = [
-  DESIGN_SYSTEM_NODE_3,
-  DESIGN_SYSTEM_NODE_2,
-  DESIGN_SYSTEM_NODE_1,
-  DESIGN_SYSTEM_NODE_4,
+export const DESIGN_SYSTEM_SIPHON_NODES = [
+  DESIGN_SYSTEM_SIPHON_NODE_3,
+  DESIGN_SYSTEM_SIPHON_NODE_2,
+  DESIGN_SYSTEM_SIPHON_NODE_1,
+  DESIGN_SYSTEM_SIPHON_NODE_4,
 ];
 
-export const DEVHUB_NODES = [DEVHUB_NODE_1, DEVHUB_NODE_2, DEVHUB_NODE_3];
+export const DEVHUB_SIPHON_NODES = [
+  DEVHUB_SIPHON_NODE_1,
+  DEVHUB_SIPHON_NODE_2,
+  DEVHUB_SIPHON_NODE_3,
+];
+
+export const GITHUB_RAW_1 = {
+  id: '8257de0d-811b-58dd-9fae-661f13d5a11b',
+  name: 'README.md',
+  _xxboundProperties: {
+    topicResourceType: 'Documentation',
+    position: 1,
+  },
+  childMarkdownRemark: {
+    id: 'd72fa440-51f6-52c7-ab03-140907fd46db',
+  },
+  fields: {
+    position: 1,
+    slug: 'Introduction-To-Github-and-Gov',
+    resourceType: 'Documentation',
+    title: 'Introduction To Github and Gov',
+    description: 'Everything you need to know about working with Github in the BC Government.',
+    image: '../images/octokat.png',
+    author: 'patricksimonian',
+    topics: [
+      {
+        id: IDS.DESIGN_SYSTEM,
+      },
+    ],
+  },
+};
+
+export const GITHUB_RAW_2 = {
+  id: '8257de0d-811b-58dd-9fae-661f13d5a11b',
+  name: 'README.md',
+  _xxboundProperties: {
+    topicResourceType: 'Documentation',
+    position: 2,
+  },
+  childMarkdownRemark: {
+    id: 'd72fa440-51f6-52c7-ab03-140907fd46db',
+  },
+  fields: {
+    position: 1,
+    slug: 'Introduction-To-Github-and-Gov',
+    resourceType: 'Components',
+    title: 'Introduction To Github and Gov',
+    description: 'Everything you need to know about working with Github in the BC Government.',
+    image: '../images/octokat.png',
+    author: 'patricksimonian',
+    topics: [
+      {
+        id: IDS.DEVHUB,
+      },
+    ],
+  },
+};
 
 // TOPICS
 export const DESIGN_SYSTEM_TOPIC = {
@@ -296,8 +352,11 @@ export const DESIGN_SYSTEM_TOPIC = {
   type: 'default',
   name: 'Design System',
   description: 'baz',
-  resources: DESIGN_SYSTEM_NODES.map(n => ({ id: n.id })),
-  childrenDevhubSiphon: DESIGN_SYSTEM_NODES.map(n => ({
+  resources: DESIGN_SYSTEM_SIPHON_NODES.map(n => ({ id: n.id })),
+  fields: {
+    githubRaw: [GITHUB_RAW_1, GITHUB_RAW_2],
+  },
+  childrenDevhubSiphon: DESIGN_SYSTEM_SIPHON_NODES.map(n => ({
     id: n.id,
     _metadata: { ...n._metadata },
     resource: { ...n.resource },
@@ -305,14 +364,16 @@ export const DESIGN_SYSTEM_TOPIC = {
   })),
 };
 
-
 export const DEVHUB_TOPIC = {
   id: IDS.DEVHUB,
   type: 'default',
   name: 'Devhub',
   description: 'baz',
-  resources: DEVHUB_NODES.map(n => ({ id: n.id })),
-  childrenDevhubSiphon: DEVHUB_NODES.map(n => ({
+  resources: DEVHUB_SIPHON_NODES.map(n => ({ id: n.id })),
+  fields: {
+    githubRaw: [GITHUB_RAW_1, GITHUB_RAW_2],
+  },
+  childrenDevhubSiphon: DEVHUB_SIPHON_NODES.map(n => ({
     id: n.id,
     _metadata: { ...n._metadata },
     resource: { ...n.resource },
@@ -329,7 +390,8 @@ export const EVENT_1 = {
     },
     resource: {
       type: 'Events',
-      path: 'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
+      path:
+        'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
     },
     fields: {
       resourceType: 'Events',
@@ -374,7 +436,8 @@ export const EVENT_2 = {
     },
     resource: {
       type: 'Events',
-      path: 'https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F41880838%2F228490647317%2F1%2Foriginal.jpg?auto=compress&s=c53f3ef4e5b52e00963afab920fca78e',
+      path:
+        'https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F41880838%2F228490647317%2F1%2Foriginal.jpg?auto=compress&s=c53f3ef4e5b52e00963afab920fca78e',
     },
     id: '61112980570',
   },
@@ -497,7 +560,7 @@ export const MEETUP_2 = {
 export const EVENTS = [EVENT_1, EVENT_2];
 export const MEETUP_NODES = [MEETUP_1, MEETUP_2];
 
-export const SIPHON_NODES = DESIGN_SYSTEM_NODES.concat(DEVHUB_NODES);
+export const SIPHON_NODES = DESIGN_SYSTEM_SIPHON_NODES.concat(DEVHUB_SIPHON_NODES);
 
 // stubbing in a set of nodes that pass the designer filter
 export const FILTERED_NODES = SIPHON_NODES.filter(
@@ -506,8 +569,8 @@ export const FILTERED_NODES = SIPHON_NODES.filter(
 
 export const TOPICS = [DESIGN_SYSTEM_TOPIC, DEVHUB_TOPIC];
 
+export const GITHUB_RAW_NODES = [GITHUB_RAW_1, GITHUB_RAW_2];
 export const SIPHON_NODES_MAP = arrayToMapByProp(SIPHON_NODES, 'id');
-
 export const TOPICS_MAP = arrayToMapByProp(TOPICS, 'id');
 
 // some selectors found within /selectors/index.js provide selections of resources grouped by

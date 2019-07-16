@@ -37,14 +37,10 @@ const withResourceQuery = WrappedComponent => () => props => (
                   id
                   fields {
                     resourceType
-                  }
-                  childMarkdownRemark {
-                    fields {
-                      title
-                      description
-                      image
-                      author
-                    }
+                    title
+                    description
+                    image
+                    slug
                   }
                 }
               }
@@ -77,6 +73,8 @@ const withResourceQuery = WrappedComponent => () => props => (
             node {
               fields {
                 resourceType
+                title
+                description
               }
               siphon {
                 unfurl {
@@ -128,12 +126,13 @@ const withResourceQuery = WrappedComponent => () => props => (
                   description
                   link
                   resourceType
+                  title
                 }
               }
             }
           }
         }
-        allDevhubSiphon {
+        allDevhubSiphon(filter: {resource: {type: {eq: "web"}}}) {
           edges {
             node {
               id
@@ -142,12 +141,12 @@ const withResourceQuery = WrappedComponent => () => props => (
               parent {
                 id
               }
-              _metadata {
-                position
-              }
               fields {
                 resourceType
                 personas
+                title
+                description 
+                image
               }
               source {
                 displayName

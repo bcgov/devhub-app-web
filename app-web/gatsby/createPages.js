@@ -40,6 +40,36 @@ const RESOURCE_TYPE_PAGES = [
 ];
 
 const resolvePath = path => resolve(__dirname, path);
+
+
+/**
+ * 
+ * @param {Object} node the gatsby node
+ * @param {Object} node.fields
+ * @param {Array} node.fields.pagePaths a list of page paths to create pages for based on this resource
+ * @param {Array} node.fields.topics a list of topics that are associated with the same indexed pagePath from above
+ * @param {Function} createPage the gatsby create page function
+ */
+const createResourceInTopicsPages = (node, createPage) => {
+  node.fields.pagePaths.forEach((path, ind) => {
+    const topic = node.topics[ind];
+    const template = getTemplate(
+      topic._metadata.template,
+      topic._metadata.templateFile,
+    );
+
+    createPage({
+      path: `${path}`,
+      component: template,
+      context: {
+        // Data passed to context is available in page queries as GraphQL variables.
+        id: node.id,
+        topic: topic[ind].name,
+        topicId: topic[ind].id,
+      },
+    });
+  })
+}
 /**
  * Get Templates based on source and topicTemplate or topic template file path
  * in the even topic template file path and topic template both exist
@@ -106,7 +136,7 @@ const createResourceTypePages = createPage => {
  * @param {Function} createPage the gatsby createpage function
  * @param {Function} graphql the gatsby graphql function
  */
-const createResourceComponentPages = async (createPage, graphql) => {
+const createResourceTopicsPages = async (createPage, graphql) => {
   // main graphql query here
   const devhubData = await graphql(`
     {
@@ -118,44 +148,9 @@ const createResourceComponentPages = async (createPage, graphql) => {
               pagePaths
               topics {
                 id
-              }
-            }
-          }
-        }
-      }
-      allDevhubTopic {
-        edges {
-          node {
-            id
-            name
-            _metadata {
-              template
-              templateFile
-            }
-            fields {
-              slug
-              githubRaw {
-                id
-                fields {
-                  slug
-                }
-              }
-            }
-            childrenDevhubSiphon {
-              id
-              source {
-                type
-              }
-              resource {
-                path
-              }
-              internal {
-                mediaType
-              }
-              childMarkdownRemark {
-                frontmatter {
-                  resourcePath
-                  ignore
+                _metadata {
+                  template
+                  templateFile
                 }
               }
             }
@@ -164,35 +159,10 @@ const createResourceComponentPages = async (createPage, graphql) => {
       }
     }
   `);
-  // right now we are making an assumption all data here resolved from a markdown file
-  // and will be treated as so
-  // loop over topics and then nodes
-  devhubData.data.allDevhubTopic.edges.forEach(({ node }) => {
-    const topic = node;
 
-    topic.fields.githubRaw.forEach(gh => {
-      const template = getTemplate(
-        topic._metadata.template,
-        topic._metadata.templateFile,
-      );
-
-      try {
-        createPage({
-          path: `${node.fields.slug}/${gh.fields.slug}`,
-          component: template,
-          context: {
-            // Data passed to context is available in page queries as GraphQL variables.
-            id: gh.id,
-            topic: topic.name,
-            topicId: topic.id,
-          },
-        });
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.error(e); // console error here so message is displayed in a nicer way
-        throw new Error('Error Quiting Build'); // throw to kill gatsby build
-      }
-    });
+  devhubData.allGithubRaw.edges.forEach(({node}) => {
+    // create the github raw node within the topics its connected too
+    createResourceInTopicsPages(node, createPage);
   });
 };
 
@@ -217,6 +187,6 @@ const createEventsPage = createPage => {
 module.exports = async ({ graphql, actions }) => {
   const { createPage } = actions;
   createResourceTypePages(createPage);
-  createResourceComponentPages(createPage, graphql);
+  createResourceTopicsPages(createPage, graphql);
   createEventsPage(createPage);
 };

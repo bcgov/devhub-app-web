@@ -241,7 +241,7 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
         name: 'slug',
         value: slugify(slug),
       });
-
+      
       const topics = parentNode.___boundProperties.topics;
       const pagePaths = topics.map(t => `${slugify(t)}/${slugify(slug)}`);
       // all github raw nodes have a page path that is just the individual resource
@@ -249,7 +249,7 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       createNodeField({
         node: parentNode,
         name: 'pagePaths',
-        value: [slugify(slug)].concat(pagePaths),
+        value: pagePaths,
       });
 
       

@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider } from 'emotion-theming';
 import { render } from 'react-testing-library';
 import { addCurrentEventsToTopic, TopicsPage } from '../../src/pages/topics';
-import { SIPHON_NODES, TOPICS, EVENTS, MEETUP_NODES } from '../../__fixtures__/siphon-fixtures';
+import { SIPHON_NODES, TOPICS, EVENTS, MEETUP_NODES } from '../../__fixtures__/nodes';
 import theme from '../../theme';
 import { getFirstNonExternalResource } from '../../src/utils/helpers';
 jest.mock('react-spinners', () => null);

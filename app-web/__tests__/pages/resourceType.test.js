@@ -6,7 +6,7 @@ import queryString from 'query-string';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 import { ResourceType } from '../../src/templates/resourceType';
-import { SIPHON_NODES, TOPICS } from '../../__fixtures__/siphon-fixtures';
+import { SIPHON_NODES, TOPICS } from '../../__fixtures__/nodes';
 import { SELECT_RESOURCES_GROUPED_BY_TYPE } from '../../__fixtures__/selector-fixtures';
 import { useSearch } from '../../src/utils/hooks';
 
