@@ -144,7 +144,7 @@ const createResourceTopicsPages = async (createPage, graphql) => {
       allGithubRaw {
         edges {
           node {
-            id,
+            id
             fields {
               pagePaths
               topics {

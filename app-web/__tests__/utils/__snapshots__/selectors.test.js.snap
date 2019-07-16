@@ -104,6 +104,12 @@ Array [
             "author": "patricksimonian",
             "description": "Everything you need to know about working with Github in the BC Government.",
             "image": "../images/octokat.png",
+            "pagePaths": Array [
+              "/design-system/foo",
+            ],
+            "personas": Array [
+              "Designer",
+            ],
             "position": 1,
             "resourceType": "Documentation",
             "slug": "Introduction-To-Github-and-Gov",
@@ -129,6 +135,12 @@ Array [
             "author": "patricksimonian",
             "description": "Everything you need to know about working with Github in the BC Government.",
             "image": "../images/octokat.png",
+            "pagePaths": Array [
+              "/design-system/bar",
+            ],
+            "personas": Array [
+              "Designer",
+            ],
             "position": 1,
             "resourceType": "Components",
             "slug": "Introduction-To-Github-and-Gov",
@@ -161,6 +173,12 @@ Array [
             "author": "patricksimonian",
             "description": "Everything you need to know about working with Github in the BC Government.",
             "image": "../images/octokat.png",
+            "pagePaths": Array [
+              "/design-system/bar",
+            ],
+            "personas": Array [
+              "Designer",
+            ],
             "position": 1,
             "resourceType": "Components",
             "slug": "Introduction-To-Github-and-Gov",
@@ -188,6 +206,12 @@ Array [
             "author": "patricksimonian",
             "description": "Everything you need to know about working with Github in the BC Government.",
             "image": "../images/octokat.png",
+            "pagePaths": Array [
+              "/design-system/foo",
+            ],
+            "personas": Array [
+              "Designer",
+            ],
             "position": 1,
             "resourceType": "Documentation",
             "slug": "Introduction-To-Github-and-Gov",
@@ -290,6 +314,12 @@ Array [
             "author": "patricksimonian",
             "description": "Everything you need to know about working with Github in the BC Government.",
             "image": "../images/octokat.png",
+            "pagePaths": Array [
+              "/design-system/foo",
+            ],
+            "personas": Array [
+              "Designer",
+            ],
             "position": 1,
             "resourceType": "Documentation",
             "slug": "Introduction-To-Github-and-Gov",
@@ -315,6 +345,12 @@ Array [
             "author": "patricksimonian",
             "description": "Everything you need to know about working with Github in the BC Government.",
             "image": "../images/octokat.png",
+            "pagePaths": Array [
+              "/design-system/bar",
+            ],
+            "personas": Array [
+              "Designer",
+            ],
             "position": 1,
             "resourceType": "Components",
             "slug": "Introduction-To-Github-and-Gov",
@@ -347,6 +383,12 @@ Array [
             "author": "patricksimonian",
             "description": "Everything you need to know about working with Github in the BC Government.",
             "image": "../images/octokat.png",
+            "pagePaths": Array [
+              "/design-system/bar",
+            ],
+            "personas": Array [
+              "Designer",
+            ],
             "position": 1,
             "resourceType": "Components",
             "slug": "Introduction-To-Github-and-Gov",
@@ -374,6 +416,12 @@ Array [
             "author": "patricksimonian",
             "description": "Everything you need to know about working with Github in the BC Government.",
             "image": "../images/octokat.png",
+            "pagePaths": Array [
+              "/design-system/foo",
+            ],
+            "personas": Array [
+              "Designer",
+            ],
             "position": 1,
             "resourceType": "Documentation",
             "slug": "Introduction-To-Github-and-Gov",

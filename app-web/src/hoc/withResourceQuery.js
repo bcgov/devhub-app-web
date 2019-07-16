@@ -37,6 +37,7 @@ const withResourceQuery = WrappedComponent => () => props => (
                 image
                 pagePaths
                 slug
+                personas
               }
             }
           }
@@ -154,7 +155,7 @@ const withResourceQuery = WrappedComponent => () => props => (
             }
           }
         }
-        allDevhubSiphon(filter: {resource: {type: {eq: "web"}}}) {
+        allDevhubSiphon(filter: {source: {type: {eq: "web"}}}) {
           edges {
             node {
               id
@@ -169,6 +170,7 @@ const withResourceQuery = WrappedComponent => () => props => (
                 title
                 description 
                 image
+                pagePaths
               }
               source {
                 displayName

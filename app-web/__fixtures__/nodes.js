@@ -27,7 +27,13 @@ export const DESIGN_SYSTEM_SIPHON_NODE_1 = {
     type: 'Components',
   },
   fields: {
+    personas: ['Designer'],
     resourceType: 'Components',
+    pagePaths: [ '/design-system/Z1bGIqu1'],
+    image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
+    title: 'About',
+    description: 'What the Design System is and how it works.',
+    author: 'ksingbeil',
   },
   unfurl: {
     type: 'markdown',
@@ -66,7 +72,13 @@ export const DESIGN_SYSTEM_SIPHON_NODE_2 = {
     type: 'Components',
   },
   fields: {
+    personas: ['Developer', 'Designer'],
     resourceType: 'Components',
+    pagePaths: [ '/design-system/Z1bGIqu2'],
+    image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
+    title: 'About',
+    description: 'What the Design System is and how it works.',
+    author: 'ksingbeil',
   },
   unfurl: {
     type: 'markdown',
@@ -105,7 +117,13 @@ export const DESIGN_SYSTEM_SIPHON_NODE_3 = {
     type: 'Components',
   },
   fields: {
+    personas: ['Designer'],
     resourceType: 'Components',
+    pagePaths: [ '/design-system/Z1bGIqu3'],
+    image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
+    title: 'About',
+    description: 'What the Design System is and how it works.',
+    author: 'ksingbeil',
   },
   unfurl: {
     type: 'markdown',
@@ -144,7 +162,13 @@ export const DESIGN_SYSTEM_SIPHON_NODE_4 = {
     type: 'Components',
   },
   fields: {
+    personas: ['Developer'],
     resourceType: 'Components',
+    pagePaths: ['/design-system/Z1bGIqu4'],
+    image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
+    title: 'About',
+    description: 'What the Design System is and how it works.',
+    author: 'ksingbeil',
   },
   unfurl: {
     type: 'markdown',
@@ -183,7 +207,13 @@ export const DEVHUB_SIPHON_NODE_1 = {
     type: 'Documentation',
   },
   fields: {
+    personas: ['Developer'],
     resourceType: 'Documentation',
+    pagePaths: ['/design-system/Z1bGIqu5'],
+    image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
+    title: 'About',
+    description: 'What the Design System is and how it works.',
+    author: 'ksingbeil',
   },
   unfurl: {
     type: 'markdown',
@@ -222,7 +252,13 @@ export const DEVHUB_SIPHON_NODE_2 = {
     type: 'Documentation',
   },
   fields: {
+    personas: ['Designer', 'Developer'],
     resourceType: 'Documentation',
+    pagePaths: ['/design-system/Z1bGIqu6'],
+    image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
+    title: 'About',
+    description: 'What the Design System is and how it works.',
+    author: 'ksingbeil',
   },
   unfurl: {
     type: 'markdown',
@@ -261,7 +297,13 @@ export const DEVHUB_SIPHON_NODE_3 = {
     type: 'Documentation',
   },
   fields: {
+    personas: ['Product Owner'],
     resourceType: 'Documentation',
+    pagePaths: ['/design-system/Z1bGIqu7'],
+    image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
+    title: 'About',
+    description: 'What the Design System is and how it works.',
+    author: 'ksingbeil',
   },
   unfurl: {
     type: 'markdown',
@@ -306,6 +348,7 @@ export const GITHUB_RAW_1 = {
   },
   fields: {
     position: 1,
+    personas: ['Designer'],
     slug: 'Introduction-To-Github-and-Gov',
     resourceType: 'Documentation',
     title: 'Introduction To Github and Gov',
@@ -317,6 +360,7 @@ export const GITHUB_RAW_1 = {
         id: IDS.DESIGN_SYSTEM,
       },
     ],
+    pagePaths: ['/design-system/foo']
   },
 };
 
@@ -332,6 +376,7 @@ export const GITHUB_RAW_2 = {
   },
   fields: {
     position: 1,
+    personas: ['Designer'],
     slug: 'Introduction-To-Github-and-Gov',
     resourceType: 'Components',
     title: 'Introduction To Github and Gov',
@@ -343,6 +388,7 @@ export const GITHUB_RAW_2 = {
         id: IDS.DEVHUB,
       },
     ],
+    pagePaths: ['/design-system/bar']
   },
 };
 
@@ -395,6 +441,7 @@ export const EVENT_1 = {
     },
     fields: {
       resourceType: 'Events',
+      pagePaths: ['https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392'],
     },
     id: '45046198392',
   },
@@ -433,6 +480,7 @@ export const EVENT_2 = {
     },
     fields: {
       resourceType: 'Events',
+      pagePaths: ['https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392'],
     },
     resource: {
       type: 'Events',
@@ -508,6 +556,7 @@ export const MEETUP_1 = {
       location: '3rd Floor 1012 Douglas St.',
       description: 'test description',
       name: 'bar',
+      pagePaths: ['https://www.meetup.com/DevOps-Commons/events/262271511/'],
       link: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
     },
     year: '2019',
@@ -551,6 +600,7 @@ export const MEETUP_2 = {
       location: '3rd Floor 1012 Douglas St.',
       description: 'test description',
       name: 'foo',
+      pagePaths: ['https://www.meetup.com/DevOps-Commons/events/262271511/'],
       link: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
     },
     year: '2019',
