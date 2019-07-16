@@ -49,6 +49,9 @@ export const getTextAndLink = (resourceType, resourcesByType) => {
   const numOfResults = converter.toWords(resourcesByType[resourceType].length);
   // The resourceSearchPath will give you the string of the query as its used in the URL
   // ex: '?q=Open%20Shift' so that we can use it in the link for each resourceType result
+  if (typeof window === 'undefined') {
+    global.window = {};
+  }
   let resourceSearchPath = window.location.search;
   //default values
   let textAndPath = {
