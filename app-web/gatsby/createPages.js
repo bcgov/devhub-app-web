@@ -110,6 +110,19 @@ const createResourceComponentPages = async (createPage, graphql) => {
   // main graphql query here
   const devhubData = await graphql(`
     {
+      allGithubRaw {
+        edges {
+          node {
+            id,
+            fields {
+              pagePaths
+              topics {
+                id
+              }
+            }
+          }
+        }
+      }
       allDevhubTopic {
         edges {
           node {
