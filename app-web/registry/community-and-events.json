@@ -52,6 +52,15 @@
         }
       },
       {
+        "sourceType": "web",
+        "resourceType": "Events",
+        "sourceProperties": {
+          "url": "https://www.redhat.com/en/events/DevSecOps-Victoria-August8",
+          "title": "Red Hat DevSecOps Roadshow",
+          "description": "Held on August 8th, the Red Hat DevSecOps Workshop is a unique hands-on experience for building, deploying, and securing containerized cloud-native applications using industry-standard open source technologies"
+        }
+      },
+      {
         "sourceType": "github",
         "resourceType": "Events",
         "sourceProperties": {
