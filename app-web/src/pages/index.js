@@ -62,10 +62,10 @@ const getUniqueResources = resources => {
 /**
  * returns a resource preview components
  * @param {Array} resources the list of siphon resources
+ * @param {string} queryExists the search query
  * @param {Array} results the list of searched resources
- * @param {string} query the search query
  */
-const getResourcePreviews = (resources, query, results = []) => {
+const getResourcePreviews = (resources, queryExists, results = []) => {
   const resourcesSelector = selectResourcesGroupedByType();
   let resourcesToGroup = resources;
   if (!isNull(results) && results.length > 0) {
@@ -78,7 +78,10 @@ const getResourcePreviews = (resources, query, results = []) => {
   let resourcesByType = resourcesSelector(resourcesToGroup);
   const siphonResources = Object.keys(resourcesByType).map(resourceType => {
     if (resourcesByType[resourceType].length > 0) {
-      let linkWithCounter = getTextAndLink(resourceType, resourcesByType);
+      let linkWithCounter = MAIN_NAV_ROUTES[resourceType];
+      if (queryExists) {
+        linkWithCounter = getTextAndLink(resourceType, resourcesByType);
+      }
       return (
         <ResourcePreview
           key={resourceType}
@@ -141,7 +144,7 @@ export const Index = ({
 
   const siphonResources = getResourcePreviews(
     flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(eventsAndMeetups),
-    query,
+    windowHasQuery && !queryIsEmpty,
     results,
   );
 
