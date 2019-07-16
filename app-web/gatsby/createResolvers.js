@@ -36,6 +36,26 @@ const getOrganizationsById = id => {
 
 module.exports = ({ createResolvers }) => {
   const resolvers = {
+    DevhubTopic: {
+      connectsWith: { // a list of nodes only really needs pointers to the page paths and a title for a link
+        type: '[ConnectedNode]',
+        resolve: (source, args, context) => {
+          // get all github raw nodes and siphon source type web nodes and return them ordered by fields.position
+          const webNodes = context.nodeModel.getAllNodes({
+            type: 'DevhubSiphon',
+          }).filter(n => n.source.type === 'web').map(n => ({id: n.id, position: n.fields.position, path: n.resource.path, name: n.fields.title, resourceType: n.fields.resourceType}))
+          let ghNodes = context.nodeModel.getAllNodes({
+            type: 'GithubRaw'
+          });
+          ghNodes = ghNodes.filter(n => n.fields.topics.includes(source.name))
+            .map(n => ({id: n.id, position: n.fields.position.toString(), path: `${source.fields.slug}/${n.fields.slug}`, name: n.fields.title, resourceType: n.fields.resourceType}))
+
+          return webNodes.concat(ghNodes).sort((a, b) => {
+            return a.position.localeCompare(b.position)
+          });
+        }
+      }
+    },
     EventbriteEvents: {
       organization: {
         type: 'String',
