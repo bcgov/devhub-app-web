@@ -80,15 +80,15 @@ class SourceGithubMarkdownDefault extends React.Component {
     const navigation = <Navigation items={navigationItems} />;
 
     const [ owner, repo ] = githubRaw.html_url.replace('https://github.com/', '').split('/');
-    const { title } = githubRaw.fields.title;
-    const { originalSource } = githubRaw.html_url;
+    const { title } = githubRaw.fields;
+    const  originalSource  = githubRaw.html_url;
     const { href } = location;
     return (
       <Layout>
         <div>
           <Masthead type="Topics" title={topic.name} description={topic.description} />
           <Main>
-            {/* <SidePanel>{navigation}</SidePanel> */}
+            <SidePanel>{navigation}</SidePanel>
             <SideDrawerToggleButton onClick={() => this.toggleMenu(true)}>
               <FontAwesomeIcon icon={faBars} style={{ color: '#026' }} />{' '}
               <span>{topic.name} Content</span>
@@ -110,13 +110,13 @@ class SourceGithubMarkdownDefault extends React.Component {
             </div>
           </Main>
         </div>
-        {/* <SideDrawer
+        <SideDrawer
           show={this.state.sideDrawerToggled}
           title={`${topic.name} Content`}
           closeDrawer={() => this.toggleMenu(false)}
         >
           {navigation}
-        </SideDrawer> */}
+        </SideDrawer>
       </Layout>
     );
   }
@@ -145,14 +145,8 @@ export const devhubSiphonMarkdown = graphql`
       description
     }
     nav: devhubTopic(id: { eq: $topicId }) {
-      fields {
-        githubRaw {
-          fields {
-            title
-            slug
-            resourceType
-          }
-        }
+      items: connectsWith {
+        ...DevhubNodeConnection
       }
     }
     communityEvents: allEventbriteEvents(
