@@ -7,6 +7,7 @@ resourceType: Documentation
 # Siphon
 Devhub is a content catalogue generator. **Siphon** is Devhub's main tool that *siphons* content from Github Repositories and converts it into useable Gatsby JS graphQL nodes.
 
+> Siphon is being deprecated in favor of third party source plugins that are now much more mature! :)
 ## Table of Contents
 
 -   [Flow Charts](#routine-flow)
