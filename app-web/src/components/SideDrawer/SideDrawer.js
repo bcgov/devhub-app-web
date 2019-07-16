@@ -22,7 +22,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import posed from 'react-pose';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDog } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import Backdrop from '../UI/Backdrop/Backdrop';
 
 const withPadding = css`
@@ -96,7 +96,7 @@ const SideDrawer = ({ closeDrawer, children, title, show }) => (
       <H2>
         <span>{title}</span>
         <IconButton onClick={closeDrawer}>
-          <FontAwesomeIcon icon={faDog} />
+          <FontAwesomeIcon icon={faTimes} />
         </IconButton>
       </H2>
       <Menu>{children}</Menu>
