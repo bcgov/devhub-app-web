@@ -63,13 +63,12 @@ const getUniqueResources = resources => {
  * returns the text and path being used for the link in the ResourcePreview below
  * the text will be reflective of the resourceType and is sensitive to different search result # cases
  * the link takes you to the corresponding resource type page but with the search active on that page
+ * @param {String} resourceType the given resource type (event, documentation etc)
  */
 const getTextAndLink = (resourceType, resourcesByType) => {
   // The resourceSearchPath will give you the string of the query as its used in the URL
   // ex: '?q=Open%20Shift' so that we can use it in the link for each resourceType result
-  // This opperates under the assumption that there will be 3 occurences of '/' before such a string
-  let resourceSearchPath = window.location.href.split('/');
-  resourceSearchPath = resourceSearchPath[3];
+  let resourceSearchPath = window.location.search;
 
   const numOfResults = converter.toWords(resourcesByType[resourceType].length);
   //default values
