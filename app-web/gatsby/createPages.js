@@ -51,8 +51,9 @@ const resolvePath = path => resolve(__dirname, path);
  * @param {Function} createPage the gatsby create page function
  */
 const createResourceInTopicsPages = (node, createPage) => {
+
   node.fields.pagePaths.forEach((path, ind) => {
-    const topic = node.topics[ind];
+    const topic = node.fields.topics[ind];
     const template = getTemplate(
       topic._metadata.template,
       topic._metadata.templateFile,
@@ -64,8 +65,8 @@ const createResourceInTopicsPages = (node, createPage) => {
       context: {
         // Data passed to context is available in page queries as GraphQL variables.
         id: node.id,
-        topic: topic[ind].name,
-        topicId: topic[ind].id,
+        topic: topic.name,
+        topicId: topic.id,
       },
     });
   })
@@ -138,7 +139,7 @@ const createResourceTypePages = createPage => {
  */
 const createResourceTopicsPages = async (createPage, graphql) => {
   // main graphql query here
-  const devhubData = await graphql(`
+  const data = await graphql(`
     {
       allGithubRaw {
         edges {
@@ -160,9 +161,10 @@ const createResourceTopicsPages = async (createPage, graphql) => {
     }
   `);
 
-  devhubData.allGithubRaw.edges.forEach(({node}) => {
-    // create the github raw node within the topics its connected too
+  data.data.allGithubRaw.edges.forEach(({ node }) => {
+    // create a page based on the github raw node and the topics its connected too
     createResourceInTopicsPages(node, createPage);
+    // create individual pages here (in future releases)
   });
 };
 

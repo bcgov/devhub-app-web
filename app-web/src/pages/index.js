@@ -142,11 +142,13 @@ export const Index = ({
   );
 
   const resourcesNotFound = !queryIsEmpty && (!results || (results.length === 0 && windowHasQuery));
+
+  const topics = flattenGatsbyGraphQL(allDevhubTopic.edges);
   if (queryIsEmpty) {
     content = (
       <Aux>
         {getTopicPreviews(
-          flattenGatsbyGraphQL(allDevhubTopic.edges),
+          topics,
           windowHasQuery && !queryIsEmpty,
         )}
       </Aux>
@@ -161,7 +163,7 @@ export const Index = ({
     content = (
       <Aux>
         {getTopicPreviews(
-          flattenGatsbyGraphQL(allDevhubTopic.edges),
+          topics,
           windowHasQuery && !queryIsEmpty,
         )}
         {siphonResources}
