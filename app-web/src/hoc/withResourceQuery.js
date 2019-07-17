@@ -26,6 +26,22 @@ const withResourceQuery = WrappedComponent => () => props => (
         siteSearchIndex {
           index
         }
+        allGithubRaw {
+          edges {
+            node {
+              id
+              fields {
+                resourceType
+                title
+                description
+                image
+                pagePaths
+                slug
+                personas
+              }
+            }
+          }
+        }
         allDevhubTopic {
           edges {
             node {
@@ -37,14 +53,10 @@ const withResourceQuery = WrappedComponent => () => props => (
                   id
                   fields {
                     resourceType
-                  }
-                  childMarkdownRemark {
-                    fields {
-                      title
-                      description
-                      image
-                      author
-                    }
+                    title
+                    description
+                    image
+                    slug
                   }
                 }
               }
@@ -64,6 +76,9 @@ const withResourceQuery = WrappedComponent => () => props => (
                 }
                 fields {
                   resourceType
+                  pagePaths
+                  title
+                  description
                 }
               }
             }
@@ -77,6 +92,10 @@ const withResourceQuery = WrappedComponent => () => props => (
             node {
               fields {
                 resourceType
+                title
+                description
+                pagePaths
+                image
               }
               siphon {
                 unfurl {
@@ -128,12 +147,15 @@ const withResourceQuery = WrappedComponent => () => props => (
                   description
                   link
                   resourceType
+                  title
+                  pagePaths
+                  image
                 }
               }
             }
           }
         }
-        allDevhubSiphon {
+        allDevhubSiphon(filter: {source: {type: {eq: "web"}}}) {
           edges {
             node {
               id
@@ -142,12 +164,13 @@ const withResourceQuery = WrappedComponent => () => props => (
               parent {
                 id
               }
-              _metadata {
-                position
-              }
               fields {
                 resourceType
                 personas
+                title
+                description 
+                image
+                pagePaths
               }
               source {
                 displayName

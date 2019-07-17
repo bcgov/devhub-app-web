@@ -1,3 +1,8 @@
+// notes to self, maybe i should create a resolver to resolve things like navigation
+// for a topic this would combine all nodes for siphon (web types) and github raw
+
+
+
 //
 // Dev Hub
 //
@@ -44,11 +49,11 @@ class SourceGithubMarkdownDefault extends React.Component {
 
   render() {
     const {
-      data: { devhubSiphon, nav, topic, communityEvents },
+      data: { githubRaw, nav, topic, communityEvents },
       location,
     } = this.props;
     // bind the devhub siphon data to the preview node
-    const previewWithNode = withNode(devhubSiphon)(ComponentPreview);
+    const previewWithNode = withNode(githubRaw)(ComponentPreview);
 
     const renderAst = new rehypeReact({
       createElement: React.createElement,
@@ -74,9 +79,9 @@ class SourceGithubMarkdownDefault extends React.Component {
 
     const navigation = <Navigation items={navigationItems} />;
 
-    const { repo, owner } = devhubSiphon.source._properties;
-    const { title } = devhubSiphon.childMarkdownRemark.frontmatter;
-    const { originalSource } = devhubSiphon.resource;
+    const [ owner, repo ] = githubRaw.html_url.replace('https://github.com/', '').split('/');
+    const { title } = githubRaw.fields;
+    const  originalSource  = githubRaw.html_url;
     const { href } = location;
     return (
       <Layout>
@@ -94,7 +99,7 @@ class SourceGithubMarkdownDefault extends React.Component {
               the renderAst will drop in the rehype component
               otherwise if not tag exists it is biz as usual
             */}
-              {renderAst(devhubSiphon.childMarkdownRemark.htmlAst)}
+              {renderAst(githubRaw.childMarkdownRemark.htmlAst)}
               <Actions
                 repo={repo}
                 owner={owner}
@@ -120,41 +125,29 @@ class SourceGithubMarkdownDefault extends React.Component {
 
 export const devhubSiphonMarkdown = graphql`
   query devhubSiphonMarkdownDefault($id: String!, $topicId: String!) {
-    devhubSiphon(id: { eq: $id }) {
+    githubRaw(id: { eq: $id }) {
       name
       id
+      html_url
       childMarkdownRemark {
         frontmatter {
           title
         }
         htmlAst
       }
-      source {
-        name
-        displayName
-        sourcePath
-        type
-        _properties {
-          repo
-          branch
-          owner
-        }
+      fields {
+        title
+        description
+        pagePaths
       }
-      resource {
-        originalSource
-      }
-      owner
-      fileName
-      fileType
-      path
     }
     topic: devhubTopic(id: { eq: $topicId }) {
       name
       description
     }
     nav: devhubTopic(id: { eq: $topicId }) {
-      items: childrenDevhubSiphon {
-        ...NavigationFragment
+      items: connectsWith {
+        ...DevhubNodeConnection
       }
     }
     communityEvents: allEventbriteEvents(

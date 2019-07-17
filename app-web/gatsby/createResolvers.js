@@ -20,6 +20,8 @@
 
 // gatsby event hooks
 // https://www.gatsbyjs.org/docs/node-apis/
+
+const { uniqBy } = require('lodash');
 const getOrganizationsById = id => {
   const organizations = {
     '228490647317': {
@@ -34,25 +36,43 @@ const getOrganizationsById = id => {
   return organizations[id];
 };
 
+
+
 module.exports = ({ createResolvers }) => {
+  // cache devhubtopic connectswith resolutions for speed purposes
+  // resolvers seem to run at build time for every time there is a graphql query that calls for devhubTopic.connectsWith
+  // and is a bit of an expensive process
+  const _cache = {};
   const resolvers = {
     DevhubTopic: {
       connectsWith: { // a list of nodes only really needs pointers to the page paths and a title for a link
         type: '[ConnectedNode]',
         resolve: (source, args, context) => {
-          // get all github raw nodes and siphon source type web nodes and return them ordered by fields.position
-          const webNodes = context.nodeModel.getAllNodes({
-            type: 'DevhubSiphon',
-          }).filter(n => n.source.type === 'web').map(n => ({id: n.id, position: n.fields.position, path: n.resource.path, name: n.fields.title, resourceType: n.fields.resourceType}))
-          let ghNodes = context.nodeModel.getAllNodes({
-            type: 'GithubRaw'
-          });
-          ghNodes = ghNodes.filter(n => n.fields.topics.includes(source.name))
-            .map(n => ({id: n.id, position: n.fields.position.toString(), path: `${source.fields.slug}/${n.fields.slug}`, name: n.fields.title, resourceType: n.fields.resourceType}))
+          // 
+          if(!_cache[source.id]) {
+            // get all github raw nodes and siphon source type web nodes and return them ordered by fields.position
+            let webNodes = context.nodeModel.getAllNodes({
+              type: 'DevhubSiphon',
+            }).filter(n => {
+              return n.source.type === 'web' && n.fields.topics.includes(source.name)
+            }).map(n => ({id: n.id, position: n.fields.position, path: n.resource.path, name: n.fields.title, resourceType: n.fields.resourceType}))
+            // siphon nodes produce multiples of the same type which we need to filter out
+            webNodes = uniqBy(webNodes, 'path');
 
-          return webNodes.concat(ghNodes).sort((a, b) => {
-            return a.position.localeCompare(b.position)
-          });
+            let ghNodes = context.nodeModel.getAllNodes({
+              type: 'GithubRaw'
+            });
+
+            ghNodes = ghNodes.filter(n => n.fields.topics.includes(source.name))
+              .map(n => ({id: n.id, position: n.fields.position.toString(), path: `/${source.fields.slug}/${n.fields.slug}`, name: n.fields.title, resourceType: n.fields.resourceType}))
+            
+              const connectsWith = webNodes.concat(ghNodes).sort((a, b) => {
+                return a.position.localeCompare(b.position)
+              });
+              _cache[source.id] = connectsWith
+          }
+          return _cache[source.id];
+
         }
       }
     },
