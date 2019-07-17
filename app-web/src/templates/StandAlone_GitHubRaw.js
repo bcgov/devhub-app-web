@@ -22,7 +22,7 @@ import { Main, Title } from '../components/Page';
 import CardHeader from '../components/Cards/Card/CardHeader';
 import rehypeReact from 'rehype-react';
 
-export const standAloneResource = siphonNode => {
+export const standAloneResource = GithubRawNode => {
   const isExternal = false;
   const renderAst = new rehypeReact({
     createElement: React.createElement,
@@ -31,9 +31,9 @@ export const standAloneResource = siphonNode => {
   return (
     <Layout>
       <Main>
-        <CardHeader type={siphonNode.resource.type} linksToExternal={isExternal} />
-        <Title title={siphonNode.unfurl.title} />
-        {renderAst(siphonNode.childMarkdownRemark.htmlAst)}
+        <CardHeader type={GithubRawNode.fields.resource.type} linksToExternal={isExternal} />
+        <Title title={GithubRawNode.fields.title} />
+        {renderAst(GithubRawNode.childMarkdownRemark.htmlAst)}
       </Main>
     </Layout>
   );
