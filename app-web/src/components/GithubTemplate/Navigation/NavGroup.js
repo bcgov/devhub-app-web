@@ -39,6 +39,7 @@ const titleMapping = {
 };
 
 const NavGroup = ({ type, items }) => {
+
   const links = items.map(({ to, text }) => (
     <NavItem key={to} text={text} to={to} isExternal={validUrl.isWebUri(to)} />
   ));

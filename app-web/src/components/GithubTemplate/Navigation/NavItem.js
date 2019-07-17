@@ -40,6 +40,7 @@ const Icon = styled.small`
 
 const NavItem = ({ text, isExternal, to }) => (
   <LI>
+
     <StyledLink
       exact="true"
       to={to}

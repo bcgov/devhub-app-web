@@ -136,6 +136,7 @@ export const filterResources = (resources, filters) =>
  */
 export const setFilterPropsBasedOnResourceCounts = (filter, nodes) => {
   const { filterBy, value } = filter;
+  
   let newFilter = { ...filter, availableResources: 0 };
   nodes.forEach(n => {
     // only attempt to check if node should be apart of count if it matches the current resource type

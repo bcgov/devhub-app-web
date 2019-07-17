@@ -35,7 +35,17 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
               },
             },
             "fields": Object {
+              "author": "ksingbeil",
+              "description": "What the Design System is and how it works.",
+              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+              "pagePaths": Array [
+                "/design-system/Z1bGIqu3",
+              ],
+              "personas": Array [
+                "Designer",
+              ],
               "resourceType": "Components",
+              "title": "About",
             },
             "id": "3",
             "parent": Object {
@@ -89,7 +99,18 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
               },
             },
             "fields": Object {
+              "author": "ksingbeil",
+              "description": "What the Design System is and how it works.",
+              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+              "pagePaths": Array [
+                "/design-system/Z1bGIqu2",
+              ],
+              "personas": Array [
+                "Developer",
+                "Designer",
+              ],
               "resourceType": "Components",
+              "title": "About",
             },
             "id": "2",
             "parent": Object {
@@ -142,7 +163,17 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
               },
             },
             "fields": Object {
+              "author": "ksingbeil",
+              "description": "What the Design System is and how it works.",
+              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+              "pagePaths": Array [
+                "/design-system/Z1bGIqu1",
+              ],
+              "personas": Array [
+                "Designer",
+              ],
               "resourceType": "Components",
+              "title": "About",
             },
             "id": "1",
             "parent": Object {
@@ -195,7 +226,17 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
               },
             },
             "fields": Object {
+              "author": "ksingbeil",
+              "description": "What the Design System is and how it works.",
+              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+              "pagePaths": Array [
+                "/design-system/Z1bGIqu4",
+              ],
+              "personas": Array [
+                "Developer",
+              ],
               "resourceType": "Components",
+              "title": "About",
             },
             "id": "4",
             "parent": Object {
@@ -248,7 +289,17 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
               },
             },
             "fields": Object {
+              "author": "ksingbeil",
+              "description": "What the Design System is and how it works.",
+              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+              "pagePaths": Array [
+                "/design-system/Z1bGIqu5",
+              ],
+              "personas": Array [
+                "Developer",
+              ],
               "resourceType": "Documentation",
+              "title": "About",
             },
             "id": "5",
             "parent": Object {
@@ -302,7 +353,18 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
               },
             },
             "fields": Object {
+              "author": "ksingbeil",
+              "description": "What the Design System is and how it works.",
+              "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+              "pagePaths": Array [
+                "/design-system/Z1bGIqu6",
+              ],
+              "personas": Array [
+                "Designer",
+                "Developer",
+              ],
               "resourceType": "Documentation",
+              "title": "About",
             },
             "id": "6",
             "parent": Object {

@@ -99,42 +99,29 @@ class SourceGithubMarkdownOverview extends React.Component {
 
 export const devhubSiphonMarkdown = graphql`
   query devhubSiphonMarkdownOverview($id: String!, $topicId: String!) {
-    devhubSiphon(id: { eq: $id }) {
+    githubRaw(id: { eq: $id }) {
       name
       id
+      html_url
       childMarkdownRemark {
         frontmatter {
           title
         }
         htmlAst
       }
-      source {
-        name
-        displayName
-        sourcePath
-        type
-        _properties {
-          repo
-          branch
-          owner
-        }
+      fields {
+        title
+        description
+        pagePaths
       }
-      resource {
-        originalSource
-        type
-      }
-      owner
-      fileName
-      fileType
-      path
     }
     topic: devhubTopic(id: { eq: $topicId }) {
       name
       description
     }
     nav: devhubTopic(id: { eq: $topicId }) {
-      items: childrenDevhubSiphon {
-        ...NavigationFragment
+      items: connectsWith {
+        ...DevhubNodeConnection
       }
     }
   }

@@ -40,6 +40,37 @@ const RESOURCE_TYPE_PAGES = [
 ];
 
 const resolvePath = path => resolve(__dirname, path);
+
+
+/**
+ * 
+ * @param {Object} node the gatsby node
+ * @param {Object} node.fields
+ * @param {Array} node.fields.pagePaths a list of page paths to create pages for based on this resource
+ * @param {Array} node.fields.topics a list of topics that are associated with the same indexed pagePath from above
+ * @param {Function} createPage the gatsby create page function
+ */
+const createResourceInTopicsPages = (node, createPage) => {
+
+  node.fields.pagePaths.forEach((path, ind) => {
+    const topic = node.fields.topics[ind];
+    const template = getTemplate(
+      topic._metadata.template,
+      topic._metadata.templateFile,
+    );
+
+    createPage({
+      path: `${path}`,
+      component: template,
+      context: {
+        // Data passed to context is available in page queries as GraphQL variables.
+        id: node.id,
+        topic: topic.name,
+        topicId: topic.id,
+      },
+    });
+  })
+}
 /**
  * Get Templates based on source and topicTemplate or topic template file path
  * in the even topic template file path and topic template both exist
@@ -49,22 +80,19 @@ const resolvePath = path => resolve(__dirname, path);
  * @param {String} topicTemplateFilePath
  * @returns {String} the path to the template
  */
-const getTemplate = (source, topicTemplate, topicTemplateFilePath = null) => {
+const getTemplate = ( topicTemplate, topicTemplateFilePath = null) => {
   const TEMPLATES = {
-    [SOURCE_TYPES.GITHUB]: {
       [TOPIC_TEMPLATES.DEFAULT]: resolvePath('../src/templates/SourceGithub_default.js'),
       [TOPIC_TEMPLATES.OVERVIEW]: resolvePath('../src/templates/SourceGithub_overview.js'),
-    },
   };
 
   let templatePath = '';
+
   // get source template path for default
-  const sourceTemplate = TEMPLATES[source];
-  if (sourceTemplate) {
-    templatePath = sourceTemplate[topicTemplate];
-  } else {
+  const sourceTemplate = TEMPLATES[topicTemplate];
+  if (!sourceTemplate) {
     throw new Error(chalk`
-      {red.underline No Available Template for source type ${source}!} \n\n 
+      {red.underline No Available Template for ${topicTemplate}!} \n\n 
       This is most likely an issue with Siphon's code base creating nodes with the incorrect source type!
       I'd recommend checking the registry and validating all sources and topics have the correct sourcetype
       where applicable and then sifting through the validation routines to see where things are getting bunged up.`);
@@ -77,8 +105,10 @@ const getTemplate = (source, topicTemplate, topicTemplateFilePath = null) => {
       templatePath = filePath;
     } else {
       // if it doesn't exist change template to default one
-      templatePath = TEMPLATES[source][TOPIC_TEMPLATES.DEFAULT];
+      templatePath = TEMPLATES[TOPIC_TEMPLATES.DEFAULT];
     }
+  } else {
+    templatePath = sourceTemplate;
   }
 
   return templatePath;
@@ -107,34 +137,21 @@ const createResourceTypePages = createPage => {
  * @param {Function} createPage the gatsby createpage function
  * @param {Function} graphql the gatsby graphql function
  */
-const createResourceComponentPages = async (createPage, graphql) => {
+const createResourceTopicsPages = async (createPage, graphql) => {
   // main graphql query here
-  const devhubData = await graphql(`
+  const data = await graphql(`
     {
-      allDevhubTopic {
+      allGithubRaw {
         edges {
           node {
             id
-            name
-            _metadata {
-              template
-              templateFile
-            }
-            childrenDevhubSiphon {
-              id
-              source {
-                type
-              }
-              resource {
-                path
-              }
-              internal {
-                mediaType
-              }
-              childMarkdownRemark {
-                frontmatter {
-                  resourcePath
-                  ignore
+            fields {
+              pagePaths
+              topics {
+                id
+                _metadata {
+                  template
+                  templateFile
                 }
               }
             }
@@ -143,53 +160,11 @@ const createResourceComponentPages = async (createPage, graphql) => {
       }
     }
   `);
-  // right now we are making an assumption all data here resolved from a markdown file
-  // and will be treated as so
-  // loop over topics and then nodes
 
-  devhubData.data.allDevhubTopic.edges.forEach(({ node }) => {
-    const topic = node;
-    // 'node' is the property that holds the topic object after the graphql query has prrocessed
-    node.childrenDevhubSiphon.forEach(siphon => {
-      // only create pages for markdown files and ones that don't have an ignore flag
-      // or a resourcePath (which links the content to an external resource)
-      const isResource =
-        siphon.childMarkdownRemark &&
-        siphon.childMarkdownRemark.frontmatter &&
-        siphon.childMarkdownRemark.frontmatter.resourcePath;
-      const isIgnored =
-        siphon.childMarkdownRemark &&
-        siphon.childMarkdownRemark.frontmatter &&
-        siphon.childMarkdownRemark.frontmatter.ignore;
-      // if file is html these would both resolve to false since there are no meta data properties
-      // for now we are explicitly only creating pages for text/markdown, although html pages
-      // would work, there are many things about presenting html documents that haven't been ironed
-      // out yet but will be in future versions
-      if (!isResource && !isIgnored && siphon.internal.mediaType === 'text/markdown') {
-        const template = getTemplate(
-          siphon.source.type,
-          topic._metadata.template,
-          topic._metadata.templateFile,
-        );
-
-        try {
-          createPage({
-            path: siphon.resource.path,
-            component: template,
-            context: {
-              // Data passed to context is available in page queries as GraphQL variables.
-              id: siphon.id,
-              topic: topic.name,
-              topicId: topic.id,
-            },
-          });
-        } catch (e) {
-          // eslint-disable-next-line no-console
-          console.error(e); // console error here so message is displayed in a nicer way
-          throw new Error('Error Quiting Build'); // throw to kill gatsby build
-        }
-      }
-    });
+  data.data.allGithubRaw.edges.forEach(({ node }) => {
+    // create a page based on the github raw node and the topics its connected too
+    createResourceInTopicsPages(node, createPage);
+    // create individual pages here (in future releases)
   });
 };
 
@@ -214,6 +189,6 @@ const createEventsPage = createPage => {
 module.exports = async ({ graphql, actions }) => {
   const { createPage } = actions;
   createResourceTypePages(createPage);
-  createResourceComponentPages(createPage, graphql);
+  createResourceTopicsPages(createPage, graphql);
   createEventsPage(createPage);
 };

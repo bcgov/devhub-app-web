@@ -118,6 +118,12 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       value: node.unfurl.author
     });
 
+    createNodeField({
+      node,
+      name: 'pagePaths',
+      value: [node.resource.path]
+    });
+
     // no labels applied to siphon nodes, siphon nodes are filtered to only show 'source' type web
     // this is because siphon is getting deprecated, and eventaully source type web SHOULD be replaced
     // by a source plugin specifically made for that source type
@@ -130,6 +136,7 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
   
   if (isEventbriteEvents(node)) {
     createNodeField({node, name: 'topics', value: ['Community and Events']});
+    createNodeField({node, name: 'image', value: 'eventbrite'});
     createNodeField({
       node,
       name: 'resourceType',
@@ -141,10 +148,16 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       name: 'description',
       value: node.description.text,
     });
+    createNodeField({
+      node,
+      name: 'pagePaths',
+      value: [node.url],
+    });
   }
 
   if (isMeetupEvent(node)) {
     // normalize meetup event data
+    createNodeField({node, name: 'image', value: 'meetup'});
     createNodeField({node, name: 'topics', value: ['Community and Events']});
     createNodeField({ node, name: 'title', value: node.name });
     createNodeField({
@@ -156,6 +169,11 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       node,
       name: 'link',
       value: node.link,
+    });
+    createNodeField({
+      node,
+      name: 'pagePaths',
+      value: [node.link],
     });
     createNodeField({
       node,
@@ -241,6 +259,19 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
         name: 'slug',
         value: slugify(slug),
       });
+      
+      
+      const topics = parentNode.___boundProperties.topics;
+      const pagePaths = topics.map(t => `${slugify(t)}/${slugify(slug)}`);
+      // all github raw nodes have a page path that is just the individual resource
+      // the others are based off of the topics it belongs too
+      createNodeField({
+        node: parentNode,
+        name: 'pagePaths',
+        value: pagePaths,
+      });
+     
+      
       // add resource type, initially it is set to the topic resource type
       let resourceType = parentNode.___boundProperties.topicResourceType;
 

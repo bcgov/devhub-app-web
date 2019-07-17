@@ -48,6 +48,5 @@ export const useSearch = (query, staticIndex) => {
       }
     }
   }, [Index, staticIndex, query, results]);
-
   return results;
 };

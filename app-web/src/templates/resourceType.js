@@ -37,12 +37,14 @@ const resourcesSelector = selectResourcesGroupedByType();
 // generic template page where all 'resource type' pages are generated from
 export const ResourceType = ({
   data: {
+    allGithubRaw,
     allDevhubSiphon,
     siteSearchIndex: { index },
   },
   pageContext, // received from gatsby create pages api, view gatsby/createPages.js for more info
   location,
 }) => {
+
   const [sideDrawerToggled, setSideDrawerToggled] = useState(false);
 
   const queryParam = queryString.parse(location.search);
@@ -66,22 +68,27 @@ export const ResourceType = ({
   const queryIsEmpty = isQueryEmpty(query);
 
   const resourceTypeConst = RESOURCE_TYPES[pageContext.resourceTypeConst];
+  const nodes = flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(flattenGatsbyGraphQL(allGithubRaw.edges));
 
-  const resourcesByType = resourcesSelector(flattenGatsbyGraphQL(allDevhubSiphon.edges));
+  const resourcesByType = resourcesSelector(nodes);
 
   if (windowHasFilters) {
     filters = decodeURIComponent(queryParam[FILTER_QUERY_PARAM]).split(',');
   }
+
   // grab the specific resources by the resource type associated with this pages context
-  let resources = resourcesByType[resourceTypeConst].map(r => ({
-    type: r.resource.type,
-    title: r.unfurl.title,
-    description: r.unfurl.description,
-    image: r.unfurl.image,
-    path: r.resource.path,
-    id: r.id,
-    ...r,
-  }));
+  let resources = resourcesByType[resourceTypeConst].map(r => {
+
+    return {
+      type: r.fields.resourceType,
+      title: r.fields.title,
+      description: r.fields.description,
+      image: r.fields.image,
+      path: r.fields.pagePaths[0],
+      id: r.id,
+      ...r,
+    }
+  });
 
   const resourcesExist = resourcesByType[resourceTypeConst].length > 0;
 
@@ -95,12 +102,12 @@ export const ResourceType = ({
   // map properties like availableResources and isFilterable to filtergroups based on the current set
   // of resources
   let filterGroups = DEFAULT_FILTERS.map(f => setFilterPropsBasedOnResourceCounts(f, resources));
+
   // if only one filter isFilterable unset it to false because there is no point in having it togglable
   // in the ui
   if (isFilterLonely(filterGroups) || resourcesNotFound) {
     filterGroups = filterGroups.map(f => ({ ...f, isFilterable: false }));
   }
-
   //remove duplicates from the resources
   //note: resources in many topics will only be shown in one of their many contexts
   resources = uniqBy(resources, 'title');
@@ -112,8 +119,10 @@ export const ResourceType = ({
     const filtersWithKeys = filters.map(f => ({ key: f }));
     // get active filters by filter keys
     const activeFilters = intersectionBy(filterGroups, filtersWithKeys, 'key');
+
     resources = filterResources(resources, activeFilters);
   }
+
 
   return (
     <Layout>

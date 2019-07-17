@@ -24,13 +24,12 @@ import NavGroup from './NavGroup';
 // navigation for dynamically created page components
 const Navigation = ({ items }) => {
   const navItems = items.map(item => ({
-    to: item.resource.path,
-    text: item.unfurl.title,
-    type: item.resource.type,
+    to: item.path,
+    text: item.name,
+    type: item.resourceType,
   }));
   // group resources by type
   const groupedResources = groupBy(navItems, 'type');
-
   const groups = [];
 
   if (groupedResources[RESOURCE_TYPES.DOCUMENTATION]) {
@@ -87,20 +86,12 @@ const Navigation = ({ items }) => {
 };
 
 export const query = graphql`
-  fragment NavigationFragment on DevhubSiphon {
-    unfurl {
-      title
-    }
-    resource {
-      path
-      type
-    }
-    source {
-      type
-    }
-    _metadata {
-      position
-    }
+  fragment DevhubNodeConnection on ConnectedNode {
+    path
+    position
+    resourceType
+    name
+    id
   }
 `;
 
