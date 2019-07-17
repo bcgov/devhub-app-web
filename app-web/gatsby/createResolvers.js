@@ -36,15 +36,19 @@ const getOrganizationsById = id => {
   return organizations[id];
 };
 
-// cache to speed up resolvers
+
 
 module.exports = ({ createResolvers }) => {
+  // cache devhubtopic connectswith resolutions for speed purposes
+  // resolvers seem to run at build time for every time there is a graphql query that calls for devhubTopic.connectsWith
+  // and is a bit of an expensive process
   const _cache = {};
   const resolvers = {
     DevhubTopic: {
       connectsWith: { // a list of nodes only really needs pointers to the page paths and a title for a link
         type: '[ConnectedNode]',
         resolve: (source, args, context) => {
+          // 
           if(!_cache[source.id]) {
             // get all github raw nodes and siphon source type web nodes and return them ordered by fields.position
             let webNodes = context.nodeModel.getAllNodes({
@@ -68,6 +72,7 @@ module.exports = ({ createResolvers }) => {
               _cache[source.id] = connectsWith
           }
           return _cache[source.id];
+
         }
       }
     },
