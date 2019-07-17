@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Note this script  was borrowed from https://github.com/sclorg/s2i-nodejs-container/blob/master/10/s2i/bin/save-artifacts since the nodej2 builder image we are using at this moment *does not* support incremental builds.
+
+if [ -d "${HOME}/node_modules" ] && [ "$(ls "${HOME}/node_modules" 2>/dev/null)" ]; then
+    tar -C "${HOME}" -cf - node_modules
+fi
