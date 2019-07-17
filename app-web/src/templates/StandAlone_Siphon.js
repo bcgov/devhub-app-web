@@ -22,7 +22,7 @@ import { Main, Title } from '../components/Page';
 import CardHeader from '../components/Cards/Card/CardHeader';
 import rehypeReact from 'rehype-react';
 
-export const standAloneResource = siphonNode => {
+export const standAloneSiphonResource = siphonNode => {
   const isExternal = false;
   const renderAst = new rehypeReact({
     createElement: React.createElement,
