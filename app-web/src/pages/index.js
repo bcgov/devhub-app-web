@@ -26,6 +26,7 @@ import { SPACING } from '../constants/designTokens';
 import uniqBy from 'lodash/uniqBy';
 import { formatEvents, formatMeetUps } from '../templates/events';
 import { RESOURCE_TYPES } from '../constants/ui';
+import { getTextAndLink } from '../utils/helpers';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -55,33 +56,38 @@ const getUniqueResources = resources => {
   let events = resources.filter(resource => resource.resource.type === RESOURCE_TYPES.EVENTS);
   let allButEvents = resources.filter(resource => resource.resource.type !== RESOURCE_TYPES.EVENTS);
   allButEvents = uniqBy(allButEvents, 'unfurl.title');
-  return allButEvents.slice(0, 15).concat(events);
+  return allButEvents.concat(events);
 };
 
 /**
  * returns a resource preview components
  * @param {Array} resources the list of siphon resources
+ * @param {string} queryExists the search query
  * @param {Array} results the list of searched resources
  */
-const getResourcePreviews = (resources, results = []) => {
+const getResourcePreviews = (resources, queryExists, results = []) => {
   const resourcesSelector = selectResourcesGroupedByType();
   let resourcesToGroup = resources;
   if (!isNull(results) && results.length > 0) {
     // diff out resources by id
     resourcesToGroup = intersectionBy(resources, results, 'id');
   }
-
   resourcesToGroup = getUniqueResources(resourcesToGroup);
+
   // select resources grouped by type using relesect memoization https://github.com/reduxjs/reselect/issues/30
-  const resourcesByType = resourcesSelector(resourcesToGroup);
+  let resourcesByType = resourcesSelector(resourcesToGroup);
   const siphonResources = Object.keys(resourcesByType).map(resourceType => {
     if (resourcesByType[resourceType].length > 0) {
+      let linkWithCounter = MAIN_NAV_ROUTES[resourceType];
+      if (queryExists) {
+        linkWithCounter = getTextAndLink(resourceType, resourcesByType);
+      }
       return (
         <ResourcePreview
           key={resourceType}
           title={resourceType}
           resources={resourcesByType[resourceType]}
-          link={MAIN_NAV_ROUTES[resourceType]}
+          link={linkWithCounter}
         />
       );
     }
@@ -138,6 +144,7 @@ export const Index = ({
 
   const siphonResources = getResourcePreviews(
     flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(eventsAndMeetups),
+    windowHasQuery && !queryIsEmpty,
     results,
   );
 
