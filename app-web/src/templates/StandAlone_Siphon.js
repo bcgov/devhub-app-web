@@ -17,12 +17,21 @@ Created by Derek Siemens
 */
 
 import React from 'react';
+import { graphql } from 'gatsby';
 import Layout from '../hoc/Layout';
-import { Main, Title } from '../components/Page';
+import { Main } from '../components/Page';
 import CardHeader from '../components/Cards/Card/CardHeader';
 import rehypeReact from 'rehype-react';
+import styled from '@emotion/styled';
 
-export const standAloneSiphonResource = siphonNode => {
+const PageDiv = styled.div`
+  padding-top: 20px;
+`;
+const ContentDiv = styled.div`
+  padding-top: 10px;
+`;
+
+export const standAloneSiphonResource = ({ data: { devhubSiphon } }) => {
   const isExternal = false;
   const renderAst = new rehypeReact({
     createElement: React.createElement,
@@ -31,10 +40,50 @@ export const standAloneSiphonResource = siphonNode => {
   return (
     <Layout>
       <Main>
-        <CardHeader type={siphonNode.resource.type} linksToExternal={isExternal} />
-        <Title title={siphonNode.unfurl.title} />
-        {renderAst(siphonNode.childMarkdownRemark.htmlAst)}
+        <PageDiv>
+          <CardHeader type={devhubSiphon.resource.type} linksToExternal={isExternal} />
+          <ContentDiv>{renderAst(devhubSiphon.childMarkdownRemark.htmlAst)}</ContentDiv>
+        </PageDiv>
       </Main>
     </Layout>
   );
 };
+
+export const devhubSiphonData = graphql`
+  query devhubSiphonQuery($id: String!) {
+    devhubSiphon(id: { eq: $id }) {
+      name
+      id
+      childMarkdownRemark {
+        frontmatter {
+          title
+        }
+        htmlAst
+      }
+      source {
+        name
+        displayName
+        sourcePath
+        type
+        _properties {
+          repo
+          branch
+          owner
+        }
+      }
+      unfurl {
+        title
+      }
+      resource {
+        originalSource
+        type
+      }
+      owner
+      fileName
+      fileType
+      path
+    }
+  }
+`;
+
+export default standAloneSiphonResource;

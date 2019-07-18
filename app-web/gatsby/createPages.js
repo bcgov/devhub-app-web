@@ -19,6 +19,7 @@
 //
 
 // create pages based on nodes
+const validUrl = require('valid-url');
 const { resolve } = require('path');
 const chalk = require('chalk');
 const fs = require('fs');
@@ -169,6 +170,47 @@ const createResourceTopicsPages = async (createPage, graphql) => {
 };
 
 /**
+ * creates stand alone pages for siphon resources that arent external
+ * @param {Function} createPage the gatsby createpage function
+ * @param {Function} graphql the gatsby graphql function
+ */
+const createTestPage = async (createPage, graphql) => {
+  let template = resolvePath('../src/templates/StandAlone_Siphon.js');
+  // main graphql query here
+  const devhubSiphonData = await graphql(`
+    {
+      allDevhubSiphon {
+        edges {
+          node {
+            id
+            path
+            unfurl {
+              title
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  devhubSiphonData.data.allDevhubSiphon.edges.forEach(({ node }) => {
+    let isExternal = !validUrl.isWebUri(node.path);
+    const path = `/${slugify(node.unfurl.title)}`;
+
+    let testID = node.id;
+    if (isExternal) {
+      createPage({
+        path: path,
+        component: template,
+        context: {
+          id: testID,
+        },
+      });
+    }
+  });
+};
+
+/**
  * attempts to create the evnets page, however if the event brite api key is missing
  * is creates a placeholder page
  * @param {Function} createPage the gatsby createpage function
@@ -191,4 +233,5 @@ module.exports = async ({ graphql, actions }) => {
   createResourceTypePages(createPage);
   createResourceTopicsPages(createPage, graphql);
   createEventsPage(createPage);
+  createTestPage(createPage, graphql);
 };
