@@ -63,14 +63,14 @@ const H2 = styled.h2`
   ${withPadding}
   justify-content: space-between;
   word-break: break-word;
-  hyphens: auto;
+  font-size: 25px;
   align-items: center;
   padding: 10px 5px;
   display: flex;
   color: #444;
   margin-bottom: 5px;
   margin-right: 30px;
-  padding-right: 20px;
+  padding-right: 30px;
   flex: 0 0 auto;
   border-bottom: 1px solid #ccc;
 `;
@@ -83,7 +83,7 @@ const TitleDiv = styled.div`
 const IconButton = styled.button`
   font-size: 1em;
   position: absolute;
-  right: 10px;
+  right: 5px;
   margin-left: 10px;
   align-self: flex-start;
   cursor: pointer;
