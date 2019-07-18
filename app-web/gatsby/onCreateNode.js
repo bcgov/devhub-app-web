@@ -34,7 +34,7 @@ const {
 } = require('./utils/validators.js');
 const { flattenExpandedRegistry, expandRegistry } = require('./utils/githubRaw');
 const slugify = require('slugify');
-
+const validUrl = require('valid-url');
 /**
  * on create node for many source/transformer plugins there are a set of fields that are created
  * which are normalized. This allows a set of cards to be produced from different datastructures
@@ -79,6 +79,14 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
   }
 
   if (isDevhubSiphon(node)) {
+    let isExternal = !!validUrl.isWebUri(node.path);
+    let truePath = '';
+    if (isExternal) {
+      truePath = node.path;
+    } else {
+      truePath = `/${slugify(node.unfurl.title)}`;
+    }
+    createNodeField({ node, name: 'usePath', value: truePath });
     createNodeField({ node, name: 'personas', value: node.attributes.personas || [] });
     createNodeField({ node, name: 'resourceType', value: node.resource.type || [] });
     createNodeField({node, name: 'position', value: node._metadata.position});

@@ -161,6 +161,9 @@ const withResourceQuery = WrappedComponent => () => props => (
               id
               name
               owner
+              fields {
+                usePath
+              }
               parent {
                 id
               }

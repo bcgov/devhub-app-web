@@ -194,7 +194,7 @@ const createTestPage = async (createPage, graphql) => {
   `);
 
   devhubSiphonData.data.allDevhubSiphon.edges.forEach(({ node }) => {
-    let isExternal = validUrl.isWebUri(node.path);
+    let isExternal = !!validUrl.isWebUri(node.path);
     let path = `/${slugify(node.unfurl.title)}`;
 
     if (!isExternal) {
