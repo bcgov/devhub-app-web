@@ -17,6 +17,7 @@ Created by Patrick Simonian
 */
 const { hashString, convertPositionToSortableString } = require('./helpers');
 const { GRAPHQL_NODE_TYPE } = require('./constants');
+const slugify = require('slugify');
 
 /**
  * creates the object that is passed into the gatsby create node function
@@ -72,6 +73,7 @@ const createSiphonNode = (data, id, topicId) => ({
   owner: data.metadata.owner,
   parent: topicId,
   path: data.path,
+  standAlonePath: `/${slugify(data.metadata.unfurl.title)}`,
   unfurl: data.metadata.unfurl, // normalized unfurled content from various sources https://medium.com/slack-developer-blog/everything-you-ever-wanted-to-know-about-unfurling-but-were-afraid-to-ask-or-how-to-make-your-e64b4bb9254
   topic: {
     name: data.metadata.topic.name, // name of the topic
