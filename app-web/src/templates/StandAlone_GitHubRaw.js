@@ -31,7 +31,7 @@ const ContentDiv = styled.div`
   padding-top: 10px;
 `;
 
-export const standAloneGitHubRawResource = ({ data: { GitHubRawNode } }) => {
+export const StandAloneGitHubRawResource = ({ data: { GitHubRawNode } }) => {
   const isExternal = false;
   const renderAst = new rehypeReact({
     createElement: React.createElement,
@@ -62,5 +62,5 @@ export const devhubGitHubRawData = graphql`
   }
 `;
 
-export default standAloneGitHubRawResource;
+export default StandAloneGitHubRawResource;
 */

@@ -31,7 +31,7 @@ const ContentDiv = styled.div`
   padding-top: 10px;
 `;
 
-export const standAloneSiphonResource = ({ data: { devhubSiphon } }) => {
+export const StandAloneSiphonResource = ({ data: { devhubSiphon } }) => {
   const isExternal = false;
   const renderAst = new rehypeReact({
     createElement: React.createElement,
@@ -86,4 +86,4 @@ export const devhubSiphonData = graphql`
   }
 `;
 
-export default standAloneSiphonResource;
+export default StandAloneSiphonResource;

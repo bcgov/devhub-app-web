@@ -55,7 +55,6 @@ const validUrl = require('valid-url');
 module.exports = ({ node, actions, getNode, getNodes }) => {
   const { createNodeField } = actions;
 
-
   if (isGithubRaw(node)) {
     createNodeField({node, name: 'topics', value: node.___boundProperties.topics});
     createNodeField({node, name: 'position', value: node.___boundProperties.position});
@@ -82,7 +81,7 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
     let isExternal = !!validUrl.isWebUri(node.path);
     let truePath = '';
     if (isExternal) {
-      truePath = node.path;
+      truePath = node.resource.path;
     } else {
       truePath = `/${slugify(node.unfurl.title)}`;
     }

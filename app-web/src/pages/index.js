@@ -155,6 +155,17 @@ export const Index = ({
   );
   const currentMeetups = allMeetups.filter(e => e.start.daysFromNow <= 0);
   const eventsAndMeetups = currentEvents.concat(currentMeetups);
+  const resourcesToStandAlone = flattenGatsbyGraphQL(allDevhubSiphon.edges).map(card => {
+    card = {
+      unfurl: card.unfurl,
+      resource: {
+        path: card.fields.usePath,
+        type: card.resource.type,
+      },
+      id: card.id,
+    };
+    return card;
+  });
 
   // this is defined by ?q='' or ?q=''&q=''..etc
   // if query is empty we prevent the search results empty from being rendered
@@ -165,7 +176,7 @@ export const Index = ({
   let content = null;
 
   const siphonResources = getResourcePreviews(
-    flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(eventsAndMeetups).concat(flattenGatsbyGraphQL(allGithubRaw.edges)),
+    resourcesToStandAlone.concat(eventsAndMeetups).concat(flattenGatsbyGraphQL(allGithubRaw.edges)),
     windowHasQuery && !queryIsEmpty,
     results,
   );
