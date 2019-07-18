@@ -88,7 +88,18 @@ export const EventsPage = ({
   const communityCards = cards
     .filter(e => e.name === TOPICS.COMMUNITY_AND_EVENTS)
     .flatMap(e => e.childrenDevhubSiphon)
-    .filter(e => e.resource.type === RESOURCE_TYPES.EVENTS);
+    .filter(e => e.resource.type === RESOURCE_TYPES.EVENTS)
+    .map(card => {
+      card = {
+        unfurl: card.unfurl,
+        resource: {
+          path: card.fields.usePath,
+          type: card.resource.type,
+        },
+        id: card.id,
+      };
+      return card;
+    });
   //sort all the info so that event show up from soonest to farthest away
   const currentEventsMeetUpsAndCards = communityCards.concat(
     currentEvents.concat(currentMeetups).sort((a, b) => b.start.daysFromNow - a.start.daysFromNow),
@@ -234,6 +245,9 @@ export const EventData = graphql`
             resource {
               type
               path
+            }
+            fields {
+              usePath
             }
             _metadata {
               position
