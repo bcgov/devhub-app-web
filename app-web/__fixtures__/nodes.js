@@ -13,6 +13,9 @@ export const DESIGN_SYSTEM_SIPHON_NODE_1 = {
   parent: {
     id: IDS.DESIGN_SYSTEM,
   },
+  fields: {
+    usePath: '/Design-Node-1',
+  },
   _metadata: {
     position: '000.000.000',
   },
@@ -57,6 +60,9 @@ export const DESIGN_SYSTEM_SIPHON_NODE_2 = {
   id: '2',
   parent: {
     id: IDS.DESIGN_SYSTEM,
+  },
+  fields: {
+    usePath: '/Design-Node-2',
   },
   _metadata: {
     position: '000.000.001',
@@ -103,6 +109,9 @@ export const DESIGN_SYSTEM_SIPHON_NODE_3 = {
   parent: {
     id: IDS.DESIGN_SYSTEM,
   },
+  fields: {
+    usePath: '/Design-Node-3',
+  },
   _metadata: {
     position: '000.000.002',
   },
@@ -148,6 +157,9 @@ export const DESIGN_SYSTEM_SIPHON_NODE_4 = {
   parent: {
     id: IDS.DESIGN_SYSTEM,
   },
+  fields: {
+    usePath: '/Design-Node-4',
+  },
   _metadata: {
     position: '000.000.003',
   },
@@ -192,6 +204,9 @@ export const DEVHUB_SIPHON_NODE_1 = {
   id: '5',
   parent: {
     id: IDS.DEVHUB,
+  },
+  fields: {
+    usePath: '/DevHub-Node-1',
   },
   _metadata: {
     position: '001.000.000',
@@ -241,6 +256,9 @@ export const DEVHUB_SIPHON_NODE_2 = {
   _metadata: {
     position: '001.000.001',
   },
+  fields: {
+    usePath: '/DevHub-Node-2',
+  },
   attributes: {
     personas: ['Designer', 'Developer'],
   },
@@ -282,6 +300,9 @@ export const DEVHUB_SIPHON_NODE_3 = {
   id: '7',
   parent: {
     id: IDS.DEVHUB,
+  },
+  fields: {
+    usePath: '/DevHub-Node-3',
   },
   _metadata: {
     position: '001.000.001',
