@@ -1,6 +1,6 @@
 workflow "DevHub Unit Test Workflow" {
   on = "push"
-  resolves = ["GitHub Action for npm"]
+  resolves = ["Install node dependencies."]
 }
 
 action "Install node dependencies." {
