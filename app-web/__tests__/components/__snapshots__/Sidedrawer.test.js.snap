@@ -10,9 +10,12 @@ exports[`404 Page it matches snapshot 1`] = `
     pose="show"
   >
     <H2>
-      <span>
-        Foo
-      </span>
+      <TitleDiv>
+        <span>
+          Foo
+        </span>
+        <br />
+      </TitleDiv>
       <IconButton
         onClick={[MockFunction]}
       >

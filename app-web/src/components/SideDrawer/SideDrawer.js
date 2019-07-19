@@ -62,18 +62,29 @@ const Drawer = styled(SlideInLeft)`
 const H2 = styled.h2`
   ${withPadding}
   justify-content: space-between;
+  word-break: break-word;
+  font-size: 25px;
   align-items: center;
   padding: 10px 5px;
   display: flex;
   color: #444;
   margin-bottom: 5px;
+  margin-right: 30px;
+  padding-right: 30px;
   flex: 0 0 auto;
   border-bottom: 1px solid #ccc;
 `;
 
+const TitleDiv = styled.div`
+  display: inline-block;
+  bottom-margin: 0px;
+`;
+
 const IconButton = styled.button`
-  font-size: 1.5em;
-  margin-left: 5px;
+  font-size: 1em;
+  position: absolute;
+  right: 5px;
+  margin-left: 10px;
   align-self: flex-start;
   cursor: pointer;
   border: none;
@@ -89,20 +100,30 @@ const Menu = styled.div`
   flex-grow: 1;
 `;
 
-const SideDrawer = ({ closeDrawer, children, title, show }) => (
-  <Aux>
-    <Backdrop clicked={closeDrawer} show={show} />
-    <Drawer pose={show ? 'show' : 'hide'}>
-      <H2>
-        <span>{title}</span>
-        <IconButton onClick={closeDrawer}>
-          <FontAwesomeIcon icon={faTimes} />
-        </IconButton>
-      </H2>
-      <Menu>{children}</Menu>
-    </Drawer>
-  </Aux>
-);
+export const SideDrawer = ({ closeDrawer, children, title, show, addContent }) => {
+  let content = '';
+  if (addContent) {
+    content = 'Content';
+  }
+  return (
+    <Aux>
+      <Backdrop clicked={closeDrawer} show={show} />
+      <Drawer pose={show ? 'show' : 'hide'}>
+        <H2>
+          <TitleDiv>
+            <span>{title}</span>
+            <br />
+            {content}
+          </TitleDiv>
+          <IconButton onClick={closeDrawer}>
+            <FontAwesomeIcon icon={faTimes} />
+          </IconButton>
+        </H2>
+        <Menu>{children}</Menu>
+      </Drawer>
+    </Aux>
+  );
+};
 
 SideDrawer.propTypes = {
   title: PropTypes.string,
