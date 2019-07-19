@@ -25,7 +25,6 @@ const SearchPill = styled(Pill)`
 const PillContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
-  float: left;
 `;
 /**
  * Search Pills Component

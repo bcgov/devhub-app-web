@@ -34,6 +34,20 @@ import {
 // create a selector instance from the selectResourcesGroupedByType
 const resourcesSelector = selectResourcesGroupedByType();
 
+const getSearchTotal = (resources, resourcesNotFound) => {
+  let searchResultTotal;
+  if (!resourcesNotFound) {
+    const total = resources.length;
+    if (total == 1) {
+      searchResultTotal = `${total} Result Found`;
+    } else {
+      searchResultTotal = `${total} Results Found`;
+    }
+  } else {
+    searchResultTotal = 'No Results';
+  }
+  return searchResultTotal;
+};
 // generic template page where all 'resource type' pages are generated from
 export const ResourceType = ({
   data: {
@@ -122,8 +136,7 @@ export const ResourceType = ({
 
     resources = filterResources(resources, activeFilters);
   }
-
-
+  const searchResultTotal = getSearchTotal(resources, resourcesNotFound);
   return (
     <Layout>
       <Main role="main">
@@ -139,6 +152,7 @@ export const ResourceType = ({
                 searchResultsEmpty={resourcesNotFound}
                 pagePath={location.pathname}
                 resources={resources}
+                searchResultTotal={searchResultTotal}
                 query={query}
                 openSideDrawer={() => setSideDrawerToggled(true)}
               />

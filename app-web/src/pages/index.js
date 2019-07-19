@@ -72,8 +72,10 @@ const getSearchResultTotal = resourcesByType => {
       total = total + resourcesByType[resourceType].props.resources.length;
     }
   });
-
-  return `${total} Result(s) Found`;
+  if (total == 1) {
+    return `${total} Result Found`;
+  }
+  return `${total} Results Found`;
 };
 
 /**

@@ -91,6 +91,7 @@ const FilterSideDrawerToggle = styled.div`
 export const CardsContainer = ({
   resources,
   query,
+  searchResultTotal,
   openSideDrawer,
   loading,
   searchResultsEmpty,
@@ -108,6 +109,7 @@ export const CardsContainer = ({
       {query && (
         <SearchPills
           query={query}
+          searchResultTotal={searchResultTotal}
           onDelete={term => {
             navigate(`${pagePath}?q=`);
           }}
