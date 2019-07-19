@@ -60,6 +60,22 @@ const getUniqueResources = resources => {
 };
 
 /**
+ * takes in search results sorted by resource type
+ * returns the total number of search results formated as '_____ Result(s) Found'
+ */
+const getSearchResultTotal = resourcesByType => {
+  let total = 0;
+
+  Object.keys(resourcesByType).map(resourceType => {
+    if (resourcesByType[resourceType] !== null) {
+      total = total + resourcesByType[resourceType].props.resources.length;
+    }
+  });
+
+  return `${total} Result(s) Found`;
+};
+
+/**
  * returns a resource preview components
  * @param {Array} resources the list of siphon resources
  * @param {string} queryExists the search query
@@ -148,6 +164,8 @@ export const Index = ({
     results,
   );
 
+  let totalSearchResults;
+
   const resourcesNotFound = !queryIsEmpty && (!results || (results.length === 0 && windowHasQuery));
 
   const topics = flattenGatsbyGraphQL(allDevhubTopic.edges);
@@ -161,12 +179,14 @@ export const Index = ({
       </Aux>
     );
   } else if (resourcesNotFound) {
+    totalSearchResults = 'No Results';
     content = (
       <Alert style={{ margin: '10px auto' }} color="info" data-testid={TEST_IDS.alert}>
         {SEARCH.results.empty.defaultMessage}
       </Alert>
     );
   } else {
+    totalSearchResults = getSearchResultTotal(siphonResources);
     content = (
       <Aux>
         {getTopicPreviews(
@@ -180,7 +200,7 @@ export const Index = ({
 
   return (
     <Layout showHamburger>
-      <Masthead query={query} />
+      <Masthead query={query} resultCount={totalSearchResults} />
       <Main>{content}</Main>
     </Layout>
   );

@@ -25,6 +25,7 @@ const SearchPill = styled(Pill)`
 const PillContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
+  float: left;
 `;
 /**
  * Search Pills Component
@@ -32,12 +33,13 @@ const PillContainer = styled.div`
  * @param {Func} props.onDelete
  * @param {Array} props.query array of search tokens ['token', 'token']
  */
-export const SearchPills = ({ onDelete, query, showClear, onClear }) => {
+export const SearchPills = ({ onDelete, query, searchResultTotal, showClear, onClear }) => {
   // if no query or if the query is a whitespace (when search is pressed without typing)
   if (query.length === 0 || (query.length === 1 && query[0] === '')) {
     return null;
   }
   let pills = [];
+  let resultpill;
   if (isString(query)) {
     pills = [
       <SearchPill key={shortid.generate()} label={query} onDelete={onDelete} variant="filled" />,
@@ -47,6 +49,17 @@ export const SearchPills = ({ onDelete, query, showClear, onClear }) => {
     pills = queries.map(query => (
       <SearchPill key={shortid.generate()} label={query} onDelete={onDelete} variant="filled" />
     ));
+  }
+
+  if (searchResultTotal) {
+    resultpill = [
+      <SearchPill
+        key={shortid.generate()}
+        label={searchResultTotal}
+        onDelete={onDelete}
+        variant="filled"
+      />,
+    ];
   }
 
   const clearPill =
@@ -62,12 +75,13 @@ export const SearchPills = ({ onDelete, query, showClear, onClear }) => {
       []
     );
 
-  return <PillContainer>{pills.concat(clearPill)}</PillContainer>;
+  return <PillContainer>{pills.concat(resultpill).concat(clearPill)}</PillContainer>;
 };
 
 SearchPills.propTypes = {
   onDelete: PropTypes.func.isRequired,
   query: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+  searchResultTotal: PropTypes.string,
   showClear: PropTypes.bool.isRequired,
   onClear: PropTypes.func,
 };

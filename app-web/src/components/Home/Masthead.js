@@ -38,6 +38,7 @@ const SearchStyled = styled(Search)`
 const SearchContainer = styled.div`
   width: 100%;
   max-width: 500px;
+  float: left;
 `;
 
 const Container = styled.div`
@@ -53,7 +54,7 @@ const Container = styled.div`
   }
 `;
 
-export const Masthead = ({ query }) => (
+export const Masthead = ({ query, resultCount }) => (
   <Container>
     <AppLogo
       css={css`
@@ -93,6 +94,7 @@ export const Masthead = ({ query }) => (
       {query && (
         <SearchPills
           query={query}
+          searchResultTotal={resultCount}
           onDelete={() => {
             // remove token from query list and rebuild navigation
             navigate(`/?q=`);
@@ -106,6 +108,7 @@ export const Masthead = ({ query }) => (
 
 Masthead.propTypes = {
   query: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
+  resultCount: PropTypes.string,
 };
 
 export default Masthead;
