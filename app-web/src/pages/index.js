@@ -62,6 +62,7 @@ const getUniqueResources = resources => {
 /**
  * takes in search results sorted by resource type
  * returns the total number of search results formated as '_____ Result(s) Found'
+ * @param {Array} resourcesByType resources sorted by type
  */
 const getSearchResultTotal = resourcesByType => {
   let total = 0;
