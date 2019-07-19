@@ -8,7 +8,7 @@ const IDS = {
 };
 
 // SIPHON NODES
-export const DESIGN_SYSTEM_NODE_1 = {
+export const DESIGN_SYSTEM_SIPHON_NODE_1 = {
   id: '1',
   parent: {
     id: IDS.DESIGN_SYSTEM,
@@ -26,6 +26,15 @@ export const DESIGN_SYSTEM_NODE_1 = {
     path: '/design-system/Z1bGIqu1',
     type: 'Components',
   },
+  fields: {
+    personas: ['Designer'],
+    resourceType: 'Components',
+    pagePaths: [ '/design-system/Z1bGIqu1'],
+    image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
+    title: 'About',
+    description: 'What the Design System is and how it works.',
+    author: 'ksingbeil',
+  },
   unfurl: {
     type: 'markdown',
     label1: '',
@@ -44,7 +53,7 @@ export const DESIGN_SYSTEM_NODE_1 = {
   },
 };
 
-export const DESIGN_SYSTEM_NODE_2 = {
+export const DESIGN_SYSTEM_SIPHON_NODE_2 = {
   id: '2',
   parent: {
     id: IDS.DESIGN_SYSTEM,
@@ -62,6 +71,15 @@ export const DESIGN_SYSTEM_NODE_2 = {
     path: '/design-system/Z1bGIqu2',
     type: 'Components',
   },
+  fields: {
+    personas: ['Developer', 'Designer'],
+    resourceType: 'Components',
+    pagePaths: [ '/design-system/Z1bGIqu2'],
+    image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
+    title: 'About',
+    description: 'What the Design System is and how it works.',
+    author: 'ksingbeil',
+  },
   unfurl: {
     type: 'markdown',
     label1: '',
@@ -80,7 +98,7 @@ export const DESIGN_SYSTEM_NODE_2 = {
   },
 };
 
-export const DESIGN_SYSTEM_NODE_3 = {
+export const DESIGN_SYSTEM_SIPHON_NODE_3 = {
   id: '3',
   parent: {
     id: IDS.DESIGN_SYSTEM,
@@ -98,6 +116,15 @@ export const DESIGN_SYSTEM_NODE_3 = {
     path: '/design-system/Z1bGIqu3',
     type: 'Components',
   },
+  fields: {
+    personas: ['Designer'],
+    resourceType: 'Components',
+    pagePaths: [ '/design-system/Z1bGIqu3'],
+    image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
+    title: 'About',
+    description: 'What the Design System is and how it works.',
+    author: 'ksingbeil',
+  },
   unfurl: {
     type: 'markdown',
     label1: '',
@@ -116,7 +143,7 @@ export const DESIGN_SYSTEM_NODE_3 = {
   },
 };
 
-export const DESIGN_SYSTEM_NODE_4 = {
+export const DESIGN_SYSTEM_SIPHON_NODE_4 = {
   id: '4',
   parent: {
     id: IDS.DESIGN_SYSTEM,
@@ -134,6 +161,15 @@ export const DESIGN_SYSTEM_NODE_4 = {
     path: '/design-system/Z1bGIqu4',
     type: 'Components',
   },
+  fields: {
+    personas: ['Developer'],
+    resourceType: 'Components',
+    pagePaths: ['/design-system/Z1bGIqu4'],
+    image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
+    title: 'About',
+    description: 'What the Design System is and how it works.',
+    author: 'ksingbeil',
+  },
   unfurl: {
     type: 'markdown',
     label1: '',
@@ -152,7 +188,7 @@ export const DESIGN_SYSTEM_NODE_4 = {
   },
 };
 
-export const DEVHUB_NODE_1 = {
+export const DEVHUB_SIPHON_NODE_1 = {
   id: '5',
   parent: {
     id: IDS.DEVHUB,
@@ -170,6 +206,15 @@ export const DEVHUB_NODE_1 = {
     path: '/design-system/Z1bGIqu5',
     type: 'Documentation',
   },
+  fields: {
+    personas: ['Developer'],
+    resourceType: 'Documentation',
+    pagePaths: ['/design-system/Z1bGIqu5'],
+    image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
+    title: 'About',
+    description: 'What the Design System is and how it works.',
+    author: 'ksingbeil',
+  },
   unfurl: {
     type: 'markdown',
     label1: '',
@@ -188,7 +233,7 @@ export const DEVHUB_NODE_1 = {
   },
 };
 
-export const DEVHUB_NODE_2 = {
+export const DEVHUB_SIPHON_NODE_2 = {
   id: '6',
   parent: {
     id: IDS.DEVHUB,
@@ -206,6 +251,15 @@ export const DEVHUB_NODE_2 = {
     path: '/design-system/Z1bGIqu6',
     type: 'Documentation',
   },
+  fields: {
+    personas: ['Designer', 'Developer'],
+    resourceType: 'Documentation',
+    pagePaths: ['/design-system/Z1bGIqu6'],
+    image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
+    title: 'About',
+    description: 'What the Design System is and how it works.',
+    author: 'ksingbeil',
+  },
   unfurl: {
     type: 'markdown',
     label1: '',
@@ -224,7 +278,7 @@ export const DEVHUB_NODE_2 = {
   },
 };
 
-export const DEVHUB_NODE_3 = {
+export const DEVHUB_SIPHON_NODE_3 = {
   id: '7',
   parent: {
     id: IDS.DEVHUB,
@@ -242,6 +296,15 @@ export const DEVHUB_NODE_3 = {
     path: '/design-system/Z1bGIqu7',
     type: 'Documentation',
   },
+  fields: {
+    personas: ['Product Owner'],
+    resourceType: 'Documentation',
+    pagePaths: ['/design-system/Z1bGIqu7'],
+    image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
+    title: 'About',
+    description: 'What the Design System is and how it works.',
+    author: 'ksingbeil',
+  },
   unfurl: {
     type: 'markdown',
     label1: '',
@@ -260,14 +323,74 @@ export const DEVHUB_NODE_3 = {
   },
 };
 
-export const DESIGN_SYSTEM_NODES = [
-  DESIGN_SYSTEM_NODE_3,
-  DESIGN_SYSTEM_NODE_2,
-  DESIGN_SYSTEM_NODE_1,
-  DESIGN_SYSTEM_NODE_4,
+export const DESIGN_SYSTEM_SIPHON_NODES = [
+  DESIGN_SYSTEM_SIPHON_NODE_3,
+  DESIGN_SYSTEM_SIPHON_NODE_2,
+  DESIGN_SYSTEM_SIPHON_NODE_1,
+  DESIGN_SYSTEM_SIPHON_NODE_4,
 ];
 
-export const DEVHUB_NODES = [DEVHUB_NODE_1, DEVHUB_NODE_2, DEVHUB_NODE_3];
+export const DEVHUB_SIPHON_NODES = [
+  DEVHUB_SIPHON_NODE_1,
+  DEVHUB_SIPHON_NODE_2,
+  DEVHUB_SIPHON_NODE_3,
+];
+
+export const GITHUB_RAW_1 = {
+  id: '8257de0d-811b-58dd-9fae-661f13d5a11b',
+  name: 'README.md',
+  _xxboundProperties: {
+    topicResourceType: 'Documentation',
+    position: 1,
+  },
+  childMarkdownRemark: {
+    id: 'd72fa440-51f6-52c7-ab03-140907fd46db',
+  },
+  fields: {
+    position: 1,
+    personas: ['Designer'],
+    slug: 'Introduction-To-Github-and-Gov',
+    resourceType: 'Documentation',
+    title: 'Introduction To Github and Gov',
+    description: 'Everything you need to know about working with Github in the BC Government.',
+    image: '../images/octokat.png',
+    author: 'patricksimonian',
+    topics: [
+      {
+        id: IDS.DESIGN_SYSTEM,
+      },
+    ],
+    pagePaths: ['/design-system/foo']
+  },
+};
+
+export const GITHUB_RAW_2 = {
+  id: '8257de0d-811b-58dd-9fae-661f13d5a11b',
+  name: 'README.md',
+  _xxboundProperties: {
+    topicResourceType: 'Documentation',
+    position: 2,
+  },
+  childMarkdownRemark: {
+    id: 'd72fa440-51f6-52c7-ab03-140907fd46db',
+  },
+  fields: {
+    position: 1,
+    personas: ['Designer'],
+    slug: 'Introduction-To-Github-and-Gov',
+    resourceType: 'Components',
+    title: 'Introduction To Github and Gov',
+    description: 'Everything you need to know about working with Github in the BC Government.',
+    image: '../images/octokat.png',
+    author: 'patricksimonian',
+    topics: [
+      {
+        id: IDS.DEVHUB,
+      },
+    ],
+    pagePaths: ['/design-system/bar']
+  },
+};
 
 // TOPICS
 export const DESIGN_SYSTEM_TOPIC = {
@@ -275,8 +398,11 @@ export const DESIGN_SYSTEM_TOPIC = {
   type: 'default',
   name: 'Design System',
   description: 'baz',
-  resources: DESIGN_SYSTEM_NODES.map(n => ({ id: n.id })),
-  childrenDevhubSiphon: DESIGN_SYSTEM_NODES.map(n => ({
+  resources: DESIGN_SYSTEM_SIPHON_NODES.map(n => ({ id: n.id })),
+  fields: {
+    githubRaw: [GITHUB_RAW_1, GITHUB_RAW_2],
+  },
+  childrenDevhubSiphon: DESIGN_SYSTEM_SIPHON_NODES.map(n => ({
     id: n.id,
     _metadata: { ...n._metadata },
     resource: { ...n.resource },
@@ -289,8 +415,11 @@ export const DEVHUB_TOPIC = {
   type: 'default',
   name: 'Devhub',
   description: 'baz',
-  resources: DEVHUB_NODES.map(n => ({ id: n.id })),
-  childrenDevhubSiphon: DEVHUB_NODES.map(n => ({
+  resources: DEVHUB_SIPHON_NODES.map(n => ({ id: n.id })),
+  fields: {
+    githubRaw: [GITHUB_RAW_1, GITHUB_RAW_2],
+  },
+  childrenDevhubSiphon: DEVHUB_SIPHON_NODES.map(n => ({
     id: n.id,
     _metadata: { ...n._metadata },
     resource: { ...n.resource },
@@ -309,6 +438,10 @@ export const EVENT_1 = {
       type: 'Events',
       path:
         'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
+    },
+    fields: {
+      resourceType: 'Events',
+      pagePaths: ['https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392'],
     },
     id: '45046198392',
   },
@@ -344,6 +477,10 @@ export const EVENT_2 = {
       title: "Take a walk on the Agile side: Tour of BC Gov's CSI Lab",
       image: 'eventbrite',
       description: 'This is also a test',
+    },
+    fields: {
+      resourceType: 'Events',
+      pagePaths: ['https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392'],
     },
     resource: {
       type: 'Events',
@@ -394,6 +531,9 @@ export const MEETUP_1 = {
         path: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
         type: 'Events',
       },
+      fields: {
+        resourceType: 'Events',
+      },
       unfurl: {
         description:
           "Join us for a Product Spotlight featuring ZenHub! With 3+ CSI Lab teams already using ZenHub, and other interested, we thought it would be a great idea to get the ZenHub team in the CSI Lab to provide a deep dive into their product. What is ZenHub?ZenHub is browser extension that adds robust project management features directly into GitHub's UI, making centralized collaboration on GitHub faster, more visual, and less cluttered. With ZenHub installed, your team stays lean and agile: you can plan sprints, create epics, and visualize your workflow without leaving GitHub. More details here: https://www.zenhub.com/ ",
@@ -416,6 +556,7 @@ export const MEETUP_1 = {
       location: '3rd Floor 1012 Douglas St.',
       description: 'test description',
       name: 'bar',
+      pagePaths: ['https://www.meetup.com/DevOps-Commons/events/262271511/'],
       link: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
     },
     year: '2019',
@@ -434,6 +575,9 @@ export const MEETUP_2 = {
       resource: {
         path: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
         type: 'Events',
+      },
+      fields: {
+        resourceType: 'Events',
       },
       unfurl: {
         description: 'test description',
@@ -456,6 +600,7 @@ export const MEETUP_2 = {
       location: '3rd Floor 1012 Douglas St.',
       description: 'test description',
       name: 'foo',
+      pagePaths: ['https://www.meetup.com/DevOps-Commons/events/262271511/'],
       link: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
     },
     year: '2019',
@@ -465,7 +610,7 @@ export const MEETUP_2 = {
 export const EVENTS = [EVENT_1, EVENT_2];
 export const MEETUP_NODES = [MEETUP_1, MEETUP_2];
 
-export const SIPHON_NODES = DESIGN_SYSTEM_NODES.concat(DEVHUB_NODES);
+export const SIPHON_NODES = DESIGN_SYSTEM_SIPHON_NODES.concat(DEVHUB_SIPHON_NODES);
 
 // stubbing in a set of nodes that pass the designer filter
 export const FILTERED_NODES = SIPHON_NODES.filter(
@@ -474,8 +619,8 @@ export const FILTERED_NODES = SIPHON_NODES.filter(
 
 export const TOPICS = [DESIGN_SYSTEM_TOPIC, DEVHUB_TOPIC];
 
+export const GITHUB_RAW_NODES = [GITHUB_RAW_1, GITHUB_RAW_2];
 export const SIPHON_NODES_MAP = arrayToMapByProp(SIPHON_NODES, 'id');
-
 export const TOPICS_MAP = arrayToMapByProp(TOPICS, 'id');
 
 // some selectors found within /selectors/index.js provide selections of resources grouped by

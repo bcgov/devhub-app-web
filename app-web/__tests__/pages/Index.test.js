@@ -6,7 +6,7 @@ import queryString from 'query-string';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 import { Index, TEST_IDS } from '../../src/pages/index';
-import { SIPHON_NODES, TOPICS, EVENTS, MEETUP_NODES } from '../../__fixtures__/siphon-fixtures';
+import { SIPHON_NODES, TOPICS, EVENTS, MEETUP_NODES } from '../../__fixtures__/nodes';
 import {
   SELECT_TOPICS_WITH_RESOURCES_GROUPED_BY_TYPE,
   SELECT_RESOURCES_GROUPED_BY_TYPE,
@@ -15,6 +15,8 @@ import { useSearch } from '../../src/utils/hooks';
 import { TEST_IDS as TOPIC_TEST_IDS } from '../../src/components/Home/TopicsContainer';
 import { TEST_IDS as RESOURCE_PREVIEW_TEST_IDS } from '../../src/components/Home/ResourcePreview';
 import { getFirstNonExternalResource, getTextAndLink } from '../../src/utils/helpers';
+import { GITHUB_RAW_NODES } from '../../__fixtures__/nodes';
+
 jest.mock('query-string');
 // mock out layout
 jest.mock('../../src/hoc/Layout.js', () => ({ children }) => children);
@@ -43,11 +45,14 @@ describe('Home Page', () => {
   const topics = TOPICS.map(c => ({ node: c }));
   const events = EVENTS.map(c => ({ node: c }));
   const meetups = MEETUP_NODES.map(c => ({ node: c }));
-
+  const githubRaw = GITHUB_RAW_NODES.map(c => ({node: c}))
   const props = {
     data: {
       allDevhubSiphon: {
         edges: nodes,
+      },
+      allGithubRaw: {
+        edges: githubRaw,
       },
       allDevhubTopic: {
         edges: topics,

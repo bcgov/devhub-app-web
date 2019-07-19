@@ -31,6 +31,9 @@ import Navigation from '../components/GithubTemplate/Navigation/Navigation';
 import withNode from '../hoc/withNode';
 import Actions from '../components/GithubTemplate/Actions/Actions';
 import { Main, SideDrawerToggleButton, SidePanel } from '../components/GithubTemplate/common';
+import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
+import { RESOURCE_TYPES } from '../constants/ui';
+import { TOPICS } from '../constants/topics';
 
 class SourceGithubMarkdownOverview extends React.Component {
   state = {
@@ -41,23 +44,41 @@ class SourceGithubMarkdownOverview extends React.Component {
 
   render() {
     const {
-      data: { devhubSiphon, nav, topic },
+      data: { githubRaw, nav, topic, communityEvents },
       location,
     } = this.props;
     // bind the devhub siphon data to the preview node
-    const previewWithNode = withNode(devhubSiphon)(ComponentPreview);
+    const previewWithNode = withNode(githubRaw)(ComponentPreview);
 
     const renderAst = new rehypeReact({
       createElement: React.createElement,
       components: { 'component-preview': previewWithNode },
     }).Compiler;
+    let navigationItems = nav.items;
 
-    const navigation = <Navigation items={nav.items} />;
-    const { repo, owner } = devhubSiphon.source._properties;
-    const { title } = devhubSiphon.childMarkdownRemark.frontmatter;
-    const { originalSource } = devhubSiphon.resource;
+    if (topic.name === TOPICS.COMMUNITY_AND_EVENTS) {
+      const eventbriteNavItems = flattenGatsbyGraphQL(communityEvents.edges);
+      const currentEvents = eventbriteNavItems
+        .filter(e => e.start.daysFromNow <= 0)
+        .map(event => ({
+          unfurl: {
+            title: event.name.text,
+          },
+          resource: {
+            path: event.url,
+            type: RESOURCE_TYPES.EVENTS,
+          },
+        }));
+      navigationItems = navigationItems.concat(currentEvents);
+    }
+
+    const navigation = <Navigation items={navigationItems} />;
+
+    const [ owner, repo ] = githubRaw.html_url.replace('https://github.com/', '').split('/');
+    const { title } = githubRaw.fields;
+    const  originalSource  = githubRaw.html_url;
     const { href } = location;
-
+    
     return (
       <Layout>
         <div>
@@ -74,7 +95,7 @@ class SourceGithubMarkdownOverview extends React.Component {
               the renderAst will drop in the rehype component
               otherwise if not tag exists it is biz as usual
             */}
-              {renderAst(devhubSiphon.childMarkdownRemark.htmlAst)}
+              {renderAst(githubRaw.childMarkdownRemark.htmlAst)}
               <Actions
                 repo={repo}
                 owner={owner}
@@ -98,44 +119,31 @@ class SourceGithubMarkdownOverview extends React.Component {
   }
 }
 
-export const devhubSiphonMarkdown = graphql`
-  query devhubSiphonMarkdownOverview($id: String!, $topicId: String!) {
-    devhubSiphon(id: { eq: $id }) {
+export const githubRawMarkdown = graphql`
+  query githubRawMarkdownOverview($id: String!, $topicId: String!) {
+    githubRaw(id: { eq: $id }) {
       name
       id
+      html_url
       childMarkdownRemark {
         frontmatter {
           title
         }
         htmlAst
       }
-      source {
-        name
-        displayName
-        sourcePath
-        type
-        _properties {
-          repo
-          branch
-          owner
-        }
+      fields {
+        title
+        description
+        pagePaths
       }
-      resource {
-        originalSource
-        type
-      }
-      owner
-      fileName
-      fileType
-      path
     }
     topic: devhubTopic(id: { eq: $topicId }) {
       name
       description
     }
     nav: devhubTopic(id: { eq: $topicId }) {
-      items: childrenDevhubSiphon {
-        ...NavigationFragment
+      items: connectsWith {
+        ...DevhubNodeConnection
       }
     }
   }

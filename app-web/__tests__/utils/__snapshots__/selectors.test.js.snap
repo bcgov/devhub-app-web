@@ -1,0 +1,447 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`General Purpose Selectors selects topics with resources (grouped by type) appeneded as a property 1`] = `
+Array [
+  Object {
+    "childrenDevhubSiphon": Array [
+      Object {
+        "_metadata": Object {
+          "position": "000.000.002",
+        },
+        "id": "3",
+        "resource": Object {
+          "path": "/design-system/Z1bGIqu3",
+          "type": "Components",
+        },
+        "unfurl": Object {
+          "author": "ksingbeil",
+          "data1": "",
+          "data2": "",
+          "description": "What the Design System is and how it works.",
+          "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+          "label1": "",
+          "label2": "",
+          "title": "About",
+          "type": "markdown",
+        },
+      },
+      Object {
+        "_metadata": Object {
+          "position": "000.000.001",
+        },
+        "id": "2",
+        "resource": Object {
+          "path": "/design-system/Z1bGIqu2",
+          "type": "Components",
+        },
+        "unfurl": Object {
+          "author": "ksingbeil",
+          "data1": "",
+          "data2": "",
+          "description": "What the Design System is and how it works.",
+          "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+          "label1": "",
+          "label2": "",
+          "title": "About",
+          "type": "markdown",
+        },
+      },
+      Object {
+        "_metadata": Object {
+          "position": "000.000.000",
+        },
+        "id": "1",
+        "resource": Object {
+          "path": "/design-system/Z1bGIqu1",
+          "type": "Components",
+        },
+        "unfurl": Object {
+          "author": "ksingbeil",
+          "data1": "",
+          "data2": "",
+          "description": "What the Design System is and how it works.",
+          "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+          "label1": "",
+          "label2": "",
+          "title": "About",
+          "type": "markdown",
+        },
+      },
+      Object {
+        "_metadata": Object {
+          "position": "000.000.003",
+        },
+        "id": "4",
+        "resource": Object {
+          "path": "/design-system/Z1bGIqu4",
+          "type": "Components",
+        },
+        "unfurl": Object {
+          "author": "ksingbeil",
+          "data1": "",
+          "data2": "",
+          "description": "What the Design System is and how it works.",
+          "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+          "label1": "",
+          "label2": "",
+          "title": "About",
+          "type": "markdown",
+        },
+      },
+    ],
+    "description": "baz",
+    "fields": Object {
+      "githubRaw": Array [
+        Object {
+          "_xxboundProperties": Object {
+            "position": 1,
+            "topicResourceType": "Documentation",
+          },
+          "childMarkdownRemark": Object {
+            "id": "d72fa440-51f6-52c7-ab03-140907fd46db",
+          },
+          "fields": Object {
+            "author": "patricksimonian",
+            "description": "Everything you need to know about working with Github in the BC Government.",
+            "image": "../images/octokat.png",
+            "pagePaths": Array [
+              "/design-system/foo",
+            ],
+            "personas": Array [
+              "Designer",
+            ],
+            "position": 1,
+            "resourceType": "Documentation",
+            "slug": "Introduction-To-Github-and-Gov",
+            "title": "Introduction To Github and Gov",
+            "topics": Array [
+              Object {
+                "id": "topic-1",
+              },
+            ],
+          },
+          "id": "8257de0d-811b-58dd-9fae-661f13d5a11b",
+          "name": "README.md",
+        },
+        Object {
+          "_xxboundProperties": Object {
+            "position": 2,
+            "topicResourceType": "Documentation",
+          },
+          "childMarkdownRemark": Object {
+            "id": "d72fa440-51f6-52c7-ab03-140907fd46db",
+          },
+          "fields": Object {
+            "author": "patricksimonian",
+            "description": "Everything you need to know about working with Github in the BC Government.",
+            "image": "../images/octokat.png",
+            "pagePaths": Array [
+              "/design-system/bar",
+            ],
+            "personas": Array [
+              "Designer",
+            ],
+            "position": 1,
+            "resourceType": "Components",
+            "slug": "Introduction-To-Github-and-Gov",
+            "title": "Introduction To Github and Gov",
+            "topics": Array [
+              Object {
+                "id": "topic-2",
+              },
+            ],
+          },
+          "id": "8257de0d-811b-58dd-9fae-661f13d5a11b",
+          "name": "README.md",
+        },
+      ],
+    },
+    "hasResources": true,
+    "id": "topic-1",
+    "name": "Design System",
+    "resources": Object {
+      "Components": Array [
+        Object {
+          "_xxboundProperties": Object {
+            "position": 2,
+            "topicResourceType": "Documentation",
+          },
+          "childMarkdownRemark": Object {
+            "id": "d72fa440-51f6-52c7-ab03-140907fd46db",
+          },
+          "fields": Object {
+            "author": "patricksimonian",
+            "description": "Everything you need to know about working with Github in the BC Government.",
+            "image": "../images/octokat.png",
+            "pagePaths": Array [
+              "/design-system/bar",
+            ],
+            "personas": Array [
+              "Designer",
+            ],
+            "position": 1,
+            "resourceType": "Components",
+            "slug": "Introduction-To-Github-and-Gov",
+            "title": "Introduction To Github and Gov",
+            "topics": Array [
+              Object {
+                "id": "topic-2",
+              },
+            ],
+          },
+          "id": "8257de0d-811b-58dd-9fae-661f13d5a11b",
+          "name": "README.md",
+        },
+      ],
+      "Documentation": Array [
+        Object {
+          "_xxboundProperties": Object {
+            "position": 1,
+            "topicResourceType": "Documentation",
+          },
+          "childMarkdownRemark": Object {
+            "id": "d72fa440-51f6-52c7-ab03-140907fd46db",
+          },
+          "fields": Object {
+            "author": "patricksimonian",
+            "description": "Everything you need to know about working with Github in the BC Government.",
+            "image": "../images/octokat.png",
+            "pagePaths": Array [
+              "/design-system/foo",
+            ],
+            "personas": Array [
+              "Designer",
+            ],
+            "position": 1,
+            "resourceType": "Documentation",
+            "slug": "Introduction-To-Github-and-Gov",
+            "title": "Introduction To Github and Gov",
+            "topics": Array [
+              Object {
+                "id": "topic-1",
+              },
+            ],
+          },
+          "id": "8257de0d-811b-58dd-9fae-661f13d5a11b",
+          "name": "README.md",
+        },
+      ],
+      "Events": Array [],
+      "People": Array [],
+      "Repositories": Array [],
+      "Self-Service Tools": Array [],
+    },
+    "type": "default",
+  },
+  Object {
+    "childrenDevhubSiphon": Array [
+      Object {
+        "_metadata": Object {
+          "position": "001.000.000",
+        },
+        "id": "5",
+        "resource": Object {
+          "path": "/design-system/Z1bGIqu5",
+          "type": "Documentation",
+        },
+        "unfurl": Object {
+          "author": "ksingbeil",
+          "data1": "",
+          "data2": "",
+          "description": "What the Design System is and how it works.",
+          "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+          "label1": "",
+          "label2": "",
+          "title": "About",
+          "type": "markdown",
+        },
+      },
+      Object {
+        "_metadata": Object {
+          "position": "001.000.001",
+        },
+        "id": "6",
+        "resource": Object {
+          "path": "/design-system/Z1bGIqu6",
+          "type": "Documentation",
+        },
+        "unfurl": Object {
+          "author": "ksingbeil",
+          "data1": "",
+          "data2": "",
+          "description": "What the Design System is and how it works.",
+          "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+          "label1": "",
+          "label2": "",
+          "title": "About",
+          "type": "markdown",
+        },
+      },
+      Object {
+        "_metadata": Object {
+          "position": "001.000.001",
+        },
+        "id": "7",
+        "resource": Object {
+          "path": "/design-system/Z1bGIqu7",
+          "type": "Documentation",
+        },
+        "unfurl": Object {
+          "author": "ksingbeil",
+          "data1": "",
+          "data2": "",
+          "description": "What the Design System is and how it works.",
+          "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
+          "label1": "",
+          "label2": "",
+          "title": "About",
+          "type": "markdown",
+        },
+      },
+    ],
+    "description": "baz",
+    "fields": Object {
+      "githubRaw": Array [
+        Object {
+          "_xxboundProperties": Object {
+            "position": 1,
+            "topicResourceType": "Documentation",
+          },
+          "childMarkdownRemark": Object {
+            "id": "d72fa440-51f6-52c7-ab03-140907fd46db",
+          },
+          "fields": Object {
+            "author": "patricksimonian",
+            "description": "Everything you need to know about working with Github in the BC Government.",
+            "image": "../images/octokat.png",
+            "pagePaths": Array [
+              "/design-system/foo",
+            ],
+            "personas": Array [
+              "Designer",
+            ],
+            "position": 1,
+            "resourceType": "Documentation",
+            "slug": "Introduction-To-Github-and-Gov",
+            "title": "Introduction To Github and Gov",
+            "topics": Array [
+              Object {
+                "id": "topic-1",
+              },
+            ],
+          },
+          "id": "8257de0d-811b-58dd-9fae-661f13d5a11b",
+          "name": "README.md",
+        },
+        Object {
+          "_xxboundProperties": Object {
+            "position": 2,
+            "topicResourceType": "Documentation",
+          },
+          "childMarkdownRemark": Object {
+            "id": "d72fa440-51f6-52c7-ab03-140907fd46db",
+          },
+          "fields": Object {
+            "author": "patricksimonian",
+            "description": "Everything you need to know about working with Github in the BC Government.",
+            "image": "../images/octokat.png",
+            "pagePaths": Array [
+              "/design-system/bar",
+            ],
+            "personas": Array [
+              "Designer",
+            ],
+            "position": 1,
+            "resourceType": "Components",
+            "slug": "Introduction-To-Github-and-Gov",
+            "title": "Introduction To Github and Gov",
+            "topics": Array [
+              Object {
+                "id": "topic-2",
+              },
+            ],
+          },
+          "id": "8257de0d-811b-58dd-9fae-661f13d5a11b",
+          "name": "README.md",
+        },
+      ],
+    },
+    "hasResources": true,
+    "id": "topic-2",
+    "name": "Devhub",
+    "resources": Object {
+      "Components": Array [
+        Object {
+          "_xxboundProperties": Object {
+            "position": 2,
+            "topicResourceType": "Documentation",
+          },
+          "childMarkdownRemark": Object {
+            "id": "d72fa440-51f6-52c7-ab03-140907fd46db",
+          },
+          "fields": Object {
+            "author": "patricksimonian",
+            "description": "Everything you need to know about working with Github in the BC Government.",
+            "image": "../images/octokat.png",
+            "pagePaths": Array [
+              "/design-system/bar",
+            ],
+            "personas": Array [
+              "Designer",
+            ],
+            "position": 1,
+            "resourceType": "Components",
+            "slug": "Introduction-To-Github-and-Gov",
+            "title": "Introduction To Github and Gov",
+            "topics": Array [
+              Object {
+                "id": "topic-2",
+              },
+            ],
+          },
+          "id": "8257de0d-811b-58dd-9fae-661f13d5a11b",
+          "name": "README.md",
+        },
+      ],
+      "Documentation": Array [
+        Object {
+          "_xxboundProperties": Object {
+            "position": 1,
+            "topicResourceType": "Documentation",
+          },
+          "childMarkdownRemark": Object {
+            "id": "d72fa440-51f6-52c7-ab03-140907fd46db",
+          },
+          "fields": Object {
+            "author": "patricksimonian",
+            "description": "Everything you need to know about working with Github in the BC Government.",
+            "image": "../images/octokat.png",
+            "pagePaths": Array [
+              "/design-system/foo",
+            ],
+            "personas": Array [
+              "Designer",
+            ],
+            "position": 1,
+            "resourceType": "Documentation",
+            "slug": "Introduction-To-Github-and-Gov",
+            "title": "Introduction To Github and Gov",
+            "topics": Array [
+              Object {
+                "id": "topic-1",
+              },
+            ],
+          },
+          "id": "8257de0d-811b-58dd-9fae-661f13d5a11b",
+          "name": "README.md",
+        },
+      ],
+      "Events": Array [],
+      "People": Array [],
+      "Repositories": Array [],
+      "Self-Service Tools": Array [],
+    },
+    "type": "default",
+  },
+]
+`;

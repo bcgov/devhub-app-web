@@ -16,6 +16,7 @@
   "plugins": ["react", "prettier"],
   "rules": {
     "no-console": ["error"],
+    "react/no-direct-mutation-state": ["warn"],
     "no-unused-vars": ["error"],
     "prettier/prettier": ["error"],
     "linebreak-style": ["warn", "unix"],

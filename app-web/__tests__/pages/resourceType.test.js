@@ -6,7 +6,7 @@ import queryString from 'query-string';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 import { ResourceType } from '../../src/templates/resourceType';
-import { SIPHON_NODES, TOPICS } from '../../__fixtures__/siphon-fixtures';
+import { SIPHON_NODES, TOPICS, GITHUB_RAW_NODES } from '../../__fixtures__/nodes';
 import { SELECT_RESOURCES_GROUPED_BY_TYPE } from '../../__fixtures__/selector-fixtures';
 import { useSearch } from '../../src/utils/hooks';
 
@@ -36,6 +36,7 @@ describe('Resource Type Template Page', () => {
   // this component
   const nodes = SIPHON_NODES.map(c => ({ node: c }));
   const topics = TOPICS.map(c => ({ node: c }));
+  const githubRaw = GITHUB_RAW_NODES.map(c => ({ node: c }));
   const props = {
     data: {
       allDevhubSiphon: {
@@ -43,6 +44,9 @@ describe('Resource Type Template Page', () => {
       },
       allDevhubTopic: {
         edges: topics,
+      },
+      allGithubRaw: {
+        edges: githubRaw
       },
       siteSearchIndex: {
         index: {},
@@ -63,6 +67,7 @@ describe('Resource Type Template Page', () => {
   });
 
   test('it matches snapshot, when there are no resources for the given reosource type the no resource component shows ', () => {
+
     queryString.parse.mockReturnValue({});
     const { container, rerender, queryByTestId } = render(
       <ThemeProvider theme={theme}>
@@ -74,8 +79,9 @@ describe('Resource Type Template Page', () => {
     expect(queryByTestId(NO_RESOURCE_TEST_IDS.container)).not.toBeInTheDocument();
 
     const newSiphonNodes = SIPHON_NODES.filter(
-      node => node.resource.type !== RESOURCE_TYPES.DOCUMENTATION,
+      node => node.fields.resourceType !== RESOURCE_TYPES.DOCUMENTATION,
     ).map(node => ({ node }));
+
 
     const newprops = {
       ...props,
@@ -84,6 +90,9 @@ describe('Resource Type Template Page', () => {
         allDevhubSiphon: {
           edges: newSiphonNodes,
         },
+        allGithubRaw: {
+          edges: [], // simulating zero github raw nodes
+        }
       },
     };
 
@@ -196,9 +205,17 @@ describe('Resource Type Template Page', () => {
     // these filters filter by attributes.personas which is an array value inside of the nodes
     const siphonNodesNotFilterableByFirstFilter = SIPHON_NODES.map(node => ({
       ...node,
-      attributes: {
-        ...node.attributes,
-        personas: node.attributes.personas.filter(p => p !== firstFilter.value),
+      fields: {
+        ...node.fields,
+        personas: node.attributes.personas.filter(p => p !== firstFilter.value).concat(secondFilter.value),
+      },
+    }));
+
+    const githubRawNodesNotFilterableByFirstFilter = GITHUB_RAW_NODES.map(node => ({
+      ...node,
+      fields: {
+        ...nodes.fields,
+        personas: node.fields.personas.filter(p => p !== firstFilter.value).concat(thirdFilter.value),
       },
     }));
 
@@ -211,6 +228,9 @@ describe('Resource Type Template Page', () => {
             allDevhubSiphon: {
               edges: siphonNodesNotFilterableByFirstFilter.map(node => ({ node })),
             },
+            allGithubRaw: {
+              edges: githubRawNodesNotFilterableByFirstFilter.map(node => ({node}))
+            }
           }}
         />
       </ThemeProvider>,
@@ -236,9 +256,12 @@ describe('Resource Type Template Page', () => {
     // these filters filter by attributes.personas which is an array value inside of the nodes
     const siphonNodesNotFilterableByFirstFilter = SIPHON_NODES.map(node => ({
       ...node,
+      fields: {
+        ...node.fields,
+        personas: [firstFilter.value], // set in so all nodes have the same filter value
+      },
       attributes: {
         ...node.attributes,
-        personas: [firstFilter.value], // set in so all nodes have the same filter value
       },
     }));
 

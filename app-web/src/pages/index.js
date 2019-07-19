@@ -53,9 +53,9 @@ const getTopicPreviews = (topics, searchResultsExist) => {
  * there is one exception to when we do want resources with the same title though, that being events - thus events are return unchanged
  */
 const getUniqueResources = resources => {
-  let events = resources.filter(resource => resource.resource.type === RESOURCE_TYPES.EVENTS);
-  let allButEvents = resources.filter(resource => resource.resource.type !== RESOURCE_TYPES.EVENTS);
-  allButEvents = uniqBy(allButEvents, 'unfurl.title');
+  let events = resources.filter(resource => resource.fields.resourceType === RESOURCE_TYPES.EVENTS);
+  let allButEvents = resources.filter(resource => resource.fields.resourceType !== RESOURCE_TYPES.EVENTS);
+  allButEvents = uniqBy(allButEvents, 'fields.title');
   return allButEvents.concat(events);
 };
 
@@ -72,8 +72,7 @@ const getResourcePreviews = (resources, queryExists, results = []) => {
     // diff out resources by id
     resourcesToGroup = intersectionBy(resources, results, 'id');
   }
-  resourcesToGroup = getUniqueResources(resourcesToGroup);
-
+  // resourcesToGroup = getUniqueResources(resourcesToGroup);
   // select resources grouped by type using relesect memoization https://github.com/reduxjs/reselect/issues/30
   let resourcesByType = resourcesSelector(resourcesToGroup);
   const siphonResources = Object.keys(resourcesByType).map(resourceType => {
@@ -107,6 +106,7 @@ export const Index = ({
     allDevhubSiphon,
     allEventbriteEvents,
     allMeetupGroup,
+    allGithubRaw,
     siteSearchIndex: { index },
   },
   location,
@@ -143,17 +143,19 @@ export const Index = ({
   let content = null;
 
   const siphonResources = getResourcePreviews(
-    flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(eventsAndMeetups),
+    flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(eventsAndMeetups).concat(flattenGatsbyGraphQL(allGithubRaw.edges)),
     windowHasQuery && !queryIsEmpty,
     results,
   );
 
   const resourcesNotFound = !queryIsEmpty && (!results || (results.length === 0 && windowHasQuery));
+
+  const topics = flattenGatsbyGraphQL(allDevhubTopic.edges);
   if (queryIsEmpty) {
     content = (
       <Aux>
         {getTopicPreviews(
-          flattenGatsbyGraphQL(allDevhubTopic.edges),
+          topics,
           windowHasQuery && !queryIsEmpty,
         )}
       </Aux>
@@ -168,7 +170,7 @@ export const Index = ({
     content = (
       <Aux>
         {getTopicPreviews(
-          flattenGatsbyGraphQL(allDevhubTopic.edges),
+          topics,
           windowHasQuery && !queryIsEmpty,
         )}
         {siphonResources}

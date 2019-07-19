@@ -1,6 +1,6 @@
 {
   "name": "Developer Toy Box",
-  "description": " A trove of apps/components/stuff/things that are usable by anyone running OpenShift - in particular BC Gov teams \"doing\" Agile/DevOps.",
+  "description": "A trove of apps/components/stuff/things that are usable by anyone running OpenShift - in particular BC Gov teams \"doing\" Agile/DevOps.",
   "sourceProperties": {
     "sources": [
       {
@@ -28,5 +28,10 @@
       }
     ]
   },
-  "resourceType": "Components"
+  "resourceType": "Components",
+  "attributes": {
+    "personas": [
+      "Developer"
+    ]
+  }
 }

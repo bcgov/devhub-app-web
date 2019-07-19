@@ -39,7 +39,7 @@ export const selectResourcesGroupedByType = () =>
   createSelector(
     selectResources,
     resources => {
-      return { ...defaultGroups, ...groupBy(resources, 'resource.type') };
+      return { ...defaultGroups, ...groupBy(resources, 'fields.resourceType') };
     },
   );
 
@@ -54,7 +54,7 @@ export const selectTopicsWithResourcesGroupedByType = () =>
         // combine a set of default groups to the result of the groupby
         // so that all topics have all resource type groups
         const selector = selectResourcesGroupedByType();
-        const groups = selector(topic.childrenDevhubSiphon);
+        const groups = selector(topic.fields.githubRaw);
         return {
           ...topic,
           resources: groups,

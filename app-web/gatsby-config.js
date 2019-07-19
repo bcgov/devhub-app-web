@@ -2,7 +2,8 @@ require('dotenv').config({
   path: '.env.production',
 });
 const { registry } = require('./devhub.config.json');
-const { converter } = require('./src/utils/gatsbyRemark');
+const { converter } = require('./gatsby/utils/gatsbyRemark');
+const { getFilesFromRegistry } = require('./gatsby/utils/githubRaw');
 // To specify a path of the registry.yaml file, set as env variable
 // This comes as a pair of sourceRegistryType used by gatsby-source-github-all
 // const registry_path = process.env.REGISTRY_PATH || '';
@@ -96,6 +97,12 @@ module.exports = {
   siteMetadata: {
     title: 'DevHub',
   },
+  mapping: {
+    'GithubRaw.fields.topics': 'DevhubTopic.name',
+    'DevhubSiphon.fields.topics': 'DevhubTopic.name',
+    // 'DevhubTopic.fields.content': 'MarkdownRemark.fields.id', // topic page content mapping
+    'DevhubTopic.fields.githubRaw': 'GithubRaw.id',
+  },
   pathPrefix: '/images',
   plugins: [
     {
@@ -137,6 +144,13 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
+        name: 'registry',
+        path: `${__dirname}/topics`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
         name: 'blog',
         path: `${__dirname}/blog/`,
       },
@@ -154,14 +168,10 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-yaml',
     {
-      resolve: 'gatsby-source-github-all',
+      resolve: 'gatsby-source-github-raw',
       options: {
-        tokens: {
-          GITHUB_API_TOKEN: process.env.GITHUB_TOKEN,
-        },
-        // If REGISTRY_PATH is set specifically, include this REGISTRY_TYPE as an env var
-        // Format convention: camalcase of the sub path + 'Yaml'
-        sourceRegistryType: 'RegistryJson',
+        githubAccessToken: process.env.GITHUB_TOKEN,
+        files: getFilesFromRegistry,
       },
     },
     {
@@ -201,6 +211,17 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-source-github-all',
+      options: {
+        tokens: {
+          GITHUB_API_TOKEN: process.env.GITHUB_TOKEN,
+        },
+        // If REGISTRY_PATH is set specifically, include this REGISTRY_TYPE as an env var
+        // Format convention: camalcase of the sub path + 'Yaml'
+        sourceRegistryType: 'RegistryJson',
+      },
+    },
+    {
       resolve: '@gatsby-contrib/gatsby-plugin-elasticlunr-search',
       options: {
         // Fields to index
@@ -216,10 +237,10 @@ module.exports = {
             id: node => node.parent,
           },
           DevhubSiphon: {
-            title: node => node.unfurl.title,
-            description: node => node.unfurl.description,
+            title: node => node.fields.title,
+            description: node => node.fields.description,
             topicName: node => node.topic.name,
-            labels: node => node.attributes.labels,
+            labels: node => node.fields.labels,
           },
           EventbriteEvents: {
             title: node => node.name.text,

@@ -40,33 +40,33 @@ const CardContainer = styled.div`
 //Formats eventbrite data into something usable by the card component
 export const formatEvents = events => {
   return events.map(event => {
-    event = {
+    return {
+      ...event,
       unfurl: event.siphon.unfurl,
       resource: event.siphon.resource,
       id: event.siphon.id,
       start: event.start,
       venue: event.venue.name,
     };
-    return event;
   });
 };
 
 //Formats meetup data into the identical format as the formatEvents function
 export const formatMeetUps = meetups => {
   return meetups.map(meetup => {
-    meetup = {
-      unfurl: meetup.siphon.unfurl,
-      resource: meetup.siphon.resource,
-      id: meetup.siphon.id,
-      venue: meetup.fields.location,
-      start: {
-        day: meetup.day,
-        month: meetup.month,
-        year: meetup.year,
-        daysFromNow: meetup.daysFromNow,
-      },
-    };
-    return meetup;
+    return {
+      ...meetup,
+        unfurl: meetup.siphon.unfurl,
+        resource: meetup.siphon.resource,
+        id: meetup.siphon.id,
+        venue: meetup.fields.location,
+        start: {
+          day: meetup.day,
+          month: meetup.month,
+          year: meetup.year,
+          daysFromNow: meetup.daysFromNow,
+        },
+      };
   });
 };
 
