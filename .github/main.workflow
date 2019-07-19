@@ -11,5 +11,5 @@ action "Install node dependencies." {
 action "Run unit tests." {
   uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
   needs = ["Install node dependencies."]
-  args = "  args = \"--prefix app-web run test:ci\""
+  args = "--prefix app-web run test:ci"
 }
