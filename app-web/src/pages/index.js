@@ -62,6 +62,7 @@ const getUniqueResources = resources => {
 /**
  * takes in search results sorted by resource type
  * returns the total number of search results formated as '_____ Result(s) Found'
+ * If total is zero, returns back No Results Found
  * @param {Array} resourcesByType resources sorted by type
  */
 const getSearchResultTotal = resourcesByType => {
@@ -74,8 +75,10 @@ const getSearchResultTotal = resourcesByType => {
   });
   if (total == 1) {
     return `${total} Result Found`;
+  } else if (total > 1) {
+    return `${total} Results Found`;
   }
-  return `${total} Results Found`;
+  return `No Results Found`;
 };
 
 /**
