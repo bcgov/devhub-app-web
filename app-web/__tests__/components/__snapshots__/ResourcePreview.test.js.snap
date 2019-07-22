@@ -72,6 +72,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
           }
         }
         image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+        link="/design-system/Z1bGIqu3"
         title="About"
         type="Components"
       />
@@ -136,6 +137,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
           }
         }
         image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+        link="/design-system/Z1bGIqu2"
         title="About"
         type="Components"
       />
@@ -198,6 +200,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
           }
         }
         image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+        link="/design-system/Z1bGIqu1"
         title="About"
         type="Components"
       />
@@ -260,6 +263,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
           }
         }
         image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+        link="/design-system/Z1bGIqu4"
         title="About"
         type="Components"
       />
@@ -322,6 +326,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
           }
         }
         image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+        link="/design-system/Z1bGIqu5"
         title="About"
         type="Documentation"
       />
@@ -386,6 +391,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
           }
         }
         image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+        link="/design-system/Z1bGIqu6"
         title="About"
         type="Documentation"
       />
