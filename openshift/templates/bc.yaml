@@ -71,6 +71,11 @@ objects:
               secretKeyRef:
                 name: devhub-eventbrite-token
                 key: EVENT_BRITE_API_KEY
+          - name: MATOMO_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: matomo-api-key
+                key: MATOMO_API_KEY
           - name: GATSBY_MATOMO_URL
             value: ${MATOMO_URL}
           - name: GATSBY_MATOMO_SITE_URL
