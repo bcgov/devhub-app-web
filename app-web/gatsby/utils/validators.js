@@ -27,6 +27,7 @@ const isMeetupEvent = node => node.internal.type === 'MeetupEvent';
 const isEventbriteEvents = node => node.internal.type === 'EventbriteEvents';
 const isRegistryJson = node => node.internal.type === 'RegistryJson';
 const isMarkdownRemarkFrontmatter = node => node.internal.type === 'MarkdownRemarkFrontmatter';
+const isMatomoPageStats = node => node.internal.type === 'MatomoPageStats';
 
 const getClosest = (value, list) => {
   const matches = stringSimilarity.findBestMatch(value, list);
@@ -69,6 +70,7 @@ module.exports = {
   isDevhubTopic,
   isEventbriteEvents,
   isRegistryJson,
+  isMatomoPageStats,
   getClosest,
   getClosestPersona,
   getClosestResourceType,

@@ -30,6 +30,7 @@ const {
   getClosestResourceType,
   getClosestPersona,
   isRegistryJson,
+  isMatomoPageStats,
 } = require('./utils/validators.js');
 const { flattenExpandedRegistry, expandRegistry } = require('./utils/githubRaw');
 const slugify = require('slugify');
@@ -340,6 +341,11 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
         value: node.frontmatter.author ? node.frontmatter.author : '',
       });
     }
+  }
+
+  if(isMatomoPageStats(node)) {
+    const label = node.label.replace(/^\//, ''); // labels may start with a forward slash which needs to be removed
+    createNodeField({node, name: 'githubSlug', value: label});
   }
 };
  
