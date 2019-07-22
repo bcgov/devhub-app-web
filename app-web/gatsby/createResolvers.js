@@ -44,6 +44,20 @@ module.exports = ({ createResolvers }) => {
   // and is a bit of an expensive process
   const _cache = {};
   const resolvers = {
+    GithubRaw: {
+      pageViews: { // binding page views to github raw nodes based off of Matomo page stats so that a popular topic can be built
+        type: 'Int',
+        resolve: (source, args, context) => {
+          const nodes = context.nodeModel.getAllNodes({type: 'MatomoPageStats'});
+          const node = nodes.find(n => n.fields.githubSlug === source.fields.slug);
+          if(node) {
+            return node.nb_visits;
+          } else {
+            return 0;
+          }
+        }
+      }
+    },
     DevhubTopic: {
       connectsWith: { // a list of nodes only really needs pointers to the page paths and a title for a link
         type: '[ConnectedNode]',

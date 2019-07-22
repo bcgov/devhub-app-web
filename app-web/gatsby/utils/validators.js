@@ -70,6 +70,7 @@ module.exports = {
   isDevhubTopic,
   isEventbriteEvents,
   isRegistryJson,
+  isMatomoPageStats,
   getClosest,
   getClosestPersona,
   getClosestResourceType,
