@@ -168,6 +168,10 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-yaml',
     {
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: { prefixes: [`/topic/*`] }, // dynamic topic pages
+    },
+    {
       resolve: 'gatsby-source-github-raw',
       options: {
         githubAccessToken: process.env.GITHUB_TOKEN,

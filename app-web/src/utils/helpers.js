@@ -19,7 +19,7 @@ import validUrl from 'valid-url';
 import dotProp from 'dot-prop';
 import { GITHUB_URL } from '../constants/api';
 import { TypeCheck } from '@bcgov/common-web-utils';
-import { RESOURCE_TYPES } from '../constants/ui';
+import { RESOURCE_TYPES, POPULAR_TOPIC_CONFIGURATION } from '../constants/ui';
 import { TOPICS } from '../constants/topics';
 import converter from 'number-to-words';
 import { MAIN_NAV_ROUTES } from '../constants/routes';
@@ -230,3 +230,10 @@ export const sortDevhubTopicsAfterSelectedTopics = topics => {
     .concat([devOpsPlatform])
     .concat(sortedTopics);
 };
+
+
+export const buildPopularTopic = (githubRawNodes) => {
+  const avgViews = githubRawNodes.map(n => n.pageViews) / githubRawNodes.length;
+  const sortedRelativePageViews = githubRawNodes.map(n => [n, Math.abs(avgViews - n.pageViews)]).sort((a, b) => a[1] - b[1]);
+  return sortedRelativePageViews(POPULAR_TOPIC_CONFIGURATION.maxNodes);
+}
