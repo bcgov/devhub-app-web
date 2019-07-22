@@ -35,7 +35,6 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
               },
             },
             "fields": Object {
-<<<<<<< HEAD
               "author": "ksingbeil",
               "description": "What the Design System is and how it works.",
               "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
@@ -47,9 +46,6 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
               ],
               "resourceType": "Components",
               "title": "About",
-=======
-              "usePath": "/Design-Node-3",
->>>>>>> Updating test data and snapshots
             },
             "id": "3",
             "parent": Object {
@@ -103,7 +99,6 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
               },
             },
             "fields": Object {
-<<<<<<< HEAD
               "author": "ksingbeil",
               "description": "What the Design System is and how it works.",
               "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
@@ -116,9 +111,6 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
               ],
               "resourceType": "Components",
               "title": "About",
-=======
-              "usePath": "/Design-Node-2",
->>>>>>> Updating test data and snapshots
             },
             "id": "2",
             "parent": Object {
@@ -171,7 +163,6 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
               },
             },
             "fields": Object {
-<<<<<<< HEAD
               "author": "ksingbeil",
               "description": "What the Design System is and how it works.",
               "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
@@ -183,9 +174,6 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
               ],
               "resourceType": "Components",
               "title": "About",
-=======
-              "usePath": "/Design-Node-1",
->>>>>>> Updating test data and snapshots
             },
             "id": "1",
             "parent": Object {
@@ -238,7 +226,6 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
               },
             },
             "fields": Object {
-<<<<<<< HEAD
               "author": "ksingbeil",
               "description": "What the Design System is and how it works.",
               "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
@@ -250,9 +237,6 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
               ],
               "resourceType": "Components",
               "title": "About",
-=======
-              "usePath": "/Design-Node-4",
->>>>>>> Updating test data and snapshots
             },
             "id": "4",
             "parent": Object {
@@ -305,7 +289,6 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
               },
             },
             "fields": Object {
-<<<<<<< HEAD
               "author": "ksingbeil",
               "description": "What the Design System is and how it works.",
               "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
@@ -317,9 +300,6 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
               ],
               "resourceType": "Documentation",
               "title": "About",
-=======
-              "usePath": "/DevHub-Node-1",
->>>>>>> Updating test data and snapshots
             },
             "id": "5",
             "parent": Object {
@@ -373,7 +353,6 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
               },
             },
             "fields": Object {
-<<<<<<< HEAD
               "author": "ksingbeil",
               "description": "What the Design System is and how it works.",
               "image": "https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true",
@@ -386,9 +365,6 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
               ],
               "resourceType": "Documentation",
               "title": "About",
-=======
-              "usePath": "/DevHub-Node-2",
->>>>>>> Updating test data and snapshots
             },
             "id": "6",
             "parent": Object {
