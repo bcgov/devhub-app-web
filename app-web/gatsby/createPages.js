@@ -19,16 +19,12 @@
 //
 
 // create pages based on nodes
-const validUrl = require('valid-url');
 const { resolve } = require('path');
 const chalk = require('chalk');
 const fs = require('fs');
 const slugify = require('slugify');
 const snakeCase = require('snake-case');
-const {
-  SOURCE_TYPES,
-  TOPIC_TEMPLATES,
-} = require('../plugins/gatsby-source-github-all/utils/constants');
+const { TOPIC_TEMPLATES } = require('../plugins/gatsby-source-github-all/utils/constants');
 
 const { RESOURCE_TYPES } = require('../plugins/gatsby-source-github-all/utils/constants');
 
@@ -42,9 +38,8 @@ const RESOURCE_TYPE_PAGES = [
 
 const resolvePath = path => resolve(__dirname, path);
 
-
 /**
- * 
+ *
  * @param {Object} node the gatsby node
  * @param {Object} node.fields
  * @param {Array} node.fields.pagePaths a list of page paths to create pages for based on this resource
@@ -52,13 +47,9 @@ const resolvePath = path => resolve(__dirname, path);
  * @param {Function} createPage the gatsby create page function
  */
 const createResourceInTopicsPages = (node, createPage) => {
-
   node.fields.pagePaths.forEach((path, ind) => {
     const topic = node.fields.topics[ind];
-    const template = getTemplate(
-      topic._metadata.template,
-      topic._metadata.templateFile,
-    );
+    const template = getTemplate(topic._metadata.template, topic._metadata.templateFile);
 
     createPage({
       path: `${path}`,
@@ -70,8 +61,8 @@ const createResourceInTopicsPages = (node, createPage) => {
         topicId: topic.id,
       },
     });
-  })
-}
+  });
+};
 /**
  * Get Templates based on source and topicTemplate or topic template file path
  * in the even topic template file path and topic template both exist
@@ -81,10 +72,10 @@ const createResourceInTopicsPages = (node, createPage) => {
  * @param {String} topicTemplateFilePath
  * @returns {String} the path to the template
  */
-const getTemplate = ( topicTemplate, topicTemplateFilePath = null) => {
+const getTemplate = (topicTemplate, topicTemplateFilePath = null) => {
   const TEMPLATES = {
-      [TOPIC_TEMPLATES.DEFAULT]: resolvePath('../src/templates/SourceGithub_default.js'),
-      [TOPIC_TEMPLATES.OVERVIEW]: resolvePath('../src/templates/SourceGithub_overview.js'),
+    [TOPIC_TEMPLATES.DEFAULT]: resolvePath('../src/templates/SourceGithub_default.js'),
+    [TOPIC_TEMPLATES.OVERVIEW]: resolvePath('../src/templates/SourceGithub_overview.js'),
   };
 
   let templatePath = '';
@@ -170,22 +161,22 @@ const createResourceTopicsPages = async (createPage, graphql) => {
 };
 
 /**
- * creates stand alone pages for siphon resources that arent external
+ * creates stand alone pages for githubraw resources (i.e resources that arent external)
  * @param {Function} createPage the gatsby createpage function
  * @param {Function} graphql the gatsby graphql function
  */
-const createTestPage = async (createPage, graphql) => {
-  let template = resolvePath('../src/templates/StandAlone_Siphon.js');
+const createStandAlonePage = async (createPage, graphql) => {
+  let template = resolvePath('../src/templates/StandAlone_GitHubRaw.js');
   // main graphql query here
-  const devhubSiphonData = await graphql(`
+  const devhubGithubData = await graphql(`
     {
-      allDevhubSiphon {
+      allGithubRaw {
         edges {
           node {
             id
-            path
-            unfurl {
+            fields {
               title
+              slug
             }
           }
         }
@@ -193,19 +184,15 @@ const createTestPage = async (createPage, graphql) => {
     }
   `);
 
-  devhubSiphonData.data.allDevhubSiphon.edges.forEach(({ node }) => {
-    let isExternal = !!validUrl.isWebUri(node.path);
-    let path = `/${slugify(node.unfurl.title)}`;
-
-    if (!isExternal) {
-      createPage({
-        path: path,
-        component: template,
-        context: {
-          id: node.id,
-        },
-      });
-    }
+  devhubGithubData.data.allGithubRaw.edges.forEach(({ node }) => {
+    let path = `/${node.fields.slug}`;
+    createPage({
+      path: path,
+      component: template,
+      context: {
+        id: node.id,
+      },
+    });
   });
 };
 
@@ -232,5 +219,5 @@ module.exports = async ({ graphql, actions }) => {
   createResourceTypePages(createPage);
   createResourceTopicsPages(createPage, graphql);
   createEventsPage(createPage);
-  createTestPage(createPage, graphql);
+  createStandAlonePage(createPage, graphql);
 };

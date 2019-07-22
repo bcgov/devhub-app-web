@@ -15,7 +15,7 @@ limitations under the License.
 
 Created by Derek Siemens
 */
-/*
+
 import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../hoc/Layout';
@@ -31,7 +31,7 @@ const ContentDiv = styled.div`
   padding-top: 10px;
 `;
 
-export const StandAloneGitHubRawResource = ({ data: { GitHubRawNode } }) => {
+export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
   const isExternal = false;
   const renderAst = new rehypeReact({
     createElement: React.createElement,
@@ -41,26 +41,25 @@ export const StandAloneGitHubRawResource = ({ data: { GitHubRawNode } }) => {
     <Layout>
       <Main>
         <PageDiv>
-          <CardHeader type={GithubRawNode.fields.resource.type} linksToExternal={isExternal} />
-          <ContentDiv>{renderAst(GithubRawNode.childMarkdownRemark.htmlAst)}</ContentDiv>
+          <CardHeader type={githubRaw.fields.resourceType} linksToExternal={isExternal} />
+          <ContentDiv>{renderAst(githubRaw.childMarkdownRemark.htmlAst)}</ContentDiv>
         </PageDiv>
       </Main>
     </Layout>
   );
 };
 
-GRAPH QL QUERY FOR DATA HERE 
 export const devhubGitHubRawData = graphql`
   query devhubGitHubRawQuery($id: String!) {
-    GitHubRawNode(id: { eq: $id }) {
-      edges {
-        node {
-
-        }
+    githubRaw(id: { eq: $id }) {
+      fields {
+        resourceType
+      }
+      childMarkdownRemark {
+        htmlAst
       }
     }
   }
 `;
 
 export default StandAloneGitHubRawResource;
-*/
