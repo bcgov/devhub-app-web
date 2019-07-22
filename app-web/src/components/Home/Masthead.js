@@ -38,7 +38,6 @@ const SearchStyled = styled(Search)`
 const SearchContainer = styled.div`
   width: 100%;
   max-width: 500px;
-  float: left;
 `;
 
 const Container = styled.div`
