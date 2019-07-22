@@ -36,6 +36,7 @@ const withResourceQuery = WrappedComponent => () => props => (
                 description
                 image
                 pagePaths
+                standAlonePath
                 slug
                 personas
               }
@@ -155,14 +156,14 @@ const withResourceQuery = WrappedComponent => () => props => (
             }
           }
         }
-        allDevhubSiphon(filter: {source: {type: {eq: "web"}}}) {
+        allDevhubSiphon(filter: { source: { type: { eq: "web" } } }) {
           edges {
             node {
               id
               name
               owner
               fields {
-                usePath
+                standAlonePath
               }
               parent {
                 id
@@ -171,7 +172,7 @@ const withResourceQuery = WrappedComponent => () => props => (
                 resourceType
                 personas
                 title
-                description 
+                description
                 image
                 pagePaths
               }

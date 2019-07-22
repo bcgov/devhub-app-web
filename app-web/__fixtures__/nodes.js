@@ -14,7 +14,7 @@ export const DESIGN_SYSTEM_SIPHON_NODE_1 = {
     id: IDS.DESIGN_SYSTEM,
   },
   fields: {
-    usePath: '/Design-Node-1',
+    standAlonePath: '/Design-Node-1',
   },
   _metadata: {
     position: '000.000.000',
@@ -32,7 +32,7 @@ export const DESIGN_SYSTEM_SIPHON_NODE_1 = {
   fields: {
     personas: ['Designer'],
     resourceType: 'Components',
-    pagePaths: [ '/design-system/Z1bGIqu1'],
+    pagePaths: ['/design-system/Z1bGIqu1'],
     image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
     title: 'About',
     description: 'What the Design System is and how it works.',
@@ -62,7 +62,7 @@ export const DESIGN_SYSTEM_SIPHON_NODE_2 = {
     id: IDS.DESIGN_SYSTEM,
   },
   fields: {
-    usePath: '/Design-Node-2',
+    standAlonePath: '/Design-Node-2',
   },
   _metadata: {
     position: '000.000.001',
@@ -80,7 +80,7 @@ export const DESIGN_SYSTEM_SIPHON_NODE_2 = {
   fields: {
     personas: ['Developer', 'Designer'],
     resourceType: 'Components',
-    pagePaths: [ '/design-system/Z1bGIqu2'],
+    pagePaths: ['/design-system/Z1bGIqu2'],
     image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
     title: 'About',
     description: 'What the Design System is and how it works.',
@@ -110,7 +110,7 @@ export const DESIGN_SYSTEM_SIPHON_NODE_3 = {
     id: IDS.DESIGN_SYSTEM,
   },
   fields: {
-    usePath: '/Design-Node-3',
+    standAlonePath: '/Design-Node-3',
   },
   _metadata: {
     position: '000.000.002',
@@ -128,7 +128,7 @@ export const DESIGN_SYSTEM_SIPHON_NODE_3 = {
   fields: {
     personas: ['Designer'],
     resourceType: 'Components',
-    pagePaths: [ '/design-system/Z1bGIqu3'],
+    pagePaths: ['/design-system/Z1bGIqu3'],
     image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
     title: 'About',
     description: 'What the Design System is and how it works.',
@@ -158,7 +158,7 @@ export const DESIGN_SYSTEM_SIPHON_NODE_4 = {
     id: IDS.DESIGN_SYSTEM,
   },
   fields: {
-    usePath: '/Design-Node-4',
+    standAlonePath: '/Design-Node-4',
   },
   _metadata: {
     position: '000.000.003',
@@ -206,7 +206,7 @@ export const DEVHUB_SIPHON_NODE_1 = {
     id: IDS.DEVHUB,
   },
   fields: {
-    usePath: '/DevHub-Node-1',
+    standAlonePath: '/DevHub-Node-1',
   },
   _metadata: {
     position: '001.000.000',
@@ -257,7 +257,7 @@ export const DEVHUB_SIPHON_NODE_2 = {
     position: '001.000.001',
   },
   fields: {
-    usePath: '/DevHub-Node-2',
+    standAlonePath: '/DevHub-Node-2',
   },
   attributes: {
     personas: ['Designer', 'Developer'],
@@ -302,7 +302,7 @@ export const DEVHUB_SIPHON_NODE_3 = {
     id: IDS.DEVHUB,
   },
   fields: {
-    usePath: '/DevHub-Node-3',
+    standAlonePath: '/DevHub-Node-3',
   },
   _metadata: {
     position: '001.000.001',
@@ -381,7 +381,7 @@ export const GITHUB_RAW_1 = {
         id: IDS.DESIGN_SYSTEM,
       },
     ],
-    pagePaths: ['/design-system/foo']
+    pagePaths: ['/design-system/foo'],
   },
 };
 
@@ -409,7 +409,7 @@ export const GITHUB_RAW_2 = {
         id: IDS.DEVHUB,
       },
     ],
-    pagePaths: ['/design-system/bar']
+    pagePaths: ['/design-system/bar'],
   },
 };
 
@@ -462,7 +462,9 @@ export const EVENT_1 = {
     },
     fields: {
       resourceType: 'Events',
-      pagePaths: ['https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392'],
+      pagePaths: [
+        'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
+      ],
     },
     id: '45046198392',
   },
@@ -501,7 +503,9 @@ export const EVENT_2 = {
     },
     fields: {
       resourceType: 'Events',
-      pagePaths: ['https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392'],
+      pagePaths: [
+        'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
+      ],
     },
     resource: {
       type: 'Events',

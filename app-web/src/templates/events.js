@@ -56,23 +56,21 @@ export const formatMeetUps = meetups => {
   return meetups.map(meetup => {
     return {
       ...meetup,
-        unfurl: meetup.siphon.unfurl,
-        resource: meetup.siphon.resource,
-        id: meetup.siphon.id,
-        venue: meetup.fields.location,
-        start: {
-          day: meetup.day,
-          month: meetup.month,
-          year: meetup.year,
-          daysFromNow: meetup.daysFromNow,
-        },
-      };
+      unfurl: meetup.siphon.unfurl,
+      resource: meetup.siphon.resource,
+      id: meetup.siphon.id,
+      venue: meetup.fields.location,
+      start: {
+        day: meetup.day,
+        month: meetup.month,
+        year: meetup.year,
+        daysFromNow: meetup.daysFromNow,
+      },
+    };
   });
 };
 
-export const EventsPage = ({
-  data: { allEventbriteEvents, allDevhubTopic, meetupGroup, allMeetupGroup },
-}) => {
+export const EventsPage = ({ data: { allEventbriteEvents, allDevhubTopic, allMeetupGroup } }) => {
   const events = flattenGatsbyGraphQL(allEventbriteEvents.edges);
   const meetUps = formatMeetUps(
     flattenGatsbyGraphQL(allMeetupGroup.edges).flatMap(meetups => {
@@ -93,7 +91,7 @@ export const EventsPage = ({
       card = {
         unfurl: card.unfurl,
         resource: {
-          path: card.fields.usePath,
+          path: card.fields.standAlonePath,
           type: card.resource.type,
         },
         id: card.id,
@@ -247,7 +245,7 @@ export const EventData = graphql`
               path
             }
             fields {
-              usePath
+              standAlonePath
             }
             _metadata {
               position

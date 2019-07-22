@@ -49,15 +49,15 @@ const validUrl = require('valid-url');
  * labels: [<String>]
  * topics: if not already a topic [<String>]
  * image: <String>
- * 
+ *
  */
 
 module.exports = ({ node, actions, getNode, getNodes }) => {
   const { createNodeField } = actions;
 
   if (isGithubRaw(node)) {
-    createNodeField({node, name: 'topics', value: node.___boundProperties.topics});
-    createNodeField({node, name: 'position', value: node.___boundProperties.position});
+    createNodeField({ node, name: 'topics', value: node.___boundProperties.topics });
+    createNodeField({ node, name: 'position', value: node.___boundProperties.position });
   }
 
   if (isDevhubTopic(node)) {
@@ -85,16 +85,18 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
     } else {
       truePath = `/${slugify(node.unfurl.title)}`;
     }
-    createNodeField({ node, name: 'usePath', value: truePath });
+    createNodeField({ node, name: 'standAlonePath', value: truePath });
     createNodeField({ node, name: 'personas', value: node.attributes.personas || [] });
     createNodeField({ node, name: 'resourceType', value: node.resource.type || [] });
-    createNodeField({node, name: 'position', value: node._metadata.position});
+    createNodeField({ node, name: 'position', value: node._metadata.position });
     // bind all topics that reference this node, this can only be found by looking up the registry
     const registry = getNodes().filter(isRegistryJson);
 
     const flattenedSources = flattenExpandedRegistry(expandRegistry(registry));
     // find topics that reference this node
-    const topics = flattenedSources.filter(s => s.source.sourceProperties.url === node.resource.path).map(s => s.topic)
+    const topics = flattenedSources
+      .filter(s => s.source.sourceProperties.url === node.resource.path)
+      .map(s => s.topic);
 
     createNodeField({
       node,
@@ -105,9 +107,9 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
     createNodeField({
       node,
       name: 'title',
-      value: node.unfurl.title
+      value: node.unfurl.title,
     });
-  
+
     createNodeField({
       node,
       name: 'description',
@@ -123,13 +125,13 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
     createNodeField({
       node,
       name: 'author',
-      value: node.unfurl.author
+      value: node.unfurl.author,
     });
 
     createNodeField({
       node,
       name: 'pagePaths',
-      value: [node.resource.path]
+      value: [node.resource.path],
     });
 
     // no labels applied to siphon nodes, siphon nodes are filtered to only show 'source' type web
@@ -138,13 +140,13 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
     createNodeField({
       node,
       name: 'labels',
-      value: ['website'] // stubbing in a static label to preserve this field from being created
+      value: ['website'], // stubbing in a static label to preserve this field from being created
     });
   }
-  
+
   if (isEventbriteEvents(node)) {
-    createNodeField({node, name: 'topics', value: ['Community and Events']});
-    createNodeField({node, name: 'image', value: 'eventbrite'});
+    createNodeField({ node, name: 'topics', value: ['Community and Events'] });
+    createNodeField({ node, name: 'image', value: 'eventbrite' });
     createNodeField({
       node,
       name: 'resourceType',
@@ -165,8 +167,8 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
 
   if (isMeetupEvent(node)) {
     // normalize meetup event data
-    createNodeField({node, name: 'image', value: 'meetup'});
-    createNodeField({node, name: 'topics', value: ['Community and Events']});
+    createNodeField({ node, name: 'image', value: 'meetup' });
+    createNodeField({ node, name: 'topics', value: ['Community and Events'] });
     createNodeField({ node, name: 'title', value: node.name });
     createNodeField({
       node,
@@ -257,7 +259,7 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       name: 'content',
       value: node.internal.content ? node.internal.content : '',
     });
-    
+
     if (isGithubRaw(parentNode)) {
       const slug = node.frontmatter.title ? node.frontmatter.title : title;
       // const resourceType = node.frontmatter.resourceType ? getClosest
@@ -267,8 +269,7 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
         name: 'slug',
         value: slugify(slug),
       });
-      
-      
+
       const topics = parentNode.___boundProperties.topics;
       const pagePaths = topics.map(t => `${slugify(t)}/${slugify(slug)}`);
       // all github raw nodes have a page path that is just the individual resource
@@ -278,8 +279,12 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
         name: 'pagePaths',
         value: pagePaths,
       });
-     
-      
+      createNodeField({
+        node: parentNode,
+        name: 'standAlonePath',
+        value: `/${slugify(slug)}`,
+      });
+
       // add resource type, initially it is set to the topic resource type
       let resourceType = parentNode.___boundProperties.topicResourceType;
 
@@ -323,25 +328,25 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
         name: 'title',
         value: node.frontmatter.title ? node.frontmatter.title : title,
       });
-  
+
       createNodeField({
         node: parentNode,
         name: 'description',
         value: node.frontmatter.description ? node.frontmatter.description : '',
       });
-  
+
       createNodeField({
         node: parentNode,
         name: 'image',
         value: node.frontmatter.image ? node.frontmatter.image : '',
       });
-  
+
       createNodeField({
         node: parentNode,
         name: 'labels',
         value: labels,
       });
-  
+
       createNodeField({
         node: parentNode,
         name: 'author',
@@ -355,4 +360,3 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
     createNodeField({node, name: 'githubSlug', value: label});
   }
 };
- 
