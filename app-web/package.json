@@ -50,6 +50,7 @@
     "gatsby-source-eventbrite": "^1.1.0",
     "gatsby-source-filesystem": "^2.1.2",
     "gatsby-source-github-raw": "^1.2.5",
+    "gatsby-source-matomo": "0.0.2-0",
     "gatsby-source-meetup": "0.0.1",
     "gatsby-transformer-json": "^2.2.0",
     "gatsby-transformer-remark": "^2.6.0",
