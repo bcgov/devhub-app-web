@@ -34,6 +34,24 @@ import {
 // create a selector instance from the selectResourcesGroupedByType
 const resourcesSelector = selectResourcesGroupedByType();
 
+/**
+ * takes in search results and resourcesNotFound (Boolean)
+ * returns the total number of search results formated as '_____ Result(s) Found'
+ * If there are resources, it will return how many
+ * If there arent, it will return no results
+ */
+const getSearchTotal = (resources, resourcesNotFound) => {
+  if (!resourcesNotFound) {
+    const total = resources.length;
+    if (total == 1) {
+      return `${total} Result Found`;
+    } else if (total > 1) {
+      return `${total} Results Found`;
+    }
+  }
+  return 'No Results';
+};
+
 // generic template page where all 'resource type' pages are generated from
 export const ResourceType = ({
   data: {
@@ -66,7 +84,6 @@ export const ResourceType = ({
   // in addition the topics container is prevented from not rendering because
   // the query is present
   const queryIsEmpty = isQueryEmpty(query);
-
   const resourceTypeConst = RESOURCE_TYPES[pageContext.resourceTypeConst];
   const nodes = flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(flattenGatsbyGraphQL(allGithubRaw.edges));
 
@@ -123,7 +140,7 @@ export const ResourceType = ({
     resources = filterResources(resources, activeFilters);
   }
 
-
+  const searchResultTotal = getSearchTotal(resources, resourcesNotFound);
   return (
     <Layout>
       <Main role="main">
@@ -139,6 +156,7 @@ export const ResourceType = ({
                 searchResultsEmpty={resourcesNotFound}
                 pagePath={location.pathname}
                 resources={resources}
+                searchResultTotal={searchResultTotal}
                 query={query}
                 openSideDrawer={() => setSideDrawerToggled(true)}
               />
