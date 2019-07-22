@@ -139,6 +139,7 @@ export const ResourceType = ({
 
     resources = filterResources(resources, activeFilters);
   }
+
   const searchResultTotal = getSearchTotal(resources, resourcesNotFound);
   return (
     <Layout>

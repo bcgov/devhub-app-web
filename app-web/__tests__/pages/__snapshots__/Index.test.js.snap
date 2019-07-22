@@ -60,7 +60,6 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
 .emotion-11 {
   width: 100%;
   max-width: 500px;
-  float: left;
 }
 
 .emotion-9 {
@@ -239,7 +238,6 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
 .emotion-11 {
   width: 100%;
   max-width: 500px;
-  float: left;
 }
 
 .emotion-9 {
