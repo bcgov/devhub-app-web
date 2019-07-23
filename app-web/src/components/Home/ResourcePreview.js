@@ -57,7 +57,7 @@ export const ResourcePreview = ({ title, link, resources }) => (
             title={r.fields.title}
             description={r.fields.description}
             image={r.fields.image}
-            link={r.resource.path}
+            link={r.fields.standAlonePath}
             event={r}
           />
         </CardWrapper>

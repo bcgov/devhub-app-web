@@ -163,6 +163,11 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       name: 'pagePaths',
       value: [node.url],
     });
+    createNodeField({
+      node,
+      name: 'standAlonePath',
+      value: node.url,
+    });
   }
 
   if (isMeetupEvent(node)) {
@@ -194,6 +199,11 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       node,
       name: 'resourceType',
       value: RESOURCE_TYPES.EVENTS,
+    });
+    createNodeField({
+      node,
+      name: 'standAlonePath',
+      value: node.link,
     });
   }
 

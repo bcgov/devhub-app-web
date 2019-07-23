@@ -53,8 +53,10 @@ const getTopicPreviews = (topics, searchResultsExist) => {
  * there is one exception to when we do want resources with the same title though, that being events - thus events are return unchanged
  */
 const getUniqueResources = resources => {
-  let events = resources.filter(resource => resource.resource.type === RESOURCE_TYPES.EVENTS);
-  let allButEvents = resources.filter(resource => resource.resource.type !== RESOURCE_TYPES.EVENTS);
+  let events = resources.filter(resource => resource.fields.resourceType === RESOURCE_TYPES.EVENTS);
+  let allButEvents = resources.filter(
+    resource => resource.fields.resourceType !== RESOURCE_TYPES.EVENTS,
+  );
   allButEvents = uniqBy(allButEvents, 'fields.title');
   return allButEvents.concat(events);
 };
@@ -155,34 +157,6 @@ export const Index = ({
   );
   const currentMeetups = allMeetups.filter(e => e.start.daysFromNow <= 0);
   const eventsAndMeetups = currentEvents.concat(currentMeetups);
-  const githubRawNodes = flattenGatsbyGraphQL(allGithubRaw.edges).map(node => {
-    node = {
-      resource: {
-        type: node.fields.resourceType,
-        path: node.fields.standAlonePath,
-      },
-      id: node.id,
-      unfurl: {
-        title: node.fields.title,
-        description: node.fields.description,
-        image: node.fields.image,
-      },
-      ...node,
-    };
-    return node;
-  });
-  const resourcesToStandAlone = flattenGatsbyGraphQL(allDevhubSiphon.edges).map(card => {
-    card = {
-      unfurl: card.unfurl,
-      resource: {
-        path: card.fields.standAlonePath,
-        type: card.resource.type,
-      },
-      id: card.id,
-      ...card,
-    };
-    return card;
-  });
 
   // this is defined by ?q='' or ?q=''&q=''..etc
   // if query is empty we prevent the search results empty from being rendered
@@ -193,7 +167,9 @@ export const Index = ({
   let content = null;
 
   const siphonResources = getResourcePreviews(
-    resourcesToStandAlone.concat(eventsAndMeetups).concat(githubRawNodes),
+    flattenGatsbyGraphQL(allDevhubSiphon.edges)
+      .concat(eventsAndMeetups)
+      .concat(flattenGatsbyGraphQL(allGithubRaw.edges)),
     windowHasQuery && !queryIsEmpty,
     results,
   );

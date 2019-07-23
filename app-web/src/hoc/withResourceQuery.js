@@ -97,6 +97,7 @@ const withResourceQuery = WrappedComponent => () => props => (
                 description
                 pagePaths
                 image
+                standAlonePath
               }
               siphon {
                 unfurl {
@@ -151,6 +152,7 @@ const withResourceQuery = WrappedComponent => () => props => (
                   title
                   pagePaths
                   image
+                  standAlonePath
                 }
               }
             }
@@ -175,6 +177,7 @@ const withResourceQuery = WrappedComponent => () => props => (
                 description
                 image
                 pagePaths
+                standAlonePath
               }
               source {
                 displayName

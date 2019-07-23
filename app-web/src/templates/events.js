@@ -86,18 +86,7 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubTopic, allMee
   const communityCards = cards
     .filter(e => e.name === TOPICS.COMMUNITY_AND_EVENTS)
     .flatMap(e => e.childrenDevhubSiphon)
-    .filter(e => e.resource.type === RESOURCE_TYPES.EVENTS)
-    .map(card => {
-      card = {
-        unfurl: card.unfurl,
-        resource: {
-          path: card.fields.standAlonePath,
-          type: card.resource.type,
-        },
-        id: card.id,
-      };
-      return card;
-    });
+    .filter(e => e.resource.type === RESOURCE_TYPES.EVENTS);
   //sort all the info so that event show up from soonest to farthest away
   const currentEventsMeetUpsAndCards = communityCards.concat(
     currentEvents.concat(currentMeetups).sort((a, b) => b.start.daysFromNow - a.start.daysFromNow),
@@ -127,11 +116,11 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubTopic, allMee
               {currentEventsMeetUpsAndCards.map(e => (
                 <Card
                   key={e.id}
-                  type={e.resource.type}
-                  title={e.unfurl.title}
-                  description={e.unfurl.description}
-                  image={e.unfurl.image}
-                  link={e.resource.path}
+                  type={e.fields.resourceType}
+                  title={e.fields.title}
+                  description={e.fields.description}
+                  image={e.fields.image}
+                  link={e.fields.standAlonePath}
                   event={e}
                 />
               ))}
@@ -148,11 +137,11 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubTopic, allMee
             {previousEventsAndMeetUps.map(e => (
               <Card
                 key={e.id}
-                type={e.resource.type}
-                title={e.unfurl.title}
-                description={e.unfurl.description}
-                image={e.unfurl.image}
-                link={e.resource.path}
+                type={e.fields.resourceType}
+                title={e.fields.title}
+                description={e.fields.description}
+                image={e.fields.image}
+                link={e.fields.standAlonePath}
                 event={e}
               />
             ))}
@@ -171,6 +160,14 @@ export const EventData = graphql`
     ) {
       edges {
         node {
+          fields {
+            resourceType
+            title
+            description
+            pagePaths
+            image
+            standAlonePath
+          }
           siphon {
             unfurl {
               title
@@ -225,6 +222,16 @@ export const EventData = graphql`
             venue {
               address_1
             }
+            fields {
+              location
+              description
+              link
+              resourceType
+              title
+              pagePaths
+              image
+              standAlonePath
+            }
           }
         }
       }
@@ -254,6 +261,14 @@ export const EventData = graphql`
               title
               description
               image
+            }
+            fields {
+              resourceType
+              standAlonePath
+              pagePaths
+              image
+              title
+              description
             }
           }
         }

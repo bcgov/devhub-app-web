@@ -13,9 +13,6 @@ export const DESIGN_SYSTEM_SIPHON_NODE_1 = {
   parent: {
     id: IDS.DESIGN_SYSTEM,
   },
-  fields: {
-    standAlonePath: '/Design-Node-1',
-  },
   _metadata: {
     position: '000.000.000',
   },
@@ -32,6 +29,7 @@ export const DESIGN_SYSTEM_SIPHON_NODE_1 = {
   fields: {
     personas: ['Designer'],
     resourceType: 'Components',
+    standAlonePath: '/Design-Node-1',
     pagePaths: ['/design-system/Z1bGIqu1'],
     image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
     title: 'About',
@@ -61,9 +59,6 @@ export const DESIGN_SYSTEM_SIPHON_NODE_2 = {
   parent: {
     id: IDS.DESIGN_SYSTEM,
   },
-  fields: {
-    standAlonePath: '/Design-Node-2',
-  },
   _metadata: {
     position: '000.000.001',
   },
@@ -80,6 +75,7 @@ export const DESIGN_SYSTEM_SIPHON_NODE_2 = {
   fields: {
     personas: ['Developer', 'Designer'],
     resourceType: 'Components',
+    standAlonePath: '/Design-Node-2',
     pagePaths: ['/design-system/Z1bGIqu2'],
     image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
     title: 'About',
@@ -109,9 +105,6 @@ export const DESIGN_SYSTEM_SIPHON_NODE_3 = {
   parent: {
     id: IDS.DESIGN_SYSTEM,
   },
-  fields: {
-    standAlonePath: '/Design-Node-3',
-  },
   _metadata: {
     position: '000.000.002',
   },
@@ -128,6 +121,7 @@ export const DESIGN_SYSTEM_SIPHON_NODE_3 = {
   fields: {
     personas: ['Designer'],
     resourceType: 'Components',
+    standAlonePath: '/Design-Node-3',
     pagePaths: ['/design-system/Z1bGIqu3'],
     image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
     title: 'About',
@@ -157,9 +151,6 @@ export const DESIGN_SYSTEM_SIPHON_NODE_4 = {
   parent: {
     id: IDS.DESIGN_SYSTEM,
   },
-  fields: {
-    standAlonePath: '/Design-Node-4',
-  },
   _metadata: {
     position: '000.000.003',
   },
@@ -176,6 +167,7 @@ export const DESIGN_SYSTEM_SIPHON_NODE_4 = {
   fields: {
     personas: ['Developer'],
     resourceType: 'Components',
+    standAlonePath: '/Design-Node-4',
     pagePaths: ['/design-system/Z1bGIqu4'],
     image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
     title: 'About',
@@ -205,9 +197,6 @@ export const DEVHUB_SIPHON_NODE_1 = {
   parent: {
     id: IDS.DEVHUB,
   },
-  fields: {
-    standAlonePath: '/DevHub-Node-1',
-  },
   _metadata: {
     position: '001.000.000',
   },
@@ -224,6 +213,7 @@ export const DEVHUB_SIPHON_NODE_1 = {
   fields: {
     personas: ['Developer'],
     resourceType: 'Documentation',
+    standAlonePath: '/DevHub-Node-1',
     pagePaths: ['/design-system/Z1bGIqu5'],
     image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
     title: 'About',
@@ -256,9 +246,6 @@ export const DEVHUB_SIPHON_NODE_2 = {
   _metadata: {
     position: '001.000.001',
   },
-  fields: {
-    standAlonePath: '/DevHub-Node-2',
-  },
   attributes: {
     personas: ['Designer', 'Developer'],
   },
@@ -272,6 +259,7 @@ export const DEVHUB_SIPHON_NODE_2 = {
   fields: {
     personas: ['Designer', 'Developer'],
     resourceType: 'Documentation',
+    standAlonePath: '/DevHub-Node-2',
     pagePaths: ['/design-system/Z1bGIqu6'],
     image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
     title: 'About',
@@ -301,9 +289,6 @@ export const DEVHUB_SIPHON_NODE_3 = {
   parent: {
     id: IDS.DEVHUB,
   },
-  fields: {
-    standAlonePath: '/DevHub-Node-3',
-  },
   _metadata: {
     position: '001.000.001',
   },
@@ -319,6 +304,7 @@ export const DEVHUB_SIPHON_NODE_3 = {
   },
   fields: {
     personas: ['Product Owner'],
+    standAlonePath: '/DevHub-Node-3',
     resourceType: 'Documentation',
     pagePaths: ['/design-system/Z1bGIqu7'],
     image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
@@ -372,6 +358,7 @@ export const GITHUB_RAW_1 = {
     personas: ['Designer'],
     slug: 'Introduction-To-Github-and-Gov',
     resourceType: 'Documentation',
+    standAlonePath: '/GitHub-Raw-1',
     title: 'Introduction To Github and Gov',
     description: 'Everything you need to know about working with Github in the BC Government.',
     image: '../images/octokat.png',
@@ -400,6 +387,7 @@ export const GITHUB_RAW_2 = {
     personas: ['Designer'],
     slug: 'Introduction-To-Github-and-Gov',
     resourceType: 'Components',
+    standAlonePath: '/GitHub-Raw-2',
     title: 'Introduction To Github and Gov',
     description: 'Everything you need to know about working with Github in the BC Government.',
     image: '../images/octokat.png',
@@ -460,13 +448,15 @@ export const EVENT_1 = {
       path:
         'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
     },
-    fields: {
-      resourceType: 'Events',
-      pagePaths: [
-        'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
-      ],
-    },
     id: '45046198392',
+  },
+  fields: {
+    resourceType: 'Events',
+    standAlonePath:
+      'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
+    pagePaths: [
+      'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
+    ],
   },
   description: {
     html: '<p> This is a test </p>',
@@ -501,18 +491,20 @@ export const EVENT_2 = {
       image: 'eventbrite',
       description: 'This is also a test',
     },
-    fields: {
-      resourceType: 'Events',
-      pagePaths: [
-        'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
-      ],
-    },
     resource: {
       type: 'Events',
       path:
         'https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F41880838%2F228490647317%2F1%2Foriginal.jpg?auto=compress&s=c53f3ef4e5b52e00963afab920fca78e',
     },
     id: '61112980570',
+  },
+  fields: {
+    resourceType: 'Events',
+    standAlonePath:
+      'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
+    pagePaths: [
+      'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
+    ],
   },
   description: {
     html: '<p> This is also a test </p>',
@@ -556,9 +548,6 @@ export const MEETUP_1 = {
         path: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
         type: 'Events',
       },
-      fields: {
-        resourceType: 'Events',
-      },
       unfurl: {
         description:
           "Join us for a Product Spotlight featuring ZenHub! With 3+ CSI Lab teams already using ZenHub, and other interested, we thought it would be a great idea to get the ZenHub team in the CSI Lab to provide a deep dive into their product. What is ZenHub?ZenHub is browser extension that adds robust project management features directly into GitHub's UI, making centralized collaboration on GitHub faster, more visual, and less cluttered. With ZenHub installed, your team stays lean and agile: you can plan sprints, create epics, and visualize your workflow without leaving GitHub. More details here: https://www.zenhub.com/ ",
@@ -580,9 +569,11 @@ export const MEETUP_1 = {
     fields: {
       location: '3rd Floor 1012 Douglas St.',
       description: 'test description',
+      resourceType: 'Events',
       name: 'bar',
       pagePaths: ['https://www.meetup.com/DevOps-Commons/events/262271511/'],
       link: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
+      standAlonePath: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
     },
     year: '2019',
   },
@@ -600,9 +591,6 @@ export const MEETUP_2 = {
       resource: {
         path: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
         type: 'Events',
-      },
-      fields: {
-        resourceType: 'Events',
       },
       unfurl: {
         description: 'test description',
@@ -624,9 +612,11 @@ export const MEETUP_2 = {
     fields: {
       location: '3rd Floor 1012 Douglas St.',
       description: 'test description',
+      resourceType: 'Events',
       name: 'foo',
       pagePaths: ['https://www.meetup.com/DevOps-Commons/events/262271511/'],
       link: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
+      standAlonePath: 'https://www.meetup.com/DevOps-Commons/events/262271511/',
     },
     year: '2019',
   },
