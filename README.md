@@ -260,6 +260,8 @@ Any issues that are created within this repository are synced with our Zenhub ka
 * change into app-web project directory
 * copy and update your env file
 * `cp .env.production.example .env.production`
+   * the `MATOMO_URL` should be pointing to the instance of your production matomo service. If you do not have one
+   leave it as a blank variable.
 * set up a secret to allow the openshift builder service account to push devhub 'dev mode' images to
   docker hub, instructions [here](./docs/devhub-previewer-setup.md)
 ## Deployment (Local Development For App-Web)
@@ -315,6 +317,13 @@ rebuild the image
    a. make a pr for your code changes and jenkins should fire off a job to build and deploy the application
    b. if builds do not fire off, you may build and deploy the application seperately. Process and Apply all templates
    withing the `openshift/templates` directory
+
+## Development Guide/Considerations
+
+   Devhub leverages different sources of content via the `gatsby-source-plugin`. These sources are
+   connected in a variety of ways to produce meaningful connections to build things like topics, and navigational
+   elements. Because different source plugins produce different schemas, a __minimum schema__ is extended from each
+   node type that is to be leveraged as a 'card' in the devhub. More information can be found on this [here](./docs/devhubCardSpec.md)
 
 ## Getting Help or Reporting an Issue
 
