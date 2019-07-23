@@ -53,16 +53,17 @@ const getSearchTotal = (resources, resourcesNotFound) => {
 };
 
 /**
- *
- * @param {array} results
- * @param {string} resourceTypeConst
+ * Removes results of the wrong resource type from the search results
+ * @param {array} results the search results returned from our index
+ * @param {string} resourceTypeConst the given resource type for this page
+ * @param {array} resources all the resources on the site
  */
 const removeOtherResourceTypeResults = (results, resourceTypeConst, resources) => {
   let filteredResources = resources
     .filter(resource => resource.fields.resourceType === resourceTypeConst)
     .map(resource => resource.id);
   let finalResults = [];
-
+  //if the result is of the correct resourcetype, add to new array
   results.forEach(result => {
     let currID = result.id;
     let resultInFilteredResources = filteredResources.includes(currID);
@@ -70,7 +71,6 @@ const removeOtherResourceTypeResults = (results, resourceTypeConst, resources) =
       finalResults.push(result);
     }
   });
-
   return finalResults;
 };
 

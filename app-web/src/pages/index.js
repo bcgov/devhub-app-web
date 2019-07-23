@@ -87,9 +87,9 @@ const getSearchResultTotal = resourcesByType => {
  * Unwanted results are things like past events which are returned in our index but we do not want to show
  * having these events in our results can mess up some of our logic later down the line (i.e for no results found)
  * returns results, but without any past events etc
- * @param {array} results
- * @param {array} allEventsAndMeetups
- * @param {array} currentEventsAndMeetups
+ * @param {array} results the search results returned from our index
+ * @param {array} allEventsAndMeetups all the events and meetups on the site
+ * @param {array} currentEventsAndMeetups all the current events and meetups on the site
  */
 const removeUnwantedResults = (results, allEventsAndMeetups, currentEventsAndMeetups) => {
   let filteredResults = [];
