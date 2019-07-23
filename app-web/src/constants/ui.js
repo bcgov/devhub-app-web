@@ -79,3 +79,7 @@ export const POPULAR_TOPIC_CONFIGURATION = {
   maxNodes: 10, // this is calculated by measuring the 10 closest nodes relative the average page hit count
   minPageViews: 4,
 };
+
+export const DYNAMIC_TOPIC_PATHS = {
+  popular: 'popular',
+};

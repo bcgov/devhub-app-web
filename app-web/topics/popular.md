@@ -4,6 +4,6 @@ id: Popular
 ---
 # Popular
 
-Take a look through the most viewed resources inside of the devhub.
+Take a look through the most viewed resources inside of the Devhub.
 
-[Get Started](/popular?viewResource=0);
+[Get Started](./?viewResource=0)

@@ -130,34 +130,24 @@ describe('Helpers', () => {
       const nodes = [
         {
           id: 1,
-          fields: {
-            pageViews: 5
-          }
+          pageViews: 5,
         },
         {
           id: 2,
-          fields: {
-            pageViews: 1
-          }
+          pageViews: 1,
         },
         {
           id: 3,
-          fields: {
-            pageViews: 2
-          }
+          pageViews: 2,
         },
         {
           id: 5,
-          fields: {
-            pageViews: 10
-          }
+          pageViews: 10,
         },
         {
           id: 1,
-          fields: {
-            pageViews: 5
-          }
-        }
+          pageViews: 5,
+        },
       ];
 
       const popular = buildPopularTopic(nodes, 0, 10);
