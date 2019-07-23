@@ -73,9 +73,9 @@ export const CARD_CAROUSEL = {
   },
 };
 
-
 export const POPULAR_TOPIC_CONFIGURATION = {
   title: 'Popular',
   description: 'These resources have been getting some attention lately',
-  maxNodes: 10 // this is calculated by measuring the 10 closest nodes relative the average page hit count
-}
+  maxNodes: 10, // this is calculated by measuring the 10 closest nodes relative the average page hit count
+  minPageViews: 4,
+};

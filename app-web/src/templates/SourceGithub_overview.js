@@ -74,11 +74,11 @@ class SourceGithubMarkdownOverview extends React.Component {
 
     const navigation = <Navigation items={navigationItems} />;
 
-    const [ owner, repo ] = githubRaw.html_url.replace('https://github.com/', '').split('/');
+    const [owner, repo] = githubRaw.html_url.replace('https://github.com/', '').split('/');
     const { title } = githubRaw.fields;
-    const  originalSource  = githubRaw.html_url;
+    const originalSource = githubRaw.html_url;
     const { href } = location;
-    
+
     return (
       <Layout>
         <div>

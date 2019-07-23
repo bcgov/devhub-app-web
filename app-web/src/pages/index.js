@@ -54,7 +54,9 @@ const getTopicPreviews = (topics, searchResultsExist) => {
  */
 const getUniqueResources = resources => {
   let events = resources.filter(resource => resource.fields.resourceType === RESOURCE_TYPES.EVENTS);
-  let allButEvents = resources.filter(resource => resource.fields.resourceType !== RESOURCE_TYPES.EVENTS);
+  let allButEvents = resources.filter(
+    resource => resource.fields.resourceType !== RESOURCE_TYPES.EVENTS,
+  );
   allButEvents = uniqBy(allButEvents, 'fields.title');
   return allButEvents.concat(events);
 };
@@ -165,7 +167,9 @@ export const Index = ({
   let content = null;
 
   const siphonResources = getResourcePreviews(
-    flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(eventsAndMeetups).concat(flattenGatsbyGraphQL(allGithubRaw.edges)),
+    flattenGatsbyGraphQL(allDevhubSiphon.edges)
+      .concat(eventsAndMeetups)
+      .concat(flattenGatsbyGraphQL(allGithubRaw.edges)),
     windowHasQuery && !queryIsEmpty,
     results,
   );
@@ -176,14 +180,7 @@ export const Index = ({
 
   const topics = flattenGatsbyGraphQL(allDevhubTopic.edges);
   if (queryIsEmpty) {
-    content = (
-      <Aux>
-        {getTopicPreviews(
-          topics,
-          windowHasQuery && !queryIsEmpty,
-        )}
-      </Aux>
-    );
+    content = <Aux>{getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}</Aux>;
   } else if (resourcesNotFound) {
     totalSearchResults = 'No Results';
     content = (
@@ -195,10 +192,7 @@ export const Index = ({
     totalSearchResults = getSearchResultTotal(siphonResources);
     content = (
       <Aux>
-        {getTopicPreviews(
-          topics,
-          windowHasQuery && !queryIsEmpty,
-        )}
+        {getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}
         {siphonResources}
       </Aux>
     );

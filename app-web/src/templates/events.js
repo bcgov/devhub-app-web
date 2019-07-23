@@ -56,17 +56,17 @@ export const formatMeetUps = meetups => {
   return meetups.map(meetup => {
     return {
       ...meetup,
-        unfurl: meetup.siphon.unfurl,
-        resource: meetup.siphon.resource,
-        id: meetup.siphon.id,
-        venue: meetup.fields.location,
-        start: {
-          day: meetup.day,
-          month: meetup.month,
-          year: meetup.year,
-          daysFromNow: meetup.daysFromNow,
-        },
-      };
+      unfurl: meetup.siphon.unfurl,
+      resource: meetup.siphon.resource,
+      id: meetup.siphon.id,
+      venue: meetup.fields.location,
+      start: {
+        day: meetup.day,
+        month: meetup.month,
+        year: meetup.year,
+        daysFromNow: meetup.daysFromNow,
+      },
+    };
   });
 };
 

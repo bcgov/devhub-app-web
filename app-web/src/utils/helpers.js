@@ -19,7 +19,7 @@ import validUrl from 'valid-url';
 import dotProp from 'dot-prop';
 import { GITHUB_URL } from '../constants/api';
 import { TypeCheck } from '@bcgov/common-web-utils';
-import { RESOURCE_TYPES, POPULAR_TOPIC_CONFIGURATION } from '../constants/ui';
+import { RESOURCE_TYPES } from '../constants/ui';
 import { TOPICS } from '../constants/topics';
 import converter from 'number-to-words';
 import { MAIN_NAV_ROUTES } from '../constants/routes';
@@ -164,7 +164,7 @@ export const filterResources = (resources, filters) =>
  */
 export const setFilterPropsBasedOnResourceCounts = (filter, nodes) => {
   const { filterBy, value } = filter;
-  
+
   let newFilter = { ...filter, availableResources: 0 };
   nodes.forEach(n => {
     // only attempt to check if node should be apart of count if it matches the current resource type
@@ -231,9 +231,15 @@ export const sortDevhubTopicsAfterSelectedTopics = topics => {
     .concat(sortedTopics);
 };
 
-
-export const buildPopularTopic = (githubRawNodes) => {
-  const avgViews = githubRawNodes.map(n => n.pageViews) / githubRawNodes.length;
-  const sortedRelativePageViews = githubRawNodes.map(n => [n, Math.abs(avgViews - n.pageViews)]).sort((a, b) => a[1] - b[1]);
-  return sortedRelativePageViews(POPULAR_TOPIC_CONFIGURATION.maxNodes);
-}
+/**
+ * returns a set of nodes that should be apart of the popular topic
+ * @param {Array} nodes a list of gatsby nodes to build a popular topic from
+ * @param {Object} nodes.fields gatsby fields object
+ * @param {Number} nodes.fields.pageViews  number of page views
+ * @param {Number} minPageViews the threshold of how many page views before something can be considered popular
+ * @param {Number} maxNodes max number of nodes in the popular topic
+ */
+export const buildPopularTopic = (nodes, minPageViews, maxNodes) => {
+  const sortedNodes = nodes.sort((a, b) => a.fields.pageViews - b.fields.pageViews);
+  return sortedNodes.filter(node => node.fields.pageViews > minPageViews).slice(0, maxNodes);
+};

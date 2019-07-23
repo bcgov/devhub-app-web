@@ -51,7 +51,6 @@ export const ResourcePreview = ({ title, link, resources }) => (
     </Title>
     <ResourceContainer>
       {resources.slice(0, 6).map(r => (
-        
         <CardWrapper key={r.id}>
           <Card
             type={r.fields.resourceType}
