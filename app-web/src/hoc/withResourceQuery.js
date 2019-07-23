@@ -30,6 +30,7 @@ const withResourceQuery = WrappedComponent => () => props => (
           edges {
             node {
               id
+              pageViews
               fields {
                 resourceType
                 title

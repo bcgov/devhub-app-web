@@ -1,8 +1,6 @@
 // notes to self, maybe i should create a resolver to resolve things like navigation
 // for a topic this would combine all nodes for siphon (web types) and github raw
 
-
-
 //
 // Dev Hub
 //
@@ -79,9 +77,9 @@ class SourceGithubMarkdownDefault extends React.Component {
 
     const navigation = <Navigation items={navigationItems} />;
 
-    const [ owner, repo ] = githubRaw.html_url.replace('https://github.com/', '').split('/');
+    const [owner, repo] = githubRaw.html_url.replace('https://github.com/', '').split('/');
     const { title } = githubRaw.fields;
-    const  originalSource  = githubRaw.html_url;
+    const originalSource = githubRaw.html_url;
     const { href } = location;
     return (
       <Layout>

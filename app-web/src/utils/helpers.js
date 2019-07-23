@@ -164,7 +164,7 @@ export const filterResources = (resources, filters) =>
  */
 export const setFilterPropsBasedOnResourceCounts = (filter, nodes) => {
   const { filterBy, value } = filter;
-  
+
   let newFilter = { ...filter, availableResources: 0 };
   nodes.forEach(n => {
     // only attempt to check if node should be apart of count if it matches the current resource type
@@ -229,4 +229,17 @@ export const sortDevhubTopicsAfterSelectedTopics = topics => {
     .concat([designSystem])
     .concat([devOpsPlatform])
     .concat(sortedTopics);
+};
+
+/**
+ * returns a set of nodes that should be apart of the popular topic
+ * @param {Array} nodes a list of gatsby nodes to build a popular topic from
+ * @param {Object} nodes.fields gatsby fields object
+ * @param {Number} nodes.fields.pageViews  number of page views
+ * @param {Number} minPageViews the threshold of how many page views before something can be considered popular
+ * @param {Number} maxNodes max number of nodes in the popular topic
+ */
+export const buildPopularTopic = (nodes, minPageViews, maxNodes) => {
+  const sortedNodes = nodes.sort((a, b) => a.fields.pageViews - b.fields.pageViews);
+  return sortedNodes.filter(node => node.fields.pageViews > minPageViews).slice(0, maxNodes);
 };

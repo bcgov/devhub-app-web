@@ -22,6 +22,7 @@ import {
   mapPagePathToResourceTypeConst,
   sortDevhubTopicsAfterSelectedTopics,
   getTextAndLink,
+  buildPopularTopic,
 } from '../../src/utils/helpers';
 import { GITHUB_URL } from '../../src/constants/api';
 import { RESOURCE_TYPES } from '../../src/constants/ui';
@@ -121,6 +122,54 @@ describe('Helpers', () => {
       };
 
       expect(getTextAndLink(resourceType, resourcesByType)).toEqual(expected);
+    });
+  });
+
+  describe('Building the popular topic', () => {
+    it('builds the popular topic', () => {
+      const nodes = [
+        {
+          id: 1,
+          fields: {
+            pageViews: 5
+          }
+        },
+        {
+          id: 2,
+          fields: {
+            pageViews: 1
+          }
+        },
+        {
+          id: 3,
+          fields: {
+            pageViews: 2
+          }
+        },
+        {
+          id: 5,
+          fields: {
+            pageViews: 10
+          }
+        },
+        {
+          id: 1,
+          fields: {
+            pageViews: 5
+          }
+        }
+      ];
+
+      const popular = buildPopularTopic(nodes, 0, 10);
+
+      expect(popular).toEqual(nodes);
+
+      const popular2 = buildPopularTopic(nodes, 6, 10);
+      expect(popular2.length).toBe(1);
+
+      const popular3 = buildPopularTopic(nodes, 1, 3);
+
+      expect(popular3.length).toBe(3);
     });
   });
 });
