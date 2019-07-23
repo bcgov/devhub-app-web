@@ -54,7 +54,9 @@ const getTopicPreviews = (topics, searchResultsExist) => {
  */
 const getUniqueResources = resources => {
   let events = resources.filter(resource => resource.fields.resourceType === RESOURCE_TYPES.EVENTS);
-  let allButEvents = resources.filter(resource => resource.fields.resourceType !== RESOURCE_TYPES.EVENTS);
+  let allButEvents = resources.filter(
+    resource => resource.fields.resourceType !== RESOURCE_TYPES.EVENTS,
+  );
   allButEvents = uniqBy(allButEvents, 'fields.title');
   return allButEvents.concat(events);
 };
@@ -94,7 +96,7 @@ const getResourcePreviews = (resources, queryExists, results = []) => {
     // diff out resources by id
     resourcesToGroup = intersectionBy(resources, results, 'id');
   }
-  // resourcesToGroup = getUniqueResources(resourcesToGroup);
+  resourcesToGroup = getUniqueResources(resourcesToGroup);
   // select resources grouped by type using relesect memoization https://github.com/reduxjs/reselect/issues/30
   let resourcesByType = resourcesSelector(resourcesToGroup);
   const siphonResources = Object.keys(resourcesByType).map(resourceType => {
@@ -165,7 +167,9 @@ export const Index = ({
   let content = null;
 
   const siphonResources = getResourcePreviews(
-    flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(eventsAndMeetups).concat(flattenGatsbyGraphQL(allGithubRaw.edges)),
+    flattenGatsbyGraphQL(allDevhubSiphon.edges)
+      .concat(eventsAndMeetups)
+      .concat(flattenGatsbyGraphQL(allGithubRaw.edges)),
     windowHasQuery && !queryIsEmpty,
     results,
   );
@@ -176,14 +180,7 @@ export const Index = ({
 
   const topics = flattenGatsbyGraphQL(allDevhubTopic.edges);
   if (queryIsEmpty) {
-    content = (
-      <Aux>
-        {getTopicPreviews(
-          topics,
-          windowHasQuery && !queryIsEmpty,
-        )}
-      </Aux>
-    );
+    content = <Aux>{getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}</Aux>;
   } else if (resourcesNotFound) {
     totalSearchResults = 'No Results';
     content = (
@@ -195,10 +192,7 @@ export const Index = ({
     totalSearchResults = getSearchResultTotal(siphonResources);
     content = (
       <Aux>
-        {getTopicPreviews(
-          topics,
-          windowHasQuery && !queryIsEmpty,
-        )}
+        {getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}
         {siphonResources}
       </Aux>
     );

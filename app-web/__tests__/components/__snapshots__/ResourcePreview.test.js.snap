@@ -45,6 +45,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
                 "Designer",
               ],
               "resourceType": "Components",
+              "standAlonePath": "/Design-Node-3",
               "title": "About",
             },
             "id": "3",
@@ -72,7 +73,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
           }
         }
         image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-        link="/design-system/Z1bGIqu3"
+        link="/Design-Node-3"
         title="About"
         type="Components"
       />
@@ -110,6 +111,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
                 "Designer",
               ],
               "resourceType": "Components",
+              "standAlonePath": "/Design-Node-2",
               "title": "About",
             },
             "id": "2",
@@ -137,7 +139,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
           }
         }
         image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-        link="/design-system/Z1bGIqu2"
+        link="/Design-Node-2"
         title="About"
         type="Components"
       />
@@ -173,6 +175,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
                 "Designer",
               ],
               "resourceType": "Components",
+              "standAlonePath": "/Design-Node-1",
               "title": "About",
             },
             "id": "1",
@@ -200,7 +203,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
           }
         }
         image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-        link="/design-system/Z1bGIqu1"
+        link="/Design-Node-1"
         title="About"
         type="Components"
       />
@@ -236,6 +239,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
                 "Developer",
               ],
               "resourceType": "Components",
+              "standAlonePath": "/Design-Node-4",
               "title": "About",
             },
             "id": "4",
@@ -263,7 +267,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
           }
         }
         image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-        link="/design-system/Z1bGIqu4"
+        link="/Design-Node-4"
         title="About"
         type="Components"
       />
@@ -299,6 +303,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
                 "Developer",
               ],
               "resourceType": "Documentation",
+              "standAlonePath": "/DevHub-Node-1",
               "title": "About",
             },
             "id": "5",
@@ -326,7 +331,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
           }
         }
         image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-        link="/design-system/Z1bGIqu5"
+        link="/DevHub-Node-1"
         title="About"
         type="Documentation"
       />
@@ -364,6 +369,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
                 "Developer",
               ],
               "resourceType": "Documentation",
+              "standAlonePath": "/DevHub-Node-2",
               "title": "About",
             },
             "id": "6",
@@ -391,7 +397,7 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
           }
         }
         image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
-        link="/design-system/Z1bGIqu6"
+        link="/DevHub-Node-2"
         title="About"
         type="Documentation"
       />

@@ -62,7 +62,6 @@ export const ResourceType = ({
   pageContext, // received from gatsby create pages api, view gatsby/createPages.js for more info
   location,
 }) => {
-
   const [sideDrawerToggled, setSideDrawerToggled] = useState(false);
 
   const queryParam = queryString.parse(location.search);
@@ -85,7 +84,9 @@ export const ResourceType = ({
   // the query is present
   const queryIsEmpty = isQueryEmpty(query);
   const resourceTypeConst = RESOURCE_TYPES[pageContext.resourceTypeConst];
-  const nodes = flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(flattenGatsbyGraphQL(allGithubRaw.edges));
+  const nodes = flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(
+    flattenGatsbyGraphQL(allGithubRaw.edges),
+  );
 
   const resourcesByType = resourcesSelector(nodes);
 
@@ -95,16 +96,15 @@ export const ResourceType = ({
 
   // grab the specific resources by the resource type associated with this pages context
   let resources = resourcesByType[resourceTypeConst].map(r => {
-
     return {
       type: r.fields.resourceType,
       title: r.fields.title,
       description: r.fields.description,
       image: r.fields.image,
-      path: r.fields.pagePaths[0],
+      path: r.fields.standAlonePath,
       id: r.id,
       ...r,
-    }
+    };
   });
 
   const resourcesExist = resourcesByType[resourceTypeConst].length > 0;

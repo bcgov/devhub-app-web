@@ -56,23 +56,21 @@ export const formatMeetUps = meetups => {
   return meetups.map(meetup => {
     return {
       ...meetup,
-        unfurl: meetup.siphon.unfurl,
-        resource: meetup.siphon.resource,
-        id: meetup.siphon.id,
-        venue: meetup.fields.location,
-        start: {
-          day: meetup.day,
-          month: meetup.month,
-          year: meetup.year,
-          daysFromNow: meetup.daysFromNow,
-        },
-      };
+      unfurl: meetup.siphon.unfurl,
+      resource: meetup.siphon.resource,
+      id: meetup.siphon.id,
+      venue: meetup.fields.location,
+      start: {
+        day: meetup.day,
+        month: meetup.month,
+        year: meetup.year,
+        daysFromNow: meetup.daysFromNow,
+      },
+    };
   });
 };
 
-export const EventsPage = ({
-  data: { allEventbriteEvents, allDevhubTopic, meetupGroup, allMeetupGroup },
-}) => {
+export const EventsPage = ({ data: { allEventbriteEvents, allDevhubTopic, allMeetupGroup } }) => {
   const events = flattenGatsbyGraphQL(allEventbriteEvents.edges);
   const meetUps = formatMeetUps(
     flattenGatsbyGraphQL(allMeetupGroup.edges).flatMap(meetups => {
@@ -118,11 +116,11 @@ export const EventsPage = ({
               {currentEventsMeetUpsAndCards.map(e => (
                 <Card
                   key={e.id}
-                  type={e.resource.type}
-                  title={e.unfurl.title}
-                  description={e.unfurl.description}
-                  image={e.unfurl.image}
-                  link={e.resource.path}
+                  type={e.fields.resourceType}
+                  title={e.fields.title}
+                  description={e.fields.description}
+                  image={e.fields.image}
+                  link={e.fields.standAlonePath}
                   event={e}
                 />
               ))}
@@ -139,11 +137,11 @@ export const EventsPage = ({
             {previousEventsAndMeetUps.map(e => (
               <Card
                 key={e.id}
-                type={e.resource.type}
-                title={e.unfurl.title}
-                description={e.unfurl.description}
-                image={e.unfurl.image}
-                link={e.resource.path}
+                type={e.fields.resourceType}
+                title={e.fields.title}
+                description={e.fields.description}
+                image={e.fields.image}
+                link={e.fields.standAlonePath}
                 event={e}
               />
             ))}
@@ -162,6 +160,14 @@ export const EventData = graphql`
     ) {
       edges {
         node {
+          fields {
+            resourceType
+            title
+            description
+            pagePaths
+            image
+            standAlonePath
+          }
           siphon {
             unfurl {
               title
@@ -216,6 +222,16 @@ export const EventData = graphql`
             venue {
               address_1
             }
+            fields {
+              location
+              description
+              link
+              resourceType
+              title
+              pagePaths
+              image
+              standAlonePath
+            }
           }
         }
       }
@@ -235,6 +251,9 @@ export const EventData = graphql`
               type
               path
             }
+            fields {
+              standAlonePath
+            }
             _metadata {
               position
             }
@@ -242,6 +261,14 @@ export const EventData = graphql`
               title
               description
               image
+            }
+            fields {
+              resourceType
+              standAlonePath
+              pagePaths
+              image
+              title
+              description
             }
           }
         }
