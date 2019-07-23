@@ -29,7 +29,10 @@ export const DESIGN_SYSTEM_SIPHON_NODE_1 = {
   fields: {
     personas: ['Designer'],
     resourceType: 'Components',
+<<<<<<< HEAD
     standAlonePath: '/Design-Node-1',
+=======
+>>>>>>> Doing a similar thing as i did to the home page search to the resourcetype page, removing other resource type results from our search results so the behaviour is correct
     pagePaths: ['/design-system/Z1bGIqu1'],
     image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
     title: 'About',
@@ -75,7 +78,10 @@ export const DESIGN_SYSTEM_SIPHON_NODE_2 = {
   fields: {
     personas: ['Developer', 'Designer'],
     resourceType: 'Components',
+<<<<<<< HEAD
     standAlonePath: '/Design-Node-2',
+=======
+>>>>>>> Doing a similar thing as i did to the home page search to the resourcetype page, removing other resource type results from our search results so the behaviour is correct
     pagePaths: ['/design-system/Z1bGIqu2'],
     image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
     title: 'About',
@@ -121,7 +127,10 @@ export const DESIGN_SYSTEM_SIPHON_NODE_3 = {
   fields: {
     personas: ['Designer'],
     resourceType: 'Components',
+<<<<<<< HEAD
     standAlonePath: '/Design-Node-3',
+=======
+>>>>>>> Doing a similar thing as i did to the home page search to the resourcetype page, removing other resource type results from our search results so the behaviour is correct
     pagePaths: ['/design-system/Z1bGIqu3'],
     image: 'https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true',
     title: 'About',
@@ -452,8 +461,11 @@ export const EVENT_1 = {
   },
   fields: {
     resourceType: 'Events',
+<<<<<<< HEAD
     standAlonePath:
       'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
+=======
+>>>>>>> Doing a similar thing as i did to the home page search to the resourcetype page, removing other resource type results from our search results so the behaviour is correct
     pagePaths: [
       'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
     ],
@@ -500,8 +512,11 @@ export const EVENT_2 = {
   },
   fields: {
     resourceType: 'Events',
+<<<<<<< HEAD
     standAlonePath:
       'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
+=======
+>>>>>>> Doing a similar thing as i did to the home page search to the resourcetype page, removing other resource type results from our search results so the behaviour is correct
     pagePaths: [
       'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
     ],
@@ -555,6 +570,9 @@ export const MEETUP_1 = {
         title: 'Product Spotlight: ZenHub',
       },
     },
+    fields: {
+      resourceType: 'Events',
+    },
     start: {
       day: '20',
       daysFromNow: '-2',
@@ -597,6 +615,9 @@ export const MEETUP_2 = {
         image: 'meetup',
         title: 'Product Spotlight: ZenHub',
       },
+    },
+    fields: {
+      resourceType: 'Events',
     },
     start: {
       day: '30',

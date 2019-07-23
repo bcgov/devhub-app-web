@@ -52,6 +52,28 @@ const getSearchTotal = (resources, resourcesNotFound) => {
   return 'No Results';
 };
 
+/**
+ *
+ * @param {array} results
+ * @param {string} resourceTypeConst
+ */
+const removeOtherResourceTypeResults = (results, resourceTypeConst, resources) => {
+  let filteredResources = resources
+    .filter(resource => resource.fields.resourceType === resourceTypeConst)
+    .map(resource => resource.id);
+  let finalResults = [];
+
+  results.forEach(result => {
+    let currID = result.id;
+    let resultInFilteredResources = filteredResources.includes(currID);
+    if (resultInFilteredResources) {
+      finalResults.push(result);
+    }
+  });
+
+  return finalResults;
+};
+
 // generic template page where all 'resource type' pages are generated from
 export const ResourceType = ({
   data: {
@@ -114,7 +136,9 @@ export const ResourceType = ({
     // diff out resources by id
     resources = intersectionBy(resources, results, 'id');
   }
-
+  if (results) {
+    results = removeOtherResourceTypeResults(results, resourceTypeConst, resources);
+  }
   const resourcesNotFound = !queryIsEmpty && (!results || (results.length === 0 && windowHasQuery));
   // map properties like availableResources and isFilterable to filtergroups based on the current set
   // of resources
@@ -139,7 +163,6 @@ export const ResourceType = ({
 
     resources = filterResources(resources, activeFilters);
   }
-
   const searchResultTotal = getSearchTotal(resources, resourcesNotFound);
   return (
     <Layout>

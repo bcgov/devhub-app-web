@@ -93,12 +93,8 @@ const getSearchResultTotal = resourcesByType => {
  */
 const removeUnwantedResults = (results, allEventsAndMeetups, currentEventsAndMeetups) => {
   let filteredResults = [];
-  let allIDs = allEventsAndMeetups.flatMap(event => {
-    return event.siphon.id;
-  });
-  let currentIDs = currentEventsAndMeetups.flatMap(event => {
-    return event.siphon.id;
-  });
+  let allIDs = allEventsAndMeetups.map(event => event.siphon.id);
+  let currentIDs = currentEventsAndMeetups.map(event => event.siphon.id);
   // if the result ID is an event and a current one or neither, add to new array
   results.map(result => {
     let currID = result.id;
