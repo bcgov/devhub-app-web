@@ -75,12 +75,40 @@ const getSearchResultTotal = resourcesByType => {
       total = total + resourcesByType[resourceType].props.resources.length;
     }
   });
-  if (total == 1) {
+  if (total === 1) {
     return `${total} Result Found`;
   } else if (total > 1) {
     return `${total} Results Found`;
   }
   return `No Results Found`;
+};
+
+/**
+ * Unwanted results are things like past events which are returned in our index but we do not want to show
+ * having these events in our results can mess up some of our logic later down the line (i.e for no results found)
+ * returns results, but without any past events etc
+ * @param {array} results
+ * @param {array} allEventsAndMeetups
+ * @param {array} currentEventsAndMeetups
+ */
+const removeUnwantedResults = (results, allEventsAndMeetups, currentEventsAndMeetups) => {
+  let filteredResults = [];
+  let allIDs = allEventsAndMeetups.flatMap(event => {
+    return event.siphon.id;
+  });
+  let currentIDs = currentEventsAndMeetups.flatMap(event => {
+    return event.siphon.id;
+  });
+  // if the result ID is an event and a current one or neither, add to new array
+  results.map(result => {
+    let currID = result.id;
+    let isInCurrentEvents = currentIDs.includes(currID);
+    let isInAllEvent = allIDs.includes(currID);
+    if ((isInCurrentEvents && isInAllEvent) || (!isInCurrentEvents && !isInAllEvent)) {
+      filteredResults.push(result);
+    }
+  });
+  return filteredResults;
 };
 
 /**
@@ -157,6 +185,9 @@ export const Index = ({
   );
   const currentMeetups = allMeetups.filter(e => e.start.daysFromNow <= 0);
   const eventsAndMeetups = currentEvents.concat(currentMeetups);
+  if (results) {
+    results = removeUnwantedResults(results, allEvents.concat(allMeetups), eventsAndMeetups);
+  }
 
   // this is defined by ?q='' or ?q=''&q=''..etc
   // if query is empty we prevent the search results empty from being rendered
