@@ -84,8 +84,8 @@ export const removeOtherResourceTypeResults = (results, resourceTypeConst, resou
  * @param {array} currentEventsAndMeetups all the current events and meetups on the site
  */
 export const removeUnwantedResults = (results, allEventsAndMeetups, currentEventsAndMeetups) => {
-  let allIDs = allEventsAndMeetups.map(event => event.siphon.id);
-  let currentIDs = currentEventsAndMeetups.map(event => event.siphon.id);
+  let allIDs = allEventsAndMeetups.map(event => event.id);
+  let currentIDs = currentEventsAndMeetups.map(event => event.id);
   return results.filter(
     result =>
       (currentIDs.includes(result.id) && allIDs.includes(result.id)) ||
