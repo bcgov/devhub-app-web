@@ -25,7 +25,9 @@ import {
 
 const TopicPage = ({ data, location }) => {
   const [menuToggled, setMenuToggled] = useState(false);
-
+  // navigate is not available at build timie, this page is a dynamic one so it willr esolve to navigate when a client
+  // accesses this page
+  const navigateFn = global.window ? navigate : () => null;
   const query = queryString.parse(location.search);
   const nodes = flattenGatsbyGraphQL(data.allGithubRaw.edges);
   const [topic, topicType, resource] = location.pathname.replace(/^\/|\/$/, '').split('/');
@@ -39,7 +41,7 @@ const TopicPage = ({ data, location }) => {
   let topicMetadata = {};
 
   if (!DYNAMIC_TOPIC_PATHS[topicType]) {
-    return navigate('404');
+    return navigateFn('404');
   }
 
   if (topicType === DYNAMIC_TOPIC_PATHS.popular) {
@@ -59,7 +61,7 @@ const TopicPage = ({ data, location }) => {
 
     if (shouldAutoNavigate && nodesForTopic[query.viewResource]) {
       const { viewResource, ...remainingParams } = query;
-      navigate(
+      navigateFn(
         `/topic/${topicType}/${
           nodesForTopic[query.viewResource].fields.slug
         }?${queryString.stringify(remainingParams)}`,
@@ -106,7 +108,7 @@ const TopicPage = ({ data, location }) => {
         );
       } else {
         // there is no node for the resource path, redirect to 404
-        navigate('404');
+        navigateFn('404');
       }
     }
   }
