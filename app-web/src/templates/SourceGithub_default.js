@@ -38,9 +38,6 @@ import {
   SidePanel,
   MarkdownBody,
 } from '../components/GithubTemplate/common';
-import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
-import { RESOURCE_TYPES } from '../constants/ui';
-import { TOPICS } from '../constants/topics';
 
 class SourceGithubMarkdownDefault extends React.Component {
   state = {
@@ -51,7 +48,7 @@ class SourceGithubMarkdownDefault extends React.Component {
 
   render() {
     const {
-      data: { githubRaw, nav, topic, communityEvents },
+      data: { githubRaw, nav, topic },
       location,
     } = this.props;
     // bind the devhub siphon data to the preview node
@@ -62,22 +59,6 @@ class SourceGithubMarkdownDefault extends React.Component {
       components: { 'component-preview': previewWithNode },
     }).Compiler;
     let navigationItems = nav.items;
-
-    if (topic.name === TOPICS.COMMUNITY_AND_EVENTS) {
-      const eventbriteNavItems = flattenGatsbyGraphQL(communityEvents.edges);
-      const currentEvents = eventbriteNavItems
-        .filter(e => e.start.daysFromNow <= 0)
-        .map(event => ({
-          unfurl: {
-            title: event.name.text,
-          },
-          resource: {
-            path: event.url,
-            type: RESOURCE_TYPES.EVENTS,
-          },
-        }));
-      navigationItems = navigationItems.concat(currentEvents);
-    }
 
     const navigation = <Navigation items={navigationItems} />;
 
@@ -151,26 +132,6 @@ export const devhubSiphonMarkdown = graphql`
     nav: devhubTopic(id: { eq: $topicId }) {
       items: connectsWith {
         ...DevhubNodeConnection
-      }
-    }
-    communityEvents: allEventbriteEvents(
-      sort: { fields: [start___local], order: ASC }
-      filter: { shareable: { eq: true } }
-    ) {
-      edges {
-        node {
-          id
-          name {
-            text
-          }
-          url
-          start {
-            day: local(formatString: "DD")
-            month: local(formatString: "MMM")
-            year: local(formatString: "YYYY")
-            daysFromNow: local(difference: "days")
-          }
-        }
       }
     }
   }

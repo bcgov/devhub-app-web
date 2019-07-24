@@ -16,7 +16,6 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import { graphql } from 'gatsby';
 import { groupBy } from 'lodash';
 import { RESOURCE_TYPES } from '../../../constants/ui';
 import NavGroup from './NavGroup';
@@ -84,18 +83,5 @@ const Navigation = ({ items }) => {
 
   return <div>{groups}</div>;
 };
-
-export const query = graphql`
-  fragment DevhubNodeConnection on ConnectedNode {
-    path
-    fields {
-      position
-      resourceType
-      title
-      description
-    }
-    id
-  }
-`;
 
 export default Navigation;

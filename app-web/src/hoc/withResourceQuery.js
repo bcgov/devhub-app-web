@@ -62,6 +62,9 @@ const withResourceQuery = WrappedComponent => () => props => (
                   }
                 }
               }
+              connectsWith {
+                ...DevhubNodeConnection
+              }
               childrenDevhubSiphon {
                 id
                 resource {

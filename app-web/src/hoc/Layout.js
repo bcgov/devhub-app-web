@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { Container } from 'reactstrap';
@@ -47,4 +48,16 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
+export const query = graphql`
+  fragment DevhubNodeConnection on ConnectedNode {
+    path
+    fields {
+      position
+      resourceType
+      title
+      description
+    }
+    id
+  }
+`;
 export default Layout;

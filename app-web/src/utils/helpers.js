@@ -145,7 +145,7 @@ export const mapPagePathToResourceTypeConst = pathname => {
  */
 export const getFirstNonExternalResource = resources => {
   for (let i = 0; i < resources.length; i++) {
-    const path = resources[i].resource.path;
+    const path = resources[i].path;
     if (!validUrl.isWebUri(path)) {
       return path;
     }

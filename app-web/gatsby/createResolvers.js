@@ -99,12 +99,13 @@ module.exports = ({ createResolvers }) => {
                 path: `/${source.fields.slug}/${n.fields.slug}`,
               }));
 
+            // event nodes are only connected if they occur in the future
             eventbriteNodes = eventbriteNodes
-              .filter(n => nodeBelongsToTopic(source.name, n))
+              .filter(n => nodeBelongsToTopic(source.name, n) && n.fields.daysFromNow >= 0)
               .map(n => ({ fields: { ...n.fields }, id: n.id, path: n.fields.pagePaths[0] }));
 
             meetupNodes = meetupNodes
-              .filter(n => nodeBelongsToTopic(source.name, n))
+              .filter(n => nodeBelongsToTopic(source.name, n) && n.fields.daysFromNow >= 0)
               .map(n => ({ fields: { ...n.fields }, id: n.id, path: n.fields.pagePaths[0] }));
 
             const connectsWith = webNodes
