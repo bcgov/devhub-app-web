@@ -39,6 +39,20 @@ export const Main = styled.main`
   }
 `;
 
+export const MarkdownBody = styled.div`
+  ${'' /* very important to have the min width attribute
+    for some reason prism js <code/pre> tags behave strangely and
+    grow to huge widths without this prop being set.
+*/}
+  min-width: 250px;
+  flex-grow: 1;
+  ${'' /* allows iframe to flex */}
+  iframe {
+    width: 100%;
+    min-width: 400px;
+  }
+`;
+
 export const SidePanel = styled.nav`
   flex-flow: column nowrap;
   flex: 0 0 250px;

@@ -240,6 +240,6 @@ export const sortDevhubTopicsAfterSelectedTopics = topics => {
  * @param {Number} maxNodes max number of nodes in the popular topic
  */
 export const buildPopularTopic = (nodes, minPageViews, maxNodes) => {
-  const sortedNodes = nodes.sort((a, b) => a.fields.pageViews - b.fields.pageViews);
-  return sortedNodes.filter(node => node.fields.pageViews > minPageViews).slice(0, maxNodes);
+  const sortedNodes = nodes.sort((a, b) => a.pageViews - b.pageViews);
+  return sortedNodes.filter(node => node.pageViews > minPageViews).slice(0, maxNodes);
 };

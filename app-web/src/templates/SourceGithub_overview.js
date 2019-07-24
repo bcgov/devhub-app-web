@@ -19,7 +19,6 @@
 //
 import React from 'react';
 import { graphql } from 'gatsby';
-import styles from './SourceMarkdown.module.css';
 import rehypeReact from 'rehype-react';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -30,7 +29,12 @@ import Masthead from '../components/GithubTemplate/Masthead/Masthead';
 import Navigation from '../components/GithubTemplate/Navigation/Navigation';
 import withNode from '../hoc/withNode';
 import Actions from '../components/GithubTemplate/Actions/Actions';
-import { Main, SideDrawerToggleButton, SidePanel } from '../components/GithubTemplate/common';
+import {
+  Main,
+  SideDrawerToggleButton,
+  SidePanel,
+  MarkdownBody,
+} from '../components/GithubTemplate/common';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { RESOURCE_TYPES } from '../constants/ui';
 import { TOPICS } from '../constants/topics';
@@ -89,7 +93,7 @@ class SourceGithubMarkdownOverview extends React.Component {
               <FontAwesomeIcon icon={faBars} style={{ color: '#026' }} />{' '}
               <span>{topic.name} Content</span>
             </SideDrawerToggleButton>
-            <div className={styles.MarkdownBody}>
+            <MarkdownBody>
               {/* 
               if there is a tag in the markdown <component-preview> 
               the renderAst will drop in the rehype component
@@ -103,7 +107,7 @@ class SourceGithubMarkdownOverview extends React.Component {
                 originalSource={originalSource}
                 devhubPath={href}
               />
-            </div>
+            </MarkdownBody>
           </Main>
         </div>
         <SideDrawer

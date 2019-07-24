@@ -45,7 +45,7 @@ objects:
         memory: 2Gi ## memory usage is high because jest test use a lot of memory when running
         ## we are hoping to move jest tests outside of the assemble script but until we do this will be quite a high request
       limits:
-        cpu: 1
+        cpu: 2
         memory: 4Gi
     source:
       git:

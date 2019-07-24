@@ -169,7 +169,7 @@ module.exports = {
     'gatsby-transformer-yaml',
     {
       resolve: `gatsby-plugin-create-client-paths`,
-      options: { prefixes: [`/topic/*`] }, // dynamic topic pages
+      options: { prefixes: ['/topic/*'] }, // dynamic topic pages
     },
     {
       resolve: 'gatsby-source-github-raw',
@@ -294,6 +294,6 @@ module.exports = {
           date: 'today',
         },
       },
-    }
+    },
   ].concat(dynamicPlugins.filter(plugin => plugin !== void 0)),
 };

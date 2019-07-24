@@ -19,10 +19,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './SidePanel.module.css';
 
-
-const SidePanel = ({ children }) => (
-  <div className={styles.SidePanel}>{children}</div>
-);
+const SidePanel = ({ children }) => <div className={styles.SidePanel}>{children}</div>;
 
 SidePanel.propTypes = {
   children: PropTypes.node,
