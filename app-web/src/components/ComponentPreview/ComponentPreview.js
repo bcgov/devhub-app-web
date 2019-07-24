@@ -36,11 +36,15 @@ export default class ComponentPreview extends React.Component {
 
   async componentDidMount() {
     //pull in the values to retrieve to preview content from GitHub from props, if provided
-    let { owner, repo, path, branch, node, auth } = this.props;
-    //allow for default values - relative to file that has embedded the component -  if values for props not provided
-    owner = owner || node.source._properties.owner;
-    repo = repo || node.source._properties.repo;
-    branch = branch || node.source._properties.branch || 'master';
+    let {
+      node: { html_url },
+      auth,
+      path,
+    } = this.props;
+
+    // html url comes in the format https://github.com/owner/repo/blob/branch/path
+    // eslint-disable-next-line
+    const [owner, repo, blob, branch] = html_url.replace('https://github.com/', '').split('/');
 
     const githubClient = Octokit({ auth });
 
