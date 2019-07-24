@@ -17,24 +17,20 @@ Created by Derek Siemens
 */
 /*
 import React from 'react';
-import ApolloClient from "apollo-boost";
-import { ApolloProvider } from "react-apollo";
+import { Query } from 'react-apollo';
 //run time query
 import gql from 'graphql-tag';
 
-//this needs to be an enviroment variable later on......
-const client = new ApolloClient({
-    uri: "https://rocketGate/Devhub.pathfinder.gov.bc.ca"
-  });
-
-
 const devHubQuery = gql`
 {}`;
-
-const SearchApollo = () => {
-<ApolloProvider clinet={client} >
-
-</ApolloProvider>
-
-
-};*/
+currently we can pass in query but remember to use gql as above since its runtime
+const SearchApollo = ({ query }) => (
+  <Query query={query}>
+    {({ loading, error, data }) => {
+      if (loading) return 'Loading...';
+      if (error) return `Error! ${error.message}`;
+      //do stuff with data here......
+      return data;
+    }}
+  </Query>
+);*/

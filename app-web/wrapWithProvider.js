@@ -20,9 +20,18 @@ import React from 'react';
 import { ThemeProvider } from 'emotion-theming';
 import { AuthProvider } from './src/AuthContext';
 import theme from './theme';
+import { ApolloClient } from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
+
+//this needs to be an enviroment variable later on......
+const client = new ApolloClient({
+  uri: 'https://rocketGate/Devhub.pathfinder.gov.bc.ca',
+});
 
 export default ({ element }) => (
   <ThemeProvider theme={theme}>
-    <AuthProvider>{element}</AuthProvider>
+    <ApolloProvider client={client}>
+      <AuthProvider>{element}</AuthProvider>
+    </ApolloProvider>
   </ThemeProvider>
 );
