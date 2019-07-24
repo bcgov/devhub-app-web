@@ -85,6 +85,7 @@ class SourceGithubMarkdownDefault extends React.Component {
     const { title } = githubRaw.fields;
     const originalSource = githubRaw.html_url;
     const { href } = location;
+
     return (
       <Layout>
         <div>

@@ -52,11 +52,8 @@ const TopicPage = ({ data, location }) => {
     );
 
     const navigation = nodesForTopic.map(n => ({
-      path: `/${topic}/${topicType}/${n.fields.slug}`,
-      position: n.fields.position,
-      resourceType: n.fields.resourceType,
-      name: n.fields.title,
-      id: n.id,
+      path: `/${topic}/${topicType}/${n.fields.slug}`, // navigation comopnent requires a path property
+      ...n,
     }));
 
     if (shouldAutoNavigate && nodesForTopic[query.viewResource]) {
@@ -87,6 +84,7 @@ const TopicPage = ({ data, location }) => {
           createElement: React.createElement,
           components: { 'component-preview': previewWithNode },
         }).Compiler;
+
         const [owner, repo] = node.html_url.replace('https://github.com/').split('/');
         resourceComponent = (
           <MarkdownBody>
@@ -142,6 +140,7 @@ export const dynamicNodeQuery = graphql`
       edges {
         node {
           id
+          html_url
           pageViews
           fields {
             resourceType
