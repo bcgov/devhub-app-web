@@ -25,8 +25,8 @@ import NavGroup from './NavGroup';
 const Navigation = ({ items }) => {
   const navItems = items.map(item => ({
     to: item.path,
-    text: item.name,
-    type: item.resourceType,
+    text: item.fields.title,
+    type: item.fields.resourceType,
   }));
   // group resources by type
   const groupedResources = groupBy(navItems, 'type');
@@ -88,9 +88,12 @@ const Navigation = ({ items }) => {
 export const query = graphql`
   fragment DevhubNodeConnection on ConnectedNode {
     path
-    position
-    resourceType
-    name
+    fields {
+      position
+      resourceType
+      title
+      description
+    }
     id
   }
 `;

@@ -365,8 +365,8 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
     }
   }
 
-  if(isMatomoPageStats(node)) {
+  if (isMatomoPageStats(node)) {
     const label = node.label.replace(/^\//, ''); // labels may start with a forward slash which needs to be removed
-    createNodeField({node, name: 'githubSlug', value: label});
+    createNodeField({ node, name: 'githubSlug', value: label });
   }
 };
