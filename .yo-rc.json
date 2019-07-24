@@ -104,6 +104,30 @@
           "github_repo": "devhub-app-web",
           "jenkinsFilePath": "matomo/Jenkinsfile",
           "uuid": "8c1bf2ae-7b11-4810-a571-8283f23684db"
+        },
+        "rocketgate": {
+          "name": "rocketgate",
+          "version": "1.0.0",
+          "path": "rocketgate",
+          "environments": {
+            "build": {
+              "namespace": "devhub-tools"
+            },
+            "dev": {
+              "namespace": "devhub-dev"
+            },
+            "test": {
+              "namespace": "devhub-test"
+            },
+            "prod": {
+              "namespace": "devhub-prod"
+            }
+          },
+          "jenkinsJobName": "rocketgate",
+          "github_owner": "bcgov",
+          "github_repo": "rocketgate",
+          "jenkinsFilePath": "rocketgate/Jenkinsfile",
+          "uuid": "bd3f1aa9-2715-40eb-a7a0-a02b86d72e77"
         }
       }
     }
