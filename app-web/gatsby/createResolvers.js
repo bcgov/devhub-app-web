@@ -22,6 +22,8 @@
 // https://www.gatsbyjs.org/docs/node-apis/
 
 const { uniqBy } = require('lodash');
+const { nodeBelongsToTopic } = require('./utils/validators');
+
 const getOrganizationsById = id => {
   const organizations = {
     '228490647317': {
@@ -36,8 +38,6 @@ const getOrganizationsById = id => {
   return organizations[id];
 };
 
-
-
 module.exports = ({ createResolvers }) => {
   // cache devhubtopic connectswith resolutions for speed purposes
   // resolvers seem to run at build time for every time there is a graphql query that calls for devhubTopic.connectsWith
@@ -45,50 +45,81 @@ module.exports = ({ createResolvers }) => {
   const _cache = {};
   const resolvers = {
     GithubRaw: {
-      pageViews: { // binding page views to github raw nodes based off of Matomo page stats so that a popular topic can be built
+      pageViews: {
+        // binding page views to github raw nodes based off of Matomo page stats so that a popular topic can be built
         type: 'Int',
         resolve: (source, args, context) => {
-          const nodes = context.nodeModel.getAllNodes({type: 'MatomoPageStats'});
+          const nodes = context.nodeModel.getAllNodes({ type: 'MatomoPageStats' });
           const node = nodes.find(n => n.fields.githubSlug === source.fields.slug);
-          if(node) {
+          if (node) {
             return node.nb_visits;
           } else {
             return 0;
           }
-        }
-      }
+        },
+      },
     },
     DevhubTopic: {
-      connectsWith: { // a list of nodes only really needs pointers to the page paths and a title for a link
+      connectsWith: {
+        // a list of nodes only really needs pointers to the page paths and a title for a link
         type: '[ConnectedNode]',
         resolve: (source, args, context) => {
-          // 
-          if(!_cache[source.id]) {
+          //
+          if (!_cache[source.id]) {
             // get all github raw nodes and siphon source type web nodes and return them ordered by fields.position
-            let webNodes = context.nodeModel.getAllNodes({
-              type: 'DevhubSiphon',
-            }).filter(n => {
-              return n.source.type === 'web' && n.fields.topics.includes(source.name)
-            }).map(n => ({id: n.id, position: n.fields.position, path: n.resource.path, name: n.fields.title, resourceType: n.fields.resourceType}))
+            let webNodes = context.nodeModel
+              .getAllNodes({
+                type: 'DevhubSiphon',
+              })
+              .filter(n => {
+                return n.source.type === 'web' && nodeBelongsToTopic(source.name, n);
+              })
+              .map(n => ({ fields: { ...n.fields }, id: n.id, path: n.resource.path }));
+
+            let ghNodes = context.nodeModel.getAllNodes({
+              type: 'GithubRaw',
+            });
+
+            let eventbriteNodes = context.nodeModel.getAllNodes({
+              type: 'EventbriteEvents',
+            });
+
+            let meetupNodes = context.nodeModel.getAllNodes({
+              type: 'MeetupEvent',
+            });
+
             // siphon nodes produce multiples of the same type which we need to filter out
             webNodes = uniqBy(webNodes, 'path');
 
-            let ghNodes = context.nodeModel.getAllNodes({
-              type: 'GithubRaw'
-            });
+            ghNodes = ghNodes
+              .filter(n => nodeBelongsToTopic(source.name, n))
+              .map(n => ({
+                fields: { ...n.fields },
+                id: n.id,
+                path: `/${source.fields.slug}/${n.fields.slug}`,
+              }));
 
-            ghNodes = ghNodes.filter(n => n.fields.topics.includes(source.name))
-              .map(n => ({id: n.id, position: n.fields.position.toString(), path: `/${source.fields.slug}/${n.fields.slug}`, name: n.fields.title, resourceType: n.fields.resourceType}))
-            
-              const connectsWith = webNodes.concat(ghNodes).sort((a, b) => {
-                return a.position.localeCompare(b.position)
-              });
-              _cache[source.id] = connectsWith
+            eventbriteNodes = eventbriteNodes
+              .filter(n => nodeBelongsToTopic(source.name, n))
+              .map(n => ({ fields: { ...n.fields }, id: n.id, path: n.pagePaths[0] }));
+
+            meetupNodes = meetupNodes
+              .filter(n => nodeBelongsToTopic(source.name, n))
+              .map(n => ({ fields: { ...n.fields }, id: n.id, path: n.pagePaths[0] }));
+
+            const connectsWith = webNodes
+              .concat(ghNodes)
+              .sort((a, b) => {
+                return a.fields.position.toString().localeCompare(b.fields.position);
+              })
+              .concat(eventbriteNodes)
+              .concat(meetupNodes);
+
+            _cache[source.id] = connectsWith;
           }
           return _cache[source.id];
-
-        }
-      }
+        },
+      },
     },
     EventbriteEvents: {
       organization: {

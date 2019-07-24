@@ -9,9 +9,17 @@ module.exports = ({ actions }) => {
   // resourceType = the resource type of the nodes
   const typeDefs = `
     type ConnectedNode {
+      fields: ConnectedNodeFieldSet
+      path: String
       id: String! 
+    }
+    type ConnectedNodeFieldSet {
       position: String
-      name: String
+      title: String
+      description: String
+      image: String
+      labels: [String]
+      tags: [String]
       path: String
       resourceType: String
     }
