@@ -101,11 +101,11 @@ module.exports = ({ createResolvers }) => {
 
             eventbriteNodes = eventbriteNodes
               .filter(n => nodeBelongsToTopic(source.name, n))
-              .map(n => ({ fields: { ...n.fields }, id: n.id, path: n.pagePaths[0] }));
+              .map(n => ({ fields: { ...n.fields }, id: n.id, path: n.fields.pagePaths[0] }));
 
             meetupNodes = meetupNodes
               .filter(n => nodeBelongsToTopic(source.name, n))
-              .map(n => ({ fields: { ...n.fields }, id: n.id, path: n.pagePaths[0] }));
+              .map(n => ({ fields: { ...n.fields }, id: n.id, path: n.fields.pagePaths[0] }));
 
             const connectsWith = webNodes
               .concat(ghNodes)
