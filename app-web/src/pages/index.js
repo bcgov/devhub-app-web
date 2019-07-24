@@ -27,7 +27,6 @@ import uniqBy from 'lodash/uniqBy';
 import { formatEvents, formatMeetUps } from '../templates/events';
 import { RESOURCE_TYPES } from '../constants/ui';
 import { getTextAndLink } from '../utils/helpers';
-import Popular from '../components/TopicEntryPage/Popular';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
