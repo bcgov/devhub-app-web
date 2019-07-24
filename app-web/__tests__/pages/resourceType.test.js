@@ -6,7 +6,7 @@ import queryString from 'query-string';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 import { ResourceType } from '../../src/templates/resourceType';
-import { SIPHON_NODES, TOPICS, GITHUB_RAW_NODES } from '../../__fixtures__/nodes';
+import { SIPHON_NODES, TOPICS, GITHUB_RAW_NODES, EVENTS } from '../../__fixtures__/nodes';
 import { SELECT_RESOURCES_GROUPED_BY_TYPE } from '../../__fixtures__/selector-fixtures';
 import { useSearch } from '../../src/utils/hooks';
 
@@ -15,6 +15,7 @@ import { SEARCH as SEARCH_MESSAGES } from '../../src/messages';
 import DEFAULT_FILTERS, { FILTER_QUERY_PARAM } from '../../src/constants/filterGroups';
 import { TEST_IDS as FILTER_TEST_IDS } from '../../src/components/Filters/FilterGroup/FilterGroup';
 import { RESOURCE_TYPES } from '../../src/constants/ui';
+import { removeOtherResourceTypeResults } from '../../src/utils/helpers';
 
 jest.mock('react-spinners', () => () => <div>loading</div>);
 
@@ -46,7 +47,7 @@ describe('Resource Type Template Page', () => {
         edges: topics,
       },
       allGithubRaw: {
-        edges: githubRaw
+        edges: githubRaw,
       },
       siteSearchIndex: {
         index: {},
@@ -67,7 +68,6 @@ describe('Resource Type Template Page', () => {
   });
 
   test('it matches snapshot, when there are no resources for the given reosource type the no resource component shows ', () => {
-
     queryString.parse.mockReturnValue({});
     const { container, rerender, queryByTestId } = render(
       <ThemeProvider theme={theme}>
@@ -82,7 +82,6 @@ describe('Resource Type Template Page', () => {
       node => node.fields.resourceType !== RESOURCE_TYPES.DOCUMENTATION,
     ).map(node => ({ node }));
 
-
     const newprops = {
       ...props,
       data: {
@@ -92,7 +91,7 @@ describe('Resource Type Template Page', () => {
         },
         allGithubRaw: {
           edges: [], // simulating zero github raw nodes
-        }
+        },
       },
     };
 
@@ -207,7 +206,9 @@ describe('Resource Type Template Page', () => {
       ...node,
       fields: {
         ...node.fields,
-        personas: node.attributes.personas.filter(p => p !== firstFilter.value).concat(secondFilter.value),
+        personas: node.attributes.personas
+          .filter(p => p !== firstFilter.value)
+          .concat(secondFilter.value),
       },
     }));
 
@@ -215,7 +216,9 @@ describe('Resource Type Template Page', () => {
       ...node,
       fields: {
         ...nodes.fields,
-        personas: node.fields.personas.filter(p => p !== firstFilter.value).concat(thirdFilter.value),
+        personas: node.fields.personas
+          .filter(p => p !== firstFilter.value)
+          .concat(thirdFilter.value),
       },
     }));
 
@@ -229,8 +232,8 @@ describe('Resource Type Template Page', () => {
               edges: siphonNodesNotFilterableByFirstFilter.map(node => ({ node })),
             },
             allGithubRaw: {
-              edges: githubRawNodesNotFilterableByFirstFilter.map(node => ({node}))
-            }
+              edges: githubRawNodesNotFilterableByFirstFilter.map(node => ({ node })),
+            },
           }}
         />
       </ThemeProvider>,
@@ -287,5 +290,17 @@ describe('Resource Type Template Page', () => {
     expect(FirstCheckBox[0]).toHaveAttribute('disabled');
     expect(SecondCheckbox[0]).toHaveAttribute('disabled');
     expect(ThirdCheckbox[0]).toHaveAttribute('disabled');
+  });
+
+  test('Search results from other resource types are removed from the results', () => {
+    //Initial results contain various different resource types
+    const initialResults = SIPHON_NODES.concat(EVENTS);
+    //since we say the given resource type for this page is Components, events should be filtered out of the results
+    const filteredResults = removeOtherResourceTypeResults(
+      initialResults,
+      'Components',
+      SIPHON_NODES.concat(EVENTS),
+    );
+    expect(initialResults.length).toBeGreaterThan(filteredResults.length);
   });
 });

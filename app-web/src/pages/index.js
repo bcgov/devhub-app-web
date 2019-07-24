@@ -26,7 +26,7 @@ import { SPACING } from '../constants/designTokens';
 import uniqBy from 'lodash/uniqBy';
 import { formatEvents, formatMeetUps } from '../templates/events';
 import { RESOURCE_TYPES } from '../constants/ui';
-import { getTextAndLink } from '../utils/helpers';
+import { getTextAndLink, removeUnwantedResults } from '../utils/helpers';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -81,30 +81,6 @@ const getSearchResultTotal = resourcesByType => {
     return `${total} Results Found`;
   }
   return `No Results Found`;
-};
-
-/**
- * Unwanted results are things like past events which are returned in our index but we do not want to show
- * having these events in our results can mess up some of our logic later down the line (i.e for no results found)
- * returns results, but without any past events etc
- * @param {array} results the search results returned from our index
- * @param {array} allEventsAndMeetups all the events and meetups on the site
- * @param {array} currentEventsAndMeetups all the current events and meetups on the site
- */
-const removeUnwantedResults = (results, allEventsAndMeetups, currentEventsAndMeetups) => {
-  let filteredResults = [];
-  let allIDs = allEventsAndMeetups.map(event => event.siphon.id);
-  let currentIDs = currentEventsAndMeetups.map(event => event.siphon.id);
-  // if the result ID is an event and a current one or neither, add to new array
-  results.map(result => {
-    let currID = result.id;
-    let isInCurrentEvents = currentIDs.includes(currID);
-    let isInAllEvent = allIDs.includes(currID);
-    if ((isInCurrentEvents && isInAllEvent) || (!isInCurrentEvents && !isInAllEvent)) {
-      filteredResults.push(result);
-    }
-  });
-  return filteredResults;
 };
 
 /**

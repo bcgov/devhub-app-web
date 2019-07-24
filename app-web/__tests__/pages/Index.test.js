@@ -14,7 +14,11 @@ import {
 import { useSearch } from '../../src/utils/hooks';
 import { TEST_IDS as TOPIC_TEST_IDS } from '../../src/components/Home/TopicsContainer';
 import { TEST_IDS as RESOURCE_PREVIEW_TEST_IDS } from '../../src/components/Home/ResourcePreview';
-import { getFirstNonExternalResource, getTextAndLink } from '../../src/utils/helpers';
+import {
+  getFirstNonExternalResource,
+  getTextAndLink,
+  removeUnwantedResults,
+} from '../../src/utils/helpers';
 import { GITHUB_RAW_NODES } from '../../__fixtures__/nodes';
 
 jest.mock('query-string');
@@ -45,7 +49,7 @@ describe('Home Page', () => {
   const topics = TOPICS.map(c => ({ node: c }));
   const events = EVENTS.map(c => ({ node: c }));
   const meetups = MEETUP_NODES.map(c => ({ node: c }));
-  const githubRaw = GITHUB_RAW_NODES.map(c => ({node: c}))
+  const githubRaw = GITHUB_RAW_NODES.map(c => ({ node: c }));
   const props = {
     data: {
       allDevhubSiphon: {
@@ -137,6 +141,7 @@ describe('Home Page', () => {
   test('when searching, topics disappear if there are results', () => {
     queryString.parse.mockReturnValue({ q: 'foo' });
     useSearch.mockReturnValue([{ id: SIPHON_NODES[0].id }]);
+    removeUnwantedResults.mockReturnValue([SIPHON_NODES[0]]);
     const { queryByTestId, queryAllByTestId } = render(
       <ThemeProvider theme={theme}>
         <Index {...props} />
@@ -158,5 +163,18 @@ describe('Home Page', () => {
     );
 
     expect(getByTestId(TOPIC_TEST_IDS.container)).toBeInTheDocument();
+  });
+
+  test('UnWanted results are correctly removed from search results', () => {
+    //Our results have siphons node and meetups
+    const initialResults = SIPHON_NODES.concat(MEETUP_NODES);
+    //in our call to removeUnwantedResults, we say that only events are current (not meetups)
+    //thus it should remove the meetups from the initial results
+    const filteredResults = removeUnwantedResults(
+      initialResults,
+      EVENTS.concat(MEETUP_NODES),
+      EVENTS,
+    );
+    expect(filteredResults.length).toBeLessThan(initialResults.length);
   });
 });

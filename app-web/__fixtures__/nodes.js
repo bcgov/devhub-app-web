@@ -450,6 +450,7 @@ export const EVENT_1 = {
     },
     id: '45046198392',
   },
+  id: '45046198392',
   fields: {
     resourceType: 'Events',
     standAlonePath:
@@ -498,6 +499,7 @@ export const EVENT_2 = {
     },
     id: '61112980570',
   },
+  id: '61112980570',
   fields: {
     resourceType: 'Events',
     standAlonePath:

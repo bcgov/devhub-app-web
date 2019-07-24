@@ -29,6 +29,7 @@ import {
   filterResources,
   setFilterPropsBasedOnResourceCounts,
   isFilterLonely,
+  removeOtherResourceTypeResults,
 } from '../utils/helpers';
 
 // create a selector instance from the selectResourcesGroupedByType
@@ -43,35 +44,13 @@ const resourcesSelector = selectResourcesGroupedByType();
 const getSearchTotal = (resources, resourcesNotFound) => {
   if (!resourcesNotFound) {
     const total = resources.length;
-    if (total == 1) {
+    if (total === 1) {
       return `${total} Result Found`;
     } else if (total > 1) {
       return `${total} Results Found`;
     }
   }
   return 'No Results';
-};
-
-/**
- * Removes results of the wrong resource type from the search results
- * @param {array} results the search results returned from our index
- * @param {string} resourceTypeConst the given resource type for this page
- * @param {array} resources all the resources on the site
- */
-const removeOtherResourceTypeResults = (results, resourceTypeConst, resources) => {
-  let filteredResources = resources
-    .filter(resource => resource.fields.resourceType === resourceTypeConst)
-    .map(resource => resource.id);
-  let finalResults = [];
-  //if the result is of the correct resourcetype, add to new array
-  results.forEach(result => {
-    let currID = result.id;
-    let resultInFilteredResources = filteredResources.includes(currID);
-    if (resultInFilteredResources) {
-      finalResults.push(result);
-    }
-  });
-  return finalResults;
 };
 
 // generic template page where all 'resource type' pages are generated from
