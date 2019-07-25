@@ -21,14 +21,6 @@ describe('Card Carousel', () => {
         description: 'bar',
       },
       path: '/foo',
-      // unfurl: {
-      //   title: 'foo',
-      //   description: 'description',
-      // },
-      // resource: {
-      //   path: '/foo',
-      //   type: RESOURCE_TYPES.DOCUMENTATION,
-      // },
     },
   ];
 
