@@ -112,6 +112,7 @@ const withResourceQuery = WrappedComponent => () => props => (
                 }
                 id
               }
+              id
               start {
                 day: local(formatString: "DD")
                 month: local(formatString: "MMM")
@@ -140,6 +141,7 @@ const withResourceQuery = WrappedComponent => () => props => (
                   }
                   id
                 }
+                id
                 day: local_date(formatString: "DD")
                 month: local_date(formatString: "MMM")
                 year: local_date(formatString: "YYYY")

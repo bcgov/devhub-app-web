@@ -26,7 +26,7 @@ import { SPACING } from '../constants/designTokens';
 import uniqBy from 'lodash/uniqBy';
 import { formatEvents, formatMeetUps } from '../templates/events';
 import { RESOURCE_TYPES } from '../constants/ui';
-import { getTextAndLink } from '../utils/helpers';
+import { getTextAndLink, removeUnwantedResults } from '../utils/helpers';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -75,7 +75,7 @@ const getSearchResultTotal = resourcesByType => {
       total = total + resourcesByType[resourceType].props.resources.length;
     }
   });
-  if (total == 1) {
+  if (total === 1) {
     return `${total} Result Found`;
   } else if (total > 1) {
     return `${total} Results Found`;
@@ -157,6 +157,9 @@ export const Index = ({
   );
   const currentMeetups = allMeetups.filter(e => e.start.daysFromNow <= 0);
   const eventsAndMeetups = currentEvents.concat(currentMeetups);
+  if (results) {
+    results = removeUnwantedResults(results, allEvents.concat(allMeetups), eventsAndMeetups);
+  }
 
   // this is defined by ?q='' or ?q=''&q=''..etc
   // if query is empty we prevent the search results empty from being rendered

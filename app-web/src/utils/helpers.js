@@ -63,6 +63,37 @@ export const getTextAndLink = (resourceType, resourcesByType) => {
 };
 
 /**
+ * Removes results of the wrong resource type from the search results
+ * @param {array} results the search results returned from our index
+ * @param {string} resourceTypeConst the given resource type for this page
+ * @param {array} resources all the resources on the site
+ */
+export const removeOtherResourceTypeResults = (results, resourceTypeConst, resources) => {
+  let filteredResources = resources
+    .filter(resource => resource.fields.resourceType === resourceTypeConst)
+    .map(resource => resource.id);
+  return results.filter(result => filteredResources.includes(result.id));
+};
+
+/**
+ * Unwanted results are things like past events which are returned in our index but we do not want to show
+ * having these events in our results can mess up some of our logic later down the line (i.e for no results found)
+ * returns results, but without any past events etc
+ * @param {array} results the search results returned from our index
+ * @param {array} allEventsAndMeetups all the events and meetups on the site
+ * @param {array} currentEventsAndMeetups all the current events and meetups on the site
+ */
+export const removeUnwantedResults = (results, allEventsAndMeetups, currentEventsAndMeetups) => {
+  let allIDs = allEventsAndMeetups.map(event => event.id);
+  let currentIDs = currentEventsAndMeetups.map(event => event.id);
+  return results.filter(
+    result =>
+      (currentIDs.includes(result.id) && allIDs.includes(result.id)) ||
+      (!currentIDs.includes(result.id) && !allIDs.includes(result.id)),
+  );
+};
+
+/**
  * returns a github username image url
  * @param {String} username
  * @param {Number} size

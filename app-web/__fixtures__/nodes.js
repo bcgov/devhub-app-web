@@ -450,6 +450,7 @@ export const EVENT_1 = {
     },
     id: '45046198392',
   },
+  id: '45046198392',
   fields: {
     resourceType: 'Events',
     standAlonePath:
@@ -498,6 +499,7 @@ export const EVENT_2 = {
     },
     id: '61112980570',
   },
+  id: '61112980570',
   fields: {
     resourceType: 'Events',
     standAlonePath:
@@ -555,6 +557,9 @@ export const MEETUP_1 = {
         title: 'Product Spotlight: ZenHub',
       },
     },
+    fields: {
+      resourceType: 'Events',
+    },
     start: {
       day: '20',
       daysFromNow: '-2',
@@ -597,6 +602,9 @@ export const MEETUP_2 = {
         image: 'meetup',
         title: 'Product Spotlight: ZenHub',
       },
+    },
+    fields: {
+      resourceType: 'Events',
     },
     start: {
       day: '30',

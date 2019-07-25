@@ -29,6 +29,7 @@ import {
   filterResources,
   setFilterPropsBasedOnResourceCounts,
   isFilterLonely,
+  removeOtherResourceTypeResults,
 } from '../utils/helpers';
 
 // create a selector instance from the selectResourcesGroupedByType
@@ -43,7 +44,7 @@ const resourcesSelector = selectResourcesGroupedByType();
 const getSearchTotal = (resources, resourcesNotFound) => {
   if (!resourcesNotFound) {
     const total = resources.length;
-    if (total == 1) {
+    if (total === 1) {
       return `${total} Result Found`;
     } else if (total > 1) {
       return `${total} Results Found`;
@@ -114,7 +115,9 @@ export const ResourceType = ({
     // diff out resources by id
     resources = intersectionBy(resources, results, 'id');
   }
-
+  if (results) {
+    results = removeOtherResourceTypeResults(results, resourceTypeConst, resources);
+  }
   const resourcesNotFound = !queryIsEmpty && (!results || (results.length === 0 && windowHasQuery));
   // map properties like availableResources and isFilterable to filtergroups based on the current set
   // of resources
@@ -139,7 +142,6 @@ export const ResourceType = ({
 
     resources = filterResources(resources, activeFilters);
   }
-
   const searchResultTotal = getSearchTotal(resources, resourcesNotFound);
   return (
     <Layout>
