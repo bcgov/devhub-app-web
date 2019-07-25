@@ -208,7 +208,7 @@ export const Index = ({
     <Layout showHamburger>
       <Masthead query={query} resultCount={totalSearchResults} />
       <Main>{content}</Main>
-      <SearchApollo />
+      <SearchApollo queryString={query} />
     </Layout>
   );
 };

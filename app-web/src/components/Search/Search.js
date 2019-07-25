@@ -22,8 +22,8 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 const devHubQuery = gql`
-  query DevHubQuery {
-    search(searchString: "shea") {
+  query DevHubQuery($queryString: String!) {
+    search(searchString: $queryString) {
       message
       author
       time
@@ -32,8 +32,8 @@ const devHubQuery = gql`
   }
 `;
 //currently we can pass in query but remember to use gql as above since its runtime
-export const SearchApollo = () => (
-  <Query query={devHubQuery}>
+export const SearchApollo = queryString => (
+  <Query query={devHubQuery} variables={queryString}>
     {({ loading, error, data }) => {
       if (loading) return 'Loading...';
       if (error) return `Error! ${error.message} blah`;
