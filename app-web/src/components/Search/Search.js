@@ -38,8 +38,13 @@ export const SearchApollo = () => (
       if (loading) return 'Loading...';
       if (error) return `Error! ${error.message} blah`;
       //do stuff with data here......
-      // console.log(data);
-      return 'BLAH';
+      return data.search.map(message => {
+        return (
+          <div key={message.time}>
+            <p>{message.message}</p>
+          </div>
+        );
+      });
     }}
   </Query>
 );
