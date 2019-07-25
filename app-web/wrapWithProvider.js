@@ -20,18 +20,27 @@ import React from 'react';
 import { ThemeProvider } from 'emotion-theming';
 import { AuthProvider } from './src/AuthContext';
 import theme from './theme';
-import { ApolloClient } from 'apollo-boost';
+import { ApolloClient, InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
+import { createHttpLink } from 'apollo-link-http';
 
+const cache = new InMemoryCache();
 //this needs to be an enviroment variable later on......
 const client = new ApolloClient({
-  uri: 'https://rocketGate/Devhub.pathfinder.gov.bc.ca',
+  link: createHttpLink({ uri: 'https://rocketgate-dev-devhub-dev.pathfinder.gov.bc.ca' }),
+  cache,
 });
 
 export default ({ element }) => (
+<<<<<<< HEAD
   <ThemeProvider theme={theme}>
     <ApolloProvider client={client}>
       <AuthProvider>{element}</AuthProvider>
     </ApolloProvider>
   </ThemeProvider>
+=======
+  <ApolloProvider client={client}>
+    <ThemeProvider theme={theme}>{element}</ThemeProvider>
+  </ApolloProvider>
+>>>>>>> Getting the client link working and testing query
 );

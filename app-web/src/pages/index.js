@@ -27,6 +27,7 @@ import uniqBy from 'lodash/uniqBy';
 import { formatEvents, formatMeetUps } from '../templates/events';
 import { RESOURCE_TYPES } from '../constants/ui';
 import { getTextAndLink, removeUnwantedResults } from '../utils/helpers';
+import { SearchApollo } from '../components/Search/Search';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -207,6 +208,7 @@ export const Index = ({
     <Layout showHamburger>
       <Masthead query={query} resultCount={totalSearchResults} />
       <Main>{content}</Main>
+      <SearchApollo />
     </Layout>
   );
 };

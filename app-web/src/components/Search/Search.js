@@ -15,22 +15,31 @@ limitations under the License.
 
 Created by Derek Siemens
 */
-/*
+
 import React from 'react';
 import { Query } from 'react-apollo';
 //run time query
 import gql from 'graphql-tag';
 
 const devHubQuery = gql`
-{}`;
-currently we can pass in query but remember to use gql as above since its runtime
-const SearchApollo = ({ query }) => (
-  <Query query={query}>
+  query DevHubQuery {
+    search(searchString: "shea") {
+      message
+      author
+      time
+      roomId
+    }
+  }
+`;
+//currently we can pass in query but remember to use gql as above since its runtime
+export const SearchApollo = () => (
+  <Query query={devHubQuery}>
     {({ loading, error, data }) => {
       if (loading) return 'Loading...';
-      if (error) return `Error! ${error.message}`;
+      if (error) return `Error! ${error.message} blah`;
       //do stuff with data here......
-      return data;
+      // console.log(data);
+      return 'BLAH';
     }}
   </Query>
-);*/
+);
