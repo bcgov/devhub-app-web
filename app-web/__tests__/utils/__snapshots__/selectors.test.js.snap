@@ -89,6 +89,74 @@ Array [
         },
       },
     ],
+    "connectsWith": Array [
+      Object {
+        "_xxboundProperties": Object {
+          "position": 1,
+          "topicResourceType": "Documentation",
+        },
+        "childMarkdownRemark": Object {
+          "id": "d72fa440-51f6-52c7-ab03-140907fd46db",
+        },
+        "fields": Object {
+          "author": "patricksimonian",
+          "description": "Everything you need to know about working with Github in the BC Government.",
+          "image": "../images/octokat.png",
+          "pagePaths": Array [
+            "/design-system/foo",
+          ],
+          "personas": Array [
+            "Designer",
+          ],
+          "position": 1,
+          "resourceType": "Documentation",
+          "slug": "Introduction-To-Github-and-Gov",
+          "standAlonePath": "/GitHub-Raw-1",
+          "title": "Introduction To Github and Gov",
+          "topics": Array [
+            Object {
+              "id": "topic-1",
+            },
+          ],
+        },
+        "id": "8257de0d-811b-58dd-9fae-661f13d5a11b",
+        "name": "README.md",
+        "path": "/Design-System/foo",
+      },
+      Object {
+        "_xxboundProperties": Object {
+          "position": 2,
+          "topicResourceType": "Documentation",
+        },
+        "childMarkdownRemark": Object {
+          "id": "d72fa440-51f6-52c7-ab03-140907fd46db",
+        },
+        "fields": Object {
+          "author": "patricksimonian",
+          "description": "Everything you need to know about working with Github in the BC Government.",
+          "image": "../images/octokat.png",
+          "pagePaths": Array [
+            "/design-system/bar",
+          ],
+          "personas": Array [
+            "Designer",
+          ],
+          "position": 1,
+          "resourceType": "Components",
+          "slug": "Introduction-To-Github-and-Gov",
+          "standAlonePath": "/GitHub-Raw-2",
+          "title": "Introduction To Github and Gov",
+          "topics": Array [
+            Object {
+              "id": "topic-2",
+            },
+          ],
+        },
+        "id": "8257de0d-811b-58dd-9fae-661f13d5a11b",
+        "name": "README.md",
+        "path": "/Design-System/bar",
+      },
+    ],
     "description": "baz",
     "fields": Object {
       "githubRaw": Array [
@@ -301,6 +369,74 @@ Array [
           "title": "About",
           "type": "markdown",
         },
+      },
+    ],
+    "connectsWith": Array [
+      Object {
+        "_xxboundProperties": Object {
+          "position": 1,
+          "topicResourceType": "Documentation",
+        },
+        "childMarkdownRemark": Object {
+          "id": "d72fa440-51f6-52c7-ab03-140907fd46db",
+        },
+        "fields": Object {
+          "author": "patricksimonian",
+          "description": "Everything you need to know about working with Github in the BC Government.",
+          "image": "../images/octokat.png",
+          "pagePaths": Array [
+            "/design-system/foo",
+          ],
+          "personas": Array [
+            "Designer",
+          ],
+          "position": 1,
+          "resourceType": "Documentation",
+          "slug": "Introduction-To-Github-and-Gov",
+          "standAlonePath": "/GitHub-Raw-1",
+          "title": "Introduction To Github and Gov",
+          "topics": Array [
+            Object {
+              "id": "topic-1",
+            },
+          ],
+        },
+        "id": "8257de0d-811b-58dd-9fae-661f13d5a11b",
+        "name": "README.md",
+        "path": "/Devhub/foo",
+      },
+      Object {
+        "_xxboundProperties": Object {
+          "position": 2,
+          "topicResourceType": "Documentation",
+        },
+        "childMarkdownRemark": Object {
+          "id": "d72fa440-51f6-52c7-ab03-140907fd46db",
+        },
+        "fields": Object {
+          "author": "patricksimonian",
+          "description": "Everything you need to know about working with Github in the BC Government.",
+          "image": "../images/octokat.png",
+          "pagePaths": Array [
+            "/design-system/bar",
+          ],
+          "personas": Array [
+            "Designer",
+          ],
+          "position": 1,
+          "resourceType": "Components",
+          "slug": "Introduction-To-Github-and-Gov",
+          "standAlonePath": "/GitHub-Raw-2",
+          "title": "Introduction To Github and Gov",
+          "topics": Array [
+            Object {
+              "id": "topic-2",
+            },
+          ],
+        },
+        "id": "8257de0d-811b-58dd-9fae-661f13d5a11b",
+        "name": "README.md",
+        "path": "/Devhub/bar",
       },
     ],
     "description": "baz",

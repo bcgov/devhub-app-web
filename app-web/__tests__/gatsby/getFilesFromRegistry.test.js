@@ -1,6 +1,5 @@
 import { getFilesFromRegistry, expandRegistry } from '../../gatsby/utils/githubRaw';
 
-
 const SOURCE_1 = {
   sourceType: 'github',
   sourceProperties: {
@@ -214,21 +213,21 @@ describe('getFilesFromRegistry', () => {
         topics: ['Registry Item 1'],
         topicPersonas: ['Developer'],
         topicResourceType: 'Documentation',
-        position: 1
+        position: 1,
       },
       {
         url: 'https://github.com/bar/foo/blob/baz/README.md',
         topics: ['Registry Item 2'],
         topicPersonas: ['Designer'],
         topicResourceType: 'Components',
-        position: 2
+        position: 2,
       },
       {
         url: 'https://github.com/bcgov/Agile-Delivery-Process/blob/master/MattDamon.md',
         topics: ['Registry Item 3'],
         topicPersonas: [],
         topicResourceType: 'Documentation',
-        position: 5
+        position: 5,
       },
     ];
     expect(getFilesFromRegistry(getNode)).toEqual(expected);

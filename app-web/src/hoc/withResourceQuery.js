@@ -17,7 +17,9 @@ Created by Patrick Simonian
  */
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
-import { sortDevhubTopicsAfterSelectedTopics } from '../utils/helpers';
+import { sortDevhubTopicsAfterSelectedTopics, buildPopularTopic } from '../utils/helpers';
+import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
+import { POPULAR_TOPIC_CONFIGURATION, DYNAMIC_TOPIC_PATHS } from '../constants/ui';
 
 const withResourceQuery = WrappedComponent => () => props => (
   <StaticQuery
@@ -214,9 +216,22 @@ const withResourceQuery = WrappedComponent => () => props => (
     `}
     render={data => {
       const sortedTopics = sortDevhubTopicsAfterSelectedTopics(data.allDevhubTopic.edges);
+      const { name, description, minPageViews, maxNodes } = POPULAR_TOPIC_CONFIGURATION;
+
+      const popularTopic = buildPopularTopic(
+        flattenGatsbyGraphQL(data.allGithubRaw.edges),
+        name,
+        description,
+        DYNAMIC_TOPIC_PATHS.popular,
+        minPageViews,
+        maxNodes,
+      );
 
       return (
-        <WrappedComponent data={{ ...data, allDevhubTopic: { edges: sortedTopics } }} {...props} />
+        <WrappedComponent
+          data={{ ...data, allDevhubTopic: { edges: [popularTopic].concat(sortedTopics) } }}
+          {...props}
+        />
       );
     }}
   />

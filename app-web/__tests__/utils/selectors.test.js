@@ -4,7 +4,7 @@ import {
   selectResourcesGroupedByType,
 } from '../../src/utils/selectors';
 import { RESOURCE_TYPES } from '../../src/constants/ui';
-import { SIPHON_NODES, TOPICS, GITHUB_RAW_NODES } from '../../__fixtures__/nodes';
+import { SIPHON_NODES, TOPICS } from '../../__fixtures__/nodes';
 
 const defaultGroupings = Object.keys(RESOURCE_TYPES).reduce((obj, type) => {
   obj[RESOURCE_TYPES[type]] = [];
@@ -22,7 +22,6 @@ describe('General Purpose Selectors', () => {
   it('selects topics with resources (grouped by type) appeneded as a property', () => {
     const selector = selectTopicsWithResourcesGroupedByType();
     const topicWithGroupedResources = selector(TOPICS);
-    
 
     expect(topicWithGroupedResources).toMatchSnapshot();
   });

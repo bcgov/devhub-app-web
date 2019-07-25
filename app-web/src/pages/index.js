@@ -182,6 +182,7 @@ export const Index = ({
   const resourcesNotFound = !queryIsEmpty && (!results || (results.length === 0 && windowHasQuery));
 
   const topics = flattenGatsbyGraphQL(allDevhubTopic.edges);
+
   if (queryIsEmpty) {
     content = <Aux>{getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}</Aux>;
   } else if (resourcesNotFound) {

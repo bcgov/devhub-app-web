@@ -16,14 +16,19 @@ describe('Card Carousel', () => {
     {
       id: 'foo',
       type: RESOURCE_TYPES.DOCUMENTATION,
-      unfurl: {
+      fields: {
         title: 'foo',
-        description: 'description',
+        description: 'bar',
       },
-      resource: {
-        path: '/foo',
-        type: RESOURCE_TYPES.DOCUMENTATION,
-      },
+      path: '/foo',
+      // unfurl: {
+      //   title: 'foo',
+      //   description: 'description',
+      // },
+      // resource: {
+      //   path: '/foo',
+      //   type: RESOURCE_TYPES.DOCUMENTATION,
+      // },
     },
   ];
 

@@ -35,12 +35,7 @@ const TopicContent = topics =>
     .map(topic => {
       // resources are grouped by type, 'ungroup' them so we can find the first available
       // non external link to use as the entry page for the topic card
-      const allResources = topic.childrenDevhubSiphon.sort((a, b) => {
-        // sort to ensure first resource in topic is the entry point
-        const position1 = a._metadata.position;
-        const position2 = b._metadata.position;
-        return position1.localeCompare(position2);
-      });
+      const allResources = topic.connectsWith;
 
       return (
         <TopicPreview
@@ -57,13 +52,14 @@ const TopicContent = topics =>
       );
     });
 
-export const TopicsContainer = ({ topics, link }) => (
+export const TopicsContainer = ({ topics, runTimeTopics, link }) => (
   <PreviewContainer data-testid={TEST_IDS.container}>
     <Title>
       <StyledLink to={link.to}>Topics</StyledLink>
     </Title>
 
     {TopicContent(topics)}
+
     <LinkContainer>
       <ChevronLink to={link.to}>{link.text}</ChevronLink>
     </LinkContainer>

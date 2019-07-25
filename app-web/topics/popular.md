@@ -5,5 +5,5 @@ id: Popular
 # Popular
 
 Take a look through the most viewed resources inside of the Devhub.
-
-[Get Started](./?viewResource=0)
+<!-- viewResource=0 is conventional for navigating to the 'first' page -->
+[Get Started](./popular?viewResource=0)
