@@ -15,6 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
+const moment = require('moment');
 const htmlToFormattedText = require('html-to-formatted-text');
 const { isArray, isString } = require('lodash');
 const visit = require('unist-util-visit');
@@ -35,6 +36,8 @@ const {
 const { flattenExpandedRegistry, expandRegistry } = require('./utils/githubRaw');
 const slugify = require('slugify');
 const validUrl = require('valid-url');
+// build time date
+const buildTimeDate = moment();
 /**
  * on create node for many source/transformer plugins there are a set of fields that are created
  * which are normalized. This allows a set of cards to be produced from different datastructures
@@ -146,6 +149,11 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
 
   if (isEventbriteEvents(node)) {
     createNodeField({ node, name: 'topics', value: ['Community and Events'] });
+    createNodeField({
+      node,
+      name: 'daysFromNow',
+      value: moment(node.start.local).diff(buildTimeDate, 'days'),
+    });
     createNodeField({ node, name: 'image', value: 'eventbrite' });
     createNodeField({
       node,
@@ -173,6 +181,11 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
   if (isMeetupEvent(node)) {
     // normalize meetup event data
     createNodeField({ node, name: 'image', value: 'meetup' });
+    createNodeField({
+      node,
+      name: 'daysFromNow',
+      value: moment(node.time).diff(buildTimeDate, 'days'),
+    });
     createNodeField({ node, name: 'topics', value: ['Community and Events'] });
     createNodeField({ node, name: 'title', value: node.name });
     createNodeField({
@@ -365,8 +378,8 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
     }
   }
 
-  if(isMatomoPageStats(node)) {
+  if (isMatomoPageStats(node)) {
     const label = node.label.replace(/^\//, ''); // labels may start with a forward slash which needs to be removed
-    createNodeField({node, name: 'githubSlug', value: label});
+    createNodeField({ node, name: 'githubSlug', value: label });
   }
 };

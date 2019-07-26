@@ -1,6 +1,5 @@
 import React from 'react';
-import { render, waitForElement, cleanup, fireEvent } from 'react-testing-library';
-import { wrapWithTheme } from '../helpers';
+import { render, cleanup, fireEvent } from 'react-testing-library';
 import { FilterGroup, TEST_IDS } from '../../src/components/Filters/FilterGroup/FilterGroup';
 import DEFAULT_FILTERS, { FILTER_QUERY_PARAM } from '../../src/constants/filterGroups';
 import { navigate } from 'gatsby';
@@ -78,9 +77,7 @@ describe('FilterGroup Component', () => {
     fireEvent.click(SecondCheckbox);
     // should expect both filters to exist as filter params in the url
     expect(navigate).toHaveBeenCalledWith(
-      `${
-        props.location.pathname
-      }?${FILTER_QUERY_PARAM}=${firstFilterKey}&${FILTER_QUERY_PARAM}=${secondFilterKey}`,
+      `${props.location.pathname}?${FILTER_QUERY_PARAM}=${firstFilterKey}&${FILTER_QUERY_PARAM}=${secondFilterKey}`,
     );
   });
 });

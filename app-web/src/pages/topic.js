@@ -45,40 +45,35 @@ const TopicPage = ({ data, location }) => {
   }
 
   if (topicType === DYNAMIC_TOPIC_PATHS.popular) {
-    const nodesForTopic = buildPopularTopic(
+    const popularTopic = buildPopularTopic(
       nodes,
+      POPULAR_TOPIC_CONFIGURATION.name,
+      POPULAR_TOPIC_CONFIGURATION.description,
+      DYNAMIC_TOPIC_PATHS.popular,
       POPULAR_TOPIC_CONFIGURATION.minPageViews,
       POPULAR_TOPIC_CONFIGURATION.maxNodes,
     );
 
-    const navigation = nodesForTopic.map(n => ({
-      path: `/${topic}/${topicType}/${n.fields.slug}`,
-      position: n.fields.position,
-      resourceType: n.fields.resourceType,
-      name: n.fields.title,
-      id: n.id,
-    }));
-
-    if (shouldAutoNavigate && nodesForTopic[query.viewResource]) {
+    if (shouldAutoNavigate && popularTopic.node.connectsWith[query.viewResource]) {
       const { viewResource, ...remainingParams } = query;
       navigateFn(
         `/topic/${topicType}/${
-          nodesForTopic[query.viewResource].fields.slug
+          popularTopic.node.connectsWith[query.viewResource].fields.slug
         }?${queryString.stringify(remainingParams)}`,
       );
     }
 
-    navigationComponent = <Navigation items={navigation} />;
+    navigationComponent = <Navigation items={popularTopic.node.connectsWith} />;
 
     topicMetadata = {
-      name: POPULAR_TOPIC_CONFIGURATION.name,
-      description: POPULAR_TOPIC_CONFIGURATION.description,
+      name: popularTopic.node.name,
+      description: popularTopic.node.description,
     };
     // if there is not resource path, then use the popular markdown file as the 'entry page'
     if (!resource) {
       resourceComponent = <Popular />;
     } else {
-      const node = nodesForTopic.find(n => n.fields.slug === resource);
+      const node = popularTopic.node.connectsWith.find(n => n.fields.slug === resource);
 
       if (node) {
         // bind the github raw data to the preview node
@@ -87,6 +82,7 @@ const TopicPage = ({ data, location }) => {
           createElement: React.createElement,
           components: { 'component-preview': previewWithNode },
         }).Compiler;
+
         const [owner, repo] = node.html_url.replace('https://github.com/').split('/');
         resourceComponent = (
           <MarkdownBody>
@@ -142,6 +138,7 @@ export const dynamicNodeQuery = graphql`
       edges {
         node {
           id
+          html_url
           pageViews
           fields {
             resourceType

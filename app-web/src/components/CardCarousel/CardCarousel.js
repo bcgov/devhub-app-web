@@ -63,11 +63,11 @@ const CardCarousel = ({ resources }) => {
         width: 235px;
         margin: 10px;
       `}
-      type={r.resource.type}
-      title={r.unfurl.title}
-      description={r.unfurl.description}
-      image={r.unfurl.image}
-      link={r.resource.path}
+      type={r.fields.resourceType}
+      title={r.fields.title}
+      description={r.fields.description}
+      image={r.fields.image}
+      link={r.path}
       event={r}
     />
   ));

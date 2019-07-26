@@ -16,7 +16,6 @@ limitations under the License.
 Created by Patrick Simonian
 */
 const { isRegistryJson } = require('./validators');
-const flatten = require('lodash/flatten');
 const isArray = require('lodash/isArray');
 
 /**
@@ -39,7 +38,7 @@ const expandRegistry = registry =>
           // github sources have the convenient interface for registering multiple files in the registry config
           // they are now expanded to be individual 'source' configs so that they may be indentifiable
           if (isArray(currentSource.sourceProperties.files)) {
-            const {repo, owner} = currentSource.sourceProperties;
+            const { repo, owner } = currentSource.sourceProperties;
             const flattenedSources = currentSource.sourceProperties.files.map(file => {
               return {
                 sourceType: 'github',
@@ -47,9 +46,9 @@ const expandRegistry = registry =>
                   repo,
                   owner,
                   file,
-                }
-              }
-            })
+                },
+              };
+            });
             sources = sources.concat(flattenedSources);
           } else {
             sources = sources.concat(currentSource);
@@ -67,19 +66,20 @@ const expandRegistry = registry =>
 
 /**
  * split apart sources from their topics so that we have a flat list of sources
- * @param {Array} expandedRegistry 
+ * @param {Array} expandedRegistry
  * @returns {Array} the flattened sources
  */
-const flattenExpandedRegistry = (expandedRegistry) => expandedRegistry.reduce((sources, registryItem) => {
-  const personas = registryItem.attributes && registryItem.attributes.personas;
-  const flattenedSources = registryItem.sourceProperties.sources.map(s => ({
-    source: s,
-    topic: registryItem.name,
-    topicResourceType: registryItem.resourceType,
-    topicPersonas: personas || [],
-  }))
-  return sources.concat(flattenedSources);
-}, []);
+const flattenExpandedRegistry = expandedRegistry =>
+  expandedRegistry.reduce((sources, registryItem) => {
+    const personas = registryItem.attributes && registryItem.attributes.personas;
+    const flattenedSources = registryItem.sourceProperties.sources.map(s => ({
+      source: s,
+      topic: registryItem.name,
+      topicResourceType: registryItem.resourceType,
+      topicPersonas: personas || [],
+    }));
+    return sources.concat(flattenedSources);
+  }, []);
 
 const getFilesFromRegistry = getNodes => {
   const nodes = getNodes();
@@ -91,7 +91,7 @@ const getFilesFromRegistry = getNodes => {
   // [{sourceProperties: { files: [A, B]}}] => [{sourceProperties: { file: A}}, {sourceProperties: { file: B}}]
   const expandedRegistry = expandRegistry(registry);
 
-  // 
+  //
   const sources = expandedRegistry.reduce((sources, registryItem) => {
     const personas = registryItem.attributes && registryItem.attributes.personas;
     const flattenedSources = registryItem.sourceProperties.sources.map(s => ({
@@ -99,42 +99,49 @@ const getFilesFromRegistry = getNodes => {
       topic: registryItem.name,
       topicResourceType: registryItem.resourceType,
       topicPersonas: personas || [],
-    }))
+    }));
     return sources.concat(flattenedSources);
   }, []);
 
-
   // add position metadata to github urls and set non github source types to null
   // so that they are filterable
-  const resolvedGitSources = sources.map((s, ind) => {
-    const {source, topic, topicResourceType, topicPersonas} = s;
+  const resolvedGitSources = sources
+    .map((s, ind) => {
+      const { source, topic, topicResourceType, topicPersonas } = s;
 
-    if(source.sourceType === 'github') {
-      const {
-        sourceProperties: { repo, owner, branch, file },
-      } = source;
-        
-      const fileBranch = branch ? branch : 'master';
-      return {
-        url: `https://github.com/${owner}/${repo}/blob/${fileBranch}/${file}`,
-        position: ind,
-        topic, topicResourceType, topicPersonas,
+      if (source.sourceType === 'github') {
+        const {
+          sourceProperties: { repo, owner, branch, file },
+        } = source;
+
+        const fileBranch = branch ? branch : 'master';
+        return {
+          url: `https://github.com/${owner}/${repo}/blob/${fileBranch}/${file}`,
+          position: ind,
+          topic,
+          topicResourceType,
+          topicPersonas,
+        };
+      } else {
+        // web source types are ignored
+        return null;
       }
-    } else {
-      // web source types are ignored
-      return null;
-    }
-  }).filter(s => s !== null);   // filter out web types 
+    })
+    .filter(s => s !== null); // filter out web types
 
   // map out urls to their respective topics since this is 1 to many relationship
   // ends up with structure that is similar to this => {url1: {topics: [topicA, topicB], ...other props}}
-  resolvedGitSources.forEach(({url, topic, topicResourceType, topicPersonas, position}) => {
-
-      if (Object.prototype.hasOwnProperty.call(sourceToTopicMap, url)) {
-        sourceToTopicMap[url].topics.push(topic);
-      } else {
-        sourceToTopicMap[url] = { topics: [topic], topicResourceType, topicPersonas, position: position };
-      }
+  resolvedGitSources.forEach(({ url, topic, topicResourceType, topicPersonas, position }) => {
+    if (Object.prototype.hasOwnProperty.call(sourceToTopicMap, url)) {
+      sourceToTopicMap[url].topics.push(topic);
+    } else {
+      sourceToTopicMap[url] = {
+        topics: [topic],
+        topicResourceType,
+        topicPersonas,
+        position: position,
+      };
+    }
   });
   // convert sourceToTopicMap to an array in the expected structure for the github raw plugin
   return Object.keys(sourceToTopicMap).map(url => ({
@@ -145,7 +152,7 @@ const getFilesFromRegistry = getNodes => {
     // providing reasonable defaults for resource type/personas if they dont exist inside the github raw nodes
     // markdown frontmatter
     topicPersonas: sourceToTopicMap[url].topicPersonas,
-    position: sourceToTopicMap[url].position
+    position: sourceToTopicMap[url].position,
   }));
 };
 

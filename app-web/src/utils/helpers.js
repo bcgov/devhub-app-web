@@ -145,7 +145,7 @@ export const mapPagePathToResourceTypeConst = pathname => {
  */
 export const getFirstNonExternalResource = resources => {
   for (let i = 0; i < resources.length; i++) {
-    const path = resources[i].resource.path;
+    const path = resources[i].path;
     if (!validUrl.isWebUri(path)) {
       return path;
     }
@@ -265,12 +265,27 @@ export const sortDevhubTopicsAfterSelectedTopics = topics => {
 /**
  * returns a set of nodes that should be apart of the popular topic
  * @param {Array} nodes a list of gatsby nodes to build a popular topic from
+ * @param {String} name
+ * @param {String} description
+ * @param {String} slug
  * @param {Object} nodes.fields gatsby fields object
  * @param {Number} nodes.fields.pageViews  number of page views
  * @param {Number} minPageViews the threshold of how many page views before something can be considered popular
  * @param {Number} maxNodes max number of nodes in the popular topic
  */
-export const buildPopularTopic = (nodes, minPageViews, maxNodes) => {
+export const buildPopularTopic = (nodes, name, description, slug, minPageViews, maxNodes) => {
   const sortedNodes = nodes.sort((a, b) => a.pageViews - b.pageViews);
-  return sortedNodes.filter(node => node.pageViews > minPageViews).slice(0, maxNodes);
+
+  const popularNodes = sortedNodes.filter(node => node.pageViews > minPageViews).slice(0, maxNodes);
+  // popular nodes need to have a path property assigned based on the dynamic page path '/topic
+  return {
+    node: {
+      name,
+      description,
+      fields: {
+        githubRaw: popularNodes,
+      },
+      connectsWith: popularNodes.map(n => ({ ...n, path: `/topic/${slug}/${n.fields.slug}` })),
+    },
+  };
 };

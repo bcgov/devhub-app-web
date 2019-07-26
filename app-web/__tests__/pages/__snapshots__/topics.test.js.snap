@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Topics Container it matches snapshot 1`] = `
-.emotion-212 {
+.emotion-153 {
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -94,7 +94,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   color: #fcba19;
 }
 
-.emotion-192 {
+.emotion-133 {
   margin-top: 65px;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -103,12 +103,12 @@ exports[`Topics Container it matches snapshot 1`] = `
 }
 
 @media screen and (min-width:932px) {
-  .emotion-192 {
+  .emotion-133 {
     margin-top: 112px;
   }
 }
 
-.emotion-190 {
+.emotion-131 {
   font-size: 15px;
   max-width: 1300px;
   margin: 0;
@@ -116,7 +116,7 @@ exports[`Topics Container it matches snapshot 1`] = `
 }
 
 @media screen and (min-width:932px) {
-  .emotion-190 {
+  .emotion-131 {
     padding: 10px 65px;
   }
 }
@@ -146,7 +146,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   min-height: 15px;
 }
 
-.emotion-112 {
+.emotion-72 {
   padding: 0 15px;
   padding-top: 10px;
   padding-bottom: 20px;
@@ -260,7 +260,7 @@ exports[`Topics Container it matches snapshot 1`] = `
 }
 
 .emotion-30 {
-  background-color: #4299D2;
+  background-color: #246BD1;
   -webkit-flex: 0 0 10px;
   -ms-flex: 0 0 10px;
   flex: 0 0 10px;
@@ -284,7 +284,7 @@ exports[`Topics Container it matches snapshot 1`] = `
 }
 
 .emotion-32 {
-  color: #4299D2;
+  color: #246BD1;
 }
 
 .emotion-36 {
@@ -324,26 +324,23 @@ exports[`Topics Container it matches snapshot 1`] = `
   display: flex;
 }
 
-.emotion-106 {
-  display: none;
+.emotion-49 {
+  background-color: #4299D2;
+  -webkit-flex: 0 0 10px;
+  -ms-flex: 0 0 10px;
+  flex: 0 0 10px;
 }
 
-@media (min-width:576px) {
-  .emotion-106 {
-    color: #003366;
-    font-size: 50px;
-    padding: 0 5px;
-    cursor: pointer;
-    display: block;
-  }
+.emotion-51 {
+  color: #4299D2;
 }
 
-.emotion-110 {
+.emotion-70 {
   text-align: right;
   font-size: 1.15em;
 }
 
-.emotion-108 {
+.emotion-68 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #1A5A96;
@@ -353,18 +350,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   margin: 0 2px;
 }
 
-.emotion-127 {
-  background-color: #246BD1;
-  -webkit-flex: 0 0 10px;
-  -ms-flex: 0 0 10px;
-  flex: 0 0 10px;
-}
-
-.emotion-129 {
-  color: #246BD1;
-}
-
-.emotion-210 {
+.emotion-151 {
   background-color: #036;
   border-top: 2px solid #fcba19;
   padding: 9px 0 10px;
@@ -373,18 +359,18 @@ exports[`Topics Container it matches snapshot 1`] = `
 }
 
 @media screen and (min-width:600px) {
-  .emotion-210 {
+  .emotion-151 {
     padding: 0 65px 0 65px;
   }
 }
 
 @media print {
-  .emotion-210 {
+  .emotion-151 {
     display: none;
   }
 }
 
-.emotion-208 {
+.emotion-149 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -395,7 +381,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   align-items: center;
 }
 
-.emotion-208 > ul {
+.emotion-149 > ul {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -407,7 +393,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   margin: 10px 0;
 }
 
-.emotion-208 li {
+.emotion-149 li {
   padding: 0 9px;
   text-align: center;
   margin-bottom: 0;
@@ -421,7 +407,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   align-items: center;
 }
 
-.emotion-194 {
+.emotion-135 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #1A5A96;
@@ -431,7 +417,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   margin: 0 2px;
 }
 
-.emotion-206 {
+.emotion-147 {
   margin: 0;
   padding: 0;
   background: none;
@@ -442,17 +428,17 @@ exports[`Topics Container it matches snapshot 1`] = `
   font-size: 0.813em;
 }
 
-.emotion-206:focus {
+.emotion-147:focus {
   outline: none;
 }
 
-.emotion-206:hover {
+.emotion-147:hover {
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
 <div
-  class="emotion-212 emotion-213 container-fluid"
+  class="emotion-153 emotion-154 container-fluid"
 >
   <header
     class="PrimaryHeader"
@@ -576,10 +562,10 @@ exports[`Topics Container it matches snapshot 1`] = `
     </ul>
   </nav>
   <div
-    class="emotion-192 emotion-193"
+    class="emotion-133 emotion-134"
   >
     <main
-      class="emotion-190 emotion-191"
+      class="emotion-131 emotion-132"
     >
       <div
         class="emotion-15 emotion-16"
@@ -601,7 +587,7 @@ exports[`Topics Container it matches snapshot 1`] = `
           type="Topics"
         />
         <div
-          class="emotion-112 emotion-113"
+          class="emotion-72 emotion-73"
         >
           <div
             css="[object Object]"
@@ -665,14 +651,14 @@ exports[`Topics Container it matches snapshot 1`] = `
                 >
                   <a
                     class="emotion-46 emotion-47 emotion-12"
-                    href="/design-system/Z1bGIqu1"
+                    href="/Design-System/foo"
                   >
                     <article
                       class="emotion-44 emotion-45"
                     >
                       <div
                         class="emotion-30 emotion-31"
-                        type="Components"
+                        type="Documentation"
                       />
                       <div
                         class="emotion-42 emotion-312"
@@ -685,18 +671,18 @@ exports[`Topics Container it matches snapshot 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-32 emotion-20"
-                              data-icon="puzzle-piece"
+                              class="svg-inline--fa fa-file fa-w-12  emotion-32 emotion-20"
+                              data-icon="file"
                               data-prefix="fas"
                               data-testid="resource-type-icon"
                               focusable="false"
                               role="img"
-                              type="Components"
-                              viewBox="0 0 576 512"
+                              type="Documentation"
+                              viewBox="0 0 384 512"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M519.442 288.651c-41.519 0-59.5 31.593-82.058 31.593C377.409 320.244 432 144 432 144s-196.288 80-196.288-3.297c0-35.827 36.288-46.25 36.288-85.985C272 19.216 243.885 0 210.539 0c-34.654 0-66.366 18.891-66.366 56.346 0 41.364 31.711 59.277 31.711 81.75C175.885 207.719 0 166.758 0 166.758v333.237s178.635 41.047 178.635-28.662c0-22.473-40-40.107-40-81.471 0-37.456 29.25-56.346 63.577-56.346 33.673 0 61.788 19.216 61.788 54.717 0 39.735-36.288 50.158-36.288 85.985 0 60.803 129.675 25.73 181.23 25.73 0 0-34.725-120.101 25.827-120.101 35.962 0 46.423 36.152 86.308 36.152C556.712 416 576 387.99 576 354.443c0-34.199-18.962-65.792-56.558-65.792z"
+                                d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"
                                 fill="currentColor"
                               />
                             </svg>
@@ -704,7 +690,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                             <span
                               css="[object Object]"
                             >
-                              Component
+                              Documentation
                             </span>
                             <small>
                               <svg
@@ -728,12 +714,12 @@ exports[`Topics Container it matches snapshot 1`] = `
                         <h2
                           class="emotion-36 emotion-37"
                         >
-                          About
+                          Introduction To Github and Gov
                         </h2>
                         <p
                           class="emotion-38 emotion-39"
                         >
-                          What the Design System is and how it works.
+                          Everything you need to know about working with Github in the BC Government.
                         </p>
                         <div
                           class="emotion-40 emotion-41"
@@ -748,13 +734,13 @@ exports[`Topics Container it matches snapshot 1`] = `
                 >
                   <a
                     class="emotion-46 emotion-47 emotion-12"
-                    href="/design-system/Z1bGIqu2"
+                    href="/Design-System/bar"
                   >
                     <article
                       class="emotion-44 emotion-45"
                     >
                       <div
-                        class="emotion-30 emotion-31"
+                        class="emotion-49 emotion-31"
                         type="Components"
                       />
                       <div
@@ -768,7 +754,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-32 emotion-20"
+                              class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-51 emotion-20"
                               data-icon="puzzle-piece"
                               data-prefix="fas"
                               data-testid="resource-type-icon"
@@ -811,178 +797,12 @@ exports[`Topics Container it matches snapshot 1`] = `
                         <h2
                           class="emotion-36 emotion-37"
                         >
-                          About
+                          Introduction To Github and Gov
                         </h2>
                         <p
                           class="emotion-38 emotion-39"
                         >
-                          What the Design System is and how it works.
-                        </p>
-                        <div
-                          class="emotion-40 emotion-41"
-                        />
-                      </div>
-                    </article>
-                  </a>
-                </li>
-                <li
-                  class="BrainhubCarouselItem"
-                  style="padding-right: 0px; padding-left: 0px; width: 251px; max-width: 251px; min-width: 251px;"
-                >
-                  <a
-                    class="emotion-46 emotion-47 emotion-12"
-                    href="/design-system/Z1bGIqu3"
-                  >
-                    <article
-                      class="emotion-44 emotion-45"
-                    >
-                      <div
-                        class="emotion-30 emotion-31"
-                        type="Components"
-                      />
-                      <div
-                        class="emotion-42 emotion-312"
-                      >
-                        <div
-                          css="[object Object]"
-                        >
-                          <h3
-                            class="emotion-21 emotion-22"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-32 emotion-20"
-                              data-icon="puzzle-piece"
-                              data-prefix="fas"
-                              data-testid="resource-type-icon"
-                              focusable="false"
-                              role="img"
-                              type="Components"
-                              viewBox="0 0 576 512"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M519.442 288.651c-41.519 0-59.5 31.593-82.058 31.593C377.409 320.244 432 144 432 144s-196.288 80-196.288-3.297c0-35.827 36.288-46.25 36.288-85.985C272 19.216 243.885 0 210.539 0c-34.654 0-66.366 18.891-66.366 56.346 0 41.364 31.711 59.277 31.711 81.75C175.885 207.719 0 166.758 0 166.758v333.237s178.635 41.047 178.635-28.662c0-22.473-40-40.107-40-81.471 0-37.456 29.25-56.346 63.577-56.346 33.673 0 61.788 19.216 61.788 54.717 0 39.735-36.288 50.158-36.288 85.985 0 60.803 129.675 25.73 181.23 25.73 0 0-34.725-120.101 25.827-120.101 35.962 0 46.423 36.152 86.308 36.152C556.712 416 576 387.99 576 354.443c0-34.199-18.962-65.792-56.558-65.792z"
-                                fill="currentColor"
-                              />
-                            </svg>
-                             
-                            <span
-                              css="[object Object]"
-                            >
-                              Component
-                            </span>
-                            <small>
-                              <svg
-                                aria-hidden="true"
-                                class="svg-inline--fa fa-external-link-alt fa-w-18 "
-                                data-icon="external-link-alt"
-                                data-prefix="fas"
-                                focusable="false"
-                                role="img"
-                                viewBox="0 0 576 512"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </small>
-                          </h3>
-                        </div>
-                        <h2
-                          class="emotion-36 emotion-37"
-                        >
-                          About
-                        </h2>
-                        <p
-                          class="emotion-38 emotion-39"
-                        >
-                          What the Design System is and how it works.
-                        </p>
-                        <div
-                          class="emotion-40 emotion-41"
-                        />
-                      </div>
-                    </article>
-                  </a>
-                </li>
-                <li
-                  class="BrainhubCarouselItem"
-                  style="padding-right: 0px; padding-left: 0px; width: 251px; max-width: 251px; min-width: 251px;"
-                >
-                  <a
-                    class="emotion-46 emotion-47 emotion-12"
-                    href="/design-system/Z1bGIqu4"
-                  >
-                    <article
-                      class="emotion-44 emotion-45"
-                    >
-                      <div
-                        class="emotion-30 emotion-31"
-                        type="Components"
-                      />
-                      <div
-                        class="emotion-42 emotion-312"
-                      >
-                        <div
-                          css="[object Object]"
-                        >
-                          <h3
-                            class="emotion-21 emotion-22"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-32 emotion-20"
-                              data-icon="puzzle-piece"
-                              data-prefix="fas"
-                              data-testid="resource-type-icon"
-                              focusable="false"
-                              role="img"
-                              type="Components"
-                              viewBox="0 0 576 512"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M519.442 288.651c-41.519 0-59.5 31.593-82.058 31.593C377.409 320.244 432 144 432 144s-196.288 80-196.288-3.297c0-35.827 36.288-46.25 36.288-85.985C272 19.216 243.885 0 210.539 0c-34.654 0-66.366 18.891-66.366 56.346 0 41.364 31.711 59.277 31.711 81.75C175.885 207.719 0 166.758 0 166.758v333.237s178.635 41.047 178.635-28.662c0-22.473-40-40.107-40-81.471 0-37.456 29.25-56.346 63.577-56.346 33.673 0 61.788 19.216 61.788 54.717 0 39.735-36.288 50.158-36.288 85.985 0 60.803 129.675 25.73 181.23 25.73 0 0-34.725-120.101 25.827-120.101 35.962 0 46.423 36.152 86.308 36.152C556.712 416 576 387.99 576 354.443c0-34.199-18.962-65.792-56.558-65.792z"
-                                fill="currentColor"
-                              />
-                            </svg>
-                             
-                            <span
-                              css="[object Object]"
-                            >
-                              Component
-                            </span>
-                            <small>
-                              <svg
-                                aria-hidden="true"
-                                class="svg-inline--fa fa-external-link-alt fa-w-18 "
-                                data-icon="external-link-alt"
-                                data-prefix="fas"
-                                focusable="false"
-                                role="img"
-                                viewBox="0 0 576 512"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </small>
-                          </h3>
-                        </div>
-                        <h2
-                          class="emotion-36 emotion-37"
-                        >
-                          About
-                        </h2>
-                        <p
-                          class="emotion-38 emotion-39"
-                        >
-                          What the Design System is and how it works.
+                          Everything you need to know about working with Github in the BC Government.
                         </p>
                         <div
                           class="emotion-40 emotion-41"
@@ -993,32 +813,12 @@ exports[`Topics Container it matches snapshot 1`] = `
                 </li>
               </ul>
             </div>
-            <div
-              class="BrainhubCarousel__customArrows BrainhubCarousel__custom-arrowRight"
-            >
-              <svg
-                aria-hidden="true"
-                class="svg-inline--fa fa-chevron-right fa-w-10  emotion-106 emotion-107"
-                data-icon="chevron-right"
-                data-prefix="fas"
-                data-testid="carousel-arrow-right"
-                focusable="false"
-                role="img"
-                viewBox="0 0 320 512"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
           </div>
           <div
-            class="emotion-110 emotion-111"
+            class="emotion-70 emotion-71"
           >
             <a
-              class="emotion-108 emotion-25"
+              class="emotion-68 emotion-25"
               href="foo"
             >
               View
@@ -1050,7 +850,7 @@ exports[`Topics Container it matches snapshot 1`] = `
           type="Topics"
         />
         <div
-          class="emotion-112 emotion-113"
+          class="emotion-72 emotion-73"
         >
           <div
             css="[object Object]"
@@ -1114,13 +914,13 @@ exports[`Topics Container it matches snapshot 1`] = `
                 >
                   <a
                     class="emotion-46 emotion-47 emotion-12"
-                    href="/design-system/Z1bGIqu5"
+                    href="/Devhub/foo"
                   >
                     <article
                       class="emotion-44 emotion-45"
                     >
                       <div
-                        class="emotion-127 emotion-31"
+                        class="emotion-30 emotion-31"
                         type="Documentation"
                       />
                       <div
@@ -1134,7 +934,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              class="svg-inline--fa fa-file fa-w-12  emotion-129 emotion-20"
+                              class="svg-inline--fa fa-file fa-w-12  emotion-32 emotion-20"
                               data-icon="file"
                               data-prefix="fas"
                               data-testid="resource-type-icon"
@@ -1177,12 +977,12 @@ exports[`Topics Container it matches snapshot 1`] = `
                         <h2
                           class="emotion-36 emotion-37"
                         >
-                          About
+                          Introduction To Github and Gov
                         </h2>
                         <p
                           class="emotion-38 emotion-39"
                         >
-                          What the Design System is and how it works.
+                          Everything you need to know about working with Github in the BC Government.
                         </p>
                         <div
                           class="emotion-40 emotion-41"
@@ -1197,14 +997,14 @@ exports[`Topics Container it matches snapshot 1`] = `
                 >
                   <a
                     class="emotion-46 emotion-47 emotion-12"
-                    href="/design-system/Z1bGIqu6"
+                    href="/Devhub/bar"
                   >
                     <article
                       class="emotion-44 emotion-45"
                     >
                       <div
-                        class="emotion-127 emotion-31"
-                        type="Documentation"
+                        class="emotion-49 emotion-31"
+                        type="Components"
                       />
                       <div
                         class="emotion-42 emotion-312"
@@ -1217,18 +1017,18 @@ exports[`Topics Container it matches snapshot 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              class="svg-inline--fa fa-file fa-w-12  emotion-129 emotion-20"
-                              data-icon="file"
+                              class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-51 emotion-20"
+                              data-icon="puzzle-piece"
                               data-prefix="fas"
                               data-testid="resource-type-icon"
                               focusable="false"
                               role="img"
-                              type="Documentation"
-                              viewBox="0 0 384 512"
+                              type="Components"
+                              viewBox="0 0 576 512"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"
+                                d="M519.442 288.651c-41.519 0-59.5 31.593-82.058 31.593C377.409 320.244 432 144 432 144s-196.288 80-196.288-3.297c0-35.827 36.288-46.25 36.288-85.985C272 19.216 243.885 0 210.539 0c-34.654 0-66.366 18.891-66.366 56.346 0 41.364 31.711 59.277 31.711 81.75C175.885 207.719 0 166.758 0 166.758v333.237s178.635 41.047 178.635-28.662c0-22.473-40-40.107-40-81.471 0-37.456 29.25-56.346 63.577-56.346 33.673 0 61.788 19.216 61.788 54.717 0 39.735-36.288 50.158-36.288 85.985 0 60.803 129.675 25.73 181.23 25.73 0 0-34.725-120.101 25.827-120.101 35.962 0 46.423 36.152 86.308 36.152C556.712 416 576 387.99 576 354.443c0-34.199-18.962-65.792-56.558-65.792z"
                                 fill="currentColor"
                               />
                             </svg>
@@ -1236,7 +1036,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                             <span
                               css="[object Object]"
                             >
-                              Documentation
+                              Component
                             </span>
                             <small>
                               <svg
@@ -1260,95 +1060,12 @@ exports[`Topics Container it matches snapshot 1`] = `
                         <h2
                           class="emotion-36 emotion-37"
                         >
-                          About
+                          Introduction To Github and Gov
                         </h2>
                         <p
                           class="emotion-38 emotion-39"
                         >
-                          What the Design System is and how it works.
-                        </p>
-                        <div
-                          class="emotion-40 emotion-41"
-                        />
-                      </div>
-                    </article>
-                  </a>
-                </li>
-                <li
-                  class="BrainhubCarouselItem"
-                  style="padding-right: 0px; padding-left: 0px; width: 251px; max-width: 251px; min-width: 251px;"
-                >
-                  <a
-                    class="emotion-46 emotion-47 emotion-12"
-                    href="/design-system/Z1bGIqu7"
-                  >
-                    <article
-                      class="emotion-44 emotion-45"
-                    >
-                      <div
-                        class="emotion-127 emotion-31"
-                        type="Documentation"
-                      />
-                      <div
-                        class="emotion-42 emotion-312"
-                      >
-                        <div
-                          css="[object Object]"
-                        >
-                          <h3
-                            class="emotion-21 emotion-22"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              class="svg-inline--fa fa-file fa-w-12  emotion-129 emotion-20"
-                              data-icon="file"
-                              data-prefix="fas"
-                              data-testid="resource-type-icon"
-                              focusable="false"
-                              role="img"
-                              type="Documentation"
-                              viewBox="0 0 384 512"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z"
-                                fill="currentColor"
-                              />
-                            </svg>
-                             
-                            <span
-                              css="[object Object]"
-                            >
-                              Documentation
-                            </span>
-                            <small>
-                              <svg
-                                aria-hidden="true"
-                                class="svg-inline--fa fa-external-link-alt fa-w-18 "
-                                data-icon="external-link-alt"
-                                data-prefix="fas"
-                                focusable="false"
-                                role="img"
-                                viewBox="0 0 576 512"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M576 24v127.984c0 21.461-25.96 31.98-40.971 16.971l-35.707-35.709-243.523 243.523c-9.373 9.373-24.568 9.373-33.941 0l-22.627-22.627c-9.373-9.373-9.373-24.569 0-33.941L442.756 76.676l-35.703-35.705C391.982 25.9 402.656 0 424.024 0H552c13.255 0 24 10.745 24 24zM407.029 270.794l-16 16A23.999 23.999 0 0 0 384 303.765V448H64V128h264a24.003 24.003 0 0 0 16.97-7.029l16-16C376.089 89.851 365.381 64 344 64H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V287.764c0-21.382-25.852-32.09-40.971-16.97z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </small>
-                          </h3>
-                        </div>
-                        <h2
-                          class="emotion-36 emotion-37"
-                        >
-                          About
-                        </h2>
-                        <p
-                          class="emotion-38 emotion-39"
-                        >
-                          What the Design System is and how it works.
+                          Everything you need to know about working with Github in the BC Government.
                         </p>
                         <div
                           class="emotion-40 emotion-41"
@@ -1361,10 +1078,10 @@ exports[`Topics Container it matches snapshot 1`] = `
             </div>
           </div>
           <div
-            class="emotion-110 emotion-111"
+            class="emotion-70 emotion-71"
           >
             <a
-              class="emotion-108 emotion-25"
+              class="emotion-68 emotion-25"
               href="foo"
             >
               View
@@ -1391,15 +1108,15 @@ exports[`Topics Container it matches snapshot 1`] = `
     </main>
   </div>
   <footer
-    class="emotion-210 emotion-211"
+    class="emotion-151 emotion-152"
   >
     <div
-      class="emotion-208 emotion-209"
+      class="emotion-149 emotion-150"
     >
       <ul>
         <li>
           <a
-            class="emotion-194 emotion-12"
+            class="emotion-135 emotion-12"
             css="[object Object]"
             href="/"
           >
@@ -1408,7 +1125,7 @@ exports[`Topics Container it matches snapshot 1`] = `
         </li>
         <li>
           <a
-            class="emotion-108 emotion-25"
+            class="emotion-68 emotion-25"
             href="https://www2.gov.bc.ca/gov/content/home/disclaimer"
           >
             disclaimer
@@ -1416,7 +1133,7 @@ exports[`Topics Container it matches snapshot 1`] = `
         </li>
         <li>
           <a
-            class="emotion-108 emotion-25"
+            class="emotion-68 emotion-25"
             href="https://www2.gov.bc.ca/gov/content/home/privacy"
           >
             privacy
@@ -1424,7 +1141,7 @@ exports[`Topics Container it matches snapshot 1`] = `
         </li>
         <li>
           <a
-            class="emotion-108 emotion-25"
+            class="emotion-68 emotion-25"
             href="https://www2.gov.bc.ca/gov/content/home/accessibility"
           >
             accessibility
@@ -1432,7 +1149,7 @@ exports[`Topics Container it matches snapshot 1`] = `
         </li>
         <li>
           <a
-            class="emotion-108 emotion-25"
+            class="emotion-68 emotion-25"
             href="https://www2.gov.bc.ca/gov/content/home/copyright"
           >
             copyright
@@ -1440,7 +1157,7 @@ exports[`Topics Container it matches snapshot 1`] = `
         </li>
         <li>
           <a
-            class="emotion-108 emotion-25"
+            class="emotion-68 emotion-25"
             href="https://github.com/bcgov/devhub-app-web/issues"
           >
             contact us
@@ -1448,7 +1165,7 @@ exports[`Topics Container it matches snapshot 1`] = `
         </li>
         <li>
           <button
-            class="emotion-206 emotion-207"
+            class="emotion-147 emotion-148"
           >
             Fair Use
           </button>

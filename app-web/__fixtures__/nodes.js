@@ -408,6 +408,10 @@ export const DESIGN_SYSTEM_TOPIC = {
   name: 'Design System',
   description: 'baz',
   resources: DESIGN_SYSTEM_SIPHON_NODES.map(n => ({ id: n.id })),
+  connectsWith: [
+    { ...GITHUB_RAW_1, path: '/Design-System/foo' },
+    { ...GITHUB_RAW_2, path: '/Design-System/bar' },
+  ],
   fields: {
     githubRaw: [GITHUB_RAW_1, GITHUB_RAW_2],
   },
@@ -425,6 +429,10 @@ export const DEVHUB_TOPIC = {
   name: 'Devhub',
   description: 'baz',
   resources: DEVHUB_SIPHON_NODES.map(n => ({ id: n.id })),
+  connectsWith: [
+    { ...GITHUB_RAW_1, path: '/Devhub/foo' },
+    { ...GITHUB_RAW_2, path: '/Devhub/bar' },
+  ],
   fields: {
     githubRaw: [GITHUB_RAW_1, GITHUB_RAW_2],
   },

@@ -61,6 +61,14 @@ const getClosestPersona = (personaList, personas) => {
   });
 };
 
+/**
+ * @param {String} topic the name of the topic
+ * @param {Object} node the node to check against
+ * @param {Object} node.fields
+ * @param {Array} node.fields.topics
+ */
+const nodeBelongsToTopic = (topic, node) => node.fields.topics.includes(topic);
+
 module.exports = {
   isGithubRaw,
   isMeetupEvent,
@@ -74,4 +82,5 @@ module.exports = {
   getClosest,
   getClosestPersona,
   getClosestResourceType,
+  nodeBelongsToTopic,
 };
