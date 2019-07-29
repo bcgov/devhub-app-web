@@ -70,11 +70,12 @@ const getUniqueResources = resources => {
 const getSearchResultTotal = resourcesByType => {
   let total = 0;
 
-  Object.keys(resourcesByType).map(resourceType => {
+  Object.keys(resourcesByType).forEach(resourceType => {
     if (resourcesByType[resourceType] !== null) {
       total = total + resourcesByType[resourceType].props.resources.length;
     }
   });
+
   if (total === 1) {
     return `${total} Result Found`;
   } else if (total > 1) {
