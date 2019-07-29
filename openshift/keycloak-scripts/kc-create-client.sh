@@ -36,7 +36,9 @@ KEYCLOAK_ACCESS_TOKEN=$(curl -sX POST -u "$KEYCLOAK_CLIENT_ID:$KEYCLOAK_CLIENT_S
 
 # check if client exists:
 CLIENT_ID=$(_curl -sX GET "$KEYCLOAK_URL/auth/admin/realms/$REALM_NAME/clients" -H "Accept: application/json" | $JQ -r --arg CLIENT "devhub-web-$PR_NUMBER" '.[] | select(.clientId==$CLIENT) | .id')
-
+echo "checking if client already exists..."
+echo $CLIENT_ID
+echo "^^^"
 # Create client:
 if [ "${CLIENT_ID}" == "" ]; then
     echo "Creating 'devhub-web-$PR_NUMBER' client..."
