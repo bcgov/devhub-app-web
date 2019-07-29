@@ -49,8 +49,8 @@ const ResourceIconDiv = styled.div`
  * Pill Component
  * @param {Object} props
  * @param {Object} props.label the text inside the pill
- * @param {Object} props.topic
- * @param {Object} props.resourceType
+ * @param {Object} props.topic if topic is true, then adds topic icon to the left of text
+ * @param {Object} props.resourceType if true, then adds resourceType icon to the left of text
  * @param {Object} props.icon *optional* a react compnent that will render to the left of the text
  * @param {Object} props.variant *defaults to filled* the render style [outlined, filled]
  * @param {Object} props.onDelete called if deletable is true, receives label as an arg
