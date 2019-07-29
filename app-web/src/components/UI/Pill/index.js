@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { faTimes, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faTimesCircle, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from '@emotion/styled';
+import ResourceTypeIcon from '../ResourceTypeIcon';
 
 const variants = {
   outlined: 'outlined',
@@ -40,16 +41,33 @@ const OutlinedContainer = styled(Container)`
 const PillIcon = styled(FontAwesomeIcon)`
   margin: ${props => (props.icon.iconName === 'times' ? '0 6.75px' : '0 4px')};
 `;
+
+const ResourceIconDiv = styled.div`
+  padding-left: 5px;
+`;
 /**
  * Pill Component
  * @param {Object} props
  * @param {Object} props.label the text inside the pill
+ * @param {Object} props.topic
+ * @param {Object} props.resourceType
  * @param {Object} props.icon *optional* a react compnent that will render to the left of the text
  * @param {Object} props.variant *defaults to filled* the render style [outlined, filled]
  * @param {Object} props.onDelete called if deletable is true, receives label as an arg
  * @param {Object} props.onClick click handler for entire pill if passed in
  */
-export const Pill = ({ label, icon, variant, onDelete, onClick, deletable, ...rest }) => {
+export const Pill = ({
+  label,
+  topic,
+  resourceType,
+  icon,
+  variant,
+  onDelete,
+  onClick,
+  deletable,
+  type,
+  ...rest
+}) => {
   const props = {};
 
   if (onClick) {
@@ -59,6 +77,12 @@ export const Pill = ({ label, icon, variant, onDelete, onClick, deletable, ...re
   if (variant === variants.filled) {
     return (
       <FilledContainer {...props} {...rest} data-variant={variant.filled}>
+        {resourceType && (
+          <ResourceIconDiv>
+            <ResourceTypeIcon type={resourceType} />
+          </ResourceIconDiv>
+        )}
+        {topic && <PillIcon icon={faLayerGroup} />}
         <span>{label}</span>
         {deletable && (
           <PillIcon aria-label="delete" icon={faTimesCircle} onClick={() => onDelete(label)} />
@@ -68,6 +92,12 @@ export const Pill = ({ label, icon, variant, onDelete, onClick, deletable, ...re
   } else if (variant === variants.outlined) {
     return (
       <OutlinedContainer {...props} {...rest} data-variant={variant.outlined}>
+        {resourceType && (
+          <ResourceIconDiv>
+            <ResourceTypeIcon type={resourceType} />
+          </ResourceIconDiv>
+        )}
+        {topic && <PillIcon icon={faLayerGroup} />}
         <span>{label}</span>
         {deletable && (
           <PillIcon aria-label="delete" icon={faTimes} onClick={() => onDelete(label)} />

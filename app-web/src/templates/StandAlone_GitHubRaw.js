@@ -20,30 +20,68 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../hoc/Layout';
 import { Main } from '../components/Page';
-import CardHeader from '../components/Cards/Card/CardHeader';
 import rehypeReact from 'rehype-react';
 import styled from '@emotion/styled';
+import Pill from '../components/UI/Pill';
+import { withPadding } from '../components/GithubTemplate/common';
 
-const PageDiv = styled.div`
-  padding-top: 20px;
-`;
 const ContentDiv = styled.div`
   padding-top: 10px;
 `;
+const PillDiv = styled.div`
+  padding: 5px 0px;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  :p {
+    margin: auto;
+  }
+`;
+
+const TopicPill = styled(Pill)`
+  margin-top: 0px;
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+const Header = styled.header`
+  background-color: #f1f1f1;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  ${withPadding}
+`;
 
 export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
-  const isExternal = false;
   const renderAst = new rehypeReact({
     createElement: React.createElement,
   }).Compiler;
 
+  let topics = githubRaw.fields.topics;
+  let topicPills = [];
+  if (topics) {
+    topicPills = topics.map(topic => {
+      return (
+        <a href={`/${topic.fields.slug}/${githubRaw.fields.slug}`} key={topic.id}>
+          <TopicPill topic={true} label={topic.name} variant="filled" deletable={false} />
+        </a>
+      );
+    });
+  }
+
   return (
     <Layout>
+      <Header>
+        <TopicPill
+          resourceType={githubRaw.fields.resourceType}
+          label={githubRaw.fields.resourceType}
+          variant="filled"
+          deletable={false}
+        />
+        <PillDiv>{topicPills}</PillDiv>
+      </Header>
       <Main>
-        <PageDiv>
-          <CardHeader type={githubRaw.fields.resourceType} linksToExternal={isExternal} />
-          <ContentDiv>{renderAst(githubRaw.childMarkdownRemark.htmlAst)}</ContentDiv>
-        </PageDiv>
+        <ContentDiv>{renderAst(githubRaw.childMarkdownRemark.htmlAst)}</ContentDiv>
       </Main>
     </Layout>
   );
@@ -53,7 +91,15 @@ export const devhubGitHubRawData = graphql`
   query devhubGitHubRawQuery($id: String!) {
     githubRaw(id: { eq: $id }) {
       fields {
+        slug
         resourceType
+        topics {
+          name
+          id
+          fields {
+            slug
+          }
+        }
       }
       childMarkdownRemark {
         htmlAst
