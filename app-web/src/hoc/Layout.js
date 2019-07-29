@@ -8,6 +8,7 @@ import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
 import PrimaryFooter from '../components/PrimaryFooter/PrimaryFooter';
 import Navbar from '../components/Navbar/Navbar';
 import Helmet from 'react-helmet';
+// import { useImplicitAuth } from '../utils/hooks';
 
 const StyledContainer = styled(Container)`
   min-height: 100vh;
@@ -26,7 +27,8 @@ const Wrapper = styled.div`
 
 export const Layout = ({ children }) => {
   const [menuToggled, setMenuToggled] = useState(false);
-
+  // const user = useImplicitAuth();
+  // console.log(user);
   return (
     <StyledContainer fluid>
       {/* This is to fix the some of the issues occuring on EI 11, specifically the nav issues*/}

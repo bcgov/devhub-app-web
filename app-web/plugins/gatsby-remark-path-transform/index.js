@@ -19,7 +19,7 @@ Created by Patrick Simonian
 const visit = require('unist-util-visit');
 const cheerio = require('cheerio');
 const validURL = require('valid-url');
-const { TypeCheck } = require('@bcgov/common-web-utils');
+const { isFunction } = require('lodash');
 const { IMAGE, LINK } = require('./utils/constants');
 
 /**
@@ -33,7 +33,7 @@ const transformRelativePaths = (
   { markdownAST, markdownNode, getNode, getNodes },
   { converter } = {},
 ) => {
-  if (!converter || !TypeCheck.isFunction(converter)) {
+  if (!converter || !isFunction(converter)) {
     throw new Error(
       "gatsby-remark-path-transform option: 'converter' must be passed in as a function!",
     );

@@ -16,7 +16,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 const url = require('url');
-const { TypeCheck } = require('@bcgov/common-web-utils');
+const { isString } = require('lodash');
 const { GRAPHQL_NODE_TYPE } = require('../../plugins/gatsby-source-github-all/utils/constants');
 const { URL } = url;
 const slugify = require('slugify');
@@ -51,7 +51,7 @@ const isRelativePath = path => /^..?\//.test(path);
  * @param {String} branch the branch defaults to master
  */
 const getGithubBasePath = (repo, owner, branch = 'master') => {
-  branch = TypeCheck.isString(branch) ? branch : 'master';
+  branch = isString(branch) ? branch : 'master';
   return `https://github.com/${owner}/${repo}/blob/${branch}/`;
 };
 

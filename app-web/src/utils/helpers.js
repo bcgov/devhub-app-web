@@ -18,7 +18,7 @@ Created by Patrick Simonian
 import validUrl from 'valid-url';
 import dotProp from 'dot-prop';
 import { GITHUB_URL } from '../constants/api';
-import { TypeCheck } from '@bcgov/common-web-utils';
+import { isArray, isString } from 'lodash';
 import { RESOURCE_TYPES } from '../constants/ui';
 import { TOPICS } from '../constants/topics';
 import converter from 'number-to-words';
@@ -100,7 +100,7 @@ export const removeUnwantedResults = (results, allEventsAndMeetups, currentEvent
  * @returns {String} the github path to the user's avatar
  */
 export const getGithubAvatarFromUsername = (username, size) => {
-  if (!TypeCheck.isString(username) || username.length === 0) {
+  if (!isString(username) || username.length === 0) {
     return '';
   }
   const sizeParam = size ? `?size=${size}` : '';
@@ -167,7 +167,7 @@ export const getFirstNonExternalResource = resources => {
  */
 export const dotPropMatchesValue = (node, filterBy, value) => {
   const prop = dotProp.get(node, filterBy);
-  if (TypeCheck.isArray(prop)) {
+  if (isArray(prop)) {
     return prop.some(p => p === value);
   } else {
     return prop === value;

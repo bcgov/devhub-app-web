@@ -22,7 +22,7 @@ const remark = require('remark');
 const url = require('url');
 const validUrl = require('valid-url');
 const path = require('path');
-const { TypeCheck } = require('@bcgov/common-web-utils');
+const { isString, isArray } = require('lodash');
 const Store = require('./Store');
 const {
   // createPathWithDigest,
@@ -31,6 +31,7 @@ const {
   getClosestPersona,
   mergeUnfurls,
   unfurlWebURI,
+  isA,
   withUnfurlWarning,
 } = require('./helpers'); // eslint-disable-line
 const { MARKDOWN_FRONTMATTER_SCHEMA, UNFURL_TYPES, RESOURCE_TYPES } = require('./constants');
@@ -87,7 +88,7 @@ const markdownFrontmatterPlugin = (extension, file) => {
     Object.keys(MARKDOWN_FRONTMATTER_SCHEMA).forEach(key => {
       const property = MARKDOWN_FRONTMATTER_SCHEMA[key];
       const value = frontmatter[key];
-      const valueIsInvalid = !value || !TypeCheck.isA(property.type, value) || value === '';
+      const valueIsInvalid = !value || !isA(property.type, value) || value === '';
       // if propery required and frontmatter doesn't have it
       if (property.required && valueIsInvalid) {
         throw new Error(
@@ -190,7 +191,7 @@ const markDownUnfurlImagePlugin = (extension, file) => {
   const unfurl = file.metadata.unfurl;
   // if the image paramater is relative, it will be correctly mapped to an absolute path
   if (
-    TypeCheck.isString(unfurl.image) &&
+    isString(unfurl.image) &&
     unfurl.image.trim().length > 0 &&
     !validUrl.isWebUri(unfurl.image)
   ) {
@@ -276,9 +277,9 @@ const markdownPersonaPlugin = async (extension, file, { personas }) => {
   const data = matter(file.content, { delims: '---' });
   const frontmatter = data.data;
   // is front matter personas type valid?
-  if (frontmatter.personas && TypeCheck.isArrayOf(String, frontmatter.personas)) {
+  if (isArray(frontmatter.personas) && frontmatter.personas.every(isString)) {
     file.metadata.personas = getClosestPersona(frontmatter.personas, personas);
-  } else if (frontmatter.persona && TypeCheck.isString(frontmatter.persona)) {
+  } else if (frontmatter.persona && isString(frontmatter.persona)) {
     file.metadata.personas = getClosestPersona([frontmatter.persona], personas);
     // is there a global persona type this file can inherit?
   } else if (file.metadata.globalPersonas) {

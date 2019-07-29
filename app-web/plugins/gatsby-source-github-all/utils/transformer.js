@@ -34,8 +34,6 @@ const fileTransformer = (fileExtension, originalFile) => {
   const plugins = [];
   return {
     use(plugin, options = {}) {
-      // using typeof check instaed of TypeCheck since async functions are nott
-      // true instances of Function
       if (typeof plugin !== 'function') {
         throw new Error('Plugin must be function');
       }

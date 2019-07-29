@@ -8,6 +8,6 @@ const config = {
   realmName: SSO_REALM_NAME,
 };
 
-export const create_iam = () => {
+export const createIam = () => {
   return new ImplicitAuthManager(config);
 };
