@@ -52,11 +52,11 @@ export const useSearch = (query, staticIndex) => {
   return results;
 };
 
-export const useImplicitAuth = () => {
+export const useImplicitAuth = (useAuth = true) => {
   const [user, setUser] = useState({});
   useEffect(() => {
     const implicitAuthManager = createIam();
-    if (this.props.useAuth) {
+    if (useAuth) {
       implicitAuthManager.registerHooks({
         onAuthenticateSuccess: () => setUser(implicitAuthManager.getAuthDataFromLocal()),
         onAuthenticateFail: () => setUser({}),
@@ -67,6 +67,6 @@ export const useImplicitAuth = () => {
         implicitAuthManager.handleOnPageLoad();
       }
     }
-  }, []);
+  }, [useAuth]);
   return user;
 };
