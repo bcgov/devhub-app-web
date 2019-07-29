@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import Button from '../../UI/Button/Button';
 import { LOGOUT_BTN_ID, LOGIN_BTN_ID } from '../../../constants/ui';
-import { create_iam } from '../../../auth';
+import { createIam } from '../../../auth';
 
 export const Login = ({ isAuthenticated }) => {
-  const implicitAuthManager = create_iam();
+  const implicitAuthManager = createIam();
   let button = (
     <Button
       type="primary"

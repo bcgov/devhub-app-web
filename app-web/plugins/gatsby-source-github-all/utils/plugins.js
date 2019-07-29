@@ -31,8 +31,8 @@ const {
   getClosestPersona,
   mergeUnfurls,
   unfurlWebURI,
-  isA,
   withUnfurlWarning,
+  isA,
 } = require('./helpers'); // eslint-disable-line
 const { MARKDOWN_FRONTMATTER_SCHEMA, UNFURL_TYPES, RESOURCE_TYPES } = require('./constants');
 const siphonMessenger = require('./console');
@@ -52,6 +52,7 @@ const markdownFrontmatterPlugin = (extension, file) => {
     // parse front matter
     const data = matter(file.content, { delimiters: '---' });
     const frontmatter = data.data;
+
     const DEFAULTS = {
       title: () => {
         // attempt to generate a title by finding the first h1 in markdown content

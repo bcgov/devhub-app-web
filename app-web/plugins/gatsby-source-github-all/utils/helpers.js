@@ -38,25 +38,22 @@ const siphonMessenger = require('./console');
 const { fetchRepo } = require('./sources/github/api');
 
 const isA = (object, value) => {
-  // returns 'String' | 'RegExp' etc
-  const Class = Object.prototype.toString.call(object).slice(8, -1);
-
-  switch (Class) {
-    case 'String':
+  switch (object) {
+    case String:
       return isString(value);
-    case 'Function':
+    case Function:
       return isFunction(value);
-    case 'Object':
+    case Object:
       return isPlainObject(value);
-    case 'Boolean':
+    case Boolean:
       return isBoolean(value);
-    case 'Number':
+    case Number:
       return isNumber(value);
-    case 'Date':
+    case Date:
       return isDate(value);
-    case 'RegExp':
+    case RegExp:
       return isRegExp(value);
-    case 'Array':
+    case Array:
       return isArray(value);
     default:
       return false;
