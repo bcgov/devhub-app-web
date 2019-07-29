@@ -26,6 +26,7 @@ const Wrapper = styled.div`
 
 export const Layout = ({ children }) => {
   const [menuToggled, setMenuToggled] = useState(false);
+
   return (
     <StyledContainer fluid>
       {/* This is to fix the some of the issues occuring on EI 11, specifically the nav issues*/}
