@@ -24,8 +24,7 @@ import rehypeReact from 'rehype-react';
 import styled from '@emotion/styled';
 import Pill from '../components/UI/Pill';
 import { withPadding } from '../components/GithubTemplate/common';
-
-const slugify = require('slugify');
+import slugify from 'slugify';
 
 const ContentDiv = styled.div`
   padding-top: 10px;
