@@ -25,6 +25,8 @@ import styled from '@emotion/styled';
 import Pill from '../components/UI/Pill';
 import { withPadding } from '../components/GithubTemplate/common';
 
+const slugify = require('slugify');
+
 const ContentDiv = styled.div`
   padding-top: 10px;
 `;
@@ -38,7 +40,7 @@ const PillDiv = styled.div`
   }
 `;
 
-const TopicPill = styled(Pill)`
+const IconPill = styled(Pill)`
   margin-top: 0px;
   :hover {
     cursor: pointer;
@@ -63,7 +65,7 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
     topicPills = topics.map(topic => {
       return (
         <a href={`/${topic.fields.slug}/${githubRaw.fields.slug}`} key={topic.id}>
-          <TopicPill topic={true} label={topic.name} variant="filled" deletable={false} />
+          <IconPill topic={true} label={topic.name} variant="filled" deletable={false} />
         </a>
       );
     });
@@ -72,12 +74,14 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
   return (
     <Layout>
       <Header>
-        <TopicPill
-          resourceType={githubRaw.fields.resourceType}
-          label={githubRaw.fields.resourceType}
-          variant="filled"
-          deletable={false}
-        />
+        <a href={`/${slugify(githubRaw.fields.resourceType).toLowerCase()}`} key={githubRaw.id}>
+          <IconPill
+            resourceType={githubRaw.fields.resourceType}
+            label={githubRaw.fields.resourceType}
+            variant="filled"
+            deletable={false}
+          />
+        </a>
         <PillDiv>{topicPills}</PillDiv>
       </Header>
       <Main>
@@ -90,6 +94,7 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
 export const devhubGitHubRawData = graphql`
   query devhubGitHubRawQuery($id: String!) {
     githubRaw(id: { eq: $id }) {
+      id
       fields {
         slug
         resourceType
