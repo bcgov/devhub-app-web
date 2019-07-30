@@ -289,3 +289,12 @@ export const buildPopularTopic = (nodes, name, description, slug, minPageViews, 
     },
   };
 };
+
+/**
+ * check if app is running on localhost
+ */
+export const isLocalHost = () => {
+  const { origin } = window.location;
+
+  return origin.indexOf('localhost') >= 0 || origin.indexOf('0.0.0.0') >= 0;
+};

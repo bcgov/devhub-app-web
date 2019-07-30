@@ -17,6 +17,7 @@ import { useState, useEffect } from 'react';
 import { Index as ElasticLunr } from 'elasticlunr';
 import isEqual from 'lodash/isEqual';
 import { createIam } from '../auth';
+import { isLocalHost } from './helpers';
 /**
  * custom react hook to perform a search
  * @param {String | Array} query the query param from the url q=
@@ -52,21 +53,20 @@ export const useSearch = (query, staticIndex) => {
   return results;
 };
 
-export const useImplicitAuth = (useAuth = true) => {
+export const useImplicitAuth = () => {
   const [user, setUser] = useState({});
   useEffect(() => {
     const implicitAuthManager = createIam();
-    if (useAuth) {
-      implicitAuthManager.registerHooks({
-        onAuthenticateSuccess: () => setUser(implicitAuthManager.getAuthDataFromLocal()),
-        onAuthenticateFail: () => setUser({}),
-        onAuthLocalStorageCleared: () => setUser({}),
-      });
 
-      if (window.location.origin.indexOf('localhost') < 0) {
-        implicitAuthManager.handleOnPageLoad();
-      }
+    implicitAuthManager.registerHooks({
+      onAuthenticateSuccess: () => setUser(implicitAuthManager.getAuthDataFromLocal()),
+      onAuthenticateFail: () => setUser({}),
+      onAuthLocalStorageCleared: () => setUser({}),
+    });
+
+    if (!isLocalHost()) {
+      implicitAuthManager.handleOnPageLoad();
     }
-  }, [useAuth]);
+  }, []);
   return user;
 };

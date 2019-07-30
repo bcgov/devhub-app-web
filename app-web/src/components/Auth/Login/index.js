@@ -5,11 +5,15 @@ import Button from '../../UI/Button/Button';
 import { LOGOUT_BTN_ID, LOGIN_BTN_ID } from '../../../constants/ui';
 import { createIam } from '../../../auth';
 
-export const Login = ({ isAuthenticated }) => {
+// TODO improve the look of the login button
+// definitily should make a pr to integrate rebass and styled system
+// this may have to be an off time thing...
+// also remove the button module.css and refactor as a styled component
+export const Login = ({ authenticated }) => {
   const implicitAuthManager = createIam();
   let button = (
     <Button
-      type="primary"
+      type="secondary"
       id={LOGIN_BTN_ID}
       clicked={() => {
         window.location = implicitAuthManager.getSSOLoginURI();
@@ -18,10 +22,10 @@ export const Login = ({ isAuthenticated }) => {
       Login
     </Button>
   );
-  if (isAuthenticated) {
+  if (authenticated) {
     button = (
       <Button
-        type="primary"
+        type="secondary"
         id={LOGOUT_BTN_ID}
         clicked={() => {
           implicitAuthManager.clearAuthLocalStorage();
@@ -36,11 +40,11 @@ export const Login = ({ isAuthenticated }) => {
 };
 
 Login.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
+  authenticated: PropTypes.bool.isRequired,
 };
 
 Login.defaultProps = {
-  isAuthenticated: false,
+  authenticated: false,
 };
 
 export default Login;

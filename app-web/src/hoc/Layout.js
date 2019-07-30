@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { Container } from 'reactstrap';
+import Helmet from 'react-helmet';
 // layout local componenets
 import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
 import PrimaryFooter from '../components/PrimaryFooter/PrimaryFooter';
 import Navbar from '../components/Navbar/Navbar';
-import Helmet from 'react-helmet';
+import AuthContext from '../AuthContext';
 
 const StyledContainer = styled(Container)`
   min-height: 100vh;
@@ -26,6 +27,8 @@ const Wrapper = styled.div`
 
 export const Layout = ({ children }) => {
   const [menuToggled, setMenuToggled] = useState(false);
+  const { auth } = useContext(AuthContext);
+  const authenticated = !!auth;
 
   return (
     <StyledContainer fluid>
@@ -33,7 +36,11 @@ export const Layout = ({ children }) => {
       <Helmet>
         <script src="https://cdn.polyfill.io/v2/polyfill.min.js" />
       </Helmet>
-      <PrimaryHeader showHamburger hamburgerClicked={() => setMenuToggled(!menuToggled)} />
+      <PrimaryHeader
+        authenticated={authenticated}
+        showHamburger
+        hamburgerClicked={() => setMenuToggled(!menuToggled)}
+      />
 
       <Navbar />
       {menuToggled && <Navbar mobile />}

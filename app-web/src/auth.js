@@ -8,6 +8,15 @@ const config = {
   realmName: SSO_REALM_NAME,
 };
 
+let iam = null;
+
+/**
+ * returns a singleton of the implicit auth manager
+ */
 export const createIam = () => {
-  return new ImplicitAuthManager(config);
+  if (iam === null) {
+    iam = new ImplicitAuthManager(config);
+    Object.freeze(iam);
+  }
+  return iam;
 };
