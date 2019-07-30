@@ -16,18 +16,24 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import styles from './Navbar.module.css';
 import { MAIN_NAV_ROUTES } from '../../constants/routes';
+import { createIam } from '../../auth';
 
 export const TEST_IDS = {
   mobile: 'navbar-mobile',
   regular: 'navbar-regular',
 };
 
-export const Navbar = ({ mobile }) => {
+export const Navbar = ({ mobile, authenticated }) => {
+  const [implicitAuthManager, setImplicitAuthManager] = useState(null);
+  useEffect(() => {
+    setImplicitAuthManager(createIam());
+  }, [implicitAuthManager]);
+
   const links = Object.keys(MAIN_NAV_ROUTES).map(resourceType => {
     return (
       <li key={MAIN_NAV_ROUTES[resourceType].to}>
@@ -42,8 +48,22 @@ export const Navbar = ({ mobile }) => {
     );
   });
 
+  let loginComponent = null;
+  if (implicitAuthManager) {
+    loginComponent = authenticated ? (
+      <a
+        onClick={() => implicitAuthManager.clearAuthLocalStorage()}
+        href={implicitAuthManager.getSSOLogoutURI()}
+      >
+        Login
+      </a>
+    ) : (
+      <a href={implicitAuthManager.getSSOLoginURI()}>Login</a>
+    );
+  }
   return (
     <nav className={styles.Navbar} data-testid={mobile ? TEST_IDS.mobile : TEST_IDS.regular}>
+      {mobile && <div className={styles.AuthContainer}>{loginComponent}</div>}
       <ul className={mobile ? styles.mobileOnly : styles.largeOnly}>{links}</ul>
     </nav>
   );

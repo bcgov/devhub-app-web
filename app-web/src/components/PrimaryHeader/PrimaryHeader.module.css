@@ -24,6 +24,10 @@
     cursor: pointer;
 }
 
+.PrimaryHeader .LoginWrapper {
+    display: none;
+}
+
 @media screen and (min-width: 600px) {
     .PrimaryHeader {
         padding: 0 65px 0 65px;
@@ -31,6 +35,10 @@
 }
 
 @media screen and (min-width: 932px) {
+    .PrimaryHeader .LoginWrapper {
+        display: inline-block;
+    }
+
     .PrimaryHeader .Hamburger {
         display: none;
     }

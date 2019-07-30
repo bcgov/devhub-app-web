@@ -9,6 +9,12 @@
     z-index: 150;
 }
 
+.Navbar .AuthContainer {
+    padding: 10px;
+    background-color: #fafafa;
+    text-align: right;
+}
+
 .Navbar ul {
     margin: 0;
     padding: 0;

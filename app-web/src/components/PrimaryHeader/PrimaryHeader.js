@@ -10,7 +10,9 @@ export const PrimaryHeader = ({ showHamburger, hamburgerClicked, authenticated }
   <header className={classes.PrimaryHeader}>
     <Banner />
     <div className={classes.Other}>
-      <Login authenticated={authenticated} />
+      <div className={classes.LoginWrapper}>
+        <Login authenticated={authenticated} />
+      </div>
       {showHamburger ? (
         <Hamburger clicked={hamburgerClicked} className={classes.Hamburger} />
       ) : null}
