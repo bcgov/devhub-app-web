@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Login } from '../../src/components/Auth/Login/Login';
+import { Login } from '../../src/components/Auth/Login';
 import { LOGOUT_BTN_ID, LOGIN_BTN_ID } from '../../src/constants/ui';
 
 describe('Login Component', () => {

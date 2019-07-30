@@ -7,6 +7,10 @@ exports[`Primary Header Component it matches snapshot 1`] = `
   <Banner />
   <div
     className="Other"
-  />
+  >
+    <Login
+      authenticated={false}
+    />
+  </div>
 </header>
 `;
