@@ -53,7 +53,7 @@ export const Navbar = ({ mobile, authenticated }) => {
     loginComponent = authenticated ? (
       <a
         onClick={() => implicitAuthManager.clearAuthLocalStorage()}
-        href={implicitAuthManager.getSSOLogoutUri()}
+        href={implicitAuthManager.getSSOLogoutURI()}
       >
         Login
       </a>
