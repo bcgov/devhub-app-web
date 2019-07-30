@@ -15,7 +15,7 @@ export const Login = ({ authenticated }) => {
   const [implicitAuthManager, setImplicitAuthManager] = useState(null);
   useEffect(() => {
     setImplicitAuthManager(createIam());
-  }, []);
+  }, [implicitAuthManager]);
 
   let button = (
     <Button

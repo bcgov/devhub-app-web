@@ -28,7 +28,8 @@ const Wrapper = styled.div`
 export const Layout = ({ children }) => {
   const [menuToggled, setMenuToggled] = useState(false);
   const { auth } = useContext(AuthContext);
-  const authenticated = !!auth;
+
+  const authenticated = !auth;
 
   return (
     <StyledContainer fluid>
