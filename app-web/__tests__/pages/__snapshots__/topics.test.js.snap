@@ -480,9 +480,9 @@ exports[`Topics Container it matches snapshot 1`] = `
       <button
         class="Button secondary"
         color="secondary"
-        data-testid="auth.login"
+        data-testid="auth.logout"
       >
-        Login
+        Logout
       </button>
       <svg
         aria-hidden="true"
