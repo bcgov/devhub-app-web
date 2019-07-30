@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Button from '../../UI/Button/Button';
-import { LOGOUT_BTN_ID, LOGIN_BTN_ID } from '../../../constants/ui';
 import { createIam } from '../../../auth';
 
+export const TEST_IDS = {
+  login: 'auth.login',
+  logout: 'auth.logout',
+};
 // TODO improve the look of the login button
 // definitily should make a pr to integrate rebass and styled system
 // this may have to be an off time thing...
@@ -14,7 +16,7 @@ export const Login = ({ authenticated }) => {
   let button = (
     <Button
       type="secondary"
-      id={LOGIN_BTN_ID}
+      data-testid={TEST_IDS.login}
       clicked={() => {
         window.location = implicitAuthManager.getSSOLoginURI();
       }}
@@ -26,7 +28,7 @@ export const Login = ({ authenticated }) => {
     button = (
       <Button
         type="secondary"
-        id={LOGOUT_BTN_ID}
+        data-testid={TEST_IDS.logout}
         clicked={() => {
           implicitAuthManager.clearAuthLocalStorage();
           window.location = implicitAuthManager.getSSOLogoutURI();

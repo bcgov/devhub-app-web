@@ -19,8 +19,6 @@ export const RESOURCE_TYPES_LIST = Object.keys(RESOURCE_TYPES)
 export const PERSONAS_LIST = ['Developer', 'Designer', 'Product Owner'];
 
 export const buttonTypes = ['primary', 'secondary', 'link'];
-export const LOGIN_BTN_ID = 'dh-login';
-export const LOGOUT_BTN_ID = 'dh-logout';
 export const BANNER_ID = 'dh-banner';
 export const MAIN_NAVIGATION_BTN = 'dh-main-nav';
 export const SEARCH_INPUT_ID = 'dh-search-input';

@@ -480,7 +480,7 @@ exports[`Topics Container it matches snapshot 1`] = `
       <button
         class="Button secondary"
         color="secondary"
-        id="dh-login"
+        data-testid="auth.login"
       >
         Login
       </button>
