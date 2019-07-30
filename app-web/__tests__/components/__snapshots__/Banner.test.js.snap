@@ -84,8 +84,8 @@ exports[`Banner Component matches snapshot 1`] = `
 
 <a
   class="emotion-10 emotion-11 emotion-12"
+  data-testid="header.govlogo.banner"
   href="/"
-  id="dh-banner"
 >
   <img
     alt="Government of British Columbia"
