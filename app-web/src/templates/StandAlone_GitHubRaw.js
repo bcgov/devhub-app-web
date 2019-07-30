@@ -65,7 +65,11 @@ const Header = styled.header`
 `;
 const HeaderTitle = styled.div`
   bottom-margin: 10px;
-  font-size: 26px;
+  padding-left: 5px;
+  font-size: 20px;
+  @media only screen and (max-width: 768px) {
+    font-size: 18px;
+  }
 `;
 
 export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
