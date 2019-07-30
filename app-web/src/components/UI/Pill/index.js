@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { faTimes, faTimesCircle, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
+import {
+  faTimes,
+  faTimesCircle,
+  faLayerGroup,
+  faUser,
+  faTag,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from '@emotion/styled';
 import ResourceTypeIcon from '../ResourceTypeIcon';
@@ -28,6 +34,9 @@ const Container = styled.button`
     margin: 0 4px;
     font-size: 0.875em;
   }
+  @media only screen and (max-width: 768px) {
+    font-size: 15px;
+  }
 `;
 
 const FilledContainer = styled(Container)`
@@ -49,8 +58,8 @@ const ResourceIconDiv = styled.div`
  * Pill Component
  * @param {Object} props
  * @param {Object} props.label the text inside the pill
- * @param {Object} props.topic if topic is true, then adds topic icon to the left of text
- * @param {Object} props.resourceType if true, then adds resourceType icon to the left of text
+ * @param {Object} props.otherIcon if passed, then the corresponding icon will show up to the left of the text
+ * @param {Object} props.resourceType if a resource type is passed, then adds resourceType icon to the left of text
  * @param {Object} props.icon *optional* a react compnent that will render to the left of the text
  * @param {Object} props.variant *defaults to filled* the render style [outlined, filled]
  * @param {Object} props.onDelete called if deletable is true, receives label as an arg
@@ -58,7 +67,7 @@ const ResourceIconDiv = styled.div`
  */
 export const Pill = ({
   label,
-  topic,
+  otherIcon,
   resourceType,
   icon,
   variant,
@@ -73,6 +82,14 @@ export const Pill = ({
   if (onClick) {
     props.onClick = onClick;
   }
+  let specialIcon;
+  if (otherIcon === 'topic') {
+    specialIcon = faLayerGroup;
+  } else if (otherIcon === 'label') {
+    specialIcon = faTag;
+  } else if (otherIcon === 'persona') {
+    specialIcon = faUser;
+  }
 
   if (variant === variants.filled) {
     return (
@@ -82,7 +99,7 @@ export const Pill = ({
             <ResourceTypeIcon type={resourceType} />
           </ResourceIconDiv>
         )}
-        {topic && <PillIcon icon={faLayerGroup} />}
+        {otherIcon && <PillIcon icon={specialIcon} />}
         <span>{label}</span>
         {deletable && (
           <PillIcon aria-label="delete" icon={faTimesCircle} onClick={() => onDelete(label)} />
@@ -97,7 +114,7 @@ export const Pill = ({
             <ResourceTypeIcon type={resourceType} />
           </ResourceIconDiv>
         )}
-        {topic && <PillIcon icon={faLayerGroup} />}
+        {otherIcon && <PillIcon icon={specialIcon} />}
         <span>{label}</span>
         {deletable && (
           <PillIcon aria-label="delete" icon={faTimes} onClick={() => onDelete(label)} />
@@ -116,6 +133,8 @@ export const Pill = ({
 Pill.propTypes = {
   label: PropTypes.string.isRequired,
   icon: PropTypes.node,
+  otherIcon: PropTypes.string,
+  resourceType: PropTypes.string,
   variant: PropTypes.oneOf(Object.keys(variants)),
   onDelete: PropTypes.func,
   onClick: PropTypes.func,
