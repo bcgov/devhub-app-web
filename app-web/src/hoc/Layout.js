@@ -44,8 +44,8 @@ export const Layout = ({ children }) => {
         hamburgerClicked={() => setMenuToggled(!menuToggled)}
       />
 
-      <Navbar />
-      {menuToggled && <Navbar mobile />}
+      <Navbar authenticated={authenticated} />
+      {menuToggled && <Navbar mobile authenticated={authenticated} />}
 
       <Wrapper>{children}</Wrapper>
       <PrimaryFooter />
