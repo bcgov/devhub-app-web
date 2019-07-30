@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../UI/Button/Button';
 import { createIam } from '../../../auth';
@@ -12,13 +12,19 @@ export const TEST_IDS = {
 // this may have to be an off time thing...
 // also remove the button module.css and refactor as a styled component
 export const Login = ({ authenticated }) => {
-  const implicitAuthManager = createIam();
+  const [implicitAuthManager, setImplicitAuthManager] = useState(null);
+  useEffect(() => {
+    setImplicitAuthManager(createIam());
+  }, []);
+
   let button = (
     <Button
       type="secondary"
       data-testid={TEST_IDS.login}
       clicked={() => {
-        window.location = implicitAuthManager.getSSOLoginURI();
+        if (implicitAuthManager) {
+          window.location = implicitAuthManager.getSSOLoginURI();
+        }
       }}
     >
       Login
@@ -30,8 +36,10 @@ export const Login = ({ authenticated }) => {
         type="secondary"
         data-testid={TEST_IDS.logout}
         clicked={() => {
-          implicitAuthManager.clearAuthLocalStorage();
-          window.location = implicitAuthManager.getSSOLogoutURI();
+          if (implicitAuthManager) {
+            implicitAuthManager.clearAuthLocalStorage();
+            window.location = implicitAuthManager.getSSOLogoutURI();
+          }
         }}
       >
         Logout
