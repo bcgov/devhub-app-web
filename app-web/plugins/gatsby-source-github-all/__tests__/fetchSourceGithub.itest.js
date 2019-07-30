@@ -1,12 +1,6 @@
 import fetch from 'node-fetch';
 import { fetchSourceGithub } from '../utils/sources/github';
-import { createFetchFileRoute } from '../utils/sources/github/helpers';
-import {
-  GITHUB_API,
-  GITHUB_SOURCE,
-  GITHUB_SOURCE_WITHIN_INLINE_IGNORES,
-  TREE_FILES,
-} from '../__fixtures__/fixtures';
+import { GITHUB_API, GITHUB_SOURCE } from '../__fixtures__/fixtures';
 
 jest.unmock('ignore');
 const { Response } = jest.requireActual('node-fetch');

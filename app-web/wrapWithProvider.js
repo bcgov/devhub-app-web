@@ -18,6 +18,11 @@ Created by Patrick Simonian
 
 import React from 'react';
 import { ThemeProvider } from 'emotion-theming';
+import { AuthProvider } from './src/AuthContext';
 import theme from './theme';
 
-export default ({ element }) => <ThemeProvider theme={theme}>{element}</ThemeProvider>;
+export default ({ element }) => (
+  <ThemeProvider theme={theme}>
+    <AuthProvider>{element}</AuthProvider>
+  </ThemeProvider>
+);

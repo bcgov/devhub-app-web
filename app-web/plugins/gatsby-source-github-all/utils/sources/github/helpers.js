@@ -15,7 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
+const { isPlainObject, isArray, isString } = require('lodash');
 const { FILETYPES, MEDIATYPES, GITHUB_API_ENDPOINT } = require('../../constants');
 const { Base64 } = require('js-base64'); // eslint-disable-line
 
@@ -107,11 +107,11 @@ const getMediaTypeByExtension = extension => (MEDIATYPES[extension] ? MEDIATYPES
  */
 const filterFilesByExtensions = (entries, extensions = ['.md']) => {
   // ensure entries is an array of objects
-  if (!TypeCheck.isArray(entries) || !entries.every(TypeCheck.isObject)) {
+  if (!isArray(entries) || !entries.every(isPlainObject)) {
     throw new Error('entries are invalid');
   }
 
-  if (!TypeCheck.isArray(extensions) || !extensions.every(TypeCheck.isString)) {
+  if (!isArray(extensions) || !extensions.every(isString)) {
     throw new Error('extensions must be an array of strings');
   }
   // ensure extensions are of correct pattern
@@ -131,7 +131,7 @@ const filterFilesByExtensions = (entries, extensions = ['.md']) => {
  * @param {Object} contextDir a path or array of paths to get files in a repo
  */
 const filterFilesByContext = (files, contextDir) => {
-  const contextDirArray = TypeCheck.isArray(contextDir) ? contextDir : new Array(contextDir);
+  const contextDirArray = isArray(contextDir) ? contextDir : new Array(contextDir);
   // Use relative paths to root:
   const targetPaths = contextDirArray.map(dir => {
     return dir.charAt(0) === '/' ? dir.substring(1) : dir;
@@ -150,7 +150,7 @@ const filterFilesByContext = (files, contextDir) => {
  */
 const filterFilesFromDirectories = entries => {
   // ensure entries is an array of objects
-  if (!TypeCheck.isArray(entries) || !entries.every(TypeCheck.isObject)) {
+  if (!isArray(entries) || !entries.every(isPlainObject)) {
     throw new Error('entries are invalid');
   }
   // only tree type entries that don't start with a . (ignore hidden folders)

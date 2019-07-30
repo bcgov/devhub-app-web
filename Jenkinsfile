@@ -34,6 +34,7 @@ pipeline {
             agent { label 'deploy' }
             steps {
                 echo "Deploying ..."
+                sh "openshift/keycloak-scripts/kc-create-client.sh ${CHANGE_ID}"
                 sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev"
             }
         }
@@ -69,6 +70,8 @@ pipeline {
             steps {
                 echo "Cleaning ..."
                 sh "cd .pipeline && ./npmw ci && ./npmw run clean -- --pr=${CHANGE_ID} --env=dev"
+                echo "deleteing key cloak client"
+                sh "openshift/keycloak-scripts/kc-delete-client.sh ${CHANGE_ID}"
             }
         }
 

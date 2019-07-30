@@ -16,6 +16,8 @@ Created by Patrick Simonian
 import { useState, useEffect } from 'react';
 import { Index as ElasticLunr } from 'elasticlunr';
 import isEqual from 'lodash/isEqual';
+import { createIam } from '../auth';
+import { isLocalHost } from './helpers';
 /**
  * custom react hook to perform a search
  * @param {String | Array} query the query param from the url q=
@@ -49,4 +51,22 @@ export const useSearch = (query, staticIndex) => {
     }
   }, [Index, staticIndex, query, results]);
   return results;
+};
+
+export const useImplicitAuth = () => {
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    const implicitAuthManager = createIam();
+
+    implicitAuthManager.registerHooks({
+      onAuthenticateSuccess: () => setUser(implicitAuthManager.getAuthDataFromLocal()),
+      onAuthenticateFail: () => setUser({}),
+      onAuthLocalStorageCleared: () => setUser({}),
+    });
+
+    if (!isLocalHost()) {
+      implicitAuthManager.handleOnPageLoad();
+    }
+  }, []);
+  return user;
 };

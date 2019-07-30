@@ -163,9 +163,7 @@ Feature lifecycle is as follows:
 * once deployed to prod, the feature should be reviewed again at the prod URL.  If accepted, the "cleanup" stage   
 
 
- 
-
-### Integration with Zenhub via issues
+ ### Integration with Zenhub via issues
 
 Any issues that are created within this repository are synced with our Zenhub kanban board.
          
@@ -325,6 +323,23 @@ rebuild the image
    elements. Because different source plugins produce different schemas, a __minimum schema__ is extended from each
    node type that is to be leveraged as a 'card' in the devhub. More information can be found on this [here](./docs/devhubCardSpec.md)
 
+### Authentication
+   Devhub utilizes __Implicit Authorization Flow__. This is provided automatically by the app via `ImplicitAuthManager` and the hook 
+   `useImplicitAuth`. To use auth, all you are required to do is use the `AuthContext` via the React `useContext` api.
+   ```js
+      import React, {useContext} from 'react'
+      import AuthContext from '../AuthContext';
+
+      const MyComponent = () => {
+         const { auth } = useContext(AuthContext);
+
+         if(auth) {
+            // do something here
+         } else {
+            // foo
+         }
+      }
+   ```
 ## Getting Help or Reporting an Issue
 
 To report bugs/issues/feature requests, please file an [issue](https://github.com/bcgov/devhub-app-web/issues/).

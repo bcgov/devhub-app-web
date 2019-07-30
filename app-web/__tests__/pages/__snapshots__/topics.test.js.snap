@@ -477,6 +477,13 @@ exports[`Topics Container it matches snapshot 1`] = `
     <div
       class="Other"
     >
+      <button
+        class="Button secondary"
+        color="secondary"
+        data-testid="auth.logout"
+      >
+        Logout
+      </button>
       <svg
         aria-hidden="true"
         aria-label="Select to filter cards by the resource type"

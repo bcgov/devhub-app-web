@@ -15,8 +15,16 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-const { TypeCheck } = require('@bcgov/common-web-utils'); // eslint-disable-line
-const { isFunction } = require('lodash');
+const {
+  isFunction,
+  isString,
+  isNumber,
+  isBoolean,
+  isPlainObject,
+  isDate,
+  isRegExp,
+  isArray,
+} = require('lodash');
 const path = require('path');
 const crypto = require('crypto');
 const url = require('url');
@@ -28,6 +36,29 @@ const validUrl = require('valid-url');
 const { RESOURCE_TYPES_LIST, UNFURL_TYPES, SOURCE_TYPES } = require('./constants');
 const siphonMessenger = require('./console');
 const { fetchRepo } = require('./sources/github/api');
+
+const isA = (object, value) => {
+  switch (object) {
+    case String:
+      return isString(value);
+    case Function:
+      return isFunction(value);
+    case Object:
+      return isPlainObject(value);
+    case Boolean:
+      return isBoolean(value);
+    case Number:
+      return isNumber(value);
+    case Date:
+      return isDate(value);
+    case RegExp:
+      return isRegExp(value);
+    case Array:
+      return isArray(value);
+    default:
+      return false;
+  }
+};
 /**
  * returns an idempotent path based on a base path plus a digestable string that is hashed
  * @param {String} base the base path (which is not changed)
@@ -35,10 +66,10 @@ const { fetchRepo } = require('./sources/github/api');
  * @returns {String} ie (/mypath, file.md) => /mypath/123dsfakjhdf
  */
 const createPathWithDigest = (base, ...digestables) => {
-  if (!TypeCheck.isString(base)) {
+  if (!isString(base)) {
     throw new Error('base must be a string');
   }
-  if (!digestables.every(TypeCheck.isString)) {
+  if (!digestables.every(isString)) {
     throw new Error('digestable must be a string');
   }
 
@@ -63,7 +94,7 @@ const createUnfurlObj = (
   type,
   { label1, data1, label2, data2, description, title, image, author },
 ) => {
-  if (!TypeCheck.isString(type)) {
+  if (!isString(type)) {
     throw new Error('type must be a string!');
   }
 
@@ -160,11 +191,10 @@ const validateAgainstSchema = (obj, schema) => {
     if (isFunction(schemaItem.validate)) {
       isValid = schemaItem.validate(obj);
     } else if (schemaItem.required) {
-      isValid =
-        Object.prototype.hasOwnProperty.call(obj, key) && TypeCheck.isA(schemaItem.type, obj[key]);
+      isValid = Object.prototype.hasOwnProperty.call(obj, key) && isA(schemaItem.type, obj[key]);
       // does this source property have it anyways?
     } else if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      isValid = TypeCheck.isA(schemaItem.type, obj[key]);
+      isValid = isA(schemaItem.type, obj[key]);
     }
 
     if (!isValid) {
@@ -239,10 +269,10 @@ const unfurlWebURI = async uri => {
   // metadata comes in with properties for each type of unfurl spec (twitter, openGraph etc)
   const combinedData = { ...data.general, ...data.twitter, ...data.openGraph };
   // update image to have resource path prepended to it if it is not https
-  if (TypeCheck.isString(combinedData.image)) {
+  if (isString(combinedData.image)) {
     combinedData.image = url.resolve(uri, combinedData.image);
   } else if (
-    TypeCheck.isObject(combinedData.image) &&
+    isPlainObject(combinedData.image) &&
     Object.prototype.hasOwnProperty.call(combinedData.image, 'url')
   ) {
     // sometimes the image property from opengraph or twitter card comes in from scrape as
@@ -289,7 +319,7 @@ const hashString = content =>
  */
 const isSourceTopic = source =>
   Object.prototype.hasOwnProperty.call(source.sourceProperties, 'sources') &&
-  TypeCheck.isArray(source.sourceProperties.sources);
+  isArray(source.sourceProperties.sources);
 
 /**
  * creates the main topic object
@@ -411,4 +441,5 @@ module.exports = {
   isSourceTopic,
   getTopicDescriptionBySourceType,
   withUnfurlWarning,
+  isA,
 };

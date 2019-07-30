@@ -1,18 +1,21 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { Login } from '../../src/components/Auth/Login/Login';
-import { LOGOUT_BTN_ID, LOGIN_BTN_ID } from '../../src/constants/ui';
+import 'jest-dom/extend-expect';
+import { render, cleanup } from 'react-testing-library';
+import { Login, TEST_IDS } from '../../src/components/Auth/Login';
 
 describe('Login Component', () => {
+  afterEach(cleanup);
   it('shows logout button when logged in', () => {
-    const wrapper = mount(<Login isAuthenticated />);
-    expect(wrapper.find(`button#${LOGOUT_BTN_ID}`).text()).toBe('Logout');
+    const { getByTestId } = render(<Login authenticated />);
+    const Button = getByTestId(TEST_IDS.logout);
+
+    expect(Button).toBeInTheDocument();
   });
 
   it('shows login button when logged out', () => {
-    const wrapper = mount(<Login isAuthenticated={false} />);
-    expect(wrapper.find(`button#${LOGIN_BTN_ID}`).text()).toBe('Login');
-  });
+    const { getByTestId } = render(<Login authenticated={false} />);
+    const Button = getByTestId(TEST_IDS.login);
 
-  it('logs user out when logout button clicked', () => {});
+    expect(Button).toBeInTheDocument();
+  });
 });
