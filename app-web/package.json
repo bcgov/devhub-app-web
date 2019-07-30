@@ -126,6 +126,7 @@
     "babel-jest": "^24.8.0",
     "babel-plugin-emotion": "^10.0.9",
     "babel-preset-gatsby": "^0.2.4",
+    "cypress": "^3.4.1",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.13.1",
     "enzyme-to-json": "^3.3.5",
