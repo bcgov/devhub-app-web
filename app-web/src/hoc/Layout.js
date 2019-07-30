@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { Container } from 'reactstrap';
 import Helmet from 'react-helmet';
+import isEmpty from 'lodash/isEmpty';
 // layout local componenets
 import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
 import PrimaryFooter from '../components/PrimaryFooter/PrimaryFooter';
@@ -28,8 +29,8 @@ const Wrapper = styled.div`
 export const Layout = ({ children }) => {
   const [menuToggled, setMenuToggled] = useState(false);
   const { auth } = useContext(AuthContext);
-
-  const authenticated = !auth;
+  //
+  const authenticated = !auth || !isEmpty(auth);
 
   return (
     <StyledContainer fluid>
