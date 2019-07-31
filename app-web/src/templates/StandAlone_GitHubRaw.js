@@ -79,7 +79,7 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
 
   //create pill to show resource type and links out to the corresponding resource type page
   let resourceTypePill = (
-    <PillLink href={`/${slugify(githubRaw.fields.resourceType).toLowerCase()}`} key={githubRaw.id}>
+    <PillLink to={`/${slugify(githubRaw.fields.resourceType).toLowerCase()}`} key={githubRaw.id}>
       <IconPill
         resourceType={githubRaw.fields.resourceType}
         label={githubRaw.fields.resourceType}
@@ -96,7 +96,7 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
   if (topics) {
     topicPills = topics.map(topic => {
       return (
-        <PillLink href={`/${topic.fields.slug}/${githubRaw.fields.slug}`} key={topic.id}>
+        <PillLink to={`/${topic.fields.slug}/${githubRaw.fields.slug}`} key={topic.id}>
           <IconPill otherIcon={'topic'} label={topic.name} variant="filled" deletable={false} />
         </PillLink>
       );
@@ -108,10 +108,11 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
   let personas = githubRaw.fields.personas.filter(ifNotBlank => ifNotBlank);
   //if there are personas, create pills which link out to a search of resources with that persona
   if (personas) {
-    //this needs to link out to search results with the given persona
     personaPills = personas.map(persona => {
+      //links to the homepage search, with a query showing only resources of the given persona type
+      const linkString = `/?q=personas:${persona}`;
       return (
-        <PillLink key={persona}>
+        <PillLink to={encodeURI(linkString)} key={persona}>
           <IconPill label={persona} otherIcon={'persona'} variant="filled" deletable={false} />
         </PillLink>
       );

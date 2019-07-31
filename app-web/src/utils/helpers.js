@@ -21,7 +21,6 @@ import { GITHUB_URL } from '../constants/api';
 import { isArray, isString } from 'lodash';
 import { RESOURCE_TYPES } from '../constants/ui';
 import { TOPICS } from '../constants/topics';
-import converter from 'number-to-words';
 import { MAIN_NAV_ROUTES } from '../constants/routes';
 
 export const getGithubRepoRoute = (repository, owner) => `${GITHUB_URL}/${owner}/${repository}`;
@@ -46,7 +45,7 @@ export const getGithubUsernameURL = username => `${GITHUB_URL}/${username}`;
  * @returns {Object}
  */
 export const getTextAndLink = (resourceType, resourcesByType) => {
-  const numOfResults = converter.toWords(resourcesByType[resourceType].length);
+  const numOfResults = resourcesByType[resourceType].length;
   // The resourceSearchPath will give you the string of the query as its used in the URL
   // ex: '?q=Open%20Shift' so that we can use it in the link for each resourceType result
   let resourceSearchPath = window.location.search;

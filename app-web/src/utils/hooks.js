@@ -18,6 +18,7 @@ import { Index as ElasticLunr } from 'elasticlunr';
 import isEqual from 'lodash/isEqual';
 import { createIam } from '../auth';
 import { isLocalHost } from './helpers';
+import { SEARCH_FIELD_NAMES, SEARCH_FIELD_MAPPING } from '../constants/search';
 /**
  * custom react hook to perform a search
  * @param {String | Array} query the query param from the url q=
@@ -33,17 +34,36 @@ export const useSearch = (query, staticIndex) => {
     if (Index === null) {
       setIndex(ElasticLunr.load(staticIndex));
     } else {
-      const searchResults = Index.search(query, {
+      let config = {
         fields: {
-          title: { boost: 4 },
-          content: { boost: 1 },
-          description: { boost: 1 },
-          topicName: { boost: 2 },
-          labels: { boost: 2 },
-          author: { boost: 2 },
+          title: { boost: 4, expand: true, bool: 'OR' },
+          content: { boost: 1, expand: true, bool: 'OR' },
+          description: { boost: 1, expand: true, bool: 'OR' },
+          topicName: { boost: 2, expand: true, bool: 'OR' },
+          labels: { boost: 2, expand: true, bool: 'OR' },
+          personas: { boost: 2, expand: true, bool: 'OR' },
+          author: { boost: 2, expand: true, bool: 'OR' },
         },
-        expand: true,
-      }).map(({ ref }) => Index.documentStore.getDoc(ref));
+      };
+      let searchQuery = query;
+
+      if (searchQuery) {
+        //splits query by ":" then filters out any empty strings etc caused by the split
+        let splitQuery = searchQuery.split(':').filter(ifTrue => ifTrue);
+        if (SEARCH_FIELD_NAMES.includes(splitQuery[0]) && splitQuery.length > 1) {
+          //map the given string to a proper field name
+          const searchField = SEARCH_FIELD_MAPPING[splitQuery[0]].text;
+          //create a custom configuration for only the given field
+          config = { fields: { [searchField]: { boost: 1, bool: 'OR', expand: true } } };
+          //delete the first element of the array, I.E the search field
+          splitQuery.shift();
+          //fix any unwanted splits in the query
+          searchQuery = splitQuery.join(':');
+        }
+      }
+      let searchResults = Index.search(searchQuery, config).map(({ ref }) =>
+        Index.documentStore.getDoc(ref),
+      );
       if (!isEqual(results, searchResults)) {
         // Map over each ID and return the full document
         setResults(searchResults);
