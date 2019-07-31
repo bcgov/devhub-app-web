@@ -1,18 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Primary Filter Component it matches snapshot 1`] = `
-<nav
-  className="Navbar"
+<Container
   data-testid="navbar-regular"
 >
-  <ul
+  <UL
     className="largeOnly"
   >
     <li
       key="/"
     >
       <mockConstructor
-        activeClassName="ActiveFilter"
+        activeClassName="activeFilter"
+        data-testid="nav.home"
         exact="true"
         to="/"
       >
@@ -23,7 +23,8 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
       key="/topics"
     >
       <mockConstructor
-        activeClassName="ActiveFilter"
+        activeClassName="activeFilter"
+        data-testid="nav.topics"
         exact="true"
         to="/topics"
       >
@@ -34,7 +35,8 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
       key="/self-service-tools"
     >
       <mockConstructor
-        activeClassName="ActiveFilter"
+        activeClassName="activeFilter"
+        data-testid="nav.tools"
         exact="true"
         to="/self-service-tools"
       >
@@ -45,7 +47,8 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
       key="/components"
     >
       <mockConstructor
-        activeClassName="ActiveFilter"
+        activeClassName="activeFilter"
+        data-testid="nav.components"
         exact="true"
         to="/components"
       >
@@ -56,7 +59,8 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
       key="/repositories"
     >
       <mockConstructor
-        activeClassName="ActiveFilter"
+        activeClassName="activeFilter"
+        data-testid="nav.github.repositories"
         exact="true"
         to="/repositories"
       >
@@ -67,7 +71,8 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
       key="/documentation"
     >
       <mockConstructor
-        activeClassName="ActiveFilter"
+        activeClassName="activeFilter"
+        data-testid="nav.documentation"
         exact="true"
         to="/documentation"
       >
@@ -78,13 +83,14 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
       key="/events"
     >
       <mockConstructor
-        activeClassName="ActiveFilter"
+        activeClassName="activeFilter"
+        data-testid="nav.events"
         exact="true"
         to="/events"
       >
         Events
       </mockConstructor>
     </li>
-  </ul>
-</nav>
+  </UL>
+</Container>
 `;
