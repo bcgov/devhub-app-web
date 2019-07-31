@@ -81,7 +81,7 @@ const Navigation = ({ items }) => {
     );
   }
 
-  return <div>{groups}</div>;
+  return <div data-testid="sidepanel.topic.navigation">{groups}</div>;
 };
 
 export default Navigation;
