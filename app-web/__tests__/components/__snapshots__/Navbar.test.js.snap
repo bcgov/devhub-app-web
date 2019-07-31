@@ -1,96 +1,201 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Primary Filter Component it matches snapshot 1`] = `
-<Container
+.emotion-2 {
+  background-color: #38598a;
+  color: #fff;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 65px;
+  box-shadow: 0 1px 2px 2px rgba(0,0,0,0.25);
+  z-index: 150;
+}
+
+.emotion-2 .largeOnly {
+  display: none;
+}
+
+@media screen and (min-width:932px) {
+  .emotion-2 {
+    padding: 0 65px;
+  }
+
+  .emotion-2 .mobileOnly {
+    display: none;
+  }
+
+  .emotion-2 .largeOnly {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+  }
+}
+
+.emotion-0 {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+.emotion-0 li {
+  height: 44px;
+  margin-bottom: 0;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.emotion-0 a {
+  color: inherit;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding: 0 10px;
+  height: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.emotion-0 a:hover {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.emotion-0 a.activeFilter:hover {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.emotion-0 a.activeFilter {
+  background-color: rgba(123,162,204,0.5);
+  border-bottom: 2px solid #fcc219;
+}
+
+.emotion-0 a:visited {
+  color: inherit;
+}
+
+@media screen and (min-width:932px) {
+  .emotion-0 li:first-child {
+    -webkit-flex-basis: 75px;
+    -ms-flex-preferred-size: 75px;
+    flex-basis: 75px;
+    text-align: center;
+  }
+}
+
+<nav
+  class="emotion-2 emotion-3"
   data-testid="navbar-regular"
 >
-  <UL
-    className="largeOnly"
+  <ul
+    class="largeOnly emotion-0 emotion-1"
   >
-    <li
-      key="/"
-    >
-      <mockConstructor
-        activeClassName="activeFilter"
+    <li>
+      <a
         data-testid="nav.home"
         exact="true"
-        to="/"
+        href="/"
       >
         Home
-      </mockConstructor>
+      </a>
     </li>
-    <li
-      key="/topics"
-    >
-      <mockConstructor
-        activeClassName="activeFilter"
+    <li>
+      <a
         data-testid="nav.topics"
         exact="true"
-        to="/topics"
+        href="/topics"
       >
         Topics
-      </mockConstructor>
+      </a>
     </li>
-    <li
-      key="/self-service-tools"
-    >
-      <mockConstructor
-        activeClassName="activeFilter"
+    <li>
+      <a
         data-testid="nav.tools"
         exact="true"
-        to="/self-service-tools"
+        href="/self-service-tools"
       >
         Tools
-      </mockConstructor>
+      </a>
     </li>
-    <li
-      key="/components"
-    >
-      <mockConstructor
-        activeClassName="activeFilter"
+    <li>
+      <a
         data-testid="nav.components"
         exact="true"
-        to="/components"
+        href="/components"
       >
         Components
-      </mockConstructor>
+      </a>
     </li>
-    <li
-      key="/repositories"
-    >
-      <mockConstructor
-        activeClassName="activeFilter"
+    <li>
+      <a
         data-testid="nav.github.repositories"
         exact="true"
-        to="/repositories"
+        href="/repositories"
       >
         GitHub Repositories
-      </mockConstructor>
+      </a>
     </li>
-    <li
-      key="/documentation"
-    >
-      <mockConstructor
-        activeClassName="activeFilter"
+    <li>
+      <a
         data-testid="nav.documentation"
         exact="true"
-        to="/documentation"
+        href="/documentation"
       >
         Documentation
-      </mockConstructor>
+      </a>
     </li>
-    <li
-      key="/events"
-    >
-      <mockConstructor
-        activeClassName="activeFilter"
+    <li>
+      <a
         data-testid="nav.events"
         exact="true"
-        to="/events"
+        href="/events"
       >
         Events
-      </mockConstructor>
+      </a>
     </li>
-  </UL>
-</Container>
+  </ul>
+</nav>
 `;

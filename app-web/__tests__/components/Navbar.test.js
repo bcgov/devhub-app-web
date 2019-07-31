@@ -16,21 +16,16 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from 'react-testing-library';
 import { Navbar } from '../../src/components/Navbar/Navbar';
 
 describe('Primary Filter Component', () => {
-  let navbar = null;
-
   const props = {
     mobile: false,
   };
 
-  beforeEach(() => {
-    navbar = shallow(<Navbar {...props} />);
-  });
-
   test('it matches snapshot', () => {
-    expect(navbar).toMatchSnapshot();
+    const { container } = render(<Navbar {...props} />);
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
