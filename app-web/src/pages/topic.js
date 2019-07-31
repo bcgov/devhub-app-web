@@ -25,7 +25,7 @@ import {
 
 const TopicPage = ({ data, location }) => {
   const [menuToggled, setMenuToggled] = useState(false);
-  // navigate is not available at build timie, this page is a dynamic one so it willr esolve to navigate when a client
+  // navigate is not available at build time, this page is a dynamic one so it will resolve to navigate when a client
   // accesses this page
   const navigateFn = global.window ? navigate : () => null;
   const query = queryString.parse(location.search);
@@ -41,7 +41,8 @@ const TopicPage = ({ data, location }) => {
   let topicMetadata = {};
 
   if (!DYNAMIC_TOPIC_PATHS[topicType]) {
-    return navigateFn('404');
+    navigateFn('404');
+    return null;
   }
 
   if (topicType === DYNAMIC_TOPIC_PATHS.popular) {
