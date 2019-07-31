@@ -14,6 +14,7 @@ export const createIam = () => {
     realmName: SSO_REALM_NAME,
     redirectURI: window.location.origin + window.location.pathname,
   };
+
   if (iam === null) {
     iam = new ImplicitAuthManager(config);
     Object.freeze(iam);
