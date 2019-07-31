@@ -15,7 +15,10 @@ export const Popular = () => (
       }
     `}
     render={data => (
-      <MarkdownBody dangerouslySetInnerHTML={{ __html: data.popular.childMarkdownRemark.html }} />
+      <MarkdownBody
+        data-testid="dynamic.topic.markdown.body"
+        dangerouslySetInnerHTML={{ __html: data.popular.childMarkdownRemark.html }}
+      />
     )}
   />
 );

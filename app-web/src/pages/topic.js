@@ -23,6 +23,10 @@ import {
   SideDrawerToggleButton,
 } from '../components/GithubTemplate/common';
 
+export const TEST_IDS = {
+  markdownBody: 'dynamic.topic.markdown.body',
+};
+
 const TopicPage = ({ data, location }) => {
   const [menuToggled, setMenuToggled] = useState(false);
   // navigate is not available at build time, this page is a dynamic one so it will resolve to navigate when a client
@@ -84,9 +88,10 @@ const TopicPage = ({ data, location }) => {
           components: { 'component-preview': previewWithNode },
         }).Compiler;
 
-        const [owner, repo] = node.html_url.replace('https://github.com/').split('/');
+        const [owner, repo] = node.html_url.replace('https://github.com/', '').split('/');
+
         resourceComponent = (
-          <MarkdownBody>
+          <MarkdownBody data-testid={TEST_IDS.markdownBody}>
             {' '}
             {/* 
             if there is a tag in the markdown <component-preview> 
