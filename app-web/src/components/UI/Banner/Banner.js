@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { BANNER_ID } from '../../../constants/ui';
 import { HOME_ROUTE } from '../../../constants/routes';
 import GovLogo from '../GovLogo/GovLogo';
 
@@ -24,9 +23,13 @@ const StyledLink = styled(Link)`
   }
 `;
 
+export const TEST_IDS = {
+  banner: 'header.govlogo.banner',
+};
+
 const Banner = () => {
   return (
-    <StyledLink id={BANNER_ID} to={HOME_ROUTE}>
+    <StyledLink data-testid={TEST_IDS.banner} to={HOME_ROUTE}>
       <GovLogo />
       <AppLogo />
     </StyledLink>

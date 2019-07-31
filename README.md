@@ -119,9 +119,11 @@ Here are some of the other components/technologies used by DevHub:
 
 ## Project Status
 In Development
+
 ## Documentation
 - [Internal Docs](docs/README.md)
 - [Authoring Plugins for Remark](https://www.huynguyen.io/2018-05-remark-gatsby-plugin-part-2/)
+- [Testing and QA](docs/testingAndQa.md);
 ## Security
 
 ### Authentication, Authorization, Policies, etc

@@ -7,7 +7,10 @@
     "jest": true
   },
   "globals": {
-    "graphql": false
+    "graphql": false,
+    "cy": true,
+    "Cypress": true,
+    "assert": true
   },
   "extends": ["react-app"],
   "parserOptions": {
