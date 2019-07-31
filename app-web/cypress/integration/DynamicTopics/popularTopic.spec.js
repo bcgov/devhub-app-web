@@ -15,6 +15,7 @@ describe('Popular Topic', () => {
     { path: 'self-service-tools', testId: 'nav.tools', displayName: 'Tools' },
   ].forEach(({ testId, displayName, path }) => {
     it(`Clicking ${displayName} button and asserting it navigates to ${path}`, () => {
+      cy.wait(250);
       cy.get(`[data-testid='${testId}']`).click();
       cy.url().should('be', path);
     });
@@ -32,6 +33,7 @@ describe('Popular Topic', () => {
       .first()
       .should('have.attr', 'href')
       .then(href => {
+        cy.wait(100);
         cy.url().should('include', href);
       });
 
