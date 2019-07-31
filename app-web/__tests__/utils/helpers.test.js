@@ -103,7 +103,7 @@ describe('Helpers', () => {
     test('When given resourceType "Documentation" and a collection of resources grouped by type, it should return a link object', () => {
       const expected = {
         to: '/documentation?q=mobile',
-        text: 'two results found',
+        text: '2 results found',
       };
       const resourceType = RESOURCE_TYPES.DOCUMENTATION;
       const resourcesByType = {
@@ -115,7 +115,7 @@ describe('Helpers', () => {
     test('When only one result is found for a given resourceType, the link string should have "result found" instead of "results found"', () => {
       const expected = {
         to: '/documentation?q=mobile',
-        text: 'one result found',
+        text: '1 result found',
       };
       const resourceType = RESOURCE_TYPES.DOCUMENTATION;
       const resourcesByType = {

@@ -72,7 +72,7 @@ export const Masthead = ({ query, resultCount }) => (
     </h4>
 
     <ChevronLink
-      to="/about"
+      to="/aboutDevhub"
       css={css`
         font-size: 18px;
         font-weight: 600;
