@@ -105,6 +105,7 @@ module.exports = {
   },
   pathPrefix: '/images',
   plugins: [
+    'gatsby-plugin-brotli',
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
