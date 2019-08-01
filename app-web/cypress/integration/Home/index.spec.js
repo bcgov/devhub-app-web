@@ -3,7 +3,7 @@ describe('Home Page Specs', () => {
   describe('Arriving on the homepage', () => {
     it('navigates to home page when clicking on banner', () => {
       cy.getByTestId('header.govlogo.banner');
-      cy.url().should('be', 'http://0.0.0.0');
+      cy.url().should('include', '/');
     });
   });
 });
