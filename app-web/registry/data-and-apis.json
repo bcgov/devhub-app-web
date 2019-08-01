@@ -41,7 +41,7 @@
         "sourceProperties": {
           "url": "https://catalogue.data.gov.bc.ca/",
           "owner": "bcgov",
-          "title": "the B.C. Data Catalogue",
+          "title": "BC Data Catalogue",
           "description": "The BC Data catalogue helps users to find, understand and explore data. The catalogue also provides contact information so that data users can contact Data Custodians for additional information if required.",
           "image": "https://developer.gov.bc.ca/images/gov-logo-static.png"
         }
