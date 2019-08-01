@@ -119,7 +119,7 @@ objects:
         - name: caddy-${NAME}-static${SUFFIX}
           configMap:
             defaultMode: 420
-            name: ${NAME}-caddy
+            name: caddy-${NAME}-static${SUFFIX}
     test: false
     triggers:
     - type: ConfigChange
