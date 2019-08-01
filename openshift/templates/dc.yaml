@@ -2,10 +2,50 @@ apiVersion: v1
 kind: Template
 metadata:
   creationTimestamp: null
-  name: debhub-app-web
+  name: devhub-app-web
 labels:
   template: devhub-app-web
 objects:
+- apiVersion: v1
+  data:
+    Caddyfile: |
+      0.0.0.0:2015
+      root /var/www/html
+      log stdout
+      errors stdout
+      rewrite {
+        if  {path} not_match ^\/0.0.0.0
+        to  {path} {path}/ /?_url={uri}
+      }
+
+      templates {
+        ext   .js
+      }
+      gzip
+      # gatsby_cache_control
+      # https://www.gatsbyjs.org/docs/caching/
+      header / {
+        # prevent any static html from being cached
+        Cache-Control "public, max-age=0, must-revalidate"
+      }
+
+      header /public/static {
+        # all static assets SHOULD be cached
+        Cache-Control "public, max-age=31536000, immutable"
+      }
+
+      header /public/static/sw.js {
+        # special js file that should not be cached for offline mode
+        Cache-Control "public, max-age=0, must-revalidate"
+      }
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: null
+    name: caddy-${NAME}-static${SUFFIX}
+    labels:
+      app: ${NAME}-static${SUFFIX}
+      deploymentconfig: ${NAME}-static${SUFFIX}
+      app-name: ${NAME}-static${SUFFIX}
 - apiVersion: v1
   kind: ImageStream
   metadata:
@@ -28,11 +68,11 @@ objects:
     strategy:
       resources:
         requests:
-          cpu: '1m'
-          memory: '30Mi'
-        limits:
-          cpu: '2m'
+          cpu: '100m'
           memory: '50Mi'
+        limits:
+          cpu: '150m'
+          memory: '75Mi'
     template:
       metadata:
         creationTimestamp: null
@@ -49,11 +89,11 @@ objects:
             protocol: TCP
           resources:
             requests:
-              cpu: '1m'
-              memory: '30Mi'
-            limits:
-              cpu: '2m'
+              cpu: '10m'
               memory: '50Mi'
+            limits:
+              cpu: '300m'
+              memory: '75Mi'
           env:
           - name: SSO_BASE_URL
             value: ${SSO_BASE_URL_VALUE}
@@ -68,15 +108,15 @@ objects:
           - name: MATOMO_SITE_ID
             value: ${MATOMO_SITE_ID}
           volumeMounts:
-          - name: ${CADDY_VOLUME_NAME}
+          - name: caddy-${NAME}-static${SUFFIX}
             mountPath: /etc/Caddyfile
             readOnly: true
             subPath: Caddyfile
         volumes:
-        - name: ${CADDY_VOLUME_NAME}
+        - name: caddy-${NAME}-static${SUFFIX}
           configMap:
             defaultMode: 420
-            name: ${NAME}-caddy
+            name: caddy-${NAME}-static${SUFFIX}
     test: false
     triggers:
     - type: ConfigChange
