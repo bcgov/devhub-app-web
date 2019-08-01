@@ -7,18 +7,6 @@ labels:
   template: devhub-app-web
 objects:
 - apiVersion: v1
-kind: Template
-metadata:
-  name: caddy-configmap-template
-  annotations:
-    description: >- 
-      Caddy run time configuration template > 
-      this should be created on any namespaces that utilize the devhub deployment"
-  labels:
-    app: devhub
-    type: devhub-template
-objects:
-- apiVersion: v1
   data:
     Caddyfile: |
       0.0.0.0:2015
@@ -29,11 +17,13 @@ objects:
         if  {path} not_match ^\/0.0.0.0
         to  {path} {path}/ /?_url={uri}
       }
+
       templates {
         ext   .js
       }
+
       gzip {
-          ext        .js .css
+        ext   .js .css
       }
       # gatsby_cache_control
       # https://www.gatsbyjs.org/docs/caching/
@@ -59,7 +49,6 @@ objects:
       app: ${NAME}-static${SUFFIX}
       deploymentconfig: ${NAME}-static${SUFFIX}
       app-name: ${NAME}-static${SUFFIX}
-parameters:
 - apiVersion: v1
   kind: ImageStream
   metadata:
