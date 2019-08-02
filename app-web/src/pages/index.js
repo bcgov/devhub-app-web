@@ -28,11 +28,7 @@ import { formatEvents, formatMeetUps } from '../templates/events';
 import { RESOURCE_TYPES } from '../constants/ui';
 import { getTextAndLink, removeUnwantedResults } from '../utils/helpers';
 
-const Main = styled.main`
-  margin-bottom: ${SPACING['1x']};
-  margin-top: ${SPACING['2x']};
-  padding: 0 ${SPACING['2x']};
-`;
+
 
 /**
  * returns topics container component so aslong as a search is not being done
@@ -136,6 +132,11 @@ export const Index = ({
   },
   location,
 }) => {
+  const Main = styled.main`
+    margin-bottom: ${SPACING['1x']};
+    margin-top: ${SPACING['2x']};
+    padding: 0 ${SPACING['2x']};
+  `;
   const queryParam = queryString.parse(location.search);
   let query = [];
   let results = [];
