@@ -20,6 +20,9 @@ import { groupBy } from 'lodash';
 import { RESOURCE_TYPES } from '../../../constants/ui';
 import NavGroup from './NavGroup';
 
+export const TEST_IDS = {
+  nav: 'sidepanel.topic.navigation',
+}
 // navigation for dynamically created page components
 const Navigation = ({ items }) => {
   const navItems = items.map(item => ({
@@ -81,7 +84,7 @@ const Navigation = ({ items }) => {
     );
   }
 
-  return <div data-testid="sidepanel.topic.navigation">{groups}</div>;
+  return <div data-testid={TEST_IDS.nav}>{groups}</div>;
 };
 
 export default Navigation;

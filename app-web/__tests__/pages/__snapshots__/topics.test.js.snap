@@ -211,7 +211,7 @@ exports[`Topics Container it matches snapshot 1`] = `
 }
 
 @media screen and (min-width:932px) {
-  .emotion-13 li:first-child {
+  .emotion-13 li:first-of-type {
     -webkit-flex-basis: 75px;
     -ms-flex-preferred-size: 75px;
     flex-basis: 75px;

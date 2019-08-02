@@ -69,7 +69,7 @@ const UL = styled.ul`
     }
   }
   @media screen and (min-width: 932px) {
-    li:first-child {
+    li:first-of-type {
       flex-basis: 75px;
       text-align: center;
     }

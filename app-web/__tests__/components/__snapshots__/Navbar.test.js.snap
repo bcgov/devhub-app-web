@@ -118,7 +118,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
 }
 
 @media screen and (min-width:932px) {
-  .emotion-0 li:first-child {
+  .emotion-0 li:first-of-type {
     -webkit-flex-basis: 75px;
     -ms-flex-preferred-size: 75px;
     flex-basis: 75px;
