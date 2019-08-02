@@ -20,6 +20,8 @@ import {
   removeUnwantedResults,
 } from '../../src/utils/helpers';
 import { GITHUB_RAW_NODES } from '../../__fixtures__/nodes';
+import { client } from '../../wrapWithProvider';
+import { ApolloProvider } from 'react-apollo';
 
 jest.mock('query-string');
 // mock out layout
@@ -84,7 +86,9 @@ describe('Home Page', () => {
     queryString.parse.mockReturnValue({});
     const { container, rerender, queryByTestId } = render(
       <ThemeProvider theme={theme}>
-        <Index {...props} />
+        <ApolloProvider client={client}>
+          <Index {...props} />
+        </ApolloProvider>
       </ThemeProvider>,
     );
     expect(container.firstChild).toMatchSnapshot();
@@ -98,7 +102,9 @@ describe('Home Page', () => {
     useSearch.mockReturnValue([]);
     rerender(
       <ThemeProvider theme={theme}>
-        <Index {...props} />
+        <ApolloProvider client={client}>
+          <Index {...props} />
+        </ApolloProvider>
       </ThemeProvider>,
     );
     expect(useSearch).toHaveBeenCalled();
@@ -111,7 +117,9 @@ describe('Home Page', () => {
     queryString.parse.mockReturnValue({});
     const { container, rerender, queryByTestId, queryAllByTestId } = render(
       <ThemeProvider theme={theme}>
-        <Index {...props} />
+        <ApolloProvider client={client}>
+          <Index {...props} />
+        </ApolloProvider>
       </ThemeProvider>,
     );
     expect(container.firstChild).toMatchSnapshot();
@@ -125,7 +133,9 @@ describe('Home Page', () => {
     useSearch.mockReturnValue([]);
     rerender(
       <ThemeProvider theme={theme}>
-        <Index {...props} />
+        <ApolloProvider client={client}>
+          <Index {...props} />
+        </ApolloProvider>
       </ThemeProvider>,
     );
     expect(useSearch).toHaveBeenCalled();
@@ -144,7 +154,9 @@ describe('Home Page', () => {
     removeUnwantedResults.mockReturnValue([SIPHON_NODES[0]]);
     const { queryByTestId, queryAllByTestId } = render(
       <ThemeProvider theme={theme}>
-        <Index {...props} />
+        <ApolloProvider client={client}>
+          <Index {...props} />
+        </ApolloProvider>
       </ThemeProvider>,
     );
 
@@ -158,7 +170,9 @@ describe('Home Page', () => {
 
     const { getByTestId } = render(
       <ThemeProvider theme={theme}>
-        <Index {...props} />
+        <ApolloProvider client={client}>
+          <Index {...props} />
+        </ApolloProvider>
       </ThemeProvider>,
     );
 

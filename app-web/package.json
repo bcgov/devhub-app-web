@@ -107,6 +107,7 @@
     "snake-case": "^2.1.0",
     "string-similarity": "^3.0.0",
     "typography": "^0.16.19",
+    "unfetch": "^4.1.0",
     "unist-util-visit": "^1.4.1",
     "uri-parser": "^1.0.1",
     "url-parse": "^1.4.7",

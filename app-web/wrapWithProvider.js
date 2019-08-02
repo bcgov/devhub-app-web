@@ -23,11 +23,15 @@ import theme from './theme';
 import { ApolloClient, InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { createHttpLink } from 'apollo-link-http';
+import fetch from 'unfetch';
 
 const cache = new InMemoryCache();
 //this needs to be an enviroment variable later on......
-const client = new ApolloClient({
-  link: createHttpLink({ uri: 'https://rocketgate-dev-devhub-dev.pathfinder.gov.bc.ca' }),
+export const client = new ApolloClient({
+  link: createHttpLink({
+    uri: 'https://rocketgate-dev-devhub-dev.pathfinder.gov.bc.ca',
+    fetch: fetch,
+  }),
   cache,
 });
 
