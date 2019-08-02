@@ -32,15 +32,9 @@ const client = new ApolloClient({
 });
 
 export default ({ element }) => (
-<<<<<<< HEAD
-  <ThemeProvider theme={theme}>
-    <ApolloProvider client={client}>
-      <AuthProvider>{element}</AuthProvider>
-    </ApolloProvider>
-  </ThemeProvider>
-=======
   <ApolloProvider client={client}>
-    <ThemeProvider theme={theme}>{element}</ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <AuthProvider>{element}</AuthProvider>
+    </ThemeProvider>
   </ApolloProvider>
->>>>>>> Getting the client link working and testing query
 );
