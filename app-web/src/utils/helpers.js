@@ -50,6 +50,8 @@ export const getTextAndLink = (resourceType, resourcesByType) => {
   // ex: '?q=Open%20Shift' so that we can use it in the link for each resourceType result
   let resourceSearchPath = window.location.search;
   //default values
+  //console.log(resourceType);
+  //console.log(resourcesByType);
   let textAndPath = {
     to: `${MAIN_NAV_ROUTES[resourceType].to}${resourceSearchPath}`,
     text: `${numOfResults} results found`,

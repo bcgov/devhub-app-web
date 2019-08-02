@@ -282,6 +282,17 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       name: 'content',
       value: node.internal.content ? node.internal.content : '',
     });
+    const slug = node.frontmatter.title ? node.frontmatter.title : title;
+    createNodeField({
+      node: node,
+      name: 'standAlonePath',
+      value: `/${slugify(slug)}`,
+    });
+    createNodeField({
+      node: node,
+      name: 'slug',
+      value: slugify(slug),
+    });
 
     if (isGithubRaw(parentNode)) {
       const slug = node.frontmatter.title ? node.frontmatter.title : title;

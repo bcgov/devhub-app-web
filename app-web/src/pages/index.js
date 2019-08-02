@@ -92,12 +92,14 @@ const getSearchResultTotal = resourcesByType => {
  * @param {Array} results the list of searched resources
  */
 const getResourcePreviews = (resources, queryExists, results = []) => {
+  //console.log(resources);
   const resourcesSelector = selectResourcesGroupedByType();
   let resourcesToGroup = resources;
   if (!isNull(results) && results.length > 0) {
     // diff out resources by id
     resourcesToGroup = intersectionBy(resources, results, 'id');
   }
+  //console.log(resourcesToGroup);
   resourcesToGroup = getUniqueResources(resourcesToGroup);
   // select resources grouped by type using relesect memoization https://github.com/reduxjs/reselect/issues/30
   let resourcesByType = resourcesSelector(resourcesToGroup);
@@ -178,6 +180,7 @@ export const Index = ({
     windowHasQuery && !queryIsEmpty,
     results,
   );
+  //console.log(results);
 
   let totalSearchResults;
 
