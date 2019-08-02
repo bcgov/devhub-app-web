@@ -27,7 +27,6 @@ import uniqBy from 'lodash/uniqBy';
 import { formatEvents, formatMeetUps } from '../templates/events';
 import { RESOURCE_TYPES } from '../constants/ui';
 import { getTextAndLink, removeUnwantedResults } from '../utils/helpers';
-import { RocketChatResults } from '../components/RocketChatResults';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
