@@ -32,9 +32,9 @@ const client = new ApolloClient({
 });
 
 export default ({ element }) => (
-  <ApolloProvider client={client}>
-    <ThemeProvider theme={theme}>
-      <AuthProvider>{element}</AuthProvider>
-    </ThemeProvider>
-  </ApolloProvider>
+  <ThemeProvider theme={theme}>
+    <AuthProvider>
+      <ApolloProvider client={client}>{element}</ApolloProvider>
+    </AuthProvider>
+  </ThemeProvider>
 );
