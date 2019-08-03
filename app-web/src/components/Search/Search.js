@@ -18,25 +18,15 @@ Created by Derek Siemens
 
 import React from 'react';
 import { Query } from 'react-apollo';
+import { ROCKET_GATE_QUERY } from '../../constants/runtimeGraphqlQueries';
 //run time query
-import gql from 'graphql-tag';
 
-const devHubQuery = gql`
-  query DevHubQuery($queryString: String!) {
-    search(searchString: $queryString) {
-      message
-      author
-      time
-      roomId
-    }
-  }
-`;
 //currently we can pass in query but remember to use gql as above since its runtime
 export const SearchApollo = queryString => (
-  <Query query={devHubQuery} variables={queryString}>
+  <Query query={ROCKET_GATE_QUERY} variables={queryString}>
     {({ loading, error, data }) => {
       if (loading) return 'Loading...';
-      if (error) return `Error! ${error.message} blah`;
+      if (error) return `Error! ${error.message}`;
       //do stuff with data here......
       return data.search.map(message => {
         return (
