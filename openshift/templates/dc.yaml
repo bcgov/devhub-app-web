@@ -181,6 +181,11 @@ parameters:
   name: HOST
   required: false
   value: ''
+- description: Then end point for connecting to the apollo graphql api gateway 
+  displayName: Rocketgate Graphql Api Url
+  name: ROCKETGATE_API_URL
+  required: false
+  value: ''
 - description: A base url of sso in the env
   displayName: sso base URL
   name: SSO_BASE_URL_VALUE

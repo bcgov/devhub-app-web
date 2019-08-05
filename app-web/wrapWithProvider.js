@@ -20,9 +20,26 @@ import React from 'react';
 import { ThemeProvider } from 'emotion-theming';
 import { AuthProvider } from './src/AuthContext';
 import theme from './theme';
+import { ApolloClient, InMemoryCache } from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
+import { createHttpLink } from 'apollo-link-http';
+import fetch from 'unfetch';
+import { ROCKETGATE_API_URL } from './src/constants/api';
+
+const cache = new InMemoryCache();
+//this needs to be an enviroment variable later on......
+export const client = new ApolloClient({
+  link: createHttpLink({
+    uri: ROCKETGATE_API_URL,
+    fetch: fetch,
+  }),
+  cache,
+});
 
 export default ({ element }) => (
   <ThemeProvider theme={theme}>
-    <AuthProvider>{element}</AuthProvider>
+    <AuthProvider>
+      <ApolloProvider client={client}>{element}</ApolloProvider>
+    </AuthProvider>
   </ThemeProvider>
 );

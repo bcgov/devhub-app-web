@@ -14,11 +14,13 @@ Created by Patrick Simonian
 // custom react hooks
 // notes on custom hooks https://reactjs.org/docs/hooks-custom.html
 import { useState, useEffect } from 'react';
+import { useQuery } from '@apollo/react-hooks';
 import { Index as ElasticLunr } from 'elasticlunr';
 import isEqual from 'lodash/isEqual';
 import { createIam } from '../auth';
 import { isLocalHost } from './helpers';
 import { SEARCH_FIELD_NAMES, SEARCH_FIELD_MAPPING } from '../constants/search';
+import { ROCKET_GATE_QUERY } from '../constants/runtimeGraphqlQueries';
 /**
  * custom react hook to perform a search
  * @param {String | Array} query the query param from the url q=

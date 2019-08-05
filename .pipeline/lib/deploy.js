@@ -8,26 +8,28 @@ const ENVS = {
   DEV: 'dev',
 };
 
-const getSsoParamsByEnv = (env, pr) => {
-  const sso = {
+const getParamsByEnv = (env, pr) => {
+  const params = {
     SSO_BASE_URL_VALUE: 'https://sso.pathfinder.gov.bc.ca',
     SSO_CLIENT_ID_VALUE: 'devhub-web',
     SSO_REALM_NAME_VALUE: 'devhub',
+    // for the time being we only have a dev instance, this will change as the api is developed
+    ROCKETGATE_API_URL: 'https://rocketgate-dev-devhub-dev.pathfinder.gov.bc.ca',
   };
   switch (env) {
     case ENVS.PROD:
-      return sso;
+      return params;
     case ENVS.TEST:
-      return { ...sso, SSO_BASE_URL_VALUE: 'https://sso-test.pathfinder.gov.bc.ca' };
+      return { ...params, SSO_BASE_URL_VALUE: 'https://sso-test.pathfinder.gov.bc.ca' };
     case ENVS.DEV:
       return {
-        ...sso,
+        ...params,
         SSO_BASE_URL_VALUE: 'https://sso-dev.pathfinder.gov.bc.ca',
         SSO_CLIENT_ID_VALUE: `devhub-web-${pr}`,
       };
     default:
       return {
-        ...sso,
+        ...params,
         SSO_BASE_URL_VALUE: 'https://sso-dev.pathfinder.gov.bc.ca',
         SSO_CLIENT_ID_VALUE: `devhub-web-${pr}`,
       };
@@ -50,7 +52,7 @@ module.exports = settings => {
       SUFFIX: phases[phase].suffix,
       VERSION: phases[phase].tag,
       CADDY_VOLUME_NAME: 'web-caddy-config',
-      ...getSsoParamsByEnv(phase, changeId),
+      ...getParamsByEnv(phase, changeId),
     },
   });
   // if you want to add more objects from other templates than contact them to objects
