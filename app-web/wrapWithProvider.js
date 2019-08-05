@@ -36,7 +36,6 @@ export const client = new ApolloClient({
   cache,
 });
 
-console.log(client);
 export default ({ element }) => (
   <ThemeProvider theme={theme}>
     <AuthProvider>
