@@ -27,7 +27,7 @@ export const SearchSources = ({rocketchat, toggleSource}) => {
   return (
 
       <SearchSourcesContainer data-testid={TEST_IDS.container}>
-        {<RCButton onClick={() => toggleSource(SEARCH_SOURCES.rocketchat)} {...rcProps} title="toggle rocket chat search results"/>}
+        {authenticated && <RCButton onClick={() => toggleSource(SEARCH_SOURCES.rocketchat)} {...rcProps} title="toggle rocket chat search results"/>}
       </SearchSourcesContainer>
 
   )

@@ -158,7 +158,7 @@ export const Index = ({
   // get rocket chat search results if authenticated
   // TODO will activate once ui component is available
   const searchSourceResults = {
-    rocketchat: useRCSearch(true, query, client)
+    rocketchat: useRCSearch(authenticated, query, client)
   };
 
   results = useSearch(query, index);
