@@ -248,7 +248,6 @@ module.exports = {
             personas: node => node.fields.personas,
             topicName: node => node.topic.name,
             labels: node => node.fields.labels,
-            id: node => node.id,
           },
           EventbriteEvents: {
             title: node => node.name.text,
