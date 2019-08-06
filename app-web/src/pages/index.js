@@ -28,7 +28,6 @@ import { formatEvents, formatMeetUps } from '../templates/events';
 import { RESOURCE_TYPES } from '../constants/ui';
 import { getTextAndLink, removeUnwantedResults } from '../utils/helpers';
 
-
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
   margin-top: ${SPACING['2x']};
@@ -142,7 +141,7 @@ export const Index = ({
   let query = [];
   let results = [];
   let windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, SEARCH_QUERY_PARAM);
-  
+
   if (windowHasQuery) {
     query = decodeURIComponent(queryParam[SEARCH_QUERY_PARAM]);
   } else {
@@ -164,7 +163,7 @@ export const Index = ({
     results = removeUnwantedResults(results, allEvents.concat(allMeetups), eventsAndMeetups);
   }
   const markdownRemark = flattenGatsbyGraphQL(allMarkdownRemark.edges).filter(
-    node => node.fields.resourceType,
+    node => node.fields.resourceType && node.fields.topicName,
   );
 
   // this is defined by ?q='' or ?q=''&q=''..etc
@@ -213,7 +212,6 @@ export const Index = ({
     <Layout showHamburger>
       <Masthead query={query} resultCount={totalSearchResults} />
       <Main>{content}</Main>
-
     </Layout>
   );
 };
