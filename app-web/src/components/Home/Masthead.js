@@ -55,7 +55,7 @@ const Container = styled.div`
   }
 `;
 
-export const Masthead = ({ query, resultCount, searchSources, searchSourceToggled }) => (
+export const Masthead = ({ query, resultCount, searchSources, searchSourcesLoading, searchSourceToggled }) => (
   <Container>
     <AppLogo
       css={css`
@@ -92,7 +92,7 @@ export const Masthead = ({ query, resultCount, searchSources, searchSourceToggle
           navigate(`/?q=${encodeURIComponent(terms)}`);
         }}
       />
-      {query && (
+      {query && !searchSourcesLoading && (
         <SearchPills
           query={query}
           searchResultTotal={resultCount}
@@ -103,7 +103,7 @@ export const Masthead = ({ query, resultCount, searchSources, searchSourceToggle
           showClear={false}
         />
       )}
-      {query && resultCount > 0 && <SearchSources {...searchSources} toggleSource={searchSourceToggled} /> }
+      {!searchSourcesLoading && query && resultCount > 0 && <SearchSources {...searchSources} toggleSource={searchSourceToggled} /> }
     </SearchContainer>
   </Container>
 );

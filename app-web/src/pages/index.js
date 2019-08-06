@@ -20,7 +20,7 @@ import {
   selectTopicsWithResourcesGroupedByType,
   selectResourcesGroupedByType,
 } from '../utils/selectors';
-import { isQueryEmpty, getSearchSourcesResultTotal } from '../utils/search';
+import { isQueryEmpty, getSearchSourcesResultTotal, areSearchSourcesStillLoading } from '../utils/search';
 import { SEARCH_QUERY_PARAM } from '../constants/search';
 import { SPACING } from '../constants/designTokens';
 import uniqBy from 'lodash/uniqBy';
@@ -28,8 +28,8 @@ import { formatEvents, formatMeetUps } from '../templates/events';
 import { RESOURCE_TYPES } from '../constants/ui';
 import { SEARCH_SOURCE_INITIAL_STATE } from '../constants/search';
 import { getTextAndLink, removeUnwantedResults } from '../utils/helpers';
-import { SearchApollo } from '../components/Search/Search';
 import { RocketChatResults } from '../components/RocketChatResults';
+import Loading from '../components/UI/Loading/Loading';
 
 
 const Main = styled.main`
@@ -192,16 +192,16 @@ export const Index = ({
     results,
   );
 
-  let totalSearchResults;
+  let totalSearchResults = 0;
 
   const resourcesNotFound = !queryIsEmpty && (!results || (results.length === 0 && windowHasQuery));
 
   const topics = flattenGatsbyGraphQL(allDevhubTopic.edges);
 
+  
   if (queryIsEmpty) {
     content = <Aux>{getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}</Aux>;
   } else if (resourcesNotFound) {
-    totalSearchResults = 'No Results';
     content = (
       <Alert style={{ margin: '10px auto' }} color="info" data-testid={TEST_IDS.alert}>
         {SEARCH.results.empty.defaultMessage}
@@ -213,24 +213,23 @@ export const Index = ({
       <Aux>
         {getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}
         {siphonResources}
-        {searchSourceFilters.rocketchat && Array.isArray(searchSourceResults.rocketchat) && <RocketChatResults results={searchSourceResults.rocketchat} />}
+        {searchSourceFilters.rocketchat && Array.isArray(searchSourceResults.rocketchat.results) && <RocketChatResults results={searchSourceResults.rocketchat.results} />}
 
       </Aux>
     );
   } 
-
-  console.log(searchSourceResults, searchSourceFilters);
-  console.log(totalSearchResults);
-    totalSearchResults += getSearchSourcesResultTotal(searchSourceResults, searchSourceFilters);
+  
+  const searchSourcesLoading = areSearchSourcesStillLoading(searchSourceResults);
+  totalSearchResults += getSearchSourcesResultTotal(searchSourceResults, searchSourceFilters);
 
   return (
     <Layout showHamburger>
-      <Masthead query={query} resultCount={totalSearchResults} searchSources={searchSourceFilters} searchSourceToggled={searchSource => {
+      <Masthead query={query} searchSourcesLoading={searchSourcesLoading} resultCount={totalSearchResults} searchSources={searchSourceFilters} searchSourceToggled={searchSource => {
         const newSearchSourceFilters = {...searchSourceFilters};
         newSearchSourceFilters[searchSource] = !newSearchSourceFilters[searchSource];
         setSearchSourceFilters(newSearchSourceFilters);
       }}/>
-      <Main>{content}</Main>
+      <Main>{(windowHasQuery && searchSourcesLoading) ?<Loading message="loading" />: content}</Main>
     </Layout>
   );
 };

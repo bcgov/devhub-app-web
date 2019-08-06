@@ -138,6 +138,7 @@ export const useAuthenticated = () => {
  * @param {Boolean} authenticated
  * @param {String} queryString the search string
  * @param {Client} client the apollo client to query
+ * @returns {Object} {loading, results: <Array>}
  */
 export const useRCSearch = (authenticated, queryString, client) => {
 
@@ -145,15 +146,18 @@ export const useRCSearch = (authenticated, queryString, client) => {
     queryString
   }, client});
   const [results, setResults] = useState([]);
+  const [_loading, setLoading] = useState(true);
   useEffect(() => {
+    setLoading(loading);
     if(!authenticated || !queryString) {
       setResults([]);
-    } else {
-      setResults(data.search || []);
+    } else if(!_loading) {
+      setResults(data.search);
     }
+
     return () => {
       setResults([]);
     };
-  }, useDeepCompareMemoize([loading, authenticated, queryString, results]));
-  return results;
+  }, useDeepCompareMemoize([_loading, loading, authenticated, queryString, results]));
+  return {results, loading: _loading};
 }

@@ -37,8 +37,10 @@ export const SearchPills = ({ onDelete, query, searchResultTotal, showClear, onC
   if (query.length === 0 || (query.length === 1 && query[0] === '')) {
     return null;
   }
+
   let pills = [];
   let resultpill = [];
+
   if (isString(query)) {
     pills = [
       <SearchPill key={shortid.generate()} label={query} onDelete={onDelete} variant="filled" />,
@@ -52,7 +54,7 @@ export const SearchPills = ({ onDelete, query, searchResultTotal, showClear, onC
 
     let resultLabel;
     resultLabel = searchResultTotal;
-    console.log(searchResultTotal);
+
     if(searchResultTotal <= 0) {
       resultLabel = 'No Results';
     } else {
