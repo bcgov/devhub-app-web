@@ -56,4 +56,14 @@ Button.defaultProps = {
   children: '',
 };
 
+
+export const IconButton = styled.button`
+  outline: none;
+  background-color: transparent;
+  border: none;
+  :disabled {
+    opacity: 0.8;
+  }
+`;
+
 export default Button;
