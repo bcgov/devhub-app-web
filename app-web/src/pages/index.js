@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import queryString from 'query-string';
 import intersectionBy from 'lodash/intersectionBy';
 import isNull from 'lodash/isNull';
 import styled from '@emotion/styled';
 
 import { Alert } from 'reactstrap';
-
+import {  withApollo } from 'react-apollo';
 import { MAIN_NAV_ROUTES } from '../constants/routes';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { SEARCH } from '../messages';
@@ -15,7 +15,7 @@ import { ResourcePreview, Masthead, TopicsContainer } from '../components/Home';
 import withResourceQuery from '../hoc/withResourceQuery';
 import Aux from '../hoc/auxillary';
 
-import { useSearch } from '../utils/hooks';
+import { useSearch, useAuthenticated, useRCSearch } from '../utils/hooks';
 import {
   selectTopicsWithResourcesGroupedByType,
   selectResourcesGroupedByType,
@@ -27,6 +27,9 @@ import uniqBy from 'lodash/uniqBy';
 import { formatEvents, formatMeetUps } from '../templates/events';
 import { RESOURCE_TYPES } from '../constants/ui';
 import { getTextAndLink, removeUnwantedResults } from '../utils/helpers';
+import { useQuery, useApolloClient } from '@apollo/react-hooks';
+import { ROCKET_GATE_QUERY } from '../constants/runtimeGraphqlQueries';
+import AuthContext from '../AuthContext';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -126,6 +129,7 @@ export const TEST_IDS = {
 };
 
 export const Index = ({
+  client,
   data: {
     allDevhubTopic,
     allDevhubSiphon,
@@ -147,6 +151,10 @@ export const Index = ({
   } else {
     query = '';
   }
+  const { authenticated } = useAuthenticated();
+  // get rocket chat search results if authenticated
+  // TODO will activate once ui component is available
+  // const rcResults = useRCSearch(authenticated, query, client);
 
   results = useSearch(query, index);
 
@@ -216,4 +224,4 @@ export const Index = ({
   );
 };
 
-export default withResourceQuery(Index)();
+export default withResourceQuery(withApollo(Index))();
