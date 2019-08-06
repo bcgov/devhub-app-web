@@ -282,6 +282,17 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       name: 'content',
       value: node.internal.content ? node.internal.content : '',
     });
+    const slug = node.frontmatter.title ? node.frontmatter.title : title;
+    createNodeField({
+      node: node,
+      name: 'standAlonePath',
+      value: `/${slugify(slug)}`,
+    });
+    createNodeField({
+      node: node,
+      name: 'slug',
+      value: slugify(slug),
+    });
 
     if (isGithubRaw(parentNode)) {
       const slug = node.frontmatter.title ? node.frontmatter.title : title;
@@ -321,8 +332,26 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
         resourceType = RESOURCE_TYPES.DOCUMENTATION;
       }
 
+      let topicName = parentNode.___boundProperties.topics;
+
       createNodeField({
         node: parentNode,
+        name: 'topicName',
+        value: topicName ? topicName : '',
+      });
+      createNodeField({
+        node: node,
+        name: 'topicName',
+        value: topicName ? topicName : '',
+      });
+
+      createNodeField({
+        node: parentNode,
+        name: 'resourceType',
+        value: resourceType,
+      });
+      createNodeField({
+        node: node,
         name: 'resourceType',
         value: resourceType,
       });

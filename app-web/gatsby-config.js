@@ -239,6 +239,7 @@ module.exports = {
             labels: node => node.fields.labels,
             author: node => node.fields.author,
             personas: node => node.frontmatter.personas,
+            topicName: node => node.fields.topicName,
             id: node => node.parent,
           },
           DevhubSiphon: {
@@ -251,10 +252,12 @@ module.exports = {
           EventbriteEvents: {
             title: node => node.name.text,
             description: node => node.description.text,
+            topicName: node => node.fields.topics,
           },
           MeetupEvent: {
             title: node => node.name,
             description: node => node.description,
+            topicName: node => node.fields.topics,
           },
         },
       },
