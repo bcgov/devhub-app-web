@@ -40,7 +40,7 @@ const Disclaimer = ({ onClose, open, toggle }) => {
         </Link>
       </ModalBody>
       <ModalFooter>
-        <Button type="primary" clicked={onClose}>
+        <Button variant="primary" clicked={onClose}>
           Okay
         </Button>
       </ModalFooter>

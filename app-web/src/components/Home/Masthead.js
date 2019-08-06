@@ -53,7 +53,7 @@ const Container = styled.div`
   }
 `;
 
-export const Masthead = ({ query, resultCount }) => (
+export const Masthead = ({ query, resultCount, authenticated, rcSearchToggled }) => (
   <Container>
     <AppLogo
       css={css`

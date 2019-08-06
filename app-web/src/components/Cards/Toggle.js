@@ -20,7 +20,7 @@ class Toggle extends Component {
   render() {
     const toggleIcon = this.state.toggled ? (
       <Button
-        type="link"
+        variant="link"
         clicked={() => {
           this.toggledHandler(false);
         }}
@@ -29,7 +29,7 @@ class Toggle extends Component {
       </Button>
     ) : (
       <Button
-        type="link"
+        variant="link"
         clicked={() => {
           this.toggledHandler(true);
         }}
