@@ -19,6 +19,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { navigate } from 'gatsby';
 import styled from '@emotion/styled';
+
 import { css } from '@emotion/core';
 import { ChevronLink } from '../UI/Link';
 import { SEARCH } from '../../constants/ui';
@@ -27,6 +28,7 @@ import Search from '../Search';
 import SearchPills from '../Search/SearchPills';
 // localizations
 import AppLogo from '../UI/AppLogo/AppLogo';
+import { SearchSources } from '../Search/SearchSources';
 const SearchStyled = styled(Search)`
   font-size: 1.25em;
   flex-flow: row wrap;
@@ -53,7 +55,7 @@ const Container = styled.div`
   }
 `;
 
-export const Masthead = ({ query, resultCount, authenticated, rcSearchToggled }) => (
+export const Masthead = ({ query, resultCount, searchSources, searchSourceToggled }) => (
   <Container>
     <AppLogo
       css={css`
@@ -101,6 +103,7 @@ export const Masthead = ({ query, resultCount, authenticated, rcSearchToggled })
           showClear={false}
         />
       )}
+      {query && resultCount > 0 && <SearchSources {...searchSources} toggleSource={searchSourceToggled} /> }
     </SearchContainer>
   </Container>
 );

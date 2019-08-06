@@ -193,6 +193,7 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
       </button>
     </div>
     
+    
   </div>
 </div>
 `;
@@ -389,6 +390,7 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
         Search
       </button>
     </div>
+    
     
   </div>
 </div>

@@ -65,3 +65,17 @@ export const isQueryEmpty = query => {
   }
   return true;
 };
+
+/**
+ * takes in a hash of search sources and returns the total count based on if they are toggled or not
+ * @param {object} searchSources map of search sources
+ * @returns {number} total number of search sources
+ */
+export const getSearchSourcesResultTotal = (searchSources, searchSourceToggles) => {
+  return Object.keys(searchSources).reduce((total, source) => {
+    if (searchSourceToggles[source]) {
+      total += searchSources[source].length;
+    }
+    return total;
+  }, 0); 
+};

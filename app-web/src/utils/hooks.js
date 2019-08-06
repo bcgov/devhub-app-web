@@ -149,7 +149,7 @@ export const useRCSearch = (authenticated, queryString, client) => {
     if(!authenticated || !queryString) {
       setResults([]);
     } else {
-      setResults(data.search);
+      setResults(data.search || []);
     }
     return () => {
       setResults([]);

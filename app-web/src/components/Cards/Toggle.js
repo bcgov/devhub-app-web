@@ -26,7 +26,7 @@ class Toggle extends Component {
     const toggleIcon = this.state.toggled ? (
       <Button
         variant="link"
-        data-testId={TEST_IDS.toggleOff}
+        data-testid={TEST_IDS.toggleOff}
         clicked={() => {
           this.toggledHandler(false);
         }}
@@ -36,7 +36,7 @@ class Toggle extends Component {
     ) : (
       <Button
         variant="link"
-        data-testId={TEST_IDS.toggleOn}
+        data-testid={TEST_IDS.toggleOn}
         clicked={() => {
           this.toggledHandler(true);
         }}
