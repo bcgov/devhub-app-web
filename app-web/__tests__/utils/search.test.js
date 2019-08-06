@@ -45,8 +45,8 @@ describe('Search Helpers', () => {
   test('getSearchSourcesTotal return the correct total', () => {
 
     const sources = {
-      sourceA: [1, 2, 3],
-      sourceB: [2, 4, 5, 7],
+      sourceA: {results: [1, 2, 3]},
+      sourceB: {results: [2, 4, 5, 7]},
     };
 
     const sourceToggles = {

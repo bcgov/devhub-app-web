@@ -33,7 +33,7 @@ jest.mock('../../src/utils/helpers.js');
 
 getFirstNonExternalResource.mockReturnValue('foo');
 getTextAndLink.mockReturnValue({ to: '/documentation?q=mobile', text: 'two results found' });
-useRCSearch.mockReturnValue([]);
+useRCSearch.mockReturnValue({results: [], loading: false});
 useAuthenticated.mockReturnValue(false);
 
 describe('Home Page', () => {

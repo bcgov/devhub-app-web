@@ -1,9 +1,8 @@
-import React, {useContext, useState} from 'react';
+import React, { useState} from 'react';
 import queryString from 'query-string';
 import intersectionBy from 'lodash/intersectionBy';
 import isNull from 'lodash/isNull';
 import styled from '@emotion/styled';
-
 import { Alert } from 'reactstrap';
 import {  withApollo } from 'react-apollo';
 import { MAIN_NAV_ROUTES } from '../constants/routes';
@@ -209,12 +208,12 @@ export const Index = ({
     );
   } else {
     totalSearchResults = getSearchResultTotal(siphonResources);
+    const { rocketchat } = searchSourceResults;
     content = (
       <Aux>
         {getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}
         {siphonResources}
-        {searchSourceFilters.rocketchat && Array.isArray(searchSourceResults.rocketchat.results) && <RocketChatResults results={searchSourceResults.rocketchat.results} />}
-
+        {searchSourceFilters.rocketchat && rocketchat.results.length > 0 && <RocketChatResults results={searchSourceResults.rocketchat.results} />}
       </Aux>
     );
   } 

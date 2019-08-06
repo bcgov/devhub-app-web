@@ -279,6 +279,7 @@ export const buildPopularTopic = (nodes, name, description, slug, minPageViews, 
   // popular nodes need to have a path property assigned based on the dynamic page path '/topic
   return {
     node: {
+      id: 'popular-topic',
       name,
       description,
       fields: {

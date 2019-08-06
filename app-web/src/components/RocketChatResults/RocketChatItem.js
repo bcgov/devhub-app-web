@@ -46,7 +46,7 @@ export const Time = styled.span`
 
 export const Message = styled.div`
   font-size: 14px;
-
+  text-transform: none;
   font-weight: 300;
   color: #444;
   margin-bottom: 0;

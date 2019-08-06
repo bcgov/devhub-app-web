@@ -110,7 +110,7 @@ export const Masthead = ({ query, resultCount, searchSources, searchSourcesLoadi
 
 Masthead.propTypes = {
   query: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
-  resultCount: PropTypes.string,
+  resultCount: PropTypes.number,
 };
 
 export default Masthead;
