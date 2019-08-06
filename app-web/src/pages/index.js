@@ -80,13 +80,6 @@ const getSearchResultTotal = resourcesByType => {
   });
 
   return total;
-/*
-  if (total === 1) {
-    return `${total} Result Found`;
-  } else if (total > 1) {
-    return `${total} Results Found`;
-  }
-  return `No Results Found`;*/
 };
 
 /**
@@ -157,7 +150,7 @@ export const Index = ({
   // get rocket chat search results if authenticated
   // TODO will activate once ui component is available
   const searchSourceResults = {
-    rocketchat: useRCSearch(authenticated, query, client)
+    rocketchat: useRCSearch(true, query, client)
   };
 
   results = useSearch(query, index);
