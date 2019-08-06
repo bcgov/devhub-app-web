@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Home Page When a blank search is entered, cards and alerts dont show but topics do 1`] = `
-.emotion-13 {
+.emotion-15 {
   background-color: #fafafa;
   text-align: center;
   font-size: 16px;
@@ -20,7 +20,7 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
 }
 
 @media (min-width:576px) {
-  .emotion-13 {
+  .emotion-15 {
     padding: 20px 15px;
   }
 }
@@ -57,12 +57,12 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
   margin: 0 2px;
 }
 
-.emotion-11 {
+.emotion-13 {
   width: 100%;
   max-width: 500px;
 }
 
-.emotion-9 {
+.emotion-11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -77,7 +77,7 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
   flex-flow: row wrap;
 }
 
-.emotion-9 > input {
+.emotion-11 > input {
   margin: 0 4px;
   padding: 4px 5px;
   -webkit-flex-basis: 250px;
@@ -91,20 +91,40 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
   transition: all 0.25s;
 }
 
-.emotion-9 > button {
+.emotion-11 > button {
   padding: 4px 15px;
   margin: 4px;
 }
 
-.emotion-9 > button {
+.emotion-11 > button {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
+.emotion-8 {
+  color: #fff;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1em;
+  line-height: 1.5;
+  border-radius: .25rem;
+  cursor: pointer;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  display: inline-block;
+  background-color: #003366;
+}
+
 <div
-  class="emotion-13 emotion-14"
+  class="emotion-15 emotion-16"
 >
   <div
     class="emotion-4 emotion-5"
@@ -150,10 +170,10 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
     </svg>
   </a>
   <div
-    class="emotion-11 emotion-12"
+    class="emotion-13 emotion-14"
   >
     <div
-      class="emotion-8 emotion-9 emotion-10"
+      class="emotion-10 emotion-11 emotion-12"
     >
       <input
         aria-label="Search input field"
@@ -166,8 +186,7 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
       />
       <button
         aria-label="Click to Search"
-        class="Button primary"
-        color="primary"
+        class="emotion-8 emotion-9"
         data-testid="searchbar-button"
       >
         Search
@@ -179,7 +198,7 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
 `;
 
 exports[`Home Page it matches snapshot, when there is a search and no results an alert box shows up 1`] = `
-.emotion-13 {
+.emotion-15 {
   background-color: #fafafa;
   text-align: center;
   font-size: 16px;
@@ -198,7 +217,7 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
 }
 
 @media (min-width:576px) {
-  .emotion-13 {
+  .emotion-15 {
     padding: 20px 15px;
   }
 }
@@ -235,12 +254,12 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
   margin: 0 2px;
 }
 
-.emotion-11 {
+.emotion-13 {
   width: 100%;
   max-width: 500px;
 }
 
-.emotion-9 {
+.emotion-11 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -255,7 +274,7 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
   flex-flow: row wrap;
 }
 
-.emotion-9 > input {
+.emotion-11 > input {
   margin: 0 4px;
   padding: 4px 5px;
   -webkit-flex-basis: 250px;
@@ -269,20 +288,40 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
   transition: all 0.25s;
 }
 
-.emotion-9 > button {
+.emotion-11 > button {
   padding: 4px 15px;
   margin: 4px;
 }
 
-.emotion-9 > button {
+.emotion-11 > button {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
+.emotion-8 {
+  color: #fff;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1em;
+  line-height: 1.5;
+  border-radius: .25rem;
+  cursor: pointer;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  display: inline-block;
+  background-color: #003366;
+}
+
 <div
-  class="emotion-13 emotion-14"
+  class="emotion-15 emotion-16"
 >
   <div
     class="emotion-4 emotion-5"
@@ -328,10 +367,10 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
     </svg>
   </a>
   <div
-    class="emotion-11 emotion-12"
+    class="emotion-13 emotion-14"
   >
     <div
-      class="emotion-8 emotion-9 emotion-10"
+      class="emotion-10 emotion-11 emotion-12"
     >
       <input
         aria-label="Search input field"
@@ -344,8 +383,7 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
       />
       <button
         aria-label="Click to Search"
-        class="Button primary"
-        color="primary"
+        class="emotion-8 emotion-9"
         data-testid="searchbar-button"
       >
         Search

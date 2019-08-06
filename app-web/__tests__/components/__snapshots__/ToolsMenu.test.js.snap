@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Tools Menu renders the tools menu 1`] = `
-.emotion-0 {
+.emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -12,7 +12,7 @@ exports[`Tools Menu renders the tools menu 1`] = `
   align-items: center;
 }
 
-.emotion-0 > input {
+.emotion-2 > input {
   margin: 0 4px;
   padding: 4px 5px;
   -webkit-flex-basis: 250px;
@@ -26,9 +26,29 @@ exports[`Tools Menu renders the tools menu 1`] = `
   transition: all 0.25s;
 }
 
-.emotion-0 > button {
+.emotion-2 > button {
   padding: 4px 15px;
   margin: 4px;
+}
+
+.emotion-0 {
+  color: #fff;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1em;
+  line-height: 1.5;
+  border-radius: .25rem;
+  cursor: pointer;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  display: inline-block;
+  background-color: #003366;
 }
 
 <div
@@ -62,7 +82,7 @@ exports[`Tools Menu renders the tools menu 1`] = `
     </button>
   </div>
   <div
-    class="emotion-0 emotion-1"
+    class="emotion-2 emotion-3"
   >
     <input
       aria-label="Search input field"
@@ -75,8 +95,7 @@ exports[`Tools Menu renders the tools menu 1`] = `
     />
     <button
       aria-label="Click to Search"
-      class="Button primary"
-      color="primary"
+      class="emotion-0 emotion-1"
       data-testid="searchbar-button"
     >
       Search

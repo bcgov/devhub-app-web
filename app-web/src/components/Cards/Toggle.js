@@ -4,6 +4,11 @@ import Aux from '../../hoc/auxillary';
 import styles from './Cards.module.css';
 import Button from '../UI/Button/Button';
 import Row from './Row';
+
+export const TEST_IDS = {
+  toggleOn: 'toggle.btn.on',
+  toggleOff: 'toggle.btn.off',
+}
 /**
  * Toggle component
  * This component has an arrow button to toggle the Cards to show all or collapse
@@ -21,6 +26,7 @@ class Toggle extends Component {
     const toggleIcon = this.state.toggled ? (
       <Button
         variant="link"
+        data-testId={TEST_IDS.toggleOff}
         clicked={() => {
           this.toggledHandler(false);
         }}
@@ -30,6 +36,7 @@ class Toggle extends Component {
     ) : (
       <Button
         variant="link"
+        data-testId={TEST_IDS.toggleOn}
         clicked={() => {
           this.toggledHandler(true);
         }}
