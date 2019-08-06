@@ -46,6 +46,21 @@ const withResourceQuery = WrappedComponent => () => props => (
             }
           }
         }
+        allMarkdownRemark {
+          edges {
+            node {
+              fields {
+                title
+                slug
+                standAlonePath
+                resourceType
+                image
+                description
+              }
+              id
+            }
+          }
+        }
         allDevhubTopic {
           edges {
             node {

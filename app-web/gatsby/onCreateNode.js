@@ -332,8 +332,26 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
         resourceType = RESOURCE_TYPES.DOCUMENTATION;
       }
 
+      let topicName = parentNode.___boundProperties.topics;
+
       createNodeField({
         node: parentNode,
+        name: 'topicName',
+        value: topicName ? topicName : '',
+      });
+      createNodeField({
+        node: node,
+        name: 'topicName',
+        value: topicName ? topicName : '',
+      });
+
+      createNodeField({
+        node: parentNode,
+        name: 'resourceType',
+        value: resourceType,
+      });
+      createNodeField({
+        node: node,
         name: 'resourceType',
         value: resourceType,
       });

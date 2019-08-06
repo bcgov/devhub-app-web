@@ -92,14 +92,12 @@ const getSearchResultTotal = resourcesByType => {
  * @param {Array} results the list of searched resources
  */
 const getResourcePreviews = (resources, queryExists, results = []) => {
-  //console.log(resources);
   const resourcesSelector = selectResourcesGroupedByType();
   let resourcesToGroup = resources;
   if (!isNull(results) && results.length > 0) {
     // diff out resources by id
     resourcesToGroup = intersectionBy(resources, results, 'id');
   }
-  //console.log(resourcesToGroup);
   resourcesToGroup = getUniqueResources(resourcesToGroup);
   // select resources grouped by type using relesect memoization https://github.com/reduxjs/reselect/issues/30
   let resourcesByType = resourcesSelector(resourcesToGroup);
@@ -133,6 +131,7 @@ export const Index = ({
     allDevhubTopic,
     allDevhubSiphon,
     allEventbriteEvents,
+    allMarkdownRemark,
     allMeetupGroup,
     allGithubRaw,
     siteSearchIndex: { index },
@@ -164,6 +163,9 @@ export const Index = ({
   if (results) {
     results = removeUnwantedResults(results, allEvents.concat(allMeetups), eventsAndMeetups);
   }
+  const markdownRemark = flattenGatsbyGraphQL(allMarkdownRemark.edges).filter(
+    node => node.fields.resourceType,
+  );
 
   // this is defined by ?q='' or ?q=''&q=''..etc
   // if query is empty we prevent the search results empty from being rendered
@@ -176,11 +178,11 @@ export const Index = ({
   const siphonResources = getResourcePreviews(
     flattenGatsbyGraphQL(allDevhubSiphon.edges)
       .concat(eventsAndMeetups)
-      .concat(flattenGatsbyGraphQL(allGithubRaw.edges)),
+      .concat(flattenGatsbyGraphQL(allGithubRaw.edges))
+      .concat(markdownRemark),
     windowHasQuery && !queryIsEmpty,
     results,
   );
-  //console.log(results);
 
   let totalSearchResults;
 

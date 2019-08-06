@@ -232,23 +232,15 @@ module.exports = {
         fields: ['title', 'content', 'description', 'topicName', 'labels', 'author', 'personas'],
         // How to resolve each field`s value for a supported node type
         resolvers: {
-          /* MarkdownRemark: {
+          MarkdownRemark: {
             title: node => node.fields.title,
             content: node => node.fields.content.slice(0, 700),
             description: node => node.fields.description,
             labels: node => node.fields.labels,
             author: node => node.fields.author,
             personas: node => node.frontmatter.personas,
+            topicName: node => node.fields.topicName,
             id: node => node.parent,
-          },*/
-          GithubRaw: {
-            title: node => node.fields.title,
-            description: node => node.fields.description,
-            personas: node => node.fields.personas,
-            topicName: node => node.fields.topics.name,
-            author: node => node.fields.author,
-            //labels: node => node.fields.labels,
-            id: node => node.id,
           },
           DevhubSiphon: {
             title: node => node.fields.title,
@@ -261,10 +253,12 @@ module.exports = {
           EventbriteEvents: {
             title: node => node.name.text,
             description: node => node.description.text,
+            topicName: node => node.fields.topics,
           },
           MeetupEvent: {
             title: node => node.name,
             description: node => node.description,
+            topicName: node => node.fields.topics,
           },
         },
       },

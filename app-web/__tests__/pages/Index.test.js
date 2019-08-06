@@ -72,6 +72,9 @@ describe('Home Page', () => {
       siteSearchIndex: {
         index: {},
       },
+      allMarkdownRemark: {
+        edges: githubRaw,
+      },
     },
     location: {
       search: '',
