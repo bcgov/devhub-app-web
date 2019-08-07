@@ -58,3 +58,8 @@ export const SEARCH_SOURCE_INITIAL_STATE = {
   [SEARCH_SOURCES.rocketchat]: true,
 };
 
+export const SEARCH_SOURCE_CONFIG = {
+  [SEARCH_SOURCES.rocketchat]: {
+    maxResults: 10
+  },
+}

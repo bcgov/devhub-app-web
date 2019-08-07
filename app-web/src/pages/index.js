@@ -212,8 +212,10 @@ export const Index = ({
     );
   } 
   
+  // dynamic sources all load at different times, this function returns false when all have completed loading
   const searchSourcesLoading = areSearchSourcesStillLoading(searchSourceResults);
   totalSearchResults += getSearchSourcesResultTotal(searchSourceResults, searchSourceFilters);
+
 
   return (
     <Layout showHamburger>

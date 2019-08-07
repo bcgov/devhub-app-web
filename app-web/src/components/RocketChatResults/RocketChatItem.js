@@ -52,15 +52,13 @@ export const Message = styled.div`
   margin-bottom: 0;
 `;
 
+export const RocketChatItem = ({id, roomId, author, time, message, ...rest}) => (
 
-export const RocketChatItem = ({id, roomId, author, time, message}) => (
-  <StyledLink to={link}>
-    <Container>
-      <Icon icon={faExternalLinkAlt} />
+    <Container {...rest}>
+      {/* <Icon icon={faExternalLinkAlt} /> */}
       <div>
         <Author>{author}</Author><Time>{time}</Time>
       </div>
       <Message>{message}</Message>
     </Container>
-  </StyledLink>
 );

@@ -5,7 +5,6 @@ import { TopicsPage } from '../../src/pages/topics';
 import { SIPHON_NODES, TOPICS, EVENTS, MEETUP_NODES } from '../../__fixtures__/nodes';
 import theme from '../../theme';
 import { getFirstNonExternalResource } from '../../src/utils/helpers';
-jest.mock('react-spinners', () => null);
 
 jest.mock('../../src/utils/helpers.js');
 

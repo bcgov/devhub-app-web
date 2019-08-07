@@ -22,6 +22,7 @@ import {
 import { GITHUB_RAW_NODES } from '../../__fixtures__/nodes';
 import { client } from '../../wrapWithProvider';
 import { ApolloProvider } from 'react-apollo';
+import { ROCKET_CHAT } from '../../__fixtures__/searchsources';
 
 jest.mock('query-string');
 // mock out layout
@@ -182,7 +183,7 @@ describe('Home Page', () => {
     expect(getByTestId(TOPIC_TEST_IDS.container)).toBeInTheDocument();
   });
 
-  test('UnWanted results are correctly removed from search results', () => {
+  test('Unwanted results are correctly removed from search results', () => {
     //Our results have siphons node and meetups
     const initialResults = SIPHON_NODES.concat(MEETUP_NODES);
     //in our call to removeUnwantedResults, we say that only events are current (not meetups)
@@ -194,4 +195,27 @@ describe('Home Page', () => {
     );
     expect(filteredResults.length).toBeLessThan(initialResults.length);
   });
+
+  test('shows rocket chat results when authenticated', () => {
+    queryString.parse.mockReturnValue({ q: 'foo' });
+    useSearch.mockReturnValue([]);
+    useRCSearch.mockReturnValue({results: ROCKET_CHAT, loading: false});
+    useAuthenticated.mockReturnValue(true);
+
+    const { queryByTestId, rerender } = render(
+      <ThemeProvider theme={theme}>
+        <ApolloProvider client={client}>
+          <Index {...props} location={{search: '?q=foo'}} />
+        </ApolloProvider>
+      </ThemeProvider>,
+    );
+
+    expect(queryByTestId(ROCKET_CHAT[0].id)).toBeInTheDocument();
+    
+    useAuthenticated.mockReturnValue(false);
+
+    rerender();
+
+    expect(queryByTestId(ROCKET_CHAT[0].id)).not.toBeInTheDocument();
+  })
 });
