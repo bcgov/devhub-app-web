@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from '../UI/Link';
+import moment from 'moment';
 import styled from '@emotion/styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
@@ -57,7 +58,7 @@ export const RocketChatItem = ({id, roomId, author, time, message, ...rest}) => 
     <Container {...rest}>
       {/* <Icon icon={faExternalLinkAlt} /> */}
       <div>
-        <Author>{author}</Author><Time>{time}</Time>
+        <Author>{author}</Author><Time>{moment(time).format('DD/MM/YYYY HH:mm')}</Time>
       </div>
       <Message>{message}</Message>
     </Container>

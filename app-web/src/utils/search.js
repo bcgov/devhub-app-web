@@ -75,7 +75,7 @@ export const isQueryEmpty = query => {
  */
 export const getSearchSourcesResultTotal = (searchSources, searchSourceToggles) => {
   return Object.keys(searchSources).reduce((total, source) => {
-    if (searchSourceToggles[source]) {
+    if (searchSourceToggles[source] && Array.isArray(searchSources[source].results)) {
       total += searchSources[source].results.length;
     }
     return total;
