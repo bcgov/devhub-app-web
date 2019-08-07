@@ -1,67 +1,43 @@
 import React from 'react';
+import 'jest-dom/extend-expect';
+import { render, cleanup, fireEvent } from 'react-testing-library';
+import { ThemeProvider } from 'emotion-theming';
+import theme from '../../theme';
 import { shallow } from 'enzyme';
-import Toggle from '../../src/components/Cards/Toggle';
+import Toggle, { TEST_IDS } from '../../src/components/Cards/Toggle';
 import Button from '../../src/components/UI/Button/Button';
 describe('Toggle Component', () => {
+  afterEach(cleanup)
   it('matches snapshot', () => {
     const cardLimit = 1;
     const cards = ['card1', 'card2', 'card3'];
-    const wrapper = shallow(<Toggle cardComponents={cards} cardLimits={cardLimit} />);
-    expect(wrapper).toMatchSnapshot();
+    const {container} = render(<ThemeProvider theme={theme}><Toggle cardComponents={cards} cardLimits={cardLimit} /></ThemeProvider>);
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('shows collapse button when toggled on', () => {
     const cardLimit = 1;
     const cards = ['card1', 'card2', 'card3'];
-    const wrapper = shallow(<Toggle cardComponents={cards} cardLimits={cardLimit} />);
-
-    wrapper.setState({ toggled: true });
-    wrapper.update();
-
-    expect(
-      wrapper
-        .find(Button)
-        .first()
-        .render()
-        .text(),
-    ).toBe('Collapse');
+    const {getByTestId} = render(<ThemeProvider theme={theme}><Toggle cardComponents={cards} cardLimits={cardLimit} /></ThemeProvider>);
+    const ToggleOnButton = getByTestId(TEST_IDS.toggleOn);
+    // clicks button
+    expect(ToggleOnButton).toBeInTheDocument();
+    fireEvent.click(ToggleOnButton);
+    
+    const ToggleOffButton = getByTestId(TEST_IDS.toggleOff);
+    expect(ToggleOffButton).toBeInTheDocument();
+    
   });
 
-  it('shows Show All button when toggled off', () => {
-    const cardLimit = 1;
-    const cards = ['card1', 'card2', 'card3'];
-    const wrapper = shallow(<Toggle cardComponents={cards} cardLimits={cardLimit} />);
-
-    wrapper.setState({ toggled: false });
-    wrapper.update();
-
-    expect(
-      wrapper
-        .find(Button)
-        .first()
-        .render()
-        .text(),
-    ).toBe('Show All');
-  });
-
-  it('toggles state when toggle handler is called', () => {
-    const cardLimit = 1;
-    const cards = ['card1', 'card2', 'card3'];
-    const wrapper = shallow(<Toggle cardComponents={cards} cardLimits={cardLimit} />);
-    const currentToggle = wrapper.state('toggled');
-
-    wrapper.instance().toggledHandler(!currentToggle);
-    expect(wrapper.state('toggled')).toBe(!currentToggle);
-  });
 
   it('hides toggle button when number of cards is less than limit', () => {
     const cardLimit = 4;
     const cards = ['card1', 'card2', 'card3'];
-    const wrapper = shallow(<Toggle cardComponents={cards} cardLimits={cardLimit} />);
+    const {container, rerender} = render(<ThemeProvider theme={theme}><Toggle cardComponents={cards} cardLimits={cardLimit} /></ThemeProvider>);
 
-    expect(wrapper.find('.ToggleButton').exists()).toBe(false);
-    const wrapper2 = shallow(<Toggle cardComponents={cards} cardLimits={1} />);
+    expect(container.querySelectorAll('button').length).toBe(0);
+    rerender(<ThemeProvider theme={theme}><Toggle cardComponents={cards} cardLimits={1} /></ThemeProvider>);
+    expect(container.querySelectorAll('button').length).toBeGreaterThan(0);
 
-    expect(wrapper2.find('.ToggleButton').exists()).toBe(true);
   });
 });

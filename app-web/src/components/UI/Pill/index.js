@@ -131,7 +131,7 @@ export const Pill = ({
 };
 
 Pill.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   icon: PropTypes.node,
   otherIcon: PropTypes.string,
   resourceType: PropTypes.string,

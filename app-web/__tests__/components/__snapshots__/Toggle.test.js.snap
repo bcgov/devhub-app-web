@@ -1,22 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Toggle Component matches snapshot 1`] = `
-<Aux>
-  <Row
-    grid={4}
-    key="0-0-1"
-  >
-    card1
-  </Row>
-  <div
-    className="ToggleButton"
-  >
-    <Button
-      clicked={[Function]}
-      type="link"
-    >
-      Show All
-    </Button>
-  </div>
-</Aux>
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+@media (min-width:810px) {
+  .emotion-0 {
+    -webkit-box-pack: start;
+    -webkit-justify-content: start;
+    -ms-flex-pack: start;
+    justify-content: start;
+  }
+}
+
+<div
+  class="emotion-0 emotion-1"
+>
+  card1
+</div>
 `;

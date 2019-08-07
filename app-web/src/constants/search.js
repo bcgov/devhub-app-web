@@ -46,3 +46,20 @@ export const SEARCH_FIELD_MAPPING = {
   'topic Names': { text: 'topicName' },
   'topic names': { text: 'topicName' },
 };
+
+// federated search configurations
+export const SEARCH_SOURCES = {
+  rocketchat: 'rocketchat',
+}
+
+// this is a simple implementation of the search source 'toggle' feature
+// this object acts like a reducer
+export const SEARCH_SOURCE_INITIAL_STATE = {
+  [SEARCH_SOURCES.rocketchat]: true,
+};
+
+export const SEARCH_SOURCE_CONFIG = {
+  [SEARCH_SOURCES.rocketchat]: {
+    maxResults: 10
+  },
+}

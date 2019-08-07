@@ -46,21 +46,19 @@ export const Time = styled.span`
 
 export const Message = styled.div`
   font-size: 14px;
-
+  text-transform: none;
   font-weight: 300;
   color: #444;
   margin-bottom: 0;
 `;
 
+export const RocketChatItem = ({id, roomId, author, time, message, ...rest}) => (
 
-export const RocketChatItem = ({author, time, message, link}) => (
-  <StyledLink to={link}>
-  <Container>
-    <Icon icon={faExternalLinkAlt} />
-    <div>
-      <Author>{author}</Author><Time>{time}</Time>
-    </div>
-    <Message>{message}</Message>
-  </Container>
-  </StyledLink>
+    <Container {...rest}>
+      {/* <Icon icon={faExternalLinkAlt} /> */}
+      <div>
+        <Author>{author}</Author><Time>{time}</Time>
+      </div>
+      <Message>{message}</Message>
+    </Container>
 );

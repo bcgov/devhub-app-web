@@ -37,8 +37,10 @@ export const SearchPills = ({ onDelete, query, searchResultTotal, showClear, onC
   if (query.length === 0 || (query.length === 1 && query[0] === '')) {
     return null;
   }
+
   let pills = [];
-  let resultpill;
+  let resultpill = [];
+
   if (isString(query)) {
     pills = [
       <SearchPill key={shortid.generate()} label={query} onDelete={onDelete} variant="filled" />,
@@ -50,16 +52,24 @@ export const SearchPills = ({ onDelete, query, searchResultTotal, showClear, onC
     ));
   }
 
-  if (searchResultTotal) {
+    let resultLabel;
+    resultLabel = searchResultTotal;
+
+    if(searchResultTotal <= 0) {
+      resultLabel = 'No Results';
+    } else {
+      resultLabel = `${searchResultTotal} Result${searchResultTotal > 1 ? 's': ''}`;
+    }
+
     resultpill = [
       <SearchPill
         key={shortid.generate()}
-        label={searchResultTotal}
+        label={resultLabel}
         onDelete={onDelete}
         variant="filled"
       />,
     ];
-  }
+   
 
   const clearPill =
     showClear && query.length > 0 ? (
@@ -80,7 +90,7 @@ export const SearchPills = ({ onDelete, query, searchResultTotal, showClear, onC
 SearchPills.propTypes = {
   onDelete: PropTypes.func.isRequired,
   query: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-  searchResultTotal: PropTypes.string,
+  searchResultTotal: PropTypes.number,
   showClear: PropTypes.bool.isRequired,
   onClear: PropTypes.func,
 };

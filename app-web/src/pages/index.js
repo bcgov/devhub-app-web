@@ -1,9 +1,8 @@
-import React, {useContext, useState} from 'react';
+import React, { useState} from 'react';
 import queryString from 'query-string';
 import intersectionBy from 'lodash/intersectionBy';
 import isNull from 'lodash/isNull';
 import styled from '@emotion/styled';
-
 import { Alert } from 'reactstrap';
 import {  withApollo } from 'react-apollo';
 import { MAIN_NAV_ROUTES } from '../constants/routes';
@@ -20,16 +19,17 @@ import {
   selectTopicsWithResourcesGroupedByType,
   selectResourcesGroupedByType,
 } from '../utils/selectors';
-import { isQueryEmpty } from '../utils/search';
+
+import { isQueryEmpty, getSearchSourcesResultTotal, areSearchSourcesStillLoading } from '../utils/search';
 import { SEARCH_QUERY_PARAM } from '../constants/search';
 import { SPACING } from '../constants/designTokens';
 import uniqBy from 'lodash/uniqBy';
 import { formatEvents, formatMeetUps } from '../templates/events';
 import { RESOURCE_TYPES } from '../constants/ui';
+import { SEARCH_SOURCE_INITIAL_STATE } from '../constants/search';
 import { getTextAndLink, removeUnwantedResults } from '../utils/helpers';
-import { useQuery, useApolloClient } from '@apollo/react-hooks';
-import { ROCKET_GATE_QUERY } from '../constants/runtimeGraphqlQueries';
-import AuthContext from '../AuthContext';
+import { RocketChatResults } from '../components/RocketChatResults';
+import Loading from '../components/UI/Loading/Loading';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -79,12 +79,7 @@ const getSearchResultTotal = resourcesByType => {
     }
   });
 
-  if (total === 1) {
-    return `${total} Result Found`;
-  } else if (total > 1) {
-    return `${total} Results Found`;
-  }
-  return `No Results Found`;
+  return total;
 };
 
 /**
@@ -142,6 +137,7 @@ export const Index = ({
   location,
 }) => {
   const queryParam = queryString.parse(location.search);
+  const [searchSourceFilters, setSearchSourceFilters] = useState(SEARCH_SOURCE_INITIAL_STATE);
   let query = [];
   let results = [];
   let windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, SEARCH_QUERY_PARAM);
@@ -154,10 +150,12 @@ export const Index = ({
   const { authenticated } = useAuthenticated();
   // get rocket chat search results if authenticated
   // TODO will activate once ui component is available
-  // const rcResults = useRCSearch(authenticated, query, client);
+  const searchSourceResults = {
+    rocketchat: useRCSearch(authenticated, query, client)
+  };
 
   results = useSearch(query, index);
-
+  
   const allEvents = flattenGatsbyGraphQL(allEventbriteEvents.edges);
   const currentEvents = formatEvents(allEvents.filter(e => e.start.daysFromNow <= 0));
   const allMeetups = formatMeetUps(
@@ -191,16 +189,16 @@ export const Index = ({
     results,
   );
 
-  let totalSearchResults;
+  let totalSearchResults = 0;
 
   const resourcesNotFound = !queryIsEmpty && (!results || (results.length === 0 && windowHasQuery));
 
   const topics = flattenGatsbyGraphQL(allDevhubTopic.edges);
 
+  
   if (queryIsEmpty) {
     content = <Aux>{getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}</Aux>;
   } else if (resourcesNotFound) {
-    totalSearchResults = 'No Results';
     content = (
       <Alert style={{ margin: '10px auto' }} color="info" data-testid={TEST_IDS.alert}>
         {SEARCH.results.empty.defaultMessage}
@@ -208,18 +206,29 @@ export const Index = ({
     );
   } else {
     totalSearchResults = getSearchResultTotal(siphonResources);
+    const { rocketchat } = searchSourceResults;
     content = (
       <Aux>
         {getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}
         {siphonResources}
+        {searchSourceFilters.rocketchat && rocketchat.results.length > 0 && <RocketChatResults results={searchSourceResults.rocketchat.results} />}
       </Aux>
     );
-  }
+  } 
+  
+  // dynamic sources all load at different times, this function returns false when all have completed loading
+  const searchSourcesLoading = areSearchSourcesStillLoading(searchSourceResults);
+  totalSearchResults += getSearchSourcesResultTotal(searchSourceResults, searchSourceFilters);
+
 
   return (
     <Layout showHamburger>
-      <Masthead query={query} resultCount={totalSearchResults} />
-      <Main>{content}</Main>
+      <Masthead query={query} searchSourcesLoading={searchSourcesLoading} resultCount={totalSearchResults} searchSources={searchSourceFilters} searchSourceToggled={searchSource => {
+        const newSearchSourceFilters = {...searchSourceFilters};
+        newSearchSourceFilters[searchSource] = !newSearchSourceFilters[searchSource];
+        setSearchSourceFilters(newSearchSourceFilters);
+      }}/>
+      <Main>{(windowHasQuery && searchSourcesLoading) ?<Loading message="loading" />: content}</Main>
     </Layout>
   );
 };

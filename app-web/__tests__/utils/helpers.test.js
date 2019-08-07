@@ -168,6 +168,7 @@ describe('Helpers', () => {
 
       const topic = {
         node: {
+          id: 'popular-topic',
           name: 'title',
           description: 'description',
           fields: {

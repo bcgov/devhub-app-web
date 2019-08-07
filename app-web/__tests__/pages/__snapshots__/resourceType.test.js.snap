@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Resource Type Template Page it matches snapshot, when there are no resources for the given reosource type the no resource component shows  1`] = `
-.emotion-60 {
+.emotion-62 {
   font-size: 15px;
   max-width: 1300px;
   margin: 0;
@@ -9,7 +9,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
 }
 
 @media screen and (min-width:932px) {
-  .emotion-60 {
+  .emotion-62 {
     padding: 10px 65px;
   }
 }
@@ -31,7 +31,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   line-height: 1.5em;
 }
 
-.emotion-58 {
+.emotion-60 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -63,7 +63,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   }
 }
 
-.emotion-56 {
+.emotion-58 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -77,31 +77,31 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
 }
 
 @media (min-width:576px) {
-  .emotion-56 {
+  .emotion-58 {
     margin-bottom: 15px;
     max-width: 810px;
   }
 }
 
 @media (min-width:768px) {
-  .emotion-56 {
+  .emotion-58 {
     margin-bottom: 15px;
     max-width: 1080px;
   }
 }
 
-.emotion-8 {
+.emotion-10 {
   padding: 0 5px;
   margin-left: 5px;
 }
 
 @media (min-width:576px) {
-  .emotion-8 {
+  .emotion-10 {
     max-width: 415px;
   }
 }
 
-.emotion-6 {
+.emotion-8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -112,7 +112,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   align-items: center;
 }
 
-.emotion-6 > input {
+.emotion-8 > input {
   margin: 0 4px;
   padding: 4px 5px;
   -webkit-flex-basis: 250px;
@@ -126,12 +126,32 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   transition: all 0.25s;
 }
 
-.emotion-6 > button {
+.emotion-8 > button {
   padding: 4px 15px;
   margin: 4px;
 }
 
-.emotion-10 {
+.emotion-6 {
+  color: #fff;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1em;
+  line-height: 1.5;
+  border-radius: .25rem;
+  cursor: pointer;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  display: inline-block;
+  background-color: #003366;
+}
+
+.emotion-12 {
   background-color: #fafafa;
   border: 1px solid #ccc;
   padding: 10px;
@@ -140,12 +160,12 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
 }
 
 @media (min-width:576px) {
-  .emotion-10 {
+  .emotion-12 {
     display: none;
   }
 }
 
-.emotion-54 {
+.emotion-56 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -160,7 +180,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
 }
 
 @media (min-width:810px) {
-  .emotion-54 {
+  .emotion-56 {
     -webkit-box-pack: start;
     -webkit-justify-content: start;
     -ms-flex-pack: start;
@@ -168,14 +188,14 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   }
 }
 
-.emotion-31 {
+.emotion-33 {
   margin: 0 10px;
   -webkit-flex: 0 0 250px;
   -ms-flex: 0 0 250px;
   flex: 0 0 250px;
 }
 
-.emotion-29 {
+.emotion-31 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #1A5A96;
@@ -188,14 +208,14 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   color: initial;
 }
 
-.emotion-29:hover {
+.emotion-31:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   color: initial;
   cursor: pointer;
 }
 
-.emotion-26 {
+.emotion-28 {
   width: 265px;
   height: 238.5px;
   margin: 10px 0;
@@ -217,21 +237,21 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   overflow: hidden;
 }
 
-.emotion-26:hover {
+.emotion-28:hover {
   box-shadow: 0 2px 2px 1px #00000026;
   -webkit-transform: translateY(-2px);
   -ms-transform: translateY(-2px);
   transform: translateY(-2px);
 }
 
-.emotion-12 {
+.emotion-14 {
   background-color: #246BD1;
   -webkit-flex: 0 0 10px;
   -ms-flex: 0 0 10px;
   flex: 0 0 10px;
 }
 
-.emotion-24 {
+.emotion-26 {
   padding: 6px 10px;
   height: 100%;
   overflow: hidden;
@@ -248,18 +268,18 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   flex-flow: column nowrap;
 }
 
-.emotion-16 {
+.emotion-18 {
   color: #444;
   font-size: 14px;
   margin-bottom: 0;
   font-weight: 400;
 }
 
-.emotion-14 {
+.emotion-16 {
   color: #246BD1;
 }
 
-.emotion-18 {
+.emotion-20 {
   font-size: 20px;
   color: #494949;
   line-height: 1.3;
@@ -270,7 +290,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   word-break: break-word;
 }
 
-.emotion-20 {
+.emotion-22 {
   font-size: 14px;
   line-height: 1.4;
   -webkit-flex: 0 0 auto;
@@ -280,7 +300,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   text-transform: none;
 }
 
-.emotion-22 {
+.emotion-24 {
   -webkit-flex: 1 1 auto;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
@@ -297,7 +317,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
 }
 
 <main
-  class="emotion-60 emotion-61"
+  class="emotion-62 emotion-63"
   role="main"
 >
   <div
@@ -313,7 +333,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
     </h4>
   </div>
   <div
-    class="emotion-58 emotion-59"
+    class="emotion-60 emotion-61"
   >
     <div
       class="emotion-4 emotion-5"
@@ -386,13 +406,13 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
       </div>
     </div>
     <div
-      class="emotion-56 emotion-57"
+      class="emotion-58 emotion-59"
     >
       <div
-        class="emotion-8 emotion-9"
+        class="emotion-10 emotion-11"
       >
         <div
-          class="emotion-6 emotion-7"
+          class="emotion-8 emotion-9"
         >
           <input
             aria-label="Search input field"
@@ -405,8 +425,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
           />
           <button
             aria-label="Click to Search"
-            class="Button primary"
-            color="primary"
+            class="emotion-6 emotion-7"
             data-testid="searchbar-button"
           >
             Search
@@ -415,7 +434,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
         
       </div>
       <div
-        class="emotion-10 emotion-11"
+        class="emotion-12 emotion-13"
       >
         <svg
           aria-hidden="true"
@@ -439,34 +458,34 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
         </span>
       </div>
       <div
-        class="emotion-54 emotion-55"
+        class="emotion-56 emotion-57"
       >
         <div
-          class="emotion-31 emotion-32"
+          class="emotion-33 emotion-34"
         >
           <a
-            class="emotion-28 emotion-29 emotion-30"
+            class="emotion-30 emotion-31 emotion-32"
             href="/DevHub-Node-1"
           >
             <article
-              class="emotion-26 emotion-27"
+              class="emotion-28 emotion-29"
             >
               <div
-                class="emotion-12 emotion-13"
+                class="emotion-14 emotion-15"
                 type="Documentation"
               />
               <div
-                class="emotion-24 emotion-132"
+                class="emotion-26 emotion-152"
               >
                 <div
                   css="[object Object]"
                 >
                   <h3
-                    class="emotion-16 emotion-17"
+                    class="emotion-18 emotion-19"
                   >
                     <svg
                       aria-hidden="true"
-                      class="svg-inline--fa fa-file fa-w-12  emotion-14 emotion-15"
+                      class="svg-inline--fa fa-file fa-w-12  emotion-16 emotion-17"
                       data-icon="file"
                       data-prefix="fas"
                       data-testid="resource-type-icon"
@@ -507,48 +526,48 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
                   </h3>
                 </div>
                 <h2
-                  class="emotion-18 emotion-19"
+                  class="emotion-20 emotion-21"
                 >
                   About
                 </h2>
                 <p
-                  class="emotion-20 emotion-21"
+                  class="emotion-22 emotion-23"
                 >
                   What the Design System is and how it works.
                 </p>
                 <div
-                  class="emotion-22 emotion-23"
+                  class="emotion-24 emotion-25"
                 />
               </div>
             </article>
           </a>
         </div>
         <div
-          class="emotion-31 emotion-32"
+          class="emotion-33 emotion-34"
         >
           <a
-            class="emotion-28 emotion-29 emotion-30"
+            class="emotion-30 emotion-31 emotion-32"
             href="/GitHub-Raw-1"
           >
             <article
-              class="emotion-26 emotion-27"
+              class="emotion-28 emotion-29"
             >
               <div
-                class="emotion-12 emotion-13"
+                class="emotion-14 emotion-15"
                 type="Documentation"
               />
               <div
-                class="emotion-24 emotion-132"
+                class="emotion-26 emotion-152"
               >
                 <div
                   css="[object Object]"
                 >
                   <h3
-                    class="emotion-16 emotion-17"
+                    class="emotion-18 emotion-19"
                   >
                     <svg
                       aria-hidden="true"
-                      class="svg-inline--fa fa-file fa-w-12  emotion-14 emotion-15"
+                      class="svg-inline--fa fa-file fa-w-12  emotion-16 emotion-17"
                       data-icon="file"
                       data-prefix="fas"
                       data-testid="resource-type-icon"
@@ -589,17 +608,17 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
                   </h3>
                 </div>
                 <h2
-                  class="emotion-18 emotion-19"
+                  class="emotion-20 emotion-21"
                 >
                   Introduction To Github and Gov
                 </h2>
                 <p
-                  class="emotion-20 emotion-21"
+                  class="emotion-22 emotion-23"
                 >
                   Everything you need to know about working with Github in the BC Government.
                 </p>
                 <div
-                  class="emotion-22 emotion-23"
+                  class="emotion-24 emotion-25"
                 />
               </div>
             </article>
