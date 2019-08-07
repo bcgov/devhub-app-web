@@ -19,6 +19,7 @@ import {
   selectTopicsWithResourcesGroupedByType,
   selectResourcesGroupedByType,
 } from '../utils/selectors';
+
 import { isQueryEmpty, getSearchSourcesResultTotal, areSearchSourcesStillLoading } from '../utils/search';
 import { SEARCH_QUERY_PARAM } from '../constants/search';
 import { SPACING } from '../constants/designTokens';
@@ -150,7 +151,7 @@ export const Index = ({
   // get rocket chat search results if authenticated
   // TODO will activate once ui component is available
   const searchSourceResults = {
-    rocketchat: useRCSearch(true, query, client)
+    rocketchat: useRCSearch(authenticated, query, client)
   };
 
   results = useSearch(query, index);
