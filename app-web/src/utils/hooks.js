@@ -158,6 +158,7 @@ export const useRCSearch = (authenticated, queryString, client) => {
     return () => {
       setResults([]);
     };
-  }, [_loading, authenticated, data.search, loading, queryString]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, useDeepCompareMemoize([_loading, loading, authenticated, queryString, results]));
   return { results, loading: _loading };
 };
