@@ -210,21 +210,31 @@ export const Index = ({
   } else {
     totalSearchResults = getSearchResultTotal(siphonResources);
     const { rocketchat } = searchSourceResults;
-    content = (
-      <Aux>
-        {getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}
-        {siphonResources}
-        {searchSourceFilters.rocketchat &&
-          (rocketchat.results.length && rocketchat.results.length > 0) && (
+    if (!!rocketchat.results) {
+      content = (
+        <Aux>
+          {getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}
+          {siphonResources}
+          {searchSourceFilters.rocketchat && rocketchat.results.length > 0 && (
             <RocketChatResults results={searchSourceResults.rocketchat.results} />
           )}
-      </Aux>
-    );
+        </Aux>
+      );
+    } else {
+      content = (
+        <Aux>
+          {getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}
+          {siphonResources}
+        </Aux>
+      );
+    }
   }
 
   // dynamic sources all load at different times, this function returns false when all have completed loading
   const searchSourcesLoading = areSearchSourcesStillLoading(searchSourceResults);
-  totalSearchResults += getSearchSourcesResultTotal(searchSourceResults, searchSourceFilters);
+  if (!!searchSourceResults.rocketchat.results) {
+    totalSearchResults += getSearchSourcesResultTotal(searchSourceResults, searchSourceFilters);
+  }
 
   return (
     <Layout showHamburger>
