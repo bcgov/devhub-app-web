@@ -81,4 +81,3 @@ export const POPULAR_TOPIC_CONFIGURATION = {
 export const DYNAMIC_TOPIC_PATHS = {
   popular: 'popular',
 };
-

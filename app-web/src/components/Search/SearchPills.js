@@ -52,24 +52,23 @@ export const SearchPills = ({ onDelete, query, searchResultTotal, showClear, onC
     ));
   }
 
-    let resultLabel;
-    resultLabel = searchResultTotal;
+  let resultLabel;
+  resultLabel = searchResultTotal;
 
-    if(searchResultTotal <= 0) {
-      resultLabel = 'No Results';
-    } else {
-      resultLabel = `${searchResultTotal} Result${searchResultTotal > 1 ? 's': ''}`;
-    }
+  if (searchResultTotal <= 0) {
+    resultLabel = 'No Results';
+  } else {
+    resultLabel = `${searchResultTotal} Result${searchResultTotal > 1 ? 's' : ''}`;
+  }
 
-    resultpill = [
-      <SearchPill
-        key={shortid.generate()}
-        label={resultLabel}
-        onDelete={onDelete}
-        variant="filled"
-      />,
-    ];
-   
+  resultpill = [
+    <SearchPill
+      key={shortid.generate()}
+      label={resultLabel}
+      onDelete={onDelete}
+      variant="filled"
+    />,
+  ];
 
   const clearPill =
     showClear && query.length > 0 ? (
