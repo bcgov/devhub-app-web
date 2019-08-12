@@ -214,9 +214,10 @@ export const Index = ({
       <Aux>
         {getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}
         {siphonResources}
-        {searchSourceFilters.rocketchat && rocketchat.results.length > 0 && (
-          <RocketChatResults results={searchSourceResults.rocketchat.results} />
-        )}
+        {searchSourceFilters.rocketchat &&
+          (rocketchat.results.length && rocketchat.results.length > 0) && (
+            <RocketChatResults results={searchSourceResults.rocketchat.results} />
+          )}
       </Aux>
     );
   }
