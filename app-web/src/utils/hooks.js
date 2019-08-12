@@ -30,15 +30,15 @@ function deepCompareEquals(a, b) {
 }
 
 export function useDeepCompareMemoize(value) {
-  const ref = useRef();
+  const ref = useRef() 
   // it can be done by using useMemo as well
   // but useRef is rather cleaner and easier
 
   if (!deepCompareEquals(value, ref.current)) {
-    ref.current = value;
+    ref.current = value
   }
 
-  return ref.current;
+  return ref.current
 }
 /**
  * custom react hook to perform a search
@@ -98,13 +98,13 @@ export const useImplicitAuth = () => {
   const [user, setUser] = useState({});
   useEffect(() => {
     const implicitAuthManager = createIam();
-
+    
     implicitAuthManager.registerHooks({
       onAuthenticateSuccess: () => setUser(implicitAuthManager.getAuthDataFromLocal()),
       onAuthenticateFail: () => setUser({}),
       onAuthLocalStorageCleared: () => setUser({}),
     });
-
+    
     if (!isLocalHost()) {
       implicitAuthManager.handleOnPageLoad();
     }
@@ -112,24 +112,26 @@ export const useImplicitAuth = () => {
   return user;
 };
 
+
 // returns if user is authenticated and the id token
 export const useAuthenticated = () => {
-  const [authenticated, setAuthenticated] = useState({ authenticated: false, idToken: null });
+  const [authenticated, setAuthenticated] = useState({authenticated: false, idToken: null});
   const { auth } = useContext(AuthContext);
   useEffect(() => {
-    if (!isEmpty(auth)) {
+
+    if(!isEmpty(auth)) {
       const now = new Date();
       const { exp } = auth.idToken.data;
       // jwt times are in seconds, multiply by 1000 to convert into a date object
       const expDate = new Date(exp * 1000);
-      // parse out auth.id_token and see if its still valid
-      if (moment(now).isBefore(moment(expDate))) {
-        setAuthenticated({ authenticated: true, token: auth.idToken.bearer });
+      // parse out auth.id_token and see if its still valid 
+      if(moment(now).isBefore(moment(expDate))) {
+        setAuthenticated({authenticated: true, token: auth.idToken.bearer});
       }
     }
-  }, [auth]);
+  }, []);
   return authenticated;
-};
+}
 
 /**
  * hook that performs a rocket chat search against the rocket gate apollo api
@@ -139,25 +141,23 @@ export const useAuthenticated = () => {
  * @returns {Object} {loading, results: <Array>}
  */
 export const useRCSearch = (authenticated, queryString, client) => {
-  const { data, loading } = useQuery(ROCKET_GATE_QUERY, {
-    variables: {
-      queryString,
-    },
-    client,
-  });
+
+  const {data, loading} = useQuery(ROCKET_GATE_QUERY, {variables: {
+    queryString
+  }, client});
   const [results, setResults] = useState([]);
   const [_loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(loading);
-    if (!authenticated || !queryString) {
+    if(!authenticated || !queryString) {
       setResults([]);
-    } else if (!_loading) {
+    } else if(!_loading) {
       setResults(data.search);
     }
 
     return () => {
       setResults([]);
     };
-  }, [_loading, authenticated, data.search, loading, queryString]);
-  return { results, loading: _loading };
-};
+  }, useDeepCompareMemoize([_loading, loading, authenticated, queryString, results]));
+  return {results, loading: _loading};
+}

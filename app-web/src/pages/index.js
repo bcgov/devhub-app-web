@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import queryString from 'query-string';
 import intersectionBy from 'lodash/intersectionBy';
 import isNull from 'lodash/isNull';
 import styled from '@emotion/styled';
 import { Alert } from 'reactstrap';
-import { withApollo } from 'react-apollo';
+import {  withApollo } from 'react-apollo';
 import { MAIN_NAV_ROUTES } from '../constants/routes';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { SEARCH } from '../messages';
@@ -20,11 +20,7 @@ import {
   selectResourcesGroupedByType,
 } from '../utils/selectors';
 
-import {
-  isQueryEmpty,
-  getSearchSourcesResultTotal,
-  areSearchSourcesStillLoading,
-} from '../utils/search';
+import { isQueryEmpty, getSearchSourcesResultTotal, areSearchSourcesStillLoading } from '../utils/search';
 import { SEARCH_QUERY_PARAM } from '../constants/search';
 import { SPACING } from '../constants/designTokens';
 import uniqBy from 'lodash/uniqBy';
@@ -155,11 +151,11 @@ export const Index = ({
   // get rocket chat search results if authenticated
   // TODO will activate once ui component is available
   const searchSourceResults = {
-    rocketchat: useRCSearch(authenticated, query, client),
+    rocketchat: useRCSearch(authenticated, query, client)
   };
 
   results = useSearch(query, index);
-
+  
   const allEvents = flattenGatsbyGraphQL(allEventbriteEvents.edges);
   const currentEvents = formatEvents(allEvents.filter(e => e.start.daysFromNow <= 0));
   const allMeetups = formatMeetUps(
@@ -199,6 +195,7 @@ export const Index = ({
 
   const topics = flattenGatsbyGraphQL(allDevhubTopic.edges);
 
+  
   if (queryIsEmpty) {
     content = <Aux>{getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}</Aux>;
   } else if (resourcesNotFound) {
@@ -214,33 +211,24 @@ export const Index = ({
       <Aux>
         {getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}
         {siphonResources}
-        {searchSourceFilters.rocketchat && rocketchat.results.length > 0 && (
-          <RocketChatResults results={searchSourceResults.rocketchat.results} />
-        )}
+        {searchSourceFilters.rocketchat && rocketchat.results.length > 0 && <RocketChatResults results={searchSourceResults.rocketchat.results} />}
       </Aux>
     );
-  }
-
+  } 
+  
   // dynamic sources all load at different times, this function returns false when all have completed loading
   const searchSourcesLoading = areSearchSourcesStillLoading(searchSourceResults);
   totalSearchResults += getSearchSourcesResultTotal(searchSourceResults, searchSourceFilters);
 
+
   return (
     <Layout showHamburger>
-      <Masthead
-        query={query}
-        searchSourcesLoading={searchSourcesLoading}
-        resultCount={totalSearchResults}
-        searchSources={searchSourceFilters}
-        searchSourceToggled={searchSource => {
-          const newSearchSourceFilters = { ...searchSourceFilters };
-          newSearchSourceFilters[searchSource] = !newSearchSourceFilters[searchSource];
-          setSearchSourceFilters(newSearchSourceFilters);
-        }}
-      />
-      <Main>
-        {windowHasQuery && searchSourcesLoading ? <Loading message="loading" /> : content}
-      </Main>
+      <Masthead query={query} searchSourcesLoading={searchSourcesLoading} resultCount={totalSearchResults} searchSources={searchSourceFilters} searchSourceToggled={searchSource => {
+        const newSearchSourceFilters = {...searchSourceFilters};
+        newSearchSourceFilters[searchSource] = !newSearchSourceFilters[searchSource];
+        setSearchSourceFilters(newSearchSourceFilters);
+      }}/>
+      <Main>{(windowHasQuery && searchSourcesLoading) ?<Loading message="loading" />: content}</Main>
     </Layout>
   );
 };
