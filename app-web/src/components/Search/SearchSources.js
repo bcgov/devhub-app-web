@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { RCButton } from '../UI/Button/Button';
 import { useAuthenticated } from '../../utils/hooks';
-import { SEARCH_SOURCES } from '../../constants/search';
+import { Link } from '../UI/Link';
 
 export const SearchSourcesContainer = styled.div`
   display: flex;
@@ -16,7 +16,7 @@ export const TEST_IDS = {
   container: 'search.sources.container',
 };
 
-export const SearchSources = ({ rocketchat, toggleSource }) => {
+export const SearchSources = ({ rocketchat }) => {
   const { authenticated } = useAuthenticated();
   const rcProps = {};
 
@@ -25,13 +25,9 @@ export const SearchSources = ({ rocketchat, toggleSource }) => {
   }
   return (
     <SearchSourcesContainer data-testid={TEST_IDS.container}>
-      {authenticated && (
-        <RCButton
-          onClick={() => toggleSource(SEARCH_SOURCES.rocketchat)}
-          {...rcProps}
-          title="toggle rocket chat search results"
-        />
-      )}
+      <Link to={'#rocketChat'}>
+        {authenticated && <RCButton {...rcProps} title="toggle rocket chat search results" />}
+      </Link>
     </SearchSourcesContainer>
   );
 };

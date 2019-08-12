@@ -20,7 +20,7 @@ const Container = styled.div`
 
 export const RocketChatResults = ({ results }) => (
   <Container>
-    <Title>
+    <Title id={'rocketChat'}>
       From Rocket.Chat <img src={rocketChatSvg} alt="rocket chat logo" />
     </Title>
     {results.length > SEARCH_SOURCE_CONFIG.rocketchat.maxResults && (

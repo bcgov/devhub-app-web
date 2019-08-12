@@ -50,7 +50,7 @@ export const SEARCH_FIELD_MAPPING = {
 // federated search configurations
 export const SEARCH_SOURCES = {
   rocketchat: 'rocketchat',
-}
+};
 
 // this is a simple implementation of the search source 'toggle' feature
 // this object acts like a reducer
@@ -60,6 +60,6 @@ export const SEARCH_SOURCE_INITIAL_STATE = {
 
 export const SEARCH_SOURCE_CONFIG = {
   [SEARCH_SOURCES.rocketchat]: {
-    maxResults: 10
+    maxResults: 10,
   },
-}
+};

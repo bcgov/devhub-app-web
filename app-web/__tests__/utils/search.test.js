@@ -43,19 +43,13 @@ describe('Search Helpers', () => {
   });
 
   test('getSearchSourcesTotal return the correct total', () => {
-
     const sources = {
-      sourceA: {results: [1, 2, 3]},
-      sourceB: {results: [2, 4, 5, 7]},
+      sourceA: { results: [1, 2, 3] },
+      sourceB: { results: [2, 4, 5, 7] },
     };
 
-    const sourceToggles = {
-      sourceA: true,
-      sourceB: false,
-    };
+    const expected = 7;
 
-    const expected = 3;
-
-    expect(getSearchSourcesResultTotal(sources, sourceToggles)).toBe(expected);
+    expect(getSearchSourcesResultTotal(sources)).toBe(expected);
   });
 });

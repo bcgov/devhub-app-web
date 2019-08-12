@@ -141,7 +141,7 @@ export const Index = ({
   location,
 }) => {
   const queryParam = queryString.parse(location.search);
-  const [searchSourceFilters, setSearchSourceFilters] = useState(SEARCH_SOURCE_INITIAL_STATE);
+  const [searchSourceFilters] = useState(SEARCH_SOURCE_INITIAL_STATE);
   let query = [];
   let results = [];
   let windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, SEARCH_QUERY_PARAM);
@@ -215,7 +215,7 @@ export const Index = ({
         <Aux>
           {getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}
           {siphonResources}
-          {searchSourceFilters.rocketchat && rocketchat.results.length > 0 && (
+          {rocketchat.results.length > 0 && (
             <RocketChatResults results={searchSourceResults.rocketchat.results} />
           )}
         </Aux>
@@ -233,7 +233,7 @@ export const Index = ({
   // dynamic sources all load at different times, this function returns false when all have completed loading
   const searchSourcesLoading = areSearchSourcesStillLoading(searchSourceResults);
   if (!!searchSourceResults.rocketchat.results) {
-    totalSearchResults += getSearchSourcesResultTotal(searchSourceResults, searchSourceFilters);
+    totalSearchResults += getSearchSourcesResultTotal(searchSourceResults);
   }
 
   return (
@@ -243,11 +243,6 @@ export const Index = ({
         searchSourcesLoading={searchSourcesLoading}
         resultCount={totalSearchResults}
         searchSources={searchSourceFilters}
-        searchSourceToggled={searchSource => {
-          const newSearchSourceFilters = { ...searchSourceFilters };
-          newSearchSourceFilters[searchSource] = !newSearchSourceFilters[searchSource];
-          setSearchSourceFilters(newSearchSourceFilters);
-        }}
       />
       <Main>
         {windowHasQuery && searchSourcesLoading ? <Loading message="loading" /> : content}

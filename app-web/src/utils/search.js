@@ -73,13 +73,11 @@ export const isQueryEmpty = query => {
  * @param {Array} searchSources.rocketchat.results map of search sources
  * @returns {Number} total number of search sources
  */
-export const getSearchSourcesResultTotal = (searchSources, searchSourceToggles) => {
+export const getSearchSourcesResultTotal = searchSources => {
   return Object.keys(searchSources).reduce((total, source) => {
-    if (searchSourceToggles[source]) {
-      total += searchSources[source].results.length;
-    }
+    total += searchSources[source].results.length;
     return total;
-  }, 0); 
+  }, 0);
 };
 
 /**
@@ -88,4 +86,5 @@ export const getSearchSourcesResultTotal = (searchSources, searchSourceToggles) 
  * @param {Object} searchSources
  * @returns {Boolean}
  */
-export const areSearchSourcesStillLoading = (searchSources) => Object.keys(searchSources).filter(source => searchSources[source].loading).length > 0;
+export const areSearchSourcesStillLoading = searchSources =>
+  Object.keys(searchSources).filter(source => searchSources[source].loading).length > 0;

@@ -55,7 +55,7 @@ const Container = styled.div`
   }
 `;
 
-export const Masthead = ({ query, resultCount, searchSources, searchSourcesLoading, searchSourceToggled }) => (
+export const Masthead = ({ query, resultCount, searchSources, searchSourcesLoading }) => (
   <Container>
     <AppLogo
       css={css`
@@ -103,7 +103,7 @@ export const Masthead = ({ query, resultCount, searchSources, searchSourcesLoadi
           showClear={false}
         />
       )}
-      {!searchSourcesLoading && query && resultCount > 0 && <SearchSources {...searchSources} toggleSource={searchSourceToggled} /> }
+      {!searchSourcesLoading && query && resultCount > 0 && <SearchSources {...searchSources} />}
     </SearchContainer>
   </Container>
 );
