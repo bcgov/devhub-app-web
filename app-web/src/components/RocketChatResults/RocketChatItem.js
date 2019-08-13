@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
 import { Link } from '../UI/Link';
 import styled from '@emotion/styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import moment from 'moment';
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
@@ -23,16 +24,16 @@ export const Icon = styled(FontAwesomeIcon)`
   top: 5px;
   right: 6px;
   display: none;
-`
+`;
 export const Container = styled.div`
   padding: 4px 6px;
   position: relative;
-  transition: background-color .15s ease-out;
+  transition: background-color 0.15s ease-out;
   :hover {
     background-color: #f0f0f0;
   }
   :hover ${Icon} {
-      display: inline;
+    display: inline;
   }
 `;
 
@@ -52,13 +53,20 @@ export const Message = styled.div`
   margin-bottom: 0;
 `;
 
-export const RocketChatItem = ({id, roomId, author, time, message, ...rest}) => (
+export const RocketChatItem = ({ id, roomId, author, time, message, url, ...rest }) => {
+  const yearMonthDay = moment(time).format('YYYY-MM-DD');
+  const hourMinute = moment(time).format('hh:mm a');
 
+  return (
     <Container {...rest}>
-      {/* <Icon icon={faExternalLinkAlt} /> */}
-      <div>
-        <Author>{author}</Author><Time>{time}</Time>
-      </div>
-      <Message>{message}</Message>
+      {<Icon icon={faExternalLinkAlt} />}
+      <StyledLink to={url}>
+        <div>
+          <Author>{author}</Author>
+          <Time>{`${yearMonthDay} ${hourMinute}`}</Time>
+        </div>
+        <Message>{message}</Message>
+      </StyledLink>
     </Container>
-);
+  );
+};
