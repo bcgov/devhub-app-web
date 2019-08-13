@@ -95,6 +95,8 @@ objects:
               cpu: '300m'
               memory: '75Mi'
           env:
+          - name: ROCKETGATE_API_URL
+            value: ${ROCKETGATE_API_URL}
           - name: SSO_BASE_URL
             value: ${SSO_BASE_URL_VALUE}
           - name: SSO_REALM_NAME

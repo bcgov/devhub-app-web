@@ -20,7 +20,7 @@ PopularTopic.propTypes = {
   nodes: PropTypes.arrayOf(
     PropTypes.shape({
       path: PropTypes.string,
-      fields: {
+      fields: PropTypes.shape({
         title: PropTypes.string,
         description: PropTypes.string,
         image: PropTypes.string,
@@ -28,7 +28,7 @@ PopularTopic.propTypes = {
         labels: PropTypes.array,
         tags: PropTypes.array,
         pagePaths: PropTypes.array,
-      },
+      }),
     }),
   ),
 };

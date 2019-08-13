@@ -11,7 +11,7 @@ import {
   SELECT_TOPICS_WITH_RESOURCES_GROUPED_BY_TYPE,
   SELECT_RESOURCES_GROUPED_BY_TYPE,
 } from '../../__fixtures__/selector-fixtures';
-import { useSearch } from '../../src/utils/hooks';
+import { useSearch, useAuthenticated, useRCSearch } from '../../src/utils/hooks';
 import { TEST_IDS as TOPIC_TEST_IDS } from '../../src/components/Home/TopicsContainer';
 import { TEST_IDS as RESOURCE_PREVIEW_TEST_IDS } from '../../src/components/Home/ResourcePreview';
 import {
@@ -22,6 +22,7 @@ import {
 import { GITHUB_RAW_NODES } from '../../__fixtures__/nodes';
 import { client } from '../../wrapWithProvider';
 import { ApolloProvider } from 'react-apollo';
+import { ROCKET_CHAT } from '../../__fixtures__/searchsources';
 
 jest.mock('query-string');
 // mock out layout
@@ -33,6 +34,8 @@ jest.mock('../../src/utils/helpers.js');
 
 getFirstNonExternalResource.mockReturnValue('foo');
 getTextAndLink.mockReturnValue({ to: '/documentation?q=mobile', text: 'two results found' });
+useRCSearch.mockReturnValue({ results: [], loading: false });
+useAuthenticated.mockReturnValue(false);
 
 describe('Home Page', () => {
   // mock out non redux selectors
@@ -53,6 +56,7 @@ describe('Home Page', () => {
   const meetups = MEETUP_NODES.map(c => ({ node: c }));
   const githubRaw = GITHUB_RAW_NODES.map(c => ({ node: c }));
   const props = {
+    client: {},
     data: {
       allDevhubSiphon: {
         edges: nodes,
@@ -170,7 +174,7 @@ describe('Home Page', () => {
   test('when there is no search, topics are visible', () => {
     queryString.parse.mockReturnValue({});
     useSearch.mockReturnValue([]);
-
+    useAuthenticated.mockReturnValue(false);
     const { getByTestId } = render(
       <ThemeProvider theme={theme}>
         <ApolloProvider client={client}>
@@ -182,7 +186,7 @@ describe('Home Page', () => {
     expect(getByTestId(TOPIC_TEST_IDS.container)).toBeInTheDocument();
   });
 
-  test('UnWanted results are correctly removed from search results', () => {
+  test('Unwanted results are correctly removed from search results', () => {
     //Our results have siphons node and meetups
     const initialResults = SIPHON_NODES.concat(MEETUP_NODES);
     //in our call to removeUnwantedResults, we say that only events are current (not meetups)
@@ -193,5 +197,28 @@ describe('Home Page', () => {
       EVENTS,
     );
     expect(filteredResults.length).toBeLessThan(initialResults.length);
+  });
+
+  test('shows rocket chat results when authenticated', () => {
+    queryString.parse.mockReturnValue({ q: 'foo' });
+    useSearch.mockReturnValue([]);
+    useRCSearch.mockReturnValue({ results: ROCKET_CHAT, loading: false });
+    useAuthenticated.mockReturnValue(true);
+
+    const { queryByTestId, rerender } = render(
+      <ThemeProvider theme={theme}>
+        <ApolloProvider client={client}>
+          <Index {...props} location={{ search: '?q=foo' }} />
+        </ApolloProvider>
+      </ThemeProvider>,
+    );
+
+    expect(queryByTestId(ROCKET_CHAT[0].id)).toBeInTheDocument();
+
+    useAuthenticated.mockReturnValue(false);
+
+    rerender();
+
+    expect(queryByTestId(ROCKET_CHAT[0].id)).not.toBeInTheDocument();
   });
 });

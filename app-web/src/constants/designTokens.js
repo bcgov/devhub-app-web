@@ -92,6 +92,7 @@ export const DS_PALETTE = {
 // devhub specific palette
 export const DEVHUB_PALETTE = {
   primary: DS_PALETTE.brand.blue,
+  secondary: DS_PALETTE.brand.yellow,
   [RESOURCE_TYPES.COMPONENTS]: '#4299D2',
   [RESOURCE_TYPES.DOCUMENTATION]: '#246BD1',
   [RESOURCE_TYPES.PEOPLE]: '#E17039',

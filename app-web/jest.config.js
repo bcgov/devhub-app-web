@@ -12,6 +12,7 @@ module.exports = {
   moduleFileExtensions: ['js', 'module.css', '.css', 'json'],
   moduleNameMapper: {
     '\\.module\\.(css|less)$': 'identity-obj-proxy',
+    '\\.(css|less)$': 'identity-obj-proxy',
     '.(css)$': 'identity-obj-proxy',
   },
   collectCoverage: true,

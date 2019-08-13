@@ -16,8 +16,24 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import { BeatLoader } from 'react-spinners';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import styled from '@emotion/styled';
+
+const Spinner = styled(FontAwesomeIcon)`
+  @keyframes spin {
+    from {
+      transform: rotateZ(0);
+    }
+
+    to {
+      transform: rotateZ(360deg);
+    }
+  }
+  font-size: 2.5em;
+  animation: spin 0.85s cubic-bezier(0.46, 0.65, 0.43, 0.88) infinite;
+`;
 
 const Loading = ({ message }) => (
   <div
@@ -31,7 +47,7 @@ const Loading = ({ message }) => (
     }}
   >
     <p style={{ marginBottom: '15px' }}>{message}</p>
-    <BeatLoader />
+    <Spinner icon={faSpinner} />
   </div>
 );
 

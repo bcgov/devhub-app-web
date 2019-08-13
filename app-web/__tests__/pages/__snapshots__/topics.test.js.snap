@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Topics Container it matches snapshot 1`] = `
-.emotion-153 {
+.emotion-155 {
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -94,7 +94,27 @@ exports[`Topics Container it matches snapshot 1`] = `
   color: #fcba19;
 }
 
-.emotion-133 {
+.emotion-13 {
+  color: #fff;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1em;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  display: inline-block;
+  background-color: #FCBA19;
+}
+
+.emotion-135 {
   margin-top: 65px;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -103,12 +123,12 @@ exports[`Topics Container it matches snapshot 1`] = `
 }
 
 @media screen and (min-width:932px) {
-  .emotion-133 {
+  .emotion-135 {
     margin-top: 112px;
   }
 }
 
-.emotion-131 {
+.emotion-133 {
   font-size: 15px;
   max-width: 1300px;
   margin: 0;
@@ -116,21 +136,21 @@ exports[`Topics Container it matches snapshot 1`] = `
 }
 
 @media screen and (min-width:932px) {
-  .emotion-131 {
+  .emotion-133 {
     padding: 10px 65px;
   }
 }
 
-.emotion-15 {
+.emotion-17 {
   margin-bottom: 10px;
   color: #494949;
 }
 
-.emotion-15 h1 {
+.emotion-17 h1 {
   margin-bottom: 5px;
 }
 
-.emotion-13 {
+.emotion-15 {
   font-size: 1em;
   max-width: 565px;
   margin-bottom: 0;
@@ -138,7 +158,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   line-height: 1.5em;
 }
 
-.emotion-17 {
+.emotion-19 {
   background-color: #444;
   -webkit-flex: 0 0 10px;
   -ms-flex: 0 0 10px;
@@ -146,24 +166,24 @@ exports[`Topics Container it matches snapshot 1`] = `
   min-height: 15px;
 }
 
-.emotion-72 {
+.emotion-74 {
   padding: 0 15px;
   padding-top: 10px;
   padding-bottom: 20px;
 }
 
-.emotion-21 {
+.emotion-23 {
   color: #444;
   font-size: 14px;
   margin-bottom: 0;
   font-weight: 400;
 }
 
-.emotion-19 {
+.emotion-21 {
   color: #444;
 }
 
-.emotion-26 {
+.emotion-28 {
   font-size: 20px;
   color: #494949;
   line-height: 1.3;
@@ -177,7 +197,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   font-size: 26px;
 }
 
-.emotion-24 {
+.emotion-26 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #1A5A96;
@@ -192,13 +212,13 @@ exports[`Topics Container it matches snapshot 1`] = `
   text-decoration: none;
 }
 
-.emotion-24:hover {
+.emotion-26:hover {
   color: inherit;
   -webkit-text-decoration-color: #1a5a96;
   text-decoration-color: #1a5a96;
 }
 
-.emotion-28 {
+.emotion-30 {
   font-size: 14px;
   line-height: 1.4;
   -webkit-flex: 0 0 auto;
@@ -210,7 +230,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   margin-bottom: 15px;
 }
 
-.emotion-47 {
+.emotion-49 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #1A5A96;
@@ -223,14 +243,14 @@ exports[`Topics Container it matches snapshot 1`] = `
   color: initial;
 }
 
-.emotion-47:hover {
+.emotion-49:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   color: initial;
   cursor: pointer;
 }
 
-.emotion-44 {
+.emotion-46 {
   width: 265px;
   height: 238.5px;
   margin: 10px 0;
@@ -252,21 +272,21 @@ exports[`Topics Container it matches snapshot 1`] = `
   overflow: hidden;
 }
 
-.emotion-44:hover {
+.emotion-46:hover {
   box-shadow: 0 2px 2px 1px #00000026;
   -webkit-transform: translateY(-2px);
   -ms-transform: translateY(-2px);
   transform: translateY(-2px);
 }
 
-.emotion-30 {
+.emotion-32 {
   background-color: #246BD1;
   -webkit-flex: 0 0 10px;
   -ms-flex: 0 0 10px;
   flex: 0 0 10px;
 }
 
-.emotion-42 {
+.emotion-44 {
   padding: 6px 10px;
   height: 100%;
   overflow: hidden;
@@ -283,11 +303,11 @@ exports[`Topics Container it matches snapshot 1`] = `
   flex-flow: column nowrap;
 }
 
-.emotion-32 {
+.emotion-34 {
   color: #246BD1;
 }
 
-.emotion-36 {
+.emotion-38 {
   font-size: 20px;
   color: #494949;
   line-height: 1.3;
@@ -298,7 +318,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   word-break: break-word;
 }
 
-.emotion-38 {
+.emotion-40 {
   font-size: 14px;
   line-height: 1.4;
   -webkit-flex: 0 0 auto;
@@ -308,7 +328,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   text-transform: none;
 }
 
-.emotion-40 {
+.emotion-42 {
   -webkit-flex: 1 1 auto;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
@@ -324,23 +344,23 @@ exports[`Topics Container it matches snapshot 1`] = `
   display: flex;
 }
 
-.emotion-49 {
+.emotion-51 {
   background-color: #4299D2;
   -webkit-flex: 0 0 10px;
   -ms-flex: 0 0 10px;
   flex: 0 0 10px;
 }
 
-.emotion-51 {
+.emotion-53 {
   color: #4299D2;
 }
 
-.emotion-70 {
+.emotion-72 {
   text-align: right;
   font-size: 1.15em;
 }
 
-.emotion-68 {
+.emotion-70 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #1A5A96;
@@ -350,7 +370,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   margin: 0 2px;
 }
 
-.emotion-151 {
+.emotion-153 {
   background-color: #036;
   border-top: 2px solid #fcba19;
   padding: 9px 0 10px;
@@ -359,18 +379,18 @@ exports[`Topics Container it matches snapshot 1`] = `
 }
 
 @media screen and (min-width:600px) {
-  .emotion-151 {
+  .emotion-153 {
     padding: 0 65px 0 65px;
   }
 }
 
 @media print {
-  .emotion-151 {
+  .emotion-153 {
     display: none;
   }
 }
 
-.emotion-149 {
+.emotion-151 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -381,7 +401,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   align-items: center;
 }
 
-.emotion-149 > ul {
+.emotion-151 > ul {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -393,7 +413,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   margin: 10px 0;
 }
 
-.emotion-149 li {
+.emotion-151 li {
   padding: 0 9px;
   text-align: center;
   margin-bottom: 0;
@@ -407,7 +427,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   align-items: center;
 }
 
-.emotion-135 {
+.emotion-137 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #1A5A96;
@@ -417,7 +437,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   margin: 0 2px;
 }
 
-.emotion-147 {
+.emotion-149 {
   margin: 0;
   padding: 0;
   background: none;
@@ -428,17 +448,17 @@ exports[`Topics Container it matches snapshot 1`] = `
   font-size: 0.813em;
 }
 
-.emotion-147:focus {
+.emotion-149:focus {
   outline: none;
 }
 
-.emotion-147:hover {
+.emotion-149:hover {
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
 <div
-  class="emotion-153 emotion-154 container-fluid"
+  class="emotion-155 emotion-156 container-fluid"
 >
   <header
     class="PrimaryHeader"
@@ -481,8 +501,7 @@ exports[`Topics Container it matches snapshot 1`] = `
         class="LoginWrapper"
       >
         <button
-          class="Button secondary"
-          color="secondary"
+          class="emotion-13 emotion-14"
           data-testid="auth.logout"
         >
           Logout
@@ -573,19 +592,19 @@ exports[`Topics Container it matches snapshot 1`] = `
     </ul>
   </nav>
   <div
-    class="emotion-133 emotion-134"
+    class="emotion-135 emotion-136"
   >
     <main
-      class="emotion-131 emotion-132"
+      class="emotion-133 emotion-134"
     >
       <div
-        class="emotion-15 emotion-16"
+        class="emotion-17 emotion-18"
       >
         <h1>
           Topics
         </h1>
         <h4
-          class="emotion-13 emotion-14"
+          class="emotion-15 emotion-16"
         >
           Explore resources that have been specially curated to enhance context, detail and accessibility.
         </h4>
@@ -594,21 +613,21 @@ exports[`Topics Container it matches snapshot 1`] = `
         css="[object Object]"
       >
         <div
-          class="emotion-17 emotion-18"
+          class="emotion-19 emotion-20"
           type="Topics"
         />
         <div
-          class="emotion-72 emotion-73"
+          class="emotion-74 emotion-75"
         >
           <div
             css="[object Object]"
           >
             <h3
-              class="emotion-21 emotion-22"
+              class="emotion-23 emotion-24"
             >
               <svg
                 aria-hidden="true"
-                class="svg-inline--fa fa-layer-group fa-w-16  emotion-19 emotion-20"
+                class="svg-inline--fa fa-layer-group fa-w-16  emotion-21 emotion-22"
                 data-icon="layer-group"
                 data-prefix="fas"
                 data-testid="resource-type-icon"
@@ -632,17 +651,17 @@ exports[`Topics Container it matches snapshot 1`] = `
             </h3>
           </div>
           <div
-            class="emotion-26 emotion-27"
+            class="emotion-28 emotion-29"
           >
             <a
-              class="emotion-23 emotion-24 emotion-25"
+              class="emotion-25 emotion-26 emotion-27"
               href="foo"
             >
               Design System
             </a>
           </div>
           <div
-            class="emotion-28 emotion-29"
+            class="emotion-30 emotion-31"
           >
             baz
           </div>
@@ -661,28 +680,28 @@ exports[`Topics Container it matches snapshot 1`] = `
                   style="padding-right: 0px; padding-left: 0px; width: 251px; max-width: 251px; min-width: 251px;"
                 >
                   <a
-                    class="emotion-46 emotion-47 emotion-12"
+                    class="emotion-48 emotion-49 emotion-12"
                     href="/Design-System/foo"
                   >
                     <article
-                      class="emotion-44 emotion-45"
+                      class="emotion-46 emotion-47"
                     >
                       <div
-                        class="emotion-30 emotion-31"
+                        class="emotion-32 emotion-33"
                         type="Documentation"
                       />
                       <div
-                        class="emotion-42 emotion-312"
+                        class="emotion-44 emotion-332"
                       >
                         <div
                           css="[object Object]"
                         >
                           <h3
-                            class="emotion-21 emotion-22"
+                            class="emotion-23 emotion-24"
                           >
                             <svg
                               aria-hidden="true"
-                              class="svg-inline--fa fa-file fa-w-12  emotion-32 emotion-20"
+                              class="svg-inline--fa fa-file fa-w-12  emotion-34 emotion-22"
                               data-icon="file"
                               data-prefix="fas"
                               data-testid="resource-type-icon"
@@ -723,17 +742,17 @@ exports[`Topics Container it matches snapshot 1`] = `
                           </h3>
                         </div>
                         <h2
-                          class="emotion-36 emotion-37"
+                          class="emotion-38 emotion-39"
                         >
                           Introduction To Github and Gov
                         </h2>
                         <p
-                          class="emotion-38 emotion-39"
+                          class="emotion-40 emotion-41"
                         >
                           Everything you need to know about working with Github in the BC Government.
                         </p>
                         <div
-                          class="emotion-40 emotion-41"
+                          class="emotion-42 emotion-43"
                         />
                       </div>
                     </article>
@@ -744,28 +763,28 @@ exports[`Topics Container it matches snapshot 1`] = `
                   style="padding-right: 0px; padding-left: 0px; width: 251px; max-width: 251px; min-width: 251px;"
                 >
                   <a
-                    class="emotion-46 emotion-47 emotion-12"
+                    class="emotion-48 emotion-49 emotion-12"
                     href="/Design-System/bar"
                   >
                     <article
-                      class="emotion-44 emotion-45"
+                      class="emotion-46 emotion-47"
                     >
                       <div
-                        class="emotion-49 emotion-31"
+                        class="emotion-51 emotion-33"
                         type="Components"
                       />
                       <div
-                        class="emotion-42 emotion-312"
+                        class="emotion-44 emotion-332"
                       >
                         <div
                           css="[object Object]"
                         >
                           <h3
-                            class="emotion-21 emotion-22"
+                            class="emotion-23 emotion-24"
                           >
                             <svg
                               aria-hidden="true"
-                              class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-51 emotion-20"
+                              class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-53 emotion-22"
                               data-icon="puzzle-piece"
                               data-prefix="fas"
                               data-testid="resource-type-icon"
@@ -806,17 +825,17 @@ exports[`Topics Container it matches snapshot 1`] = `
                           </h3>
                         </div>
                         <h2
-                          class="emotion-36 emotion-37"
+                          class="emotion-38 emotion-39"
                         >
                           Introduction To Github and Gov
                         </h2>
                         <p
-                          class="emotion-38 emotion-39"
+                          class="emotion-40 emotion-41"
                         >
                           Everything you need to know about working with Github in the BC Government.
                         </p>
                         <div
-                          class="emotion-40 emotion-41"
+                          class="emotion-42 emotion-43"
                         />
                       </div>
                     </article>
@@ -826,10 +845,10 @@ exports[`Topics Container it matches snapshot 1`] = `
             </div>
           </div>
           <div
-            class="emotion-70 emotion-71"
+            class="emotion-72 emotion-73"
           >
             <a
-              class="emotion-68 emotion-25"
+              class="emotion-70 emotion-27"
               href="foo"
             >
               View
@@ -857,21 +876,21 @@ exports[`Topics Container it matches snapshot 1`] = `
         css="[object Object]"
       >
         <div
-          class="emotion-17 emotion-18"
+          class="emotion-19 emotion-20"
           type="Topics"
         />
         <div
-          class="emotion-72 emotion-73"
+          class="emotion-74 emotion-75"
         >
           <div
             css="[object Object]"
           >
             <h3
-              class="emotion-21 emotion-22"
+              class="emotion-23 emotion-24"
             >
               <svg
                 aria-hidden="true"
-                class="svg-inline--fa fa-layer-group fa-w-16  emotion-19 emotion-20"
+                class="svg-inline--fa fa-layer-group fa-w-16  emotion-21 emotion-22"
                 data-icon="layer-group"
                 data-prefix="fas"
                 data-testid="resource-type-icon"
@@ -895,17 +914,17 @@ exports[`Topics Container it matches snapshot 1`] = `
             </h3>
           </div>
           <div
-            class="emotion-26 emotion-27"
+            class="emotion-28 emotion-29"
           >
             <a
-              class="emotion-23 emotion-24 emotion-25"
+              class="emotion-25 emotion-26 emotion-27"
               href="foo"
             >
               Devhub
             </a>
           </div>
           <div
-            class="emotion-28 emotion-29"
+            class="emotion-30 emotion-31"
           >
             baz
           </div>
@@ -924,28 +943,28 @@ exports[`Topics Container it matches snapshot 1`] = `
                   style="padding-right: 0px; padding-left: 0px; width: 251px; max-width: 251px; min-width: 251px;"
                 >
                   <a
-                    class="emotion-46 emotion-47 emotion-12"
+                    class="emotion-48 emotion-49 emotion-12"
                     href="/Devhub/foo"
                   >
                     <article
-                      class="emotion-44 emotion-45"
+                      class="emotion-46 emotion-47"
                     >
                       <div
-                        class="emotion-30 emotion-31"
+                        class="emotion-32 emotion-33"
                         type="Documentation"
                       />
                       <div
-                        class="emotion-42 emotion-312"
+                        class="emotion-44 emotion-332"
                       >
                         <div
                           css="[object Object]"
                         >
                           <h3
-                            class="emotion-21 emotion-22"
+                            class="emotion-23 emotion-24"
                           >
                             <svg
                               aria-hidden="true"
-                              class="svg-inline--fa fa-file fa-w-12  emotion-32 emotion-20"
+                              class="svg-inline--fa fa-file fa-w-12  emotion-34 emotion-22"
                               data-icon="file"
                               data-prefix="fas"
                               data-testid="resource-type-icon"
@@ -986,17 +1005,17 @@ exports[`Topics Container it matches snapshot 1`] = `
                           </h3>
                         </div>
                         <h2
-                          class="emotion-36 emotion-37"
+                          class="emotion-38 emotion-39"
                         >
                           Introduction To Github and Gov
                         </h2>
                         <p
-                          class="emotion-38 emotion-39"
+                          class="emotion-40 emotion-41"
                         >
                           Everything you need to know about working with Github in the BC Government.
                         </p>
                         <div
-                          class="emotion-40 emotion-41"
+                          class="emotion-42 emotion-43"
                         />
                       </div>
                     </article>
@@ -1007,28 +1026,28 @@ exports[`Topics Container it matches snapshot 1`] = `
                   style="padding-right: 0px; padding-left: 0px; width: 251px; max-width: 251px; min-width: 251px;"
                 >
                   <a
-                    class="emotion-46 emotion-47 emotion-12"
+                    class="emotion-48 emotion-49 emotion-12"
                     href="/Devhub/bar"
                   >
                     <article
-                      class="emotion-44 emotion-45"
+                      class="emotion-46 emotion-47"
                     >
                       <div
-                        class="emotion-49 emotion-31"
+                        class="emotion-51 emotion-33"
                         type="Components"
                       />
                       <div
-                        class="emotion-42 emotion-312"
+                        class="emotion-44 emotion-332"
                       >
                         <div
                           css="[object Object]"
                         >
                           <h3
-                            class="emotion-21 emotion-22"
+                            class="emotion-23 emotion-24"
                           >
                             <svg
                               aria-hidden="true"
-                              class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-51 emotion-20"
+                              class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-53 emotion-22"
                               data-icon="puzzle-piece"
                               data-prefix="fas"
                               data-testid="resource-type-icon"
@@ -1069,17 +1088,17 @@ exports[`Topics Container it matches snapshot 1`] = `
                           </h3>
                         </div>
                         <h2
-                          class="emotion-36 emotion-37"
+                          class="emotion-38 emotion-39"
                         >
                           Introduction To Github and Gov
                         </h2>
                         <p
-                          class="emotion-38 emotion-39"
+                          class="emotion-40 emotion-41"
                         >
                           Everything you need to know about working with Github in the BC Government.
                         </p>
                         <div
-                          class="emotion-40 emotion-41"
+                          class="emotion-42 emotion-43"
                         />
                       </div>
                     </article>
@@ -1089,10 +1108,10 @@ exports[`Topics Container it matches snapshot 1`] = `
             </div>
           </div>
           <div
-            class="emotion-70 emotion-71"
+            class="emotion-72 emotion-73"
           >
             <a
-              class="emotion-68 emotion-25"
+              class="emotion-70 emotion-27"
               href="foo"
             >
               View
@@ -1119,15 +1138,15 @@ exports[`Topics Container it matches snapshot 1`] = `
     </main>
   </div>
   <footer
-    class="emotion-151 emotion-152"
+    class="emotion-153 emotion-154"
   >
     <div
-      class="emotion-149 emotion-150"
+      class="emotion-151 emotion-152"
     >
       <ul>
         <li>
           <a
-            class="emotion-135 emotion-12"
+            class="emotion-137 emotion-12"
             css="[object Object]"
             href="/"
           >
@@ -1136,7 +1155,7 @@ exports[`Topics Container it matches snapshot 1`] = `
         </li>
         <li>
           <a
-            class="emotion-68 emotion-25"
+            class="emotion-70 emotion-27"
             href="https://www2.gov.bc.ca/gov/content/home/disclaimer"
           >
             disclaimer
@@ -1144,7 +1163,7 @@ exports[`Topics Container it matches snapshot 1`] = `
         </li>
         <li>
           <a
-            class="emotion-68 emotion-25"
+            class="emotion-70 emotion-27"
             href="https://www2.gov.bc.ca/gov/content/home/privacy"
           >
             privacy
@@ -1152,7 +1171,7 @@ exports[`Topics Container it matches snapshot 1`] = `
         </li>
         <li>
           <a
-            class="emotion-68 emotion-25"
+            class="emotion-70 emotion-27"
             href="https://www2.gov.bc.ca/gov/content/home/accessibility"
           >
             accessibility
@@ -1160,7 +1179,7 @@ exports[`Topics Container it matches snapshot 1`] = `
         </li>
         <li>
           <a
-            class="emotion-68 emotion-25"
+            class="emotion-70 emotion-27"
             href="https://www2.gov.bc.ca/gov/content/home/copyright"
           >
             copyright
@@ -1168,7 +1187,7 @@ exports[`Topics Container it matches snapshot 1`] = `
         </li>
         <li>
           <a
-            class="emotion-68 emotion-25"
+            class="emotion-70 emotion-27"
             href="https://github.com/bcgov/devhub-app-web/issues"
           >
             contact us
@@ -1176,7 +1195,7 @@ exports[`Topics Container it matches snapshot 1`] = `
         </li>
         <li>
           <button
-            class="emotion-147 emotion-148"
+            class="emotion-149 emotion-150"
           >
             Fair Use
           </button>

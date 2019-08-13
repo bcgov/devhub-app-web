@@ -1,32 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import queryString from 'query-string';
 import intersectionBy from 'lodash/intersectionBy';
 import isNull from 'lodash/isNull';
 import styled from '@emotion/styled';
-
 import { Alert } from 'reactstrap';
-
+import { withApollo } from 'react-apollo';
 import { MAIN_NAV_ROUTES } from '../constants/routes';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { SEARCH } from '../messages';
+import isEmpty from 'lodash/isEmpty';
 
 import Layout from '../hoc/Layout';
 import { ResourcePreview, Masthead, TopicsContainer } from '../components/Home';
 import withResourceQuery from '../hoc/withResourceQuery';
 import Aux from '../hoc/auxillary';
 
-import { useSearch } from '../utils/hooks';
+import { useSearch, useAuthenticated, useRCSearch } from '../utils/hooks';
 import {
   selectTopicsWithResourcesGroupedByType,
   selectResourcesGroupedByType,
 } from '../utils/selectors';
-import { isQueryEmpty } from '../utils/search';
+
+import {
+  isQueryEmpty,
+  getSearchSourcesResultTotal,
+  areSearchSourcesStillLoading,
+} from '../utils/search';
 import { SEARCH_QUERY_PARAM } from '../constants/search';
 import { SPACING } from '../constants/designTokens';
 import uniqBy from 'lodash/uniqBy';
 import { formatEvents, formatMeetUps } from '../templates/events';
 import { RESOURCE_TYPES } from '../constants/ui';
+import { SEARCH_SOURCE_INITIAL_STATE } from '../constants/search';
 import { getTextAndLink, removeUnwantedResults } from '../utils/helpers';
+import { RocketChatResults } from '../components/RocketChatResults';
+import Loading from '../components/UI/Loading/Loading';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -76,12 +84,7 @@ const getSearchResultTotal = resourcesByType => {
     }
   });
 
-  if (total === 1) {
-    return `${total} Result Found`;
-  } else if (total > 1) {
-    return `${total} Results Found`;
-  }
-  return `No Results Found`;
+  return total;
 };
 
 /**
@@ -126,6 +129,7 @@ export const TEST_IDS = {
 };
 
 export const Index = ({
+  client,
   data: {
     allDevhubTopic,
     allDevhubSiphon,
@@ -138,6 +142,7 @@ export const Index = ({
   location,
 }) => {
   const queryParam = queryString.parse(location.search);
+  const [searchSourceFilters] = useState(SEARCH_SOURCE_INITIAL_STATE);
   let query = [];
   let results = [];
   let windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, SEARCH_QUERY_PARAM);
@@ -147,6 +152,12 @@ export const Index = ({
   } else {
     query = '';
   }
+  const { authenticated } = useAuthenticated();
+  // get rocket chat search results if authenticated
+  // TODO will activate once ui component is available
+  const searchSourceResults = {
+    rocketchat: useRCSearch(authenticated, query, client),
+  };
 
   results = useSearch(query, index);
 
@@ -183,7 +194,7 @@ export const Index = ({
     results,
   );
 
-  let totalSearchResults;
+  let totalSearchResults = 0;
 
   const resourcesNotFound = !queryIsEmpty && (!results || (results.length === 0 && windowHasQuery));
 
@@ -192,7 +203,6 @@ export const Index = ({
   if (queryIsEmpty) {
     content = <Aux>{getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}</Aux>;
   } else if (resourcesNotFound) {
-    totalSearchResults = 'No Results';
     content = (
       <Alert style={{ margin: '10px auto' }} color="info" data-testid={TEST_IDS.alert}>
         {SEARCH.results.empty.defaultMessage}
@@ -200,20 +210,37 @@ export const Index = ({
     );
   } else {
     totalSearchResults = getSearchResultTotal(siphonResources);
+    const { rocketchat } = searchSourceResults;
     content = (
       <Aux>
         {getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}
         {siphonResources}
+        {!isEmpty(rocketchat.results) && rocketchat.results.length > 0 && (
+          <RocketChatResults results={searchSourceResults.rocketchat.results} />
+        )}
       </Aux>
     );
   }
 
+  // dynamic sources all load at different times, this function returns false when all have completed loading
+  const searchSourcesLoading = areSearchSourcesStillLoading(searchSourceResults);
+  if (!!searchSourceResults.rocketchat.results) {
+    totalSearchResults += getSearchSourcesResultTotal(searchSourceResults);
+  }
+
   return (
     <Layout showHamburger>
-      <Masthead query={query} resultCount={totalSearchResults} />
-      <Main>{content}</Main>
+      <Masthead
+        query={query}
+        searchSourcesLoading={searchSourcesLoading}
+        resultCount={totalSearchResults}
+        searchSources={searchSourceFilters}
+      />
+      <Main>
+        {windowHasQuery && searchSourcesLoading ? <Loading message="loading" /> : content}
+      </Main>
     </Layout>
   );
 };
 
-export default withResourceQuery(Index)();
+export default withResourceQuery(withApollo(Index))();

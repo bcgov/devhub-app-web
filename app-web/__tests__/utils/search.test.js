@@ -1,4 +1,4 @@
-import { getSearchResults } from '../../src/utils/search';
+import { getSearchResults, getSearchSourcesResultTotal } from '../../src/utils/search';
 
 describe('Search Helpers', () => {
   test('when __LUNR__ does not exist it returns {}', async () => {
@@ -40,5 +40,16 @@ describe('Search Helpers', () => {
     // mock out lunrs global object
     const results = await getSearchResults('foo');
     expect(results).toEqual(expected);
+  });
+
+  test('getSearchSourcesTotal return the correct total', () => {
+    const sources = {
+      sourceA: { results: [1, 2, 3] },
+      sourceB: { results: [2, 4, 5, 7] },
+    };
+
+    const expected = 7;
+
+    expect(getSearchSourcesResultTotal(sources)).toBe(expected);
   });
 });

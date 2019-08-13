@@ -14,7 +14,7 @@ const getParamsByEnv = (env, pr) => {
     SSO_CLIENT_ID_VALUE: 'devhub-web',
     SSO_REALM_NAME_VALUE: 'devhub',
     // for the time being we only have a dev instance, this will change as the api is developed
-    ROCKETGATE_API_URL: 'https://rocketgate-dev-devhub-dev.pathfinder.gov.bc.ca',
+    ROCKETGATE_API_URL: 'https://rocketgate.pathfinder.gov.bc.ca/',
   };
   switch (env) {
     case ENVS.PROD:

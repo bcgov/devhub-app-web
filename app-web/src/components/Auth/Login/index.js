@@ -19,7 +19,7 @@ export const Login = ({ authenticated }) => {
 
   let button = (
     <Button
-      type="secondary"
+      variant="secondary"
       data-testid={TEST_IDS.login}
       clicked={() => {
         if (implicitAuthManager) {
@@ -33,7 +33,7 @@ export const Login = ({ authenticated }) => {
   if (authenticated) {
     button = (
       <Button
-        type="secondary"
+        variant="secondary"
         data-testid={TEST_IDS.logout}
         clicked={() => {
           if (implicitAuthManager) {

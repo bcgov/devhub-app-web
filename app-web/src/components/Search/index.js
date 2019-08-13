@@ -74,7 +74,7 @@ export const Search = ({ onSearch, searchOnEnter, inputConfig, ...rest }) => {
         {...inputConfig}
       />
       <Button
-        type="primary"
+        variant="primary"
         aria-label={ARIA_LABEL_SEARCH_BUTTON}
         clicked={search}
         data-testid={TEST_IDS.button}

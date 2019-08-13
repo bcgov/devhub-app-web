@@ -17,8 +17,6 @@ import { TEST_IDS as FILTER_TEST_IDS } from '../../src/components/Filters/Filter
 import { RESOURCE_TYPES } from '../../src/constants/ui';
 import { removeOtherResourceTypeResults } from '../../src/utils/helpers';
 
-jest.mock('react-spinners', () => () => <div>loading</div>);
-
 jest.mock('query-string');
 // mock out layout
 jest.mock('../../src/hoc/Layout.js', () => ({ children }) => children);
