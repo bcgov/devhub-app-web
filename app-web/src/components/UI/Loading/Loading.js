@@ -32,7 +32,7 @@ const Spinner = styled(FontAwesomeIcon)`
     }
   }
   font-size: 2.5em;
-  animation: spin .85s cubic-bezier(0.46, 0.65, 0.43, 0.88) infinite;;
+  animation: spin 0.85s cubic-bezier(0.46, 0.65, 0.43, 0.88) infinite;
 `;
 
 const Loading = ({ message }) => (

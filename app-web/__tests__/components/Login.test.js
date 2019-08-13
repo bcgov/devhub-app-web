@@ -7,14 +7,22 @@ import theme from '../../theme';
 describe('Login Component', () => {
   afterEach(cleanup);
   it('shows logout button when logged in', () => {
-    const { getByTestId } = render(<ThemeProvider theme={theme}><Login authenticated /></ThemeProvider>);
+    const { getByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <Login authenticated />
+      </ThemeProvider>,
+    );
     const Button = getByTestId(TEST_IDS.logout);
 
     expect(Button).toBeInTheDocument();
   });
 
   it('shows login button when logged out', () => {
-    const { getByTestId } = render(<ThemeProvider theme={theme}><Login authenticated={false} /></ThemeProvider>);
+    const { getByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <Login authenticated={false} />
+      </ThemeProvider>,
+    );
     const Button = getByTestId(TEST_IDS.login);
 
     expect(Button).toBeInTheDocument();

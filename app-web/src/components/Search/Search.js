@@ -22,7 +22,7 @@ import { ROCKET_GATE_QUERY } from '../../constants/runtimeGraphqlQueries';
 //run time query
 
 //currently we can pass in query but remember to use gql as above since its runtime
-export const SearchApollo = ({queryString, children}) => (
+export const SearchApollo = ({ queryString, children }) => (
   <Query query={ROCKET_GATE_QUERY} variables={queryString}>
     {({ loading, error, data }) => {
       if (loading) return 'Loading...';

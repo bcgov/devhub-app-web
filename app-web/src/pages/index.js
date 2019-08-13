@@ -8,6 +8,7 @@ import { withApollo } from 'react-apollo';
 import { MAIN_NAV_ROUTES } from '../constants/routes';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { SEARCH } from '../messages';
+import isEmpty from 'lodash/isEmpty';
 
 import Layout from '../hoc/Layout';
 import { ResourcePreview, Masthead, TopicsContainer } from '../components/Home';
@@ -210,24 +211,15 @@ export const Index = ({
   } else {
     totalSearchResults = getSearchResultTotal(siphonResources);
     const { rocketchat } = searchSourceResults;
-    if (!!rocketchat.results) {
-      content = (
-        <Aux>
-          {getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}
-          {siphonResources}
-          {rocketchat.results.length > 0 && (
-            <RocketChatResults results={searchSourceResults.rocketchat.results} />
-          )}
-        </Aux>
-      );
-    } else {
-      content = (
-        <Aux>
-          {getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}
-          {siphonResources}
-        </Aux>
-      );
-    }
+    content = (
+      <Aux>
+        {getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}
+        {siphonResources}
+        {!isEmpty(rocketchat.results) && rocketchat.results.length > 0 && (
+          <RocketChatResults results={searchSourceResults.rocketchat.results} />
+        )}
+      </Aux>
+    );
   }
 
   // dynamic sources all load at different times, this function returns false when all have completed loading

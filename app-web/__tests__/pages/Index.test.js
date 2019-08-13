@@ -34,7 +34,7 @@ jest.mock('../../src/utils/helpers.js');
 
 getFirstNonExternalResource.mockReturnValue('foo');
 getTextAndLink.mockReturnValue({ to: '/documentation?q=mobile', text: 'two results found' });
-useRCSearch.mockReturnValue({results: [], loading: false});
+useRCSearch.mockReturnValue({ results: [], loading: false });
 useAuthenticated.mockReturnValue(false);
 
 describe('Home Page', () => {
@@ -202,23 +202,23 @@ describe('Home Page', () => {
   test('shows rocket chat results when authenticated', () => {
     queryString.parse.mockReturnValue({ q: 'foo' });
     useSearch.mockReturnValue([]);
-    useRCSearch.mockReturnValue({results: ROCKET_CHAT, loading: false});
+    useRCSearch.mockReturnValue({ results: ROCKET_CHAT, loading: false });
     useAuthenticated.mockReturnValue(true);
 
     const { queryByTestId, rerender } = render(
       <ThemeProvider theme={theme}>
         <ApolloProvider client={client}>
-          <Index {...props} location={{search: '?q=foo'}} />
+          <Index {...props} location={{ search: '?q=foo' }} />
         </ApolloProvider>
       </ThemeProvider>,
     );
 
     expect(queryByTestId(ROCKET_CHAT[0].id)).toBeInTheDocument();
-    
+
     useAuthenticated.mockReturnValue(false);
 
     rerender();
 
     expect(queryByTestId(ROCKET_CHAT[0].id)).not.toBeInTheDocument();
-  })
+  });
 });

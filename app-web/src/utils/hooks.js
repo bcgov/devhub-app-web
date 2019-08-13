@@ -25,6 +25,7 @@ import AuthContext from '../AuthContext';
 import { useQuery } from '@apollo/react-hooks';
 import { ROCKET_GATE_QUERY } from '../constants/runtimeGraphqlQueries';
 
+//TODO, why in a function?
 function deepCompareEquals(a, b) {
   return isEqual(a, b);
 }

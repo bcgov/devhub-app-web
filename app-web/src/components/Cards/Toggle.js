@@ -8,7 +8,7 @@ import Row from './Row';
 export const TEST_IDS = {
   toggleOn: 'toggle.btn.on',
   toggleOff: 'toggle.btn.off',
-}
+};
 /**
  * Toggle component
  * This component has an arrow button to toggle the Cards to show all or collapse
