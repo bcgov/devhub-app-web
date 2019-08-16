@@ -21,8 +21,9 @@ import styled from '@emotion/styled';
 
 import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/designTokens';
 import { ChevronLink } from '../UI/Link';
-import { Container, Title, StyledLink, LinkContainer } from './index';
+import { Container, LinkContainer } from './index';
 import Card from '../Cards/Card/Card';
+import Pill from '../UI/Pill';
 
 export const CardWrapper = styled.div`
   margin: 6px 9px;
@@ -38,36 +39,66 @@ export const ResourceContainer = styled.div`
   }
 `;
 
+const PreviewHeader = styled.div`
+  padding: 10px 4px;
+  display: flex;
+  flex-flow: row wrap;
+  border-bottom: 1px solid #ccc;
+  h2 {
+    font-weight: 400;
+    text-transform: capitalize;
+    padding: 0 20px 0 0;
+    margin: 0 2px;
+    margin-top: 5px;
+  }
+`;
+
 // used by react-testing-library dom querying
 export const TEST_IDS = {
   container: 'resource-preview-container',
 };
 
 // this is a wrapper component that encapsulates cards for topics or other sizes
-export const ResourcePreview = ({ title, link, resources }) => (
-  <Container data-testid={TEST_IDS.container}>
-    <Title>
-      <StyledLink to={link.to}>{title}</StyledLink>
-    </Title>
-    <ResourceContainer>
-      {resources.slice(0, 6).map(r => (
-        <CardWrapper key={r.id}>
-          <Card
-            type={r.fields.resourceType}
-            title={r.fields.title}
-            description={r.fields.description}
-            image={r.fields.image}
-            link={r.fields.standAlonePath}
-            event={r}
-          />
-        </CardWrapper>
-      ))}
-    </ResourceContainer>
-    <LinkContainer>
-      <ChevronLink to={link.to}>{link.text}</ChevronLink>
-    </LinkContainer>
-  </Container>
-);
+export const ResourcePreview = ({ title, link, resources, filters, amountToShow }) => {
+  //No people resource type Icon rn
+  let resourceIcons = filters.map(filter => {
+    if (filter.name !== 'People') {
+      return (
+        <Pill
+          resourceType={filter.name}
+          label={`${filter.counter} Result(s)`}
+          variant="filled"
+          deletable={false}
+        />
+      );
+    }
+    return '';
+  });
+
+  return (
+    <Container data-testid={TEST_IDS.container}>
+      <PreviewHeader>
+        <h2>{title}</h2>
+        {resourceIcons}
+      </PreviewHeader>
+      <ResourceContainer>
+        {resources.slice(0, amountToShow).map(r => (
+          <CardWrapper key={r.id}>
+            <Card
+              type={r.fields.resourceType}
+              title={r.fields.title}
+              description={r.fields.description}
+              image={r.fields.image}
+              link={r.fields.standAlonePath}
+              event={r}
+            />
+          </CardWrapper>
+        ))}
+      </ResourceContainer>
+      <LinkContainer>{link && <ChevronLink to={link.to}>{link.text}</ChevronLink>}</LinkContainer>
+    </Container>
+  );
+};
 
 ResourcePreview.propTypes = {
   title: PropTypes.string.isRequired,

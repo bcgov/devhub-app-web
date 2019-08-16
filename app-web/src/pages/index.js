@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import queryString from 'query-string';
-import intersectionBy from 'lodash/intersectionBy';
 import isNull from 'lodash/isNull';
 import styled from '@emotion/styled';
 import { Alert } from 'reactstrap';
@@ -32,7 +31,7 @@ import uniqBy from 'lodash/uniqBy';
 import { formatEvents } from '../templates/events';
 import { RESOURCE_TYPES } from '../constants/ui';
 import { SEARCH_SOURCE_INITIAL_STATE } from '../constants/search';
-import { getTextAndLink, removeUnwantedResults } from '../utils/helpers';
+import { removeUnwantedResults } from '../utils/helpers';
 import { RocketChatResults } from '../components/RocketChatResults';
 import Loading from '../components/UI/Loading/Loading';
 
@@ -70,21 +69,12 @@ const getUniqueResources = resources => {
 };
 
 /**
- * takes in search results sorted by resource type
- * returns the total number of search results formated as '_____ Result(s) Found'
- * If total is zero, returns back No Results Found
- * @param {Array} resourcesByType resources sorted by type
+ * takes in search results
+ * returns the total amount of results
+ * @param {Array} resources the search results
  */
-const getSearchResultTotal = resourcesByType => {
-  let total = 0;
-
-  Object.keys(resourcesByType).forEach(resourceType => {
-    if (resourcesByType[resourceType] !== null) {
-      total = total + resourcesByType[resourceType].props.resources.length;
-    }
-  });
-
-  return total;
+const getSearchResultTotal = results => {
+  return results.props.resources.length;
 };
 
 /**
@@ -95,33 +85,40 @@ const getSearchResultTotal = resourcesByType => {
  */
 const getResourcePreviews = (resources, queryExists, results = []) => {
   const resourcesSelector = selectResourcesGroupedByType();
-  let resourcesToGroup = resources;
+  let resourcesToShow = [];
   if (!isNull(results) && results.length > 0) {
-    // diff out resources by id
-    resourcesToGroup = intersectionBy(resources, results, 'id');
+    //map the search index results to the resources. Its important to do it in this order,
+    //since the index results are return in order based on relevance
+    resourcesToShow = results.flatMap(result => {
+      return resources.filter(resource => result.id === resource.id);
+    });
+    //remove any duplicates
+    resourcesToShow = getUniqueResources(resourcesToShow);
   }
-  resourcesToGroup = getUniqueResources(resourcesToGroup);
+
   // select resources grouped by type using relesect memoization https://github.com/reduxjs/reselect/issues/30
-  let resourcesByType = resourcesSelector(resourcesToGroup);
-  const siphonResources = Object.keys(resourcesByType).map(resourceType => {
-    if (resourcesByType[resourceType].length > 0) {
-      let linkWithCounter = MAIN_NAV_ROUTES[resourceType];
-      if (queryExists) {
-        linkWithCounter = getTextAndLink(resourceType, resourcesByType);
-      }
-      return (
-        <ResourcePreview
-          key={resourceType}
-          title={resourceType}
-          resources={resourcesByType[resourceType]}
-          link={linkWithCounter}
-        />
-      );
-    }
-    return null;
+  let resourcesByType = resourcesSelector(resourcesToShow);
+  //get totals for each resource type
+  let resourceIconsWithCounter = Object.keys(resourcesByType).map(resourceType => {
+    return {
+      name: resourceType,
+      counter: resourcesByType[resourceType].length,
+    };
+  });
+  //sort by highest counter
+  resourceIconsWithCounter = resourceIconsWithCounter.sort((a, b) => {
+    return b.counter - a.counter;
   });
 
-  return siphonResources;
+  return (
+    <ResourcePreview
+      key={'DevHub Resources'}
+      title={'DevHub Resources'}
+      resources={resourcesToShow}
+      filters={resourceIconsWithCounter}
+      amountToShow={21}
+    />
+  );
 };
 
 export const TEST_IDS = {
@@ -158,6 +155,11 @@ export const Index = ({
   const searchSourceResults = {
     rocketchat: useRCSearch(authenticated, query, client),
   };
+
+  //set search filter to false if the user isnt authenticated, so RC icon will show appropriately
+  if (!authenticated) {
+    searchSourceFilters.rocketchat = false;
+  }
 
   results = useSearch(query, index);
 

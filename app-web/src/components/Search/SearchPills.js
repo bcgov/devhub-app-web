@@ -62,12 +62,7 @@ export const SearchPills = ({ onDelete, query, searchResultTotal, showClear, onC
   }
 
   resultpill = [
-    <SearchPill
-      key={shortid.generate()}
-      label={resultLabel}
-      onDelete={onDelete}
-      variant="filled"
-    />,
+    <Pill key={shortid.generate()} label={resultLabel} variant="filled" deletable={false} />,
   ];
 
   const clearPill =

@@ -26,7 +26,12 @@ export const SearchSources = ({ rocketchat }) => {
   return (
     <SearchSourcesContainer data-testid={TEST_IDS.container}>
       <Link to={'#rocketChat'}>
-        {authenticated && <RCButton {...rcProps} title="toggle rocket chat search results" />}
+        {authenticated && (
+          <RCButton {...rcProps} title="Click to jump to rocket chat search results" />
+        )}
+        {!authenticated && (
+          <RCButton {...rcProps} title="Login to view rocket chat search results" />
+        )}
       </Link>
     </SearchSourcesContainer>
   );
