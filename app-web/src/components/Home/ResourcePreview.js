@@ -71,6 +71,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow 
             label={`${filter.counter} Result(s)`}
             variant="filled"
             deletable={false}
+            key={filter}
           />
         );
       }

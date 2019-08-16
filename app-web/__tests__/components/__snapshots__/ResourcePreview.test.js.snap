@@ -4,15 +4,11 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
 <Container
   data-testid="resource-preview-container"
 >
-  <Title>
-    <StyledLink
-      activeClassName=""
-      activeStyle={Object {}}
-      to="/"
-    >
+  <PreviewHeader>
+    <h2>
       foo
-    </StyledLink>
-  </Title>
+    </h2>
+  </PreviewHeader>
   <ResourceContainer>
     <CardWrapper
       key="3"
