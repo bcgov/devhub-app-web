@@ -30,6 +30,7 @@ describe('Resource Preview Component', () => {
       text: 'bar',
     },
     resources: SIPHON_NODES,
+    amountToShow: 6,
   };
 
   beforeEach(() => {

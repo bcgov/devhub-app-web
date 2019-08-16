@@ -60,20 +60,23 @@ export const TEST_IDS = {
 
 // this is a wrapper component that encapsulates cards for topics or other sizes
 export const ResourcePreview = ({ title, link, resources, filters, amountToShow }) => {
-  //No people resource type Icon rn
-  let resourceIcons = filters.map(filter => {
-    if (filter.name !== 'People') {
-      return (
-        <Pill
-          resourceType={filter.name}
-          label={`${filter.counter} Result(s)`}
-          variant="filled"
-          deletable={false}
-        />
-      );
-    }
-    return '';
-  });
+  let resourceIcons;
+  if (filters) {
+    //No people resource type Icon rn
+    resourceIcons = filters.map(filter => {
+      if (filter.name !== 'People') {
+        return (
+          <Pill
+            resourceType={filter.name}
+            label={`${filter.counter} Result(s)`}
+            variant="filled"
+            deletable={false}
+          />
+        );
+      }
+      return '';
+    });
+  }
 
   return (
     <Container data-testid={TEST_IDS.container}>
@@ -106,6 +109,8 @@ ResourcePreview.propTypes = {
     text: PropTypes.string.isRequired,
     to: PropTypes.string.isRequired,
   }),
+  filters: PropTypes.array,
+  amountToShow: PropTypes.number.isRequired,
   resources: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
