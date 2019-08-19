@@ -15,7 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
@@ -53,13 +53,34 @@ const PreviewHeader = styled.div`
   }
 `;
 
+const SeeMoreP = styled.p`
+  text-decoration: underline;
+  color: #1a5a96;
+  font-weight: 400;
+  text-transform: capitalize;
+  padding: 0 4px;
+  margin: 0 2px;
+  :hover {
+    cursor: pointer;
+  }
+`;
+
 // used by react-testing-library dom querying
 export const TEST_IDS = {
   container: 'resource-preview-container',
 };
 
 // this is a wrapper component that encapsulates cards for topics or other sizes
-export const ResourcePreview = ({ title, link, resources, filters, amountToShow }) => {
+export const ResourcePreview = ({ title, link, resources, filters, amountToShow, seeMore }) => {
+  let [showCount, updateCount] = useState(amountToShow);
+  let [seeMoreResults, updateSeeMore] = useState(seeMore);
+  const setCount = () => {
+    if (showCount + 6 >= resources.length) {
+      updateSeeMore(false);
+    }
+    updateCount(showCount + 6);
+  };
+
   let resourceIcons;
   if (filters) {
     //No people resource type Icon rn
@@ -68,10 +89,10 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow 
         return (
           <Pill
             resourceType={filter.name}
-            label={`${filter.counter} Result(s)`}
+            label={`${filter.counter} Result(s)`} //make a bit of logic for this perhaps
             variant="filled"
             deletable={false}
-            key={filter}
+            key={filter.name}
           />
         );
       }
@@ -86,7 +107,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow 
         {resourceIcons}
       </PreviewHeader>
       <ResourceContainer>
-        {resources.slice(0, amountToShow).map(r => (
+        {resources.slice(0, showCount).map(r => (
           <CardWrapper key={r.id}>
             <Card
               type={r.fields.resourceType}
@@ -99,7 +120,10 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow 
           </CardWrapper>
         ))}
       </ResourceContainer>
-      <LinkContainer>{link && <ChevronLink to={link.to}>{link.text}</ChevronLink>}</LinkContainer>
+      <LinkContainer>
+        {seeMoreResults && <SeeMoreP onClick={() => setCount()}>See More Results</SeeMoreP>}
+        {link && <ChevronLink to={link.to}>{link.text}</ChevronLink>}
+      </LinkContainer>
     </Container>
   );
 };
@@ -112,6 +136,7 @@ ResourcePreview.propTypes = {
   }),
   filters: PropTypes.array,
   amountToShow: PropTypes.number.isRequired,
+  seeMore: PropTypes.bool,
   resources: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

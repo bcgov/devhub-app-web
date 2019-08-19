@@ -83,7 +83,7 @@ const getSearchResultTotal = results => {
  * @param {string} queryExists the search query
  * @param {Array} results the list of searched resources
  */
-const getResourcePreviews = (resources, queryExists, results = []) => {
+const getResourcePreviews = (resources, queryExists, results = [], title) => {
   const resourcesSelector = selectResourcesGroupedByType();
   let resourcesToShow = [];
   if (!isNull(results) && results.length > 0) {
@@ -112,11 +112,12 @@ const getResourcePreviews = (resources, queryExists, results = []) => {
 
   return (
     <ResourcePreview
-      key={'DevHub Resources'}
-      title={'DevHub Resources'}
+      key={'Internal Results'}
+      title={title}
       resources={resourcesToShow}
       filters={resourceIconsWithCounter}
-      amountToShow={21}
+      amountToShow={18}
+      seeMore={true}
     />
   );
 };
@@ -194,6 +195,7 @@ export const Index = ({
       .concat(markdownRemark),
     windowHasQuery && !queryIsEmpty,
     results,
+    'Devhub Resources',
   );
 
   let totalSearchResults = 0;
