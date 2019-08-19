@@ -24,6 +24,7 @@ import { ChevronLink } from '../UI/Link';
 import { Container, LinkContainer } from './index';
 import Card from '../Cards/Card/Card';
 import Pill from '../UI/Pill';
+import css from '@emotion/css';
 
 export const CardWrapper = styled.div`
   margin: 6px 9px;
@@ -65,6 +66,23 @@ const SeeMoreP = styled.p`
   }
 `;
 
+const ResourcePill = styled(Pill)`
+  :hover {
+    background: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #e0e0e0;
+    top: -3px;
+  }
+`;
+
+const toggled = css`
+  background: white;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e0e0e0;
+`;
+
 // used by react-testing-library dom querying
 export const TEST_IDS = {
   container: 'resource-preview-container',
@@ -74,29 +92,43 @@ export const TEST_IDS = {
 export const ResourcePreview = ({ title, link, resources, filters, amountToShow, seeMore }) => {
   let [showCount, updateCount] = useState(amountToShow);
   let [seeMoreResults, updateSeeMore] = useState(seeMore);
+  let [resourcesToShow, updateResources] = useState(resources);
+  let [activeFilter, updateFilter] = useState('');
+
   const setCount = () => {
-    if (showCount + 6 >= resources.length) {
+    updateCount(showCount + 6);
+    updateSeeMore(true);
+    if (showCount >= resourcesToShow.length) {
       updateSeeMore(false);
     }
-    updateCount(showCount + 6);
   };
 
+  const resourceFilter = filter => {
+    let filteredResources = resources.filter(
+      resource => resource.fields.resourceType === filter.name,
+    );
+    updateResources(filteredResources);
+    updateFilter(filter.name);
+    updateCount(amountToShow);
+  };
   let resourceIcons;
   if (filters) {
     //No people resource type Icon rn
     resourceIcons = filters.map(filter => {
       if (filter.name !== 'People') {
         return (
-          <Pill
+          <ResourcePill
             resourceType={filter.name}
             label={
               filter.counter > 1 || filter.counter === 0
                 ? `${filter.counter} Results`
                 : `${filter.counter} Result`
-            } //make a bit of logic for this perhaps
+            }
             variant="filled"
             deletable={false}
             key={filter.name}
+            css={filter.name === activeFilter ? toggled : ''}
+            onClick={filter.counter === 0 ? undefined : () => resourceFilter(filter)}
           />
         );
       }
@@ -111,7 +143,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
         {resourceIcons}
       </PreviewHeader>
       <ResourceContainer>
-        {resources.slice(0, showCount).map(r => (
+        {resourcesToShow.slice(0, showCount).map(r => (
           <CardWrapper key={r.id}>
             <Card
               type={r.fields.resourceType}
@@ -125,7 +157,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
         ))}
       </ResourceContainer>
       <LinkContainer>
-        {seeMoreResults && resources.length > 6 && (
+        {seeMoreResults && resourcesToShow.length > showCount && (
           <SeeMoreP onClick={() => setCount()}>See More Results</SeeMoreP>
         )}
         {link && <ChevronLink to={link.to}>{link.text}</ChevronLink>}
