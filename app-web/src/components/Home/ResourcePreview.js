@@ -66,16 +66,6 @@ const SeeMoreP = styled.p`
   }
 `;
 
-const ResourcePill = styled(Pill)`
-  :hover {
-    background: white;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #e0e0e0;
-    top: -3px;
-  }
-`;
-
 const toggled = css`
   background: white;
   border-width: 1px;
@@ -95,6 +85,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
   let [resourcesToShow, updateResources] = useState(resources);
   let [activeFilter, updateFilter] = useState('');
 
+  //sets the amount of resources to show, allowing users to 'see more'
   const setCount = () => {
     updateCount(showCount + 6);
     updateSeeMore(true);
@@ -103,6 +94,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
     }
   };
 
+  //This filters what results we are showing based on the given filter coming from user interaction with the resourceIcons
   const resourceFilter = filter => {
     let filteredResources = resources.filter(
       resource => resource.fields.resourceType === filter.name,
@@ -111,13 +103,16 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
     updateFilter(filter.name);
     updateCount(amountToShow);
   };
+
   let resourceIcons;
+  //Filters will be mapped into pills displaying result count for that particular resourcetype
+  //These pills are interactive and filter results when clicked
   if (filters) {
     //No people resource type Icon rn
     resourceIcons = filters.map(filter => {
       if (filter.name !== 'People') {
         return (
-          <ResourcePill
+          <Pill
             resourceType={filter.name}
             label={
               filter.counter > 1 || filter.counter === 0
