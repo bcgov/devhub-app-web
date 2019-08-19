@@ -66,6 +66,16 @@ const SeeMoreP = styled.p`
   }
 `;
 
+const ResourcePill = styled(Pill)`
+  :hover {
+    background: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #e0e0e0;
+    top: -3px;
+  }
+`;
+
 const toggled = css`
   background: white;
   border-width: 1px;
@@ -99,8 +109,14 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
     let filteredResources = resources.filter(
       resource => resource.fields.resourceType === filter.name,
     );
-    updateResources(filteredResources);
-    updateFilter(filter.name);
+    if (filter.name === activeFilter) {
+      updateResources(resources);
+      updateFilter('');
+    } else {
+      updateResources(filteredResources);
+      updateFilter(filter.name);
+    }
+
     updateCount(amountToShow);
   };
 
@@ -112,7 +128,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
     resourceIcons = filters.map(filter => {
       if (filter.name !== 'People') {
         return (
-          <Pill
+          <ResourcePill
             resourceType={filter.name}
             label={
               filter.counter > 1 || filter.counter === 0
