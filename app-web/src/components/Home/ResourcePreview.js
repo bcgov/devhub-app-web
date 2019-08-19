@@ -89,7 +89,11 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
         return (
           <Pill
             resourceType={filter.name}
-            label={`${filter.counter} Result(s)`} //make a bit of logic for this perhaps
+            label={
+              filter.counter > 1 || filter.counter === 0
+                ? `${filter.counter} Results`
+                : `${filter.counter} Result`
+            } //make a bit of logic for this perhaps
             variant="filled"
             deletable={false}
             key={filter.name}
@@ -121,7 +125,9 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
         ))}
       </ResourceContainer>
       <LinkContainer>
-        {seeMoreResults && <SeeMoreP onClick={() => setCount()}>See More Results</SeeMoreP>}
+        {seeMoreResults && resources.length > 6 && (
+          <SeeMoreP onClick={() => setCount()}>See More Results</SeeMoreP>
+        )}
         {link && <ChevronLink to={link.to}>{link.text}</ChevronLink>}
       </LinkContainer>
     </Container>
