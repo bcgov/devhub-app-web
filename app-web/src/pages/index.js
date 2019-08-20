@@ -195,7 +195,7 @@ export const Index = ({
       .concat(markdownRemark),
     windowHasQuery && !queryIsEmpty,
     results,
-    'Devhub Resources',
+    'DevHub Resources',
   );
 
   let totalSearchResults = 0;
