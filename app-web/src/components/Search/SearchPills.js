@@ -39,7 +39,6 @@ export const SearchPills = ({ onDelete, query, searchResultTotal, showClear, onC
   }
 
   let pills = [];
-  let resultpill = [];
 
   if (isString(query)) {
     pills = [
@@ -78,13 +77,12 @@ export const SearchPills = ({ onDelete, query, searchResultTotal, showClear, onC
       []
     );
 
-  return <PillContainer>{pills.concat(resultpill).concat(clearPill)}</PillContainer>;
+  return <PillContainer>{pills.concat(clearPill)}</PillContainer>;
 };
 
 SearchPills.propTypes = {
   onDelete: PropTypes.func.isRequired,
   query: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-  searchResultTotal: PropTypes.number,
   showClear: PropTypes.bool.isRequired,
   onClear: PropTypes.func,
 };
