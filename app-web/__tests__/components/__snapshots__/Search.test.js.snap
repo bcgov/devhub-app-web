@@ -59,6 +59,7 @@ exports[`Search Bar matches snapshot 1`] = `
     class="Input custom-text"
     data-testid="searchbar-input"
     id="baz"
+    placeholder=""
     type="text"
     value=""
   />

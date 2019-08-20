@@ -90,6 +90,7 @@ exports[`Tools Menu renders the tools menu 1`] = `
       data-testid="searchbar-input"
       id="dh-search-input"
       maxlength="40"
+      placeholder=""
       type="text"
       value=""
     />
