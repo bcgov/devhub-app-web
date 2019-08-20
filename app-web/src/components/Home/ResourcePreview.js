@@ -93,7 +93,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
   let [showCount, updateCount] = useState(amountToShow);
   let [seeMoreResults, updateSeeMore] = useState(seeMore);
   let [resourcesToShow, updateResources] = useState(resources);
-  let [activeFilter, updateFilter] = useState('');
+  let [activeFilter, updateFilter] = useState('All');
 
   //sets the amount of resources to show, allowing users to 'see more' if its appropriate
   const setCount = () => {
@@ -124,12 +124,20 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
     updateCount(amountToShow);
   };
 
-  let resourceIcons;
+  //when 'All Results' pill is toggled, reset our variables to initial states and show all results
+  const showAllResults = () => {
+    updateResources(resources);
+    updateFilter('All');
+    updateCount(amountToShow);
+    updateSeeMore(seeMore);
+  };
+
+  let pills;
   //Filters will be mapped into pills displaying result count for that particular resourcetype
   //These pills are interactive and filter results when clicked
   if (filters) {
     //No people resource type Icon rn
-    resourceIcons = filters.map(filter => {
+    pills = filters.map(filter => {
       if (filter.name !== 'People') {
         //formats the text correctly for different cases
         let iconLabel =
@@ -157,13 +165,26 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
       }
       return '';
     });
+    //Add final pill to the start of the list
+    pills.unshift(
+      <ResourcePill
+        otherIcon={'search'}
+        label={'All Results'}
+        title={'Click to view all results'}
+        key={'All Results'}
+        variant="filled"
+        deletable={false}
+        css={'All' === activeFilter ? toggled : ''}
+        onClick={() => showAllResults()}
+      />,
+    );
   }
 
   return (
     <Container data-testid={TEST_IDS.container}>
       <PreviewHeader>
         <h2>{title}</h2>
-        {resourceIcons}
+        {pills}
       </PreviewHeader>
       <ResourceContainer>
         {resourcesToShow.slice(0, showCount).map(r => (

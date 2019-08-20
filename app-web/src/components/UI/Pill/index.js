@@ -6,6 +6,7 @@ import {
   faLayerGroup,
   faUser,
   faTag,
+  faSearch,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from '@emotion/styled';
@@ -89,6 +90,8 @@ export const Pill = ({
     specialIcon = faTag;
   } else if (otherIcon === 'persona') {
     specialIcon = faUser;
+  } else if (otherIcon === 'search') {
+    specialIcon = faSearch;
   }
 
   if (variant === variants.filled) {
