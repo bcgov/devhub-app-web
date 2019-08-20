@@ -95,28 +95,32 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
   let [resourcesToShow, updateResources] = useState(resources);
   let [activeFilter, updateFilter] = useState('');
 
-  //sets the amount of resources to show, allowing users to 'see more'
+  //sets the amount of resources to show, allowing users to 'see more' if its appropriate
   const setCount = () => {
+    //show 6 more results
     updateCount(showCount + 6);
     updateSeeMore(true);
     if (showCount >= resourcesToShow.length) {
+      //hide the 'see more results' when there isnt more to show
       updateSeeMore(false);
     }
   };
 
-  //This filters what results we are showing based on the given filter coming from user interaction with the resourceIcons
+  //This filters what results we are showing based on the given filter coming from user interaction with the ResourcePills
   const resourceFilter = filter => {
-    let filteredResources = resources.filter(
-      resource => resource.fields.resourceType === filter.name,
-    );
     if (filter.name === activeFilter) {
+      //bring back the full set of search result and reset the filter
       updateResources(resources);
       updateFilter('');
     } else {
+      //filter the results based on given filter, update the resources and active filter
+      let filteredResources = resources.filter(
+        resource => resource.fields.resourceType === filter.name,
+      );
       updateResources(filteredResources);
       updateFilter(filter.name);
     }
-
+    //reset the amount of resources to show
     updateCount(amountToShow);
   };
 
@@ -127,19 +131,27 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
     //No people resource type Icon rn
     resourceIcons = filters.map(filter => {
       if (filter.name !== 'People') {
+        //formats the text correctly for different cases
+        let iconLabel =
+          filter.counter > 1 || filter.counter === 0
+            ? `${filter.counter} Results`
+            : `${filter.counter} Result`;
+        //adds informative info for the behavior of the ResourcePills their current state
+        let iconInfo =
+          filter.name === activeFilter
+            ? 'Click to view all results again'
+            : `Click to view only ${filter.name} results`;
+
         return (
           <ResourcePill
             resourceType={filter.name}
-            label={
-              filter.counter > 1 || filter.counter === 0
-                ? `${filter.counter} Results`
-                : `${filter.counter} Result`
-            }
+            label={iconLabel}
             variant="filled"
             deletable={false}
             key={filter.name}
             css={filter.name === activeFilter ? toggled : ''}
             onClick={filter.counter === 0 ? undefined : () => resourceFilter(filter)}
+            title={iconInfo}
           />
         );
       }
