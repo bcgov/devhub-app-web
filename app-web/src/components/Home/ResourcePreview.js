@@ -108,18 +108,12 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
 
   //This filters what results we are showing based on the given filter coming from user interaction with the ResourcePills
   const resourceFilter = filter => {
-    if (filter.name === activeFilter) {
-      //bring back the full set of search result and reset the filter
-      updateResources(resources);
-      updateFilter('');
-    } else {
-      //filter the results based on given filter, update the resources and active filter
-      let filteredResources = resources.filter(
-        resource => resource.fields.resourceType === filter.name,
-      );
-      updateResources(filteredResources);
-      updateFilter(filter.name);
-    }
+    //filter the results based on given filter, update the resources and active filter
+    let filteredResources = resources.filter(
+      resource => resource.fields.resourceType === filter.name,
+    );
+    updateResources(filteredResources);
+    updateFilter(filter.name);
     //reset the amount of resources to show
     updateCount(amountToShow);
   };
