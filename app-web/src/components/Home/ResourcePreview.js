@@ -18,13 +18,14 @@ Created by Patrick Simonian
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import css from '@emotion/css';
 
 import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/designTokens';
 import { ChevronLink } from '../UI/Link';
 import { Container, LinkContainer } from './index';
 import Card from '../Cards/Card/Card';
 import Pill from '../UI/Pill';
-import css from '@emotion/css';
+import { RESOURCE_TYPES } from '../../constants/ui';
 
 export const CardWrapper = styled.div`
   margin: 6px 9px;
@@ -131,13 +132,24 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
   //These pills are interactive and filter results when clicked
   if (filters) {
     //No people resource type Icon rn
+    pills = pills.concat(
+      //Add first pill to the start of the list
+      <ResourcePill
+        otherIcon={'search'}
+        label={'All Results'}
+        title={'Click to view all results'}
+        key={'All Results'}
+        variant="filled"
+        deletable={false}
+        css={'All' === activeFilter ? toggled : ''}
+        onClick={() => showAllResults()}
+      />,
+    );
     pills = filters.map(filter => {
-      if (filter.name !== 'People') {
+      if (filter.name !== RESOURCE_TYPES.PEOPLE) {
         //formats the text correctly for different cases
         let iconLabel =
-          filter.counter > 1 || filter.counter === 0
-            ? `${filter.counter} Results`
-            : `${filter.counter} Result`;
+          filter.counter !== 1 ? `${filter.counter} Results` : `${filter.counter} Result`;
         //adds informative info for the behavior of the ResourcePills their current state
         let iconInfo =
           filter.name === activeFilter
@@ -159,19 +171,6 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
       }
       return '';
     });
-    //Add final pill to the start of the list
-    pills.unshift(
-      <ResourcePill
-        otherIcon={'search'}
-        label={'All Results'}
-        title={'Click to view all results'}
-        key={'All Results'}
-        variant="filled"
-        deletable={false}
-        css={'All' === activeFilter ? toggled : ''}
-        onClick={() => showAllResults()}
-      />,
-    );
   }
 
   return (
