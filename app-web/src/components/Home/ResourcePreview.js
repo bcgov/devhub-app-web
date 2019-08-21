@@ -127,7 +127,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
     updateSeeMore(seeMore);
   };
 
-  let pills;
+  let pills = [];
   //Filters will be mapped into pills displaying result count for that particular resourcetype
   //These pills are interactive and filter results when clicked
   if (filters) {
@@ -145,32 +145,34 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
         onClick={() => showAllResults()}
       />,
     );
-    pills = filters.map(filter => {
-      if (filter.name !== RESOURCE_TYPES.PEOPLE) {
-        //formats the text correctly for different cases
-        let iconLabel =
-          filter.counter !== 1 ? `${filter.counter} Results` : `${filter.counter} Result`;
-        //adds informative info for the behavior of the ResourcePills their current state
-        let iconInfo =
-          filter.name === activeFilter
-            ? 'Click to view all results again'
-            : `Click to view only ${filter.name} results`;
+    pills = pills.concat(
+      filters.map(filter => {
+        if (filter.name !== RESOURCE_TYPES.PEOPLE) {
+          //formats the text correctly for different cases
+          let iconLabel =
+            filter.counter !== 1 ? `${filter.counter} Results` : `${filter.counter} Result`;
+          //adds informative info for the behavior of the ResourcePills their current state
+          let iconInfo =
+            filter.name === activeFilter
+              ? 'Click to view all results again'
+              : `Click to view only ${filter.name} results`;
 
-        return (
-          <ResourcePill
-            resourceType={filter.name}
-            label={iconLabel}
-            variant="filled"
-            deletable={false}
-            key={filter.name}
-            css={filter.name === activeFilter ? toggled : ''}
-            onClick={filter.counter === 0 ? undefined : () => resourceFilter(filter)}
-            title={iconInfo}
-          />
-        );
-      }
-      return '';
-    });
+          return (
+            <ResourcePill
+              resourceType={filter.name}
+              label={iconLabel}
+              variant="filled"
+              deletable={false}
+              key={filter.name}
+              css={filter.name === activeFilter ? toggled : ''}
+              onClick={filter.counter === 0 ? undefined : () => resourceFilter(filter)}
+              title={iconInfo}
+            />
+          );
+        }
+        return '';
+      }),
+    );
   }
 
   return (
