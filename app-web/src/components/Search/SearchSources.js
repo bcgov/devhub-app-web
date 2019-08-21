@@ -25,9 +25,9 @@ export const SearchSources = ({ rocketchat }) => {
   }
   return (
     <SearchSourcesContainer data-testid={TEST_IDS.container}>
-      <Link to={'#rocketChat'}>
+      <a href="#rocketChat">
         {authenticated && <RCButton {...rcProps} title="toggle rocket chat search results" />}
-      </Link>
+      </a>
     </SearchSourcesContainer>
   );
 };
