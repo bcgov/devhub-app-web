@@ -91,19 +91,19 @@ export const TEST_IDS = {
 
 // this is a wrapper component that encapsulates cards for topics or other sizes
 export const ResourcePreview = ({ title, link, resources, filters, amountToShow, seeMore }) => {
-  let [showCount, updateCount] = useState(amountToShow);
-  let [seeMoreResults, updateSeeMore] = useState(seeMore);
-  let [resourcesToShow, updateResources] = useState(resources);
-  let [activeFilter, updateFilter] = useState('All');
+  let [showCount, setCount] = useState(amountToShow);
+  let [seeMoreResults, setSeeMore] = useState(seeMore);
+  let [resourcesToShow, setResources] = useState(resources);
+  let [activeFilter, setFilter] = useState('All');
 
   //sets the amount of resources to show, allowing users to 'see more' if its appropriate
-  const setCount = () => {
+  const updateCount = () => {
     //show 6 more results
-    updateCount(showCount + 6);
-    updateSeeMore(true);
+    setCount(showCount + 6);
+    setSeeMore(true);
     if (showCount >= resourcesToShow.length) {
       //hide the 'see more results' when there isnt more to show
-      updateSeeMore(false);
+      setSeeMore(false);
     }
   };
 
@@ -113,18 +113,18 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
     let filteredResources = resources.filter(
       resource => resource.fields.resourceType === filter.name,
     );
-    updateResources(filteredResources);
-    updateFilter(filter.name);
+    setResources(filteredResources);
+    setFilter(filter.name);
     //reset the amount of resources to show
-    updateCount(amountToShow);
+    setCount(amountToShow);
   };
 
   //when 'All Results' pill is toggled, reset our variables to initial states and show all results
   const showAllResults = () => {
-    updateResources(resources);
-    updateFilter('All');
-    updateCount(amountToShow);
-    updateSeeMore(seeMore);
+    setResources(resources);
+    setFilter('All');
+    setCount(amountToShow);
+    setSeeMore(seeMore);
   };
 
   let pills = [];
@@ -197,7 +197,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
       </ResourceContainer>
       <LinkContainer>
         {seeMoreResults && resourcesToShow.length > showCount && (
-          <SeeMoreP onClick={() => setCount()}>See More Results</SeeMoreP>
+          <SeeMoreP onClick={() => updateCount()}>See More Results</SeeMoreP>
         )}
         {link && <ChevronLink to={link.to}>{link.text}</ChevronLink>}
       </LinkContainer>
