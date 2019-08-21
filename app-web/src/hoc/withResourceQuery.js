@@ -145,42 +145,43 @@ const withResourceQuery = WrappedComponent => () => props => (
             }
           }
         }
-        allMeetupGroup {
-          edges {
-            node {
-              childrenMeetupEvent {
-                siphon {
-                  unfurl {
-                    title
-                    description
-                    image
-                  }
-                  resource {
-                    type
-                    path
-                  }
-                  id
-                }
-                id
-                day: local_date(formatString: "DD")
-                month: local_date(formatString: "MMM")
-                year: local_date(formatString: "YYYY")
-                daysFromNow: local_date(difference: "days")
-                status
-                fields {
-                  location
-                  description
-                  link
-                  resourceType
-                  title
-                  pagePaths
-                  image
-                  standAlonePath
-                }
-              }
-            }
-          }
-        }
+        #Commented out since Meetup no longer has an API and has switched to OAUTH, but the plugin we use may be updated
+        #allMeetupGroup {
+        #edges {
+        #node {
+        #childrenMeetupEvent {
+        #siphon {
+        #unfurl {
+        #title
+        #description
+        #image
+        #}
+        #resource {
+        #type
+        #path
+        #}
+        #id
+        #}
+        #id
+        #day: local_date(formatString: "DD")
+        #month: local_date(formatString: "MMM")
+        #year: local_date(formatString: "YYYY")
+        #daysFromNow: local_date(difference: "days")
+        #status
+        #fields {
+        #location
+        #description
+        #link
+        #resourceType
+        #title
+        #pagePaths
+        #image
+        #standAlonePath
+        #}
+        #}
+        #}
+        #}
+        #}
         allDevhubSiphon(filter: { source: { type: { eq: "web" } } }) {
           edges {
             node {

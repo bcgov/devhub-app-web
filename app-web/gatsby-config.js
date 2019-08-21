@@ -19,7 +19,7 @@ const eventbritePlugin = () =>
       }
     : undefined;
 
-const devopsCommonsMeetup = () =>
+/*const devopsCommonsMeetup = () =>
   process.env.MEETUP_API_KEY
     ? {
         resolve: `gatsby-source-meetup`,
@@ -82,15 +82,15 @@ const SCIPSMeetup = () =>
           desc: 'true',
         },
       }
-    : undefined;
+    : undefined;*/
 
 const dynamicPlugins = [
   eventbritePlugin(),
-  devopsCommonsMeetup(),
+  /*devopsCommonsMeetup(),
   cloudNativeMeetup(),
   uxGuildMeetup(),
   devopsVictoriaMeetup(),
-  SCIPSMeetup(),
+  SCIPSMeetup(),*/
 ];
 
 module.exports = {
