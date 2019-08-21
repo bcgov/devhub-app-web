@@ -70,16 +70,16 @@ export const formatMeetUps = meetups => {
   });
 };
 
-export const EventsPage = ({ data: { allEventbriteEvents, allDevhubTopic, allMeetupGroup } }) => {
+export const EventsPage = ({ data: { allEventbriteEvents, allDevhubTopic } }) => {
   const events = flattenGatsbyGraphQL(allEventbriteEvents.edges);
-  const meetUps = formatMeetUps(
+  /*const meetUps = formatMeetUps(
     flattenGatsbyGraphQL(allMeetupGroup.edges).flatMap(meetups => {
       return meetups.childrenMeetupEvent;
     }),
-  );
+  );*/
   // filter out any events that are passed today
   const currentEvents = formatEvents(events.filter(e => e.start.daysFromNow <= 0));
-  const currentMeetups = meetUps.filter(e => e.start.daysFromNow <= 0);
+  //const currentMeetups = meetUps.filter(e => e.start.daysFromNow <= 0);
   //Get all the cards on the site
   const cards = flattenGatsbyGraphQL(allDevhubTopic.edges);
   //filter to just get the cards for the Community and Events topic
@@ -89,11 +89,10 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubTopic, allMee
     .filter(e => e.resource.type === RESOURCE_TYPES.EVENTS);
   //sort all the info so that event show up from soonest to farthest away
   const currentEventsMeetUpsAndCards = communityCards.concat(
-    currentEvents.concat(currentMeetups).sort((a, b) => b.start.daysFromNow - a.start.daysFromNow),
+    currentEvents.sort((a, b) => b.start.daysFromNow - a.start.daysFromNow),
   );
   // previous events are sorted in descending order
   const previousEventsAndMeetUps = formatEvents(events)
-    .concat(meetUps)
     .filter(e => e.start.daysFromNow > 0)
     .sort((a, b) => a.start.daysFromNow / 1 - b.start.daysFromNow / 1)
     .splice(0, EVENTS.MAX_PAST_EVENTS);
@@ -192,50 +191,52 @@ export const EventData = graphql`
         }
       }
     }
-    allMeetupGroup {
-      edges {
-        node {
-          childrenMeetupEvent {
-            siphon {
-              unfurl {
-                title
-                description
-                image
-              }
-              resource {
-                type
-                path
-              }
-              id
-            }
-            id
-            fields {
-              location
-            }
-            day: local_date(formatString: "DD")
-            month: local_date(formatString: "MMM")
-            year: local_date(formatString: "YYYY")
-            daysFromNow: local_date(difference: "days")
-            status
-            link
-            description
-            venue {
-              address_1
-            }
-            fields {
-              location
-              description
-              link
-              resourceType
-              title
-              pagePaths
-              image
-              standAlonePath
-            }
-          }
-        }
-      }
-    }
+    #Commented out since Meetup no longer has an API and has switched to OAUTH, but the plugin we use may be updated
+    #more info at https://chat.pathfinder.gov.bc.ca/channel/general?msg=MdAyQzrPRPpQt382o
+    #allMeetupGroup {
+    #edges {
+    #node {
+    #childrenMeetupEvent {
+    #siphon {
+    #unfurl {
+    #title
+    #description
+    #image
+    #}
+    #resource {
+    #type
+    #path
+    #}
+    #id
+    #}
+    # id
+    #fields {
+    #location
+    #}
+    # day: local_date(formatString: "DD")
+    # month: local_date(formatString: "MMM")
+    # year: local_date(formatString: "YYYY")
+    # daysFromNow: local_date(difference: "days")
+    # status
+    # link
+    # description
+    # venue {
+    # address_1
+    # }
+    # fields {
+    #  location
+    #  description
+    #  link
+    #  resourceType
+    #  title
+    #  pagePaths
+    #  image
+    #  standAlonePath
+    # }
+    # }
+    # }
+    # }
+    # }
     allDevhubTopic {
       edges {
         node {

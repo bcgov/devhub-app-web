@@ -65,6 +65,35 @@
         "sourceType": "web",
         "resourceType": "Events",
         "sourceProperties": {
+          "url": "https://www.meetup.com/bcgov-uxguild/",
+          "title": "BC Gov UX Guild",
+          "description": "We help build better digital products and services for government. The UX Guild is a group of user experience designers and researchers working within and supporting the B.C. government. We share ideas, support each other and push forward to make our collective work better."
+        }
+      },
+      {
+        "sourceType": "web",
+        "resourceType": "Events",
+        "sourceProperties": {
+          "url": "https://www.meetup.com/Social-Club-for-Innovative-Public-Servants-SCIPS/",
+          "title": "OneTeamGov Victoria, BC",
+          "description": "This meetup group hosts the Victoria Chapter of the global #OneTeamGov movement.",
+          "image": "https://secure.meetupstatic.com/photos/event/d/e/2/2/highres_480956866.jpeg"
+        }
+      },
+      {
+        "sourceType": "web",
+        "resourceType": "Events",
+        "sourceProperties": {
+          "url": "https://www.meetup.com/meetup-group-GjYRUnKV/",
+          "title": "DevOps Victoria",
+          "description": "This group is about Lean IT and the DevOp mindset, we aim to explore disciplined ways of applying DevOps and how it ties into both business and IT transformation. If your interested in networking, discussions, presentations around the people, process, technologies and strategy around DevOps then please feel free to join us.",
+          "image": "https://secure.meetupstatic.com/photos/event/2/d/1/9/highres_468131545.jpeg"
+        }
+      },
+      {
+        "sourceType": "web",
+        "resourceType": "Events",
+        "sourceProperties": {
           "url": "https://www.redhat.com/en/events/DevSecOps-Victoria-August8",
           "title": "Red Hat DevSecOps Roadshow",
           "description": "Held on August 8th, the Red Hat DevSecOps Workshop is a unique hands-on experience for building, deploying, and securing containerized cloud-native applications using industry-standard open source technologies"

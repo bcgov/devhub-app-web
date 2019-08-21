@@ -29,7 +29,7 @@ import {
 import { SEARCH_QUERY_PARAM } from '../constants/search';
 import { SPACING } from '../constants/designTokens';
 import uniqBy from 'lodash/uniqBy';
-import { formatEvents, formatMeetUps } from '../templates/events';
+import { formatEvents } from '../templates/events';
 import { RESOURCE_TYPES } from '../constants/ui';
 import { SEARCH_SOURCE_INITIAL_STATE } from '../constants/search';
 import { getTextAndLink, removeUnwantedResults } from '../utils/helpers';
@@ -135,7 +135,7 @@ export const Index = ({
     allDevhubSiphon,
     allEventbriteEvents,
     allMarkdownRemark,
-    allMeetupGroup,
+    //allMeetupGroup,
     allGithubRaw,
     siteSearchIndex: { index },
   },
@@ -163,15 +163,15 @@ export const Index = ({
 
   const allEvents = flattenGatsbyGraphQL(allEventbriteEvents.edges);
   const currentEvents = formatEvents(allEvents.filter(e => e.start.daysFromNow <= 0));
-  const allMeetups = formatMeetUps(
+  /*const allMeetups = formatMeetUps(
     flattenGatsbyGraphQL(allMeetupGroup.edges).flatMap(meetups => {
       return meetups.childrenMeetupEvent;
     }),
   );
-  const currentMeetups = allMeetups.filter(e => e.start.daysFromNow <= 0);
-  const eventsAndMeetups = currentEvents.concat(currentMeetups);
+  const currentMeetups = allMeetups.filter(e => e.start.daysFromNow <= 0);*/
+  const eventsAndMeetups = currentEvents;
   if (results) {
-    results = removeUnwantedResults(results, allEvents.concat(allMeetups), eventsAndMeetups);
+    results = removeUnwantedResults(results, allEvents, eventsAndMeetups);
   }
   const markdownRemark = flattenGatsbyGraphQL(allMarkdownRemark.edges).filter(
     node => node.fields.resourceType && node.fields.topicName,

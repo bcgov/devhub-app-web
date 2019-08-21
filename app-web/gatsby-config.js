@@ -18,8 +18,9 @@ const eventbritePlugin = () =>
         },
       }
     : undefined;
-
-const devopsCommonsMeetup = () =>
+//Commented out since Meetup no longer has an API and has switched to OAUTH, but the plugin we use may be updated
+//more info at https://chat.pathfinder.gov.bc.ca/channel/general?msg=MdAyQzrPRPpQt382o
+/*const devopsCommonsMeetup = () =>
   process.env.MEETUP_API_KEY
     ? {
         resolve: `gatsby-source-meetup`,
@@ -82,15 +83,15 @@ const SCIPSMeetup = () =>
           desc: 'true',
         },
       }
-    : undefined;
+    : undefined;*/
 
 const dynamicPlugins = [
   eventbritePlugin(),
-  devopsCommonsMeetup(),
+  /*devopsCommonsMeetup(),
   cloudNativeMeetup(),
   uxGuildMeetup(),
   devopsVictoriaMeetup(),
-  SCIPSMeetup(),
+  SCIPSMeetup(),*/
 ];
 
 module.exports = {
