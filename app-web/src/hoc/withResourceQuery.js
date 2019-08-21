@@ -146,6 +146,7 @@ const withResourceQuery = WrappedComponent => () => props => (
           }
         }
         #Commented out since Meetup no longer has an API and has switched to OAUTH, but the plugin we use may be updated
+        #more info at https://chat.pathfinder.gov.bc.ca/channel/general?msg=MdAyQzrPRPpQt382o
         #allMeetupGroup {
         #edges {
         #node {
