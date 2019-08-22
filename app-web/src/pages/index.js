@@ -239,6 +239,7 @@ export const Index = ({
         searchSourcesLoading={searchSourcesLoading}
         resultCount={totalSearchResults}
         searchSources={searchSourceFilters}
+        searchResultsEmpty={resourcesNotFound}
       />
       <Main>
         {windowHasQuery && searchSourcesLoading ? <Loading message="loading" /> : content}

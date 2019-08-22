@@ -25,7 +25,7 @@ import { ChevronLink } from '../UI/Link';
 import { SEARCH } from '../../constants/ui';
 import { EMOTION_BOOTSTRAP_BREAKPOINTS, SPACING } from '../../constants/designTokens';
 import Search from '../Search';
-import SearchPills from '../Search/SearchPills';
+import Pill from '../UI/Pill';
 // localizations
 import AppLogo from '../UI/AppLogo/AppLogo';
 import { SearchSources } from '../Search/SearchSources';
@@ -55,58 +55,66 @@ const Container = styled.div`
   }
 `;
 
-export const Masthead = ({ query, resultCount, searchSources, searchSourcesLoading }) => (
-  <Container>
-    <AppLogo
-      css={css`
-        font-size: 1.5em;
-        margin-bottom: 0.5em;
-      `}
-    />
+export const Masthead = ({
+  query,
+  resultCount,
+  searchSources,
+  searchSourcesLoading,
+  searchResultsEmpty,
+}) => {
+  let resultLabel;
 
-    <h4
-      css={css`
-        max-width: 525px;
-        line-height: 1.2em;
-      `}
-    >
-      One place that brings together resources to help build digital products for the BC Government
-    </h4>
+  if (resultCount) {
+    resultLabel = `${resultCount} Result${resultCount > 1 ? 's' : ''}`;
+  }
 
-    <ChevronLink
-      to="/aboutDevhub"
-      css={css`
-        font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 1.5em;
-      `}
-    >
-      How Devhub Works
-    </ChevronLink>
-
-    <SearchContainer>
-      <SearchStyled
-        searchOnEnter
-        inputConfig={SEARCH.INPUT}
-        onSearch={terms => {
-          navigate(`/?q=${encodeURIComponent(terms)}`);
-        }}
+  return (
+    <Container>
+      <AppLogo
+        css={css`
+          font-size: 1.5em;
+          margin-bottom: 0.5em;
+        `}
       />
-      {query && !searchSourcesLoading && (
-        <SearchPills
+
+      <h4
+        css={css`
+          max-width: 525px;
+          line-height: 1.2em;
+        `}
+      >
+        One place that brings together resources to help build digital products for the BC
+        Government
+      </h4>
+
+      <ChevronLink
+        to="/aboutDevhub"
+        css={css`
+          font-size: 18px;
+          font-weight: 600;
+          margin-bottom: 1.5em;
+        `}
+      >
+        How Devhub Works
+      </ChevronLink>
+
+      <SearchContainer>
+        <SearchStyled
+          searchOnEnter
           query={query}
-          searchResultTotal={resultCount}
-          onDelete={() => {
-            // remove token from query list and rebuild navigation
-            navigate(`/?q=`);
+          inputConfig={SEARCH.INPUT}
+          onSearch={terms => {
+            navigate(`/?q=${encodeURIComponent(terms)}`);
           }}
-          showClear={false}
         />
-      )}
-      {!searchSourcesLoading && query && resultCount > 0 && <SearchSources {...searchSources} />}
-    </SearchContainer>
-  </Container>
-);
+        {query && !searchSourcesLoading && !searchResultsEmpty && (
+          <Pill key={resultLabel} label={resultLabel} variant="filled" deletable={false} />
+        )}
+        {!searchSourcesLoading && query && resultCount > 0 && <SearchSources {...searchSources} />}
+      </SearchContainer>
+    </Container>
+  );
+};
 
 Masthead.propTypes = {
   query: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),

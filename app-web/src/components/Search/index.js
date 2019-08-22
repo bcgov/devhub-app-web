@@ -44,7 +44,7 @@ export const TEST_IDS = {
   button: 'searchbar-button',
 };
 
-export const Search = ({ onSearch, searchOnEnter, inputConfig, ...rest }) => {
+export const Search = ({ onSearch, searchOnEnter, inputConfig, query, ...rest }) => {
   const [terms, setTerms] = useState('');
 
   const search = () => {
@@ -57,6 +57,7 @@ export const Search = ({ onSearch, searchOnEnter, inputConfig, ...rest }) => {
       <Input
         data-testid={TEST_IDS.input}
         type="text"
+        query={query}
         aria-label={ARIA_LABEL_SEARCH_INPUT}
         value={terms}
         onChange={e => {
@@ -89,11 +90,13 @@ Search.propTypes = {
   onSearch: PropTypes.func.isRequired,
   searchOnEnter: PropTypes.bool,
   inputConfig: PropTypes.object,
+  query: PropTypes.string,
 };
 
 Search.defaultProps = {
   searchOnEnter: false,
   inputConfig: {},
+  query: '',
 };
 
 export default Search;

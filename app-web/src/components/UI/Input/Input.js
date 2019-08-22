@@ -20,13 +20,14 @@ import PropTypes from 'prop-types';
 import { CustomInput } from 'reactstrap';
 import styles from './input.module.css';
 // design system custom text input
-const Input = ({ id, type, label, name, checked, ...rest }) => (
+const Input = ({ id, type, label, name, checked, query, ...rest }) => (
   <CustomInput
     type={type}
     id={id}
     label={label}
     checked={checked}
     className={styles.Input}
+    placeholder={query}
     {...rest}
   />
 );
