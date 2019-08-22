@@ -33,6 +33,7 @@ const withResourceQuery = WrappedComponent => () => props => (
             node {
               id
               pageViews
+              html_url
               fields {
                 resourceType
                 title
@@ -42,6 +43,10 @@ const withResourceQuery = WrappedComponent => () => props => (
                 standAlonePath
                 slug
                 personas
+              }
+              childMarkdownRemark {
+                htmlAst
+                html
               }
             }
           }

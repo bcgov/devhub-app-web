@@ -22,8 +22,9 @@ import {
   SidePanel,
   SideDrawerToggleButton,
 } from '../components/GithubTemplate/common';
+import withResourceQuery from '../hoc/withResourceQuery';
 
-const TopicPage = ({ data, location }) => {
+export const TopicPage = ({ data, location }) => {
   const [menuToggled, setMenuToggled] = useState(false);
   // navigate is not available at build timie, this page is a dynamic one so it willr esolve to navigate when a client
   // accesses this page
@@ -53,27 +54,27 @@ const TopicPage = ({ data, location }) => {
       POPULAR_TOPIC_CONFIGURATION.minPageViews,
       POPULAR_TOPIC_CONFIGURATION.maxNodes,
     );
-
     if (shouldAutoNavigate && popularTopic.node.connectsWith[query.viewResource]) {
       const { viewResource, ...remainingParams } = query;
       navigateFn(
         `/topic/${topicType}/${
           popularTopic.node.connectsWith[query.viewResource].fields.slug
         }?${queryString.stringify(remainingParams)}`,
-      );
-    }
-
-    navigationComponent = <Navigation items={popularTopic.node.connectsWith} />;
-
-    topicMetadata = {
-      name: popularTopic.node.name,
-      description: popularTopic.node.description,
-    };
-    // if there is not resource path, then use the popular markdown file as the 'entry page'
-    if (!resource) {
-      resourceComponent = <Popular />;
-    } else {
-      const node = popularTopic.node.connectsWith.find(n => n.fields.slug === resource);
+        );
+      }
+      
+      navigationComponent = <Navigation items={popularTopic.node.connectsWith} />;
+      
+      topicMetadata = {
+        name: popularTopic.node.name,
+        description: popularTopic.node.description,
+      };
+      // if there is not resource path, then use the popular markdown file as the 'entry page'
+      if (!resource) {
+        resourceComponent = <Popular />;
+      } else {
+        const node = popularTopic.node.connectsWith.find(n => n.fields.slug === resource);
+        console.log(node);
 
       if (node) {
         // bind the github raw data to the preview node
@@ -102,6 +103,8 @@ const TopicPage = ({ data, location }) => {
             />
           </MarkdownBody>
         );
+      } else if(topicType === DYNAMIC_TOPIC_PATHS.popular) {
+
       } else {
         // there is no node for the resource path, redirect to 404
         navigateFn('404');
@@ -132,31 +135,5 @@ const TopicPage = ({ data, location }) => {
   );
 };
 
-export const dynamicNodeQuery = graphql`
-  query dynamicQuery {
-    allGithubRaw {
-      edges {
-        node {
-          id
-          html_url
-          pageViews
-          fields {
-            resourceType
-            title
-            description
-            image
-            pagePaths
-            slug
-            personas
-          }
-          childMarkdownRemark {
-            htmlAst
-            html
-          }
-        }
-      }
-    }
-  }
-`;
+export default withResourceQuery(TopicPage)();
 
-export default TopicPage;
