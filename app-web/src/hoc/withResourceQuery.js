@@ -44,6 +44,9 @@ const withResourceQuery = WrappedComponent => () => props => (
                 slug
                 personas
               }
+              internal {
+                type
+              }
               childMarkdownRemark {
                 htmlAst
                 html
@@ -117,6 +120,9 @@ const withResourceQuery = WrappedComponent => () => props => (
         ) {
           edges {
             node {
+              internal {
+                type
+              }
               fields {
                 resourceType
                 title
@@ -208,6 +214,9 @@ const withResourceQuery = WrappedComponent => () => props => (
                 image
                 pagePaths
                 standAlonePath
+              }
+              internal {
+                type
               }
               source {
                 displayName

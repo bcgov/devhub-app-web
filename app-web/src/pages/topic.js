@@ -30,6 +30,12 @@ import {
 import withResourceQuery from '../hoc/withResourceQuery';
 
 export const TopicPage = ({ data, location }) => {
+  const dynamicTopics = {
+    [DYNAMIC_TOPIC_PATHS.popular]: {
+
+    }
+  };
+
   const [menuToggled, setMenuToggled] = useState(false);
   // navigate is not available at build timie, this page is a dynamic one so it willr esolve to navigate when a client
   // accesses this page
@@ -61,7 +67,7 @@ export const TopicPage = ({ data, location }) => {
     );
   } else if (topicType === DYNAMIC_TOPIC_PATHS.featured) {
     topicObj = buildFeaturedTopic(
-      nodes,
+      nodes.concat(flattenGatsbyGraphQL(data.allDevhubSiphon.edges)),
       FEATURE_TOPIC_CONFIGURATION.name,
       FEATURE_TOPIC_CONFIGURATION.description,
       DYNAMIC_TOPIC_PATHS.featured,
