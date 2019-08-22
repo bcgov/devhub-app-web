@@ -29,6 +29,7 @@ import Pill from '../UI/Pill';
 // localizations
 import AppLogo from '../UI/AppLogo/AppLogo';
 import { SearchSources } from '../Search/SearchSources';
+import { isQueryEmpty } from '../../utils/search';
 const SearchStyled = styled(Search)`
   font-size: 1.25em;
   flex-flow: row wrap;
@@ -107,7 +108,7 @@ export const Masthead = ({
             navigate(`/?q=${encodeURIComponent(terms)}`);
           }}
         />
-        {query && !searchSourcesLoading && !searchResultsEmpty && (
+        {query && !isQueryEmpty(query) && !searchSourcesLoading && !searchResultsEmpty && (
           <Pill key={resultLabel} label={resultLabel} variant="filled" deletable={false} />
         )}
         {!searchSourcesLoading && query && resultCount > 0 && <SearchSources {...searchSources} />}

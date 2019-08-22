@@ -38,6 +38,7 @@ import Row from '../Cards/Row';
 import Column from '../Cards/Column';
 import Loading from '../UI/Loading/Loading';
 import Pill from '../UI/Pill';
+import { isQueryEmpty } from '../../utils/search';
 
 const AlertMessage = styled(Alert)`
   margin: 10px auto;
@@ -112,7 +113,7 @@ export const CardsContainer = ({
             navigate(`${pagePath}?q=${encodeURIComponent(terms)}`);
           }}
         />
-        {query && !searchResultsEmpty && (
+        {query && !isQueryEmpty(query) && !searchResultsEmpty && (
           <Pill key={resultLabel} label={resultLabel} variant="filled" deletable={false} />
         )}
       </SearchContainer>
