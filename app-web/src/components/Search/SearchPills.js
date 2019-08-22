@@ -51,19 +51,6 @@ export const SearchPills = ({ onDelete, query, searchResultTotal, showClear, onC
     ));
   }
 
-  let resultLabel;
-  resultLabel = searchResultTotal;
-
-  if (searchResultTotal <= 0) {
-    resultLabel = 'No Results';
-  } else {
-    resultLabel = `${searchResultTotal} Result${searchResultTotal > 1 ? 's' : ''}`;
-  }
-
-  resultpill = [
-    <Pill key={shortid.generate()} label={resultLabel} variant="filled" deletable={false} />,
-  ];
-
   const clearPill =
     showClear && query.length > 0 ? (
       <ClearPill
