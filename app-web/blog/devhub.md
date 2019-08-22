@@ -25,7 +25,7 @@ The Devhub is a content aggregator application. It leverages modern tooling and 
 
 Whenever the Devhub is refreshed in production (the live public facing website), it seeks out all the content that it's subscribed too and pulls it into the application.
 
-### What is problem Devhub is trying to solve?
+### What is the problem Devhub is trying to solve?
 
 Whether you are a developer working on a new or existing project; a designer looking for tested specifications on UI components, a product owner seeking resources for cloud native development or anyone else who is just interested in the B.C. Government digital world and want to learn more, finding the things you need to get your work done can be hard. 
 
