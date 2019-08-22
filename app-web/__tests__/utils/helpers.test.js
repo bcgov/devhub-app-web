@@ -23,6 +23,7 @@ import {
   sortDevhubTopicsAfterSelectedTopics,
   getTextAndLink,
   buildPopularTopic,
+  buildFeaturedTopic,
 } from '../../src/utils/helpers';
 import { GITHUB_URL } from '../../src/constants/api';
 import { RESOURCE_TYPES } from '../../src/constants/ui';
@@ -215,4 +216,45 @@ describe('Helpers', () => {
       expect(popular3.node.connectsWith.length).toBe(3);
     });
   });
+
+  describe('Building the Featured Topic', () => {
+    it('builds the featured topic', () => {
+      const nodes = [
+        {
+          fields: {
+            title: 'foo',
+            slug: 'foo'
+          },
+          internal: {
+            type: 'GithubRaw',
+          }
+        },
+        {
+          fields: {
+            title: 'bar',
+            slug: 'bar'
+          },
+          internal: {
+            type: 'DevhubSiphon',
+          }
+        },
+        {
+          fields: {
+            title: 'baz',
+            slug: 'baz'
+          },
+          internal: {
+            type: 'GithubRaw',
+          }
+        }
+      ];
+
+      const featuredResources = {
+        foo: 'foo',
+        baz: 'baz'
+      };
+
+      expect(buildFeaturedTopic(nodes, 'featured topic', 'description', 'featured', featuredResources)).toMatchSnapshot();
+    })
+  })
 });

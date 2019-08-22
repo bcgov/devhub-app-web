@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Helpers Building the Featured Topic builds the featured topic 1`] = `
+Object {
+  "node": Object {
+    "connectsWith": Array [
+      Object {
+        "fields": Object {
+          "slug": "foo",
+          "title": "foo",
+        },
+        "internal": Object {
+          "type": "GithubRaw",
+        },
+        "path": "/topic/featured/foo",
+      },
+      Object {
+        "fields": Object {
+          "slug": "baz",
+          "title": "baz",
+        },
+        "internal": Object {
+          "type": "GithubRaw",
+        },
+        "path": "/topic/featured/baz",
+      },
+    ],
+    "description": "description",
+    "fields": Object {
+      "githubRaw": Array [
+        Object {
+          "fields": Object {
+            "slug": "foo",
+            "title": "foo",
+          },
+          "internal": Object {
+            "type": "GithubRaw",
+          },
+        },
+        Object {
+          "fields": Object {
+            "slug": "baz",
+            "title": "baz",
+          },
+          "internal": Object {
+            "type": "GithubRaw",
+          },
+        },
+      ],
+    },
+    "id": "featured-topic",
+    "name": "featured topic",
+  },
+}
+`;

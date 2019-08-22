@@ -291,6 +291,29 @@ export const buildPopularTopic = (nodes, name, description, slug, minPageViews, 
 };
 
 /**
+ * returns a set of nodes that should be apart of a featured topic based on the FEATURED_TOPICS map
+ * @param {Array} nodes the a set of different node types that will be used to build the featured set of topics
+ * @param {String} name
+ * @param {String} description
+ * @param {String} slug
+ * @param {Object} featuredResources the map of featured resources to look up
+ */
+export const buildFeaturedTopic = (nodes, name, description, slug, featuredResources) => {
+  const featuredNodes = nodes.filter(n => featuredResources[n.fields.title] !== undefined);
+  return {
+    node: {
+      id: 'featured-topic',
+      name,
+      description,
+      fields: {
+        githubRaw: featuredNodes.filter(n => n.internal.type === 'GithubRaw'),
+      },
+      connectsWith: featuredNodes.map(n => ({ ...n, path: `/topic/${slug}/${n.fields.slug}` })),
+    },
+  };
+}
+
+/**
  * check if app is running on localhost
  */
 export const isLocalHost = () => {
