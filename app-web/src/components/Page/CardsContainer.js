@@ -37,7 +37,7 @@ import Container from '../Cards/Container';
 import Row from '../Cards/Row';
 import Column from '../Cards/Column';
 import Loading from '../UI/Loading/Loading';
-import SearchPills from '../Search/SearchPills';
+import Pill from '../UI/Pill';
 
 const AlertMessage = styled(Alert)`
   margin: 10px auto;
@@ -96,34 +96,34 @@ export const CardsContainer = ({
   loading,
   searchResultsEmpty,
   pagePath,
-}) => (
-  <Container>
-    <SearchContainer>
-      <Search
-        searchOnEnter
-        inputConfig={{ ...SEARCH.INPUT, disabled: loading }}
-        onSearch={terms => {
-          navigate(`${pagePath}?q=${encodeURIComponent(terms)}`);
-        }}
-      />
-      {query && (
-        <SearchPills
+}) => {
+  let resultLabel;
+  if (searchResultTotal) {
+    resultLabel = `${searchResultTotal} Result${searchResultTotal > 1 ? 's' : ''}`;
+  }
+  return (
+    <Container>
+      <SearchContainer>
+        <Search
+          searchOnEnter
           query={query}
-          searchResultTotal={searchResultTotal}
-          onDelete={term => {
-            navigate(`${pagePath}?q=`);
+          inputConfig={{ ...SEARCH.INPUT, disabled: loading }}
+          onSearch={terms => {
+            navigate(`${pagePath}?q=${encodeURIComponent(terms)}`);
           }}
-          onClear={() => navigate(`${pagePath}?q=`)}
         />
-      )}
-    </SearchContainer>
-    <FilterSideDrawerToggle onClick={openSideDrawer}>
-      <FontAwesomeIcon icon={faFilter} style={{ color: '#026', marginRight: '5px' }} />{' '}
-      <span>Filters</span>
-    </FilterSideDrawerToggle>
-    <Row>{CardsContent(loading, searchResultsEmpty, resources)}</Row>
-  </Container>
-);
+        {query && !searchResultsEmpty && (
+          <Pill key={resultLabel} label={resultLabel} variant="filled" deletable={false} />
+        )}
+      </SearchContainer>
+      <FilterSideDrawerToggle onClick={openSideDrawer}>
+        <FontAwesomeIcon icon={faFilter} style={{ color: '#026', marginRight: '5px' }} />{' '}
+        <span>Filters</span>
+      </FilterSideDrawerToggle>
+      <Row>{CardsContent(loading, searchResultsEmpty, resources)}</Row>
+    </Container>
+  );
+};
 
 CardsContainer.propTypes = {
   resources: PropTypes.arrayOf(

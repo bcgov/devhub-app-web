@@ -55,13 +55,16 @@ const Container = styled.div`
   }
 `;
 
-export const Masthead = ({ query, resultCount, searchSources, searchSourcesLoading }) => {
+export const Masthead = ({
+  query,
+  resultCount,
+  searchSources,
+  searchSourcesLoading,
+  searchResultsEmpty,
+}) => {
   let resultLabel;
-  resultLabel = resultCount;
 
-  if (resultCount <= 0) {
-    resultLabel = 'No Results';
-  } else {
+  if (resultCount) {
     resultLabel = `${resultCount} Result${resultCount > 1 ? 's' : ''}`;
   }
 
@@ -104,7 +107,7 @@ export const Masthead = ({ query, resultCount, searchSources, searchSourcesLoadi
             navigate(`/?q=${encodeURIComponent(terms)}`);
           }}
         />
-        {query && !searchSourcesLoading && (
+        {query && !searchSourcesLoading && !searchResultsEmpty && (
           <Pill key={resultLabel} label={resultLabel} variant="filled" deletable={false} />
         )}
         {!searchSourcesLoading && query && resultCount > 0 && <SearchSources {...searchSources} />}
