@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Home Page When a blank search is entered, cards and alerts dont show but topics do 1`] = `
-.emotion-15 {
+.emotion-17 {
   background-color: #fafafa;
   text-align: center;
   font-size: 16px;
@@ -20,7 +20,7 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
 }
 
 @media (min-width:576px) {
-  .emotion-15 {
+  .emotion-17 {
     padding: 20px 15px;
   }
 }
@@ -57,7 +57,7 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
   margin: 0 2px;
 }
 
-.emotion-13 {
+.emotion-15 {
   width: 100%;
   max-width: 500px;
 }
@@ -123,8 +123,18 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
   background-color: #003366;
 }
 
+.emotion-13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  -ms-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+}
+
 <div
-  class="emotion-15 emotion-16"
+  class="emotion-17 emotion-18"
 >
   <div
     class="emotion-4 emotion-5"
@@ -170,7 +180,7 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
     </svg>
   </a>
   <div
-    class="emotion-13 emotion-14"
+    class="emotion-15 emotion-16"
   >
     <div
       class="emotion-10 emotion-11 emotion-12"
@@ -193,14 +203,18 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
         Search
       </button>
     </div>
-    
-    
+    <div
+      class="emotion-13 emotion-14"
+    >
+      
+      
+    </div>
   </div>
 </div>
 `;
 
 exports[`Home Page it matches snapshot, when there is a search and no results an alert box shows up 1`] = `
-.emotion-15 {
+.emotion-17 {
   background-color: #fafafa;
   text-align: center;
   font-size: 16px;
@@ -219,7 +233,7 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
 }
 
 @media (min-width:576px) {
-  .emotion-15 {
+  .emotion-17 {
     padding: 20px 15px;
   }
 }
@@ -256,7 +270,7 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
   margin: 0 2px;
 }
 
-.emotion-13 {
+.emotion-15 {
   width: 100%;
   max-width: 500px;
 }
@@ -322,8 +336,18 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
   background-color: #003366;
 }
 
+.emotion-13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  -ms-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+}
+
 <div
-  class="emotion-15 emotion-16"
+  class="emotion-17 emotion-18"
 >
   <div
     class="emotion-4 emotion-5"
@@ -369,7 +393,7 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
     </svg>
   </a>
   <div
-    class="emotion-13 emotion-14"
+    class="emotion-15 emotion-16"
   >
     <div
       class="emotion-10 emotion-11 emotion-12"
@@ -392,8 +416,12 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
         Search
       </button>
     </div>
-    
-    
+    <div
+      class="emotion-13 emotion-14"
+    >
+      
+      
+    </div>
   </div>
 </div>
 `;
