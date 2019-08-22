@@ -53,7 +53,6 @@ const Main = styled.main`
  * @param {Boolean} searchResultsExist
  */
 const getTopicPreviews = (topics, searchResultsExist) => {
-  console.log(topics);
   const topicsSelector = selectTopicsWithResourcesGroupedByType();
   return (
     !searchResultsExist && (
@@ -210,7 +209,7 @@ export const Index = ({
   const resourcesNotFound = !queryIsEmpty && (!results || (results.length === 0 && windowHasQuery));
 
   const topics = flattenGatsbyGraphQL(allDevhubTopic.edges);
-  
+
   const githubRaw = flattenGatsbyGraphQL(allGithubRaw.edges);
   const devhubSiphon = flattenGatsbyGraphQL(allDevhubSiphon.edges);
 
@@ -230,10 +229,12 @@ export const Index = ({
     DYNAMIC_TOPIC_PATHS.featured,
     FEATURED_CONTENT,
   );
-  
+
   const dynamicTopics = flattenGatsbyGraphQL([popularTopic, featuredTopic]);
   if (queryIsEmpty) {
-    content = <Aux>{getTopicPreviews(dynamicTopics.concat(topics), windowHasQuery && !queryIsEmpty)}</Aux>;
+    content = (
+      <Aux>{getTopicPreviews(dynamicTopics.concat(topics), windowHasQuery && !queryIsEmpty)}</Aux>
+    );
   } else if (resourcesNotFound) {
     content = (
       <Alert style={{ margin: '10px auto' }} color="info" data-testid={TEST_IDS.alert}>
@@ -246,10 +247,7 @@ export const Index = ({
 
     content = (
       <Aux>
-        {getTopicPreviews(
-          dynamicTopics.concat(topics),
-          windowHasQuery && !queryIsEmpty,
-        )}
+        {getTopicPreviews(dynamicTopics.concat(topics), windowHasQuery && !queryIsEmpty)}
         {siphonResources}
         {!isEmpty(rocketchat.results) && rocketchat.results.length > 0 && (
           <RocketChatResults results={searchSourceResults.rocketchat.results} />

@@ -85,15 +85,16 @@ export const DYNAMIC_TOPIC_PATHS = {
 
 // featured content is identified by node.fields.title
 // an expressed in order by this object
-export const FEATURED_CONTENT = {
-  'BC Developers Exchange': 'BC Developers Exchange',
-  'Chat Channel Conventions': 'Chat Channel Conventions',
-  'Steps to join Pathfinder Rocket.Chat': 'Steps to join Pathfinder Rocket.Chat',
-  '12 Factor Apps': '12 Factor Apps',
-  'Progressive Web Apps': 'Progressive Web Apps',
-  Documize: 'Documize',
-  'What is Pathfinder?': 'What is Pathfinder?',
-};
+// this is a lookup table to easily identify which resources are considered featured
+export const FEATURED_CONTENT = [
+  'BC Developers Exchange',
+  'Chat Channel Conventions',
+  'Steps to join Pathfinder Rocket.Chat',
+  '12 Factor Apps',
+  'Progressive Web Apps',
+  'Documize',
+  'What is Pathfinder?',
+];
 
 export const FEATURE_TOPIC_CONFIGURATION = {
   name: 'Featured Resources',

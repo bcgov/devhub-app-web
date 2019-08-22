@@ -299,7 +299,7 @@ export const buildPopularTopic = (nodes, name, description, slug, minPageViews, 
  * @param {Object} featuredResources the map of featured resources to look up
  */
 export const buildFeaturedTopic = (nodes, name, description, slug, featuredResources) => {
-  const featuredNodes = nodes.filter(n => featuredResources[n.fields.title] !== undefined);
+  const featuredNodes = nodes.filter(n => featuredResources.includes(n.fields.title));
 
   return {
     node: {

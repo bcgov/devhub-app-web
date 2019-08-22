@@ -444,6 +444,47 @@ export const DEVHUB_TOPIC = {
   })),
 };
 
+export const POPULAR_TOPIC = {
+  id: 'popular',
+  type: 'default',
+  name: 'Popular',
+  description: 'popular',
+  resources: [DEVHUB_SIPHON_NODES[0], DESIGN_SYSTEM_SIPHON_NODES[0]],
+  connectsWith: [
+    { ...GITHUB_RAW_1, path: '/popular/foo' },
+    { ...GITHUB_RAW_2, path: '/popular/bar' },
+  ],
+  fields: {
+    githubRaw: [GITHUB_RAW_1, GITHUB_RAW_2],
+  },
+  childrenDevhubSiphon: DEVHUB_SIPHON_NODES.map(n => ({
+    id: n.id,
+    _metadata: { ...n._metadata },
+    resource: { ...n.resource },
+    unfurl: { ...n.unfurl },
+  })),
+}
+export const FEATURED_TOPIC = {
+  id: 'featured',
+  type: 'default',
+  name: 'Featured',
+  description: 'Featured',
+  resources: [DEVHUB_SIPHON_NODES[0], DESIGN_SYSTEM_SIPHON_NODES[0]],
+  connectsWith: [
+    { ...GITHUB_RAW_1, path: '/featured/foo' },
+    { ...GITHUB_RAW_2, path: '/featured/bar' },
+  ],
+  fields: {
+    githubRaw: [GITHUB_RAW_1, GITHUB_RAW_2],
+  },
+  childrenDevhubSiphon: DEVHUB_SIPHON_NODES.map(n => ({
+    id: n.id,
+    _metadata: { ...n._metadata },
+    resource: { ...n.resource },
+    unfurl: { ...n.unfurl },
+  })),
+}
+
 export const EVENT_1 = {
   siphon: {
     unfurl: {

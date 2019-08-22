@@ -14,6 +14,7 @@ import {
 import { buildPopularTopic, buildFeaturedTopic } from '../utils/helpers';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import Popular from '../components/TopicEntryPage/Popular';
+import Featured from '../components/TopicEntryPage/Featured';
 import ComponentPreview from '../components/ComponentPreview/ComponentPreview';
 import SideDrawer from '../components/SideDrawer/SideDrawer';
 import withNode from '../hoc/withNode';
@@ -30,11 +31,11 @@ import {
 import withResourceQuery from '../hoc/withResourceQuery';
 
 export const TopicPage = ({ data, location }) => {
-  const dynamicTopics = {
-    [DYNAMIC_TOPIC_PATHS.popular]: {},
-  };
-
   const [menuToggled, setMenuToggled] = useState(false);
+  const entryPages = {
+    [DYNAMIC_TOPIC_PATHS.featured]: <Featured />,
+    [DYNAMIC_TOPIC_PATHS.popular]: <Popular />,
+  };
   // navigate is not available at build timie, this page is a dynamic one so it willr esolve to navigate when a client
   // accesses this page
   const navigateFn = global.window ? navigate : () => null;
@@ -75,6 +76,7 @@ export const TopicPage = ({ data, location }) => {
     // there is no node for the resource path, redirect to 404
     navigateFn('404');
   }
+
   if (shouldAutoNavigate && topicObj.node.connectsWith[query.viewResource]) {
     const { viewResource, ...remainingParams } = query;
     navigateFn(
@@ -92,7 +94,7 @@ export const TopicPage = ({ data, location }) => {
   };
   // if there is not resource path, then use the popular markdown file as the 'entry page'
   if (!resource) {
-    resourceComponent = <Popular />;
+    resourceComponent = entryPages[topicType];
   } else {
     const node = topicObj.node.connectsWith.find(n => n.fields.slug === resource);
 

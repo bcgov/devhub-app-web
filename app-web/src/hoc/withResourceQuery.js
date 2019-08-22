@@ -17,9 +17,6 @@ Created by Patrick Simonian
  */
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
-import { sortDevhubTopicsAfterSelectedTopics, buildPopularTopic } from '../utils/helpers';
-import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
-import { POPULAR_TOPIC_CONFIGURATION, DYNAMIC_TOPIC_PATHS } from '../constants/ui';
 
 const withResourceQuery = WrappedComponent => () => props => (
   <StaticQuery

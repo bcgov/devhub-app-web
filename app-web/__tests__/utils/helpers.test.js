@@ -249,10 +249,7 @@ describe('Helpers', () => {
         },
       ];
 
-      const featuredResources = {
-        foo: 'foo',
-        baz: 'baz',
-      };
+      const featuredResources = ['foo', 'baz'];
 
       expect(
         buildFeaturedTopic(nodes, 'featured topic', 'description', 'featured', featuredResources),
