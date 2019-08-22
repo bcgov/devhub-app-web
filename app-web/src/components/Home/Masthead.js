@@ -56,6 +56,11 @@ const Container = styled.div`
   }
 `;
 
+const PillAndIconDiv = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+`;
+
 export const Masthead = ({
   query,
   resultCount,
@@ -108,10 +113,14 @@ export const Masthead = ({
             navigate(`/?q=${encodeURIComponent(terms)}`);
           }}
         />
-        {query && !isQueryEmpty(query) && !searchSourcesLoading && !searchResultsEmpty && (
-          <Pill key={resultLabel} label={resultLabel} variant="filled" deletable={false} />
-        )}
-        {!searchSourcesLoading && query && resultCount > 0 && <SearchSources {...searchSources} />}
+        <PillAndIconDiv>
+          {query && !isQueryEmpty(query) && !searchSourcesLoading && !searchResultsEmpty && (
+            <Pill key={resultLabel} label={resultLabel} variant="filled" deletable={false} />
+          )}
+          {!searchSourcesLoading && query && resultCount > 0 && (
+            <SearchSources {...searchSources} />
+          )}
+        </PillAndIconDiv>
       </SearchContainer>
     </Container>
   );
