@@ -223,38 +223,40 @@ describe('Helpers', () => {
         {
           fields: {
             title: 'foo',
-            slug: 'foo'
+            slug: 'foo',
           },
           internal: {
             type: 'GithubRaw',
-          }
+          },
         },
         {
           fields: {
             title: 'bar',
-            slug: 'bar'
+            slug: 'bar',
           },
           internal: {
             type: 'DevhubSiphon',
-          }
+          },
         },
         {
           fields: {
             title: 'baz',
-            slug: 'baz'
+            slug: 'baz',
           },
           internal: {
             type: 'GithubRaw',
-          }
-        }
+          },
+        },
       ];
 
       const featuredResources = {
         foo: 'foo',
-        baz: 'baz'
+        baz: 'baz',
       };
 
-      expect(buildFeaturedTopic(nodes, 'featured topic', 'description', 'featured', featuredResources)).toMatchSnapshot();
-    })
-  })
+      expect(
+        buildFeaturedTopic(nodes, 'featured topic', 'description', 'featured', featuredResources),
+      ).toMatchSnapshot();
+    });
+  });
 });

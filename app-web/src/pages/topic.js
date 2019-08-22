@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import { graphql, navigate } from 'gatsby';
+import { navigate } from 'gatsby';
 import queryString from 'query-string';
 import rehypeReact from 'rehype-react';
 import { isInteger } from 'lodash';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { DYNAMIC_TOPIC_PATHS, POPULAR_TOPIC_CONFIGURATION } from '../constants/ui';
-import { buildPopularTopic } from '../utils/helpers';
+import {
+  DYNAMIC_TOPIC_PATHS,
+  POPULAR_TOPIC_CONFIGURATION,
+  FEATURE_TOPIC_CONFIGURATION,
+  FEATURED_CONTENT,
+} from '../constants/ui';
+import { buildPopularTopic, buildFeaturedTopic } from '../utils/helpers';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import Popular from '../components/TopicEntryPage/Popular';
 import ComponentPreview from '../components/ComponentPreview/ComponentPreview';
@@ -40,13 +45,13 @@ export const TopicPage = ({ data, location }) => {
   let navigationComponent = null;
   let resourceComponent = null;
   let topicMetadata = {};
-
+  let topicObj = {};
   if (!DYNAMIC_TOPIC_PATHS[topicType]) {
     return navigateFn('404');
   }
 
   if (topicType === DYNAMIC_TOPIC_PATHS.popular) {
-    const popularTopic = buildPopularTopic(
+    topicObj = buildPopularTopic(
       nodes,
       POPULAR_TOPIC_CONFIGURATION.name,
       POPULAR_TOPIC_CONFIGURATION.description,
@@ -54,61 +59,66 @@ export const TopicPage = ({ data, location }) => {
       POPULAR_TOPIC_CONFIGURATION.minPageViews,
       POPULAR_TOPIC_CONFIGURATION.maxNodes,
     );
-    if (shouldAutoNavigate && popularTopic.node.connectsWith[query.viewResource]) {
-      const { viewResource, ...remainingParams } = query;
-      navigateFn(
-        `/topic/${topicType}/${
-          popularTopic.node.connectsWith[query.viewResource].fields.slug
-        }?${queryString.stringify(remainingParams)}`,
-        );
-      }
-      
-      navigationComponent = <Navigation items={popularTopic.node.connectsWith} />;
-      
-      topicMetadata = {
-        name: popularTopic.node.name,
-        description: popularTopic.node.description,
-      };
-      // if there is not resource path, then use the popular markdown file as the 'entry page'
-      if (!resource) {
-        resourceComponent = <Popular />;
-      } else {
-        const node = popularTopic.node.connectsWith.find(n => n.fields.slug === resource);
-        console.log(node);
+  } else if (topicType === DYNAMIC_TOPIC_PATHS.featured) {
+    topicObj = buildFeaturedTopic(
+      nodes,
+      FEATURE_TOPIC_CONFIGURATION.name,
+      FEATURE_TOPIC_CONFIGURATION.description,
+      DYNAMIC_TOPIC_PATHS.featured,
+      FEATURED_CONTENT,
+    );
+  } else {
+    // there is no node for the resource path, redirect to 404
+    navigateFn('404');
+  }
+  if (shouldAutoNavigate && topicObj.node.connectsWith[query.viewResource]) {
+    const { viewResource, ...remainingParams } = query;
+    navigateFn(
+      `/topic/${topicType}/${
+        topicObj.node.connectsWith[query.viewResource].fields.slug
+      }?${queryString.stringify(remainingParams)}`,
+    );
+  }
 
-      if (node) {
-        // bind the github raw data to the preview node
-        const previewWithNode = withNode(node)(ComponentPreview);
-        const renderAst = new rehypeReact({
-          createElement: React.createElement,
-          components: { 'component-preview': previewWithNode },
-        }).Compiler;
+  navigationComponent = <Navigation items={topicObj.node.connectsWith} />;
 
-        const [owner, repo] = node.html_url.replace('https://github.com/').split('/');
-        resourceComponent = (
-          <MarkdownBody>
-            {' '}
-            {/* 
+  topicMetadata = {
+    name: topicObj.node.name,
+    description: topicObj.node.description,
+  };
+  // if there is not resource path, then use the popular markdown file as the 'entry page'
+  if (!resource) {
+    resourceComponent = <Popular />;
+  } else {
+    const node = topicObj.node.connectsWith.find(n => n.fields.slug === resource);
+
+    if (node) {
+      // bind the github raw data to the preview node
+      const previewWithNode = withNode(node)(ComponentPreview);
+      const renderAst = new rehypeReact({
+        createElement: React.createElement,
+        components: { 'component-preview': previewWithNode },
+      }).Compiler;
+
+      const [owner, repo] = node.html_url.replace('https://github.com/').split('/');
+      resourceComponent = (
+        <MarkdownBody>
+          {' '}
+          {/* 
             if there is a tag in the markdown <component-preview> 
             the renderAst will drop in the rehype component
             otherwise if not tag exists it is biz as usual
           */}
-            {renderAst(node.childMarkdownRemark.htmlAst)}
-            <Actions
-              repo={repo}
-              owner={owner}
-              pageTitle={node.fields.title}
-              originalSource={node.html_url}
-              devhubPath={node.fields.slug}
-            />
-          </MarkdownBody>
-        );
-      } else if(topicType === DYNAMIC_TOPIC_PATHS.popular) {
-
-      } else {
-        // there is no node for the resource path, redirect to 404
-        navigateFn('404');
-      }
+          {renderAst(node.childMarkdownRemark.htmlAst)}
+          <Actions
+            repo={repo}
+            owner={owner}
+            pageTitle={node.fields.title}
+            originalSource={node.html_url}
+            devhubPath={node.fields.slug}
+          />
+        </MarkdownBody>
+      );
     }
   }
 
@@ -136,4 +146,3 @@ export const TopicPage = ({ data, location }) => {
 };
 
 export default withResourceQuery(TopicPage)();
-

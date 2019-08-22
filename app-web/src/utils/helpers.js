@@ -311,7 +311,7 @@ export const buildFeaturedTopic = (nodes, name, description, slug, featuredResou
       connectsWith: featuredNodes.map(n => ({ ...n, path: `/topic/${slug}/${n.fields.slug}` })),
     },
   };
-}
+};
 
 /**
  * check if app is running on localhost
