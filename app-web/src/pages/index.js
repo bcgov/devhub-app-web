@@ -29,9 +29,15 @@ import { SEARCH_QUERY_PARAM } from '../constants/search';
 import { SPACING } from '../constants/designTokens';
 import uniqBy from 'lodash/uniqBy';
 import { formatEvents } from '../templates/events';
-import { RESOURCE_TYPES } from '../constants/ui';
+import {
+  RESOURCE_TYPES,
+  DYNAMIC_TOPIC_PATHS,
+  POPULAR_TOPIC_CONFIGURATION,
+  FEATURE_TOPIC_CONFIGURATION,
+  FEATURED_CONTENT,
+} from '../constants/ui';
 import { SEARCH_SOURCE_INITIAL_STATE } from '../constants/search';
-import { removeUnwantedResults } from '../utils/helpers';
+import { removeUnwantedResults, buildPopularTopic, buildFeaturedTopic } from '../utils/helpers';
 import { RocketChatResults } from '../components/RocketChatResults';
 import Loading from '../components/UI/Loading/Loading';
 
@@ -47,6 +53,7 @@ const Main = styled.main`
  * @param {Boolean} searchResultsExist
  */
 const getTopicPreviews = (topics, searchResultsExist) => {
+  console.log(topics);
   const topicsSelector = selectTopicsWithResourcesGroupedByType();
   return (
     !searchResultsExist && (
@@ -133,7 +140,7 @@ export const Index = ({
     allDevhubSiphon,
     allEventbriteEvents,
     allMarkdownRemark,
-    //allMeetupGroup,
+    //allMeetupGroup, commented out as meetup source plugin no longer works. meetup removed support for api keys, we are waiting for the source-meetup plugin to address this
     allGithubRaw,
     siteSearchIndex: { index },
   },
@@ -203,9 +210,30 @@ export const Index = ({
   const resourcesNotFound = !queryIsEmpty && (!results || (results.length === 0 && windowHasQuery));
 
   const topics = flattenGatsbyGraphQL(allDevhubTopic.edges);
+  
+  const githubRaw = flattenGatsbyGraphQL(allGithubRaw.edges);
+  const devhubSiphon = flattenGatsbyGraphQL(allDevhubSiphon.edges);
 
+  const popularTopic = buildPopularTopic(
+    githubRaw,
+    POPULAR_TOPIC_CONFIGURATION.name,
+    POPULAR_TOPIC_CONFIGURATION.description,
+    DYNAMIC_TOPIC_PATHS.popular,
+    POPULAR_TOPIC_CONFIGURATION.minPageViews,
+    POPULAR_TOPIC_CONFIGURATION.maxNodes,
+  );
+
+  const featuredTopic = buildFeaturedTopic(
+    githubRaw.concat(devhubSiphon),
+    FEATURE_TOPIC_CONFIGURATION.name,
+    FEATURE_TOPIC_CONFIGURATION.description,
+    DYNAMIC_TOPIC_PATHS.featured,
+    FEATURED_CONTENT,
+  );
+  
+  const dynamicTopics = flattenGatsbyGraphQL([popularTopic, featuredTopic]);
   if (queryIsEmpty) {
-    content = <Aux>{getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}</Aux>;
+    content = <Aux>{getTopicPreviews(dynamicTopics.concat(topics), windowHasQuery && !queryIsEmpty)}</Aux>;
   } else if (resourcesNotFound) {
     content = (
       <Alert style={{ margin: '10px auto' }} color="info" data-testid={TEST_IDS.alert}>
@@ -215,9 +243,13 @@ export const Index = ({
   } else {
     totalSearchResults = getSearchResultTotal(siphonResources);
     const { rocketchat } = searchSourceResults;
+
     content = (
       <Aux>
-        {getTopicPreviews(topics, windowHasQuery && !queryIsEmpty)}
+        {getTopicPreviews(
+          dynamicTopics.concat(topics),
+          windowHasQuery && !queryIsEmpty,
+        )}
         {siphonResources}
         {!isEmpty(rocketchat.results) && rocketchat.results.length > 0 && (
           <RocketChatResults results={searchSourceResults.rocketchat.results} />

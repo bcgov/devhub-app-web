@@ -31,9 +31,7 @@ import withResourceQuery from '../hoc/withResourceQuery';
 
 export const TopicPage = ({ data, location }) => {
   const dynamicTopics = {
-    [DYNAMIC_TOPIC_PATHS.popular]: {
-
-    }
+    [DYNAMIC_TOPIC_PATHS.popular]: {},
   };
 
   const [menuToggled, setMenuToggled] = useState(false);

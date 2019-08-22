@@ -246,24 +246,7 @@ const withResourceQuery = WrappedComponent => () => props => (
       }
     `}
     render={data => {
-      const sortedTopics = sortDevhubTopicsAfterSelectedTopics(data.allDevhubTopic.edges);
-      const { name, description, minPageViews, maxNodes } = POPULAR_TOPIC_CONFIGURATION;
-
-      const popularTopic = buildPopularTopic(
-        flattenGatsbyGraphQL(data.allGithubRaw.edges),
-        name,
-        description,
-        DYNAMIC_TOPIC_PATHS.popular,
-        minPageViews,
-        maxNodes,
-      );
-
-      return (
-        <WrappedComponent
-          data={{ ...data, allDevhubTopic: { edges: [popularTopic].concat(sortedTopics) } }}
-          {...props}
-        />
-      );
+      return <WrappedComponent data={data} {...props} />;
     }}
   />
 );

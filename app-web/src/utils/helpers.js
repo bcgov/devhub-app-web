@@ -300,7 +300,7 @@ export const buildPopularTopic = (nodes, name, description, slug, minPageViews, 
  */
 export const buildFeaturedTopic = (nodes, name, description, slug, featuredResources) => {
   const featuredNodes = nodes.filter(n => featuredResources[n.fields.title] !== undefined);
-  console.log(featuredNodes);
+
   return {
     node: {
       id: 'featured-topic',
@@ -310,7 +310,7 @@ export const buildFeaturedTopic = (nodes, name, description, slug, featuredResou
         githubRaw: featuredNodes.filter(n => n.internal.type === 'GithubRaw'),
       },
       connectsWith: featuredNodes.map(n => {
-        if(n.internal.type === 'GithubRaw') {
+        if (n.internal.type === 'GithubRaw') {
           return { ...n, path: `/topic/${slug}/${n.fields.slug}` };
         }
 
