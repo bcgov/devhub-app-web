@@ -44,6 +44,7 @@ const TopicContent = topics =>
           description={topic.description}
           link={{ to: getFirstNonExternalResource(allResources), text: 'View' }}
           resources={allResources}
+          data-testid={`topic-preview-${topic.id}`}
           css={css`
             max-width: 100%;
             margin-right: 10px;
@@ -52,7 +53,7 @@ const TopicContent = topics =>
       );
     });
 
-export const TopicsContainer = ({ topics, runTimeTopics, link }) => (
+export const TopicsContainer = ({ topics, link }) => (
   <PreviewContainer data-testid={TEST_IDS.container}>
     <Title>
       <StyledLink to={link.to}>Topics</StyledLink>

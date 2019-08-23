@@ -7,9 +7,10 @@ import Button from '../UI/Button/Button';
 import { css } from '@emotion/core';
 
 // ids are for test targeting
-export const IDS = {
+export const TEST_IDS = {
   disclaimer: 'disclaimer-modal',
   body: 'disclaimer-body',
+  button: 'disclaimer-button',
 };
 
 const withNoCapitalize = css`
@@ -18,11 +19,11 @@ const withNoCapitalize = css`
 
 const Disclaimer = ({ onClose, open, toggle }) => {
   return (
-    <Modal isOpen={open} toggle={toggle} data-testid={IDS.disclaimer}>
+    <Modal isOpen={open} toggle={toggle} data-testid={TEST_IDS.disclaimer}>
       <ModalHeader tag="h2" toggle={toggle}>
         {FAIR_USE_IMAGE_POLICY.title.defaultMessage}
       </ModalHeader>
-      <ModalBody data-testid={IDS.body}>
+      <ModalBody data-testid={TEST_IDS.body}>
         All third party trademarks (including logos and icons) referenced by developer.gov.bc.ca
         remain the property of their respective owners. Unless specifically identified as such,
         developer.gov.bc.ca use of third party trademarks does not indicate any relationship,
@@ -40,7 +41,7 @@ const Disclaimer = ({ onClose, open, toggle }) => {
         </Link>
       </ModalBody>
       <ModalFooter>
-        <Button variant="primary" clicked={onClose}>
+        <Button variant="primary" clicked={onClose} data-testid={TEST_IDS.button}>
           Okay
         </Button>
       </ModalFooter>

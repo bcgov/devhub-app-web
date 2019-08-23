@@ -68,6 +68,11 @@ export const TitleLink = styled(Link)`
   }
 `;
 
+export const TEST_IDS = {
+  titleLink: 'topic-preview-title-link',
+  chevronLink: 'topic-preview-chevron-link'
+};
+
 const TopicPreview = ({ title, description, link, resources, ...rest }) => (
   <div
     css={css`
@@ -82,12 +87,12 @@ const TopicPreview = ({ title, description, link, resources, ...rest }) => (
     <TopicPreviewContainer>
       <CardHeader type="Topics" />
       <TopicTitle clamp={2}>
-        <TitleLink to={link.to}>{title}</TitleLink>
+        <TitleLink to={link.to} data-testid={TEST_IDS.titleLink}>{title}</TitleLink>
       </TopicTitle>
       {description && <TopicDescription clamp={3}>{description}</TopicDescription>}
       <CardCarousel resources={resources} />
       <TopicLinkWrapper>
-        <ChevronLink to={link.to}>{link.text}</ChevronLink>
+        <ChevronLink to={link.to} data-testid={TEST_IDS.chevronLink}>{link.text}</ChevronLink>
       </TopicLinkWrapper>
     </TopicPreviewContainer>
   </div>

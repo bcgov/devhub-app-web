@@ -16,6 +16,7 @@ import Card from '../Cards/Card/Card';
 export const TEST_IDS = {
   arrowLeft: 'carousel-arrow-left',
   arrowRight: 'carousel-arrow-right',
+  card: 'carousel-card',
 };
 
 const Icon = styled(FontAwesomeIcon)`
@@ -52,6 +53,8 @@ const showArrow = (numResources, index, slidesPerPage) => {
   };
 };
 
+
+
 const CardCarousel = ({ resources }) => {
   const [index, setIndex] = useState(0);
   const numResources = resources.length;
@@ -69,6 +72,7 @@ const CardCarousel = ({ resources }) => {
       image={r.fields.image}
       link={r.path}
       event={r}
+      data-testid={TEST_IDS.card}
     />
   ));
 

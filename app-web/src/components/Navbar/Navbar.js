@@ -26,6 +26,7 @@ import { createIam } from '../../auth';
 export const TEST_IDS = {
   mobile: 'navbar-mobile',
   regular: 'navbar-regular',
+  link: 'navbar-link',
 };
 
 export const Navbar = ({ mobile, authenticated }) => {
@@ -39,6 +40,7 @@ export const Navbar = ({ mobile, authenticated }) => {
       <li key={MAIN_NAV_ROUTES[resourceType].to}>
         <Link
           exact="true"
+          data-testid={TEST_IDS.link}
           to={MAIN_NAV_ROUTES[resourceType].to}
           activeClassName={styles.ActiveFilter}
         >

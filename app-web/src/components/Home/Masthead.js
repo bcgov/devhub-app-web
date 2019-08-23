@@ -95,6 +95,7 @@ export const Masthead = ({
 
       <ChevronLink
         to="/aboutDevhub"
+        data-testid="about-devhub"
         css={css`
           font-size: 18px;
           font-weight: 600;
