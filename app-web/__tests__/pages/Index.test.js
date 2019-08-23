@@ -6,7 +6,14 @@ import queryString from 'query-string';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 import { Index, TEST_IDS } from '../../src/pages/index';
-import { SIPHON_NODES, TOPICS, EVENTS, MEETUP_NODES } from '../../__fixtures__/nodes';
+import {
+  SIPHON_NODES,
+  TOPICS,
+  EVENTS,
+  MEETUP_NODES,
+  FEATURED_TOPIC,
+  POPULAR_TOPIC,
+} from '../../__fixtures__/nodes';
 import {
   SELECT_TOPICS_WITH_RESOURCES_GROUPED_BY_TYPE,
   SELECT_RESOURCES_GROUPED_BY_TYPE,
@@ -18,6 +25,8 @@ import {
   getFirstNonExternalResource,
   getTextAndLink,
   removeUnwantedResults,
+  buildFeaturedTopic,
+  buildPopularTopic,
 } from '../../src/utils/helpers';
 import { GITHUB_RAW_NODES } from '../../__fixtures__/nodes';
 import { client } from '../../wrapWithProvider';
@@ -36,7 +45,8 @@ getFirstNonExternalResource.mockReturnValue('foo');
 getTextAndLink.mockReturnValue({ to: '/documentation?q=mobile', text: 'two results found' });
 useRCSearch.mockReturnValue({ results: [], loading: false });
 useAuthenticated.mockReturnValue(false);
-
+buildFeaturedTopic.mockReturnValue({ node: FEATURED_TOPIC });
+buildPopularTopic.mockReturnValue({ node: POPULAR_TOPIC });
 describe('Home Page', () => {
   // mock out non redux selectors
   jest.doMock('../../src/utils/selectors.js', () => ({

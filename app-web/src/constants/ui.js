@@ -80,5 +80,23 @@ export const POPULAR_TOPIC_CONFIGURATION = {
 
 export const DYNAMIC_TOPIC_PATHS = {
   popular: 'popular',
+  featured: 'featured',
 };
 
+// featured content is identified by node.fields.title
+// an expressed in order by this object
+// this is a lookup table to easily identify which resources are considered featured
+export const FEATURED_CONTENT = [
+  'BC Developers Exchange',
+  'Chat Channel Conventions',
+  'Steps to join Pathfinder Rocket.Chat',
+  '12 Factor Apps',
+  'Progressive Web Apps',
+  'Documize',
+  'What is Pathfinder?',
+];
+
+export const FEATURE_TOPIC_CONFIGURATION = {
+  name: 'Featured Resources',
+  description: 'A selection of resources we think you will want to know about',
+};
