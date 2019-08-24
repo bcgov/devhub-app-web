@@ -2,7 +2,8 @@
     "cSpell.words": [
         "Documize",
         "flexbugs",
-        "polyfill"
+        "polyfill",
+        "testid"
     ],
     "editor.snippetSuggestions": "top",
     "eslint.workingDirectories": [

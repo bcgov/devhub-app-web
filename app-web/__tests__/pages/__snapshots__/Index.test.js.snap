@@ -159,6 +159,7 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
   <a
     class="emotion-6 emotion-7"
     css="[object Object]"
+    data-testid="about-devhub"
     href="/aboutDevhub"
   >
     How Devhub Works
@@ -372,6 +373,7 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
   <a
     class="emotion-6 emotion-7"
     css="[object Object]"
+    data-testid="about-devhub"
     href="/aboutDevhub"
   >
     How Devhub Works

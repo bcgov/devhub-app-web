@@ -260,6 +260,7 @@ exports[`PopularTopic matches snapshot 1`] = `
       >
         <a
           class="emotion-6 emotion-7 emotion-8"
+          data-testid="topic-preview-title-link"
           href="/topic/popular"
         >
           Popular
@@ -290,6 +291,7 @@ exports[`PopularTopic matches snapshot 1`] = `
               >
                 <article
                   class="emotion-27 emotion-28"
+                  data-testid="carousel-card"
                 >
                   <div
                     class="emotion-13 emotion-14"
@@ -373,6 +375,7 @@ exports[`PopularTopic matches snapshot 1`] = `
               >
                 <article
                   class="emotion-27 emotion-28"
+                  data-testid="carousel-card"
                 >
                   <div
                     class="emotion-32 emotion-14"
@@ -454,6 +457,7 @@ exports[`PopularTopic matches snapshot 1`] = `
       >
         <a
           class="emotion-51 emotion-8"
+          data-testid="topic-preview-chevron-link"
           href="/topic/popular"
         >
           Popular

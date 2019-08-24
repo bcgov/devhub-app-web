@@ -13,6 +13,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     >
       <mockConstructor
         activeClassName="ActiveFilter"
+        data-testid="navbar-link"
         exact="true"
         to="/"
       >
@@ -24,6 +25,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     >
       <mockConstructor
         activeClassName="ActiveFilter"
+        data-testid="navbar-link"
         exact="true"
         to="/topics"
       >
@@ -35,6 +37,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     >
       <mockConstructor
         activeClassName="ActiveFilter"
+        data-testid="navbar-link"
         exact="true"
         to="/self-service-tools"
       >
@@ -46,6 +49,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     >
       <mockConstructor
         activeClassName="ActiveFilter"
+        data-testid="navbar-link"
         exact="true"
         to="/components"
       >
@@ -57,6 +61,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     >
       <mockConstructor
         activeClassName="ActiveFilter"
+        data-testid="navbar-link"
         exact="true"
         to="/repositories"
       >
@@ -68,6 +73,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     >
       <mockConstructor
         activeClassName="ActiveFilter"
+        data-testid="navbar-link"
         exact="true"
         to="/documentation"
       >
@@ -79,6 +85,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     >
       <mockConstructor
         activeClassName="ActiveFilter"
+        data-testid="navbar-link"
         exact="true"
         to="/events"
       >

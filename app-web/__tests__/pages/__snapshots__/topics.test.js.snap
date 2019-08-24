@@ -535,6 +535,7 @@ exports[`Topics Container it matches snapshot 1`] = `
     >
       <li>
         <a
+          data-testid="navbar-link"
           exact="true"
           href="/"
         >
@@ -543,6 +544,7 @@ exports[`Topics Container it matches snapshot 1`] = `
       </li>
       <li>
         <a
+          data-testid="navbar-link"
           exact="true"
           href="/topics"
         >
@@ -551,6 +553,7 @@ exports[`Topics Container it matches snapshot 1`] = `
       </li>
       <li>
         <a
+          data-testid="navbar-link"
           exact="true"
           href="/self-service-tools"
         >
@@ -559,6 +562,7 @@ exports[`Topics Container it matches snapshot 1`] = `
       </li>
       <li>
         <a
+          data-testid="navbar-link"
           exact="true"
           href="/components"
         >
@@ -567,6 +571,7 @@ exports[`Topics Container it matches snapshot 1`] = `
       </li>
       <li>
         <a
+          data-testid="navbar-link"
           exact="true"
           href="/repositories"
         >
@@ -575,6 +580,7 @@ exports[`Topics Container it matches snapshot 1`] = `
       </li>
       <li>
         <a
+          data-testid="navbar-link"
           exact="true"
           href="/documentation"
         >
@@ -583,6 +589,7 @@ exports[`Topics Container it matches snapshot 1`] = `
       </li>
       <li>
         <a
+          data-testid="navbar-link"
           exact="true"
           href="/events"
         >
@@ -655,6 +662,7 @@ exports[`Topics Container it matches snapshot 1`] = `
           >
             <a
               class="emotion-25 emotion-26 emotion-27"
+              data-testid="topic-preview-title-link"
               href="foo"
             >
               Design System
@@ -685,6 +693,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                   >
                     <article
                       class="emotion-46 emotion-47"
+                      data-testid="carousel-card"
                     >
                       <div
                         class="emotion-32 emotion-33"
@@ -768,6 +777,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                   >
                     <article
                       class="emotion-46 emotion-47"
+                      data-testid="carousel-card"
                     >
                       <div
                         class="emotion-51 emotion-33"
@@ -849,6 +859,7 @@ exports[`Topics Container it matches snapshot 1`] = `
           >
             <a
               class="emotion-70 emotion-27"
+              data-testid="topic-preview-chevron-link"
               href="foo"
             >
               View
@@ -918,6 +929,7 @@ exports[`Topics Container it matches snapshot 1`] = `
           >
             <a
               class="emotion-25 emotion-26 emotion-27"
+              data-testid="topic-preview-title-link"
               href="foo"
             >
               Devhub
@@ -948,6 +960,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                   >
                     <article
                       class="emotion-46 emotion-47"
+                      data-testid="carousel-card"
                     >
                       <div
                         class="emotion-32 emotion-33"
@@ -1031,6 +1044,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                   >
                     <article
                       class="emotion-46 emotion-47"
+                      data-testid="carousel-card"
                     >
                       <div
                         class="emotion-51 emotion-33"
@@ -1112,6 +1126,7 @@ exports[`Topics Container it matches snapshot 1`] = `
           >
             <a
               class="emotion-70 emotion-27"
+              data-testid="topic-preview-chevron-link"
               href="foo"
             >
               View
