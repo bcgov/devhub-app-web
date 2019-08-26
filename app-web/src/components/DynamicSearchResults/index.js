@@ -21,7 +21,7 @@ const Container = styled.div`
   }
 `;
 
-export const SearchResults = ({ results, sourceType, link, renderItem, ...rest }) => {
+export const DynamicSearchResults = ({ results, sourceType, link, renderItem, ...rest }) => {
   const contentMapping = {
     [SEARCH_SOURCES.documize]: {
       name: 'From Documize',
@@ -59,7 +59,7 @@ export const SearchResults = ({ results, sourceType, link, renderItem, ...rest }
   );
 };
 
-SearchResults.propTypes = {
+DynamicSearchResults.propTypes = {
   link: PropTypes.shape({
     text: PropTypes.string.isRequired,
     to: PropTypes.string.isRequired,

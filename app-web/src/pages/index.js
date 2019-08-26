@@ -25,7 +25,7 @@ import {
   getSearchSourcesResultTotal,
   areSearchSourcesStillLoading,
 } from '../utils/search';
-import { SEARCH_QUERY_PARAM } from '../constants/search';
+import { SEARCH_QUERY_PARAM, SEARCH_SOURCES } from '../constants/search';
 import { SPACING } from '../constants/designTokens';
 import uniqBy from 'lodash/uniqBy';
 import { formatEvents } from '../templates/events';
@@ -38,8 +38,9 @@ import {
 } from '../constants/ui';
 import { SEARCH_SOURCE_INITIAL_STATE } from '../constants/search';
 import { removeUnwantedResults, buildPopularTopic, buildFeaturedTopic } from '../utils/helpers';
-import { RocketChatResults } from '../components/RocketChatResults';
 import Loading from '../components/UI/Loading/Loading';
+import { RocketChatItem } from '../components/RocketChatItem/RocketChatItem';
+import { DynamicSearchResults } from '../components/DynamicSearchResults';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -250,7 +251,15 @@ export const Index = ({
         {getTopicPreviews(dynamicTopics.concat(topics), windowHasQuery && !queryIsEmpty)}
         {siphonResources}
         {!isEmpty(rocketchat.results) && rocketchat.results.length > 0 && (
-          <RocketChatResults results={searchSourceResults.rocketchat.results} />
+          <DynamicSearchResults
+            results={searchSourceResults.rocketchat.results}
+            sourceType={SEARCH_SOURCES.rocketchat}
+            renderItem={r => <RocketChatItem {...r} />}
+            link={{
+              to: 'https://chat.pathfinder.gov.bc.ca',
+              text: 'Go To Rocket.Chat',
+            }}
+          />
         )}
       </Aux>
     );

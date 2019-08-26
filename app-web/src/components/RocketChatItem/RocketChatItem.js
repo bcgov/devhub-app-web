@@ -13,10 +13,12 @@ export const StyledLink = styled(Link)`
     text-decoration: none;
   }
 `;
+
 export const Author = styled.span`
   font-size: 15px;
   color: #222;
 `;
+
 export const Icon = styled(FontAwesomeIcon)`
   position: absolute;
   color: inherit;
@@ -25,6 +27,7 @@ export const Icon = styled(FontAwesomeIcon)`
   right: 6px;
   display: none;
 `;
+
 export const Container = styled.div`
   padding: 4px 6px;
   position: relative;
