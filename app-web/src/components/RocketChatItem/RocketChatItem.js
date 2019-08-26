@@ -57,7 +57,7 @@ export const Message = styled.div`
   margin-bottom: 0;
 `;
 
-export const RocketChatItem = ({ id, roomId, author, time, message, url, ...rest }) => {
+export const RocketChatItem = ({ id, author, time, message, url, ...rest }) => {
   const yearMonthDay = moment(time).format('YYYY-MM-DD');
   const hourMinute = moment(time).format('hh:mm a');
 

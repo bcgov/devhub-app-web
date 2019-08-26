@@ -254,7 +254,7 @@ export const Index = ({
           <DynamicSearchResults
             results={searchSourceResults.rocketchat.results}
             sourceType={SEARCH_SOURCES.rocketchat}
-            renderItem={r => <RocketChatItem {...r} />}
+            renderItem={r => <RocketChatItem {...r} data-testid={r.id} />}
             link={{
               to: 'https://chat.pathfinder.gov.bc.ca',
               text: 'Go To Rocket.Chat',
