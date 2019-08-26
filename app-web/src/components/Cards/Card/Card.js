@@ -25,26 +25,27 @@ import { CardLinkWrapper, CardWrapper, DecorativeBar } from './index';
 import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
 import { CardBody } from './CardBody';
 
-const Card = ({ type, title, description, image, link, ...rest }) => {
-  let isExternal = !!validUrl.isWebUri(link);
+export class Card extends React.Component {
   // if there is an image it takes priority
-  return (
-    <CardLinkWrapper to={link}>
-      <CardWrapper {...rest}>
-        <DecorativeBar type={type} />
-        <CardBody
-          type={type}
-          isExternal={isExternal}
-          title={title}
-          description={description}
-          event={rest.event}
-          image={image}
-          clampAmount={title.length < 23 ? 5 : 4}
-        />
-      </CardWrapper>
-    </CardLinkWrapper>
-  );
-};
+  render() {
+    return (
+      <CardLinkWrapper to={this.props.link}>
+        <CardWrapper {...this.props.rest}>
+          <DecorativeBar type={this.props.type} />
+          <CardBody
+            type={this.props.type}
+            isExternal={!!validUrl.isWebUri(this.props.link)}
+            title={this.props.title}
+            description={this.props.description}
+            event={this.props.event}
+            image={this.props.image}
+            clampAmount={this.props.title.length < 23 ? 5 : 4}
+          />
+        </CardWrapper>
+      </CardLinkWrapper>
+    );
+  }
+}
 
 Card.propTypes = {
   type: PropTypes.oneOf(RESOURCE_TYPES_LIST),
@@ -58,5 +59,3 @@ Card.defaultProps = {
   description: null,
   image: null,
 };
-
-export default Card;

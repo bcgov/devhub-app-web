@@ -26,6 +26,8 @@ import {
 import Aux from '../../../hoc/auxillary';
 import CardHeader from './CardHeader';
 import { EventBody } from './EventBody';
+import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
+import PropTypes from 'prop-types';
 
 export class CardBody extends React.Component {
   render() {
@@ -77,3 +79,11 @@ export class CardBody extends React.Component {
     );
   }
 }
+
+CardBody.propTypes = {
+  type: PropTypes.oneOf(RESOURCE_TYPES_LIST),
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  image: PropTypes.string,
+  isExternal: PropTypes.bool,
+};

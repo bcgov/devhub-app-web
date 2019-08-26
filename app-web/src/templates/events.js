@@ -10,7 +10,7 @@ import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { EVENTS, RESOURCE_TYPES } from '../constants/ui';
 import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../constants/designTokens';
 import { TOPICS } from '../constants/topics';
-import Card from '../components/Cards/Card/Card';
+import { Card } from '../components/Cards/Card/Card';
 
 export const TEST_IDS = {
   alert: 'events-container',
