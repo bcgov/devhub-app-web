@@ -148,7 +148,7 @@ export const EventContainer = styled(EventDetailsContainer)`
   }
 `;
 
-export const CardBody = styled.div`
+export const CardBodyDiv = styled.div`
   padding: 6px 10px;
   height: 100%;
   overflow: hidden;

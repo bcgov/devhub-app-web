@@ -19,120 +19,28 @@ Created by Patrick Simonian
 import React from 'react';
 import PropTypes from 'prop-types';
 import validUrl from 'valid-url';
-import CardHeader from './CardHeader';
 
-import {
-  CardBody,
-  CardDescription,
-  CardImage,
-  CardImageWrapper,
-  CardLinkWrapper,
-  CardTitle,
-  CardWrapper,
-  DecorativeBar,
-  EventInfoDiv,
-  EventDate,
-  EventContainer,
-  EventImageWrapper,
-  MeetupImageWrapper,
-} from './index';
-import Aux from '../../../hoc/auxillary';
+import { CardLinkWrapper, CardWrapper, DecorativeBar } from './index';
 
 import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
-import EventLogo from '../../Event/Logo';
+import { CardBody } from './CardBody';
 
 const Card = ({ type, title, description, image, link, ...rest }) => {
   let isExternal = !!validUrl.isWebUri(link);
   // if there is an image it takes priority
-  let cardBody = (
-    <CardDescription title={description} clamp={6} tagName="p">
-      {description}
-    </CardDescription>
-  );
-  //Little if statement to change the amount of lines we want to clamp based on if the title takes 1 or two lines
-  let clampAmount = 4;
-  //if takes one line.......
-  if (title.length < 23) {
-    clampAmount = 5;
-  }
-
-  //first check if its an eventbrite event, as in our resolver in gatsby-node.js -> image is set to "eventbrite"
-  if (image === 'eventbrite' && description) {
-    cardBody = (
-      <Aux>
-        <CardDescription title={description} clamp={clampAmount} tagName="p">
-          {rest.event.unfurl.description}
-        </CardDescription>
-        <EventContainer>
-          <EventDate>
-            <span>{rest.event.start.month}</span>
-            {rest.event.start.day}
-            <small>{rest.event.start.year}</small>
-          </EventDate>
-          <EventInfoDiv>
-            <li>
-              {rest.event.venue !== null ? rest.event.venue : 'tbd'}
-              <EventImageWrapper>
-                <EventLogo type={image} />
-              </EventImageWrapper>
-            </li>
-          </EventInfoDiv>
-        </EventContainer>
-      </Aux>
-    );
-  } else if (image === 'meetup' && description) {
-    cardBody = (
-      <Aux>
-        <CardDescription title={description} clamp={clampAmount} tagName="p">
-          {rest.event.unfurl.description}
-        </CardDescription>
-        <EventContainer>
-          <EventDate>
-            <span>{rest.event.start.month}</span>
-            {rest.event.start.day}
-            <small>{rest.event.start.year}</small>
-          </EventDate>
-          <EventInfoDiv>
-            <li>
-              {rest.event.venue !== null ? rest.event.venue : 'tbd'}
-              <MeetupImageWrapper>
-                <EventLogo type={image} />
-              </MeetupImageWrapper>
-            </li>
-          </EventInfoDiv>
-        </EventContainer>
-      </Aux>
-    );
-  } else if (image && description) {
-    cardBody = (
-      <Aux>
-        <CardDescription title={description} clamp={2} tagName="p">
-          {description}
-        </CardDescription>
-        <CardImageWrapper>
-          <CardImage src={image} alt={title} />
-        </CardImageWrapper>
-      </Aux>
-    );
-  } else if (image) {
-    cardBody = (
-      <CardImageWrapper>
-        <CardImage src={image} alt={title} />
-      </CardImageWrapper>
-    );
-  }
-
   return (
     <CardLinkWrapper to={link}>
       <CardWrapper {...rest}>
         <DecorativeBar type={type} />
-        <CardBody>
-          <CardHeader type={type} linksToExternal={isExternal} />
-          <CardTitle clamp={image && description ? 2 : 3} tagName="h2" title={title}>
-            {title}
-          </CardTitle>
-          {cardBody}
-        </CardBody>
+        <CardBody
+          type={type}
+          isExternal={isExternal}
+          title={title}
+          description={description}
+          event={rest.event}
+          image={image}
+          clampAmount={title.length < 23 ? 5 : 4}
+        />
       </CardWrapper>
     </CardLinkWrapper>
   );
