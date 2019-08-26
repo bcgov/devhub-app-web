@@ -36,14 +36,16 @@ class CardBody extends React.Component {
         {this.props.description}
       </CardDescription>
     );
-    //first check if its an eventbrite event, as in our resolver in gatsby-node.js -> image is set to "eventbrite"
+    //Special formating when the card has an image, this also counts for when its an event due to eventbrite events having image: 'eventbrite'
     if (this.props.image) {
-      let clampNum = this.props.clampAmount ? this.props.clampAmount : 2;
-
       cardBody = (
         <Aux>
           {this.props.description && (
-            <CardDescription title={this.props.description} clamp={clampNum} tagName="p">
+            <CardDescription
+              title={this.props.description}
+              clamp={this.props.image === 'eventbrite' ? this.props.clampAmount : 2}
+              tagName="p"
+            >
               {this.props.description}
             </CardDescription>
           )}
@@ -84,6 +86,7 @@ CardBody.propTypes = {
   description: PropTypes.string,
   image: PropTypes.string,
   isExternal: PropTypes.bool,
+  clampAmount: PropTypes.number,
 };
 
 export default CardBody;
