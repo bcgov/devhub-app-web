@@ -43,6 +43,7 @@ export const Time = styled.span`
   font-weight: 300;
   margin-left: 4px;
   text-decoration: none;
+  text-transform: uppercase;
 `;
 
 export const Message = styled.div`
@@ -59,7 +60,7 @@ export const RocketChatItem = ({ id, roomId, author, time, message, url, ...rest
 
   return (
     <Container {...rest}>
-      {<Icon icon={faExternalLinkAlt} />}
+      <Icon icon={faExternalLinkAlt} />
       <StyledLink to={url}>
         <div>
           <Author>{author}</Author>
