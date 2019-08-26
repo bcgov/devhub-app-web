@@ -4,5 +4,11 @@
         "flexbugs",
         "polyfill"
     ],
-    "editor.snippetSuggestions": "top"
+    "editor.snippetSuggestions": "top",
+    "eslint.workingDirectories": [
+		{ 
+			"directory": "app-web", 
+			"changeProcessCWD": true
+		}
+	]
 }
