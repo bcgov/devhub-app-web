@@ -11,7 +11,7 @@ import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/designTokens';
 
 import { RESOURCE_TYPES_LIST, CARD_CAROUSEL } from '../../constants/ui';
 
-import { Card } from '../Cards/Card/Card';
+import Card from '../Cards/Card/Card';
 
 export const TEST_IDS = {
   arrowLeft: 'carousel-arrow-left',
@@ -55,7 +55,6 @@ const showArrow = (numResources, index, slidesPerPage) => {
 const CardCarousel = ({ resources }) => {
   const [index, setIndex] = useState(0);
   const numResources = resources.length;
-
   const slides = resources.map(r => (
     <Card
       key={r.id}

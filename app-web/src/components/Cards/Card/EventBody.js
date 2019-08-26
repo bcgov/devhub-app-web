@@ -19,7 +19,7 @@ import PropTypes from 'prop-types';
 import { EventInfoDiv, EventDate, EventContainer } from './index';
 import EventLogo from '../../Event/Logo';
 
-export class EventBody extends React.Component {
+class EventBody extends React.Component {
   render() {
     return (
       <EventContainer>
@@ -44,3 +44,5 @@ export class EventBody extends React.Component {
 EventBody.propTypes = {
   event: PropTypes.object.isRequired,
 };
+
+export default EventBody;

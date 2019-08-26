@@ -23,9 +23,9 @@ import validUrl from 'valid-url';
 import { CardLinkWrapper, CardWrapper, DecorativeBar } from './index';
 
 import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
-import { CardBody } from './CardBody';
+import CardBody from './CardBody';
 
-export class Card extends React.Component {
+class Card extends React.Component {
   // if there is an image it takes priority
   render() {
     return (
@@ -59,3 +59,4 @@ Card.defaultProps = {
   description: null,
   image: null,
 };
+export default Card;

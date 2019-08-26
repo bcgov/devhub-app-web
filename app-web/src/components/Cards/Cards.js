@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Cards.module.css';
 
-import Card from './Card/Card';
+import { Card } from './Card/Card';
 import Toggle from './Toggle';
 import Col from './Column';
 import Container from './Container';

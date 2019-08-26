@@ -23,7 +23,7 @@ import css from '@emotion/css';
 import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/designTokens';
 import { ChevronLink } from '../UI/Link';
 import { Container, LinkContainer } from './index';
-import { Card } from '../Cards/Card/Card';
+import Card from '../Cards/Card/Card';
 import Pill from '../UI/Pill';
 import { RESOURCE_TYPES } from '../../constants/ui';
 
