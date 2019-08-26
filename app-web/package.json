@@ -125,7 +125,7 @@
     "prettify": "prettier --write '{./,__{tests,mocks}__}/**/*.+(js|jsx)'",
     "test:e2e:ci": "start-server-and-test dev http://0.0.0.0:8000 cy:run",
     "test:e2e:dev": "start-server-and-test dev http://0.0.0.0:8000 cy:dev",
-    "cy:run": "cypress run",
+    "cy:run": "cypress run  --browser chrome",
     "cy:dev": "cypress open"
   },
   "devDependencies": {
