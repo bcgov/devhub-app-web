@@ -54,11 +54,9 @@ class CardBody extends React.Component {
               componentType={EventImageWrapper}
             />
           ) : (
-            <>
-              <CardImageWrapper>
-                <CardImage src={this.props.image} alt={this.props.title} />
-              </CardImageWrapper>
-            </>
+            <CardImageWrapper>
+              <CardImage src={this.props.image} alt={this.props.title} />
+            </CardImageWrapper>
           )}
         </Aux>
       );
