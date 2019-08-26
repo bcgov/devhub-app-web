@@ -15,7 +15,7 @@ action "Run unit tests." {
 }
 
 action "Cypress E2E Tests" {
-  uses = "bartlett705/npm-cy@f69478046d80aef1be0e17582c189a59bbfc9aa1"
+  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
   needs = ["Run unit tests."]
   args = "--prefix app-web run test:e2e:ci"
   secrets = ["GITHUB_TOKEN", "MEETUP_API_KEY", "EVENT_BRITE_API_KEY", "GATSBY_SSO_REALM_NAME", "GATSBY_SSO_CLIENT_ID", "GATSBY_SSO_BASE_URL", "GATSBY_MATOMO_SITE_ID", "GATSBY_MATOMO_URL", "GATSBY_MATOMO_SITE_URL"]
