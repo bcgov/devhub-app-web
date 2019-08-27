@@ -13,10 +13,12 @@ export const StyledLink = styled(Link)`
     text-decoration: none;
   }
 `;
+
 export const Author = styled.span`
   font-size: 15px;
   color: #222;
 `;
+
 export const Icon = styled(FontAwesomeIcon)`
   position: absolute;
   color: inherit;
@@ -25,6 +27,7 @@ export const Icon = styled(FontAwesomeIcon)`
   right: 6px;
   display: none;
 `;
+
 export const Container = styled.div`
   padding: 4px 6px;
   position: relative;
@@ -43,6 +46,7 @@ export const Time = styled.span`
   font-weight: 300;
   margin-left: 4px;
   text-decoration: none;
+  text-transform: uppercase;
 `;
 
 export const Message = styled.div`
@@ -53,13 +57,13 @@ export const Message = styled.div`
   margin-bottom: 0;
 `;
 
-export const RocketChatItem = ({ id, roomId, author, time, message, url, ...rest }) => {
+export const RocketChatItem = ({ id, author, time, message, url, ...rest }) => {
   const yearMonthDay = moment(time).format('YYYY-MM-DD');
   const hourMinute = moment(time).format('hh:mm a');
 
   return (
     <Container {...rest}>
-      {<Icon icon={faExternalLinkAlt} />}
+      <Icon icon={faExternalLinkAlt} />
       <StyledLink to={url}>
         <div>
           <Author>{author}</Author>
