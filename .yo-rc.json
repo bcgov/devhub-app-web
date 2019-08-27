@@ -111,6 +111,13 @@
           "github_repo": "docugate",
           "jenkinsFilePath": "Jenkinsfile",
           "uuid": "5461cc8d-5cb9-4259-8720-fd34f774966a"
+        },
+        "searchgate": {
+          "jenkinsJobName": "searchgate",
+          "github_owner": "bcgov",
+          "github_repo": "searchgate",
+          "jenkinsFilePath": "Jenkinsfile",
+          "uuid": "800fe2e9-f5b6-46af-9f53-2b21d8038ed1"
         }
       }
     }
