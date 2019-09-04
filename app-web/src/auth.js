@@ -19,6 +19,8 @@ export const createIam = () => {
 
   if (iam === null) {
     iam = new ImplicitAuthManager(config);
+    window._iam = iam;
+
     Object.freeze(iam);
   }
   return iam;
