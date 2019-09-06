@@ -21,7 +21,7 @@ that creation of a service account that has the correct permissions to manage cl
 3. assign a client id (something like devhub-service-account)
 4. Once created navigate to that client and change `Access Type` to `confidential`
 5. Enable Service Accounts
-6. Modify Service Account roles to allow managment of clients. 
+6. Modify Service Account roles to allow management of clients. 
   a. add client role `realm management`
   b. add roles `view clients`, `manage clients`, `create clients`
 7. Navigate to the `Credentials` Tab in take note of the secret.

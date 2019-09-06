@@ -7,8 +7,7 @@ ignore: true
     - [Setting Up Keycloak](./keycloakSetup.md)
 - Contribution Guides
     - [Devhub Card Spec](./devhubCardSpec.md)
-    - [React Components](./components.md)
-    - [Siphon Documentation](./siphon.md) (soon to be deprecated)
+    - [React Components](./comeponents.md)
     - [Theming and Typography](./typography-theming.md)
     - [Clean Coding](./blog/clean-coding.md)
     - [Gatsby Remark Path Transform Plugin](./gatsby-custom-plugins/gatsby-remark-path-transform.md)
