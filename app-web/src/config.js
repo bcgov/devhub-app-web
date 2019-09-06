@@ -3,5 +3,5 @@ export default {
   ssoRealmName: '{{.Env.SSO_REALM_NAME}}',
   ssoClientId: '{{.Env.SSO_CLIENT_ID}}',
   ssoBaseUrl: '{{.Env.SSO_BASE_URL}}',
-  rocketgateApiUrl: '{{.Env.ROCKETGATE_API_URL}}',
+  searchgateApiUrl: '{{.Env.SEARCHGATE_API_URL}}',
 };

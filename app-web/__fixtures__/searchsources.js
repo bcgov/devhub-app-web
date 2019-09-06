@@ -19,19 +19,25 @@ Created by Patrick Simonian
 
 export const ROCKET_CHAT = [
   {
-    id: '1', 
-    roomId: '2', author: 'apple', time: '2019-02-12', message: 'apples are clearly superior',
+    type: 'rocketchat',
+    id: '1',
+    typePayload: JSON.stringify({
+      id: '1',
+      roomId: '2',
+      author: 'apple',
+      time: '2019-02-12',
+      message: 'apples are clearly superior',
+    }),
   },
   {
-    id: '2', 
-    roomId: '2', author: 'orange', time: '2019-02-12', message: 'Nice joke apple, are trying to perform some time of standup?',
+    type: 'rocketchat',
+    id: '2',
+    typePayload: JSON.stringify({
+      id: '2',
+      roomId: '2',
+      author: 'apple',
+      time: '2019-02-12',
+      message: 'apples are clearly superior',
+    }),
   },
-  {
-    id: '3', 
-    roomId: '2', author: 'apple', time: '2019-02-12', message: 'Don\'t play coy with me orange, you know I\'m telling the truth',
-  },
-  {
-    id: '4', 
-    roomId: '2', author: 'orange', time: '2019-02-12', message: 'I ain\'t never hurd of people curing scurvy with apples yo. Hook line and sinker dawg.',
-  },
-]
+];

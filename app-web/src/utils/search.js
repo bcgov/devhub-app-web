@@ -69,13 +69,12 @@ export const isQueryEmpty = query => {
 /**
  * takes in a hash of search sources and returns the total count based on if they are toggled or not
  * @param {Object} searchSources map of search sources
- * @param {Object} searchSources.rocketchat map of search sources
- * @param {Array} searchSources.rocketchat.results map of search sources
+ * @param {Array} searchSources.rocketchat map of search sources
  * @returns {Number} total number of search sources
  */
 export const getSearchSourcesResultTotal = searchSources => {
   return Object.keys(searchSources).reduce((total, source) => {
-    total += searchSources[source].results.length;
+    total += searchSources[source].length;
     return total;
   }, 0);
 };
