@@ -12,7 +12,6 @@ labels:
 date: '2019/04/17'
 title: Welcome to the DevHub
 subtitle: A place to learn, discover and collaborate on digital products within the BC Government.
-
 ---
 
 ### Who should use this application?
