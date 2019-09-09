@@ -21,11 +21,7 @@ import {
   selectResourcesGroupedByType,
 } from '../utils/selectors';
 
-import {
-  isQueryEmpty,
-  getSearchSourcesResultTotal,
-  areSearchSourcesStillLoading,
-} from '../utils/search';
+import { isQueryEmpty } from '../utils/search';
 import { SEARCH_QUERY_PARAM, SEARCH_SOURCES } from '../constants/search';
 import { SPACING } from '../constants/designTokens';
 import uniqBy from 'lodash/uniqBy';
@@ -275,9 +271,9 @@ export const Index = ({
   }
 
   // dynamic sources all load at different times, this function returns false when all have completed loading
-  const searchSourcesLoading = areSearchSourcesStillLoading(searchSourceResults);
+  const searchSourcesLoading = searchGate.loading;
   if (!!searchSourceResults.rocketchat) {
-    totalSearchResults += getSearchSourcesResultTotal(searchSourceResults);
+    totalSearchResults += searchSourceResults.rocketchat.length;
   }
 
   return (

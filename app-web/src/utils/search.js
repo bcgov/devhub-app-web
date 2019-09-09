@@ -78,12 +78,3 @@ export const getSearchSourcesResultTotal = searchSources => {
     return total;
   }, 0);
 };
-
-/**
- * multiple search sources can resolve at different times,
- * this method returns true if atleast n sources are still loading
- * @param {Object} searchSources
- * @returns {Boolean}
- */
-export const areSearchSourcesStillLoading = searchSources =>
-  Object.keys(searchSources).filter(source => searchSources[source].loading).length > 0;
