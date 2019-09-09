@@ -147,8 +147,13 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
     );
     pills = pills.concat(
       filters.map(filter => {
+        if (filter.counter === 0) {
+          return '';
+        }
+
         if (filter.name !== RESOURCE_TYPES.PEOPLE) {
           //formats the text correctly for different cases
+
           let iconLabel =
             filter.counter !== 1 ? `${filter.counter} Results` : `${filter.counter} Result`;
           //adds informative info for the behavior of the ResourcePills their current state
