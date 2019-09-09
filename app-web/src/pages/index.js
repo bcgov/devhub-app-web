@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import queryString from 'query-string';
 import isNull from 'lodash/isNull';
+import groupBy from 'lodash/groupBy';
 import styled from '@emotion/styled';
 import { Alert } from 'reactstrap';
 import { withApollo } from 'react-apollo';
@@ -14,17 +15,13 @@ import { ResourcePreview, Masthead, TopicsContainer } from '../components/Home';
 import withResourceQuery from '../hoc/withResourceQuery';
 import Aux from '../hoc/auxillary';
 
-import { useSearch, useAuthenticated, useRCSearch } from '../utils/hooks';
+import { useSearch, useAuthenticated, useSearchGate } from '../utils/hooks';
 import {
   selectTopicsWithResourcesGroupedByType,
   selectResourcesGroupedByType,
 } from '../utils/selectors';
 
-import {
-  isQueryEmpty,
-  getSearchSourcesResultTotal,
-  areSearchSourcesStillLoading,
-} from '../utils/search';
+import { isQueryEmpty } from '../utils/search';
 import { SEARCH_QUERY_PARAM, SEARCH_SOURCES } from '../constants/search';
 import { SPACING } from '../constants/designTokens';
 import uniqBy from 'lodash/uniqBy';
@@ -160,9 +157,13 @@ export const Index = ({
   const { authenticated } = useAuthenticated();
   // get rocket chat search results if authenticated
   // TODO will activate once ui component is available
-  const searchSourceResults = {
-    rocketchat: useRCSearch(authenticated, query, client),
-  };
+
+  const searchGate = useSearchGate(authenticated, query, client);
+
+  let searchSourceResults = {};
+  if (searchGate.results) {
+    searchSourceResults = groupBy(searchGate.results, 'type');
+  }
 
   //set search filter to false if the user isnt authenticated, so RC icon will show appropriately
   if (!authenticated) {
@@ -250,11 +251,15 @@ export const Index = ({
       <Aux>
         {getTopicPreviews(dynamicTopics.concat(topics), windowHasQuery && !queryIsEmpty)}
         {siphonResources}
-        {!isEmpty(rocketchat.results) && rocketchat.results.length > 0 && (
+        {!isEmpty(rocketchat) && rocketchat.length > 0 && (
           <DynamicSearchResults
-            results={searchSourceResults.rocketchat.results}
+            results={rocketchat}
             sourceType={SEARCH_SOURCES.rocketchat}
-            renderItem={r => <RocketChatItem {...r} data-testid={r.id} />}
+            renderItem={r => {
+              const chatItem = JSON.parse(r.typePayload);
+
+              return <RocketChatItem {...chatItem} data-testid={chatItem.id} />;
+            }}
             link={{
               to: 'https://chat.pathfinder.gov.bc.ca',
               text: 'Go To Rocket.Chat',
@@ -266,9 +271,9 @@ export const Index = ({
   }
 
   // dynamic sources all load at different times, this function returns false when all have completed loading
-  const searchSourcesLoading = areSearchSourcesStillLoading(searchSourceResults);
-  if (!!searchSourceResults.rocketchat.results) {
-    totalSearchResults += getSearchSourcesResultTotal(searchSourceResults);
+  const searchSourcesLoading = searchGate.loading;
+  if (!!searchSourceResults.rocketchat) {
+    totalSearchResults += searchSourceResults.rocketchat.length;
   }
 
   return (

@@ -95,8 +95,8 @@ objects:
               cpu: '300m'
               memory: '75Mi'
           env:
-          - name: ROCKETGATE_API_URL
-            value: ${ROCKETGATE_API_URL}
+          - name: SEARCHGATE_API_URL
+            value: ${SEARCHGATE_API_URL}
           - name: SSO_BASE_URL
             value: ${SSO_BASE_URL_VALUE}
           - name: SSO_REALM_NAME
@@ -184,8 +184,8 @@ parameters:
   required: false
   value: ''
 - description: Then end point for connecting to the apollo graphql api gateway 
-  displayName: Rocketgate Graphql Api Url
-  name: ROCKETGATE_API_URL
+  displayName: Searchgate Graphql Api Url
+  name: SEARCHGATE_API_URL
   required: false
   value: ''
 - description: A base url of sso in the env

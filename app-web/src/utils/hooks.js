@@ -23,7 +23,7 @@ import { SEARCH_FIELD_NAMES, SEARCH_FIELD_MAPPING } from '../constants/search';
 import isEmpty from 'lodash/isEmpty';
 import AuthContext from '../AuthContext';
 import { useQuery } from '@apollo/react-hooks';
-import { ROCKET_GATE_QUERY } from '../constants/runtimeGraphqlQueries';
+import { SEARCHGATE_QUERY } from '../constants/runtimeGraphqlQueries';
 
 //TODO, why in a function?
 function deepCompareEquals(a, b) {
@@ -139,8 +139,8 @@ export const useAuthenticated = () => {
  * @param {Client} client the apollo client to query
  * @returns {Object} {loading, results: <Array>}
  */
-export const useRCSearch = (authenticated, queryString, client) => {
-  const { data, loading } = useQuery(ROCKET_GATE_QUERY, {
+export const useSearchGate = (authenticated, queryString, client) => {
+  const { data, loading } = useQuery(SEARCHGATE_QUERY, {
     variables: {
       queryString,
     },
@@ -148,9 +148,12 @@ export const useRCSearch = (authenticated, queryString, client) => {
   });
   const [results, setResults] = useState([]);
   const [_loading, setLoading] = useState(true);
+
   useEffect(() => {
     setLoading(loading);
-    if (!authenticated || !queryString) {
+    // if (!authenticated && !queryString) {
+    // TODO remove line 156 and replace with above before push
+    if (!queryString) {
       setResults([]);
     } else if (!_loading) {
       setResults(data.search);
@@ -162,5 +165,6 @@ export const useRCSearch = (authenticated, queryString, client) => {
     //Reminder - Ask patrick about this
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, useDeepCompareMemoize([_loading, loading, authenticated, queryString, results]));
+
   return { results, loading: _loading };
 };
