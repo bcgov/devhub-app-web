@@ -147,6 +147,10 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
     );
     pills = pills.concat(
       filters.map(filter => {
+        if (filter.counter === 0) {
+          return '';
+        }
+
         if (filter.name !== RESOURCE_TYPES.PEOPLE) {
           //formats the text correctly for different cases
           let iconLabel =
