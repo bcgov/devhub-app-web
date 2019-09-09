@@ -151,9 +151,7 @@ export const useSearchGate = (authenticated, queryString, client) => {
 
   useEffect(() => {
     setLoading(loading);
-    // if (!authenticated && !queryString) {
-    // TODO remove line 156 and replace with above before push
-    if (!queryString) {
+    if (!authenticated && !queryString) {
       setResults([]);
     } else if (!_loading) {
       setResults(data.search);
