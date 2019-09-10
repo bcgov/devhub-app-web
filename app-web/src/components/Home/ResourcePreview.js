@@ -24,7 +24,7 @@ import { Container, LinkContainer } from './index';
 import Card from '../Cards/Card/Card';
 import Pill from '../UI/Pill';
 import { RESOURCE_TYPES } from '../../constants/ui';
-import { getSearchResultLable } from '../../utils/helpers';
+import { getSearchResultLabel } from '../../utils/helpers';
 import Row from '../Cards/Row';
 import Col from '../Cards/Column';
 
@@ -122,7 +122,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
     setSeeMore(seeMore);
   };
 
-  let resultLabel = getSearchResultLable(resources.length);
+  let resultLabel = getSearchResultLabel(resources.length);
   resultLabel = resources.length !== 0 ? 'All ' + resultLabel : resultLabel;
 
   let pills = [];
@@ -152,7 +152,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
         if (filter.name !== RESOURCE_TYPES.PEOPLE) {
           //formats the text correctly for different cases
 
-          let iconLabel = getSearchResultLable(filter.counter);
+          let iconLabel = getSearchResultLabel(filter.counter);
           //adds informative info for the behavior of the ResourcePills their current state
           let iconInfo =
             filter.name === activeFilter

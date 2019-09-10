@@ -61,11 +61,12 @@ export const getTextAndLink = (resourceType, resourcesByType) => {
   return textAndPath;
 };
 
-/** return a combine text result or results depens on how much search results we have
+/** pluralize return string (results) if numOfResults is > 1. And return not search result if
+ * numOfResults === 0 example output: 10 Results / 1 Result / No search Result
  * @param {num} numOfResults
  * @returns {string}
  */
-export const getSearchResultLable = numOfResults => {
+export const getSearchResultLabel = numOfResults => {
   let resultLabel;
   if (numOfResults) {
     resultLabel = `${numOfResults} Result${numOfResults > 1 ? 's' : ''}`;
