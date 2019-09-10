@@ -24,7 +24,9 @@ import Image from 'react-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CUSTOM_TYPE } from '../../../constants/designTokens';
 import { EventLogoWrapper, DateLI, EventDetailsContainer } from '../../Event';
+import { RESOURCE_TYPES, SEARCH_RESOURCE_TYPES } from '../../../constants/ui';
 
+import { TOPICS } from '../../../constants/topics';
 export const designTokens = {
   description: `
     font-size: ${CUSTOM_TYPE.sm};
@@ -193,3 +195,40 @@ export const ResourceCounts = styled.ul`
   margin: 0;
   flex: 0 0 50%;
 `;
+
+export const RESOURCES = {
+  types: {
+    [RESOURCE_TYPES.COMPONENTS]: {
+      id: 'RESOURCE_TYPES.COMPONENTS',
+      text: 'Component',
+    },
+    [RESOURCE_TYPES.DOCUMENTATION]: {
+      id: 'RESOURCE_TYPES.DOCUMENTATION',
+      text: 'Documentation',
+    },
+    [RESOURCE_TYPES.SELF_SERVICE_TOOLS]: {
+      id: 'RESOURCE_TYPES.SELF_SERVICE_TOOLS',
+      text: 'Tool',
+    },
+    [RESOURCE_TYPES.PEOPLE]: {
+      id: 'RESOURCE_TYPES.PEOPLE',
+      text: 'Contact',
+    },
+    [RESOURCE_TYPES.REPOSITORIES]: {
+      id: 'RESOURCE_TYPES.REPOSITORIES',
+      text: 'Repository',
+    },
+    [TOPICS]: {
+      id: 'RESOURCE_TYPES.TOPICS',
+      text: 'Topic',
+    },
+    [RESOURCE_TYPES.EVENTS]: {
+      id: 'RESOURCE_TYPES.EVENTS',
+      text: 'Event',
+    },
+    [SEARCH_RESOURCE_TYPES.GITHUB_ISSUE]: {
+      id: 'SEARCH_RESOURCE_TYPES.GITHUB_ISSUE',
+      text: 'Github Issue',
+    },
+  },
+};

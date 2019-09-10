@@ -6,6 +6,7 @@ import { ChevronLink } from '../UI/Link';
 import { SEARCH_SOURCE_CONFIG, SEARCH_SOURCES } from '../../constants/search';
 
 import documizeLogo from '../../assets/images/documize_logo.png';
+import githubLogo from '../../assets/images/github_logo.png';
 import rocketchatLogo from '../../assets/images/rocketchat_logo.svg';
 
 const Container = styled.div`
@@ -32,6 +33,11 @@ export const DynamicSearchResults = ({ numResults, sourceType, link, children, .
       name: 'From Rocket.Chat',
       logo: rocketchatLogo,
       id: 'rocketChat',
+    },
+    [SEARCH_SOURCES.github]: {
+      name: 'From Github',
+      logo: githubLogo,
+      id: 'github',
     },
   };
 

@@ -127,35 +127,3 @@ export const SEARCH = {
 };
 
 // used by the card ui
-export const RESOURCES = {
-  types: {
-    [RESOURCE_TYPES.COMPONENTS]: {
-      id: 'RESOURCE_TYPES.COMPONENTS',
-      defaultMessage: 'Component',
-    },
-    [RESOURCE_TYPES.DOCUMENTATION]: {
-      id: 'RESOURCE_TYPES.DOCUMENTATION',
-      defaultMessage: 'Documentation',
-    },
-    [RESOURCE_TYPES.SELF_SERVICE_TOOLS]: {
-      id: 'RESOURCE_TYPES.SELF_SERVICE_TOOLS',
-      defaultMessage: 'Tool',
-    },
-    [RESOURCE_TYPES.PEOPLE]: {
-      id: 'RESOURCE_TYPES.PEOPLE',
-      defaultMessage: 'Contact',
-    },
-    [RESOURCE_TYPES.REPOSITORIES]: {
-      id: 'RESOURCE_TYPES.REPOSITORIES',
-      defaultMessage: 'Repository',
-    },
-    Topics: {
-      id: 'RESOURCE_TYPES.TOPICS',
-      defaultMessage: 'Topic',
-    },
-    Events: {
-      id: 'RESOURCE_TYPES.EVENTS',
-      defaultMessage: 'Event',
-    },
-  },
-};

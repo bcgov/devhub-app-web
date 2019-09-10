@@ -1,5 +1,6 @@
 import isString from 'lodash/isString';
 import isArray from 'lodash/isArray';
+import { PERSONAS_LIST, SEARCH_RESOURCE_TYPES } from '../constants/ui';
 
 /**
  * gets search results from lunr
@@ -77,4 +78,29 @@ export const getSearchSourcesResultTotal = searchSources => {
     total += searchSources[source].length;
     return total;
   }, 0);
+};
+
+/**
+ * search gate provides github results from issues and repository
+ * this reduces both sets into the 'card' interface
+ * @param {Object} githubItem
+ */
+export const githubSearchReducer = githubItem => {
+  if (githubItem.__typename === 'Issue') {
+    const { title, body, url } = githubItem;
+
+    return {
+      ...githubItem,
+      fields: {
+        title,
+        description: body,
+        link: url,
+        resourceType: SEARCH_RESOURCE_TYPES.GITHUB_ISSUE,
+        personas: PERSONAS_LIST,
+      },
+    };
+  } else if (githubItem.__typename === 'Repository') {
+  }
+
+  return {};
 };

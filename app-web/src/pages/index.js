@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import queryString from 'query-string';
 import isNull from 'lodash/isNull';
 import groupBy from 'lodash/groupBy';
@@ -21,7 +22,7 @@ import {
   selectResourcesGroupedByType,
 } from '../utils/selectors';
 
-import { isQueryEmpty } from '../utils/search';
+import { isQueryEmpty, githubSearchReducer } from '../utils/search';
 import { SEARCH_QUERY_PARAM, SEARCH_SOURCES, SEARCH_SOURCE_CONFIG } from '../constants/search';
 import { SPACING } from '../constants/designTokens';
 import uniqBy from 'lodash/uniqBy';
@@ -38,6 +39,9 @@ import { removeUnwantedResults, buildPopularTopic, buildFeaturedTopic } from '..
 import Loading from '../components/UI/Loading/Loading';
 import { RocketChatItem } from '../components/RocketChatItem/RocketChatItem';
 import { DynamicSearchResults } from '../components/DynamicSearchResults';
+import Card from '../components/Cards/Card/Card';
+import Row from '../components/Cards/Row';
+import Column from '../components/Cards/Column';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -245,8 +249,16 @@ export const Index = ({
     );
   } else {
     totalSearchResults = getSearchResultTotal(siphonResources);
-    const { rocketchat } = searchSourceResults;
+    const { rocketchat, github } = searchSourceResults;
     const settings = SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.rocketchat];
+    let githubCards = [];
+    if (github) {
+      githubCards = github
+        .slice(0, SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.github].maxResults)
+        .map(g => JSON.parse(g.typePayload))
+        .filter(g => g.__typename !== 'PullRequest')
+        .map(githubSearchReducer);
+    }
 
     content = (
       <Aux>
@@ -266,6 +278,30 @@ export const Index = ({
 
               return <RocketChatItem key={r.id} {...chatItem} data-testid={chatItem.id} />;
             })}
+          </DynamicSearchResults>
+        )}
+        {!isEmpty(github) && github.length > 0 && (
+          <DynamicSearchResults
+            numResults={github.length}
+            sourceType={SEARCH_SOURCES.github}
+            link={{
+              to: 'https://github.com/bcgov',
+              text: 'Go To Github',
+            }}
+          >
+            <Row>
+              {githubCards.map(gh => (
+                <Column
+                  key={gh.id}
+                  style={{
+                    justifyContent: 'center',
+                    display: 'flex',
+                  }}
+                >
+                  <Card {...gh.fields} type={gh.fields.resourceType} />
+                </Column>
+              ))}
+            </Row>
           </DynamicSearchResults>
         )}
       </Aux>

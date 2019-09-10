@@ -23,7 +23,7 @@ import { css } from '@emotion/core';
 
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
-import { RESOURCES } from '../../../messages';
+import { RESOURCES } from './index';
 import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
 import ResourceTypeIcon from '../../UI/ResourceTypeIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -49,7 +49,7 @@ const CardHeader = ({ type, linksToExternal }) => {
             margin: 4px;
           `}
         >
-          {RESOURCES.types[type].defaultMessage}
+          {RESOURCES.types[type].text}
         </span>
         {linksToExternal && (
           <small>

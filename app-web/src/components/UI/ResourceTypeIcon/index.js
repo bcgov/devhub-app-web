@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { RESOURCE_TYPES, TOPICS, RESOURCE_TYPES_LIST } from '../../../constants/ui';
+import {
+  RESOURCE_TYPES,
+  TOPICS,
+  RESOURCE_TYPES_LIST,
+  SEARCH_RESOURCE_TYPES,
+} from '../../../constants/ui';
 import styled from '@emotion/styled';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -10,6 +15,7 @@ import {
   faTools,
   faLayerGroup,
   faCalendar,
+  faExclamationCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/fontawesome-free-brands';
 
@@ -44,6 +50,9 @@ export const ResourceTypeIcon = ({ type }) => {
       break;
     case RESOURCE_TYPES.EVENTS:
       icon = faCalendar;
+      break;
+    case SEARCH_RESOURCE_TYPES.GITHUB_ISSUE:
+      icon = faExclamationCircle;
       break;
     default:
       icon = null;
