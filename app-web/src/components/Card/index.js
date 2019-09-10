@@ -21,6 +21,7 @@ import styled from '@emotion/styled';
 import { RESOURCE_TYPES, TOPICS, SEARCH_RESOURCE_TYPES } from '../../constants/ui';
 import Dotdotdot from 'react-dotdotdot';
 import Link from '../UI/Link/Link';
+
 export const Container = styled.article`
   width: 265px;
   height: 238.5px;
@@ -64,7 +65,7 @@ export const Description = styled(Dotdotdot)`
   text-transform: none;
 `;
 
-export const CardLinkWrapper = styled(Link)`
+export const LinkWrapper = styled(Link)`
   text-decoration: none;
   color: initial;
   :hover {
@@ -85,6 +86,26 @@ export const CardBody = styled.div`
   display: flex;
   flex: 1 1 auto;
   flex-flow: column nowrap;
+`;
+
+// combination of card image and wrapper make images response correctly
+// to the flex container. The card image wrapper can grow/shrink automatically
+// the object-fit scaledown maintains aspect ratio for any type of image
+export const Image = styled.img`
+  width: 100%;
+  height: auto;
+  object-fit: scale-down;
+  max-height: 100%;
+  margin-bottom: 0;
+`;
+
+export const ImageWrapper = styled.div`
+  flex: 1 1 auto;
+  align-self: center;
+  overflow: hidden;
+  padding-top: 10px;
+  text-align: center;
+  display: flex;
 `;
 
 export const CONTENT = {
