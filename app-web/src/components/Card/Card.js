@@ -40,7 +40,16 @@ const variants = {
   descAndImage: 'descAndImage', // title, desc, image, normal card header
 };
 
-const Card = ({ resourceType, title, description, image, link, renderBody, ...rest }) => {
+const Card = ({
+  resourceType,
+  title,
+  description,
+  image,
+  link,
+  renderBody,
+  renderHeader,
+  ...rest
+}) => {
   let isExternal = !!validUrl.isWebUri(link);
   let cardBody = null;
   let inferredVariant = 'basic';
@@ -54,7 +63,11 @@ const Card = ({ resourceType, title, description, image, link, renderBody, ...re
     case variants.basic:
       cardBody = (
         <Body>
-          <CardHeader resourceType={resourceType} linksToExternal={isExternal} />
+          {renderHeader ? (
+            renderHeader()
+          ) : (
+            <CardHeader resourceType={resourceType} linksToExternal={isExternal} />
+          )}
           <Title>{title}</Title>
           <Description clamp={6} tagName="p">
             {description}
@@ -110,6 +123,7 @@ Card.propTypes = {
   image: PropTypes.string,
   link: PropTypes.string.isRequired,
   renderBody: PropTypes.func,
+  renderHeader: PropTypes.func,
 };
 
 Card.defaultProps = {
