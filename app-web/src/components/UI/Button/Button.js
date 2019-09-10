@@ -18,9 +18,9 @@ const StyledButton = styled.button`
   white-space: nowrap;
   vertical-align: middle;
   display: inline-block;
-  background-color: ${({ variant, theme }) => {
-    if (theme.colors[variant]) {
-      return theme.colors[variant];
+  background-color: ${({ color, theme }) => {
+    if (theme.colors[color]) {
+      return theme.colors[color];
     } else {
       return 'initial';
     }
@@ -34,6 +34,10 @@ const variants = {
 };
 
 export const Button = ({ variant, children, clicked, ...rest }) => {
+  const colors = {
+    [variants.primary]: 'blue',
+    [variants.secondary]: 'yellow',
+  };
   if (variant === variants.link) {
     return (
       <StyledButton
@@ -50,7 +54,7 @@ export const Button = ({ variant, children, clicked, ...rest }) => {
     );
   } else {
     return (
-      <StyledButton onClick={clicked} {...rest} variant={variant}>
+      <StyledButton onClick={clicked} {...rest} color={colors[variant]}>
         {children}
       </StyledButton>
     );

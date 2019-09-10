@@ -19,38 +19,41 @@ Created by Patrick Simonian
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
 
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-
-import { RESOURCES } from './index';
-import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
-import ResourceTypeIcon from '../../UI/ResourceTypeIcon';
+import { CONTENT } from './index';
+import { RESOURCE_TYPES_LIST } from '../../constants/ui';
+import ResourceTypeIcon from '../UI/ResourceTypeIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const H3 = styled.h3`
-  color: #444;
-  font-size: 14px;
+  color: ${({ theme }) => theme.colors.darkgrey};
+  font-size: 15px;
   margin-bottom: 0;
+  margin-top: 0;
   font-weight: 400;
 `;
 
-const CardHeader = ({ type, linksToExternal }) => {
+const CardHeader = ({ resourceType, render, linksToExternal }) => {
   return (
     <div
-      css={css`
-        margin-bottom: 4px;
-      `}
+      style={{
+        padding: '6px 10px 0',
+      }}
     >
       <H3>
-        <ResourceTypeIcon type={type} />
-        <span
-          css={css`
-            margin: 4px;
-          `}
-        >
-          {RESOURCES.types[type].text}
-        </span>
+        <ResourceTypeIcon type={resourceType} />
+        {render ? (
+          render(resourceType)
+        ) : (
+          <span
+            style={{
+              margin: '4px',
+            }}
+          >
+            {CONTENT.byResourceType[resourceType].text}
+          </span>
+        )}
         {linksToExternal && (
           <small>
             <FontAwesomeIcon icon={faExternalLinkAlt} />
@@ -62,8 +65,9 @@ const CardHeader = ({ type, linksToExternal }) => {
 };
 
 CardHeader.propTypes = {
-  type: PropTypes.oneOf(RESOURCE_TYPES_LIST),
+  resourceType: PropTypes.oneOf(RESOURCE_TYPES_LIST),
   linksToExternal: PropTypes.bool.isRequired,
+  render: PropTypes.func,
 };
 
 CardHeader.defaultProps = {

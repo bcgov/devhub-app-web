@@ -18,7 +18,9 @@ Created by Patrick Simonian
 
 // common card layout components
 import styled from '@emotion/styled';
-
+import { RESOURCE_TYPES, TOPICS, SEARCH_RESOURCE_TYPES } from '../../constants/ui';
+import Dotdotdot from 'react-dotdotdot';
+import Link from '../UI/Link/Link';
 export const Container = styled.article`
   width: 265px;
   height: 238.5px;
@@ -43,3 +45,81 @@ export const DecorativeBar = styled.div`
   flex: 0 0 10px;
   min-height: 10px;
 `;
+
+export const Title = styled(Dotdotdot)`
+  font-size: 20px;
+  color: ${({ theme }) => theme.colors.grey};
+  line-height: 1.3;
+  margin-bottom: 0;
+  flex: 0 0 auto;
+  text-transform: capitalize;
+  word-break: break-word;
+`;
+
+export const Description = styled(Dotdotdot)`
+  line-height: 1.4;
+  font-size: 14px;
+  flex: 0 0 auto;
+  margin-bottom: 0;
+  text-transform: none;
+`;
+
+export const CardLinkWrapper = styled(Link)`
+  text-decoration: none;
+  color: initial;
+  :hover {
+    text-decoration: none;
+    color: initial;
+    cursor: pointer;
+  }
+`;
+
+/**
+ * used to predictably lay out titles/ descriptions/images in a flex box within a card
+ */
+export const CardBody = styled.div`
+  padding: 6px 10px;
+  height: 100%;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex: 1 1 auto;
+  flex-flow: column nowrap;
+`;
+
+export const CONTENT = {
+  byResourceType: {
+    [RESOURCE_TYPES.COMPONENTS]: {
+      id: 'RESOURCE_TYPES.COMPONENTS',
+      text: 'Component',
+    },
+    [RESOURCE_TYPES.DOCUMENTATION]: {
+      id: 'RESOURCE_TYPES.DOCUMENTATION',
+      text: 'Documentation',
+    },
+    [RESOURCE_TYPES.SELF_SERVICE_TOOLS]: {
+      id: 'RESOURCE_TYPES.SELF_SERVICE_TOOLS',
+      text: 'Tool',
+    },
+    [RESOURCE_TYPES.PEOPLE]: {
+      id: 'RESOURCE_TYPES.PEOPLE',
+      text: 'Contact',
+    },
+    [RESOURCE_TYPES.REPOSITORIES]: {
+      id: 'RESOURCE_TYPES.REPOSITORIES',
+      text: 'Repository',
+    },
+    [TOPICS]: {
+      id: 'RESOURCE_TYPES.TOPICS',
+      text: 'Topic',
+    },
+    [RESOURCE_TYPES.EVENTS]: {
+      id: 'RESOURCE_TYPES.EVENTS',
+      text: 'Event',
+    },
+    [SEARCH_RESOURCE_TYPES.GITHUB_ISSUE]: {
+      id: 'SEARCH_RESOURCE_TYPES.GITHUB_ISSUE',
+      text: 'Github Issue',
+    },
+  },
+};

@@ -56,6 +56,7 @@ export const DEVHUB_PALETTE = {
   lightblue: '#246BD1',
   linkblue: '#1A5A96',
   bgBlue: '#38598A',
+  white: '#ffffff',
 };
 
 export default {
