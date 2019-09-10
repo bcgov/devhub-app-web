@@ -19,14 +19,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import css from '@emotion/css';
-
-import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/designTokens';
 import { ChevronLink } from '../UI/Link';
 import { Container, LinkContainer } from './index';
 import Card from '../Cards/Card/Card';
 import Pill from '../UI/Pill';
 import { RESOURCE_TYPES } from '../../constants/ui';
 import { getSearchResultLable } from '../../utils/helpers';
+import Row from '../Cards/Row';
+import Col from '../Cards/Column';
 
 export const CardWrapper = styled.div`
   margin: 6px 9px;
@@ -34,12 +34,6 @@ export const CardWrapper = styled.div`
 
 export const ResourceContainer = styled.div`
   padding: 15px 0;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  ${EMOTION_BOOTSTRAP_BREAKPOINTS.sm} {
-    justify-content: flex-start;
-  }
 `;
 
 const PreviewHeader = styled.div`
@@ -190,18 +184,26 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
         {pills}
       </PreviewHeader>
       <ResourceContainer>
-        {resourcesToShow.slice(0, showCount).map(r => (
-          <CardWrapper key={r.id}>
-            <Card
-              type={r.fields.resourceType}
-              title={r.fields.title}
-              description={r.fields.description}
-              image={r.fields.image}
-              link={r.fields.standAlonePath}
-              event={r}
-            />
-          </CardWrapper>
-        ))}
+        <Row>
+          {resourcesToShow.slice(0, showCount).map(r => (
+            <Col
+              key={r.id}
+              style={{
+                justifyContent: 'center',
+                display: 'flex',
+              }}
+            >
+              <Card
+                type={r.fields.resourceType}
+                title={r.fields.title}
+                description={r.fields.description}
+                image={r.fields.image}
+                link={r.fields.standAlonePath}
+                event={r}
+              />
+            </Col>
+          ))}
+        </Row>
       </ResourceContainer>
       <LinkContainer>
         {seeMoreResults && resourcesToShow.length > showCount && (

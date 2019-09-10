@@ -43,7 +43,7 @@ const CardHeader = ({ type, linksToExternal }) => {
       `}
     >
       <H3>
-        <ResourceTypeIcon type={type} />{' '}
+        <ResourceTypeIcon type={type} />
         <span
           css={css`
             margin: 4px;

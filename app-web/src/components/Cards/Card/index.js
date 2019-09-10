@@ -24,9 +24,8 @@ import Image from 'react-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CUSTOM_TYPE } from '../../../constants/designTokens';
 import { EventLogoWrapper, DateLI, EventDetailsContainer } from '../../Event';
-import { RESOURCE_TYPES, SEARCH_RESOURCE_TYPES } from '../../../constants/ui';
+import { RESOURCE_TYPES, SEARCH_RESOURCE_TYPES, TOPICS } from '../../../constants/ui';
 
-import { TOPICS } from '../../../constants/topics';
 export const designTokens = {
   description: `
     font-size: ${CUSTOM_TYPE.sm};
