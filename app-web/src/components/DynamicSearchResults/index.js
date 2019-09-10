@@ -21,7 +21,7 @@ const Container = styled.div`
   }
 `;
 
-export const DynamicSearchResults = ({ results, sourceType, link, renderItem, ...rest }) => {
+export const DynamicSearchResults = ({ numResults, sourceType, link, children, ...rest }) => {
   const contentMapping = {
     [SEARCH_SOURCES.documize]: {
       name: 'From Documize',
@@ -46,12 +46,14 @@ export const DynamicSearchResults = ({ results, sourceType, link, renderItem, ..
         {content.name} <img src={content.logo} alt={content.name} />
       </Title>
 
-      {results.length > settings.maxResults && (
+      {numResults > settings.maxResults && (
         <small>
-          Showing {settings.maxResults} of {results.length}
+          Showing {settings.maxResults} of {numResults}
         </small>
       )}
-      {results.slice(0, settings.maxResults).map(r => renderItem(r))}
+
+      {children}
+
       <LinkContainer>
         <ChevronLink to={link.to}>{link.text}</ChevronLink>
       </LinkContainer>
@@ -64,7 +66,7 @@ DynamicSearchResults.propTypes = {
     text: PropTypes.string.isRequired,
     to: PropTypes.string.isRequired,
   }),
-  renderItem: PropTypes.func,
-  results: PropTypes.array,
+  numResults: PropTypes.number,
+  children: PropTypes.node,
   sourceType: PropTypes.string,
 };

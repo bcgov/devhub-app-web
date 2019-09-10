@@ -22,7 +22,7 @@ import {
 } from '../utils/selectors';
 
 import { isQueryEmpty } from '../utils/search';
-import { SEARCH_QUERY_PARAM, SEARCH_SOURCES } from '../constants/search';
+import { SEARCH_QUERY_PARAM, SEARCH_SOURCES, SEARCH_SOURCE_CONFIG } from '../constants/search';
 import { SPACING } from '../constants/designTokens';
 import uniqBy from 'lodash/uniqBy';
 import { formatEvents } from '../templates/events';
@@ -246,6 +246,7 @@ export const Index = ({
   } else {
     totalSearchResults = getSearchResultTotal(siphonResources);
     const { rocketchat } = searchSourceResults;
+    const settings = SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.rocketchat];
 
     content = (
       <Aux>
@@ -253,18 +254,19 @@ export const Index = ({
         {siphonResources}
         {!isEmpty(rocketchat) && rocketchat.length > 0 && (
           <DynamicSearchResults
-            results={rocketchat}
+            numResults={rocketchat.length}
             sourceType={SEARCH_SOURCES.rocketchat}
-            renderItem={r => {
-              const chatItem = JSON.parse(r.typePayload);
-
-              return <RocketChatItem {...chatItem} data-testid={chatItem.id} />;
-            }}
             link={{
               to: 'https://chat.pathfinder.gov.bc.ca',
               text: 'Go To Rocket.Chat',
             }}
-          />
+          >
+            {rocketchat.slice(0, settings.maxResults).map(r => {
+              const chatItem = JSON.parse(r.typePayload);
+
+              return <RocketChatItem key={r.id} {...chatItem} data-testid={chatItem.id} />;
+            })}
+          </DynamicSearchResults>
         )}
       </Aux>
     );

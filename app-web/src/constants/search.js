@@ -51,6 +51,7 @@ export const SEARCH_FIELD_MAPPING = {
 export const SEARCH_SOURCES = {
   rocketchat: 'rocketchat',
   documize: 'documize',
+  github: 'github',
 };
 
 // this is a simple implementation of the search source 'toggle' feature
@@ -58,6 +59,7 @@ export const SEARCH_SOURCES = {
 export const SEARCH_SOURCE_INITIAL_STATE = {
   [SEARCH_SOURCES.rocketchat]: true,
   [SEARCH_SOURCES.documize]: true,
+  [SEARCH_SOURCES.github]: true,
 };
 
 export const SEARCH_SOURCE_CONFIG = {
@@ -66,6 +68,11 @@ export const SEARCH_SOURCE_CONFIG = {
   },
   [SEARCH_SOURCES.documize]: {
     maxResults: 10,
+  },
+  [SEARCH_SOURCES.github]: {
+    // Github will be rendered as cards, since cards align in grids of 4
+    // columns this will make a neat set of of 3 rows
+    maxResults: 12,
   },
   default: {
     maxResults: 10,
