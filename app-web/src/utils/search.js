@@ -1,4 +1,5 @@
 import isString from 'lodash/isString';
+import removeMd from 'remove-markdown';
 import isArray from 'lodash/isArray';
 import { PERSONAS_LIST, SEARCH_RESOURCE_TYPES } from '../constants/ui';
 
@@ -93,7 +94,7 @@ export const githubSearchReducer = githubItem => {
       ...githubItem,
       fields: {
         title,
-        description: body,
+        description: removeMd(body),
         link: url,
         resourceType: SEARCH_RESOURCE_TYPES.GITHUB_ISSUE,
         personas: PERSONAS_LIST,
