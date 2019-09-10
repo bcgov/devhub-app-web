@@ -22,6 +22,8 @@ import { RESOURCE_TYPES, TOPICS, SEARCH_RESOURCE_TYPES } from '../../constants/u
 import Dotdotdot from 'react-dotdotdot';
 import Link from '../UI/Link/Link';
 
+export { BaseCard } from './Card';
+
 export const Container = styled.article`
   width: 265px;
   height: 238.5px;

@@ -22,7 +22,7 @@ import validUrl from 'valid-url';
 import CardHeader from './CardHeader';
 
 import {
-  Body,
+  CardBody,
   Description,
   Image,
   ImageWrapper,
@@ -40,6 +40,28 @@ const variants = {
   descAndImage: 'descAndImage', // title, desc, image, normal card header
 };
 
+/**
+ * Basic building block to compose all other cards from
+ * @param {Object} Props
+ */
+export const BaseCard = ({ resourceType, children, link, ...rest }) => (
+  <LinkWrapper to={link}>
+    <Container {...rest}>
+      <DecorativeBar color={resourceType} />
+      {children}
+    </Container>
+  </LinkWrapper>
+);
+
+BaseCard.propTypes = {
+  resourceType: PropTypes.oneOf(RESOURCE_TYPES_LIST),
+  link: PropTypes.string.isRequired,
+  children: PropTypes.node,
+};
+/**
+ * base card component
+ * @param {Object} props
+ */
 const Card = ({
   resourceType,
   title,
@@ -62,7 +84,7 @@ const Card = ({
   switch (inferredVariant) {
     case variants.basic:
       cardBody = (
-        <Body>
+        <CardBody>
           {renderHeader ? (
             renderHeader()
           ) : (
@@ -72,56 +94,53 @@ const Card = ({
           <Description clamp={6} tagName="p">
             {description}
           </Description>
-        </Body>
+        </CardBody>
       );
       break;
     case variants.imageOnly:
       cardBody = (
-        <Body>
+        <CardBody>
           <CardHeader resourceType={resourceType} linksToExternal={isExternal} />
           <Title>{title}</Title>
           <ImageWrapper>
             <Image src={image} alt={title} />
           </ImageWrapper>
-        </Body>
+        </CardBody>
       );
       break;
     case variants.descAndImage:
       cardBody = (
-        <Body>
+        <CardBody>
           <Description title={description} clamp={2} tagName="p">
             {description}
           </Description>
           <ImageWrapper>
             <Image src={image} alt={title} />
           </ImageWrapper>
-        </Body>
+        </CardBody>
       );
       break;
   }
 
   return (
-    <LinkWrapper to={link}>
-      <Container {...rest}>
-        <DecorativeBar resourceType={resourceType} />
-        <Body>
-          <CardHeader resourceType={resourceType} linksToExternal={isExternal} />
-          <Title clamp={image && description ? 2 : 3} tagName="h2" title={title}>
-            {title}
-          </Title>
-          {renderBody ? renderBody() : cardBody}
-        </Body>
-      </Container>
-    </LinkWrapper>
+    <BaseCard resourceType={resourceType} link={link}>
+      <CardBody>
+        <CardHeader resourceType={resourceType} linksToExternal={isExternal} />
+        <Title clamp={image && description ? 2 : 3} tagName="h2" title={title}>
+          {title}
+        </Title>
+        {renderBody ? renderBody() : cardBody}
+      </CardBody>
+    </BaseCard>
   );
 };
 
 Card.propTypes = {
   resourceType: PropTypes.oneOf(RESOURCE_TYPES_LIST),
+  link: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   image: PropTypes.string,
-  link: PropTypes.string.isRequired,
   renderBody: PropTypes.func,
   renderHeader: PropTypes.func,
 };

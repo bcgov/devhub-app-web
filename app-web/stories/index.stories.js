@@ -1,7 +1,17 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { Container, DecorativeBar, Title, CardBody, Description } from '../src/components/Card';
+import {
+  Container,
+  DecorativeBar,
+  Title,
+  CardBody,
+  Description,
+  BaseCard,
+  ImageWrapper,
+  Image,
+} from '../src/components/Card';
+
 import CardHeader from '../src/components/Card/CardHeader';
 
 storiesOf('Introduction', module).add('Start', () => (
@@ -48,6 +58,11 @@ storiesOf('Card Base Components', module)
   .add('Card Title (styled Dotdotdot component)', () => <Title>How to make awesome apps</Title>)
   .add('Card Description (styled Dotdotdot component)', () => (
     <Description>How to make awesome apps</Description>
+  ))
+  .add('CardImage with Image Wrapper', () => (
+    <ImageWrapper>
+      <Image src="https://placeimg.com/180/145/animals" />
+    </ImageWrapper>
   ));
 
 storiesOf('Card Composition', module)
@@ -97,4 +112,32 @@ storiesOf('Card Composition', module)
         </Description>
       </CardBody>
     </Container>
+  ))
+  .add('With Image Only (using <CardBody>)', () => (
+    <Container>
+      <DecorativeBar color="purple" />
+      <CardHeader
+        resourceType="Repositories"
+        render={() => <span style={{ marginLeft: '10px' }}>repo: devhub-app-web</span>}
+      />
+      <CardBody>
+        <Title>App Crashes on startup occasionally when using npm run dev</Title>
+        <ImageWrapper>
+          <Image src="https://placeimg.com/180/145/animals" />
+        </ImageWrapper>
+      </CardBody>
+    </Container>
   ));
+
+storiesOf('Base Card', module)
+  .add('introduction', () => (
+    <div style={{ maxWidth: '400px' }}>
+      The base card component is the fundamental unit of what a card is. This would be:
+      <ul>
+        <li>A link container that links to the page the card references</li>
+        <li>A UI container where the contents of the card lives in</li>
+        <li>A colored bar that identifies what 'resource type' the card is</li>
+      </ul>
+    </div>
+  ))
+  .add('Base Card', () => <BaseCard resourceType="Components" link="https://google.com" />);

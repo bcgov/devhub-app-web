@@ -33,6 +33,6 @@ export default create({
   inputBorderRadius: 4,
 
   brandTitle: 'My custom storybook',
-  brandUrl: 'https://example.com',
-  brandImage: 'https://placehold.it/350x150',
+  brandImage:
+    'https://u58tqm22fk-flywheel.netdna-ssl.com/wp-content/uploads/2016/06/BC-Gov-Logo-CMYK_pos.png',
 });
