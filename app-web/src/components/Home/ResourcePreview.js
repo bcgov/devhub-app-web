@@ -26,6 +26,7 @@ import { Container, LinkContainer } from './index';
 import Card from '../Cards/Card/Card';
 import Pill from '../UI/Pill';
 import { RESOURCE_TYPES } from '../../constants/ui';
+import { getSearchResultLable } from '../../utils/helpers';
 
 export const CardWrapper = styled.div`
   margin: 6px 9px;
@@ -127,6 +128,9 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
     setSeeMore(seeMore);
   };
 
+  let resultLabel = getSearchResultLable(resources.length);
+  resultLabel = resources.length !== 0 ? 'All ' + resultLabel : resultLabel;
+
   let pills = [];
   //Filters will be mapped into pills displaying result count for that particular resourcetype
   //These pills are interactive and filter results when clicked
@@ -136,7 +140,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
       //Add first pill to the start of the list
       <ResourcePill
         otherIcon={'search'}
-        label={'All Results'}
+        label={resultLabel}
         title={'Click to view all results'}
         key={'All Results'}
         variant="filled"
@@ -154,8 +158,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
         if (filter.name !== RESOURCE_TYPES.PEOPLE) {
           //formats the text correctly for different cases
 
-          let iconLabel =
-            filter.counter !== 1 ? `${filter.counter} Results` : `${filter.counter} Result`;
+          let iconLabel = getSearchResultLable(filter.counter);
           //adds informative info for the behavior of the ResourcePills their current state
           let iconInfo =
             filter.name === activeFilter
