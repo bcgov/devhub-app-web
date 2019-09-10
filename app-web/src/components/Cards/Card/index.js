@@ -51,7 +51,7 @@ export const DecorativeBar = styled.div`
   flex: 0 0 10px;
 `;
 
-export const CardWrapper = styled.article`
+export const Container = styled.article`
   width: 265px;
   height: 238.5px;
   margin: 10px 0;
