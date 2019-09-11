@@ -61,6 +61,20 @@ export const getTextAndLink = (resourceType, resourcesByType) => {
   return textAndPath;
 };
 
+/** return a combine text result or results depens on how much search results we have
+ * @param {num} numOfResults
+ * @returns {string}
+ */
+export const getSearchResultLable = numOfResults => {
+  let resultLabel;
+  if (numOfResults) {
+    resultLabel = `${numOfResults} Result${numOfResults > 1 ? 's' : ''}`;
+  } else {
+    resultLabel = `No Search Result`;
+  }
+  return resultLabel;
+};
+
 /**
  * Removes results of the wrong resource type from the search results
  * @param {array} results the search results returned from our index

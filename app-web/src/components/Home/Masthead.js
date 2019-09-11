@@ -25,11 +25,9 @@ import { ChevronLink } from '../UI/Link';
 import { SEARCH } from '../../constants/ui';
 import { EMOTION_BOOTSTRAP_BREAKPOINTS, SPACING } from '../../constants/designTokens';
 import Search from '../Search';
-import Pill from '../UI/Pill';
 // localizations
 import AppLogo from '../UI/AppLogo/AppLogo';
 import { SearchSources } from '../Search/SearchSources';
-import { isQueryEmpty } from '../../utils/search';
 const SearchStyled = styled(Search)`
   font-size: 1.25em;
   flex-flow: row wrap;
@@ -56,7 +54,7 @@ const Container = styled.div`
   }
 `;
 
-const PillAndIconDiv = styled.div`
+const IconDiv = styled.div`
   display: flex;
   flex-flow: row nowrap;
 `;
@@ -68,12 +66,6 @@ export const Masthead = ({
   searchSourcesLoading,
   searchResultsEmpty,
 }) => {
-  let resultLabel;
-
-  if (resultCount) {
-    resultLabel = `${resultCount} Result${resultCount > 1 ? 's' : ''}`;
-  }
-
   return (
     <Container>
       <AppLogo
@@ -113,14 +105,11 @@ export const Masthead = ({
             navigate(`/?q=${encodeURIComponent(terms)}`);
           }}
         />
-        <PillAndIconDiv>
-          {query && !isQueryEmpty(query) && !searchSourcesLoading && !searchResultsEmpty && (
-            <Pill key={resultLabel} label={resultLabel} variant="filled" deletable={false} />
-          )}
+        <IconDiv>
           {!searchSourcesLoading && query && resultCount > 0 && (
             <SearchSources {...searchSources} />
           )}
-        </PillAndIconDiv>
+        </IconDiv>
       </SearchContainer>
     </Container>
   );
