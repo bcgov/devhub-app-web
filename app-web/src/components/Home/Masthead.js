@@ -15,25 +15,30 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { navigate } from 'gatsby';
 import styled from '@emotion/styled';
-
+import { Alert } from 'reactstrap';
 import { css } from '@emotion/core';
 import { ChevronLink } from '../UI/Link';
 import { SEARCH } from '../../constants/ui';
 import { EMOTION_BOOTSTRAP_BREAKPOINTS, SPACING } from '../../constants/designTokens';
 import Search from '../Search';
-// localizations
 import AppLogo from '../UI/AppLogo/AppLogo';
 import { SearchSources } from '../Search/SearchSources';
+import { useAuthenticated } from '../../utils/hooks';
+
 const SearchStyled = styled(Search)`
   font-size: 1.25em;
   flex-flow: row wrap;
   > button {
     flex-grow: 1;
   }
+`;
+
+const AlertMessage = styled(Alert)`
+  margin: 10px auto;
 `;
 
 const SearchContainer = styled.div`
@@ -58,8 +63,20 @@ const IconDiv = styled.div`
   display: flex;
   flex-flow: row nowrap;
 `;
+export const TEST_IDS = {
+  alertBox: 'Masthead.show',
+};
 
 export const Masthead = ({ query, resultCount, searchSourcesLoading }) => {
+  const { authenticated } = useAuthenticated();
+  const [isVisible, setVisible] = useState(query !== ''); // show only if user input query to search
+  const [alertHasBeenAcknowledged, setAlertHasBeenAcknowledged] = useState(true);
+
+  const onDismiss = () => {
+    setAlertHasBeenAcknowledged(false);
+    setVisible(false);
+  };
+
   return (
     <Container>
       <AppLogo
@@ -101,6 +118,16 @@ export const Masthead = ({ query, resultCount, searchSourcesLoading }) => {
         />
         <IconDiv>{!searchSourcesLoading && query && resultCount > 0 && <SearchSources />}</IconDiv>
       </SearchContainer>
+      {!authenticated && alertHasBeenAcknowledged && (
+        <AlertMessage
+          color="warning"
+          isOpen={isVisible}
+          toggle={onDismiss}
+          data-testid={TEST_IDS.alertBox}
+        >
+          You can view search results from applications like Rocket.Chat or Github when logged in.
+        </AlertMessage>
+      )}
     </Container>
   );
 };
@@ -108,6 +135,7 @@ export const Masthead = ({ query, resultCount, searchSourcesLoading }) => {
 Masthead.propTypes = {
   query: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
   resultCount: PropTypes.number,
+  searchSourcesLoading: PropTypes.bool,
 };
 
 export default Masthead;
