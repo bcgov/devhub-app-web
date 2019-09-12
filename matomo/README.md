@@ -1,0 +1,1 @@
+This directory contains build and deployment manifests for the matomo analytics component that is used by DevHub to measure usage of its resources, and to create a topic based on the captured metrics.
