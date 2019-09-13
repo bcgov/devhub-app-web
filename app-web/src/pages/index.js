@@ -242,6 +242,7 @@ export const Index = ({
   } else {
     totalSearchResults = getSearchResultTotal(siphonResources);
     const { rocketchat, github } = searchSourceResults;
+
     const settings = SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.rocketchat];
     let githubCards = [];
     if (github) {
