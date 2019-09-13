@@ -66,6 +66,7 @@ exports[`Search Bar matches snapshot 1`] = `
   <button
     aria-label="Click to Search"
     class="emotion-0 emotion-1"
+    color="blue"
     data-testid="searchbar-button"
   >
     Search

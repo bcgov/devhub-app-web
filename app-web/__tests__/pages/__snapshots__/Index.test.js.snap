@@ -50,7 +50,6 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
 .emotion-6 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
-  color: #1A5A96;
   font-weight: 400;
   text-transform: capitalize;
   padding: 0 4px;
@@ -198,6 +197,7 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
       <button
         aria-label="Click to Search"
         class="emotion-8 emotion-9"
+        color="blue"
         data-testid="searchbar-button"
       >
         Search
@@ -260,7 +260,6 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
 .emotion-6 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
-  color: #1A5A96;
   font-weight: 400;
   text-transform: capitalize;
   padding: 0 4px;
@@ -408,6 +407,7 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
       <button
         aria-label="Click to Search"
         class="emotion-8 emotion-9"
+        color="blue"
         data-testid="searchbar-button"
       >
         Search

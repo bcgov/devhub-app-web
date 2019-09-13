@@ -18,38 +18,11 @@ Created by Patrick Simonian
 
 // common card layout components
 import styled from '@emotion/styled';
-import { Link } from '../../UI/Link';
-import DotDotDot from 'react-dotdotdot';
-import Image from 'react-image';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { CUSTOM_TYPE } from '../../../constants/designTokens';
-import { EventLogoWrapper, DateLI, EventDetailsContainer } from '../../Event';
-import { RESOURCE_TYPES, SEARCH_RESOURCE_TYPES, TOPICS } from '../../../constants/ui';
-
-export const designTokens = {
-  description: `
-    font-size: ${CUSTOM_TYPE.sm};
-    line-height: 1.4;
-    flex: 0 0 auto;
-    margin-bottom: 0;
-    text-transform: none;
-  `,
-};
-
-export const CardLinkWrapper = styled(Link)`
-  text-decoration: none;
-  color: initial;
-  :hover {
-    text-decoration: none;
-    color: initial;
-    cursor: pointer;
-  }
-`;
-
-export const DecorativeBar = styled.div`
-  background-color: ${props => props.theme.colors[props.type]};
-  flex: 0 0 10px;
-`;
+import { RESOURCE_TYPES, TOPICS, SEARCH_RESOURCE_TYPES } from '../../constants/ui';
+import Dotdotdot from 'react-dotdotdot';
+import Link from '../UI/Link/Link';
+import { EventLogoWrapper, DateLI, EventDetailsContainer } from '../Event';
+export { BaseCard, Card } from './Card';
 
 export const Container = styled.article`
   width: 265px;
@@ -70,37 +43,58 @@ export const Container = styled.article`
   }
 `;
 
-export const CardTitle = styled(DotDotDot)`
+export const DecorativeBar = styled.div`
+  background-color: ${props => props.theme.colors[props.color]};
+  flex: 0 0 10px;
+  min-height: 10px;
+`;
+
+export const Title = styled(Dotdotdot)`
   font-size: 20px;
-  color: #494949;
+  color: ${({ theme }) => theme.colors.grey};
   line-height: 1.3;
   margin-bottom: 0;
   flex: 0 0 auto;
+  text-transform: capitalize;
   word-break: break-word;
 `;
 
-export const CardDescription = styled(DotDotDot)`
-  ${designTokens.description};
+export const Description = styled(Dotdotdot)`
+  line-height: 1.4;
+  font-size: 14px;
+  flex: 0 0 auto;
+  margin-bottom: 0;
+  margin-top: 4px;
+  text-transform: none;
 `;
 
-export const EventImageWrapper = styled(EventLogoWrapper)`
-  margin-top: 0px;
-  img {
-    margin-left: -8px;
-    padding-left: 0px;
+export const LinkWrapper = styled(Link)`
+  text-decoration: none;
+  color: initial;
+  :hover {
+    text-decoration: none;
+    color: initial;
+    cursor: pointer;
   }
 `;
 
-export const MeetupImageWrapper = styled(EventLogoWrapper)`
-  margin: -1px 0px 5px 0px;
-  img {
-    padding-left: 0px;
-  }
+/**
+ * used to predictably lay out titles/ descriptions/images in a flex box within a card
+ */
+export const CardBody = styled.div`
+  padding: 6px 10px;
+  height: 100%;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex: 1 1 auto;
+  flex-flow: column nowrap;
 `;
+
 // combination of card image and wrapper make images response correctly
 // to the flex container. The card image wrapper can grow/shrink automatically
 // the object-fit scaledown maintains aspect ratio for any type of image
-export const CardImage = styled(Image)`
+export const Image = styled.img`
   width: 100%;
   height: auto;
   object-fit: scale-down;
@@ -108,7 +102,7 @@ export const CardImage = styled(Image)`
   margin-bottom: 0;
 `;
 
-export const CardImageWrapper = styled.div`
+export const ImageWrapper = styled.div`
   flex: 1 1 auto;
   align-self: center;
   overflow: hidden;
@@ -149,54 +143,26 @@ export const EventContainer = styled(EventDetailsContainer)`
   }
 `;
 
-export const CardBody = styled.div`
-  padding: 6px 10px;
-  height: 100%;
-  overflow: hidden;
-  height: 100%;
-  display: flex;
-  flex: 1 1 auto;
-  flex-flow: column nowrap;
+// special cases to handle presentation of the eventbrite and meetup logo inside of a card
+// please note that although meetups is no longer being implemented (since the api disabled access token authenticated)
+// it may be reactivated at one point, for this reason these components are being left behind
+export const EventbriteImageWrapper = styled(EventLogoWrapper)`
+  margin-top: 0px;
+  img {
+    margin-left: -8px;
+    padding-left: 0px;
+  }
 `;
 
-export const CircleIconWrapper = styled.div`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  position: relative;
-  background-color: ${props => props.theme.colors[props.type]};
-  color: #fff;
-  font-size: 25px;
+export const MeetupImageWrapper = styled(EventLogoWrapper)`
+  margin: -1px 0px 5px 0px;
+  img {
+    padding-left: 0px;
+  }
 `;
 
-export const CircleIcon = styled(FontAwesomeIcon)`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-`;
-
-export const ResourceCountGroup = styled.li`
-  display: flex;
-  align-items: center;
-  flex-wrap: no-wrap;
-  flex: 1 0 50%;
-`;
-
-export const ResourceCountTitle = styled.span`
-  margin-left: 10px;
-`;
-
-export const ResourceCounts = styled.ul`
-  display: flex;
-  flex-flow: row wrap;
-  padding: 6px 10px;
-  margin: 0;
-  flex: 0 0 50%;
-`;
-
-export const RESOURCES = {
-  types: {
+export const CONTENT = {
+  byResourceType: {
     [RESOURCE_TYPES.COMPONENTS]: {
       id: 'RESOURCE_TYPES.COMPONENTS',
       text: 'Component',

@@ -28,7 +28,7 @@ import {
   CardImageWrapper,
   CardLinkWrapper,
   CardTitle,
-  CardWrapper,
+  Container,
   DecorativeBar,
   EventInfoDiv,
   EventDate,
@@ -124,7 +124,7 @@ const Card = ({ type, title, description, image, link, ...rest }) => {
 
   return (
     <CardLinkWrapper to={link}>
-      <CardWrapper {...rest}>
+      <Container {...rest}>
         <DecorativeBar type={type} />
         <CardBody>
           <CardHeader type={type} linksToExternal={isExternal} />
@@ -133,7 +133,7 @@ const Card = ({ type, title, description, image, link, ...rest }) => {
           </CardTitle>
           {cardBody}
         </CardBody>
-      </CardWrapper>
+      </Container>
     </CardLinkWrapper>
   );
 };
