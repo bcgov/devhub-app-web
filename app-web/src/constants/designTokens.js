@@ -1,4 +1,4 @@
-import { RESOURCE_TYPES } from './ui';
+import { RESOURCE_TYPES, TOPICS, SEARCH_RESOURCE_TYPES } from './ui';
 
 export const STYLE_BASE = {
   fontSize: 14,
@@ -97,8 +97,9 @@ export const DEVHUB_PALETTE = {
   [RESOURCE_TYPES.DOCUMENTATION]: '#246BD1',
   [RESOURCE_TYPES.PEOPLE]: '#E17039',
   [RESOURCE_TYPES.SELF_SERVICE_TOOLS]: '#F3BA45',
-  Topics: '#444',
+  [TOPICS]: '#444',
   [RESOURCE_TYPES.REPOSITORIES]: '#6e5494',
-  Events: '#f44b42',
+  [SEARCH_RESOURCE_TYPES.GITHUB_ISSUE]: '#6e5494',
+  [RESOURCE_TYPES.EVENTS]: '#f44b42',
   link: DS_PALETTE.links.blue,
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import rocketchatSVG from '../../../assets/images/rocketchat_logo.svg';
+import githubPNG from '../../../assets/images/github_logo.png';
 
 const StyledButton = styled.button`
   color: #fff;
@@ -17,9 +18,9 @@ const StyledButton = styled.button`
   white-space: nowrap;
   vertical-align: middle;
   display: inline-block;
-  background-color: ${({ variant, theme }) => {
-    if (theme.colors[variant]) {
-      return theme.colors[variant];
+  background-color: ${({ color, theme }) => {
+    if (theme.colors[color]) {
+      return theme.colors[color];
     } else {
       return 'initial';
     }
@@ -33,6 +34,10 @@ const variants = {
 };
 
 export const Button = ({ variant, children, clicked, ...rest }) => {
+  const colors = {
+    [variants.primary]: 'blue',
+    [variants.secondary]: 'yellow',
+  };
   if (variant === variants.link) {
     return (
       <StyledButton
@@ -49,7 +54,7 @@ export const Button = ({ variant, children, clicked, ...rest }) => {
     );
   } else {
     return (
-      <StyledButton onClick={clicked} {...rest} variant={variant}>
+      <StyledButton onClick={clicked} {...rest} color={colors[variant]}>
         {children}
       </StyledButton>
     );
@@ -84,6 +89,12 @@ export const IconButton = styled.button`
 export const RCButton = ({ ...props }) => (
   <IconButton {...props}>
     <img src={rocketchatSVG} style={{ margin: 0 }} alt={'RocketChat logo'} />
+  </IconButton>
+);
+
+export const GithubButton = ({ ...props }) => (
+  <IconButton {...props}>
+    <img src={githubPNG} style={{ margin: 0 }} alt={'RocketChat logo'} />
   </IconButton>
 );
 

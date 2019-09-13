@@ -43,7 +43,6 @@ exports[`PopularTopic matches snapshot 1`] = `
 .emotion-7 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
-  color: #1A5A96;
   font-weight: 400;
   text-transform: capitalize;
   padding: 0 4px;
@@ -76,7 +75,6 @@ exports[`PopularTopic matches snapshot 1`] = `
 .emotion-30 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
-  color: #1A5A96;
   font-weight: 400;
   text-transform: capitalize;
   padding: 0 4px;
@@ -206,7 +204,6 @@ exports[`PopularTopic matches snapshot 1`] = `
 .emotion-51 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
-  color: #1A5A96;
   font-weight: 400;
   text-transform: capitalize;
   padding: 0 4px;
@@ -247,7 +244,6 @@ exports[`PopularTopic matches snapshot 1`] = `
               fill="currentColor"
             />
           </svg>
-           
           <span
             css="[object Object]"
           >
@@ -321,7 +317,6 @@ exports[`PopularTopic matches snapshot 1`] = `
                             fill="currentColor"
                           />
                         </svg>
-                         
                         <span
                           css="[object Object]"
                         >
@@ -404,7 +399,6 @@ exports[`PopularTopic matches snapshot 1`] = `
                             fill="currentColor"
                           />
                         </svg>
-                         
                         <span
                           css="[object Object]"
                         >

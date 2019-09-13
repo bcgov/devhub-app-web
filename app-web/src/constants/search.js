@@ -51,13 +51,7 @@ export const SEARCH_FIELD_MAPPING = {
 export const SEARCH_SOURCES = {
   rocketchat: 'rocketchat',
   documize: 'documize',
-};
-
-// this is a simple implementation of the search source 'toggle' feature
-// this object acts like a reducer
-export const SEARCH_SOURCE_INITIAL_STATE = {
-  [SEARCH_SOURCES.rocketchat]: true,
-  [SEARCH_SOURCES.documize]: true,
+  github: 'github',
 };
 
 export const SEARCH_SOURCE_CONFIG = {
@@ -67,7 +61,20 @@ export const SEARCH_SOURCE_CONFIG = {
   [SEARCH_SOURCES.documize]: {
     maxResults: 10,
   },
+  [SEARCH_SOURCES.github]: {
+    // Github will be rendered as cards, since cards align in grids of 4
+    // columns this will make a neat set of of 3 rows
+    maxResults: 12,
+  },
   default: {
     maxResults: 10,
   },
+};
+
+// these constant values are based on the Github v4 graphql api issue/repo search
+// they provide a field called '__typename' which relates to these values
+export const GITHUB_SEARCH_SOURCE_TYPENAMES = {
+  Issue: 'Issue',
+  PullRequest: 'PullRequest',
+  Repository: 'Repository',
 };

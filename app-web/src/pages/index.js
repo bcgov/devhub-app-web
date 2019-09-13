@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import queryString from 'query-string';
 import isNull from 'lodash/isNull';
 import groupBy from 'lodash/groupBy';
@@ -21,8 +21,13 @@ import {
   selectResourcesGroupedByType,
 } from '../utils/selectors';
 
-import { isQueryEmpty } from '../utils/search';
-import { SEARCH_QUERY_PARAM, SEARCH_SOURCES } from '../constants/search';
+import { isQueryEmpty, githubSearchReducer } from '../utils/search';
+import {
+  SEARCH_QUERY_PARAM,
+  SEARCH_SOURCES,
+  SEARCH_SOURCE_CONFIG,
+  GITHUB_SEARCH_SOURCE_TYPENAMES,
+} from '../constants/search';
 import { SPACING } from '../constants/designTokens';
 import uniqBy from 'lodash/uniqBy';
 import { formatEvents } from '../templates/events';
@@ -33,11 +38,13 @@ import {
   FEATURE_TOPIC_CONFIGURATION,
   FEATURED_CONTENT,
 } from '../constants/ui';
-import { SEARCH_SOURCE_INITIAL_STATE } from '../constants/search';
 import { removeUnwantedResults, buildPopularTopic, buildFeaturedTopic } from '../utils/helpers';
 import Loading from '../components/UI/Loading/Loading';
 import { RocketChatItem } from '../components/RocketChatItem/RocketChatItem';
 import { DynamicSearchResults } from '../components/DynamicSearchResults';
+import Card from '../components/Cards/Card/Card';
+import Row from '../components/Cards/Row';
+import Column from '../components/Cards/Column';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -46,7 +53,7 @@ const Main = styled.main`
 `;
 
 /**
- * returns topics container component so aslong as a search is not being done
+ * returns topics container component so as long as a search is not being done
  * @param {Array} topics list of topics also known as topics
  * @param {Boolean} searchResultsExist
  */
@@ -144,7 +151,6 @@ export const Index = ({
   location,
 }) => {
   const queryParam = queryString.parse(location.search);
-  const [searchSourceFilters] = useState(SEARCH_SOURCE_INITIAL_STATE);
   let query = [];
   let results = [];
   let windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, SEARCH_QUERY_PARAM);
@@ -163,11 +169,6 @@ export const Index = ({
   let searchSourceResults = {};
   if (searchGate.results) {
     searchSourceResults = groupBy(searchGate.results, 'type');
-  }
-
-  //set search filter to false if the user isnt authenticated, so RC icon will show appropriately
-  if (!authenticated) {
-    searchSourceFilters.rocketchat = false;
   }
 
   results = useSearch(query, index);
@@ -245,7 +246,17 @@ export const Index = ({
     );
   } else {
     totalSearchResults = getSearchResultTotal(siphonResources);
-    const { rocketchat } = searchSourceResults;
+    const { rocketchat, github } = searchSourceResults;
+
+    const settings = SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.rocketchat];
+    let githubCards = [];
+    if (github) {
+      githubCards = github
+        .slice(0, SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.github].maxResults)
+        .map(g => JSON.parse(g.typePayload))
+        .filter(g => g.__typename !== GITHUB_SEARCH_SOURCE_TYPENAMES.PullRequest)
+        .map(githubSearchReducer);
+    }
 
     content = (
       <Aux>
@@ -253,18 +264,43 @@ export const Index = ({
         {siphonResources}
         {!isEmpty(rocketchat) && rocketchat.length > 0 && (
           <DynamicSearchResults
-            results={rocketchat}
+            numResults={rocketchat.length}
             sourceType={SEARCH_SOURCES.rocketchat}
-            renderItem={r => {
-              const chatItem = JSON.parse(r.typePayload);
-
-              return <RocketChatItem {...chatItem} data-testid={chatItem.id} />;
-            }}
             link={{
               to: 'https://chat.pathfinder.gov.bc.ca',
               text: 'Go To Rocket.Chat',
             }}
-          />
+          >
+            {rocketchat.slice(0, settings.maxResults).map(r => {
+              const chatItem = JSON.parse(r.typePayload);
+
+              return <RocketChatItem key={r.id} {...chatItem} data-testid={chatItem.id} />;
+            })}
+          </DynamicSearchResults>
+        )}
+        {!isEmpty(github) && github.length > 0 && (
+          <DynamicSearchResults
+            numResults={github.length}
+            sourceType={SEARCH_SOURCES.github}
+            link={{
+              to: 'https://github.com/bcgov',
+              text: 'Go To Github',
+            }}
+          >
+            <Row>
+              {githubCards.map(gh => (
+                <Column
+                  key={gh.id}
+                  style={{
+                    justifyContent: 'center',
+                    display: 'flex',
+                  }}
+                >
+                  <Card {...gh.fields} type={gh.fields.resourceType} data-testid={gh.id} />
+                </Column>
+              ))}
+            </Row>
+          </DynamicSearchResults>
         )}
       </Aux>
     );
@@ -282,7 +318,6 @@ export const Index = ({
         query={query}
         searchSourcesLoading={searchSourcesLoading}
         resultCount={totalSearchResults}
-        searchSources={searchSourceFilters}
         searchResultsEmpty={resourcesNotFound}
       />
       <Main>

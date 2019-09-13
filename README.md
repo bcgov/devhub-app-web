@@ -110,7 +110,7 @@ Here are some of the other components/technologies used by DevHub:
 
 - ReactJS
 - GraphQL
-
+- StorybookJS
 ## Third-Party Products/Libraries used and the the License they are covered by
 
 - GatsbyJS  
@@ -175,84 +175,67 @@ Any issues that are created within this repository are synced with our Zenhub ka
 ```
 .
 ├── app-web
-│   ├── __fixtures__
-│   ├── __mocks__
-│   │   └── @bcgov
-│   ├── __tests__
-│   │   ├── components
-│   │   ├── gatsby-plugins
-│   │   ├── hoc
-│   │   ├── pages
-│   │   └── utils
-│   ├── blog
-│   ├── config
-│   │   └── jest
-│   ├── gatsby
-│   ├── plugins
-│   │   ├── gatsby-remark-path-transform
-│   │   └── gatsby-source-github-all
-│   ├── public
-│   │   ├── 404
-│   │   ├── Agile-Delivery-Process
-│   │   ├── Authentication-and-Authorization
-│   │   ├── Code-Management
-│   │   ├── Community-and-Events
-│   │   ├── Data-Privacy
-│   │   ├── Design-System
-│   │   ├── Developer-Tools
-│   │   ├── Developer-Toy-Box
-│   │   ├── Featured-Cards
-│   │   ├── Getting-Started-on-the-DevOps-Platform
-│   │   ├── Information-and-Application-Security
-│   │   ├── Mobile-Starter-Kit
-│   │   ├── about
-│   │   ├── topics
-│   │   ├── components
-│   │   ├── documentation
-│   │   ├── events
-│   │   ├── google-fonts
-│   │   ├── https:
-│   │   ├── icons
-│   │   ├── images
-│   │   ├── offline-plugin-app-shell-fallback
-│   │   ├── repositories
-│   │   ├── self-service-tools
-│   │   ├── static
-│   │   └── workbox-v3.6.3
-│   ├── registry
-│   ├── shell-scripts
-│   ├── src
-│   │   ├── assets
-│   │   ├── components
-│   │   ├── constants
-│   │   ├── hoc
-│   │   ├── messages
-│   │   ├── pages
-│   │   ├── templates
-│   │   └── utils
-│   └── static
-│       └── images
-├── docker-images
-│   └── nodejs-base
+│   ├── __fixtures__
+│   ├── __mocks__
+│   │   └── @bcgov
+│   ├── __tests__
+│   │   ├── components
+│   │   ├── gatsby
+│   │   ├── gatsby-plugins
+│   │   ├── hoc
+│   │   ├── pages
+│   │   └── utils
+│   ├── config
+│   │   └── jest
+│   ├── cypress
+│   │   ├── fixtures
+│   │   ├── integration
+│   │   ├── plugins
+│   │   ├── support
+│   │   └── videos
+│   ├── gatsby
+│   │   └── utils
+│   ├── plugins
+│   │   ├── gatsby-remark-path-transform
+│   │   └── gatsby-source-github-all
+│   ├── registry
+│   ├── shell-scripts
+│   ├── src
+│   │   ├── assets
+│   │   ├── components
+│   │   ├── constants
+│   │   ├── hoc
+│   │   ├── messages
+│   │   ├── pages
+│   │   ├── templates
+│   │   └── utils
+│   ├── static
+│   │   ├── images
+│   │   └── scripts
+│   ├── stories
+│   └── topics
 ├── docs
-│   ├── gatsby-custom-plugins
-│   └── images
+│   └── images
 ├── functional-tests
-│   ├── gradle
-│   │   └── wrapper
-│   └── src
-│       └── test
+│   ├── gradle
+│   │   └── wrapper
+│   └── src
+│       └── test
+├── matomo
+│   └── openshift
+│       ├── mariadb
+│       ├── matomo
+│       ├── matomo-db
+│       └── matomo-proxy
 ├── openshift
-│   ├── keycloak-scripts
-│   └── templates
+│   ├── keycloak-scripts
+│   └── templates
 └── pipeline
     ├── gradle
-    │   └── wrapper
+    │   └── wrapper
     └── src
         └── groovy
-└── .jenkins
-└── .pipeline
-76 directories
+
 ```
 
 ## Getting Started
@@ -277,6 +260,7 @@ Any issues that are created within this repository are synced with our Zenhub ka
 * to view production build run (requires gatsby-cli to be installed globally): `gatsby serve`
 * to run prettier: `npm run prettify`
 * to run test suites: `npm test`
+* to run storybook: `npm run storybook`
 
 ## Deployment (Docker Compose for Local Development)
 
