@@ -16,7 +16,6 @@ exports[`Topics Container it matches snapshot 1`] = `
 .emotion-11 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
-  color: #1A5A96;
   font-weight: 400;
   text-transform: capitalize;
   padding: 0 4px;
@@ -200,7 +199,6 @@ exports[`Topics Container it matches snapshot 1`] = `
 .emotion-26 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
-  color: #1A5A96;
   font-weight: 400;
   text-transform: capitalize;
   padding: 0 4px;
@@ -233,7 +231,6 @@ exports[`Topics Container it matches snapshot 1`] = `
 .emotion-49 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
-  color: #1A5A96;
   font-weight: 400;
   text-transform: capitalize;
   padding: 0 4px;
@@ -363,7 +360,6 @@ exports[`Topics Container it matches snapshot 1`] = `
 .emotion-70 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
-  color: #1A5A96;
   font-weight: 400;
   text-transform: capitalize;
   padding: 0 4px;
@@ -430,7 +426,6 @@ exports[`Topics Container it matches snapshot 1`] = `
 .emotion-137 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
-  color: #1A5A96;
   font-weight: 400;
   text-transform: capitalize;
   padding: 0 4px;
@@ -502,6 +497,7 @@ exports[`Topics Container it matches snapshot 1`] = `
       >
         <button
           class="emotion-13 emotion-14"
+          color="yellow"
           data-testid="auth.logout"
         >
           Logout
