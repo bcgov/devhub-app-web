@@ -22,7 +22,12 @@ import {
 } from '../utils/selectors';
 
 import { isQueryEmpty, githubSearchReducer } from '../utils/search';
-import { SEARCH_QUERY_PARAM, SEARCH_SOURCES, SEARCH_SOURCE_CONFIG } from '../constants/search';
+import {
+  SEARCH_QUERY_PARAM,
+  SEARCH_SOURCES,
+  SEARCH_SOURCE_CONFIG,
+  GITHUB_SEARCH_SOURCE_TYPENAMES,
+} from '../constants/search';
 import { SPACING } from '../constants/designTokens';
 import uniqBy from 'lodash/uniqBy';
 import { formatEvents } from '../templates/events';
@@ -249,7 +254,7 @@ export const Index = ({
       githubCards = github
         .slice(0, SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.github].maxResults)
         .map(g => JSON.parse(g.typePayload))
-        .filter(g => g.__typename !== 'PullRequest')
+        .filter(g => g.__typename !== GITHUB_SEARCH_SOURCE_TYPENAMES.PullRequest)
         .map(githubSearchReducer);
     }
 

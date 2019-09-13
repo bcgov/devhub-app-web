@@ -2,6 +2,7 @@ import isString from 'lodash/isString';
 import removeMd from 'remove-markdown';
 import isArray from 'lodash/isArray';
 import { PERSONAS_LIST, SEARCH_RESOURCE_TYPES } from '../constants/ui';
+import { GITHUB_SEARCH_SOURCE_TYPENAMES } from '../constants/search';
 
 /**
  * gets search results from lunr
@@ -87,7 +88,7 @@ export const getSearchSourcesResultTotal = searchSources => {
  * @param {Object} githubItem
  */
 export const githubSearchReducer = githubItem => {
-  if (githubItem.__typename === 'Issue') {
+  if (githubItem.__typename === GITHUB_SEARCH_SOURCE_TYPENAMES.Issue) {
     const { title, body, url } = githubItem;
 
     return {
@@ -100,7 +101,7 @@ export const githubSearchReducer = githubItem => {
         personas: PERSONAS_LIST,
       },
     };
-  } else if (githubItem.__typename === 'Repository') {
+  } else if (githubItem.__typename === GITHUB_SEARCH_SOURCE_TYPENAMES.Repository) {
   }
 
   return {};

@@ -6,6 +6,7 @@ export const RESOURCE_TYPES = {
   PEOPLE: 'People',
   EVENTS: 'Events',
 };
+
 export const SEARCH_RESOURCE_TYPES = {
   GITHUB_ISSUE: 'Github Issue',
 };

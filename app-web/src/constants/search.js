@@ -70,3 +70,11 @@ export const SEARCH_SOURCE_CONFIG = {
     maxResults: 10,
   },
 };
+
+// these constant values are based on the Github v4 graphql api issue/repo search
+// they provide a field called '__typename' which relates to these values
+export const GITHUB_SEARCH_SOURCE_TYPENAMES = {
+  Issue: 'Issue',
+  PullRequest: 'PullRequest',
+  Repository: 'Repository',
+};
