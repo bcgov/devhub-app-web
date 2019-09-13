@@ -31,7 +31,7 @@ import {
 import { GITHUB_RAW_NODES } from '../../__fixtures__/nodes';
 import { client } from '../../wrapWithProvider';
 import { ApolloProvider } from 'react-apollo';
-import { ROCKET_CHAT } from '../../__fixtures__/searchsources';
+import { ROCKET_CHAT, GITHUB } from '../../__fixtures__/searchsources';
 
 jest.mock('query-string');
 // mock out layout
@@ -224,6 +224,29 @@ describe('Home Page', () => {
     );
 
     expect(queryByTestId(ROCKET_CHAT[0].id)).toBeInTheDocument();
+
+    useAuthenticated.mockReturnValue(false);
+
+    rerender();
+
+    expect(queryByTestId(ROCKET_CHAT[0].id)).not.toBeInTheDocument();
+  });
+
+  test('shows github results when authenticated', () => {
+    queryString.parse.mockReturnValue({ q: 'foo' });
+    useSearch.mockReturnValue([]);
+    useSearchGate.mockReturnValue({ results: GITHUB, loading: false });
+    useAuthenticated.mockReturnValue(true);
+
+    const { queryByTestId, rerender } = render(
+      <ThemeProvider theme={theme}>
+        <ApolloProvider client={client}>
+          <Index {...props} location={{ search: '?q=foo' }} />
+        </ApolloProvider>
+      </ThemeProvider>,
+    );
+
+    expect(queryByTestId(GITHUB[0].id)).toBeInTheDocument();
 
     useAuthenticated.mockReturnValue(false);
 

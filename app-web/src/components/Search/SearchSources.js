@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { RCButton } from '../UI/Button/Button';
+import { RCButton, GithubButton } from '../UI/Button/Button';
 import { useAuthenticated } from '../../utils/hooks';
 import { Link } from '../UI/Link';
 
@@ -26,9 +26,17 @@ export const SearchSources = ({ rocketchat }) => {
   return (
     <SearchSourcesContainer data-testid={TEST_IDS.container}>
       <Link to={'#rocketChat'}>
-        {authenticated && <RCButton title="Click to jump to rocket chat search results" />}
-        {!authenticated && (
+        {authenticated ? (
+          <RCButton title="Click to jump to rocket chat search results" />
+        ) : (
           <RCButton {...rcProps} title="Login to view rocket chat search results" />
+        )}
+      </Link>
+      <Link to={'#github'}>
+        {authenticated ? (
+          <GithubButton title="Click to jump to Github search results" />
+        ) : (
+          <GithubButton {...rcProps} title="Login to view Github search results" />
         )}
       </Link>
     </SearchSourcesContainer>

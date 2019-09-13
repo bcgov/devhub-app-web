@@ -247,7 +247,6 @@ exports[`PopularTopic matches snapshot 1`] = `
               fill="currentColor"
             />
           </svg>
-           
           <span
             css="[object Object]"
           >
@@ -321,7 +320,6 @@ exports[`PopularTopic matches snapshot 1`] = `
                             fill="currentColor"
                           />
                         </svg>
-                         
                         <span
                           css="[object Object]"
                         >
@@ -404,7 +402,6 @@ exports[`PopularTopic matches snapshot 1`] = `
                             fill="currentColor"
                           />
                         </svg>
-                         
                         <span
                           css="[object Object]"
                         >

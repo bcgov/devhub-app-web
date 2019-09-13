@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import rocketchatSVG from '../../../assets/images/rocketchat_logo.svg';
+import githubPNG from '../../../assets/images/github_logo.png';
 
 const StyledButton = styled.button`
   color: #fff;
@@ -84,6 +85,12 @@ export const IconButton = styled.button`
 export const RCButton = ({ ...props }) => (
   <IconButton {...props}>
     <img src={rocketchatSVG} style={{ margin: 0 }} alt={'RocketChat logo'} />
+  </IconButton>
+);
+
+export const GithubButton = ({ ...props }) => (
+  <IconButton {...props}>
+    <img src={githubPNG} style={{ margin: 0 }} alt={'RocketChat logo'} />
   </IconButton>
 );
 

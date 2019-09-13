@@ -16,7 +16,36 @@ limitations under the License.
 Created by Patrick Simonian
 */
 // run time apollo query fixtures
-
+export const GITHUB = [
+  {
+    type: 'github',
+    id: '101',
+    typePayload: JSON.stringify({
+      id: '1',
+      __typename: 'Github Issue',
+      fields: {
+        resourceType: 'Github Issue',
+        title: 'Issue',
+        description: 'Foo',
+        personas: ['Developer'],
+      },
+    }),
+  },
+  {
+    type: 'github',
+    id: '102',
+    typePayload: JSON.stringify({
+      id: '2',
+      __typename: 'Github Issue',
+      fields: {
+        resourceType: 'Github Issue',
+        title: 'Issue',
+        description: 'Foo',
+        personas: ['Developer'],
+      },
+    }),
+  },
+];
 export const ROCKET_CHAT = [
   {
     type: 'rocketchat',

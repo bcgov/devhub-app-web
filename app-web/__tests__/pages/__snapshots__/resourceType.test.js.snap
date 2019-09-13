@@ -501,7 +501,6 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
                         fill="currentColor"
                       />
                     </svg>
-                     
                     <span
                       css="[object Object]"
                     >
@@ -583,7 +582,6 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
                         fill="currentColor"
                       />
                     </svg>
-                     
                     <span
                       css="[object Object]"
                     >

@@ -642,7 +642,6 @@ exports[`Topics Container it matches snapshot 1`] = `
                   fill="currentColor"
                 />
               </svg>
-               
               <span
                 css="[object Object]"
               >
@@ -716,7 +715,6 @@ exports[`Topics Container it matches snapshot 1`] = `
                                 fill="currentColor"
                               />
                             </svg>
-                             
                             <span
                               css="[object Object]"
                             >
@@ -799,7 +797,6 @@ exports[`Topics Container it matches snapshot 1`] = `
                                 fill="currentColor"
                               />
                             </svg>
-                             
                             <span
                               css="[object Object]"
                             >
@@ -905,7 +902,6 @@ exports[`Topics Container it matches snapshot 1`] = `
                   fill="currentColor"
                 />
               </svg>
-               
               <span
                 css="[object Object]"
               >
@@ -979,7 +975,6 @@ exports[`Topics Container it matches snapshot 1`] = `
                                 fill="currentColor"
                               />
                             </svg>
-                             
                             <span
                               css="[object Object]"
                             >
@@ -1062,7 +1057,6 @@ exports[`Topics Container it matches snapshot 1`] = `
                                 fill="currentColor"
                               />
                             </svg>
-                             
                             <span
                               css="[object Object]"
                             >

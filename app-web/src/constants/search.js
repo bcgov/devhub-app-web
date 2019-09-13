@@ -54,14 +54,6 @@ export const SEARCH_SOURCES = {
   github: 'github',
 };
 
-// this is a simple implementation of the search source 'toggle' feature
-// this object acts like a reducer
-export const SEARCH_SOURCE_INITIAL_STATE = {
-  [SEARCH_SOURCES.rocketchat]: true,
-  [SEARCH_SOURCES.documize]: true,
-  [SEARCH_SOURCES.github]: true,
-};
-
 export const SEARCH_SOURCE_CONFIG = {
   [SEARCH_SOURCES.rocketchat]: {
     maxResults: 10,

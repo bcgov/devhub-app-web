@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-
+import React from 'react';
 import queryString from 'query-string';
 import isNull from 'lodash/isNull';
 import groupBy from 'lodash/groupBy';
@@ -34,7 +33,6 @@ import {
   FEATURE_TOPIC_CONFIGURATION,
   FEATURED_CONTENT,
 } from '../constants/ui';
-import { SEARCH_SOURCE_INITIAL_STATE } from '../constants/search';
 import { removeUnwantedResults, buildPopularTopic, buildFeaturedTopic } from '../utils/helpers';
 import Loading from '../components/UI/Loading/Loading';
 import { RocketChatItem } from '../components/RocketChatItem/RocketChatItem';
@@ -50,7 +48,7 @@ const Main = styled.main`
 `;
 
 /**
- * returns topics container component so aslong as a search is not being done
+ * returns topics container component so as long as a search is not being done
  * @param {Array} topics list of topics also known as topics
  * @param {Boolean} searchResultsExist
  */
@@ -148,7 +146,6 @@ export const Index = ({
   location,
 }) => {
   const queryParam = queryString.parse(location.search);
-  const [searchSourceFilters] = useState(SEARCH_SOURCE_INITIAL_STATE);
   let query = [];
   let results = [];
   let windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, SEARCH_QUERY_PARAM);
@@ -167,11 +164,6 @@ export const Index = ({
   let searchSourceResults = {};
   if (searchGate.results) {
     searchSourceResults = groupBy(searchGate.results, 'type');
-  }
-
-  //set search filter to false if the user isnt authenticated, so RC icon will show appropriately
-  if (!authenticated) {
-    searchSourceFilters.rocketchat = false;
   }
 
   results = useSearch(query, index);
@@ -298,7 +290,7 @@ export const Index = ({
                     display: 'flex',
                   }}
                 >
-                  <Card {...gh.fields} type={gh.fields.resourceType} />
+                  <Card {...gh.fields} type={gh.fields.resourceType} data-testid={gh.id} />
                 </Column>
               ))}
             </Row>
@@ -320,7 +312,6 @@ export const Index = ({
         query={query}
         searchSourcesLoading={searchSourcesLoading}
         resultCount={totalSearchResults}
-        searchSources={searchSourceFilters}
         searchResultsEmpty={resourcesNotFound}
       />
       <Main>

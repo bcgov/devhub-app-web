@@ -59,13 +59,7 @@ const IconDiv = styled.div`
   flex-flow: row nowrap;
 `;
 
-export const Masthead = ({
-  query,
-  resultCount,
-  searchSources,
-  searchSourcesLoading,
-  searchResultsEmpty,
-}) => {
+export const Masthead = ({ query, resultCount, searchSourcesLoading }) => {
   return (
     <Container>
       <AppLogo
@@ -105,11 +99,7 @@ export const Masthead = ({
             navigate(`/?q=${encodeURIComponent(terms)}`);
           }}
         />
-        <IconDiv>
-          {!searchSourcesLoading && query && resultCount > 0 && (
-            <SearchSources {...searchSources} />
-          )}
-        </IconDiv>
+        <IconDiv>{!searchSourcesLoading && query && resultCount > 0 && <SearchSources />}</IconDiv>
       </SearchContainer>
     </Container>
   );
