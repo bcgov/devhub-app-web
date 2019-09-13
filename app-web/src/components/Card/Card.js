@@ -123,19 +123,15 @@ export const Card = ({
 
   return (
     <BaseCard resourceType={resourceType} link={link} {...rest}>
-      {renderBody ? (
-        renderBody()
-      ) : (
-        <CardBody>
-          {renderHeader ? (
-            renderHeader()
-          ) : (
-            <CardHeader resourceType={resourceType} linksToExternal={isExternal} />
-          )}
-          <Title>{title}</Title>
-          {renderBody ? renderBody() : cardBody}
-        </CardBody>
-      )}
+      <CardBody>
+        {renderHeader ? (
+          renderHeader()
+        ) : (
+          <CardHeader resourceType={resourceType} linksToExternal={isExternal} />
+        )}
+        <Title>{title}</Title>
+        {renderBody ? renderBody() : cardBody}
+      </CardBody>
     </BaseCard>
   );
 };
@@ -155,7 +151,7 @@ Card.defaultProps = {
   image: null,
 };
 
-export const EventCard = ({ resourceType, title, description, image, link, event }) => {
+export const EventCard = ({ title, description, image, link, event }) => {
   let cardBody = null;
   let clampAmount = 4;
   //if takes one line.......
@@ -209,6 +205,7 @@ export const EventCard = ({ resourceType, title, description, image, link, event
       </React.Fragment>
     );
   }
+
   return (
     <Card
       title={title}

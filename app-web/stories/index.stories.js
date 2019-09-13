@@ -14,6 +14,7 @@ import {
 } from '../src/components/Card';
 
 import CardHeader from '../src/components/Card/CardHeader';
+import { EventCard } from '../src/components/Card/Card';
 
 storiesOf('Introduction', module).add('Start', () => (
   <p>
@@ -154,7 +155,7 @@ storiesOf('Prebuilt Card Components', module)
       from all the base components as described within this storybook.
     </div>
   ))
-  .add('Regular Card (basic)', () => (
+  .add('Regular Card (basic variant)', () => (
     <Card
       resourceType="Github Issue"
       link="http://localhost:8080"
@@ -162,7 +163,7 @@ storiesOf('Prebuilt Card Components', module)
       description=" I'm having trouble running the app, it keeps crashing when running npm run dev"
     />
   ))
-  .add('Regular Card (image only)', () => (
+  .add('Regular Card (image only variant)', () => (
     <Card
       resourceType="Github Issue"
       link="http://localhost:8080"
@@ -170,12 +171,65 @@ storiesOf('Prebuilt Card Components', module)
       image="https://placeimg.com/180/145/animals"
     />
   ))
-  .add('Regular Card (image and desc)', () => (
+  .add('Regular Card (image and desc variant)', () => (
     <Card
       resourceType="Github Issue"
       link="http://localhost:8080"
       title="App Crashes on startup occasionally when using npm run dev"
       image="https://placeimg.com/180/145/animals"
       description=" I'm having trouble running the app, it keeps crashing when running npm run dev"
+    />
+  ))
+  .add('Card with custom body', () => (
+    <Card
+      resourceType="Documentation"
+      link="http://localhost:8080"
+      renderBody={() => (
+        <div style={{ overflow: 'auto' }}>
+          <ul>
+            <li>Milk</li>
+            <li>Eggs</li>
+            <li>
+              How to be an adult <i>version 4</i>
+            </li>
+          </ul>
+        </div>
+      )}
+      title="Groceries"
+    />
+  ))
+  .add('Card with custom header', () => (
+    <Card
+      resourceType="Documentation"
+      link="http://localhost:8080"
+      renderHeader={() => <small>Shopping Lists</small>}
+      renderBody={() => (
+        <div style={{ overflow: 'auto' }}>
+          <ul>
+            <li>Milk</li>
+            <li>Eggs</li>
+            <li>
+              How to be an adult <i>version 4</i>
+            </li>
+          </ul>
+        </div>
+      )}
+      title="Groceries"
+    />
+  ))
+  .add('Event Card (event brite)', () => (
+    <EventCard
+      title="Pat's Bday Bash"
+      description="It's gona be a pinata party. yay."
+      event={{
+        start: {
+          day: '8',
+          month: 'Jan',
+          year: '2020',
+        },
+        venue: 'Exchange Lab',
+      }}
+      image="eventbrite"
+      link="localhost:6006"
     />
   ));
