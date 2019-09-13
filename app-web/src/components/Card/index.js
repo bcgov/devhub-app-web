@@ -21,8 +21,8 @@ import styled from '@emotion/styled';
 import { RESOURCE_TYPES, TOPICS, SEARCH_RESOURCE_TYPES } from '../../constants/ui';
 import Dotdotdot from 'react-dotdotdot';
 import Link from '../UI/Link/Link';
-
-export { BaseCard } from './Card';
+import { EventLogoWrapper, DateLI, EventDetailsContainer } from '../Event';
+export { BaseCard, Card } from './Card';
 
 export const Container = styled.article`
   width: 265px;
@@ -64,6 +64,7 @@ export const Description = styled(Dotdotdot)`
   font-size: 14px;
   flex: 0 0 auto;
   margin-bottom: 0;
+  margin-top: 4px;
   text-transform: none;
 `;
 
@@ -108,6 +109,56 @@ export const ImageWrapper = styled.div`
   padding-top: 10px;
   text-align: center;
   display: flex;
+`;
+
+export const EventInfoDiv = styled.div`
+  > li {
+    color: #494949;
+    margin-bottom: 0px;
+  }
+`;
+
+export const EventDate = styled(DateLI)`
+  border-radius: 0px;
+  border: 0px;
+  margin: 0;
+  > span {
+    margin-top: -15px;
+    color: #494949;
+    font-weight: 1000;
+  }
+  > small {
+    bottom: 0.1em;
+  }
+`;
+
+export const EventContainer = styled(EventDetailsContainer)`
+  height: 64px;
+  font-size: 15px;
+  margin-left: -10px;
+  background: rgba(229, 229, 229, 0.8);
+  width: 100%;
+  > li {
+    margin-bottom: 0px;
+  }
+`;
+
+// special cases to handle presentation of the eventbrite and meetup logo inside of a card
+// please note that although meetups is no longer being implemented (since the api disabled access token authenticated)
+// it may be reactivated at one point, for this reason these components are being left behind
+export const EventbriteImageWrapper = styled(EventLogoWrapper)`
+  margin-top: 0px;
+  img {
+    margin-left: -8px;
+    padding-left: 0px;
+  }
+`;
+
+export const MeetupImageWrapper = styled(EventLogoWrapper)`
+  margin: -1px 0px 5px 0px;
+  img {
+    padding-left: 0px;
+  }
 `;
 
 export const CONTENT = {

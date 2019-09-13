@@ -30,9 +30,15 @@ import {
   Title,
   Container,
   DecorativeBar,
+  EventbriteImageWrapper,
+  MeetupImageWrapper,
+  EventInfoDiv,
+  EventDate,
+  EventContainer,
 } from './index';
 
-import { RESOURCE_TYPES_LIST } from '../../constants/ui';
+import { RESOURCE_TYPES_LIST, RESOURCE_TYPES } from '../../constants/ui';
+import EventLogo from '../Event/Logo';
 
 const variants = {
   basic: 'basic', // title, description, normal card header
@@ -58,11 +64,8 @@ BaseCard.propTypes = {
   link: PropTypes.string.isRequired,
   children: PropTypes.node,
 };
-/**
- * base card component
- * @param {Object} props
- */
-const Card = ({
+
+export const Card = ({
   resourceType,
   title,
   description,
@@ -75,7 +78,11 @@ const Card = ({
   let isExternal = !!validUrl.isWebUri(link);
   let cardBody = null;
   let inferredVariant = 'basic';
-
+  let clampAmount = 4;
+  //if takes one line.......
+  if (title.length < 23) {
+    clampAmount = 5;
+  }
   if (image && description) inferredVariant = variants.descAndImage;
 
   if (!description) inferredVariant = variants.imageOnly;
@@ -84,6 +91,41 @@ const Card = ({
   switch (inferredVariant) {
     case variants.basic:
       cardBody = (
+        <React.Fragment>
+          <Description clamp={clampAmount} tagName="p">
+            {description}
+          </Description>
+        </React.Fragment>
+      );
+      break;
+    case variants.imageOnly:
+      cardBody = (
+        <React.Fragment>
+          <ImageWrapper>
+            <Image src={image} alt={title} />
+          </ImageWrapper>
+        </React.Fragment>
+      );
+      break;
+    case variants.descAndImage:
+      cardBody = (
+        <React.Fragment>
+          <Description title={description} clamp={2} tagName="p">
+            {description}
+          </Description>
+          <ImageWrapper>
+            <Image src={image} alt={title} />
+          </ImageWrapper>
+        </React.Fragment>
+      );
+      break;
+  }
+
+  return (
+    <BaseCard resourceType={resourceType} link={link} {...rest}>
+      {renderBody ? (
+        renderBody()
+      ) : (
         <CardBody>
           {renderHeader ? (
             renderHeader()
@@ -91,46 +133,9 @@ const Card = ({
             <CardHeader resourceType={resourceType} linksToExternal={isExternal} />
           )}
           <Title>{title}</Title>
-          <Description clamp={6} tagName="p">
-            {description}
-          </Description>
+          {renderBody ? renderBody() : cardBody}
         </CardBody>
-      );
-      break;
-    case variants.imageOnly:
-      cardBody = (
-        <CardBody>
-          <CardHeader resourceType={resourceType} linksToExternal={isExternal} />
-          <Title>{title}</Title>
-          <ImageWrapper>
-            <Image src={image} alt={title} />
-          </ImageWrapper>
-        </CardBody>
-      );
-      break;
-    case variants.descAndImage:
-      cardBody = (
-        <CardBody>
-          <Description title={description} clamp={2} tagName="p">
-            {description}
-          </Description>
-          <ImageWrapper>
-            <Image src={image} alt={title} />
-          </ImageWrapper>
-        </CardBody>
-      );
-      break;
-  }
-
-  return (
-    <BaseCard resourceType={resourceType} link={link}>
-      <CardBody>
-        <CardHeader resourceType={resourceType} linksToExternal={isExternal} />
-        <Title clamp={image && description ? 2 : 3} tagName="h2" title={title}>
-          {title}
-        </Title>
-        {renderBody ? renderBody() : cardBody}
-      </CardBody>
+      )}
     </BaseCard>
   );
 };
@@ -148,6 +153,70 @@ Card.propTypes = {
 Card.defaultProps = {
   description: null,
   image: null,
+};
+
+export const EventCard = ({ resourceType, title, description, image, link, event }) => {
+  let cardBody = null;
+  let clampAmount = 4;
+  //if takes one line.......
+  if (title.length < 23) {
+    clampAmount = 5;
+  }
+  if (image === 'eventbrite') {
+    cardBody = (
+      <React.Fragment>
+        <Description clamp={clampAmount} tagName="p">
+          {description}
+        </Description>
+        <EventContainer>
+          <EventDate>
+            <span>{event.start.month}</span>
+            {event.start.day}
+            <small>{event.start.year}</small>
+          </EventDate>
+          <EventInfoDiv>
+            <li>
+              {event.venue !== null ? event.venue : 'tbd'}
+              <EventbriteImageWrapper>
+                <EventLogo type={image} />
+              </EventbriteImageWrapper>
+            </li>
+          </EventInfoDiv>
+        </EventContainer>
+      </React.Fragment>
+    );
+  } else if (image === 'meetup') {
+    cardBody = (
+      <React.Fragment>
+        <Description clamp={clampAmount} tagName="p">
+          {description}
+        </Description>
+        <EventContainer>
+          <EventDate>
+            <span>{event.start.month}</span>
+            {event.start.day}
+            <small>{event.start.year}</small>
+          </EventDate>
+          <EventInfoDiv>
+            <li>
+              {event.venue !== null ? event.venue : 'tbd'}
+              <MeetupImageWrapper>
+                <EventLogo type={image} />
+              </MeetupImageWrapper>
+            </li>
+          </EventInfoDiv>
+        </EventContainer>
+      </React.Fragment>
+    );
+  }
+  return (
+    <Card
+      title={title}
+      resourceType={RESOURCE_TYPES.EVENTS}
+      renderBody={() => cardBody}
+      link={link}
+    />
+  );
 };
 
 export default Card;

@@ -6,6 +6,7 @@ import {
   DecorativeBar,
   Title,
   CardBody,
+  Card,
   Description,
   BaseCard,
   ImageWrapper,
@@ -74,26 +75,30 @@ storiesOf('Card Composition', module)
   .add('Header (not custom render prop)', () => (
     <Container>
       <DecorativeBar color="purple" />
-      <CardHeader resourceType="Repositories" />
+      <CardBody>
+        <CardHeader resourceType="Repositories" />
+      </CardBody>
     </Container>
   ))
   .add('Header (using custom render prop)', () => (
     <Container>
       <DecorativeBar color="purple" />
-      <CardHeader
-        resourceType="Repositories"
-        render={() => <span style={{ marginLeft: '10px' }}>repo: devhub-app-web</span>}
-      />
+      <CardBody>
+        <CardHeader
+          resourceType="Repositories"
+          render={() => <span style={{ marginLeft: '10px' }}>repo: devhub-app-web</span>}
+        />
+      </CardBody>
     </Container>
   ))
   .add('With Title (using <CardBody>)', () => (
     <Container>
       <DecorativeBar color="purple" />
-      <CardHeader
-        resourceType="Repositories"
-        render={() => <span style={{ marginLeft: '10px' }}>repo: devhub-app-web</span>}
-      />
       <CardBody>
+        <CardHeader
+          resourceType="Repositories"
+          render={() => <span style={{ marginLeft: '10px' }}>repo: devhub-app-web</span>}
+        />
         <Title>App Crashes on startup occasionally when using npm run dev</Title>
       </CardBody>
     </Container>
@@ -101,11 +106,11 @@ storiesOf('Card Composition', module)
   .add('With Description (using <CardBody>)', () => (
     <Container>
       <DecorativeBar color="purple" />
-      <CardHeader
-        resourceType="Repositories"
-        render={() => <span style={{ marginLeft: '10px' }}>repo: devhub-app-web</span>}
-      />
       <CardBody>
+        <CardHeader
+          resourceType="Repositories"
+          render={() => <span style={{ marginLeft: '10px' }}>repo: devhub-app-web</span>}
+        />
         <Title>App Crashes on startup occasionally when using npm run dev</Title>
         <Description>
           I'm having trouble running the app, it keeps crashing when running npm run dev
@@ -116,11 +121,11 @@ storiesOf('Card Composition', module)
   .add('With Image Only (using <CardBody>)', () => (
     <Container>
       <DecorativeBar color="purple" />
-      <CardHeader
-        resourceType="Repositories"
-        render={() => <span style={{ marginLeft: '10px' }}>repo: devhub-app-web</span>}
-      />
       <CardBody>
+        <CardHeader
+          resourceType="Repositories"
+          render={() => <span style={{ marginLeft: '10px' }}>repo: devhub-app-web</span>}
+        />
         <Title>App Crashes on startup occasionally when using npm run dev</Title>
         <ImageWrapper>
           <Image src="https://placeimg.com/180/145/animals" />
@@ -130,7 +135,7 @@ storiesOf('Card Composition', module)
   ));
 
 storiesOf('Base Card', module)
-  .add('introduction', () => (
+  .add('Introduction', () => (
     <div style={{ maxWidth: '400px' }}>
       The base card component is the fundamental unit of what a card is. This would be:
       <ul>
@@ -141,3 +146,36 @@ storiesOf('Base Card', module)
     </div>
   ))
   .add('Base Card', () => <BaseCard resourceType="Components" link="https://google.com" />);
+
+storiesOf('Prebuilt Card Components', module)
+  .add('Introduction', () => (
+    <div style={{ maxWidth: '400px' }}>
+      The Prebuilt Card Components are ones to be leveraged within the applications. They are built
+      from all the base components as described within this storybook.
+    </div>
+  ))
+  .add('Regular Card (basic)', () => (
+    <Card
+      resourceType="Github Issue"
+      link="http://localhost:8080"
+      title="App Crashes on startup occasionally when using npm run dev"
+      description=" I'm having trouble running the app, it keeps crashing when running npm run dev"
+    />
+  ))
+  .add('Regular Card (image only)', () => (
+    <Card
+      resourceType="Github Issue"
+      link="http://localhost:8080"
+      title="App Crashes on startup occasionally when using npm run dev"
+      image="https://placeimg.com/180/145/animals"
+    />
+  ))
+  .add('Regular Card (image and desc)', () => (
+    <Card
+      resourceType="Github Issue"
+      link="http://localhost:8080"
+      title="App Crashes on startup occasionally when using npm run dev"
+      image="https://placeimg.com/180/145/animals"
+      description=" I'm having trouble running the app, it keeps crashing when running npm run dev"
+    />
+  ));

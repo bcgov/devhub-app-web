@@ -38,7 +38,7 @@ const CardHeader = ({ resourceType, render, linksToExternal }) => {
   return (
     <div
       style={{
-        padding: '6px 10px 0',
+        marginBottom: '6px',
       }}
     >
       <H3>
