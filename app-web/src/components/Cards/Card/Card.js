@@ -43,7 +43,7 @@ import EventLogo from '../../Event/Logo';
 
 const Card = ({ type, title, description, image, link, ...rest }) => {
   let isExternal = !!validUrl.isWebUri(link);
-  // if there is an image it takes priority
+  // if there is an image it takes prioritya
   let cardBody = (
     <CardDescription title={description} clamp={6} tagName="p">
       {description}

@@ -83,9 +83,14 @@ export const Card = ({
   if (title.length < 23) {
     clampAmount = 5;
   }
-  if (image && description) inferredVariant = variants.descAndImage;
 
-  if (!description) inferredVariant = variants.imageOnly;
+  if (image && description) {
+    inferredVariant = variants.descAndImage;
+  } else if (!description && image) {
+    inferredVariant = variants.imageOnly;
+  } else if (!description) {
+    description = 'No description found.';
+  }
 
   // eslint-disable-next-line default-case
   switch (inferredVariant) {

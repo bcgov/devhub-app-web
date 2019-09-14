@@ -42,9 +42,10 @@ import { removeUnwantedResults, buildPopularTopic, buildFeaturedTopic } from '..
 import Loading from '../components/UI/Loading/Loading';
 import { RocketChatItem } from '../components/RocketChatItem/RocketChatItem';
 import { DynamicSearchResults } from '../components/DynamicSearchResults';
-import Card from '../components/Cards/Card/Card';
+import { Card } from '../components/Card/Card';
 import Row from '../components/Cards/Row';
 import Column from '../components/Cards/Column';
+import GithubCardHeader from '../components/DynamicSearchResults/GithubCardHeader';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -296,7 +297,17 @@ export const Index = ({
                     display: 'flex',
                   }}
                 >
-                  <Card {...gh.fields} type={gh.fields.resourceType} data-testid={gh.id} />
+                  <Card
+                    {...gh.fields}
+                    type={gh.fields.resourceType}
+                    data-testid={gh.id}
+                    renderHeader={() => (
+                      <GithubCardHeader
+                        resourceType={gh.fields.resourceType}
+                        repository={gh.repository.name}
+                      />
+                    )}
+                  />
                 </Column>
               ))}
             </Row>
