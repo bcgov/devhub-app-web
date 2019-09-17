@@ -121,7 +121,7 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubTopic } }) =>
                     description={e.fields.description}
                     image={e.fields.image}
                     link={e.fields.standAlonePath}
-                    node={e}
+                    event={e}
                   />
                 );
               })}
@@ -144,6 +144,7 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubTopic } }) =>
                   description={e.fields.description}
                   image={e.fields.image}
                   link={e.fields.standAlonePath}
+                  event={e}
                 />
               );
             })}

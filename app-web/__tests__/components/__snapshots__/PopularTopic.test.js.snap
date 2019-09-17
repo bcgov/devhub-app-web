@@ -9,7 +9,7 @@ exports[`PopularTopic matches snapshot 1`] = `
   min-height: 15px;
 }
 
-.emotion-55 {
+.emotion-59 {
   padding: 0 15px;
   padding-top: 10px;
   padding-bottom: 20px;
@@ -17,8 +17,9 @@ exports[`PopularTopic matches snapshot 1`] = `
 
 .emotion-4 {
   color: #444;
-  font-size: 14px;
+  font-size: 15px;
   margin-bottom: 0;
+  margin-top: 0;
   font-weight: 400;
 }
 
@@ -72,7 +73,7 @@ exports[`PopularTopic matches snapshot 1`] = `
   margin-bottom: 15px;
 }
 
-.emotion-30 {
+.emotion-32 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   font-weight: 400;
@@ -84,14 +85,14 @@ exports[`PopularTopic matches snapshot 1`] = `
   color: initial;
 }
 
-.emotion-30:hover {
+.emotion-32:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   color: initial;
   cursor: pointer;
 }
 
-.emotion-27 {
+.emotion-29 {
   width: 265px;
   height: 238.5px;
   margin: 10px 0;
@@ -113,7 +114,7 @@ exports[`PopularTopic matches snapshot 1`] = `
   overflow: hidden;
 }
 
-.emotion-27:hover {
+.emotion-29:hover {
   box-shadow: 0 2px 2px 1px #00000026;
   -webkit-transform: translateY(-2px);
   -ms-transform: translateY(-2px);
@@ -125,9 +126,10 @@ exports[`PopularTopic matches snapshot 1`] = `
   -webkit-flex: 0 0 10px;
   -ms-flex: 0 0 10px;
   flex: 0 0 10px;
+  min-height: 10px;
 }
 
-.emotion-25 {
+.emotion-27 {
   padding: 6px 10px;
   height: 100%;
   overflow: hidden;
@@ -156,20 +158,22 @@ exports[`PopularTopic matches snapshot 1`] = `
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
+  text-transform: capitalize;
   word-break: break-word;
 }
 
 .emotion-21 {
-  font-size: 14px;
   line-height: 1.4;
+  font-size: 14px;
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
   margin-bottom: 0;
+  margin-top: 4px;
   text-transform: none;
 }
 
-.emotion-23 {
+.emotion-25 {
   -webkit-flex: 1 1 auto;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
@@ -185,23 +189,32 @@ exports[`PopularTopic matches snapshot 1`] = `
   display: flex;
 }
 
-.emotion-32 {
+.emotion-23 {
+  width: 100%;
+  height: auto;
+  object-fit: scale-down;
+  max-height: 100%;
+  margin-bottom: 0;
+}
+
+.emotion-34 {
   background-color: #4299D2;
   -webkit-flex: 0 0 10px;
   -ms-flex: 0 0 10px;
   flex: 0 0 10px;
+  min-height: 10px;
 }
 
-.emotion-34 {
+.emotion-36 {
   color: #4299D2;
 }
 
-.emotion-53 {
+.emotion-57 {
   text-align: right;
   font-size: 1.15em;
 }
 
-.emotion-51 {
+.emotion-55 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   font-weight: 400;
@@ -219,10 +232,10 @@ exports[`PopularTopic matches snapshot 1`] = `
       type="Topics"
     />
     <div
-      class="emotion-55 emotion-56"
+      class="emotion-59 emotion-60"
     >
       <div
-        css="[object Object]"
+        style="margin-bottom: 6px;"
       >
         <h3
           class="emotion-4 emotion-5"
@@ -245,7 +258,7 @@ exports[`PopularTopic matches snapshot 1`] = `
             />
           </svg>
           <span
-            css="[object Object]"
+            style="margin: 4px;"
           >
             Topic
           </span>
@@ -278,24 +291,24 @@ exports[`PopularTopic matches snapshot 1`] = `
           >
             <li
               class="BrainhubCarouselItem BrainhubCarouselItem--active"
-              style="padding-right: 0px; padding-left: 0px; width: 251px; max-width: 251px; min-width: 251px;"
+              style="padding-right: 0px; padding-left: 0px; width: 275px; max-width: 275px; min-width: 275px;"
             >
               <a
-                class="emotion-29 emotion-30 emotion-8"
-                href="/topic/popular/Introduction-To-Github-and-Gov"
+                class="emotion-31 emotion-32 emotion-8"
+                href="/GitHub-Raw-1"
               >
                 <article
-                  class="emotion-27 emotion-28"
+                  class="emotion-29 emotion-30"
                 >
                   <div
                     class="emotion-13 emotion-14"
-                    type="Documentation"
+                    color="Documentation"
                   />
                   <div
-                    class="emotion-25 emotion-142"
+                    class="emotion-27 emotion-28"
                   >
                     <div
-                      css="[object Object]"
+                      style="margin-bottom: 6px;"
                     >
                       <h3
                         class="emotion-4 emotion-5"
@@ -318,7 +331,7 @@ exports[`PopularTopic matches snapshot 1`] = `
                           />
                         </svg>
                         <span
-                          css="[object Object]"
+                          style="margin: 4px;"
                         >
                           Documentation
                         </span>
@@ -341,50 +354,56 @@ exports[`PopularTopic matches snapshot 1`] = `
                         </small>
                       </h3>
                     </div>
-                    <h2
+                    <div
                       class="emotion-19 emotion-20"
                     >
                       Introduction To Github and Gov
-                    </h2>
+                    </div>
                     <p
                       class="emotion-21 emotion-22"
                     >
                       Everything you need to know about working with Github in the BC Government.
                     </p>
                     <div
-                      class="emotion-23 emotion-24"
-                    />
+                      class="emotion-25 emotion-26"
+                    >
+                      <img
+                        alt="Introduction To Github and Gov"
+                        class="emotion-23 emotion-24"
+                        src="../images/octokat.png"
+                      />
+                    </div>
                   </div>
                 </article>
               </a>
             </li>
             <li
               class="BrainhubCarouselItem"
-              style="padding-right: 0px; padding-left: 0px; width: 251px; max-width: 251px; min-width: 251px;"
+              style="padding-right: 0px; padding-left: 0px; width: 275px; max-width: 275px; min-width: 275px;"
             >
               <a
-                class="emotion-29 emotion-30 emotion-8"
-                href="/topic/popular/Introduction-To-Github-and-Gov"
+                class="emotion-31 emotion-32 emotion-8"
+                href="/GitHub-Raw-2"
               >
                 <article
-                  class="emotion-27 emotion-28"
+                  class="emotion-29 emotion-30"
                 >
                   <div
-                    class="emotion-32 emotion-14"
-                    type="Components"
+                    class="emotion-34 emotion-14"
+                    color="Components"
                   />
                   <div
-                    class="emotion-25 emotion-142"
+                    class="emotion-27 emotion-28"
                   >
                     <div
-                      css="[object Object]"
+                      style="margin-bottom: 6px;"
                     >
                       <h3
                         class="emotion-4 emotion-5"
                       >
                         <svg
                           aria-hidden="true"
-                          class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-34 emotion-3"
+                          class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-36 emotion-3"
                           data-icon="puzzle-piece"
                           data-prefix="fas"
                           data-testid="resource-type-icon"
@@ -400,7 +419,7 @@ exports[`PopularTopic matches snapshot 1`] = `
                           />
                         </svg>
                         <span
-                          css="[object Object]"
+                          style="margin: 4px;"
                         >
                           Component
                         </span>
@@ -423,19 +442,25 @@ exports[`PopularTopic matches snapshot 1`] = `
                         </small>
                       </h3>
                     </div>
-                    <h2
+                    <div
                       class="emotion-19 emotion-20"
                     >
                       Introduction To Github and Gov
-                    </h2>
+                    </div>
                     <p
                       class="emotion-21 emotion-22"
                     >
                       Everything you need to know about working with Github in the BC Government.
                     </p>
                     <div
-                      class="emotion-23 emotion-24"
-                    />
+                      class="emotion-25 emotion-26"
+                    >
+                      <img
+                        alt="Introduction To Github and Gov"
+                        class="emotion-23 emotion-24"
+                        src="../images/octokat.png"
+                      />
+                    </div>
                   </div>
                 </article>
               </a>
@@ -444,10 +469,10 @@ exports[`PopularTopic matches snapshot 1`] = `
         </div>
       </div>
       <div
-        class="emotion-53 emotion-54"
+        class="emotion-57 emotion-58"
       >
         <a
-          class="emotion-51 emotion-8"
+          class="emotion-55 emotion-8"
           href="/topic/popular"
         >
           Popular

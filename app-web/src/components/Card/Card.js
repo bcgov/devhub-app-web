@@ -52,7 +52,7 @@ const variants = {
  * Basic building block to compose all other cards from
  * @param {Object} Props
  */
-export const BaseCard = ({ resourceType, children, link, node, ...rest }) => (
+export const BaseCard = ({ resourceType, children, link, ...rest }) => (
   <LinkWrapper to={link}>
     <Container {...rest}>
       <DecorativeBar color={resourceType} />
@@ -75,7 +75,6 @@ export const Card = ({
   link,
   renderBody,
   renderHeader,
-  node,
   ...rest
 }) => {
   let isExternal = !!validUrl.isWebUri(link);
@@ -140,7 +139,7 @@ export const Card = ({
         image={image}
         title={title}
         description={description}
-        event={node}
+        {...rest}
       />
     );
   } else {
@@ -152,7 +151,7 @@ export const Card = ({
           ) : (
             <CardHeader resourceType={resourceType} linksToExternal={isExternal} />
           )}
-          <Title>{title}</Title>
+          <Title clamp={4}>{title}</Title>
           {renderBody ? renderBody() : cardBody}
         </CardBody>
       </BaseCard>
@@ -168,13 +167,11 @@ Card.propTypes = {
   image: PropTypes.string,
   renderBody: PropTypes.func,
   renderHeader: PropTypes.func,
-  node: PropTypes.object,
 };
 
 Card.defaultProps = {
   description: null,
   image: null,
-  node: {},
 };
 
 // used for eventbrite and meetup cards

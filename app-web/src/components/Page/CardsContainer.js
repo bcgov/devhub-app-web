@@ -64,7 +64,7 @@ const CardsContent = (loading, searchResultsEmpty, resources) => {
           description={r.description}
           image={r.image}
           link={r.path}
-          node={r}
+          event={r}
         />
       </Column>
     ));

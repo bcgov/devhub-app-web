@@ -205,7 +205,7 @@ storiesOf('Prebuilt Card Components', module)
       resourceType="Events"
       link="http://localhost:8080"
       description="foo foo foo"
-      node={{
+      event={{
         start: {
           day: '8',
           month: 'Jan',

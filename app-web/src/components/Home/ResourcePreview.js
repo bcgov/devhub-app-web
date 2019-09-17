@@ -200,7 +200,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
                 description={r.fields.description}
                 image={r.fields.image}
                 link={r.fields.standAlonePath}
-                node={r}
+                event={r}
               />
             </Col>
           ))}

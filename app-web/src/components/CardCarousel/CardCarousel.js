@@ -61,7 +61,7 @@ const CardCarousel = ({ resources }) => {
         description={r.fields.description}
         image={r.fields.image}
         link={r.fields.standAlonePath}
-        node={r}
+        event={r}
       />
     );
   });
