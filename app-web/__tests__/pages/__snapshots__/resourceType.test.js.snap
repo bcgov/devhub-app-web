@@ -419,7 +419,6 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
             data-testid="searchbar-input"
             id="dh-search-input"
             maxlength="40"
-            placeholder=""
             type="text"
             value=""
           />

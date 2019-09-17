@@ -27,7 +27,6 @@ const Input = ({ id, type, label, name, checked, query, ...rest }) => (
     label={label}
     checked={checked}
     className={styles.Input}
-    placeholder={query}
     {...rest}
   />
 );

@@ -190,7 +190,6 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
         data-testid="searchbar-input"
         id="dh-search-input"
         maxlength="40"
-        placeholder=""
         type="text"
         value=""
       />
@@ -400,7 +399,6 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
         data-testid="searchbar-input"
         id="dh-search-input"
         maxlength="40"
-        placeholder=""
         type="text"
         value=""
       />

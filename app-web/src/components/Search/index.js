@@ -49,7 +49,6 @@ export const Search = ({ onSearch, searchOnEnter, inputConfig, query, ...rest })
 
   const search = () => {
     onSearch(terms);
-    setTerms('');
   };
 
   return (
