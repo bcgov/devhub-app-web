@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-
 import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import css from '@emotion/css';
 import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/designTokens';
-
 import { RESOURCE_TYPES_LIST, CARD_CAROUSEL } from '../../constants/ui';
-
-import Card from '../Cards/Card/Card';
+import Card from '../Card/Card';
 
 export const TEST_IDS = {
   arrowLeft: 'carousel-arrow-left',
@@ -56,21 +52,19 @@ const CardCarousel = ({ resources }) => {
   const [index, setIndex] = useState(0);
   const numResources = resources.length;
 
-  const slides = resources.map(r => (
-    <Card
-      key={r.id}
-      css={css`
-        width: 235px;
-        margin: 10px;
-      `}
-      type={r.fields.resourceType}
-      title={r.fields.title}
-      description={r.fields.description}
-      image={r.fields.image}
-      link={r.path}
-      event={r}
-    />
-  ));
+  const slides = resources.map(r => {
+    return (
+      <Card
+        resourceType={r.fields.resourceType}
+        key={r.id}
+        title={r.fields.title}
+        description={r.fields.description}
+        image={r.fields.image}
+        link={r.fields.standAlonePath}
+        node={r}
+      />
+    );
+  });
 
   const settings = {
     animationSpeed: 125,
@@ -80,7 +74,7 @@ const CardCarousel = ({ resources }) => {
     addArrowClickHandler: true,
     slidesPerPage: CARD_CAROUSEL.desktop.slidesPerPage,
     slidesPerScroll: CARD_CAROUSEL.desktop.slidesPerScroll,
-    itemWidth: 251,
+    itemWidth: 275,
     breakpoints: {
       500: {
         slidesPerPage: CARD_CAROUSEL.mobile.slidesPerPage,

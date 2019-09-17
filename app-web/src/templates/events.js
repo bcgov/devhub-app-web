@@ -10,7 +10,7 @@ import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { EVENTS, RESOURCE_TYPES } from '../constants/ui';
 import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../constants/designTokens';
 import { TOPICS } from '../constants/topics';
-import Card from '../components/Cards/Card/Card';
+import Card from '../components/Card/Card';
 
 export const TEST_IDS = {
   alert: 'events-container',
@@ -112,17 +112,19 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubTopic } }) =>
         {currentEvents.length > 0 ? (
           <Aux>
             <CardContainer>
-              {currentEventsMeetUpsAndCards.map(e => (
-                <Card
-                  key={e.id}
-                  type={e.fields.resourceType}
-                  title={e.fields.title}
-                  description={e.fields.description}
-                  image={e.fields.image}
-                  link={e.fields.standAlonePath}
-                  event={e}
-                />
-              ))}
+              {currentEventsMeetUpsAndCards.map(e => {
+                return (
+                  <Card
+                    resourceType={e.fields.resourceType}
+                    key={e.id}
+                    title={e.fields.title}
+                    description={e.fields.description}
+                    image={e.fields.image}
+                    link={e.fields.standAlonePath}
+                    node={e}
+                  />
+                );
+              })}
             </CardContainer>
           </Aux>
         ) : (
@@ -133,17 +135,18 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubTopic } }) =>
             <h2>Past Events</h2>
           </Header>
           <CardContainer pastEvents>
-            {previousEventsAndMeetUps.map(e => (
-              <Card
-                key={e.id}
-                type={e.fields.resourceType}
-                title={e.fields.title}
-                description={e.fields.description}
-                image={e.fields.image}
-                link={e.fields.standAlonePath}
-                event={e}
-              />
-            ))}
+            {previousEventsAndMeetUps.map(e => {
+              return (
+                <Card
+                  resourceType={e.fields.resourceType}
+                  key={e.id}
+                  title={e.fields.title}
+                  description={e.fields.description}
+                  image={e.fields.image}
+                  link={e.fields.standAlonePath}
+                />
+              );
+            })}
           </CardContainer>
         </Aux>
       </Main>

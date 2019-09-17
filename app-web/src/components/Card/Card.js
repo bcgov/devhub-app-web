@@ -44,13 +44,15 @@ const variants = {
   basic: 'basic', // title, description, normal card header
   imageOnly: 'imageOnly', // title, image, normal card header
   descAndImage: 'descAndImage', // title, desc, image, normal card header
+  eventbrite: 'eventbrite', // title, desc, image, normal card header
+  meetup: 'meetup', // title, desc, image, normal card header
 };
 
 /**
  * Basic building block to compose all other cards from
  * @param {Object} Props
  */
-export const BaseCard = ({ resourceType, children, link, ...rest }) => (
+export const BaseCard = ({ resourceType, children, link, node, ...rest }) => (
   <LinkWrapper to={link}>
     <Container {...rest}>
       <DecorativeBar color={resourceType} />
@@ -73,6 +75,7 @@ export const Card = ({
   link,
   renderBody,
   renderHeader,
+  node,
   ...rest
 }) => {
   let isExternal = !!validUrl.isWebUri(link);
@@ -84,7 +87,11 @@ export const Card = ({
     clampAmount = 5;
   }
 
-  if (image && description) {
+  if (image === 'eventbrite') {
+    inferredVariant = variants.eventbrite;
+  } else if (image === 'meetup') {
+    inferredVariant = variants.meetup;
+  } else if (image && description) {
     inferredVariant = variants.descAndImage;
   } else if (!description && image) {
     inferredVariant = variants.imageOnly;
@@ -126,19 +133,31 @@ export const Card = ({
       break;
   }
 
-  return (
-    <BaseCard resourceType={resourceType} link={link} {...rest}>
-      <CardBody>
-        {renderHeader ? (
-          renderHeader()
-        ) : (
-          <CardHeader resourceType={resourceType} linksToExternal={isExternal} />
-        )}
-        <Title>{title}</Title>
-        {renderBody ? renderBody() : cardBody}
-      </CardBody>
-    </BaseCard>
-  );
+  if (inferredVariant === variants.eventbrite || inferredVariant === variants.meetup) {
+    return (
+      <EventCard
+        resourceType={resourceType}
+        image={image}
+        title={title}
+        description={description}
+        event={node}
+      />
+    );
+  } else {
+    return (
+      <BaseCard resourceType={resourceType} link={link} {...rest}>
+        <CardBody>
+          {renderHeader ? (
+            renderHeader()
+          ) : (
+            <CardHeader resourceType={resourceType} linksToExternal={isExternal} />
+          )}
+          <Title>{title}</Title>
+          {renderBody ? renderBody() : cardBody}
+        </CardBody>
+      </BaseCard>
+    );
+  }
 };
 
 Card.propTypes = {
@@ -149,13 +168,16 @@ Card.propTypes = {
   image: PropTypes.string,
   renderBody: PropTypes.func,
   renderHeader: PropTypes.func,
+  node: PropTypes.object,
 };
 
 Card.defaultProps = {
   description: null,
   image: null,
+  node: {},
 };
 
+// used for eventbrite and meetup cards
 export const EventCard = ({ title, description, image, link, event }) => {
   let cardBody = null;
   let clampAmount = 4;
