@@ -21,12 +21,13 @@ import styled from '@emotion/styled';
 import css from '@emotion/css';
 import { ChevronLink } from '../UI/Link';
 import { Container, LinkContainer } from './index';
-import Card from '../Cards/Card/Card';
+import Card from '../Card/Card';
 import Pill from '../UI/Pill';
 import { RESOURCE_TYPES } from '../../constants/ui';
 import { getSearchResultLabel } from '../../utils/helpers';
 import Row from '../Cards/Row';
 import Col from '../Cards/Column';
+import { EventCard } from '../Card/Card';
 
 export const CardWrapper = styled.div`
   margin: 6px 9px;
@@ -193,14 +194,25 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
                 display: 'flex',
               }}
             >
-              <Card
-                type={r.fields.resourceType}
-                title={r.fields.title}
-                description={r.fields.description}
-                image={r.fields.image}
-                link={r.fields.standAlonePath}
-                event={r}
-              />
+              {r.fields.resourceType === RESOURCE_TYPES.EVENTS ? (
+                <EventCard
+                  resourceType={r.fields.resourceType}
+                  title={r.fields.title}
+                  description={r.fields.description}
+                  image={r.fields.image}
+                  link={r.fields.standAlonePath}
+                  event={r}
+                />
+              ) : (
+                <Card
+                  resourceType={r.fields.resourceType}
+                  title={r.fields.title}
+                  description={r.fields.description}
+                  image={r.fields.image}
+                  link={r.fields.standAlonePath}
+                  event={r}
+                />
+              )}
             </Col>
           ))}
         </Row>

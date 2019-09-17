@@ -163,6 +163,7 @@ export const EventCard = ({ title, description, image, link, event }) => {
   if (title.length < 23) {
     clampAmount = 5;
   }
+
   if (image === 'eventbrite') {
     cardBody = (
       <React.Fragment>
