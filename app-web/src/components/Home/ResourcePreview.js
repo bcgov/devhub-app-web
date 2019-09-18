@@ -24,7 +24,7 @@ import { Container, LinkContainer } from './index';
 import Card from '../Card/Card';
 import Pill from '../UI/Pill';
 import { RESOURCE_TYPES } from '../../constants/ui';
-import { getSearchResultLabel } from '../../utils/helpers';
+import { getSearchResultLabel, togglePills } from '../../utils/helpers';
 import Row from '../Card/Row';
 import Col from '../Card/Column';
 
@@ -89,42 +89,40 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
   let [showCount, setCount] = useState(amountToShow);
   let [seeMoreResults, setSeeMore] = useState(seeMore);
   let [resourcesToShow, setResources] = useState(resources);
-  let [activeFilter, setFilter] = useState('All');
+  let [activeFilters, setActiveFilters] = useState(['All']);
+  const extraItemsToShow = 6; //two more row of card in the page after click 'see more'
 
   //sets the amount of resources to show, allowing users to 'see more' if its appropriate
   const updateCount = () => {
     //show 6 more results
-    setCount(showCount + 6);
+    setCount(showCount + extraItemsToShow);
     setSeeMore(true);
     if (showCount >= resourcesToShow.length) {
-      //hide the 'see more results' when there isnt more to show
+      //hide the 'see more results' when there isn‘t more to show
       setSeeMore(false);
     }
   };
 
   //This filters what results we are showing based on the given filter coming from user interaction with the ResourcePills
-  const resourceFilter = filter => {
+  const resourceFilter = filterName => {
     //filter the results based on given filter, update the resources and active filter
-    let filteredResources = resources.filter(
-      resource => resource.fields.resourceType === filter.name,
+    let filteredResources = [];
+    let newPillList = togglePills(filterName, activeFilters);
+    setActiveFilters(newPillList);
+    filteredResources = resources.filter(resource =>
+      newPillList.includes(resource.fields.resourceType),
     );
-    setResources(filteredResources);
-    setFilter(filter.name);
+    if (newPillList.includes('All')) {
+      setResources(resources);
+    } else {
+      setResources(filteredResources);
+    }
     //reset the amount of resources to show
     setCount(amountToShow);
   };
 
-  //when 'All Results' pill is toggled, reset our variables to initial states and show all results
-  const showAllResults = () => {
-    setResources(resources);
-    setFilter('All');
-    setCount(amountToShow);
-    setSeeMore(seeMore);
-  };
-
   let resultLabel = getSearchResultLabel(resources.length);
   resultLabel = resources.length !== 0 ? 'All ' + resultLabel : resultLabel;
-
   let pills = [];
   //Filters will be mapped into pills displaying result count for that particular resourcetype
   //These pills are interactive and filter results when clicked
@@ -139,8 +137,8 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
         key={'All Results'}
         variant="filled"
         deletable={false}
-        css={'All' === activeFilter ? toggled : ''}
-        onClick={() => showAllResults()}
+        css={activeFilters.includes('All') ? toggled : ''}
+        onClick={() => resourceFilter('All')}
       />,
     );
     pills = pills.concat(
@@ -153,12 +151,11 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
           //formats the text correctly for different cases
 
           let iconLabel = getSearchResultLabel(filter.counter);
-          //adds informative info for the behavior of the ResourcePills their current state
-          let iconInfo =
-            filter.name === activeFilter
-              ? 'Click to view all results again'
-              : `Click to view only ${filter.name} results`;
 
+          //adds informative info for the behavior of the ResourcePills their current state
+          let iconInfo = activeFilters.includes(filter.name)
+            ? `Click to hide ${filter.name} search results`
+            : `Click to show ${filter.name} search results`;
           return (
             <ResourcePill
               resourceType={filter.name}
@@ -166,8 +163,8 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
               variant="filled"
               deletable={false}
               key={filter.name}
-              css={filter.name === activeFilter ? toggled : ''}
-              onClick={filter.counter === 0 ? undefined : () => resourceFilter(filter)}
+              css={activeFilters.includes(filter.name) ? toggled : ''}
+              onClick={() => resourceFilter(filter.name)}
               title={iconInfo}
             />
           );
