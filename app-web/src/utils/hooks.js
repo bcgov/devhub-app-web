@@ -152,7 +152,7 @@ export const useSearchGate = (authenticated, queryString, client) => {
   useEffect(() => {
     setLoading(loading);
 
-    if (!queryString) {
+    if (!authenticated || !queryString) {
       setResults([]);
     } else if (!_loading) {
       setResults(data.search);
