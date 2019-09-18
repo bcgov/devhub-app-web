@@ -7,7 +7,7 @@ import Title from '../components/Page/Title';
 import Main from '../components/Page/Main';
 import NoEvents from '../components/UI/NoEvents';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
-import { EVENTS, RESOURCE_TYPES } from '../constants/ui';
+import { RESOURCE_TYPES } from '../constants/ui';
 import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../constants/designTokens';
 import { TOPICS } from '../constants/topics';
 import Card from '../components/Card/Card';
@@ -16,9 +16,9 @@ export const TEST_IDS = {
   alert: 'events-container',
 };
 
-const Header = styled.div`
-  margin-top: 30px;
-`;
+// const Header = styled.div`
+//   margin-top: 30px;
+// `;
 
 const Description = styled.div`
   padding-left: 3px;
@@ -91,11 +91,13 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubTopic } }) =>
   const currentEventsMeetUpsAndCards = communityCards.concat(
     currentEvents.sort((a, b) => b.start.daysFromNow - a.start.daysFromNow),
   );
+
+  // as described in the comment within the render code, this code is temporarily disable to address issue #948
   // previous events are sorted in descending order
-  const previousEventsAndMeetUps = formatEvents(events)
-    .filter(e => e.start.daysFromNow > 0)
-    .sort((a, b) => a.start.daysFromNow / 1 - b.start.daysFromNow / 1)
-    .splice(0, EVENTS.MAX_PAST_EVENTS);
+  // const previousEventsAndMeetUps = formatEvents(events)
+  //   .filter(e => e.start.daysFromNow > 0)
+  //   .sort((a, b) => a.start.daysFromNow / 1 - b.start.daysFromNow / 1)
+  //   .splice(0, EVENTS.MAX_PAST_EVENTS);
 
   return (
     <Layout>
@@ -130,7 +132,8 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubTopic } }) =>
         ) : (
           <NoEvents />
         )}
-        <Aux>
+        {/* commenting out previous events due to issue #948 on github, this is a temporary fix. We will look to move past events to another page */}
+        {/* <Aux>
           <Header>
             <h2>Past Events</h2>
           </Header>
@@ -149,7 +152,7 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubTopic } }) =>
               );
             })}
           </CardContainer>
-        </Aux>
+        </Aux> */}
       </Main>
     </Layout>
   );
