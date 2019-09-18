@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { Title, LinkContainer } from '../Home';
 import { ChevronLink } from '../UI/Link';
 import { SEARCH_SOURCE_CONFIG, SEARCH_SOURCES } from '../../constants/search';
-
+import { Element } from 'react-scroll';
 import documizeLogo from '../../assets/images/documize_logo.png';
 import githubLogo from '../../assets/images/github_logo.png';
 import rocketchatLogo from '../../assets/images/rocketchat_logo.svg';
@@ -22,35 +22,37 @@ const Container = styled.div`
   }
 `;
 
-export const DynamicSearchResults = ({ numResults, sourceType, link, children, ...rest }) => {
-  const contentMapping = {
-    [SEARCH_SOURCES.documize]: {
-      name: 'From Documize',
-      logo: documizeLogo,
-      id: 'documize',
-    },
-    [SEARCH_SOURCES.rocketchat]: {
-      name: 'From Rocket.Chat',
-      logo: rocketchatLogo,
-      id: 'rocketChat',
-    },
-    [SEARCH_SOURCES.github]: {
-      name: 'From Github',
-      logo: githubLogo,
-      id: 'github',
-    },
-  };
+export const SEARCH_SOURCE_CONTENT = {
+  [SEARCH_SOURCES.documize]: {
+    name: 'From Documize',
+    logo: documizeLogo,
+    id: 'documize',
+  },
+  [SEARCH_SOURCES.rocketchat]: {
+    name: 'From Rocket.Chat',
+    logo: rocketchatLogo,
+    id: 'rocketChat',
+  },
+  [SEARCH_SOURCES.github]: {
+    name: 'From Github',
+    logo: githubLogo,
+    id: 'github',
+  },
+};
 
-  const content = contentMapping[sourceType];
+export const DynamicSearchResults = ({ numResults, sourceType, link, children, ...rest }) => {
+  const content = SEARCH_SOURCE_CONTENT[sourceType];
   const settings = SEARCH_SOURCE_CONFIG[sourceType]
     ? SEARCH_SOURCE_CONFIG[sourceType]
     : SEARCH_SOURCE_CONFIG.default;
 
   return (
     <Container {...rest}>
-      <Title id={content.id}>
-        {content.name} <img src={content.logo} alt={content.name} />
-      </Title>
+      <Element name={content.id}>
+        <Title id={content.id}>
+          {content.name} <img src={content.logo} alt={content.name} />
+        </Title>
+      </Element>
 
       {numResults > settings.maxResults && (
         <small>

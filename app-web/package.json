@@ -92,7 +92,7 @@
     "react-helmet": "^5.2.1",
     "react-image": "^2.1.1",
     "react-pose": "^4.0.7",
-    "react-scroll": "^1.7.10",
+    "react-scroll": "^1.7.14",
     "react-select": "^2.4.3",
     "react-strap": "0.0.1",
     "react-toggled": "^1.2.7",
@@ -110,10 +110,7 @@
     "typography": "^0.16.19",
     "unfetch": "^4.1.0",
     "unist-util-visit": "^1.4.1",
-    "uri-parser": "^1.0.1",
-    "url-parse": "^1.4.7",
-    "valid-url": "^1.0.9",
-    "yamljs": "^0.3.0"
+    "valid-url": "^1.0.9"
   },
   "scripts": {
     "build": "npx --node-arg '-r esm' gatsby build",

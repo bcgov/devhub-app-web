@@ -2,7 +2,13 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { RCButton, GithubButton } from '../UI/Button/Button';
 import { useAuthenticated } from '../../utils/hooks';
-import { Link } from '../UI/Link';
+import { Link } from 'react-scroll';
+import { SEARCH_SOURCE_CONTENT } from '../DynamicSearchResults';
+import { SEARCH_SOURCES } from '../../constants/search';
+
+const StyledLink = styled(Link)`
+  margin: 0 5px;
+`;
 
 export const SearchSourcesContainer = styled.div`
   display: flex;
@@ -30,19 +36,21 @@ export const SearchSources = () => {
     };
   }
 
+  const scrollOffset = -125;
+
   return (
     <SearchSourcesContainer data-testid={TEST_IDS.container}>
       {authenticated ? (
-        <Link to={'#rocketChat'}>
+        <StyledLink to={SEARCH_SOURCE_CONTENT[SEARCH_SOURCES.rocketchat].id} offset={scrollOffset}>
           <RCButton title="Click to jump to rocket chat search results" />
-        </Link>
+        </StyledLink>
       ) : (
         <RCButton {...iconProps} title="Login to view rocket chat search results" />
       )}
       {authenticated ? (
-        <Link to={'#github'}>
+        <StyledLink to={SEARCH_SOURCE_CONTENT[SEARCH_SOURCES.github].id} offset={scrollOffset}>
           <GithubButton title="Click to jump to Github search results" />
-        </Link>
+        </StyledLink>
       ) : (
         <GithubButton {...iconProps} title="Login to view Github search results" />
       )}
