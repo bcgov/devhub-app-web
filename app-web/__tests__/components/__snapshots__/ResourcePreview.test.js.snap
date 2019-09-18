@@ -76,9 +76,10 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
             }
           }
           image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+          key="3"
           link="/Design-Node-3"
+          resourceType="Components"
           title="About"
-          type="Components"
         />
       </Col>
       <Col
@@ -148,9 +149,10 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
             }
           }
           image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+          key="2"
           link="/Design-Node-2"
+          resourceType="Components"
           title="About"
-          type="Components"
         />
       </Col>
       <Col
@@ -218,9 +220,10 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
             }
           }
           image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+          key="1"
           link="/Design-Node-1"
+          resourceType="Components"
           title="About"
-          type="Components"
         />
       </Col>
       <Col
@@ -288,9 +291,10 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
             }
           }
           image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+          key="4"
           link="/Design-Node-4"
+          resourceType="Components"
           title="About"
-          type="Components"
         />
       </Col>
       <Col
@@ -358,9 +362,10 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
             }
           }
           image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+          key="5"
           link="/DevHub-Node-1"
+          resourceType="Documentation"
           title="About"
-          type="Documentation"
         />
       </Col>
       <Col
@@ -430,9 +435,10 @@ exports[`Resource Preview Component it matches snapshot 1`] = `
             }
           }
           image="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+          key="6"
           link="/DevHub-Node-2"
+          resourceType="Documentation"
           title="About"
-          type="Documentation"
         />
       </Col>
     </Row>

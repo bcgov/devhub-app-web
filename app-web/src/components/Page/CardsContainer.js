@@ -31,7 +31,7 @@ import { SEARCH } from '../../constants/ui';
 import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/designTokens';
 import { SEARCH as SEARCH_MESSAGES } from '../../messages';
 
-import Card from '../Cards/Card/Card';
+import Card from '../Card/Card';
 import Search from '../Search';
 import Container from '../Cards/Container';
 import Row from '../Cards/Row';
@@ -59,11 +59,12 @@ const CardsContent = (loading, searchResultsEmpty, resources) => {
         `}
       >
         <Card
-          type={r.type}
+          resourceType={r.type}
           title={r.title}
           description={r.description}
           image={r.image}
           link={r.path}
+          event={r}
         />
       </Column>
     ));

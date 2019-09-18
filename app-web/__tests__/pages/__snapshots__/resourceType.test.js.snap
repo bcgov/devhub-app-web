@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Resource Type Template Page it matches snapshot, when there are no resources for the given reosource type the no resource component shows  1`] = `
-.emotion-62 {
+.emotion-66 {
   font-size: 15px;
   max-width: 1300px;
   margin: 0;
@@ -9,7 +9,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
 }
 
 @media screen and (min-width:932px) {
-  .emotion-62 {
+  .emotion-66 {
     padding: 10px 65px;
   }
 }
@@ -31,7 +31,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   line-height: 1.5em;
 }
 
-.emotion-60 {
+.emotion-64 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -63,7 +63,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   }
 }
 
-.emotion-58 {
+.emotion-62 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -77,14 +77,14 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
 }
 
 @media (min-width:576px) {
-  .emotion-58 {
+  .emotion-62 {
     margin-bottom: 15px;
     max-width: 810px;
   }
 }
 
 @media (min-width:768px) {
-  .emotion-58 {
+  .emotion-62 {
     margin-bottom: 15px;
     max-width: 1080px;
   }
@@ -165,7 +165,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   }
 }
 
-.emotion-56 {
+.emotion-60 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -180,7 +180,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
 }
 
 @media (min-width:810px) {
-  .emotion-56 {
+  .emotion-60 {
     -webkit-box-pack: start;
     -webkit-justify-content: start;
     -ms-flex-pack: start;
@@ -188,14 +188,14 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   }
 }
 
-.emotion-33 {
+.emotion-35 {
   margin: 0 10px;
   -webkit-flex: 0 0 250px;
   -ms-flex: 0 0 250px;
   flex: 0 0 250px;
 }
 
-.emotion-31 {
+.emotion-33 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   font-weight: 400;
@@ -207,14 +207,14 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   color: initial;
 }
 
-.emotion-31:hover {
+.emotion-33:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   color: initial;
   cursor: pointer;
 }
 
-.emotion-28 {
+.emotion-30 {
   width: 265px;
   height: 238.5px;
   margin: 10px 0;
@@ -236,7 +236,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   overflow: hidden;
 }
 
-.emotion-28:hover {
+.emotion-30:hover {
   box-shadow: 0 2px 2px 1px #00000026;
   -webkit-transform: translateY(-2px);
   -ms-transform: translateY(-2px);
@@ -248,9 +248,10 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   -webkit-flex: 0 0 10px;
   -ms-flex: 0 0 10px;
   flex: 0 0 10px;
+  min-height: 10px;
 }
 
-.emotion-26 {
+.emotion-28 {
   padding: 6px 10px;
   height: 100%;
   overflow: hidden;
@@ -269,8 +270,9 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
 
 .emotion-18 {
   color: #444;
-  font-size: 14px;
+  font-size: 15px;
   margin-bottom: 0;
+  margin-top: 0;
   font-weight: 400;
 }
 
@@ -286,20 +288,22 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
+  text-transform: capitalize;
   word-break: break-word;
 }
 
 .emotion-22 {
-  font-size: 14px;
   line-height: 1.4;
+  font-size: 14px;
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
   margin-bottom: 0;
+  margin-top: 4px;
   text-transform: none;
 }
 
-.emotion-24 {
+.emotion-26 {
   -webkit-flex: 1 1 auto;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
@@ -315,8 +319,16 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
   display: flex;
 }
 
+.emotion-24 {
+  width: 100%;
+  height: auto;
+  object-fit: scale-down;
+  max-height: 100%;
+  margin-bottom: 0;
+}
+
 <main
-  class="emotion-62 emotion-63"
+  class="emotion-66 emotion-67"
   role="main"
 >
   <div
@@ -332,7 +344,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
     </h4>
   </div>
   <div
-    class="emotion-60 emotion-61"
+    class="emotion-64 emotion-65"
   >
     <div
       class="emotion-4 emotion-5"
@@ -405,7 +417,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
       </div>
     </div>
     <div
-      class="emotion-58 emotion-59"
+      class="emotion-62 emotion-63"
     >
       <div
         class="emotion-10 emotion-11"
@@ -458,27 +470,27 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
         </span>
       </div>
       <div
-        class="emotion-56 emotion-57"
+        class="emotion-60 emotion-61"
       >
         <div
-          class="emotion-33 emotion-34"
+          class="emotion-35 emotion-36"
         >
           <a
-            class="emotion-30 emotion-31 emotion-32"
+            class="emotion-32 emotion-33 emotion-34"
             href="/DevHub-Node-1"
           >
             <article
-              class="emotion-28 emotion-29"
+              class="emotion-30 emotion-31"
             >
               <div
                 class="emotion-14 emotion-15"
-                type="Documentation"
+                color="Documentation"
               />
               <div
-                class="emotion-26 emotion-152"
+                class="emotion-28 emotion-29"
               >
                 <div
-                  css="[object Object]"
+                  style="margin-bottom: 6px;"
                 >
                   <h3
                     class="emotion-18 emotion-19"
@@ -501,7 +513,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
                       />
                     </svg>
                     <span
-                      css="[object Object]"
+                      style="margin: 4px;"
                     >
                       Documentation
                     </span>
@@ -524,42 +536,48 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
                     </small>
                   </h3>
                 </div>
-                <h2
+                <div
                   class="emotion-20 emotion-21"
                 >
                   About
-                </h2>
+                </div>
                 <p
                   class="emotion-22 emotion-23"
                 >
                   What the Design System is and how it works.
                 </p>
                 <div
-                  class="emotion-24 emotion-25"
-                />
+                  class="emotion-26 emotion-27"
+                >
+                  <img
+                    alt="About"
+                    class="emotion-24 emotion-25"
+                    src="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
+                  />
+                </div>
               </div>
             </article>
           </a>
         </div>
         <div
-          class="emotion-33 emotion-34"
+          class="emotion-35 emotion-36"
         >
           <a
-            class="emotion-30 emotion-31 emotion-32"
+            class="emotion-32 emotion-33 emotion-34"
             href="/GitHub-Raw-1"
           >
             <article
-              class="emotion-28 emotion-29"
+              class="emotion-30 emotion-31"
             >
               <div
                 class="emotion-14 emotion-15"
-                type="Documentation"
+                color="Documentation"
               />
               <div
-                class="emotion-26 emotion-152"
+                class="emotion-28 emotion-29"
               >
                 <div
-                  css="[object Object]"
+                  style="margin-bottom: 6px;"
                 >
                   <h3
                     class="emotion-18 emotion-19"
@@ -582,7 +600,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
                       />
                     </svg>
                     <span
-                      css="[object Object]"
+                      style="margin: 4px;"
                     >
                       Documentation
                     </span>
@@ -605,19 +623,25 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
                     </small>
                   </h3>
                 </div>
-                <h2
+                <div
                   class="emotion-20 emotion-21"
                 >
                   Introduction To Github and Gov
-                </h2>
+                </div>
                 <p
                   class="emotion-22 emotion-23"
                 >
                   Everything you need to know about working with Github in the BC Government.
                 </p>
                 <div
-                  class="emotion-24 emotion-25"
-                />
+                  class="emotion-26 emotion-27"
+                >
+                  <img
+                    alt="Introduction To Github and Gov"
+                    class="emotion-24 emotion-25"
+                    src="../images/octokat.png"
+                  />
+                </div>
               </div>
             </article>
           </a>

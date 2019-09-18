@@ -21,7 +21,7 @@ import styled from '@emotion/styled';
 import css from '@emotion/css';
 import { ChevronLink } from '../UI/Link';
 import { Container, LinkContainer } from './index';
-import Card from '../Cards/Card/Card';
+import Card from '../Card/Card';
 import Pill from '../UI/Pill';
 import { RESOURCE_TYPES } from '../../constants/ui';
 import { getSearchResultLabel } from '../../utils/helpers';
@@ -194,7 +194,8 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
               }}
             >
               <Card
-                type={r.fields.resourceType}
+                resourceType={r.fields.resourceType}
+                key={r.id}
                 title={r.fields.title}
                 description={r.fields.description}
                 image={r.fields.image}

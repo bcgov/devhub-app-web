@@ -21,10 +21,10 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 
-import { RESOURCE_TYPES_LIST } from '../../constants/ui';
+import { RESOURCE_TYPES_LIST, TOPICS } from '../../constants/ui';
 import { ChevronLink, Link } from '../UI/Link';
 import { DecorativeBar, CardTitle, CardDescription } from '../Cards/Card';
-import CardHeader from '../Cards/Card/CardHeader';
+import CardHeader from '../Card/CardHeader';
 import CardCarousel from '../CardCarousel/CardCarousel';
 
 const withPadding = css`
@@ -78,9 +78,9 @@ const TopicPreview = ({ title, description, link, resources, ...rest }) => (
     `}
     {...rest}
   >
-    <TopicDecorativeBar type="Topics" />
+    <TopicDecorativeBar type={TOPICS} />
     <TopicPreviewContainer>
-      <CardHeader type="Topics" />
+      <CardHeader resourceType={TOPICS} />
       <TopicTitle clamp={2}>
         <TitleLink to={link.to}>{title}</TitleLink>
       </TopicTitle>

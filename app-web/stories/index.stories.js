@@ -152,7 +152,9 @@ storiesOf('Prebuilt Card Components', module)
   .add('Introduction', () => (
     <div style={{ maxWidth: '400px' }}>
       The Prebuilt Card Components are ones to be leveraged within the applications. They are built
-      from all the base components as described within this storybook.
+      from all the base components as described within this storybook. The{' '}
+      <code>&lt;Card /&gt;</code> component will render different variants based on the props your
+      provide
     </div>
   ))
   .add('Regular Card (basic variant)', () => (
@@ -196,6 +198,29 @@ storiesOf('Prebuilt Card Components', module)
         </div>
       )}
       title="Groceries"
+    />
+  ))
+  .add('Regular Card (eventbrite variant)', () => (
+    <Card
+      resourceType="Events"
+      link="http://localhost:8080"
+      description="foo foo foo"
+      event={{
+        start: {
+          day: '8',
+          month: 'Jan',
+          year: '2020',
+        },
+        end: {
+          day: '8',
+          month: 'Jan',
+          year: '2020',
+        },
+
+        venue: 'Exchange Lab',
+      }}
+      title="Groceries"
+      image="eventbrite"
     />
   ))
   .add('Card with custom header', () => (

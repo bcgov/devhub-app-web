@@ -15,10 +15,12 @@ describe('Card Carousel', () => {
   const resources = [
     {
       id: 'foo',
-      type: RESOURCE_TYPES.DOCUMENTATION,
+      resourceType: RESOURCE_TYPES.DOCUMENTATION,
       fields: {
+        resourceType: RESOURCE_TYPES.DOCUMENTATION,
         title: 'foo',
         description: 'bar',
+        standAlonePath: '/foo',
       },
       path: '/foo',
     },

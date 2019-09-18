@@ -44,6 +44,8 @@ const variants = {
   basic: 'basic', // title, description, normal card header
   imageOnly: 'imageOnly', // title, image, normal card header
   descAndImage: 'descAndImage', // title, desc, image, normal card header
+  eventbrite: 'eventbrite', // title, desc, image, normal card header
+  meetup: 'meetup', // title, desc, image, normal card header
 };
 
 /**
@@ -83,9 +85,18 @@ export const Card = ({
   if (title.length < 23) {
     clampAmount = 5;
   }
-  if (image && description) inferredVariant = variants.descAndImage;
 
-  if (!description) inferredVariant = variants.imageOnly;
+  if (image === 'eventbrite') {
+    inferredVariant = variants.eventbrite;
+  } else if (image === 'meetup') {
+    inferredVariant = variants.meetup;
+  } else if (image && description) {
+    inferredVariant = variants.descAndImage;
+  } else if (!description && image) {
+    inferredVariant = variants.imageOnly;
+  } else if (!description) {
+    description = 'No description found.';
+  }
 
   // eslint-disable-next-line default-case
   switch (inferredVariant) {
@@ -121,19 +132,32 @@ export const Card = ({
       break;
   }
 
-  return (
-    <BaseCard resourceType={resourceType} link={link} {...rest}>
-      <CardBody>
-        {renderHeader ? (
-          renderHeader()
-        ) : (
-          <CardHeader resourceType={resourceType} linksToExternal={isExternal} />
-        )}
-        <Title>{title}</Title>
-        {renderBody ? renderBody() : cardBody}
-      </CardBody>
-    </BaseCard>
-  );
+  if (inferredVariant === variants.eventbrite || inferredVariant === variants.meetup) {
+    return (
+      <EventCard
+        resourceType={resourceType}
+        image={image}
+        title={title}
+        description={description}
+        link={link}
+        {...rest}
+      />
+    );
+  } else {
+    return (
+      <BaseCard resourceType={resourceType} link={link} {...rest}>
+        <CardBody>
+          {renderHeader ? (
+            renderHeader()
+          ) : (
+            <CardHeader resourceType={resourceType} linksToExternal={isExternal} />
+          )}
+          <Title clamp={4}>{title}</Title>
+          {renderBody ? renderBody() : cardBody}
+        </CardBody>
+      </BaseCard>
+    );
+  }
 };
 
 Card.propTypes = {
@@ -151,12 +175,13 @@ Card.defaultProps = {
   image: null,
 };
 
+// used for eventbrite and meetup cards
 export const EventCard = ({ title, description, image, link, event }) => {
   let cardBody = null;
-  let clampAmount = 4;
+  let clampAmount = 3;
   //if takes one line.......
   if (title.length < 23) {
-    clampAmount = 5;
+    clampAmount = 4;
   }
   if (image === 'eventbrite') {
     cardBody = (
