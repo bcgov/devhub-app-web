@@ -177,10 +177,10 @@ Card.defaultProps = {
 // used for eventbrite and meetup cards
 export const EventCard = ({ title, description, image, link, event }) => {
   let cardBody = null;
-  let clampAmount = 4;
+  let clampAmount = 3;
   //if takes one line.......
   if (title.length < 23) {
-    clampAmount = 5;
+    clampAmount = 4;
   }
 
   if (image === 'eventbrite') {
