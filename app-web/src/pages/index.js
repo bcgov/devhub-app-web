@@ -43,8 +43,8 @@ import Loading from '../components/UI/Loading/Loading';
 import { RocketChatItem } from '../components/RocketChatItem/RocketChatItem';
 import { DynamicSearchResults } from '../components/DynamicSearchResults';
 import { Card } from '../components/Card/Card';
-import Row from '../components/Cards/Row';
-import Column from '../components/Cards/Column';
+import Row from '../components/Card/Row';
+import Column from '../components/Card/Column';
 import GithubCardHeader from '../components/DynamicSearchResults/GithubCardHeader';
 
 const Main = styled.main`

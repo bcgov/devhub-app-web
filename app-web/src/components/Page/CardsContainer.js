@@ -33,9 +33,9 @@ import { SEARCH as SEARCH_MESSAGES } from '../../messages';
 
 import Card from '../Card/Card';
 import Search from '../Search';
-import Container from '../Cards/Container';
-import Row from '../Cards/Row';
-import Column from '../Cards/Column';
+import Container from '../Card/Container';
+import Row from '../Card/Row';
+import Column from '../Card/Column';
 import Loading from '../UI/Loading/Loading';
 import Pill from '../UI/Pill';
 import { isQueryEmpty } from '../../utils/search';

@@ -23,7 +23,7 @@ import { css } from '@emotion/core';
 
 import { RESOURCE_TYPES_LIST, TOPICS } from '../../constants/ui';
 import { ChevronLink, Link } from '../UI/Link';
-import { DecorativeBar, CardTitle, CardDescription } from '../Cards/Card';
+import { DecorativeBar, Title as CardTitle, Description as CardDescription } from '../Card';
 import CardHeader from '../Card/CardHeader';
 import CardCarousel from '../CardCarousel/CardCarousel';
 
