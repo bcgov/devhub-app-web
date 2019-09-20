@@ -4,6 +4,14 @@
   "sourceProperties": {
     "sources": [
       {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://github.com/BCDevOps/openshift-components/",
+          "description":"A trove of apps/components/stuff/things that are usable by anyone running OpenShift - in particular BC Gov teams \"doing\" Agile/DevOps."
+        },
+        "resourceType": "Repositories"
+      },
+      {
         "sourceType": "github",
         "sourceProperties": {
           "url": "https://github.com/BCDevOps/openshift-components/",
@@ -11,7 +19,7 @@
           "repo": "openshift-components",
           "file": "README.md"
         },
-        "resourceType": "repositories"
+        "resourceType": "Repositories"
       },
       {
         "sourceType": "github",
