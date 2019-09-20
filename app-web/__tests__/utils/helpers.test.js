@@ -24,6 +24,7 @@ import {
   getTextAndLink,
   buildPopularTopic,
   buildFeaturedTopic,
+  togglePills,
 } from '../../src/utils/helpers';
 import { GITHUB_URL } from '../../src/constants/api';
 import { RESOURCE_TYPES } from '../../src/constants/ui';
@@ -254,6 +255,44 @@ describe('Helpers', () => {
       expect(
         buildFeaturedTopic(nodes, 'featured topic', 'description', 'featured', featuredResources),
       ).toMatchSnapshot();
+    });
+  });
+
+  describe('toggle pill unit test', () => {
+    test('if All pill toggled, none of other should be toggled', () => {
+      const filterName = 'All';
+      const activeList = ['billy', 'is', 'the', 'best'];
+      const expected = ['All'];
+      const temp = togglePills(filterName, activeList);
+      expect(temp).toEqual(expected);
+    });
+    test('if one other pill toggled, All pill should not be toggled', () => {
+      const filterName = 'billy';
+      const activeList = ['All'];
+      const expected = ['billy'];
+      const temp = togglePills(filterName, activeList);
+      expect(temp).toEqual(expected);
+    });
+    test('test if pills can be toggle on', () => {
+      const filterName = 'billy';
+      const activeList = ['who', 'is', 'the', 'best'];
+      const expected = ['who', 'is', 'the', 'best', 'billy'];
+      const temp = togglePills(filterName, activeList);
+      expect(temp).toEqual(expected);
+    });
+    test('test if pills can be toggle off', () => {
+      const filterName = 'billy';
+      const activeList = ['billy', 'is', 'the', 'best'];
+      const expected = ['is', 'the', 'best'];
+      const temp = togglePills(filterName, activeList);
+      expect(temp).toEqual(expected);
+    });
+    test('test if all pills are toggle off, only all result pill will be toggled on ', () => {
+      const filterName = 'billy';
+      const activeList = ['billy'];
+      const expected = ['All'];
+      const temp = togglePills(filterName, activeList);
+      expect(temp).toEqual(expected);
     });
   });
 });

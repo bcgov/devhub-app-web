@@ -233,6 +233,37 @@ export const isFilterLonely = filters => {
   return numAreFilterable === 1;
 };
 
+/** This function will return a new list of pills that need to be toggled based on the what
+ * user clicked and what pill is already been toggled.
+ * @param {String} filterName This is the pill that user current click
+ * @param {Array} currentPillList This is the list of pill that current toggled
+ * @returns {Array} activeFilter This is the new list of toggled pills after adding new pill.
+ */
+
+export const togglePills = (filterName, currentPillList) => {
+  let activeFilter = [];
+  if (filterName !== 'All') {
+    //toggle pill ↓
+    if (currentPillList.includes(filterName)) {
+      activeFilter = currentPillList.filter(item => item !== filterName);
+    } else {
+      activeFilter = currentPillList.concat(filterName);
+    }
+    //always remove "All pill" if other pill is toggled ↓
+    if (activeFilter.includes('All')) {
+      activeFilter = activeFilter.filter(item => item !== 'All');
+    }
+    // if nothing toggled, back to default 'All' pill
+    if (activeFilter.length === 0) {
+      activeFilter = activeFilter.concat('All');
+    }
+    return activeFilter;
+  } else {
+    //user click 'All result' pill
+    activeFilter = activeFilter.concat(filterName);
+    return activeFilter;
+  }
+};
 // topics are sorted based on our arbitrary config where design system is first and then
 // all other topics sorted lexographically
 /**
