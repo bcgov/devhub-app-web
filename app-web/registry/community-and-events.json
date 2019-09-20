@@ -12,6 +12,19 @@
     "sources": [
       {
         "sourceType": "web",
+        "resourceType": "Repositories",
+        "sourceProperties": {
+          "url": "https://github.com/bcdevops/devops-platform-workshops",
+          "title": "Openshift 101/201 Course Materials",
+          "description": "Everything from labs, slide decks, to learning materials and guidebooks for facilitators is available as opensource 🔥🔥"
+        },
+        "attributes": {
+          "labels": ["type=workshop"],
+          "personas": ["Product Owner", "Facilitators"]
+        }
+      },
+      {
+        "sourceType": "web",
         "resourceType": "Events",
         "sourceProperties": {
           "url": "https://events.redhat.com/profile/form/index.cfm?PKformID=0x74120abcd&sc_cid=701f20000012x6EAAQ&elqTrackId=0c85624becbd4ba180570953ad861f38",
