@@ -2,6 +2,7 @@
 
 exports[`PopularTopic matches snapshot 1`] = `
 .emotion-0 {
+  background-color: #444;
   -webkit-flex: 0 0 10px;
   -ms-flex: 0 0 10px;
   flex: 0 0 10px;
@@ -231,7 +232,7 @@ exports[`PopularTopic matches snapshot 1`] = `
   >
     <div
       class="emotion-0 emotion-1"
-      type="Topics"
+      color="Topics"
     />
     <div
       class="emotion-59 emotion-60"
@@ -297,7 +298,7 @@ exports[`PopularTopic matches snapshot 1`] = `
             >
               <a
                 class="emotion-31 emotion-32 emotion-8"
-                href="/GitHub-Raw-1"
+                href="/topic/popular/Introduction-To-Github-and-Gov"
               >
                 <article
                   class="emotion-29 emotion-30"
@@ -385,7 +386,7 @@ exports[`PopularTopic matches snapshot 1`] = `
             >
               <a
                 class="emotion-31 emotion-32 emotion-8"
-                href="/GitHub-Raw-2"
+                href="/topic/popular/Introduction-To-Github-and-Gov"
               >
                 <article
                   class="emotion-29 emotion-30"
