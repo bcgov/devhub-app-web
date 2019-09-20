@@ -65,7 +65,6 @@
           "repo": "openshift-wiki",
           "files": [
             "docs/OCP/OCPServiceDefinition.md",
-            "docs/OCP/Networking.md",
             "docs/OCP/StartingANewProject.md",
             "docs/OCP/RequestUserAccess.md",
             "docs/OCP/RequestGitHubUserAccess.md",

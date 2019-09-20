@@ -225,7 +225,7 @@ Once you are done, edit the `JSON` configuration file of your choosing (preferab
           "author": "cvarjao",
           "title": "Red Hat Single Sign On (aka KeyCloak)",
           "description": "Red Hat Single Sign On is .....",
-          "image": "http://design.jboss.org/keycloak/logo/images/keycloak_logo_600px.svg"
+          "image": "https://design.jboss.org/keycloak/logo/images/keycloak_logo_200px.png"
         }
       },
       {
