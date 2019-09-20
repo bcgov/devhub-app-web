@@ -162,6 +162,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   -webkit-flex: 0 0 10px;
   -ms-flex: 0 0 10px;
   flex: 0 0 10px;
+  min-height: 10px;
   min-height: 15px;
 }
 
@@ -191,6 +192,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
+  text-transform: capitalize;
   word-break: break-word;
   font-weight: 700;
   margin: 10px 0;
@@ -218,12 +220,13 @@ exports[`Topics Container it matches snapshot 1`] = `
 }
 
 .emotion-30 {
-  font-size: 14px;
   line-height: 1.4;
+  font-size: 14px;
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
   margin-bottom: 0;
+  margin-top: 4px;
   text-transform: none;
   max-width: 500px;
   margin-bottom: 15px;
@@ -623,7 +626,7 @@ exports[`Topics Container it matches snapshot 1`] = `
       >
         <div
           class="emotion-19 emotion-20"
-          type="Topics"
+          color="Topics"
         />
         <div
           class="emotion-78 emotion-79"
@@ -689,7 +692,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                 >
                   <a
                     class="emotion-50 emotion-51 emotion-12"
-                    href="/GitHub-Raw-1"
+                    href="/Design-System/foo"
                   >
                     <article
                       class="emotion-48 emotion-49"
@@ -777,7 +780,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                 >
                   <a
                     class="emotion-50 emotion-51 emotion-12"
-                    href="/GitHub-Raw-2"
+                    href="/Design-System/bar"
                   >
                     <article
                       class="emotion-48 emotion-49"
@@ -895,7 +898,7 @@ exports[`Topics Container it matches snapshot 1`] = `
       >
         <div
           class="emotion-19 emotion-20"
-          type="Topics"
+          color="Topics"
         />
         <div
           class="emotion-78 emotion-79"
@@ -961,7 +964,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                 >
                   <a
                     class="emotion-50 emotion-51 emotion-12"
-                    href="/GitHub-Raw-1"
+                    href="/Devhub/foo"
                   >
                     <article
                       class="emotion-48 emotion-49"
@@ -1049,7 +1052,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                 >
                   <a
                     class="emotion-50 emotion-51 emotion-12"
-                    href="/GitHub-Raw-2"
+                    href="/Devhub/bar"
                   >
                     <article
                       class="emotion-48 emotion-49"

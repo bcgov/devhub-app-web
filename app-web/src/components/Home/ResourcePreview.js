@@ -25,8 +25,8 @@ import Card from '../Card/Card';
 import Pill from '../UI/Pill';
 import { RESOURCE_TYPES } from '../../constants/ui';
 import { getSearchResultLabel } from '../../utils/helpers';
-import Row from '../Cards/Row';
-import Col from '../Cards/Column';
+import Row from '../Card/Row';
+import Col from '../Card/Column';
 
 export const CardWrapper = styled.div`
   margin: 6px 9px;

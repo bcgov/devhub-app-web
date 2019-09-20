@@ -20,7 +20,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { withPadding } from '../common';
-import CardHeader from '../../Cards/Card/CardHeader';
+import CardHeader from '../../Card/CardHeader';
 import { Title } from '../../Page';
 import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
 
@@ -32,7 +32,7 @@ const Header = styled.header`
 
 const Masthead = ({ title, description, type }) => (
   <Header>
-    <CardHeader type={type} />
+    <CardHeader resourceType={type} />
     <Title title={title} subtitle={description} />
   </Header>
 );

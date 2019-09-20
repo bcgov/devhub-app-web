@@ -23,7 +23,7 @@ import { css } from '@emotion/core';
 
 import { RESOURCE_TYPES_LIST, TOPICS } from '../../constants/ui';
 import { ChevronLink, Link } from '../UI/Link';
-import { DecorativeBar, CardTitle, CardDescription } from '../Cards/Card';
+import { DecorativeBar, Title as CardTitle, Description as CardDescription } from '../Card';
 import CardHeader from '../Card/CardHeader';
 import CardCarousel from '../CardCarousel/CardCarousel';
 
@@ -71,14 +71,14 @@ export const TitleLink = styled(Link)`
 const TopicPreview = ({ title, description, link, resources, ...rest }) => (
   <div
     css={css`
-      max-width: 862px;
+      max-width: 1100px;
       margin: 20px 0;
       border: 1px solid #ccc;
       border-top: transparent;
     `}
     {...rest}
   >
-    <TopicDecorativeBar type={TOPICS} />
+    <TopicDecorativeBar color={TOPICS} />
     <TopicPreviewContainer>
       <CardHeader resourceType={TOPICS} />
       <TopicTitle clamp={2}>

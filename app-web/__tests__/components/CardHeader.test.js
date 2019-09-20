@@ -1,13 +1,19 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { ThemeProvider } from 'emotion-theming';
+import theme from '../../theme';
+import { render } from 'react-testing-library';
 import { RESOURCE_TYPES } from '../../src/constants/ui';
-import CardHeader from '../../src/components/Cards/Card/CardHeader';
+import CardHeader from '../../src/components/Card/CardHeader';
 
-import { mountWithTheme } from '../helpers';
 describe('Card Header Component', () => {
   it('shows an external link icon when linksToExternal is passed in as true', () => {
-    const wrapper = mountWithTheme(<CardHeader type={RESOURCE_TYPES.COMPONENTS} linksToExternal />);
-    expect(wrapper.find(FontAwesomeIcon).length).toBe(2);
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <CardHeader resourceType={RESOURCE_TYPES.COMPONENTS} linksToExternal />
+      </ThemeProvider>,
+    );
+
+    expect(container.getElementsByTagName('svg').length).toBe(2);
   });
 });

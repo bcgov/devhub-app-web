@@ -52,19 +52,17 @@ const CardCarousel = ({ resources }) => {
   const [index, setIndex] = useState(0);
   const numResources = resources.length;
 
-  const slides = resources.map(r => {
-    return (
-      <Card
-        resourceType={r.fields.resourceType}
-        key={r.id}
-        title={r.fields.title}
-        description={r.fields.description}
-        image={r.fields.image}
-        link={r.fields.standAlonePath}
-        event={r}
-      />
-    );
-  });
+  const slides = resources.map(r => (
+    <Card
+      resourceType={r.fields.resourceType}
+      key={r.id}
+      title={r.fields.title}
+      description={r.fields.description}
+      image={r.fields.image}
+      link={r.path}
+      event={r}
+    />
+  ));
 
   const settings = {
     animationSpeed: 125,

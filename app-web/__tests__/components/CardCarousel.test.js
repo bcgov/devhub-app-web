@@ -7,7 +7,7 @@ import CardCarousel, { TEST_IDS } from '../../src/components/CardCarousel/CardCa
 import { RESOURCE_TYPES } from '../../src/constants/ui';
 
 // mock out card components
-jest.mock('../../src/components/Cards/Card/Card.js', () => () => <div>card</div>);
+jest.mock('../../src/components/Card/Card.js', () => () => <div>card</div>);
 
 describe('Card Carousel', () => {
   afterEach(cleanup);
