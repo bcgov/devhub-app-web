@@ -80,9 +80,16 @@ export const Masthead = ({ query, resultCount, searchSourcesLoading }) => {
     <Container>
       <AppLogo
         css={css`
+          :hover {
+            text-decoration: none;
+            color: initial;
+          }
+          color: rgba(0, 0, 0, 0.8);
           font-size: 1.5em;
           margin-bottom: 0.5em;
         `}
+        href="/?q="
+        as="a"
       />
 
       <h4
