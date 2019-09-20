@@ -71,14 +71,14 @@ export const TitleLink = styled(Link)`
 const TopicPreview = ({ title, description, link, resources, ...rest }) => (
   <div
     css={css`
-      max-width: 862px;
+      max-width: 1100px;
       margin: 20px 0;
       border: 1px solid #ccc;
       border-top: transparent;
     `}
     {...rest}
   >
-    <TopicDecorativeBar type={TOPICS} />
+    <TopicDecorativeBar color={TOPICS} />
     <TopicPreviewContainer>
       <CardHeader resourceType={TOPICS} />
       <TopicTitle clamp={2}>
