@@ -50,7 +50,7 @@ const PreviewHeader = styled.div`
   }
 `;
 
-const SeeMoreP = styled.p`
+export const SeeMoreP = styled.p`
   text-decoration: underline;
   color: #1a5a96;
   font-weight: 400;

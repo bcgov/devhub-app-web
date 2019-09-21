@@ -214,11 +214,24 @@ const createEventsPage = createPage => {
     component,
   });
 };
+const createPastEventsPage = createPage => {
+  let component = resolvePath('../src/templates/pastEvents.js');
 
+  //if (!process.env.EVENT_BRITE_API_KEY || !process.env.MEETUP_API_KEY) {
+  if (!process.env.EVENT_BRITE_API_KEY) {
+    component = resolvePath('../src/templates/TemplatePlaceholder.js');
+  }
+
+  createPage({
+    path: 'past-events',
+    component,
+  });
+};
 module.exports = async ({ graphql, actions }) => {
   const { createPage } = actions;
   createResourceTypePages(createPage);
   createResourceTopicsPages(createPage, graphql);
   createEventsPage(createPage);
+  createPastEventsPage(createPage);
   createStandAlonePage(createPage, graphql);
 };

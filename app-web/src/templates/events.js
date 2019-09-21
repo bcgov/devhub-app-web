@@ -11,7 +11,7 @@ import { RESOURCE_TYPES } from '../constants/ui';
 import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../constants/designTokens';
 import { TOPICS } from '../constants/topics';
 import Card from '../components/Card/Card';
-
+import { ChevronLink } from '../components/UI/Link';
 export const TEST_IDS = {
   alert: 'events-container',
 };
@@ -24,16 +24,13 @@ const Description = styled.div`
   padding-left: 3px;
 `;
 
-const CardContainer = styled.div`
+export const CardContainer = styled.div`
   display: flex;
   max-width: 1000px;
   flex-flow: row wrap;
   justify-content: center;
   ${EMOTION_BOOTSTRAP_BREAKPOINTS.sm} {
     justify-content: flex-start;
-  }
-  article {
-    opacity: ${({ pastEvents }) => (pastEvents ? '.65' : '1')};
   }
 `;
 
@@ -92,13 +89,6 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubTopic } }) =>
     currentEvents.sort((a, b) => b.start.daysFromNow - a.start.daysFromNow),
   );
 
-  // as described in the comment within the render code, this code is temporarily disable to address issue #948
-  // previous events are sorted in descending order
-  // const previousEventsAndMeetUps = formatEvents(events)
-  //   .filter(e => e.start.daysFromNow > 0)
-  //   .sort((a, b) => a.start.daysFromNow / 1 - b.start.daysFromNow / 1)
-  //   .splice(0, EVENTS.MAX_PAST_EVENTS);
-
   return (
     <Layout>
       <Main>
@@ -109,6 +99,10 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubTopic } }) =>
             Please raise an issue{' '}
             <a href="https://github.com/bcgov/devhub-app-web/issues/new"> here</a> (requires a
             Github account).
+          </p>
+          <p>
+            Click here for
+            <ChevronLink to="/past-events">past events</ChevronLink>
           </p>
         </Description>
         {currentEvents.length > 0 ? (
@@ -132,27 +126,6 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubTopic } }) =>
         ) : (
           <NoEvents />
         )}
-        {/* commenting out previous events due to issue #948 on github, this is a temporary fix. We will look to move past events to another page */}
-        {/* <Aux>
-          <Header>
-            <h2>Past Events</h2>
-          </Header>
-          <CardContainer pastEvents>
-            {previousEventsAndMeetUps.map(e => {
-              return (
-                <Card
-                  resourceType={e.fields.resourceType}
-                  key={e.id}
-                  title={e.fields.title}
-                  description={e.fields.description}
-                  image={e.fields.image}
-                  link={e.fields.standAlonePath}
-                  event={e}
-                />
-              );
-            })}
-          </CardContainer>
-        </Aux> */}
       </Main>
     </Layout>
   );
