@@ -67,7 +67,6 @@ export const PastEventsPage = ({ data: { allEventbriteEvents } }) => {
       </CardContainer>
       <LinkContainer>
         {seeMoreResults && <SeeMoreP onClick={() => updateCount()}>See More Results</SeeMoreP>}
-        {/* {undefined && <ChevronLink to={undefined.to}>{undefined.text}</ChevronLink>} */}
       </LinkContainer>
     </Layout>
   );
