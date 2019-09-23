@@ -1,7 +1,7 @@
 import isString from 'lodash/isString';
 import removeMd from 'remove-markdown';
 import isArray from 'lodash/isArray';
-import { PERSONAS_LIST, SEARCH_RESOURCE_TYPES } from '../constants/ui';
+import { PERSONAS_LIST, SEARCH_RESOURCE_TYPES, RESOURCE_TYPES } from '../constants/ui';
 import { GITHUB_SEARCH_SOURCE_TYPENAMES } from '../constants/search';
 
 /**
@@ -102,6 +102,17 @@ export const githubSearchReducer = githubItem => {
       },
     };
   } else if (githubItem.__typename === GITHUB_SEARCH_SOURCE_TYPENAMES.Repository) {
+    const { name, description, url } = githubItem;
+    return {
+      ...githubItem,
+      fields: {
+        title: name,
+        description,
+        link: url,
+        resourceType: RESOURCE_TYPES.REPOSITORIES,
+        personas: PERSONAS_LIST,
+      },
+    };
   }
 
   return {};

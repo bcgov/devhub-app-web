@@ -37,6 +37,7 @@ import {
   POPULAR_TOPIC_CONFIGURATION,
   FEATURE_TOPIC_CONFIGURATION,
   FEATURED_CONTENT,
+  SEARCH_RESOURCE_TYPES,
 } from '../constants/ui';
 import { removeUnwantedResults, buildPopularTopic, buildFeaturedTopic } from '../utils/helpers';
 import Loading from '../components/UI/Loading/Loading';
@@ -46,6 +47,7 @@ import { Card } from '../components/Card/Card';
 import Row from '../components/Card/Row';
 import Column from '../components/Card/Column';
 import GithubCardHeader from '../components/DynamicSearchResults/GithubCardHeader';
+import CardHeader from '../components/Card/CardHeader';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -252,11 +254,21 @@ export const Index = ({
     const settings = SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.rocketchat];
     let githubCards = [];
     if (github) {
-      githubCards = github
+      const parsedPayloads = github.map(gh => JSON.parse(gh.typePayload));
+      // github results come in different flavors: issues, prs, repos
+      // they also belong to the same list and require separating out in order
+      // to ensure both 'types' display
+      const githubGroupedByType = groupBy(parsedPayloads, '__typename');
+
+      const issues = githubGroupedByType[GITHUB_SEARCH_SOURCE_TYPENAMES.Issue]
         .slice(0, SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.github].maxResults)
-        .map(g => JSON.parse(g.typePayload))
-        .filter(g => g.__typename !== GITHUB_SEARCH_SOURCE_TYPENAMES.PullRequest)
         .map(githubSearchReducer);
+
+      const repositories = githubGroupedByType[GITHUB_SEARCH_SOURCE_TYPENAMES.Repository]
+        .slice(0, SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.github].maxResults)
+        .map(githubSearchReducer);
+
+      githubCards = issues.concat(repositories);
     }
 
     content = (
@@ -301,12 +313,16 @@ export const Index = ({
                     {...gh.fields}
                     type={gh.fields.resourceType}
                     data-testid={gh.id}
-                    renderHeader={() => (
-                      <GithubCardHeader
-                        resourceType={gh.fields.resourceType}
-                        repository={gh.repository.name}
-                      />
-                    )}
+                    renderHeader={() => {
+                      return gh.fields.resourceType === SEARCH_RESOURCE_TYPES.GITHUB_ISSUE ? (
+                        <GithubCardHeader
+                          resourceType={gh.fields.resourceType}
+                          repository={gh.repository.name}
+                        />
+                      ) : (
+                        <CardHeader resourceType={gh.fields.resourceType} />
+                      );
+                    }}
                   />
                 </Column>
               ))}
