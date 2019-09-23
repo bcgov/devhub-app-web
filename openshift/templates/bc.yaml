@@ -39,6 +39,7 @@ objects:
         kind: ImageStreamTag
         name: ${NAME}:${VERSION}
     postCommit: {}
+    runPolicy: SerialLatestOnly
     resources:
       requests:
         cpu: 1
@@ -101,6 +102,7 @@ objects:
       build: ${NAME}-static${SUFFIX}
     name: ${NAME}-static${SUFFIX}
   spec:
+    runPolicy: SerialLatestOnly
     nodeSelector: null
     output:
       to:
