@@ -15,7 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { SEARCH } from '../../messages';
 import { ARIA_LABEL_SEARCH_BUTTON, ARIA_LABEL_SEARCH_INPUT } from '../../constants/ariaLabels';
@@ -45,12 +45,15 @@ export const TEST_IDS = {
 };
 
 export const Search = ({ onSearch, searchOnEnter, inputConfig, query, ...rest }) => {
-  const [terms, setTerms] = useState('');
-
+  const [terms, setTerms] = useState(query);
   const search = () => {
     onSearch(terms);
   };
-
+  useEffect(() => {
+    if (query === '') {
+      setTerms('');
+    }
+  }, [query]);
   return (
     <Container {...rest}>
       <Input
