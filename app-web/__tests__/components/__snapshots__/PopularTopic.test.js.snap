@@ -135,7 +135,7 @@ exports[`PopularTopic matches snapshot 1`] = `
 .emotion-27 {
   padding: 6px 10px;
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
   height: 100%;
   display: -webkit-box;
   display: -webkit-flex;
