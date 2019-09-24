@@ -212,7 +212,10 @@ export const Index = ({
 
   let totalSearchResults = 0;
 
-  const resourcesNotFound = !queryIsEmpty && (!results || (results.length === 0 && windowHasQuery));
+  const resourcesNotFound =
+    !queryIsEmpty &&
+    (!results || (results.length === 0 && windowHasQuery)) &&
+    isEmpty(searchSourceResults);
 
   const topics = flattenGatsbyGraphQL(allDevhubTopic.edges);
 

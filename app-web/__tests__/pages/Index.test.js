@@ -130,6 +130,39 @@ describe('Home Page', () => {
     expect(Alert).toBeInTheDocument();
   });
 
+  test('when there is a search and no local results, but external results, no alert box shows up', () => {
+    queryString.parse.mockReturnValue({});
+    useSearchGate.mockReturnValue({ results: ROCKET_CHAT, loading: false });
+    useSearch.mockReturnValue([]);
+
+    const { rerender, queryByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <ApolloProvider client={client}>
+          <Index {...props} />
+        </ApolloProvider>
+      </ThemeProvider>,
+    );
+
+    let Alert;
+    Alert = queryByTestId(TEST_IDS.alert);
+    // initially there are valid results and so there should no be no alert
+    expect(Alert).not.toBeInTheDocument();
+    // mock that query string actually finds search values in the url
+    queryString.parse.mockReturnValue({ q: 'foo' });
+    // rerender stubbing no results for resources
+    rerender(
+      <ThemeProvider theme={theme}>
+        <ApolloProvider client={client}>
+          <Index {...props} />
+        </ApolloProvider>
+      </ThemeProvider>,
+    );
+
+    Alert = queryByTestId(TEST_IDS.alert);
+
+    expect(Alert).not.toBeInTheDocument();
+  });
+
   test('When a blank search is entered, cards and alerts dont show but topics do', () => {
     queryString.parse.mockReturnValue({});
     const { container, rerender, queryByTestId, queryAllByTestId } = render(
