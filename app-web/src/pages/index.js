@@ -297,7 +297,7 @@ export const Index = ({
         )}
         {!isEmpty(github) && github.length > 0 && (
           <DynamicSearchResults
-            numResults={github.length}
+            numResults={githubCards.length}
             sourceType={SEARCH_SOURCES.github}
             link={{
               to: 'https://github.com/bcgov',
