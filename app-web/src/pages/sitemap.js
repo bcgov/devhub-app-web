@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql, Link } from 'gatsby';
 import Layout from '../hoc/Layout';
 
+// this site app is not ready to expose to the public as it is not styled well
 export const Sitemap = ({ data }) => {
   return (
     <Layout>
