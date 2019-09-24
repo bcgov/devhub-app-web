@@ -258,7 +258,11 @@ export const Index = ({
       // github results come in different flavors: issues, prs, repos
       // they also belong to the same list and require separating out in order
       // to ensure both 'types' display
-      const githubGroupedByType = groupBy(parsedPayloads, '__typename');
+      const githubGroupedByType = {
+        [GITHUB_SEARCH_SOURCE_TYPENAMES.Repository]: [], // provide default values incase no results resolve
+        [GITHUB_SEARCH_SOURCE_TYPENAMES.Issue]: [],
+        ...groupBy(parsedPayloads, '__typename'),
+      };
 
       const issues = githubGroupedByType[GITHUB_SEARCH_SOURCE_TYPENAMES.Issue]
         .slice(0, SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.github].maxResults)
