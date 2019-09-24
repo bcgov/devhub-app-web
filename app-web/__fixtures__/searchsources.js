@@ -29,6 +29,12 @@ export const GITHUB = [
     typePayload:
       '{"__typename":"Issue","id":"MDU6SXNzdWU0NTMxNDA2ODc=","author":{"avatarUrl":"https://avatars1.githubusercontent.com/u/21046727?v=4","login":"patricksimonian"},"number":686,"body":"","url":"https://github.com/bcgov/devhub-app-web/issues/686","title":"Integrate e2e testing into the pipeline with cypress to allow for confident deploys without the need for developer ui testing","state":"OPEN","repository":{"name":"devhub-app-web","owner":{"login":"bcgov"}},"createdAt":"2019-06-06T17:00:02Z","updatedAt":"2019-09-10T16:05:57Z"}',
   },
+  {
+    type: 'github',
+    id: 'MDEwOlJlcG9zaXRvcnkxNDg2Nzk1OTQ=',
+    typePayload:
+      '{"__typename":"Repository","id":"MDEwOlJlcG9zaXRvcnkxNDg2Nzk1OTQ=","isArchived":false,"createdAt":"2018-09-13T18:20:12Z","watchers":{"totalCount":9},"owner":{"login":"bcgov"},"updatedAt":"2019-09-23T16:55:38Z","stargazers":{"totalCount":15},"description":"Web application for the DevHub","url":"https://github.com/bcgov/devhub-app-web","name":"devhub-app-web"}',
+  },
 ];
 
 export const ROCKET_CHAT = [

@@ -37,6 +37,7 @@ import {
   POPULAR_TOPIC_CONFIGURATION,
   FEATURE_TOPIC_CONFIGURATION,
   FEATURED_CONTENT,
+  SEARCH_RESOURCE_TYPES,
 } from '../constants/ui';
 import { removeUnwantedResults, buildPopularTopic, buildFeaturedTopic } from '../utils/helpers';
 import Loading from '../components/UI/Loading/Loading';
@@ -45,7 +46,8 @@ import { DynamicSearchResults } from '../components/DynamicSearchResults';
 import { Card } from '../components/Card/Card';
 import Row from '../components/Card/Row';
 import Column from '../components/Card/Column';
-import GithubCardHeader from '../components/DynamicSearchResults/GithubCardHeader';
+import GithubIssueCardHeader from '../components/DynamicSearchResults/GithubIssueCardHeader';
+import CardHeader from '../components/Card/CardHeader';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -210,7 +212,10 @@ export const Index = ({
 
   let totalSearchResults = 0;
 
-  const resourcesNotFound = !queryIsEmpty && (!results || (results.length === 0 && windowHasQuery));
+  const resourcesNotFound =
+    !queryIsEmpty &&
+    (!results || (results.length === 0 && windowHasQuery)) &&
+    isEmpty(searchSourceResults);
 
   const topics = flattenGatsbyGraphQL(allDevhubTopic.edges);
 
@@ -252,11 +257,25 @@ export const Index = ({
     const settings = SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.rocketchat];
     let githubCards = [];
     if (github) {
-      githubCards = github
+      const parsedPayloads = github.map(gh => JSON.parse(gh.typePayload));
+      // github results come in different flavors: issues, prs, repos
+      // they also belong to the same list and require separating out in order
+      // to ensure both 'types' display
+      const githubGroupedByType = {
+        [GITHUB_SEARCH_SOURCE_TYPENAMES.Repository]: [], // provide default values incase no results resolve
+        [GITHUB_SEARCH_SOURCE_TYPENAMES.Issue]: [],
+        ...groupBy(parsedPayloads, '__typename'),
+      };
+
+      const issues = githubGroupedByType[GITHUB_SEARCH_SOURCE_TYPENAMES.Issue]
         .slice(0, SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.github].maxResults)
-        .map(g => JSON.parse(g.typePayload))
-        .filter(g => g.__typename !== GITHUB_SEARCH_SOURCE_TYPENAMES.PullRequest)
         .map(githubSearchReducer);
+
+      const repositories = githubGroupedByType[GITHUB_SEARCH_SOURCE_TYPENAMES.Repository]
+        .slice(0, SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.github].maxResults)
+        .map(githubSearchReducer);
+
+      githubCards = issues.concat(repositories);
     }
 
     content = (
@@ -281,7 +300,7 @@ export const Index = ({
         )}
         {!isEmpty(github) && github.length > 0 && (
           <DynamicSearchResults
-            numResults={github.length}
+            numResults={githubCards.length}
             sourceType={SEARCH_SOURCES.github}
             link={{
               to: 'https://github.com/bcgov',
@@ -301,12 +320,16 @@ export const Index = ({
                     {...gh.fields}
                     type={gh.fields.resourceType}
                     data-testid={gh.id}
-                    renderHeader={() => (
-                      <GithubCardHeader
-                        resourceType={gh.fields.resourceType}
-                        repository={gh.repository.name}
-                      />
-                    )}
+                    renderHeader={() => {
+                      return gh.fields.resourceType === SEARCH_RESOURCE_TYPES.GITHUB_ISSUE ? (
+                        <GithubIssueCardHeader
+                          resourceType={gh.fields.resourceType}
+                          repository={gh.repository.name}
+                        />
+                      ) : (
+                        <CardHeader resourceType={gh.fields.resourceType} />
+                      );
+                    }}
                   />
                 </Column>
               ))}
