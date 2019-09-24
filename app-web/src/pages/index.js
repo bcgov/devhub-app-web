@@ -46,7 +46,7 @@ import { DynamicSearchResults } from '../components/DynamicSearchResults';
 import { Card } from '../components/Card/Card';
 import Row from '../components/Card/Row';
 import Column from '../components/Card/Column';
-import GithubCardHeader from '../components/DynamicSearchResults/GithubCardHeader';
+import GithubIssueCardHeader from '../components/DynamicSearchResults/GithubIssueCardHeader';
 import CardHeader from '../components/Card/CardHeader';
 
 const Main = styled.main`
@@ -315,7 +315,7 @@ export const Index = ({
                     data-testid={gh.id}
                     renderHeader={() => {
                       return gh.fields.resourceType === SEARCH_RESOURCE_TYPES.GITHUB_ISSUE ? (
-                        <GithubCardHeader
+                        <GithubIssueCardHeader
                           resourceType={gh.fields.resourceType}
                           repository={gh.repository.name}
                         />

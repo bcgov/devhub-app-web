@@ -67,7 +67,7 @@ export const SEARCH_SOURCE_CONFIG = {
     maxResults: 12,
   },
   default: {
-    maxResults: 10,
+    maxResults: 9,
   },
 };
 

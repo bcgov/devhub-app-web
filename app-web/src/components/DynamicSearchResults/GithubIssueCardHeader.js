@@ -35,7 +35,7 @@ const Header = styled.span`
   margin: 4px;
 `;
 
-const GithubCardHeader = ({ resourceType, repository }) => {
+const GithubIssueCardHeader = ({ resourceType, repository }) => {
   return (
     <Header
       style={{
@@ -52,9 +52,9 @@ const GithubCardHeader = ({ resourceType, repository }) => {
   );
 };
 
-GithubCardHeader.propTypes = {
+GithubIssueCardHeader.propTypes = {
   resourceType: PropTypes.oneOf(['Github Issue', 'Repository']),
   repository: PropTypes.string,
 };
 
-export default GithubCardHeader;
+export default GithubIssueCardHeader;
