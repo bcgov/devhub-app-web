@@ -43,5 +43,8 @@
       "js-beautify --config .jsbeautifyrc -f *.css",
       "git add"
     ]
+  },
+  "dependencies": {
+    "@bcgov/gh-deploy": "^1.0.3"
   }
 }

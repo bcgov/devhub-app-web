@@ -1,7 +1,14 @@
+// JENKINS FILE REQUIREMENTS
+// this jenkins file leverages environment variables such as 
+// GITHUB_TOKEN: the github access token
+
+// In order for this Jenkinsfile works, please ensure the deployment config that is responsible for
+// deploying jenkins slave pods has this environment variable set. 
 pipeline {
     agent none
     environment {
         COMPONENT_NAME = 'DevHub web app'
+        CURRENT_PIPELINE_ID = ''
         COMPONENT_HOME = '/'
         BUILD_TRIGGER_EXCLUDES = "^.jenkins/\\|^matomo/"
     }
@@ -35,9 +42,17 @@ pipeline {
             steps {
                 echo "Deploying ..."
                 sh "openshift/keycloak-scripts/kc-create-client.sh ${CHANGE_ID}"
-                def deploymentId = sh(script: "npx @bcgov/dh-deploy deployment -d='Deploying to dev' -e=development -o=bcgov --repo=devhub-app-web")
-                sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev"
-                sh "npx @bcgov/dh-deploy status --state=success --deployment=${deploymentId} -o=bcgov --repo=devhub-app-web"
+                script {
+                    timeout(time: 3, unit: 'MINUTES') {
+                        // please note the required-contexts=[] parameter
+                        // github will not create deployments if status checks are pending or failed
+                        // this is to bypass and github action checks that we are currently doing
+                        def deploymentId = sh(returnStdout: true, script: "cd .pipeline && ./npxw @bcgov/gh-deploy deployment --ref=pull/${CHANGE_ID}/head -d='Deploying to dev' -e=development -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN} --required-contexts=[]").trim()
+                        CURRENT_PIPELINE_ID = deploymentId
+                        sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev"
+                        sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=success --deployment=${deploymentId} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
+                    }
+                }
             }
         }
         stage('Deploy (TEST)') {
@@ -48,7 +63,15 @@ pipeline {
             }
             steps {
                 echo "Deploying ..."
-                sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=test"
+                script {
+                    timeout(time: 3, unit: 'MINUTES') {
+                        def deploymentId = sh(returnStdout: true, script: "cd .pipeline && ./npxw @bcgov/gh-deploy deployment --ref=pull/${CHANGE_ID}/head -d='Deploying to test' -e=test -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN} --required-contexts=[]")
+                        CURRENT_PIPELINE_ID = deploymentId
+                        sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=test"
+                        sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=success --deployment=${deploymentId} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
+                    }
+
+                }
             }
         }
         stage('Deploy (PROD)') {
@@ -59,7 +82,14 @@ pipeline {
             }
             steps {
                 echo "Deploying ..."
-                sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=prod"
+                script {
+                    timeout(time: 5, unit: 'MINUTES') {
+                        def deploymentId = sh(returnStdout: true, script: "cd .pipeline && ./npxw @bcgov/gh-deploy deployment --ref=pull/${CHANGE_ID}/head -d='Deploying to prod' -e=production -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN} --required-contexts=[]")
+                        // CURRENT_PIPELINE_ID = "${deploymentId}"
+                        sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=prod"
+                        sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=success --deployment=${deploymentId} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
+                    }
+                }
             }
         }
 
@@ -85,4 +115,12 @@ pipeline {
             }
         }
     }
+    post {
+        failure {
+            scripts {
+                echo "Failed Pipeline"
+                sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=failure --deployment=${CURRENT_PIPELINE_ID} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
+            }
+        }
+     }
 }
