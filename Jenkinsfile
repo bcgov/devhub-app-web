@@ -35,7 +35,9 @@ pipeline {
             steps {
                 echo "Deploying ..."
                 sh "openshift/keycloak-scripts/kc-create-client.sh ${CHANGE_ID}"
+                def deploymentId = sh(script: "npx @bcgov/dh-deploy deployment -d='Deploying to dev' -e=development -o=bcgov --repo=devhub-app-web")
                 sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev"
+                sh "npx @bcgov/dh-deploy status --state=success --deployment=${deploymentId} -o=bcgov --repo=devhub-app-web"
             }
         }
         stage('Deploy (TEST)') {
