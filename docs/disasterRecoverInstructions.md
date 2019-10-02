@@ -1,9 +1,11 @@
 ### Disaster Recovery Instructions
 
 
-
 ## Deploy Devhub on OpenShift
-Learning from build.js in pipeline/lib file about its’ deploying process, here’s my approach of manually deploy Devhub. 
+These instructions are to get the Devhub stood up in a prompt fashion. This will get the application running but it will not standup supporting infrastructure such as jenkins. It is HIGHLY recommended you follow instructions for the pipeline-cli/bcdk to stand up a pipeline to manage the deployment/builds of Devhub.
+
+As another tip, use the __--dry-run__ flag with any __oc apply__ command to ensure that your cli commands are working as expected.
+ 
  
 **prerequisite：**
 Have a nodejs version 10 and s2i-caddy image from Redhat in ‘openshift’ namespace.
@@ -14,15 +16,14 @@ Have all required API token.(Github, matomo, eventbrite)
 
 Assuming we start in a empty namespace
  
- 
-In OpenShift: namespace: BC developer Hub(tools)
+In OpenShift: namespace: BC developer Hub(tools)  
 
 
-**Step 1, add following secrete objects to this namespace**
-* devhub-eventbrite-token
-* devhub-gh-token
-* devhub-meetup-token
-* matomo-api-key
+- **Step 1, add following secret objects to this namespace**
+  * devhub-eventbrite-token
+  * devhub-gh-token
+  * devhub-meetup-token
+  * matomo-api-key
 
  we can add by using the corresponding template in the project file: openshift/template:
 
@@ -33,15 +34,16 @@ oc process -n devhub-tools -f matomo.secret.yaml -p MATOMO_API_KEY=<Matomo acces
 
 oc process -n devhub-tools -f eventbrite.secret.yaml -p EVENT_BRITE_API_KEY=<Event brite api key if you have> |oc apply -f –
 ```
-We are currently not using meetup, but meetup token has to be there, so create one with any API token:
+>At this time it is NOT possible to get a Meetups token. They have disabled access tokens and so this step can be skipped 
 
 ```cmd
 oc process -n devhub-tools -f meetup.secret.yaml -p MEETUP_API_KEY=<anything> | oc apply -f –
 ```
  
-**Step 2, add build config：**
+ 
+- **Step 2, add build config：**
 
-Get all required environment variable for bc.yaml and put them in a file, in this case, I use bash as my source of my build configure parameters as parameter.sh
+Get all required environment variable for bc.yaml and put them in a file, in this case, I use bash as my source of my build configure parameters as `parameter.sh`
 ```sh
 NAME=devhub
 SUFFIX=-build
@@ -61,19 +63,20 @@ oc process -f bc.yaml --param-file parameter.sh | oc apply -f –
 
 devhub-build in build should start build and hopefully will succeed.
  
-## Guessing:
+## Deploying:
+`TODO:`
 
-**Step 3, add Router:**
+- **Step 3, add Router:**
 
-**Last step, deploy into a pod**
+
+- **Last step, deploy into a pod**
 we need to deploy image into pod by using dc.yaml in dev/test/prod name space
 
 ```cmd
-oc process -f dc.yaml -n devhub-dev process | oc apply -f –
+oc process -f dc.yaml -n <namespace> | oc apply -f -
 ```
 
-manually select resource you want to use and should be good to go.
- 
+There are some parameter that you will need to fill in to select resources you want to use.
  
  
  
