@@ -84,8 +84,8 @@ pipeline {
                 echo "Deploying ..."
                 script {
                     timeout(time: 5, unit: 'MINUTES') {
-                        def deploymentId = sh(returnStdout: true, script: "cd .pipeline && ./npxw @bcgov/gh-deploy deployment --ref=pull/${CHANGE_ID}/head -d='Deploying to prod' -e=production -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN} --required-contexts=[]")
-                        // CURRENT_PIPELINE_ID = "${deploymentId}"
+                        def deploymentId = sh(returnStdout: true, script: "cd .pipeline && ./npxw @bcgov/gh-deploy deployment --ref=pull/${CHANGE_ID}/head -d='Deploying to prod' -e=production -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN} --required-contexts=[]").trim()
+                        CURRENT_PIPELINE_ID = deploymentId
                         sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=prod"
                         sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=success --deployment=${deploymentId} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
                     }
