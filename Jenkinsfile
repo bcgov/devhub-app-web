@@ -117,9 +117,11 @@ pipeline {
     }
     post {
         failure {
-            scripts {
-                echo "Failed Pipeline"
-                sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=failure --deployment=${CURRENT_PIPELINE_ID} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
+            steps {
+                scripts {
+                    echo "Failed Pipeline"
+                    sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=failure --deployment=${CURRENT_PIPELINE_ID} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
+                }
             }
         }
      }
