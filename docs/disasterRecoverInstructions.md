@@ -19,7 +19,7 @@ Assuming we start in a empty namespace
 In OpenShift: namespace: BC developer Hub(tools)  
 
 
-- **Step 1, add following secret objects to this namespace**
+- **Step 1, add following secret objects to this namespace** 
   * devhub-eventbrite-token
   * devhub-gh-token
   * devhub-meetup-token
