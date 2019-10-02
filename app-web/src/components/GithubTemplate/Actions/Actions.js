@@ -11,6 +11,7 @@ const Container = styled.ul`
   flex-flow: row nowrap;
   margin: 0 0 15px;
   padding: 0;
+  font-size: 18px;
   border: 1px solid #ccc;
   list-style: none;
 `;

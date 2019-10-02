@@ -23,6 +23,7 @@ import { Main } from '../components/Page';
 import rehypeReact from 'rehype-react';
 import styled from '@emotion/styled';
 import Pill from '../components/UI/Pill';
+import Actions from '../components/GithubTemplate/Actions/Actions';
 import { withPadding } from '../components/GithubTemplate/common';
 import slugify from 'slugify';
 import { Link } from '../components/UI/Link';
@@ -134,7 +135,11 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
       );
     });
   }*/
-
+  const {
+    html_url,
+    fields: { standAlonePath, title },
+  } = githubRaw;
+  const [owner, repo] = html_url.replace('https://github.com/', '').split('/');
   return (
     <Layout>
       <Header>
@@ -144,7 +149,16 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
         <PillDiv>{personaPills}</PillDiv>
       </Header>
       <Main>
-        <ContentDiv>{renderAst(githubRaw.childMarkdownRemark.htmlAst)}</ContentDiv>
+        <ContentDiv>
+          {renderAst(githubRaw.childMarkdownRemark.htmlAst)}
+          <Actions
+            repo={repo}
+            owner={owner}
+            pageTitle={title}
+            originalSource={html_url}
+            devhubPath={standAlonePath}
+          />
+        </ContentDiv>
       </Main>
     </Layout>
   );
@@ -154,10 +168,13 @@ export const devhubGitHubRawData = graphql`
   query devhubGitHubRawQuery($id: String!) {
     githubRaw(id: { eq: $id }) {
       id
+      html_url
       fields {
         slug
         personas
+        title
         resourceType
+        standAlonePath
         topics {
           name
           id
