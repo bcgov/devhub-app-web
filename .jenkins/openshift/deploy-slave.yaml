@@ -45,6 +45,11 @@ objects:
             -executors ${SLAVE_EXECUTORS} -labels '${SLAVE_LABELS}' -mode
             'normal' -retry 10 -tunnel $JENKINS_MASTER_SERVICE:50000 -disableClientsUniqueId
           env:
+          - name: GITHUB_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: ${NAME}${SUFFIX}-github
+                key: password
           - name: JENKINS_MASTER_SERVICE
             value: ${NAME}${SUFFIX}
           - name: JAVA_TOOL_OPTIONS
