@@ -20,6 +20,13 @@ pipeline {
             agent { label 'build' }
             steps {
                 script {
+<<<<<<< HEAD
+=======
+                    throw new Exception("Throw to stop pipeline") 
+                    def deploymentId = sh(returnStdout: true, script: "cd .pipeline && ./npxw @bcgov/gh-deploy deployment --ref=pull/${CHANGE_ID}/head -d='Deploying to dev' -e=development -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN} --required-contexts=[]").trim()
+                    CURRENT_PIPELINE_ID = deploymentId
+                    echo "throwing"
+>>>>>>> 2ac51ac... troubleshoot
                     // only continue build if changes are relevant to the devhub
                     def filesInThisCommitAsString = sh(script:"git diff --name-only HEAD~1..HEAD | grep -v '$BUILD_TRIGGER_EXCLUDES' || echo -n ''", returnStatus: false, returnStdout: true).trim()
                     def hasChangesInPath = (filesInThisCommitAsString.length() > 0)
