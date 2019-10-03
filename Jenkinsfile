@@ -20,10 +20,6 @@ pipeline {
             agent { label 'build' }
             steps {
                 script {
-                    def deploymentId = sh(returnStdout: true, script: "cd .pipeline && ./npxw @bcgov/gh-deploy deployment --ref=pull/${CHANGE_ID}/head -d='Deploying to dev' -e=development -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN} --required-contexts=[]").trim()
-                    CURRENT_PIPELINE_ID = deploymentId
-                    echo "throwing"
-                    throw new Exception("Throw to stop pipeline") 
                     // only continue build if changes are relevant to the devhub
                     def filesInThisCommitAsString = sh(script:"git diff --name-only HEAD~1..HEAD | grep -v '$BUILD_TRIGGER_EXCLUDES' || echo -n ''", returnStatus: false, returnStdout: true).trim()
                     def hasChangesInPath = (filesInThisCommitAsString.length() > 0)
@@ -47,13 +43,12 @@ pipeline {
                 echo "Deploying ..."
                 sh "openshift/keycloak-scripts/kc-create-client.sh ${CHANGE_ID}"
                 script {
-                    timeout(time: 3, unit: 'MINUTES') {
+                    timeout(time: 5, unit: 'MINUTES') {
                         // please note the required-contexts=[] parameter
                         // github will not create deployments if status checks are pending or failed
                         // this is to bypass and github action checks that we are currently doing
                         def deploymentId = sh(returnStdout: true, script: "cd .pipeline && ./npxw @bcgov/gh-deploy deployment --ref=pull/${CHANGE_ID}/head -d='Deploying to dev' -e=development -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN} --required-contexts=[]").trim()
                         CURRENT_PIPELINE_ID = deploymentId
-                        throw new Exception("Throw to stop pipeline")
                         sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev"
                         sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=success --deployment=${deploymentId} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
                     }
@@ -121,9 +116,12 @@ pipeline {
         }
     }
     post {
-        failure {
-            echo "Failed Pipeline"
-            sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=failure --deployment=${CURRENT_PIPELINE_ID} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
+        failure('Failing Deployment') {
+            node('deploy') { 
+                echo "Pipeline Failed"
+                echo "Failing Deployment ${CURRENT_PIPELINE_ID}"
+                sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=failure --deployment=${CURRENT_PIPELINE_ID} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
+            }
         }
      }
 }
