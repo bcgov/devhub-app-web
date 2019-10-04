@@ -19,7 +19,7 @@ pipeline {
         stage('Build') {
             agent { label 'build' }
             steps {
-                script { 
+                script {
                     // only continue build if changes are relevant to the devhub
                     def filesInThisCommitAsString = sh(script:"git diff --name-only HEAD~1..HEAD | grep -v '$BUILD_TRIGGER_EXCLUDES' || echo -n ''", returnStatus: false, returnStdout: true).trim()
                     def hasChangesInPath = (filesInThisCommitAsString.length() > 0)
@@ -43,7 +43,7 @@ pipeline {
                 echo "Deploying ..."
                 sh "openshift/keycloak-scripts/kc-create-client.sh ${CHANGE_ID}"
                 script {
-                    timeout(time: 3, unit: 'MINUTES') {
+                    timeout(time: 5, unit: 'MINUTES') {
                         // please note the required-contexts=[] parameter
                         // github will not create deployments if status checks are pending or failed
                         // this is to bypass and github action checks that we are currently doing
@@ -116,12 +116,11 @@ pipeline {
         }
     }
     post {
-        failure {
-            steps {
-                scripts {
-                    echo "Failed Pipeline"
-                    sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=failure --deployment=${CURRENT_PIPELINE_ID} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
-                }
+        failure('Failing Deployment') {
+            node('deploy') { 
+                echo "Pipeline Failed"
+                echo "Failing Deployment ${CURRENT_PIPELINE_ID}"
+                sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=failure --deployment=${CURRENT_PIPELINE_ID} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
             }
         }
      }
