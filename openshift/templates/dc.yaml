@@ -203,11 +203,6 @@ parameters:
   name: SSO_REALM_NAME_VALUE
   required: false
   value: ''
-- description: A volumn used for the caddy from config map
-  displayName: volumn name
-  name: CADDY_VOLUME_NAME
-  required: false
-  value: web-caddy-config
 - description: Location of the Matomo server that the app should post events to.
   displayName: Matomo URL
   name: MATOMO_URL
