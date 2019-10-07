@@ -77,6 +77,19 @@
           "image": "https://developer.gov.bc.ca/images/gov-logo-static.png"
         },
         "resourceType": "Documentation"
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/BCDevOps/artifactory",
+          "owner": "BCDevOps",
+          "repo": "artifactory",
+          "title": "BC Gov's Artifact Repository",
+          "files": [
+            "DEVHUB-README.md"
+          ]
+        },
+        "resourceType": "Documentation"
       }
     ]
   }
