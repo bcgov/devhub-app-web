@@ -82,7 +82,7 @@
         "sourceType": "github",
         "sourceProperties": {
           "url": "https://github.com/BCDevOps/artifactory",
-          "owner": "bcgov",
+          "owner": "BCDevOps",
           "repo": "artifactory",
           "title": "BC Gov's Artifact Repository",
           "files": [
