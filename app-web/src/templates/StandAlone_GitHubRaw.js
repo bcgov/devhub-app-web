@@ -24,13 +24,9 @@ import rehypeReact from 'rehype-react';
 import styled from '@emotion/styled';
 import Pill from '../components/UI/Pill';
 import Actions from '../components/GithubTemplate/Actions/Actions';
-import { withPadding } from '../components/GithubTemplate/common';
+import { withPadding, MarkdownBody } from '../components/GithubTemplate/common';
 import slugify from 'slugify';
 import { Link } from '../components/UI/Link';
-
-const ContentDiv = styled.div`
-  padding-top: 10px;
-`;
 
 const PillDiv = styled.div`
   display: flex;
@@ -149,7 +145,7 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
         <PillDiv>{personaPills}</PillDiv>
       </Header>
       <Main>
-        <ContentDiv>
+        <MarkdownBody>
           {renderAst(githubRaw.childMarkdownRemark.htmlAst)}
           <Actions
             repo={repo}
@@ -158,7 +154,7 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
             originalSource={html_url}
             devhubPath={standAlonePath}
           />
-        </ContentDiv>
+        </MarkdownBody>
       </Main>
     </Layout>
   );
