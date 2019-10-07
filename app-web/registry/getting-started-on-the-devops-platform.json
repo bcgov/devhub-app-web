@@ -68,7 +68,8 @@
             "docs/OCP/StartingANewProject.md",
             "docs/OCP/RequestUserAccess.md",
             "docs/OCP/RequestGitHubUserAccess.md",
-            "docs/HowTo/GrantUsersAccessToProject.md"
+            "docs/HowTo/GrantUsersAccessToProject.md",
+            "docs/OCP/Networking.md"
           ]
         }
       },

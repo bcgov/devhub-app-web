@@ -28,6 +28,14 @@
           "description": "A quick reference for important aspects of the Freedom of Information and Protection of Privacy Act.",
           "url": "https://raw.githubusercontent.com/bcgov/devhub-resources/master/resources/privacy/foippa_quick_reference.pdf"
         }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "title": "Privacy Toolkit for Agile Initiatives",
+          "description": "The Toolkit is intended to assist teams within the BC Public Service navigate through a Privacy Impact Assessment when working in an Agile manner.",
+          "url": "https://trello.com/b/8TkAboGE/privacy-toolkit-for-agile-initiatives"
+        }
       }
     ]
   }
