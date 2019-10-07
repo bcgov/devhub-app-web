@@ -38,7 +38,7 @@ const expandRegistry = registry =>
           // github sources have the convenient interface for registering multiple files in the registry config
           // they are now expanded to be individual 'source' configs so that they may be indentifiable
           if (isArray(currentSource.sourceProperties.files)) {
-            const { repo, owner } = currentSource.sourceProperties;
+            const { repo, owner, branch } = currentSource.sourceProperties;
             const flattenedSources = currentSource.sourceProperties.files.map(file => {
               return {
                 sourceType: 'github',
@@ -46,6 +46,7 @@ const expandRegistry = registry =>
                   repo,
                   owner,
                   file,
+                  branch,
                 },
               };
             });

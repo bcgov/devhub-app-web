@@ -246,6 +246,12 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
         labels = node.frontmatter.labels.split().map(text => text.trim());
       }
     }
+    // allows to filter out github raw resources that shouldnt be rendered as cards
+    createNodeField({
+      node,
+      name: 'pageOnly',
+      value: !!node.frontmatter.pageOnly,
+    });
 
     createNodeField({
       node,
