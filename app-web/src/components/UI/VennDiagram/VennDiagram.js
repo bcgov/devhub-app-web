@@ -2,7 +2,6 @@ import React from 'react';
 import Circle from '../Circle/Circle';
 import Link from '../../UI/Link/Link';
 import { HOME_ROUTE } from '../../../constants/routes';
-import classes from './VennDiagram.module.css';
 import styled from '@emotion/styled';
 
 const Container = styled.main`
@@ -86,11 +85,11 @@ const Description = styled.article`
 
 const VennDiagram = () => (
   <Container>
-    <VennContainer className={classes.venn_diagram}>
+    <VennContainer>
       <LeftCircle>
         <p>We missed something.</p>
       </LeftCircle>
-      <RightCircle className={classes.circle_second}>
+      <RightCircle>
         <p>You mistyped.</p>
         <p
           style={{
