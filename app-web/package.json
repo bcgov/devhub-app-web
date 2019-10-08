@@ -22,8 +22,6 @@
     "@octokit/rest": "^16.26.0",
     "apollo-boost": "^0.4.3",
     "apollo-client": "^2.6.3",
-    "autoprefixer": "^9.5.1",
-    "babel-plugin-styled-components": "^1.9.2",
     "chalk": "^2.4.1",
     "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.0.0",
