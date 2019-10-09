@@ -28,7 +28,7 @@ const LI = styled.li`
   }
 `;
 
-export const IDS = {
+export const TEST_IDS = {
   issue: 'actions-issue',
 };
 
@@ -36,7 +36,7 @@ const Actions = ({ repo, owner, pageTitle, originalSource, devhubPath }) => (
   <Container>
     <LI>
       <Link
-        id={IDS.issue}
+        data-testid={TEST_IDS.issue}
         to={getCannedIssueMessage(repo, owner, pageTitle, originalSource, devhubPath)}
         aria-label="create an issue for this page on github"
       >

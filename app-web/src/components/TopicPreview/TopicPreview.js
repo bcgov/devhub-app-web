@@ -82,7 +82,9 @@ const TopicPreview = ({ title, description, link, resources, ...rest }) => (
     <TopicPreviewContainer>
       <CardHeader resourceType={TOPICS} />
       <TopicTitle clamp={2}>
-        <TitleLink to={link.to}>{title}</TitleLink>
+        <TitleLink to={link.to} data-testid={`topic-${title}`}>
+          {title}
+        </TitleLink>
       </TopicTitle>
       {description && <TopicDescription clamp={3}>{description}</TopicDescription>}
       <CardCarousel resources={resources} />
