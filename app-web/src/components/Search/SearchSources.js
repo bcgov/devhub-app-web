@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { RCButton, GithubButton } from '../UI/Button/Button';
+import { RCButton, GithubButton, DocumizeButton } from '../UI/Button/Button';
 import { useAuthenticated } from '../../utils/hooks';
 import { Link } from 'react-scroll';
 import { SEARCH_SOURCE_CONTENT } from '../DynamicSearchResults';
@@ -53,6 +53,13 @@ export const SearchSources = () => {
         </StyledLink>
       ) : (
         <GithubButton {...iconProps} title="Login to view Github search results" />
+      )}
+      {authenticated ? (
+        <StyledLink to={SEARCH_SOURCE_CONTENT[SEARCH_SOURCES.documize].id} offset={scrollOffset}>
+          <DocumizeButton title="Click to jump to Documize search results" />
+        </StyledLink>
+      ) : (
+        <DocumizeButton {...iconProps} title="Login to view Documize search results" />
       )}
     </SearchSourcesContainer>
   );

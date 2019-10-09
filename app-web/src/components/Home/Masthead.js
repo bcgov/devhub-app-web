@@ -69,12 +69,11 @@ export const TEST_IDS = {
 
 export const Masthead = ({ query, resultCount, searchSourcesLoading }) => {
   const { authenticated } = useAuthenticated();
-  const [isVisible, setVisible] = useState(query !== ''); // show only if user input query to search
-  const [alertHasBeenAcknowledged, setAlertHasBeenAcknowledged] = useState(true);
+
+  const [alertHasBeenAcknowledged, setAlertHasBeenAcknowledged] = useState(false);
 
   const onDismiss = () => {
-    setAlertHasBeenAcknowledged(false);
-    setVisible(false);
+    setAlertHasBeenAcknowledged(true);
   };
 
   return (
@@ -118,11 +117,11 @@ export const Masthead = ({ query, resultCount, searchSourcesLoading }) => {
         />
         <IconDiv>{!searchSourcesLoading && query && resultCount > 0 && <SearchSources />}</IconDiv>
       </SearchContainer>
-      {!authenticated && alertHasBeenAcknowledged && (
+      {!authenticated && !alertHasBeenAcknowledged && (
         <AlertMessage
           color="warning"
-          isOpen={isVisible}
-          toggle={onDismiss}
+          isOpen={query !== ''}
+          toggle={() => onDismiss()}
           data-testid={TEST_IDS.alertBox}
         >
           You can view search results from applications like Rocket.Chat, Github or Documize when
