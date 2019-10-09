@@ -4,6 +4,7 @@ import { ResourceTypeIcon } from '../UI/ResourceTypeIcon';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import isFunction from 'lodash/isFunction';
+import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/designTokens';
 
 const Container = styled(Link)`
   position: relative;
@@ -23,9 +24,9 @@ const Circle = styled.span`
   display: inline-block;
   transition: all 0.15s ease-out;
   border-radius: 50%;
-  width: ${({ size }) => size}px;
   background-color: ${({ color, theme }) =>
     color && theme.colors[color] ? theme.colors[color] : theme.colors.blue};
+  width: ${({ size }) => size}px;
   height: ${({ size }) => size}px;
   ::after {
     position: absolute;
@@ -37,11 +38,20 @@ const Circle = styled.span`
     top: 50%;
     transform: translate(-50%, -50%);
   }
+  width: ${({ size }) => 0.65 * size}px;
+  height: ${({ size }) => 0.65 * size}px;
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.md} {
+    width: ${({ size }) => 0.8 * size}px;
+    height: ${({ size }) => 0.8 * size}px;
+  }
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.lg} {
+    width: ${({ size }) => size}px;
+    height: ${({ size }) => size}px;
+  }
 `;
 
 const Name = styled.span`
   position: absolute;
-  width: 150px;
   top: ${({ variant }) => (variant === 'up' ? `initial` : `50%`)};
   left: 50%;
   bottom: ${({ variant }) => (variant === 'down' ? `initial` : `50%`)};
@@ -49,6 +59,12 @@ const Name = styled.span`
       variant === 'up' ? `translateY(-${size - 5}px)` : `translateY(${size - 5}px)`}
     translateX(-50%);
   color: ${({ theme }) => theme.colors.darkgrey};
+  font-size: ${({ fontSize }) => 0.8 * fontSize}px;
+  width: 75px;
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.lg} {
+    width: 150px;
+    font-size: ${({ fontSize }) => fontSize}px;
+  }
 `;
 
 const AuxillaryField = styled.span`
@@ -67,7 +83,7 @@ export const Station = ({ name, variant, color, size = 25, render, ...rest }) =>
   return (
     <Container {...rest}>
       <Circle color={color} size={size} />
-      <Name variant={variant} style={{ fontSize }} size={size}>
+      <Name variant={variant} fontSize={fontSize} size={size}>
         {isFunction(name) ? name() : name}
       </Name>{' '}
       {render && (
@@ -93,7 +109,13 @@ Station.defaultProps = {
 };
 
 const Line = styled.div`
-  height: ${({ size }) => 0.5 * size}px;
+  height: ${({ size }) => 0.35 * size}px;
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.md} {
+    height: ${({ size }) => 0.4 * size}px;
+  }
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.lg} {
+    height: ${({ size }) => 0.5 * size}px;
+  }
   width: calc(100% - ${({ size }) => size}px);
   position: absolute;
   top: 50%;
@@ -159,7 +181,7 @@ const JunctionContainer = styled.ul`
   font-weight: 400;
   border-top-left-radius: ${({ variant }) => (variant === 'up' ? '4px' : 0)};
   border-bottom-left-radius: ${({ variant }) => (variant === 'down' ? '4px' : 0)};
-  padding: ${({ variant }) => (variant === 'down' ? '4px 0 0 4px' : '0 0 4px 4px')};
+  padding: ${({ variant }) => (variant === 'down' ? '1.65em 0 0 4px' : '0 0 1.65em 4px')};
   list-style: none;
   li {
     margin: 6px 0;
