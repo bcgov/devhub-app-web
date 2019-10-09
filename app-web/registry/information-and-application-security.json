@@ -32,6 +32,17 @@
         }
       },
       {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/BC-Policy-Framework-For-GitHub",
+          "owner": "bcgov",
+          "repo": "BC-Policy-Framework-For-GitHub",
+          "files": [
+            "BC-Open-Source-Development-Employee-Guide/Security.md"
+          ]
+        }
+      },
+      {
         "sourceType": "web",
         "sourceProperties": {
           "title": "BC Gov Digital Security",
@@ -45,6 +56,20 @@
           "title": "Cloud Native Application Security",
           "description": "Application Security in a Cloud Native World.",
           "url": "https://raw.githubusercontent.com/bcgov/devhub-resources/master/resources/security/BCGov-DevSecOps-Project.pdf"
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/BCDevOps/platform-services/tree/master/security/aporeto/docs",
+          "owner": "BCDevOps",
+          "repo": "platform-services",
+          "files": [
+            "README.md",
+            "QuickStart.md",
+            "ExternalNetworks.md",
+            "CustomPolicy.md"
+          ]
         }
       }
     ]
