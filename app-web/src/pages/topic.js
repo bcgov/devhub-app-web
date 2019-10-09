@@ -106,7 +106,8 @@ export const TopicPage = ({ data, location }) => {
         components: { 'component-preview': previewWithNode },
       }).Compiler;
 
-      const [owner, repo] = node.html_url.replace('https://github.com/').split('/');
+      const [owner, repo] = node.html_url.replace('https://github.com/', '').split('/');
+
       resourceComponent = (
         <MarkdownBody>
           {' '}
