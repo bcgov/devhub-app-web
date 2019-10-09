@@ -32,17 +32,6 @@
         }
       },
       {
-        "sourceType": "github",
-        "sourceProperties": {
-          "url": "https://github.com/bcgov/BC-Policy-Framework-For-GitHub",
-          "owner": "bcgov",
-          "repo": "BC-Policy-Framework-For-GitHub",
-          "files": [
-            "BC-Open-Source-Development-Employee-Guide/Security.md"
-          ]
-        }
-      },
-      {
         "sourceType": "web",
         "sourceProperties": {
           "title": "BC Gov Digital Security",
@@ -61,7 +50,7 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/BCDevOps/platform-services/tree/master/security/aporeto/docs",
+          "url": "https://github.com/BCDevOps/platform-services",
           "owner": "BCDevOps",
           "repo": "platform-services",
           "files": [
