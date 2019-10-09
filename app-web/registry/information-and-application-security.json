@@ -65,10 +65,10 @@
           "owner": "BCDevOps",
           "repo": "platform-services",
           "files": [
-            "README.md",
-            "QuickStart.md",
-            "ExternalNetworks.md",
-            "CustomPolicy.md"
+            "security/aporeto/docs/README.md",
+            "security/aporeto/docs/QuickStart.md",
+            "security/aporeto/docs/ExternalNetworks.md",
+            "security/aporeto/docs/CustomPolicy.md"
           ]
         }
       }
