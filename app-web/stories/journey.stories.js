@@ -4,6 +4,101 @@ import { storiesOf } from '@storybook/react';
 import { Station, SubwayLine, JunctionList } from '../src/components/Journey';
 
 storiesOf('Journeys', module)
+  .add('Subway Introduction', () => (
+    <article>
+      <h2>Journey/Subway Analogy</h2>
+      <p>
+        The Subway UI element is meant to represent a set of graphql nodes in a defined and linear
+        way
+      </p>
+      <p>
+        The concept of a station
+        <Station
+          color="blue"
+          name="Station"
+          href={`./${window.location.search}`}
+          variant="up"
+          style={{ marginTop: '10px', width: 150, display: 'inline-block' }}
+        />
+        allows to identify a single point in the journey.
+      </p>
+      <p>
+        All the <b>'Subway'</b> React Components are designed to be composed together and behave
+        more or less like a framework
+      </p>
+      <p>
+        Multiple Stations are joined together in a subway line. The initial behavior of how the user
+        will interact with this subway map is still to be determined
+      </p>
+
+      <p>
+        When a station is related to other graphql nodes, for example if a station is pointing to a
+        content node that is in multiple topics, there is a possability to represent these other
+        connections with the <code>connections</code> property. They be represented with a junction
+        list.{' '}
+      </p>
+      <JunctionList
+        links={[
+          { resourceType: 'Documentation', name: 'foo', to: 'text' },
+          { resourceType: 'Documentation', name: 'foo', to: 'text' },
+          { resourceType: 'Documentation', name: 'foo', to: 'text' },
+        ]}
+      />
+
+      <h3>Putting It All Together</h3>
+
+      <p>
+        As you will see below, the configuration for a subway line is codefied as JSON and passed
+        into the
+        <code> &lt;SubwayLine&gt;</code> Component as the <code>stops</code> prop
+      </p>
+      <h4>JSON example</h4>
+      <pre>
+        <code>
+          {`[
+        { name: 'Yaletown Roundhouse' },
+        { name: 'Olympic Village' },
+        {
+          name: 'Broadway City Hall',
+          connections: [
+            { resourceType: 'Topics', name: 'billy', path: '/topic' },
+            { resourceType: 'Topics', name: 'is cool', path: '/topic' },
+            {
+              resourceType: 'Topics',
+              name: "isn't that right? wouldn't you say?",
+              path: '/topic',
+            },
+            {
+              resourceType: 'Topics',
+              name: "isn't that right? wouldn't you say?",
+              path: '/topic',
+            },
+          ],
+        },
+        {
+          name: 'King Edward',
+          connections: [
+            { resourceType: 'Topics', name: 'foo', path: '/topic' },
+            { resourceType: 'Topics', name: 'foo', path: '/topic' },
+          ],
+        },
+        { name: 'Oakridge 41st' },
+        {
+          name: 'Langara 49th',
+          connections: [
+            { resourceType: 'Topics', name: 'foo', path: '/topic' },
+            { resourceType: 'Topics', name: 'foo', path: '/topic' },
+            { resourceType: 'Topics', name: 'foo', path: '/topic' },
+          ],
+        },
+        {
+          name: 'Marine Drive',
+        },
+      ]`}
+        </code>
+      </pre>
+    </article>
+  ))
   .add('A Station', () => <Station name="edmonds" variant="up" />)
   .add('A Station (with custom color)', () => <Station color="green" name="edmonds" variant="up" />)
   .add('A Station (with down variant)', () => <Station color="red" name="edmonds" variant="down" />)
@@ -103,6 +198,7 @@ storiesOf('Journeys', module)
       />
     </div>
   ))
+
   .add('Subway with Junctions Noted', () => (
     <div style={{ padding: '50px', width: '50%' }}>
       <SubwayLine
@@ -111,7 +207,7 @@ storiesOf('Journeys', module)
           { name: 'Olympic Village' },
           {
             name: 'Broadway City Hall',
-            connectsWith: [
+            connections: [
               { resourceType: 'Topics', name: 'billy', path: '/topic' },
               { resourceType: 'Topics', name: 'is cool', path: '/topic' },
               {
@@ -128,7 +224,7 @@ storiesOf('Journeys', module)
           },
           {
             name: 'King Edward',
-            connectsWith: [
+            connections: [
               { resourceType: 'Topics', name: 'foo', path: '/topic' },
               { resourceType: 'Topics', name: 'foo', path: '/topic' },
             ],
@@ -136,7 +232,7 @@ storiesOf('Journeys', module)
           { name: 'Oakridge 41st' },
           {
             name: 'Langara 49th',
-            connectsWith: [
+            connections: [
               { resourceType: 'Topics', name: 'foo', path: '/topic' },
               { resourceType: 'Topics', name: 'foo', path: '/topic' },
               { resourceType: 'Topics', name: 'foo', path: '/topic' },

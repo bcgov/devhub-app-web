@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import isFunction from 'lodash/isFunction';
 
-const Container = styled.div`
+const Container = styled(Link)`
   position: relative;
   display: flex;
   justify-content: center;
@@ -85,6 +85,7 @@ Station.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
   render: PropTypes.func,
+  to: PropTypes.string,
 };
 
 Station.defaultProps = {
@@ -115,12 +116,12 @@ export const SubwayLine = ({ stops, color, size = 25 }) => (
     {stops.map((stop, index) => {
       const variant = index % 2 === 0 ? 'up' : 'down';
       const extraProps = {};
-      if (stop.connectsWith) {
+      if (stop.connections) {
         extraProps.render = () => (
           <JunctionList
             variant={variant === 'up' ? 'down' : 'up'}
             style={{ transform: 'translateX(calc(50% - 2px))' }}
-            links={stop.connectsWith.map(({ name, path, resourceType }) => ({
+            links={stop.connections.map(({ name, path, resourceType }) => ({
               name,
               to: path,
               resourceType,
@@ -128,6 +129,7 @@ export const SubwayLine = ({ stops, color, size = 25 }) => (
           />
         );
       }
+
       return (
         <Station
           key={stop.name}
@@ -135,6 +137,7 @@ export const SubwayLine = ({ stops, color, size = 25 }) => (
           size={size}
           variant={variant}
           color={color}
+          href={stop.to}
           {...extraProps}
         />
       );
