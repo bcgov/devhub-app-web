@@ -199,7 +199,7 @@ const JunctionContainer = styled.ul`
   }
 `;
 
-export const JunctionList = ({ links, variant, ...rest }) => {
+export const JunctionList = ({ links, variant, renderLink, ...rest }) => {
   return (
     <JunctionContainer variant={variant} {...rest}>
       {links.map(l => (
@@ -208,7 +208,7 @@ export const JunctionList = ({ links, variant, ...rest }) => {
             ─&nbsp;
             <ResourceTypeIcon type={l.resourceType} style={{ marginRight: '4px' }} />
           </span>
-          <Link to={l.to}>{l.name}</Link>
+          {renderLink && isFunction(renderLink) ? renderLink(l) : <Link to={l.to}>{l.name}</Link>}
         </li>
       ))}
     </JunctionContainer>
@@ -218,8 +218,70 @@ export const JunctionList = ({ links, variant, ...rest }) => {
 JunctionList.propTypes = {
   links: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string, to: PropTypes.string })),
   variant: PropTypes.oneOf(stationVariants),
+  renderLink: PropTypes.func,
 };
 
 JunctionList.defaultProps = {
   variant: 'up',
 };
+
+const Legend = styled.div`
+  border: 1px solid ${({ theme }) => theme.colors.lightgrey};
+  padding: 4px 8px;
+  max-width: 240px;
+  h4 {
+    text-align: center;
+    margin: 4px 0 25px;
+    font-weight: 400;
+  }
+  > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    > li {
+      display: flex;
+      justify-content: flex-start;
+      font-size: 14px;
+      margin-bottom: 10px;
+      color: ${({ theme }) => theme.colors.darkgrey};
+      > div {
+        flex: 0 0 75px;
+      }
+    }
+  }
+`;
+
+const LegendItem = styled.span`
+  display: flex;
+  ::before {
+    content: '─';
+    margin-right: 4px;
+  }
+`;
+export const SubwayLegend = () => (
+  <Legend>
+    <h4>Legend</h4>
+    <ul>
+      <li>
+        <div style={{ transform: 'translateY(5px)' }}>
+          <Station color="blue" size={10} name={() => <small>name</small>} />
+        </div>
+        <LegendItem>Resource</LegendItem>
+      </li>
+      <li>
+        <div>
+          <JunctionList
+            links={[
+              { name: 'topicA', resourceType: 'Topic' },
+              { name: 'topicB', resourceType: 'Topic' },
+            ]}
+            renderLink={link => <span>{link.name}</span>}
+          />
+        </div>
+        <LegendItem>Topics this resource is also found in</LegendItem>
+      </li>
+    </ul>
+  </Legend>
+);
+
+export const JourneyMap = ({ name, stops }) => {};

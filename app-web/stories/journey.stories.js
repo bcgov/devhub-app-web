@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { Station, SubwayLine, JunctionList } from '../src/components/Journey';
+import { Station, SubwayLine, JunctionList, SubwayLegend } from '../src/components/Journey';
 
 storiesOf('Journeys', module)
   .add('Subway Introduction', () => (
@@ -198,6 +198,27 @@ storiesOf('Journeys', module)
       />
     </div>
   ))
+  .add('Junction List (with renderLink render prop)', () => (
+    <div style={{ padding: '50px', width: '550px' }}>
+      <JunctionList
+        renderLink={link => <button>{link.name}</button>}
+        links={[
+          { name: 'foo', to: 'text' },
+          { name: 'foo', to: 'text' },
+          { name: 'foo', to: 'text' },
+        ]}
+      />
+      <JunctionList
+        variant="down"
+        renderLink={link => <button>{link.name}</button>}
+        links={[
+          { name: 'foo', to: 'text' },
+          { name: 'foo', to: 'text' },
+          { name: 'foo', to: 'text' },
+        ]}
+      />
+    </div>
+  ))
 
   .add('Subway with Junctions Noted', () => (
     <div style={{ padding: '50px', width: '50%' }}>
@@ -245,4 +266,5 @@ storiesOf('Journeys', module)
         color="lightblue  "
       />
     </div>
-  ));
+  ))
+  .add('Subway Legend', () => <SubwayLegend />);
