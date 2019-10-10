@@ -1,7 +1,7 @@
 require('dotenv').config({
   path: '.env.production',
 });
-const { registry } = require('./devhub.config.json');
+const { topicRegistry } = require('./devhub.config.json');
 const { converter } = require('./gatsby/utils/gatsbyRemark');
 const { getFilesFromRegistry } = require('./gatsby/utils/githubRaw');
 // To specify a path of the registry.yaml file, set as env variable
@@ -138,8 +138,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'registry',
-        path: `${__dirname}/${registry.contextDir}`,
+        name: 'topicRegsiter',
+        path: `${__dirname}/${topicRegistry.contextDir}`,
       },
     },
     {
@@ -223,7 +223,7 @@ module.exports = {
         },
         // If REGISTRY_PATH is set specifically, include this REGISTRY_TYPE as an env var
         // Format convention: camalcase of the sub path + 'Yaml'
-        sourceRegistryType: 'RegistryJson',
+        sourceRegistryType: 'TopicRegistryJson',
       },
     },
     {

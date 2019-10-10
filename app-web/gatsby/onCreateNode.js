@@ -30,7 +30,7 @@ const {
   isMeetupEvent,
   getClosestResourceType,
   getClosestPersona,
-  isRegistryJson,
+  isTopicRegistryJson,
   isMatomoPageStats,
 } = require('./utils/validators.js');
 const { flattenExpandedRegistry, expandRegistry } = require('./utils/githubRaw');
@@ -93,7 +93,7 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
     createNodeField({ node, name: 'resourceType', value: node.resource.type || [] });
     createNodeField({ node, name: 'position', value: node._metadata.position });
     // bind all topics that reference this node, this can only be found by looking up the registry
-    const registry = getNodes().filter(isRegistryJson);
+    const registry = getNodes().filter(isTopicRegistryJson);
 
     const flattenedSources = flattenExpandedRegistry(expandRegistry(registry));
     // find topics that reference this node

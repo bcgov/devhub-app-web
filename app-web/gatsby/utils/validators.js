@@ -25,7 +25,7 @@ const isDevhubSiphon = node => node.internal.type === 'DevhubSiphon';
 const isDevhubTopic = node => node.internal.type === 'DevhubTopic';
 const isMeetupEvent = node => node.internal.type === 'MeetupEvent';
 const isEventbriteEvents = node => node.internal.type === 'EventbriteEvents';
-const isRegistryJson = node => node.internal.type === 'RegistryJson';
+const isTopicRegistryJson = node => node.internal.type === 'TopicRegistryJson';
 const isMarkdownRemarkFrontmatter = node => node.internal.type === 'MarkdownRemarkFrontmatter';
 const isMatomoPageStats = node => node.internal.type === 'MatomoPageStats';
 
@@ -77,7 +77,7 @@ module.exports = {
   isDevhubSiphon,
   isDevhubTopic,
   isEventbriteEvents,
-  isRegistryJson,
+  isTopicRegistryJson,
   isMatomoPageStats,
   getClosest,
   getClosestPersona,

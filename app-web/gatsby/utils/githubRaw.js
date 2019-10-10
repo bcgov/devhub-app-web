@@ -15,7 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-const { isRegistryJson } = require('./validators');
+const { isTopicRegistryJson } = require('./validators');
 const isArray = require('lodash/isArray');
 
 /**
@@ -86,7 +86,7 @@ const getFilesFromRegistry = getNodes => {
   const nodes = getNodes();
   const sourceToTopicMap = {};
   // get RegistryJson nodes
-  const registry = nodes.filter(isRegistryJson);
+  const registry = nodes.filter(isTopicRegistryJson);
   // expand registry so that any items that list multiple files (for source: github)
   // are spread into individual objects
   // [{sourceProperties: { files: [A, B]}}] => [{sourceProperties: { file: A}}, {sourceProperties: { file: B}}]
