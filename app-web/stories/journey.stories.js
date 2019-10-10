@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { Station, SubwayLine, JunctionList } from '../src/components/Journey';
+import {
+  Station,
+  SubwayLine,
+  JunctionList,
+  SubwayLegend,
+  JourneyMap,
+} from '../src/components/Journey';
 
 storiesOf('Journeys', module)
   .add('Subway Introduction', () => (
@@ -198,6 +204,27 @@ storiesOf('Journeys', module)
       />
     </div>
   ))
+  .add('Junction List (with renderLink render prop)', () => (
+    <div style={{ padding: '50px', width: '550px' }}>
+      <JunctionList
+        renderLink={link => <button>{link.name}</button>}
+        links={[
+          { name: 'foo', to: 'text' },
+          { name: 'foo', to: 'text' },
+          { name: 'foo', to: 'text' },
+        ]}
+      />
+      <JunctionList
+        variant="down"
+        renderLink={link => <button>{link.name}</button>}
+        links={[
+          { name: 'foo', to: 'text' },
+          { name: 'foo', to: 'text' },
+          { name: 'foo', to: 'text' },
+        ]}
+      />
+    </div>
+  ))
 
   .add('Subway with Junctions Noted', () => (
     <div style={{ padding: '50px', width: '50%' }}>
@@ -242,7 +269,54 @@ storiesOf('Journeys', module)
             name: 'Marine Drive',
           },
         ]}
-        color="lightblue  "
+        color="lightblue"
       />
     </div>
+  ))
+  .add('Subway Legend', () => <SubwayLegend />)
+  .add('Journey', () => (
+    <JourneyMap
+      title="How to Developer"
+      link={{ to: '/', text: 'get started' }}
+      stops={[
+        { name: 'Yaletown Roundhouse' },
+        { name: 'Olympic Village' },
+        {
+          name: 'Broadway City Hall',
+          connections: [
+            { resourceType: 'Topics', name: 'billy', path: '/topic' },
+            { resourceType: 'Topics', name: 'is cool', path: '/topic' },
+            {
+              resourceType: 'Topics',
+              name: "isn't that right? wouldn't you say?",
+              path: '/topic',
+            },
+            {
+              resourceType: 'Topics',
+              name: "isn't that right? wouldn't you say?",
+              path: '/topic',
+            },
+          ],
+        },
+        {
+          name: 'King Edward',
+          connections: [
+            { resourceType: 'Topics', name: 'foo', path: '/topic' },
+            { resourceType: 'Topics', name: 'foo', path: '/topic' },
+          ],
+        },
+        { name: 'Oakridge 41st' },
+        {
+          name: 'Langara 49th',
+          connections: [
+            { resourceType: 'Topics', name: 'foo', path: '/topic' },
+            { resourceType: 'Topics', name: 'foo', path: '/topic' },
+            { resourceType: 'Topics', name: 'foo', path: '/topic' },
+          ],
+        },
+        {
+          name: 'Marine Drive',
+        },
+      ]}
+    />
   ));

@@ -1,6 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PopularTopic matches snapshot 1`] = `
+.emotion-61 {
+  max-width: 1100px;
+  margin: 20px 0;
+  border: 1px solid #ccc;
+  border-top: transparent;
+}
+
 .emotion-0 {
   background-color: #444;
   -webkit-flex: 0 0 10px;
@@ -228,7 +235,7 @@ exports[`PopularTopic matches snapshot 1`] = `
 
 <div>
   <div
-    css="[object Object]"
+    class="emotion-61 emotion-62"
   >
     <div
       class="emotion-0 emotion-1"
@@ -272,6 +279,7 @@ exports[`PopularTopic matches snapshot 1`] = `
       >
         <a
           class="emotion-6 emotion-7 emotion-8"
+          data-testid="topic-Popular"
           href="/topic/popular"
         >
           Popular
