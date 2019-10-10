@@ -48,7 +48,6 @@ import Row from '../components/Card/Row';
 import Column from '../components/Card/Column';
 import GithubIssueCardHeader from '../components/DynamicSearchResults/GithubIssueCardHeader';
 import CardHeader from '../components/Card/CardHeader';
-import Journey from '../components/Journey/Journey';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -355,52 +354,6 @@ export const Index = ({
         resultCount={totalSearchResults}
       />
       <Main>
-        <div>
-          <Journey
-            title="How to Developer"
-            link={{ to: '/', text: 'get started' }}
-            stops={[
-              { name: 'Yaletown Roundhouse' },
-              { name: 'Olympic Village' },
-              {
-                name: 'Application Architecture and Technology Stacks',
-                connections: [
-                  { resourceType: 'Topics', name: 'billy', path: '/topic' },
-                  { resourceType: 'Topics', name: 'is cool', path: '/topic' },
-                  {
-                    resourceType: 'Topics',
-                    name: 'Application Architecture and Technology Stacks',
-                    path: '/topic',
-                  },
-                  {
-                    resourceType: 'Topics',
-                    name: "isn't that right? wouldn't you say?",
-                    path: '/topic',
-                  },
-                ],
-              },
-              {
-                name: 'King Edward',
-                connections: [
-                  { resourceType: 'Topics', name: 'foo', path: '/topic' },
-                  { resourceType: 'Topics', name: 'foo', path: '/topic' },
-                ],
-              },
-              { name: 'Oakridge 41st' },
-              {
-                name: 'Langara 49th',
-                connections: [
-                  { resourceType: 'Topics', name: 'foo', path: '/topic' },
-                  { resourceType: 'Topics', name: 'foo', path: '/topic' },
-                  { resourceType: 'Topics', name: 'foo', path: '/topic' },
-                ],
-              },
-              {
-                name: 'Marine Drive',
-              },
-            ]}
-          />
-        </div>
         {windowHasQuery && searchSourcesLoading ? <Loading message="loading" /> : content}
       </Main>
     </Layout>
