@@ -7,7 +7,6 @@
         "sourceType": "github",
         "sourceProperties": {
           "url": "https://github.com/bcgov/devhub-resources",
-          "branch": "getting-started-as-developer-topic",
           "owner": "bcgov",
           "repo": "devhub-resources",
           "files": [
