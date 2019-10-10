@@ -28,16 +28,17 @@ In OpenShift: namespace: BC developer Hub(tools)
  we can add by using the corresponding template in the project file: openshift/template:
 
 ```cmd
-oc process -n devhub-tools -f gh.secret.yaml -p GITHUB_TOKEN=<token that you get from github> | oc apply -f –
+oc project devhub-tools
+oc process -f gh.secret.yaml -p GITHUB_TOKEN=<token that you get from github> | oc apply -f -
  
-oc process -n devhub-tools -f matomo.secret.yaml -p MATOMO_API_KEY=<Matomo access token> | oc apply -f -
+oc process -f matomo.secret.yaml -p MATOMO_API_KEY=<Matomo access token> | oc apply -f -
 
-oc process -n devhub-tools -f eventbrite.secret.yaml -p EVENT_BRITE_API_KEY=<Event brite api key if you have> |oc apply -f –
+oc process -f eventbrite.secret.yaml -p EVENT_BRITE_API_KEY=<Event brite api key if you have> |oc apply -f -
 ```
 >At this time it is NOT possible to get a Meetups token. They have disabled access tokens and so this step can be skipped 
 
 ```cmd
-oc process -n devhub-tools -f meetup.secret.yaml -p MEETUP_API_KEY=<anything> | oc apply -f –
+oc process -f meetup.secret.yaml -p MEETUP_API_KEY=<anything> | oc apply -f -
 ```
  
  
@@ -58,7 +59,7 @@ MATOMO_SITE_ID=1
 
 Then, use bc.yaml by:
 ```cmd
-oc process -f bc.yaml --param-file parameter.sh | oc apply -f –
+oc process -f bc.yaml --param-file parameter.sh | oc apply -f -
 ```
 
 devhub-build in build should start build and hopefully will succeed.
@@ -78,7 +79,7 @@ SSO_CLIENT_ID_VALUE=<Your SSO SSO_CLIENT ID>
 
 *Then, use dc.yaml by:*
 ```cmd
-oc process -f dc.yaml -n <namespace> --parameter-file dcparameter.sh  | oc apply -f -
+oc process -f dc.yaml -n <namespace> --param-file dcparameter.sh  | oc apply -f -
 ```
 This will create a router for Application, you can customize url in router object.
 You can also customize resource by edit Configuration later.
