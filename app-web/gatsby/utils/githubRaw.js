@@ -143,6 +143,7 @@ const getFilesFromRegistry = getNodes => {
       };
     }
   });
+
   // convert sourceToTopicMap to an array in the expected structure for the github raw plugin
   return Object.keys(sourceToTopicMap).map(url => ({
     url,

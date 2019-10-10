@@ -1,20 +1,17 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import classes from './Circle.module.css';
+import styled from '@emotion/styled';
 
-const Circle = ({ className, children, ...rest }) => {
-  let circleClasses = [classes.circle, className];
-  return <div className={circleClasses.join(' ')}>{children}</div>;
-};
-
-Circle.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-};
-
-Circle.defaultProps = {
-  children: '',
-  className: '',
-};
+const Circle = styled.div`
+  height: 24vw;
+  width: 24vw;
+  opacity: 0.8;
+  position: relative;
+  min-height: 200px;
+  max-width: 300px;
+  max-height: 300px;
+  min-width: 200px;
+  text-align: center;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+`;
 
 export default Circle;
