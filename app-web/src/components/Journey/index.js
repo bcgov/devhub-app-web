@@ -10,9 +10,36 @@ const Container = styled(Link)`
   position: relative;
   display: flex;
   justify-content: center;
+  box-sizing: border-box;
   align-items: center;
   text-transform: capitalize;
   text-align: center;
+  width: ${({ size }) => 0.65 * size}px;
+  height: ${({ size }) => 0.65 * size}px;
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.md} {
+    width: ${({ size }) => 0.8 * size}px;
+    height: ${({ size }) => 0.8 * size}px;
+  }
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.lg} {
+    width: ${({ size }) => size}px;
+    height: ${({ size }) => size}px;
+  }
+  ${Circle} {
+    :last-of-type::after,
+    :first-of-type::after {
+      position: absolute;
+      background-color: white;
+      content: '';
+      width: 45%;
+      height: 45%;
+      opacity: 0.75;
+      border-radius: 50%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+  }
 `;
 
 const stationVariants = ['up', 'down'];
@@ -26,18 +53,7 @@ const Circle = styled.span`
   border-radius: 50%;
   background-color: ${({ color, theme }) =>
     color && theme.colors[color] ? theme.colors[color] : theme.colors.blue};
-  width: ${({ size }) => size}px;
-  height: ${({ size }) => size}px;
-  ::after {
-    position: absolute;
-    content: '';
-    width: 90%;
-    height: 90%;
-    border-radius: 50%;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
+
   width: ${({ size }) => 0.65 * size}px;
   height: ${({ size }) => 0.65 * size}px;
   ${EMOTION_BOOTSTRAP_BREAKPOINTS.md} {
@@ -81,7 +97,7 @@ export const Station = ({ name, variant, color, size = 25, render, ...rest }) =>
   const fontSize = name.length > 24 ? 14 : 16;
 
   return (
-    <Container {...rest}>
+    <Container size={size} {...rest}>
       <Circle color={color} size={size} />
       <Name variant={variant} fontSize={fontSize} size={size}>
         {isFunction(name) ? name() : name}

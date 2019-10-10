@@ -10,6 +10,8 @@ export const RESOURCE_TYPES = {
 export const SEARCH_RESOURCE_TYPES = {
   GITHUB_ISSUE: 'Github Issue',
 };
+
+export const JOURNEY = 'Journey';
 // not exactly a resource type but still an important identifier for a 'type' of devhub node
 // this will change in devhub v3 when all nodes, resources/topics/and more are treated as
 // equal
@@ -18,6 +20,7 @@ export const TOPICS = 'Topics';
 export const RESOURCE_TYPES_LIST = Object.keys(RESOURCE_TYPES)
   .map(key => RESOURCE_TYPES[key])
   .concat(TOPICS)
+  .concat(JOURNEY)
   .concat(SEARCH_RESOURCE_TYPES.GITHUB_ISSUE);
 
 export const PERSONAS_LIST = ['Developer', 'Designer', 'Product Owner'];

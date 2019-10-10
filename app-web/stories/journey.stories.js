@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { storiesOf } from '@storybook/react';
 import { Station, SubwayLine, JunctionList, SubwayLegend } from '../src/components/Journey';
+// import Journey from '../src/components/Journey/Journey';
 
 storiesOf('Journeys', module)
   .add('Subway Introduction', () => (
@@ -263,8 +264,56 @@ storiesOf('Journeys', module)
             name: 'Marine Drive',
           },
         ]}
-        color="lightblue  "
+        color="lightblue"
       />
     </div>
   ))
   .add('Subway Legend', () => <SubwayLegend />);
+// .add('Journey', () => (
+//   <div style={{ maxWidth: '600px' }}>
+//     <Journey
+//       title="How to Developer"
+//       link={{ to: '/', text: 'get started' }}
+//       stops={[
+//         { name: 'Yaletown Roundhouse' },
+//         { name: 'Olympic Village' },
+//         {
+//           name: 'Broadway City Hall',
+//           connections: [
+//             { resourceType: 'Topics', name: 'billy', path: '/topic' },
+//             { resourceType: 'Topics', name: 'is cool', path: '/topic' },
+//             {
+//               resourceType: 'Topics',
+//               name: "isn't that right? wouldn't you say?",
+//               path: '/topic',
+//             },
+//             {
+//               resourceType: 'Topics',
+//               name: "isn't that right? wouldn't you say?",
+//               path: '/topic',
+//             },
+//           ],
+//         },
+//         {
+//           name: 'King Edward',
+//           connections: [
+//             { resourceType: 'Topics', name: 'foo', path: '/topic' },
+//             { resourceType: 'Topics', name: 'foo', path: '/topic' },
+//           ],
+//         },
+//         { name: 'Oakridge 41st' },
+//         {
+//           name: 'Langara 49th',
+//           connections: [
+//             { resourceType: 'Topics', name: 'foo', path: '/topic' },
+//             { resourceType: 'Topics', name: 'foo', path: '/topic' },
+//             { resourceType: 'Topics', name: 'foo', path: '/topic' },
+//           ],
+//         },
+//         {
+//           name: 'Marine Drive',
+//         },
+//       ]}
+//     />
+//   </div>
+// ));
