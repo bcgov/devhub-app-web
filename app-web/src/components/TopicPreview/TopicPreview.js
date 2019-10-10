@@ -31,11 +31,18 @@ const withPadding = css`
   padding: 0 15px;
 `;
 
-const TopicDecorativeBar = styled(DecorativeBar)`
+export const Container = styled.div`
+  max-width: 1100px;
+  margin: 20px 0;
+  border: 1px solid #ccc;
+  border-top: transparent;
+`;
+
+export const TopicDecorativeBar = styled(DecorativeBar)`
   min-height: 15px;
 `;
 
-const TopicPreviewContainer = styled.div`
+export const PreviewContainer = styled.div`
   ${withPadding};
   padding-top: 10px;
   padding-bottom: 20px;
@@ -69,17 +76,9 @@ export const TitleLink = styled(Link)`
 `;
 
 const TopicPreview = ({ title, description, link, resources, ...rest }) => (
-  <div
-    css={css`
-      max-width: 1100px;
-      margin: 20px 0;
-      border: 1px solid #ccc;
-      border-top: transparent;
-    `}
-    {...rest}
-  >
+  <Container {...rest}>
     <TopicDecorativeBar color={TOPICS} />
-    <TopicPreviewContainer>
+    <PreviewContainer>
       <CardHeader resourceType={TOPICS} />
       <TopicTitle clamp={2}>
         <TitleLink to={link.to} data-testid={`topic-${title}`}>
@@ -91,8 +90,8 @@ const TopicPreview = ({ title, description, link, resources, ...rest }) => (
       <TopicLinkWrapper>
         <ChevronLink to={link.to}>{link.text}</ChevronLink>
       </TopicLinkWrapper>
-    </TopicPreviewContainer>
-  </div>
+    </PreviewContainer>
+  </Container>
 );
 
 TopicPreview.propTypes = {
