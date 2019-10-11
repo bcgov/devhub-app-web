@@ -171,6 +171,7 @@ const getFilesFromRegistry = getNodes => {
       if (source.sourceType === 'github') {
         const {
           sourceProperties: { repo, owner, branch, file },
+          connectsWith,
         } = source;
 
         const fileBranch = branch ? branch : 'master';
@@ -183,6 +184,7 @@ const getFilesFromRegistry = getNodes => {
           journeyPersonas,
           journey,
           journeyResourceType,
+          journeyConnectsWith: connectsWith,
         };
       } else {
         // web source types are ignored

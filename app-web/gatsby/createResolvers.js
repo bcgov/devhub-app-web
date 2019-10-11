@@ -39,11 +39,79 @@ const getOrganizationsById = id => {
 };
 
 module.exports = ({ createResolvers }) => {
-  // cache devhubtopic connectswith resolutions for speed purposes
+  // cache devhub topic connectsWith resolutions for speed purposes
   // resolvers seem to run at build time for every time there is a graphql query that calls for devhubTopic.connectsWith
   // and is a bit of an expensive process
   const _cache = {};
   const resolvers = {
+    JourneyRegistryJson: {
+      connectsWith: {
+        type: '[ConnectedStopNode]',
+        resolve: (source, args, context) => {
+          if (!_cache[source.id]) {
+            const ghNodes = context.nodeModel.getAllNodes({ type: 'GithubRaw' });
+            const siphonNodes = context.nodeModel.getAllNodes({ type: 'DevhubSiphon' });
+            /**
+             * Attempts to find a node that belongs to a journey
+             * it also caches results in the _cache object to prevent additional lookups
+             * @param {String} sourceType
+             * @param {Object} args
+             * returns the node or null
+             */
+            const findNode = (sourceType, args) => {
+              if (sourceType === 'web') {
+                if (!_cache[args.url]) {
+                  const node = siphonNodes.find(node => node.path === args.url);
+                  if (node) {
+                    _cache[args.url] = node;
+                  }
+                }
+                return _cache[args.url];
+              }
+              const gitUrl = `https://www.github.com/${args.owner}/${args.repo}/blob/${
+                args.branch ? args.branch : 'master'
+              }/${args.file}`;
+
+              if (!_cache[gitUrl]) {
+                const node = ghNodes.find(node => node.html_url === gitUrl);
+                if (node) {
+                  _cache[gitUrl] = node;
+                }
+                return _cache[gitUrl];
+              }
+              return null;
+            };
+
+            /**
+             * Factory for Stop Objects
+             * @param {Object} fields
+             * @param {String} path
+             * @param {String} id
+             */
+            const Stop = (fields, path, id) => ({ fields, path, id });
+
+            /**
+             * recursively iterates over a journey stop and attempts to find a node if it exists
+             * @param {*} stop
+             */
+            const resolveStop = stop => {
+              // we technically should bar primary stops from being source type web since it leads to a bad ux ??
+              const primaryNode = findNode(stop.sourceType, stop.sourceProperties);
+              // console.log('PRIMARY Node', primaryNode);
+              const primaryStop = Stop(primaryNode.fields, primaryNode.path, primaryNode.id);
+
+              return {
+                ...primaryStop,
+                connectsWith: stop.stops ? stop.stops.map(resolveStop) : [],
+              };
+            };
+
+            _cache[source.id] = source.sourceProperties.stops.map(resolveStop);
+          }
+          return _cache[source.id];
+        },
+      },
+    },
     GithubRaw: {
       pageViews: {
         // binding page views to github raw nodes based off of Matomo page stats so that a popular topic can be built
