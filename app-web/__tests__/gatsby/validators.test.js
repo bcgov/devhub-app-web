@@ -6,7 +6,7 @@ import {
   isGithubRaw,
   isMeetupEvent,
   isMarkdownRemarkFrontmatter,
-  isRegistryJson,
+  isTopicRegistryJson,
 } from '../../gatsby/utils/validators';
 
 describe('Validators', () => {
@@ -35,8 +35,8 @@ describe('Validators', () => {
       expect(isMarkdownRemarkFrontmatter(node('MarkdownRemarkFrontmatter'))).toBe(true);
       expect(isMarkdownRemarkFrontmatter(node('MarkdownRemarkFrontmatter2'))).toBe(false);
 
-      expect(isRegistryJson(node('RegistryJson'))).toBe(true);
-      expect(isRegistryJson(node('RegistryJson2'))).toBe(false);
+      expect(isTopicRegistryJson(node('TopicRegistryJson'))).toBe(true);
+      expect(isTopicRegistryJson(node('RegistryJson2'))).toBe(false);
     });
   });
 });

@@ -111,7 +111,37 @@ describe('getFilesFromRegistry', () => {
   const registry = [
     {
       internal: {
-        type: 'RegistryJson',
+        type: 'JourneyRegistryJson',
+      },
+      name: 'Journey Item 1',
+      sourceProperties: {
+        stops: [
+          {
+            stops: [
+              {
+                sourceType: 'github',
+                sourceProperties: {
+                  url: 'https://github.com/bcgov/Agile-Delivery-Process',
+                  owner: 'bcgov',
+                  repo: 'Agile-Delivery-Process',
+                  files: ['README.md'],
+                },
+              },
+            ],
+            sourceType: 'github',
+            sourceProperties: {
+              url: 'https://github.com/bcgov/Agile-Delivery-Process',
+              owner: 'bcgov',
+              repo: 'Agile-Delivery-Process',
+              file: 'foo.md',
+            },
+          },
+        ],
+      },
+    },
+    {
+      internal: {
+        type: 'TopicRegistryJson',
       },
       name: 'Registry Item 1',
       resourceType: 'Documentation',
@@ -135,7 +165,7 @@ describe('getFilesFromRegistry', () => {
     },
     {
       internal: {
-        type: 'RegistryJson',
+        type: 'TopicRegistryJson',
       },
       name: 'Registry Item 2',
       resourceType: 'Components',
@@ -175,7 +205,7 @@ describe('getFilesFromRegistry', () => {
     },
     {
       internal: {
-        type: 'RegistryJson',
+        type: 'TopicRegistryJson',
       },
       name: 'Registry Item 3',
       resourceType: 'Documentation',
@@ -204,6 +234,7 @@ describe('getFilesFromRegistry', () => {
       {
         url: 'https://github.com/bcgov/Agile-Delivery-Process/blob/master/README.md',
         topics: ['Registry Item 1', 'Registry Item 2'],
+        journeys: ['Journey Item 1'],
         topicPersonas: ['Developer'],
         topicResourceType: 'Documentation',
         position: 0,
@@ -211,6 +242,7 @@ describe('getFilesFromRegistry', () => {
       {
         url: 'https://github.com/bcgov/Agile-Delivery-Process/blob/master/foo.md',
         topics: ['Registry Item 1'],
+        journeys: ['Journey Item 1'],
         topicPersonas: ['Developer'],
         topicResourceType: 'Documentation',
         position: 1,
@@ -218,6 +250,7 @@ describe('getFilesFromRegistry', () => {
       {
         url: 'https://github.com/bar/foo/blob/baz/README.md',
         topics: ['Registry Item 2'],
+        journeys: [],
         topicPersonas: ['Designer'],
         topicResourceType: 'Components',
         position: 2,
@@ -225,6 +258,7 @@ describe('getFilesFromRegistry', () => {
       {
         url: 'https://github.com/bcgov/Agile-Delivery-Process/blob/master/MattDamon.md',
         topics: ['Registry Item 3'],
+        journeys: [],
         topicPersonas: [],
         topicResourceType: 'Documentation',
         position: 5,

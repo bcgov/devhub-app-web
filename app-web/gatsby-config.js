@@ -1,7 +1,7 @@
 require('dotenv').config({
   path: '.env.production',
 });
-const { topicRegistry } = require('./devhub.config.json');
+const { topicRegistry, journeyRegistry } = require('./devhub.config.json');
 const { converter } = require('./gatsby/utils/gatsbyRemark');
 const { getFilesFromRegistry } = require('./gatsby/utils/githubRaw');
 // To specify a path of the registry.yaml file, set as env variable
@@ -138,8 +138,15 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'topicRegsiter',
+        name: 'topicRegistry',
         path: `${__dirname}/${topicRegistry.contextDir}`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'journeyRegistry',
+        path: `${__dirname}/${journeyRegistry.contextDir}`,
       },
     },
     {

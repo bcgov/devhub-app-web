@@ -26,6 +26,7 @@ const isDevhubTopic = node => node.internal.type === 'DevhubTopic';
 const isMeetupEvent = node => node.internal.type === 'MeetupEvent';
 const isEventbriteEvents = node => node.internal.type === 'EventbriteEvents';
 const isTopicRegistryJson = node => node.internal.type === 'TopicRegistryJson';
+const isJourneyRegistryJson = node => node.internal.type === 'JourneyRegistryJson';
 const isMarkdownRemarkFrontmatter = node => node.internal.type === 'MarkdownRemarkFrontmatter';
 const isMatomoPageStats = node => node.internal.type === 'MatomoPageStats';
 
@@ -78,6 +79,7 @@ module.exports = {
   isDevhubTopic,
   isEventbriteEvents,
   isTopicRegistryJson,
+  isJourneyRegistryJson,
   isMatomoPageStats,
   getClosest,
   getClosestPersona,
