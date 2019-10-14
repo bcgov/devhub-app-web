@@ -51,6 +51,24 @@ export const MarkdownBody = styled.div`
     width: 100%;
     min-width: 400px;
   }
+
+  blockquote {
+    border-left: 7px solid #ccc;
+    padding-left: 7px;
+    font-size: 0.9em;
+    blockquote {
+      border-width: 4px;
+    }
+  }
+
+  h1 code,
+  h2 code,
+  h3 code,
+  h4 code,
+  h5 code,
+  h6 code {
+    font-size: inherit;
+  }
 `;
 
 export const SidePanel = styled.nav`

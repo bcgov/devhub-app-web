@@ -25,7 +25,7 @@ const withResourceQuery = WrappedComponent => () => props => (
         siteSearchIndex {
           index
         }
-        allGithubRaw {
+        allGithubRaw(filter: { fields: { pageOnly: { eq: false } } }) {
           edges {
             node {
               id

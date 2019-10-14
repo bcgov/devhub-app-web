@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
+import { graphql } from 'gatsby';
 import Layout from '../hoc/Layout';
 import { LinkContainer } from '../components/Home/index';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';

@@ -185,7 +185,6 @@ module.exports = {
         plugins: [
           'gatsby-remark-emoji',
           'gatsby-remark-copy-linked-files',
-          'gatsby-remark-autolink-headers',
           {
             resolve: 'gatsby-remark-prismjs',
             options: {
@@ -202,6 +201,7 @@ module.exports = {
               converter,
             },
           },
+          'gatsby-remark-autolink-headers',
           {
             resolve: 'gatsby-remark-images',
             options: {

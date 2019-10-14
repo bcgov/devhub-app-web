@@ -1,0 +1,35 @@
+{
+  "name": "Beginner's Guide to Developing on the Platform",
+  "description": "An overview on Openshift, Development Best Practices, and Troubleshooting",
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/devhub-resources",
+          "owner": "bcgov",
+          "repo": "devhub-resources",
+          "files": [
+            "resources/community/new-developer.md",
+            "resources/community/what-is-openshift.md",
+            "resources/community/openshift101.md",
+            "resources/community/openshift201.md",
+            "resources/community/rocketchat.md",
+            "resources/community/best-practices-for-app-development.md",
+            "resources/community/finding-resources.md",
+            "resources/community/npm-publishing.md",
+            "resources/security/security-for-beginners.md"
+          ]
+        }
+      }
+    ]
+  },
+  "attributes": {
+    "personas": [
+      "Designer",
+      "Developer",
+      "Product Owner"
+    ]
+  },
+  "resourceType": "Documentation"
+}
