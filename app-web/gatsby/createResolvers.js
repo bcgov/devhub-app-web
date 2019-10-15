@@ -22,7 +22,7 @@
 // https://www.gatsbyjs.org/docs/node-apis/
 
 const { resolveJourneyConnections } = require('./resolvers/registryJson');
-const { resolveDevhubConnections } = require('./resolvers/devhubTopic');
+const { resolveDevhubTopicConnections } = require('./resolvers/devhubTopic');
 
 const getOrganizationsById = id => {
   const organizations = {
@@ -65,7 +65,7 @@ module.exports = ({ createResolvers }) => {
       connectsWith: {
         // a list of nodes only really needs pointers to the page paths and a title for a link
         type: '[ConnectedNode]',
-        resolve: resolveDevhubConnections,
+        resolve: resolveDevhubTopicConnections,
       },
     },
     EventbriteEvents: {

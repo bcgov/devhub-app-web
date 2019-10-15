@@ -80,7 +80,7 @@ const resolveJourneyConnections = (source, args, context) => {
       return {
         ...resolvedStop,
         connectsWith:
-          stop.stops.length > 0 && node.internal.type !== 'DevhubSiphon' // only real files are allowed to have connections
+          stop.stops && stop.stops.length > 0 && node.internal.type !== 'DevhubSiphon' // only real files are allowed to have connections
             ? flatten(
                 stop.stops.map(nextStop =>
                   resolveSecondaryStop(nextStop, `${basePath}/${node.fields.slug}`),
