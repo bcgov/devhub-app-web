@@ -21,7 +21,7 @@
 // gatsby event hooks
 // https://www.gatsbyjs.org/docs/node-apis/
 
-const { uniqBy } = require('lodash');
+const { uniqBy, flatten } = require('lodash');
 const { nodeBelongsToTopic } = require('./utils/validators');
 
 const getOrganizationsById = id => {
@@ -61,24 +61,29 @@ module.exports = ({ createResolvers }) => {
             const findNode = (sourceType, args) => {
               if (sourceType === 'web') {
                 if (!_cache[args.url]) {
-                  const node = siphonNodes.find(node => node.path === args.url);
+                  const url = args.url.toLowerCase();
+                  const node = siphonNodes.find(node => node.path.toLowerCase() === url);
                   if (node) {
                     _cache[args.url] = node;
                   }
                 }
                 return _cache[args.url];
-              }
-              const gitUrl = `https://www.github.com/${args.owner}/${args.repo}/blob/${
-                args.branch ? args.branch : 'master'
-              }/${args.file}`;
+              } else if (sourceType === 'github') {
+                const gitUrl = `https://github.com/${args.owner}/${args.repo}/blob/${
+                  args.branch ? args.branch : 'master'
+                }/${args.file}`.toLowerCase();
+                if (!_cache[gitUrl]) {
+                  const node = ghNodes.find(node => {
+                    return node.html_url.toLowerCase() === gitUrl;
+                  });
 
-              if (!_cache[gitUrl]) {
-                const node = ghNodes.find(node => node.html_url === gitUrl);
-                if (node) {
-                  _cache[gitUrl] = node;
+                  if (node) {
+                    _cache[gitUrl] = node;
+                  }
                 }
                 return _cache[gitUrl];
               }
+
               return null;
             };
 
@@ -90,23 +95,64 @@ module.exports = ({ createResolvers }) => {
              */
             const Stop = (fields, path, id) => ({ fields, path, id });
 
-            /**
-             * recursively iterates over a journey stop and attempts to find a node if it exists
-             * @param {*} stop
-             */
-            const resolveStop = stop => {
-              // we technically should bar primary stops from being source type web since it leads to a bad ux ??
-              const primaryNode = findNode(stop.sourceType, stop.sourceProperties);
-              // console.log('PRIMARY Node', primaryNode);
-              const primaryStop = Stop(primaryNode.fields, primaryNode.path, primaryNode.id);
+            const resolvePrimaryStops = (stop, basePath) => {
+              const node = findNode(stop.sourceType, stop.sourceProperties);
 
+              let resolvedStop = null;
+              if (node.internal.type === 'GithubRaw') {
+                resolvedStop = Stop(node.fields, `${basePath}/${node.fields.slug}`, node.id);
+              } else {
+                resolvedStop = Stop(node.fields, node.path, node.id);
+              }
               return {
-                ...primaryStop,
-                connectsWith: stop.stops ? stop.stops.map(resolveStop) : [],
+                ...resolvedStop,
+                connectsWith:
+                  stop.stops.length > 0 && node.internal.type !== 'DevhubSiphon' // only real files are allowed to have connections
+                    ? flatten(
+                        stop.stops.map(nextStop =>
+                          resolveSecondaryStop(nextStop, `${basePath}/${node.fields.slug}`),
+                        ),
+                      )
+                    : [],
               };
             };
+            /**
+             * recursively iterates over a journey stop and attempts to find a node if it exists
+             * @param {Object} stop
+             */
+            const resolveSecondaryStop = (stop, basePath) => {
+              // we technically should bar primary stops from being source type web since it leads to a bad ux ??
+              let nodes = [];
+              let resolvedStops = [];
+              // find stop based on source type found in the registry config
+              if (stop.sourceType === 'github' && stop.sourceProperties.files) {
+                nodes = stop.sourceProperties.files.map(f =>
+                  findNode(stop.sourceType, { ...stop.sourceProperties, file: f }),
+                );
+              } else if (stop.sourceType === 'github' && stop.sourceProperties.files) {
+                nodes = [findNode(stop.sourceType, stop.sourceProperties)];
+              } else {
+                // because github source types have 1-n files listed we need to make web source types
+                // appear as an array as well
+                nodes = [findNode(stop.sourceType, stop.sourceProperties)];
+              }
 
-            _cache[source.id] = source.sourceProperties.stops.map(resolveStop);
+              resolvedStops = nodes.map(node => {
+                if (node.internal.type === 'GithubRaw') {
+                  return Stop(node.fields, `${basePath}/${node.fields.slug}`, node.id);
+                } else {
+                  return Stop(node.fields, node.path, node.id);
+                }
+              });
+
+              return resolvedStops;
+            };
+
+            _cache[source.id] = flatten(
+              source.sourceProperties.stops.map(stop =>
+                resolvePrimaryStops(stop, source.fields.slug),
+              ),
+            );
           }
           return _cache[source.id];
         },

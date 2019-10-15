@@ -15,7 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-const { isTopicRegistryJson, isJourneyRegistryJson } = require('./validators');
+const { isTopicRegistryJson, isJourneyRegistryJson, verifyJourney } = require('./validators');
 const isArray = require('lodash/isArray');
 
 /**
@@ -27,6 +27,7 @@ const isArray = require('lodash/isArray');
  */
 const reduceJourneyRegistryToTopic = registry => {
   const topicRegistry = registry.map(r => {
+    verifyJourney(r);
     return {
       ...r,
       sourceProperties: {
@@ -34,6 +35,9 @@ const reduceJourneyRegistryToTopic = registry => {
           const { stops, ...rest } = stop;
           if (stops) {
             // we need to keep a reference for all 'sub stops' that belong to a stop
+            // stops within stops MUST be an independant resource. For source type web this is a non issue
+            // for github source types, there is the possability to configure the registry with 'files' for topics
+            // this is not allowed in journeys
             const stopsWithReference = stops.map(s => ({ ...s, connectsWith: { ...rest } }));
             return stopsAcc.concat(rest).concat(stopsWithReference);
           } else {

@@ -63,6 +63,28 @@ const getClosestPersona = (personaList, personas) => {
 };
 
 /**
+ * Journeys need to be validated for github sources
+ * the 'files' argument is not allowed for journeys since a journey
+ * explicitly defines an orderered set of resources
+ * this fn will throw if the registry item is invalid
+ * @param {Object} registryItem
+ * @returns {void}
+ */
+const verifyJourney = registryItem => {
+  const throwIfInvalidGithubSource = source => {
+    if (source.sourceType === 'github') {
+      if (source.sourceProperties.files) {
+        throw new Error(`Error with Journey Registry: ${registryItem.name}.
+          A primary stop in a registry cannot have multiple files associated with it. Avoid using
+          the 'files' argument as it would be used in a topic. 
+        `);
+      }
+    }
+  };
+
+  registryItem.sourceProperties.stops.forEach(throwIfInvalidGithubSource);
+};
+/**
  * @param {String} topic the name of the topic
  * @param {Object} node the node to check against
  * @param {Object} node.fields
@@ -85,4 +107,5 @@ module.exports = {
   getClosestPersona,
   getClosestResourceType,
   nodeBelongsToTopic,
+  verifyJourney,
 };

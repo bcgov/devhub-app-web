@@ -32,6 +32,7 @@ const {
   getClosestPersona,
   isTopicRegistryJson,
   isMatomoPageStats,
+  isJourneyRegistryJson,
 } = require('./utils/validators.js');
 const { flattenExpandedRegistry, expandRegistry } = require('./utils/githubRaw');
 const slugify = require('slugify');
@@ -61,6 +62,10 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
   if (isGithubRaw(node)) {
     createNodeField({ node, name: 'topics', value: node.___boundProperties.topics });
     createNodeField({ node, name: 'position', value: node.___boundProperties.position });
+  }
+
+  if (isJourneyRegistryJson(node)) {
+    createNodeField({ node, name: 'slug', value: slugify(node.name) });
   }
 
   if (isDevhubTopic(node)) {
