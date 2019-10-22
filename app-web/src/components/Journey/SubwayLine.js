@@ -73,7 +73,7 @@ export const SubwayLine = ({ stops, color, size = 25 }) => (
           size={size}
           variant={variant}
           color={color}
-          href={stop.to}
+          to={stop.to}
           {...extraProps}
         />
       );

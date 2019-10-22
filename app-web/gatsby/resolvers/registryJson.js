@@ -65,18 +65,25 @@ const resolveJourneyConnections = (source, args, context) => {
      * @param {Object} fields
      * @param {String} path
      * @param {String} id
+     * @param {String} type the original nodes internal.type
      */
-    const Stop = (fields, path, id) => ({ fields, path, id });
+    const Stop = (fields, path, id, type) => ({ fields, path, id, _type: type });
 
     const resolvePrimaryStops = (stop, basePath) => {
       const node = findNode(stop.sourceType, stop.sourceProperties);
 
       let resolvedStop = null;
       if (node.internal.type === 'GithubRaw') {
-        resolvedStop = Stop(node.fields, `${basePath}/${node.fields.slug}`, node.id);
+        resolvedStop = Stop(
+          node.fields,
+          `/${basePath}/${node.fields.slug}`,
+          node.id,
+          node.internal.type,
+        );
       } else {
-        resolvedStop = Stop(node.fields, node.path, node.id);
+        resolvedStop = Stop(node.fields, node.path, node.id, node.internal.type);
       }
+
       return {
         ...resolvedStop,
         connectsWith:

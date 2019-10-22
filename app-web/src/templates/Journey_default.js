@@ -26,7 +26,7 @@ const reduceJourneyToSubwayLine = connections =>
     variant: index % 2 === 0 ? 'up' : 'down',
   }));
 
-export const JourneyDetailPage = ({
+export const JourneyPage = ({
   data: {
     journeyRegistryJson: { title, connectsWith },
   },
@@ -52,4 +52,4 @@ export const journeyQuery = graphql`
   }
 `;
 
-export default JourneyDetailPage;
+export default JourneyPage;

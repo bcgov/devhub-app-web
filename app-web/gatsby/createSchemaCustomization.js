@@ -27,6 +27,7 @@ module.exports = ({ actions }) => {
       fields: ConnectedNodeFieldSet
       path: String
       id: String!
+      _type: String!
       connectsWith: [ConnectedNode]
     }
   `;

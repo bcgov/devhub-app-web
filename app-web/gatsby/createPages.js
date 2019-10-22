@@ -140,14 +140,18 @@ const createJourneyPage = (node, createPage) => {
   });
 };
 
-const createJourneyStopPage = (node, createPage) => {
-  const template = resolvePath('../src/templates/Journey_default.js');
+const createJourneyStopPage = (node, journeyId, createPage) => {
+  const templateMappings = {
+    GithubRaw: resolvePath('../src/templates/JourneyGithub_default.js'),
+  };
+
   createPage({
     path: node.path,
     context: {
-      id: node.id,
+      id: journeyId,
+      githubId: node.id,
     },
-    component: template,
+    component: templateMappings[node._type],
   });
 };
 
@@ -164,6 +168,7 @@ const createJourneyPages = async (createPage, graphql) => {
             connectsWith {
               path
               id
+              _type
             }
           }
         }
@@ -177,7 +182,7 @@ const createJourneyPages = async (createPage, graphql) => {
 
     // for each 'stop' in the journey create a page
     node.connectsWith.forEach(connection => {
-      createJourneyStopPage(connection, createPage);
+      createJourneyStopPage(connection, node.id, createPage);
     });
   });
 };
