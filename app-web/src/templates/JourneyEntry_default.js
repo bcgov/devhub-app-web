@@ -16,35 +16,23 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import rehypeReact from 'rehype-react';
 import { graphql } from 'gatsby';
+import rehypeReact from 'rehype-react';
 import Layout from '../hoc/Layout';
 import { SubwayLine } from '../components/Journey';
-import Actions from '../components/GithubTemplate/Actions/Actions';
-import { MarkdownBody, Main } from '../components/GithubTemplate/common';
-import ComponentPreview from '../components/ComponentPreview/ComponentPreview';
-import withNode from '../hoc/withNode';
 import Masthead from '../components/GithubTemplate/Masthead/Masthead';
 import { reduceJourneyToSubwayLine } from '../utils/helpers';
+import { MarkdownBody, Main } from '../components/GithubTemplate/common';
 
-export const JourneyDetailPage = ({
+export const JourneyPage = ({
   data: {
     journeyRegistryJson: { title, connectsWith },
-    githubRaw,
+    markdownRemark,
   },
-  location,
 }) => {
-  const previewWithNode = withNode(githubRaw)(ComponentPreview);
-
   const renderAst = new rehypeReact({
     createElement: React.createElement,
-    components: { 'component-preview': previewWithNode },
   }).Compiler;
-
-  const [owner, repo] = githubRaw.html_url.replace('https://github.com/', '').split('/');
-
-  const originalSource = githubRaw.html_url;
-  const { href } = location;
   return (
     <Layout>
       <div>
@@ -65,14 +53,7 @@ export const JourneyDetailPage = ({
               the renderAst will drop in the rehype component
               otherwise if not tag exists it is biz as usual
             */}
-            {renderAst(githubRaw.childMarkdownRemark.htmlAst)}
-            <Actions
-              repo={repo}
-              owner={owner}
-              pageTitle={title}
-              originalSource={originalSource}
-              devhubPath={href}
-            />
+            {renderAst(markdownRemark.htmlAst)}
           </MarkdownBody>
         </Main>
       </div>
@@ -81,7 +62,7 @@ export const JourneyDetailPage = ({
 };
 
 export const journeyQuery = graphql`
-  query devhubJourneyGithub($id: String!, $githubId: String!) {
+  query devhubJourney($id: String!, $name: String!) {
     journeyRegistryJson(id: { eq: $id }) {
       title: name
       connectsWith {
@@ -91,20 +72,10 @@ export const journeyQuery = graphql`
         }
       }
     }
-    githubRaw(id: { eq: $githubId }) {
-      name
-      id
-      html_url
-      childMarkdownRemark {
-        htmlAst
-      }
-      fields {
-        title
-        description
-        pagePaths
-      }
+    markdownRemark(frontmatter: { id: { eq: $name } }) {
+      htmlAst
     }
   }
 `;
 
-export default JourneyDetailPage;
+export default JourneyPage;

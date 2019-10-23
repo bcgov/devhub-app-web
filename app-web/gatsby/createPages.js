@@ -129,12 +129,13 @@ const createResourceTypePages = createPage => {
  * @param {Function} createPage the gatsby createpage function
  */
 const createJourneyPage = (node, createPage) => {
-  const template = resolvePath('../src/templates/Journey_default.js');
+  const template = resolvePath('../src/templates/JourneyEntry_default.js');
 
   createPage({
     path: node.fields.slug,
     context: {
       id: node.id,
+      name: node.name,
     },
     component: template,
   });
@@ -162,6 +163,7 @@ const createJourneyPages = async (createPage, graphql) => {
         edges {
           node {
             id
+            name
             fields {
               slug
             }
