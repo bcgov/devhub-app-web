@@ -26,6 +26,7 @@ import ComponentPreview from '../components/ComponentPreview/ComponentPreview';
 import withNode from '../hoc/withNode';
 import Masthead from '../components/GithubTemplate/Masthead/Masthead';
 import { reduceJourneyToSubwayLine } from '../utils/helpers';
+import { JOURNEY } from '../constants/ui';
 
 export const JourneyDetailPage = ({
   data: {
@@ -53,7 +54,7 @@ export const JourneyDetailPage = ({
           title={title}
           render={() => (
             <SubwayLine
-              color="green"
+              color={JOURNEY}
               stops={reduceJourneyToSubwayLine(connectsWith)}
               style={{ maxWidth: '1000px', paddingTop: '80px', paddingBottom: '80px' }}
             />

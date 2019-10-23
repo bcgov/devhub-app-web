@@ -44,7 +44,7 @@ export const JourneyMap = ({ title, link, stops }) => {
             title
           )}
         </TopicTitle>
-        <SubwayLine stops={stops} color="lightblue" />
+        <SubwayLine stops={stops} color={JOURNEY} />
       </PreviewContainer>
     </JourneyContainer>
   );
