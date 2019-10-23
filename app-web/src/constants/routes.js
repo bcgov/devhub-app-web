@@ -15,6 +15,10 @@ export const MAIN_NAV_ROUTES = {
     to: '/topics',
     text: 'Topics',
   },
+  JOURNEYS: {
+    to: '/journeys',
+    text: 'Journeys',
+  },
   [RESOURCE_TYPES.SELF_SERVICE_TOOLS]: {
     to: '/self-service-tools',
     text: 'Tools',

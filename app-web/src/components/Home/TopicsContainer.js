@@ -16,7 +16,6 @@ Created by Patrick Simonian
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
 import { getFirstNonExternalResource } from '../../utils/helpers';
 import TopicPreview from '../TopicPreview/TopicPreview';
 
@@ -44,10 +43,6 @@ const TopicContent = topics =>
           description={topic.description}
           link={{ to: getFirstNonExternalResource(allResources), text: 'View' }}
           resources={allResources}
-          css={css`
-            max-width: 100%;
-            margin-right: 10px;
-          `}
         />
       );
     });
