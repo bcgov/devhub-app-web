@@ -3,7 +3,7 @@ ignore: true
 author: Patrick Simonian
 description: About Messages Folder
 ---
-
+# THIS IS BEING DEPRECATED. PLEASE DO NOT UTILIZE
 ## Messages
 
 As a best practice all content will be migrated into localized objects. This will allow for easy
