@@ -38,6 +38,7 @@ export const JourneysContainer = ({ journeys, link }) => (
         key={journey.id}
         stops={reduceJourneyToSubwayLine(journey.connectsWith)}
       />
+
     ))}
   </PreviewContainer>
 );
