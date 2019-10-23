@@ -39,6 +39,7 @@ export const JourneysPage = ({ data }) => {
           <JourneyMap
             key={journey.id}
             title={journey.name}
+            color="green"
             stops={reduceJourneyToSubwayLine(journey.connectsWith)}
           />
         ))}
