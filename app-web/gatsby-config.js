@@ -103,6 +103,7 @@ module.exports = {
     'DevhubSiphon.fields.topics': 'DevhubTopic.name',
     // 'DevhubTopic.fields.content': 'MarkdownRemark.fields.id', // topic page content mapping
     'DevhubTopic.fields.githubRaw': 'GithubRaw.id',
+    'journeyRegistryJson.name': 'MarkdownRemark.frontmatter.id',
   },
   pathPrefix: '/images',
   plugins: [
@@ -154,6 +155,13 @@ module.exports = {
       options: {
         name: 'registry',
         path: `${__dirname}/topics`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'journeyContent',
+        path: `${__dirname}/journeys`,
       },
     },
     {
