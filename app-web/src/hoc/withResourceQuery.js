@@ -66,6 +66,23 @@ const withResourceQuery = WrappedComponent => () => props => (
             }
           }
         }
+        allJourneyRegistryJson {
+          edges {
+            node {
+              id
+              name
+              fields {
+                slug
+              }
+              connectsWith {
+                path
+                fields {
+                  title
+                }
+              }
+            }
+          }
+        }
         allDevhubTopic {
           edges {
             node {

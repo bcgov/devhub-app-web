@@ -53,6 +53,7 @@ export const JourneyDetailPage = ({
           title={title}
           render={() => (
             <SubwayLine
+              color="lightblue"
               stops={reduceJourneyToSubwayLine(connectsWith)}
               style={{ maxWidth: '1000px', paddingTop: '80px', paddingBottom: '80px' }}
             />
