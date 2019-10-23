@@ -11,7 +11,7 @@ tags:
 - new developer
 ---
 
-You and more correctly, your team has or is just about to be on-boarded onto the Pathfinder platform and need to get started. One of the questions that is often asked is _"How do I get Started?"_
+You and your team _has been_ or _is about to be_ on-boarded onto the Pathfinder platform and need to get started. One of the questions that is often asked is _"How do I get Started?"_
 
 This guide aims to be help you and your team in this journey. It highlights several concepts, pieces of tech, as well as helpful tools & resources. It does not aim to be an exhaustive guide initially but it does intend to be one that is consistently improved to help you, the Developer, succeed. 
 
