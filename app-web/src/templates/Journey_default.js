@@ -17,6 +17,7 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import { graphql } from 'gatsby';
+import Layout from '../hoc/Layout';
 import { JourneyMap } from '../components/Journey';
 
 const reduceJourneyToSubwayLine = connections =>
@@ -32,9 +33,11 @@ export const JourneyPage = ({
   },
 }) => {
   return (
-    <div>
-      <JourneyMap title={title} stops={reduceJourneyToSubwayLine(connectsWith)} />
-    </div>
+    <Layout>
+      <div>
+        <JourneyMap title={title} stops={reduceJourneyToSubwayLine(connectsWith)} />
+      </div>
+    </Layout>
   );
 };
 

@@ -26,7 +26,7 @@ const Subway = styled.div`
   display: flex;
   position: relative;
   align-items: center;
-  padding: 150px 35px;
+  padding: 150px 60px;
   justify-content: space-between;
 `;
 
@@ -38,7 +38,7 @@ const Line = styled.div`
   ${EMOTION_BOOTSTRAP_BREAKPOINTS.lg} {
     height: ${({ size }) => 0.5 * size}px;
   }
-  width: calc(100% - ${({ size }) => size}px - 70px);
+  width: calc(100% - ${({ size }) => size}px - 120px);
   position: absolute;
   top: 50%;
   transform: translateY(-50%) translateX(${({ size }) => size * 0.5}px);
@@ -46,8 +46,8 @@ const Line = styled.div`
     color && theme.colors[color] ? theme.colors[color] : theme.colors.blue};
 `;
 
-export const SubwayLine = ({ stops, color, size = 25 }) => (
-  <Subway>
+export const SubwayLine = ({ stops, color, size = 25, ...rest }) => (
+  <Subway {...rest}>
     <Line color={color} size={size} />
     {stops.map((stop, index) => {
       const variant = index % 2 === 0 ? 'up' : 'down';

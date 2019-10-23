@@ -18,11 +18,13 @@ Created by Patrick Simonian
 import React from 'react';
 import rehypeReact from 'rehype-react';
 import { graphql } from 'gatsby';
-import { JourneyMap } from '../components/Journey';
+import Layout from '../hoc/Layout';
+import { SubwayLine } from '../components/Journey';
 import Actions from '../components/GithubTemplate/Actions/Actions';
-import { MarkdownBody } from '../components/GithubTemplate/common';
+import { MarkdownBody, Main } from '../components/GithubTemplate/common';
 import ComponentPreview from '../components/ComponentPreview/ComponentPreview';
 import withNode from '../hoc/withNode';
+import Masthead from '../components/GithubTemplate/Masthead/Masthead';
 
 const reduceJourneyToSubwayLine = connections =>
   connections.map((connection, index) => ({
@@ -50,24 +52,37 @@ export const JourneyDetailPage = ({
   const originalSource = githubRaw.html_url;
   const { href } = location;
   return (
-    <div>
-      <JourneyMap title={title} stops={reduceJourneyToSubwayLine(connectsWith)} />
-      <MarkdownBody>
-        {/* 
+    <Layout>
+      <div>
+        <Masthead
+          type="Journey"
+          title={title}
+          render={() => (
+            <SubwayLine
+              stops={reduceJourneyToSubwayLine(connectsWith)}
+              style={{ maxWidth: '1000px', paddingTop: '80px', paddingBottom: '80px' }}
+            />
+          )}
+        />
+        <Main style={{ flexDirection: 'column' }}>
+          <MarkdownBody>
+            {/* 
               if there is a tag in the markdown <component-preview> 
               the renderAst will drop in the rehype component
               otherwise if not tag exists it is biz as usual
             */}
-        {renderAst(githubRaw.childMarkdownRemark.htmlAst)}
-        <Actions
-          repo={repo}
-          owner={owner}
-          pageTitle={title}
-          originalSource={originalSource}
-          devhubPath={href}
-        />
-      </MarkdownBody>
-    </div>
+            {renderAst(githubRaw.childMarkdownRemark.htmlAst)}
+            <Actions
+              repo={repo}
+              owner={owner}
+              pageTitle={title}
+              originalSource={originalSource}
+              devhubPath={href}
+            />
+          </MarkdownBody>
+        </Main>
+      </div>
+    </Layout>
   );
 };
 

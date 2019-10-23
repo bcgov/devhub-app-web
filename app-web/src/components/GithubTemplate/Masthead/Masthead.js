@@ -30,10 +30,11 @@ const Header = styled.header`
   ${withPadding}
 `;
 
-const Masthead = ({ title, description, type }) => (
+const Masthead = ({ title, description, type, render }) => (
   <Header>
     <CardHeader resourceType={type} />
     <Title title={title} subtitle={description} />
+    {render && render()}
   </Header>
 );
 
@@ -41,6 +42,7 @@ Masthead.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   type: PropTypes.oneOf(RESOURCE_TYPES_LIST),
+  render: PropTypes.func,
 };
 
 Masthead.defaultProps = {
