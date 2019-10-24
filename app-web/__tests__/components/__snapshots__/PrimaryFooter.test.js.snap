@@ -61,6 +61,7 @@ exports[`Primary Footer Component it renders and matches snapshot, when the Fair
 .emotion-0 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
+  color: #1A5A96;
   font-weight: 400;
   text-transform: capitalize;
   padding: 0 4px;
@@ -70,6 +71,7 @@ exports[`Primary Footer Component it renders and matches snapshot, when the Fair
 .emotion-2 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
+  color: #1A5A96;
   font-weight: 400;
   text-transform: capitalize;
   padding: 0 4px;

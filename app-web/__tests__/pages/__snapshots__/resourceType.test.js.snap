@@ -198,6 +198,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
 .emotion-33 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
+  color: #1A5A96;
   font-weight: 400;
   text-transform: capitalize;
   padding: 0 4px;
@@ -349,16 +350,15 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
     <div
       class="emotion-4 emotion-5"
     >
-      <div
-        class="Filters"
-      >
+      <div>
         <div
-          class="FormGroup form-group"
+          class="form-group"
         >
           <label
-            class="Title"
+            class=""
             data-testid="filter-group-title-For"
             for="For"
+            style="font-weight: 600; color: rgb(73, 73, 73); font-size: 14px; margin-bottom: 0px;"
           >
             For
           </label>

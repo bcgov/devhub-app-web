@@ -2,12 +2,13 @@
 
 exports[`FilterGroup Component matches snapshot and when the search is empty (?f= null), clicking on a checkbox calls navigate with /foo/?f=[key] 1`] = `
 <div
-  class="FormGroup form-group"
+  class="form-group"
 >
   <label
-    class="Title"
+    class=""
     data-testid="filter-group-title-Filter Group"
     for="Filter Group"
+    style="font-weight: 600; color: rgb(73, 73, 73); font-size: 14px; margin-bottom: 0px;"
   >
     Filter Group
   </label>

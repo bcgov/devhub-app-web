@@ -30,7 +30,7 @@ describe('Primary Filter Component', () => {
     navbar = shallow(<Navbar {...props} />);
   });
 
-  test('it matches snapshot', () => {
+  test.skip('it matches snapshot', () => {
     expect(navbar).toMatchSnapshot();
   });
 });

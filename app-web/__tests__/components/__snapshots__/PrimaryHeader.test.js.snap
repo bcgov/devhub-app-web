@@ -1,20 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Primary Header Component it matches snapshot 1`] = `
-<header
-  className="PrimaryHeader"
->
+<Header>
   <Banner />
-  <div
-    className="Other"
-  >
-    <div
-      className="LoginWrapper"
-    >
+  <Panel>
+    <LoginWrapper>
       <Login
         authenticated={false}
       />
-    </div>
-  </div>
-</header>
+    </LoginWrapper>
+  </Panel>
+</Header>
 `;

@@ -4,6 +4,7 @@ exports[`Banner Component matches snapshot 1`] = `
 .emotion-11 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
+  color: #1A5A96;
   font-weight: 400;
   text-transform: capitalize;
   padding: 0 4px;
