@@ -17,8 +17,6 @@ import queryString from 'query-string';
 import { FormGroup, Label } from 'reactstrap';
 import isEmpty from 'lodash/isEmpty';
 import { ARIA_LABEL_FILTER_RESOURCE } from '../../../constants/ariaLabels';
-import styles from './FilterGroup.module.css';
-
 import Checkbox from '../../UI/Input/Checkbox';
 import withLocation from '../../../hoc/withLocation';
 import { navigate } from 'gatsby';
@@ -53,6 +51,7 @@ export const TEST_IDS = {
   title: 'filter-group-title',
   checkbox: 'filter-group-checkbox',
 };
+
 /**
  * Filter Group Component
  * renders checkboxes around a common theme ('group')
@@ -81,8 +80,17 @@ export const FilterGroup = ({ title, filters, location }) => {
   }, {});
 
   return (
-    <FormGroup className={styles.FormGroup}>
-      <Label for={title} className={styles.Title} data-testid={`${TEST_IDS.title}-${title}`}>
+    <FormGroup>
+      <Label
+        for={title}
+        style={{
+          fontWeight: '600',
+          color: '#494949',
+          fontSize: '14px',
+          marginBottom: '0',
+        }}
+        data-testid={`${TEST_IDS.title}-${title}`}
+      >
         {title}
       </Label>
       {filters.map((filter, ind) => {
