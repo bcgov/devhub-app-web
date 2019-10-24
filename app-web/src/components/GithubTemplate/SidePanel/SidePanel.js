@@ -17,9 +17,25 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './SidePanel.module.css';
+import styled from '@emotion/styled';
 
-const SidePanel = ({ children }) => <div className={styles.SidePanel}>{children}</div>;
+const Container = styled.div`
+  flex: 1 0 200px;
+  background-color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  @media screen and (min-width: 768px) {
+    width: 260px;
+    position: fixed;
+    left: 0;
+    bottom: 47px;
+    top: 52px;
+  }
+  @media print {
+    display: none;
+  }
+`;
+const SidePanel = ({ children }) => <Container>{children}</Container>;
 
 SidePanel.propTypes = {
   children: PropTypes.node,
