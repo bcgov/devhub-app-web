@@ -23,6 +23,13 @@ module.exports = ({ actions }) => {
       path: String
       resourceType: String
     }
+    type ConnectedStopNode {
+      fields: ConnectedNodeFieldSet
+      path: String
+      id: String!
+      _type: String!
+      connectsWith: [ConnectedNode]
+    }
   `;
 
   createTypes(typeDefs);

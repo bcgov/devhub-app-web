@@ -21,8 +21,8 @@
 // gatsby event hooks
 // https://www.gatsbyjs.org/docs/node-apis/
 
-const { uniqBy } = require('lodash');
-const { nodeBelongsToTopic } = require('./utils/validators');
+const { resolveJourneyConnections } = require('./resolvers/registryJson');
+const { resolveDevhubTopicConnections } = require('./resolvers/devhubTopic');
 
 const getOrganizationsById = id => {
   const organizations = {
@@ -39,11 +39,13 @@ const getOrganizationsById = id => {
 };
 
 module.exports = ({ createResolvers }) => {
-  // cache devhubtopic connectswith resolutions for speed purposes
-  // resolvers seem to run at build time for every time there is a graphql query that calls for devhubTopic.connectsWith
-  // and is a bit of an expensive process
-  const _cache = {};
   const resolvers = {
+    JourneyRegistryJson: {
+      connectsWith: {
+        type: '[ConnectedStopNode]',
+        resolve: resolveJourneyConnections,
+      },
+    },
     GithubRaw: {
       pageViews: {
         // binding page views to github raw nodes based off of Matomo page stats so that a popular topic can be built
@@ -63,63 +65,7 @@ module.exports = ({ createResolvers }) => {
       connectsWith: {
         // a list of nodes only really needs pointers to the page paths and a title for a link
         type: '[ConnectedNode]',
-        resolve: (source, args, context) => {
-          //
-          if (!_cache[source.id]) {
-            // get all github raw nodes and siphon source type web nodes and return them ordered by fields.position
-            let webNodes = context.nodeModel
-              .getAllNodes({
-                type: 'DevhubSiphon',
-              })
-              .filter(n => {
-                return n.source.type === 'web' && nodeBelongsToTopic(source.name, n);
-              })
-              .map(n => ({ fields: { ...n.fields }, id: n.id, path: n.resource.path }));
-
-            let ghNodes = context.nodeModel.getAllNodes({
-              type: 'GithubRaw',
-            });
-
-            let eventbriteNodes = context.nodeModel.getAllNodes({
-              type: 'EventbriteEvents',
-            });
-
-            let meetupNodes = context.nodeModel.getAllNodes({
-              type: 'MeetupEvent',
-            });
-
-            // siphon nodes produce multiples of the same type which we need to filter out
-            webNodes = uniqBy(webNodes, 'path');
-
-            ghNodes = ghNodes
-              .filter(n => nodeBelongsToTopic(source.name, n))
-              .map(n => ({
-                fields: { ...n.fields },
-                id: n.id,
-                path: `/${source.fields.slug}/${n.fields.slug}`,
-              }));
-
-            // event nodes are only connected if they occur in the future
-            eventbriteNodes = eventbriteNodes
-              .filter(n => nodeBelongsToTopic(source.name, n) && n.fields.daysFromNow >= 0)
-              .map(n => ({ fields: { ...n.fields }, id: n.id, path: n.fields.pagePaths[0] }));
-
-            meetupNodes = meetupNodes
-              .filter(n => nodeBelongsToTopic(source.name, n) && n.fields.daysFromNow >= 0)
-              .map(n => ({ fields: { ...n.fields }, id: n.id, path: n.fields.pagePaths[0] }));
-
-            const connectsWith = webNodes
-              .concat(ghNodes)
-              .sort((a, b) => {
-                return a.fields.position.toString().localeCompare(b.fields.position);
-              })
-              .concat(eventbriteNodes)
-              .concat(meetupNodes);
-
-            _cache[source.id] = connectsWith;
-          }
-          return _cache[source.id];
-        },
+        resolve: resolveDevhubTopicConnections,
       },
     },
     EventbriteEvents: {

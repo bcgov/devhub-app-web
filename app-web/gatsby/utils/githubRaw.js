@@ -15,9 +15,40 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-const { isRegistryJson } = require('./validators');
+const { isTopicRegistryJson, isJourneyRegistryJson, verifyJourney } = require('./validators');
 const isArray = require('lodash/isArray');
 
+/**
+ * reduces a journey which is a 2d version of a  topic to a topic
+ * this is purely so that we can leverage routines that are already working in this file
+ * to extract github raw sources
+ * @param {Array} registry
+ * @returns {Array}
+ */
+const reduceJourneyRegistryToTopic = registry => {
+  const topicRegistry = registry.map(r => {
+    verifyJourney(r);
+    return {
+      ...r,
+      sourceProperties: {
+        sources: r.sourceProperties.stops.reduce((stopsAcc, stop) => {
+          const { stops, ...rest } = stop;
+          if (stops) {
+            // we need to keep a reference for all 'sub stops' that belong to a stop
+            // stops within stops MUST be an independant resource. For source type web this is a non issue
+            // for github source types, there is the possability to configure the registry with 'files' for topics
+            // this is not allowed in journeys
+            const stopsWithReference = stops.map(s => ({ ...s, connectsWith: { ...rest } }));
+            return stopsAcc.concat(rest).concat(stopsWithReference);
+          } else {
+            return stopsAcc.concat(stop);
+          }
+        }, []),
+      },
+    };
+  });
+  return topicRegistry;
+};
 /**
  * registry configuration allows for multiple ways of configuring particular sources
  * for example github sources can grab a file or files
@@ -85,22 +116,45 @@ const flattenExpandedRegistry = expandedRegistry =>
 const getFilesFromRegistry = getNodes => {
   const nodes = getNodes();
   const sourceToTopicMap = {};
+
+  const REGISTRY_TYPES = {
+    TOPIC: 'TOPIC',
+    JOURNEY: 'JOURNEY',
+  };
   // get RegistryJson nodes
-  const registry = nodes.filter(isRegistryJson);
+  const topicRegistry = nodes
+    .filter(isTopicRegistryJson)
+    .map(n => ({ ...n, type: REGISTRY_TYPES.TOPIC }));
+  const journeyRegistry = nodes
+    .filter(isJourneyRegistryJson)
+    .map(n => ({ ...n, type: REGISTRY_TYPES.JOURNEY }));
+  const mappedTopicRegistry = reduceJourneyRegistryToTopic(journeyRegistry);
+
   // expand registry so that any items that list multiple files (for source: github)
   // are spread into individual objects
   // [{sourceProperties: { files: [A, B]}}] => [{sourceProperties: { file: A}}, {sourceProperties: { file: B}}]
-  const expandedRegistry = expandRegistry(registry);
+  const expandedRegistry = expandRegistry(topicRegistry.concat(mappedTopicRegistry));
 
-  //
   const sources = expandedRegistry.reduce((sources, registryItem) => {
     const personas = registryItem.attributes && registryItem.attributes.personas;
-    const flattenedSources = registryItem.sourceProperties.sources.map(s => ({
-      source: s,
-      topic: registryItem.name,
-      topicResourceType: registryItem.resourceType,
-      topicPersonas: personas || [],
-    }));
+    const flattenedSources = registryItem.sourceProperties.sources.map(s => {
+      if (registryItem.type === REGISTRY_TYPES.TOPIC) {
+        return {
+          source: s,
+          topic: registryItem.name,
+          topicResourceType: registryItem.resourceType,
+          topicPersonas: personas || [],
+        };
+      } else if (registryItem.type === REGISTRY_TYPES.JOURNEY) {
+        return {
+          source: s,
+          journey: registryItem.name,
+          journeyResourceType: registryItem.resourceType,
+          journeyPersonas: personas || [],
+        };
+      }
+      return null;
+    });
     return sources.concat(flattenedSources);
   }, []);
 
@@ -108,11 +162,20 @@ const getFilesFromRegistry = getNodes => {
   // so that they are filterable
   const resolvedGitSources = sources
     .map((s, ind) => {
-      const { source, topic, topicResourceType, topicPersonas } = s;
+      const {
+        source,
+        topic,
+        topicResourceType,
+        topicPersonas,
+        journey,
+        journeyResourceType,
+        journeyPersonas,
+      } = s;
 
       if (source.sourceType === 'github') {
         const {
           sourceProperties: { repo, owner, branch, file },
+          connectsWith,
         } = source;
 
         const fileBranch = branch ? branch : 'master';
@@ -122,6 +185,10 @@ const getFilesFromRegistry = getNodes => {
           topic,
           topicResourceType,
           topicPersonas,
+          journeyPersonas,
+          journey,
+          journeyResourceType,
+          journeyConnectsWith: connectsWith,
         };
       } else {
         // web source types are ignored
@@ -132,23 +199,32 @@ const getFilesFromRegistry = getNodes => {
 
   // map out urls to their respective topics since this is 1 to many relationship
   // ends up with structure that is similar to this => {url1: {topics: [topicA, topicB], ...other props}}
-  resolvedGitSources.forEach(({ url, topic, topicResourceType, topicPersonas, position }) => {
-    if (Object.prototype.hasOwnProperty.call(sourceToTopicMap, url)) {
-      sourceToTopicMap[url].topics.push(topic);
-    } else {
-      sourceToTopicMap[url] = {
-        topics: [topic],
-        topicResourceType,
-        topicPersonas,
-        position: position,
-      };
-    }
-  });
+  resolvedGitSources.forEach(
+    ({ url, topic, journey, topicResourceType, topicPersonas, position }) => {
+      if (Object.prototype.hasOwnProperty.call(sourceToTopicMap, url)) {
+        if (topic) {
+          sourceToTopicMap[url].topics.push(topic);
+        }
+        if (journey) {
+          sourceToTopicMap[url].journeys.push(journey);
+        }
+      } else {
+        sourceToTopicMap[url] = {
+          topics: topic ? [topic] : [],
+          journeys: journey ? [journey] : [],
+          topicResourceType,
+          topicPersonas,
+          position: position,
+        };
+      }
+    },
+  );
 
   // convert sourceToTopicMap to an array in the expected structure for the github raw plugin
   return Object.keys(sourceToTopicMap).map(url => ({
     url,
     topics: sourceToTopicMap[url].topics,
+    journeys: sourceToTopicMap[url].journeys,
     topicResourceType: sourceToTopicMap[url].topicResourceType, // the following props are being bound to cascade
     // resource types/personas from the collection to the individual resource, this preserves a feature of
     // providing reasonable defaults for resource type/personas if they dont exist inside the github raw nodes
@@ -158,4 +234,9 @@ const getFilesFromRegistry = getNodes => {
   }));
 };
 
-module.exports = { getFilesFromRegistry, expandRegistry, flattenExpandedRegistry };
+module.exports = {
+  getFilesFromRegistry,
+  expandRegistry,
+  flattenExpandedRegistry,
+  reduceJourneyRegistryToTopic,
+};

@@ -1,7 +1,7 @@
 require('dotenv').config({
   path: '.env.production',
 });
-const { registry } = require('./devhub.config.json');
+const { topicRegistry, journeyRegistry } = require('./devhub.config.json');
 const { converter } = require('./gatsby/utils/gatsbyRemark');
 const { getFilesFromRegistry } = require('./gatsby/utils/githubRaw');
 // To specify a path of the registry.yaml file, set as env variable
@@ -103,6 +103,7 @@ module.exports = {
     'DevhubSiphon.fields.topics': 'DevhubTopic.name',
     // 'DevhubTopic.fields.content': 'MarkdownRemark.fields.id', // topic page content mapping
     'DevhubTopic.fields.githubRaw': 'GithubRaw.id',
+    'journeyRegistryJson.name': 'MarkdownRemark.frontmatter.id',
   },
   pathPrefix: '/images',
   plugins: [
@@ -138,8 +139,15 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'registry',
-        path: `${__dirname}/${registry.contextDir}`,
+        name: 'topicRegistry',
+        path: `${__dirname}/${topicRegistry.contextDir}`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'journeyRegistry',
+        path: `${__dirname}/${journeyRegistry.contextDir}`,
       },
     },
     {
@@ -147,6 +155,13 @@ module.exports = {
       options: {
         name: 'registry',
         path: `${__dirname}/topics`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'journeyContent',
+        path: `${__dirname}/journeys`,
       },
     },
     {
@@ -223,7 +238,7 @@ module.exports = {
         },
         // If REGISTRY_PATH is set specifically, include this REGISTRY_TYPE as an env var
         // Format convention: camalcase of the sub path + 'Yaml'
-        sourceRegistryType: 'RegistryJson',
+        sourceRegistryType: 'TopicRegistryJson',
       },
     },
     {

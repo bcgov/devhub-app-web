@@ -1,0 +1,106 @@
+{
+  "name": "Beginner Guide to Developing on the Platform",
+  "description": "An overview on Openshift, Development Best Practices, and Troubleshooting",
+  "sourceProperties": {
+    "stops": [
+      { 
+        "sourceType": "github",
+        "sourceProperties":
+          { 
+            "file": "resources/community/new-developer.md",
+            "url": "https://github.com/bcgov/devhub-resources", 
+            "owner": "bcgov", 
+            "repo": "devhub-resources"
+           }
+      },
+      { 
+        "sourceType": "github",
+        "sourceProperties":
+          { 
+            "file": "resources/community/what-is-openshift.md",
+            "url": "https://github.com/bcgov/devhub-resources", 
+            "owner": "bcgov", 
+            "repo": "devhub-resources"
+           }
+      },
+      { 
+        "sourceType": "github",
+        "sourceProperties":
+          { 
+            "file": "resources/community/openshift101.md",
+            "url": "https://github.com/bcgov/devhub-resources", 
+            "owner": "bcgov", 
+            "repo": "devhub-resources"
+           }
+      },
+      { 
+        "sourceType": "github",
+        "sourceProperties":
+          { 
+            "file": "resources/community/openshift201.md",
+            "url": "https://github.com/bcgov/devhub-resources", 
+            "owner": "bcgov", 
+            "repo": "devhub-resources"
+           }
+      },
+      { 
+        "sourceType": "github",
+        "sourceProperties":
+          { 
+            "file": "resources/community/rocketchat.md",
+            "url": "https://github.com/bcgov/devhub-resources", 
+            "owner": "bcgov", 
+            "repo": "devhub-resources"
+           }
+      },
+      { 
+        "sourceType": "github",
+        "sourceProperties":
+          { 
+            "file": "resources/community/best-practices-for-app-development.md",
+            "url": "https://github.com/bcgov/devhub-resources", 
+            "owner": "bcgov", 
+            "repo": "devhub-resources"
+           }
+      },
+      { 
+        "sourceType": "github",
+        "sourceProperties":
+          { 
+            "file": "resources/community/finding-resources.md",
+            "url": "https://github.com/bcgov/devhub-resources", 
+            "owner": "bcgov", 
+            "repo": "devhub-resources"
+           }
+      },
+      { 
+        "sourceType": "github",
+        "sourceProperties":
+          { 
+            "file": "resources/community/npm-publishing.md",
+            "url": "https://github.com/bcgov/devhub-resources", 
+            "owner": "bcgov", 
+            "repo": "devhub-resources"
+           }
+      },
+      { 
+        "sourceType": "github",
+        "sourceProperties":
+          { 
+            "file": "resources/security/security-for-beginners.md", 
+            "url": "https://github.com/bcgov/devhub-resources", 
+            "owner": "bcgov", 
+            "repo": "devhub-resources"
+          }
+      }
+    ]
+  },
+  "attributes": {
+    "personas": [
+      "Designer",
+      "Developer",
+      "Product Owner"
+    ]
+  },
+  "resourceType": "Documentation"
+}

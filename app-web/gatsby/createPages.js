@@ -125,6 +125,70 @@ const createResourceTypePages = createPage => {
 };
 
 /**
+ * Creates all journey views
+ * @param {Function} createPage the gatsby createpage function
+ */
+const createJourneyPage = (node, createPage) => {
+  const template = resolvePath('../src/templates/JourneyEntry_default.js');
+
+  createPage({
+    path: node.fields.slug,
+    context: {
+      id: node.id,
+      name: node.name,
+    },
+    component: template,
+  });
+};
+
+const createJourneyStopPage = (node, journeyId, createPage) => {
+  const templateMappings = {
+    GithubRaw: resolvePath('../src/templates/JourneyGithub_default.js'),
+  };
+
+  createPage({
+    path: node.path,
+    context: {
+      id: journeyId,
+      githubId: node.id,
+    },
+    component: templateMappings[node._type],
+  });
+};
+
+const createJourneyPages = async (createPage, graphql) => {
+  const data = await graphql(`
+    {
+      allJourneyRegistryJson {
+        edges {
+          node {
+            id
+            name
+            fields {
+              slug
+            }
+            connectsWith {
+              path
+              id
+              _type
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  data.data.allJourneyRegistryJson.edges.forEach(({ node }) => {
+    // create the main journey page
+    createJourneyPage(node, createPage);
+
+    // for each 'stop' in the journey create a page
+    node.connectsWith.forEach(connection => {
+      createJourneyStopPage(connection, node.id, createPage);
+    });
+  });
+};
+/**
  * creates all the resource pages based on the topic the resource belongs too
  * @param {Function} createPage the gatsby createpage function
  * @param {Function} graphql the gatsby graphql function
@@ -214,6 +278,7 @@ const createEventsPage = createPage => {
     component,
   });
 };
+
 const createPastEventsPage = createPage => {
   let component = resolvePath('../src/templates/pastEvents.js');
 
@@ -227,11 +292,15 @@ const createPastEventsPage = createPage => {
     component,
   });
 };
+
 module.exports = async ({ graphql, actions }) => {
   const { createPage } = actions;
   createResourceTypePages(createPage);
+
   createResourceTopicsPages(createPage, graphql);
   createEventsPage(createPage);
   createPastEventsPage(createPage);
   createStandAlonePage(createPage, graphql);
+
+  createJourneyPages(createPage, graphql);
 };

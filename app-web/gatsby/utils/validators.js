@@ -25,7 +25,8 @@ const isDevhubSiphon = node => node.internal.type === 'DevhubSiphon';
 const isDevhubTopic = node => node.internal.type === 'DevhubTopic';
 const isMeetupEvent = node => node.internal.type === 'MeetupEvent';
 const isEventbriteEvents = node => node.internal.type === 'EventbriteEvents';
-const isRegistryJson = node => node.internal.type === 'RegistryJson';
+const isTopicRegistryJson = node => node.internal.type === 'TopicRegistryJson';
+const isJourneyRegistryJson = node => node.internal.type === 'JourneyRegistryJson';
 const isMarkdownRemarkFrontmatter = node => node.internal.type === 'MarkdownRemarkFrontmatter';
 const isMatomoPageStats = node => node.internal.type === 'MatomoPageStats';
 
@@ -62,6 +63,28 @@ const getClosestPersona = (personaList, personas) => {
 };
 
 /**
+ * Journeys need to be validated for github sources
+ * the 'files' argument is not allowed for journeys since a journey
+ * explicitly defines an orderered set of resources
+ * this fn will throw if the registry item is invalid
+ * @param {Object} registryItem
+ * @returns {void}
+ */
+const verifyJourney = registryItem => {
+  const throwIfInvalidGithubSource = source => {
+    if (source.sourceType === 'github') {
+      if (source.sourceProperties.files) {
+        throw new Error(`Error with Journey Registry: ${registryItem.name}.
+          A primary stop in a registry cannot have multiple files associated with it. Avoid using
+          the 'files' argument as it would be used in a topic. 
+        `);
+      }
+    }
+  };
+
+  registryItem.sourceProperties.stops.forEach(throwIfInvalidGithubSource);
+};
+/**
  * @param {String} topic the name of the topic
  * @param {Object} node the node to check against
  * @param {Object} node.fields
@@ -77,10 +100,12 @@ module.exports = {
   isDevhubSiphon,
   isDevhubTopic,
   isEventbriteEvents,
-  isRegistryJson,
+  isTopicRegistryJson,
+  isJourneyRegistryJson,
   isMatomoPageStats,
   getClosest,
   getClosestPersona,
   getClosestResourceType,
   nodeBelongsToTopic,
+  verifyJourney,
 };

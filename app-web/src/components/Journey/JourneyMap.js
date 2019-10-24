@@ -36,11 +36,15 @@ export const JourneyMap = ({ title, link, stops }) => {
       <PreviewContainer>
         <CardHeader resourceType={JOURNEY} />
         <TopicTitle>
-          <TitleLink to={link.to} data-testid={`topic-${title}`}>
-            {title}
-          </TitleLink>{' '}
+          {link ? (
+            <TitleLink to={link.to} data-testid={`topic-${title}`}>
+              {title}
+            </TitleLink>
+          ) : (
+            title
+          )}
         </TopicTitle>
-        <SubwayLine stops={stops} color="lightblue" />
+        <SubwayLine stops={stops} color={JOURNEY} />
       </PreviewContainer>
     </JourneyContainer>
   );

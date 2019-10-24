@@ -30,8 +30,9 @@ const {
   isMeetupEvent,
   getClosestResourceType,
   getClosestPersona,
-  isRegistryJson,
+  isTopicRegistryJson,
   isMatomoPageStats,
+  isJourneyRegistryJson,
 } = require('./utils/validators.js');
 const { flattenExpandedRegistry, expandRegistry } = require('./utils/githubRaw');
 const slugify = require('slugify');
@@ -61,6 +62,10 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
   if (isGithubRaw(node)) {
     createNodeField({ node, name: 'topics', value: node.___boundProperties.topics });
     createNodeField({ node, name: 'position', value: node.___boundProperties.position });
+  }
+
+  if (isJourneyRegistryJson(node)) {
+    createNodeField({ node, name: 'slug', value: slugify(node.name) });
   }
 
   if (isDevhubTopic(node)) {
@@ -93,7 +98,7 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
     createNodeField({ node, name: 'resourceType', value: node.resource.type || [] });
     createNodeField({ node, name: 'position', value: node._metadata.position });
     // bind all topics that reference this node, this can only be found by looking up the registry
-    const registry = getNodes().filter(isRegistryJson);
+    const registry = getNodes().filter(isTopicRegistryJson);
 
     const flattenedSources = flattenExpandedRegistry(expandRegistry(registry));
     // find topics that reference this node

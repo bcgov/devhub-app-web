@@ -1,5 +1,8 @@
 {
-  "registry": {
-    "contextDir": "registry"
+  "topicRegistry": {
+    "contextDir": "topicRegistry"
+  },
+  "journeyRegistry": {
+    "contextDir": "journeyRegistry"
   }
 }
