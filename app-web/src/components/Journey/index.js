@@ -100,6 +100,7 @@ const Name = styled.span`
   color: ${({ theme }) => theme.colors.darkgrey};
   font-size: ${({ fontSize }) => 0.8 * fontSize}px;
   width: 75px;
+  word-wrap: keep-all;
   ${EMOTION_BOOTSTRAP_BREAKPOINTS.lg} {
     width: 150px;
     font-size: ${({ fontSize }) => fontSize}px;
