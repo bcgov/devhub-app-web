@@ -46,15 +46,22 @@ We found `YAML` to be more errorprone for content contributes because it is spac
 
 ## Where are these configuration files?
 
-The location of the __configuration files__ can be found within the [devhub repo](https://github.com/bcgov/devhub-app-web)
+The location of the __configuration files__ can be found within the [devhub repo](https://github.com/bcgov/devhub-app-web) under two directories. 
 
-It is located within `app-web/registry/`.
+They are located within `app-web/topicRegistry/` and `app-web/journeyRegistry`.
 
 ## How it is organized
 
-The registry directory/folder contains a series of `JSON` files. Each of these files represent a ___topic___ within the devhub. 
+The registry directory/folder contains a series of `JSON` files. Each of these files represent a ___topic___ and a __journey__ respectively within the devhub. 
 
-### Adding Content to Existing Topics
+## High Level Overview For Contributing to the Devhub
+
+There is essentially two steps to get content into the Devhub.
+
+1. Modify or add to the __`JSON` configuration files__ found within `app-web/topicRegistry` or `app-web/journeyRegistry` via a Github Pull Request
+2. Ensure the markdown files your are pointing to from within the `JSON` configuration files are ready for the __Devhub__
+
+## Adding Content to Existing Topics
 
 We are happy to receive any contributions for our __curated set of topics__. Just fork and pr!
 
@@ -89,17 +96,11 @@ Our current list of topics include:
 
 Please @mention patricksimonian or sheaphillips with your PR or even better, contact the Devhub Team in [Rocket Chat](https://chat.pathfinder.gov.bc.ca)
 
-## High Level Overview For Contributing to the Devhub
-
-There is essentially two steps to get content into the Devhub.
-
-1. Modify or add to the __`JSON` configuration files__ found within `app-web/registry` via a Github Pull Request
-2. Ensure the markdown files your are pointing to from within the `JSON` configuration files are ready for the __Devhub__
 
 
-## Modifying or Adding to the `JSON` configuration files (the registry)
+### Modifying or Adding to the `JSON` registry files
 
-The basic unit of configuration within a __registry__ file is a __source__
+The basic unit of configuration within any __registry__ file is a __source__
 and it looks like this.
 
 ```json
@@ -268,6 +269,159 @@ Once you are done, edit the `JSON` configuration file of your choosing (preferab
 Finally Save the configuration file within your Fork of the Devhub Repository and make a Pull Request to the Devhub Repo.
 
 Thanks!
+
+### Adding your source into a Journey from Github
+
+A Journey shares many similarities with Topics with a few exceptions and rules.
+
+Journey's follow a subway analogy. One with __Subway Stops__. Subways Stops can contain other stops as a
+__junction__ or __concourse__. 
+
+__Rule #1:__ Main 'stops' cannot be __web__ source types. 
+__Rule #2:__ __Github__ source types cannot use the `files` paramater, __only single files__ can be references (using `file`)
+
+An example Journey:
+> notices how the first 'stop' has more 'stops' joined too it
+```json
+{
+  "name": "Beginner Guide to Developing on the Platform",
+  "sourceProperties": {
+    "stops": [
+      { 
+        "sourceType": "github",
+        "sourceProperties":
+          { 
+            "file": "resources/community/new-developer.md",
+            "url": "https://github.com/bcgov/devhub-resources", 
+            "owner": "bcgov", 
+            "repo": "devhub-resources"
+           },
+        "stops": [
+          { 
+            "sourceType": "github",
+            "sourceProperties":
+              { 
+                "file": "resources/community/new-developer.md",
+                "url": "https://github.com/bcgov/devhub-resources", 
+                "owner": "bcgov", 
+                "repo": "devhub-resources"
+              }
+          }
+        ]
+      },
+      { 
+        "sourceType": "github",
+        "sourceProperties":
+          { 
+            "file": "resources/community/openshift201.md",
+            "url": "https://github.com/bcgov/devhub-resources", 
+            "owner": "bcgov", 
+            "repo": "devhub-resources"
+           }
+      },
+      { 
+        "sourceType": "github",
+        "sourceProperties":
+          { 
+            "file": "resources/community/rocketchat.md",
+            "url": "https://github.com/bcgov/devhub-resources", 
+            "owner": "bcgov", 
+            "repo": "devhub-resources"
+           }
+      },
+      { 
+        "sourceType": "github",
+        "sourceProperties":
+          { 
+            "file": "resources/community/best-practices-for-app-development.md",
+            "url": "https://github.com/bcgov/devhub-resources", 
+            "owner": "bcgov", 
+            "repo": "devhub-resources"
+           }
+      },
+      { 
+        "sourceType": "github",
+        "sourceProperties":
+          { 
+            "file": "resources/community/finding-resources.md",
+            "url": "https://github.com/bcgov/devhub-resources", 
+            "owner": "bcgov", 
+            "repo": "devhub-resources"
+           }
+      },
+      { 
+        "sourceType": "github",
+        "sourceProperties":
+          { 
+            "file": "resources/community/npm-publishing.md",
+            "url": "https://github.com/bcgov/devhub-resources", 
+            "owner": "bcgov", 
+            "repo": "devhub-resources"
+           }
+      },
+      { 
+        "sourceType": "github",
+        "sourceProperties":
+          { 
+            "file": "resources/security/security-for-beginners.md", 
+            "url": "https://github.com/bcgov/devhub-resources", 
+            "owner": "bcgov", 
+            "repo": "devhub-resources"
+          }
+      }
+    ]
+  },
+  "attributes": {
+    "personas": [
+      "Designer",
+      "Developer",
+      "Product Owner"
+    ]
+  },
+  "resourceType": "Documentation"
+}
+
+
+```
+### Journey Entry Pages
+Journeys have a local markdown file authored to serve as an entry or introductory page that describes the journey.
+This can be found in `/app-web/journeys/<name>.md`
+
+Based on the slug of the journey, this entry page is used to render a page at the slug.
+
+The markdown file used as the entry page references the journey registry files name as a __id__ frontmatter value. 
+
+For example:
+
+This Journey registry:
+
+```json
+{
+  "name": "Beginner Guide to Developing on the Platform"
+  ...
+
+```
+
+would have a markdown file in `/app-web/journeys/beginner-guide-to-developing-on-the-platform.md`
+with the content:
+```md
+---
+id: Beginner Guide to Developing on the Platform
+...
+---
+
+## Entry Page Content here. 
+```
+
+The slug (generated from slugifying the journey name) would now render that markdown file as a page at the
+journey's root entry point in the Devhub. 
+
+## Guidances on Topics and Journeys
+
+As described earlier, __Journeys__ use a 'Subway' analogy. Content in a Journey should follow a defined
+flow so that users can be 'guided' through content. 
+
+__Topics__ are more of a mixed bag of content under a 'theme'.
 
 ## Making Devhub Ready Markdown Files
 
