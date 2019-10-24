@@ -44,6 +44,7 @@ export const BOOTSTRAP_BREAKPOINTS = [
   { alias: 'xl', width: 1200 },
 ];
 
+const breakpoint = (amount, unit = 'px') => `@media (min-width: ${amount}${unit})`;
 /**
  * returns an object aliased by bootstrap breakpoint values
  * {
@@ -55,11 +56,15 @@ export const BOOTSTRAP_BREAKPOINTS = [
  */
 export const EMOTION_BOOTSTRAP_BREAKPOINTS = BOOTSTRAP_BREAKPOINTS.reduce(
   (breakpoints, currentBp) => {
-    breakpoints[currentBp.alias] = `@media (min-width: ${currentBp.width}px)`;
+    breakpoints[currentBp.alias] = breakpoint(currentBp.width);
     return breakpoints;
   },
   {},
 );
+
+export const CUSTOM_BREAKPOINTS = {
+  navbar: breakpoint(858),
+};
 
 // COLOR PALETTE TOKENS
 // We have two palettes that are in use

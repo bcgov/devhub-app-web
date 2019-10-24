@@ -41,6 +41,8 @@ export const MAIN_NAV_ROUTES = {
   },
 };
 
+export const MAIN_NAV_ROUTE_LIST = Object.keys(MAIN_NAV_ROUTES).map(r => MAIN_NAV_ROUTES[r]);
+
 export const FOOTER_NAVIGATION = [
   {
     to: HOME_ROUTE,

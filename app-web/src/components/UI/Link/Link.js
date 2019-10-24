@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 const StyledLink = styled(Link)`
   text-decoration: underline;
-  color: ${props => props.theme.colors.link};
+  color: ${({ theme }) => theme.colors.linkblue};
   font-weight: 400;
   text-transform: capitalize;
   padding: 0 4px;

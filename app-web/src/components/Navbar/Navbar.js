@@ -1,6 +1,5 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 /*
-Copyright 2018 Province of British Columbia
+Copyright 2019 Province of British Columbia
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,65 +15,120 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React, { useState, useEffect } from 'react';
-import { Link } from 'gatsby';
+
+import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Navbar.module.css';
-import { MAIN_NAV_ROUTES } from '../../constants/routes';
-import { createIam } from '../../auth';
+import styled from '@emotion/styled';
+import { Link } from '../UI/Link';
+import { CUSTOM_BREAKPOINTS } from '../../constants/designTokens';
 
-export const TEST_IDS = {
-  mobile: 'navbar-mobile',
-  regular: 'navbar-regular',
-};
+export const NavContainer = styled.nav`
+  background-color: ${({ theme }) => theme.colors['bgBlue']};
+  color: #fff;
+  display: ${({ toggled }) => (toggled ? 'block' : 'none')};
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 65px;
+  box-shadow: 0 1px 2px 2px rgba(0, 0, 0, 0.25);
+  font-size: 14px;
+  z-index: 150;
 
-export const Navbar = ({ mobile, authenticated }) => {
-  const [implicitAuthManager, setImplicitAuthManager] = useState(null);
-  useEffect(() => {
-    setImplicitAuthManager(createIam());
-  }, [implicitAuthManager]);
-
-  const links = Object.keys(MAIN_NAV_ROUTES).map(resourceType => {
-    return (
-      <li key={MAIN_NAV_ROUTES[resourceType].to}>
-        <Link
-          exact="true"
-          to={MAIN_NAV_ROUTES[resourceType].to}
-          activeClassName={styles.ActiveFilter}
-        >
-          {MAIN_NAV_ROUTES[resourceType].text}
-        </Link>
-      </li>
-    );
-  });
-
-  let loginComponent = null;
-  if (implicitAuthManager) {
-    loginComponent = authenticated ? (
-      <a
-        onClick={() => implicitAuthManager.clearAuthLocalStorage()}
-        href={implicitAuthManager.getSSOLogoutURI()}
-      >
-        Login
-      </a>
-    ) : (
-      <a href={implicitAuthManager.getSSOLoginURI()}>Login</a>
-    );
+  ${CUSTOM_BREAKPOINTS.navbar} {
+    display: block;
+    padding: 0 65px;
+    font-size: 14px;
   }
+  @media screen and (min-width: 932px) {
+    font-size: 16px;
+  }
+`;
+
+export const NavLink = styled(Link)`
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  color: #fff;
+  flex-grow: 1;
+  box-sizing: border-box;
+  text-transform: capitalize;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 10px;
+  :visited {
+    color: inherit;
+  }
+  ${CUSTOM_BREAKPOINTS.navbar} {
+    padding: 14px 10px;
+  }
+  &.active {
+    padding-bottom: 12px;
+    background-color: rgba(123, 162, 204, 0.5);
+    border-bottom: 2px solid #fcc219;
+  }
+`;
+
+export const NavList = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+  li {
+    margin: 0;
+  }
+  ${CUSTOM_BREAKPOINTS.navbar} {
+    display: flex;
+
+    flex-flow: row wrap;
+  }
+`;
+
+const AuthContainer = styled.div`
+  padding: 10px;
+  background-color: #fafafa;
+  text-align: right;
+  display: block;
+  a {
+    text-decoration: none;
+  }
+  ${CUSTOM_BREAKPOINTS.navbar} {
+    display: none;
+  }
+`;
+
+export const Navbar = ({ authenticated, links, implicitAuthManager, toggled }) => {
+  const navlinks = links.map(l => (
+    <li key={l.to}>
+      <NavLink to={l.to} activeClassName="active">
+        {l.text}
+      </NavLink>
+    </li>
+  ));
   return (
-    <nav className={styles.Navbar} data-testid={mobile ? TEST_IDS.mobile : TEST_IDS.regular}>
-      {mobile && <div className={styles.AuthContainer}>{loginComponent}</div>}
-      <ul className={mobile ? styles.mobileOnly : styles.largeOnly}>{links}</ul>
-    </nav>
+    <NavContainer toggled={toggled}>
+      <AuthContainer>
+        {authenticated ? (
+          <Link
+            onClick={() => implicitAuthManager.clearAuthLocalStorage()}
+            href={implicitAuthManager.getSSOLogoutURI()}
+          >
+            Logout
+          </Link>
+        ) : (
+          <Link href={implicitAuthManager.getSSOLoginURI()}>Login</Link>
+        )}
+      </AuthContainer>
+      <NavList>{navlinks}</NavList>
+    </NavContainer>
   );
 };
 
 Navbar.propTypes = {
-  mobile: PropTypes.bool,
+  links: PropTypes.arrayOf(PropTypes.shape({ to: PropTypes.string, text: PropTypes.string })),
+  authenticated: PropTypes.bool,
+  implicitAuthManager: PropTypes.object,
+  toggled: PropTypes.bool,
 };
-
-Navbar.defaultProps = {
-  mobile: false,
-};
-
-export default Navbar;

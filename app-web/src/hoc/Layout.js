@@ -5,11 +5,13 @@ import styled from '@emotion/styled';
 import { Container } from 'reactstrap';
 import Helmet from 'react-helmet';
 import isEmpty from 'lodash/isEmpty';
-// layout local componenets
+// layout local components
 import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
 import PrimaryFooter from '../components/PrimaryFooter/PrimaryFooter';
-import Navbar from '../components/Navbar/Navbar';
+import { Navbar } from '../components/Navbar/Navbar';
 import AuthContext from '../AuthContext';
+import { createIam } from '../auth';
+import { MAIN_NAV_ROUTE_LIST } from '../constants/routes';
 
 const StyledContainer = styled(Container)`
   min-height: 100vh;
@@ -28,6 +30,7 @@ const Wrapper = styled.div`
 
 export const Layout = ({ children }) => {
   const [menuToggled, setMenuToggled] = useState(false);
+  const iam = createIam();
   const { auth } = useContext(AuthContext);
   //
   const authenticated = !auth || !isEmpty(auth);
@@ -44,8 +47,12 @@ export const Layout = ({ children }) => {
         hamburgerClicked={() => setMenuToggled(!menuToggled)}
       />
 
-      <Navbar authenticated={authenticated} />
-      {menuToggled && <Navbar mobile authenticated={authenticated} />}
+      <Navbar
+        authenticated={authenticated}
+        links={MAIN_NAV_ROUTE_LIST}
+        toggled={menuToggled}
+        implicitAuthManager={iam}
+      />
 
       <Wrapper>{children}</Wrapper>
       <PrimaryFooter />
