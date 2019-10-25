@@ -117,3 +117,21 @@ export const githubSearchReducer = githubItem => {
 
   return {};
 };
+/**
+ * search gate provides documize results from docugare through searchgate
+ * this modify typePayload into the 'card' interface
+ * @param {Object} documizeItem
+ */
+
+export const documizeSearchPurifier = documizeItem => {
+  const { document, excerpt, url } = documizeItem;
+  return {
+    ...documizeItem,
+    fields: {
+      title: document,
+      description: excerpt,
+      link: url,
+      resourceType: SEARCH_RESOURCE_TYPES.DOCUMIZE,
+    },
+  };
+};

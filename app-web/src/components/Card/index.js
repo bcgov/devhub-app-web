@@ -199,5 +199,9 @@ export const CONTENT = {
       id: 'RESOURCE_TYPES.JOURNEY',
       text: 'Journey',
     },
+    [SEARCH_RESOURCE_TYPES.DOCUMIZE]: {
+      id: 'SEARCH_RESOURCE_TYPES.DOCUMIZE',
+      text: 'Documize',
+    },
   },
 };

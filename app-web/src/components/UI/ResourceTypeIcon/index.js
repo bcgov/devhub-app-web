@@ -18,6 +18,7 @@ import {
   faCalendar,
   faExclamationCircle,
   faProjectDiagram,
+  faBook,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/fontawesome-free-brands';
 
@@ -58,6 +59,9 @@ export const ResourceTypeIcon = ({ type }) => {
       break;
     case JOURNEY:
       icon = faProjectDiagram;
+      break;
+    case SEARCH_RESOURCE_TYPES.DOCUMIZE:
+      icon = faBook;
       break;
     default:
       icon = null;

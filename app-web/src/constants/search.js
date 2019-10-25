@@ -59,7 +59,7 @@ export const SEARCH_SOURCE_CONFIG = {
     maxResults: 10,
   },
   [SEARCH_SOURCES.documize]: {
-    maxResults: 10,
+    maxResults: 12,
   },
   [SEARCH_SOURCES.github]: {
     // Github will be rendered as cards, since cards align in grids of 4

@@ -9,6 +9,7 @@ export const RESOURCE_TYPES = {
 
 export const SEARCH_RESOURCE_TYPES = {
   GITHUB_ISSUE: 'Github Issue',
+  DOCUMIZE: 'Documize',
 };
 
 export const JOURNEY = 'Journey';
@@ -21,7 +22,8 @@ export const RESOURCE_TYPES_LIST = Object.keys(RESOURCE_TYPES)
   .map(key => RESOURCE_TYPES[key])
   .concat(TOPICS)
   .concat(JOURNEY)
-  .concat(SEARCH_RESOURCE_TYPES.GITHUB_ISSUE);
+  .concat(SEARCH_RESOURCE_TYPES.GITHUB_ISSUE)
+  .concat(SEARCH_RESOURCE_TYPES.DOCUMIZE);
 
 export const PERSONAS_LIST = ['Developer', 'Designer', 'Product Owner'];
 
