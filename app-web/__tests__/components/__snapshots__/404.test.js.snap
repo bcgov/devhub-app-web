@@ -595,6 +595,7 @@ exports[`404 Page it matches snapshot 1`] = `
     >
       <a
         class="emotion-23 emotion-24"
+        data-testid="ui-link"
         href="LOGOUTURI"
       >
         Logout
@@ -606,6 +607,7 @@ exports[`404 Page it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/"
         >
           Home
@@ -614,6 +616,7 @@ exports[`404 Page it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/topics"
         >
           Topics
@@ -622,6 +625,7 @@ exports[`404 Page it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/journeys"
         >
           Journeys
@@ -630,6 +634,7 @@ exports[`404 Page it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/self-service-tools"
         >
           Tools
@@ -638,6 +643,7 @@ exports[`404 Page it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/components"
         >
           Components
@@ -646,6 +652,7 @@ exports[`404 Page it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/repositories"
         >
           GitHub Repositories
@@ -654,6 +661,7 @@ exports[`404 Page it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/documentation"
         >
           Documentation
@@ -662,6 +670,7 @@ exports[`404 Page it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/events"
         >
           Events
@@ -710,6 +719,7 @@ exports[`404 Page it matches snapshot 1`] = `
         <p>
           <a
             class="emotion-61 emotion-12"
+            data-testid="ui-gatsby-link"
             href="/"
           >
             Back Home
@@ -729,6 +739,7 @@ exports[`404 Page it matches snapshot 1`] = `
           <a
             class="emotion-61 emotion-12"
             css="[object Object]"
+            data-testid="ui-gatsby-link"
             href="/"
           >
             home
@@ -737,6 +748,7 @@ exports[`404 Page it matches snapshot 1`] = `
         <li>
           <a
             class="emotion-23 emotion-24"
+            data-testid="ui-link"
             href="https://www2.gov.bc.ca/gov/content/home/disclaimer"
           >
             disclaimer
@@ -745,6 +757,7 @@ exports[`404 Page it matches snapshot 1`] = `
         <li>
           <a
             class="emotion-23 emotion-24"
+            data-testid="ui-link"
             href="https://www2.gov.bc.ca/gov/content/home/privacy"
           >
             privacy
@@ -753,6 +766,7 @@ exports[`404 Page it matches snapshot 1`] = `
         <li>
           <a
             class="emotion-23 emotion-24"
+            data-testid="ui-link"
             href="https://www2.gov.bc.ca/gov/content/home/accessibility"
           >
             accessibility
@@ -761,6 +775,7 @@ exports[`404 Page it matches snapshot 1`] = `
         <li>
           <a
             class="emotion-23 emotion-24"
+            data-testid="ui-link"
             href="https://www2.gov.bc.ca/gov/content/home/copyright"
           >
             copyright
@@ -769,6 +784,7 @@ exports[`404 Page it matches snapshot 1`] = `
         <li>
           <a
             class="emotion-23 emotion-24"
+            data-testid="ui-link"
             href="https://github.com/bcgov/devhub-app-web/issues"
           >
             contact us

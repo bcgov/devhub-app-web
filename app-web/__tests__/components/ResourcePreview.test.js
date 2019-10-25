@@ -15,29 +15,31 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
+
 import React from 'react';
-import { shallow } from 'enzyme';
 import { ResourcePreview } from '../../src/components/Home';
 import { SIPHON_NODES } from '../../__fixtures__/nodes';
+import { render } from 'react-testing-library';
+import { ThemeProvider } from 'emotion-theming';
+import theme from '../../theme';
 
 describe('Resource Preview Component', () => {
-  let resourcePreview = null;
+  it('matches snapshot', () => {
+    const props = {
+      title: 'foo',
+      link: {
+        to: '/',
+        text: 'bar',
+      },
+      resources: SIPHON_NODES,
+      amountToShow: 6,
+    };
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <ResourcePreview {...props} />
+      </ThemeProvider>,
+    );
 
-  const props = {
-    title: 'foo',
-    link: {
-      to: '/',
-      text: 'bar',
-    },
-    resources: SIPHON_NODES,
-    amountToShow: 6,
-  };
-
-  beforeEach(() => {
-    resourcePreview = shallow(<ResourcePreview {...props} />);
-  });
-
-  test('it matches snapshot', () => {
-    expect(resourcePreview).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

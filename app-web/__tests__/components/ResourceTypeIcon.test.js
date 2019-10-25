@@ -6,6 +6,7 @@ import theme from '../../theme';
 import { render, cleanup } from 'react-testing-library';
 import ResourceTypeIcon, { TEST_IDS } from '../../src/components/UI/ResourceTypeIcon';
 import 'jest-dom/extend-expect';
+
 describe('Card Header Component', () => {
   afterEach(cleanup);
   it('renders a puzzle piece when component is passed in as type', () => {

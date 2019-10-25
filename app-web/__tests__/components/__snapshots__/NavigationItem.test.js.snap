@@ -1,20 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Primary Footer Component it matches snapshot 1`] = `
+exports[`Navigation Item Component it matches snapshot 1`] = `
+.emotion-0 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  color: #1A5A96;
+  font-weight: 400;
+  text-transform: capitalize;
+  padding: 0 4px;
+  margin: 0 2px;
+}
+
 <li>
-  <GatsbyLink
-    activeClassName=""
-    activeStyle={Object {}}
-    css={
-      Object {
-        "map": "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIk5hdmlnYXRpb25JdGVtLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXlCYyIsImZpbGUiOiJOYXZpZ2F0aW9uSXRlbS5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG5Db3B5cmlnaHQgMjAxOCBQcm92aW5jZSBvZiBCcml0aXNoIENvbHVtYmlhXG5cbkxpY2Vuc2VkIHVuZGVyIHRoZSBBcGFjaGUgTGljZW5zZSwgVmVyc2lvbiAyLjAgKHRoZSBcIkxpY2Vuc2VcIik7XG55b3UgbWF5IG5vdCB1c2UgdGhpcyBmaWxlIGV4Y2VwdCBpbiBjb21wbGlhbmNlIHdpdGggdGhlIExpY2Vuc2UuXG5Zb3UgbWF5IG9idGFpbiBhIGNvcHkgb2YgdGhlIExpY2Vuc2UgYXQgXG5cbiAgIGh0dHA6Ly93d3cuYXBhY2hlLm9yZy9saWNlbnNlcy9MSUNFTlNFLTIuMFxuXG5Vbmxlc3MgcmVxdWlyZWQgYnkgYXBwbGljYWJsZSBsYXcgb3IgYWdyZWVkIHRvIGluIHdyaXRpbmcsIHNvZnR3YXJlXG5kaXN0cmlidXRlZCB1bmRlciB0aGUgTGljZW5zZSBpcyBkaXN0cmlidXRlZCBvbiBhbiBcIkFTIElTXCIgQkFTSVMsXG5XSVRIT1VUIFdBUlJBTlRJRVMgT1IgQ09ORElUSU9OUyBPRiBBTlkgS0lORCwgZWl0aGVyIGV4cHJlc3Mgb3IgaW1wbGllZC5cblNlZSB0aGUgTGljZW5zZSBmb3IgdGhlIHNwZWNpZmljIGxhbmd1YWdlIGdvdmVybmluZyBwZXJtaXNzaW9ucyBhbmRcbmxpbWl0YXRpb25zIHVuZGVyIHRoZSBMaWNlbnNlLlxuXG5DcmVhdGVkIGJ5IFBhdHJpY2sgU2ltb25pYW5cbiovXG5pbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IExpbmsgZnJvbSAnLi4vLi4vVUkvTGluay9MaW5rJztcbmltcG9ydCBQcm9wVHlwZXMgZnJvbSAncHJvcC10eXBlcyc7XG5pbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9jb3JlJztcbmNvbnN0IE5hdmlnYXRpb25JdGVtID0gKHsgdG8sIHRleHQgfSkgPT4gKFxuICA8bGk+XG4gICAgPExpbmtcbiAgICAgIHRvPXt0b31cbiAgICAgIGNzcz17Y3NzYFxuICAgICAgICBjb2xvcjogI2ZmZjtcbiAgICAgICAgZm9udC1zaXplOiAwLjgxM2VtO1xuICAgICAgICB0ZXh0LXRyYW5zZm9ybTogY2FwaXRhbGl6ZTtcbiAgICAgICAgZm9udC13ZWlnaHQ6IG5vcm1hbDtcbiAgICAgICAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xuICAgICAgICA6aG92ZXIge1xuICAgICAgICAgIGNvbG9yOiAjZmZmO1xuICAgICAgICB9XG4gICAgICBgfVxuICAgID5cbiAgICAgIHt0ZXh0fVxuICAgIDwvTGluaz5cbiAgPC9saT5cbik7XG5cbk5hdmlnYXRpb25JdGVtLnByb3BUeXBlcyA9IHtcbiAgdG86IFByb3BUeXBlcy5zdHJpbmcuaXNSZXF1aXJlZCxcbiAgdGV4dDogUHJvcFR5cGVzLnN0cmluZy5pc1JlcXVpcmVkLFxufTtcblxuZXhwb3J0IGRlZmF1bHQgTmF2aWdhdGlvbkl0ZW07XG4iXX0= */",
-        "name": "18jy1yo-NavigationItem",
-        "styles": "color:#fff;font-size:0.813em;text-transform:capitalize;font-weight:normal;text-decoration:none;:hover{color:#fff;}label:NavigationItem;",
-      }
-    }
-    to="/"
+  <a
+    class="emotion-0 emotion-1"
+    css="[object Object]"
+    data-testid="ui-gatsby-link"
+    href="/"
   >
     banana
-  </GatsbyLink>
+  </a>
 </li>
 `;

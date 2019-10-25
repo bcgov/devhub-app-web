@@ -17,7 +17,6 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Aux from '../../hoc/auxillary';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import posed from 'react-pose';
@@ -100,28 +99,33 @@ const Menu = styled.div`
   flex-grow: 1;
 `;
 
+export const TEST_IDS = {
+  drawer: 'side-drawer',
+  closeButton: 'side-drawer-close-button',
+  backdrop: 'side-drawer-backdrop',
+};
 export const SideDrawer = ({ closeDrawer, children, title, show, addContent }) => {
   let content = '';
   if (addContent) {
     content = 'Content';
   }
   return (
-    <Aux>
-      <Backdrop clicked={closeDrawer} show={show} />
-      <Drawer pose={show ? 'show' : 'hide'}>
+    <React.Fragment>
+      <Backdrop clicked={closeDrawer} show={show} data-testid={TEST_IDS.backdrop} />
+      <Drawer pose={show ? 'show' : 'hide'} data-testid={TEST_IDS.drawer}>
         <H2>
           <TitleDiv>
             <span>{title}</span>
             <br />
             {content}
           </TitleDiv>
-          <IconButton onClick={closeDrawer}>
+          <IconButton onClick={closeDrawer} data-testid={TEST_IDS.closeButton}>
             <FontAwesomeIcon icon={faTimes} />
           </IconButton>
         </H2>
         <Menu>{children}</Menu>
       </Drawer>
-    </Aux>
+    </React.Fragment>
   );
 };
 

@@ -144,6 +144,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
   >
     <a
       class="emotion-0 emotion-1"
+      data-testid="ui-link"
     >
       Login
     </a>
@@ -154,6 +155,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     <li>
       <a
         class="emotion-4 emotion-5 emotion-6"
+        data-testid="ui-gatsby-link"
         href="/"
       >
         Home
@@ -162,6 +164,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     <li>
       <a
         class="emotion-4 emotion-5 emotion-6"
+        data-testid="ui-gatsby-link"
         href="/topics"
       >
         Topics
@@ -170,6 +173,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     <li>
       <a
         class="emotion-4 emotion-5 emotion-6"
+        data-testid="ui-gatsby-link"
         href="/journeys"
       >
         Journeys
@@ -178,6 +182,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     <li>
       <a
         class="emotion-4 emotion-5 emotion-6"
+        data-testid="ui-gatsby-link"
         href="/self-service-tools"
       >
         Tools
@@ -186,6 +191,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     <li>
       <a
         class="emotion-4 emotion-5 emotion-6"
+        data-testid="ui-gatsby-link"
         href="/components"
       >
         Components
@@ -194,6 +200,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     <li>
       <a
         class="emotion-4 emotion-5 emotion-6"
+        data-testid="ui-gatsby-link"
         href="/repositories"
       >
         GitHub Repositories
@@ -202,6 +209,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     <li>
       <a
         class="emotion-4 emotion-5 emotion-6"
+        data-testid="ui-gatsby-link"
         href="/documentation"
       >
         Documentation
@@ -210,6 +218,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
     <li>
       <a
         class="emotion-4 emotion-5 emotion-6"
+        data-testid="ui-gatsby-link"
         href="/events"
       >
         Events

@@ -487,6 +487,7 @@ exports[`Layout Component it matches snapshot 1`] = `
     >
       <a
         class="emotion-23 emotion-24"
+        data-testid="ui-link"
         href="LOGOUTURI"
       >
         Logout
@@ -498,6 +499,7 @@ exports[`Layout Component it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/"
         >
           Home
@@ -506,6 +508,7 @@ exports[`Layout Component it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/topics"
         >
           Topics
@@ -514,6 +517,7 @@ exports[`Layout Component it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/journeys"
         >
           Journeys
@@ -522,6 +526,7 @@ exports[`Layout Component it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/self-service-tools"
         >
           Tools
@@ -530,6 +535,7 @@ exports[`Layout Component it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/components"
         >
           Components
@@ -538,6 +544,7 @@ exports[`Layout Component it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/repositories"
         >
           GitHub Repositories
@@ -546,6 +553,7 @@ exports[`Layout Component it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/documentation"
         >
           Documentation
@@ -554,6 +562,7 @@ exports[`Layout Component it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/events"
         >
           Events
@@ -577,6 +586,7 @@ exports[`Layout Component it matches snapshot 1`] = `
           <a
             class="emotion-57 emotion-12"
             css="[object Object]"
+            data-testid="ui-gatsby-link"
             href="/"
           >
             home
@@ -585,6 +595,7 @@ exports[`Layout Component it matches snapshot 1`] = `
         <li>
           <a
             class="emotion-23 emotion-24"
+            data-testid="ui-link"
             href="https://www2.gov.bc.ca/gov/content/home/disclaimer"
           >
             disclaimer
@@ -593,6 +604,7 @@ exports[`Layout Component it matches snapshot 1`] = `
         <li>
           <a
             class="emotion-23 emotion-24"
+            data-testid="ui-link"
             href="https://www2.gov.bc.ca/gov/content/home/privacy"
           >
             privacy
@@ -601,6 +613,7 @@ exports[`Layout Component it matches snapshot 1`] = `
         <li>
           <a
             class="emotion-23 emotion-24"
+            data-testid="ui-link"
             href="https://www2.gov.bc.ca/gov/content/home/accessibility"
           >
             accessibility
@@ -609,6 +622,7 @@ exports[`Layout Component it matches snapshot 1`] = `
         <li>
           <a
             class="emotion-23 emotion-24"
+            data-testid="ui-link"
             href="https://www2.gov.bc.ca/gov/content/home/copyright"
           >
             copyright
@@ -617,6 +631,7 @@ exports[`Layout Component it matches snapshot 1`] = `
         <li>
           <a
             class="emotion-23 emotion-24"
+            data-testid="ui-link"
             href="https://github.com/bcgov/devhub-app-web/issues"
           >
             contact us
