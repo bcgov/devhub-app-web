@@ -1,10 +1,8 @@
 import React from 'react';
-import 'jest-dom/extend-expect';
 import Pill, { TEST_IDS } from '../../src/components/UI/Pill';
-import { render, cleanup, fireEvent } from 'react-testing-library';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
-
 describe('Pill Component', () => {
   const props = {
     label: 'hello world',

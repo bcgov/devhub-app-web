@@ -19,7 +19,7 @@ Created by Patrick Simonian
 import React from 'react';
 import { ResourcePreview } from '../../src/components/Home';
 import { SIPHON_NODES } from '../../__fixtures__/nodes';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 

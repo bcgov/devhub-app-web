@@ -1,11 +1,9 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from 'react-testing-library';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import Masthead, { TEST_IDS } from '../../src/components/Home/Masthead';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 import { useAuthenticated } from '../../src/utils/hooks';
-import 'jest-dom/extend-expect';
-
 jest.mock('../../src/utils/hooks');
 describe('Masthead Component', () => {
   afterEach(cleanup);

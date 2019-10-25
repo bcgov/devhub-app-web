@@ -1,6 +1,5 @@
 import React from 'react';
-import { render, fireEvent, cleanup, waitForElement } from 'react-testing-library';
-import 'jest-dom/extend-expect'; // extends jest expect api
+import { render, fireEvent, cleanup, waitForElement } from '@testing-library/react'; // extends jest expect api
 
 import PrimaryFooter from '../../src/components/PrimaryFooter/PrimaryFooter';
 

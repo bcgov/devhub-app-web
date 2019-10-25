@@ -16,12 +16,10 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import { render } from 'react-testing-library';
-import 'jest-dom/extend-expect';
+import { render } from '@testing-library/react';
 import { Layout } from '../../src/hoc/Layout';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
-
 describe('Layout Component', () => {
   test('it matches snapshot', () => {
     const { container } = render(

@@ -1,11 +1,9 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from 'react-testing-library';
-import 'jest-dom/extend-expect';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 import CardCarousel, { TEST_IDS } from '../../src/components/CardCarousel/CardCarousel';
 import { RESOURCE_TYPES } from '../../src/constants/ui';
-
 // mock out card components
 jest.mock('../../src/components/Card/Card.js', () => () => <div>card</div>);
 
