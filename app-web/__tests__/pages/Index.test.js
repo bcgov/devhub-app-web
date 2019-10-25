@@ -12,6 +12,7 @@ import {
   EVENTS,
   MEETUP_NODES,
   FEATURED_TOPIC,
+  JOURNEYS,
   POPULAR_TOPIC,
 } from '../../__fixtures__/nodes';
 import {
@@ -27,6 +28,7 @@ import {
   removeUnwantedResults,
   buildFeaturedTopic,
   buildPopularTopic,
+  reduceJourneyToSubwayLine,
 } from '../../src/utils/helpers';
 import { GITHUB_RAW_NODES } from '../../__fixtures__/nodes';
 import { client } from '../../wrapWithProvider';
@@ -47,6 +49,8 @@ useSearchGate.mockReturnValue({ results: [], loading: false });
 useAuthenticated.mockReturnValue(false);
 buildFeaturedTopic.mockReturnValue({ node: FEATURED_TOPIC });
 buildPopularTopic.mockReturnValue({ node: POPULAR_TOPIC });
+reduceJourneyToSubwayLine.mockReturnValue([{ name: 'foo' }]);
+
 describe('Home Page', () => {
   // mock out non redux selectors
   jest.doMock('../../src/utils/selectors.js', () => ({
@@ -65,9 +69,13 @@ describe('Home Page', () => {
   const events = EVENTS.map(c => ({ node: c }));
   const meetups = MEETUP_NODES.map(c => ({ node: c }));
   const githubRaw = GITHUB_RAW_NODES.map(c => ({ node: c }));
+  const journeys = JOURNEYS.map(c => ({ node: c }));
   const props = {
     client: {},
     data: {
+      allJourneyRegistryJson: {
+        edges: journeys,
+      },
       allDevhubSiphon: {
         edges: nodes,
       },

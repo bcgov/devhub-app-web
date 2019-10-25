@@ -28,7 +28,7 @@ const Filters = ({ filters }) => {
   const filterGroupsComponent = (
     <div>
       {groupedFilters.map(fg => (
-        <FilterGroup {...fg} />
+        <FilterGroup {...fg} key={`filters-${fg.key}`} />
       ))}
     </div>
   );
