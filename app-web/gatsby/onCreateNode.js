@@ -34,6 +34,7 @@ const {
   isMatomoPageStats,
   isJourneyRegistryJson,
 } = require('./utils/validators.js');
+const { isRelativePath, converter } = require('./utils/gatsbyRemark');
 const { flattenExpandedRegistry, expandRegistry } = require('./utils/githubRaw');
 const slugify = require('slugify');
 const validUrl = require('valid-url');
@@ -399,10 +400,20 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
         value: node.frontmatter.description ? node.frontmatter.description : '',
       });
 
+      // images can point to local files to the repository which need to be resolved
+      let resolvedImage = '';
+      if (validUrl.isWebUri(node.frontmatter.image)) {
+        resolvedImage = node.frontmatter.image;
+      } else if (isRelativePath(node.frontmatter.image)) {
+        resolvedImage = converter('image', node.frontmatter.image, node, parentNode, {
+          getNode,
+          getNodes,
+        });
+      }
       createNodeField({
         node: parentNode,
         name: 'image',
-        value: node.frontmatter.image ? node.frontmatter.image : '',
+        value: resolvedImage,
       });
 
       createNodeField({
