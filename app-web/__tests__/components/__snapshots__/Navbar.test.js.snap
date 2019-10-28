@@ -170,6 +170,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
         Topics
       </a>
     </li>
+<<<<<<< HEAD
     <li>
       <a
         class="emotion-4 emotion-5 emotion-6"
@@ -184,6 +185,26 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
         class="emotion-4 emotion-5 emotion-6"
         data-testid="ui-gatsby-link"
         href="/self-service-tools"
+=======
+    <li
+      key="/journeys"
+    >
+      <mockConstructor
+        activeClassName="ActiveFilter"
+        exact="true"
+        to="/journeys"
+      >
+        Journeys
+      </mockConstructor>
+    </li>
+    <li
+      key="/self-service-tools"
+    >
+      <mockConstructor
+        activeClassName="ActiveFilter"
+        exact="true"
+        to="/self-service-tools"
+>>>>>>> update tester
       >
         Tools
       </a>

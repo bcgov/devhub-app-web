@@ -1,5 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+<<<<<<< HEAD
 exports[`Primary Header Component matches snapshot 1`] = `
 .emotion-19 {
   background-color: #003366;
@@ -205,4 +206,17 @@ exports[`Primary Header Component matches snapshot 1`] = `
     </div>
   </div>
 </header>
+=======
+exports[`Primary Header Component it matches snapshot 1`] = `
+<Header>
+  <Banner />
+  <Panel>
+    <LoginWrapper>
+      <Login
+        authenticated={false}
+      />
+    </LoginWrapper>
+  </Panel>
+</Header>
+>>>>>>> update tester
 `;

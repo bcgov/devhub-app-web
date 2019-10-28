@@ -1,7 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Topics Container it matches snapshot 1`] = `
+<<<<<<< HEAD
 .emotion-207 {
+=======
+.emotion-175 {
+>>>>>>> update tester
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -141,7 +145,11 @@ exports[`Topics Container it matches snapshot 1`] = `
   display: none;
 }
 
+<<<<<<< HEAD
 @media (min-width:858px) {
+=======
+@media screen and (min-width:932px) {
+>>>>>>> update tester
   .emotion-15 {
     display: inline-block;
   }
@@ -167,6 +175,7 @@ exports[`Topics Container it matches snapshot 1`] = `
   background-color: #FCBA19;
 }
 
+<<<<<<< HEAD
 @media (min-width:858px) {
   .emotion-17 {
     display: none;
@@ -214,10 +223,15 @@ exports[`Topics Container it matches snapshot 1`] = `
 
 @media (min-width:858px) {
   .emotion-25 {
+=======
+@media screen and (min-width:932px) {
+  .emotion-17 {
+>>>>>>> update tester
     display: none;
   }
 }
 
+<<<<<<< HEAD
 .emotion-23 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -309,6 +323,9 @@ exports[`Topics Container it matches snapshot 1`] = `
 }
 
 .emotion-187 {
+=======
+.emotion-155 {
+>>>>>>> update tester
   margin-top: 65px;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -317,12 +334,20 @@ exports[`Topics Container it matches snapshot 1`] = `
 }
 
 @media screen and (min-width:932px) {
+<<<<<<< HEAD
   .emotion-187 {
+=======
+  .emotion-155 {
+>>>>>>> update tester
     margin-top: 112px;
   }
 }
 
+<<<<<<< HEAD
 .emotion-185 {
+=======
+.emotion-153 {
+>>>>>>> update tester
   font-size: 15px;
   max-width: 1300px;
   margin: 0;
@@ -330,21 +355,37 @@ exports[`Topics Container it matches snapshot 1`] = `
 }
 
 @media screen and (min-width:932px) {
+<<<<<<< HEAD
   .emotion-185 {
+=======
+  .emotion-153 {
+>>>>>>> update tester
     padding: 10px 65px;
   }
 }
 
+<<<<<<< HEAD
 .emotion-57 {
+=======
+.emotion-25 {
+>>>>>>> update tester
   margin-bottom: 10px;
   color: #494949;
 }
 
+<<<<<<< HEAD
 .emotion-57 h1 {
   margin-bottom: 5px;
 }
 
 .emotion-55 {
+=======
+.emotion-25 h1 {
+  margin-bottom: 5px;
+}
+
+.emotion-23 {
+>>>>>>> update tester
   font-size: 1em;
   max-width: 565px;
   margin-bottom: 0;
@@ -352,14 +393,22 @@ exports[`Topics Container it matches snapshot 1`] = `
   line-height: 1.5em;
 }
 
+<<<<<<< HEAD
 .emotion-120 {
+=======
+.emotion-88 {
+>>>>>>> update tester
   max-width: 1100px;
   margin: 20px 0;
   border: 1px solid #ccc;
   border-top: transparent;
 }
 
+<<<<<<< HEAD
 .emotion-59 {
+=======
+.emotion-27 {
+>>>>>>> update tester
   background-color: #444;
   -webkit-flex: 0 0 10px;
   -ms-flex: 0 0 10px;
@@ -368,13 +417,21 @@ exports[`Topics Container it matches snapshot 1`] = `
   min-height: 15px;
 }
 
+<<<<<<< HEAD
 .emotion-118 {
+=======
+.emotion-86 {
+>>>>>>> update tester
   padding: 0 15px;
   padding-top: 10px;
   padding-bottom: 20px;
 }
 
+<<<<<<< HEAD
 .emotion-63 {
+=======
+.emotion-31 {
+>>>>>>> update tester
   color: #444;
   font-size: 15px;
   margin-bottom: 0;
@@ -382,11 +439,19 @@ exports[`Topics Container it matches snapshot 1`] = `
   font-weight: 400;
 }
 
+<<<<<<< HEAD
 .emotion-61 {
   color: #444;
 }
 
 .emotion-68 {
+=======
+.emotion-29 {
+  color: #444;
+}
+
+.emotion-36 {
+>>>>>>> update tester
   font-size: 20px;
   color: #494949;
   line-height: 1.3;
@@ -401,7 +466,11 @@ exports[`Topics Container it matches snapshot 1`] = `
   font-size: 26px;
 }
 
+<<<<<<< HEAD
 .emotion-66 {
+=======
+.emotion-34 {
+>>>>>>> update tester
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #1A5A96;
@@ -416,13 +485,21 @@ exports[`Topics Container it matches snapshot 1`] = `
   text-decoration: none;
 }
 
+<<<<<<< HEAD
 .emotion-66:hover {
+=======
+.emotion-34:hover {
+>>>>>>> update tester
   color: inherit;
   -webkit-text-decoration-color: #1a5a96;
   text-decoration-color: #1a5a96;
 }
 
+<<<<<<< HEAD
 .emotion-70 {
+=======
+.emotion-38 {
+>>>>>>> update tester
   line-height: 1.4;
   font-size: 14px;
   -webkit-flex: 0 0 auto;
@@ -435,7 +512,11 @@ exports[`Topics Container it matches snapshot 1`] = `
   margin-bottom: 15px;
 }
 
+<<<<<<< HEAD
 .emotion-91 {
+=======
+.emotion-59 {
+>>>>>>> update tester
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #1A5A96;
@@ -448,14 +529,22 @@ exports[`Topics Container it matches snapshot 1`] = `
   color: initial;
 }
 
+<<<<<<< HEAD
 .emotion-91:hover {
+=======
+.emotion-59:hover {
+>>>>>>> update tester
   -webkit-text-decoration: none;
   text-decoration: none;
   color: initial;
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 .emotion-88 {
+=======
+.emotion-56 {
+>>>>>>> update tester
   width: 265px;
   height: 238.5px;
   margin: 10px 0;
@@ -477,14 +566,22 @@ exports[`Topics Container it matches snapshot 1`] = `
   overflow: hidden;
 }
 
+<<<<<<< HEAD
 .emotion-88:hover {
+=======
+.emotion-56:hover {
+>>>>>>> update tester
   box-shadow: 0 2px 2px 1px #00000026;
   -webkit-transform: translateY(-2px);
   -ms-transform: translateY(-2px);
   transform: translateY(-2px);
 }
 
+<<<<<<< HEAD
 .emotion-72 {
+=======
+.emotion-40 {
+>>>>>>> update tester
   background-color: #246BD1;
   -webkit-flex: 0 0 10px;
   -ms-flex: 0 0 10px;
@@ -492,7 +589,11 @@ exports[`Topics Container it matches snapshot 1`] = `
   min-height: 10px;
 }
 
+<<<<<<< HEAD
 .emotion-86 {
+=======
+.emotion-54 {
+>>>>>>> update tester
   padding: 6px 10px;
   height: 100%;
   overflow: auto;
@@ -509,11 +610,19 @@ exports[`Topics Container it matches snapshot 1`] = `
   flex-flow: column nowrap;
 }
 
+<<<<<<< HEAD
 .emotion-74 {
   color: #246BD1;
 }
 
 .emotion-78 {
+=======
+.emotion-42 {
+  color: #246BD1;
+}
+
+.emotion-46 {
+>>>>>>> update tester
   font-size: 20px;
   color: #494949;
   line-height: 1.3;
@@ -525,7 +634,11 @@ exports[`Topics Container it matches snapshot 1`] = `
   word-break: break-word;
 }
 
+<<<<<<< HEAD
 .emotion-80 {
+=======
+.emotion-48 {
+>>>>>>> update tester
   line-height: 1.4;
   font-size: 14px;
   -webkit-flex: 0 0 auto;
@@ -536,7 +649,11 @@ exports[`Topics Container it matches snapshot 1`] = `
   text-transform: none;
 }
 
+<<<<<<< HEAD
 .emotion-84 {
+=======
+.emotion-52 {
+>>>>>>> update tester
   -webkit-flex: 1 1 auto;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
@@ -552,7 +669,11 @@ exports[`Topics Container it matches snapshot 1`] = `
   display: flex;
 }
 
+<<<<<<< HEAD
 .emotion-82 {
+=======
+.emotion-50 {
+>>>>>>> update tester
   width: 100%;
   height: auto;
   object-fit: scale-down;
@@ -560,7 +681,11 @@ exports[`Topics Container it matches snapshot 1`] = `
   margin-bottom: 0;
 }
 
+<<<<<<< HEAD
 .emotion-93 {
+=======
+.emotion-61 {
+>>>>>>> update tester
   background-color: #4299D2;
   -webkit-flex: 0 0 10px;
   -ms-flex: 0 0 10px;
@@ -568,16 +693,37 @@ exports[`Topics Container it matches snapshot 1`] = `
   min-height: 10px;
 }
 
+<<<<<<< HEAD
 .emotion-95 {
   color: #4299D2;
 }
 
 .emotion-116 {
+=======
+.emotion-63 {
+  color: #4299D2;
+}
+
+.emotion-84 {
+>>>>>>> update tester
   text-align: right;
   font-size: 1.15em;
 }
 
+<<<<<<< HEAD
 .emotion-205 {
+=======
+.emotion-82 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  font-weight: 400;
+  text-transform: capitalize;
+  padding: 0 4px;
+  margin: 0 2px;
+}
+
+.emotion-173 {
+>>>>>>> update tester
   background-color: #036;
   border-top: 2px solid #fcba19;
   padding: 9px 0 10px;
@@ -586,18 +732,30 @@ exports[`Topics Container it matches snapshot 1`] = `
 }
 
 @media screen and (min-width:600px) {
+<<<<<<< HEAD
   .emotion-205 {
+=======
+  .emotion-173 {
+>>>>>>> update tester
     padding: 0 65px 0 65px;
   }
 }
 
 @media print {
+<<<<<<< HEAD
   .emotion-205 {
+=======
+  .emotion-173 {
+>>>>>>> update tester
     display: none;
   }
 }
 
+<<<<<<< HEAD
 .emotion-203 {
+=======
+.emotion-171 {
+>>>>>>> update tester
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -608,7 +766,11 @@ exports[`Topics Container it matches snapshot 1`] = `
   align-items: center;
 }
 
+<<<<<<< HEAD
 .emotion-203 > ul {
+=======
+.emotion-171 > ul {
+>>>>>>> update tester
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -620,7 +782,11 @@ exports[`Topics Container it matches snapshot 1`] = `
   margin: 10px 0;
 }
 
+<<<<<<< HEAD
 .emotion-203 li {
+=======
+.emotion-171 li {
+>>>>>>> update tester
   padding: 0 9px;
   text-align: center;
   margin-bottom: 0;
@@ -634,7 +800,11 @@ exports[`Topics Container it matches snapshot 1`] = `
   align-items: center;
 }
 
+<<<<<<< HEAD
 .emotion-189 {
+=======
+.emotion-157 {
+>>>>>>> update tester
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #1A5A96;
@@ -644,7 +814,11 @@ exports[`Topics Container it matches snapshot 1`] = `
   margin: 0 2px;
 }
 
+<<<<<<< HEAD
 .emotion-201 {
+=======
+.emotion-169 {
+>>>>>>> update tester
   margin: 0;
   padding: 0;
   background: none;
@@ -655,17 +829,29 @@ exports[`Topics Container it matches snapshot 1`] = `
   font-size: 0.813em;
 }
 
+<<<<<<< HEAD
 .emotion-201:focus {
   outline: none;
 }
 
 .emotion-201:hover {
+=======
+.emotion-169:focus {
+  outline: none;
+}
+
+.emotion-169:hover {
+>>>>>>> update tester
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
 <div
+<<<<<<< HEAD
   class="emotion-207 emotion-208 container-fluid"
+=======
+  class="emotion-175 emotion-176 container-fluid"
+>>>>>>> update tester
 >
   <header
     class="emotion-21 emotion-22"
@@ -771,8 +957,12 @@ exports[`Topics Container it matches snapshot 1`] = `
       </li>
       <li>
         <a
+<<<<<<< HEAD
           class="emotion-27 emotion-28 emotion-12"
           data-testid="ui-gatsby-link"
+=======
+          exact="true"
+>>>>>>> update tester
           href="/journeys"
         >
           Journeys
@@ -780,8 +970,12 @@ exports[`Topics Container it matches snapshot 1`] = `
       </li>
       <li>
         <a
+<<<<<<< HEAD
           class="emotion-27 emotion-28 emotion-12"
           data-testid="ui-gatsby-link"
+=======
+          exact="true"
+>>>>>>> update tester
           href="/self-service-tools"
         >
           Tools
@@ -826,6 +1020,7 @@ exports[`Topics Container it matches snapshot 1`] = `
     </ul>
   </nav>
   <div
+<<<<<<< HEAD
     class="emotion-187 emotion-188"
   >
     <main
@@ -833,17 +1028,31 @@ exports[`Topics Container it matches snapshot 1`] = `
     >
       <div
         class="emotion-57 emotion-58"
+=======
+    class="emotion-155 emotion-156"
+  >
+    <main
+      class="emotion-153 emotion-154"
+    >
+      <div
+        class="emotion-25 emotion-26"
+>>>>>>> update tester
       >
         <h1>
           Topics
         </h1>
         <h4
+<<<<<<< HEAD
           class="emotion-55 emotion-56"
+=======
+          class="emotion-23 emotion-24"
+>>>>>>> update tester
         >
           Explore resources that have been specially curated to enhance context, detail and accessibility.
         </h4>
       </div>
       <div
+<<<<<<< HEAD
         class="emotion-120 emotion-121"
       >
         <div
@@ -852,16 +1061,34 @@ exports[`Topics Container it matches snapshot 1`] = `
         />
         <div
           class="emotion-118 emotion-119"
+=======
+        class="emotion-88 emotion-89"
+      >
+        <div
+          class="emotion-27 emotion-28"
+          color="Topics"
+        />
+        <div
+          class="emotion-86 emotion-87"
+>>>>>>> update tester
         >
           <div
             style="margin-bottom: 6px;"
           >
             <h3
+<<<<<<< HEAD
               class="emotion-63 emotion-64"
             >
               <svg
                 aria-hidden="true"
                 class="svg-inline--fa fa-layer-group fa-w-16  emotion-61 emotion-62"
+=======
+              class="emotion-31 emotion-32"
+            >
+              <svg
+                aria-hidden="true"
+                class="svg-inline--fa fa-layer-group fa-w-16  emotion-29 emotion-30"
+>>>>>>> update tester
                 data-icon="layer-group"
                 data-prefix="fas"
                 data-testid="resource-type-icon"
@@ -884,10 +1111,17 @@ exports[`Topics Container it matches snapshot 1`] = `
             </h3>
           </div>
           <div
+<<<<<<< HEAD
             class="emotion-68 emotion-69"
           >
             <a
               class="emotion-65 emotion-66 emotion-24"
+=======
+            class="emotion-36 emotion-37"
+          >
+            <a
+              class="emotion-33 emotion-34 emotion-35"
+>>>>>>> update tester
               data-testid="topic-Design System"
               href="foo"
             >
@@ -895,7 +1129,11 @@ exports[`Topics Container it matches snapshot 1`] = `
             </a>
           </div>
           <div
+<<<<<<< HEAD
             class="emotion-70 emotion-71"
+=======
+            class="emotion-38 emotion-39"
+>>>>>>> update tester
           >
             baz
           </div>
@@ -914,6 +1152,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                   style="padding-right: 0px; padding-left: 0px; width: 275px; max-width: 275px; min-width: 275px;"
                 >
                   <a
+<<<<<<< HEAD
                     class="emotion-90 emotion-91 emotion-12"
                     data-testid="ui-gatsby-link"
                     href="/Design-System/foo"
@@ -927,16 +1166,38 @@ exports[`Topics Container it matches snapshot 1`] = `
                       />
                       <div
                         class="emotion-86 emotion-87"
+=======
+                    class="emotion-58 emotion-59 emotion-12"
+                    href="/Design-System/foo"
+                  >
+                    <article
+                      class="emotion-56 emotion-57"
+                    >
+                      <div
+                        class="emotion-40 emotion-41"
+                        color="Documentation"
+                      />
+                      <div
+                        class="emotion-54 emotion-55"
+>>>>>>> update tester
                       >
                         <div
                           style="margin-bottom: 6px;"
                         >
                           <h3
+<<<<<<< HEAD
                             class="emotion-63 emotion-64"
                           >
                             <svg
                               aria-hidden="true"
                               class="svg-inline--fa fa-file fa-w-12  emotion-74 emotion-62"
+=======
+                            class="emotion-31 emotion-32"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="svg-inline--fa fa-file fa-w-12  emotion-42 emotion-30"
+>>>>>>> update tester
                               data-icon="file"
                               data-prefix="fas"
                               data-testid="resource-type-icon"
@@ -976,21 +1237,37 @@ exports[`Topics Container it matches snapshot 1`] = `
                           </h3>
                         </div>
                         <div
+<<<<<<< HEAD
                           class="emotion-78 emotion-79"
+=======
+                          class="emotion-46 emotion-47"
+>>>>>>> update tester
                         >
                           Introduction To Github and Gov
                         </div>
                         <p
+<<<<<<< HEAD
                           class="emotion-80 emotion-81"
+=======
+                          class="emotion-48 emotion-49"
+>>>>>>> update tester
                         >
                           Everything you need to know about working with Github in the BC Government.
                         </p>
                         <div
+<<<<<<< HEAD
                           class="emotion-84 emotion-85"
                         >
                           <img
                             alt="Introduction To Github and Gov"
                             class="emotion-82 emotion-83"
+=======
+                          class="emotion-52 emotion-53"
+                        >
+                          <img
+                            alt="Introduction To Github and Gov"
+                            class="emotion-50 emotion-51"
+>>>>>>> update tester
                             src="../images/octokat.png"
                           />
                         </div>
@@ -1003,6 +1280,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                   style="padding-right: 0px; padding-left: 0px; width: 275px; max-width: 275px; min-width: 275px;"
                 >
                   <a
+<<<<<<< HEAD
                     class="emotion-90 emotion-91 emotion-12"
                     data-testid="ui-gatsby-link"
                     href="/Design-System/bar"
@@ -1016,16 +1294,38 @@ exports[`Topics Container it matches snapshot 1`] = `
                       />
                       <div
                         class="emotion-86 emotion-87"
+=======
+                    class="emotion-58 emotion-59 emotion-12"
+                    href="/Design-System/bar"
+                  >
+                    <article
+                      class="emotion-56 emotion-57"
+                    >
+                      <div
+                        class="emotion-61 emotion-41"
+                        color="Components"
+                      />
+                      <div
+                        class="emotion-54 emotion-55"
+>>>>>>> update tester
                       >
                         <div
                           style="margin-bottom: 6px;"
                         >
                           <h3
+<<<<<<< HEAD
                             class="emotion-63 emotion-64"
                           >
                             <svg
                               aria-hidden="true"
                               class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-95 emotion-62"
+=======
+                            class="emotion-31 emotion-32"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-63 emotion-30"
+>>>>>>> update tester
                               data-icon="puzzle-piece"
                               data-prefix="fas"
                               data-testid="resource-type-icon"
@@ -1065,21 +1365,37 @@ exports[`Topics Container it matches snapshot 1`] = `
                           </h3>
                         </div>
                         <div
+<<<<<<< HEAD
                           class="emotion-78 emotion-79"
+=======
+                          class="emotion-46 emotion-47"
+>>>>>>> update tester
                         >
                           Introduction To Github and Gov
                         </div>
                         <p
+<<<<<<< HEAD
                           class="emotion-80 emotion-81"
+=======
+                          class="emotion-48 emotion-49"
+>>>>>>> update tester
                         >
                           Everything you need to know about working with Github in the BC Government.
                         </p>
                         <div
+<<<<<<< HEAD
                           class="emotion-84 emotion-85"
                         >
                           <img
                             alt="Introduction To Github and Gov"
                             class="emotion-82 emotion-83"
+=======
+                          class="emotion-52 emotion-53"
+                        >
+                          <img
+                            alt="Introduction To Github and Gov"
+                            class="emotion-50 emotion-51"
+>>>>>>> update tester
                             src="../images/octokat.png"
                           />
                         </div>
@@ -1091,11 +1407,18 @@ exports[`Topics Container it matches snapshot 1`] = `
             </div>
           </div>
           <div
+<<<<<<< HEAD
             class="emotion-116 emotion-117"
           >
             <a
               class="emotion-23 emotion-24"
               data-testid="ui-link"
+=======
+            class="emotion-84 emotion-85"
+          >
+            <a
+              class="emotion-82 emotion-35"
+>>>>>>> update tester
               href="foo"
             >
               View
@@ -1120,6 +1443,7 @@ exports[`Topics Container it matches snapshot 1`] = `
         </div>
       </div>
       <div
+<<<<<<< HEAD
         class="emotion-120 emotion-121"
       >
         <div
@@ -1128,16 +1452,34 @@ exports[`Topics Container it matches snapshot 1`] = `
         />
         <div
           class="emotion-118 emotion-119"
+=======
+        class="emotion-88 emotion-89"
+      >
+        <div
+          class="emotion-27 emotion-28"
+          color="Topics"
+        />
+        <div
+          class="emotion-86 emotion-87"
+>>>>>>> update tester
         >
           <div
             style="margin-bottom: 6px;"
           >
             <h3
+<<<<<<< HEAD
               class="emotion-63 emotion-64"
             >
               <svg
                 aria-hidden="true"
                 class="svg-inline--fa fa-layer-group fa-w-16  emotion-61 emotion-62"
+=======
+              class="emotion-31 emotion-32"
+            >
+              <svg
+                aria-hidden="true"
+                class="svg-inline--fa fa-layer-group fa-w-16  emotion-29 emotion-30"
+>>>>>>> update tester
                 data-icon="layer-group"
                 data-prefix="fas"
                 data-testid="resource-type-icon"
@@ -1160,10 +1502,17 @@ exports[`Topics Container it matches snapshot 1`] = `
             </h3>
           </div>
           <div
+<<<<<<< HEAD
             class="emotion-68 emotion-69"
           >
             <a
               class="emotion-65 emotion-66 emotion-24"
+=======
+            class="emotion-36 emotion-37"
+          >
+            <a
+              class="emotion-33 emotion-34 emotion-35"
+>>>>>>> update tester
               data-testid="topic-Devhub"
               href="foo"
             >
@@ -1171,7 +1520,11 @@ exports[`Topics Container it matches snapshot 1`] = `
             </a>
           </div>
           <div
+<<<<<<< HEAD
             class="emotion-70 emotion-71"
+=======
+            class="emotion-38 emotion-39"
+>>>>>>> update tester
           >
             baz
           </div>
@@ -1190,6 +1543,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                   style="padding-right: 0px; padding-left: 0px; width: 275px; max-width: 275px; min-width: 275px;"
                 >
                   <a
+<<<<<<< HEAD
                     class="emotion-90 emotion-91 emotion-12"
                     data-testid="ui-gatsby-link"
                     href="/Devhub/foo"
@@ -1203,16 +1557,38 @@ exports[`Topics Container it matches snapshot 1`] = `
                       />
                       <div
                         class="emotion-86 emotion-87"
+=======
+                    class="emotion-58 emotion-59 emotion-12"
+                    href="/Devhub/foo"
+                  >
+                    <article
+                      class="emotion-56 emotion-57"
+                    >
+                      <div
+                        class="emotion-40 emotion-41"
+                        color="Documentation"
+                      />
+                      <div
+                        class="emotion-54 emotion-55"
+>>>>>>> update tester
                       >
                         <div
                           style="margin-bottom: 6px;"
                         >
                           <h3
+<<<<<<< HEAD
                             class="emotion-63 emotion-64"
                           >
                             <svg
                               aria-hidden="true"
                               class="svg-inline--fa fa-file fa-w-12  emotion-74 emotion-62"
+=======
+                            class="emotion-31 emotion-32"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="svg-inline--fa fa-file fa-w-12  emotion-42 emotion-30"
+>>>>>>> update tester
                               data-icon="file"
                               data-prefix="fas"
                               data-testid="resource-type-icon"
@@ -1252,21 +1628,37 @@ exports[`Topics Container it matches snapshot 1`] = `
                           </h3>
                         </div>
                         <div
+<<<<<<< HEAD
                           class="emotion-78 emotion-79"
+=======
+                          class="emotion-46 emotion-47"
+>>>>>>> update tester
                         >
                           Introduction To Github and Gov
                         </div>
                         <p
+<<<<<<< HEAD
                           class="emotion-80 emotion-81"
+=======
+                          class="emotion-48 emotion-49"
+>>>>>>> update tester
                         >
                           Everything you need to know about working with Github in the BC Government.
                         </p>
                         <div
+<<<<<<< HEAD
                           class="emotion-84 emotion-85"
                         >
                           <img
                             alt="Introduction To Github and Gov"
                             class="emotion-82 emotion-83"
+=======
+                          class="emotion-52 emotion-53"
+                        >
+                          <img
+                            alt="Introduction To Github and Gov"
+                            class="emotion-50 emotion-51"
+>>>>>>> update tester
                             src="../images/octokat.png"
                           />
                         </div>
@@ -1279,6 +1671,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                   style="padding-right: 0px; padding-left: 0px; width: 275px; max-width: 275px; min-width: 275px;"
                 >
                   <a
+<<<<<<< HEAD
                     class="emotion-90 emotion-91 emotion-12"
                     data-testid="ui-gatsby-link"
                     href="/Devhub/bar"
@@ -1292,16 +1685,38 @@ exports[`Topics Container it matches snapshot 1`] = `
                       />
                       <div
                         class="emotion-86 emotion-87"
+=======
+                    class="emotion-58 emotion-59 emotion-12"
+                    href="/Devhub/bar"
+                  >
+                    <article
+                      class="emotion-56 emotion-57"
+                    >
+                      <div
+                        class="emotion-61 emotion-41"
+                        color="Components"
+                      />
+                      <div
+                        class="emotion-54 emotion-55"
+>>>>>>> update tester
                       >
                         <div
                           style="margin-bottom: 6px;"
                         >
                           <h3
+<<<<<<< HEAD
                             class="emotion-63 emotion-64"
                           >
                             <svg
                               aria-hidden="true"
                               class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-95 emotion-62"
+=======
+                            class="emotion-31 emotion-32"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-63 emotion-30"
+>>>>>>> update tester
                               data-icon="puzzle-piece"
                               data-prefix="fas"
                               data-testid="resource-type-icon"
@@ -1341,21 +1756,37 @@ exports[`Topics Container it matches snapshot 1`] = `
                           </h3>
                         </div>
                         <div
+<<<<<<< HEAD
                           class="emotion-78 emotion-79"
+=======
+                          class="emotion-46 emotion-47"
+>>>>>>> update tester
                         >
                           Introduction To Github and Gov
                         </div>
                         <p
+<<<<<<< HEAD
                           class="emotion-80 emotion-81"
+=======
+                          class="emotion-48 emotion-49"
+>>>>>>> update tester
                         >
                           Everything you need to know about working with Github in the BC Government.
                         </p>
                         <div
+<<<<<<< HEAD
                           class="emotion-84 emotion-85"
                         >
                           <img
                             alt="Introduction To Github and Gov"
                             class="emotion-82 emotion-83"
+=======
+                          class="emotion-52 emotion-53"
+                        >
+                          <img
+                            alt="Introduction To Github and Gov"
+                            class="emotion-50 emotion-51"
+>>>>>>> update tester
                             src="../images/octokat.png"
                           />
                         </div>
@@ -1367,11 +1798,18 @@ exports[`Topics Container it matches snapshot 1`] = `
             </div>
           </div>
           <div
+<<<<<<< HEAD
             class="emotion-116 emotion-117"
           >
             <a
               class="emotion-23 emotion-24"
               data-testid="ui-link"
+=======
+            class="emotion-84 emotion-85"
+          >
+            <a
+              class="emotion-82 emotion-35"
+>>>>>>> update tester
               href="foo"
             >
               View
@@ -1398,15 +1836,26 @@ exports[`Topics Container it matches snapshot 1`] = `
     </main>
   </div>
   <footer
+<<<<<<< HEAD
     class="emotion-205 emotion-206"
   >
     <div
       class="emotion-203 emotion-204"
+=======
+    class="emotion-173 emotion-174"
+  >
+    <div
+      class="emotion-171 emotion-172"
+>>>>>>> update tester
     >
       <ul>
         <li>
           <a
+<<<<<<< HEAD
             class="emotion-189 emotion-12"
+=======
+            class="emotion-157 emotion-12"
+>>>>>>> update tester
             css="[object Object]"
             data-testid="ui-gatsby-link"
             href="/"
@@ -1416,8 +1865,12 @@ exports[`Topics Container it matches snapshot 1`] = `
         </li>
         <li>
           <a
+<<<<<<< HEAD
             class="emotion-23 emotion-24"
             data-testid="ui-link"
+=======
+            class="emotion-82 emotion-35"
+>>>>>>> update tester
             href="https://www2.gov.bc.ca/gov/content/home/disclaimer"
           >
             disclaimer
@@ -1425,8 +1878,12 @@ exports[`Topics Container it matches snapshot 1`] = `
         </li>
         <li>
           <a
+<<<<<<< HEAD
             class="emotion-23 emotion-24"
             data-testid="ui-link"
+=======
+            class="emotion-82 emotion-35"
+>>>>>>> update tester
             href="https://www2.gov.bc.ca/gov/content/home/privacy"
           >
             privacy
@@ -1434,8 +1891,12 @@ exports[`Topics Container it matches snapshot 1`] = `
         </li>
         <li>
           <a
+<<<<<<< HEAD
             class="emotion-23 emotion-24"
             data-testid="ui-link"
+=======
+            class="emotion-82 emotion-35"
+>>>>>>> update tester
             href="https://www2.gov.bc.ca/gov/content/home/accessibility"
           >
             accessibility
@@ -1443,8 +1904,12 @@ exports[`Topics Container it matches snapshot 1`] = `
         </li>
         <li>
           <a
+<<<<<<< HEAD
             class="emotion-23 emotion-24"
             data-testid="ui-link"
+=======
+            class="emotion-82 emotion-35"
+>>>>>>> update tester
             href="https://www2.gov.bc.ca/gov/content/home/copyright"
           >
             copyright
@@ -1452,8 +1917,12 @@ exports[`Topics Container it matches snapshot 1`] = `
         </li>
         <li>
           <a
+<<<<<<< HEAD
             class="emotion-23 emotion-24"
             data-testid="ui-link"
+=======
+            class="emotion-82 emotion-35"
+>>>>>>> update tester
             href="https://github.com/bcgov/devhub-app-web/issues"
           >
             contact us
@@ -1461,7 +1930,11 @@ exports[`Topics Container it matches snapshot 1`] = `
         </li>
         <li>
           <button
+<<<<<<< HEAD
             class="emotion-201 emotion-202"
+=======
+            class="emotion-169 emotion-170"
+>>>>>>> update tester
           >
             Fair Use
           </button>
