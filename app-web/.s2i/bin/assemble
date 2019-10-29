@@ -7,6 +7,7 @@
 # application folder.
 [ -d "/usr/src/app" ] && exit 0
 
+
 set -e
 
 # FIXME: Linking of global modules is disabled for now as it causes npm failures
@@ -19,6 +20,9 @@ set -e
 #module_list=$(/usr/bin/comm -12 <(echo "${global_modules}") | tr '\n' ' ')
 # Link the modules
 #npm link $module_list
+
+echo "increasing max heap size for running node build"
+export NODE_OPTIONS="--max_old_space_size=3000"
 
 safeLogging () {
     if [[ $1 =~ http[s]?://.*@.*$ ]]; then
