@@ -47,7 +47,7 @@ objects:
         ## we are hoping to move jest tests outside of the assemble script but until we do this will be quite a high request
       limits:
         cpu: 2
-        memory: 5Gi
+        memory: 1Gi
     source:
       git:
         uri: ${SOURCE_REPOSITORY_URL}
@@ -57,6 +57,10 @@ objects:
     strategy:
       sourceStrategy:
         env:
+          # very important to increase nodes default memory limit to handle
+          # all the pages gatsby creates
+          - name: NODE_OPTIONS
+            value: --max_old_space_size=1024
           - name: GITHUB_TOKEN
             valueFrom:
               secretKeyRef:
