@@ -111,7 +111,7 @@
     "valid-url": "^1.0.9"
   },
   "scripts": {
-    "build": "npx --node-arg '-r esm' --node-arg '--max-old-space-size=1024' gatsby build",
+    "build": "npx --node-arg '-r esm' gatsby build",
     "dev": "npx --node-arg '-r esm' gatsby develop -H 0.0.0.0",
     "serve": "npx --node-arg '-r esm' gatsby serve",
     "test:watch": "jest --watch --env=jsdom",
