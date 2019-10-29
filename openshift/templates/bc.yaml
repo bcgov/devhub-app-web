@@ -43,11 +43,11 @@ objects:
     resources:
       requests:
         cpu: 1
-        memory: 2Gi ## memory usage is high because jest test use a lot of memory when running
+        memory: 5Gi ## memory usage is high because jest test use a lot of memory when running
         ## we are hoping to move jest tests outside of the assemble script but until we do this will be quite a high request
       limits:
         cpu: 2
-        memory: 2Gi
+        memory: 5Gi
     source:
       git:
         uri: ${SOURCE_REPOSITORY_URL}
@@ -60,7 +60,7 @@ objects:
           # very important to increase nodes default memory limit to handle
           # all the pages gatsby creates
           - name: NODE_OPTIONS
-            value: --max_old_space_size=2000
+            value: --max_old_space_size=3000
           - name: GITHUB_TOKEN
             valueFrom:
               secretKeyRef:
