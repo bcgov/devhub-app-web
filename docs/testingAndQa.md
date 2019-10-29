@@ -15,7 +15,7 @@ Ideally you should aim to write E2E tests while developing features/fixing bugs 
 Cypress has a docker image and a CI mode which is leveraged within Github Actions
 
 ## Unit/Integration Tests
-`react-testing-library` is our choice for doing component testing.
+`@testing-library/react` is our choice for doing component testing.
 
-> `react-testing-library` was moved to `@testing-library/react` in future versions
+> `@testing-library/react` was moved to `@testing-library/react` in future versions
 

@@ -1,7 +1,5 @@
 import React from 'react';
-import { render, cleanup } from 'react-testing-library';
-// this adds custom jest matchers from jest-dom
-import 'jest-dom/extend-expect';
+import { render, cleanup } from '@testing-library/react';
 import queryString from 'query-string';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
@@ -34,7 +32,7 @@ import { GITHUB_RAW_NODES } from '../../__fixtures__/nodes';
 import { client } from '../../wrapWithProvider';
 import { ApolloProvider } from 'react-apollo';
 import { ROCKET_CHAT, GITHUB } from '../../__fixtures__/searchsources';
-
+// this adds custom jest matchers from jest-dom
 jest.mock('query-string');
 // mock out layout
 jest.mock('../../src/hoc/Layout.js', () => ({ children }) => children);

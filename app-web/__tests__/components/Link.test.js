@@ -1,10 +1,8 @@
 import React from 'react';
-import { render } from 'react-testing-library';
-import 'jest-dom/extend-expect';
+import { render } from '@testing-library/react';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 import Link, { TEST_IDS } from '../../src/components/UI/Link/Link';
-
 describe('Gatsby Link Component', () => {
   test("it renders an anchor tag if passed a path that doesn't link to a page component", () => {
     const to = 'https://www.google.com';

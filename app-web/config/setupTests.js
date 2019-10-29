@@ -17,6 +17,7 @@ Created by Patrick Simonian
 */
 import * as emotion from 'emotion';
 import { createSerializer } from 'jest-emotion';
+import 'jest-dom/extend-expect';
 
 expect.addSnapshotSerializer(createSerializer(emotion));
 // mock out graph ql

@@ -21,7 +21,7 @@ import { Container as PreviewContainer, Title, StyledLink } from './index';
 import { JourneyMap } from '../Journey';
 import { reduceJourneyToSubwayLine } from '../../utils/helpers';
 
-// used for react-testing-library dom querying
+// used for @testing-library/react dom querying
 export const TEST_IDS = {
   container: 'journeys-container',
 };
