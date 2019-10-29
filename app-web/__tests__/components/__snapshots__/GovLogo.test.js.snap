@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gov Logo Component matches snapshot 1`] = `
+.emotion-0 {
+  margin-bottom: 0;
+  width: 175px;
+}
+
+@media (max-width:480px) {
+  .emotion-0 {
+    display: none;
+  }
+}
+
+<img
+  alt="Government of British Columbia"
+  class="emotion-0 emotion-1"
+  src="BCID_H_rgb_rev.svg"
+/>
+`;

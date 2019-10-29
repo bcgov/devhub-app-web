@@ -742,6 +742,7 @@ exports[`Topics Container it matches snapshot 1`] = `
     >
       <a
         class="emotion-23 emotion-24"
+        data-testid="ui-link"
         href="LOGOUTURI"
       >
         Logout
@@ -753,6 +754,7 @@ exports[`Topics Container it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/"
         >
           Home
@@ -761,6 +763,7 @@ exports[`Topics Container it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/topics"
         >
           Topics
@@ -769,6 +772,7 @@ exports[`Topics Container it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/journeys"
         >
           Journeys
@@ -777,6 +781,7 @@ exports[`Topics Container it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/self-service-tools"
         >
           Tools
@@ -785,6 +790,7 @@ exports[`Topics Container it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/components"
         >
           Components
@@ -793,6 +799,7 @@ exports[`Topics Container it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/repositories"
         >
           GitHub Repositories
@@ -801,6 +808,7 @@ exports[`Topics Container it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/documentation"
         >
           Documentation
@@ -809,6 +817,7 @@ exports[`Topics Container it matches snapshot 1`] = `
       <li>
         <a
           class="emotion-27 emotion-28 emotion-12"
+          data-testid="ui-gatsby-link"
           href="/events"
         >
           Events
@@ -906,6 +915,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                 >
                   <a
                     class="emotion-90 emotion-91 emotion-12"
+                    data-testid="ui-gatsby-link"
                     href="/Design-System/foo"
                   >
                     <article
@@ -994,6 +1004,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                 >
                   <a
                     class="emotion-90 emotion-91 emotion-12"
+                    data-testid="ui-gatsby-link"
                     href="/Design-System/bar"
                   >
                     <article
@@ -1084,6 +1095,7 @@ exports[`Topics Container it matches snapshot 1`] = `
           >
             <a
               class="emotion-23 emotion-24"
+              data-testid="ui-link"
               href="foo"
             >
               View
@@ -1179,6 +1191,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                 >
                   <a
                     class="emotion-90 emotion-91 emotion-12"
+                    data-testid="ui-gatsby-link"
                     href="/Devhub/foo"
                   >
                     <article
@@ -1267,6 +1280,7 @@ exports[`Topics Container it matches snapshot 1`] = `
                 >
                   <a
                     class="emotion-90 emotion-91 emotion-12"
+                    data-testid="ui-gatsby-link"
                     href="/Devhub/bar"
                   >
                     <article
@@ -1357,6 +1371,7 @@ exports[`Topics Container it matches snapshot 1`] = `
           >
             <a
               class="emotion-23 emotion-24"
+              data-testid="ui-link"
               href="foo"
             >
               View
@@ -1393,6 +1408,7 @@ exports[`Topics Container it matches snapshot 1`] = `
           <a
             class="emotion-189 emotion-12"
             css="[object Object]"
+            data-testid="ui-gatsby-link"
             href="/"
           >
             home
@@ -1401,6 +1417,7 @@ exports[`Topics Container it matches snapshot 1`] = `
         <li>
           <a
             class="emotion-23 emotion-24"
+            data-testid="ui-link"
             href="https://www2.gov.bc.ca/gov/content/home/disclaimer"
           >
             disclaimer
@@ -1409,6 +1426,7 @@ exports[`Topics Container it matches snapshot 1`] = `
         <li>
           <a
             class="emotion-23 emotion-24"
+            data-testid="ui-link"
             href="https://www2.gov.bc.ca/gov/content/home/privacy"
           >
             privacy
@@ -1417,6 +1435,7 @@ exports[`Topics Container it matches snapshot 1`] = `
         <li>
           <a
             class="emotion-23 emotion-24"
+            data-testid="ui-link"
             href="https://www2.gov.bc.ca/gov/content/home/accessibility"
           >
             accessibility
@@ -1425,6 +1444,7 @@ exports[`Topics Container it matches snapshot 1`] = `
         <li>
           <a
             class="emotion-23 emotion-24"
+            data-testid="ui-link"
             href="https://www2.gov.bc.ca/gov/content/home/copyright"
           >
             copyright
@@ -1433,6 +1453,7 @@ exports[`Topics Container it matches snapshot 1`] = `
         <li>
           <a
             class="emotion-23 emotion-24"
+            data-testid="ui-link"
             href="https://github.com/bcgov/devhub-app-web/issues"
           >
             contact us

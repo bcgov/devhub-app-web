@@ -17,7 +17,7 @@ Created by Shea Phillips
 */
 import React from 'react';
 
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import ComponentPreview from '../../src/components/ComponentPreview/ComponentPreview';
 
 describe('ComponentPreview Component', () => {
@@ -39,6 +39,7 @@ describe('ComponentPreview Component', () => {
             repo: 'devhub-app-web',
           },
         },
+        html_url: 'https://github.com/bcgov/repo/blob/master/foo.md',
       },
     };
     const { container } = render(<ComponentPreview {...props} />);

@@ -1,9 +1,8 @@
 import React from 'react';
-import 'jest-dom/extend-expect';
-import { render, cleanup } from 'react-testing-library';
-import { Login, TEST_IDS } from '../../src/components/Auth/Login';
+import { render, cleanup } from '@testing-library/react';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
+import { Login, TEST_IDS } from '../../src/components/Auth/Login';
 describe('Login Component', () => {
   afterEach(cleanup);
   it('shows logout button when logged in', () => {

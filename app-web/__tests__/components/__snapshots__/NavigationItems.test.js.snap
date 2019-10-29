@@ -1,40 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Primary Footer Component it matches snapshot 1`] = `
+exports[`Navigation Items Component it matches snapshot 1`] = `
+.emotion-0 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  color: #1A5A96;
+  font-weight: 400;
+  text-transform: capitalize;
+  padding: 0 4px;
+  margin: 0 2px;
+}
+
+.emotion-2 {
+  margin: 0;
+  padding: 0;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  color: inherit;
+  border: none;
+  font-size: 0.813em;
+}
+
+.emotion-2:focus {
+  outline: none;
+}
+
+.emotion-2:hover {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
 <ul>
-  <NavigationItem
-    key="0"
-    text="banana"
-    to="/"
-  />
   <li>
-    <LinkButton
-      onClick={[Function]}
+    <a
+      class="emotion-0 emotion-1"
+      css="[object Object]"
+      data-testid="ui-gatsby-link"
+      href="/"
+    >
+      banana
+    </a>
+  </li>
+  <li>
+    <button
+      class="emotion-2 emotion-3"
     >
       Fair Use
-    </LinkButton>
+    </button>
   </li>
   <li>
     <a
       aria-label="View the BC Dev Exchange Organization"
       href="https://bcdevexchange.org"
-      style={
-        Object {
-          "display": "inline-block",
-          "width": "125px",
-        }
-      }
+      style="display: inline-block; width: 125px;"
       title="BC Dev Exchange"
     >
       <img
         alt="Government Of BC"
         src="devex.svg"
-        style={
-          Object {
-            "margin": 0,
-            "maxHeight": "50px",
-          }
-        }
+        style="margin: 0px; max-height: 50px;"
       />
     </a>
   </li>

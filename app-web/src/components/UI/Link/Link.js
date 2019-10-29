@@ -13,6 +13,11 @@ const StyledLink = styled(Link)`
 
 const Anchor = StyledLink.withComponent('a');
 
+export const TEST_IDS = {
+  gatsbyLink: 'ui-gatsby-link',
+  link: 'ui-link',
+};
+
 const GatsbyLink = ({ children, to, activeClassName, activeStyle, ...rest }) => {
   // Tailor the following test to your environment.
   // This example assumes that any internal link (intended for Gatsby)
@@ -22,13 +27,19 @@ const GatsbyLink = ({ children, to, activeClassName, activeStyle, ...rest }) => 
   // Use Gatsby Link for internal links, and <a> for rests
   if (internal) {
     return (
-      <StyledLink to={to} activeStyle={activeStyle} activeClassName={activeClassName} {...rest}>
+      <StyledLink
+        to={to}
+        activeStyle={activeStyle}
+        activeClassName={activeClassName}
+        data-testid={TEST_IDS.gatsbyLink}
+        {...rest}
+      >
         {children}
       </StyledLink>
     );
   }
   return (
-    <Anchor href={to} {...rest}>
+    <Anchor data-testid={TEST_IDS.link} href={to} {...rest}>
       {children}
     </Anchor>
   );

@@ -33,6 +33,9 @@ const variants = {
   link: 'link',
 };
 
+export const TEST_IDS = {
+  button: 'button',
+};
 export const Button = ({ variant, children, clicked, ...rest }) => {
   const colors = {
     [variants.primary]: 'blue',
@@ -47,6 +50,7 @@ export const Button = ({ variant, children, clicked, ...rest }) => {
           outline: 'none',
           color: 'inherit',
         }}
+        data-testid={TEST_IDS.button}
         {...rest}
       >
         {children}
@@ -54,7 +58,12 @@ export const Button = ({ variant, children, clicked, ...rest }) => {
     );
   } else {
     return (
-      <StyledButton onClick={clicked} {...rest} color={colors[variant]}>
+      <StyledButton
+        onClick={clicked}
+        color={colors[variant]}
+        data-testid={TEST_IDS.button}
+        {...rest}
+      >
         {children}
       </StyledButton>
     );

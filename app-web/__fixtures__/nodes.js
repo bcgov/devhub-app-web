@@ -463,7 +463,7 @@ export const POPULAR_TOPIC = {
     resource: { ...n.resource },
     unfurl: { ...n.unfurl },
   })),
-}
+};
 export const FEATURED_TOPIC = {
   id: 'featured',
   type: 'default',
@@ -483,7 +483,7 @@ export const FEATURED_TOPIC = {
     resource: { ...n.resource },
     unfurl: { ...n.unfurl },
   })),
-}
+};
 
 export const EVENT_1 = {
   siphon: {
@@ -512,7 +512,6 @@ export const EVENT_1 = {
     html: '<p> This is a test </p>',
     text: 'This is a test',
   },
-  id: '45046198392',
   logo: {
     original: {
       url:
@@ -561,7 +560,6 @@ export const EVENT_2 = {
     html: '<p> This is also a test </p>',
     text: 'This is also a test',
   },
-  id: '61112980570',
   logo: {
     original: {
       url:
@@ -606,9 +604,6 @@ export const MEETUP_1 = {
         title: 'Product Spotlight: ZenHub',
       },
     },
-    fields: {
-      resourceType: 'Events',
-    },
     start: {
       day: '20',
       daysFromNow: '-2',
@@ -652,9 +647,6 @@ export const MEETUP_2 = {
         title: 'Product Spotlight: ZenHub',
       },
     },
-    fields: {
-      resourceType: 'Events',
-    },
     start: {
       day: '30',
       daysFromNow: '20',
@@ -679,6 +671,16 @@ export const MEETUP_2 = {
   },
 };
 
+export const JOURNEY_1 = {
+  id: 'journey-1',
+  name: 'foo',
+  fields: {
+    title: 'foo',
+    slug: '/foo',
+  },
+  connectsWith: [{ ...GITHUB_RAW_1, path: '/foo/bar', id: '123', _type: 'github' }],
+};
+
 export const EVENTS = [EVENT_1, EVENT_2];
 export const MEETUP_NODES = [MEETUP_1, MEETUP_2];
 
@@ -690,7 +692,7 @@ export const FILTERED_NODES = SIPHON_NODES.filter(
 );
 
 export const TOPICS = [DESIGN_SYSTEM_TOPIC, DEVHUB_TOPIC];
-
+export const JOURNEYS = [JOURNEY_1];
 export const GITHUB_RAW_NODES = [GITHUB_RAW_1, GITHUB_RAW_2];
 export const SIPHON_NODES_MAP = arrayToMapByProp(SIPHON_NODES, 'id');
 export const TOPICS_MAP = arrayToMapByProp(TOPICS, 'id');

@@ -1,17 +1,22 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import Button from '../../src/components/UI/Button/Button';
+import { render, fireEvent } from '@testing-library/react';
+import { ThemeProvider } from 'emotion-theming';
+import theme from '../../theme';
+import Button, { TEST_IDS } from '../../src/components/UI/Button/Button';
 
 describe('Button Component', () => {
-  it('matches snapshot', () => {
-    const wrapper = shallow(<Button clicked={jest.fn()} />);
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('it calls event handling function when clicked', () => {
+  it('matches snapshot, when clicked it calls function', () => {
     const clickFn = jest.fn();
-    const wrapper = shallow(<Button clicked={clickFn} />);
-    wrapper.simulate('click');
+    const { container, getByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <Button clicked={clickFn} />
+      </ThemeProvider>,
+    );
+
+    expect(container.firstChild).toMatchSnapshot();
+    const button = getByTestId(TEST_IDS.button);
+    fireEvent.click(button);
+
     expect(clickFn).toHaveBeenCalled();
   });
 });

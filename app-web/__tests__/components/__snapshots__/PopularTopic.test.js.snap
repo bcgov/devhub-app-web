@@ -309,6 +309,7 @@ exports[`PopularTopic matches snapshot 1`] = `
             >
               <a
                 class="emotion-31 emotion-32 emotion-8"
+                data-testid="ui-gatsby-link"
                 href="/topic/popular/Introduction-To-Github-and-Gov"
               >
                 <article
@@ -397,6 +398,7 @@ exports[`PopularTopic matches snapshot 1`] = `
             >
               <a
                 class="emotion-31 emotion-32 emotion-8"
+                data-testid="ui-gatsby-link"
                 href="/topic/popular/Introduction-To-Github-and-Gov"
               >
                 <article
@@ -487,6 +489,7 @@ exports[`PopularTopic matches snapshot 1`] = `
       >
         <a
           class="emotion-55 emotion-8"
+          data-testid="ui-gatsby-link"
           href="/topic/popular"
         >
           Popular

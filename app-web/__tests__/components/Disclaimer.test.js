@@ -1,6 +1,7 @@
 import React from 'react';
-import { render } from 'react-testing-library';
-import { wrapWithTheme } from '../helpers';
+import { render } from '@testing-library/react';
+import { ThemeProvider } from 'emotion-theming';
+import theme from '../../theme';
 import Disclaimer from '../../src/components/Disclaimer/Disclaimer';
 
 describe('Disclaimer Component', () => {
@@ -11,7 +12,11 @@ describe('Disclaimer Component', () => {
   };
 
   it('matches snapshot', () => {
-    const { container } = wrapWithTheme(render, <Disclaimer {...props} />);
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Disclaimer {...props} />
+      </ThemeProvider>,
+    );
 
     expect(container.firstChild).toMatchSnapshot();
   });

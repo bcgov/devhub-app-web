@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from 'react-testing-library';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import { FilterGroup, TEST_IDS } from '../../src/components/Filters/FilterGroup/FilterGroup';
 import DEFAULT_FILTERS, { FILTER_QUERY_PARAM } from '../../src/constants/filterGroups';
 import { navigate } from 'gatsby';

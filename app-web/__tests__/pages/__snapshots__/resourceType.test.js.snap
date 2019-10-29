@@ -477,6 +477,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
         >
           <a
             class="emotion-32 emotion-33 emotion-34"
+            data-testid="ui-gatsby-link"
             href="/DevHub-Node-1"
           >
             <article
@@ -564,6 +565,7 @@ exports[`Resource Type Template Page it matches snapshot, when there are no reso
         >
           <a
             class="emotion-32 emotion-33 emotion-34"
+            data-testid="ui-gatsby-link"
             href="/GitHub-Raw-1"
           >
             <article

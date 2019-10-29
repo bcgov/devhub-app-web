@@ -1,7 +1,5 @@
 import React from 'react';
-import { render, cleanup } from 'react-testing-library';
-// this adds custom jest matchers from jest-dom
-import 'jest-dom/extend-expect';
+import { render, cleanup } from '@testing-library/react';
 import queryString from 'query-string';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
@@ -16,7 +14,7 @@ import DEFAULT_FILTERS, { FILTER_QUERY_PARAM } from '../../src/constants/filterG
 import { TEST_IDS as FILTER_TEST_IDS } from '../../src/components/Filters/FilterGroup/FilterGroup';
 import { RESOURCE_TYPES } from '../../src/constants/ui';
 import { removeOtherResourceTypeResults } from '../../src/utils/helpers';
-
+// this adds custom jest matchers from jest-dom
 jest.mock('query-string');
 // mock out layout
 jest.mock('../../src/hoc/Layout.js', () => ({ children }) => children);

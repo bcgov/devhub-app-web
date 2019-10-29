@@ -16,15 +16,19 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render } from '@testing-library/react';
+import { ThemeProvider } from 'emotion-theming';
+import theme from '../../theme';
 import GovLogo from '../../src/components/UI/GovLogo/GovLogo';
 
 describe('Gov Logo Component', () => {
-  // for some reason this test and this test only is failing with TypeError: (0 , _core.css) is not a function
-  //  all other tests that are utilizing emotion's css function seem to be working fine?
-  it.skip('matches snapshot', () => {
-    const wrapper = shallow(<GovLogo />);
-    expect(toJson(wrapper)).toMatchSnapshot();
+  it('matches snapshot', () => {
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <GovLogo />
+      </ThemeProvider>,
+    );
+
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

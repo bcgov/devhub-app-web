@@ -21,9 +21,9 @@ import { Container as PreviewContainer, Title, StyledLink } from './index';
 import { JourneyMap } from '../Journey';
 import { reduceJourneyToSubwayLine } from '../../utils/helpers';
 
-// used for react-testing-library dom querying
+// used for @testing-library/react dom querying
 export const TEST_IDS = {
-  container: 'topics-container',
+  container: 'journeys-container',
 };
 
 export const JourneysContainer = ({ journeys, link }) => (
@@ -31,7 +31,6 @@ export const JourneysContainer = ({ journeys, link }) => (
     <Title>
       <StyledLink to={link.to}>Journeys</StyledLink>
     </Title>
-
     {journeys.map(journey => (
       <JourneyMap
         title={journey.name}
@@ -52,7 +51,6 @@ JourneysContainer.propTypes = {
   ),
   link: PropTypes.shape({
     to: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
   }),
 };
 export default JourneysContainer;

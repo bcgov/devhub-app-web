@@ -16,26 +16,26 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import { shallow } from 'enzyme';
-import Hamburger from '../../src/components/UI/Hamburger/Hamburger';
+import { render, fireEvent } from '@testing-library/react';
+import { ThemeProvider } from 'emotion-theming';
+import theme from '../../theme';
+import Hamburger, { TEST_IDS } from '../../src/components/UI/Hamburger/Hamburger';
 
 describe('Hamburger Component', () => {
-  let hamburger = null;
   const props = {
     clicked: jest.fn(),
     className: 'foo',
   };
 
-  beforeEach(() => {
-    hamburger = shallow(<Hamburger {...props} />);
-  });
-
   test('it matches snapshot', () => {
-    expect(hamburger).toMatchSnapshot();
-  });
-
-  test('it calls function when clicked', () => {
-    hamburger.simulate('click');
+    const { container, getByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <Hamburger {...props} />
+      </ThemeProvider>,
+    );
+    expect(container.firstChild).toMatchSnapshot();
+    const hamburger = getByTestId(TEST_IDS.hamburger);
+    fireEvent.click(hamburger);
     expect(props.clicked).toHaveBeenCalled();
   });
 });

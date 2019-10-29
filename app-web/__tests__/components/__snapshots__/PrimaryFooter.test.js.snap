@@ -109,6 +109,7 @@ exports[`Primary Footer Component it renders and matches snapshot, when the Fair
         <a
           class="emotion-0 emotion-1"
           css="[object Object]"
+          data-testid="ui-gatsby-link"
           href="/"
         >
           home
@@ -117,6 +118,7 @@ exports[`Primary Footer Component it renders and matches snapshot, when the Fair
       <li>
         <a
           class="emotion-2 emotion-3"
+          data-testid="ui-link"
           href="https://www2.gov.bc.ca/gov/content/home/disclaimer"
         >
           disclaimer
@@ -125,6 +127,7 @@ exports[`Primary Footer Component it renders and matches snapshot, when the Fair
       <li>
         <a
           class="emotion-2 emotion-3"
+          data-testid="ui-link"
           href="https://www2.gov.bc.ca/gov/content/home/privacy"
         >
           privacy
@@ -133,6 +136,7 @@ exports[`Primary Footer Component it renders and matches snapshot, when the Fair
       <li>
         <a
           class="emotion-2 emotion-3"
+          data-testid="ui-link"
           href="https://www2.gov.bc.ca/gov/content/home/accessibility"
         >
           accessibility
@@ -141,6 +145,7 @@ exports[`Primary Footer Component it renders and matches snapshot, when the Fair
       <li>
         <a
           class="emotion-2 emotion-3"
+          data-testid="ui-link"
           href="https://www2.gov.bc.ca/gov/content/home/copyright"
         >
           copyright
@@ -149,6 +154,7 @@ exports[`Primary Footer Component it renders and matches snapshot, when the Fair
       <li>
         <a
           class="emotion-2 emotion-3"
+          data-testid="ui-link"
           href="https://github.com/bcgov/devhub-app-web/issues"
         >
           contact us

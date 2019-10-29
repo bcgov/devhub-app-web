@@ -17,11 +17,18 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import PhaseBanner from '../../src/components/UI/PhaseBanner/PhaseBanner';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import { ThemeProvider } from 'emotion-theming';
+import theme from '../../theme';
 
-describe('PhaseBanner', () => {
+describe('Phase Banner Component', () => {
   test('it matches snapshot', () => {
-    const phaseBanner = shallow(<PhaseBanner phase="beta" />);
-    expect(phaseBanner).toMatchSnapshot();
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <PhaseBanner phase="beta" />
+      </ThemeProvider>,
+    );
+
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

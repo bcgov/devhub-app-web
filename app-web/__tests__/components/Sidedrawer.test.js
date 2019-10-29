@@ -1,55 +1,51 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import SideDrawer from '../../src/components/SideDrawer/SideDrawer';
+import { ThemeProvider } from 'emotion-theming';
+import theme from '../../theme';
+import { render, cleanup, fireEvent } from '@testing-library/react';
+import SideDrawer, { TEST_IDS } from '../../src/components/SideDrawer/SideDrawer';
 
-describe('404 Page', () => {
-  let wrapper, closeDrawer;
+describe('Sidedrawer Page', () => {
   let title = 'Foo';
   let show = true;
+  let closeDrawer = jest.fn();
+  afterEach(cleanup);
   beforeEach(() => {
-    closeDrawer = jest.fn();
-    wrapper = shallow(<SideDrawer show={show} title={title} closeDrawer={closeDrawer} />);
+    closeDrawer.mockReset();
   });
 
   test('it matches snapshot', () => {
-    expect(wrapper).toMatchSnapshot();
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <SideDrawer show={show} title={title} closeDrawer={closeDrawer} />
+      </ThemeProvider>,
+    );
+
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('it calls drawer close fn when x button is clicked', () => {
-    const button = wrapper.find('IconButton');
-    button.simulate('click');
+    const { getByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <SideDrawer show={show} title={title} closeDrawer={closeDrawer} />
+      </ThemeProvider>,
+    );
 
+    const button = getByTestId(TEST_IDS.closeButton);
+
+    fireEvent.click(button);
     expect(closeDrawer).toHaveBeenCalled();
   });
 
   test('it calls drawer close fn when backdrop is clicked', () => {
-    const closeDrawer2 = jest.fn();
-    const wrapper = mount(<SideDrawer show={show} title={title} closeDrawer={closeDrawer2} />);
-    const backdrop = wrapper.find('Backdrop');
-    backdrop.simulate('click');
-    expect(closeDrawer2).toHaveBeenCalled();
-  });
+    const { getByTestId } = render(
+      <ThemeProvider theme={theme}>
+        <SideDrawer show={show} title={title} closeDrawer={closeDrawer} />
+      </ThemeProvider>,
+    );
 
-  test('it displays the title when passed in', () => {
-    const h2 = wrapper.find('H2');
-    expect(h2.containsMatchingElement(<span>{title}</span>)).toBeTruthy();
-  });
+    const backdrop = getByTestId(TEST_IDS.backdrop);
 
-  test('it allow children to be passed', () => {
-    const child = <p>yoyoyoy</p>;
-    expect(wrapper.containsMatchingElement(child)).not.toBeTruthy();
-
-    wrapper.setProps({ children: child }).update();
-    expect(wrapper.containsMatchingElement(child)).toBeTruthy();
-  });
-
-  test('it sets backdrop show to false when side drawer show is set to false', () => {
-    wrapper.setProps({ show: false }).update();
-    expect(wrapper.find('Backdrop').prop('show')).toBe(false);
-  });
-
-  test('it sets pose prop to hide if show is false', () => {
-    wrapper.setProps({ show: false }).update();
-    expect(wrapper.find('Drawer').prop('pose')).toBe('hide');
+    fireEvent.click(backdrop);
+    expect(closeDrawer).toHaveBeenCalled();
   });
 });
