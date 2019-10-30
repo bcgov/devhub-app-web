@@ -112,13 +112,13 @@ export const Navbar = ({ authenticated, links, implicitAuthManager, toggled }) =
       <AuthContainer>
         {authenticated ? (
           <Link
-            onClick={() => implicitAuthManager.clearAuthLocalStorage()}
-            href={implicitAuthManager.getSSOLogoutURI()}
+            onClick={() => implicitAuthManager && implicitAuthManager.clearAuthLocalStorage()}
+            href={implicitAuthManager && implicitAuthManager.getSSOLogoutURI()}
           >
             Logout
           </Link>
         ) : (
-          <Link href={implicitAuthManager.getSSOLoginURI()}>Login</Link>
+          <Link href={implicitAuthManager && implicitAuthManager.getSSOLoginURI()}>Login</Link>
         )}
       </AuthContainer>
       <NavList>{navlinks}</NavList>
