@@ -16,13 +16,20 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import { ThemeProvider } from 'emotion-theming';
+import theme from '../../theme';
 import NavigationItems from '../../src/components/NavigationItems/NavigationItems';
 import { FOOTER_NAV } from '../../__fixtures__/ui-fixtures';
 
-describe('Primary Footer Component', () => {
+describe('Navigation Items Component', () => {
   test('it matches snapshot', () => {
-    const wrapper = shallow(<NavigationItems items={FOOTER_NAV} setToggled={jest.fn()} />);
-    expect(wrapper).toMatchSnapshot();
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <NavigationItems items={FOOTER_NAV} setToggled={jest.fn()} />
+      </ThemeProvider>,
+    );
+
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

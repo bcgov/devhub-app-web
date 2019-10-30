@@ -30,7 +30,7 @@ const Div = styled.div`
   background-color: rgba(0, 0, 0, 0.35);
 `;
 
-const Backdrop = ({ clicked, show }) => show && <Div onClick={clicked} />;
+const Backdrop = ({ clicked, show, ...rest }) => show && <Div onClick={clicked} {...rest} />;
 
 Backdrop.propTypes = {
   clicked: PropTypes.func,

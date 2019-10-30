@@ -13,10 +13,6 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import PropTypes from 'prop-types';
-import shortid from 'shortid';
-
-import styles from './Filters.module.css';
-
 import FilterGroup from './FilterGroup/FilterGroup';
 import groupBy from 'lodash/groupBy';
 
@@ -30,9 +26,9 @@ const Filters = ({ filters }) => {
   }));
 
   const filterGroupsComponent = (
-    <div className={styles.Filters}>
+    <div>
       {groupedFilters.map(fg => (
-        <FilterGroup {...fg} key={shortid.generate()} />
+        <FilterGroup {...fg} key={`filters-${fg.key}`} />
       ))}
     </div>
   );

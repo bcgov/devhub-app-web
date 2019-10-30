@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 const StyledLink = styled(Link)`
   text-decoration: underline;
-  color: ${props => props.theme.colors.link};
+  color: ${({ theme }) => theme.colors.linkblue};
   font-weight: 400;
   text-transform: capitalize;
   padding: 0 4px;
@@ -12,6 +12,11 @@ const StyledLink = styled(Link)`
 `;
 
 const Anchor = StyledLink.withComponent('a');
+
+export const TEST_IDS = {
+  gatsbyLink: 'ui-gatsby-link',
+  link: 'ui-link',
+};
 
 const GatsbyLink = ({ children, to, activeClassName, activeStyle, ...rest }) => {
   // Tailor the following test to your environment.
@@ -22,13 +27,19 @@ const GatsbyLink = ({ children, to, activeClassName, activeStyle, ...rest }) => 
   // Use Gatsby Link for internal links, and <a> for rests
   if (internal) {
     return (
-      <StyledLink to={to} activeStyle={activeStyle} activeClassName={activeClassName} {...rest}>
+      <StyledLink
+        to={to}
+        activeStyle={activeStyle}
+        activeClassName={activeClassName}
+        data-testid={TEST_IDS.gatsbyLink}
+        {...rest}
+      >
         {children}
       </StyledLink>
     );
   }
   return (
-    <Anchor href={to} {...rest}>
+    <Anchor data-testid={TEST_IDS.link} href={to} {...rest}>
       {children}
     </Anchor>
   );

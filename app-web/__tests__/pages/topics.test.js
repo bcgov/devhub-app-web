@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'emotion-theming';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { TopicsPage } from '../../src/pages/topics';
 import { SIPHON_NODES, TOPICS, EVENTS, MEETUP_NODES } from '../../__fixtures__/nodes';
 import theme from '../../theme';

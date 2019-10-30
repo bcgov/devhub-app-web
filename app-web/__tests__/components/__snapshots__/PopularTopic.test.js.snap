@@ -53,6 +53,7 @@ exports[`PopularTopic matches snapshot 1`] = `
 .emotion-7 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
+  color: #1A5A96;
   font-weight: 400;
   text-transform: capitalize;
   padding: 0 4px;
@@ -86,6 +87,7 @@ exports[`PopularTopic matches snapshot 1`] = `
 .emotion-32 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
+  color: #1A5A96;
   font-weight: 400;
   text-transform: capitalize;
   padding: 0 4px;
@@ -227,6 +229,7 @@ exports[`PopularTopic matches snapshot 1`] = `
 .emotion-55 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
+  color: #1A5A96;
   font-weight: 400;
   text-transform: capitalize;
   padding: 0 4px;
@@ -306,6 +309,7 @@ exports[`PopularTopic matches snapshot 1`] = `
             >
               <a
                 class="emotion-31 emotion-32 emotion-8"
+                data-testid="ui-gatsby-link"
                 href="/topic/popular/Introduction-To-Github-and-Gov"
               >
                 <article
@@ -394,6 +398,7 @@ exports[`PopularTopic matches snapshot 1`] = `
             >
               <a
                 class="emotion-31 emotion-32 emotion-8"
+                data-testid="ui-gatsby-link"
                 href="/topic/popular/Introduction-To-Github-and-Gov"
               >
                 <article
@@ -484,6 +489,7 @@ exports[`PopularTopic matches snapshot 1`] = `
       >
         <a
           class="emotion-55 emotion-8"
+          data-testid="ui-gatsby-link"
           href="/topic/popular"
         >
           Popular

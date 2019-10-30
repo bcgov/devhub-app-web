@@ -1,10 +1,17 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import { ThemeProvider } from 'emotion-theming';
+import theme from '../../theme';
 import { PrimaryHeader } from '../../src/components/PrimaryHeader/PrimaryHeader';
 
 describe('Primary Header Component', () => {
-  test('it matches snapshot', () => {
-    const wrapper = shallow(<PrimaryHeader />);
-    expect(wrapper).toMatchSnapshot();
+  it('matches snapshot', () => {
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <PrimaryHeader />
+      </ThemeProvider>,
+    );
+
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

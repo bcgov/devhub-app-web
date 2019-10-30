@@ -379,9 +379,10 @@ export const isLocalHost = () => {
  * reduces the connects with node field to subway stops usable by the subwayline component
  * @param {Array} connections the subway stops found from registryJourneyJson.connectsWith
  */
-export const reduceJourneyToSubwayLine = connections =>
-  connections.map((connection, index) => ({
+export const reduceJourneyToSubwayLine = connections => {
+  return connections.map((connection, index) => ({
     name: connection.fields.title,
     to: connection.path,
     variant: index % 2 === 0 ? 'up' : 'down',
   }));
+};

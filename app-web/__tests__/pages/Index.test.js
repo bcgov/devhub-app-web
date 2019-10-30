@@ -1,7 +1,5 @@
 import React from 'react';
-import { render, cleanup } from 'react-testing-library';
-// this adds custom jest matchers from jest-dom
-import 'jest-dom/extend-expect';
+import { render, cleanup } from '@testing-library/react';
 import queryString from 'query-string';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
@@ -12,6 +10,7 @@ import {
   EVENTS,
   MEETUP_NODES,
   FEATURED_TOPIC,
+  JOURNEYS,
   POPULAR_TOPIC,
 } from '../../__fixtures__/nodes';
 import {
@@ -27,12 +26,13 @@ import {
   removeUnwantedResults,
   buildFeaturedTopic,
   buildPopularTopic,
+  reduceJourneyToSubwayLine,
 } from '../../src/utils/helpers';
 import { GITHUB_RAW_NODES } from '../../__fixtures__/nodes';
 import { client } from '../../wrapWithProvider';
 import { ApolloProvider } from 'react-apollo';
 import { ROCKET_CHAT, GITHUB } from '../../__fixtures__/searchsources';
-
+// this adds custom jest matchers from jest-dom
 jest.mock('query-string');
 // mock out layout
 jest.mock('../../src/hoc/Layout.js', () => ({ children }) => children);
@@ -47,6 +47,8 @@ useSearchGate.mockReturnValue({ results: [], loading: false });
 useAuthenticated.mockReturnValue(false);
 buildFeaturedTopic.mockReturnValue({ node: FEATURED_TOPIC });
 buildPopularTopic.mockReturnValue({ node: POPULAR_TOPIC });
+reduceJourneyToSubwayLine.mockReturnValue([{ name: 'foo' }]);
+
 describe('Home Page', () => {
   // mock out non redux selectors
   jest.doMock('../../src/utils/selectors.js', () => ({
@@ -65,9 +67,13 @@ describe('Home Page', () => {
   const events = EVENTS.map(c => ({ node: c }));
   const meetups = MEETUP_NODES.map(c => ({ node: c }));
   const githubRaw = GITHUB_RAW_NODES.map(c => ({ node: c }));
+  const journeys = JOURNEYS.map(c => ({ node: c }));
   const props = {
     client: {},
     data: {
+      allJourneyRegistryJson: {
+        edges: journeys,
+      },
       allDevhubSiphon: {
         edges: nodes,
       },

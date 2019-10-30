@@ -6,8 +6,7 @@ import Hamburger from '../UI/Hamburger/Hamburger';
 import Login from '../Auth/Login';
 
 import styled from '@emotion/styled';
-
-const BP = '932px';
+import { CUSTOM_BREAKPOINTS } from '../../constants/designTokens';
 
 const Header = styled.header`
   background-color: ${({ theme }) => theme.colors.blue};
@@ -28,7 +27,7 @@ const Header = styled.header`
 `;
 
 const StyledHamburger = styled(Hamburger)`
-  @media screen and (min-width: ${BP}) {
+  ${CUSTOM_BREAKPOINTS.navbar} {
     display: none;
   }
 `;
@@ -36,7 +35,7 @@ const StyledHamburger = styled(Hamburger)`
 const LoginWrapper = styled.div`
   display: none;
 
-  @media screen and (min-width: ${BP}) {
+  ${CUSTOM_BREAKPOINTS.navbar} {
     display: inline-block;
   }
 `;

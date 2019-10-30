@@ -1,10 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PhaseBanner it matches snapshot 1`] = `
-<Container
+exports[`Phase Banner Component it matches snapshot 1`] = `
+.emotion-0 {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #fcba19;
+}
+
+<div
   aria-label="This application is currently in beta phase"
-  phase="beta"
+  class="emotion-0 emotion-1"
 >
   beta
-</Container>
+</div>
 `;

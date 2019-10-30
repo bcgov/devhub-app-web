@@ -16,21 +16,29 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import { ThemeProvider } from 'emotion-theming';
+import theme from '../../theme';
 import { Navbar } from '../../src/components/Navbar/Navbar';
+import { MAIN_NAV_ROUTE_LIST } from '../../src/constants/routes';
 
 describe('Primary Filter Component', () => {
-  let navbar = null;
-
   const props = {
-    mobile: false,
+    authenticated: false,
+    implicitAuthManager: {
+      getSSOLoginURI: jest.fn(),
+      getSSOLogoutURI: jest.fn(),
+    },
+    toggled: false,
+    links: MAIN_NAV_ROUTE_LIST,
   };
 
-  beforeEach(() => {
-    navbar = shallow(<Navbar {...props} />);
-  });
-
   test('it matches snapshot', () => {
-    expect(navbar).toMatchSnapshot();
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Navbar {...props} />
+      </ThemeProvider>,
+    );
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

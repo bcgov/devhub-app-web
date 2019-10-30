@@ -35,7 +35,7 @@ export const JourneyMap = ({ title, link, stops }) => {
       <TopicDecorativeBar color={JOURNEY} />
       <PreviewContainer>
         <CardHeader resourceType={JOURNEY} />
-        <TopicTitle>
+        <TopicTitle clamp={4}>
           {link ? (
             <TitleLink to={link.to} data-testid={`topic-${title}`}>
               {title}

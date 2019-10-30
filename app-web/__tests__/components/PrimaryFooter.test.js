@@ -1,10 +1,11 @@
 import React from 'react';
-import { render, fireEvent, cleanup, waitForElement } from 'react-testing-library';
-import 'jest-dom/extend-expect'; // extends jest expect api
+import { render, fireEvent, cleanup, waitForElement } from '@testing-library/react'; // extends jest expect api
 
 import PrimaryFooter from '../../src/components/PrimaryFooter/PrimaryFooter';
 
-import { wrapWithTheme } from '../helpers';
+import { ThemeProvider } from 'emotion-theming';
+import theme from '../../theme';
+
 import Disclaimer from '../../src/components/Disclaimer/Disclaimer';
 // automatically unmount and cleanup DOM after the test is finished.
 jest.mock('../../src/components/Disclaimer/Disclaimer');
@@ -22,7 +23,11 @@ describe('Primary Footer Component', () => {
   // any warnings about styled/active link prop warnings are a non issue, it is because gatsby link is being mocked
   // to a regular anchor tag
   test('it renders and matches snapshot, when the Fair Use button is clicked it triggers the disclaimer', async () => {
-    const { getByText, getByTestId, container } = wrapWithTheme(render, <PrimaryFooter />);
+    const { getByText, getByTestId, container } = render(
+      <ThemeProvider theme={theme}>
+        <PrimaryFooter />
+      </ThemeProvider>,
+    );
     const Disclaimer = await waitForElement(() => getByText('Fair Use'));
     expect(container.firstChild).toMatchSnapshot();
     fireEvent.click(Disclaimer);

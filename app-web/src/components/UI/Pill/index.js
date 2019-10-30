@@ -55,6 +55,11 @@ const PillIcon = styled(FontAwesomeIcon)`
 const ResourceIconDiv = styled.div`
   padding-left: 5px;
 `;
+
+export const TEST_IDS = {
+  pillIcon: 'ui-pill-icon',
+  pill: 'ui-pill',
+};
 /**
  * Pill Component
  * @param {Object} props
@@ -78,7 +83,9 @@ export const Pill = ({
   type,
   ...rest
 }) => {
-  const props = {};
+  const props = {
+    'data-testid': TEST_IDS.pill,
+  };
 
   if (onClick) {
     props.onClick = onClick;
@@ -105,7 +112,12 @@ export const Pill = ({
         {otherIcon && <PillIcon icon={specialIcon} />}
         <span>{label}</span>
         {deletable && (
-          <PillIcon aria-label="delete" icon={faTimesCircle} onClick={() => onDelete(label)} />
+          <PillIcon
+            aria-label="delete"
+            data-testid={TEST_IDS.pillIcon}
+            icon={faTimesCircle}
+            onClick={() => onDelete(label)}
+          />
         )}
       </FilledContainer>
     );
