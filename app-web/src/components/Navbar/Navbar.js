@@ -56,8 +56,9 @@ export const NavLink = styled(Link)`
   align-items: center;
   justify-content: center;
   padding: 14px 10px;
-  :visited {
-    color: inherit;
+  :visited,
+  :hover {
+    color: #fff;
   }
   ${CUSTOM_BREAKPOINTS.navbar} {
     padding: 14px 10px;
