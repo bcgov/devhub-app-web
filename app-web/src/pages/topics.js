@@ -26,7 +26,7 @@ import Layout from '../hoc/Layout';
 import { getFirstNonExternalResource } from '../utils/helpers';
 
 export const TopicsPage = ({ data }) => {
-  let topics = flattenGatsbyGraphQL(data.allDevhubTopic.edges);
+  let topics = flattenGatsbyGraphQL(data.allTopicRegistryJson.edges);
   // resources are grouped by type, 'ungroup' them so we can find the first available
   // non external link to use as the entry page for the topic card
   return (

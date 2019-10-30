@@ -153,7 +153,7 @@ export const TEST_IDS = {
 export const Index = ({
   client,
   data: {
-    allDevhubTopic,
+    allTopicRegistryJson,
     allDevhubSiphon,
     allEventbriteEvents,
     allMarkdownRemark,
@@ -228,7 +228,7 @@ export const Index = ({
     (!results || (results.length === 0 && windowHasQuery)) &&
     isEmpty(searchSourceResults);
 
-  const topics = flattenGatsbyGraphQL(allDevhubTopic.edges);
+  const topics = flattenGatsbyGraphQL(allTopicRegistryJson.edges);
   const journeys = flattenGatsbyGraphQL(allJourneyRegistryJson.edges);
   const githubRaw = flattenGatsbyGraphQL(allGithubRaw.edges);
   const devhubSiphon = flattenGatsbyGraphQL(allDevhubSiphon.edges);

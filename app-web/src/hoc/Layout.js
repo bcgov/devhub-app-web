@@ -79,6 +79,8 @@ export const query = graphql`
       resourceType
       title
       description
+      standAlonePath
+      path
     }
     id
   }

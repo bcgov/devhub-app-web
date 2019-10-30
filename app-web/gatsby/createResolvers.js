@@ -61,7 +61,7 @@ module.exports = ({ createResolvers }) => {
         },
       },
     },
-    DevhubTopic: {
+    TopicRegistryJson: {
       connectsWith: {
         // a list of nodes only really needs pointers to the page paths and a title for a link
         type: '[ConnectedNode]',

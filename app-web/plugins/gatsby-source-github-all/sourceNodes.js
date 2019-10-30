@@ -17,7 +17,7 @@
 //
 // Created by Patrick Simonian on 2018-10-12.
 //
-const { isArray, isString, every, flatten, isEmpty, isPlainObject } = require('lodash');
+const { isArray, isString, every, isPlainObject } = require('lodash');
 const slugify = require('slugify');
 const {
   hashString,
@@ -39,7 +39,7 @@ const {
   TOPIC_TEMPLATES_LIST,
   TOPIC_SOURCE,
 } = require('./utils/constants');
-const { createSiphonNode, createTopicNode } = require('./utils/createNode');
+const { createSiphonNode } = require('./utils/createNode');
 const Store = require('./utils/Store');
 const {
   getRegistry,
@@ -297,27 +297,27 @@ const processTopic = async (topic, createNodeId, createNode, createParentChildLi
   // id for topic node
   const id = createNodeId(hash);
   // fetch all sources
-  const sourceNodes = await Promise.all(
+  await Promise.all(
     topic.sources.map(source => processSource(source, createNodeId, createNode, tokens, id)),
   );
 
-  let topicContent;
-  // fetch a github file if has topic source
-  if (!isEmpty(topic.topicSource)) {
-    topicContent = await getContentForTopic(topic.topicSource, tokens, topic.name);
-  }
-  // flatten source nodes to get a list of all the resources
-  const resources = flatten(sourceNodes, true);
-  // create a hash map of all resources: resource paths original source against the path created
-  // for a gatsby page
-  topic.sourceLocations = resources.map(r => [r.resource.originalSource, r.resource.path]);
+  // let topicContent;
+  // // fetch a github file if has topic source
+  // if (!isEmpty(topic.topicSource)) {
+  //   topicContent = await getContentForTopic(topic.topicSource, tokens, topic.name);
+  // }
+  // // flatten source nodes to get a list of all the resources
+  // const resources = flatten(sourceNodes, true);
+  // // create a hash map of all resources: resource paths original source against the path created
+  // // for a gatsby page
+  // topic.sourceLocations = resources.map(r => [r.resource.originalSource, r.resource.path]);
 
-  const topicNode = createTopicNode(topic, id, topicContent);
+  // const topicNode = createTopicNode(topic, id, topicContent);
 
-  await createNode(topicNode);
-  resources.forEach(r => createParentChildLink({ parent: topicNode, child: r }));
-  // establish a parent child link between all resources and the topic node
-  return topicNode;
+  // await createNode(topicNode);
+  // resources.forEach(r => createParentChildLink({ parent: topicNode, child: r }));
+  // // establish a parent child link between all resources and the topic node
+  // return topicNode;
 };
 
 /**
@@ -340,13 +340,11 @@ const sourceNodes = async ({ getNodes, actions, createNodeId }, { tokens, source
     const regWithIds = applyInferredIdToSources(expandedReg);
     // map of over registry and create a queue of topics to fetch
     const fetchQueue = await getFetchQueue(regWithIds, tokens);
-    const topics = await Promise.all(
+    await Promise.all(
       fetchQueue.map(async topic =>
         processTopic(topic, createNodeId, createNode, createParentChildLink, tokens),
       ),
     );
-
-    return topics;
   } catch (e) {
     // failed to retrieve files or some other type of failure
     // eslint-disable-next-line

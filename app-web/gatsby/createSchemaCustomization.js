@@ -22,6 +22,7 @@ module.exports = ({ actions }) => {
       tags: [String]
       path: String
       resourceType: String
+      standAlonePath: String
     }
     type ConnectedStopNode {
       fields: ConnectedNodeFieldSet

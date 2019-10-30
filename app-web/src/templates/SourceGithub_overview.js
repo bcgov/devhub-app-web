@@ -122,11 +122,11 @@ export const githubRawMarkdown = graphql`
         pagePaths
       }
     }
-    topic: devhubTopic(id: { eq: $topicId }) {
+    topic: topicRegistryJson(id: { eq: $topicId }) {
       name
       description
     }
-    nav: devhubTopic(id: { eq: $topicId }) {
+    nav: topicRegistryJson(id: { eq: $topicId }) {
       items: connectsWith {
         ...DevhubNodeConnection
       }
