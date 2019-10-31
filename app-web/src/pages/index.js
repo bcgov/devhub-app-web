@@ -361,7 +361,7 @@ export const Index = ({
             numResults={documizeCards.length}
             sourceType={SEARCH_SOURCES.documize}
             link={{
-              to: 'https://github.com/bcgov',
+              to: 'https://docs.pathfinder.gov.bc.ca/',
               text: 'Go To documize',
             }}
           >
