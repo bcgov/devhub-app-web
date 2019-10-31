@@ -366,20 +366,20 @@ export const Index = ({
             }}
           >
             <Row>
-              {documizeCards.map(gh => (
+              {documizeCards.map(dc => (
                 <Column
-                  key={gh.id}
+                  key={dc.id}
                   style={{
                     justifyContent: 'center',
                     display: 'flex',
                   }}
                 >
                   <Card
-                    {...gh.fields}
+                    {...dc.fields}
                     type={SEARCH_SOURCES.documize}
-                    data-testid={gh.id}
+                    data-testid={dc.id}
                     renderHeader={() => {
-                      return <CardHeader resourceType={gh.fields.resourceType} />;
+                      return <CardHeader resourceType={dc.fields.resourceType} />;
                     }}
                   />
                 </Column>

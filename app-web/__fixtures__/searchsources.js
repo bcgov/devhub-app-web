@@ -87,6 +87,5 @@ export const DOCUMIZE = [
       created: '2019-09-25T16:26:13.051344Z',
       revised: '2019-09-25T19:36:12.447076Z',
     }),
-    __typename: 'SearchResult',
   },
 ];
