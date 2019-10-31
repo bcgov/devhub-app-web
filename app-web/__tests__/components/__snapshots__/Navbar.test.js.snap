@@ -120,8 +120,9 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
   padding: 14px 10px;
 }
 
-.emotion-5:visited {
-  color: inherit;
+.emotion-5:visited,
+.emotion-5:hover {
+  color: #fff;
 }
 
 @media (min-width:858px) {

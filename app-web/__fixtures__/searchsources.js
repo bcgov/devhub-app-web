@@ -61,3 +61,31 @@ export const ROCKET_CHAT = [
     }),
   },
 ];
+
+export const DOCUMIZE = [
+  {
+    id: '836',
+    type: 'documize',
+    typePayload: JSON.stringify({
+      id: '836',
+      orgId: 'bjsqa1oi4dscrcq7po70',
+      itemId: '',
+      itemType: 'doc',
+      documentId: 'bm5pa9c2fefhcb80mam0',
+      documentSlug: 'openshift-101-facilitator-handbook',
+      document: 'Openshift 101 Facilitator Handbook',
+      excerpt:
+        'This is a general guide for Facilitating the Openshift 101 course based on the devops-workshop-labs slide and lab materials.',
+      tags: '#resourcetype-documents#personas-developer-designer-productowner#',
+      spaceId: 'bjsr3n0i4dscrcq7podg',
+      space: 'Blogs and Random Thoughts',
+      spaceSlug: 'blogs-and-random-thoughts',
+      template: 'false',
+      url:
+        'https://docs.pathfinder.gov.bc.ca/s/bjsr3n0i4dscrcq7podg/blogs-and-random-thoughts/d/bm5pa9c2fefhcb80mam0/openshift-101-facilitator-handbook',
+      versionId: '',
+      created: '2019-09-25T16:26:13.051344Z',
+      revised: '2019-09-25T19:36:12.447076Z',
+    }),
+  },
+];

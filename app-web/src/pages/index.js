@@ -21,7 +21,7 @@ import {
   selectResourcesGroupedByType,
 } from '../utils/selectors';
 
-import { isQueryEmpty, githubSearchReducer } from '../utils/search';
+import { isQueryEmpty, githubSearchReducer, documizeSearchPurifier } from '../utils/search';
 import {
   SEARCH_QUERY_PARAM,
   SEARCH_SOURCES,
@@ -266,10 +266,11 @@ export const Index = ({
     );
   } else {
     totalSearchResults = getSearchResultTotal(siphonResources);
-    const { rocketchat, github } = searchSourceResults;
+    const { rocketchat, github, documize } = searchSourceResults;
 
     const settings = SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.rocketchat];
     let githubCards = [];
+    let documizeCards = [];
     if (github) {
       const parsedPayloads = github.map(gh => JSON.parse(gh.typePayload));
       // github results come in different flavors: issues, prs, repos
@@ -291,7 +292,12 @@ export const Index = ({
 
       githubCards = issues.concat(repositories);
     }
-
+    if (documize) {
+      const parsedPayloads = documize.map(dc => JSON.parse(dc.typePayload));
+      documizeCards = parsedPayloads
+        .slice(0, SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.documize].maxResults)
+        .map(documizeSearchPurifier);
+    }
     content = (
       <Aux>
         {getTopicPreviews(dynamicTopics.concat(topics), windowHasQuery && !queryIsEmpty)}
@@ -343,6 +349,37 @@ export const Index = ({
                       ) : (
                         <CardHeader resourceType={gh.fields.resourceType} />
                       );
+                    }}
+                  />
+                </Column>
+              ))}
+            </Row>
+          </DynamicSearchResults>
+        )}
+        {!isEmpty(documizeCards) && documizeCards.length > 0 && (
+          <DynamicSearchResults
+            numResults={documizeCards.length}
+            sourceType={SEARCH_SOURCES.documize}
+            link={{
+              to: 'https://docs.pathfinder.gov.bc.ca/',
+              text: 'Go To documize',
+            }}
+          >
+            <Row>
+              {documizeCards.map(dc => (
+                <Column
+                  key={dc.id}
+                  style={{
+                    justifyContent: 'center',
+                    display: 'flex',
+                  }}
+                >
+                  <Card
+                    {...dc.fields}
+                    type={SEARCH_SOURCES.documize}
+                    data-testid={dc.id}
+                    renderHeader={() => {
+                      return <CardHeader resourceType={dc.fields.resourceType} />;
                     }}
                   />
                 </Column>

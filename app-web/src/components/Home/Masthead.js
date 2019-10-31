@@ -125,7 +125,8 @@ export const Masthead = ({ query, resultCount, searchSourcesLoading }) => {
           toggle={onDismiss}
           data-testid={TEST_IDS.alertBox}
         >
-          You can view search results from applications like Rocket.Chat or Github when logged in.
+          You can view search results from applications like Rocket.Chat, Github or Documize when
+          logged in.
         </AlertMessage>
       )}
     </Container>

@@ -292,8 +292,9 @@ exports[`Layout Component it matches snapshot 1`] = `
   padding: 14px 10px;
 }
 
-.emotion-28:visited {
-  color: inherit;
+.emotion-28:visited,
+.emotion-28:hover {
+  color: #fff;
 }
 
 @media (min-width:858px) {

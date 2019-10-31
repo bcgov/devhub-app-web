@@ -31,7 +31,7 @@ import {
 import { GITHUB_RAW_NODES } from '../../__fixtures__/nodes';
 import { client } from '../../wrapWithProvider';
 import { ApolloProvider } from 'react-apollo';
-import { ROCKET_CHAT, GITHUB } from '../../__fixtures__/searchsources';
+import { ROCKET_CHAT, GITHUB, DOCUMIZE } from '../../__fixtures__/searchsources';
 // this adds custom jest matchers from jest-dom
 jest.mock('query-string');
 // mock out layout
@@ -292,5 +292,26 @@ describe('Home Page', () => {
     rerender();
 
     expect(queryByTestId(ROCKET_CHAT[0].id)).not.toBeInTheDocument();
+  });
+  test('shows documize results in different authenticated status', () => {
+    queryString.parse.mockReturnValue({ q: 'openshift' });
+    useSearch.mockReturnValue([]);
+    useSearchGate.mockReturnValue({ results: DOCUMIZE, loading: false });
+    useAuthenticated.mockReturnValue(true);
+
+    const { queryByTestId, rerender } = render(
+      <ThemeProvider theme={theme}>
+        <ApolloProvider client={client}>
+          <Index {...props} location={{ search: '?q=openshift' }} />
+        </ApolloProvider>
+      </ThemeProvider>,
+    );
+
+    expect(queryByTestId(DOCUMIZE[0].id)).toBeInTheDocument();
+    rerender();
+    useAuthenticated.mockReturnValue(false); // do not show when not authenticated.
+    expect(queryByTestId(ROCKET_CHAT[0].id)).not.toBeInTheDocument();
+    expect(queryByTestId(GITHUB[0].id)).not.toBeInTheDocument();
+    expect(queryByTestId(DOCUMIZE[0].id)).not.toBeInTheDocument();
   });
 });
