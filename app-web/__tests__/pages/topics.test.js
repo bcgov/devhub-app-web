@@ -25,7 +25,7 @@ describe('Topics Container', () => {
       allDevhubSiphon: {
         edges: nodes,
       },
-      allDevhubTopic: {
+      allTopicRegistryJson: {
         edges: topics,
       },
       allEventbriteEvents: {

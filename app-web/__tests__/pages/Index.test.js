@@ -80,7 +80,7 @@ describe('Home Page', () => {
       allGithubRaw: {
         edges: githubRaw,
       },
-      allDevhubTopic: {
+      allTopicRegistryJson: {
         edges: topics,
       },
       allEventbriteEvents: {

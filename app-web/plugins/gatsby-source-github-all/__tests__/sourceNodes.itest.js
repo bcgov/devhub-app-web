@@ -50,7 +50,6 @@ describe('Integration Tests Source Nodes', () => {
 
     const createNodeId = jest.fn(() => 1);
     const getNodes = jest.fn(() => GRAPHQL_NODES_WITH_REGISTRY);
-    const topics = await sourceNodes({ actions, createNodeId, getNodes }, CONFIG_OPTIONS);
-    expect(topics).toBeDefined();
+    await sourceNodes({ actions, createNodeId, getNodes }, CONFIG_OPTIONS);
   });
 });

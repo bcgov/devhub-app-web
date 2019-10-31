@@ -262,6 +262,7 @@ Array [
           },
           "id": "8257de0d-811b-58dd-9fae-661f13d5a11b",
           "name": "README.md",
+          "path": "/Design-System/bar",
         },
       ],
       "Documentation": Array [
@@ -296,6 +297,7 @@ Array [
           },
           "id": "8257de0d-811b-58dd-9fae-661f13d5a11b",
           "name": "README.md",
+          "path": "/Design-System/foo",
         },
       ],
       "Events": Array [],
@@ -544,6 +546,7 @@ Array [
           },
           "id": "8257de0d-811b-58dd-9fae-661f13d5a11b",
           "name": "README.md",
+          "path": "/Devhub/bar",
         },
       ],
       "Documentation": Array [
@@ -578,6 +581,7 @@ Array [
           },
           "id": "8257de0d-811b-58dd-9fae-661f13d5a11b",
           "name": "README.md",
+          "path": "/Devhub/foo",
         },
       ],
       "Events": Array [],

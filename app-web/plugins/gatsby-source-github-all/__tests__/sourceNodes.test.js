@@ -388,7 +388,9 @@ describe('gatsby source github all plugin', () => {
     expect(node.id).toBeDefined();
   });
 
-  test('returns a topic object', async () => {
+  // eslint-disable-next-line no-console
+  console.log('skipping SourceNodes.topicObject test, this feature is deprecated');
+  test.skip('returns a topic object', async () => {
     const createNodeId = jest.fn(() => 1);
     const createNode = jest.fn(node => node);
     const createParentChildLink = jest.fn();
@@ -440,7 +442,8 @@ describe('gatsby source github all plugin', () => {
     // fetch from source returns a single web source node
     // in total only 1 resource was returned from all sources fetched for the fixtured topic
     // therefor the createparent child link should only be called once
-    expect(createParentChildLink).toHaveBeenCalledTimes(1);
+    // expect(createParentChildLink).toHaveBeenCalledTimes(1);
+    // TOPICS NO LONGER CREATED BY THIS PLUGIN !
   });
 
   test('getContentForTopic returns data', async () => {
