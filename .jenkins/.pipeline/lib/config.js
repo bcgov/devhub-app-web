@@ -40,7 +40,7 @@ const phases = {
     name: `${name}`,
     phase: 'prod',
     changeId: changeId,
-    suffix: ``,
+    suffix: `-prod`,
     instance: `${name}`,
     version: `${version}`,
     tag: `prod-${version}`,
