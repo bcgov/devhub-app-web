@@ -55,7 +55,7 @@ export const selectTopicsWithResourcesGroupedByType = () =>
         // so that all topics have all resource type groups
         const selector = selectResourcesGroupedByType();
 
-        const groups = selector(topic.fields.githubRaw);
+        const groups = selector(topic.connectsWith);
         return {
           ...topic,
           resources: groups,

@@ -99,11 +99,11 @@ module.exports = {
     title: 'DevHub',
   },
   mapping: {
-    'GithubRaw.fields.topics': 'DevhubTopic.name',
-    'DevhubSiphon.fields.topics': 'DevhubTopic.name',
-    // 'DevhubTopic.fields.content': 'MarkdownRemark.fields.id', // topic page content mapping
-    'DevhubTopic.fields.githubRaw': 'GithubRaw.id',
-    'journeyRegistryJson.name': 'MarkdownRemark.frontmatter.id',
+    'GithubRaw.fields.topics': 'TopicRegistryJson.name',
+    'DevhubSiphon.fields.topics': 'TopicRegistryJson.name',
+    // 'devhubRegistryJson.fields.content': 'MarkdownRemark.fields.id', // topic page content mapping
+    // 'TopicRegistryJson.fields.githubRaw': 'GithubRaw.id',
+    // 'JourneyRegistryJson.name': 'MarkdownRemark.frontmatter.id',
   },
   pathPrefix: '/images',
   plugins: [

@@ -22,7 +22,6 @@ const { RESOURCE_TYPES_LIST } = require('../../src/constants/ui');
 const isGithubRaw = node => node.internal.type === 'GithubRaw';
 const isMarkdownRemark = node => node.internal.type === 'MarkdownRemark';
 const isDevhubSiphon = node => node.internal.type === 'DevhubSiphon';
-const isDevhubTopic = node => node.internal.type === 'DevhubTopic';
 const isMeetupEvent = node => node.internal.type === 'MeetupEvent';
 const isEventbriteEvents = node => node.internal.type === 'EventbriteEvents';
 const isTopicRegistryJson = node => node.internal.type === 'TopicRegistryJson';
@@ -98,7 +97,6 @@ module.exports = {
   isMarkdownRemark,
   isMarkdownRemarkFrontmatter,
   isDevhubSiphon,
-  isDevhubTopic,
   isEventbriteEvents,
   isTopicRegistryJson,
   isJourneyRegistryJson,

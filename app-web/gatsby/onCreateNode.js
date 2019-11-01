@@ -22,7 +22,6 @@ const visit = require('unist-util-visit');
 const remark = require('remark');
 const { RESOURCE_TYPES, PERSONAS_LIST } = require('../src/constants/ui');
 const {
-  isDevhubTopic,
   isDevhubSiphon,
   isMarkdownRemark,
   isGithubRaw,
@@ -69,21 +68,15 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
     createNodeField({ node, name: 'slug', value: slugify(node.name) });
   }
 
-  if (isDevhubTopic(node)) {
+  if (isTopicRegistryJson(node)) {
     // add a content field that the markdown topics will map too
     createNodeField({ node, name: 'content', value: node.name });
     // to help with page path creation, we adapt a slug from the collection/topic name
     // because collections/topics are held within this repo they SHOULD be unique
     createNodeField({ node, name: 'slug', value: slugify(node.name) });
-
-    const ghRawNodes = getNodes().filter(isGithubRaw);
-
-    // bind gh raw nodes that match this topic
-    const nodesThatHaveTopic = ghRawNodes
-      .filter(n => n.___boundProperties.topics.includes(node.name))
-      .map(n => n.id);
-
-    createNodeField({ node, name: 'githubRaw', value: nodesThatHaveTopic });
+    createNodeField({ node, name: 'title', value: node.name });
+    createNodeField({ node, name: 'description', value: node.description });
+    createNodeField({ node, name: 'template', value: node.template ? node.template : 'default' });
   }
 
   if (isDevhubSiphon(node)) {

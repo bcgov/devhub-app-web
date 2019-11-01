@@ -83,47 +83,14 @@ const withResourceQuery = WrappedComponent => () => props => (
             }
           }
         }
-        allDevhubTopic {
+        allTopicRegistryJson {
           edges {
             node {
               id
               name
               description
-              fields {
-                githubRaw {
-                  id
-                  fields {
-                    resourceType
-                    title
-                    description
-                    image
-                    slug
-                  }
-                }
-              }
               connectsWith {
                 ...DevhubNodeConnection
-              }
-              childrenDevhubSiphon {
-                id
-                resource {
-                  type
-                  path
-                }
-                _metadata {
-                  position
-                }
-                unfurl {
-                  title
-                  description
-                  image
-                }
-                fields {
-                  resourceType
-                  pagePaths
-                  title
-                  description
-                }
               }
             }
           }

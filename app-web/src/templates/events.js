@@ -67,7 +67,7 @@ export const formatMeetUps = meetups => {
   });
 };
 
-export const EventsPage = ({ data: { allEventbriteEvents, allDevhubTopic } }) => {
+export const EventsPage = ({ data: { allEventbriteEvents, allTopicRegistryJson } }) => {
   const events = flattenGatsbyGraphQL(allEventbriteEvents.edges);
   /*const meetUps = formatMeetUps(
     flattenGatsbyGraphQL(allMeetupGroup.edges).flatMap(meetups => {
@@ -78,12 +78,12 @@ export const EventsPage = ({ data: { allEventbriteEvents, allDevhubTopic } }) =>
   const currentEvents = formatEvents(events.filter(e => e.start.daysFromNow <= 0));
   //const currentMeetups = meetUps.filter(e => e.start.daysFromNow <= 0);
   //Get all the cards on the site
-  const cards = flattenGatsbyGraphQL(allDevhubTopic.edges);
+  const cards = flattenGatsbyGraphQL(allTopicRegistryJson.edges);
   //filter to just get the cards for the Community and Events topic
   const communityCards = cards
     .filter(e => e.name === TOPICS.COMMUNITY_AND_EVENTS)
-    .flatMap(e => e.childrenDevhubSiphon)
-    .filter(e => e.resource.type === RESOURCE_TYPES.EVENTS);
+    .flatMap(e => e.connectsWith)
+    .filter(e => e.fields.resourceType === RESOURCE_TYPES.EVENTS);
   //sort all the info so that event show up from soonest to farthest away
   const currentEventsMeetUpsAndCards = communityCards.concat(
     currentEvents.sort((a, b) => b.start.daysFromNow - a.start.daysFromNow),
@@ -217,40 +217,14 @@ export const EventData = graphql`
     # }
     # }
     # }
-    allDevhubTopic {
+    allTopicRegistryJson {
       edges {
         node {
           id
           name
           description
-          resources: childrenDevhubSiphon {
-            id
-          }
-          childrenDevhubSiphon {
-            id
-            resource {
-              type
-              path
-            }
-            fields {
-              standAlonePath
-            }
-            _metadata {
-              position
-            }
-            unfurl {
-              title
-              description
-              image
-            }
-            fields {
-              resourceType
-              standAlonePath
-              pagePaths
-              image
-              title
-              description
-            }
+          connectsWith {
+            ...DevhubNodeConnection
           }
         }
       }

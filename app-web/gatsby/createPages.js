@@ -49,7 +49,7 @@ const resolvePath = path => resolve(__dirname, path);
 const createResourceInTopicsPages = (node, createPage) => {
   node.fields.pagePaths.forEach((path, ind) => {
     const topic = node.fields.topics[ind];
-    const template = getTemplate(topic._metadata.template, topic._metadata.templateFile);
+    const template = getTemplate(topic.fields.template);
 
     createPage({
       path: `${path}`,
@@ -205,9 +205,8 @@ const createResourceTopicsPages = async (createPage, graphql) => {
               pagePaths
               topics {
                 id
-                _metadata {
+                fields {
                   template
-                  templateFile
                 }
               }
             }
