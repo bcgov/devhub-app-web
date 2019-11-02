@@ -96,22 +96,7 @@ export const TopicsPage = ({ data, location }) => {
           <ViewMode> Card View</ViewMode>
         </div>
 
-        {((queryParam.v === undefined || queryParam.v === VIEW_MODES.cardview) && (
-          <main>
-            {topics.map(topic => (
-              <TopicPreview
-                key={topic.id}
-                title={topic.name}
-                description={topic.description}
-                resources={topic.connectsWith}
-                link={{
-                  to: getFirstNonExternalResource(topic.connectsWith),
-                  text: 'View',
-                }}
-              />
-            ))}
-          </main>
-        )) || (
+        {(queryParam.v === VIEW_MODES.listview && (
           <main>
             <AccordionList>
               {topics.map(topic => (
@@ -127,6 +112,21 @@ export const TopicsPage = ({ data, location }) => {
                 </OutsideBorder>
               ))}
             </AccordionList>
+          </main>
+        )) || (
+          <main>
+            {topics.map(topic => (
+              <TopicPreview
+                key={topic.id}
+                title={topic.name}
+                description={topic.description}
+                resources={topic.connectsWith}
+                link={{
+                  to: getFirstNonExternalResource(topic.connectsWith),
+                  text: 'View',
+                }}
+              />
+            ))}
           </main>
         )}
       </Main>
