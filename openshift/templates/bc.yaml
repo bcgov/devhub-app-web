@@ -46,7 +46,7 @@ objects:
         memory: 1Gi
       limits:
         cpu: 2
-        memory: 10Gi
+        memory: 2Gi
     source:
       git:
         uri: ${SOURCE_REPOSITORY_URL}
