@@ -21,6 +21,7 @@ import styled from '@emotion/styled';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from '../../UI/Link';
+import ResourceTypeIcon from '../../UI/ResourceTypeIcon';
 
 const LI = styled.li`
   padding: 8px 4px;
@@ -38,8 +39,9 @@ const Icon = styled.small`
   margin: 4px;
 `;
 
-const NavItem = ({ text, isExternal, to }) => (
+const NavItem = ({ text, isExternal, resourceType, to }) => (
   <LI>
+    {resourceType && <ResourceTypeIcon type={resourceType} />}
     <StyledLink
       exact="true"
       to={to}
@@ -68,6 +70,7 @@ NavItem.propTypes = {
   to: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   isExternal: PropTypes.bool.isRequired,
+  resourceType: PropTypes.string,
 };
 
 export default NavItem;
