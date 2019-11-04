@@ -63,7 +63,7 @@
             "security/aporeto/architecture/design_decisions.md",
             "security/aporeto/architecture/high_level_design.md",
             "security/aporeto/admin/auth.md",
-            "/security/aporeto/admin/troubleshooting.md"
+            "security/aporeto/admin/troubleshooting.md"
           ]
         }
       }
