@@ -34,7 +34,7 @@ pipeline {
                     abortAllPreviousBuildInProgress(currentBuild)
                 }
                 echo "Building ..."
-                sh "cd .pipeline && ./npmw ci && ./npmw run build -- --ref=master --pr=scheduled"
+                sh "cd .pipeline && ./npmw ci && ./npmw run build -- --ref=master --suffix=scheduled"
             }
         }
         
@@ -46,7 +46,7 @@ pipeline {
                     timeout(time: 5, unit: 'MINUTES') {
                         def deploymentId = sh(returnStdout: true, script: "cd .pipeline && ./npxw @bcgov/gh-deploy deployment --ref=master -d='Deploying to prod (scheduled build)' -e=production -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN} --required-contexts=[]").trim()
                         CURRENT_PIPELINE_ID = deploymentId
-                        sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=scheduled --env=prod"
+                        sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --suffix=scheduled --env=prod"
                         sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=success --deployment=${deploymentId} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
                     }
                 }

@@ -45,6 +45,7 @@
     ]
   },
   "dependencies": {
-    "@bcgov/gh-deploy": "^1.0.3"
+    "@bcgov/gh-deploy": "^1.0.3",
+    "@bcgov/pipeline-cli": "^1.0.1-0"
   }
 }
