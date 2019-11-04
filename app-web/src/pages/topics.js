@@ -15,7 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TOPICS_PAGE } from '../messages';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { Title } from '../components/Page';
@@ -45,7 +45,7 @@ const AccordionList = styled.ul`
   border-top: 1px solid rgba(#000, 0.1);
 `;
 
-const ViewMode = styled.span`
+const ModeContainer = styled.span`
   font-size: 18px;
   padding: 10px;
   margin-top: 3px;
@@ -55,17 +55,27 @@ export const TopicsPage = ({ data, location }) => {
   let topics = flattenGatsbyGraphQL(data.allTopicRegistryJson.edges);
   const VIEW_MODES = { cardview: 'cards', listview: 'list' };
   const queryParam = queryString.parse(location.search);
+  let [viewSwitch, setSwitch] = useState(true);
+  let [viewMode, setMode] = useState(VIEW_MODES.cardview);
 
-  if (!Object.values(VIEW_MODES).includes(queryParam.v)) {
-    //navigate back to default card view if user type in some wired url like /topics/?v=billy
-    navigate(`${location.pathname}?v=${VIEW_MODES.cardview}`);
-  }
-
-  let [viewSwitch, setSwitch] = useState(
-    queryParam.v === VIEW_MODES.cardview ||
+  useEffect(() => {
+    if (
+      queryParam.v === VIEW_MODES.cardview ||
       queryParam.v === undefined ||
-      !Object.values(VIEW_MODES).includes(queryParam.v),
-  );
+      !Object.values(VIEW_MODES).includes(queryParam.v)
+    ) {
+      setSwitch(true);
+      setMode(VIEW_MODES.cardview);
+    } else {
+      setSwitch(false);
+      setMode(VIEW_MODES.listview);
+    }
+    return () => {
+      setSwitch(true);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [queryParam.v]); //Only re-run the effect if queryParam.v changes
+
   const viewToggle = () => {
     setSwitch(!viewSwitch);
     if (viewSwitch) {
@@ -74,9 +84,42 @@ export const TopicsPage = ({ data, location }) => {
       navigate(`${location.pathname}?v=${VIEW_MODES.cardview}`);
     }
   };
-
   // resources are grouped by type, 'ungroup' them so we can find the first available
   // non external link to use as the entry page for the topic card
+  const currentView =
+    viewSwitch && viewMode === VIEW_MODES.cardview ? (
+      <main>
+        {topics.map(topic => (
+          <TopicPreview
+            key={topic.id}
+            title={topic.name}
+            description={topic.description}
+            resources={topic.connectsWith}
+            link={{
+              to: getFirstNonExternalResource(topic.connectsWith),
+              text: 'View',
+            }}
+          />
+        ))}
+      </main>
+    ) : (
+      <main>
+        <AccordionList>
+          {topics.map(topic => (
+            <OutsideBorder key={topic.id}>
+              <TableofContents
+                key={topic.id}
+                title={topic.name}
+                contents={topic.connectsWith.map(item => {
+                  item.fields.path = item.path;
+                  return item.fields;
+                })}
+              />
+            </OutsideBorder>
+          ))}
+        </AccordionList>
+      </main>
+    );
   return (
     <Layout>
       <Main>
@@ -85,50 +128,17 @@ export const TopicsPage = ({ data, location }) => {
           subtitle={TOPICS_PAGE.header.subtitle.defaultMessage}
         />
         <div>
-          <ViewMode>List View </ViewMode>
+          <ModeContainer>List View </ModeContainer>
           <Switch
             onChange={() => viewToggle()}
-            checked={viewSwitch}
+            checked={viewMode === VIEW_MODES.cardview}
             uncheckedIcon={false}
             checkedIcon={false}
             offColor={'#0f80cc'}
           />
-          <ViewMode> Card View</ViewMode>
+          <ModeContainer> Card View</ModeContainer>
         </div>
-
-        {(queryParam.v === VIEW_MODES.listview && (
-          <main>
-            <AccordionList>
-              {topics.map(topic => (
-                <OutsideBorder key={topic.id}>
-                  <TableofContents
-                    key={topic.id}
-                    title={topic.name}
-                    contents={topic.connectsWith.map(item => {
-                      item.fields.path = item.path;
-                      return item.fields;
-                    })}
-                  />
-                </OutsideBorder>
-              ))}
-            </AccordionList>
-          </main>
-        )) || (
-          <main>
-            {topics.map(topic => (
-              <TopicPreview
-                key={topic.id}
-                title={topic.name}
-                description={topic.description}
-                resources={topic.connectsWith}
-                link={{
-                  to: getFirstNonExternalResource(topic.connectsWith),
-                  text: 'View',
-                }}
-              />
-            ))}
-          </main>
-        )}
+        {currentView}
       </Main>
     </Layout>
   );
