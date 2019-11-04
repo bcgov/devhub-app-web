@@ -154,8 +154,8 @@
             "generation"
         ],
         "sourceProperties":{
-            "url":"https://github.com/bcgov/nr-document-generation-showcase",
-            "repo":"nr-document-generation-showcase",
+            "url":"https://github.com/bcgov/document-generation-showcase",
+            "repo":"document-generation-showcase",
             "owner":"bcgov",
             "files":[
                 "docs/overview.md",
