@@ -59,20 +59,13 @@ export const TopicsPage = ({ data, location }) => {
   let [viewMode, setMode] = useState(VIEW_MODES.cardview);
 
   useEffect(() => {
-    if (
-      queryParam.v === VIEW_MODES.cardview ||
-      queryParam.v === undefined ||
-      !Object.values(VIEW_MODES).includes(queryParam.v)
-    ) {
-      setSwitch(true);
-      setMode(VIEW_MODES.cardview);
-    } else {
+    if (queryParam.v === VIEW_MODES.listview) {
       setSwitch(false);
       setMode(VIEW_MODES.listview);
-    }
-    return () => {
+    } else {
       setSwitch(true);
-    };
+      setMode(VIEW_MODES.cardview);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [queryParam.v]); //Only re-run the effect if queryParam.v changes
 
