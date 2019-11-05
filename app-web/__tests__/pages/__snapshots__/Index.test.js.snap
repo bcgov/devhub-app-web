@@ -136,8 +136,9 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
 <div
   class="emotion-17 emotion-18"
 >
-  <div
+  <a
     class="emotion-4 emotion-5"
+    href="/?q="
   >
     <h2
       class="emotion-0 emotion-1"
@@ -150,7 +151,7 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
     >
       beta
     </div>
-  </div>
+  </a>
   <h4
     css="[object Object]"
   >
@@ -347,8 +348,9 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
 <div
   class="emotion-17 emotion-18"
 >
-  <div
+  <a
     class="emotion-4 emotion-5"
+    href="/?q="
   >
     <h2
       class="emotion-0 emotion-1"
@@ -361,7 +363,7 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
     >
       beta
     </div>
-  </div>
+  </a>
   <h4
     css="[object Object]"
   >
