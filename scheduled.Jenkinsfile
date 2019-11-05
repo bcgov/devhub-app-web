@@ -48,7 +48,7 @@ pipeline {
                         CURRENT_PIPELINE_ID = deploymentId
                         sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --suffix=scheduled --env=prod"
                         sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=success --deployment=${deploymentId} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
-                        sh "curl -X POST -H 'Content-Type: application/json' --data '{\"icon_emoji\":\":happy_cat:\",\"text\":\"'\"Scheduled deployment to Devhub Complete! Deployment ID: $deploymentId\"'\"}' https://chat.pathfinder.gov.bc.ca/hooks/ScLeYnDzyKN3hbBob/F84wsFWxmpkguyDN9ZQ8BAyHRrLT3c2yF6DPoNoFbnitqxES"
+                        sh "curl -X POST -H 'Content-Type: application/json' --data '{\"icon_emoji\":\":smile_cat:\",\"text\":\"'\"Scheduled deployment to Devhub Complete! Deployment ID: $deploymentId\"'\"}' https://chat.pathfinder.gov.bc.ca/hooks/ScLeYnDzyKN3hbBob/F84wsFWxmpkguyDN9ZQ8BAyHRrLT3c2yF6DPoNoFbnitqxES"
                     }
 
                 }
