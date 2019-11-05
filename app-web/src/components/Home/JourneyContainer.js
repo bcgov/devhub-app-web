@@ -51,8 +51,6 @@ JourneysContainer.propTypes = {
       connectsWith: PropTypes.array.isRequired,
     }),
   ),
-  link: PropTypes.shape({
-    to: PropTypes.string.isRequired,
-  }),
+  link: PropTypes.shape({ to: PropTypes.string, text: PropTypes.string }).isRequired,
 };
 export default JourneysContainer;

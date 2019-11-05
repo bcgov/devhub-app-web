@@ -18,6 +18,8 @@ Created by Patrick Simonian
 import React from 'react';
 import CardHeader from '../Card/CardHeader';
 import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
+import { Description } from '../Card';
 
 import {
   Container as JourneyContainer,
@@ -28,6 +30,11 @@ import {
 } from '../TopicPreview/TopicPreview';
 import { JOURNEY } from '../../constants/ui';
 import { SubwayLine } from './SubwayLine';
+
+export const JourneyDescription = styled(Description)`
+  max-width: 500px;
+  margin-bottom: 15px;
+`;
 
 export const JourneyMap = ({ title, link, stops, description }) => {
   return (
@@ -44,7 +51,7 @@ export const JourneyMap = ({ title, link, stops, description }) => {
             title
           )}
         </TopicTitle>
-        <div>{description}</div>
+        {description && <JourneyDescription clamp={3}>{description}</JourneyDescription>}
         <SubwayLine stops={stops} color={JOURNEY} />
       </PreviewContainer>
     </JourneyContainer>
@@ -54,5 +61,6 @@ export const JourneyMap = ({ title, link, stops, description }) => {
 JourneyMap.propTypes = {
   title: PropTypes.string,
   link: PropTypes.string,
+  description: PropTypes.string,
   stops: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string })),
 };
