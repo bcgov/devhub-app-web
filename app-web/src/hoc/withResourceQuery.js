@@ -73,6 +73,7 @@ const withResourceQuery = WrappedComponent => () => props => (
               name
               fields {
                 slug
+                description
               }
               connectsWith {
                 path
