@@ -29,7 +29,7 @@ import {
 import { JOURNEY } from '../../constants/ui';
 import { SubwayLine } from './SubwayLine';
 
-export const JourneyMap = ({ title, link, stops }) => {
+export const JourneyMap = ({ title, link, stops, description }) => {
   return (
     <JourneyContainer>
       <TopicDecorativeBar color={JOURNEY} />
@@ -44,6 +44,7 @@ export const JourneyMap = ({ title, link, stops }) => {
             title
           )}
         </TopicTitle>
+        <div>{description}</div>
         <SubwayLine stops={stops} color={JOURNEY} />
       </PreviewContainer>
     </JourneyContainer>

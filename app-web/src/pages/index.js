@@ -62,7 +62,9 @@ const Main = styled.main`
  * @param {Boolean} searchResultsExist
  */
 const getJourneyPreviews = (journeys, searchResultsExist) => {
-  return !searchResultsExist && <JourneysContainer journeys={journeys} link={{ to: '/' }} />;
+  return (
+    !searchResultsExist && <JourneysContainer journeys={journeys} link={{ to: '/journeys' }} />
+  );
 };
 
 /**

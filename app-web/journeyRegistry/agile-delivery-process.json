@@ -1,0 +1,66 @@
+{
+  "name": "Agile Delivery Journey",
+  "description": "An agile process for teams to deliver digital services",
+  "sourceProperties": {
+    "stops": [
+      { 
+          "sourceType": "github",
+          "sourceProperties":
+            { 
+              "file": "01_Alignment.md",
+              "url": "https://github.com/bcgov/Agile-Delivery-Process", 
+              "owner": "bcgov", 
+              "repo": "Agile-Delivery-Process"
+            }
+        },
+        { 
+          "sourceType": "github",
+          "sourceProperties":
+            { 
+              "file": "02_Discovery.md",
+              "url": "https://github.com/bcgov/Agile-Delivery-Process", 
+              "owner": "bcgov", 
+              "repo": "Agile-Delivery-Process"
+            }
+        },
+        { 
+          "sourceType": "github",
+          "sourceProperties":
+            { 
+              "file": "03_Alpha.md",
+              "url": "https://github.com/bcgov/Agile-Delivery-Process", 
+              "owner": "bcgov", 
+              "repo": "Agile-Delivery-Process"
+            }
+        },
+        { 
+          "sourceType": "github",
+          "sourceProperties":
+            { 
+              "file": "04_Beta.md",
+              "url": "https://github.com/bcgov/Agile-Delivery-Process", 
+              "owner": "bcgov", 
+              "repo": "Agile-Delivery-Process"
+            }
+        },
+        { 
+          "sourceType": "github",
+          "sourceProperties":
+            { 
+              "file": "05_Live.md",
+              "url": "https://github.com/bcgov/Agile-Delivery-Process", 
+              "owner": "bcgov", 
+              "repo": "Agile-Delivery-Process"
+            }
+        }
+    ]
+  },
+  "attributes": {
+    "personas": [
+      "Developer",
+      "Product Owner"
+    ]
+  },
+  "resourceType": "Documentation"
+}
+  

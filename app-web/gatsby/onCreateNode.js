@@ -66,6 +66,7 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
 
   if (isJourneyRegistryJson(node)) {
     createNodeField({ node, name: 'slug', value: slugify(node.name) });
+    createNodeField({ node, name: 'description', value: node.description });
   }
 
   if (isTopicRegistryJson(node)) {

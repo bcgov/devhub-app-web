@@ -34,8 +34,10 @@ export const JourneysContainer = ({ journeys, link }) => (
     {journeys.map(journey => (
       <JourneyMap
         title={journey.name}
+        description={journey.fields.description}
         key={journey.id}
         stops={reduceJourneyToSubwayLine(journey.connectsWith)}
+        link={{ to: journey.fields.slug, text: 'View' }}
       />
     ))}
   </PreviewContainer>
