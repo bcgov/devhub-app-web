@@ -4,6 +4,17 @@ For running locally, it is recommended to use locally installed npm/node. The co
 
 For running from a Jenkinsfile, it is recommened to replace `npm` with the provided `npmw` as it will download and install node/npm using `nvm`.
 
+# Initial Setup
+
+This application was bootstrapped with the [bcdk](https://github.com/bcDevOps/bcdk). 
+It has been __modified further__ since its initial bootstrapping to include rocketchat integration. 
+
+The Jenkins deployment has been modified to contain __Environment Variables__ such as a __Rocket.Chat API__ key. 
+
+Please ensure you run the `rocketchat-secret.yaml` template file prior to running the jenkins deploy!
+> you will need a rocketchat api key :)
+
+
 # Build
 ```
 ( cd "$(git rev-parse --show-toplevel)/.jenkins/.pipeline" && npm run build -- --pr=0 --dev-mode=true )
