@@ -48,7 +48,11 @@ pipeline {
                         CURRENT_PIPELINE_ID = deploymentId
                         sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --suffix=scheduled --env=prod"
                         sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=success --deployment=${deploymentId} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
-                        curl -X POST -H 'Content-Type: application/json' --data '{"icon_emoji":":ghost:","text":"Scheduled deployment to Devhub Complete! Deployment ID: "'"$deploymentId"'" "}' https://chat.pathfinder.gov.bc.ca/hooks/ScLeYnDzyKN3hbBob/F84wsFWxmpkguyDN9ZQ8BAyHRrLT3c2yF6DPoNoFbnitqxES
+                        try {
+                            curl -X POST -H 'Content-Type: application/json' --data '{"icon_emoji":":ghost:","text":"Scheduled deployment to Devhub Complete! Deployment ID: "'"$deploymentId"'" "}' https://chat.pathfinder.gov.bc.ca/hooks/ScLeYnDzyKN3hbBob/F84wsFWxmpkguyDN9ZQ8BAyHRrLT3c2yF6DPoNoFbnitqxES
+                        } catch {
+                            echo "Attempted to post a message to rocketchat but it failed"
+                        }
                     }
 
                 }
@@ -61,6 +65,11 @@ pipeline {
                 echo "Pipeline Failed"
                 echo "Failing Deployment ${CURRENT_PIPELINE_ID}"
                 sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=failure --deployment=${CURRENT_PIPELINE_ID} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
+                try {
+                    curl -X POST -H 'Content-Type: application/json' --data '{"icon_emoji":":crying_cat_face:","text":"Scheduled deployment to Devhub Failed :( Deployment ID: "'"$deploymentId"'" "}' https://chat.pathfinder.gov.bc.ca/hooks/ScLeYnDzyKN3hbBob/F84wsFWxmpkguyDN9ZQ8BAyHRrLT3c2yF6DPoNoFbnitqxES
+                } catch {
+                    echo "Attempted to post a message to rocketchat but it failed"
+                }
             }
         }
      }
