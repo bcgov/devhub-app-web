@@ -4,7 +4,7 @@ author: sheaphillips
 image: https://github.com/bcgov/devhub-app-web/blob/master/docs/images/book.png?raw=true
 ---
 
-> looking for pipeline docs? Please see [Jenkins Readme](./.jenkins/README.md)
+> looking for pipeline docs? Please see [Jenkins Readme](./.jenkins/README.md) :)
 
 # DevHub App Web
  
