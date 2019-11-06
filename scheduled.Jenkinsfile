@@ -43,7 +43,7 @@ pipeline {
             steps {
                 echo "Deploying ..."
                 script {
-                    timeout(time: 5, unit: 'MINUTES') {
+                    timeout(time: 5, unit: 'MINUTES') {     
                         def deploymentId = sh(returnStdout: true, script: "cd .pipeline && ./npxw @bcgov/gh-deploy deployment --ref=master -d='Deploying to prod (scheduled build)' -e=production -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN} --required-contexts=[]").trim()
                         CURRENT_PIPELINE_ID = deploymentId
                         sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --suffix=scheduled --env=prod"
@@ -59,9 +59,10 @@ pipeline {
         failure('Failing Deployment') {
             node('deploy') { 
                 echo "Pipeline Failed"
-                sh "curl -X POST -H 'Content-Type: application/json' --data '{\"icon_emoji\":\":crying_cat_face:\",\"text\":\"'\"Scheduled deployment to Devhub Failed :( Deployment ID: $deploymentId\"'\"}' https://chat.pathfinder.gov.bc.ca/hooks/ScLeYnDzyKN3hbBob/F84wsFWxmpkguyDN9ZQ8BAyHRrLT3c2yF6DPoNoFbnitqxES"
+                sh "curl -X POST -H 'Content-Type: application/json' --data '{\"icon_emoji\":\":crying_cat_face:\",\"text\":\"'\"Scheduled deployment to Devhub Failed :(\"'\"}' https://chat.pathfinder.gov.bc.ca/hooks/ScLeYnDzyKN3hbBob/F84wsFWxmpkguyDN9ZQ8BAyHRrLT3c2yF6DPoNoFbnitqxES"
+                //  there is a known issue that  is preventing deployments from being created on master :(
                 sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=failure --deployment=${CURRENT_PIPELINE_ID} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
-                echo "Failing Deployment ${CURRENT_PIPELINE_ID}"
+                echo "Failing Deployment "
                 
             }
         }
