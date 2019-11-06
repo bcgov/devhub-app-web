@@ -40,6 +40,7 @@ export const JourneysPage = ({ data }) => {
             key={journey.id}
             title={journey.name}
             color="green"
+            link={{ to: journey.fields.slug, text: 'View' }}
             description={journey.fields.description}
             stops={reduceJourneyToSubwayLine(journey.connectsWith)}
           />
