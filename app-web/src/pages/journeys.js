@@ -32,7 +32,7 @@ export const JourneysPage = ({ data }) => {
       <Main>
         <Title
           title="Journeys"
-          subtitle="A set of well defined paths for anyone who is developing applications in gov."
+          subtitle="A set of well defined paths for anyone who is developing applications in government."
         />
 
         {journeys.map(journey => (
@@ -40,6 +40,8 @@ export const JourneysPage = ({ data }) => {
             key={journey.id}
             title={journey.name}
             color="green"
+            link={{ to: journey.fields.slug, text: 'View' }}
+            description={journey.fields.description}
             stops={reduceJourneyToSubwayLine(journey.connectsWith)}
           />
         ))}
