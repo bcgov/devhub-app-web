@@ -8,7 +8,6 @@ pipeline {
     agent none
     environment {
         COMPONENT_NAME = 'DevHub web app'
-        CURRENT_PIPELINE_ID = ''
         COMPONENT_HOME = '/'
         BUILD_TRIGGER_EXCLUDES = "^.jenkins/\\|^matomo/"
     }
@@ -44,8 +43,7 @@ pipeline {
                 sh "openshift/keycloak-scripts/kc-create-client.sh ${CHANGE_ID}"
                 script {
                     timeout(time: 5, unit: 'MINUTES') 
-                        sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev --description='deploying to dev from devhub job'"
-                    }
+                    sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev --description='deploying to dev from devhub job'"
                 }
             }
         }
@@ -110,4 +108,5 @@ pipeline {
             }
         }
     }
+}
 
