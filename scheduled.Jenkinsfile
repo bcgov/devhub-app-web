@@ -43,7 +43,7 @@ pipeline {
                 echo "Deploying ..."
                 script {
                     timeout(time: 5, unit: 'MINUTES') {     
-                        sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --suffix=scheduled --env=prod"
+                        sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --ref=master --suffix=scheduled --env=prod"
                     }
 
                 }
