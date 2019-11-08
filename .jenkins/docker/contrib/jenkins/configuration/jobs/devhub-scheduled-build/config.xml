@@ -45,6 +45,9 @@
 <org.jenkinsci.plugins.github__branch__source.BranchDiscoveryTrait>
 <strategyId>1</strategyId>
 </org.jenkinsci.plugins.github__branch__source.BranchDiscoveryTrait>
+<jenkins.scm.impl.trait.RegexSCMHeadFilterTrait plugin="scm-api@2.6.3">
+<regex>master</regex>
+</jenkins.scm.impl.trait.RegexSCMHeadFilterTrait>
 <com.adobe.jenkins.disable__github__multibranch__status.DisableStatusUpdateTrait plugin="disable-github-multibranch-status@1.1"/>
 </traits>
 </source>

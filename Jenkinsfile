@@ -8,7 +8,6 @@ pipeline {
     agent none
     environment {
         COMPONENT_NAME = 'DevHub web app'
-        CURRENT_PIPELINE_ID = ''
         COMPONENT_HOME = '/'
         BUILD_TRIGGER_EXCLUDES = "^.jenkins/\\|^matomo/"
     }
@@ -43,14 +42,8 @@ pipeline {
                 echo "Deploying ..."
                 sh "openshift/keycloak-scripts/kc-create-client.sh ${CHANGE_ID}"
                 script {
-                    timeout(time: 5, unit: 'MINUTES') {
-                        // please note the required-contexts=[] parameter
-                        // github will not create deployments if status checks are pending or failed
-                        // this is to bypass and github action checks that we are currently doing
-                        def deploymentId = sh(returnStdout: true, script: "cd .pipeline && ./npxw @bcgov/gh-deploy deployment --ref=pull/${CHANGE_ID}/head -d='Deploying to dev' -e=development -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN} --required-contexts=[]").trim()
-                        CURRENT_PIPELINE_ID = deploymentId
-                        sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev"
-                        sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=success --deployment=${deploymentId} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
+                    timeout(time: 5, unit: 'MINUTES')  {
+                        sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev --description='deploying to dev from devhub job'"
                     }
                 }
             }
@@ -65,10 +58,7 @@ pipeline {
                 echo "Deploying ..."
                 script {
                     timeout(time: 5, unit: 'MINUTES') {
-                        def deploymentId = sh(returnStdout: true, script: "cd .pipeline && ./npxw @bcgov/gh-deploy deployment --ref=pull/${CHANGE_ID}/head -d='Deploying to test' -e=test -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN} --required-contexts=[]").trim()
-                        CURRENT_PIPELINE_ID = deploymentId
-                        sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=test"
-                        sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=success --deployment=${deploymentId} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
+                        sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=test --description='deploying to test from devhub job'"
                     }
 
                 }
@@ -84,10 +74,7 @@ pipeline {
                 echo "Deploying ..."
                 script {
                     timeout(time: 5, unit: 'MINUTES') {
-                        def deploymentId = sh(returnStdout: true, script: "cd .pipeline && ./npxw @bcgov/gh-deploy deployment --ref=pull/${CHANGE_ID}/head -d='Deploying to prod' -e=production -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN} --required-contexts=[]").trim()
-                        CURRENT_PIPELINE_ID = deploymentId
-                        sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=prod"
-                        sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=success --deployment=${deploymentId} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
+                        sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=prod --description='deploying to prod from devhub job'"
                     }
                 }
             }
@@ -119,9 +106,8 @@ pipeline {
         failure('Failing Deployment') {
             node('deploy') { 
                 echo "Pipeline Failed"
-                echo "Failing Deployment ${CURRENT_PIPELINE_ID}"
-                sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=failure --deployment=${CURRENT_PIPELINE_ID} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
             }
         }
-     }
+    }
 }
+
