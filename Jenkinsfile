@@ -100,11 +100,11 @@ pipeline {
                 sh "cd .pipeline && ./npmw ci && ./npmw run build-previewer -- --pr=${CHANGE_ID}"
             }
         }
-        post {
-            failure('Failing Deployment') {
-                node('deploy') { 
-                    echo "Pipeline Failed"
-                }
+    }
+    post {
+        failure('Failing Deployment') {
+            node('deploy') { 
+                echo "Pipeline Failed"
             }
         }
     }
