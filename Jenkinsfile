@@ -42,8 +42,9 @@ pipeline {
                 echo "Deploying ..."
                 sh "openshift/keycloak-scripts/kc-create-client.sh ${CHANGE_ID}"
                 script {
-                    timeout(time: 5, unit: 'MINUTES') 
-                    sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev --description='deploying to dev from devhub job'"
+                    timeout(time: 5, unit: 'MINUTES')  {
+                        sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev --description='deploying to dev from devhub job'"
+                    }
                 }
             }
         }
