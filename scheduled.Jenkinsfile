@@ -8,7 +8,6 @@ pipeline {
     agent none
     environment {
         COMPONENT_NAME = 'DevHub web app'
-        CURRENT_PIPELINE_ID = ''
         COMPONENT_HOME = '/'
         BUILD_TRIGGER_EXCLUDES = "^.jenkins/\\|^matomo/"
     }
@@ -34,7 +33,7 @@ pipeline {
                     abortAllPreviousBuildInProgress(currentBuild)
                 }
                 echo "Building ..."
-                sh "cd .pipeline && ./npmw ci && ./npmw run build -- --ref=master --suffix=scheduled"
+                sh "cd .pipeline && ./npmw ci && ./npmw run build -- --ref=master --suffix=scheduled --description='deploying to prod from devhub-scheduled job'"
             }
         }
         
@@ -44,10 +43,7 @@ pipeline {
                 echo "Deploying ..."
                 script {
                     timeout(time: 5, unit: 'MINUTES') {     
-                        def deploymentId = sh(returnStdout: true, script: "cd .pipeline && ./npxw @bcgov/gh-deploy deployment --ref=master -d='Deploying to prod (scheduled build)' -e=production -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN} --required-contexts=[]").trim()
-                        CURRENT_PIPELINE_ID = deploymentId
                         sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --suffix=scheduled --env=prod"
-                        sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=success --deployment=${deploymentId} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
                         sh "curl -X POST -H 'Content-Type: application/json' --data '{\"icon_emoji\":\":smile_cat:\",\"text\":\"'\"Scheduled deployment to Devhub Complete! Deployment ID: $deploymentId\"'\"}' https://chat.pathfinder.gov.bc.ca/hooks/ScLeYnDzyKN3hbBob/F84wsFWxmpkguyDN9ZQ8BAyHRrLT3c2yF6DPoNoFbnitqxES"
                     }
 
@@ -60,8 +56,6 @@ pipeline {
             node('deploy') { 
                 echo "Pipeline Failed"
                 sh "curl -X POST -H 'Content-Type: application/json' --data '{\"icon_emoji\":\":crying_cat_face:\",\"text\":\"'\"Scheduled deployment to Devhub Failed :(\"'\"}' https://chat.pathfinder.gov.bc.ca/hooks/ScLeYnDzyKN3hbBob/F84wsFWxmpkguyDN9ZQ8BAyHRrLT3c2yF6DPoNoFbnitqxES"
-                //  there is a known issue that  is preventing deployments from being created on master :(
-                sh "cd .pipeline && ./npxw @bcgov/gh-deploy status --state=failure --deployment=${CURRENT_PIPELINE_ID} -o=bcgov --repo=devhub-app-web -t=${env.GITHUB_TOKEN}"
                 echo "Failing Deployment "
                 
             }

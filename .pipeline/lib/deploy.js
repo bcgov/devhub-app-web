@@ -9,6 +9,14 @@ const ENVS = {
   DEV: 'dev',
 };
 
+// our nominclature for environments is mapped to what github's nomenclature is to keep them
+// seperate and consistent
+const githubEnvironmentMapping = {
+  prod: 'production',
+  dev: 'development',
+  test: 'test'
+};
+
 const getParamsByEnv = (env, pr) => {
   const params = {
     SSO_BASE_URL_VALUE: 'https://sso.pathfinder.gov.bc.ca',
@@ -75,6 +83,7 @@ module.exports = async settings => {
       auto_merge: false,
       required_contexts: [], // create deployment even if status checks fail
       description: options.description,
+      environment: githubEnvironmentMapping[phase]
     },
     repository,
     owner,
