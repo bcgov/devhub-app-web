@@ -1,7 +1,8 @@
 'use strict';
+require('dotenv').config();
 const { OpenShiftClientX } = require('@bcgov/pipeline-cli');
 const path = require('path');
-
+const { createDeployment, createDeploymentStatus } = require('@bcgov/gh-deploy');
 const ENVS = {
   TEST: 'test',
   PROD: 'prod',
@@ -36,7 +37,7 @@ const getParamsByEnv = (env, pr) => {
   }
 };
 
-module.exports = settings => {
+module.exports = async settings => {
   const phases = settings.phases;
   const options = settings.options;
   const phase = options.env;
@@ -65,5 +66,51 @@ module.exports = settings => {
     phases[phase].instance,
   );
   oc.importImageStreams(objects, phases[phase].tag, phases.build.namespace, phases.build.tag);
-  oc.applyAndDeploy(objects, phases[phase].instance);
+
+  const { repository, owner, ref } = options.git;
+  // create a pending deployment
+  const deployment = await createDeployment(
+    {
+      ref: ref,
+      auto_merge: false,
+      required_contexts: [], // create deployment even if status checks fail
+      description: options.description,
+    },
+    repository,
+    owner,
+    process.env.GITHUB_TOKEN,
+  );
+
+  // add pending status to deployment
+  console.log('Creating pending deployment status');
+
+  await createDeploymentStatus(
+    { state: 'pending', deployment_id: deployment.data.id },
+    repository,
+    owner,
+    process.env.GITHUB_TOKEN,
+  );
+
+  try {
+    await oc.applyAndDeploy(objects, phases[phase].instance);
+    // create successful deploy status
+    console.log('Deployment succeeded');
+    await createDeploymentStatus(
+      { state: 'success', deployment_id: deployment.data.id },
+      repository,
+      owner,
+      process.env.GITHUB_TOKEN,
+    );
+  } catch (e) {
+    // if deploy fails, create a failure status
+    console.error('Deployment Failed');
+    console.error(e);
+    await createDeploymentStatus(
+      { state: 'failure', deployment_id: deployment.data.id },
+      repository,
+      owner,
+      process.env.GITHUB_TOKEN,
+    );
+    throw e;
+  }
 };
