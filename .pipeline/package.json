@@ -45,7 +45,9 @@
     ]
   },
   "dependencies": {
-    "@bcgov/gh-deploy": "^1.0.3",
-    "@bcgov/pipeline-cli": "^1.0.1-0"
+    "@bcgov/gh-deploy": "^1.1.1",
+    "@bcgov/pipeline-cli": "^1.0.1-0",
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.0"
   }
 }

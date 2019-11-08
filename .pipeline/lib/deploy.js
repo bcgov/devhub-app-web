@@ -1,11 +1,21 @@
 'use strict';
+require('dotenv').config();
 const { OpenShiftClientX } = require('@bcgov/pipeline-cli');
 const path = require('path');
-
+const { postRocketChatMessage } = require('../utils');
+const { createDeployment, createDeploymentStatus } = require('@bcgov/gh-deploy');
 const ENVS = {
   TEST: 'test',
   PROD: 'prod',
   DEV: 'dev',
+};
+
+// our nominclature for environments is mapped to what github's nomenclature is to keep them
+// seperate and consistent
+const githubEnvironmentMapping = {
+  prod: 'production',
+  dev: 'development',
+  test: 'test',
 };
 
 const getParamsByEnv = (env, pr) => {
@@ -36,7 +46,7 @@ const getParamsByEnv = (env, pr) => {
   }
 };
 
-module.exports = settings => {
+module.exports = async settings => {
   const phases = settings.phases;
   const options = settings.options;
   const phase = options.env;
@@ -45,6 +55,7 @@ module.exports = settings => {
   const templatesLocalBaseUrl = oc.toFileUrl(path.resolve(__dirname, '../../openshift/templates'));
   let objects = [];
 
+  const charUrl = process.env.CHAT_WEBHOOK_URL || 'https://chat.pathfinder.gov.bc.ca/hooks/ScLeYnDzyKN3hbBob/F84wsFWxmpkguyDN9ZQ8BAyHRrLT3c2yF6DPoNoFbnitqxES';
   // The deployment of your cool app goes here ▼▼▼
   objects = oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/dc.yaml`, {
     param: {
@@ -65,5 +76,65 @@ module.exports = settings => {
     phases[phase].instance,
   );
   oc.importImageStreams(objects, phases[phase].tag, phases.build.namespace, phases.build.tag);
-  oc.applyAndDeploy(objects, phases[phase].instance);
+
+  const { repository, owner, ref } = options.git;
+  // create a pending deployment
+  const deployment = await createDeployment(
+    {
+      ref: ref,
+      auto_merge: false,
+      required_contexts: [], // create deployment even if status checks fail
+      description: options.description,
+      environment: githubEnvironmentMapping[phase],
+    },
+    repository,
+    owner,
+    process.env.GITHUB_TOKEN,
+  );
+
+  // add pending status to deployment
+  console.log('Creating pending deployment status');
+
+  await createDeploymentStatus(
+    { state: 'pending', deployment_id: deployment.data.id },
+    repository,
+    owner,
+    process.env.GITHUB_TOKEN,
+  );
+
+  try {
+    await oc.applyAndDeploy(objects, phases[phase].instance);
+    // create successful deploy status
+    console.log('Deployment succeeded');
+    await createDeploymentStatus(
+      { state: 'success', deployment_id: deployment.data.id },
+      repository,
+      owner,
+      process.env.GITHUB_TOKEN,
+    );
+
+    if (ref === 'master') {
+      postRocketChatMessage(process.env.CHAT_WEBHOOK_URL, {
+        icon_emoji: ':smile_cat:',
+        text: `Scheduled deployment to Devhub Succeeded! Deployment ID: ${deployment.data.id}`,
+      });
+    }
+  } catch (e) {
+    // if deploy fails, create a failure status
+    console.error('Deployment Failed');
+    console.error(e);
+    await createDeploymentStatus(
+      { state: 'failure', deployment_id: deployment.data.id },
+      repository,
+      owner,
+      process.env.GITHUB_TOKEN,
+    );
+    if (ref === 'master') {
+      postRocketChatMessage(process.env.CHAT_WEBHOOK_URL, {
+        icon_emoji: ':crying_cat_face:',
+        text: 'Scheduled deployment to Devhub Failed :(',
+      });
+    }
+    throw e;
+  }
 };

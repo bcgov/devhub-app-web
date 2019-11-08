@@ -14,7 +14,7 @@ Where:
 
 # Deploy to DEV
 ```
-( cd "$(git rev-parse --show-toplevel)/.jenkins/.pipeline" && npm run deploy -- --pr=0 --env=dev )
+( cd "$(git rev-parse --show-toplevel)/.jenkins/.pipeline" && npm run deploy -- --pr=0 --env=dev --description="deployment description" )
 ```
 
 # Deploy to PROD
