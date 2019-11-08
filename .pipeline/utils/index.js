@@ -18,6 +18,11 @@ Created by Patrick Simonian
 
 const fetch = require('node-fetch');
 
-const postRocketChatMessage = (url, payload) => fetch(url, { method: 'POST', ...payload });
+const postRocketChatMessage = (url, payload) =>
+  fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+    headers: { 'Content-Type': 'application/json' },
+  });
 
 module.exports = { postRocketChatMessage };
