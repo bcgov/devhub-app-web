@@ -44,7 +44,8 @@ pipeline {
                 script {
                     timeout(time: 5, unit: 'MINUTES') {     
                         sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --suffix=scheduled --env=prod"
-                        sh "curl -X POST -H 'Content-Type: application/json' --data '{\"icon_emoji\":\":smile_cat:\",\"text\":\"'\"Scheduled deployment to Devhub Complete! Deployment ID: $deploymentId\"'\"}' https://chat.pathfinder.gov.bc.ca/hooks/ScLeYnDzyKN3hbBob/F84wsFWxmpkguyDN9ZQ8BAyHRrLT3c2yF6DPoNoFbnitqxES"
+
+                        sh "curl -X POST -H 'Content-Type: application/json' --data '{\"icon_emoji\":\":smile_cat:\",\"text\":\"'\"Scheduled deployment to Devhub Complete!\"'\"}' https://chat.pathfinder.gov.bc.ca/hooks/ScLeYnDzyKN3hbBob/F84wsFWxmpkguyDN9ZQ8BAyHRrLT3c2yF6DPoNoFbnitqxES"
                     }
 
                 }
