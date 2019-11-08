@@ -2,6 +2,7 @@
 require('dotenv').config();
 const { OpenShiftClientX } = require('@bcgov/pipeline-cli');
 const path = require('path');
+const { postRocketChatMessage } = require('../utils');
 const { createDeployment, createDeploymentStatus } = require('@bcgov/gh-deploy');
 const ENVS = {
   TEST: 'test',
@@ -14,7 +15,7 @@ const ENVS = {
 const githubEnvironmentMapping = {
   prod: 'production',
   dev: 'development',
-  test: 'test'
+  test: 'test',
 };
 
 const getParamsByEnv = (env, pr) => {
@@ -83,7 +84,7 @@ module.exports = async settings => {
       auto_merge: false,
       required_contexts: [], // create deployment even if status checks fail
       description: options.description,
-      environment: githubEnvironmentMapping[phase]
+      environment: githubEnvironmentMapping[phase],
     },
     repository,
     owner,
@@ -110,6 +111,13 @@ module.exports = async settings => {
       owner,
       process.env.GITHUB_TOKEN,
     );
+
+    if (ref === 'master') {
+      postRocketChatMessage(process.env.CHAT_WEBHOOK_URL, {
+        icon_emoji: ':smile_cat:',
+        text: `Scheduled deployment to Devhub Succeeded! Deployment ID: ${deployment.data.id}`,
+      });
+    }
   } catch (e) {
     // if deploy fails, create a failure status
     console.error('Deployment Failed');
@@ -120,6 +128,12 @@ module.exports = async settings => {
       owner,
       process.env.GITHUB_TOKEN,
     );
+    if (ref === 'master') {
+      postRocketChatMessage(process.env.CHAT_WEBHOOK_URL, {
+        icon_emoji: ':crying_cat_face:',
+        text: 'Scheduled deployment to Devhub Failed :(',
+      });
+    }
     throw e;
   }
 };
