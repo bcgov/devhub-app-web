@@ -413,8 +413,12 @@ export const Index = ({
         resultCount={totalSearchResults}
       />
       <Main>
-        {windowHasQuery && siphonResources}
-        {windowHasQuery && searchSourcesLoading ? <Loading message="loading" /> : content}
+        {windowHasQuery && queryParam.q !== '' && siphonResources}
+        {windowHasQuery && searchSourcesLoading && searchGate.authenticated ? (
+          <Loading message="loading" />
+        ) : (
+          content
+        )}
       </Main>
     </Layout>
   );
