@@ -24,6 +24,7 @@ export const PastEventsPage = ({ data: { allEventbriteEvents } }) => {
   let [showCount, setCount] = useState(EVENTS.MAX_PAST_EVENTS);
   let [seeMoreResults, setSeeMore] = useState(true);
   const extraItemsToShow = 12; //two more row of card in the page after click 'see more'
+
   const updateCount = () => {
     //show 6 more results
     setCount(showCount + extraItemsToShow);

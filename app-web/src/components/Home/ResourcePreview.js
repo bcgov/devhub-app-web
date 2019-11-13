@@ -96,18 +96,17 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
     setResources(resources);
 
     return () => {
-      setResources();
+      setResources(null);
     };
   }, [resources]);
 
   //sets the amount of resources to show, allowing users to 'see more' if its appropriate
   const updateCount = () => {
     //show 6 more results
-    setCount(showCount + extraItemsToShow);
     setSeeMore(true);
-    if (showCount >= resourcesToShow.length) {
-      //hide the 'see more results' when there isn‘t more to show
-      setSeeMore(false);
+    setCount(showCount + extraItemsToShow);
+    if (resourcesToShow.length <= showCount) {
+      setSeeMore(false); //hide the 'see more results' when there isn‘t more to show
     }
   };
 

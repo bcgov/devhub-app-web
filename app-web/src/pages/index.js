@@ -253,10 +253,13 @@ export const Index = ({
   );
   // dynamic sources all load at different times, this function returns false when all have completed loading
   let [searchSourcesLoading, setLoading] = useState(searchGate.loading);
+
   if (!!searchSourceResults.rocketchat) {
     totalSearchResults += searchSourceResults.rocketchat.length;
   }
+
   const dynamicTopics = flattenGatsbyGraphQL([popularTopic, featuredTopic]);
+
   if (queryIsEmpty) {
     content = (
       <React.Fragment>
