@@ -21,8 +21,8 @@ import PropTypes from 'prop-types';
 import Col from './Column';
 import Card from './Card';
 
-export const CardsInColumns = ({ cards }) => {
-  cards.map(r => (
+const CardsInColumns = ({ cards }) => {
+  return cards.map(r => (
     <Col
       key={r.id}
       style={{
