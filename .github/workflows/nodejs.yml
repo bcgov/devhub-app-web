@@ -22,7 +22,7 @@ jobs:
         cd app-web
         npm ci
         echo "attempting to build"
-        npm run build --if-present
+        GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} && npm run build --if-present
         npm test
       env:
         CI: true
