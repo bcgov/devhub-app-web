@@ -183,53 +183,56 @@ export const EventCard = ({ title, description, image, link, event }) => {
   if (title.length < 23) {
     clampAmount = 4;
   }
+
+  let content = {
+    venue: event.venue !== null ? event.venue : 'tbd',
+    date: {
+      month: event.start.month,
+      day: event.start.day,
+      year: event.start.year,
+    },
+  };
+
   if (image === 'eventbrite') {
-    cardBody = (
-      <React.Fragment>
-        <Description clamp={clampAmount} tagName="p">
-          {description}
-        </Description>
-        <EventContainer>
-          <EventDate>
-            <span>{event.start.month}</span>
-            {event.start.day}
-            <small>{event.start.year}</small>
-          </EventDate>
-          <EventInfoDiv>
-            <li>
-              {event.venue !== null ? event.venue : 'tbd'}
-              <EventbriteImageWrapper>
-                <EventLogo type={image} />
-              </EventbriteImageWrapper>
-            </li>
-          </EventInfoDiv>
-        </EventContainer>
-      </React.Fragment>
-    );
+    content = {
+      ...content,
+      logo: (
+        <EventbriteImageWrapper>
+          <EventLogo type={image} />
+        </EventbriteImageWrapper>
+      ),
+    };
   } else if (image === 'meetup') {
-    cardBody = (
-      <React.Fragment>
-        <Description clamp={clampAmount} tagName="p">
-          {description}
-        </Description>
-        <EventContainer>
-          <EventDate>
-            <span>{event.start.month}</span>
-            {event.start.day}
-            <small>{event.start.year}</small>
-          </EventDate>
-          <EventInfoDiv>
-            <li>
-              {event.venue !== null ? event.venue : 'tbd'}
-              <MeetupImageWrapper>
-                <EventLogo type={image} />
-              </MeetupImageWrapper>
-            </li>
-          </EventInfoDiv>
-        </EventContainer>
-      </React.Fragment>
-    );
+    content = {
+      ...content,
+      logo: (
+        <MeetupImageWrapper>
+          <EventLogo type={image} />
+        </MeetupImageWrapper>
+      ),
+    };
   }
+
+  cardBody = (
+    <React.Fragment>
+      <Description clamp={clampAmount} tagName="p">
+        {description}
+      </Description>
+      <EventContainer>
+        <EventDate>
+          <span>{content.date.month}</span>
+          {content.date.day}
+          <small>{content.date.year}</small>
+        </EventDate>
+        <EventInfoDiv>
+          <li>
+            {content.venue}
+            {content.logo}
+          </li>
+        </EventInfoDiv>
+      </EventContainer>
+    </React.Fragment>
+  );
 
   return (
     <Card
