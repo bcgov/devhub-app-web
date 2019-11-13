@@ -135,7 +135,6 @@ const getResourcePreviews = (resources, queryExists, results = [], title) => {
   resourceIconsWithCounter = resourceIconsWithCounter.sort((a, b) => {
     return b.counter - a.counter;
   });
-  // console.log('resourcesToShow', resourcesToShow);
 
   return (
     <ResourcePreview
