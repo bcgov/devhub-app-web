@@ -252,7 +252,6 @@ export const Index = ({
     FEATURED_CONTENT,
   );
   // dynamic sources all load at different times, this function returns false when all have completed loading
-  // const searchSourcesLoading = searchGate.loading;
   let [searchSourcesLoading, setLoading] = useState(searchGate.loading);
   if (!!searchSourceResults.rocketchat) {
     totalSearchResults += searchSourceResults.rocketchat.length;
