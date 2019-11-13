@@ -165,5 +165,5 @@ export const useSearchGate = (authenticated, queryString, client) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, useDeepCompareMemoize([_loading, loading, authenticated, queryString, results]));
 
-  return { results, loading: _loading };
+  return { results, loading: _loading, authenticated };
 };

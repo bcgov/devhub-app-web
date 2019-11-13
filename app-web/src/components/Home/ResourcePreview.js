@@ -15,7 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import css from '@emotion/css';
@@ -92,14 +92,21 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
   let [activeFilters, setActiveFilters] = useState(['All']);
   const extraItemsToShow = 6; //two more row of card in the page after click 'see more'
 
+  useEffect(() => {
+    setResources(resources);
+
+    return () => {
+      setResources(null);
+    };
+  }, [resources]);
+
   //sets the amount of resources to show, allowing users to 'see more' if its appropriate
   const updateCount = () => {
     //show 6 more results
-    setCount(showCount + extraItemsToShow);
     setSeeMore(true);
-    if (showCount >= resourcesToShow.length) {
-      //hide the 'see more results' when there isn‘t more to show
-      setSeeMore(false);
+    setCount(showCount + extraItemsToShow);
+    if (resourcesToShow.length <= showCount) {
+      setSeeMore(false); //hide the 'see more results' when there isn‘t more to show
     }
   };
 

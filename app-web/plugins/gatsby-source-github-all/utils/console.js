@@ -23,7 +23,7 @@ const siphonMessages = (() => {
   const error = chalk.red('\nERROR from Siphon! ---');
   const advisory = chalk.cyan('\nADVISORY from Siphon! ---');
   const registrationInstructions = chalk.green(
-    'https://github.com/bcgov/devhub-app-web/blob/master/docs/registerRepo.md',
+    'https://github.com/bcgov/devhub-app-web/blob/master/docs/registry.md',
   );
 
   const unfurlLacksInfo = url => chalk`
