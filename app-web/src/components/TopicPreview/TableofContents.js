@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import validUrl from 'valid-url';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -32,7 +32,7 @@ const ArrowIcon = styled.span`
   background-repeat: no-repeat;
   opacity: 0.8;
   transform-origin: 25% 50%;
-  transform: ${props => (props.opened ? 'rotate(0deg)' : 'rotate(180deg)')};
+  transform: ${props => (props.opened ? 'rotate(90deg)' : 'rotate(0deg)')};
 `;
 
 const Content = styled.div`
@@ -47,7 +47,7 @@ const TableofContents = ({ title, contents }) => {
       <Inline onClick={() => setOpened(!opened)}>
         <Title>{title}</Title>
         <ArrowIcon opened={opened}>
-          <FontAwesomeIcon icon={faChevronDown} />
+          <FontAwesomeIcon icon={faChevronRight} />
         </ArrowIcon>
       </Inline>
       {opened && (
