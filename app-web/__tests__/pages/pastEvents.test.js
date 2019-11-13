@@ -1,5 +1,6 @@
 import React from 'react';
-import EventsPage from '../../src/templates/events';
+import PastEventsPage from '../../src/templates/pastEvents';
+
 import { render } from '@testing-library/react';
 import { TOPICS, EVENTS } from '../../__fixtures__/nodes';
 import { ThemeProvider } from 'emotion-theming';
@@ -12,7 +13,7 @@ describe('Events Page', () => {
 
     render(
       <ThemeProvider theme={theme}>
-        <EventsPage
+        <PastEventsPage
           data={{
             allEventbriteEvents: { edges: events },
             allTopicRegistryJson: { edges: topics },
