@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import queryString from 'query-string';
 import isNull from 'lodash/isNull';
 import groupBy from 'lodash/groupBy';
@@ -135,6 +135,7 @@ const getResourcePreviews = (resources, queryExists, results = [], title) => {
   resourceIconsWithCounter = resourceIconsWithCounter.sort((a, b) => {
     return b.counter - a.counter;
   });
+  // console.log('resourcesToShow', resourcesToShow);
 
   return (
     <ResourcePreview
@@ -251,7 +252,12 @@ export const Index = ({
     DYNAMIC_TOPIC_PATHS.featured,
     FEATURED_CONTENT,
   );
-
+  // dynamic sources all load at different times, this function returns false when all have completed loading
+  // const searchSourcesLoading = searchGate.loading;
+  let [searchSourcesLoading, setLoading] = useState(searchGate.loading);
+  if (!!searchSourceResults.rocketchat) {
+    totalSearchResults += searchSourceResults.rocketchat.length;
+  }
   const dynamicTopics = flattenGatsbyGraphQL([popularTopic, featuredTopic]);
   if (queryIsEmpty) {
     content = (
@@ -300,10 +306,10 @@ export const Index = ({
         .slice(0, SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.documize].maxResults)
         .map(documizeSearchPurifier);
     }
+
     content = (
       <Aux>
         {getTopicPreviews(dynamicTopics.concat(topics), windowHasQuery && !queryIsEmpty)}
-        {siphonResources}
         {!isEmpty(rocketchat) && rocketchat.length > 0 && (
           <DynamicSearchResults
             numResults={rocketchat.length}
@@ -393,11 +399,13 @@ export const Index = ({
     );
   }
 
-  // dynamic sources all load at different times, this function returns false when all have completed loading
-  const searchSourcesLoading = searchGate.loading;
-  if (!!searchSourceResults.rocketchat) {
-    totalSearchResults += searchSourceResults.rocketchat.length;
-  }
+  useEffect(() => {
+    setLoading(searchGate.loading);
+
+    return () => {
+      setLoading();
+    };
+  }, [searchGate.loading, searchSourcesLoading]);
 
   return (
     <Layout showHamburger>
@@ -407,6 +415,7 @@ export const Index = ({
         resultCount={totalSearchResults}
       />
       <Main>
+        {windowHasQuery && siphonResources}
         {windowHasQuery && searchSourcesLoading ? <Loading message="loading" /> : content}
       </Main>
     </Layout>
