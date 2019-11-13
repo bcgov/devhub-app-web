@@ -184,33 +184,28 @@ export const EventCard = ({ title, description, image, link, event }) => {
     clampAmount = 4;
   }
 
-  let content = {
+  const content = {
     venue: event.venue !== null ? event.venue : 'tbd',
     date: {
       month: event.start.month,
       day: event.start.day,
       year: event.start.year,
     },
+    logo: null,
   };
 
   if (image === 'eventbrite') {
-    content = {
-      ...content,
-      logo: (
-        <EventbriteImageWrapper>
-          <EventLogo type={image} />
-        </EventbriteImageWrapper>
-      ),
-    };
+    content.logo = (
+      <EventbriteImageWrapper>
+        <EventLogo type={image} />
+      </EventbriteImageWrapper>
+    );
   } else if (image === 'meetup') {
-    content = {
-      ...content,
-      logo: (
-        <MeetupImageWrapper>
-          <EventLogo type={image} />
-        </MeetupImageWrapper>
-      ),
-    };
+    content.logo = (
+      <MeetupImageWrapper>
+        <EventLogo type={image} />
+      </MeetupImageWrapper>
+    );
   }
 
   cardBody = (
