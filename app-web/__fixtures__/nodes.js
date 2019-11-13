@@ -501,6 +501,7 @@ export const EVENT_1 = {
   },
   id: '45046198392',
   fields: {
+    title: 'BC Gov CSI Lab - Open House Networking event ',
     resourceType: 'Events',
     standAlonePath:
       'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
@@ -549,6 +550,7 @@ export const EVENT_2 = {
   },
   id: '61112980570',
   fields: {
+    title: "Take a walk on the Agile side: Tour of BC Gov's CSI Lab",
     resourceType: 'Events',
     standAlonePath:
       'https://www.eventbrite.ca/e/bc-gov-csi-lab-open-house-networking-event-tickets-45046198392',
