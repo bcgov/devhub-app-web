@@ -31,6 +31,9 @@ import {
 import withResourceQuery from '../hoc/withResourceQuery';
 
 export const TopicPage = ({ data, location, ...rest }) => {
+  // props contains '*' as a property which matches our pageMatch property as assigned from
+  // gatsby/onCreatePage.js
+  // this would amount to /:topicType/:resource
   const [topicType, resource] = rest['*'].split('/');
 
   const [menuToggled, setMenuToggled] = useState(false);
