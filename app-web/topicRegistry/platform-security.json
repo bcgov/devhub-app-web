@@ -1,7 +1,7 @@
 {
     "name": "Platform Services Security",
     "description": "Modern day resources for securing your applications and services.",
-    "resourceType": "Self-Service Tools",
+    "resourceType": "Documentation",
     "attributes": {
       "personas": ["Developer"]
     },
