@@ -21,6 +21,12 @@ objects:
         if  {path} not_match ^\/0.0.0.0
         to  {path} {path}/ /?_url={uri}
       }
+      
+      rewrite {
+        regexp ^\/topic\/\w+(\/\w+){0,}
+        to {path} {path}/ /topic/
+      }
+
       templates {
         ext   .js
       }
