@@ -40,3 +40,4 @@ jobs:
         GATSBY_MATOMO_SITE_ID: ${{secrets.GATSBY_MATOMO_SITE_ID}}
         GATSBY_MATOMO_URL: ${{secrets.GATSBY_MATOMO_URL}}
         GATSBY_MATOMO_SITE_URL: ${{secrets.GATSBY_MATOMO_SITE_URL}}
+        MATOMO_API_KEY: ${{secrets.MATOMO_API_KEY}}
