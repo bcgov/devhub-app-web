@@ -5,6 +5,7 @@ import { useAuthenticated } from '../../utils/hooks';
 import { Link } from 'react-scroll';
 import { SEARCH_SOURCE_CONTENT } from '../DynamicSearchResults';
 import { SEARCH_SOURCES } from '../../constants/search';
+import PropTypes from 'prop-types';
 
 const StyledLink = styled(Link)`
   margin: 0 5px;
@@ -22,7 +23,7 @@ export const TEST_IDS = {
   container: 'search.sources.container',
 };
 
-export const SearchSources = () => {
+export const SearchSources = searchSourcesLoading => {
   const { authenticated } = useAuthenticated();
   const iconProps = {};
 
@@ -40,21 +41,21 @@ export const SearchSources = () => {
 
   return (
     <SearchSourcesContainer data-testid={TEST_IDS.container}>
-      {authenticated ? (
+      {authenticated && searchSourcesLoading ? (
         <StyledLink to={SEARCH_SOURCE_CONTENT[SEARCH_SOURCES.rocketchat].id} offset={scrollOffset}>
           <RCButton title="Click to jump to rocket chat search results" />
         </StyledLink>
       ) : (
         <RCButton {...iconProps} title="Login to view rocket chat search results" />
       )}
-      {authenticated ? (
+      {authenticated && searchSourcesLoading ? (
         <StyledLink to={SEARCH_SOURCE_CONTENT[SEARCH_SOURCES.github].id} offset={scrollOffset}>
           <GithubButton title="Click to jump to Github search results" />
         </StyledLink>
       ) : (
         <GithubButton {...iconProps} title="Login to view Github search results" />
       )}
-      {authenticated ? (
+      {authenticated && searchSourcesLoading ? (
         <StyledLink to={SEARCH_SOURCE_CONTENT[SEARCH_SOURCES.documize].id} offset={scrollOffset}>
           <DocumizeButton title="Click to jump to Documize search results" />
         </StyledLink>
@@ -63,4 +64,7 @@ export const SearchSources = () => {
       )}
     </SearchSourcesContainer>
   );
+};
+SearchSources.propTypes = {
+  searchSourcesLoading: PropTypes.bool,
 };
