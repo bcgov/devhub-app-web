@@ -21,8 +21,10 @@ module.exports = async ({ page, actions }) => {
   // check if page that's being created matches the filter base routes
   // which is intended for client side loading only
   // https://github.com/gatsbyjs/gatsby/blob/v1/docs/docs/building-apps-with-gatsby.md#client-only-routes--user-authentication
-  if (page.path.match(/^\/topic/)) {
-    page.matchPath = `/topic/:topicType/:resource`;
+  // only match /topic/ not /topics/
+
+  if (page.path.match(/^\/topic(?!s)/)) {
+    page.matchPath = `/topic/*`;
     createPage(page);
   }
 };

@@ -30,7 +30,9 @@ import {
 } from '../components/GithubTemplate/common';
 import withResourceQuery from '../hoc/withResourceQuery';
 
-export const TopicPage = ({ data, location, topicType, resource, ...rest }) => {
+export const TopicPage = ({ data, location, ...rest }) => {
+  const [topicType, resource] = rest['*'].split('/');
+
   const [menuToggled, setMenuToggled] = useState(false);
   const entryPages = {
     [DYNAMIC_TOPIC_PATHS.featured]: <Featured />,
@@ -51,6 +53,7 @@ export const TopicPage = ({ data, location, topicType, resource, ...rest }) => {
   let resourceComponent = null;
   let topicMetadata = {};
   let topicObj = {};
+
   if (!DYNAMIC_TOPIC_PATHS[topicType]) {
     return navigateFn('404');
   }
