@@ -21,12 +21,11 @@ import styled from '@emotion/styled';
 import css from '@emotion/css';
 import { ChevronLink } from '../UI/Link';
 import { Container, LinkContainer } from './index';
-import Card from '../Card/Card';
+import CardsInColumns from '../Card/CardsInColumns';
 import Pill from '../UI/Pill';
 import { RESOURCE_TYPES } from '../../constants/ui';
 import { getSearchResultLabel, togglePills } from '../../utils/helpers';
 import Row from '../Card/Row';
-import Col from '../Card/Column';
 
 export const CardWrapper = styled.div`
   margin: 6px 9px;
@@ -189,25 +188,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
       </PreviewHeader>
       <ResourceContainer>
         <Row>
-          {resourcesToShow.slice(0, showCount).map(r => (
-            <Col
-              key={r.id}
-              style={{
-                justifyContent: 'center',
-                display: 'flex',
-              }}
-            >
-              <Card
-                resourceType={r.fields.resourceType}
-                key={r.id}
-                title={r.fields.title}
-                description={r.fields.description}
-                image={r.fields.image}
-                link={r.fields.standAlonePath}
-                event={r}
-              />
-            </Col>
-          ))}
+          <CardsInColumns cards={resourcesToShow.slice(0, showCount)} />
         </Row>
       </ResourceContainer>
       <LinkContainer>

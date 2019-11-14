@@ -59,11 +59,8 @@ const resolveDevhubTopicConnections = (source, args, context) => {
       }));
 
     // event nodes are only connected if they occur in the future
-    eventbriteNodes = eventbriteNodes
-      .filter(n => nodeBelongsToTopic(source.name, n) && n.fields.daysFromNow >= 0)
-      .map(n => ({ fields: { ...n.fields }, id: n.id, path: n.fields.pagePaths[0] }));
-
-    meetupNodes = meetupNodes
+    const eventNodes = eventbriteNodes
+      .concat(meetupNodes)
       .filter(n => nodeBelongsToTopic(source.name, n) && n.fields.daysFromNow >= 0)
       .map(n => ({ fields: { ...n.fields }, id: n.id, path: n.fields.pagePaths[0] }));
 
@@ -72,8 +69,7 @@ const resolveDevhubTopicConnections = (source, args, context) => {
       .sort((a, b) => {
         return a.fields.position.toString().localeCompare(b.fields.position);
       })
-      .concat(eventbriteNodes)
-      .concat(meetupNodes);
+      .concat(eventNodes);
 
     _cache[source.id] = connectsWith;
   }
