@@ -132,6 +132,8 @@ export const TopicPage = ({ data, location, ...rest }) => {
           />
         </MarkdownBody>
       );
+    } else {
+      navigateFn('404');
     }
   }
 
