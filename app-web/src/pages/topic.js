@@ -30,7 +30,7 @@ import {
 } from '../components/GithubTemplate/common';
 import withResourceQuery from '../hoc/withResourceQuery';
 
-export const TopicPage = ({ data, location }) => {
+export const TopicPage = ({ data, location, topicType, resource, ...rest }) => {
   const [menuToggled, setMenuToggled] = useState(false);
   const entryPages = {
     [DYNAMIC_TOPIC_PATHS.featured]: <Featured />,
@@ -41,7 +41,7 @@ export const TopicPage = ({ data, location }) => {
   const navigateFn = global.window ? navigate : () => null;
   const query = queryString.parse(location.search);
   const nodes = flattenGatsbyGraphQL(data.allGithubRaw.edges);
-  const [topic, topicType, resource] = location.pathname.replace(/^\/|\/$/, '').split('/');
+  // const [topic, topicType, resource] = location.pathname.replace(/^\/|\/$/, '').split('/');
   // // if ?viewResource=0 then auto navigate to the given resource with that index
   // // this is in place so that topic entry pages can provide a means to link to a given resource from within the topic
   const shouldAutoNavigate = query.viewResource && isInteger(query.viewResource / 1);
@@ -136,7 +136,7 @@ export const TopicPage = ({ data, location }) => {
         <SidePanel>{navigationComponent}</SidePanel>
         <SideDrawerToggleButton onClick={() => setMenuToggled(true)}>
           <FontAwesomeIcon icon={faBars} style={{ color: '#026' }} />{' '}
-          <span>{topic.name} Content</span>
+          <span>{topicMetadata.name} Content</span>
         </SideDrawerToggleButton>
         {resourceComponent}
       </Main>
