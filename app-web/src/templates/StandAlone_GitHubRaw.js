@@ -181,9 +181,6 @@ export const devhubGitHubRawData = graphql`
       }
       childMarkdownRemark {
         htmlAst
-        frontmatter {
-          labels
-        }
       }
     }
   }

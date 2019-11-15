@@ -4,6 +4,11 @@ export const REMARK_NODE_WITH_AST = {
   id: '1198097e-da96-5797-8829-44b33e86a607',
   frontmatter: {
     title: 'Header - Basic',
+    labels: {
+      app: 'Searchgate',
+      importance: 2,
+    },
+    description: 'This is a description of the markdown Remark',
   },
   htmlAst: {
     type: 'root',

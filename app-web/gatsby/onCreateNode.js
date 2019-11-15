@@ -17,7 +17,7 @@ Created by Patrick Simonian
 */
 const moment = require('moment');
 const htmlToFormattedText = require('html-to-formatted-text');
-const { isArray, isString } = require('lodash');
+const { isPlainObject } = require('lodash');
 const visit = require('unist-util-visit');
 const remark = require('remark');
 const { RESOURCE_TYPES, PERSONAS_LIST } = require('../src/constants/ui');
@@ -236,14 +236,11 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       }
     });
 
-    let labels = [];
+    let labels = {};
     // assert the shape of labels in frontmatter
-    if (Object.prototype.hasOwnProperty(node.frontmatter, 'labels')) {
-      if (isArray(node.frontmatter.labels) && node.frontmatter.every(isString)) {
+    if (Object.prototype.hasOwnProperty.call(node.frontmatter, 'labels')) {
+      if (isPlainObject(node.frontmatter.labels)) {
         labels = node.frontmatter.labels;
-      } else if (isString(node.frontmatter.labels)) {
-        // split by any commas and trim
-        labels = node.frontmatter.labels.split().map(text => text.trim());
       }
     }
 
@@ -255,6 +252,17 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
 
     createNodeField({
       node,
+      name: 'labels',
+      value: labels,
+    });
+
+    createNodeField({
+      node: parentNode,
+      name: 'labels',
+      value: labels,
+    });
+    createNodeField({
+      node,
       name: 'description',
       value: node.frontmatter.description ? node.frontmatter.description : '',
     });
@@ -263,12 +271,6 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       node,
       name: 'image',
       value: node.frontmatter.image ? node.frontmatter.image : '',
-    });
-
-    createNodeField({
-      node,
-      name: 'labels',
-      value: labels,
     });
 
     createNodeField({
@@ -408,12 +410,6 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
         node: parentNode,
         name: 'image',
         value: resolvedImage,
-      });
-
-      createNodeField({
-        node: parentNode,
-        name: 'labels',
-        value: labels,
       });
 
       createNodeField({
