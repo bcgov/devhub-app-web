@@ -81,12 +81,12 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/BCDevOps/artifactory",
+          "url": "https://github.com/BCDevOps/platform-services",
           "owner": "BCDevOps",
-          "repo": "artifactory",
+          "repo": "platform-services",
           "title": "BC Gov's Artifact Repository",
           "files": [
-            "DEVHUB-README.md"
+            "apps/artifactory/DEVHUB-README.md"
           ]
         },
         "resourceType": "Documentation"
