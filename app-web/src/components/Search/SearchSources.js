@@ -46,7 +46,7 @@ export const SearchSources = ({ searchSourcesLoading }) => {
 
   return (
     <SearchSourcesContainer data-testid={TEST_IDS.container}>
-      {authenticated || !searchSourcesLoading ? (
+      {authenticated && !searchSourcesLoading ? (
         <StyledLink to={SEARCH_SOURCE_CONTENT[SEARCH_SOURCES.rocketchat].id} offset={scrollOffset}>
           <RCButton {...iconProps} title="Click to jump to rocket chat search results" />
         </StyledLink>
@@ -55,7 +55,7 @@ export const SearchSources = ({ searchSourcesLoading }) => {
           <RCButton {...iconProps} title="Login or wait to view rocket chat search results" />
         </StyledDiv>
       )}
-      {authenticated || !searchSourcesLoading ? (
+      {authenticated && !searchSourcesLoading ? (
         <StyledLink to={SEARCH_SOURCE_CONTENT[SEARCH_SOURCES.github].id} offset={scrollOffset}>
           <GithubButton {...iconProps} title="Click to jump to Github search results" />
         </StyledLink>
@@ -64,7 +64,7 @@ export const SearchSources = ({ searchSourcesLoading }) => {
           <GithubButton {...iconProps} title="Login or wait to view Github search results" />
         </StyledDiv>
       )}
-      {authenticated || !searchSourcesLoading ? (
+      {authenticated && !searchSourcesLoading ? (
         <StyledLink to={SEARCH_SOURCE_CONTENT[SEARCH_SOURCES.documize].id} offset={scrollOffset}>
           <DocumizeButton {...iconProps} title="Click to jump to Documize search results" />
         </StyledLink>
