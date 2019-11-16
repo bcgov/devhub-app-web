@@ -115,7 +115,7 @@ export const Masthead = ({ query, resultCount, searchSourcesLoading }) => {
             navigate(`/?q=${encodeURIComponent(terms)}`);
           }}
         />
-        <IconDiv>{!searchSourcesLoading && query && resultCount > 0 && <SearchSources />}</IconDiv>
+        <IconDiv>{query && <SearchSources searchSourcesLoading={searchSourcesLoading} />}</IconDiv>
       </SearchContainer>
       {!authenticated && !alertHasBeenAcknowledged && (
         <AlertMessage
