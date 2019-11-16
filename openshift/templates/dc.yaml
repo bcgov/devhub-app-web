@@ -13,9 +13,9 @@ objects:
       root /var/www/html
       log stdout
       errors stdout
-      
+
       rewrite {
-        regexp ^\/topic\/\w+(\/\w+){0,}
+        regexp ^\/topic(\/[\w|\-|\_|~|\.]+)+
         to {path} {path}/ /topic/
       }
 
