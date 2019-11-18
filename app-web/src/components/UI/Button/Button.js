@@ -96,22 +96,25 @@ export const IconButton = styled.button`
   }
 `;
 
-export const RCButton = props => (
+const SEARCH_SOURCES_ICON = {
+  rocketchat: rocketchatSVG,
+  github: githubPNG,
+  documize: DocumizePNG,
+};
+export const SearchSroucesButton = props => (
   <IconButton {...props}>
-    <img src={rocketchatSVG} style={{ margin: 0 }} alt={'RocketChat logo'} />
+    <img
+      src={SEARCH_SOURCES_ICON[props.searchType]}
+      style={{ margin: 0 }}
+      alt={props.searchType + ' logo'}
+    />
   </IconButton>
 );
 
-export const GithubButton = props => (
-  <IconButton {...props}>
-    <img src={githubPNG} style={{ margin: 0 }} alt={'Github logo'} />
-  </IconButton>
-);
-
-export const DocumizeButton = props => (
-  <IconButton {...props}>
-    <img src={DocumizePNG} style={{ margin: 0 }} alt={'Documize logo'} />
-  </IconButton>
-);
+SearchSroucesButton.propTypes = {
+  searchType: PropTypes.string.isRequired,
+  style: PropTypes.object,
+  title: PropTypes.string.isRequired,
+};
 
 export default Button;

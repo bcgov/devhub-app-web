@@ -50,8 +50,8 @@ export const SEARCH_FIELD_MAPPING = {
 // federated search configurations
 export const SEARCH_SOURCES = {
   rocketchat: 'rocketchat',
-  documize: 'documize',
   github: 'github',
+  documize: 'documize',
 };
 
 export const SEARCH_SOURCE_CONFIG = {
