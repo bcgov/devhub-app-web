@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { SearchSroucesButton } from '../UI/Button/Button';
+import { SearchSourcesButton } from '../UI/Button/Button';
 import { useAuthenticated } from '../../utils/hooks';
 import { Link } from 'react-scroll';
 import { SEARCH_SOURCE_CONTENT } from '../DynamicSearchResults';
@@ -44,18 +44,18 @@ export const SearchSources = ({ searchSourcesLoading }) => {
     <SearchSourcesContainer data-testid={TEST_IDS.container}>
       {authenticated && !searchSourcesLoading ? (
         <StyledLink key={element} to={SEARCH_SOURCE_CONTENT[element].id} offset={scrollOffset}>
-          <SearchSroucesButton
+          <SearchSourcesButton
             searchType={element}
             title={'Click to jump to ' + element + ' search results'}
-          ></SearchSroucesButton>
+          ></SearchSourcesButton>
         </StyledLink>
       ) : (
         <StyledDiv>
-          <SearchSroucesButton
+          <SearchSourcesButton
             searchType={element}
             style={iconProps.style}
             title={'Login or wait to view ' + element + ' search results'}
-          ></SearchSroucesButton>
+          ></SearchSourcesButton>
         </StyledDiv>
       )}
     </SearchSourcesContainer>

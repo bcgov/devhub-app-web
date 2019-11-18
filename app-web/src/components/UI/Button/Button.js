@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import rocketchatSVG from '../../../assets/images/rocketchat_logo.svg';
 import githubPNG from '../../../assets/images/github_logo.png';
 import DocumizePNG from '../../../assets/images/documize_logo.png';
+import { SEARCH_SOURCES } from '../../../constants/search';
 
 const StyledButton = styled.button`
   color: #fff;
@@ -37,6 +38,7 @@ const variants = {
 export const TEST_IDS = {
   button: 'button',
 };
+
 export const Button = ({ variant, children, clicked, ...rest }) => {
   const colors = {
     [variants.primary]: 'blue',
@@ -97,11 +99,12 @@ export const IconButton = styled.button`
 `;
 
 const SEARCH_SOURCES_ICON = {
-  rocketchat: rocketchatSVG,
-  github: githubPNG,
-  documize: DocumizePNG,
+  [SEARCH_SOURCES.rocketchat]: rocketchatSVG,
+  [SEARCH_SOURCES.github]: githubPNG,
+  [SEARCH_SOURCES.documize]: DocumizePNG,
 };
-export const SearchSroucesButton = props => (
+
+export const SearchSourcesButton = props => (
   <IconButton {...props}>
     <img
       src={SEARCH_SOURCES_ICON[props.searchType]}
@@ -111,7 +114,7 @@ export const SearchSroucesButton = props => (
   </IconButton>
 );
 
-SearchSroucesButton.propTypes = {
+SearchSourcesButton.propTypes = {
   searchType: PropTypes.string.isRequired,
   style: PropTypes.object,
   title: PropTypes.string.isRequired,
