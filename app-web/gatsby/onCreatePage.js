@@ -16,21 +16,15 @@ limitations under the License.
 Created by Patrick Simonian
 */
 
-// const { FILTER_BASE_ROUTE } = require('../src/constants/routes');
-// the above declaration is to identify the actual constants where FILTER_BASE_ROUTE
-// should be coming from. At this time, there is no babel transpilation of this file or gatsby-node.js
-// and so requiring from an es6+ file (such as src/constants/routes) will fail.
-// until the time this issue is resolved, we are declaring the filter base route here in the interim.
-const FILTER_BASE_ROUTE = '/resources';
-
 module.exports = async ({ page, actions }) => {
   const { createPage } = actions;
-  const re = new RegExp(`^${FILTER_BASE_ROUTE}`);
   // check if page that's being created matches the filter base routes
   // which is intended for client side loading only
   // https://github.com/gatsbyjs/gatsby/blob/v1/docs/docs/building-apps-with-gatsby.md#client-only-routes--user-authentication
-  if (page.path.match(re)) {
-    page.matchPath = `${FILTER_BASE_ROUTE}/:resource_type`;
+  // only match /topic/ not /topics/
+
+  if (page.path.match(/^\/topic(?!s)/)) {
+    page.matchPath = `/topic/*`;
     createPage(page);
   }
 };

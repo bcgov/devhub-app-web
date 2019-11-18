@@ -2,10 +2,12 @@
 root /var/www/html
 log stdout
 errors stdout
+
 rewrite {
-  if  {path} not_match ^\/0.0.0.0
-  to  {path} {path}/ /?_url={uri}
+  re ^\/topic(\/\w+)+
+  to /topic/index.html
 }
+
 templates {
   ext   .js
 }

@@ -13,15 +13,16 @@ objects:
       root /var/www/html
       log stdout
       errors stdout
+
       rewrite {
-        if  {path} not_match ^\/0.0.0.0
-        to  {path} {path}/ /?_url={uri}
+        regexp ^\/topic(\/[\w|\-|\_|~|\.]+)+
+        to {path} {path}/ /topic/
       }
 
       templates {
         ext   .js
       }
-      gzip
+
       # gatsby_cache_control
       # https://www.gatsbyjs.org/docs/caching/
       header / {
