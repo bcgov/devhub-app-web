@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { RCButton, GithubButton, DocumizeButton } from '../UI/Button/Button';
+import { SearchSourcesButton } from '../UI/Button/Button';
 import { useAuthenticated } from '../../utils/hooks';
 import { Link } from 'react-scroll';
 import { SEARCH_SOURCE_CONTENT } from '../DynamicSearchResults';
@@ -38,41 +38,28 @@ export const SearchSources = ({ searchSourcesLoading }) => {
       boxSizing: 'content-box',
     };
   }
-
   const scrollOffset = -125;
 
-  return (
+  return Object.keys(SEARCH_SOURCES).map(element => (
     <SearchSourcesContainer data-testid={TEST_IDS.container}>
       {authenticated && !searchSourcesLoading ? (
-        <React.Fragment>
-          <StyledLink
-            to={SEARCH_SOURCE_CONTENT[SEARCH_SOURCES.rocketchat].id}
-            offset={scrollOffset}
-          >
-            <RCButton {...iconProps} title="Click to jump to rocket chat search results" />
-          </StyledLink>
-          <StyledLink to={SEARCH_SOURCE_CONTENT[SEARCH_SOURCES.github].id} offset={scrollOffset}>
-            <GithubButton {...iconProps} title="Click to jump to Github search results" />
-          </StyledLink>
-          <StyledLink to={SEARCH_SOURCE_CONTENT[SEARCH_SOURCES.documize].id} offset={scrollOffset}>
-            <DocumizeButton {...iconProps} title="Click to jump to Documize search results" />
-          </StyledLink>
-        </React.Fragment>
+        <StyledLink key={element} to={SEARCH_SOURCE_CONTENT[element].id} offset={scrollOffset}>
+          <SearchSourcesButton
+            searchType={element}
+            title={'Click to jump to ' + element + ' search results'}
+          ></SearchSourcesButton>
+        </StyledLink>
       ) : (
-        <React.Fragment>
-          <StyledDiv>
-            <RCButton {...iconProps} title="Login or wait to view rocket chat search results" />
-          </StyledDiv>
-          <StyledDiv>
-            <GithubButton {...iconProps} title="Login or wait to view Github search results" />
-          </StyledDiv>
-          <StyledDiv>
-            <DocumizeButton {...iconProps} title="Login or wait to view Documize search results" />
-          </StyledDiv>
-        </React.Fragment>
+        <StyledDiv>
+          <SearchSourcesButton
+            searchType={element}
+            style={iconProps.style}
+            title={'Login or wait to view ' + element + ' search results'}
+          ></SearchSourcesButton>
+        </StyledDiv>
       )}
     </SearchSourcesContainer>
-  );
+  ));
 };
 SearchSources.propTypes = {
   searchSourcesLoading: PropTypes.bool,
