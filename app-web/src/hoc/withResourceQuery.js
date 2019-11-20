@@ -201,10 +201,7 @@ const withResourceQuery = WrappedComponent => () => props => (
                 type
               }
               source {
-                displayName
-                sourcePath
                 type
-                name
               }
               resource {
                 path
@@ -216,11 +213,6 @@ const withResourceQuery = WrappedComponent => () => props => (
                 type
                 image
                 author
-              }
-              childMarkdownRemark {
-                frontmatter {
-                  pageOnly
-                }
               }
             }
           }
