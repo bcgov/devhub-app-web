@@ -17,7 +17,7 @@ Created by Patrick Simonian
 */
 
 const { SOURCE_TYPES } = require('./constants');
-const { fetchSourceGithub, validateSourceGithub } = require('./sources/github');
+const { validateSourceGithub } = require('./sources/github');
 const { fetchSourceWeb, validateSourceWeb } = require('./sources/web');
 /**
  * maps to a fetch function for that sourceType,
@@ -26,10 +26,10 @@ const { fetchSourceWeb, validateSourceWeb } = require('./sources/web');
  * @param {Object} source  // source object as found in source regsitry
  * @param {Object} tokens // relevant API tokens needed to fetch from sources
  */
-const fetchFromSource = (sourceType, source, { GITHUB_API_TOKEN }) => {
+const fetchFromSource = (sourceType, source) => {
   switch (sourceType) {
-    case SOURCE_TYPES.GITHUB:
-      return fetchSourceGithub(source, GITHUB_API_TOKEN);
+    // this code used to fetch github sources, this has been removed in  favor of
+    // gatsby-source-github-raw
     case SOURCE_TYPES.WEB:
       return fetchSourceWeb(source);
     default:
