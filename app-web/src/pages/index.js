@@ -80,19 +80,6 @@ const getTopicPreviews = (topics, searchResultsExist) => {
 };
 
 /**
- * returns the resources but without duplicates, based on title as the same resource in different topics will have different id's
- * there is one exception to when we do want resources with the same title though, that being events - thus events are return unchanged
- */
-// const getUniqueResources = resources => {
-//   let events = resources.filter(resource => resource.fields.resourceType === RESOURCE_TYPES.EVENTS);
-//   let allButEvents = resources.filter(
-//     resource => resource.fields.resourceType !== RESOURCE_TYPES.EVENTS,
-//   );
-//   allButEvents = uniqBy(allButEvents, 'fields.title');
-//   return allButEvents.concat(events);
-// };
-
-/**
  * takes in search results
  * returns the total amount of results
  * @param {Array} resources the search results
@@ -117,8 +104,6 @@ const getResourcePreviews = (resources, results = [], title) => {
     resourcesToShow = results.flatMap(result => {
       return resources.filter(resource => result.id === resource.id);
     });
-    //remove any duplicates//// give it a try, if no complanint, next person who read this line please remove this.
-    // resourcesToShow = getUniqueResources(resourcesToShow);
   }
 
   // select resources grouped by type using relesect memoization https://github.com/reduxjs/reselect/issues/30
