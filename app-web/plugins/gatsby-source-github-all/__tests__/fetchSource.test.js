@@ -34,11 +34,6 @@ describe('Fetch Source Routine', () => {
     expect(fetchFromSource(invalidSource.sourceType, invalidSource, sourceOptions)).toEqual([]);
   });
 
-  test('fetch from source calls getFilesFromRepo if source type is github', () => {
-    fetchFromSource(GITHUB_SOURCE.sourceType, GITHUB_SOURCE, sourceOptions);
-    expect(fetchSourceGithub).toHaveBeenCalled();
-  });
-
   test('validateSourceGithub calls validatesourceGithub if source type is github', () => {
     validateSourceRegistry(GITHUB_SOURCE);
     expect(validateSourceGithub).toHaveBeenCalled();
