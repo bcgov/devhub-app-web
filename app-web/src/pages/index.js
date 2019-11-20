@@ -29,10 +29,8 @@ import {
   GITHUB_SEARCH_SOURCE_TYPENAMES,
 } from '../constants/search';
 import { SPACING } from '../constants/designTokens';
-import uniqBy from 'lodash/uniqBy';
 import { formatEvents } from '../templates/events';
 import {
-  RESOURCE_TYPES,
   DYNAMIC_TOPIC_PATHS,
   POPULAR_TOPIC_CONFIGURATION,
   FEATURE_TOPIC_CONFIGURATION,
@@ -85,14 +83,14 @@ const getTopicPreviews = (topics, searchResultsExist) => {
  * returns the resources but without duplicates, based on title as the same resource in different topics will have different id's
  * there is one exception to when we do want resources with the same title though, that being events - thus events are return unchanged
  */
-const getUniqueResources = resources => {
-  let events = resources.filter(resource => resource.fields.resourceType === RESOURCE_TYPES.EVENTS);
-  let allButEvents = resources.filter(
-    resource => resource.fields.resourceType !== RESOURCE_TYPES.EVENTS,
-  );
-  allButEvents = uniqBy(allButEvents, 'fields.title');
-  return allButEvents.concat(events);
-};
+// const getUniqueResources = resources => {
+//   let events = resources.filter(resource => resource.fields.resourceType === RESOURCE_TYPES.EVENTS);
+//   let allButEvents = resources.filter(
+//     resource => resource.fields.resourceType !== RESOURCE_TYPES.EVENTS,
+//   );
+//   allButEvents = uniqBy(allButEvents, 'fields.title');
+//   return allButEvents.concat(events);
+// };
 
 /**
  * takes in search results
@@ -106,20 +104,21 @@ const getSearchResultTotal = results => {
 /**
  * returns a resource preview components
  * @param {Array} resources the list of siphon resources
- * @param {string} queryExists the search query
  * @param {Array} results the list of searched resources
+ * @param {Srting} title the title of currtion card section
  */
-const getResourcePreviews = (resources, queryExists, results = [], title) => {
+const getResourcePreviews = (resources, results = [], title) => {
   const resourcesSelector = selectResourcesGroupedByType();
   let resourcesToShow = [];
+
   if (!isNull(results) && results.length > 0) {
     //map the search index results to the resources. Its important to do it in this order,
     //since the index results are return in order based on relevance
     resourcesToShow = results.flatMap(result => {
       return resources.filter(resource => result.id === resource.id);
     });
-    //remove any duplicates
-    resourcesToShow = getUniqueResources(resourcesToShow);
+    //remove any duplicates//// give it a try, if no complanint, next person who read this line please remove this.
+    // resourcesToShow = getUniqueResources(resourcesToShow);
   }
 
   // select resources grouped by type using relesect memoization https://github.com/reduxjs/reselect/issues/30
@@ -201,9 +200,8 @@ export const Index = ({
   if (results) {
     results = removeUnwantedResults(results, allEvents, eventsAndMeetups);
   }
-  const markdownRemark = flattenGatsbyGraphQL(allMarkdownRemark.edges).filter(
-    node => node.fields.resourceType && node.fields.topicName,
-  );
+
+  const markdownRemark = flattenGatsbyGraphQL(allMarkdownRemark.edges);
 
   // this is defined by ?q='' or ?q=''&q=''..etc
   // if query is empty we prevent the search results empty from being rendered
@@ -218,7 +216,6 @@ export const Index = ({
       .concat(eventsAndMeetups)
       .concat(flattenGatsbyGraphQL(allGithubRaw.edges))
       .concat(markdownRemark),
-    windowHasQuery && !queryIsEmpty,
     results,
     'DevHub Resources',
   );

@@ -58,13 +58,13 @@ export const useSearch = (query, staticIndex) => {
     } else {
       let config = {
         fields: {
-          title: { boost: 4, expand: true, bool: 'OR' },
+          title: { boost: 1, expand: true, bool: 'OR' },
           content: { boost: 1, expand: true, bool: 'OR' },
           description: { boost: 1, expand: true, bool: 'OR' },
           topicName: { boost: 2, expand: true, bool: 'OR' },
-          labels: { boost: 2, expand: true, bool: 'OR' },
-          personas: { boost: 2, expand: true, bool: 'OR' },
-          author: { boost: 2, expand: true, bool: 'OR' },
+          tags: { boost: 4, expand: true, bool: 'OR' },
+          personas: { boost: 1, expand: true, bool: 'OR' },
+          author: { boost: 1, expand: true, bool: 'OR' },
         },
       };
       let searchQuery = query;

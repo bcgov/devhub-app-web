@@ -17,7 +17,7 @@ Created by Patrick Simonian
 */
 const moment = require('moment');
 const htmlToFormattedText = require('html-to-formatted-text');
-const { isPlainObject } = require('lodash');
+const { isPlainObject, isArray } = require('lodash');
 const visit = require('unist-util-visit');
 const remark = require('remark');
 const { RESOURCE_TYPES, PERSONAS_LIST } = require('../src/constants/ui');
@@ -243,6 +243,12 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
         labels = node.frontmatter.labels;
       }
     }
+    let tags = [];
+    if (Object.prototype.hasOwnProperty.call(node.frontmatter, 'tags')) {
+      if (isArray(node.frontmatter.tags)) {
+        tags = node.frontmatter.tags;
+      }
+    }
 
     createNodeField({
       node,
@@ -257,10 +263,11 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
     });
 
     createNodeField({
-      node: parentNode,
-      name: 'labels',
-      value: labels,
+      node,
+      name: 'tags',
+      value: tags,
     });
+
     createNodeField({
       node,
       name: 'description',

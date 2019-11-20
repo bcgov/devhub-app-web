@@ -56,6 +56,7 @@ const withResourceQuery = WrappedComponent => () => props => (
             node {
               fields {
                 title
+                tags
                 slug
                 standAlonePath
                 resourceType
