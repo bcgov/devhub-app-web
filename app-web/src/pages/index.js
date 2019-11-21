@@ -206,11 +206,8 @@ export const Index = ({
   );
 
   let totalSearchResults = 0;
-
-  const resourcesNotFound =
-    !queryIsEmpty &&
-    (!results || (results.length === 0 && windowHasQuery)) &&
-    isEmpty(searchSourceResults);
+  const noSearchResults = results && results.length === 0;
+  const resourcesNotFound = !queryIsEmpty && noSearchResults && isEmpty(searchSourceResults);
 
   const topics = flattenGatsbyGraphQL(allTopicRegistryJson.edges);
   const journeys = flattenGatsbyGraphQL(allJourneyRegistryJson.edges);

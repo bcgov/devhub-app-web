@@ -1,4 +1,5 @@
 import { getFilesFromRegistry, expandRegistry } from '../../gatsby/utils/githubRaw';
+import { registry } from '../../plugins/gatsby-source-github-all/__tests__/registryHelpers';
 
 const SOURCE_1 = {
   sourceType: 'github',
@@ -26,52 +27,6 @@ const SOURCE_3 = {
     file: 'docs/API/KongAPI.md',
   },
 };
-
-const registry = [
-  {
-    name: 'Authentication and Authorization',
-    description:
-      'Technical resources related to implementing authentication and authorization in government applications.',
-    resourceType: 'Documentation',
-    attributes: {
-      personas: ['Developer'],
-    },
-    template: 'overview',
-    sourceProperties: {
-      sources: [
-        {
-          sourceType: 'github',
-          sourceProperties: {
-            owner: 'BCDevOps',
-            repo: 'openshift-wiki',
-            files: ['docs/RH-SSO/RequestSSORealm.md', 'docs/RH-SSO/ServiceDefinition.md'],
-          },
-        },
-      ],
-    },
-  },
-  {
-    name: 'Developer Tools',
-    description:
-      'Tools to assist software developers in building, deploying, and running applications for BC Gov.',
-    resourceType: 'Self-Service Tools',
-    attributes: {
-      personas: ['Developer'],
-    },
-    sourceProperties: {
-      sources: [
-        {
-          sourceType: 'github',
-          sourceProperties: {
-            owner: 'BCDevOps',
-            repo: 'openshift-wiki',
-            files: ['docs/API/KongAPI.md'],
-          },
-        },
-      ],
-    },
-  },
-];
 
 const expandedRegistry = [
   {

@@ -37,7 +37,7 @@ const SOURCE_3 = {
   },
 };
 
-const registry = [
+export const registry = [
   {
     name: 'Authentication and Authorization',
     description:
@@ -134,7 +134,7 @@ describe('applyInferredIdToSources', () => {
   it('applies id to expanded sources', () => {
     const registryWithIds = applyInferredIdToSources(expandedRegistry);
 
-    expect(registryWithIds[0].sources[0].id).toBe('id');
-    expect(registryWithIds[1].sources[0].id).toBe('id');
+    expect(registryWithIds[0].sourceProperties.sources[0].id).toBe('id');
+    expect(registryWithIds[1].sourceProperties.sources[0].id).toBe('id');
   });
 });
