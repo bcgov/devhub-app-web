@@ -300,24 +300,10 @@ const processTopic = async (topic, createNodeId, createNode, createParentChildLi
   await Promise.all(
     topic.sources.map(source => processSource(source, createNodeId, createNode, tokens, id)),
   );
-
-  // let topicContent;
-  // // fetch a github file if has topic source
-  // if (!isEmpty(topic.topicSource)) {
-  //   topicContent = await getContentForTopic(topic.topicSource, tokens, topic.name);
-  // }
-  // // flatten source nodes to get a list of all the resources
-  // const resources = flatten(sourceNodes, true);
-  // // create a hash map of all resources: resource paths original source against the path created
-  // // for a gatsby page
-  // topic.sourceLocations = resources.map(r => [r.resource.originalSource, r.resource.path]);
-
-  // const topicNode = createTopicNode(topic, id, topicContent);
-
-  // await createNode(topicNode);
-  // resources.forEach(r => createParentChildLink({ parent: topicNode, child: r }));
-  // // establish a parent child link between all resources and the topic node
-  // return topicNode;
+  // process topic no longer creates DevhubTopic Nodes !
+  // this was removed to make this plugin less monolithic
+  // there was code right below this that processed the topic and created a node for it
+  // check out the github commits previous to this one to view
 };
 
 /**
