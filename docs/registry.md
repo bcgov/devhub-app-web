@@ -5,7 +5,7 @@ personas:
   - Developer
   - Product Owner
   - Designer
-labels:
+tags:
   - devhub
   - content
   - add content
@@ -431,7 +431,7 @@ One advantage of the Devhub is that it can organize content based on labels and 
 - who authored the content
 - an image that will be visible within the card that represent your content
 - what personas would find this content relevant
-- additional meta data to improve search indexing (this is a future feature)
+- additional meta data to improve search indexing like tags
 
 This meta data is provided by using markdown [__frontmatter__](https://jekyllrb.com/docs/front-matter/).
 
@@ -464,7 +464,8 @@ By default, your markdown file __inherits__ much of its metadata from the topic 
 **`resourceType`**:
     this will override the global resource Type as defined in the registry level configuration. Valid resource types are `Components, Documentation, Repositories, Self-Service Tools`
 
-Example
+**`Tags`**:
+Tags are a way to increase the __'discoverability'__ of your content via keywords. These keywords priority score higher in a search in comparison to the contents title and content body.
 
 ```md
 ---
@@ -476,6 +477,15 @@ personas:
 image: https://github.com/bcgov/BC-Policy-Framework-For-GitHub/blob/master/images/octokat.png?raw=true
 author: Patrick Simonian
 description: Everything you need to know about working with Github in the BC Government.
+tags:
+  - next gen security
+  - custom network policy
+  - Aporeto
+  - zero trust
+  - networksecuritypolicy
+  - openshift security
+
+  
 ---
 
 ## Introduction to Github and Gov
