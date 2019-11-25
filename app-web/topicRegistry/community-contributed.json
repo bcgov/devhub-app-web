@@ -137,6 +137,15 @@
         }
     },
     {
+      "sourceType":"github",
+      "resourceType": "Documentation",
+      "sourceProperties":{
+      "url":"https://github.com/bcgov/ExchangeLabOps/tree/master/Resident-Teams",
+      "repo":"ExchangeLabOps",
+      "owner":"bcgov"
+      }
+    },
+    {
         "sourceType":"web",
         "sourceProperties":{
             "url":"https://apistore.nrs.gov.bc.ca/store/apis/info?version=v1&name=dms-api&provider=admin",
