@@ -142,7 +142,10 @@
       "sourceProperties":{
       "url":"https://github.com/bcgov/ExchangeLabOps/tree/master/Resident-Teams",
       "repo":"ExchangeLabOps",
-      "owner":"bcgov"
+      "owner":"bcgov",
+      "files": [
+        "README.md"
+      ]
       }
     },
     {
