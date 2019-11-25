@@ -140,11 +140,11 @@
       "sourceType":"github",
       "resourceType": "Documentation",
       "sourceProperties":{
-      "url":"https://github.com/bcgov/ExchangeLabOps/tree/master/Resident-Teams",
+      "url":"https://github.com/bcgov/ExchangeLabOps",
       "repo":"ExchangeLabOps",
       "owner":"bcgov",
       "files": [
-        "README.md"
+        "blob/master/Resident-Teams/README.md"
       ]
       }
     },
