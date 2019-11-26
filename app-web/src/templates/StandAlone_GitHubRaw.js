@@ -27,6 +27,7 @@ import Actions from '../components/GithubTemplate/Actions/Actions';
 import { withPadding, MarkdownBody } from '../components/GithubTemplate/common';
 import slugify from 'slugify';
 import { Link } from '../components/UI/Link';
+import { Helmet } from 'react-helmet';
 
 const PillDiv = styled.div`
   display: flex;
@@ -138,6 +139,9 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
   const [owner, repo] = html_url.replace('https://github.com/', '').split('/');
   return (
     <Layout>
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
       <Header>
         <HeaderTitle>Resource Information</HeaderTitle>
         <PillDiv>{resourceTypePill}</PillDiv>

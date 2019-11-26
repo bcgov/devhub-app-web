@@ -38,6 +38,7 @@ import {
   SidePanel,
   MarkdownBody,
 } from '../components/GithubTemplate/common';
+import { Helmet } from 'react-helmet';
 
 class SourceGithubMarkdownDefault extends React.Component {
   state = {
@@ -69,6 +70,9 @@ class SourceGithubMarkdownDefault extends React.Component {
 
     return (
       <Layout>
+        <Helmet>
+          <title>{title}</title>
+        </Helmet>
         <div>
           <Masthead type="Topics" title={topic.name} description={topic.description} />
           <Main>

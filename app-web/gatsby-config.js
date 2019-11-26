@@ -127,7 +127,6 @@ module.exports = {
     },
     'gatsby-plugin-offline',
     'gatsby-plugin-emotion',
-    `gatsby-plugin-react-helmet`,
     // Adding various source folders to the GraphQL layer.
     {
       resolve: 'gatsby-source-filesystem',
