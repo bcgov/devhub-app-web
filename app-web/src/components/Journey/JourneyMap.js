@@ -60,7 +60,7 @@ export const JourneyMap = ({ title, link, stops, description }) => {
 
 JourneyMap.propTypes = {
   title: PropTypes.string,
-  link: PropTypes.string,
+  link: PropTypes.object,
   description: PropTypes.string,
   stops: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string })),
 };
