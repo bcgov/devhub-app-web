@@ -38,7 +38,6 @@ const SOURCE_3 = {
   },
 };
 
-// origional registry example that fetch from github api, will be expanded and become a induvidual source later.
 const expandedRegistry = [
   {
     name: 'Authentication and Authorization',

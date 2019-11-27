@@ -652,6 +652,7 @@ const TOPIC_OBJ_FROM_FETCH_QUEUE = {
   },
 };
 
+// origional registry example that fetch from github api, will be expanded and become a induvidual source later.
 const GithubRegistry = [
   {
     name: 'Authentication and Authorization',
