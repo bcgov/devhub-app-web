@@ -46,10 +46,6 @@ export const Layout = ({ children }) => {
     <StyledContainer fluid>
       {/* This is to fix the some of the issues occuring on IE 11, specifically the nav issues*/}
       <Helmet>
-        <meta
-          name="google-site-verification"
-          content="sEwqJtv-PSo2SCd0AVtgKrj_hAUn0P3b37qptI0Ezfk"
-        />
         <script src="https://cdn.polyfill.io/v2/polyfill.min.js" />
       </Helmet>
       <PrimaryHeader
