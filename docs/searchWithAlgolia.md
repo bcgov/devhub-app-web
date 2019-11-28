@@ -4,6 +4,10 @@ title: Searching With Algolia
 <!-- Please note the above frontmatter is just incase we would want to 'host' this document as a site
 in gatsby -->
 
+The Devhub has moved over to leveraging Algolia for its search. In order to develop __locally__, setting
+up a personal account with [Algolia](https://algolia.com) is required. The community version of the account is 
+free and doesn't require a credit card. Only a valid Github ID is required for loggingin.
+
 The Devhub originally used a __Client-side based__ search engine called `elasticlunr`. While this 
 search engine has been working great for the application, there are a few significant cons to leveraging
 it.
