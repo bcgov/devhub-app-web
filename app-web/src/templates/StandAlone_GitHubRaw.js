@@ -27,6 +27,7 @@ import Actions from '../components/GithubTemplate/Actions/Actions';
 import { withPadding, MarkdownBody } from '../components/GithubTemplate/common';
 import slugify from 'slugify';
 import { Link } from '../components/UI/Link';
+import { SEO } from '../components/SEO/SEO';
 
 const PillDiv = styled.div`
   display: flex;
@@ -138,6 +139,7 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
   const [owner, repo] = html_url.replace('https://github.com/', '').split('/');
   return (
     <Layout>
+      <SEO title={title} />
       <Header>
         <HeaderTitle>Resource Information</HeaderTitle>
         <PillDiv>{resourceTypePill}</PillDiv>

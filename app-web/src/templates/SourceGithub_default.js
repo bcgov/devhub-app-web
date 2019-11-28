@@ -38,6 +38,7 @@ import {
   SidePanel,
   MarkdownBody,
 } from '../components/GithubTemplate/common';
+import { SEO } from '../components/SEO/SEO';
 
 class SourceGithubMarkdownDefault extends React.Component {
   state = {
@@ -69,6 +70,7 @@ class SourceGithubMarkdownDefault extends React.Component {
 
     return (
       <Layout>
+        <SEO title={title} />
         <div>
           <Masthead type="Topics" title={topic.name} description={topic.description} />
           <Main>
