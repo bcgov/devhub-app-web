@@ -123,6 +123,7 @@ describe('Home Page', () => {
     queryString.parse.mockReturnValue({ q: 'foo' });
     // rerender stubbing no results for resources
     useSearch.mockReturnValue([]);
+    removeUnwantedResults.mockReturnValue([]);
     rerender(
       <ThemeProvider theme={theme}>
         <ApolloProvider client={client}>
