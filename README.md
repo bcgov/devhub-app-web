@@ -113,10 +113,10 @@ Here are some of the other components/technologies used by DevHub:
 - ReactJS
 - GraphQL
 - StorybookJS
-## Third-Party Products/Libraries used and the the License they are covered by
 
+## Third-Party Products/Libraries
+- Algolia (for searching) 
 - GatsbyJS  
-[![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/gatsbyjs/gatsby/blob/master/LICENSE)
 
 
 ## Project Status
@@ -125,7 +125,9 @@ In Development
 ## Documentation
 - [Internal Docs](docs/README.md)
 - [Authoring Plugins for Remark](https://www.huynguyen.io/2018-05-remark-gatsby-plugin-part-2/)
-- [Testing and QA](docs/testingAndQa.md);
+- [Testing and QA](docs/testingAndQa.md)
+- [Search](docs/searchWithAlgolia.md)
+
 ## Security
 
 ### Authentication, Authorization, Policies, etc
@@ -142,6 +144,8 @@ This project follows the [GitHub Flow workflow](https://guides.github.com/introd
 
 As indicated above, the team follows the GitHub approach for managing code and releases.  Accompanying this general approach the team has implemented some specific structures, tools and practices that are described in this section.
 
+<!-- 
+This should be in a CONTRIBUTING.md file
 ##### Branch Structure
 
 In the repo, at any given time, several to many branches may exist, and these can be categorized into a few "types" of branches, used for specific purposes.  Each is outlined below.
@@ -149,7 +153,7 @@ In the repo, at any given time, several to many branches may exist, and these ca
 * `master` branch: code that has been deployed an accepted in production ends up here.  It is the source from which new feature branches are created.
 * `feature/<#>-<issue-or-user-story-description>` branch: branches named following a similar format to the one shown are "feature branches" and created for the purpose of capturing work related to a single feature, often corresponding to a single, specific user story or issue.  This type of branch is created based on the lastest contents of `master`.
 * `hotfix/<#>-<issue-description>`: a "hotfix" branch for a change required to remediate an urgent problem found in the production instance of the application.  This type of branch would be based on the state of the master branch at the point the code in production was merged into it.
-* `chore/#-<issue-description>`: chore or housekeeping tasks for the repository
+* `chore/#-<issue-description>`: chore or housekeeping tasks for the repository -->
 
 ##### Lifecycle
 
@@ -172,7 +176,7 @@ Feature lifecycle is as follows:
 Any issues that are created within this repository are synced with our Zenhub kanban board.
 
 ## Getting Started
-
+* Setup a Developer Account with [Algolia](https://algolia.com). Use the __Community__ version.
 * change into app-web project directory
 * copy and update your env file
 * `cp .env.production.example .env.production`
@@ -180,6 +184,7 @@ Any issues that are created within this repository are synced with our Zenhub ka
    leave it as a blank variable.
 * set up a secret to allow the openshift builder service account to push devhub 'dev mode' images to
   docker hub, instructions [here](./docs/devhub-previewer-setup.md)
+
 ## Deployment (Local Development For App-Web)
 
 * Requires **Node 10** and **npm 6**
