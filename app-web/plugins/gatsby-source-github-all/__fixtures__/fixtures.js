@@ -653,7 +653,7 @@ const TOPIC_OBJ_FROM_FETCH_QUEUE = {
 };
 
 // origional registry example that fetch from github api, will be expanded and become a induvidual source later.
-const GithubRegistry = [
+const GITHUB_REGISTRY = [
   {
     name: 'Authentication and Authorization',
     description:
@@ -718,5 +718,5 @@ module.exports = {
   GITHUB_SOURCE_WITHIN_INLINE_IGNORES,
   CONFIG_OPTIONS,
   TREE_FILES,
-  GithubRegistry,
+  GITHUB_REGISTRY,
 };

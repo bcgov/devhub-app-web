@@ -1,5 +1,5 @@
 import { getFilesFromRegistry, expandRegistry } from '../../gatsby/utils/githubRaw';
-import { GithubRegistry } from '../../plugins/gatsby-source-github-all/__fixtures__/fixtures';
+import { GITHUB_REGISTRY } from '../../plugins/gatsby-source-github-all/__fixtures__/fixtures';
 
 const SOURCE_1 = {
   sourceType: 'github',
@@ -58,7 +58,7 @@ const expandedRegistry = [
 
 describe('expandRegistry', () => {
   it('expands any github files into individual sources', () => {
-    expect(expandRegistry(GithubRegistry)).toEqual(expandedRegistry);
+    expect(expandRegistry(GITHUB_REGISTRY)).toEqual(expandedRegistry);
   });
 });
 

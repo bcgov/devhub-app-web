@@ -4,7 +4,7 @@ import {
   applyInferredIdToSources,
 } from '../utils/registryHelpers';
 import { flattenGithubFilesToRegistryItems } from '../utils/sources/github';
-import { GithubRegistry } from '../__fixtures__/fixtures';
+import { GITHUB_REGISTRY } from '../__fixtures__/fixtures';
 jest.mock('../utils/inferIdByType.js', () => ({
   inferIdByType: jest.fn(() => 'id'),
 }));
@@ -72,7 +72,7 @@ describe('expandRegistry', () => {
       .mockReturnValueOnce([SOURCE_1, SOURCE_2])
       .mockReturnValueOnce([SOURCE_3]);
 
-    expect(expandRegistry(GithubRegistry)).toEqual(expandedRegistry);
+    expect(expandRegistry(GITHUB_REGISTRY)).toEqual(expandedRegistry);
   });
 });
 
