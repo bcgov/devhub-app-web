@@ -4,6 +4,7 @@ require('dotenv').config({
 const { topicRegistry, journeyRegistry } = require('./devhub.config.json');
 const { converter } = require('./gatsby/utils/gatsbyRemark');
 const { getFilesFromRegistry } = require('./gatsby/utils/githubRaw');
+const queries = require('./src/utils/algolia');
 // To specify a path of the registry.yaml file, set as env variable
 // This comes as a pair of sourceRegistryType used by gatsby-source-github-all
 // const registry_path = process.env.REGISTRY_PATH || '';
@@ -182,6 +183,7 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-yaml',
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-create-client-paths`,
       options: { prefixes: ['/topic/*'] }, // dynamic topic pages
@@ -238,6 +240,15 @@ module.exports = {
         // If REGISTRY_PATH is set specifically, include this REGISTRY_TYPE as an env var
         // Format convention: camalcase of the sub path + 'Yaml'
         sourceRegistryType: 'TopicRegistryJson',
+      },
+    },
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.GATSBY_ALGOLIA_APP_ID,
+        apiKey: process.env.ALGOLIA_ADMIN_KEY,
+        queries,
+        chunkSize: 10000, // default: 1000
       },
     },
     {
