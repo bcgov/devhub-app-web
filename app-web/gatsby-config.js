@@ -4,7 +4,7 @@ require('dotenv').config({
 const { topicRegistry, journeyRegistry } = require('./devhub.config.json');
 const { converter } = require('./gatsby/utils/gatsbyRemark');
 const { getFilesFromRegistry } = require('./gatsby/utils/githubRaw');
-const queries = require('./src/utils/algolia');
+const { getQueries } = require('./src/utils/algolia');
 // To specify a path of the registry.yaml file, set as env variable
 // This comes as a pair of sourceRegistryType used by gatsby-source-github-all
 // const registry_path = process.env.REGISTRY_PATH || '';
@@ -247,7 +247,7 @@ module.exports = {
       options: {
         appId: process.env.GATSBY_ALGOLIA_APP_ID,
         apiKey: process.env.ALGOLIA_ADMIN_KEY,
-        queries,
+        queries: getQueries(process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX),
         chunkSize: 10000, // default: 1000
       },
     },

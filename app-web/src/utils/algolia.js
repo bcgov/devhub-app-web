@@ -49,7 +49,7 @@ const flatten = arr =>
   }));
 const settings = { attributesToSnippet: [`excerpt:20`] };
 
-const queries = [
+export const queries = [
   {
     query: githubSourceQuery,
     transformer: ({ data }) => flatten(data.githubSource.edges),
@@ -70,7 +70,13 @@ const queries = [
   },
 ];
 
-export const getQueries = suffix =>
-  queries.map(q => ({ ...q, indexName: `${q.indexName}-${suffix}` }));
-
-module.exports = queries;
+/**
+ * returns all queries with the indexname suffixed
+ * @param {String} suffix the suffix for the index
+ * @returns {Array} the queries used by gatsby-plugin-algolia
+ */
+export const getQueries = (suffix = '') => {
+  let suffixName = '';
+  if (suffix) suffixName = `-${suffix}`;
+  return queries.map(q => ({ ...q, indexName: `${q.indexName}${suffixName}` }));
+};
