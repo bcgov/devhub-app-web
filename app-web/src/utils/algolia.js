@@ -10,11 +10,6 @@ const algoliaIndexQuery = `{
             tags
           }
           internal {
-            type
-          }
-        }
-      }
-    }
     DevhubSiphon: allDevhubSiphon {
     edges {
       node {
