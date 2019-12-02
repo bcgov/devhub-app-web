@@ -6,10 +6,8 @@ const githubSourceQuery = `{
           fields {
             author
             description
-            slug
             title
             tags
-            topicName
           }
         }
       }
@@ -22,13 +20,8 @@ const allDevhubSiphonQuery = `{
       node {
         objectID: id
         fields {
-          personas
           title
           description
-          labels
-          topics {
-            name
-          }
         }
       }
     }
@@ -43,7 +36,6 @@ const allEventbriteEventsQuery = `{
               fields {
                 title
                 description
-                topics
               }
             }
         }
@@ -77,5 +69,8 @@ const queries = [
     settings,
   },
 ];
+
+export const getQueries = suffix =>
+  queries.map(q => ({ ...q, indexName: `${q.indexName}-${suffix}` }));
 
 module.exports = queries;
