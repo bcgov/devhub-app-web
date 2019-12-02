@@ -6,6 +6,9 @@
 // deploying jenkins slave pods has this environment variable set. 
 pipeline {
     agent none
+    triggers {
+        pollSCM ignorePostCommitHooks: true, scmpoll_spec: 'H H * * *'
+    }
     environment {
         COMPONENT_NAME = 'DevHub web app'
         COMPONENT_HOME = '/'
