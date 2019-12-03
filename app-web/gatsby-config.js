@@ -5,6 +5,7 @@ const { topicRegistry, journeyRegistry } = require('./devhub.config.json');
 const { converter } = require('./gatsby/utils/gatsbyRemark');
 const { getFilesFromRegistry } = require('./gatsby/utils/githubRaw');
 const { getQueries } = require('./src/utils/algolia');
+
 // To specify a path of the registry.yaml file, set as env variable
 // This comes as a pair of sourceRegistryType used by gatsby-source-github-all
 // const registry_path = process.env.REGISTRY_PATH || '';
