@@ -1,5 +1,5 @@
 const githubSourceQuery = `{
-    githubSource: allMarkdownRemark {
+    GithubSource: allMarkdownRemark {
       edges {
         node {
           objectID: id
