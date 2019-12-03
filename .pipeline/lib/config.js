@@ -4,6 +4,10 @@ const changeId = options.pr || options.suffix; //aka pull-request
 const version = '1.0.0';
 const name = 'devhub';
 
+const algolia = {
+  indices: ['MarkdownRemark', 'DevhubSiphon', 'EventbriteEvents']
+};
+
 const phases = {
   build: {
     namespace: 'devhub-tools',
@@ -53,4 +57,4 @@ process.on('unhandledRejection', reason => {
   process.exit(1);
 });
 
-module.exports = exports = { phases, options };
+module.exports = exports = { phases, options, algolia };
