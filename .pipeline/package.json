@@ -9,7 +9,8 @@
     "build": "node build.js",
     "clean": "node clean.js",
     "deploy": "node deploy.js",
-    "clone-algolia-index": "node algolia.js",
+    "clone-algolia-index": "node clone-algolia-index.js",
+    "delete-algolia-index": "node delete-algolia-index.js",
     "build-previewer": "node build-previewer.js",
     "test:lint": "eslint --fix .",
     "version": "echo \"node@$(node --version) ($(which node))\" && echo \"npm@$(npm --version) ($(which npm))\" && npm ls"
