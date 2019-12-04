@@ -1,4 +1,4 @@
-const githubSourceQuery = `{
+const algoliaIndexQuery = `{
     GithubSource: allMarkdownRemark {
       edges {
         node {
@@ -9,12 +9,12 @@ const githubSourceQuery = `{
             title
             tags
           }
+          internal {
+            type
+          }
         }
       }
     }
-  }`;
-
-const allDevhubSiphonQuery = `{
     DevhubSiphon: allDevhubSiphon {
     edges {
       node {
@@ -23,49 +23,44 @@ const allDevhubSiphonQuery = `{
           title
           description
         }
+        internal {
+          type
+        }
       }
     }
   }
-}`;
-
-const allEventbriteEventsQuery = `{
-    EventbriteEvents: allEventbriteEvents {
-        edges {
-            node {
-            objectID: id
-              fields {
-                title
-                description
-              }
-            }
+  EventbriteEvents: allEventbriteEvents {
+    edges {
+        node {
+        objectID: id
+          fields {
+            title
+            description
+          }
+          internal {
+            type
+          }
         }
+      }
     }
-}`;
+  }`;
 
 const flatten = arr =>
-  arr.map(({ node: { frontmatter, ...rest } }) => ({
-    ...frontmatter,
-    ...rest,
+  arr.map(({ node: { fields, objectId, internal: { type } } }) => ({
+    ...fields,
+    objectId,
+    __type: type,
   }));
 const settings = { attributesToSnippet: [`excerpt:20`] };
 
 export const queries = [
   {
-    query: githubSourceQuery,
-    transformer: ({ data }) => flatten(data.githubSource.edges),
-    indexName: `MarkdownRemark`,
-    settings,
-  },
-  {
-    query: allDevhubSiphonQuery,
-    transformer: ({ data }) => flatten(data.DevhubSiphon.edges),
-    indexName: `DevhubSiphon`,
-    settings,
-  },
-  {
-    query: allEventbriteEventsQuery,
-    transformer: ({ data }) => flatten(data.EventbriteEvents.edges),
-    indexName: `EventbriteEvents`,
+    query: algoliaIndexQuery,
+    transformer: ({ data: { GithubSource, DevhubSiphon, EventbriteEvents } }) =>
+      flatten(GithubSource.edges)
+        .concat(flatten(DevhubSiphon.edges))
+        .concat(flatten(EventbriteEvents.edges)),
+    indexName: `Devhub-Algolia`,
     settings,
   },
 ];
