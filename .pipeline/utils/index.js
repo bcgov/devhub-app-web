@@ -19,7 +19,6 @@ Created by Patrick Simonian
 const fetch = require('node-fetch');
 const algoliasearch = require('algoliasearch');
 const client = algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_ADMIN_KEY);
-const { algolia: { indices }} = require('../lib/config');
 
 const postRocketChatMessage = (url, payload) =>
   fetch(url, {
@@ -28,18 +27,16 @@ const postRocketChatMessage = (url, payload) =>
     headers: { 'Content-Type': 'application/json' },
   });
 
-const promisifiedCopyIndex = ( src, dest) =>  new Promise((resolve, reject) => {
-  client.copyIndex(src, dest, (err, content) => {
-    if(err) reject(err);
-    resolve(content);
+const promisifiedCopyIndex = (src, dest) =>
+  new Promise((resolve, reject) => {
+    client.copyIndex(src, dest, (err, content) => {
+      if (err) reject(err);
+      resolve(content);
+    });
   });
-});
 
-const cloneIndexTo = async (suffix, destinationSuffix) => {
-  const promises = indices.map(index => promisifiedCopyIndex(`${index}${destinationSuffix}`));
-
-  return await Promise.all(suffix);
-}
-
+const cloneIndexTo = async (src, destination) => {
+  return await promisifiedCopyIndex(src, destination);
+};
 
 module.exports = { postRocketChatMessage, cloneIndexTo };
