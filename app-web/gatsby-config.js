@@ -9,7 +9,7 @@ const { getQueries } = require('./src/utils/algolia');
 // To specify a path of the registry.yaml file, set as env variable
 // This comes as a pair of sourceRegistryType used by gatsby-source-github-all
 // const registry_path = process.env.REGISTRY_PATH || '';
-
+console.log(getQueries(process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX));
 const eventbritePlugin = () =>
   process.env.EVENT_BRITE_API_KEY
     ? {

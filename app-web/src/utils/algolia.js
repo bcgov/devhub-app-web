@@ -1,5 +1,21 @@
 const algoliaIndexQuery = `{
-  GithubSource: allMarkdownRemark {
+    GithubSource: allMarkdownRemark {
+      edges {
+        node {
+          objectID: id
+          fields {
+            author
+            description
+            title
+            tags
+          }
+          internal {
+            type
+          }
+        }
+      }
+    }
+    DevhubSiphon: allDevhubSiphon {
     edges {
       node {
         objectID: id
@@ -15,20 +31,6 @@ const algoliaIndexQuery = `{
       }
     }
   }
-  DevhubSiphon: allDevhubSiphon {
-  edges {
-    node {
-      objectID: id
-      fields {
-        title
-        description
-      }
-      internal {
-        type
-      }
-    }
-  }
-}
 EventbriteEvents: allEventbriteEvents {
   edges {
       node {
