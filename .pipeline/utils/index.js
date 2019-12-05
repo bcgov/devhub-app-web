@@ -35,8 +35,8 @@ const promisifiedCopyIndex = (src, dest) =>
     });
   });
 
-const cloneIndexTo = async (src, destination) => {
-  return await promisifiedCopyIndex(src, destination);
+const cloneIndexTo = (src, destination) => {
+  return promisifiedCopyIndex(src, destination);
 };
 
 module.exports = { postRocketChatMessage, cloneIndexTo };
