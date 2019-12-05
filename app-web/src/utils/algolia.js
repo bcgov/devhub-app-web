@@ -1,3 +1,4 @@
+
 const algoliaIndexQuery = `{
     GithubSource: allMarkdownRemark {
       edges {
