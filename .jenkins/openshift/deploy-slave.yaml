@@ -45,6 +45,16 @@ objects:
             -executors ${SLAVE_EXECUTORS} -labels '${SLAVE_LABELS}' -mode
             'normal' -retry 10 -tunnel $JENKINS_MASTER_SERVICE:50000 -disableClientsUniqueId
           env:
+          - name: ALGOLIA_APP_ID
+            valueFrom:
+              secretKeyRef:
+                name: devhub-algolia-build
+                key: GATSBY_ALGOLIA_APP_ID
+          - name: ALGOLIA_ADMIN_KEY
+            valueFrom:
+              secretKeyRef:
+                name: devhub-algolia-build
+                key: ALGOLIA_ADMIN_KEY
           - name: GITHUB_TOKEN
             valueFrom:
               secretKeyRef:
