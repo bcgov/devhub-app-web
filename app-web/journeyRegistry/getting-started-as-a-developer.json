@@ -57,6 +57,16 @@
         "sourceType": "github",
         "sourceProperties":
           { 
+            "file": "README.md",
+            "url": "https://github.com/bcgov/BC-Policy-Framework-For-GitHub", 
+            "owner": "bcgov", 
+            "repo": "BC-Policy-Framework-For-GitHub"
+           }
+      },
+      { 
+        "sourceType": "github",
+        "sourceProperties":
+          { 
             "file": "resources/community/best-practices-for-app-development.md",
             "url": "https://github.com/bcgov/devhub-resources", 
             "owner": "bcgov", 
