@@ -65,6 +65,17 @@ objects:
               secretKeyRef:
                 name: devhub-gh-token
                 key: GITHUB_TOKEN
+          - name: GATSBY_ALGOLIA_APP_ID
+              secretKeyRef:
+                name: devhub-algolia-build
+                key: GATSBY_ALGOLIA_APP_ID
+          - name: ALGOLIA_ADMIN_KEY
+            valueFrom:
+              secretKeyRef:
+                name: devhub-algolia-build
+                key: ALGOLIA_ADMIN_KEY
+          - name: GATSBY_ALGOLIA_INDEX_NAME_SUFFIX
+            value: ${SUFFIX}
           - name: MEETUP_API_KEY
             valueFrom: 
               secretKeyRef:
