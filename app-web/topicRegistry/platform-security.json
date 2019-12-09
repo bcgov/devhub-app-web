@@ -14,7 +14,7 @@
               "owner": "BCDevOps",
               "repo": "platform-services",
               "files": [
-                "security/aporeto/docs/README.md",
+                "security/README.md",
                 "security/aporeto/docs/QuickStart.md",
                 "security/aporeto/docs/ExternalNetworks.md",
                 "security/aporeto/docs/CustomPolicy.md",
