@@ -1,19 +1,38 @@
 const algoliaIndexQuery = `{
-    GithubSource: allMarkdownRemark {
-      edges {
-        node {
-          objectID: id
-          fields {
-            author
-            description
-            title
-            tags
-          }
-          internal {
-    DevhubSiphon: allDevhubSiphon {
+  GithubSource: allMarkdownRemark {
     edges {
       node {
         objectID: id
+        fields {
+          author
+          description
+          title
+          tags
+        }
+        internal {
+          type
+        }
+      }
+    }
+  }
+  DevhubSiphon: allDevhubSiphon {
+  edges {
+    node {
+      objectID: id
+      fields {
+        title
+        description
+      }
+      internal {
+        type
+      }
+    }
+  }
+}
+EventbriteEvents: allEventbriteEvents {
+  edges {
+      node {
+      objectID: id
         fields {
           title
           description
@@ -24,21 +43,7 @@ const algoliaIndexQuery = `{
       }
     }
   }
-  EventbriteEvents: allEventbriteEvents {
-    edges {
-        node {
-        objectID: id
-          fields {
-            title
-            description
-          }
-          internal {
-            type
-          }
-        }
-      }
-    }
-  }`;
+}`;
 
 const flatten = arr =>
   arr.map(({ node: { fields, objectId, internal: { type } } }) => ({
