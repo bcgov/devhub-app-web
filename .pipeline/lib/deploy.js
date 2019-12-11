@@ -88,6 +88,7 @@ module.exports = async settings => {
       required_contexts: [], // create deployment even if status checks fail
       description: options.description,
       environment: githubEnvironmentMapping[phase],
+      log_url: `https://devhub-static-dev-${changeId}-devhub-dev.pathfinder.gov.bc.ca`,
     },
     repository,
     owner,
