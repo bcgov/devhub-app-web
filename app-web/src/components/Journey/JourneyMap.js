@@ -52,7 +52,9 @@ export const JourneyMap = ({ title, link, stops, description }) => {
           )}
         </TopicTitle>
         {description && <JourneyDescription clamp={3}>{description}</JourneyDescription>}
-        <SubwayLine stops={stops} color={JOURNEY} />
+        <div style={{ overflowX: 'auto' }}>
+          <SubwayLine stops={stops} color={JOURNEY} />
+        </div>
       </PreviewContainer>
     </JourneyContainer>
   );
