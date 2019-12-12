@@ -25,16 +25,6 @@
       },
       {
         "sourceType": "web",
-        "resourceType": "Events",
-        "sourceProperties": {
-          "url": "https://events.redhat.com/profile/form/index.cfm?PKformID=0x74120abcd&sc_cid=701f20000012x6EAAQ&elqTrackId=0c85624becbd4ba180570953ad861f38",
-          "title": "Red Hat Security Symposium Victoria",
-          "description": "Sept 5 2019 - Join the Security Symposium, where cybersecurity professionals can learn and network alongside Red Hat and Intel security experts, partners, and industry peers. No one can solve IT security issues alone. Solving problems together as a community is the future of technology.",
-          "image": "https://events.redhat.com/accounts/register123/redhat/events/701f20000012i4xaaq/RH-Intel-400x112.png"
-        }
-      },
-      {
-        "sourceType": "web",
         "resourceType": "Self-Service Tools",
         "sourceProperties": {
           "url": "https://www.bcdevexchange.org",
@@ -101,15 +91,6 @@
           "title": "DevOps Victoria",
           "description": "This group is about Lean IT and the DevOp mindset, we aim to explore disciplined ways of applying DevOps and how it ties into both business and IT transformation. If your interested in networking, discussions, presentations around the people, process, technologies and strategy around DevOps then please feel free to join us.",
           "image": "https://secure.meetupstatic.com/photos/event/2/d/1/9/highres_468131545.jpeg"
-        }
-      },
-      {
-        "sourceType": "web",
-        "resourceType": "Events",
-        "sourceProperties": {
-          "url": "https://www.redhat.com/en/events/DevSecOps-Victoria-August8",
-          "title": "Red Hat DevSecOps Roadshow",
-          "description": "Held on August 8th, the Red Hat DevSecOps Workshop is a unique hands-on experience for building, deploying, and securing containerized cloud-native applications using industry-standard open source technologies"
         }
       },
       {
