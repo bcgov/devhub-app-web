@@ -50,7 +50,7 @@ export const DecorativeBar = styled.div`
 `;
 
 export const Title = styled(Dotdotdot)`
-  font-size: 20px;
+  font-size: 18px;
   color: ${({ theme }) => theme.colors.grey};
   line-height: 1.3;
   margin-bottom: 0;

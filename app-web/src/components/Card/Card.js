@@ -140,6 +140,7 @@ export const Card = ({
         title={title}
         description={description}
         link={link}
+        isExternal={isExternal}
         {...rest}
       />
     );
@@ -176,7 +177,7 @@ Card.defaultProps = {
 };
 
 // used for eventbrite and meetup cards
-export const EventCard = ({ title, description, image, link, event }) => {
+export const EventCard = ({ title, description, image, link, event, isExternal }) => {
   let cardBody = null;
   let clampAmount = 3;
   //if takes one line.......
@@ -208,34 +209,32 @@ export const EventCard = ({ title, description, image, link, event }) => {
     );
   }
 
-  cardBody = (
-    <React.Fragment>
-      <Description clamp={clampAmount} tagName="p">
-        {description}
-      </Description>
-      <EventContainer>
-        <EventDate>
-          <span>{content.date.month}</span>
-          {content.date.day}
-          <small>{content.date.year}</small>
-        </EventDate>
-        <EventInfoDiv>
-          <li>
-            {content.venue}
-            {content.logo}
-          </li>
-        </EventInfoDiv>
-      </EventContainer>
-    </React.Fragment>
-  );
+  cardBody = <React.Fragment></React.Fragment>;
 
   return (
-    <Card
-      title={title}
-      resourceType={RESOURCE_TYPES.EVENTS}
-      renderBody={() => cardBody}
-      link={link}
-    />
+    <BaseCard resourceType={RESOURCE_TYPES.EVENTS} link={link}>
+      <CardBody>
+        <CardHeader resourceType={RESOURCE_TYPES.EVENTS} linksToExternal={isExternal} />
+
+        <Title clamp={4}>{title}</Title>
+        <Description clamp={clampAmount} tagName="p">
+          {description}
+        </Description>
+        <EventContainer>
+          <EventDate>
+            <span>{content.date.month}</span>
+            {content.date.day}
+            <small>{content.date.year}</small>
+          </EventDate>
+          <EventInfoDiv>
+            <li>
+              {content.venue}
+              {content.logo}
+            </li>
+          </EventInfoDiv>
+        </EventContainer>
+      </CardBody>
+    </BaseCard>
   );
 };
 

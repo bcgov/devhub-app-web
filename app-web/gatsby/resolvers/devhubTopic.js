@@ -39,13 +39,13 @@ const resolveDevhubTopicConnections = (source, args, context) => {
       type: 'GithubRaw',
     });
 
-    let eventbriteNodes = context.nodeModel.getAllNodes({
-      type: 'EventbriteEvents',
-    });
+    // let eventbriteNodes = context.nodeModel.getAllNodes({
+    //   type: 'EventbriteEvents',
+    // });
 
-    let meetupNodes = context.nodeModel.getAllNodes({
-      type: 'MeetupEvent',
-    });
+    // let meetupNodes = context.nodeModel.getAllNodes({
+    //   type: 'MeetupEvent',
+    // });
 
     // siphon nodes produce multiples of the same type which we need to filter out
     webNodes = uniqBy(webNodes, 'path');
@@ -59,21 +59,19 @@ const resolveDevhubTopicConnections = (source, args, context) => {
       }));
 
     // event nodes are only connected if they occur in the future
-    const eventNodes = eventbriteNodes
-      .concat(meetupNodes)
-      .filter(n => nodeBelongsToTopic(source.name, n) && n.fields.daysFromNow >= 0)
-      .map(n => ({ fields: { ...n.fields }, id: n.id, path: n.fields.pagePaths[0] }));
+    // const eventNodes = eventbriteNodes
+    //   .concat(meetupNodes)
+    //   .filter(n => nodeBelongsToTopic(source.name, n) && n.fields.daysFromNow >= 0)
+    //   .map(n => ({ fields: { ...n.fields }, id: n.id, path: n.fields.pagePaths[0] }));
 
-    const connectsWith = webNodes
-      .concat(ghNodes)
-      .sort((a, b) => {
-        return a.fields.position.toString().localeCompare(b.fields.position);
-      })
-      .concat(eventNodes);
+    const connectsWith = webNodes.concat(ghNodes).sort((a, b) => {
+      return a.fields.position.toString().localeCompare(b.fields.position);
+    });
+    // .concat(eventNodes);
 
     _cache[source.id] = connectsWith;
   }
-  return _cache[source.id];
+  return _cache[source.id] || [];
 };
 
 module.exports = { resolveDevhubTopicConnections };
