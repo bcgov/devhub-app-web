@@ -1,27 +1,32 @@
 const algoliaIndexQuery = `{
-  GithubSource: allMarkdownRemark {
+  GithubSource: allMarkdownRemark(filter: {fileAbsolutePath: {eq: null}}) {
     edges {
       node {
-        objectID: id
+        id
         fields {
           author
           description
           title
           tags
+          standAlonePath
+          resourceType
         }
         internal {
           type
         }
+        fileAbsolutePath
       }
     }
   }
   DevhubSiphon: allDevhubSiphon {
   edges {
     node {
-      objectID: id
+       id
       fields {
         title
         description
+        standAlonePath
+        resourceType
       }
       internal {
         type
@@ -32,10 +37,12 @@ const algoliaIndexQuery = `{
 EventbriteEvents: allEventbriteEvents {
   edges {
       node {
-      objectID: id
+      id
         fields {
           title
           description
+          standAlonePath
+          resourceType
         }
         internal {
           type
@@ -46,9 +53,9 @@ EventbriteEvents: allEventbriteEvents {
 }`;
 
 const flatten = arr =>
-  arr.map(({ node: { fields, objectId, internal: { type } } }) => ({
+  arr.map(({ node: { fields, id, internal: { type } } }) => ({
     ...fields,
-    objectId,
+    id,
     __type: type,
   }));
 const settings = { attributesToSnippet: [`excerpt:20`] };
