@@ -394,7 +394,7 @@ exports[`Topics Container it matches snapshot 1`] = `
 }
 
 .emotion-72 {
-  font-size: 20px;
+  font-size: 18px;
   color: #494949;
   line-height: 1.3;
   margin-bottom: 0;
@@ -521,7 +521,7 @@ exports[`Topics Container it matches snapshot 1`] = `
 }
 
 .emotion-82 {
-  font-size: 20px;
+  font-size: 18px;
   color: #494949;
   line-height: 1.3;
   margin-bottom: 0;

@@ -91,6 +91,7 @@ const stationVariants = ['up', 'down'];
 
 const Name = styled.span`
   position: absolute;
+  overflow-wrap: initial;
   top: ${({ variant }) => (variant === 'up' ? `initial` : `50%`)};
   left: 50%;
   bottom: ${({ variant }) => (variant === 'down' ? `initial` : `50%`)};

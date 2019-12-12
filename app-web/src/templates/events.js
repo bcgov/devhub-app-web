@@ -30,6 +30,7 @@ import { TOPICS } from '../constants/topics';
 import { ChevronLink } from '../components/UI/Link';
 import Row from '../components/Card/Row';
 import CardsInColumns from '../components/Card/CardsInColumns';
+import { EventCard } from '../components/Card/Card';
 export const TEST_IDS = {
   alert: 'events-container',
 };
@@ -95,18 +96,21 @@ export const EventsPage = ({ data: { allEventbriteEvents, allTopicRegistryJson }
 
   // filter out any events that are passed today
   const currentEvents = formatEvents(events.filter(e => e.start.daysFromNow <= 0));
+
   //const currentMeetups = meetUps.filter(e => e.start.daysFromNow <= 0);
   //Get all the cards on the site
-  const cards = flattenGatsbyGraphQL(allTopicRegistryJson.edges);
+  const topics = flattenGatsbyGraphQL(allTopicRegistryJson.edges);
+
   //filter to just get the cards for the Community and Events topic
-  const communityCards = cards
+  const communityEventCards = topics
     .filter(e => e.name === TOPICS.COMMUNITY_AND_EVENTS)
     .flatMap(e => e.connectsWith)
     .filter(e => e.fields.resourceType === RESOURCE_TYPES.EVENTS);
+
   //sort all the info so that event show up from soonest to farthest away
-  let currentEventsMeetUpsAndCards = communityCards.concat(
-    currentEvents.sort((a, b) => b.start.daysFromNow - a.start.daysFromNow),
-  );
+  let currentEventsMeetUpsAndCards = currentEvents
+    .sort((a, b) => b.start.daysFromNow - a.start.daysFromNow)
+    .concat(communityEventCards);
 
   // community and event cards to carry a light reference to eventbrite cards, essentially titles and node fields
   // these need to be removed

@@ -148,7 +148,7 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
   }
 
   if (isEventbriteEvents(node)) {
-    createNodeField({ node, name: 'topics', value: ['Community and Events'] });
+    // createNodeField({ node, name: 'topics', value: ['Community and Events'] });
     createNodeField({
       node,
       name: 'daysFromNow',

@@ -26,7 +26,8 @@ const Subway = styled.div`
   display: flex;
   position: relative;
   align-items: center;
-  padding: 150px 60px;
+  padding: 130px 60px;
+  min-width: 615px;
   justify-content: space-between;
 `;
 

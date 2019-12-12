@@ -22,22 +22,22 @@ import Col from './Column';
 import Card from './Card';
 
 const CardsInColumns = ({ cards }) => {
-  return cards.map(r => (
+  return cards.map(card => (
     <Col
-      key={r.id}
+      key={card.id}
       style={{
         justifyContent: 'center',
         display: 'flex',
       }}
     >
       <Card
-        resourceType={r.fields.resourceType}
-        key={r.id}
-        title={r.fields.title}
-        description={r.fields.description}
-        image={r.fields.image}
-        link={r.fields.standAlonePath}
-        event={r}
+        resourceType={card.fields.resourceType}
+        key={card.id}
+        title={card.fields.title}
+        description={card.fields.description}
+        image={card.fields.image}
+        link={card.fields.standAlonePath}
+        event={card}
       />
     </Col>
   ));

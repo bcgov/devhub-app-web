@@ -22,6 +22,10 @@ objects:
         regexp ^\/topic(\/[\w|\-|\_|~|\.]+)+
         to {path} {path}/ /topic/
       }
+      
+      gzip {
+        ext .js .html .css
+      }
 
       templates {
         ext   .js
