@@ -58,16 +58,9 @@ const resolveDevhubTopicConnections = (source, args, context) => {
         path: `/${source.fields.slug}/${n.fields.slug}`,
       }));
 
-    // event nodes are only connected if they occur in the future
-    // const eventNodes = eventbriteNodes
-    //   .concat(meetupNodes)
-    //   .filter(n => nodeBelongsToTopic(source.name, n) && n.fields.daysFromNow >= 0)
-    //   .map(n => ({ fields: { ...n.fields }, id: n.id, path: n.fields.pagePaths[0] }));
-
     const connectsWith = webNodes.concat(ghNodes).sort((a, b) => {
       return a.fields.position.toString().localeCompare(b.fields.position);
     });
-    // .concat(eventNodes);
 
     _cache[source.id] = connectsWith;
   }

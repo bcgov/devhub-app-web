@@ -96,17 +96,17 @@ export const EventsPage = ({ data: { allEventbriteEvents, allTopicRegistryJson }
 
   // filter out any events that are passed today
   const currentEvents = formatEvents(events.filter(e => e.start.daysFromNow <= 0));
-  console.log(currentEvents);
+
   //const currentMeetups = meetUps.filter(e => e.start.daysFromNow <= 0);
   //Get all the cards on the site
   const topics = flattenGatsbyGraphQL(allTopicRegistryJson.edges);
-  console.log(topics, 'CARDS');
+
   //filter to just get the cards for the Community and Events topic
   const communityEventCards = topics
     .filter(e => e.name === TOPICS.COMMUNITY_AND_EVENTS)
     .flatMap(e => e.connectsWith)
     .filter(e => e.fields.resourceType === RESOURCE_TYPES.EVENTS);
-  console.log(communityEventCards, 'COMMUNITY');
+
   //sort all the info so that event show up from soonest to farthest away
   let currentEventsMeetUpsAndCards = currentEvents
     .sort((a, b) => b.start.daysFromNow - a.start.daysFromNow)
@@ -117,7 +117,6 @@ export const EventsPage = ({ data: { allEventbriteEvents, allTopicRegistryJson }
 
   currentEventsMeetUpsAndCards = uniqBy(currentEventsMeetUpsAndCards, 'id');
 
-  console.log(currentEventsMeetUpsAndCards);
   return (
     <Layout>
       <Main>
