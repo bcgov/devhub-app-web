@@ -15,6 +15,9 @@ const algoliaIndexQuery = `{
           type
         }
         fileAbsolutePath
+        frontmatter {
+          personas
+        }
       }
     }
   }
@@ -27,6 +30,7 @@ const algoliaIndexQuery = `{
         description
         standAlonePath
         resourceType
+        personas
       }
       internal {
         type

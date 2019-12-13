@@ -37,7 +37,7 @@ const resourcesSelector = selectResourcesGroupedByType();
 
 // generic template page where all 'resource type' pages are generated from
 export const ResourceType = ({
-  data: { allGithubRaw, allDevhubSiphon },
+  data: { allGithubRaw, allDevhubSiphon, allMarkdownRemark },
   pageContext, // received from gatsby create pages api, view gatsby/createPages.js for more info
   location,
 }) => {
@@ -63,9 +63,9 @@ export const ResourceType = ({
   // the query is present
   const queryIsEmpty = isQueryEmpty(query);
   const resourceTypeConst = RESOURCE_TYPES[pageContext.resourceTypeConst];
-  const nodes = flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(
-    flattenGatsbyGraphQL(allGithubRaw.edges),
-  );
+  const nodes = flattenGatsbyGraphQL(allDevhubSiphon.edges)
+    .concat(flattenGatsbyGraphQL(allGithubRaw.edges))
+    .concat(flattenGatsbyGraphQL(allMarkdownRemark.edges));
 
   const resourcesByType = resourcesSelector(nodes);
 
