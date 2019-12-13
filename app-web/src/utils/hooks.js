@@ -54,15 +54,21 @@ export function useDeepCompareMemoize(value) {
  */
 export const useSearch = query => {
   const [results, setResults] = useState(null);
+
   useEffect(() => {
-    index
-      .search({
-        query: query,
-        hitsPerPage: 200, //set it to a large number, the default value is 200, which some search result is over that number
-      })
-      .then(res => {
-        setResults(res.hits);
-      });
+    if (query) {
+      // if no query, I.E query is '', algolia will return all index....
+      index
+        .search({
+          query: query,
+          hitsPerPage: 200, //set it to a large number, the default value is 200, which some search result is over that number
+        })
+        .then(res => {
+          setResults(res.hits);
+        });
+    } else {
+      setResults(null);
+    }
   }, [query]);
   return results;
 };
