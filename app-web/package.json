@@ -120,7 +120,7 @@
     "test:watch": "jest --watch --env=jsdom",
     "test": "jest --env=jsdom",
     "test:ci": "CI=true shell-scripts/unit-tests.sh",
-    "test:lint": "eslint src/",
+    "test:lint": "npx eslint src/",
     "prettify": "prettier --write '{./,__{tests,mocks}__}/**/*.+(js|jsx)'",
     "test:e2e:ci": "start-server-and-test dev http://0.0.0.0:8000 cy:run",
     "test:e2e:dev": "start-server-and-test dev http://0.0.0.0:8000 cy:dev",

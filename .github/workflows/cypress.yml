@@ -1,14 +1,38 @@
 name: End-to-end tests
-on: [push]
+on: [pull_request]
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Check into working directory
-        run: cd app-web
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: app-web/node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-${{ env.cache-name }}-
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+      - uses: bahmutov/npm-install@v1
+        with:
+          working-directory: app-web
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run
-        uses: cypress-io/github-action@v1
+        uses: patricksimonian/github-action@6dc0f8790dccace7167b12f9aaa0e28b7dc81c7c 
+        with:
+          working-directory: app-web
+          start: npm run dev
+          wait-on: 'http://localhost:8000'
+          config: baseUrl=http://localhost:8000
+        env:
+          CI: true
+          GITHUB_TOKEN: ${{secrets.GITHUB_API_TOKEN}}
+          EVENT_BRITE_API_KEY: ${{secrets.EVENT_BRITE_API_KEY}}
+          GATSBY_MATOMO_SITE_ID: ${{secrets.GATSBY_MATOMO_SITE_ID}}
+          GATSBY_MATOMO_URL: ${{secrets.GATSBY_MATOMO_URL}}
+          GATSBY_MATOMO_SITE_URL: ${{secrets.GATSBY_MATOMO_SITE_URL}}
+          MATOMO_API_KEY: ${{secrets.MATOMO_API_KEY}}
+          GATSBY_SSO_BASE_URL: https://sso-dev.pathfinder.gov.bc.ca
