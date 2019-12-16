@@ -214,7 +214,7 @@ module.exports = {
               converter,
             },
           },
-          'gatsby-remark-relative-images',
+          'gatsby-remark-images-anywhere',
           'gatsby-remark-autolink-headers',
           {
             resolve: 'gatsby-remark-images',
