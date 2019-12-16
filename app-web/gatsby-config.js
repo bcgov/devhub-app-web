@@ -5,7 +5,6 @@ const { topicRegistry, journeyRegistry } = require('./devhub.config.json');
 const { converter } = require('./gatsby/utils/gatsbyRemark');
 const { getFilesFromRegistry } = require('./gatsby/utils/githubRaw');
 const { getQueries } = require('./src/utils/algolia');
-
 // To specify a path of the registry.yaml file, set as env variable
 // This comes as a pair of sourceRegistryType used by gatsby-source-github-all
 // const registry_path = process.env.REGISTRY_PATH || '';
@@ -34,7 +33,6 @@ const eventbritePlugin = () =>
         },
       }
     : undefined;
-
 const cloudNativeMeetup = () =>
   process.env.MEETUP_API_KEY
     ? {
@@ -47,7 +45,6 @@ const cloudNativeMeetup = () =>
         },
       }
     : undefined;
-
 const uxGuildMeetup = () =>
   process.env.MEETUP_API_KEY
     ? {
@@ -60,7 +57,6 @@ const uxGuildMeetup = () =>
         },
       }
     : undefined;
-
 const devopsVictoriaMeetup = () =>
   process.env.MEETUP_API_KEY
     ? {
@@ -73,7 +69,6 @@ const devopsVictoriaMeetup = () =>
         },
       }
     : undefined;
-
 const SCIPSMeetup = () =>
   process.env.MEETUP_API_KEY
     ? {
@@ -184,7 +179,6 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-yaml',
-    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-create-client-paths`,
       options: { prefixes: ['/topic/*'] }, // dynamic topic pages
