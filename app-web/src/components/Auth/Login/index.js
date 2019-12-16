@@ -23,6 +23,10 @@ export const Login = ({ authenticated }) => {
       data-testid={TEST_IDS.login}
       clicked={() => {
         if (implicitAuthManager) {
+          const { origin, pathname, search } = window.location;
+          // make the app redirect to the page you current pressed login from
+          // this is only necessary since all pages are static and do not share a root component
+          implicitAuthManager.redirectURI = origin + pathname + search;
           window.location = implicitAuthManager.getSSOLoginURI();
         }
       }}
