@@ -19,6 +19,19 @@ const eventbritePlugin = () =>
         },
       }
     : undefined;
+
+const algoliaPlugin = () =>
+  process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX === 'test'
+    ? {
+        resolve: `gatsby-plugin-algolia`,
+        options: {
+          appId: process.env.GATSBY_ALGOLIA_APP_ID,
+          apiKey: process.env.ALGOLIA_ADMIN_KEY,
+          queries: getQueries(process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX),
+          chunkSize: 10000, // default: 1000
+        },
+      }
+    : undefined;
 //Commented out since Meetup no longer has an API and has switched to OAUTH, but the plugin we use may be updated
 //more info at https://chat.pathfinder.gov.bc.ca/channel/general?msg=MdAyQzrPRPpQt382o
 /*const devopsCommonsMeetup = () =>
@@ -84,6 +97,7 @@ const SCIPSMeetup = () =>
 
 const dynamicPlugins = [
   eventbritePlugin(),
+  algoliaPlugin(),
   /*devopsCommonsMeetup(),
   cloudNativeMeetup(),
   uxGuildMeetup(),
@@ -235,15 +249,6 @@ module.exports = {
         // If REGISTRY_PATH is set specifically, include this REGISTRY_TYPE as an env var
         // Format convention: camalcase of the sub path + 'Yaml'
         sourceRegistryType: 'TopicRegistryJson',
-      },
-    },
-    {
-      resolve: `gatsby-plugin-algolia`,
-      options: {
-        appId: process.env.GATSBY_ALGOLIA_APP_ID,
-        apiKey: process.env.ALGOLIA_ADMIN_KEY,
-        queries: getQueries(process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX),
-        chunkSize: 10000, // default: 1000
       },
     },
     {
