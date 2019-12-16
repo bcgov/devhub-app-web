@@ -125,7 +125,6 @@ module.exports = {
         include_favicon: true,
       },
     },
-    'gatsby-plugin-offline',
     'gatsby-plugin-emotion',
     // Adding various source folders to the GraphQL layer.
     {
@@ -215,6 +214,7 @@ module.exports = {
               converter,
             },
           },
+          'gatsby-remark-relative-images',
           'gatsby-remark-autolink-headers',
           {
             resolve: 'gatsby-remark-images',
