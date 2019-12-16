@@ -30,6 +30,7 @@ const searchClient = algoliasearch(
   process.env.GATSBY_ALGOLIA_APP_ID,
   process.env.GATSBY_ALGOLIA_SEARCH_KEY,
 );
+
 const index = searchClient.initIndex(
   `Devhub-Algolia-${process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX}`,
 );
