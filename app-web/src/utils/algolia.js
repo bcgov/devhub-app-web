@@ -10,8 +10,6 @@ const algoliaIndexQuery = `{
             description
             title
             tags
-            standAlonePath
-            resourceType
           }
           internal {
             type
@@ -27,9 +25,6 @@ const algoliaIndexQuery = `{
         fields {
           title
           description
-          standAlonePath
-          resourceType
-          personas
         }
         internal {
           type
@@ -44,8 +39,6 @@ const algoliaIndexQuery = `{
         fields {
           title
           description
-          standAlonePath
-          resourceType
         }
         internal {
           type

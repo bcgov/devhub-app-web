@@ -2,7 +2,6 @@
 const mockalgoliasearch = jest.requireActual('algoliasearch/lite');
 function searchClient() {
   return {
-    applicationID: 'MXGA324EDW',
     initIndex() {
       return {
         search() {
