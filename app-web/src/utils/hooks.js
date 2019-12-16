@@ -34,6 +34,7 @@ if (process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX !== 'test') {
     process.env.GATSBY_ALGOLIA_SEARCH_KEY,
   );
   index = searchClient.initIndex(`Devhub-Algolia-${process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX}`);
+  console.log('I dont think this is been reached');
 }
 
 //TODO, why in a function?
