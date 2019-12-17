@@ -26,16 +26,14 @@ import { useQuery } from '@apollo/react-hooks';
 import { SEARCHGATE_QUERY } from '../constants/runtimeGraphqlQueries';
 import algoliasearch from 'algoliasearch/lite';
 
-let searchClient,
-  index = undefined;
-if (process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX !== 'test') {
-  searchClient = algoliasearch(
-    process.env.GATSBY_ALGOLIA_APP_ID,
-    process.env.GATSBY_ALGOLIA_SEARCH_KEY,
-  );
+const searchClient = algoliasearch(
+  process.env.GATSBY_ALGOLIA_APP_ID,
+  process.env.GATSBY_ALGOLIA_SEARCH_KEY,
+);
 
-  index = searchClient.initIndex(`Devhub-Algolia-${process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX}`);
-}
+const index = searchClient.initIndex(
+  `Devhub-Algolia-${process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX}`,
+);
 
 //TODO, why in a function?
 function deepCompareEquals(a, b) {
