@@ -132,7 +132,7 @@ In Development
 
 ### Authentication, Authorization, Policies, etc
 
-Currently, DevHub is a statically generated site (generated using GatsbyJS) and served using [Caddy Server](https://caddyserver.com/) and has no concept of users, authentication, or authorization. This will likely change in the future at which point this documentation will be updated to reflect details in those areas.
+Currently, DevHub is a statically generated site (generated using GatsbyJS) and served using [Caddy Server](https://caddyserver.com/). Users may authenticate against Keycloak to gain access to more robust search functionality (search rocketchat, github, and documize).
 
 ## Code Management
 
