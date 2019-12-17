@@ -23,8 +23,10 @@ export const Login = ({ authenticated }) => {
       data-testid={TEST_IDS.login}
       clicked={() => {
         if (implicitAuthManager) {
-          const { pathname, origin, search } = window.location;
-          window.location = implicitAuthManager.getSSOLoginURI('login', origin + pathname + search);
+          const { pathname, origin } = window.location;
+          // safari will not parse the redirect uri correctly unless it has a trailing slash
+          const path = pathname.charAt(pathname.length - 1) === '/' ? pathname : `${pathname}/`;
+          window.location = implicitAuthManager.getSSOLoginURI('login', origin + path);
         }
       }}
     >
