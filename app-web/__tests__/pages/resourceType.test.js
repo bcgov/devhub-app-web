@@ -45,9 +45,6 @@ describe('Resource Type Template Page', () => {
       allGithubRaw: {
         edges: githubRaw,
       },
-      siteSearchIndex: {
-        index: {},
-      },
     },
     location: {
       search: '',

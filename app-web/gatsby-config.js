@@ -194,7 +194,6 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-yaml',
-    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-create-client-paths`,
       options: { prefixes: ['/topic/*'] }, // dynamic topic pages
@@ -251,43 +250,6 @@ module.exports = {
         // If REGISTRY_PATH is set specifically, include this REGISTRY_TYPE as an env var
         // Format convention: camalcase of the sub path + 'Yaml'
         sourceRegistryType: 'TopicRegistryJson',
-      },
-    },
-    {
-      resolve: '@gatsby-contrib/gatsby-plugin-elasticlunr-search',
-      options: {
-        // Fields to index
-        fields: ['title', 'content', 'description', 'topicName', 'tags', 'author', 'personas'],
-        // How to resolve each field`s value for a supported node type
-        resolvers: {
-          MarkdownRemark: {
-            title: node => node.fields.title,
-            content: node => node.fields.content.slice(0, 700),
-            description: node => node.fields.description,
-            tags: node => node.fields.tags,
-            author: node => node.fields.author,
-            personas: node => node.frontmatter.personas,
-            topicName: node => node.fields.topicName,
-            id: node => node.parent,
-          },
-          DevhubSiphon: {
-            title: node => node.fields.title,
-            description: node => node.fields.description,
-            personas: node => node.fields.personas,
-            topicName: node => node.topic.name,
-            labels: node => node.fields.labels,
-          },
-          EventbriteEvents: {
-            title: node => node.name.text,
-            description: node => node.description.text,
-            topicName: node => node.fields.topics,
-          },
-          MeetupEvent: {
-            title: node => node.name,
-            description: node => node.description,
-            topicName: node => node.fields.topics,
-          },
-        },
       },
     },
     {
