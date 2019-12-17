@@ -24,17 +24,14 @@ import isEmpty from 'lodash/isEmpty';
 import AuthContext from '../AuthContext';
 import { useQuery } from '@apollo/react-hooks';
 import { SEARCHGATE_QUERY } from '../constants/runtimeGraphqlQueries';
-import { algoliasearch } from 'algoliasearch/lite';
-
-console.log('================================/n');
-console.log(process.env.GATSBY_ALGOLIA_APP_ID);
+import algoliasearch from 'algoliasearch/lite';
 
 const searchClient = algoliasearch(
   process.env.GATSBY_ALGOLIA_APP_ID,
   process.env.GATSBY_ALGOLIA_SEARCH_KEY,
 );
 
-export const index = searchClient.initIndex(
+const index = searchClient.initIndex(
   `Devhub-Algolia-${process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX}`,
 );
 //TODO, why in a function?
