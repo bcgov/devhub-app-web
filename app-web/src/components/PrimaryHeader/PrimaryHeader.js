@@ -7,6 +7,7 @@ import Login from '../Auth/Login';
 
 import styled from '@emotion/styled';
 import { CUSTOM_BREAKPOINTS } from '../../constants/designTokens';
+import { useAuthenticated } from '../../utils/hooks';
 
 const Header = styled.header`
   background-color: ${({ theme }) => theme.colors.blue};
@@ -47,27 +48,29 @@ const Panel = styled.div`
   display: flex;
 `;
 
-export const PrimaryHeader = ({ showHamburger, hamburgerClicked, authenticated }) => (
-  <Header>
-    <Banner />
-    <Panel>
-      <LoginWrapper>
-        <Login authenticated={authenticated} />
-      </LoginWrapper>
-      {showHamburger ? <StyledHamburger clicked={hamburgerClicked} /> : null}
-    </Panel>
-  </Header>
-);
+export const PrimaryHeader = ({ showHamburger, hamburgerClicked }) => {
+  const { authenticated } = useAuthenticated();
+
+  return (
+    <Header>
+      <Banner />
+      <Panel>
+        <LoginWrapper>
+          <Login authenticated={authenticated} />
+        </LoginWrapper>
+        {showHamburger ? <StyledHamburger clicked={hamburgerClicked} /> : null}
+      </Panel>
+    </Header>
+  );
+};
 
 PrimaryHeader.propTypes = {
   showHamburger: PropTypes.bool,
   hamburgerClicked: PropTypes.func,
-  authenticated: PropTypes.bool,
 };
 
 PrimaryHeader.defaultProps = {
   showHamburger: false,
-  authenticated: false,
   hamburgerClicked: () => undefined,
 };
 

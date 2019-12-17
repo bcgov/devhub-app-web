@@ -95,21 +95,28 @@ export const useSearch = (query, staticIndex) => {
   return results;
 };
 
-export const useImplicitAuth = () => {
+export const useImplicitAuth = intention => {
   const [user, setUser] = useState({});
-  useEffect(() => {
-    const implicitAuthManager = createIam();
+  const implicitAuthManager = createIam();
 
+  useEffect(() => {
     implicitAuthManager.registerHooks({
       onAuthenticateSuccess: () => setUser(implicitAuthManager.getAuthDataFromLocal()),
       onAuthenticateFail: () => setUser({}),
-      onAuthLocalStorageCleared: () => setUser({}),
+      onAuthLocalStorageCleared: () => {
+        setUser({});
+      },
     });
+    setUser({ user: 'foo' });
 
     if (!isLocalHost()) {
       implicitAuthManager.handleOnPageLoad();
     }
-  }, []);
+
+    if (intention === 'LOGOUT') {
+      implicitAuthManager.clearAuthLocalStorage();
+    }
+  }, [implicitAuthManager, intention]);
   return user;
 };
 
