@@ -171,7 +171,7 @@ export const Index = ({
     searchSourceResults = groupBy(searchGate.results, 'type');
   }
 
-  results = useSearch(query, index);
+  results = useSearch(query);
 
   const allEvents = flattenGatsbyGraphQL(allEventbriteEvents.edges);
   const currentEvents = formatEvents(allEvents.filter(e => e.start.daysFromNow <= 0));
