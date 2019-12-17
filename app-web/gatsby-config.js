@@ -5,7 +5,7 @@ const { topicRegistry, journeyRegistry } = require('./devhub.config.json');
 const { converter } = require('./gatsby/utils/gatsbyRemark');
 const { getFilesFromRegistry } = require('./gatsby/utils/githubRaw');
 const { getQueries } = require('./src/utils/algolia');
-const { algoliasearch } = require('algoliasearch/lite');
+
 // To specify a path of the registry.yaml file, set as env variable
 // This comes as a pair of sourceRegistryType used by gatsby-source-github-all
 // const registry_path = process.env.REGISTRY_PATH || '';
@@ -21,16 +21,8 @@ const eventbritePlugin = () =>
       }
     : undefined;
 
-const searchClient = algoliasearch(
-  process.env.GATSBY_ALGOLIA_APP_ID,
-  process.env.GATSBY_ALGOLIA_SEARCH_KEY,
-);
-
-export const index = searchClient.initIndex(
-  `Devhub-Algolia-${process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX}`,
-);
 const algoliaPlugin = () =>
-  process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX === 'test'
+  process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX !== 'test'
     ? {
         resolve: `gatsby-plugin-algolia`,
         options: {
