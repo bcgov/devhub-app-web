@@ -99,8 +99,8 @@ const getResourcePreviews = (resources, results = [], title) => {
   let resourcesToShow = [];
 
   if (!isNull(results) && results.length > 0) {
-    //map the search index results to the resources. Its important to do it in this order,
-    //since the index results are return in order based on relevance
+    // map the search index results to the resources. Its important to do it in this order,
+    // since the index results are return in order based on relevance
     resourcesToShow = results.flatMap(result => {
       return resources.filter(resource => result.id === resource.id);
     });
@@ -181,12 +181,9 @@ export const Index = ({
     }),
   );
   const currentMeetups = allMeetups.filter(e => e.start.daysFromNow <= 0);*/
-  const eventsAndMeetups = currentEvents;
   if (results) {
-    results = removeUnwantedResults(results, allEvents, eventsAndMeetups);
+    results = removeUnwantedResults(results, allEvents, currentEvents);
   }
-
-  const markdownRemark = flattenGatsbyGraphQL(allMarkdownRemark.edges);
 
   // this is defined by ?q='' or ?q=''&q=''..etc
   // if query is empty we prevent the search results empty from being rendered
@@ -198,9 +195,9 @@ export const Index = ({
 
   const siphonResources = getResourcePreviews(
     flattenGatsbyGraphQL(allDevhubSiphon.edges)
-      .concat(eventsAndMeetups)
+      .concat(currentEvents)
       .concat(flattenGatsbyGraphQL(allGithubRaw.edges))
-      .concat(markdownRemark),
+      .concat(flattenGatsbyGraphQL(allMarkdownRemark.edges)),
     results,
     'DevHub Resources',
   );

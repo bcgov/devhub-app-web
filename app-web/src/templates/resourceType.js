@@ -37,11 +37,7 @@ const resourcesSelector = selectResourcesGroupedByType();
 
 // generic template page where all 'resource type' pages are generated from
 export const ResourceType = ({
-  data: {
-    allGithubRaw,
-    allDevhubSiphon,
-    siteSearchIndex: { index },
-  },
+  data: { allGithubRaw, allDevhubSiphon },
   pageContext, // received from gatsby create pages api, view gatsby/createPages.js for more info
   location,
 }) => {
@@ -60,7 +56,7 @@ export const ResourceType = ({
     query = '';
   }
 
-  results = useSearch(query, index);
+  results = useSearch(query);
   // this is defined by ?q='' or ?q=''&q=''..etc
   // if query is empty we prevent the search results empty from being rendered
   // in addition the topics container is prevented from not rendering because
