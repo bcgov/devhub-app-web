@@ -1,15 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { Container } from 'reactstrap';
 import Helmet from 'react-helmet';
-import isEmpty from 'lodash/isEmpty';
+
 // layout local components
 import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
 import PrimaryFooter from '../components/PrimaryFooter/PrimaryFooter';
 import { Navbar } from '../components/Navbar/Navbar';
-import AuthContext from '../AuthContext';
 
 import { MAIN_NAV_ROUTE_LIST } from '../constants/routes';
 
@@ -30,22 +29,15 @@ const Wrapper = styled.div`
 
 export const Layout = ({ children }) => {
   const [menuToggled, setMenuToggled] = useState(false);
-  const { auth } = useContext(AuthContext);
-  const authenticated = !auth || !isEmpty(auth);
-
   return (
     <StyledContainer fluid>
       {/* This is to fix the some of the issues occuring on IE 11, specifically the nav issues*/}
       <Helmet>
         <script src="https://cdn.polyfill.io/v2/polyfill.min.js" />
       </Helmet>
-      <PrimaryHeader
-        authenticated={authenticated}
-        showHamburger
-        hamburgerClicked={() => setMenuToggled(!menuToggled)}
-      />
+      <PrimaryHeader showHamburger hamburgerClicked={() => setMenuToggled(!menuToggled)} />
 
-      <Navbar authenticated={authenticated} links={MAIN_NAV_ROUTE_LIST} toggled={menuToggled} />
+      <Navbar links={MAIN_NAV_ROUTE_LIST} toggled={menuToggled} />
 
       <Wrapper>{children}</Wrapper>
       <PrimaryFooter />
