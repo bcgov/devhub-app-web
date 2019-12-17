@@ -26,6 +26,9 @@ import { useQuery } from '@apollo/react-hooks';
 import { SEARCHGATE_QUERY } from '../constants/runtimeGraphqlQueries';
 import { algoliasearch } from 'algoliasearch/lite';
 
+console.log('================================/n');
+console.log(process.env.GATSBY_ALGOLIA_APP_ID);
+
 const searchClient = algoliasearch(
   process.env.GATSBY_ALGOLIA_APP_ID,
   process.env.GATSBY_ALGOLIA_SEARCH_KEY,
