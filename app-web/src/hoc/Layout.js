@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
@@ -10,7 +10,7 @@ import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
 import PrimaryFooter from '../components/PrimaryFooter/PrimaryFooter';
 import { Navbar } from '../components/Navbar/Navbar';
 import AuthContext from '../AuthContext';
-import { createIam } from '../auth';
+
 import { MAIN_NAV_ROUTE_LIST } from '../constants/routes';
 
 const StyledContainer = styled(Container)`
@@ -30,15 +30,6 @@ const Wrapper = styled.div`
 
 export const Layout = ({ children }) => {
   const [menuToggled, setMenuToggled] = useState(false);
-  const [iam, setIam] = useState(null);
-  useEffect(() => {
-    // unable to createIam on build time since it requires the window object which is not available
-    // during a gatsby build, therefore we need to useEffect
-    setIam(createIam());
-    return () => {
-      setIam(null);
-    };
-  }, [iam]);
   const { auth } = useContext(AuthContext);
   const authenticated = !auth || !isEmpty(auth);
 
@@ -54,12 +45,7 @@ export const Layout = ({ children }) => {
         hamburgerClicked={() => setMenuToggled(!menuToggled)}
       />
 
-      <Navbar
-        authenticated={authenticated}
-        links={MAIN_NAV_ROUTE_LIST}
-        toggled={menuToggled}
-        implicitAuthManager={iam}
-      />
+      <Navbar authenticated={authenticated} links={MAIN_NAV_ROUTE_LIST} toggled={menuToggled} />
 
       <Wrapper>{children}</Wrapper>
       <PrimaryFooter />

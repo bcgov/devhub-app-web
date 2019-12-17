@@ -19,8 +19,24 @@ export const createIam = () => {
 
   if (iam === null) {
     iam = new ImplicitAuthManager(config);
-
     Object.freeze(iam);
   }
   return iam;
+};
+
+export const redirectToSSOLogin = () => {
+  const iam = createIam();
+  if (window) {
+    const { pathname, origin } = window.location;
+    // safari will not parse the redirect uri correctly unless it has a trailing slash
+    const path = pathname.charAt(pathname.length - 1) === '/' ? pathname : `${pathname}/`;
+    window.location = iam.getSSOLoginURI('login', origin + path);
+  }
+};
+
+export const redirectToSSOLogout = () => {
+  const iam = createIam();
+  if (window) {
+    window.location = iam.getSSOLogoutURI();
+  }
 };

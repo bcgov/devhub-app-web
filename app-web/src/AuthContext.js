@@ -18,14 +18,17 @@ Created by Patrick Simonian
 
 import React from 'react';
 import { useImplicitAuth } from './utils/hooks';
+import withLocation from './hoc/withLocation';
+import queryString from 'query-string';
 
 const AuthContext = React.createContext({});
 
 // Auth Provider is already wrapping gatsby browser so all pages should have access to the context
-export const AuthProvider = ({ children }) => {
-  const auth = useImplicitAuth();
+export const AuthProvider = withLocation(({ children, location, ...rest }) => {
+  const search = queryString.parse(location.search);
+  const auth = useImplicitAuth(search.intention);
   return <AuthContext.Provider value={{ auth }}>{children}</AuthContext.Provider>;
-};
+})();
 
 /**
  * usage is <AuthConsumer>{props => (...)}</AuthConsumer>
