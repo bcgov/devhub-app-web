@@ -107,7 +107,6 @@ export const useImplicitAuth = intention => {
         setUser({});
       },
     });
-    setUser({ user: 'foo' });
 
     if (!isLocalHost()) {
       implicitAuthManager.handleOnPageLoad();
