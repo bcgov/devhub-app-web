@@ -25,7 +25,6 @@ import AuthContext from '../AuthContext';
 import { useQuery } from '@apollo/react-hooks';
 import { SEARCHGATE_QUERY } from '../constants/runtimeGraphqlQueries';
 import { algoliasearch } from 'algoliasearch/lite';
-// import index from '../../gatsby-config';
 
 const searchClient = algoliasearch(
   process.env.GATSBY_ALGOLIA_APP_ID,
