@@ -41,7 +41,7 @@ export const SearchSources = ({ searchSourcesLoading }) => {
   const scrollOffset = -125;
 
   return Object.keys(SEARCH_SOURCES).map(element => (
-    <SearchSourcesContainer data-testid={TEST_IDS.container}>
+    <SearchSourcesContainer key={element} data-testid={TEST_IDS.container}>
       {authenticated && !searchSourcesLoading ? (
         <StyledLink key={element} to={SEARCH_SOURCE_CONTENT[element].id} offset={scrollOffset}>
           <SearchSourcesButton

@@ -1,13 +1,30 @@
+import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
+
 const algoliaIndexQuery = `{
-  GithubSource: allMarkdownRemark {
+  GithubSource: allGithubRaw {
     edges {
       node {
-        objectID: id
+        id
+        childMarkdownRemark {
+          fields {
+            description
+            title
+            tags
+          }
+          internal {
+            type
+          }
+        }
+      }
+    }
+  }
+  DevhubSiphon: allDevhubSiphon {
+    edges {
+      node {
+        id
         fields {
-          author
-          description
           title
-          tags
+          description
         }
         internal {
           type
@@ -15,24 +32,10 @@ const algoliaIndexQuery = `{
       }
     }
   }
-  DevhubSiphon: allDevhubSiphon {
-  edges {
-    node {
-      objectID: id
-      fields {
-        title
-        description
-      }
-      internal {
-        type
-      }
-    }
-  }
-}
-EventbriteEvents: allEventbriteEvents {
-  edges {
+  EventbriteEvents: allEventbriteEvents {
+    edges {
       node {
-      objectID: id
+        id
         fields {
           title
           description
@@ -45,21 +48,15 @@ EventbriteEvents: allEventbriteEvents {
   }
 }`;
 
-const flatten = arr =>
-  arr.map(({ node: { fields, objectId, internal: { type } } }) => ({
-    ...fields,
-    objectId,
-    __type: type,
-  }));
 const settings = { attributesToSnippet: [`excerpt:20`] };
 
 export const queries = [
   {
     query: algoliaIndexQuery,
     transformer: ({ data: { GithubSource, DevhubSiphon, EventbriteEvents } }) =>
-      flatten(GithubSource.edges)
-        .concat(flatten(DevhubSiphon.edges))
-        .concat(flatten(EventbriteEvents.edges)),
+      flattenGatsbyGraphQL(GithubSource.edges)
+        .concat(flattenGatsbyGraphQL(DevhubSiphon.edges))
+        .concat(flattenGatsbyGraphQL(EventbriteEvents.edges)),
     indexName: `Devhub-Algolia`,
     settings,
   },
