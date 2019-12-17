@@ -23,7 +23,8 @@ export const Login = ({ authenticated }) => {
       data-testid={TEST_IDS.login}
       clicked={() => {
         if (implicitAuthManager) {
-          window.location = implicitAuthManager.getSSOLoginURI();
+          const { pathname, origin, search } = window.location;
+          window.location = implicitAuthManager.getSSOLoginURI('login', origin + pathname + search);
         }
       }}
     >
