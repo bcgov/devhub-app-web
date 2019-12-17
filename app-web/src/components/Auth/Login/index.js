@@ -7,49 +7,37 @@ export const TEST_IDS = {
   login: 'auth.login',
   logout: 'auth.logout',
 };
-// TODO improve the look of the login button
-// definitily should make a pr to integrate rebass and styled system
-// this may have to be an off time thing...
-// also remove the button module.css and refactor as a styled component
+
 export const Login = ({ authenticated }) => {
   const [implicitAuthManager, setImplicitAuthManager] = useState(null);
   useEffect(() => {
     setImplicitAuthManager(createIam());
   }, [implicitAuthManager]);
+  const login = () => {
+    if (implicitAuthManager) {
+      const { pathname, origin } = window.location;
+      // safari will not parse the redirect uri correctly unless it has a trailing slash
+      const path = pathname.charAt(pathname.length - 1) === '/' ? pathname : `${pathname}/`;
+      window.location = implicitAuthManager.getSSOLoginURI('login', origin + path);
+    }
+  };
 
-  let button = (
+  const logout = () => {
+    if (implicitAuthManager) {
+      implicitAuthManager.clearAuthLocalStorage();
+      window.location = implicitAuthManager.getSSOLogoutURI();
+    }
+  };
+
+  return (
     <Button
       variant="secondary"
-      data-testid={TEST_IDS.login}
-      clicked={() => {
-        if (implicitAuthManager) {
-          const { pathname, origin } = window.location;
-          // safari will not parse the redirect uri correctly unless it has a trailing slash
-          const path = pathname.charAt(pathname.length - 1) === '/' ? pathname : `${pathname}/`;
-          window.location = implicitAuthManager.getSSOLoginURI('login', origin + path);
-        }
-      }}
+      data-testid={authenticated ? TEST_IDS.logout : TEST_IDS.login}
+      clicked={authenticated ? logout : login}
     >
-      Login
+      {authenticated ? 'Logout' : 'Login'}
     </Button>
   );
-  if (authenticated) {
-    button = (
-      <Button
-        variant="secondary"
-        data-testid={TEST_IDS.logout}
-        clicked={() => {
-          if (implicitAuthManager) {
-            implicitAuthManager.clearAuthLocalStorage();
-            window.location = implicitAuthManager.getSSOLogoutURI();
-          }
-        }}
-      >
-        Logout
-      </Button>
-    );
-  }
-  return button;
 };
 
 Login.propTypes = {
