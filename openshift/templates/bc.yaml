@@ -66,6 +66,7 @@ objects:
                 name: devhub-gh-token
                 key: GITHUB_TOKEN
           - name: GATSBY_ALGOLIA_APP_ID
+            valueFrom:
               secretKeyRef:
                 name: devhub-algolia-build
                 key: GATSBY_ALGOLIA_APP_ID
