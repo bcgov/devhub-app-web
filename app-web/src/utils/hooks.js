@@ -115,7 +115,8 @@ export const useImplicitAuth = intention => {
     if (intention === 'LOGOUT') {
       implicitAuthManager.clearAuthLocalStorage();
     }
-  }, [intention]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return user;
 };
 
