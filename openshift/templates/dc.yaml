@@ -111,9 +111,15 @@ objects:
           - name: MATOMO_SITE_ID
             value: ${MATOMO_SITE_ID}
           - name: GATSBY_ALGOLIA_APP_ID
-            value: ${GATSBY_ALGOLIA_APP_ID}
+            valueFrom:
+              secretKeyRef:
+                name: devhub-algolia-build
+                key: GATSBY_ALGOLIA_APP_ID
           - name: GATSBY_ALGOLIA_SEARCH_KEY
-            value: GATSBY_ALGOLIA_SEARCH_KEY
+            valueFrom:
+              secretKeyRef:
+                name: devhub-algolia-build
+                key: GATSBY_ALGOLIA_SEARCH_KEY
           volumeMounts:
           - name: caddy-${NAME}-static${SUFFIX}
             mountPath: /etc/Caddyfile
