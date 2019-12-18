@@ -146,7 +146,6 @@ export const Index = ({
     allJourneyRegistryJson,
     //allMeetupGroup, commented out as meetup source plugin no longer works. meetup removed support for api keys, we are waiting for the source-meetup plugin to address this
     allGithubRaw,
-    siteSearchIndex: { index },
   },
   location,
 }) => {

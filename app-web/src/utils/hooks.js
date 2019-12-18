@@ -15,11 +15,9 @@ Created by Patrick Simonian
 // notes on custom hooks https://reactjs.org/docs/hooks-custom.html
 import { useState, useEffect, useRef, useContext } from 'react';
 import moment from 'moment';
-// import { Index as ElasticLunr } from 'elasticlunr';
 import isEqual from 'lodash/isEqual';
 import { createIam } from '../auth';
 import { isLocalHost } from './helpers';
-// import { SEARCH_FIELD_NAMES, SEARCH_FIELD_MAPPING } from '../constants/search';
 import isEmpty from 'lodash/isEmpty';
 import AuthContext from '../AuthContext';
 import { useQuery } from '@apollo/react-hooks';
