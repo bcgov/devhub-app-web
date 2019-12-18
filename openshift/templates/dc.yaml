@@ -113,12 +113,12 @@ objects:
           - name: GATSBY_ALGOLIA_APP_ID
             valueFrom:
               secretKeyRef:
-                name: devhub-algolia-build
+                name: devhub-algolia-deployment
                 key: GATSBY_ALGOLIA_APP_ID
           - name: GATSBY_ALGOLIA_SEARCH_KEY
             valueFrom:
               secretKeyRef:
-                name: devhub-algolia-build
+                name: devhub-algolia-deployment
                 key: GATSBY_ALGOLIA_SEARCH_KEY
           volumeMounts:
           - name: caddy-${NAME}-static${SUFFIX}
