@@ -75,6 +75,11 @@ objects:
               secretKeyRef:
                 name: devhub-algolia-build
                 key: ALGOLIA_ADMIN_KEY
+          - name: GATSBY_ALGOLIA_SEARCH_KEY
+            valueFrom:
+              secretKeyRef:
+                name: devhub-algolia-build
+                key: GATSBY_ALGOLIA_SEARCH_KEY
           - name: GATSBY_ALGOLIA_INDEX_NAME_SUFFIX
             value: ${SUFFIX}
           - name: MEETUP_API_KEY
