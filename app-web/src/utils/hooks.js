@@ -122,10 +122,12 @@ export const useImplicitAuth = intention => {
 
 // returns if user is authenticated and the id token
 export const useAuthenticated = () => {
-  const [authenticated, setAuthenticated] = useState({ authenticated: false, idToken: null });
   const { auth } = useContext(AuthContext);
+  const authEmpty = isEmpty(auth);
+
+  const [authenticated, setAuthenticated] = useState({ authenticated: !authEmpty, idToken: null });
   useEffect(() => {
-    if (!isEmpty(auth)) {
+    if (!authEmpty) {
       const now = new Date();
       const { exp } = auth.idToken.data;
       // jwt times are in seconds, multiply by 1000 to convert into a date object
@@ -135,7 +137,7 @@ export const useAuthenticated = () => {
         setAuthenticated({ authenticated: true, token: auth.idToken.bearer });
       }
     }
-  }, [auth]);
+  }, [auth, authEmpty]);
   return authenticated;
 };
 
