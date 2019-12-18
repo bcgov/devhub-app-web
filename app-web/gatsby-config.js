@@ -22,7 +22,8 @@ const eventbritePlugin = () =>
     : undefined;
 
 const algoliaPlugin = () =>
-  process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX !== 'test'
+  //for CI purpose, but we do nut want to push index to algolia every time, especially on github action.
+  process.env.GATSBY_ACTIVE_ENV !== 'test' || !process.env.GATSBY_ACTIVE_ENV
     ? {
         resolve: `gatsby-plugin-algolia`,
         options: {
