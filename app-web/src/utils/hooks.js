@@ -97,9 +97,9 @@ export const useSearch = (query, staticIndex) => {
 
 export const useImplicitAuth = intention => {
   const [user, setUser] = useState({});
-  const implicitAuthManager = createIam();
 
   useEffect(() => {
+    const implicitAuthManager = createIam();
     implicitAuthManager.registerHooks({
       onAuthenticateSuccess: () => setUser(implicitAuthManager.getAuthDataFromLocal()),
       onAuthenticateFail: () => setUser({}),
@@ -115,7 +115,7 @@ export const useImplicitAuth = intention => {
     if (intention === 'LOGOUT') {
       implicitAuthManager.clearAuthLocalStorage();
     }
-  }, [implicitAuthManager, intention]);
+  }, [intention]);
   return user;
 };
 
