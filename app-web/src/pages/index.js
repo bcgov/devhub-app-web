@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import queryString from 'query-string';
 import isNull from 'lodash/isNull';
 import groupBy from 'lodash/groupBy';
@@ -15,7 +15,7 @@ import { ResourcePreview, Masthead, TopicsContainer } from '../components/Home';
 import withResourceQuery from '../hoc/withResourceQuery';
 import Aux from '../hoc/auxillary';
 
-import { useSearch, useAuthenticated, useSearchGate } from '../utils/hooks';
+import { useSearch, useSearchGate } from '../utils/hooks';
 import {
   selectTopicsWithResourcesGroupedByType,
   selectResourcesGroupedByType,
@@ -47,6 +47,7 @@ import Column from '../components/Card/Column';
 import GithubIssueCardHeader from '../components/DynamicSearchResults/GithubIssueCardHeader';
 import CardHeader from '../components/Card/CardHeader';
 import JourneysContainer from '../components/Home/JourneyContainer';
+import AuthContext from '../AuthContext';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -160,11 +161,11 @@ export const Index = ({
   } else {
     query = '';
   }
-  const { authenticated } = useAuthenticated();
+  const { isAuthenticated } = useContext(AuthContext);
   // get rocket chat search results if authenticated
   // TODO will activate once ui component is available
 
-  const searchGate = useSearchGate(authenticated, query, client);
+  const searchGate = useSearchGate(isAuthenticated, query, client);
 
   let searchSourceResults = {};
   if (searchGate.results) {

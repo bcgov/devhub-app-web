@@ -16,13 +16,13 @@ limitations under the License.
 Created by Patrick Simonian
 */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { Link } from '../UI/Link';
 import { CUSTOM_BREAKPOINTS } from '../../constants/designTokens';
 import Login from '../Auth/Login';
-import { useAuthenticated } from '../../utils/hooks';
+import AuthContext from '../../AuthContext';
 
 export const NavContainer = styled.nav`
   background-color: ${({ theme }) => theme.colors['bgBlue']};
@@ -103,8 +103,7 @@ const AuthContainer = styled.div`
 `;
 
 export const Navbar = ({ links, toggled }) => {
-  const { authenticated } = useAuthenticated();
-
+  const { isAuthenticated } = useContext(AuthContext);
   const navlinks = links.map(l => (
     <li key={l.to}>
       <NavLink to={l.to} activeClassName="active">
@@ -116,7 +115,7 @@ export const Navbar = ({ links, toggled }) => {
   return (
     <NavContainer toggled={toggled}>
       <AuthContainer>
-        <Login authenticated={authenticated} />
+        <Login authenticated={isAuthenticated} />
       </AuthContainer>
       <NavList>{navlinks}</NavList>
     </NavContainer>
