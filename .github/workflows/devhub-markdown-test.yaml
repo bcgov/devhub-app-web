@@ -2,7 +2,7 @@ name: "devhub-markdown-verify-test"
 on:
   pull_request:
     paths:
-    - '.github/actions/devhub-markdown-frontmatter-verify/*.js'
+    - '.github/actions/devhub-markdown-frontmatter-verify/**/*.js'
 jobs:
   # unit tests
   units:
@@ -16,6 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: ./
+    - uses: ./.github/actions/devhub-markdown-frontmatter-verify
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_API_TOKEN}}
       with:
-        milliseconds: 1000
+        repo: devhub-app-web
+        owner: bcgov

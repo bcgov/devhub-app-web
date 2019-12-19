@@ -20,7 +20,7 @@ const htmlToFormattedText = require('html-to-formatted-text');
 const { isPlainObject, isArray } = require('lodash');
 const visit = require('unist-util-visit');
 const remark = require('remark');
-const { RESOURCE_TYPES, PERSONAS_LIST } = require('../src/constants/ui');
+const { RESOURCE_TYPES_LIST, PERSONAS_LIST, RESOURCE_TYPES } = require('../src/constants/ui');
 const {
   isDevhubSiphon,
   isMarkdownRemark,
@@ -340,7 +340,7 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
 
       // if frontmatter resourcetype is valid we set it
       if (node.frontmatter.resourceType) {
-        resourceType = getClosestResourceType(node.frontmatter.resourceType);
+        resourceType = getClosestResourceType(node.frontmatter.resourceType, RESOURCE_TYPES_LIST);
       }
       // there is a chance tthe front matter resource type is invalid in the sense that it is mispelled/or not apart of the
       // resource types list
