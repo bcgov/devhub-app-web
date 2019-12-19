@@ -20,6 +20,8 @@ import React from 'react';
 import { useImplicitAuth } from './utils/hooks';
 import withLocation from './hoc/withLocation';
 import queryString from 'query-string';
+import moment from 'moment';
+import isEmpty from 'lodash/isEmpty';
 
 const AuthContext = React.createContext({});
 
@@ -27,7 +29,18 @@ const AuthContext = React.createContext({});
 export const AuthProvider = withLocation(({ children, location, ...rest }) => {
   const search = queryString.parse(location.search);
   const auth = useImplicitAuth(search.intention);
-  return <AuthContext.Provider value={{ auth }}>{children}</AuthContext.Provider>;
+  let isAuthenticated = false;
+  if (!isEmpty(auth)) {
+    const now = new Date();
+    const { exp } = auth.idToken.data;
+    // jwt times are in seconds, multiply by 1000 to convert into a date object
+    const expDate = new Date(exp * 1000);
+    // parse out auth.id_token and see if its still valid
+    if (moment(now).isBefore(moment(expDate))) {
+      isAuthenticated = true;
+    }
+  }
+  return <AuthContext.Provider value={{ auth, isAuthenticated }}>{children}</AuthContext.Provider>;
 })();
 
 /**
