@@ -18,7 +18,6 @@ Created by Patrick Simonian
 
 // node validators
 const stringSimilarity = require('string-similarity');
-const { RESOURCE_TYPES_LIST } = require('../../src/constants/ui');
 const isGithubRaw = node => node.internal.type === 'GithubRaw';
 const isMarkdownRemark = node => node.internal.type === 'MarkdownRemark';
 const isDevhubSiphon = node => node.internal.type === 'DevhubSiphon';
@@ -39,11 +38,12 @@ const getClosest = (value, list) => {
  * returns the closest resourceType from the constant resourceTypes array based on the
  * uncontrolled resourceType (given to us by contributors)
  * @param {String} resourceType the resource type provided by a specific piece of content
+ * @param {Array} resourceTypes the list of resource types
  */
-const getClosestResourceType = resourceType => {
+const getClosestResourceType = (resourceType, resourceTypes) => {
   // if its blank don't bother checking closeness
   if (resourceType === '') return '';
-  return getClosest(resourceType, RESOURCE_TYPES_LIST);
+  return getClosest(resourceType, resourceTypes);
 };
 
 /**

@@ -1,0 +1,24 @@
+name: "devhub-markdown-verify-test"
+on:
+  pull_request:
+    paths:
+    - '.github/actions/devhub-markdown-frontmatter-verify/**/*.js'
+jobs:
+  # unit tests
+  units:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - run: cd .github/actions/devhub-markdown-frontmatter-verify && npm ci
+    - run: cd .github/actions/devhub-markdown-frontmatter-verify && npm test
+  # test action works running from the graph  
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ./.github/actions/devhub-markdown-frontmatter-verify
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_API_TOKEN}}
+      with:
+        repo: devhub-app-web
+        owner: bcgov
