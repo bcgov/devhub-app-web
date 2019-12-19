@@ -16,9 +16,8 @@ limitations under the License.
 Created by Patrick Simonian
 */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useImplicitAuth } from './utils/hooks';
-import withLocation from './hoc/withLocation';
 import queryString from 'query-string';
 import moment from 'moment';
 import isEmpty from 'lodash/isEmpty';
@@ -26,10 +25,15 @@ import isEmpty from 'lodash/isEmpty';
 const AuthContext = React.createContext({});
 
 // Auth Provider is already wrapping gatsby browser so all pages should have access to the context
-export const AuthProvider = withLocation(({ children, location, ...rest }) => {
-  const search = queryString.parse(location.search);
+export const AuthProvider = ({ children, location, ...rest }) => {
+  const [searchString, setSearchString] = useState({});
+  useEffect(() => {
+    setSearchString(window.location.search);
+  }, [searchString]);
+  const search = queryString.parse(searchString);
   const auth = useImplicitAuth(search.intention);
   let isAuthenticated = false;
+
   if (!isEmpty(auth)) {
     const now = new Date();
     const { exp } = auth.idToken.data;
@@ -41,7 +45,7 @@ export const AuthProvider = withLocation(({ children, location, ...rest }) => {
     }
   }
   return <AuthContext.Provider value={{ auth, isAuthenticated }}>{children}</AuthContext.Provider>;
-})();
+};
 
 /**
  * usage is <AuthConsumer>{props => (...)}</AuthConsumer>

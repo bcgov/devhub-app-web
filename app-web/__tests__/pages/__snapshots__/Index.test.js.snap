@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Home Page When a blank search is entered, cards and alerts dont show but topics do 1`] = `
+exports[`Home Page When a blank search is entered, cards and alerts don't show but topics do 1`] = `
 .emotion-17 {
   background-color: #fafafa;
   text-align: center;
