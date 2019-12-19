@@ -125,7 +125,6 @@ module.exports = {
         include_favicon: true,
       },
     },
-    'gatsby-plugin-offline',
     'gatsby-plugin-emotion',
     // Adding various source folders to the GraphQL layer.
     {
@@ -187,7 +186,7 @@ module.exports = {
       options: { prefixes: ['/topic/*'] }, // dynamic topic pages
     },
     {
-      resolve: 'gatsby-source-github-raw',
+      resolve: '@bcgov/gatsby-source-github-raw',
       options: {
         githubAccessToken: process.env.GITHUB_TOKEN,
         files: getFilesFromRegistry,
@@ -304,7 +303,7 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-source-matomo',
+      resolve: '@bcgov/gatsby-source-matomo',
       options: {
         siteId: process.env.GATSBY_MATOMO_SITE_ID,
         matomoUrl: process.env.GATSBY_MATOMO_URL,

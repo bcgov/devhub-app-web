@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Banner from '../UI/Banner/Banner';
 import Hamburger from '../UI/Hamburger/Hamburger';
 // login not being implemented at this time
 import Login from '../Auth/Login';
-
 import styled from '@emotion/styled';
 import { CUSTOM_BREAKPOINTS } from '../../constants/designTokens';
+import AuthContext from '../../AuthContext';
 
 const Header = styled.header`
   background-color: ${({ theme }) => theme.colors.blue};
@@ -47,27 +47,29 @@ const Panel = styled.div`
   display: flex;
 `;
 
-export const PrimaryHeader = ({ showHamburger, hamburgerClicked, authenticated }) => (
-  <Header>
-    <Banner />
-    <Panel>
-      <LoginWrapper>
-        <Login authenticated={authenticated} />
-      </LoginWrapper>
-      {showHamburger ? <StyledHamburger clicked={hamburgerClicked} /> : null}
-    </Panel>
-  </Header>
-);
+export const PrimaryHeader = ({ showHamburger, hamburgerClicked }) => {
+  const { isAuthenticated } = useContext(AuthContext);
+
+  return (
+    <Header>
+      <Banner />
+      <Panel>
+        <LoginWrapper>
+          <Login authenticated={isAuthenticated} />
+        </LoginWrapper>
+        {showHamburger ? <StyledHamburger clicked={hamburgerClicked} /> : null}
+      </Panel>
+    </Header>
+  );
+};
 
 PrimaryHeader.propTypes = {
   showHamburger: PropTypes.bool,
   hamburgerClicked: PropTypes.func,
-  authenticated: PropTypes.bool,
 };
 
 PrimaryHeader.defaultProps = {
   showHamburger: false,
-  authenticated: false,
   hamburgerClicked: () => undefined,
 };
 
