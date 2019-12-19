@@ -4,7 +4,6 @@ import Banner from '../UI/Banner/Banner';
 import Hamburger from '../UI/Hamburger/Hamburger';
 // login not being implemented at this time
 import Login from '../Auth/Login';
-
 import styled from '@emotion/styled';
 import { CUSTOM_BREAKPOINTS } from '../../constants/designTokens';
 import AuthContext from '../../AuthContext';
@@ -49,7 +48,6 @@ const Panel = styled.div`
 `;
 
 export const PrimaryHeader = ({ showHamburger, hamburgerClicked }) => {
-  // const { authenticated } = useAuthenticated();
   const { isAuthenticated } = useContext(AuthContext);
 
   return (

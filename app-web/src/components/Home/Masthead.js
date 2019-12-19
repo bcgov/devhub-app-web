@@ -15,7 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { navigate } from 'gatsby';
 import styled from '@emotion/styled';
@@ -27,7 +27,7 @@ import { EMOTION_BOOTSTRAP_BREAKPOINTS, SPACING } from '../../constants/designTo
 import Search from '../Search';
 import AppLogo from '../UI/AppLogo/AppLogo';
 import { SearchSources } from '../Search/SearchSources';
-import { useAuthenticated } from '../../utils/hooks';
+import AuthContext from '../../AuthContext';
 
 const SearchStyled = styled(Search)`
   font-size: 1.25em;
@@ -67,9 +67,8 @@ export const TEST_IDS = {
   alertBox: 'Masthead.show',
 };
 
-export const Masthead = ({ query, resultCount, searchSourcesLoading }) => {
-  const { authenticated } = useAuthenticated();
-
+export const Masthead = ({ query, searchSourcesLoading }) => {
+  const { isAuthenticated } = useContext(AuthContext);
   const [alertHasBeenAcknowledged, setAlertHasBeenAcknowledged] = useState(false);
 
   const onDismiss = () => {
@@ -117,7 +116,7 @@ export const Masthead = ({ query, resultCount, searchSourcesLoading }) => {
         />
         <IconDiv>{query && <SearchSources searchSourcesLoading={searchSourcesLoading} />}</IconDiv>
       </SearchContainer>
-      {!authenticated && !alertHasBeenAcknowledged && (
+      {!isAuthenticated && !alertHasBeenAcknowledged && (
         <AlertMessage
           color="warning"
           isOpen={query !== ''}
