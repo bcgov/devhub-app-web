@@ -1,4 +1,4 @@
-import { getQueries, queries } from '../../src/utils/algolia';
+import { getQueries, queries, reduceGithubRawNode } from '../../src/utils/algolia';
 
 /*
 Copyright 2019 Province of British Columbia
@@ -17,6 +17,60 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
+let data = {
+  allGithubRaw: {
+    edges: [
+      {
+        node: {
+          id: '123123',
+          childMarkdownRemark: {
+            fields: {
+              title: 'foo',
+              description: 'abcabc',
+            },
+          },
+          internal: {
+            type: 'document',
+          },
+        },
+      },
+      {
+        node: {
+          id: '232323',
+          childMarkdownRemark: {
+            fields: {
+              title: 'foo2',
+              description: 'xzcv',
+            },
+          },
+          internal: {
+            type: 'document',
+          },
+        },
+      },
+      {
+        node: {
+          id: '232323',
+          childMarkdownRemark: {
+            fields: {
+              title: 'foo3',
+              description: 'asdfad',
+            },
+          },
+          internal: {
+            type: 'document',
+          },
+        },
+      },
+    ],
+  },
+};
+
+let expectionData = [
+  { id: '123123', fields: { title: 'foo', description: 'abcabc' }, __type: 'document' },
+  { id: '232323', fields: { title: 'foo2', description: 'xzcv' }, __type: 'document' },
+  { id: '232323', fields: { title: 'foo3', description: 'asdfad' }, __type: 'document' },
+];
 
 describe('Algolia Utils', () => {
   test('getQueries returns queries with indexName suffixed', () => {
@@ -29,5 +83,12 @@ describe('Algolia Utils', () => {
   test('getQueries returns queries unchanged when no suffix passed', () => {
     const suffixedQueries = getQueries();
     expect(suffixedQueries).toEqual(queries);
+  });
+});
+
+describe(' flatten array of nest object test', () => {
+  test('test if we can have a array of plat object of node of what we need', () => {
+    let test1 = reduceGithubRawNode(data.allGithubRaw.edges);
+    expect(test1).toEqual(expectionData);
   });
 });

@@ -15,6 +15,9 @@ const algoliaIndexQuery = `{
             type
           }
         }
+        internal{
+          type
+        }
       }
     }
   }
@@ -50,11 +53,21 @@ const algoliaIndexQuery = `{
 
 const settings = { attributesToSnippet: [`excerpt:20`] };
 
+export const reduceGithubRawNode = node => {
+  return flattenGatsbyGraphQL(node).map(
+    ({ childMarkdownRemark: { fields }, id, internal: { type } }) => ({
+      id,
+      fields,
+      __type: type,
+    }),
+  );
+};
+
 export const queries = [
   {
     query: algoliaIndexQuery,
     transformer: ({ data: { GithubSource, DevhubSiphon, EventbriteEvents } }) =>
-      flattenGatsbyGraphQL(GithubSource.edges)
+      reduceGithubRawNode(GithubSource.edges)
         .concat(flattenGatsbyGraphQL(DevhubSiphon.edges))
         .concat(flattenGatsbyGraphQL(EventbriteEvents.edges)),
     indexName: `Devhub-Algolia`,
