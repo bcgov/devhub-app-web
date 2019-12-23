@@ -15,7 +15,7 @@ const algoliaIndexQuery = `{
             type
           }
         }
-        internal{
+        internal {
           type
         }
       }
@@ -53,6 +53,11 @@ const algoliaIndexQuery = `{
 
 const settings = { attributesToSnippet: [`excerpt:20`] };
 
+/**
+ * Flat GitHubRawNode so when node is been indexed to Algolia, all resource will have same data structure.
+ * @param {Array} node the node for allGithubRaw that all information we need is in childMarkdownRemark field
+ * @returns {Array} the arry GithubRaw node that has same data structure as DevhubSiphon and EventbriteEvents
+ */
 export const reduceGithubRawNode = node => {
   return flattenGatsbyGraphQL(node).map(
     ({ childMarkdownRemark: { fields }, id, internal: { type } }) => ({

@@ -17,7 +17,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-let data = {
+const data = {
   allGithubRaw: {
     edges: [
       {
@@ -66,12 +66,6 @@ let data = {
   },
 };
 
-let expectionData = [
-  { id: '123123', fields: { title: 'foo', description: 'abcabc' }, __type: 'document' },
-  { id: '232323', fields: { title: 'foo2', description: 'xzcv' }, __type: 'document' },
-  { id: '232323', fields: { title: 'foo3', description: 'asdfad' }, __type: 'document' },
-];
-
 describe('Algolia Utils', () => {
   test('getQueries returns queries with indexName suffixed', () => {
     const suffixedQueries = getQueries('baz');
@@ -86,9 +80,14 @@ describe('Algolia Utils', () => {
   });
 });
 
-describe(' flatten array of nest object test', () => {
-  test('test if we can have a array of plat object of node of what we need', () => {
-    let test1 = reduceGithubRawNode(data.allGithubRaw.edges);
+describe(' Algolia reducers', () => {
+  const expectionData = [
+    { id: '123123', fields: { title: 'foo', description: 'abcabc' }, __type: 'document' },
+    { id: '232323', fields: { title: 'foo2', description: 'xzcv' }, __type: 'document' },
+    { id: '232323', fields: { title: 'foo3', description: 'asdfad' }, __type: 'document' },
+  ];
+  test('test if reduceGithubRawNode function can flat allgithubRaw node to the same as other type pf resource node.', () => {
+    const test1 = reduceGithubRawNode(data.allGithubRaw.edges);
     expect(test1).toEqual(expectionData);
   });
 });
