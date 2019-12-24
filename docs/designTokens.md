@@ -15,7 +15,7 @@ Where all tokens are housed.
 
 ## What Tokens Are There?
 
-You will find tokens for predicatable spacing units, common breakpoints and more. 
+You will find tokens for predictable spacing units, common breakpoints and more. 
 
 ## How To Utilize
 
@@ -41,7 +41,7 @@ export const Foo = () => <div css={Container}>Hello World!</div>
 
 ## Moving Forward
 
-There will be ongoing work to transititon many common components that use margin/padding to utilize the style tokens so we maintain consistency and have a single source of truth!
+There will be ongoing work to transition many common components that use margin/padding to utilize the style tokens so we maintain consistency and have a single source of truth!
 
 ## Interested In Learning More About Design Tokens?
 
