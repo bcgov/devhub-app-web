@@ -24,7 +24,7 @@ more popular __CSS-In_JS__ solutions.
 
 We are still relatively early in the development life cycle for the Devhub. It is recommended to utilize
 emotion styling paradigms such as `inline styles` and `styled components` from now on when developing new
-components. All CSS Modules should be considered as techinical debt until they have been either replaced
+components. All CSS Modules should be considered as technical debt until they have been either replaced
 by emotion or have been vetted in a sense that there isn't a huge gain in spending the time to convert it over.
 
 
