@@ -11,7 +11,7 @@ Although Gatsby is a frame work, it is still very much a living and breathing re
 
 ### Containers
 
-Each Page component (found under `/src/pages`) is analagous to a react container in a more traditional react app.
+Each Page component (found under `/src/pages`) is analogous to a react container in a more traditional react app.
 
 ### Components
 
@@ -19,7 +19,7 @@ Following a React best practice, components should generally be considered for p
 
 ### Pages
 
-This is where Gatsby Differs from React, A page components will be converted into it's own index.html file ie (learnmore.js => /learnmore/index.html). This is the main feature of gatsby that we can generate several static sites that have all caching and preloading features already done for us at build time. 
+This is where Gatsby differs from React, a page components will be converted into it's own index.html file ie (learnmore.js => /learnmore/index.html). This is the main feature of gatsby that we can generate several static sites that have all caching and preloading features already done for us at build time. 
 
 ### Templates
 
