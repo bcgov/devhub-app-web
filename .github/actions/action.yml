@@ -1,0 +1,11 @@
+name: 'Check Markdown Frontmatter'
+description: 'Validates frontmatter from all markdown files in the registries'
+outputs:
+  filesThatNeedHelp: # output will be available to future steps 
+    description: 'The amount of files that are invalid'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: 'file-text'  
+  color: 'yellow' 
