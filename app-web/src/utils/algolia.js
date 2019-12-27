@@ -15,6 +15,9 @@ const algoliaIndexQuery = `{
             type
           }
         }
+        internal {
+          type
+        }
       }
     }
   }
@@ -50,11 +53,26 @@ const algoliaIndexQuery = `{
 
 const settings = { attributesToSnippet: [`excerpt:20`] };
 
+/**
+ * Flat GitHubRawNode so when node is been indexed to Algolia, all resource will have same data structure.
+ * @param {Array} edges the edges for allGithubRaw that all information we need is in childMarkdownRemark field
+ * @returns {Array} the github nodes that has same data structure as DevhubSiphon and EventbriteEvents
+ */
+export const reduceGithubRawNode = edges => {
+  return flattenGatsbyGraphQL(edges).map(
+    ({ childMarkdownRemark: { fields }, id, internal: { type } }) => ({
+      id,
+      fields,
+      __type: type,
+    }),
+  );
+};
+
 export const queries = [
   {
     query: algoliaIndexQuery,
     transformer: ({ data: { GithubSource, DevhubSiphon, EventbriteEvents } }) =>
-      flattenGatsbyGraphQL(GithubSource.edges)
+      reduceGithubRawNode(GithubSource.edges)
         .concat(flattenGatsbyGraphQL(DevhubSiphon.edges))
         .concat(flattenGatsbyGraphQL(EventbriteEvents.edges)),
     indexName: `Devhub-Algolia`,
@@ -63,7 +81,7 @@ export const queries = [
 ];
 
 /**
- * returns all queries with the indexname suffixed
+ * returns all queries with the index name suffixed
  * @param {String} suffix the suffix for the index
  * @returns {Array} the queries used by gatsby-plugin-algolia
  */

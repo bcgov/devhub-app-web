@@ -1,4 +1,4 @@
-import { getQueries, queries } from '../../src/utils/algolia';
+import { getQueries, queries, reduceGithubRawNode } from '../../src/utils/algolia';
 
 /*
 Copyright 2019 Province of British Columbia
@@ -29,5 +29,65 @@ describe('Algolia Utils', () => {
   test('getQueries returns queries unchanged when no suffix passed', () => {
     const suffixedQueries = getQueries();
     expect(suffixedQueries).toEqual(queries);
+  });
+
+  describe(' Algolia reducers', () => {
+    test('flattening githubRaw nodes', () => {
+      const data = {
+        allGithubRaw: {
+          edges: [
+            {
+              node: {
+                id: '123123',
+                childMarkdownRemark: {
+                  fields: {
+                    title: 'foo',
+                    description: 'abcabc',
+                  },
+                },
+                internal: {
+                  type: 'document',
+                },
+              },
+            },
+            {
+              node: {
+                id: '232323',
+                childMarkdownRemark: {
+                  fields: {
+                    title: 'foo2',
+                    description: 'xzcv',
+                  },
+                },
+                internal: {
+                  type: 'document',
+                },
+              },
+            },
+            {
+              node: {
+                id: '232323',
+                childMarkdownRemark: {
+                  fields: {
+                    title: 'foo3',
+                    description: 'asdfad',
+                  },
+                },
+                internal: {
+                  type: 'document',
+                },
+              },
+            },
+          ],
+        },
+      };
+      const expected = [
+        { id: '123123', fields: { title: 'foo', description: 'abcabc' }, __type: 'document' },
+        { id: '232323', fields: { title: 'foo2', description: 'xzcv' }, __type: 'document' },
+        { id: '232323', fields: { title: 'foo3', description: 'asdfad' }, __type: 'document' },
+      ];
+      const test1 = reduceGithubRawNode(data.allGithubRaw.edges);
+      expect(test1).toEqual(expected);
+    });
   });
 });
