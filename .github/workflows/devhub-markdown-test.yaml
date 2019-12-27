@@ -9,8 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - run: cd .github/actions/devhub-markdown-frontmatter-verify && npm ci
-    - run: cd .github/actions/devhub-markdown-frontmatter-verify && npm test
+    - run: cd .github/actions/devhub-markdown-frontmatter-verify && npm ci && npm test
   # test action works running from the graph  
   test:
     runs-on: ubuntu-latest
