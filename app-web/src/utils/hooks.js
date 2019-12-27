@@ -13,15 +13,12 @@ Created by Patrick Simonian
 */
 // custom react hooks
 // notes on custom hooks https://reactjs.org/docs/hooks-custom.html
-import { useState, useEffect, useRef, useContext } from 'react';
-import moment from 'moment';
+import { useState, useEffect, useRef } from 'react';
 import { Index as ElasticLunr } from 'elasticlunr';
 import isEqual from 'lodash/isEqual';
 import { createIam } from '../auth';
 import { isLocalHost } from './helpers';
 import { SEARCH_FIELD_NAMES, SEARCH_FIELD_MAPPING } from '../constants/search';
-import isEmpty from 'lodash/isEmpty';
-import AuthContext from '../AuthContext';
 import { useQuery } from '@apollo/react-hooks';
 import { SEARCHGATE_QUERY } from '../constants/runtimeGraphqlQueries';
 
@@ -95,41 +92,29 @@ export const useSearch = (query, staticIndex) => {
   return results;
 };
 
-export const useImplicitAuth = () => {
+export const useImplicitAuth = intention => {
   const [user, setUser] = useState({});
+
   useEffect(() => {
     const implicitAuthManager = createIam();
-
     implicitAuthManager.registerHooks({
       onAuthenticateSuccess: () => setUser(implicitAuthManager.getAuthDataFromLocal()),
       onAuthenticateFail: () => setUser({}),
-      onAuthLocalStorageCleared: () => setUser({}),
+      onAuthLocalStorageCleared: () => {
+        setUser({});
+      },
     });
 
     if (!isLocalHost()) {
       implicitAuthManager.handleOnPageLoad();
     }
+
+    if (intention === 'LOGOUT') {
+      implicitAuthManager.clearAuthLocalStorage();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return user;
-};
-
-// returns if user is authenticated and the id token
-export const useAuthenticated = () => {
-  const [authenticated, setAuthenticated] = useState({ authenticated: false, idToken: null });
-  const { auth } = useContext(AuthContext);
-  useEffect(() => {
-    if (!isEmpty(auth)) {
-      const now = new Date();
-      const { exp } = auth.idToken.data;
-      // jwt times are in seconds, multiply by 1000 to convert into a date object
-      const expDate = new Date(exp * 1000);
-      // parse out auth.id_token and see if its still valid
-      if (moment(now).isBefore(moment(expDate))) {
-        setAuthenticated({ authenticated: true, token: auth.idToken.bearer });
-      }
-    }
-  }, [auth]);
-  return authenticated;
 };
 
 /**

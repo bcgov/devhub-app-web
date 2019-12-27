@@ -16,11 +16,13 @@ limitations under the License.
 Created by Patrick Simonian
 */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { Link } from '../UI/Link';
 import { CUSTOM_BREAKPOINTS } from '../../constants/designTokens';
+import Login from '../Auth/Login';
+import AuthContext from '../../AuthContext';
 
 export const NavContainer = styled.nav`
   background-color: ${({ theme }) => theme.colors['bgBlue']};
@@ -100,7 +102,8 @@ const AuthContainer = styled.div`
   }
 `;
 
-export const Navbar = ({ authenticated, links, implicitAuthManager, toggled }) => {
+export const Navbar = ({ links, toggled }) => {
+  const { isAuthenticated } = useContext(AuthContext);
   const navlinks = links.map(l => (
     <li key={l.to}>
       <NavLink to={l.to} activeClassName="active">
@@ -108,19 +111,11 @@ export const Navbar = ({ authenticated, links, implicitAuthManager, toggled }) =
       </NavLink>
     </li>
   ));
+
   return (
     <NavContainer toggled={toggled}>
       <AuthContainer>
-        {authenticated ? (
-          <Link
-            onClick={() => implicitAuthManager && implicitAuthManager.clearAuthLocalStorage()}
-            href={implicitAuthManager && implicitAuthManager.getSSOLogoutURI()}
-          >
-            Logout
-          </Link>
-        ) : (
-          <Link href={implicitAuthManager && implicitAuthManager.getSSOLoginURI()}>Login</Link>
-        )}
+        <Login authenticated={isAuthenticated} />
       </AuthContainer>
       <NavList>{navlinks}</NavList>
     </NavContainer>
@@ -129,7 +124,6 @@ export const Navbar = ({ authenticated, links, implicitAuthManager, toggled }) =
 
 Navbar.propTypes = {
   links: PropTypes.arrayOf(PropTypes.shape({ to: PropTypes.string, text: PropTypes.string })),
-  authenticated: PropTypes.bool,
-  implicitAuthManager: PropTypes.object,
+
   toggled: PropTypes.bool,
 };

@@ -218,16 +218,6 @@ exports[`404 Page it matches snapshot 1`] = `
   }
 }
 
-.emotion-23 {
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-  color: #1A5A96;
-  font-weight: 400;
-  text-transform: capitalize;
-  padding: 0 4px;
-  margin: 0 2px;
-}
-
 .emotion-51 {
   margin: 0;
   padding: 0;
@@ -498,6 +488,16 @@ exports[`404 Page it matches snapshot 1`] = `
   align-items: center;
 }
 
+.emotion-71 {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  color: #1A5A96;
+  font-weight: 400;
+  text-transform: capitalize;
+  padding: 0 4px;
+  margin: 0 2px;
+}
+
 .emotion-81 {
   margin: 0;
   padding: 0;
@@ -564,9 +564,9 @@ exports[`404 Page it matches snapshot 1`] = `
         <button
           class="emotion-13 emotion-14"
           color="yellow"
-          data-testid="auth.logout"
+          data-testid="auth.login"
         >
-          Logout
+          Login
         </button>
       </div>
       <svg
@@ -594,13 +594,13 @@ exports[`404 Page it matches snapshot 1`] = `
     <div
       class="emotion-25 emotion-26"
     >
-      <a
-        class="emotion-23 emotion-24"
-        data-testid="ui-link"
-        href="LOGOUTURI"
+      <button
+        class="emotion-13 emotion-14"
+        color="yellow"
+        data-testid="auth.login"
       >
-        Logout
-      </a>
+        Login
+      </button>
     </div>
     <ul
       class="emotion-51 emotion-52"
@@ -748,7 +748,7 @@ exports[`404 Page it matches snapshot 1`] = `
         </li>
         <li>
           <a
-            class="emotion-23 emotion-24"
+            class="emotion-71 emotion-72"
             data-testid="ui-link"
             href="https://www2.gov.bc.ca/gov/content/home/disclaimer"
           >
@@ -757,7 +757,7 @@ exports[`404 Page it matches snapshot 1`] = `
         </li>
         <li>
           <a
-            class="emotion-23 emotion-24"
+            class="emotion-71 emotion-72"
             data-testid="ui-link"
             href="https://www2.gov.bc.ca/gov/content/home/privacy"
           >
@@ -766,7 +766,7 @@ exports[`404 Page it matches snapshot 1`] = `
         </li>
         <li>
           <a
-            class="emotion-23 emotion-24"
+            class="emotion-71 emotion-72"
             data-testid="ui-link"
             href="https://www2.gov.bc.ca/gov/content/home/accessibility"
           >
@@ -775,7 +775,7 @@ exports[`404 Page it matches snapshot 1`] = `
         </li>
         <li>
           <a
-            class="emotion-23 emotion-24"
+            class="emotion-71 emotion-72"
             data-testid="ui-link"
             href="https://www2.gov.bc.ca/gov/content/home/copyright"
           >
@@ -784,7 +784,7 @@ exports[`404 Page it matches snapshot 1`] = `
         </li>
         <li>
           <a
-            class="emotion-23 emotion-24"
+            class="emotion-71 emotion-72"
             data-testid="ui-link"
             href="https://github.com/bcgov/devhub-app-web/issues"
           >

@@ -58,11 +58,11 @@ The Devhub aims to solve these problems by:
 To make it easier to navigate and discover content, we have _specially grouped_ content
 into relatable ___Topics___.
 
-<img src="../src/assets/images/Topics.png" alt="Topics">
+<img src="../images/Topics.png" alt="Topics">
 
 Feel free to explore the different topics that we have specially curated by by clicking the __Topics__ link from within the header.
 
-<img src="../src/assets/images/Header.png" alt="navigation">
+<img src="../images/Header.png" alt="navigation">
 
 Each __Topic__ consists of one or more __Resources__ related to that topic. A __Resource__ can come in
 many forms depending on what it is about. We have identified a few common themes when it comes to types
@@ -115,7 +115,7 @@ We are continously improving Devhub as a whole. If there is anything wrong with 
 You can find a button to raise an issue in Github for that content. This will make the issue public and known
 to the author's of that resoruce. 
 
-<img src="../src/assets/images/raise-issue.gif" alt="raising an issue">
+<img src="../images/raise-issue.gif" alt="raising an issue">
 
 #### When There's a Problem With Devhub
 

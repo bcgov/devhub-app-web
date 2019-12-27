@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import { SearchSourcesButton } from '../UI/Button/Button';
-import { useAuthenticated } from '../../utils/hooks';
 import { Link } from 'react-scroll';
 import { SEARCH_SOURCE_CONTENT } from '../DynamicSearchResults';
 import { SEARCH_SOURCES } from '../../constants/search';
 import PropTypes from 'prop-types';
+import AuthContext from '../../AuthContext';
 
 const StyledLink = styled(Link)`
   margin: 0 5px;
@@ -28,10 +28,11 @@ export const TEST_IDS = {
 };
 
 export const SearchSources = ({ searchSourcesLoading }) => {
-  const { authenticated } = useAuthenticated();
+  const { isAuthenticated } = useContext(AuthContext);
+
   const iconProps = {};
 
-  if (!authenticated || searchSourcesLoading) {
+  if (!isAuthenticated || searchSourcesLoading) {
     iconProps.style = {
       opacity: 0.65,
       cursor: 'initial',
@@ -41,8 +42,8 @@ export const SearchSources = ({ searchSourcesLoading }) => {
   const scrollOffset = -125;
 
   return Object.keys(SEARCH_SOURCES).map(element => (
-    <SearchSourcesContainer data-testid={TEST_IDS.container}>
-      {authenticated && !searchSourcesLoading ? (
+    <SearchSourcesContainer key={element} data-testid={TEST_IDS.container}>
+      {isAuthenticated && !searchSourcesLoading ? (
         <StyledLink key={element} to={SEARCH_SOURCE_CONTENT[element].id} offset={scrollOffset}>
           <SearchSourcesButton
             searchType={element}
