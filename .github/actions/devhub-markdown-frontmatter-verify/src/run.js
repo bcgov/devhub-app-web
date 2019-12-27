@@ -166,10 +166,10 @@ async function run() {
 
     core.debug('Beginning Validation of markdown frontmatter');
 
-    const messagesArray = await Promise.all(gitSources.map(async (source) => {
+    const messagesArray = await Promise.all(gitSources.map(async ({source}) => {
       core.debug(`Debugging ${source}`)
       return core.group(`Validating ${filePathFromSourceProps(source.sourceProperties)}`, async () => {
-        return await validateFile(source.source)
+        return await validateFile(source)
       });
     }));
 
