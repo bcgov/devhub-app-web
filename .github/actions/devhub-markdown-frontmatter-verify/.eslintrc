@@ -1,17 +1,40 @@
+
 {
+    "parser": "babel-eslint",
     "env": {
-        "commonjs": true,
-        "es6": true,
-        "node": true,
-        "jest": true
+      "browser": true,
+      "es6": true,
+      "jest": true
     },
-    "extends": "eslint:recommended",
-    "plugins": [ "prettier"],
     "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
+      "graphql": false,
+      "cy": true,
+      "Cypress": true,
+      "assert": true
     },
     "parserOptions": {
-        "ecmaVersion": 2018
+      "sourceType": "module"
+    },
+    "plugins": [ "prettier", "jest"],
+    "rules": {
+      "no-console": ["error"],
+      "no-unused-vars": ["error"],
+      "prettier/prettier": ["error"],
+      "linebreak-style": ["warn", "unix"],
+      "semi": ["error", "always"],
+      "indent": "off",
+      "import/no-named-as-default": "off",
+      "no-shadow": "off",
+      "quote-props": "off",
+      "max-len": "off",
+      "react/sort-comp": "off",
+      "no-unused-expressions": "warn",
+      "no-useless-concat": "warn",
+      "block-scoped-var": "error",
+      "consistent-return": "error",
+      "operator-linebreak": "off",
+      "arrow-parens": "off",
+      "eol-last": ["error", "always"]
     }
-}
+  }
+  

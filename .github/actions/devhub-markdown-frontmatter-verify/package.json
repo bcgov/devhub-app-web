@@ -34,13 +34,16 @@
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
     "@types/nock": "^11.1.0",
+    "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
-    "eslint": "^6.3.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-jest": "^23.1.1",
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^3.1.0",
     "jest": "^24.9.0",
     "nock": "^11.7.0",
+    "prettier": "^1.19.1",
     "webpack": "^4.41.4",
     "webpack-cli": "^3.3.10"
   },
@@ -48,7 +51,10 @@
     "transform": {
       "^.+\\.js$": "babel-jest"
     },
-    "modulePaths": ["<rootDir>/.github/actions/devhub-markdown-frontmatter-verify", "<rootDir>/app-web"]
+    "modulePaths": [
+      "<rootDir>/.github/actions/devhub-markdown-frontmatter-verify",
+      "<rootDir>/app-web"
+    ]
   },
   "husky": {
     "hooks": {
