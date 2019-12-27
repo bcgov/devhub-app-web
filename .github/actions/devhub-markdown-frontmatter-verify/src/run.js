@@ -177,6 +177,7 @@ async function run() {
 
     if(didError) throw new Error('Files did not pass validation, see error messages');
   } catch (error) {
+    console.error(error);
     core.setFailed(error.message);
   }
 }
