@@ -28,8 +28,7 @@
     "@actions/github": "^2.0.0",
     "babel-polyfill": "^6.26.0",
     "gray-matter": "^4.0.2",
-    "lodash": "^4.17.15",
-    "string-similarity": "^3.0.0"
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
@@ -48,7 +47,8 @@
   "jest": {
     "transform": {
       "^.+\\.js$": "babel-jest"
-    }
+    },
+    "modulePaths": ["<rootDir>"]
   },
   "husky": {
     "hooks": {
