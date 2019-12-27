@@ -206,6 +206,7 @@ module.exports = {
               aliases: {},
               showLineNumbers: false,
               noInlineHighlight: true,
+              escapeEntities: { '{': '&#123;', '}': '&#125;' },
             },
           },
           {
