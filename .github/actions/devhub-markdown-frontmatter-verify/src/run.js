@@ -158,8 +158,8 @@ async function run() {
     
     core.debug('Extracting all sources from within the registry items and removing non-git sources from registry');
 
-    const gitSources = flattenSourcesFromTopics(expandedRegistry).filter(({source}) => source.sourceType !== 'github');
-    console.log('remaining sources', gitSources)
+    const gitSources = flattenSourcesFromTopics(expandedRegistry).filter(({source}) => source.sourceType === 'github');
+
     core.debug('Retrieving list of git urls to verify markdown frontmatter');
 
     core.debug(`${gitSources.length} files retrieved`);
