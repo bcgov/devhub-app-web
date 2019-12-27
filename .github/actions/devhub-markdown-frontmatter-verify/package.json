@@ -48,7 +48,7 @@
     "transform": {
       "^.+\\.js$": "babel-jest"
     },
-    "modulePaths": ["<rootDir>"]
+    "modulePaths": ["<rootDir>/.github/actions/devhub-markdown-frontmatter-verify", "<rootDir>/app-web"]
   },
   "husky": {
     "hooks": {
