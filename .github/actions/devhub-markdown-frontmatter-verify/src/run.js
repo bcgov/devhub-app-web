@@ -143,7 +143,7 @@ async function run() {
   try { 
     const repo = core.getInput('repo', { required: true });
     const owner = core.getInput('owner', { required: true });
-
+    const throwOnError = core.getInput('throwOnError', { required: false }) || false;
     const { ref } = github.context;
     core.debug(`Fetching contents from ${ref}`);
     const result = await getJourneysAndTopics(repo, owner, ref);
@@ -159,7 +159,6 @@ async function run() {
     core.debug('Extracting all sources from within the registry items and removing non-git sources from registry');
 
     const gitSources = flattenSourcesFromTopics(expandedRegistry).filter(({source}) => source.sourceType === 'github');
-    console.log('remaining sources', gitSources)
     core.debug('Retrieving list of git urls to verify markdown frontmatter');
 
     core.debug(`${gitSources.length} files retrieved`);
@@ -168,14 +167,13 @@ async function run() {
 
     const messagesArray = await Promise.all(gitSources.map(async ({source}) => {
       core.debug(`Debugging ${source}`)
-      return core.group(`Validating ${filePathFromSourceProps(source.sourceProperties)}`, async () => {
-        return await validateFile(source)
-      });
+      console.log(`Validating ${filePathFromSourceProps(source.sourceProperties)}`);
+      return await validateFile(source);
     }));
 
     const didError = processMessagesArray(messagesArray);
 
-    if(didError) throw new Error('Files did not pass validation, see error messages');
+    if(didError && throwOnError) throw new Error('Files did not pass validation, see error messages');
   } catch (error) {
     console.error(error);
     core.setFailed(error.message);
