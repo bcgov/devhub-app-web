@@ -28,4 +28,5 @@ jobs:
       with:
         repo: devhub-app-web
         owner: bcgov
+        throwOnError: false # defaults to false if not set,  otherwise  just prints error statements
 ```
