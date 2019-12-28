@@ -1,0 +1,9 @@
+{
+  "transform": {
+    "^.+\\.js$": "babel-jest"
+  },
+  "modulePaths": [
+    "<rootDir>/.github/actions/devhub-markdown-frontmatter-verify",
+    "<rootDir>/app-web"
+  ]
+}

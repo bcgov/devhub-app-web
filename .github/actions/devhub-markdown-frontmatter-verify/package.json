@@ -47,15 +47,6 @@
     "webpack": "^4.41.4",
     "webpack-cli": "^3.3.10"
   },
-  "jest": {
-    "transform": {
-      "^.+\\.js$": "babel-jest"
-    },
-    "modulePaths": [
-      "<rootDir>/.github/actions/devhub-markdown-frontmatter-verify",
-      "<rootDir>/app-web"
-    ]
-  },
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint && npm run package && echo '====> Package bundled, make sure you add these as another commit'"
