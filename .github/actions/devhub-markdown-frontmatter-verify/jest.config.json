@@ -3,6 +3,7 @@
     "^.+\\.js$": "babel-jest"
   },
   "modulePaths": [
+    "<rootDir>",
     "<rootDir>/.github/actions/devhub-markdown-frontmatter-verify",
     "<rootDir>/app-web"
   ]
