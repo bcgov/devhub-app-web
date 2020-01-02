@@ -115,6 +115,5 @@ app-web/registry/registry.json
 # IntelliJ file
 .idea
 
-# root level package json (for now)
-package-lock.json
+
 app-web/cypress/videos

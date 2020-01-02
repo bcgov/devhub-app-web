@@ -18,6 +18,10 @@ Created by Patrick Simonian
 const { isTopicRegistryJson, isJourneyRegistryJson, verifyJourney } = require('./validators');
 const isArray = require('lodash/isArray');
 
+const REGISTRY_TYPES = {
+  TOPIC: 'TOPIC',
+  JOURNEY: 'JOURNEY',
+};
 /**
  * reduces a journey which is a 2d version of a  topic to a topic
  * this is purely so that we can leverage routines that are already working in this file
@@ -113,14 +117,54 @@ const flattenExpandedRegistry = expandedRegistry =>
     return sources.concat(flattenedSources);
   }, []);
 
+/**
+ * returns the git url resolved from a file and its source
+ * @param {Object} source
+ */
+const getGitUrlFromSource = source => {
+  const {
+    sourceProperties: { repo, owner, branch, file },
+  } = source;
+
+  const fileBranch = branch ? branch : 'master';
+  return `https://github.com/${owner}/${repo}/blob/${fileBranch}/${file}`;
+};
+
+/**
+ * Topics contain a nested set of sources that can be either web or github
+ * this fn extracts all the sources and adds metadata incase the topic was
+ * 'derived' from a journey
+ * @param {Array} topics the topics array
+ * @param {Object} topics<index> the topic
+ * @param {String} topics<index>.name
+ * @param {String} topics<index>.description
+ * @param {String} topics<index>.resourceType
+ * @param {Object} topics<index>.attributes
+ * @param {Object} topics<index>.sourceProperties
+ * @param {Array} topics<index>.sourceProperties.sources
+ * @param {Array} topics<index>.sourceProperties.sources<index>
+ * @param {String} topics<index>.sourceProperties.sources<index>.sourceType
+ * @param {Object} topics<index>.sourceProperties.sources<index>.sourceProperties
+ * @param {Function} transformCb {registryItem, source, personas} a call back that can optionally
+ * transform a source object before it is flattened
+ */
+const flattenSourcesFromTopics = (
+  topics,
+  transformCb = (registryItem, source, personas) => ({ source }),
+) =>
+  topics.reduce((sources, registryItem) => {
+    const personas = registryItem.attributes && registryItem.attributes.personas;
+
+    const flattenedSources = registryItem.sourceProperties.sources.map(s =>
+      transformCb(registryItem, s, personas),
+    );
+    return sources.concat(flattenedSources);
+  }, []);
+
 const getFilesFromRegistry = getNodes => {
   const nodes = getNodes();
   const sourceToTopicMap = {};
 
-  const REGISTRY_TYPES = {
-    TOPIC: 'TOPIC',
-    JOURNEY: 'JOURNEY',
-  };
   // get RegistryJson nodes
   const topicRegistry = nodes
     .filter(isTopicRegistryJson)
@@ -135,29 +179,27 @@ const getFilesFromRegistry = getNodes => {
   // [{sourceProperties: { files: [A, B]}}] => [{sourceProperties: { file: A}}, {sourceProperties: { file: B}}]
   const expandedRegistry = expandRegistry(topicRegistry.concat(mappedTopicRegistry));
 
-  const sources = expandedRegistry.reduce((sources, registryItem) => {
-    const personas = registryItem.attributes && registryItem.attributes.personas;
-    const flattenedSources = registryItem.sourceProperties.sources.map(s => {
-      if (registryItem.type === REGISTRY_TYPES.TOPIC) {
-        return {
-          source: s,
-          topic: registryItem.name,
-          topicResourceType: registryItem.resourceType,
-          topicPersonas: personas || [],
-        };
-      } else if (registryItem.type === REGISTRY_TYPES.JOURNEY) {
-        return {
-          source: s,
-          journey: registryItem.name,
-          journeyResourceType: registryItem.resourceType,
-          journeyPersonas: personas || [],
-        };
-      }
-      return null;
-    });
-    return sources.concat(flattenedSources);
-  }, []);
-
+  // registry items are still a list of 'topics' and so the sources within the topics are extracted
+  // and set into a single array
+  const sources = flattenSourcesFromTopics(expandedRegistry, (registryItem, source, personas) => {
+    // the .type property is only appended by other function to allow further processing
+    if (registryItem.type === REGISTRY_TYPES.TOPIC) {
+      return {
+        source,
+        topic: registryItem.name,
+        topicResourceType: registryItem.resourceType,
+        topicPersonas: personas || [],
+      };
+    } else if (registryItem.type === REGISTRY_TYPES.JOURNEY) {
+      return {
+        source,
+        journey: registryItem.name,
+        journeyResourceType: registryItem.resourceType,
+        journeyPersonas: personas || [],
+      };
+    }
+    return { source };
+  });
   // add position metadata to github urls and set non github source types to null
   // so that they are filterable
   const resolvedGitSources = sources
@@ -173,14 +215,10 @@ const getFilesFromRegistry = getNodes => {
       } = s;
 
       if (source.sourceType === 'github') {
-        const {
-          sourceProperties: { repo, owner, branch, file },
-          connectsWith,
-        } = source;
+        const { connectsWith } = source;
 
-        const fileBranch = branch ? branch : 'master';
         return {
-          url: `https://github.com/${owner}/${repo}/blob/${fileBranch}/${file}`,
+          url: getGitUrlFromSource(source),
           position: ind,
           topic,
           topicResourceType,
@@ -237,6 +275,8 @@ const getFilesFromRegistry = getNodes => {
 module.exports = {
   getFilesFromRegistry,
   expandRegistry,
+  flattenSourcesFromTopics,
   flattenExpandedRegistry,
   reduceJourneyRegistryToTopic,
+  getGitUrlFromSource,
 };
