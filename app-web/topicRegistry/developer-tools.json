@@ -77,6 +77,19 @@
           "image": "https://developer.gov.bc.ca/images/gov-logo-static.png"
         },
         "resourceType": "Documentation"
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "title": "Artifactory",
+          "url": "https://github.com/bcdevops/developer-experience",
+          "author": "caggles",
+          "owner": "bcdevops",
+          "repo": "developer-experience",
+          "files": [
+            "apps/artifactory/DEVHUB-README.md"
+          ]
+        }
       }
     ]
   }
