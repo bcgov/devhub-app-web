@@ -9,7 +9,6 @@ export const TEST_IDS = {
 };
 
 export const Login = ({ authenticated, ...rest }) => {
-  authenticated = true;
   return (
     <Button
       variant={authenticated ? 'link' : 'secondary'}

@@ -202,7 +202,7 @@ exports[`404 Page it matches snapshot 1`] = `
 
 .emotion-25 {
   padding: 10px;
-  background-color: #fafafa;
+  border-bottom: 1px solid #bbc7d5;
   text-align: right;
   display: block;
 }
