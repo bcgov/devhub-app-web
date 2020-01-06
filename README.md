@@ -12,7 +12,7 @@ image: https://github.com/bcgov/devhub-app-web/blob/master/docs/images/book.png?
  
 ## DevHub Intro
 
-DevHub aims to become the "Central Nervous System" for the growing gov developer community.  We also describe it    like a "wayfinding" tool for digital product teams. 
+DevHub aims to become the "Central Nervous System" for the growing gov developer community.  We also describe it like a "wayfinding" tool for digital product teams. 
 
 It will provide a comprehensive inventory of relevant internal and external documentation, open source components, services, APIs and data for internal and external developers who are building government products, or want to build their own products
 
@@ -26,7 +26,7 @@ It will also provide a aeans to seed “prosumer”/community behaviours. For ex
 
 ## How Resources Are Sourced and Connected Together (from the developer's prespective)
 
-Resources are sourced via a set of __Gatsby Source Plugins__. These plugins are installed through npm (or sourced locally) and then declared within `gatsby-config.js`. 
+Resources are sourced via a set of __Gatsby Source Plugins__. These plugins are installed through `npm` (or sourced locally) and then declared within `gatsby-config.js`. 
 
 To link nodes together there are a couple of different constructs that are being utilized. 
 
@@ -59,7 +59,7 @@ The currently imagined resource types are as follows:
 * People
 * Projects
 
-There is also the concept of a set of potentially heterogeneous resources that we are calling a "Topic". For example, a   
+There is also the concept of a set of potentially heterogeneous resources that we are calling a "Topic".
 
 ### Documentation
 
@@ -225,7 +225,7 @@ __Besides the initial deployment of application__, which happens manually, the r
    c. for some reason I (Patrick) have not be able to use the `--dev-mode` flag of this version of the jenkins bcdk
    and so you will need to make a live pr to your repository before continuing
    d. log into oc through the command line and switch projects to your tools name space
-   e. build the live pr, from the `lib` directory run `npm run build --  --pr=<your pr number>`
+   e. build the live pr, from the `lib` directory, run `npm run build --  --pr=<your pr number>`
    f. observe that the build was succesful by either viewing logs through the oc cli or the openshift console
    h. when the build is complete you may deploy straight to production (since this is the initial deployment)
    g. run `npm run deploy -- --pr=<you pr number> --env=prod`
@@ -237,7 +237,7 @@ rebuild the image
 2. Deploy the application
 > Jenkins should now be looking for prs
    a. make a pr for your code changes and jenkins should fire off a job to build and deploy the application
-   b. if builds do not fire off, you may build and deploy the application seperately. Process and Apply all templates
+   b. if builds do not fire off, you may build and deploy the application seperately. Process and apply all templates
    withing the `openshift/templates` directory
 
 ## Development Guide/Considerations
