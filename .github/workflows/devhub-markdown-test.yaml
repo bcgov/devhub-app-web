@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
     - '.github/actions/devhub-markdown-frontmatter-verify/**/*.js'
+    - 'app-web/journeyRegistry/*.json'
+    - 'app-web/topicRegistry/*.json'
 jobs:
   # unit tests
   units:
