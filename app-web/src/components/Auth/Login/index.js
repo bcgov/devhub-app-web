@@ -11,7 +11,7 @@ export const TEST_IDS = {
 export const Login = ({ authenticated, ...rest }) => {
   return (
     <Button
-      variant="secondary"
+      variant={authenticated ? 'link' : 'secondary'}
       data-testid={authenticated ? TEST_IDS.logout : TEST_IDS.login}
       clicked={authenticated ? redirectToSSOLogout : redirectToSSOLogin}
       {...rest}

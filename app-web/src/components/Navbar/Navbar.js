@@ -91,7 +91,7 @@ export const NavList = styled.ul`
 
 const AuthContainer = styled.div`
   padding: 10px;
-  background-color: #fafafa;
+  border-bottom: 1px solid #bbc7d5;
   text-align: right;
   display: block;
   a {
