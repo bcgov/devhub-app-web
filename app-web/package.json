@@ -10,6 +10,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@apollo/react-hooks": "0.1.0-beta.11",
+    "@bcgov/bc-sans": "^1.0.1",
     "@bcgov/common-web-utils": "^1.0.6-4",
     "@bcgov/gatsby-source-github-raw": "^1.0.2",
     "@bcgov/gatsby-source-matomo": "0.0.3",
