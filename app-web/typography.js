@@ -2,7 +2,7 @@ import Typography from 'typography';
 import '@bcgov/bc-sans/css/BCSans.css';
 
 const typography = new Typography({
-  baseFontSize: '16px',
+  baseFontSize: '18px',
   baseLineHeight: 1.25,
   headerFontFamily: ['BCSans', 'Noto Sans', 'Verdana', 'Arial', 'sans-serif'],
   bodyFontFamily: ['BCSans', 'Noto Sans', 'Verdana', 'Arial', 'sans-serif'],
