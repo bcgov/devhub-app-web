@@ -26,9 +26,12 @@ const Subway = styled.div`
   display: flex;
   position: relative;
   align-items: center;
-  padding: 130px 60px;
+  padding: 100px 60px;
   min-width: 615px;
   justify-content: space-between;
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.md} {
+    padding: 130px 60px;
+  }
 `;
 
 const Line = styled.div`
