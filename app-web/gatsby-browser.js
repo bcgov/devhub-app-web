@@ -21,6 +21,7 @@ Created by Patrick Simonian
 import 'prismjs/themes/prism-solarizedlight.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import './src/assets/styles/fontawesome.css';
+import '@bcgov/bc-sans/css/BCSans.css';
 // this hack is to resolve issue https://stackoverflow.com/questions/49781726/react-font-awesome-renders-big-icon-until-scales-down
 import { config } from '@fortawesome/fontawesome-svg-core';
 import wrapWithProvider from './wrapWithProvider';
