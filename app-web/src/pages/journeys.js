@@ -32,6 +32,11 @@ import TableOfContents, {
   viewToggle,
 } from '../components/TableOfContents/TableOfContents';
 
+export const TEST_IDS = {
+  toggle: 'journey-page-view-toggle',
+  cardView: 'journey-page-view-card',
+  listView: 'journey-page-view-list',
+};
 export const JourneysPage = ({ data, location }) => {
   let journeys = flattenGatsbyGraphQL(data.allJourneyRegistryJson.edges);
   const queryParam = queryString.parse(location.search);
@@ -49,7 +54,7 @@ export const JourneysPage = ({ data, location }) => {
 
   const currentView =
     viewMode === VIEW_MODES.card ? (
-      <main>
+      <div data-testid={TEST_IDS.cardView}>
         {journeys.map(journey => (
           <JourneyMap
             key={journey.id}
@@ -60,15 +65,16 @@ export const JourneysPage = ({ data, location }) => {
             stops={reduceJourneyToSubwayLine(journey.connectsWith)}
           />
         ))}
-      </main>
+      </div>
     ) : (
-      <main>
+      <div data-testid={TEST_IDS.listView}>
         <AccordionList style={{ padding: '20px' }}>
           {journeys.map(journey => (
             <OutsideBorder key={journey.id}>
               <TableOfContents
                 key={journey.id}
                 title={journey.name}
+                data-testid={TEST_IDS.toggle}
                 contents={journey.connectsWith.map(item => {
                   item.fields.path = item.path;
                   return item.fields;
@@ -77,7 +83,7 @@ export const JourneysPage = ({ data, location }) => {
             </OutsideBorder>
           ))}
         </AccordionList>
-      </main>
+      </div>
     );
 
   return (
