@@ -15,6 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
+import queryString from 'query-string';
 import React, { useState, useEffect } from 'react';
 import { TOPICS_PAGE } from '../messages';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
@@ -26,58 +27,32 @@ import Layout from '../hoc/Layout';
 import { getFirstNonExternalResource } from '../utils/helpers';
 import TableOfContents, {
   TableOfContentsToggle,
+  AccordionList,
+  OutsideBorder,
+  viewToggle,
 } from '../components/TableOfContents/TableOfContents';
-import styled from '@emotion/styled';
-
-import { navigate } from 'gatsby';
-import queryString from 'query-string';
 import { JOURNEY_TOPIC_VIEW_MODES as VIEW_MODES } from '../constants/ui';
-
-const OutsideBorder = styled.div`
-  top-margin: 15px;
-  padding: 7px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-`;
-
-const AccordionList = styled.ul`
-  margin: 10px;
-  padding: 10px;
-  background-color: #fff;
-  max-width: 650px;
-  overflow: scroll;
-  border-top: 1px solid rgba(#000, 0.1);
-`;
 
 export const TopicsPage = ({ data, location }) => {
   let topics = flattenGatsbyGraphQL(data.allTopicRegistryJson.edges);
 
   const queryParam = queryString.parse(location.search);
-  let [viewSwitch, setSwitch] = useState(true);
+
   let [viewMode, setMode] = useState(VIEW_MODES.card);
 
   useEffect(() => {
     if (queryParam.v === VIEW_MODES.list) {
-      setSwitch(false);
       setMode(VIEW_MODES.list);
     } else {
-      setSwitch(true);
       setMode(VIEW_MODES.card);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [queryParam.v]); //Only re-run the effect if queryParam.v changes
 
-  const viewToggle = () => {
-    setSwitch(!viewSwitch);
-    if (viewSwitch) {
-      navigate(`${location.pathname}?v=${VIEW_MODES.list}`);
-    } else {
-      navigate(`${location.pathname}?v=${VIEW_MODES.card}`);
-    }
-  };
   // resources are grouped by type, 'ungroup' them so we can find the first available
   // non external link to use as the entry page for the topic card
   const currentView =
-    viewSwitch && viewMode === VIEW_MODES.card ? (
+    viewMode === VIEW_MODES.card ? (
       <main>
         {topics.map(topic => (
           <TopicPreview
@@ -94,7 +69,7 @@ export const TopicsPage = ({ data, location }) => {
       </main>
     ) : (
       <main>
-        <AccordionList>
+        <AccordionList style={{ padding: '20px' }}>
           {topics.map(topic => (
             <OutsideBorder key={topic.id}>
               <TableOfContents
@@ -117,7 +92,10 @@ export const TopicsPage = ({ data, location }) => {
           title={TOPICS_PAGE.header.title.defaultMessage}
           subtitle={TOPICS_PAGE.header.subtitle.defaultMessage}
         />
-        <TableOfContentsToggle onChange={() => viewToggle()} viewMode={viewMode} />
+        <TableOfContentsToggle
+          onChange={() => viewToggle(location.pathname, viewMode)}
+          viewMode={viewMode}
+        />
         {currentView}
       </Main>
     </Layout>

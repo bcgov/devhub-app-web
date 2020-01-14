@@ -16,7 +16,6 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React, { useState, useEffect } from 'react';
-import { navigate } from 'gatsby';
 import queryString from 'query-string';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { Title } from '../components/Page';
@@ -26,40 +25,31 @@ import Layout from '../hoc/Layout';
 import { reduceJourneyToSubwayLine } from '../utils/helpers';
 import { JourneyMap } from '../components/Journey';
 import { JOURNEY_TOPIC_VIEW_MODES as VIEW_MODES } from '../constants/ui';
+import TableOfContents, {
+  AccordionList,
+  OutsideBorder,
+  TableOfContentsToggle,
+  viewToggle,
+} from '../components/TableOfContents/TableOfContents';
 
 export const JourneysPage = ({ data, location }) => {
   let journeys = flattenGatsbyGraphQL(data.allJourneyRegistryJson.edges);
   const queryParam = queryString.parse(location.search);
-  let [viewSwitch, setSwitch] = useState(true);
+
   let [viewMode, setMode] = useState(VIEW_MODES.card);
 
   useEffect(() => {
     if (queryParam.v === VIEW_MODES.list) {
-      setSwitch(false);
       setMode(VIEW_MODES.list);
     } else {
-      setSwitch(true);
       setMode(VIEW_MODES.card);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [queryParam.v]); //Only re-run the effect if queryParam.v changes
 
-  const viewToggle = () => {
-    setSwitch(!viewSwitch);
-    if (viewSwitch) {
-      navigate(`${location.pathname}?v=${VIEW_MODES.list}`);
-    } else {
-      navigate(`${location.pathname}?v=${VIEW_MODES.card}`);
-    }
-  };
-  return (
-    <Layout>
-      <Main>
-        <Title
-          title="Journeys"
-          subtitle="A set of well defined paths for anyone who is developing applications in government."
-        />
-
+  const currentView =
+    viewMode === VIEW_MODES.card ? (
+      <main>
         {journeys.map(journey => (
           <JourneyMap
             key={journey.id}
@@ -70,6 +60,38 @@ export const JourneysPage = ({ data, location }) => {
             stops={reduceJourneyToSubwayLine(journey.connectsWith)}
           />
         ))}
+      </main>
+    ) : (
+      <main>
+        <AccordionList style={{ padding: '20px' }}>
+          {journeys.map(journey => (
+            <OutsideBorder key={journey.id}>
+              <TableOfContents
+                key={journey.id}
+                title={journey.name}
+                contents={journey.connectsWith.map(item => {
+                  item.fields.path = item.path;
+                  return item.fields;
+                })}
+              />
+            </OutsideBorder>
+          ))}
+        </AccordionList>
+      </main>
+    );
+
+  return (
+    <Layout>
+      <Main>
+        <Title
+          title="Journeys"
+          subtitle="A set of well defined paths for anyone who is developing applications in government."
+        />
+        <TableOfContentsToggle
+          onChange={() => viewToggle(location.pathname, viewMode)}
+          viewMode={viewMode}
+        />
+        {currentView}
       </Main>
     </Layout>
   );

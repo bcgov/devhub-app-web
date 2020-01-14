@@ -39,8 +39,8 @@ const Icon = styled.small`
   margin: 4px;
 `;
 
-const NavItem = ({ text, isExternal, resourceType, to }) => (
-  <LI>
+const NavItem = ({ text, isExternal, resourceType, to, ...rest }) => (
+  <LI {...rest}>
     {resourceType && <ResourceTypeIcon type={resourceType} />}
     <StyledLink
       exact="true"

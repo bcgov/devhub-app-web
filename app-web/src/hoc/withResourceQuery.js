@@ -76,10 +76,7 @@ const withResourceQuery = WrappedComponent => () => props => (
                 description
               }
               connectsWith {
-                path
-                fields {
-                  title
-                }
+                ...JourneyNodeConnection
               }
             }
           }

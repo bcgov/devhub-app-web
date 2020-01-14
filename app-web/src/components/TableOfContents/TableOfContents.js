@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
+import { navigate } from 'gatsby';
 import styled from '@emotion/styled';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import validUrl from 'valid-url';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NavItem from '../GithubTemplate/Navigation/NavItem';
-import { JOURNEY_TOPIC_VIEW_MODES } from '../../constants/ui';
+import { JOURNEY_TOPIC_VIEW_MODES, RESOURCE_TYPES_LIST } from '../../constants/ui';
 import Switch from 'react-switch';
 
-const Title = styled.h3`
+const TableTitle = styled.h3`
   font-size: 20px;
   margin: 0;
   font-weight: 300;
@@ -16,14 +17,12 @@ const Title = styled.h3`
 `;
 
 const Inline = styled.li`
-  display: block;
-  padding: 8px 16px;
-  display: flex;
-  justify-content: space-between; //for arrowIcon
-  align-items: center;
+  > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   background-color: white;
-  z-index: 2;
-  position: center;
 `;
 
 const ArrowIcon = styled.span`
@@ -37,31 +36,40 @@ const ArrowIcon = styled.span`
   transform: ${props => (props.opened ? 'rotate(90deg)' : 'rotate(0deg)')};
 `;
 
-const Content = styled.li`
-  opacity: 1;
-  margin-left: 30px;
-`;
-
 const ModeContainer = styled.span`
   font-size: 18px;
   padding: 10px;
   margin-top: 3px;
 `;
 
-const OutsideBorder = styled.div`
+// used by topics/journeys to provide that underlined border between a journey and or topic
+export const OutsideBorder = styled.div`
   top-margin: 15px;
   padding: 7px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 `;
 
-const AccordionList = styled.ul`
-  margin: 10px;
-  padding: 10px;
+export const AccordionList = styled.ul`
+  margin: 0;
+  padding: 0;
   background-color: #fff;
   max-width: 650px;
   overflow: scroll;
   border-top: 1px solid rgba(#000, 0.1);
 `;
+
+/**
+ *
+ * @param {String} pathname the pathname of the current page
+ * @param {Boolean} viewMode the current view mode
+ */
+export const viewToggle = (pathname, viewMode) => {
+  if (viewMode === JOURNEY_TOPIC_VIEW_MODES.card) {
+    navigate(`${pathname}?v=${JOURNEY_TOPIC_VIEW_MODES.list}`);
+  } else if (viewMode === JOURNEY_TOPIC_VIEW_MODES.list) {
+    navigate(`${pathname}?v=${JOURNEY_TOPIC_VIEW_MODES.card}`);
+  }
+};
 
 export const TableOfContentsToggle = ({ viewMode, ...rest }) => (
   <div>
@@ -80,17 +88,17 @@ export const TableOfContentsToggle = ({ viewMode, ...rest }) => (
 export const TableOfContents = ({ title, contents }) => {
   const [opened, setOpened] = useState(false);
   return (
-    <div>
-      <Inline onClick={() => setOpened(!opened)}>
-        <Title>{title}</Title>
-        <ArrowIcon opened={opened}>
-          <FontAwesomeIcon icon={faChevronRight} />
-        </ArrowIcon>
-      </Inline>
-      {opened && (
+    <AccordionList>
+      <Inline onClick={() => setOpened(!opened)} style={{ marginBottom: 0 }}>
         <div>
-          {contents.map(content => (
-            <Content key={content.path}>
+          <TableTitle>{title}</TableTitle>
+          <ArrowIcon opened={opened}>
+            <FontAwesomeIcon icon={faChevronRight} />
+          </ArrowIcon>
+        </div>
+        {opened && (
+          <AccordionList style={{ margin: 0, paddingLeft: 0 }}>
+            {contents.map(content => (
               <NavItem
                 key={content.path}
                 resourceType={content.resourceType}
@@ -98,11 +106,11 @@ export const TableOfContents = ({ title, contents }) => {
                 to={content.path}
                 isExternal={validUrl.isWebUri(content.path)}
               />
-            </Content>
-          ))}
-        </div>
-      )}
-    </div>
+            ))}
+          </AccordionList>
+        )}
+      </Inline>
+    </AccordionList>
   );
 };
 
@@ -110,8 +118,9 @@ TableOfContents.propTypes = {
   title: PropTypes.string.isRequired,
   contents: PropTypes.arrayOf(
     PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      path: PropTypes.string.isRequired,
+      title: PropTypes.string,
+      path: PropTypes.string,
+      resourceType: PropTypes.oneOf(RESOURCE_TYPES_LIST),
     }),
   ),
 };
