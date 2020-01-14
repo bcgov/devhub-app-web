@@ -15,7 +15,9 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { navigate } from 'gatsby';
+import queryString from 'query-string';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { Title } from '../components/Page';
 import Main from '../components/Page/Main';
@@ -23,10 +25,33 @@ import withResourceQuery from '../hoc/withResourceQuery';
 import Layout from '../hoc/Layout';
 import { reduceJourneyToSubwayLine } from '../utils/helpers';
 import { JourneyMap } from '../components/Journey';
+import { JOURNEY_TOPIC_VIEW_MODES as VIEW_MODES } from '../constants/ui';
 
-export const JourneysPage = ({ data }) => {
+export const JourneysPage = ({ data, location }) => {
   let journeys = flattenGatsbyGraphQL(data.allJourneyRegistryJson.edges);
+  const queryParam = queryString.parse(location.search);
+  let [viewSwitch, setSwitch] = useState(true);
+  let [viewMode, setMode] = useState(VIEW_MODES.card);
 
+  useEffect(() => {
+    if (queryParam.v === VIEW_MODES.list) {
+      setSwitch(false);
+      setMode(VIEW_MODES.list);
+    } else {
+      setSwitch(true);
+      setMode(VIEW_MODES.card);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [queryParam.v]); //Only re-run the effect if queryParam.v changes
+
+  const viewToggle = () => {
+    setSwitch(!viewSwitch);
+    if (viewSwitch) {
+      navigate(`${location.pathname}?v=${VIEW_MODES.list}`);
+    } else {
+      navigate(`${location.pathname}?v=${VIEW_MODES.card}`);
+    }
+  };
   return (
     <Layout>
       <Main>

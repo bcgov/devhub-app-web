@@ -24,11 +24,14 @@ import Main from '../components/Page/Main';
 import withResourceQuery from '../hoc/withResourceQuery';
 import Layout from '../hoc/Layout';
 import { getFirstNonExternalResource } from '../utils/helpers';
-import TableofContents from '../components/TopicPreview/TableofContents';
+import TableOfContents, {
+  TableOfContentsToggle,
+} from '../components/TableOfContents/TableOfContents';
 import styled from '@emotion/styled';
-import Switch from 'react-switch';
+
 import { navigate } from 'gatsby';
 import queryString from 'query-string';
+import { JOURNEY_TOPIC_VIEW_MODES as VIEW_MODES } from '../constants/ui';
 
 const OutsideBorder = styled.div`
   top-margin: 15px;
@@ -45,26 +48,20 @@ const AccordionList = styled.ul`
   border-top: 1px solid rgba(#000, 0.1);
 `;
 
-const ModeContainer = styled.span`
-  font-size: 18px;
-  padding: 10px;
-  margin-top: 3px;
-`;
-
 export const TopicsPage = ({ data, location }) => {
   let topics = flattenGatsbyGraphQL(data.allTopicRegistryJson.edges);
-  const VIEW_MODES = { cardview: 'cards', listview: 'list' };
+
   const queryParam = queryString.parse(location.search);
   let [viewSwitch, setSwitch] = useState(true);
-  let [viewMode, setMode] = useState(VIEW_MODES.cardview);
+  let [viewMode, setMode] = useState(VIEW_MODES.card);
 
   useEffect(() => {
-    if (queryParam.v === VIEW_MODES.listview) {
+    if (queryParam.v === VIEW_MODES.list) {
       setSwitch(false);
-      setMode(VIEW_MODES.listview);
+      setMode(VIEW_MODES.list);
     } else {
       setSwitch(true);
-      setMode(VIEW_MODES.cardview);
+      setMode(VIEW_MODES.card);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [queryParam.v]); //Only re-run the effect if queryParam.v changes
@@ -72,15 +69,15 @@ export const TopicsPage = ({ data, location }) => {
   const viewToggle = () => {
     setSwitch(!viewSwitch);
     if (viewSwitch) {
-      navigate(`${location.pathname}?v=${VIEW_MODES.listview}`);
+      navigate(`${location.pathname}?v=${VIEW_MODES.list}`);
     } else {
-      navigate(`${location.pathname}?v=${VIEW_MODES.cardview}`);
+      navigate(`${location.pathname}?v=${VIEW_MODES.card}`);
     }
   };
   // resources are grouped by type, 'ungroup' them so we can find the first available
   // non external link to use as the entry page for the topic card
   const currentView =
-    viewSwitch && viewMode === VIEW_MODES.cardview ? (
+    viewSwitch && viewMode === VIEW_MODES.card ? (
       <main>
         {topics.map(topic => (
           <TopicPreview
@@ -100,7 +97,7 @@ export const TopicsPage = ({ data, location }) => {
         <AccordionList>
           {topics.map(topic => (
             <OutsideBorder key={topic.id}>
-              <TableofContents
+              <TableOfContents
                 key={topic.id}
                 title={topic.name}
                 contents={topic.connectsWith.map(item => {
@@ -120,17 +117,7 @@ export const TopicsPage = ({ data, location }) => {
           title={TOPICS_PAGE.header.title.defaultMessage}
           subtitle={TOPICS_PAGE.header.subtitle.defaultMessage}
         />
-        <div>
-          <ModeContainer>List View </ModeContainer>
-          <Switch
-            onChange={() => viewToggle()}
-            checked={viewMode === VIEW_MODES.cardview}
-            uncheckedIcon={false}
-            checkedIcon={false}
-            offColor={'#0f80cc'}
-          />
-          <ModeContainer> Card View</ModeContainer>
-        </div>
+        <TableOfContentsToggle onChange={() => viewToggle()} viewMode={viewMode} />
         {currentView}
       </Main>
     </Layout>
