@@ -15,81 +15,65 @@ limitations under the License.
 
 Created by Shea Phillips
 */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Octokit from '@octokit/rest';
+import { getGithubFileContents } from '../../utils/helpers';
 
 export const TEST_IDS = {
   preview: 'test-component-preview',
   iframe: 'test-component-iframe',
 };
+export const ComponentPreview = props => {
+  let [error, setError] = useState(null);
+  let [isLoaded, setIsLoaded] = useState(false);
+  let [sampleContent, setSampleContent] = useState('');
+  const {
+    node: { html_url },
+    auth,
+    path,
+  } = props;
 
-export default class ComponentPreview extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      isLoaded: false,
-      sampleContent: '',
-    };
-  }
-
-  async componentDidMount() {
-    //pull in the values to retrieve to preview content from GitHub from props, if provided
-    let {
-      node: { html_url },
-      auth,
-      path,
-    } = this.props;
-
+  useEffect(() => {
+    var controller = new AbortController();
+    var signal = controller.signal;
     // html url comes in the format https://github.com/owner/repo/blob/branch/path
     // eslint-disable-next-line
     const [owner, repo, blob, branch] = html_url.replace('https://github.com/', '').split('/');
 
-    const githubClient = Octokit({ auth });
-
-    try {
-      const result = await githubClient.repos.getContents({
-        owner: owner,
-        repo: repo,
-        path: path,
-        ref: branch,
+    getGithubFileContents({ repo, owner, path, branch }, signal)
+      .then(contents => {
+        setIsLoaded(true);
+        setSampleContent(contents);
+      })
+      .catch(e => {
+        setError(e.message);
+        // eslint-disable-next-line no-console
+        console.error('Error loading component preview: ' + error);
       });
 
-      this.setState({
-        isLoaded: true,
-        sampleContent: result.data.content,
-      });
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('Error: ' + error);
-      this.setState({
-        isLoaded: true,
-        error,
-      });
-    }
+    return () => {
+      setError(null);
+      setIsLoaded(false);
+      controller.abort();
+    };
+  }, [auth, error, html_url, path]);
+
+  if (error) {
+    return <span data-testid={TEST_IDS.preview}>Error {error.message}</span>;
+  } else if (!isLoaded) {
+    return <span data-testid={TEST_IDS.preview}>Loading...</span>;
+  } else {
+    return (
+      <iframe
+        title="Component Preview"
+        data-testid={TEST_IDS.iframe}
+        src={'data:text/html;base64,' + sampleContent}
+        frameBorder={'0'}
+        {...props}
+      />
+    );
   }
-
-  render() {
-    const { error, isLoaded, sampleContent } = this.state;
-
-    if (error) {
-      return <span data-testid={TEST_IDS.preview}>Error {error.message}</span>;
-    } else if (!isLoaded) {
-      return <span data-testid={TEST_IDS.preview}>Loading...</span>;
-    } else {
-      return (
-        <iframe
-          title="Component Preview"
-          data-testid={TEST_IDS.iframe}
-          src={'data:text/html;base64,' + sampleContent}
-          frameBorder={'0'}
-          {...this.props}
-        />
-      );
-    }
-  }
-}
+};
 
 ComponentPreview.propTypes = {
   owner: PropTypes.string,
@@ -102,3 +86,5 @@ ComponentPreview.defaultProps = {
   branch: 'master',
   auth: '',
 };
+
+export default ComponentPreview;

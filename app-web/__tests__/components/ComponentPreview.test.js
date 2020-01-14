@@ -21,13 +21,7 @@ import { render } from '@testing-library/react';
 import ComponentPreview from '../../src/components/ComponentPreview/ComponentPreview';
 
 describe('ComponentPreview Component', () => {
-  jest.doMock('@octokit/rest', () => () => ({
-    repos: {
-      getContents: jest.fn(() =>
-        Promise.resolve({ data: { content: `<div>hello world <button>click me</button></div>` } }),
-      ),
-    },
-  }));
+  fetch.mockResponse({ content: `<div>hello world <button>click me</button></div>` });
   it('matches snapshot', () => {
     const props = {
       path: 'components/header/index.html',
