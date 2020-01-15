@@ -1,5 +1,5 @@
 ---
-author: Patrick Simonian
+author: patricksimonian
 resourceType: Documentation
 personas: 
   - Developer
@@ -456,6 +456,7 @@ By default, your markdown file __inherits__ much of its metadata from the topic 
 
 **`image`**: A valid link to an image
 
+> Author has been deprecated for now. You may fill it in but it isn't tied to any features.
 **`author`**: (optional but recommended)
     The author of the markdown file (this should be your github username)
 
