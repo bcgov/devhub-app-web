@@ -20,15 +20,14 @@ import { isLocalHost } from './helpers';
 import { useQuery } from '@apollo/react-hooks';
 import { SEARCHGATE_QUERY } from '../constants/runtimeGraphqlQueries';
 import algoliasearch from 'algoliasearch/lite';
+import { ALGOLIA_INDEX_SUFFIX } from '../constants/api';
 
 const searchClient = algoliasearch(
   process.env.GATSBY_ALGOLIA_APP_ID,
   process.env.GATSBY_ALGOLIA_SEARCH_KEY,
 );
 
-const index = searchClient.initIndex(
-  `Devhub-Algolia-${process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX}`,
-);
+const index = searchClient.initIndex(`Devhub-Algolia-${ALGOLIA_INDEX_SUFFIX}`);
 //TODO, why in a function?
 function deepCompareEquals(a, b) {
   return isEqual(a, b);

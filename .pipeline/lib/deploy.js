@@ -23,6 +23,7 @@ const getParamsByEnv = (env, pr) => {
     SSO_BASE_URL_VALUE: 'https://sso.pathfinder.gov.bc.ca',
     SSO_CLIENT_ID_VALUE: 'devhub-web',
     SSO_REALM_NAME_VALUE: 'devhub',
+    ALGOLIA_INDEX_NAME_SUFFIX: 'prod',
     // for the time being we only have a dev instance, this will change as the api is developed
     SEARCHGATE_API_URL: 'https://searchgate.pathfinder.gov.bc.ca/',
   };
@@ -30,7 +31,7 @@ const getParamsByEnv = (env, pr) => {
     case ENVS.PROD:
       return params;
     case ENVS.TEST:
-      return { ...params, SSO_BASE_URL_VALUE: 'https://sso-test.pathfinder.gov.bc.ca' };
+      return { ...params, SSO_BASE_URL_VALUE: 'https://sso-test.pathfinder.gov.bc.ca', ALGOLIA_INDEX_NAME_SUFFIX: 'test' };
     case ENVS.DEV:
       return {
         ...params,
@@ -42,6 +43,7 @@ const getParamsByEnv = (env, pr) => {
         ...params,
         SSO_BASE_URL_VALUE: 'https://sso-dev.pathfinder.gov.bc.ca',
         SSO_CLIENT_ID_VALUE: `devhub-web-${pr}`,
+        ALGOLIA_INDEX_NAME_SUFFIX: pr,
       };
   }
 };
