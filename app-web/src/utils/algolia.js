@@ -18,7 +18,7 @@ const algoliaIndexQuery = `{
       }
     }
   }
-  DevhubSiphon: allDevhubSiphon {
+  DevhubSiphon: allDevhubSiphon(filter: { source: { type: { eq: "web" } } }) {
     edges {
       node {
         id
