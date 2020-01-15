@@ -46,7 +46,6 @@ import Row from '../components/Card/Row';
 import Column from '../components/Card/Column';
 import GithubIssueCardHeader from '../components/DynamicSearchResults/GithubIssueCardHeader';
 import CardHeader from '../components/Card/CardHeader';
-import JourneysContainer from '../components/Home/JourneyContainer';
 import AuthContext from '../AuthContext';
 
 const Main = styled.main`
@@ -54,17 +53,6 @@ const Main = styled.main`
   margin-top: ${SPACING['2x']};
   padding: 0 ${SPACING['2x']};
 `;
-
-/**
- * returns journeys container component so as long as a search is not being done
- * @param {Array} journeys list of journeys also known as journeys
- * @param {Boolean} searchResultsExist
- */
-const getJourneyPreviews = (journeys, searchResultsExist) => {
-  return (
-    !searchResultsExist && <JourneysContainer journeys={journeys} link={{ to: '/journeys' }} />
-  );
-};
 
 /**
  * returns topics container component so as long as a search is not being done
@@ -211,7 +199,6 @@ export const Index = ({
   const resourcesNotFound = !queryIsEmpty && noSearchResults && isEmpty(searchSourceResults);
 
   const topics = flattenGatsbyGraphQL(allTopicRegistryJson.edges);
-  const journeys = flattenGatsbyGraphQL(allJourneyRegistryJson.edges);
   const githubRaw = flattenGatsbyGraphQL(allGithubRaw.edges);
   const devhubSiphon = flattenGatsbyGraphQL(allDevhubSiphon.edges);
 
@@ -243,7 +230,6 @@ export const Index = ({
   if (queryIsEmpty) {
     content = (
       <React.Fragment>
-        {getJourneyPreviews(journeys, windowHasQuery && !queryIsEmpty)}
         {getTopicPreviews(dynamicTopics.concat(topics), windowHasQuery && !queryIsEmpty)}
       </React.Fragment>
     );
