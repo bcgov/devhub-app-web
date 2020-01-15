@@ -178,6 +178,7 @@ Card.defaultProps = {
 
 // used for eventbrite and meetup cards
 export const EventCard = ({ title, description, image, link, event, isExternal }) => {
+  // eslint-disable-next-line no-unused-vars
   let cardBody = null;
   let clampAmount = 3;
   //if takes one line.......

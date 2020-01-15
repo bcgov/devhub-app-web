@@ -30,14 +30,9 @@ import { TOPICS } from '../constants/topics';
 import { ChevronLink } from '../components/UI/Link';
 import Row from '../components/Card/Row';
 import CardsInColumns from '../components/Card/CardsInColumns';
-import { EventCard } from '../components/Card/Card';
 export const TEST_IDS = {
   alert: 'events-container',
 };
-
-// const Header = styled.div`
-//   margin-top: 30px;
-// `;
 
 const Description = styled.div`
   padding-left: 3px;
@@ -53,7 +48,7 @@ export const CardContainer = styled.div`
   }
 `;
 
-//Formats eventbrite data into something usable by the card component
+// Formats eventbrite data into something usable by the card component
 export const formatEvents = events => {
   return events.map(event => {
     return {

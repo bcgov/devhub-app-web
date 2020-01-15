@@ -17,7 +17,7 @@ import {
   SELECT_TOPICS_WITH_RESOURCES_GROUPED_BY_TYPE,
   SELECT_RESOURCES_GROUPED_BY_TYPE,
 } from '../../__fixtures__/selector-fixtures';
-import { useSearch, useAuthenticated, useSearchGate } from '../../src/utils/hooks';
+import { useSearch, useSearchGate, useImplicitAuth } from '../../src/utils/hooks';
 import { TEST_IDS as TOPIC_TEST_IDS } from '../../src/components/Home/TopicsContainer';
 import { TEST_IDS as RESOURCE_PREVIEW_TEST_IDS } from '../../src/components/Home/ResourcePreview';
 import {
@@ -32,6 +32,7 @@ import { GITHUB_RAW_NODES } from '../../__fixtures__/nodes';
 import { client } from '../../wrapWithProvider';
 import { ApolloProvider } from 'react-apollo';
 import { ROCKET_CHAT, GITHUB, DOCUMIZE } from '../../__fixtures__/searchsources';
+import { AuthProvider } from '../../src/AuthContext';
 // this adds custom jest matchers from jest-dom
 jest.mock('query-string');
 // mock out layout
@@ -44,7 +45,15 @@ jest.mock('../../src/utils/helpers.js');
 getFirstNonExternalResource.mockReturnValue('foo');
 getTextAndLink.mockReturnValue({ to: '/documentation?q=mobile', text: 'two results found' });
 useSearchGate.mockReturnValue({ results: [], loading: false });
-useAuthenticated.mockReturnValue(false);
+// jwt time stamps are in seconds. dividing by 1000 to convert date.now ms to s
+const currentDate = Date.now() / 1000;
+useImplicitAuth.mockReturnValue({
+  idToken: {
+    data: {
+      exp: currentDate - 50000, // expiry set to be in the past
+    },
+  },
+});
 buildFeaturedTopic.mockReturnValue({ node: FEATURED_TOPIC });
 buildPopularTopic.mockReturnValue({ node: POPULAR_TOPIC });
 reduceJourneyToSubwayLine.mockReturnValue([{ name: 'foo' }]);
@@ -104,10 +113,13 @@ describe('Home Page', () => {
 
   test('it matches snapshot, when there is a search and no results an alert box shows up', () => {
     queryString.parse.mockReturnValue({});
+
     const { container, rerender, queryByTestId } = render(
       <ThemeProvider theme={theme}>
         <ApolloProvider client={client}>
-          <Index {...props} />
+          <AuthProvider>
+            <Index {...props} />
+          </AuthProvider>
         </ApolloProvider>
       </ThemeProvider>,
     );
@@ -124,7 +136,9 @@ describe('Home Page', () => {
     rerender(
       <ThemeProvider theme={theme}>
         <ApolloProvider client={client}>
-          <Index {...props} />
+          <AuthProvider>
+            <Index {...props} />
+          </AuthProvider>
         </ApolloProvider>
       </ThemeProvider>,
     );
@@ -142,7 +156,9 @@ describe('Home Page', () => {
     const { rerender, queryByTestId } = render(
       <ThemeProvider theme={theme}>
         <ApolloProvider client={client}>
-          <Index {...props} />
+          <AuthProvider>
+            <Index {...props} />
+          </AuthProvider>
         </ApolloProvider>
       </ThemeProvider>,
     );
@@ -157,7 +173,9 @@ describe('Home Page', () => {
     rerender(
       <ThemeProvider theme={theme}>
         <ApolloProvider client={client}>
-          <Index {...props} />
+          <AuthProvider>
+            <Index {...props} />
+          </AuthProvider>
         </ApolloProvider>
       </ThemeProvider>,
     );
@@ -167,12 +185,14 @@ describe('Home Page', () => {
     expect(Alert).not.toBeInTheDocument();
   });
 
-  test('When a blank search is entered, cards and alerts dont show but topics do', () => {
+  test("When a blank search is entered, cards and alerts don't show but topics do", () => {
     queryString.parse.mockReturnValue({});
     const { container, rerender, queryByTestId, queryAllByTestId } = render(
       <ThemeProvider theme={theme}>
         <ApolloProvider client={client}>
-          <Index {...props} />
+          <AuthProvider>
+            <Index {...props} />
+          </AuthProvider>
         </ApolloProvider>
       </ThemeProvider>,
     );
@@ -188,7 +208,9 @@ describe('Home Page', () => {
     rerender(
       <ThemeProvider theme={theme}>
         <ApolloProvider client={client}>
-          <Index {...props} />
+          <AuthProvider>
+            <Index {...props} />
+          </AuthProvider>
         </ApolloProvider>
       </ThemeProvider>,
     );
@@ -209,7 +231,9 @@ describe('Home Page', () => {
     const { queryByTestId, queryAllByTestId } = render(
       <ThemeProvider theme={theme}>
         <ApolloProvider client={client}>
-          <Index {...props} />
+          <AuthProvider>
+            <Index {...props} />
+          </AuthProvider>
         </ApolloProvider>
       </ThemeProvider>,
     );
@@ -221,11 +245,20 @@ describe('Home Page', () => {
   test('when there is no search, topics are visible', () => {
     queryString.parse.mockReturnValue({});
     useSearch.mockReturnValue([]);
-    useAuthenticated.mockReturnValue(false);
+
+    useImplicitAuth.mockReturnValue({
+      idToken: {
+        data: {
+          exp: currentDate - 50000, // expiry set to be in the past
+        },
+      },
+    });
     const { getByTestId } = render(
       <ThemeProvider theme={theme}>
         <ApolloProvider client={client}>
-          <Index {...props} />
+          <AuthProvider>
+            <Index {...props} />
+          </AuthProvider>
         </ApolloProvider>
       </ThemeProvider>,
     );
@@ -250,19 +283,33 @@ describe('Home Page', () => {
     queryString.parse.mockReturnValue({ q: 'foo' });
     useSearch.mockReturnValue([]);
     useSearchGate.mockReturnValue({ results: ROCKET_CHAT, loading: false });
-    useAuthenticated.mockReturnValue(true);
+    useImplicitAuth.mockReturnValue({
+      idToken: {
+        data: {
+          exp: currentDate + 50000, // expiry set to be in the past
+        },
+      },
+    });
 
     const { queryByTestId, rerender } = render(
       <ThemeProvider theme={theme}>
         <ApolloProvider client={client}>
-          <Index {...props} location={{ search: '?q=foo' }} />
+          <AuthProvider>
+            <Index {...props} location={{ search: '?q=foo' }} />
+          </AuthProvider>
         </ApolloProvider>
       </ThemeProvider>,
     );
 
     expect(queryByTestId(ROCKET_CHAT[0].id)).toBeInTheDocument();
 
-    useAuthenticated.mockReturnValue(false);
+    useImplicitAuth.mockReturnValue({
+      idToken: {
+        data: {
+          exp: currentDate - 50000, // expiry set to be in the past
+        },
+      },
+    });
 
     rerender();
 
@@ -273,7 +320,7 @@ describe('Home Page', () => {
     queryString.parse.mockReturnValue({ q: 'foo' });
     useSearch.mockReturnValue([]);
     useSearchGate.mockReturnValue({ results: GITHUB, loading: false });
-    useAuthenticated.mockReturnValue(true);
+    // useAuthenticated.mockReturnValue(true);
 
     const { queryByTestId, rerender } = render(
       <ThemeProvider theme={theme}>
@@ -285,7 +332,7 @@ describe('Home Page', () => {
 
     expect(queryByTestId(GITHUB[0].id)).toBeInTheDocument();
 
-    useAuthenticated.mockReturnValue(false);
+    // useAuthenticated.mockReturnValue(false);
 
     rerender();
 
@@ -295,7 +342,7 @@ describe('Home Page', () => {
     queryString.parse.mockReturnValue({ q: 'openshift' });
     useSearch.mockReturnValue([]);
     useSearchGate.mockReturnValue({ results: DOCUMIZE, loading: false });
-    useAuthenticated.mockReturnValue(true);
+    // useAuthenticated.mockReturnValue(true);
 
     const { queryByTestId, rerender } = render(
       <ThemeProvider theme={theme}>
@@ -307,7 +354,7 @@ describe('Home Page', () => {
 
     expect(queryByTestId(DOCUMIZE[0].id)).toBeInTheDocument();
     rerender();
-    useAuthenticated.mockReturnValue(false); // do not show when not authenticated.
+    // useAuthenticated.mockReturnValue(false); // do not show when not authenticated.
     expect(queryByTestId(ROCKET_CHAT[0].id)).not.toBeInTheDocument();
     expect(queryByTestId(GITHUB[0].id)).not.toBeInTheDocument();
     expect(queryByTestId(DOCUMIZE[0].id)).not.toBeInTheDocument();

@@ -36,7 +36,4 @@ const mapStateToProps = state => ({
   menuToggled: state.ui.mainNavigationToggled,
 });
 
-export default connect(
-  mapStateToProps,
-  null,
-)(Dropmenu);
+export default connect(mapStateToProps, null)(Dropmenu);

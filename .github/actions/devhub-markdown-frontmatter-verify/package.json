@@ -1,0 +1,55 @@
+{
+  "name": "devhub-markdown-frontmatter-verify",
+  "version": "1.0.0",
+  "description": "Verifies markdown content has correct frontmatter",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint src",
+    "test": "eslint src && jest src",
+    "package": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bcgov/devhub-app-web.git"
+  },
+  "keywords": [
+    "GitHub",
+    "Actions",
+    "JavaScript"
+  ],
+  "author": "GitHub",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bcgov/devhub-app-web/issues"
+  },
+  "homepage": "https://github.com/bcgov/devhub-app-web",
+  "dependencies": {
+    "@actions/core": "^1.1.1",
+    "@actions/github": "^2.0.0",
+    "babel-polyfill": "^6.26.0",
+    "gray-matter": "^4.0.2",
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@types/nock": "^11.1.0",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
+    "eslint": "^6.8.0",
+    "eslint-plugin-jest": "^23.1.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^3.1.0",
+    "jest": "^24.9.0",
+    "nock": "^11.7.0",
+    "prettier": "^1.19.1",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run package && echo '====> Package bundled, make sure you add these as another commit'"
+    }
+  }
+}

@@ -69,7 +69,8 @@
             "docs/OCP/RequestUserAccess.md",
             "docs/OCP/RequestGitHubUserAccess.md",
             "docs/HowTo/GrantUsersAccessToProject.md",
-            "docs/OCP/Networking.md"
+            "docs/OCP/Networking.md",
+            "docs/OCP/OCPStorageServices.md"
           ]
         }
       },

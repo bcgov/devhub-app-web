@@ -18,7 +18,9 @@ Created by Patrick Simonian
 import * as emotion from 'emotion';
 import { createSerializer } from 'jest-emotion';
 import 'jest-dom/extend-expect';
+import mockFetch from 'jest-fetch-mock';
 
+mockFetch.enableMocks();
 expect.addSnapshotSerializer(createSerializer(emotion));
 // mock out graph ql
 global.graphql = jest.fn();

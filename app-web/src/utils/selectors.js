@@ -36,30 +36,25 @@ const defaultGroups = Object.keys(RESOURCE_TYPES).reduce((grouping, type) => {
  * a default value is provided as [resourceType]: [] (empty array)
  */
 export const selectResourcesGroupedByType = () =>
-  createSelector(
-    selectResources,
-    resources => {
-      return { ...defaultGroups, ...groupBy(resources, 'fields.resourceType') };
-    },
-  );
+  createSelector(selectResources, resources => {
+    return { ...defaultGroups, ...groupBy(resources, 'fields.resourceType') };
+  });
 
 /**
  * groups resources in a topic by type
  */
 export const selectTopicsWithResourcesGroupedByType = () =>
-  createSelector(
-    selectTopics,
-    topicsWithResources =>
-      topicsWithResources.map(topic => {
-        // combine a set of default groups to the result of the groupby
-        // so that all topics have all resource type groups
-        const selector = selectResourcesGroupedByType();
+  createSelector(selectTopics, topicsWithResources =>
+    topicsWithResources.map(topic => {
+      // combine a set of default groups to the result of the groupby
+      // so that all topics have all resource type groups
+      const selector = selectResourcesGroupedByType();
 
-        const groups = selector(topic.connectsWith);
-        return {
-          ...topic,
-          resources: groups,
-          hasResources: !Object.keys(groups).every(group => groups[group].length === 0),
-        };
-      }),
+      const groups = selector(topic.connectsWith);
+      return {
+        ...topic,
+        resources: groups,
+        hasResources: !Object.keys(groups).every(group => groups[group].length === 0),
+      };
+    }),
   );

@@ -1,16 +1,15 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { Container } from 'reactstrap';
 import Helmet from 'react-helmet';
-import isEmpty from 'lodash/isEmpty';
+
 // layout local components
 import PrimaryHeader from '../components/PrimaryHeader/PrimaryHeader';
 import PrimaryFooter from '../components/PrimaryFooter/PrimaryFooter';
 import { Navbar } from '../components/Navbar/Navbar';
-import AuthContext from '../AuthContext';
-import { createIam } from '../auth';
+
 import { MAIN_NAV_ROUTE_LIST } from '../constants/routes';
 
 const StyledContainer = styled(Container)`
@@ -30,36 +29,15 @@ const Wrapper = styled.div`
 
 export const Layout = ({ children }) => {
   const [menuToggled, setMenuToggled] = useState(false);
-  const [iam, setIam] = useState(null);
-  useEffect(() => {
-    // unable to createIam on build time since it requires the window object which is not available
-    // during a gatsby build, therefore we need to useEffect
-    setIam(createIam());
-    return () => {
-      setIam(null);
-    };
-  }, [iam]);
-  const { auth } = useContext(AuthContext);
-  const authenticated = !auth || !isEmpty(auth);
-
   return (
     <StyledContainer fluid>
       {/* This is to fix the some of the issues occuring on IE 11, specifically the nav issues*/}
       <Helmet>
         <script src="https://cdn.polyfill.io/v2/polyfill.min.js" />
       </Helmet>
-      <PrimaryHeader
-        authenticated={authenticated}
-        showHamburger
-        hamburgerClicked={() => setMenuToggled(!menuToggled)}
-      />
+      <PrimaryHeader showHamburger hamburgerClicked={() => setMenuToggled(!menuToggled)} />
 
-      <Navbar
-        authenticated={authenticated}
-        links={MAIN_NAV_ROUTE_LIST}
-        toggled={menuToggled}
-        implicitAuthManager={iam}
-      />
+      <Navbar links={MAIN_NAV_ROUTE_LIST} toggled={menuToggled} />
 
       <Wrapper>{children}</Wrapper>
       <PrimaryFooter />
@@ -83,6 +61,14 @@ export const query = graphql`
       path
     }
     id
+  }
+  fragment JourneyNodeConnection on ConnectedStopNode {
+    path
+    fields {
+      resourceType
+      title
+      description
+    }
   }
 `;
 export default Layout;

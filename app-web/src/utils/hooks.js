@@ -73,41 +73,29 @@ export const useSearch = query => {
   return results;
 };
 
-export const useImplicitAuth = () => {
+export const useImplicitAuth = intention => {
   const [user, setUser] = useState({});
+
   useEffect(() => {
     const implicitAuthManager = createIam();
-
     implicitAuthManager.registerHooks({
       onAuthenticateSuccess: () => setUser(implicitAuthManager.getAuthDataFromLocal()),
       onAuthenticateFail: () => setUser({}),
-      onAuthLocalStorageCleared: () => setUser({}),
+      onAuthLocalStorageCleared: () => {
+        setUser({});
+      },
     });
 
     if (!isLocalHost()) {
       implicitAuthManager.handleOnPageLoad();
     }
+
+    if (intention === 'LOGOUT') {
+      implicitAuthManager.clearAuthLocalStorage();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return user;
-};
-
-// returns if user is authenticated and the id token
-export const useAuthenticated = () => {
-  const [authenticated, setAuthenticated] = useState({ authenticated: false, idToken: null });
-  const { auth } = useContext(AuthContext);
-  useEffect(() => {
-    if (!isEmpty(auth)) {
-      const now = new Date();
-      const { exp } = auth.idToken.data;
-      // jwt times are in seconds, multiply by 1000 to convert into a date object
-      const expDate = new Date(exp * 1000);
-      // parse out auth.id_token and see if its still valid
-      if (moment(now).isBefore(moment(expDate))) {
-        setAuthenticated({ authenticated: true, token: auth.idToken.bearer });
-      }
-    }
-  }, [auth]);
-  return authenticated;
 };
 
 /**

@@ -13,3 +13,5 @@ ignore: true
     - [Gatsby Remark Path Transform Plugin](./gatsby-custom-plugins/gatsby-remark-path-transform.md)
 - Adding Content to DevHub
     - [How to Register Your Repo](./registry.md)
+- Notes
+    - [Authentication](./authentication.md)

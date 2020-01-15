@@ -19,18 +19,48 @@ import {
   getGithubAvatarFromUsername,
   getGithubUsernameURL,
   getGithubIssuesRoute,
+  getGithubFileContents,
   mapPagePathToResourceTypeConst,
   sortDevhubTopicsAfterSelectedTopics,
   getTextAndLink,
   buildPopularTopic,
   buildFeaturedTopic,
   togglePills,
+  reduceNodeForTableOfContents,
 } from '../../src/utils/helpers';
 import { GITHUB_URL } from '../../src/constants/api';
 import { RESOURCE_TYPES } from '../../src/constants/ui';
 import { DEVHUB_NODE_1, DEVHUB_NODE_2 } from '../../__fixtures__/nodes';
 
 describe('Helpers', () => {
+  test('reduceNodeForTableOfContents', () => {
+    const data = {
+      path: '/foo',
+      fields: {
+        bar: true,
+      },
+    };
+
+    expect(reduceNodeForTableOfContents(data)).toEqual({ path: '/foo', bar: true });
+  });
+
+  test('getGithubFileContents returns a promise of a string', async () => {
+    fetch.mockResponse(
+      JSON.stringify({
+        content: 'fooo',
+      }),
+    );
+    const response = await getGithubFileContents({ repo: 'foo', owner: 'bar', path: 'readme.md' });
+    expect(window.fetch).toHaveBeenCalledWith(
+      'https://api.github.com/repos/bar/foo/contents/readme.md?ref=master',
+      {
+        signal: null,
+      },
+    );
+
+    expect(response).toBe('fooo');
+  });
+
   test('getGethubIssuesRoute returns a url', () => {
     const repo = 'foo';
     const owner = 'bar';

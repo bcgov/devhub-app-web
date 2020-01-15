@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Home Page When a blank search is entered, cards and alerts dont show but topics do 1`] = `
+exports[`Home Page When a blank search is entered, cards and alerts don't show but topics do 1`] = `
 .emotion-17 {
   background-color: #fafafa;
   text-align: center;
@@ -152,13 +152,13 @@ exports[`Home Page When a blank search is entered, cards and alerts dont show bu
     </div>
   </div>
   <h4
-    css="[object Object]"
+    css="You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."
   >
     One place that brings together resources to help build digital products for the BC Government
   </h4>
   <a
     class="emotion-6 emotion-7"
-    css="[object Object]"
+    css="You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."
     data-testid="ui-gatsby-link"
     href="/aboutDevhub"
   >
@@ -363,13 +363,13 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
     </div>
   </div>
   <h4
-    css="[object Object]"
+    css="You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."
   >
     One place that brings together resources to help build digital products for the BC Government
   </h4>
   <a
     class="emotion-6 emotion-7"
-    css="[object Object]"
+    css="You have tried to stringify object returned from \`css\` function. It isn't supposed to be used directly (e.g. as value of the \`className\` prop), but rather handed to emotion so it can handle it (e.g. as value of \`css\` prop)."
     data-testid="ui-gatsby-link"
     href="/aboutDevhub"
   >

@@ -16,15 +16,35 @@ limitations under the License.
 Created by Patrick Simonian
 */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useImplicitAuth } from './utils/hooks';
+import queryString from 'query-string';
+import moment from 'moment';
+import isEmpty from 'lodash/isEmpty';
 
 const AuthContext = React.createContext({});
 
 // Auth Provider is already wrapping gatsby browser so all pages should have access to the context
-export const AuthProvider = ({ children }) => {
-  const auth = useImplicitAuth();
-  return <AuthContext.Provider value={{ auth }}>{children}</AuthContext.Provider>;
+export const AuthProvider = ({ children, location, ...rest }) => {
+  const [searchString, setSearchString] = useState({});
+  useEffect(() => {
+    setSearchString(window.location.search);
+  }, [searchString]);
+  const search = queryString.parse(searchString);
+  const auth = useImplicitAuth(search.intention);
+  let isAuthenticated = false;
+
+  if (!isEmpty(auth)) {
+    const now = new Date();
+    const { exp } = auth.idToken.data;
+    // jwt times are in seconds, multiply by 1000 to convert into a date object
+    const expDate = new Date(exp * 1000);
+    // parse out auth.id_token and see if its still valid
+    if (moment(now).isBefore(moment(expDate))) {
+      isAuthenticated = true;
+    }
+  }
+  return <AuthContext.Provider value={{ auth, isAuthenticated }}>{children}</AuthContext.Provider>;
 };
 
 /**

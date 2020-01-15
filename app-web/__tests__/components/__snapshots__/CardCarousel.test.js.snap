@@ -1,25 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Card Carousel matches snapshot 1`] = `
-<div
-  class="BrainhubCarousel"
->
+<div>
   <div
-    class="BrainhubCarousel__trackContainer"
+    class="BrainhubCarousel"
   >
-    <ul
-      class="BrainhubCarousel__track"
-      style="margin-left: 0px; width: 0px; transform: translateX(0px);"
+    <div
+      class="BrainhubCarousel__trackContainer"
     >
-      <li
-        class="BrainhubCarouselItem BrainhubCarouselItem--active"
-        style="padding-right: 0px; padding-left: 0px; width: 275px; max-width: 275px; min-width: 275px;"
+      <ul
+        class="BrainhubCarousel__track"
+        style="margin-left: 0px; width: 0px; transform: translateX(0px);"
       >
-        <div>
-          card
-        </div>
-      </li>
-    </ul>
+        <li
+          class="BrainhubCarouselItem BrainhubCarouselItem--active"
+          style="padding-right: 0px; padding-left: 0px; width: 275px; max-width: 275px; min-width: 275px;"
+        >
+          <div>
+            card
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
 `;
