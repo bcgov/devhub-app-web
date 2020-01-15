@@ -16,15 +16,6 @@ const TableTitle = styled.h3`
   color: black;
 `;
 
-const Inline = styled.li`
-  > div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  background-color: white;
-`;
-
 const ArrowIcon = styled.span`
   width: 22px;
   height: 22px;
@@ -43,10 +34,14 @@ const ModeContainer = styled.span`
 `;
 
 // used by topics/journeys to provide that underlined border between a journey and or topic
-export const OutsideBorder = styled.div`
+export const OutsideBorder = styled.li`
   top-margin: 15px;
   padding: 7px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  list-style: none;
+  margin-bottom: 0;
+  :not(:last-of-type) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  }
 `;
 
 export const AccordionList = styled.ul`
@@ -88,29 +83,31 @@ export const TableOfContentsToggle = ({ viewMode, ...rest }) => (
 export const TableOfContents = ({ title, contents }) => {
   const [opened, setOpened] = useState(false);
   return (
-    <AccordionList>
-      <Inline onClick={() => setOpened(!opened)} style={{ marginBottom: 0 }}>
-        <div>
-          <TableTitle>{title}</TableTitle>
-          <ArrowIcon opened={opened}>
-            <FontAwesomeIcon icon={faChevronRight} />
-          </ArrowIcon>
-        </div>
-        {opened && (
-          <AccordionList style={{ margin: 0, paddingLeft: 0 }}>
-            {contents.map(content => (
-              <NavItem
-                key={content.path}
-                resourceType={content.resourceType}
-                text={content.title}
-                to={content.path}
-                isExternal={validUrl.isWebUri(content.path)}
-              />
-            ))}
-          </AccordionList>
-        )}
-      </Inline>
-    </AccordionList>
+    <React.Fragment>
+      <div
+        onClick={() => setOpened(!opened)}
+        style={{ display: 'flex', justifyContent: 'space-between' }}
+      >
+        <TableTitle>{title}</TableTitle>
+        <ArrowIcon opened={opened}>
+          <FontAwesomeIcon icon={faChevronRight} />
+        </ArrowIcon>
+      </div>
+
+      {opened && (
+        <AccordionList style={{ margin: 0, paddingLeft: 0, fontSize: '1.15em' }}>
+          {contents.map(content => (
+            <NavItem
+              key={content.path}
+              resourceType={content.resourceType}
+              text={content.title}
+              to={content.path}
+              isExternal={validUrl.isWebUri(content.path)}
+            />
+          ))}
+        </AccordionList>
+      )}
+    </React.Fragment>
   );
 };
 
