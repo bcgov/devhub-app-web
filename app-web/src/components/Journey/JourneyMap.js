@@ -36,9 +36,13 @@ export const JourneyDescription = styled(Description)`
   margin-bottom: 15px;
 `;
 
-export const JourneyMap = ({ title, link, stops, description }) => {
+export const TEST_IDS = {
+  journey: 'journey.container',
+};
+
+export const JourneyMap = ({ title, link, stops, description, ...rest }) => {
   return (
-    <JourneyContainer>
+    <JourneyContainer data-testid={TEST_IDS.journey} {...rest}>
       <TopicDecorativeBar color={JOURNEY} />
       <PreviewContainer>
         <CardHeader resourceType={JOURNEY} />

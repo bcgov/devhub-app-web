@@ -89,7 +89,7 @@ export const TableOfContents = ({ title, contents }) => {
         style={{ display: 'flex', justifyContent: 'space-between' }}
       >
         <TableTitle>{title}</TableTitle>
-        <ArrowIcon opened={opened}>
+        <ArrowIcon opened={opened} data-testid={`table-of-contents-${title}`}>
           <FontAwesomeIcon icon={faChevronRight} />
         </ArrowIcon>
       </div>

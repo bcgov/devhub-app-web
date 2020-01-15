@@ -67,23 +67,21 @@ export const JourneysPage = ({ data, location }) => {
         ))}
       </div>
     ) : (
-      <div data-testid={TEST_IDS.listView}>
-        <AccordionList style={{ padding: '20px' }}>
-          {journeys.map(journey => (
-            <OutsideBorder key={journey.id}>
-              <TableOfContents
-                key={journey.id}
-                title={journey.name}
-                data-testid={TEST_IDS.toggle}
-                contents={journey.connectsWith.map(item => {
-                  item.fields.path = item.path;
-                  return item.fields;
-                })}
-              />
-            </OutsideBorder>
-          ))}
-        </AccordionList>
-      </div>
+      <AccordionList style={{ padding: '20px' }} data-testid={TEST_IDS.listView}>
+        {journeys.map(journey => (
+          <OutsideBorder key={journey.id}>
+            <TableOfContents
+              key={journey.id}
+              title={journey.name}
+              data-testid={TEST_IDS.toggle}
+              contents={journey.connectsWith.map(item => {
+                item.fields.path = item.path;
+                return item.fields;
+              })}
+            />
+          </OutsideBorder>
+        ))}
+      </AccordionList>
     );
 
   return (
@@ -96,6 +94,7 @@ export const JourneysPage = ({ data, location }) => {
         <TableOfContentsToggle
           onChange={() => viewToggle(location.pathname, viewMode)}
           viewMode={viewMode}
+          data-testid={TEST_IDS.toggle}
         />
         {currentView}
       </Main>
