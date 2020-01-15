@@ -44,7 +44,7 @@ pipeline {
                 script {
                     timeout(time: 5, unit: 'MINUTES') {
                         echo "sampling algolia index cloning"
-                        sh "cd .pipeline && ./npmw ci && ./npmw run clone-algolia-index -- --suffix=${CHANGE_ID} --env=dev
+                        sh "cd .pipeline && ./npmw ci && ./npmw run clone-algolia-index -- --suffix=${CHANGE_ID} --env=dev"
                     }
                     timeout(time: 5, unit: 'MINUTES')  {
                         sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev --description='deploying to dev from devhub job'"
