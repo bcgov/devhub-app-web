@@ -11,9 +11,6 @@ const algoliaIndexQuery = `{
             title
             tags
           }
-          internal {
-            type
-          }
         }
         internal {
           type
@@ -53,28 +50,42 @@ const algoliaIndexQuery = `{
 
 const settings = { attributesToSnippet: [`excerpt:20`] };
 
+export const NODE_TYPE_FIELD_NAME = '_nodeType';
 /**
  * Flat GitHubRawNode so when node is been indexed to Algolia, all resource will have same data structure.
- * @param {Array} edges the edges for allGithubRaw that all information we need is in childMarkdownRemark field
- * @returns {Array} the github nodes that has same data structure as DevhubSiphon and EventbriteEvents
+ * @param {Array} nodes gatsby graphql nodes
+ * @returns {Array} normalized array of node structures
  */
-export const reduceGithubRawNode = edges => {
-  return flattenGatsbyGraphQL(edges).map(
-    ({ childMarkdownRemark: { fields }, id, internal: { type } }) => ({
-      id,
+export const reduceNodesForIndex = nodes => {
+  return nodes.map(node => {
+    const {
+      internal: { type },
+    } = node;
+    let fields,
+      id = node.id;
+
+    if (type === 'GithubRaw') {
+      fields = node.childMarkdownRemark.fields;
+    } else {
+      fields = node.fields;
+    }
+    return {
       fields,
-      __type: type,
-    }),
-  );
+      id,
+      [NODE_TYPE_FIELD_NAME]: type,
+    };
+  });
 };
 
 export const queries = [
   {
     query: algoliaIndexQuery,
     transformer: ({ data: { GithubSource, DevhubSiphon, EventbriteEvents } }) =>
-      reduceGithubRawNode(GithubSource.edges)
-        .concat(flattenGatsbyGraphQL(DevhubSiphon.edges))
-        .concat(flattenGatsbyGraphQL(EventbriteEvents.edges)),
+      reduceNodesForIndex(
+        flattenGatsbyGraphQL(GithubSource.edges)
+          .concat(flattenGatsbyGraphQL(DevhubSiphon.edges))
+          .concat(flattenGatsbyGraphQL(EventbriteEvents.edges)),
+      ),
     indexName: `Devhub-Algolia`,
     settings,
   },

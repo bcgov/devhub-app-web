@@ -1,4 +1,9 @@
-import { getQueries, queries, reduceGithubRawNode } from '../../src/utils/algolia';
+import {
+  getQueries,
+  queries,
+  reduceNodesForIndex,
+  NODE_TYPE_FIELD_NAME,
+} from '../../src/utils/algolia';
 
 /*
 Copyright 2019 Province of British Columbia
@@ -32,61 +37,79 @@ describe('Algolia Utils', () => {
   });
 
   describe(' Algolia reducers', () => {
-    test('flattening githubRaw nodes', () => {
-      const data = {
-        allGithubRaw: {
-          edges: [
-            {
-              node: {
-                id: '123123',
-                childMarkdownRemark: {
-                  fields: {
-                    title: 'foo',
-                    description: 'abcabc',
-                  },
-                },
-                internal: {
-                  type: 'document',
-                },
-              },
+    test('flattening nodes', () => {
+      const data = [
+        {
+          id: '123123',
+          childMarkdownRemark: {
+            fields: {
+              title: 'foo',
+              description: 'abcabc',
             },
-            {
-              node: {
-                id: '232323',
-                childMarkdownRemark: {
-                  fields: {
-                    title: 'foo2',
-                    description: 'xzcv',
-                  },
-                },
-                internal: {
-                  type: 'document',
-                },
-              },
-            },
-            {
-              node: {
-                id: '232323',
-                childMarkdownRemark: {
-                  fields: {
-                    title: 'foo3',
-                    description: 'asdfad',
-                  },
-                },
-                internal: {
-                  type: 'document',
-                },
-              },
-            },
-          ],
+          },
+          internal: {
+            type: 'GithubRaw',
+          },
         },
-      };
-      const expected = [
-        { id: '123123', fields: { title: 'foo', description: 'abcabc' }, __type: 'document' },
-        { id: '232323', fields: { title: 'foo2', description: 'xzcv' }, __type: 'document' },
-        { id: '232323', fields: { title: 'foo3', description: 'asdfad' }, __type: 'document' },
+        {
+          id: '232323',
+          childMarkdownRemark: {
+            fields: {
+              title: 'foo2',
+              description: 'xzcv',
+            },
+          },
+          internal: {
+            type: 'GithubRaw',
+          },
+        },
+        {
+          id: '232323',
+          childMarkdownRemark: {
+            fields: {
+              title: 'foo3',
+              description: 'asdfad',
+            },
+          },
+          internal: {
+            type: 'GithubRaw',
+          },
+        },
+        {
+          id: 'foo',
+          fields: {
+            title: 'foo4',
+            description: 'asdfad',
+          },
+          internal: {
+            type: 'RandoType',
+          },
+        },
       ];
-      const test1 = reduceGithubRawNode(data.allGithubRaw.edges);
+
+      const expected = [
+        {
+          id: '123123',
+          fields: { title: 'foo', description: 'abcabc' },
+          [NODE_TYPE_FIELD_NAME]: 'GithubRaw',
+        },
+        {
+          id: '232323',
+          fields: { title: 'foo2', description: 'xzcv' },
+          [NODE_TYPE_FIELD_NAME]: 'GithubRaw',
+        },
+        {
+          id: '232323',
+          fields: { title: 'foo3', description: 'asdfad' },
+          [NODE_TYPE_FIELD_NAME]: 'GithubRaw',
+        },
+        {
+          id: 'foo',
+          fields: { title: 'foo4', description: 'asdfad' },
+          [NODE_TYPE_FIELD_NAME]: 'RandoType',
+        },
+      ];
+      const test1 = reduceNodesForIndex(data);
       expect(test1).toEqual(expected);
     });
   });
