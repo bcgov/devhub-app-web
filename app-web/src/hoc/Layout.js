@@ -62,5 +62,13 @@ export const query = graphql`
     }
     id
   }
+  fragment JourneyNodeConnection on ConnectedStopNode {
+    path
+    fields {
+      resourceType
+      title
+      description
+    }
+  }
 `;
 export default Layout;

@@ -109,3 +109,5 @@ export const FEATURE_TOPIC_CONFIGURATION = {
   name: 'Featured Resources',
   description: 'A selection of resources we think you will want to know about',
 };
+
+export const JOURNEY_TOPIC_VIEW_MODES = { card: 'cards', list: 'list' };
