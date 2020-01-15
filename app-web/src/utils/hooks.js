@@ -13,13 +13,10 @@ Created by Patrick Simonian
 */
 // custom react hooks
 // notes on custom hooks https://reactjs.org/docs/hooks-custom.html
-import { useState, useEffect, useRef, useContext } from 'react';
-import moment from 'moment';
+import { useState, useEffect, useRef } from 'react';
 import isEqual from 'lodash/isEqual';
 import { createIam } from '../auth';
 import { isLocalHost } from './helpers';
-import isEmpty from 'lodash/isEmpty';
-import AuthContext from '../AuthContext';
 import { useQuery } from '@apollo/react-hooks';
 import { SEARCHGATE_QUERY } from '../constants/runtimeGraphqlQueries';
 import algoliasearch from 'algoliasearch/lite';
