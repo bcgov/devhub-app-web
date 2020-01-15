@@ -24,7 +24,7 @@ import TopicPreview from '../components/TopicPreview/TopicPreview';
 import Main from '../components/Page/Main';
 import withResourceQuery from '../hoc/withResourceQuery';
 import Layout from '../hoc/Layout';
-import { getFirstNonExternalResource } from '../utils/helpers';
+import { getFirstNonExternalResource, reduceNodeForTableOfContents } from '../utils/helpers';
 import TableOfContents, {
   TableOfContentsToggle,
   AccordionList,
@@ -75,10 +75,7 @@ export const TopicsPage = ({ data, location }) => {
               <TableOfContents
                 key={topic.id}
                 title={topic.name}
-                contents={topic.connectsWith.map(item => {
-                  item.fields.path = item.path;
-                  return item.fields;
-                })}
+                contents={topic.connectsWith.map(reduceNodeForTableOfContents)}
               />
             </OutsideBorder>
           ))}

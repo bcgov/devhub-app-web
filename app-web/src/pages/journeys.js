@@ -22,7 +22,7 @@ import { Title } from '../components/Page';
 import Main from '../components/Page/Main';
 import withResourceQuery from '../hoc/withResourceQuery';
 import Layout from '../hoc/Layout';
-import { reduceJourneyToSubwayLine } from '../utils/helpers';
+import { reduceJourneyToSubwayLine, reduceNodeForTableOfContents } from '../utils/helpers';
 import { JourneyMap } from '../components/Journey';
 import { JOURNEY_TOPIC_VIEW_MODES as VIEW_MODES } from '../constants/ui';
 import TableOfContents, {
@@ -74,10 +74,7 @@ export const JourneysPage = ({ data, location }) => {
               key={journey.id}
               title={journey.name}
               data-testid={TEST_IDS.toggle}
-              contents={journey.connectsWith.map(item => {
-                item.fields.path = item.path;
-                return item.fields;
-              })}
+              contents={journey.connectsWith.map(reduceNodeForTableOfContents)}
             />
           </OutsideBorder>
         ))}

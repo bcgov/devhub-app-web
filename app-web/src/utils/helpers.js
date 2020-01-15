@@ -402,3 +402,13 @@ export const reduceJourneyToSubwayLine = connections => {
     variant: index % 2 === 0 ? 'up' : 'down',
   }));
 };
+
+/**
+ * reduces a node to an object used by the contents prop in the <TableOfContents> component
+ * @param {Object} node the node
+ * @returns {Object}
+ */
+export const reduceNodeForTableOfContents = node => {
+  const { path, fields } = node;
+  return { path, ...fields };
+};
