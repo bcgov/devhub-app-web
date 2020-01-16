@@ -16,10 +16,10 @@ const SmallLogo = styled.img`
   }
 `;
 
-const AlgoliaLogo = () => (
+const AlgoliaBranding = () => (
   <Aux>
     <SmallLogo src={logo} alt="Algolia" />
   </Aux>
 );
 
-export default AlgoliaLogo;
+export default AlgoliaBranding;
