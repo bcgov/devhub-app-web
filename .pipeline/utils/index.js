@@ -29,7 +29,7 @@ const postRocketChatMessage = (url, payload) =>
 
 const promisifiedCopyIndex = (src, dest) =>{
   const client = algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_ADMIN_KEY);
-  return Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     client.copyIndex(src, dest, (err, content) => {
       if (err) reject(err);
       resolve(content);

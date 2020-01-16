@@ -56,6 +56,10 @@ pipeline {
             }
             steps {
                 echo "Deploying ..."
+                timeout(time: 5, unit: 'MINUTES') {
+                    echo "cloning algolia index ${CHANGE_ID} to test"
+                    sh "cd .pipeline && ./npmw ci && ./npmw run clone-algolia-index -- --suffix=-build-${CHANGE_ID} --env=test"
+                }
                 script {
                     timeout(time: 5, unit: 'MINUTES') {
                         sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=test --description='deploying to test from devhub job'"
@@ -74,6 +78,10 @@ pipeline {
                 echo "Deploying ..."
                 script {
                     timeout(time: 5, unit: 'MINUTES') {
+                        echo "cloning algolia index ${CHANGE_ID} to production"
+                        sh "cd .pipeline && ./npmw ci && ./npmw run clone-algolia-index -- --suffix=-build-${CHANGE_ID} --env=prod"
+                    }
+                    timeout(time: 5, unit: 'MINUTES') {
                         sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=prod --description='deploying to prod from devhub job'"
                     }
                 }
@@ -87,6 +95,13 @@ pipeline {
                 ok "Yes!"
             }
             steps {
+                script {
+                    echo "Deleting old algolia index ${CHANGE_ID}"
+                    timeout(time: 5, unit: 'MINUTES') {
+                        echo "cloning algolia index ${CHANGE_ID} to production"
+                        sh "cd .pipeline && ./npmw ci && ./npmw run delete-algolia-index -- --suffix=-build-${CHANGE_ID}"
+                    }
+                }
                 echo "Cleaning ..."
                 sh "cd .pipeline && ./npmw ci && ./npmw run clean -- --pr=${CHANGE_ID} --env=dev"
                 echo "deleteing key cloak client"

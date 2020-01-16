@@ -104,6 +104,8 @@ objects:
             value: ${SSO_REALM_NAME_VALUE}
           - name: SSO_CLIENT_ID
             value: ${SSO_CLIENT_ID_VALUE}
+          - name: ALGOLIA_INDEX_NAME_SUFFIX
+            value: ${ALGOLIA_INDEX_NAME_SUFFIX}
           - name: MATOMO_URL
             value: ${MATOMO_URL}
           - name: MATOMO_SITE_URL
@@ -224,3 +226,7 @@ parameters:
   name: MATOMO_SITE_ID
   required: false
   value: '1'
+- description: The algolia search index suffix
+  displayName: Algolia Index Suffix
+  name: ALGOLIA_INDEX_NAME_SUFFIX
+  required: true

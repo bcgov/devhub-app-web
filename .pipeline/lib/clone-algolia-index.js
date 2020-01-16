@@ -4,6 +4,8 @@ const { cloneIndexTo } = require('../utils');
 
 module.exports = async settings => {
   const { env, suffix } = settings.options;
-
-  return await cloneIndexTo(`Devhub-Algolia-${suffix}`, `Devhub-Algolia-${env}`);
+  const fromIndex = `Devhub-Algolia-${suffix}`;
+  const toIndex =  `Devhub-Algolia-${env}`;
+  console.log(`Cloning Algolia Index from ${fromIndex} to ${toIndex}`);
+  return await cloneIndexTo(fromIndex, toIndex);
 };
