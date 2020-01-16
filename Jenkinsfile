@@ -99,7 +99,7 @@ pipeline {
                     echo "Deleting old algolia index ${CHANGE_ID}"
                     timeout(time: 5, unit: 'MINUTES') {
                         echo "cloning algolia index ${CHANGE_ID} to production"
-                        sh "cd .pipeline && ./npmw ci && ./npmw run delete-algolia-index -- --suffix=${CHANGE_ID}"
+                        sh "cd .pipeline && ./npmw ci && ./npmw run delete-algolia-index -- --suffix=-build-${CHANGE_ID}"
                     }
                 }
                 echo "Cleaning ..."
