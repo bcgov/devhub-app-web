@@ -1,25 +1,27 @@
 import React from 'react';
 import Aux from '../../../hoc/auxillary';
-import logo from '../../../assets/images/algolia.png';
+import logo from '../../../assets/images/algolia.svg';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
 const noMargin = css`
   margin-bottom: 0;
 `;
-
-const SmallLogo = styled.img`
+const LargeLogo = styled.img`
   ${noMargin}
-  width: 50px;
-  @media (min-width: 480px) {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
+  @media (max-width: 480px) {
     display: none;
   }
 `;
 
-const AlgoliaBranding = () => (
+const AlgoliaLogo = () => (
   <Aux>
-    <SmallLogo src={logo} alt="Algolia" />
+    <LargeLogo src={logo} alt="Powered By Algolia" />
   </Aux>
 );
 
-export default AlgoliaBranding;
+export default AlgoliaLogo;

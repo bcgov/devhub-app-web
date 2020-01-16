@@ -47,6 +47,7 @@ import Column from '../components/Card/Column';
 import GithubIssueCardHeader from '../components/DynamicSearchResults/GithubIssueCardHeader';
 import CardHeader from '../components/Card/CardHeader';
 import AuthContext from '../AuthContext';
+import AlgoliaBranding from '../components/UI/AlgoliaBranding/AlgoliaBranding';
 
 const Main = styled.main`
   margin-bottom: ${SPACING['1x']};
@@ -381,6 +382,7 @@ export const Index = ({
         searchSourcesLoading={searchSourcesLoading}
         resultCount={totalSearchResults}
       />
+      <AlgoliaBranding />
       <Main>
         {windowHasQuery && !queryIsEmpty && siphonResources}
         {windowHasQuery && searchSourcesLoading && searchGate.authenticated ? (
