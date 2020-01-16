@@ -37,13 +37,13 @@ const getParamsByEnv = (env, pr) => {
         ...params,
         SSO_BASE_URL_VALUE: 'https://sso-dev.pathfinder.gov.bc.ca',
         SSO_CLIENT_ID_VALUE: `devhub-web-${pr}`,
+        ALGOLIA_INDEX_NAME_SUFFIX: `-build-${pr}`,
       };
     default:
       return {
         ...params,
         SSO_BASE_URL_VALUE: 'https://sso-dev.pathfinder.gov.bc.ca',
         SSO_CLIENT_ID_VALUE: `devhub-web-${pr}`,
-        ALGOLIA_INDEX_NAME_SUFFIX: pr,
       };
   }
 };
