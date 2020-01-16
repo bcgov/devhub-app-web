@@ -12,6 +12,8 @@ const LargeLogo = styled.img`
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 15px;
+  height: auto;
   width: 10%;
   @media (max-width: 480px) {
     display: none;
@@ -20,7 +22,9 @@ const LargeLogo = styled.img`
 
 const AlgoliaLogo = () => (
   <Aux>
-    <LargeLogo src={logo} alt="Powered By Algolia" />
+    <a href="https://www.algolia.com/">
+      <LargeLogo src={logo} alt="Powered By Algolia" />
+    </a>
   </Aux>
 );
 
