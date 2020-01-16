@@ -58,7 +58,7 @@ pipeline {
                 echo "Deploying ..."
                 timeout(time: 5, unit: 'MINUTES') {
                     echo "cloning algolia index ${CHANGE_ID} to test"
-                    sh "cd .pipeline && ./npmw ci && ./npmw run clone-algolia-index -- --suffix=${CHANGE_ID} --env=test"
+                    sh "cd .pipeline && ./npmw ci && ./npmw run clone-algolia-index -- --suffix=-build-${CHANGE_ID} --env=test"
                 }
                 script {
                     timeout(time: 5, unit: 'MINUTES') {
@@ -79,7 +79,7 @@ pipeline {
                 script {
                     timeout(time: 5, unit: 'MINUTES') {
                         echo "cloning algolia index ${CHANGE_ID} to production"
-                        sh "cd .pipeline && ./npmw ci && ./npmw run clone-algolia-index -- --suffix=${CHANGE_ID} --env=prod"
+                        sh "cd .pipeline && ./npmw ci && ./npmw run clone-algolia-index -- --suffix=-build-${CHANGE_ID} --env=prod"
                     }
                     timeout(time: 5, unit: 'MINUTES') {
                         sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=prod --description='deploying to prod from devhub job'"
