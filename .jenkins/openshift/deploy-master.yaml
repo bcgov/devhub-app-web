@@ -38,19 +38,6 @@ objects:
     username: ${GITHUB_USERNAME}
   type: kubernetes.io/basic-auth
 - apiVersion: v1
-  kind: PersistentVolumeClaim
-  metadata:
-    annotations:
-      volume.beta.kubernetes.io/storage-class: netapp-file-standard
-      volume.beta.kubernetes.io/storage-provisioner: kubernetes.io/netapp
-    name: ${NAME}${SUFFIX}
-  spec:
-    accessModes:
-    - ReadWriteOnce
-    resources:
-      requests:
-        storage: 1Gi
-- apiVersion: v1
   kind: ServiceAccount
   metadata:
     annotations:
@@ -165,8 +152,6 @@ objects:
         terminationGracePeriodSeconds: 30
         volumes:
         - name: jenkins-jobs
-          persistentVolumeClaim:
-            claimName: ${NAME}${SUFFIX}
         - downwardAPI:
             items:
             - fieldRef:
