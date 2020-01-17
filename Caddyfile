@@ -4,8 +4,12 @@ log stdout
 errors stdout
 
 rewrite {
-  re ^\/topic(\/\w+)+
-  to /topic/index.html
+  regexp ^\/topic(\/[\w|\-|\_|~|\.]+)+
+  to {path} {path}/ /topic/
+}
+
+gzip {
+  ext .js .html .css
 }
 
 templates {
@@ -14,7 +18,7 @@ templates {
 
 # gatsby_cache_control
 # https://www.gatsbyjs.org/docs/caching/
-header / {
+header /*.html {
   # prevent any static html from being cached
   Cache-Control "public, max-age=0, must-revalidate"
 }
@@ -24,7 +28,19 @@ header /public/static {
   Cache-Control "public, max-age=31536000, immutable"
 }
 
-header /public/static/sw.js {
+header /public/page-data/ {
+  Cache-Control "public, max-age=0, must-revalidate"
+}
+
+header /app-data.json {
+  Cache-Control "public, max-age=0, must-revalidate"
+}
+
+header /*.js {
+  Cache-Control "public, max-age=31536000, immutable"
+}
+
+header /sw.js {
   # special js file that should not be cached for offline mode
   Cache-Control "public, max-age=0, must-revalidate"
 }

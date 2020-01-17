@@ -9,36 +9,50 @@ objects:
 - apiVersion: v1
   data:
     Caddyfile: |
-      0.0.0.0:2015
-      root /var/www/html
-      log stdout
-      errors stdout
+    0.0.0.0:2015
+    root /var/www/html
+    log stdout
+    errors stdout
+    
+    rewrite {
+      regexp ^\/topic(\/[\w|\-|\_|~|\.]+)+
+      to {path} {path}/ /topic/
+    }
+    
+    gzip {
+      ext .js .html .css
+    }
 
-      rewrite {
-        regexp ^\/topic(\/[\w|\-|\_|~|\.]+)+
-        to {path} {path}/ /topic/
-      }
+    templates {
+      ext   .js
+    }
 
-      templates {
-        ext   .js
-      }
+    # gatsby_cache_control
+    # https://www.gatsbyjs.org/docs/caching/
+    header /*.html {
+      # prevent any static html from being cached
+      Cache-Control "public, max-age=0, must-revalidate"
+    }
 
-      # gatsby_cache_control
-      # https://www.gatsbyjs.org/docs/caching/
-      header / {
-        # prevent any static html from being cached
-        Cache-Control "public, max-age=0, must-revalidate"
-      }
+    header /public/static {
+      # all static assets SHOULD be cached
+      Cache-Control "public, max-age=31536000, immutable"
+    }
 
-      header /public/static {
-        # all static assets SHOULD be cached
-        Cache-Control "public, max-age=31536000, immutable"
-      }
+    header /public/page-data/ {
+      Cache-Control "public, max-age=0, must-revalidate"
+    }
 
-      header /public/static/sw.js {
-        # special js file that should not be cached for offline mode
-        Cache-Control "public, max-age=0, must-revalidate"
-      }
+    header /app-data.json {
+      Cache-Control "public, max-age=0, must-revalidate"
+    }
+    header /*.js {
+      Cache-Control "public, max-age=31536000, immutable"
+    }
+    header /sw.js {
+      # special js file that should not be cached for offline mode
+      Cache-Control "public, max-age=0, must-revalidate"
+    }
   kind: ConfigMap
   metadata:
     creationTimestamp: null
