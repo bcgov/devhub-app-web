@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 
 const LogoContainer = styled.div`
   display: inline block;
-  margin: auto;
   padding: 15px;
   max-width: 220px;
   img {
