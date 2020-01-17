@@ -26,6 +26,7 @@ jobs:
           working-directory: app-web
           start: npm run dev
           wait-on: 'http://localhost:8000'
+          wait-on-timeout: 120
           config: baseUrl=http://localhost:8000
         env:
           CI: true
