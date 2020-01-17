@@ -3,11 +3,13 @@ import logo from '../../../assets/images/algolia.svg';
 import styled from '@emotion/styled';
 
 const LogoContainer = styled.div`
-  display: block;
-  text-align: center;
-  padding-top: 15px;
-  height: auto;
-  width: 100%;
+  display: inline block;
+  margin: auto;
+  padding: 15px;
+  max-width: 220px;
+  img {
+    width: 100%;
+  }
 `;
 
 const AlgoliaLogo = ({ ...rest }) => (
@@ -17,5 +19,4 @@ const AlgoliaLogo = ({ ...rest }) => (
     </a>
   </LogoContainer>
 );
-
 export default AlgoliaLogo;
