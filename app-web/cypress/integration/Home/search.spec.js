@@ -45,4 +45,10 @@ describe('Searching from homepage', () => {
 
     cy.url().should('eq', 'http://localhost:8000/What-Is-OpenShift');
   });
+
+  it('searches by a direct navigation', () => {
+    cy.visit('/?q=openshift');
+
+    cy.contains(/what is openshift\?/i);
+  });
 });
