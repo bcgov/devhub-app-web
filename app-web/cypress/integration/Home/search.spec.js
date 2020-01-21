@@ -52,4 +52,12 @@ describe('Searching from homepage', () => {
     cy.getByTestId('resource-preview-container').should('exist');
     cy.contains(/what is openshift\?/i);
   });
+
+  it('shows feedback when no results are found', () => {
+    cy.log('entering openshift in search bar');
+    cy.getByTestId('searchbar-input').type('what is openshifasdfas123t{enter}');
+
+    cy.contains(/No resources found :\( try search again\./i);
+    cy.getByTestId('ui-pill').contains('No Search Result');
+  });
 });

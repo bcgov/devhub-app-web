@@ -28,6 +28,7 @@ import Search from '../Search';
 import AppLogo from '../UI/AppLogo/AppLogo';
 import { SearchSources } from '../Search/SearchSources';
 import AuthContext from '../../AuthContext';
+import AlgoliaBrand from '../UI/AlgoliaBrand';
 
 const SearchStyled = styled(Search)`
   font-size: 1.25em;
@@ -127,6 +128,7 @@ export const Masthead = ({ query, searchSourcesLoading }) => {
           logged in.
         </AlertMessage>
       )}
+      <AlgoliaBrand style={{ paddingBottom: '5px' }} />
     </Container>
   );
 };
