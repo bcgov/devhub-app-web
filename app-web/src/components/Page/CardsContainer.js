@@ -45,6 +45,10 @@ const AlertMessage = styled(Alert)`
   margin: 10px auto;
 `;
 
+const PaddedContainer = styled.div`
+  padding: 0 5px;
+`;
+
 const CardsContent = (loading, searchResultsEmpty, resources) => {
   if (loading) {
     return <Loading message="Loading..." />;
@@ -60,6 +64,8 @@ const CardsContent = (loading, searchResultsEmpty, resources) => {
         `}
       >
         <Card
+          data-testid={r.path}
+          data-testclass="card"
           resourceType={r.type}
           title={r.title}
           description={r.description}
@@ -74,6 +80,7 @@ const CardsContent = (loading, searchResultsEmpty, resources) => {
 
 const SearchContainer = styled.div`
   display: flex;
+
   flex-wrap: wrap;
   > div {
     flex-basis: 350px;
@@ -95,6 +102,10 @@ const FilterSideDrawerToggle = styled.div`
   }
 `;
 
+export const TEST_IDS = {
+  algolia: 'CardContainer.algolia',
+};
+
 export const CardsContainer = ({
   resources,
   query,
@@ -110,27 +121,32 @@ export const CardsContainer = ({
   }
   return (
     <Container>
-      <SearchContainer>
-        <Search
-          searchOnEnter
-          query={query}
-          inputConfig={{ ...SEARCH.INPUT, disabled: loading }}
-          onSearch={terms => {
-            navigate(`${pagePath}?q=${encodeURIComponent(terms)}`);
-          }}
-        />
-        <AlgoliaBrand style={{ flexBasis: '250px', flexShrink: '0' }} />
-      </SearchContainer>
+      <PaddedContainer>
+        <SearchContainer>
+          <Search
+            searchOnEnter
+            query={query}
+            inputConfig={{ ...SEARCH.INPUT, disabled: loading }}
+            onSearch={terms => {
+              navigate(`${pagePath}?q=${encodeURIComponent(terms)}`);
+            }}
+          />
+          <AlgoliaBrand
+            data-testid={TEST_IDS.algolia}
+            style={{ flexBasis: '250px', flexShrink: '0' }}
+          />
+        </SearchContainer>
+      </PaddedContainer>
 
       <FilterSideDrawerToggle onClick={openSideDrawer}>
         <FontAwesomeIcon icon={faFilter} style={{ color: '#026', marginRight: '5px' }} />{' '}
         <span>Filters</span>
       </FilterSideDrawerToggle>
-      <div>
+      <PaddedContainer>
         {query && !isQueryEmpty(query) && !searchResultsEmpty && (
           <Pill key={resultLabel} label={resultLabel} variant="filled" deletable={false} />
         )}
-      </div>
+      </PaddedContainer>
       <Row>{CardsContent(loading, searchResultsEmpty, resources)}</Row>
     </Container>
   );

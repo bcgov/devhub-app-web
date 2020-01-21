@@ -66,6 +66,7 @@ const IconDiv = styled.div`
 `;
 export const TEST_IDS = {
   alertBox: 'Masthead.show',
+  algolia: 'Masthead.algolia',
 };
 
 export const Masthead = ({ query, searchSourcesLoading }) => {
@@ -128,7 +129,7 @@ export const Masthead = ({ query, searchSourcesLoading }) => {
           logged in.
         </AlertMessage>
       )}
-      <AlgoliaBrand style={{ paddingBottom: '5px' }} />
+      <AlgoliaBrand data-testid={TEST_IDS.algolia} style={{ paddingBottom: '5px' }} />
     </Container>
   );
 };
