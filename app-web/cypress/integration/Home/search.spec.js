@@ -37,7 +37,7 @@ describe('Searching from homepage', () => {
   it('can navigate to a card from a search', () => {
     cy.visit('/');
     cy.log('entering openshift in search bar');
-    cy.getByTestId('searchbar-input').type('openshift{enter}');
+    cy.getByTestId('searchbar-input').type('what is openshift{enter}');
 
     cy.getByTestId('resource-preview-container').should('exist');
     cy.log("clicking on 'What Is Openshift?' card");
@@ -48,7 +48,7 @@ describe('Searching from homepage', () => {
   });
 
   it('searches by a direct navigation', () => {
-    cy.visit('/?q=openshift');
+    cy.visit('/?q=what%20is%20openshift%3F');
     cy.getByTestId('resource-preview-container').should('exist');
     cy.contains(/what is openshift\?/i);
   });
