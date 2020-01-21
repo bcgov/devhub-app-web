@@ -39,4 +39,4 @@ jobs:
           GATSBY_SSO_BASE_URL: https://sso-dev.pathfinder.gov.bc.ca
           GATSBY_ALGOLIA_APP_ID: ${{secrets.GATSBY_ALGOLIA_APP_ID}}
           GATSBY_ALGOLIA_SEARCH_KEY: ${{secrets.GATSBY_ALGOLIA_SEARCH_KEY}}
-          GATSBY_ALGOLIA_INDEX_NAME_SUFFIX: prod
+          GATSBY_ALGOLIA_INDEX_NAME_SUFFIX: local
