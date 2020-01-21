@@ -26,6 +26,7 @@ import { SEARCH } from '../../constants/ui';
 import { EMOTION_BOOTSTRAP_BREAKPOINTS, SPACING } from '../../constants/designTokens';
 import Search from '../Search';
 import AppLogo from '../UI/AppLogo/AppLogo';
+import AlgoliaBranding from '../UI/AlgoliaBranding/AlgoliaBranding';
 import { SearchSources } from '../Search/SearchSources';
 import AuthContext from '../../AuthContext';
 
@@ -127,6 +128,7 @@ export const Masthead = ({ query, searchSourcesLoading }) => {
           logged in.
         </AlertMessage>
       )}
+      <AlgoliaBranding style={{ paddingBottom: '5px' }} />
     </Container>
   );
 };

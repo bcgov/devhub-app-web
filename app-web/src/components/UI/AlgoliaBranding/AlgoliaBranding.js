@@ -8,6 +8,7 @@ const LogoContainer = styled.div`
   max-width: 220px;
   img {
     width: 100%;
+    margin-bottom: 0;
   }
 `;
 
