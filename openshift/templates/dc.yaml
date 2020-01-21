@@ -13,10 +13,14 @@ objects:
       root /var/www/html
       log stdout
       errors stdout
-
+      
       rewrite {
         regexp ^\/topic(\/[\w|\-|\_|~|\.]+)+
         to {path} {path}/ /topic/
+      }
+      
+      gzip {
+        ext .js .html .css
       }
 
       templates {
@@ -35,7 +39,15 @@ objects:
         Cache-Control "public, max-age=31536000, immutable"
       }
 
-      header /public/static/sw.js {
+      header /public/page-data/ {
+        Cache-Control "public, max-age=0, must-revalidate"
+      }
+
+      header /app-data.json {
+        Cache-Control "public, max-age=0, must-revalidate"
+      }
+      
+      header / {
         # special js file that should not be cached for offline mode
         Cache-Control "public, max-age=0, must-revalidate"
       }
