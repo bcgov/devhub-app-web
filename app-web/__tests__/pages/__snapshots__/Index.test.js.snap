@@ -221,6 +221,7 @@ exports[`Home Page When a blank search is entered, cards and alerts don't show b
   </div>
   <div
     class="emotion-17 emotion-18"
+    data-testid="Masthead.algolia"
     style="padding-bottom: 5px;"
   >
     <a
@@ -456,6 +457,7 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
   </div>
   <div
     class="emotion-17 emotion-18"
+    data-testid="Masthead.algolia"
     style="padding-bottom: 5px;"
   >
     <a
