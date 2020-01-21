@@ -12,11 +12,11 @@ const LogoContainer = styled.div`
   }
 `;
 
-const AlgoliaLogo = ({ ...rest }) => (
+const AlgoliaBrand = ({ ...rest }) => (
   <LogoContainer {...rest}>
     <a href="https://www.algolia.com/">
       <img src={logo} alt="Algolia Logo" />
     </a>
   </LogoContainer>
 );
-export default AlgoliaLogo;
+export default AlgoliaBrand;
