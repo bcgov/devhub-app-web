@@ -39,6 +39,7 @@ describe('Searching from homepage', () => {
     cy.log('entering openshift in search bar');
     cy.getByTestId('searchbar-input').type('openshift{enter}');
 
+    cy.getByTestId('resource-preview-container').should('exist');
     cy.log("clicking on 'What Is Openshift?' card");
 
     cy.contains(/what is openshift\?/i).click();
@@ -48,7 +49,7 @@ describe('Searching from homepage', () => {
 
   it('searches by a direct navigation', () => {
     cy.visit('/?q=openshift');
-
+    cy.getByTestId('resource-preview-container').should('exist');
     cy.contains(/what is openshift\?/i);
   });
 });
