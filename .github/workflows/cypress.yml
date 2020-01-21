@@ -26,6 +26,7 @@ jobs:
           working-directory: app-web
           start: npm run dev
           wait-on: 'http://localhost:8000'
+          wait-on-timeout: 120
           config: baseUrl=http://localhost:8000
         env:
           CI: true
@@ -36,3 +37,6 @@ jobs:
           GATSBY_MATOMO_SITE_URL: ${{secrets.GATSBY_MATOMO_SITE_URL}}
           MATOMO_API_KEY: ${{secrets.MATOMO_API_KEY}}
           GATSBY_SSO_BASE_URL: https://sso-dev.pathfinder.gov.bc.ca
+          GATSBY_ALGOLIA_APP_ID: ${{secrets.GATSBY_ALGOLIA_APP_ID}}
+          GATSBY_ALGOLIA_SEARCH_KEY: ${{secrets.GATSBY_ALGOLIA_SEARCH_KEY}}
+          GATSBY_ALGOLIA_INDEX_NAME_SUFFIX: Devhub-Algolia-prod

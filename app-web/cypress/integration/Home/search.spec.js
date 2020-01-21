@@ -37,12 +37,19 @@ describe('Searching from homepage', () => {
   it('can navigate to a card from a search', () => {
     cy.visit('/');
     cy.log('entering openshift in search bar');
-    cy.getByTestId('searchbar-input').type('openshift{enter}');
+    cy.getByTestId('searchbar-input').type('what is openshift{enter}');
 
+    cy.getByTestId('resource-preview-container').should('exist');
     cy.log("clicking on 'What Is Openshift?' card");
 
     cy.contains(/what is openshift\?/i).click();
 
     cy.url().should('eq', 'http://localhost:8000/What-Is-OpenShift');
+  });
+
+  it('searches by a direct navigation', () => {
+    cy.visit('/?q=what%20is%20openshift%3F');
+    cy.getByTestId('resource-preview-container').should('exist');
+    cy.contains(/what is openshift\?/i);
   });
 });
