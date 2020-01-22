@@ -27,7 +27,6 @@ const searchClient = algoliasearch(
   process.env.GATSBY_ALGOLIA_SEARCH_KEY,
 );
 
-const index = searchClient.initIndex(`Devhub-Algolia-${ALGOLIA_INDEX_SUFFIX}`);
 //TODO, why in a function?
 function deepCompareEquals(a, b) {
   return isEqual(a, b);
@@ -50,7 +49,7 @@ export function useDeepCompareMemoize(value) {
  */
 export const useSearch = query => {
   const [results, setResults] = useState(null);
-
+  const index = searchClient.initIndex(`Devhub-Algolia-${ALGOLIA_INDEX_SUFFIX}`);
   useEffect(() => {
     if (query) {
       // if no query, I.E query is '', algolia will return all index....
@@ -65,7 +64,7 @@ export const useSearch = query => {
     } else {
       setResults(null);
     }
-  }, [query]);
+  }, [index, query]);
   return results;
 };
 

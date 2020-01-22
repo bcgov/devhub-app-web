@@ -17,4 +17,7 @@ Created by Patrick Simonian
 */
 // for more info https://github.com/gatsbyjs/gatsby/tree/master/examples/using-redux
 import wrapWithProvider from './wrapWithProvider';
+// eslint-disable-next-line
+import { ALGOLIA_INDEX_SUFFIX } from './src/constants/api';
+
 export const wrapRootElement = wrapWithProvider;
