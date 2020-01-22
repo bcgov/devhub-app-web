@@ -1,6 +1,4 @@
 // {{....}} is a Caddy template string, this will be replaced by caddy at run time
-// eslint-disable-next-line
-console.log('Loaded Templates');
 export default {
   ssoRealmName: '{{.Env.SSO_REALM_NAME}}',
   ssoClientId: '{{.Env.SSO_CLIENT_ID}}',

@@ -64,7 +64,8 @@ export const useSearch = query => {
     } else {
       setResults(null);
     }
-  }, [index, query]);
+    // eslint-disable-next-line
+  }, [query]);
   return results;
 };
 

@@ -29,7 +29,6 @@ import AppLogo from '../UI/AppLogo/AppLogo';
 import { SearchSources } from '../Search/SearchSources';
 import AuthContext from '../../AuthContext';
 import AlgoliaBrand from '../UI/AlgoliaBrand';
-import { ALGOLIA_INDEX_SUFFIX } from '../../constants/api';
 
 const SearchStyled = styled(Search)`
   font-size: 1.25em;
@@ -130,11 +129,7 @@ export const Masthead = ({ query, searchSourcesLoading }) => {
           logged in.
         </AlertMessage>
       )}
-      <AlgoliaBrand
-        data-testid={TEST_IDS.algolia}
-        data-index={ALGOLIA_INDEX_SUFFIX}
-        style={{ paddingBottom: '5px' }}
-      />
+      <AlgoliaBrand data-testid={TEST_IDS.algolia} style={{ paddingBottom: '5px' }} />
     </Container>
   );
 };
