@@ -11,6 +11,7 @@ const algoliaIndexQuery = `{
             title
             tags
           }
+          content: excerpt(pruneLength: 1000)
         }
         internal {
           type
@@ -42,6 +43,7 @@ const algoliaIndexQuery = `{
         }
         internal {
           type
+          content
         }
       }
     }
@@ -62,15 +64,19 @@ export const reduceNodesForIndex = nodes => {
       internal: { type },
     } = node;
     let fields,
+      content,
       id = node.id;
 
     if (type === 'GithubRaw') {
       fields = node.childMarkdownRemark.fields;
+      content = node.childMarkdownRemark.content;
     } else {
+      content = '';
       fields = node.fields;
     }
     return {
       fields,
+      content,
       id,
       [NODE_TYPE_FIELD_NAME]: type,
     };
