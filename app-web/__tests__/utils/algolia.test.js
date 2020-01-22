@@ -46,6 +46,7 @@ describe('Algolia Utils', () => {
               title: 'foo',
               description: 'abcabc',
             },
+            content: 'foo',
           },
           internal: {
             type: 'GithubRaw',
@@ -58,6 +59,7 @@ describe('Algolia Utils', () => {
               title: 'foo2',
               description: 'xzcv',
             },
+            content: 'foo',
           },
           internal: {
             type: 'GithubRaw',
@@ -70,6 +72,7 @@ describe('Algolia Utils', () => {
               title: 'foo3',
               description: 'asdfad',
             },
+            content: 'foo',
           },
           internal: {
             type: 'GithubRaw',
@@ -90,21 +93,25 @@ describe('Algolia Utils', () => {
       const expected = [
         {
           id: '123123',
+          content: 'foo',
           fields: { title: 'foo', description: 'abcabc' },
           [NODE_TYPE_FIELD_NAME]: 'GithubRaw',
         },
         {
           id: '232323',
+          content: 'foo',
           fields: { title: 'foo2', description: 'xzcv' },
           [NODE_TYPE_FIELD_NAME]: 'GithubRaw',
         },
         {
           id: '232323',
+          content: 'foo',
           fields: { title: 'foo3', description: 'asdfad' },
           [NODE_TYPE_FIELD_NAME]: 'GithubRaw',
         },
         {
           id: 'foo',
+          content: '',
           fields: { title: 'foo4', description: 'asdfad' },
           [NODE_TYPE_FIELD_NAME]: 'RandoType',
         },
