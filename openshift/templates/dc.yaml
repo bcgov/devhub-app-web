@@ -30,10 +30,10 @@ objects:
       # gatsby_cache_control
       # https://www.gatsbyjs.org/docs/caching/
       header / {
-        # prevent any static html from being cached
+        # special js file that should not be cached for offline mode
         Cache-Control "public, max-age=0, must-revalidate"
       }
-
+      
       header /public/static {
         # all static assets SHOULD be cached
         Cache-Control "public, max-age=31536000, immutable"
@@ -47,10 +47,7 @@ objects:
         Cache-Control "public, max-age=0, must-revalidate"
       }
       
-      header / {
-        # special js file that should not be cached for offline mode
-        Cache-Control "public, max-age=0, must-revalidate"
-      }
+
   kind: ConfigMap
   metadata:
     creationTimestamp: null
