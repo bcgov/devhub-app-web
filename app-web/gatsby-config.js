@@ -107,6 +107,11 @@ module.exports = {
   },
   pathPrefix: '/images',
   plugins: [
+    // service worker has been causing very difficult to debug issues
+    // removal of it is necessary for the time being while users have old versions of sw.js
+    // cached on their browser. The date of this removal is around jan 24 2020 and we should aim
+    // to REMOVE this plugin in a month or two so that we can harness the benefits of having a sw
+    'gatsby-plugin-remove-serviceworker',
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
