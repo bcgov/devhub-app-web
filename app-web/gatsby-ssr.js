@@ -17,4 +17,5 @@ Created by Patrick Simonian
 */
 // for more info https://github.com/gatsbyjs/gatsby/tree/master/examples/using-redux
 import wrapWithProvider from './wrapWithProvider';
+
 export const wrapRootElement = wrapWithProvider;
