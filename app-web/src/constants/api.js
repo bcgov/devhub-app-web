@@ -11,7 +11,7 @@ export const SEARCHGATE_API_URL = process.env.GATSBY_SEARCHGATE_API_URL || confi
 // the caddy template string. This self invocated function will only allow the ennv variable to be used
 // if the caddy template stringn has not been transformed
 export const ALGOLIA_INDEX_SUFFIX = (() => {
-  if (config.algoliaIndexSuffix.indexOf('{{.Env.ALGOLIA') === 0) {
+  if (/\.Env\.ALGOLIA/.test(config.algoliaIndexSuffix)) {
     return process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX;
   }
   return config.algoliaIndexSuffix;
