@@ -109,12 +109,13 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
     }
   };
 
-  //This filters what results we are showing based on the given filter coming from user interaction with the ResourcePills
+  // This filters what results we are showing based on the given filter coming from user interaction with the ResourcePills
   const resourceFilter = filterName => {
     //filter the results based on given filter, update the resources and active filter
     let filteredResources = [];
     let newPillList = togglePills(filterName, activeFilters);
     setActiveFilters(newPillList);
+
     filteredResources = resources.filter(resource =>
       newPillList.includes(resource.fields.resourceType),
     );

@@ -13,7 +13,7 @@ Created by Patrick Simonian
 */
 // custom react hooks
 // notes on custom hooks https://reactjs.org/docs/hooks-custom.html
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import isEqual from 'lodash/isEqual';
 import { createIam } from '../auth';
 import { isLocalHost } from './helpers';
@@ -21,6 +21,8 @@ import { useQuery } from '@apollo/react-hooks';
 import { SEARCHGATE_QUERY } from '../constants/runtimeGraphqlQueries';
 import algoliasearch from 'algoliasearch/lite';
 import { ALGOLIA_INDEX_SUFFIX } from '../constants/api';
+import { useStaticQuery, graphql } from 'gatsby';
+import { flattenGatsbyGraphQL } from './dataHelpers';
 
 const searchClient = algoliasearch(
   process.env.GATSBY_ALGOLIA_APP_ID,
@@ -48,7 +50,7 @@ export function useDeepCompareMemoize(value) {
  * @param {String | Array} query the query param from the url q=
  */
 export const useSearch = query => {
-  const [results, setResults] = useState(null);
+  const [results, setResults] = useState([]);
   const index = searchClient.initIndex(`Devhub-Algolia-${ALGOLIA_INDEX_SUFFIX}`);
   useEffect(() => {
     if (query) {
@@ -62,7 +64,7 @@ export const useSearch = query => {
           setResults(res.hits);
         });
     } else {
-      setResults(null);
+      setResults([]);
     }
     // eslint-disable-next-line
   }, [query]);
@@ -128,4 +130,65 @@ export const useSearchGate = (authenticated, queryString, client) => {
   }, useDeepCompareMemoize([_loading, loading, authenticated, queryString, results]));
 
   return { results, loading: _loading, authenticated };
+};
+
+/**
+ * returns a list of of siphon and github raw nodes in the format [siphonNodes, githubrawNodes]
+ * this function leverages gatsby's static query hook
+ */
+export const useDevhubSiphonAndGithubRawNodes = () => {
+  const { allDevhubSiphon, allGithubRaw } = useStaticQuery(graphql`
+    query {
+      allGithubRaw(filter: { fields: { pageOnly: { eq: false } } }) {
+        edges {
+          node {
+            id
+            pageViews
+            html_url
+            fields {
+              resourceType
+              title
+              description
+              image
+              pagePaths
+              standAlonePath
+              slug
+              personas
+            }
+            internal {
+              type
+            }
+            childMarkdownRemark {
+              htmlAst
+              html
+            }
+          }
+        }
+      }
+      allDevhubSiphon(filter: { source: { type: { eq: "web" } } }) {
+        edges {
+          node {
+            id
+            internal {
+              type
+            }
+            fields {
+              resourceType
+              personas
+              title
+              description
+              image
+              pagePaths
+              standAlonePath
+            }
+          }
+        }
+      }
+    }
+  `);
+  const siphon = useMemo(() => flattenGatsbyGraphQL(allDevhubSiphon.edges), [
+    allDevhubSiphon.edges,
+  ]);
+  const githubRaw = useMemo(() => flattenGatsbyGraphQL(allGithubRaw.edges), [allGithubRaw.edges]);
+  return [siphon, githubRaw];
 };
