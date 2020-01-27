@@ -61,6 +61,7 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
 
   if (isGithubRaw(node)) {
     createNodeField({ node, name: 'topics', value: node.___boundProperties.topics });
+    createNodeField({ node, name: 'journeys', value: node.___boundProperties.journeys });
     createNodeField({ node, name: 'position', value: node.___boundProperties.position });
   }
 

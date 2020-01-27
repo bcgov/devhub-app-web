@@ -98,9 +98,6 @@ describe('Home Page', () => {
       allMeetupGroup: {
         edges: meetups,
       },
-      siteSearchIndex: {
-        index: {},
-      },
       allMarkdownRemark: {
         edges: githubRaw,
       },

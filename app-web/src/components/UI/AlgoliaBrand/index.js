@@ -8,14 +8,15 @@ const LogoContainer = styled.div`
   max-width: 220px;
   img {
     width: 100%;
+    margin-bottom: 0;
   }
 `;
 
-const AlgoliaLogo = ({ ...rest }) => (
+const AlgoliaBrand = ({ ...rest }) => (
   <LogoContainer {...rest}>
     <a href="https://www.algolia.com/">
       <img src={logo} alt="Algolia Logo" />
     </a>
   </LogoContainer>
 );
-export default AlgoliaLogo;
+export default AlgoliaBrand;

@@ -17,6 +17,8 @@ Created by Patrick Simonian
 */
 
 const fetch = require('node-fetch');
+const algoliasearch = require('algoliasearch');
+
 
 const postRocketChatMessage = (url, payload) =>
   fetch(url, {
@@ -25,4 +27,18 @@ const postRocketChatMessage = (url, payload) =>
     headers: { 'Content-Type': 'application/json' },
   });
 
-module.exports = { postRocketChatMessage };
+const promisifiedCopyIndex = (src, dest) =>{
+  const client = algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_ADMIN_KEY);
+  return new Promise((resolve, reject) => {
+    client.copyIndex(src, dest, (err, content) => {
+      if (err) reject(err);
+      resolve(content);
+    });
+  });
+}
+
+const cloneIndexTo = (src, destination) => {
+  return promisifiedCopyIndex(src, destination);
+};
+
+module.exports = { postRocketChatMessage, cloneIndexTo };

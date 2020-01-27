@@ -4,6 +4,8 @@ require('dotenv').config({
 const { topicRegistry, journeyRegistry } = require('./devhub.config.json');
 const { converter } = require('./gatsby/utils/gatsbyRemark');
 const { getFilesFromRegistry } = require('./gatsby/utils/githubRaw');
+const { getQueries } = require('./src/utils/algolia');
+
 // To specify a path of the registry.yaml file, set as env variable
 // This comes as a pair of sourceRegistryType used by gatsby-source-github-all
 // const registry_path = process.env.REGISTRY_PATH || '';
@@ -15,6 +17,20 @@ const eventbritePlugin = () =>
         options: {
           organizationId: 228490647317, //csi lab org id
           accessToken: process.env.EVENT_BRITE_API_KEY,
+        },
+      }
+    : undefined;
+
+const algoliaPlugin = () =>
+  //for CI purpose, but we do nut want to push index to algolia every time, especially on github action.
+  process.env.GATSBY_ACTIVE_ENV !== 'test' || !process.env.GATSBY_ACTIVE_ENV
+    ? {
+        resolve: `gatsby-plugin-algolia`,
+        options: {
+          appId: process.env.GATSBY_ALGOLIA_APP_ID,
+          apiKey: process.env.ALGOLIA_ADMIN_KEY,
+          queries: getQueries(process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX),
+          chunkSize: 10000, // default: 1000
         },
       }
     : undefined;
@@ -32,7 +48,6 @@ const eventbritePlugin = () =>
         },
       }
     : undefined;
-
 const cloudNativeMeetup = () =>
   process.env.MEETUP_API_KEY
     ? {
@@ -45,7 +60,6 @@ const cloudNativeMeetup = () =>
         },
       }
     : undefined;
-
 const uxGuildMeetup = () =>
   process.env.MEETUP_API_KEY
     ? {
@@ -58,7 +72,6 @@ const uxGuildMeetup = () =>
         },
       }
     : undefined;
-
 const devopsVictoriaMeetup = () =>
   process.env.MEETUP_API_KEY
     ? {
@@ -71,7 +84,6 @@ const devopsVictoriaMeetup = () =>
         },
       }
     : undefined;
-
 const SCIPSMeetup = () =>
   process.env.MEETUP_API_KEY
     ? {
@@ -87,6 +99,7 @@ const SCIPSMeetup = () =>
 
 const dynamicPlugins = [
   eventbritePlugin(),
+  algoliaPlugin(),
   /*devopsCommonsMeetup(),
   cloudNativeMeetup(),
   uxGuildMeetup(),
@@ -243,43 +256,6 @@ module.exports = {
         // If REGISTRY_PATH is set specifically, include this REGISTRY_TYPE as an env var
         // Format convention: camalcase of the sub path + 'Yaml'
         sourceRegistryType: 'TopicRegistryJson',
-      },
-    },
-    {
-      resolve: '@gatsby-contrib/gatsby-plugin-elasticlunr-search',
-      options: {
-        // Fields to index
-        fields: ['title', 'content', 'description', 'topicName', 'tags', 'author', 'personas'],
-        // How to resolve each field`s value for a supported node type
-        resolvers: {
-          MarkdownRemark: {
-            title: node => node.fields.title,
-            content: node => node.fields.content.slice(0, 700),
-            description: node => node.fields.description,
-            tags: node => node.fields.tags,
-            author: node => node.fields.author,
-            personas: node => node.frontmatter.personas,
-            topicName: node => node.fields.topicName,
-            id: node => node.parent,
-          },
-          DevhubSiphon: {
-            title: node => node.fields.title,
-            description: node => node.fields.description,
-            personas: node => node.fields.personas,
-            topicName: node => node.topic.name,
-            labels: node => node.fields.labels,
-          },
-          EventbriteEvents: {
-            title: node => node.name.text,
-            description: node => node.description.text,
-            topicName: node => node.fields.topics,
-          },
-          MeetupEvent: {
-            title: node => node.name,
-            description: node => node.description,
-            topicName: node => node.fields.topics,
-          },
-        },
       },
     },
     {

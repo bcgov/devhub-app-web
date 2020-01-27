@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Home Page When a blank search is entered, cards and alerts don't show but topics do 1`] = `
-.emotion-17 {
+.emotion-19 {
   background-color: #fafafa;
   text-align: center;
   font-size: 16px;
@@ -20,7 +20,7 @@ exports[`Home Page When a blank search is entered, cards and alerts don't show b
 }
 
 @media (min-width:576px) {
-  .emotion-17 {
+  .emotion-19 {
     padding: 20px 15px;
   }
 }
@@ -133,8 +133,19 @@ exports[`Home Page When a blank search is entered, cards and alerts don't show b
   flex-flow: row nowrap;
 }
 
+.emotion-17 {
+  display: inline block;
+  padding: 15px;
+  max-width: 220px;
+}
+
+.emotion-17 img {
+  width: 100%;
+  margin-bottom: 0;
+}
+
 <div
-  class="emotion-17 emotion-18"
+  class="emotion-19 emotion-20"
 >
   <div
     class="emotion-4 emotion-5"
@@ -207,12 +218,26 @@ exports[`Home Page When a blank search is entered, cards and alerts don't show b
     <div
       class="emotion-13 emotion-14"
     />
+  </div>
+  <div
+    class="emotion-17 emotion-18"
+    data-testid="Masthead.algolia"
+    style="padding-bottom: 5px;"
+  >
+    <a
+      href="https://www.algolia.com/"
+    >
+      <img
+        alt="Algolia Logo"
+        src="algolia.svg"
+      />
+    </a>
   </div>
 </div>
 `;
 
 exports[`Home Page it matches snapshot, when there is a search and no results an alert box shows up 1`] = `
-.emotion-17 {
+.emotion-19 {
   background-color: #fafafa;
   text-align: center;
   font-size: 16px;
@@ -231,7 +256,7 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
 }
 
 @media (min-width:576px) {
-  .emotion-17 {
+  .emotion-19 {
     padding: 20px 15px;
   }
 }
@@ -344,8 +369,19 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
   flex-flow: row nowrap;
 }
 
+.emotion-17 {
+  display: inline block;
+  padding: 15px;
+  max-width: 220px;
+}
+
+.emotion-17 img {
+  width: 100%;
+  margin-bottom: 0;
+}
+
 <div
-  class="emotion-17 emotion-18"
+  class="emotion-19 emotion-20"
 >
   <div
     class="emotion-4 emotion-5"
@@ -418,6 +454,20 @@ exports[`Home Page it matches snapshot, when there is a search and no results an
     <div
       class="emotion-13 emotion-14"
     />
+  </div>
+  <div
+    class="emotion-17 emotion-18"
+    data-testid="Masthead.algolia"
+    style="padding-bottom: 5px;"
+  >
+    <a
+      href="https://www.algolia.com/"
+    >
+      <img
+        alt="Algolia Logo"
+        src="algolia.svg"
+      />
+    </a>
   </div>
 </div>
 `;

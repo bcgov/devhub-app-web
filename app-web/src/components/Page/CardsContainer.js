@@ -39,9 +39,14 @@ import Column from '../Card/Column';
 import Loading from '../UI/Loading/Loading';
 import Pill from '../UI/Pill';
 import { isQueryEmpty } from '../../utils/search';
+import AlgoliaBrand from '../UI/AlgoliaBrand';
 
 const AlertMessage = styled(Alert)`
   margin: 10px auto;
+`;
+
+const PaddedContainer = styled.div`
+  padding: 0 5px;
 `;
 
 const CardsContent = (loading, searchResultsEmpty, resources) => {
@@ -59,6 +64,8 @@ const CardsContent = (loading, searchResultsEmpty, resources) => {
         `}
       >
         <Card
+          data-testid={r.path}
+          data-testclass="card"
           resourceType={r.type}
           title={r.title}
           description={r.description}
@@ -72,10 +79,15 @@ const CardsContent = (loading, searchResultsEmpty, resources) => {
 };
 
 const SearchContainer = styled.div`
-  padding: 0 5px;
-  margin-left: 5px;
-  ${EMOTION_BOOTSTRAP_BREAKPOINTS.sm} {
-    max-width: 415px;
+  display: flex;
+
+  flex-wrap: wrap;
+  > div {
+    flex-basis: 350px;
+  }
+  justify-content: center;
+  ${EMOTION_BOOTSTRAP_BREAKPOINTS.md} {
+    justify-content: flex-start;
   }
 `;
 
@@ -89,6 +101,10 @@ const FilterSideDrawerToggle = styled.div`
     display: none;
   }
 `;
+
+export const TEST_IDS = {
+  algolia: 'CardContainer.algolia',
+};
 
 export const CardsContainer = ({
   resources,
@@ -105,23 +121,32 @@ export const CardsContainer = ({
   }
   return (
     <Container>
-      <SearchContainer>
-        <Search
-          searchOnEnter
-          query={query}
-          inputConfig={{ ...SEARCH.INPUT, disabled: loading }}
-          onSearch={terms => {
-            navigate(`${pagePath}?q=${encodeURIComponent(terms)}`);
-          }}
-        />
-        {query && !isQueryEmpty(query) && !searchResultsEmpty && (
-          <Pill key={resultLabel} label={resultLabel} variant="filled" deletable={false} />
-        )}
-      </SearchContainer>
+      <PaddedContainer>
+        <SearchContainer>
+          <Search
+            searchOnEnter
+            query={query}
+            inputConfig={{ ...SEARCH.INPUT, disabled: loading }}
+            onSearch={terms => {
+              navigate(`${pagePath}?q=${encodeURIComponent(terms)}`);
+            }}
+          />
+          <AlgoliaBrand
+            data-testid={TEST_IDS.algolia}
+            style={{ flexBasis: '250px', flexShrink: '0' }}
+          />
+        </SearchContainer>
+      </PaddedContainer>
+
       <FilterSideDrawerToggle onClick={openSideDrawer}>
         <FontAwesomeIcon icon={faFilter} style={{ color: '#026', marginRight: '5px' }} />{' '}
         <span>Filters</span>
       </FilterSideDrawerToggle>
+      <PaddedContainer>
+        {query && !isQueryEmpty(query) && !searchResultsEmpty && (
+          <Pill key={resultLabel} label={resultLabel} variant="filled" deletable={false} />
+        )}
+      </PaddedContainer>
       <Row>{CardsContent(loading, searchResultsEmpty, resources)}</Row>
     </Container>
   );
