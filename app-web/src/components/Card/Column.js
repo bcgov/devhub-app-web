@@ -16,8 +16,9 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import styled from '@emotion/styled';
-
+// Added bg to col for debugging
 const Col = styled.div`
+  background: blue;
   margin: 0 10px;
   flex: 0 0 250px;
 `;

@@ -17,8 +17,10 @@ Created by Patrick Simonian
 */
 import styled from '@emotion/styled';
 // represent the flexible row card columns sit in
+// Added bg to row for debugging.
 const Row = styled.div`
   display: flex;
+  background: red;
   flex-flow: row wrap;
   justify-content: center;
   @media (min-width: 810px) {

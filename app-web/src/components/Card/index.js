@@ -25,6 +25,7 @@ import { EventLogoWrapper, DateLI, EventDetailsContainer } from '../Event';
 export { BaseCard, Card } from './Card';
 
 export const Container = styled.article`
+  background: white;
   width: 265px;
   height: 238.5px;
   margin: 10px 0;

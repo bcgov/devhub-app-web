@@ -35,17 +35,17 @@ import {
   POPULAR_TOPIC_CONFIGURATION,
   FEATURE_TOPIC_CONFIGURATION,
   FEATURED_CONTENT,
-  SEARCH_RESOURCE_TYPES,
+  // SEARCH_RESOURCE_TYPES,
 } from '../constants/ui';
 import { removeUnwantedResults, buildPopularTopic, buildFeaturedTopic } from '../utils/helpers';
 import Loading from '../components/UI/Loading/Loading';
 import { RocketChatItem } from '../components/RocketChatItem/RocketChatItem';
 import { DynamicSearchResults } from '../components/DynamicSearchResults';
-import { Card } from '../components/Card/Card';
-import Row from '../components/Card/Row';
-import Column from '../components/Card/Column';
-import GithubIssueCardHeader from '../components/DynamicSearchResults/GithubIssueCardHeader';
-import CardHeader from '../components/Card/CardHeader';
+// import { Card } from '../components/Card/Card';
+// import Row from '../components/Card/Row';
+// import Column from '../components/Card/Column';
+// import GithubIssueCardHeader from '../components/DynamicSearchResults/GithubIssueCardHeader';
+// import CardHeader from '../components/Card/CardHeader';
 import AuthContext from '../AuthContext';
 
 const Main = styled.main`
@@ -293,7 +293,7 @@ export const Index = ({
             })}
           </DynamicSearchResults>
         )}
-        {!isEmpty(github) && github.length > 0 && (
+        {/* {!isEmpty(github) && github.length > 0 && (
           <DynamicSearchResults
             numResults={githubCards.length}
             sourceType={SEARCH_SOURCES.github}
@@ -330,8 +330,8 @@ export const Index = ({
               ))}
             </Row>
           </DynamicSearchResults>
-        )}
-        {!isEmpty(documizeCards) && documizeCards.length > 0 && (
+        )} */}
+        {/* {!isEmpty(documizeCards) && documizeCards.length > 0 && (
           <DynamicSearchResults
             numResults={documizeCards.length}
             sourceType={SEARCH_SOURCES.documize}
@@ -361,7 +361,7 @@ export const Index = ({
               ))}
             </Row>
           </DynamicSearchResults>
-        )}
+        )} */}
       </Aux>
     );
   }
