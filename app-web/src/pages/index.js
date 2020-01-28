@@ -41,8 +41,9 @@ export const Index = ({
   // search algolia
   const results = useSearch(query);
 
-  const noSearchResults = results && results.length === 0;
-  const resourcesNotFound = thereIsASearch && noSearchResults;
+  const noAlgoliaResults = results && results.length === 0;
+  const noSearchgateResults = !searchGate.loading && searchGate.results.length === 0;
+  const resourcesNotFound = thereIsASearch && noAlgoliaResults && noSearchgateResults;
 
   const events = useMemo(() => flattenGatsbyGraphQL(allEventbriteEvents.edges), [
     allEventbriteEvents.edges,
@@ -95,7 +96,7 @@ export const Index = ({
     <Layout>
       <Masthead
         query={query}
-        searchSourcesLoading={false}
+        searchSourcesLoading={searchGate.loading}
         location={location}
         resultCount={results && results.length}
       />

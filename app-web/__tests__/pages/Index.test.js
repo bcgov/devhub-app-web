@@ -127,6 +127,7 @@ describe('Home Page', () => {
     queryString.parse.mockReturnValue({ q: 'foo' });
     // rerender stubbing no results for resources
     useSearch.mockReturnValue([]);
+    useSearchGate.mockReturnValue({ results: [], loading: false });
     removeUnwantedResults.mockReturnValue([]);
     rerender(
       <ThemeProvider theme={theme}>
@@ -180,7 +181,7 @@ describe('Home Page', () => {
     expect(Alert).not.toBeInTheDocument();
   });
 
-  test.skip("When a blank search is entered, cards and alerts don't show but topics do", () => {
+  test("When a blank search is entered, cards and alerts don't show but topics do", () => {
     queryString.parse.mockReturnValue({});
     const { container, rerender, queryByTestId, queryAllByTestId } = render(
       <ThemeProvider theme={theme}>
@@ -219,7 +220,7 @@ describe('Home Page', () => {
     //The above changed to "toBe(0)" from "toBeGreaterThan(0)" as previews are no longer shown on the home page (unless a valid search has been made)
   });
 
-  test.skip('when searching, topics disappear if there are results', () => {
+  test('when searching, topics disappear if there are results', () => {
     queryString.parse.mockReturnValue({ q: 'foo' });
     useSearch.mockReturnValue([{ id: SIPHON_NODES[0].id }]);
     removeUnwantedResults.mockReturnValue([SIPHON_NODES[0]]);
@@ -237,7 +238,7 @@ describe('Home Page', () => {
     expect(queryAllByTestId(RESOURCE_PREVIEW_TEST_IDS.container).length).toBeGreaterThan(0);
   });
 
-  test.skip('when there is no search, topics are visible', () => {
+  test('when there is no search, topics are visible', () => {
     queryString.parse.mockReturnValue({});
     useSearch.mockReturnValue([]);
 
@@ -261,7 +262,7 @@ describe('Home Page', () => {
     expect(getByTestId(TOPIC_TEST_IDS.container)).toBeInTheDocument();
   });
 
-  test.skip('Unwanted results are correctly removed from search results', () => {
+  test('Unwanted results are correctly removed from search results', () => {
     //Our results have siphons node and meetups
     const initialResults = SIPHON_NODES.concat(MEETUP_NODES);
     //in our call to removeUnwantedResults, we say that only events are current (not meetups)
@@ -274,7 +275,7 @@ describe('Home Page', () => {
     expect(filteredResults.length).toBeLessThan(initialResults.length);
   });
 
-  test.skip('shows rocket chat results when authenticated', () => {
+  test('shows rocket chat results when authenticated', () => {
     queryString.parse.mockReturnValue({ q: 'foo' });
     useSearch.mockReturnValue([]);
     useSearchGate.mockReturnValue({ results: ROCKET_CHAT, loading: false });
@@ -311,7 +312,7 @@ describe('Home Page', () => {
     expect(queryByTestId(ROCKET_CHAT[0].id)).not.toBeInTheDocument();
   });
 
-  test.skip('shows github results when authenticated', () => {
+  test('shows github results when authenticated', () => {
     queryString.parse.mockReturnValue({ q: 'foo' });
     useSearch.mockReturnValue([]);
     useSearchGate.mockReturnValue({ results: GITHUB, loading: false });
@@ -334,7 +335,7 @@ describe('Home Page', () => {
     expect(queryByTestId(ROCKET_CHAT[0].id)).not.toBeInTheDocument();
   });
 
-  test.skip('shows documize results in different authenticated status', () => {
+  test('shows documize results in different authenticated status', () => {
     queryString.parse.mockReturnValue({ q: 'openshift' });
     useSearch.mockReturnValue([]);
     useSearchGate.mockReturnValue({ results: DOCUMIZE, loading: false });
