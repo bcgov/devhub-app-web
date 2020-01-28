@@ -36,7 +36,8 @@ export const Home = ({
   // const searchGate = useSearchGate(isAuthenticated, query, client);
   const results = useSearch(query);
   const noSearchResults = results && results.length === 0;
-  const resourcesNotFound = windowHasQuery && !queryIsEmpty && noSearchResults;
+  const resourcesNotFound = (windowHasQuery && noSearchResults) || queryIsEmpty;
+
   const currentEvents = formatEvents(
     flattenGatsbyGraphQL(allEventbriteEvents.edges).filter(e => e.start.daysFromNow <= 0),
   );
