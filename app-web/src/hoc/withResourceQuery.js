@@ -22,9 +22,6 @@ const withResourceQuery = WrappedComponent => () => props => (
   <StaticQuery
     query={graphql`
       query resourceQuery {
-        siteSearchIndex {
-          index
-        }
         allGithubRaw(filter: { fields: { pageOnly: { eq: false } } }) {
           edges {
             node {

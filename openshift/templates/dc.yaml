@@ -30,10 +30,10 @@ objects:
       # gatsby_cache_control
       # https://www.gatsbyjs.org/docs/caching/
       header / {
-        # prevent any static html from being cached
+        # special js file that should not be cached for offline mode
         Cache-Control "public, max-age=0, must-revalidate"
       }
-
+      
       header /public/static {
         # all static assets SHOULD be cached
         Cache-Control "public, max-age=31536000, immutable"
@@ -47,10 +47,7 @@ objects:
         Cache-Control "public, max-age=0, must-revalidate"
       }
       
-      header / {
-        # special js file that should not be cached for offline mode
-        Cache-Control "public, max-age=0, must-revalidate"
-      }
+
   kind: ConfigMap
   metadata:
     creationTimestamp: null
@@ -116,6 +113,8 @@ objects:
             value: ${SSO_REALM_NAME_VALUE}
           - name: SSO_CLIENT_ID
             value: ${SSO_CLIENT_ID_VALUE}
+          - name: ALGOLIA_INDEX_NAME_SUFFIX
+            value: ${ALGOLIA_INDEX_NAME_SUFFIX}
           - name: MATOMO_URL
             value: ${MATOMO_URL}
           - name: MATOMO_SITE_URL
@@ -236,3 +235,7 @@ parameters:
   name: MATOMO_SITE_ID
   required: false
   value: '1'
+- description: The algolia search index suffix
+  displayName: Algolia Index Suffix
+  name: ALGOLIA_INDEX_NAME_SUFFIX
+  required: true
