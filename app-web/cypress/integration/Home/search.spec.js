@@ -101,20 +101,18 @@ describe('Searching from homepage', () => {
       .as('firstFilterPill')
       .click();
 
-    cy.get('@firstFilterPill').should(([pill]) => {
-      const numResults = pill.attributes['data-count'].value / 1;
-      const resourceType = pill.attributes['data-resourceType'].value;
-      cy.log('grabbing results for this pill and resource type to check against dom');
-      cy.log(numResults);
-      cy.log(resourceType);
-      const maxResults =
-        Cypress.$(`[data-resourcetype="${resourceType}"]`)[0].attributes['data-count'].value / 1;
+    cy.get('@firstFilterPill')
+      .should('have.attr', 'data-resourceType')
+      .then(resourceType => {
+        cy.log(
+          'asserting number of results based on if the results from the filter are beyond the max results showed',
+        );
+        const cards = Cypress.$(`article[data-resourceType="${resourceType}"]`);
 
-      const cards = Cypress.$(`article[data-resourceType="${resourceType}"]`);
-      const assertion = numResults < maxResults ? numResults : maxResults;
-
-      expect(cards.length).to.be.equal(assertion);
-    });
+        expect(cards.length)
+          .to.be.greaterThan(0)
+          .and.to.be.lessThan(18);
+      });
   });
 });
 
