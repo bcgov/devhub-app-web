@@ -84,10 +84,42 @@ describe('Searching from homepage', () => {
     cy.getByTestId('Masthead.algolia');
     cy.contains(/No resources found :\(/i);
   });
+
+  it('can toggle search filters correctly', () => {
+    cy.log('entering openshift as search since it gives a lot of results');
+    cy.visit('?q=openshift');
+    cy.log('Result count pill should be visible');
+    cy.getByTestId('ui-pill').contains(/All \d+ Results/i);
+
+    cy.log('Filter Pills should exist');
+
+    cy.get('[data-testclass="resource-preview-pill"]')
+      .should(pills => {
+        expect(pills.length).to.be.greaterThan(1);
+      })
+      .first()
+      .as('firstFilterPill')
+      .click();
+
+    cy.get('@firstFilterPill').should(([pill]) => {
+      const numResults = pill.attributes['data-count'].value / 1;
+      const resourceType = pill.attributes['data-resourceType'].value;
+      cy.log('grabbing results for this pill and resource type to check against dom');
+      cy.log(numResults);
+      cy.log(resourceType);
+      const maxResults =
+        Cypress.$(`[data-resourcetype="${resourceType}"]`)[0].attributes['data-count'].value / 1;
+
+      const cards = Cypress.$(`article[data-resourceType="${resourceType}"]`);
+      const assertion = numResults < maxResults ? numResults : maxResults;
+
+      expect(cards.length).to.be.equal(assertion);
+    });
+  });
 });
 
 describe('Searching from /components', () => {
-  it.skip('goes to components and searches ', () => {
+  it('goes to components and searches ', () => {
     cy.visit('/components');
     cy.log('ensuring algolia brand is visible');
     cy.getByTestId('CardContainer.algolia');

@@ -38,6 +38,7 @@ const CardsInColumns = ({ cards }) => {
         image={card.fields.image}
         link={card.fields.standAlonePath}
         event={card}
+        data-resourceType={card.fields.resourceType}
       />
     </Col>
   ));

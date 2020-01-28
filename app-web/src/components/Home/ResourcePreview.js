@@ -81,6 +81,7 @@ const toggled = css`
 // used by @testing-library/react dom querying
 export const TEST_IDS = {
   container: 'resource-preview-container',
+  pill: 'resource-preview-pill',
 };
 
 // this is a wrapper component that encapsulates cards for topics or other sizes
@@ -166,6 +167,10 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
           return (
             <ResourcePill
               resourceType={filter.name}
+              data-resourcetype={filter.name}
+              data-testid={`${TEST_IDS.pill}-${filter.name}`}
+              data-testclass={`${TEST_IDS.pill}`}
+              data-count={filter.counter}
               label={iconLabel}
               variant="filled"
               deletable={false}
@@ -182,7 +187,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
   }
 
   return (
-    <Container data-testid={TEST_IDS.container}>
+    <Container data-testid={TEST_IDS.container} data-maxresults={showCount}>
       <PreviewHeader>
         <h2>{title}</h2>
         {pills}

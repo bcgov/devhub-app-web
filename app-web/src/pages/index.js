@@ -31,12 +31,12 @@ export const Home = ({
   } else {
     query = '';
   }
-
   const queryIsEmpty = isQueryEmpty(query);
+  const thereIsASearch = !queryIsEmpty && windowHasQuery;
   // const searchGate = useSearchGate(isAuthenticated, query, client);
   const results = useSearch(query);
   const noSearchResults = results && results.length === 0;
-  const resourcesNotFound = (windowHasQuery && noSearchResults) || queryIsEmpty;
+  const resourcesNotFound = thereIsASearch && noSearchResults;
 
   const currentEvents = formatEvents(
     flattenGatsbyGraphQL(allEventbriteEvents.edges).filter(e => e.start.daysFromNow <= 0),
@@ -61,7 +61,7 @@ export const Home = ({
         </Alert>
       </div>
     );
-  } else if (windowHasQuery) {
+  } else if (thereIsASearch) {
     content = (
       <SearchResults
         title="Devhub resources"
