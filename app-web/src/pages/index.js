@@ -23,29 +23,30 @@ export const Home = ({
   data: { allGithubRaw, allDevhubSiphon, allEventbriteEvents },
 }) => {
   const queryParam = queryString.parse(location.search);
-  let query = [];
-  let windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, SEARCH_QUERY_PARAM);
+  const windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, SEARCH_QUERY_PARAM);
 
-  if (windowHasQuery) {
-    query = decodeURIComponent(queryParam[SEARCH_QUERY_PARAM]);
-  } else {
-    query = '';
-  }
+  const query = windowHasQuery ? decodeURIComponent(queryParam[SEARCH_QUERY_PARAM]) : [];
   const queryIsEmpty = isQueryEmpty(query);
+
   const thereIsASearch = !queryIsEmpty && windowHasQuery;
   // const searchGate = useSearchGate(isAuthenticated, query, client);
   const results = useSearch(query);
+
   const noSearchResults = results && results.length === 0;
   const resourcesNotFound = thereIsASearch && noSearchResults;
 
-  const currentEvents = formatEvents(
-    flattenGatsbyGraphQL(allEventbriteEvents.edges).filter(e => e.start.daysFromNow <= 0),
-  );
+  const events = useMemo(() => flattenGatsbyGraphQL(allEventbriteEvents.edges), [
+    allEventbriteEvents.edges,
+  ]);
 
-  const resourcesToSearchAgainst = useMemo(
-    () => flattenGatsbyGraphQL(allGithubRaw.edges.concat(allDevhubSiphon.edges)),
-    [allDevhubSiphon.edges, allGithubRaw.edges],
-  ).concat(currentEvents);
+  // github raw and siphon can be joined because they already have like metadata for their node fields
+  const githubRawAndSiphon = allGithubRaw.edges.concat(allDevhubSiphon.edges);
+  // adds properties needed for rendering the 'event metadata' in the event card component
+  const currentEvents = formatEvents(events.filter(e => e.start.daysFromNow <= 0));
+
+  const resourcesToSearchAgainst = useMemo(() => flattenGatsbyGraphQL(githubRawAndSiphon), [
+    githubRawAndSiphon,
+  ]).concat(currentEvents);
 
   let content = null;
 
