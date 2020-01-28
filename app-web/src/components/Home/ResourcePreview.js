@@ -187,7 +187,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
   }
 
   return (
-    <Container data-testid={TEST_IDS.container} data-maxresults={showCount}>
+    <Container data-testid={TEST_IDS.container}>
       <PreviewHeader>
         <h2>{title}</h2>
         {pills}

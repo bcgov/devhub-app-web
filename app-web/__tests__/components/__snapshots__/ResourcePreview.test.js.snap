@@ -223,7 +223,6 @@ exports[`Resource Preview Component matches snapshot 1`] = `
 
 <section
   class="emotion-148 emotion-149"
-  data-maxresults="6"
   data-testid="resource-preview-container"
 >
   <div
