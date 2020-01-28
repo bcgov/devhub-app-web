@@ -1,35 +1,44 @@
-import React, { useMemo } from 'react';
-
+import React, { useMemo, useContext } from 'react';
 import queryString from 'query-string';
 import { graphql } from 'gatsby';
 // components
+import { withApollo } from 'react-apollo';
 import { Alert } from 'reactstrap';
 import { SearchResults } from '../components/Search/SearchResults';
 import { Masthead, TopicsPreview } from '../components/Home';
-import { useSearch } from '../utils/hooks';
-import { SEARCH_QUERY_PARAM } from '../constants/search';
 import Layout from '../hoc/Layout';
-
+import AuthContext from '../AuthContext';
+import Loading from '../components/UI/Loading/Loading';
+// hooks
+import { useSearch, useSearchGate } from '../utils/hooks';
+// config
+import { SEARCH_QUERY_PARAM } from '../constants/search';
+// helpers
 import { isQueryEmpty } from '../utils/search';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { formatEvents } from '../templates/events';
+import { SearchGateResults } from '../components/Search/SearchGateResults';
+import groupBy from 'lodash/groupBy';
 
 export const TEST_IDS = {
   alert: 'home-test-alert',
 };
 
-export const Home = ({
+export const Index = ({
   location,
+  client,
   data: { allGithubRaw, allDevhubSiphon, allEventbriteEvents },
 }) => {
   const queryParam = queryString.parse(location.search);
   const windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, SEARCH_QUERY_PARAM);
-
-  const query = windowHasQuery ? decodeURIComponent(queryParam[SEARCH_QUERY_PARAM]) : [];
+  const { isAuthenticated } = useContext(AuthContext);
+  const query = windowHasQuery ? decodeURIComponent(queryParam[SEARCH_QUERY_PARAM]) : '';
   const queryIsEmpty = isQueryEmpty(query);
 
   const thereIsASearch = !queryIsEmpty && windowHasQuery;
-  // const searchGate = useSearchGate(isAuthenticated, query, client);
+  // search our local graphql federated search for (documize, github and rocketchat)
+  const searchGate = useSearchGate(isAuthenticated, query, client);
+  // search algolia
   const results = useSearch(query);
 
   const noSearchResults = results && results.length === 0;
@@ -39,6 +48,7 @@ export const Home = ({
     allEventbriteEvents.edges,
   ]);
 
+  const searchSources = useMemo(() => groupBy(searchGate.results, 'type'), [searchGate.results]);
   // github raw and siphon can be joined because they already have like metadata for their node fields
   const githubRawAndSiphon = allGithubRaw.edges.concat(allDevhubSiphon.edges);
   // adds properties needed for rendering the 'event metadata' in the event card component
@@ -64,11 +74,18 @@ export const Home = ({
     );
   } else if (thereIsASearch) {
     content = (
-      <SearchResults
-        title="Devhub resources"
-        resources={resourcesToSearchAgainst}
-        results={results}
-      />
+      <React.Fragment>
+        <SearchResults
+          title="Devhub resources"
+          resources={resourcesToSearchAgainst}
+          results={results}
+        />
+        {searchGate.authenticated && searchGate.loading ? (
+          <Loading message="loading" />
+        ) : (
+          <SearchGateResults searchSources={searchSources} />
+        )}
+      </React.Fragment>
     );
   } else {
     // if there is no query render the topics
@@ -176,4 +193,4 @@ export const homeQuery = graphql`
   }
 `;
 
-export default React.memo(Home);
+export default withApollo(React.memo(Index));
