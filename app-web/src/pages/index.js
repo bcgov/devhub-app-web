@@ -69,7 +69,7 @@ export const Index = ({
 
   let content;
   if (!isClient) {
-    content = null;
+    content = <Loading message="Just a moment" />;
   } else if (resourcesNotFound) {
     content = (
       <div style={{ padding: '10px' }}>
