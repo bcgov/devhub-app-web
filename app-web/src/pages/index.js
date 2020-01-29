@@ -1,392 +1,207 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useMemo, useContext, useEffect, useState } from 'react';
 import queryString from 'query-string';
-import isNull from 'lodash/isNull';
-import groupBy from 'lodash/groupBy';
-import styled from '@emotion/styled';
-import { Alert } from 'reactstrap';
+import { graphql } from 'gatsby';
+// components
 import { withApollo } from 'react-apollo';
-import { MAIN_NAV_ROUTES } from '../constants/routes';
-import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
-import { SEARCH } from '../messages';
-import isEmpty from 'lodash/isEmpty';
-
+import { Alert } from 'reactstrap';
+import { SearchResults } from '../components/Search/SearchResults';
+import { Masthead, TopicsPreview } from '../components/Home';
 import Layout from '../hoc/Layout';
-import { ResourcePreview, Masthead, TopicsContainer } from '../components/Home';
-import withResourceQuery from '../hoc/withResourceQuery';
-import Aux from '../hoc/auxillary';
-
-import { useSearch, useSearchGate } from '../utils/hooks';
-import {
-  selectTopicsWithResourcesGroupedByType,
-  selectResourcesGroupedByType,
-} from '../utils/selectors';
-
-import { isQueryEmpty, githubSearchReducer, documizeSearchPurifier } from '../utils/search';
-import {
-  SEARCH_QUERY_PARAM,
-  SEARCH_SOURCES,
-  SEARCH_SOURCE_CONFIG,
-  GITHUB_SEARCH_SOURCE_TYPENAMES,
-} from '../constants/search';
-import { SPACING } from '../constants/designTokens';
-import { formatEvents } from '../templates/events';
-import {
-  DYNAMIC_TOPIC_PATHS,
-  POPULAR_TOPIC_CONFIGURATION,
-  FEATURE_TOPIC_CONFIGURATION,
-  FEATURED_CONTENT,
-  SEARCH_RESOURCE_TYPES,
-} from '../constants/ui';
-import { removeUnwantedResults, buildPopularTopic, buildFeaturedTopic } from '../utils/helpers';
-import Loading from '../components/UI/Loading/Loading';
-import { RocketChatItem } from '../components/RocketChatItem/RocketChatItem';
-import { DynamicSearchResults } from '../components/DynamicSearchResults';
-import { Card } from '../components/Card/Card';
-import Row from '../components/Card/Row';
-import Column from '../components/Card/Column';
-import GithubIssueCardHeader from '../components/DynamicSearchResults/GithubIssueCardHeader';
-import CardHeader from '../components/Card/CardHeader';
 import AuthContext from '../AuthContext';
-
-const Main = styled.main`
-  margin-bottom: ${SPACING['1x']};
-  margin-top: ${SPACING['2x']};
-  padding: 0 ${SPACING['2x']};
-`;
-
-/**
- * returns topics container component so as long as a search is not being done
- * @param {Array} topics list of topics also known as topics
- * @param {Boolean} searchResultsExist
- */
-const getTopicPreviews = (topics, searchResultsExist) => {
-  const topicsSelector = selectTopicsWithResourcesGroupedByType();
-  return (
-    !searchResultsExist && (
-      <TopicsContainer topics={topicsSelector(topics)} link={MAIN_NAV_ROUTES.TOPICS} />
-    )
-  );
-};
-
-/**
- * takes in search results
- * returns the total amount of results
- * @param {Array} resources the search results
- */
-const getSearchResultTotal = results => {
-  return results.props.resources.length;
-};
-
-/**
- * returns a resource preview components
- * @param {Array} resources the list of siphon resources
- * @param {Array} results the list of searched resources
- * @param {Srting} title the title of currtion card section
- */
-const getResourcePreviews = (resources, results = [], title) => {
-  const resourcesSelector = selectResourcesGroupedByType();
-  let resourcesToShow = [];
-
-  if (!isNull(results) && results.length > 0) {
-    // map the search index results to the resources. Its important to do it in this order,
-    // since the index results are return in order based on relevance
-    resourcesToShow = results.flatMap(result => {
-      return resources.filter(resource => result.id === resource.id);
-    });
-  }
-
-  // select resources grouped by type using relesect memoization https://github.com/reduxjs/reselect/issues/30
-  let resourcesByType = resourcesSelector(resourcesToShow);
-  //get totals for each resource type
-  let resourceIconsWithCounter = Object.keys(resourcesByType).map(resourceType => {
-    return {
-      name: resourceType,
-      counter: resourcesByType[resourceType].length,
-    };
-  });
-  //sort by highest counter
-  resourceIconsWithCounter = resourceIconsWithCounter.sort((a, b) => {
-    return b.counter - a.counter;
-  });
-
-  return (
-    <ResourcePreview
-      key={'Internal Results'}
-      title={title}
-      resources={resourcesToShow}
-      filters={resourceIconsWithCounter}
-      amountToShow={18}
-      seeMore={true}
-    />
-  );
-};
+import Loading from '../components/UI/Loading/Loading';
+// hooks
+import { useSearch, useSearchGate } from '../utils/hooks';
+// config
+import { SEARCH_QUERY_PARAM } from '../constants/search';
+// helpers
+import { isQueryEmpty } from '../utils/search';
+import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
+import { formatEvents } from '../templates/events';
+import { SearchGateResults } from '../components/Search/SearchGateResults';
+import groupBy from 'lodash/groupBy';
 
 export const TEST_IDS = {
   alert: 'home-test-alert',
 };
 
 export const Index = ({
-  client,
-  data: {
-    allTopicRegistryJson,
-    allDevhubSiphon,
-    allEventbriteEvents,
-    allMarkdownRemark,
-    allJourneyRegistryJson,
-    //allMeetupGroup, commented out as meetup source plugin no longer works. meetup removed support for api keys, we are waiting for the source-meetup plugin to address this
-    allGithubRaw,
-  },
   location,
+  client,
+  data: { allGithubRaw, allDevhubSiphon, allEventbriteEvents },
 }) => {
+  // this forces the component to re render on the client as there will be a mistmatch between
+  // html properties on reloads of this page when a search comes in. This is a known effect
+  // of reacts hydration process https://reactjs.org/docs/react-dom.html#hydrate
+  // eslint-disable-next-line
+  const [isClient, setClient] = useState(false);
+  useEffect(() => {
+    setClient(true);
+  }, []);
   const queryParam = queryString.parse(location.search);
-  let query = [];
-  let results = [];
-  let windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, SEARCH_QUERY_PARAM);
-
-  if (windowHasQuery) {
-    query = decodeURIComponent(queryParam[SEARCH_QUERY_PARAM]);
-  } else {
-    query = '';
-  }
+  const windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, SEARCH_QUERY_PARAM);
   const { isAuthenticated } = useContext(AuthContext);
-  // get rocket chat search results if authenticated
-  // TODO will activate once ui component is available
-
-  const searchGate = useSearchGate(isAuthenticated, query, client);
-
-  let searchSourceResults = {};
-  if (searchGate.results) {
-    searchSourceResults = groupBy(searchGate.results, 'type');
-  }
-
-  results = useSearch(query);
-
-  const allEvents = flattenGatsbyGraphQL(allEventbriteEvents.edges);
-  const currentEvents = formatEvents(allEvents.filter(e => e.start.daysFromNow <= 0));
-  /*const allMeetups = formatMeetUps(
-    flattenGatsbyGraphQL(allMeetupGroup.edges).flatMap(meetups => {
-      return meetups.childrenMeetupEvent;
-    }),
-  );
-  const currentMeetups = allMeetups.filter(e => e.start.daysFromNow <= 0);*/
-  if (results) {
-    results = removeUnwantedResults(results, allEvents, currentEvents);
-  }
-
-  // this is defined by ?q='' or ?q=''&q=''..etc
-  // if query is empty we prevent the search results empty from being rendered
-  // in addition the topics container is prevented from not rendering because
-  // the query is present
+  const query = windowHasQuery ? decodeURIComponent(queryParam[SEARCH_QUERY_PARAM]) : '';
   const queryIsEmpty = isQueryEmpty(query);
 
-  let content = null;
+  const thereIsASearch = !queryIsEmpty && windowHasQuery;
+  // search our local graphql federated search for (documize, github and rocketchat)
+  const searchGate = useSearchGate(isAuthenticated, query, client);
+  // search algolia
+  const results = useSearch(query);
 
-  const siphonResources = getResourcePreviews(
-    flattenGatsbyGraphQL(allDevhubSiphon.edges)
-      .concat(currentEvents)
-      .concat(flattenGatsbyGraphQL(allGithubRaw.edges))
-      .concat(flattenGatsbyGraphQL(allMarkdownRemark.edges)),
-    results,
-    'DevHub Resources',
-  );
+  const noAlgoliaResults = results && results.length === 0;
+  const noSearchgateResults = !searchGate.loading && searchGate.results.length === 0;
+  const resourcesNotFound = thereIsASearch && noAlgoliaResults && noSearchgateResults;
 
-  let totalSearchResults = 0;
-  const noSearchResults = results && results.length === 0;
-  const resourcesNotFound = !queryIsEmpty && noSearchResults && isEmpty(searchSourceResults);
+  const events = useMemo(() => flattenGatsbyGraphQL(allEventbriteEvents.edges), [
+    allEventbriteEvents.edges,
+  ]);
 
-  const topics = flattenGatsbyGraphQL(allTopicRegistryJson.edges);
-  const githubRaw = flattenGatsbyGraphQL(allGithubRaw.edges);
-  const devhubSiphon = flattenGatsbyGraphQL(allDevhubSiphon.edges);
+  const searchSources = useMemo(() => groupBy(searchGate.results, 'type'), [searchGate.results]);
+  // github raw and siphon can be joined because they already have like metadata for their node fields
+  const githubRawAndSiphon = allGithubRaw.edges.concat(allDevhubSiphon.edges);
+  // adds properties needed for rendering the 'event metadata' in the event card component
+  const currentEvents = formatEvents(events.filter(e => e.start.daysFromNow <= 0));
 
-  const popularTopic = buildPopularTopic(
-    githubRaw,
-    POPULAR_TOPIC_CONFIGURATION.name,
-    POPULAR_TOPIC_CONFIGURATION.description,
-    DYNAMIC_TOPIC_PATHS.popular,
-    POPULAR_TOPIC_CONFIGURATION.minPageViews,
-    POPULAR_TOPIC_CONFIGURATION.maxNodes,
-  );
+  const resourcesToSearchAgainst = useMemo(() => flattenGatsbyGraphQL(githubRawAndSiphon), [
+    githubRawAndSiphon,
+  ]).concat(currentEvents);
 
-  const featuredTopic = buildFeaturedTopic(
-    githubRaw.concat(devhubSiphon),
-    FEATURE_TOPIC_CONFIGURATION.name,
-    FEATURE_TOPIC_CONFIGURATION.description,
-    DYNAMIC_TOPIC_PATHS.featured,
-    FEATURED_CONTENT,
-  );
-  // dynamic sources all load at different times, this function returns false when all have completed loading
-  let [searchSourcesLoading, setLoading] = useState(searchGate.loading);
-
-  if (!!searchSourceResults.rocketchat) {
-    totalSearchResults += searchSourceResults.rocketchat.length;
-  }
-
-  const dynamicTopics = flattenGatsbyGraphQL([popularTopic, featuredTopic]);
-
-  if (queryIsEmpty) {
-    content = (
-      <React.Fragment>
-        {getTopicPreviews(dynamicTopics.concat(topics), windowHasQuery && !queryIsEmpty)}
-      </React.Fragment>
-    );
+  let content;
+  if (!isClient) {
+    content = <Loading message="Just a moment" />;
   } else if (resourcesNotFound) {
     content = (
-      <Alert style={{ margin: '10px auto' }} color="info" data-testid={TEST_IDS.alert}>
-        {SEARCH.results.empty.defaultMessage}
-      </Alert>
+      <div style={{ padding: '10px' }}>
+        <Alert
+          style={{ margin: '0 auto', maxWidth: '400px' }}
+          color="info"
+          data-testid={TEST_IDS.alert}
+        >
+          No resources found :(
+        </Alert>
+      </div>
     );
-  } else {
-    totalSearchResults = getSearchResultTotal(siphonResources);
-    const { rocketchat, github, documize } = searchSourceResults;
-
-    const settings = SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.rocketchat];
-    let githubCards = [];
-    let documizeCards = [];
-    if (github) {
-      const parsedPayloads = github.map(gh => JSON.parse(gh.typePayload));
-      // github results come in different flavors: issues, prs, repos
-      // they also belong to the same list and require separating out in order
-      // to ensure both 'types' display
-      const githubGroupedByType = {
-        [GITHUB_SEARCH_SOURCE_TYPENAMES.Repository]: [], // provide default values incase no results resolve
-        [GITHUB_SEARCH_SOURCE_TYPENAMES.Issue]: [],
-        ...groupBy(parsedPayloads, '__typename'),
-      };
-
-      const issues = githubGroupedByType[GITHUB_SEARCH_SOURCE_TYPENAMES.Issue]
-        .slice(0, SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.github].maxResults)
-        .map(githubSearchReducer);
-
-      const repositories = githubGroupedByType[GITHUB_SEARCH_SOURCE_TYPENAMES.Repository]
-        .slice(0, SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.github].maxResults)
-        .map(githubSearchReducer);
-
-      githubCards = issues.concat(repositories);
-    }
-    if (documize) {
-      const parsedPayloads = documize.map(dc => JSON.parse(dc.typePayload));
-      documizeCards = parsedPayloads
-        .slice(0, SEARCH_SOURCE_CONFIG[SEARCH_SOURCES.documize].maxResults)
-        .map(documizeSearchPurifier);
-    }
-
+  } else if (thereIsASearch) {
+    // if there is no query render the topics
     content = (
-      <Aux>
-        {getTopicPreviews(dynamicTopics.concat(topics), windowHasQuery && !queryIsEmpty)}
-        {!isEmpty(rocketchat) && rocketchat.length > 0 && (
-          <DynamicSearchResults
-            numResults={rocketchat.length}
-            sourceType={SEARCH_SOURCES.rocketchat}
-            link={{
-              to: 'https://chat.pathfinder.gov.bc.ca',
-              text: 'Go To Rocket.Chat',
-            }}
-          >
-            {rocketchat.slice(0, settings.maxResults).map(r => {
-              const chatItem = JSON.parse(r.typePayload);
-
-              return <RocketChatItem key={r.id} {...chatItem} data-testid={chatItem.id} />;
-            })}
-          </DynamicSearchResults>
-        )}
-        {!isEmpty(github) && github.length > 0 && (
-          <DynamicSearchResults
-            numResults={githubCards.length}
-            sourceType={SEARCH_SOURCES.github}
-            link={{
-              to: 'https://github.com/bcgov',
-              text: 'Go To Github',
-            }}
-          >
-            <Row>
-              {githubCards.map(gh => (
-                <Column
-                  key={gh.id}
-                  style={{
-                    justifyContent: 'center',
-                    display: 'flex',
-                  }}
-                >
-                  <Card
-                    {...gh.fields}
-                    type={gh.fields.resourceType}
-                    data-testid={gh.id}
-                    renderHeader={() => {
-                      return gh.fields.resourceType === SEARCH_RESOURCE_TYPES.GITHUB_ISSUE ? (
-                        <GithubIssueCardHeader
-                          resourceType={gh.fields.resourceType}
-                          repository={gh.repository.name}
-                        />
-                      ) : (
-                        <CardHeader resourceType={gh.fields.resourceType} />
-                      );
-                    }}
-                  />
-                </Column>
-              ))}
-            </Row>
-          </DynamicSearchResults>
-        )}
-        {!isEmpty(documizeCards) && documizeCards.length > 0 && (
-          <DynamicSearchResults
-            numResults={documizeCards.length}
-            sourceType={SEARCH_SOURCES.documize}
-            link={{
-              to: 'https://docs.pathfinder.gov.bc.ca/',
-              text: 'Go To documize',
-            }}
-          >
-            <Row>
-              {documizeCards.map(dc => (
-                <Column
-                  key={dc.id}
-                  style={{
-                    justifyContent: 'center',
-                    display: 'flex',
-                  }}
-                >
-                  <Card
-                    {...dc.fields}
-                    type={SEARCH_SOURCES.documize}
-                    data-testid={dc.id}
-                    renderHeader={() => {
-                      return <CardHeader resourceType={dc.fields.resourceType} />;
-                    }}
-                  />
-                </Column>
-              ))}
-            </Row>
-          </DynamicSearchResults>
-        )}
-      </Aux>
-    );
-  }
-
-  useEffect(() => {
-    setLoading(searchGate.loading);
-
-    return () => {
-      setLoading();
-    };
-  }, [searchGate.loading, searchSourcesLoading]);
-
-  return (
-    <Layout showHamburger>
-      <Masthead
-        query={query}
-        searchSourcesLoading={searchSourcesLoading}
-        resultCount={totalSearchResults}
-      />
-      <Main>
-        {windowHasQuery && !queryIsEmpty && siphonResources}
-        {windowHasQuery && searchSourcesLoading && searchGate.authenticated ? (
+      <React.Fragment>
+        <SearchResults
+          title="Devhub resources"
+          resources={resourcesToSearchAgainst}
+          results={results}
+        />
+        {searchGate.authenticated && searchGate.loading ? (
           <Loading message="loading" />
         ) : (
-          content
+          <SearchGateResults searchSources={searchSources} />
         )}
-      </Main>
+      </React.Fragment>
+    );
+  } else {
+    content = <TopicsPreview />;
+  }
+
+  return (
+    <Layout>
+      <Masthead
+        query={query}
+        searchSourcesLoading={searchGate.loading}
+        location={location}
+        resultCount={results && results.length}
+      />
+      {content}
     </Layout>
   );
 };
 
-export default withResourceQuery(withApollo(Index))();
+export const homeQuery = graphql`
+  query home {
+    allEventbriteEvents(
+      sort: { fields: [start___local], order: ASC }
+      filter: { shareable: { eq: true } }
+    ) {
+      edges {
+        node {
+          internal {
+            type
+          }
+          fields {
+            resourceType
+            title
+            description
+            pagePaths
+            image
+            standAlonePath
+          }
+          siphon {
+            unfurl {
+              title
+              description
+              image
+            }
+            resource {
+              type
+              path
+            }
+            id
+          }
+          id
+          start {
+            day: local(formatString: "DD")
+            month: local(formatString: "MMM")
+            year: local(formatString: "YYYY")
+            daysFromNow: local(difference: "days")
+          }
+          venue {
+            name
+          }
+        }
+      }
+    }
+    allGithubRaw(filter: { fields: { pageOnly: { eq: false } } }) {
+      edges {
+        node {
+          id
+          pageViews
+          html_url
+          fields {
+            resourceType
+            title
+            description
+            image
+            pagePaths
+            standAlonePath
+            slug
+            personas
+          }
+          internal {
+            type
+          }
+          childMarkdownRemark {
+            htmlAst
+            html
+          }
+        }
+      }
+    }
+    allDevhubSiphon(filter: { source: { type: { eq: "web" } } }) {
+      edges {
+        node {
+          id
+          fields {
+            resourceType
+            personas
+            title
+            description
+            image
+            pagePaths
+            standAlonePath
+          }
+        }
+      }
+    }
+  }
+`;
+
+export default withApollo(Index);

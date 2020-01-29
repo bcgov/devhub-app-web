@@ -249,6 +249,7 @@ exports[`Resource Preview Component matches snapshot 1`] = `
         >
           <article
             class="emotion-18 emotion-19"
+            data-resourcetype="Components"
           >
             <div
               class="emotion-2 emotion-3"
@@ -338,6 +339,7 @@ exports[`Resource Preview Component matches snapshot 1`] = `
         >
           <article
             class="emotion-18 emotion-19"
+            data-resourcetype="Components"
           >
             <div
               class="emotion-2 emotion-3"
@@ -427,6 +429,7 @@ exports[`Resource Preview Component matches snapshot 1`] = `
         >
           <article
             class="emotion-18 emotion-19"
+            data-resourcetype="Components"
           >
             <div
               class="emotion-2 emotion-3"
@@ -516,6 +519,7 @@ exports[`Resource Preview Component matches snapshot 1`] = `
         >
           <article
             class="emotion-18 emotion-19"
+            data-resourcetype="Components"
           >
             <div
               class="emotion-2 emotion-3"
@@ -605,6 +609,7 @@ exports[`Resource Preview Component matches snapshot 1`] = `
         >
           <article
             class="emotion-18 emotion-19"
+            data-resourcetype="Documentation"
           >
             <div
               class="emotion-94 emotion-3"
@@ -694,6 +699,7 @@ exports[`Resource Preview Component matches snapshot 1`] = `
         >
           <article
             class="emotion-18 emotion-19"
+            data-resourcetype="Documentation"
           >
             <div
               class="emotion-94 emotion-3"

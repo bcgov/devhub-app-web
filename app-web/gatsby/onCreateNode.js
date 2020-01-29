@@ -223,19 +223,23 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
 
   if (isMarkdownRemark(node)) {
     const parentNode = getNode(node.parent);
-
     let title = node.frontmatter.title;
     const ast = remark.parse(node.internal.content);
     //if our title is blank, visit will search through the content for a usable and reasonable title
-    visit(ast, 'heading', node => {
-      // is title blank and is node on first line and a h1 or h2?
-      if (title === '' && (node.depth === 1 || node.depth === 2)) {
-        // accept headers up to 3rd line of markdown file
-        if (node.position.start.line < 3) {
-          title = node.children[0].value;
+    if (!title) {
+      visit(ast, 'heading', node => {
+        // is title blank and is node on first line and a h1 or h2?
+        const H2_NODE_DEPTH = 2;
+        const MAX_STARTING_LINE = 10;
+        const isH1orH2 = node.depth <= H2_NODE_DEPTH;
+        if (title === '' && isH1orH2) {
+          // accept headers up to 3rd line of markdown file
+          if (node.position.start.line < MAX_STARTING_LINE) {
+            title = node.children[0].value;
+          }
         }
-      }
-    });
+      });
+    }
 
     let labels = {};
     // assert the shape of labels in frontmatter

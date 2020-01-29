@@ -20,7 +20,7 @@ import React, { useState, useEffect } from 'react';
 import { TOPICS_PAGE } from '../messages';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { Title } from '../components/Page';
-import TopicPreview from '../components/TopicPreview/TopicPreview';
+import Topic from '../components/Topic';
 import Main from '../components/Page/Main';
 import withResourceQuery from '../hoc/withResourceQuery';
 import Layout from '../hoc/Layout';
@@ -55,7 +55,7 @@ export const TopicsPage = ({ data, location }) => {
     viewMode === VIEW_MODES.card ? (
       <main>
         {topics.map(topic => (
-          <TopicPreview
+          <Topic
             key={topic.id}
             title={topic.name}
             description={topic.description}

@@ -75,7 +75,7 @@ export const TitleLink = styled(Link)`
   }
 `;
 
-const TopicPreview = ({ title, description, link, resources, ...rest }) => (
+const Topic = ({ title, description, link, resources, ...rest }) => (
   <Container {...rest}>
     <TopicDecorativeBar color={TOPICS} />
     <PreviewContainer>
@@ -94,7 +94,7 @@ const TopicPreview = ({ title, description, link, resources, ...rest }) => (
   </Container>
 );
 
-TopicPreview.propTypes = {
+Topic.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   link: PropTypes.shape({ to: PropTypes.string, text: PropTypes.string }).isRequired,
@@ -114,8 +114,8 @@ TopicPreview.propTypes = {
   ),
 };
 
-TopicPreview.defaultProps = {
+Topic.defaultProps = {
   description: null,
 };
 
-export default TopicPreview;
+export default Topic;

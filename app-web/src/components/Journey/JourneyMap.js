@@ -27,7 +27,7 @@ import {
   PreviewContainer,
   TopicTitle,
   TitleLink,
-} from '../TopicPreview/TopicPreview';
+} from '../Topic';
 import { JOURNEY } from '../../constants/ui';
 import { SubwayLine } from './SubwayLine';
 

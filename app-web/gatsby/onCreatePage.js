@@ -23,7 +23,7 @@ module.exports = async ({ page, actions }) => {
   // https://github.com/gatsbyjs/gatsby/blob/v1/docs/docs/building-apps-with-gatsby.md#client-only-routes--user-authentication
   // only match /topic/ not /topics/
 
-  if (page.path.match(/^\/topic(?!s)/)) {
+  if (page.path.match(/^\/topics{0}/)) {
     page.matchPath = `/topic/*`;
     createPage(page);
   }

@@ -26,7 +26,7 @@ const AuthContext = React.createContext({});
 
 // Auth Provider is already wrapping gatsby browser so all pages should have access to the context
 export const AuthProvider = ({ children, location, ...rest }) => {
-  const [searchString, setSearchString] = useState({});
+  const [searchString, setSearchString] = useState('');
   useEffect(() => {
     setSearchString(window.location.search);
   }, [searchString]);

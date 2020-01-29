@@ -32,12 +32,12 @@ const CardsInColumns = ({ cards }) => {
     >
       <Card
         resourceType={card.fields.resourceType}
-        key={card.id}
         title={card.fields.title}
         description={card.fields.description}
         image={card.fields.image}
         link={card.fields.standAlonePath}
         event={card}
+        data-resourcetype={card.fields.resourceType}
       />
     </Col>
   ));

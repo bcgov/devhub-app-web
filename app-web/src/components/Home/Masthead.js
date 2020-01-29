@@ -69,7 +69,7 @@ export const TEST_IDS = {
   algolia: 'Masthead.algolia',
 };
 
-export const Masthead = ({ query, searchSourcesLoading }) => {
+export const Masthead = ({ query, searchSourcesLoading, location }) => {
   const { isAuthenticated } = useContext(AuthContext);
   const [alertHasBeenAcknowledged, setAlertHasBeenAcknowledged] = useState(false);
 
@@ -113,7 +113,7 @@ export const Masthead = ({ query, searchSourcesLoading }) => {
           query={query}
           inputConfig={SEARCH.INPUT}
           onSearch={terms => {
-            navigate(`/?q=${encodeURIComponent(terms)}`);
+            navigate(`${location.pathname}?q=${encodeURIComponent(terms.trim())}`);
           }}
         />
         <IconDiv>{query && <SearchSources searchSourcesLoading={searchSourcesLoading} />}</IconDiv>
@@ -138,6 +138,7 @@ Masthead.propTypes = {
   query: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
   resultCount: PropTypes.number,
   searchSourcesLoading: PropTypes.bool,
+  location: PropTypes.shape({ pathname: PropTypes.string }),
 };
 
 export default Masthead;

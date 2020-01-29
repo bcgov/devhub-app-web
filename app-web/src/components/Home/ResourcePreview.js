@@ -81,6 +81,7 @@ const toggled = css`
 // used by @testing-library/react dom querying
 export const TEST_IDS = {
   container: 'resource-preview-container',
+  pill: 'resource-preview-pill',
 };
 
 // this is a wrapper component that encapsulates cards for topics or other sizes
@@ -109,12 +110,13 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
     }
   };
 
-  //This filters what results we are showing based on the given filter coming from user interaction with the ResourcePills
+  // This filters what results we are showing based on the given filter coming from user interaction with the ResourcePills
   const resourceFilter = filterName => {
     //filter the results based on given filter, update the resources and active filter
     let filteredResources = [];
     let newPillList = togglePills(filterName, activeFilters);
     setActiveFilters(newPillList);
+
     filteredResources = resources.filter(resource =>
       newPillList.includes(resource.fields.resourceType),
     );
@@ -165,6 +167,10 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
           return (
             <ResourcePill
               resourceType={filter.name}
+              data-resourcetype={filter.name}
+              data-testid={`${TEST_IDS.pill}-${filter.name}`}
+              data-testclass={`${TEST_IDS.pill}`}
+              data-count={filter.counter}
               label={iconLabel}
               variant="filled"
               deletable={false}

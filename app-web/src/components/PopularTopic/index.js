@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { POPULAR_TOPIC_CONFIGURATION, DYNAMIC_TOPIC_PATHS } from '../../constants/ui';
-import TopicPreview from '../TopicPreview/TopicPreview';
+import Topic from '../Topic';
 
 const PopularTopic = ({ nodes }) =>
   nodes.length > 0 ? (
-    <TopicPreview
+    <Topic
       resources={nodes.map(n => ({
         ...n,
         path: `/topic/${DYNAMIC_TOPIC_PATHS.popular}/${n.fields.slug}`,
