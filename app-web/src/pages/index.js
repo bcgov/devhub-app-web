@@ -67,7 +67,7 @@ export const Index = ({
     githubRawAndSiphon,
   ]).concat(currentEvents);
 
-  let content = null;
+  let content;
   if (!isClient) {
     content = null;
   } else if (resourcesNotFound) {
