@@ -10,8 +10,6 @@ import { ResourcePreview } from '../Home';
  * @param {Srting} title the title of currtion card section
  */
 export const SearchResults = ({ resources, results = [], title }) => {
-  // const resourcesSelector = selectResourcesGroupedByType();
-
   let resourcesToShow = useMemo(() => intersectionBy(resources, results, 'id'), [
     resources,
     results,
@@ -33,7 +31,6 @@ export const SearchResults = ({ resources, results = [], title }) => {
 
   return (
     <ResourcePreview
-      key={'Internal Results'}
       title={title}
       resources={resourcesToShow}
       filters={resourceIconsWithCounter}

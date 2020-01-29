@@ -1,4 +1,4 @@
-import React, { useMemo, useContext } from 'react';
+import React, { useMemo, useContext, useEffect, useState } from 'react';
 import queryString from 'query-string';
 import { graphql } from 'gatsby';
 // components
@@ -29,6 +29,14 @@ export const Index = ({
   client,
   data: { allGithubRaw, allDevhubSiphon, allEventbriteEvents },
 }) => {
+  // this forces the component to re render on the client as there will be a mistmatch between
+  // html properties on reloads of this page when a search comes in. This is a known effect
+  // of reacts hydration process https://reactjs.org/docs/react-dom.html#hydrate
+  // eslint-disable-next-line
+  const [isClient, setClient] = useState(false);
+  useEffect(() => {
+    setClient(true);
+  }, []);
   const queryParam = queryString.parse(location.search);
   const windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, SEARCH_QUERY_PARAM);
   const { isAuthenticated } = useContext(AuthContext);
@@ -60,8 +68,9 @@ export const Index = ({
   ]).concat(currentEvents);
 
   let content = null;
-
-  if (resourcesNotFound) {
+  if (!isClient) {
+    content = null;
+  } else if (resourcesNotFound) {
     content = (
       <div style={{ padding: '10px' }}>
         <Alert
@@ -74,6 +83,7 @@ export const Index = ({
       </div>
     );
   } else if (thereIsASearch) {
+    // if there is no query render the topics
     content = (
       <React.Fragment>
         <SearchResults
@@ -89,9 +99,9 @@ export const Index = ({
       </React.Fragment>
     );
   } else {
-    // if there is no query render the topics
     content = <TopicsPreview />;
   }
+
   return (
     <Layout>
       <Masthead
@@ -194,4 +204,4 @@ export const homeQuery = graphql`
   }
 `;
 
-export default withApollo(React.memo(Index));
+export default withApollo(Index);
