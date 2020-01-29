@@ -29,9 +29,12 @@ const Header = styled.header`
   border-bottom: 1px solid #ccc;
   ${withPadding}
 `;
+export const TEST_IDS = {
+  header: 'github.topic.masthead',
+};
 
 const Masthead = ({ title, description, type, render }) => (
-  <Header>
+  <Header data-testid={TEST_IDS.header}>
     <CardHeader resourceType={type} />
     <Title title={title} subtitle={description} />
     {render && render()}

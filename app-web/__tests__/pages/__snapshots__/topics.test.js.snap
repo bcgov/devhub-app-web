@@ -869,6 +869,7 @@ exports[`Topics Container it matches snapshot 1`] = `
           />
           <input
             checked=""
+            data-testid="topic-page-view-toggle"
             role="switch"
             style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px;"
             type="checkbox"
@@ -880,7 +881,9 @@ exports[`Topics Container it matches snapshot 1`] = `
            Card View
         </span>
       </div>
-      <main>
+      <div
+        data-testid="topic-page-view-card"
+      >
         <div
           class="emotion-124 emotion-125"
         >
@@ -1437,7 +1440,7 @@ exports[`Topics Container it matches snapshot 1`] = `
             </div>
           </div>
         </div>
-      </main>
+      </div>
     </main>
   </div>
   <footer

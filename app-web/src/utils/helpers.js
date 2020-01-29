@@ -410,5 +410,5 @@ export const reduceJourneyToSubwayLine = connections => {
  */
 export const reduceNodeForTableOfContents = node => {
   const { path, fields } = node;
-  return { path, ...fields };
+  return { ...fields, path };
 };
