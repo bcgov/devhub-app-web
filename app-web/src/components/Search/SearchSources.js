@@ -55,7 +55,7 @@ export const SearchSources = ({ searchSourcesLoading }) => {
           <SearchSourcesButton
             searchType={element}
             style={iconProps.style}
-            title={'Login or wait to view ' + element + ' search results'}
+            title={'Login in to view search results from ' + element}
           ></SearchSourcesButton>
         </StyledDiv>
       )}
