@@ -33,6 +33,12 @@ import TableOfContents, {
 } from '../components/TableOfContents/TableOfContents';
 import { JOURNEY_TOPIC_VIEW_MODES as VIEW_MODES } from '../constants/ui';
 
+export const TEST_IDS = {
+  toggle: 'topic-page-view-toggle',
+  cardView: 'topic-page-view-card',
+  listView: 'topic-page-view-list',
+};
+
 export const TopicsPage = ({ data, location }) => {
   let topics = flattenGatsbyGraphQL(data.allTopicRegistryJson.edges);
 
@@ -53,7 +59,7 @@ export const TopicsPage = ({ data, location }) => {
   // non external link to use as the entry page for the topic card
   const currentView =
     viewMode === VIEW_MODES.card ? (
-      <main>
+      <div data-testid={TEST_IDS.cardView}>
         {topics.map(topic => (
           <Topic
             key={topic.id}
@@ -66,21 +72,18 @@ export const TopicsPage = ({ data, location }) => {
             }}
           />
         ))}
-      </main>
+      </div>
     ) : (
-      <main>
-        <AccordionList style={{ padding: '20px' }}>
-          {topics.map(topic => (
-            <OutsideBorder key={topic.id}>
-              <TableOfContents
-                key={topic.id}
-                title={topic.name}
-                contents={topic.connectsWith.map(reduceNodeForTableOfContents)}
-              />
-            </OutsideBorder>
-          ))}
-        </AccordionList>
-      </main>
+      <AccordionList style={{ padding: '20px' }} data-testid={TEST_IDS.listView}>
+        {topics.map(topic => (
+          <OutsideBorder key={topic.id}>
+            <TableOfContents
+              title={topic.name}
+              contents={topic.connectsWith.map(reduceNodeForTableOfContents)}
+            />
+          </OutsideBorder>
+        ))}
+      </AccordionList>
     );
   return (
     <Layout>
@@ -91,6 +94,7 @@ export const TopicsPage = ({ data, location }) => {
         />
         <TableOfContentsToggle
           onChange={() => viewToggle(location.pathname, viewMode)}
+          data-testid={TEST_IDS.toggle}
           viewMode={viewMode}
         />
         {currentView}
