@@ -24,7 +24,7 @@ jobs:
     - uses: actions/checkout@v1
     - uses: ./.github/actions/devhub-markdown-frontmatter-verify
       env:
-        GITHUB_TOKEN: ${{secrets.GITHUB_API_TOKEN}}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         repo: devhub-app-web
         owner: bcgov

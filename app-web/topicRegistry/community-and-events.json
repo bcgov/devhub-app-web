@@ -121,9 +121,9 @@
         "sourceType": "github",
         "resourceType": "Documentation",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/reggie-web/",
+          "url": "https://github.com/bcgov/reggie/",
           "owner": "bcgov",
-          "repo": "reggie-web",
+          "repo": "reggie",
           "files": [
             "UserInstructions.md"
           ]
@@ -132,7 +132,7 @@
       {
         "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/reggie-web/",
+          "url": "https://github.com/bcgov/reggie/",
           "title": "Reggie - Rocket Chat Invitation App",
           "image": ""
         },
