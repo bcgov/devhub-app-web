@@ -92,7 +92,7 @@ export const useImplicitAuth = intention => {
       implicitAuthManager.clearAuthLocalStorage();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [intention]);
   return user;
 };
 
