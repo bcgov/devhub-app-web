@@ -11,15 +11,7 @@ describe('Masthead Component', () => {
   // jwt time stamps are in seconds. dividing by 1000 to convert date.now ms to s
   const currentDate = Date.now() / 1000;
   it('It shows an alert window when a search has happened', () => {
-    // implicit auth returns a user object with a token and an expiry date
-    // if the token is non expired it is defined as authenticated
-    useImplicitAuth.mockReturnValue({
-      idToken: {
-        data: {
-          exp: currentDate - 50000, // expirey set to be in the past
-        },
-      },
-    });
+    useImplicitAuth.mockReturnValue({});
 
     const { queryByTestId, rerender } = render(
       <ThemeProvider theme={theme}>
@@ -40,8 +32,8 @@ describe('Masthead Component', () => {
     );
     expect(alert).toBeInTheDocument();
 
-    const closebtn = alert.querySelector('button');
-    fireEvent.click(closebtn);
+    const closeBtn = alert.querySelector('button');
+    fireEvent.click(closeBtn);
     expect(alert).not.toBeInTheDocument();
 
     rerender(
@@ -59,7 +51,7 @@ describe('Masthead Component', () => {
     useImplicitAuth.mockReturnValue({
       idToken: {
         data: {
-          exp: currentDate + 50000, // expirey set to be in the past
+          exp: currentDate + 50000,
         },
       },
     });
