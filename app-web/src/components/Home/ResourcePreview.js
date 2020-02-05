@@ -72,7 +72,7 @@ const ResourcePill = styled(Pill)`
 `;
 
 const toggled = css`
-  background: white;
+  background: red;
   border-width: 1px;
   border-style: solid;
   border-color: #e0e0e0;
@@ -132,6 +132,17 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
   let resultLabel = getSearchResultLabel(resources.length);
   resultLabel = resources.length !== 0 ? 'All ' + resultLabel : resultLabel;
   let pills = [];
+
+  // Start here sudo code -->
+  // if(window !== undefined) {
+  // new URLSearchParams(window.location.search);
+  // const {filter} = urlParams.get('filters');
+  // if(filters != null && filters.length != 0) {
+  //   // validate
+  //   // apply filters -> new filter
+  // }
+
+  // }
   //Filters will be mapped into pills displaying result count for that particular resourcetype
   //These pills are interactive and filter results when clicked
   if (filters) {
@@ -149,6 +160,9 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
         onClick={() => resourceFilter('All')}
       />,
     );
+    // Checking filters remove later
+    // eslint-disable-next-line
+    console.log(activeFilters);
     pills = pills.concat(
       filters.map(filter => {
         if (filter.counter === 0) {
