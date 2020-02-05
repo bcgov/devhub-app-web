@@ -74,10 +74,12 @@ export const useSearch = query => {
 
 export const useImplicitAuth = () => {
   const [user, setUser] = useState({});
-  const { search } = window.location;
-  const searchParams = queryString.parse(search);
-  const intention = searchParams.intention;
+  const [intention, setIntention] = useState('');
   useEffect(() => {
+    const { search } = window.location;
+    const searchParams = queryString.parse(search);
+    setIntention(searchParams.intention);
+
     const implicitAuthManager = createIam();
     implicitAuthManager.registerHooks({
       onAuthenticateSuccess: () => setUser(implicitAuthManager.getAuthDataFromLocal()),
