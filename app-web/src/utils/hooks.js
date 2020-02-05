@@ -86,6 +86,8 @@ export const useImplicitAuth = intention => {
 
     if (!isLocalHost()) {
       implicitAuthManager.handleOnPageLoad();
+    } else if (implicitAuthManager.isAuthenticated()) {
+      setUser(implicitAuthManager.getAuthDataFromLocal());
     }
 
     if (intention === 'LOGOUT') {
