@@ -6,4 +6,15 @@ describe('Authenticating', () => {
 
     cy.getByTestId('auth.logout');
   });
+
+  it('logs out the user when url has ?intention=LOGOUT', () => {
+    cy.storeTokenInLocal();
+
+    cy.visit('/');
+    cy.wait(1000);
+    cy.visit('/?intention=LOGOUT');
+    cy.getByTestId('auth.login');
+    // eslint-disable-next-line no-unused-expressions
+    expect(window.localStorage.getItem('auth')).to.be.null;
+  });
 });

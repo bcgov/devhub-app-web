@@ -65,7 +65,7 @@ Cypress.Commands.add('storeTokenInLocal', () => {
     };
 
     window.localStorage.setItem('auth', JSON.stringify(localStorageValue));
-    cy.log(`local storage token set ${localStorageValue.id}`);
+    cy.log(`local storage token set ${localStorageValue.idToken.bearer}`);
   });
 });
 
