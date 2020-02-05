@@ -14,10 +14,11 @@ Created by Patrick Simonian
 // custom react hooks
 // notes on custom hooks https://reactjs.org/docs/hooks-custom.html
 import { useState, useEffect, useRef, useMemo } from 'react';
+import queryString from 'query-string';
 import isEqual from 'lodash/isEqual';
 import { createIam } from '../auth';
 import { isLocalHost } from './helpers';
-import { useQuery } from '@apollo/react-hooks';
+import { useLazyQuery } from '@apollo/react-hooks';
 import { SEARCHGATE_QUERY } from '../constants/runtimeGraphqlQueries';
 import algoliasearch from 'algoliasearch/lite';
 import { ALGOLIA_INDEX_SUFFIX } from '../constants/api';
@@ -71,9 +72,11 @@ export const useSearch = query => {
   return results;
 };
 
-export const useImplicitAuth = intention => {
+export const useImplicitAuth = () => {
   const [user, setUser] = useState({});
-
+  const { search } = window.location;
+  const searchParams = queryString.parse(search);
+  const intention = searchParams.intention;
   useEffect(() => {
     const implicitAuthManager = createIam();
     implicitAuthManager.registerHooks({
@@ -81,6 +84,9 @@ export const useImplicitAuth = intention => {
       onAuthenticateFail: () => setUser({}),
       onAuthLocalStorageCleared: () => {
         setUser({});
+      },
+      onTokenExpired: () => {
+        implicitAuthManager.clearAuthLocalStorage();
       },
     });
 
@@ -106,7 +112,7 @@ export const useImplicitAuth = intention => {
  * @returns {Object} {loading, results: <Array>}
  */
 export const useSearchGate = (authenticated, queryString, client) => {
-  const { data, loading } = useQuery(SEARCHGATE_QUERY, {
+  const [execute, { data, loading }] = useLazyQuery(SEARCHGATE_QUERY, {
     variables: {
       queryString,
     },
@@ -114,6 +120,12 @@ export const useSearchGate = (authenticated, queryString, client) => {
   });
   const [results, setResults] = useState([]);
   const [_loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (queryString.trim() !== '') {
+      execute();
+    }
+  }, [execute, queryString]);
 
   useEffect(() => {
     setLoading(loading);
