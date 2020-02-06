@@ -153,11 +153,20 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
   let filterarr = [];
   const addtourl = filtername => {
     if (parsed.filters === filtername) {
-      console.log('included ' + filtername);
+      // console.log('included ' + filtername);
     } else {
       parsed.filters = filtername;
       const stringified = queryString.stringify(parsed);
-      location.search = stringified;
+      // if (window.history.replaceState) {
+      //   //prevents browser from storing history with each change:
+      //   console.log(parsed);
+      //   window.history.pushState(parsed, '');
+      // }
+      // location.search = stringified;
+      const title = ''
+      const url = `?${stringified}`;
+      // Pushes filter to url without reloading the page.
+      history.pushState({}, title, url)
     }
   };
   //Filters will be mapped into pills displaying result count for that particular resourcetype
@@ -195,7 +204,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
           let iconInfo = activeFilters.includes(filter.name)
             ? `Click to hide ${filter.name} search results`
             : `Click to show ${filter.name} search results`;
-          console.log(filter.name);
+          // console.log(filter.name);
           return (
             <ResourcePill
               resourceType={filter.name}
