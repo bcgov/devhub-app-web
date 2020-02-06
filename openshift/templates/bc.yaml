@@ -41,12 +41,12 @@ objects:
     postCommit: {}
     runPolicy: SerialLatestOnly
     resources:
-      requests:
-        cpu: 1
-        memory: 1.5Gi
       limits:
-        cpu: 2
-        memory: 9Gi
+        cpu: '1'
+        memory: 5Gi
+      requests:
+        cpu: 500m
+        memory: 1536Mi
     source:
       git:
         uri: ${SOURCE_REPOSITORY_URL}
