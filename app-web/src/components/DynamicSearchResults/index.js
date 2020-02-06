@@ -27,16 +27,19 @@ export const SEARCH_SOURCE_CONTENT = {
     name: 'From Documize',
     logo: documizeLogo,
     id: 'documize',
+    testid: 'searchgate.documize',
   },
   [SEARCH_SOURCES.rocketchat]: {
     name: 'From Rocket.Chat',
     logo: rocketchatLogo,
     id: 'rocketChat',
+    testid: 'searchgate.rocketChat',
   },
   [SEARCH_SOURCES.github]: {
     name: 'From Github',
     logo: githubLogo,
     id: 'github',
+    testid: 'searchgate.github',
   },
 };
 
@@ -47,7 +50,7 @@ export const DynamicSearchResults = ({ numResults, sourceType, link, children, .
     : SEARCH_SOURCE_CONFIG.default;
 
   return (
-    <Container {...rest}>
+    <Container data-testid={content.testid} {...rest}>
       <Element name={content.id}>
         <Title id={content.id}>
           {content.name} <img src={content.logo} alt={content.name} />
