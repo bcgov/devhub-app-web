@@ -5,7 +5,7 @@ describe('Searching from homepage', () => {
     cy.visit('/');
   });
 
-  it('Shows topics when there are no searches or searches are invalid', () => {
+  it.skip('Shows topics when there are no searches or searches are invalid', () => {
     cy.getByTestId('topics-container');
     cy.visit('/?q=');
     cy.getByTestId('topics-container');
@@ -27,7 +27,7 @@ describe('Searching from homepage', () => {
     cy.location('search').should('be', '?q=');
   });
 
-  it('searches by pressing search button and provides feedback that more search results can be obtained when logging on', () => {
+  it.skip('searches by pressing search button and provides feedback that more search results can be obtained when logging on', () => {
     cy.log('ensuring algolia brand is visible');
     cy.getByTestId('Masthead.algolia');
     cy.log('entering openshift in search bar');
@@ -49,7 +49,7 @@ describe('Searching from homepage', () => {
     cy.getByTestId('resource-preview-container').should('exist');
   });
 
-  it('searches by pressing enter and provides feedback that more search results can be obtained when logging on', () => {
+  it.skip('searches by pressing enter and provides feedback that more search results can be obtained when logging on', () => {
     cy.log('entering openshift in search bar');
     cy.getByTestId('searchbar-input').type('openshift{enter}');
 
@@ -59,7 +59,7 @@ describe('Searching from homepage', () => {
     cy.getByTestId('resource-preview-container').should('exist');
   });
 
-  it('can navigate to a card from a search', () => {
+  it.skip('can navigate to a card from a search', () => {
     cy.log('entering openshift in search bar');
     cy.getByTestId('searchbar-input').type('what is openshift{enter}');
 
