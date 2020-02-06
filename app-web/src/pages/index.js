@@ -34,6 +34,7 @@ export const Index = ({
   // of reacts hydration process https://reactjs.org/docs/react-dom.html#hydrate
   // eslint-disable-next-line
   const [isClient, setClient] = useState(false);
+
   useEffect(() => {
     setClient(true);
   }, []);
@@ -42,7 +43,6 @@ export const Index = ({
   const { isAuthenticated } = useContext(AuthContext);
   const query = windowHasQuery ? decodeURIComponent(queryParam[SEARCH_QUERY_PARAM]) : '';
   const queryIsEmpty = isQueryEmpty(query);
-
   const thereIsASearch = !queryIsEmpty && windowHasQuery;
   // search our local graphql federated search for (documize, github and rocketchat)
   const searchGate = useSearchGate(isAuthenticated, query, client);
@@ -58,6 +58,7 @@ export const Index = ({
   ]);
 
   const searchSources = useMemo(() => groupBy(searchGate.results, 'type'), [searchGate.results]);
+
   // github raw and siphon can be joined because they already have like metadata for their node fields
   const githubRawAndSiphon = allGithubRaw.edges.concat(allDevhubSiphon.edges);
   // adds properties needed for rendering the 'event metadata' in the event card component
@@ -91,6 +92,9 @@ export const Index = ({
           resources={resourcesToSearchAgainst}
           results={results}
         />
+        {searchGate.error && (
+          <Alert color="error">There was an error fetching external results :(</Alert>
+        )}
         {searchGate.authenticated && searchGate.loading ? (
           <Loading message="loading" />
         ) : (
