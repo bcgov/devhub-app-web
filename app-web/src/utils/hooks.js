@@ -120,32 +120,16 @@ export const useSearchGate = (authenticated, queryString, client) => {
     },
     client,
   });
-  const [results, setResults] = useState([]);
-  const [_loading, setLoading] = useState(true);
+
+  const results = data ? data.search : [];
 
   useEffect(() => {
-    if (queryString.trim() !== '') {
+    if (queryString.trim() !== '' && authenticated) {
       execute();
     }
-  }, [execute, queryString]);
+  }, [execute, queryString, authenticated]);
 
-  useEffect(() => {
-    setLoading(loading);
-
-    if (!authenticated || !queryString) {
-      setResults([]);
-    } else if (!_loading) {
-      setResults(data.search);
-    }
-
-    return () => {
-      setResults([]);
-    };
-    //Reminder - Ask patrick about this
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, useDeepCompareMemoize([_loading, loading, authenticated, queryString, results]));
-
-  return { results, loading: _loading, authenticated };
+  return { results, loading, authenticated };
 };
 
 /**
