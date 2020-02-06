@@ -137,3 +137,16 @@ describe('Searching from /components', () => {
     cy.contains(/Header - Basic/i);
   });
 });
+
+describe('Searching Searchgate', () => {
+  it('shows results from rocketchat, documize and github when searching openshift and authenticated', () => {
+    cy.log('programattically logging user in');
+    cy.storeTokenInLocal();
+    cy.visit('?q=openshift');
+    cy.log('Results can take a while to load');
+    cy.wait(5000);
+    cy.getByTestId('searchgate.rocketChat');
+    cy.getByTestId('searchgate.documize');
+    cy.getByTestId('searchgate.github');
+  });
+});

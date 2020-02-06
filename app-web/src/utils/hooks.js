@@ -114,7 +114,7 @@ export const useImplicitAuth = () => {
  * @returns {Object} {loading, results: <Array>}
  */
 export const useSearchGate = (authenticated, queryString, client) => {
-  const [execute, { data, loading }] = useLazyQuery(SEARCHGATE_QUERY, {
+  const [execute, { data, loading, error }] = useLazyQuery(SEARCHGATE_QUERY, {
     variables: {
       queryString,
     },
@@ -129,7 +129,7 @@ export const useSearchGate = (authenticated, queryString, client) => {
     }
   }, [execute, queryString, authenticated]);
 
-  return { results, loading, authenticated };
+  return { results, loading: error ? false : loading, authenticated, error };
 };
 
 /**

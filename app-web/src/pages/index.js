@@ -92,6 +92,9 @@ export const Index = ({
           resources={resourcesToSearchAgainst}
           results={results}
         />
+        {searchGate.error && (
+          <Alert color="error">There was an error fetching external results :(</Alert>
+        )}
         {searchGate.authenticated && searchGate.loading ? (
           <Loading message="loading" />
         ) : (
