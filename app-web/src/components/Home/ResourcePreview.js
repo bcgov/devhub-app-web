@@ -26,6 +26,7 @@ import Pill from '../UI/Pill';
 import { RESOURCE_TYPES } from '../../constants/ui';
 import { getSearchResultLabel, togglePills } from '../../utils/helpers';
 import Row from '../Card/Row';
+import queryString from 'query-string';
 
 export const CardWrapper = styled.div`
   margin: 6px 9px;
@@ -141,8 +142,24 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
   //   // validate
   //   // apply filters -> new filter
   // }
-
   // }
+  const combfunct = filtername => {
+    resourceFilter(filtername);
+    addtourl(filtername);
+  };
+  // var URL = String(window.location.href);
+  const parsed = queryString.parse(location.search);
+  // console.log(parsed)
+  let filterarr = [];
+  const addtourl = filtername => {
+    if (parsed.filters === filtername) {
+      console.log('included ' + filtername);
+    } else {
+      parsed.filters = filtername;
+      const stringified = queryString.stringify(parsed);
+      location.search = stringified;
+    }
+  };
   //Filters will be mapped into pills displaying result count for that particular resourcetype
   //These pills are interactive and filter results when clicked
   if (filters) {
@@ -161,8 +178,8 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
       />,
     );
     // Checking filters remove later
-    // eslint-disable-next-line
-    console.log(activeFilters);
+    // const URL =window.location.href;
+    // console.log(URL)
     pills = pills.concat(
       filters.map(filter => {
         if (filter.counter === 0) {
@@ -178,6 +195,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
           let iconInfo = activeFilters.includes(filter.name)
             ? `Click to hide ${filter.name} search results`
             : `Click to show ${filter.name} search results`;
+          console.log(filter.name);
           return (
             <ResourcePill
               resourceType={filter.name}
@@ -190,7 +208,8 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
               deletable={false}
               key={filter.name}
               css={activeFilters.includes(filter.name) ? toggled : ''}
-              onClick={() => resourceFilter(filter.name)}
+              onClick={() => combfunct(filter.name)}
+              // onClick={() => addtourl(filter.name)}
               title={iconInfo}
             />
           );
