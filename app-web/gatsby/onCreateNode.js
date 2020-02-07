@@ -91,6 +91,7 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
     }
     createNodeField({ node, name: 'standAlonePath', value: truePath });
     createNodeField({ node, name: 'personas', value: node.attributes.personas || [] });
+    createNodeField({ node, name: 'tags', value: node.attributes.tags || [] });
     createNodeField({ node, name: 'resourceType', value: node.resource.type || [] });
     createNodeField({ node, name: 'position', value: node._metadata.position });
     // bind all topics that reference this node, this can only be found by looking up the registry

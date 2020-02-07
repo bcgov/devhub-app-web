@@ -89,10 +89,7 @@ const createSiphonNode = (data, id, topicId) => ({
     type: data.metadata.resourceType, // the base resource type for this see utils/constants.js
     originalSource: data.metadata.originalResourceLocation, // the original location of the resource
   },
-  attributes: {
-    labels: data.metadata.labels, // labels from source registry
-    personas: data.metadata.personas, // persona from the source registry, see constants for valid personas
-  },
+  attributes: data.metadata.attributes,
   internal: {
     contentDigest: hashString(JSON.stringify(data)),
     // Optional media type (https://en.wikipedia.org/wiki/Media_type) to indicate

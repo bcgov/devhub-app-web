@@ -7,7 +7,12 @@ Object {
   },
   "attributes": Object {
     "labels": "component",
-    "personas": undefined,
+    "personas": Array [
+      "Developer",
+    ],
+    "tags": Array [
+      "foo",
+    ],
   },
   "children": Array [],
   "devhubId": "file-stub-id",

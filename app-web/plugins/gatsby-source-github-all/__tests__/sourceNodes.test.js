@@ -169,7 +169,11 @@ describe('gatsby source github all plugin', () => {
         fileName: 'test.md',
         mediaType: 'application/test',
         extension: '.md',
-        labels: 'component',
+        attributes: {
+          labels: 'component',
+          personas: ['Developer'],
+          tags: ['foo'],
+        },
         originalResourceLocation:
           'https://github.com/awesomeOrg/awesomeRepo/blob/master/public/manifest.json',
         sourceProperties: {
