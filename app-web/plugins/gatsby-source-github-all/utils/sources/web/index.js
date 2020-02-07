@@ -63,7 +63,7 @@ const fetchSourceWeb = async ({
         resourceType,
         sourceType,
         name,
-        ...attributes,
+        attributes,
         topic,
         resourcePath: url,
         originalResourceLocation: url,

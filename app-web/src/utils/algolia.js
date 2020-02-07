@@ -26,6 +26,7 @@ const algoliaIndexQuery = `{
         fields {
           title
           description
+          tags
         }
         internal {
           type
