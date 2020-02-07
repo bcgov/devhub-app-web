@@ -27,7 +27,7 @@ import { RESOURCE_TYPES } from '../../constants/ui';
 import { getSearchResultLabel, togglePills } from '../../utils/helpers';
 import Row from '../Card/Row';
 import queryString from 'query-string';
-import { navigate, navigateTo } from 'gatsby';
+import { navigate } from 'gatsby';
 
 export const CardWrapper = styled.div`
   margin: 6px 9px;
@@ -85,7 +85,7 @@ export const TEST_IDS = {
   container: 'resource-preview-container',
   pill: 'resource-preview-pill',
 };
-// let filterarr = [];
+let filterarr = [];
 // this is a wrapper component that encapsulates cards for topics or other sizes
 export const ResourcePreview = ({ title, link, resources, filters, amountToShow, seeMore }) => {
   let [showCount, setCount] = useState(amountToShow);
@@ -96,8 +96,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
 
   useEffect(() => {
     setResources(resources);
-    addtourl();
-  }, [resources,activeFilters]);
+  }, [resources]);
 
   //sets the amount of resources to show, allowing users to 'see more' if its appropriate
   const updateCount = () => {
@@ -130,44 +129,46 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
   let resultLabel = getSearchResultLabel(resources.length);
   resultLabel = resources.length !== 0 ? 'All ' + resultLabel : resultLabel;
   let pills = [];
-  // Method 2 with used state
-  const addtourl = () => {
-    // Valid filter name and it's not selected yet!
-    const url = new URL(window.location.href);
-    const searchQuery = url.searchParams.get('q');
-    const stringified = queryString.stringify(
-      {
-        q: searchQuery,
-        filters: activeFilters,
-      }
-    );
-    navigate(`?${stringified}`);
-    // history.pushState({}, title, `?${stringified}`);
+  const combfunct = filtername => {
+    addtourl(filtername);
+    resourceFilter(filtername);
   };
-  // const combfunct = filtername => {
-  //   resourceFilter(filtername);
-  //   addtourl(filtername);
-  // };
-  // const addtourl = filtername => {
-  //   if (filterarr.includes(filtername)) {
-  //     const index = filterarr.indexOf(filtername);
-  //     filterarr.splice(index, 1);
-  //     // console.log('included ' + filtername);
-  //   } else {
-  //     filterarr.push(filtername);
-  //   }
-  //   const url = new URL(window.location.href);
-  //   const searchQuery = url.searchParams.get('q');
-  //   const stringified = queryString.stringify(
-  //     {
-  //       q: searchQuery,
-  //       filters: filterarr,
-  //     }
-  //   );
-  //   // Adds filter to url without reloading the page.
-  //   navigate(`?${stringified}`,{replace: true},{activeFilters: filterarr});
-  //   // history.pushState({}, title, `?${stringified}`);
-  // };
+  const addtourl = filtername => {
+    filtername = filtername.replace(/\s/g,'');  
+    if(filtername === 'All') {
+      filterarr = []
+      console.log(filterarr, "here")
+      filterarr.push('All')
+    }
+    else if (filterarr.includes(filtername)) {
+      const index = filterarr.indexOf(filtername);
+      filterarr.splice(index,1);
+      // console.log('included ' + filtername);
+    } else {
+      filterarr.push(filtername);
+      if (filterarr.includes('All')){
+        const allpill = filterarr.indexOf('All');
+        filterarr.splice(allpill,1)
+      }
+    }
+    const searchParams = queryString.parse(location.search)
+    const newSearchParams = queryString.stringify({...searchParams, filters: filterarr})
+    console.log(newSearchParams,filtername)
+    console.log(newSearchParams.includes(filtername))
+    history.pushState({}, title, `?${newSearchParams}`);
+    // decidecss()
+    // navigate(`?${newSearchParams}`);
+  };
+  const decidecss = (filtername) => {
+    filtername = filtername.replace(/\s/g,''); 
+    const pillurl = window.location.href
+    if(pillurl.includes(filtername)){
+      return true
+    }
+    else{
+      return false
+    }
+  }
   //Filters will be mapped into pills displaying result count for that particular resourcetype
   //These pills are interactive and filter results when clicked
   if (filters) {
@@ -182,7 +183,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
         variant="filled"
         deletable={false}
         css={activeFilters.includes('All') ? toggled : ''}
-        onClick={() => resourceFilter('All')}
+        onClick={() => combfunct('All')}
       />,
     );
     pills = pills.concat(
@@ -201,6 +202,9 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
             ? `Click to hide ${filter.name} search results`
             : `Click to show ${filter.name} search results`;
           // console.log(filter.name);
+          // const searchurl = queryString.parse(window.location.href)
+          // const test = queryString.stringify({searchurl})
+          // console.log(test)
           return (
             <ResourcePill
               resourceType={filter.name}
@@ -212,8 +216,8 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
               variant="filled"
               deletable={false}
               key={filter.name}
-              css={activeFilters.includes(filter.name) ? toggled : ''}
-              onClick={() => resourceFilter(filter.name)}
+              onClick={() =>  combfunct(filter.name)}
+              css={decidecss(filter.name) ? toggled : ''}
               title={iconInfo}
             />
           );
