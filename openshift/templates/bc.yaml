@@ -42,11 +42,11 @@ objects:
     runPolicy: SerialLatestOnly
     resources:
       limits:
-        cpu: '1'
-        memory: 5Gi
-      requests:
         cpu: 500m
-        memory: 2536Mi
+        memory: 7Gi
+      requests:
+        cpu: 200m
+        memory: 4536Mi
     source:
       git:
         uri: ${SOURCE_REPOSITORY_URL}
