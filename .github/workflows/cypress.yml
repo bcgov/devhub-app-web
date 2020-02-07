@@ -1,5 +1,10 @@
 name: End-to-end tests
-on: [pull_request]
+on: 
+  pull_request:
+    paths:
+    - 'app-web'/**/*.js
+    - 'app-web/journeyRegistry/*.json'
+    - 'app-web/topicRegistry/*.json'
 jobs:
   cypress-run:
     runs-on: ubuntu-16.04
