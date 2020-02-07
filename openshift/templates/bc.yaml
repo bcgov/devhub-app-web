@@ -42,7 +42,7 @@ objects:
     runPolicy: SerialLatestOnly
     resources:
       limits:
-        cpu: 500m
+        cpu: 1
         memory: 7Gi
       requests:
         cpu: 200m
