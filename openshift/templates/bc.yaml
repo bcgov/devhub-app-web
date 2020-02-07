@@ -46,7 +46,7 @@ objects:
         memory: 5Gi
       requests:
         cpu: 500m
-        memory: 1536Mi
+        memory: 2536Mi
     source:
       git:
         uri: ${SOURCE_REPOSITORY_URL}
