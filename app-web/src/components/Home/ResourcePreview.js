@@ -111,7 +111,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
   // This filters what results we are showing based on the given filter coming from user interaction with the ResourcePills
   const resourceFilter = filterName => {
     //filter the results based on given filter, update the resources and active filter
-    let filteredResources = []; 
+    let filteredResources = [];
     let newPillList = togglePills(filterName, activeFilters);
     filteredResources = resources.filter(resource =>
       newPillList.includes(resource.fields.resourceType),
@@ -134,41 +134,39 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
     resourceFilter(filtername);
   };
   const addtourl = filtername => {
-    filtername = filtername.replace(/\s/g,'');  
-    if(filtername === 'All') {
-      filterarr = []
-      console.log(filterarr, "here")
-      filterarr.push('All')
-    }
-    else if (filterarr.includes(filtername)) {
+    filtername = filtername.replace(/\s/g, '');
+    if (filtername === 'All') {
+      filterarr = [];
+      console.log(filterarr, 'here');
+      filterarr.push('All');
+    } else if (filterarr.includes(filtername)) {
       const index = filterarr.indexOf(filtername);
-      filterarr.splice(index,1);
+      filterarr.splice(index, 1);
       // console.log('included ' + filtername);
     } else {
       filterarr.push(filtername);
-      if (filterarr.includes('All')){
+      if (filterarr.includes('All')) {
         const allpill = filterarr.indexOf('All');
-        filterarr.splice(allpill,1)
+        filterarr.splice(allpill, 1);
       }
     }
-    const searchParams = queryString.parse(location.search)
-    const newSearchParams = queryString.stringify({...searchParams, filters: filterarr})
-    console.log(newSearchParams,filtername)
-    console.log(newSearchParams.includes(filtername))
+    const searchParams = queryString.parse(location.search);
+    const newSearchParams = queryString.stringify({ ...searchParams, filters: filterarr });
+    console.log(newSearchParams, filtername);
+    console.log(newSearchParams.includes(filtername));
     history.pushState({}, title, `?${newSearchParams}`);
     // decidecss()
     // navigate(`?${newSearchParams}`);
   };
-  const decidecss = (filtername) => {
-    filtername = filtername.replace(/\s/g,''); 
-    const pillurl = window.location.href
-    if(pillurl.includes(filtername)){
-      return true
+  const decidecss = filtername => {
+    filtername = filtername.replace(/\s/g, '');
+    const pillurl = window.location.href;
+    if (pillurl.includes(filtername)) {
+      return true;
+    } else {
+      return false;
     }
-    else{
-      return false
-    }
-  }
+  };
   //Filters will be mapped into pills displaying result count for that particular resourcetype
   //These pills are interactive and filter results when clicked
   if (filters) {
@@ -216,7 +214,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
               variant="filled"
               deletable={false}
               key={filter.name}
-              onClick={() =>  combfunct(filter.name)}
+              onClick={() => combfunct(filter.name)}
               css={decidecss(filter.name) ? toggled : ''}
               title={iconInfo}
             />
