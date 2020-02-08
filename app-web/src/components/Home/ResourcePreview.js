@@ -135,10 +135,10 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
     addToUrl(filtername);
     resourceFilter(filtername);
   };
-  
+
   const addToUrl = filtername => {
     if (filtername === 'All') {
-      filterarr= [];
+      filterarr = [];
       console.log(filterarr, 'here');
       filterarr.push('All');
     } else if (filterarr.includes(filtername)) {
@@ -157,7 +157,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
     console.log(newSearchParams, filtername);
     console.log(newSearchParams.includes(filtername));
     // history.pushState({}, title, `?${newSearchParams}`);
-    navigate(`?${newSearchParams}`,{replace : true});
+    navigate(`?${newSearchParams}`, { replace: true });
   };
 
   const decideCss = filtername => {
