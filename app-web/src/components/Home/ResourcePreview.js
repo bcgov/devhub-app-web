@@ -129,14 +129,16 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
   let resultLabel = getSearchResultLabel(resources.length);
   resultLabel = resources.length !== 0 ? 'All ' + resultLabel : resultLabel;
   let pills = [];
-  const combfunct = filtername => {
-    addtourl(filtername);
+
+  const combFunct = filtername => {
+    filtername = filtername.replace(/\s/g, '');
+    addToUrl(filtername);
     resourceFilter(filtername);
   };
-  const addtourl = filtername => {
-    filtername = filtername.replace(/\s/g, '');
+  
+  const addToUrl = filtername => {
     if (filtername === 'All') {
-      filterarr = [];
+      filterarr= [];
       console.log(filterarr, 'here');
       filterarr.push('All');
     } else if (filterarr.includes(filtername)) {
@@ -154,11 +156,11 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
     const newSearchParams = queryString.stringify({ ...searchParams, filters: filterarr });
     console.log(newSearchParams, filtername);
     console.log(newSearchParams.includes(filtername));
-    history.pushState({}, title, `?${newSearchParams}`);
-    // decidecss()
-    // navigate(`?${newSearchParams}`);
+    // history.pushState({}, title, `?${newSearchParams}`);
+    navigate(`?${newSearchParams}`,{replace : true});
   };
-  const decidecss = filtername => {
+
+  const decideCss = filtername => {
     filtername = filtername.replace(/\s/g, '');
     const pillurl = window.location.href;
     if (pillurl.includes(filtername)) {
@@ -167,6 +169,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
       return false;
     }
   };
+
   //Filters will be mapped into pills displaying result count for that particular resourcetype
   //These pills are interactive and filter results when clicked
   if (filters) {
@@ -181,7 +184,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
         variant="filled"
         deletable={false}
         css={activeFilters.includes('All') ? toggled : ''}
-        onClick={() => combfunct('All')}
+        onClick={() => combFunct('All')}
       />,
     );
     pills = pills.concat(
@@ -214,8 +217,8 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
               variant="filled"
               deletable={false}
               key={filter.name}
-              onClick={() => combfunct(filter.name)}
-              css={decidecss(filter.name) ? toggled : ''}
+              onClick={() => combFunct(filter.name)}
+              css={decideCss(filter.name) ? toggled : ''}
               title={iconInfo}
             />
           );

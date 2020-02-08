@@ -24,7 +24,6 @@ import { FILTER_QUERY_PARAM } from '../../../constants/filterGroups';
 
 export const handleNavigatingByFilter = (location, currentFilters, filter, action) => {
   let filtersForURL = Object.keys(currentFilters).map(key => currentFilters[key]);
-
   if (action === 'add') {
     filtersForURL = filtersForURL.concat(filter);
   } else {
