@@ -14,10 +14,11 @@ Created by Patrick Simonian
 // custom react hooks
 // notes on custom hooks https://reactjs.org/docs/hooks-custom.html
 import { useState, useEffect, useRef, useMemo } from 'react';
+import queryString from 'query-string';
 import isEqual from 'lodash/isEqual';
 import { createIam } from '../auth';
 import { isLocalHost } from './helpers';
-import { useQuery } from '@apollo/react-hooks';
+import { useLazyQuery } from '@apollo/react-hooks';
 import { SEARCHGATE_QUERY } from '../constants/runtimeGraphqlQueries';
 import algoliasearch from 'algoliasearch/lite';
 import { ALGOLIA_INDEX_SUFFIX } from '../constants/api';
@@ -71,10 +72,14 @@ export const useSearch = query => {
   return results;
 };
 
-export const useImplicitAuth = intention => {
+export const useImplicitAuth = () => {
   const [user, setUser] = useState({});
-
+  const [intention, setIntention] = useState('');
   useEffect(() => {
+    const { search } = window.location;
+    const searchParams = queryString.parse(search);
+    setIntention(searchParams.intention);
+
     const implicitAuthManager = createIam();
     implicitAuthManager.registerHooks({
       onAuthenticateSuccess: () => setUser(implicitAuthManager.getAuthDataFromLocal()),
@@ -82,17 +87,22 @@ export const useImplicitAuth = intention => {
       onAuthLocalStorageCleared: () => {
         setUser({});
       },
+      onTokenExpired: () => {
+        implicitAuthManager.clearAuthLocalStorage();
+      },
     });
 
     if (!isLocalHost()) {
       implicitAuthManager.handleOnPageLoad();
+    } else if (implicitAuthManager.isAuthenticated()) {
+      setUser(implicitAuthManager.getAuthDataFromLocal());
     }
 
     if (intention === 'LOGOUT') {
       implicitAuthManager.clearAuthLocalStorage();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [intention]);
   return user;
 };
 
@@ -104,32 +114,22 @@ export const useImplicitAuth = intention => {
  * @returns {Object} {loading, results: <Array>}
  */
 export const useSearchGate = (authenticated, queryString, client) => {
-  const { data, loading } = useQuery(SEARCHGATE_QUERY, {
+  const [execute, { data, loading, error }] = useLazyQuery(SEARCHGATE_QUERY, {
     variables: {
       queryString,
     },
     client,
   });
-  const [results, setResults] = useState([]);
-  const [_loading, setLoading] = useState(true);
+
+  const results = data ? data.search : [];
 
   useEffect(() => {
-    setLoading(loading);
-
-    if (!authenticated || !queryString) {
-      setResults([]);
-    } else if (!_loading) {
-      setResults(data.search);
+    if (queryString.trim() !== '' && authenticated) {
+      execute();
     }
+  }, [execute, queryString, authenticated]);
 
-    return () => {
-      setResults([]);
-    };
-    //Reminder - Ask patrick about this
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, useDeepCompareMemoize([_loading, loading, authenticated, queryString, results]));
-
-  return { results, loading: _loading, authenticated };
+  return { results, loading: error ? false : loading, authenticated, error };
 };
 
 /**

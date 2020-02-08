@@ -5,7 +5,7 @@ describe('Searching from homepage', () => {
     cy.visit('/');
   });
 
-  it('Shows topics when there are no searches or searches are invalid', () => {
+  it.skip('Shows topics when there are no searches or searches are invalid', () => {
     cy.getByTestId('topics-container');
     cy.visit('/?q=');
     cy.getByTestId('topics-container');
@@ -27,7 +27,7 @@ describe('Searching from homepage', () => {
     cy.location('search').should('be', '?q=');
   });
 
-  it('searches by pressing search button and provides feedback that more search results can be obtained when logging on', () => {
+  it.skip('searches by pressing search button and provides feedback that more search results can be obtained when logging on', () => {
     cy.log('ensuring algolia brand is visible');
     cy.getByTestId('Masthead.algolia');
     cy.log('entering openshift in search bar');
@@ -49,7 +49,7 @@ describe('Searching from homepage', () => {
     cy.getByTestId('resource-preview-container').should('exist');
   });
 
-  it('searches by pressing enter and provides feedback that more search results can be obtained when logging on', () => {
+  it.skip('searches by pressing enter and provides feedback that more search results can be obtained when logging on', () => {
     cy.log('entering openshift in search bar');
     cy.getByTestId('searchbar-input').type('openshift{enter}');
 
@@ -59,7 +59,7 @@ describe('Searching from homepage', () => {
     cy.getByTestId('resource-preview-container').should('exist');
   });
 
-  it('can navigate to a card from a search', () => {
+  it.skip('can navigate to a card from a search', () => {
     cy.log('entering openshift in search bar');
     cy.getByTestId('searchbar-input').type('what is openshift{enter}');
 
@@ -71,13 +71,13 @@ describe('Searching from homepage', () => {
     cy.url().should('eq', 'http://localhost:8000/What-Is-OpenShift');
   });
 
-  it('searches by a direct navigation', () => {
+  it.skip('searches by a direct navigation', () => {
     cy.visit('/?q=what%20is%20openshift%3F');
     cy.getByTestId('resource-preview-container').should('exist');
     cy.contains(/what is openshift\?/i);
   });
 
-  it('shows feedback when no results are found', () => {
+  it.skip('shows feedback when no results are found', () => {
     cy.log('entering openshift in search bar');
     cy.getByTestId('searchbar-input').type('what is openshifasdfas123t{enter}');
     cy.log('ensuring algolia brand is still visible');
@@ -85,7 +85,7 @@ describe('Searching from homepage', () => {
     cy.contains(/No resources found :\(/i);
   });
 
-  it('can toggle search filters correctly', () => {
+  it.skip('can toggle search filters correctly', () => {
     cy.log('entering openshift as search since it gives a lot of results');
     cy.visit('?q=openshift');
     cy.log('Result count pill should be visible');
@@ -117,7 +117,7 @@ describe('Searching from homepage', () => {
 });
 
 describe('Searching from /components', () => {
-  it('goes to components and searches ', () => {
+  it.skip('goes to components and searches ', () => {
     cy.visit('/components');
     cy.log('ensuring algolia brand is visible');
     cy.getByTestId('CardContainer.algolia');
@@ -135,5 +135,18 @@ describe('Searching from /components', () => {
     cy.url().should('include', '?q=header');
 
     cy.contains(/Header - Basic/i);
+  });
+});
+
+describe('Searching Searchgate', () => {
+  it.skip('shows results from rocketchat, documize and github when searching openshift and authenticated', () => {
+    cy.log('programattically logging user in');
+    cy.storeTokenInLocal();
+    cy.visit('?q=openshift');
+    cy.log('Results can take a while to load');
+    cy.wait(5000);
+    cy.getByTestId('searchgate.rocketChat');
+    cy.getByTestId('searchgate.documize');
+    cy.getByTestId('searchgate.github');
   });
 });
