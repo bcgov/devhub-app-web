@@ -31,7 +31,11 @@ const getParamsByEnv = (env, pr) => {
     case ENVS.PROD:
       return params;
     case ENVS.TEST:
-      return { ...params, SSO_BASE_URL_VALUE: 'https://sso-test.pathfinder.gov.bc.ca', ALGOLIA_INDEX_NAME_SUFFIX: 'test' };
+      return {
+        ...params,
+        SSO_BASE_URL_VALUE: 'https://sso-test.pathfinder.gov.bc.ca',
+        ALGOLIA_INDEX_NAME_SUFFIX: 'test',
+      };
     case ENVS.DEV:
       return {
         ...params,
