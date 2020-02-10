@@ -14,6 +14,7 @@ tags:
   - new topic
   - new journey
   - edit content
+description: Learn how to make requests for new content in the Devhub by making a Pull Request or an Issue.
 ---
 # Contributing To The Devhub
 
