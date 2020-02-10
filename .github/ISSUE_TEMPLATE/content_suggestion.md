@@ -24,7 +24,7 @@ __What is the url to the content (if github, the url to the file on github)?__
 
 *replace with answer*
 
-__What Topic or Journeys should this content belong too (comma separated)?__
+__What [Topic](https://developer.gov.bc.ca/topics) or [Journeys](https://developer.gov.bc.ca) should this content belong to (comma separated)?__
 
 *replace with answer*
 
