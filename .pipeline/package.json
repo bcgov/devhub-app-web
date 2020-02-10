@@ -11,6 +11,7 @@
     "deploy": "node deploy.js",
     "clone-algolia-index": "node clone-algolia-index.js",
     "delete-algolia-index": "node delete-algolia-index.js",
+    "update-algolia-index-settings": "node update-algolia-index-settings.js",
     "build-previewer": "node build-previewer.js",
     "test:lint": "eslint --fix .",
     "version": "echo \"node@$(node --version) ($(which node))\" && echo \"npm@$(npm --version) ($(which npm))\" && npm ls"
