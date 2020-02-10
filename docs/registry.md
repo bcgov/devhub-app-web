@@ -21,7 +21,7 @@ description: Learn how to make requests for new content in the Devhub by making 
 The Devhub's content contribution model allows it to source content from a variety of sources and stitch them together. 
 The way it achieves this is through a set of loosely coupled files called __registries__. 
 
-The two ways you two get content into the Devhub is by either _making a pull request_ or _[creating a new github issue](https://github.com/bcgov/devhub-app-web/issues/new)_. 
+The two ways you may get content into the Devhub is by either _making a pull request_ or _[creating a new github issue](https://github.com/bcgov/devhub-app-web/issues/new)_. 
 Both require a working Github Account.
 
 ## How The Devhub Works
