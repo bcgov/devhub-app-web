@@ -142,6 +142,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
         otherIcon={'search'}
         label={resultLabel}
         title={'Click to view all results'}
+        data-testid={`${TEST_IDS.pill}-all`}
         key={'All Results'}
         variant="filled"
         deletable={false}
@@ -159,11 +160,12 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
           //formats the text correctly for different cases
 
           let iconLabel = getSearchResultLabel(filter.counter);
-
+          const isActive = activeFilters.includes(filter.name);
           //adds informative info for the behavior of the ResourcePills their current state
-          let iconInfo = activeFilters.includes(filter.name)
+          let iconInfo = isActive
             ? `Click to hide ${filter.name} search results`
             : `Click to show ${filter.name} search results`;
+
           return (
             <ResourcePill
               resourceType={filter.name}
@@ -175,7 +177,8 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
               variant="filled"
               deletable={false}
               key={filter.name}
-              css={activeFilters.includes(filter.name) ? toggled : ''}
+              data-active={isActive}
+              css={isActive ? toggled : ''}
               onClick={() => resourceFilter(filter.name)}
               title={iconInfo}
             />

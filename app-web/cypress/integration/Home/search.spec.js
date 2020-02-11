@@ -4,7 +4,6 @@ describe('Searching from homepage', () => {
   beforeEach(() => {
     cy.visit('/');
   });
-
   it.skip('Shows topics when there are no searches or searches are invalid', () => {
     cy.getByTestId('topics-container');
     cy.visit('/?q=');
@@ -85,11 +84,11 @@ describe('Searching from homepage', () => {
     cy.contains(/No resources found :\(/i);
   });
 
-  it.skip('can toggle search filters correctly', () => {
+  it('can toggle search filters correctly', () => {
     cy.log('entering openshift as search since it gives a lot of results');
     cy.visit('?q=openshift');
     cy.log('Result count pill should be visible');
-    cy.getByTestId('ui-pill').contains(/All \d+ Results/i);
+    cy.getByTestId('resource-preview-pill-all').contains(/All \d+ Results/i);
 
     cy.log('Filter Pills should exist');
 
@@ -100,6 +99,10 @@ describe('Searching from homepage', () => {
       .first()
       .as('firstFilterPill')
       .click();
+
+    cy.get('@firstFilterPill')
+      .should('have.attr', 'data-active')
+      .and('eq', 'true');
 
     cy.get('@firstFilterPill')
       .should('have.attr', 'data-resourceType')
@@ -113,6 +116,15 @@ describe('Searching from homepage', () => {
           .to.be.greaterThan(0)
           .and.to.be.lessThan(18);
       });
+
+    cy.log('it should reset the pills when another search is done');
+    cy.getByTestId('searchbar-input')
+      .clear()
+      .type('agile{enter}');
+
+    cy.get('@firstFilterPill')
+      .should('have.attr', 'data-active')
+      .and('eq', 'false');
   });
 });
 
