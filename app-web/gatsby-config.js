@@ -244,6 +244,13 @@ module.exports = {
             },
           },
           'gatsby-plugin-catch-links',
+          {
+            resolve: 'gatsby-remark-external-links',
+            options: {
+              target: '_blank',
+              rel: 'nofollow',
+            },
+          },
         ],
       },
     },
