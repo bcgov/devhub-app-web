@@ -84,7 +84,7 @@ describe('Searching from homepage', () => {
     cy.contains(/No resources found :\(/i);
   });
 
-  it('can toggle search filters correctly', () => {
+  it.skip('can toggle search filters correctly', () => {
     cy.log('entering openshift as search since it gives a lot of results');
     cy.visit('?q=openshift');
     cy.log('Result count pill should be visible');
