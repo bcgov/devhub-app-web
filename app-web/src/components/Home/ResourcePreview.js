@@ -17,6 +17,7 @@ Created by Patrick Simonian
 */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import queryString from 'query-string';
 import styled from '@emotion/styled';
 import css from '@emotion/css';
 import { ChevronLink } from '../UI/Link';
@@ -24,8 +25,11 @@ import { Container, LinkContainer } from './index';
 import CardsInColumns from '../Card/CardsInColumns';
 import Pill from '../UI/Pill';
 import { RESOURCE_TYPES } from '../../constants/ui';
-import { getSearchResultLabel, togglePills } from '../../utils/helpers';
+import { getSearchResultLabel } from '../../utils/helpers';
 import Row from '../Card/Row';
+import { FILTER_QUERY_PARAM } from '../../constants/filterGroups';
+import withLocation from '../../hoc/withLocation';
+import intersection from 'lodash/intersection';
 
 export const CardWrapper = styled.div`
   margin: 6px 9px;
@@ -84,49 +88,92 @@ export const TEST_IDS = {
   pill: 'resource-preview-pill',
 };
 
+const ALL_FILTER = 'ALL';
+/**
+ * Toggles on/off a filter
+ * @param {String} filterName the filter that was toggled
+ * @param {Array} activeFilters the list of active filters
+ * @returns {Array} the remaining active filters
+ */
+export const handleFilterToggle = (filterName, activeFilters) => {
+  if (filterName === ALL_FILTER) {
+    return [];
+  }
+  if (activeFilters.includes(filterName)) {
+    return activeFilters.filter(f => f !== filterName);
+  }
+  return activeFilters.concat(filterName);
+};
+
 // this is a wrapper component that encapsulates cards for topics or other sizes
-export const ResourcePreview = ({ title, link, resources, filters, amountToShow, seeMore }) => {
-  let [showCount, setCount] = useState(amountToShow);
-  let [seeMoreResults, setSeeMore] = useState(seeMore);
-  let [resourcesToShow, setResources] = useState(resources);
-  let [activeFilters, setActiveFilters] = useState(['All']);
+export const ResourcePreview = ({
+  title,
+  link,
+  resources,
+  filters,
+  amountToShow,
+  seeMore,
+  location,
+}) => {
+  const [showCount, setCount] = useState(amountToShow);
+  const [seeMoreResults, setSeeMore] = useState(seeMore);
+  const queryParam = queryString.parse(location.search);
+
+  const filtersList = filters.map(({ name }) => name);
   const extraItemsToShow = 6; //two more row of card in the page after click 'see more'
+  const [activeFilters, setActiveFilters] = useState([]);
 
+  // this effect extracts initial state from the url parameter
+  // we only run this when location changes from doing searches
   useEffect(() => {
-    setResources(resources);
+    const windowHasFilters = Object.prototype.hasOwnProperty.call(queryParam, FILTER_QUERY_PARAM);
+    const filterQueryParams = windowHasFilters
+      ? decodeURIComponent(queryParam[FILTER_QUERY_PARAM]).split(',')
+      : [];
+    const validFilters = intersection(filtersList, filterQueryParams);
+    if (validFilters.length !== activeFilters.length) {
+      // make sure filters are treated as an array
+      // if only one filter is passed as param ?f= it will be a string
+      setActiveFilters(validFilters);
+    } else if (activeFilters.length !== 0) {
+      setActiveFilters([]);
+    }
+    // eslint-disable-next-line
+  }, [location.search]);
 
-    return () => {
-      setResources(null);
-    };
-  }, [resources]);
+  const isAllToggled = activeFilters.length === 0 || activeFilters.length === filters.length;
+
+  const filteredResources = isAllToggled
+    ? resources
+    : resources.filter(resource => activeFilters.includes(resource.fields.resourceType));
 
   //sets the amount of resources to show, allowing users to 'see more' if its appropriate
   const updateCount = () => {
     //show 6 more results
     setSeeMore(true);
     setCount(showCount + extraItemsToShow);
-    if (resourcesToShow.length <= showCount) {
+    if (resources.length <= showCount) {
       setSeeMore(false); //hide the 'see more results' when there isn‘t more to show
     }
   };
 
   // This filters what results we are showing based on the given filter coming from user interaction with the ResourcePills
-  const resourceFilter = filterName => {
-    //filter the results based on given filter, update the resources and active filter
-    let filteredResources = [];
-    let newPillList = togglePills(filterName, activeFilters);
-    setActiveFilters(newPillList);
 
-    filteredResources = resources.filter(resource =>
-      newPillList.includes(resource.fields.resourceType),
-    );
-    if (newPillList.includes('All')) {
-      setResources(resources);
-    } else {
-      setResources(filteredResources);
-    }
-    //reset the amount of resources to show
+  const resourceFilterClicked = filterName => {
+    const { pathname } = location;
+    const toggledFilters = handleFilterToggle(filterName, activeFilters);
+
+    const searchMap = {
+      ...queryParam,
+      [FILTER_QUERY_PARAM]: toggledFilters.length === filtersList.length ? [] : toggledFilters,
+    };
+    const searchString = queryString.stringify(searchMap);
+
     setCount(amountToShow);
+    // replacing state so that back button doesn't get poluted with filter changes
+    // also this will trigger the url to change but will not cause a page refresh unlike gatsby.navigate
+    window.history.replaceState({}, 'foo', `${pathname}?${searchString}`);
+    setActiveFilters(toggledFilters);
   };
 
   let resultLabel = getSearchResultLabel(resources.length);
@@ -146,8 +193,8 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
         key={'All Results'}
         variant="filled"
         deletable={false}
-        css={activeFilters.includes('All') ? toggled : ''}
-        onClick={() => resourceFilter('All')}
+        css={isAllToggled ? toggled : ''}
+        onClick={() => resourceFilterClicked(ALL_FILTER)}
       />,
     );
     pills = pills.concat(
@@ -160,7 +207,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
           //formats the text correctly for different cases
 
           let iconLabel = getSearchResultLabel(filter.counter);
-          const isActive = activeFilters.includes(filter.name);
+          const isActive = !isAllToggled && activeFilters.includes(filter.name);
           //adds informative info for the behavior of the ResourcePills their current state
           let iconInfo = isActive
             ? `Click to hide ${filter.name} search results`
@@ -179,7 +226,7 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
               key={filter.name}
               data-active={isActive}
               css={isActive ? toggled : ''}
-              onClick={() => resourceFilter(filter.name)}
+              onClick={() => resourceFilterClicked(filter.name)}
               title={iconInfo}
             />
           );
@@ -197,11 +244,11 @@ export const ResourcePreview = ({ title, link, resources, filters, amountToShow,
       </PreviewHeader>
       <ResourceContainer>
         <Row>
-          <CardsInColumns cards={resourcesToShow.slice(0, showCount)} />
+          <CardsInColumns cards={filteredResources.slice(0, showCount)} />
         </Row>
       </ResourceContainer>
       <LinkContainer>
-        {seeMoreResults && resourcesToShow.length > showCount && (
+        {seeMoreResults && filteredResources.length > showCount && (
           <SeeMoreP onClick={() => updateCount()}>See More Results</SeeMoreP>
         )}
         {link && <ChevronLink to={link.to}>{link.text}</ChevronLink>}
@@ -222,4 +269,4 @@ ResourcePreview.propTypes = {
   resources: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default ResourcePreview;
+export default withLocation(ResourcePreview)();

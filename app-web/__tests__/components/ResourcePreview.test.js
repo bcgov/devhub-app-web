@@ -17,7 +17,7 @@ Created by Patrick Simonian
 */
 
 import React from 'react';
-import { ResourcePreview } from '../../src/components/Home';
+import { ResourcePreview, handleFilterToggle } from '../../src/components/Home/ResourcePreview';
 import { SIPHON_NODES } from '../../__fixtures__/nodes';
 import { render } from '@testing-library/react';
 import { ThemeProvider } from 'emotion-theming';
@@ -41,5 +41,24 @@ describe('Resource Preview Component', () => {
     );
 
     expect(container.firstChild).toMatchSnapshot();
+  });
+
+  describe('handleFilterToggle', () => {
+    it('it return [] if all is passed in', () => {
+      const activeFilters = ['foo', 'bar'];
+      expect(handleFilterToggle('All', activeFilters)).toEqual([]);
+    });
+
+    it("it adds a filter if it doesn't exist in active list", () => {
+      const activeFilters = ['foo', 'bar'];
+
+      expect(handleFilterToggle('baz', activeFilters)).toEqual(['foo', 'bar', 'baz']);
+    });
+
+    it('it removes a filter if it does exist in active list', () => {
+      const activeFilters = ['foo', 'bar'];
+
+      expect(handleFilterToggle('bar', activeFilters)).toEqual(['foo']);
+    });
   });
 });
