@@ -88,7 +88,7 @@ export const TEST_IDS = {
   pill: 'resource-preview-pill',
 };
 
-const ALL_FILTER = 'ALL';
+export const ALL_FILTER = 'ALL';
 /**
  * Toggles on/off a filter
  * @param {String} filterName the filter that was toggled
