@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Resource Preview Component matches snapshot 1`] = `
-.emotion-148 {
+.emotion-163 {
   margin: 0 auto 15px;
   max-width: 1100px;
   width: 100%;
 }
 
-.emotion-0 {
+.emotion-15 {
   padding: 10px 4px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -19,7 +19,7 @@ exports[`Resource Preview Component matches snapshot 1`] = `
   border-bottom: 1px solid #ccc;
 }
 
-.emotion-0 h2 {
+.emotion-15 h2 {
   font-weight: 400;
   text-transform: capitalize;
   padding: 0 20px 0 0;
@@ -27,11 +27,62 @@ exports[`Resource Preview Component matches snapshot 1`] = `
   margin-top: 5px;
 }
 
-.emotion-142 {
+.emotion-3 {
+  padding: 3px;
+  border-radius: 1em;
+  color: rgba(0,0,0,0.87);
+  margin: 4px 5px;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-color: transparent;
+  border-width: 1px;
+  border-style: solid;
+  background-color: #e0e0e0;
+}
+
+.emotion-3:focus {
+  outline: none;
+}
+
+.emotion-3 > span {
+  margin: 0 4px;
+  font-size: 0.875em;
+}
+
+@media only screen and (max-width:768px) {
+  .emotion-3 {
+    font-size: 15px;
+  }
+}
+
+.emotion-3:hover {
+  background: white;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e0e0e0;
+  top: -3px;
+}
+
+.emotion-0 {
+  margin: 0 4px;
+}
+
+.emotion-5 {
+  padding-left: 5px;
+}
+
+.emotion-157 {
   padding: 15px 0;
 }
 
-.emotion-140 {
+.emotion-155 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -46,7 +97,7 @@ exports[`Resource Preview Component matches snapshot 1`] = `
 }
 
 @media (min-width:810px) {
-  .emotion-140 {
+  .emotion-155 {
     -webkit-box-pack: start;
     -webkit-justify-content: start;
     -ms-flex-pack: start;
@@ -54,14 +105,14 @@ exports[`Resource Preview Component matches snapshot 1`] = `
   }
 }
 
-.emotion-23 {
+.emotion-38 {
   margin: 0 10px;
   -webkit-flex: 0 0 250px;
   -ms-flex: 0 0 250px;
   flex: 0 0 250px;
 }
 
-.emotion-21 {
+.emotion-36 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #1A5A96;
@@ -74,14 +125,14 @@ exports[`Resource Preview Component matches snapshot 1`] = `
   color: initial;
 }
 
-.emotion-21:hover {
+.emotion-36:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
   color: initial;
   cursor: pointer;
 }
 
-.emotion-18 {
+.emotion-33 {
   width: 265px;
   height: 238.5px;
   margin: 10px 0;
@@ -103,14 +154,14 @@ exports[`Resource Preview Component matches snapshot 1`] = `
   overflow: hidden;
 }
 
-.emotion-18:hover {
+.emotion-33:hover {
   box-shadow: 0 2px 2px 1px #00000026;
   -webkit-transform: translateY(-2px);
   -ms-transform: translateY(-2px);
   transform: translateY(-2px);
 }
 
-.emotion-2 {
+.emotion-17 {
   background-color: #4299D2;
   -webkit-flex: 0 0 10px;
   -ms-flex: 0 0 10px;
@@ -118,7 +169,7 @@ exports[`Resource Preview Component matches snapshot 1`] = `
   min-height: 10px;
 }
 
-.emotion-16 {
+.emotion-31 {
   padding: 6px 10px;
   height: 100%;
   overflow: auto;
@@ -135,7 +186,7 @@ exports[`Resource Preview Component matches snapshot 1`] = `
   flex-flow: column nowrap;
 }
 
-.emotion-6 {
+.emotion-21 {
   color: #444;
   font-size: 15px;
   margin-bottom: 0;
@@ -143,11 +194,11 @@ exports[`Resource Preview Component matches snapshot 1`] = `
   font-weight: 400;
 }
 
-.emotion-4 {
+.emotion-19 {
   color: #4299D2;
 }
 
-.emotion-8 {
+.emotion-23 {
   font-size: 18px;
   color: #494949;
   line-height: 1.3;
@@ -159,7 +210,7 @@ exports[`Resource Preview Component matches snapshot 1`] = `
   word-break: break-word;
 }
 
-.emotion-10 {
+.emotion-25 {
   line-height: 1.4;
   font-size: 14px;
   -webkit-flex: 0 0 auto;
@@ -170,7 +221,7 @@ exports[`Resource Preview Component matches snapshot 1`] = `
   text-transform: none;
 }
 
-.emotion-14 {
+.emotion-29 {
   -webkit-flex: 1 1 auto;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
@@ -186,7 +237,7 @@ exports[`Resource Preview Component matches snapshot 1`] = `
   display: flex;
 }
 
-.emotion-12 {
+.emotion-27 {
   width: 100%;
   height: auto;
   object-fit: scale-down;
@@ -194,7 +245,7 @@ exports[`Resource Preview Component matches snapshot 1`] = `
   margin-bottom: 0;
 }
 
-.emotion-94 {
+.emotion-109 {
   background-color: #246BD1;
   -webkit-flex: 0 0 10px;
   -ms-flex: 0 0 10px;
@@ -202,16 +253,16 @@ exports[`Resource Preview Component matches snapshot 1`] = `
   min-height: 10px;
 }
 
-.emotion-96 {
+.emotion-111 {
   color: #246BD1;
 }
 
-.emotion-146 {
+.emotion-161 {
   text-align: right;
   margin-top: 15px;
 }
 
-.emotion-144 {
+.emotion-159 {
   -webkit-text-decoration: underline;
   text-decoration: underline;
   color: #1A5A96;
@@ -222,51 +273,106 @@ exports[`Resource Preview Component matches snapshot 1`] = `
 }
 
 <section
-  class="emotion-148 emotion-149"
+  class="emotion-163 emotion-164"
   data-testid="resource-preview-container"
 >
   <div
-    class="emotion-0 emotion-1"
+    class="emotion-15 emotion-16"
   >
     <h2>
       foo
     </h2>
-  </div>
-  <div
-    class="emotion-142 emotion-143"
-  >
-    <div
-      class="emotion-140 emotion-141"
+    <button
+      class="emotion-2 emotion-3 emotion-4"
+      data-active="true"
+      data-testid="resource-preview-pill-all"
+      title="Click to view all results"
+    >
+      <svg
+        aria-hidden="true"
+        class="svg-inline--fa fa-search fa-w-16  emotion-0 emotion-1"
+        data-icon="search"
+        data-prefix="fas"
+        focusable="false"
+        role="img"
+        viewBox="0 0 512 512"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
+          fill="currentColor"
+        />
+      </svg>
+      <span>
+        All 7 Results
+      </span>
+    </button>
+    <button
+      class="emotion-2 emotion-3 emotion-4"
+      data-active="false"
+      data-resourcetype="Foo"
+      data-testclass="resource-preview-pill"
+      data-testid="resource-preview-pill-Foo"
+      title="Click to show Foo search results"
     >
       <div
-        class="emotion-23 emotion-24"
+        class="emotion-5 emotion-6"
+      />
+      <span>
+        No Search Result
+      </span>
+    </button>
+    <button
+      class="emotion-2 emotion-3 emotion-4"
+      data-active="false"
+      data-resourcetype="Bar"
+      data-testclass="resource-preview-pill"
+      data-testid="resource-preview-pill-Bar"
+      title="Click to show Bar search results"
+    >
+      <div
+        class="emotion-5 emotion-6"
+      />
+      <span>
+        No Search Result
+      </span>
+    </button>
+  </div>
+  <div
+    class="emotion-157 emotion-158"
+  >
+    <div
+      class="emotion-155 emotion-156"
+    >
+      <div
+        class="emotion-38 emotion-39"
         style="justify-content: center; display: flex;"
       >
         <a
-          class="emotion-20 emotion-21 emotion-22"
+          class="emotion-35 emotion-36 emotion-37"
           data-testid="ui-gatsby-link"
           href="/Design-Node-3"
         >
           <article
-            class="emotion-18 emotion-19"
+            class="emotion-33 emotion-34"
             data-resourcetype="Components"
           >
             <div
-              class="emotion-2 emotion-3"
+              class="emotion-17 emotion-18"
               color="Components"
             />
             <div
-              class="emotion-16 emotion-17"
+              class="emotion-31 emotion-32"
             >
               <div
                 style="margin-bottom: 6px;"
               >
                 <h3
-                  class="emotion-6 emotion-7"
+                  class="emotion-21 emotion-22"
                 >
                   <svg
                     aria-hidden="true"
-                    class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-4 emotion-5"
+                    class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-19 emotion-20"
                     data-icon="puzzle-piece"
                     data-prefix="fas"
                     data-testid="resource-type-icon"
@@ -306,21 +412,21 @@ exports[`Resource Preview Component matches snapshot 1`] = `
                 </h3>
               </div>
               <div
-                class="emotion-8 emotion-9"
+                class="emotion-23 emotion-24"
               >
                 About
               </div>
               <p
-                class="emotion-10 emotion-11"
+                class="emotion-25 emotion-26"
               >
                 What the Design System is and how it works.
               </p>
               <div
-                class="emotion-14 emotion-15"
+                class="emotion-29 emotion-30"
               >
                 <img
                   alt="About"
-                  class="emotion-12 emotion-13"
+                  class="emotion-27 emotion-28"
                   src="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
                 />
               </div>
@@ -329,34 +435,34 @@ exports[`Resource Preview Component matches snapshot 1`] = `
         </a>
       </div>
       <div
-        class="emotion-23 emotion-24"
+        class="emotion-38 emotion-39"
         style="justify-content: center; display: flex;"
       >
         <a
-          class="emotion-20 emotion-21 emotion-22"
+          class="emotion-35 emotion-36 emotion-37"
           data-testid="ui-gatsby-link"
           href="/Design-Node-2"
         >
           <article
-            class="emotion-18 emotion-19"
+            class="emotion-33 emotion-34"
             data-resourcetype="Components"
           >
             <div
-              class="emotion-2 emotion-3"
+              class="emotion-17 emotion-18"
               color="Components"
             />
             <div
-              class="emotion-16 emotion-17"
+              class="emotion-31 emotion-32"
             >
               <div
                 style="margin-bottom: 6px;"
               >
                 <h3
-                  class="emotion-6 emotion-7"
+                  class="emotion-21 emotion-22"
                 >
                   <svg
                     aria-hidden="true"
-                    class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-4 emotion-5"
+                    class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-19 emotion-20"
                     data-icon="puzzle-piece"
                     data-prefix="fas"
                     data-testid="resource-type-icon"
@@ -396,21 +502,21 @@ exports[`Resource Preview Component matches snapshot 1`] = `
                 </h3>
               </div>
               <div
-                class="emotion-8 emotion-9"
+                class="emotion-23 emotion-24"
               >
                 About
               </div>
               <p
-                class="emotion-10 emotion-11"
+                class="emotion-25 emotion-26"
               >
                 What the Design System is and how it works.
               </p>
               <div
-                class="emotion-14 emotion-15"
+                class="emotion-29 emotion-30"
               >
                 <img
                   alt="About"
-                  class="emotion-12 emotion-13"
+                  class="emotion-27 emotion-28"
                   src="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
                 />
               </div>
@@ -419,34 +525,34 @@ exports[`Resource Preview Component matches snapshot 1`] = `
         </a>
       </div>
       <div
-        class="emotion-23 emotion-24"
+        class="emotion-38 emotion-39"
         style="justify-content: center; display: flex;"
       >
         <a
-          class="emotion-20 emotion-21 emotion-22"
+          class="emotion-35 emotion-36 emotion-37"
           data-testid="ui-gatsby-link"
           href="/Design-Node-1"
         >
           <article
-            class="emotion-18 emotion-19"
+            class="emotion-33 emotion-34"
             data-resourcetype="Components"
           >
             <div
-              class="emotion-2 emotion-3"
+              class="emotion-17 emotion-18"
               color="Components"
             />
             <div
-              class="emotion-16 emotion-17"
+              class="emotion-31 emotion-32"
             >
               <div
                 style="margin-bottom: 6px;"
               >
                 <h3
-                  class="emotion-6 emotion-7"
+                  class="emotion-21 emotion-22"
                 >
                   <svg
                     aria-hidden="true"
-                    class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-4 emotion-5"
+                    class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-19 emotion-20"
                     data-icon="puzzle-piece"
                     data-prefix="fas"
                     data-testid="resource-type-icon"
@@ -486,21 +592,21 @@ exports[`Resource Preview Component matches snapshot 1`] = `
                 </h3>
               </div>
               <div
-                class="emotion-8 emotion-9"
+                class="emotion-23 emotion-24"
               >
                 About
               </div>
               <p
-                class="emotion-10 emotion-11"
+                class="emotion-25 emotion-26"
               >
                 What the Design System is and how it works.
               </p>
               <div
-                class="emotion-14 emotion-15"
+                class="emotion-29 emotion-30"
               >
                 <img
                   alt="About"
-                  class="emotion-12 emotion-13"
+                  class="emotion-27 emotion-28"
                   src="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
                 />
               </div>
@@ -509,34 +615,34 @@ exports[`Resource Preview Component matches snapshot 1`] = `
         </a>
       </div>
       <div
-        class="emotion-23 emotion-24"
+        class="emotion-38 emotion-39"
         style="justify-content: center; display: flex;"
       >
         <a
-          class="emotion-20 emotion-21 emotion-22"
+          class="emotion-35 emotion-36 emotion-37"
           data-testid="ui-gatsby-link"
           href="/Design-Node-4"
         >
           <article
-            class="emotion-18 emotion-19"
+            class="emotion-33 emotion-34"
             data-resourcetype="Components"
           >
             <div
-              class="emotion-2 emotion-3"
+              class="emotion-17 emotion-18"
               color="Components"
             />
             <div
-              class="emotion-16 emotion-17"
+              class="emotion-31 emotion-32"
             >
               <div
                 style="margin-bottom: 6px;"
               >
                 <h3
-                  class="emotion-6 emotion-7"
+                  class="emotion-21 emotion-22"
                 >
                   <svg
                     aria-hidden="true"
-                    class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-4 emotion-5"
+                    class="svg-inline--fa fa-puzzle-piece fa-w-18  emotion-19 emotion-20"
                     data-icon="puzzle-piece"
                     data-prefix="fas"
                     data-testid="resource-type-icon"
@@ -576,21 +682,21 @@ exports[`Resource Preview Component matches snapshot 1`] = `
                 </h3>
               </div>
               <div
-                class="emotion-8 emotion-9"
+                class="emotion-23 emotion-24"
               >
                 About
               </div>
               <p
-                class="emotion-10 emotion-11"
+                class="emotion-25 emotion-26"
               >
                 What the Design System is and how it works.
               </p>
               <div
-                class="emotion-14 emotion-15"
+                class="emotion-29 emotion-30"
               >
                 <img
                   alt="About"
-                  class="emotion-12 emotion-13"
+                  class="emotion-27 emotion-28"
                   src="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
                 />
               </div>
@@ -599,34 +705,34 @@ exports[`Resource Preview Component matches snapshot 1`] = `
         </a>
       </div>
       <div
-        class="emotion-23 emotion-24"
+        class="emotion-38 emotion-39"
         style="justify-content: center; display: flex;"
       >
         <a
-          class="emotion-20 emotion-21 emotion-22"
+          class="emotion-35 emotion-36 emotion-37"
           data-testid="ui-gatsby-link"
           href="/DevHub-Node-1"
         >
           <article
-            class="emotion-18 emotion-19"
+            class="emotion-33 emotion-34"
             data-resourcetype="Documentation"
           >
             <div
-              class="emotion-94 emotion-3"
+              class="emotion-109 emotion-18"
               color="Documentation"
             />
             <div
-              class="emotion-16 emotion-17"
+              class="emotion-31 emotion-32"
             >
               <div
                 style="margin-bottom: 6px;"
               >
                 <h3
-                  class="emotion-6 emotion-7"
+                  class="emotion-21 emotion-22"
                 >
                   <svg
                     aria-hidden="true"
-                    class="svg-inline--fa fa-file fa-w-12  emotion-96 emotion-5"
+                    class="svg-inline--fa fa-file fa-w-12  emotion-111 emotion-20"
                     data-icon="file"
                     data-prefix="fas"
                     data-testid="resource-type-icon"
@@ -666,21 +772,21 @@ exports[`Resource Preview Component matches snapshot 1`] = `
                 </h3>
               </div>
               <div
-                class="emotion-8 emotion-9"
+                class="emotion-23 emotion-24"
               >
                 About
               </div>
               <p
-                class="emotion-10 emotion-11"
+                class="emotion-25 emotion-26"
               >
                 What the Design System is and how it works.
               </p>
               <div
-                class="emotion-14 emotion-15"
+                class="emotion-29 emotion-30"
               >
                 <img
                   alt="About"
-                  class="emotion-12 emotion-13"
+                  class="emotion-27 emotion-28"
                   src="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
                 />
               </div>
@@ -689,34 +795,34 @@ exports[`Resource Preview Component matches snapshot 1`] = `
         </a>
       </div>
       <div
-        class="emotion-23 emotion-24"
+        class="emotion-38 emotion-39"
         style="justify-content: center; display: flex;"
       >
         <a
-          class="emotion-20 emotion-21 emotion-22"
+          class="emotion-35 emotion-36 emotion-37"
           data-testid="ui-gatsby-link"
           href="/DevHub-Node-2"
         >
           <article
-            class="emotion-18 emotion-19"
+            class="emotion-33 emotion-34"
             data-resourcetype="Documentation"
           >
             <div
-              class="emotion-94 emotion-3"
+              class="emotion-109 emotion-18"
               color="Documentation"
             />
             <div
-              class="emotion-16 emotion-17"
+              class="emotion-31 emotion-32"
             >
               <div
                 style="margin-bottom: 6px;"
               >
                 <h3
-                  class="emotion-6 emotion-7"
+                  class="emotion-21 emotion-22"
                 >
                   <svg
                     aria-hidden="true"
-                    class="svg-inline--fa fa-file fa-w-12  emotion-96 emotion-5"
+                    class="svg-inline--fa fa-file fa-w-12  emotion-111 emotion-20"
                     data-icon="file"
                     data-prefix="fas"
                     data-testid="resource-type-icon"
@@ -756,21 +862,21 @@ exports[`Resource Preview Component matches snapshot 1`] = `
                 </h3>
               </div>
               <div
-                class="emotion-8 emotion-9"
+                class="emotion-23 emotion-24"
               >
                 About
               </div>
               <p
-                class="emotion-10 emotion-11"
+                class="emotion-25 emotion-26"
               >
                 What the Design System is and how it works.
               </p>
               <div
-                class="emotion-14 emotion-15"
+                class="emotion-29 emotion-30"
               >
                 <img
                   alt="About"
-                  class="emotion-12 emotion-13"
+                  class="emotion-27 emotion-28"
                   src="https://github.com/bcgov/design-system/blob/master/components/about/about.md?raw=true"
                 />
               </div>
@@ -781,10 +887,10 @@ exports[`Resource Preview Component matches snapshot 1`] = `
     </div>
   </div>
   <div
-    class="emotion-146 emotion-147"
+    class="emotion-161 emotion-162"
   >
     <a
-      class="emotion-144 emotion-22"
+      class="emotion-159 emotion-37"
       data-testid="ui-gatsby-link"
       href="/"
     >
