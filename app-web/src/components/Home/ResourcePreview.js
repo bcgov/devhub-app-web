@@ -143,6 +143,11 @@ export const ResourcePreview = ({
 
   const isAllToggled = activeFilters.length === 0 || activeFilters.length === filters.length;
 
+  //When all filters are clicked it resets the active filters to be 'All'
+  if (activeFilters.length === filters.length) {
+    setActiveFilters([]);
+  }
+
   const filteredResources = isAllToggled
     ? resources
     : resources.filter(resource => activeFilters.includes(resource.fields.resourceType));
@@ -191,6 +196,7 @@ export const ResourcePreview = ({
         title={'Click to view all results'}
         data-testid={`${TEST_IDS.pill}-all`}
         key={'All Results'}
+        data-active={isAllToggled}
         variant="filled"
         deletable={false}
         css={isAllToggled ? toggled : ''}

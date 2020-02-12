@@ -84,7 +84,7 @@ describe('Searching from homepage', () => {
     cy.contains(/No resources found :\(/i);
   });
 
-  it.skip('can toggle search filters correctly', () => {
+  it('can toggle search filters correctly', () => {
     cy.log('entering openshift as search since it gives a lot of results');
     cy.visit('?q=openshift');
     cy.log('Result count pill should be visible');
@@ -125,6 +125,23 @@ describe('Searching from homepage', () => {
     cy.get('@firstFilterPill')
       .should('have.attr', 'data-active')
       .and('eq', 'false');
+
+    cy.log('The All pill should be automatically toggled when all the pills are selected');
+    cy.visit('?q=openshift');
+
+    cy.get('[data-testclass="resource-preview-pill"]')
+      .as('allPills')
+      .click({ multiple: true });
+
+    cy.getByTestId('resource-preview-pill-all')
+      .should('have.attr', 'data-active')
+      .and('eq', 'true');
+
+    cy.get('[data-testclass="resource-preview-pill"]')
+      .first()
+      .click()
+      .should('have.attr', 'data-active')
+      .and('eq', 'true');
   });
 });
 
