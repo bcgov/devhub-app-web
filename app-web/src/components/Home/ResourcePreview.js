@@ -144,7 +144,7 @@ export const ResourcePreview = ({
   const isAllToggled = activeFilters.length === 0 || activeFilters.length === filters.length;
 
   //When all filters are clicked it resets the active filters to be 'All'
-  if (activeFilters.length === filters.length) {
+  if (activeFilters.length === filters.length && activeFilters.length > 0) {
     setActiveFilters([]);
   }
 

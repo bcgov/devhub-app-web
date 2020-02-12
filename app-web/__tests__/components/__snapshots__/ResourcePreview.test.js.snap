@@ -284,6 +284,7 @@ exports[`Resource Preview Component matches snapshot 1`] = `
     </h2>
     <button
       class="emotion-2 emotion-3 emotion-4"
+      data-active="true"
       data-testid="resource-preview-pill-all"
       title="Click to view all results"
     >
