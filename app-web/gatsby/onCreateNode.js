@@ -55,6 +55,31 @@ const buildTimeDate = moment();
  * image: <String>
  *
  */
+let urlHaveNots = [
+  'topics',
+  'journeys',
+  'self-service-tools',
+  'components',
+  'repositories',
+  'documentation',
+  'events',
+  '404',
+  'about',
+  'index',
+  'sitemap',
+  'topic',
+  'html',
+];
+
+const cannotHave = slugname => {
+  if (urlHaveNots.includes(slugname)) {
+    // eslint-disable-next-line
+    console.log(slugname, urlHavenots);
+    return false;
+  }
+  urlHaveNots.push(slugname);
+  return true;
+};
 
 module.exports = ({ node, actions, getNode, getNodes }) => {
   const { createNodeField } = actions;
@@ -323,7 +348,7 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       createNodeField({
         node: parentNode,
         name: 'slug',
-        value: slugify(slug),
+        value: cannotHave(slug) ? slugify(slug) : '',
       });
 
       const topics = parentNode.___boundProperties.topics;
