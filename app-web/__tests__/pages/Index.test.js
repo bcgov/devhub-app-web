@@ -41,6 +41,11 @@ jest.mock('query-string');
 // mock out layout
 jest.mock('../../src/hoc/Layout.js', () => ({ children }) => children);
 // mock out search hook
+
+jest.mock('@reach/router', () => ({
+  Location: ({ children }) => children({ location: { pathname: '/', search: '' } }),
+}));
+
 jest.mock('../../src/utils/hooks.js');
 
 jest.mock('../../src/utils/helpers.js');
