@@ -93,6 +93,8 @@ export const Pill = ({
   let specialIcon;
   if (otherIcon === 'topic') {
     specialIcon = faLayerGroup;
+  } else if (otherIcon === 'journey') {
+    specialIcon = faLayerGroup;
   } else if (otherIcon === 'label') {
     specialIcon = faTag;
   } else if (otherIcon === 'persona') {

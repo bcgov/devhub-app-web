@@ -101,6 +101,18 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
     });
   }
 
+  let journey = githubRaw.fields.journeys;
+  let journeyPills = [];
+  if (journey) {
+    journeyPills = journey.map(journey => {
+      return (
+        <PillLink to={`/${journey.fields.slug}/${githubRaw.fields.slug}`} key={journey.id}>
+          <IconPill label={journey.name} otherIcon={'journey'} variant="filled" deletable={false} />
+        </PillLink>
+      );
+    });
+  }
+
   let personaPills = [];
   //get personas and filter out any blank strings
   let personas = githubRaw.fields.personas.filter(ifNotBlank => ifNotBlank);
@@ -131,7 +143,7 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
         </PillLink>
       );
     });
-  }*/
+  } */
   const {
     html_url,
     fields: { standAlonePath, title },
@@ -144,6 +156,7 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
         <HeaderTitle>Resource Information</HeaderTitle>
         <PillDiv>{resourceTypePill}</PillDiv>
         <PillDiv>{topicPills}</PillDiv>
+        <PillDiv>{journeyPills}</PillDiv>
         <PillDiv>{personaPills}</PillDiv>
       </Header>
       <Main>
@@ -173,6 +186,13 @@ export const devhubGitHubRawData = graphql`
         title
         resourceType
         standAlonePath
+        journeys {
+          name
+          id
+          fields {
+            slug
+          }
+        }
         topics {
           name
           id
