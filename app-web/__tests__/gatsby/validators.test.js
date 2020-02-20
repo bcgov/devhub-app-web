@@ -14,7 +14,7 @@ import {
 describe('Validators', () => {
   describe('Slug Validation', () => {
     test('createSlugBlacklist', () => {
-      expect(createSlugBlacklist).toMatchSnapshot();
+      expect(createSlugBlacklist()).toMatchSnapshot();
     });
 
     test('isInBlackList', () => {
