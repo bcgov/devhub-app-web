@@ -111,7 +111,7 @@ const createSlugBlacklist = () => {
   const CONFIG_LIST = slugBlackList.reduce((map, slug) => {
     map[slug] = slug;
     return map;
-  });
+  }, {});
 
   return {
     ...CONFIG_LIST,

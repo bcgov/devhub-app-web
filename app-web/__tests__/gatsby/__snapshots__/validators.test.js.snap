@@ -1,3 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Validators Slug Validation createSlugBlacklist 1`] = `[Function]`;
+exports[`Validators Slug Validation createSlugBlacklist 1`] = `
+Object {
+  "/": "",
+  "404": "404",
+  "about": "about",
+  "aboutDevhub": "aboutDevhub",
+  "document": "document",
+  "html": "html",
+  "journeys": "journeys",
+  "past-events": "past-events",
+  "readme": "readme",
+  "repositories": "repositories",
+  "sitemap": "sitemap",
+  "topic": "topic",
+}
+`;
