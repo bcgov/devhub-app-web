@@ -72,8 +72,17 @@ module.exports = ({ createResolvers }) => {
           const slug = source.fields.slug;
           const slugIsInvalid = slug === '' || slug === null || isInBlackList(slugBlackList, slug);
           const matchingSlugs = nodes.filter(n => n.fields.slug === slug);
+          const conflictsFound = slugIsInvalid || matchingSlugs.length !== 1;
+          if (process.env.CONFLICTS_SHOULD_THROW && conflictsFound) {
+            const matchingNodes = matchingSlugs.map(n => `${n.fields.title} - ${n.html_url}`);
 
-          return slugIsInvalid || matchingSlugs.length !== 1;
+            throw new Error(
+              `Conflicts found with ${source.fields.title} (source: ${
+                source.html_url
+              }). Matching nodes: ${matchingNodes.join('\n')}`,
+            );
+          }
+          return conflictsFound;
         },
       },
     },

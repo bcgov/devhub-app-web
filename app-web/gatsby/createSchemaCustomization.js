@@ -34,6 +34,9 @@ module.exports = ({ actions }) => {
       _type: String!
       connectsWith: [ConnectedNode]
     }
+    type GithubRaw implements Node {
+      _conflictsFound: Boolean
+    }
   `;
 
   createTypes(typeDefs);
