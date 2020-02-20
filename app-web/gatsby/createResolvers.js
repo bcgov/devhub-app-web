@@ -73,7 +73,8 @@ module.exports = ({ createResolvers }) => {
           const slugIsInvalid = slug === '' || slug === null || isInBlackList(slugBlackList, slug);
           const matchingSlugs = nodes.filter(n => n.fields.slug === slug);
           const conflictsFound = slugIsInvalid || matchingSlugs.length !== 1;
-          if (process.env.CONFLICTS_SHOULD_THROW && conflictsFound) {
+
+          if (conflictsFound === true && process.env.CONFLICTS_SHOULD_THROW === true) {
             const matchingNodes = matchingSlugs.map(n => `${n.fields.title} - ${n.html_url}`);
 
             throw new Error(
