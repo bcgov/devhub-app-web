@@ -125,15 +125,15 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
   let personas = githubRaw.fields.personas.filter(ifNotBlank => ifNotBlank);
   //if there are personas, create pills which link out to a search of resources with that persona
   if (personas) {
-    personaPills = personas.map(persona => {
+    personaPills = personas.map(persona => (
       //links to the homepage search, with a query showing only resources of the given persona type
-      const linkString = `/?q=personas:${persona}`;
-      return (
-        <PillContainer to={encodeURI(linkString)} key={persona}>
-          <IconPill label={persona} otherIcon={'persona'} variant="filled" deletable={false} />
-        </PillContainer>
-      );
-    });
+      <PillLink
+        to={encodeURI(`/?q=personas:${persona}`)}
+        key={persona}
+        label={persona}
+        icon={'persona'}
+      />
+    ));
   }
 
   /* for later
