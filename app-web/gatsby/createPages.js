@@ -197,7 +197,7 @@ const createResourceTopicsPages = async (createPage, graphql) => {
   // main graphql query here
   const data = await graphql(`
     {
-      allGithubRaw(filter: { _conflictsFound: { eq: false } }) {
+      allGithubRaw {
         edges {
           node {
             id
@@ -232,7 +232,7 @@ const createStandAlonePage = async (createPage, graphql) => {
   // main graphql query here
   const devhubGithubData = await graphql(`
     {
-      allGithubRaw(filter: { _conflictsFound: { eq: false } }) {
+      allGithubRaw {
         edges {
           node {
             id
