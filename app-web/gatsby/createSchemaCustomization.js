@@ -13,7 +13,7 @@ module.exports = ({ actions }) => {
       path: String
       id: String! 
     }
-    type frontmatterLableSet {
+    type frontMatterLabelSet {
       app: String
     }
     type ConnectedNodeFieldSet {
@@ -21,7 +21,7 @@ module.exports = ({ actions }) => {
       title: String
       description: String
       image: String
-      labels: frontmatterLableSet
+      labels: frontMatterLabelSet
       tags: [String]
       path: String
       resourceType: String
