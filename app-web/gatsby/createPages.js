@@ -197,7 +197,7 @@ const createResourceTopicsPages = async (createPage, graphql) => {
   // main graphql query here
   const data = await graphql(`
     {
-      allGithubRaw {
+      allGithubRaw(filter: { _conflictsFound: { eq: false } }) {
         edges {
           node {
             id
@@ -219,7 +219,6 @@ const createResourceTopicsPages = async (createPage, graphql) => {
   data.data.allGithubRaw.edges.forEach(({ node }) => {
     // create a page based on the github raw node and the topics its connected too
     createResourceInTopicsPages(node, createPage);
-    // create individual pages here (in future releases)
   });
 };
 
@@ -233,7 +232,7 @@ const createStandAlonePage = async (createPage, graphql) => {
   // main graphql query here
   const devhubGithubData = await graphql(`
     {
-      allGithubRaw {
+      allGithubRaw(filter: { _conflictsFound: { eq: false } }) {
         edges {
           node {
             id
@@ -291,5 +290,6 @@ module.exports = async ({ graphql, actions }) => {
   await createResourceTopicsPages(createPage, graphql);
   await createEventsPage(createPage);
   await createStandAlonePage(createPage, graphql);
+  // journeys should be created similarly to topics so we cann filter out conflicting github nodes
   await createJourneyPages(createPage, graphql);
 };

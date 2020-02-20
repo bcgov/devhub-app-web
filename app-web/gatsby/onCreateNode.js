@@ -330,6 +330,7 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       });
 
       const topics = parentNode.___boundProperties.topics;
+      // we need to have topics here and create page paths for them
       const pagePaths = topics.map(t => `${slugify(t)}/${slugify(slug)}`);
       // all github raw nodes have a page path that is just the individual resource
       // the others are based off of the topics it belongs too
