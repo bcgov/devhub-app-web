@@ -9,12 +9,11 @@ let iam = null;
  */
 export const createIam = () => {
   const { origin, pathname, search } = window.location;
-
   const config = {
     baseURL: SSO_BASE_URL,
     clientId: SSO_CLIENT_ID,
     realmName: SSO_REALM_NAME,
-    redirectURI: origin + pathname + search,
+    redirectURI: origin + pathname + encodeURIComponent(search),
   };
 
   if (iam === null) {
