@@ -143,25 +143,25 @@ describe('Searching from homepage', () => {
       .should('have.attr', 'data-active')
       .and('eq', 'true');
 
-    cy.log(
-      'All the filters should be toggled when a bookmarked page with the appended filers is opened',
-    );
-    cy.visit('?f=Documentation&f=Components&f=Events&q=openshift');
+    // cy.log(
+    //   'All the filters should be toggled when a bookmarked page with the appended filers is opened',
+    // );
+    // cy.visit('?f=Documentation&f=Components&f=Events&q=openshift');
 
-    cy.log('Check if the Documentation Pill is toggled');
-    cy.get('[data-testid="resource-preview-pill-Documentation"]')
-      .should('have.attr', 'data-active')
-      .and('eq', 'true');
+    // cy.log('Check if the Documentation Pill is toggled');
+    // cy.get('[data-testid="resource-preview-pill-Documentation"]')
+    //   .should('have.attr', 'data-active')
+    //   .and('eq', 'true');
 
-    cy.log('Check if the Components filter pill is toggled');
-    cy.get('[data-testid="resource-preview-pill-Components"]')
-      .should('have.attr', 'data-active')
-      .and('eq', 'true');
+    // cy.log('Check if the Components filter pill is toggled');
+    // cy.get('[data-testid="resource-preview-pill-Components"]')
+    //   .should('have.attr', 'data-active')
+    //   .and('eq', 'true');
 
-    cy.log('Check if the Events pill is toggled');
-    cy.get('[data-testid="resource-preview-pill-Events"]')
-      .should('have.attr', 'data-active')
-      .and('eq', 'true');
+    // cy.log('Check if the Events pill is toggled');
+    // cy.get('[data-testid="resource-preview-pill-Events"]')
+    //   .should('have.attr', 'data-active')
+    //   .and('eq', 'true');
   });
 });
 
