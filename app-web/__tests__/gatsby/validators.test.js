@@ -7,9 +7,28 @@ import {
   isMarkdownRemarkFrontmatter,
   isTopicRegistryJson,
   verifyJourney,
+  createSlugBlacklist,
+  isInBlackList,
 } from '../../gatsby/utils/validators';
 
 describe('Validators', () => {
+  describe('Slug Validation', () => {
+    test('createSlugBlacklist', () => {
+      expect(createSlugBlacklist()).toMatchSnapshot();
+    });
+
+    test('isInBlackList', () => {
+      const blacklist = {
+        foo: 'foo',
+        bar: 'bar',
+      };
+      expect(isInBlackList(blacklist, 'foo')).toBe(true);
+      expect(isInBlackList(blacklist, 'foo ')).toBe(true);
+      expect(isInBlackList(blacklist, 'FOO')).toBe(true);
+      expect(isInBlackList(blacklist, 'FOO ')).toBe(true);
+      expect(isInBlackList(blacklist, 'baz ')).toBe(false);
+    });
+  });
   // factory to stub out nodes
   const node = type => ({ internal: { type } });
   describe('Node Type Validators', () => {

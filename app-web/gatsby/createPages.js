@@ -219,7 +219,6 @@ const createResourceTopicsPages = async (createPage, graphql) => {
   data.data.allGithubRaw.edges.forEach(({ node }) => {
     // create a page based on the github raw node and the topics its connected too
     createResourceInTopicsPages(node, createPage);
-    // create individual pages here (in future releases)
   });
 };
 
@@ -291,5 +290,6 @@ module.exports = async ({ graphql, actions }) => {
   await createResourceTopicsPages(createPage, graphql);
   await createEventsPage(createPage);
   await createStandAlonePage(createPage, graphql);
+  // journeys should be created similarly to topics so we cann filter out conflicting github nodes
   await createJourneyPages(createPage, graphql);
 };

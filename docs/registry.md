@@ -22,7 +22,10 @@ The Devhub's content contribution model allows it to source content from a varie
 The way it achieves this is through a set of loosely coupled files called __registries__. 
 
 The two ways you may get content into the Devhub is by either _making a pull request_ or _[creating a new github issue](https://github.com/bcgov/devhub-app-web/issues/new/choose)_. 
-Both require a working Github Account.
+Both require a working Github Account. 
+
+There are automated __[validations](https://github.com/bcgov/devhub-app-web/issues/1287)__ that run during the Application Runtime as well as when there are code-changes.
+These validations help contributors (as well as developers of the Devhub) maintain the user experience.
 
 ## How The Devhub Works
 >  [Want to dive right in?](#before-you-contribute) 
