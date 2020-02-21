@@ -142,6 +142,21 @@ describe('Searching from homepage', () => {
       .click()
       .should('have.attr', 'data-active')
       .and('eq', 'true');
+
+    cy.log(
+      'All the filters should be toggled when a bookmarked page with the appended filers is opened',
+    );
+    cy.visit('?f=Documentation&f=Components&f=Events&q=openshift');
+
+    cy.get('[data-testclass="resource-preview-pill"]')
+      .first()
+      .should('have.attr', 'data-active')
+      .and('eq', 'true');
+
+    cy.get('[data-testclass="resource-preview-pill"]')
+      .nextUntil('[data-testid="resource-preview-pill-Self-Service Tools"]')
+      .should('have.attr', 'data-active')
+      .and('eq', 'true');
   });
 });
 
