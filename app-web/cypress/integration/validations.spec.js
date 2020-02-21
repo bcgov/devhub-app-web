@@ -9,7 +9,6 @@ describe('Validating that slugs do not conflict', () => {
               html_url
               fields {
                 slug
-                journeys
               }
             }
           }
