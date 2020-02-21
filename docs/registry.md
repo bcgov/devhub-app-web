@@ -1,5 +1,4 @@
 ---
-author: patricksimonian
 resourceType: Documentation
 personas: 
   - Developer
@@ -9,31 +8,75 @@ tags:
   - devhub
   - content
   - add content
+  - new content
+  - contribute
+  - contribution
+  - new topic
+  - new journey
+  - edit content
+description: Learn how to make requests for new content in the Devhub by making a Pull Request or an Issue.
 ---
+# Contributing To The Devhub
+
+The Devhub's content contribution model allows it to source content from a variety of sources and stitch them together. 
+The way it achieves this is through a set of loosely coupled files called __registries__. 
+
+The two ways you may get content into the Devhub is by either _making a pull request_ or _[creating a new github issue](https://github.com/bcgov/devhub-app-web/issues/new/choose)_. 
+Both require a working Github Account. 
+
+There are automated __[validations](https://github.com/bcgov/devhub-app-web/issues/1287)__ that run during the Application Runtime as well as when there are code-changes.
+These validations help contributors (as well as developers of the Devhub) maintain the user experience.
+
 ## How The Devhub Works
+>  [Want to dive right in?](#before-you-contribute) 
 
 The Devhub has a ton of information. How does it get there?
 
 Devhub is a [__JAM__](https://jamstack.wtf/) stack. Our primary source of content is through __Github Repositories__.
 
-> more info on [Github here](https://github.com/)
+In a nutshell we source content through various sources of data, markdown files within github repositories, eventbrite data, and even static links to websites. All of this is composed and built into static HTML sites at every build of the application. Devhub is 100% static.
 
-In a nutshell we source content through various sources of data, markdown files within github repositories, eventbrite data, and even static links to websites. All of this is composed and buiilt into static HTML sites at every build of the application. Devhub is 100% static.
+## Rationale
 
-## Why We Chose To Go Static
+The Devhub content is de-centralized. It allows owners of content to manage their content without
+having to know too much of the Devhub application life cycle. In fact, once their content has been 'registered',
+they can update their content without having to notify the Devhub. On the next deployment of the Devhub it will be updated. This is similar to how __craigslist__ works. 
+
+### Why We Chose To Go Static
 
 As explained in the JAM stack article above, going 100% static has huge performance benefits. Also, our model of content being distributed through __BC GOV__ Github repositories means that you are in control of your content. When you have registered to the Devhub, there is no special process to update your content. Just edit your markdown flies and on the next build of Devhub it will be up!
+
+
+### Before You Contribute
+Please take a quick read of the [Service Level Agreement](https://github.com/bcgov/devhub-app-web/blob/master/docs/content_contribution_sla.md) before getting started. 
+
+Some of the things you should consider before contributing are:
+
+1. __Is my content appropriate for the Devhub?__
+This application is geared towards developers working on digital products within the B.C. Government (with a focus on Agile Development), however there is useful information for anyone interested in the B.C. Government digital landscape.
+
+2. __Where should my content live?__
+Content must be registered within topics or registries. They can be registered to __more than one__ topic or journey.
+
+3. __Who will manage the content?__
+The content is not managed by the Devhub. It is up to the original contributors to make sure to keep it up to date
+as well as address any issues that may be opened up against the content._
 
 ## Prerequisites
 
 In order to add content to the Devhub a few things needs to be in order.
 
-1. You must have a [Github Account](https://github.com/)
-2. Have knowledge of how to Fork and Pull Request (Also known as a PR)
-3. Some knowledge of editing `JSON` configuration files
-4. Some knowledge of editing `Markdown` files
+- You must have a [Github Account](https://github.com/)
 
-## Registering To The Devhub
+If you would like to suggest a direct contribution (preferred) you will also require:
+- Some knowledge of how to Fork and Pull Request (Also known as a PR)
+- Some knowledge of editing `JSON` configuration files
+- Some knowledge of editing `Markdown` files
+
+If you would like to __suggest content__ you can also make a [New Issue](https://github.com/bcgov/devhub-app-web/issues/new/choose) on the devhub. 
+
+
+## Suggesting a Direct Contribution
 
 Registration of content to the Devhub is done via `JSON` format configuration files.
 
@@ -42,7 +85,7 @@ Registration of content to the Devhub is done via `JSON` format configuration fi
 These files are also known as __registry__ files. In a nutshell, the registry is like a subscription for the Devhub. Just like subscribing to magazines in real life, instead of receiving a new magazine at the end of the month, whenever the Devhub rebuilds it grabs the latest version of your content as found within its repository.
 
 > If you have contributed to the Devhub in the past, you may have encountered `YAML` formatted configuration files instead of `JSON`.
-We found `YAML` to be more errorprone for content contributes because it is spacing/indent sensitive. `JSON` files, although more 'codey' looking, is more forgiving in this aspect.
+We found `YAML` to be more error prone for content contributes because it is spacing/indent sensitive. `JSON` files, although more 'codey' looking, is more forgiving in this aspect.
 
 ## Where are these configuration files?
 

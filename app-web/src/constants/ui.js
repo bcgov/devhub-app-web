@@ -101,6 +101,7 @@ export const FEATURED_CONTENT = [
   'Chat Channel Conventions',
   'Steps to join Pathfinder Rocket.Chat',
   '12 Factor Apps',
+  'Contributing To The Devhub',
   'Progressive Web Apps',
   'Documize',
   'What is Pathfinder?',

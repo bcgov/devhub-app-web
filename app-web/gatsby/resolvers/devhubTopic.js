@@ -51,7 +51,7 @@ const resolveDevhubTopicConnections = (source, args, context) => {
     webNodes = uniqBy(webNodes, 'path');
 
     ghNodes = ghNodes
-      .filter(n => nodeBelongsToTopic(source.name, n))
+      .filter(n => nodeBelongsToTopic(source.name, n) && !n.fields.disabled)
       .map(n => ({
         fields: { ...n.fields },
         id: n.id,

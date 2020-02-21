@@ -114,6 +114,7 @@ module.exports = {
   mapping: {
     'GithubRaw.fields.topics': 'TopicRegistryJson.name',
     'DevhubSiphon.fields.topics': 'TopicRegistryJson.name',
+    'GithubRaw.fields.journeys': 'JourneyRegistryJson.name',
     // 'devhubRegistryJson.fields.content': 'MarkdownRemark.fields.id', // topic page content mapping
     // 'TopicRegistryJson.fields.githubRaw': 'GithubRaw.id',
     // 'JourneyRegistryJson.name': 'MarkdownRemark.frontmatter.id',
@@ -244,6 +245,13 @@ module.exports = {
             },
           },
           'gatsby-plugin-catch-links',
+          {
+            resolve: 'gatsby-remark-external-links',
+            options: {
+              target: '_blank',
+              rel: 'nofollow',
+            },
+          },
         ],
       },
     },

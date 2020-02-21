@@ -4,5 +4,6 @@
   },
   "journeyRegistry": {
     "contextDir": "journeyRegistry"
-  }
+  },
+  "slugBlackList": ["about", "readme", "html", "document"]
 }

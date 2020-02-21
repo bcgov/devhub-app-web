@@ -129,7 +129,7 @@ exports[`Primary Header Component matches snapshot 1`] = `
   display: none;
 }
 
-@media (min-width:858px) {
+@media (min-width:932px) {
   .emotion-15 {
     display: inline-block;
   }
