@@ -10,8 +10,8 @@ const ENVS = {
   DEV: 'dev',
 };
 
-// our nominclature for environments is mapped to what github's nomenclature is to keep them
-// seperate and consistent
+// our nomenclature for environments is mapped to what github's nomenclature is to keep them
+// separate and consistent
 const githubEnvironmentMapping = {
   prod: 'production',
   dev: 'development',
@@ -95,6 +95,7 @@ module.exports = async settings => {
       description: options.description,
       environment: githubEnvironmentMapping[phase],
       log_url: `https://devhub-static-dev-${changeId}-devhub-dev.pathfinder.gov.bc.ca`,
+      environment_url: `https://devhub-static-dev-${changeId}-devhub-dev.pathfinder.gov.bc.ca`,
     },
     repository,
     owner,
