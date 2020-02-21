@@ -141,7 +141,7 @@ exports[`404 Page it matches snapshot 1`] = `
   display: none;
 }
 
-@media (min-width:858px) {
+@media (min-width:932px) {
   .emotion-15 {
     display: inline-block;
   }
@@ -167,7 +167,7 @@ exports[`404 Page it matches snapshot 1`] = `
   background-color: #FCBA19;
 }
 
-@media (min-width:858px) {
+@media (min-width:932px) {
   .emotion-17 {
     display: none;
   }
@@ -186,7 +186,7 @@ exports[`404 Page it matches snapshot 1`] = `
   z-index: 150;
 }
 
-@media (min-width:858px) {
+@media (min-width:932px) {
   .emotion-53 {
     display: block;
     padding: 0 65px;
@@ -212,7 +212,7 @@ exports[`404 Page it matches snapshot 1`] = `
   text-decoration: none;
 }
 
-@media (min-width:858px) {
+@media (min-width:932px) {
   .emotion-25 {
     display: none;
   }
@@ -236,7 +236,7 @@ exports[`404 Page it matches snapshot 1`] = `
   margin: 0;
 }
 
-@media (min-width:858px) {
+@media (min-width:932px) {
   .emotion-51 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -287,7 +287,7 @@ exports[`404 Page it matches snapshot 1`] = `
   color: #fff;
 }
 
-@media (min-width:858px) {
+@media (min-width:932px) {
   .emotion-28 {
     padding: 14px 10px;
   }
