@@ -114,7 +114,7 @@ describe('Searching from homepage', () => {
 
         expect(cards.length)
           .to.be.greaterThan(0)
-          .and.to.be.lessThan(18);
+          .and.to.be.lessThan(19);
       });
 
     cy.log('it should reset the pills when another search is done');
@@ -148,13 +148,15 @@ describe('Searching from homepage', () => {
     );
     cy.visit('?f=Documentation&f=Components&f=Events&q=openshift');
 
-    cy.get('[data-testclass="resource-preview-pill"]')
-      .first()
+    cy.get('[data-testid="resource-preview-pill-Documentation"]')
       .should('have.attr', 'data-active')
       .and('eq', 'true');
 
-    cy.get('[data-testclass="resource-preview-pill"]')
-      .nextUntil('[data-testid="resource-preview-pill-Self-Service Tools"]')
+    cy.get('[data-testid="resource-preview-pill-Components"]')
+      .should('have.attr', 'data-active')
+      .and('eq', 'true');
+
+    cy.get('[data-testid="resource-preview-pill-Events"]')
       .should('have.attr', 'data-active')
       .and('eq', 'true');
   });
