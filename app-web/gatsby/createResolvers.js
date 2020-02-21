@@ -23,6 +23,9 @@
 
 const { resolveJourneyConnections } = require('./resolvers/registryJson');
 const { resolveDevhubTopicConnections } = require('./resolvers/devhubTopic');
+const { createSlugBlacklist, isInBlackList } = require('./utils/validators');
+
+const slugBlackList = createSlugBlacklist();
 
 const getOrganizationsById = id => {
   const organizations = {
@@ -58,6 +61,29 @@ module.exports = ({ createResolvers }) => {
           } else {
             return 0;
           }
+        },
+      },
+      _conflictsFound: {
+        // binding a boolean if the slug that was created for this node would conflict with our blacklisted slugs
+        // and or any other github raw node (ie all slugs must be unique)
+        type: 'Boolean',
+        resolve: (source, args, context) => {
+          const nodes = context.nodeModel.getAllNodes({ type: 'GithubRaw' });
+          const slug = source.fields.slug;
+          const slugIsInvalid = slug === '' || slug === null || isInBlackList(slugBlackList, slug);
+          const matchingSlugs = nodes.filter(n => n.fields.slug === slug);
+          const conflictsFound = slugIsInvalid || matchingSlugs.length !== 1;
+
+          if (conflictsFound === true && process.env.CONFLICTS_SHOULD_THROW === true) {
+            const matchingNodes = matchingSlugs.map(n => `${n.fields.title} - ${n.html_url}`);
+
+            throw new Error(
+              `Conflicts found with ${source.fields.title} (source: ${
+                source.html_url
+              }). Matching nodes: ${matchingNodes.join('\n')}`,
+            );
+          }
+          return conflictsFound;
         },
       },
     },
