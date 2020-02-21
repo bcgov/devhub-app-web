@@ -29,7 +29,6 @@
     "eslint-plugin-prettier": "^3.1.0",
     "husky": "^3.0.0",
     "lint-staged": "^9.2.0",
-    "pipeline-cli": "git+https://github.com/BCDevOps/pipeline-cli.git#v1.1",
     "prettier": "^1.18.2"
   },
   "husky": {
@@ -48,7 +47,7 @@
     ]
   },
   "dependencies": {
-    "@bcgov/gh-deploy": "^1.1.1",
+    "@bcgov/gh-deploy": "^1.1.4",
     "@bcgov/pipeline-cli": "^1.0.1-0",
     "algoliasearch": "^3.35.1",
     "dotenv": "^8.2.0",
