@@ -44,7 +44,7 @@ pipeline {
                 script {
                     timeout(time: 5, unit: 'MINUTES')  {
                         echo "updating algolia index settings and synonyms"
-                        sh "cd .pipeline && ./npmw ci && ./npmw run update-algolia-index-settings -- --suffix=prod"
+                        sh "cd .pipeline && ./npmw ci && ./npmw run update-algolia-index-settings -- --suffix=-build-${CHANGE_ID}"
                     }
                     timeout(time: 5, unit: 'MINUTES')  {
                         sh "cd .pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev --description='deploying to dev from devhub job'"
