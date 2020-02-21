@@ -1,12 +1,10 @@
 {
-  "searchableAttributesArgs": {
+  "setSettingsArgs": {
     "forwardToReplicas":  false
   },
-  "searchableAttributes": [
-    "content",
-    "unordered(fields.description)",
-    "unordered(fields.title)"
-  ],
+  "setSettings": { 
+    "searchableAttributes": ["content", "unordered(fields.description)", "unordered(fields.title)"]
+  },
   "synonymsArgs": {
     "forwardToReplicas": false,
     "replaceExistingSynonyms": true

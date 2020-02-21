@@ -2,8 +2,8 @@
 require('dotenv').config();
 const algoliasearch = require('algoliasearch');
 const {
-  searchableAttributesArgs,
-  searchableAttributes,
+  setSettings,
+  setSettingsArgs,
   synonyms,
   synonymsArgs,
 } = require('../../algolia/index.json');
@@ -15,7 +15,7 @@ module.exports = async settings => {
   const index = client.initIndex(indexName);
 
   console.log(`Updating Searchable Attributes for ${indexName}`);
-  await index.setSettings(searchableAttributes, searchableAttributesArgs);
+  await index.setSettings(setSettings, setSettingsArgs);
 
   console.log(`Updating Synonyms for ${indexName}`);
   await index.saveSynonyms(synonyms, synonymsArgs);
