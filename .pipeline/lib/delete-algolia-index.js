@@ -8,5 +8,5 @@ module.exports = async settings => {
   const index = `Devhub-Algolia-${suffix}`;
   console.log(`Deleting Algolia Index ${index}`);
 
-  return await client.deleteIndex(index);
+  return await index.delete();
 };
