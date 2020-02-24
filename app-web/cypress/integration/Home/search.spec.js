@@ -130,38 +130,39 @@ describe('Searching from homepage', () => {
     cy.visit('?q=openshift');
 
     cy.get('[data-testclass="resource-preview-pill"]')
-      .as('allPills')
+      .as('allPills') // alias all pills on render
       .click({ multiple: true });
 
     cy.getByTestId('resource-preview-pill-all')
       .should('have.attr', 'data-active')
       .and('eq', 'true');
 
-    cy.get('[data-testclass="resource-preview-pill"]')
+    cy.get('@allPills')
       .first()
       .click()
       .should('have.attr', 'data-active')
       .and('eq', 'true');
 
-    // cy.log(
-    //   'All the filters should be toggled when a bookmarked page with the appended filers is opened',
-    // );
-    // cy.visit('?f=Documentation&f=Components&f=Events&q=openshift');
+    cy.log(
+      'All the filters should be toggled when a bookmarked page with the appended filers is opened',
+    );
+    cy.get('@allPills').then(pills => {
+      // eslint-disable-next-line no-unused-vars
+      const [first, second, ...rest] = Array.from(pills).map(p => {
+        return Cypress.$(p).data('resourcetype');
+      });
+      // we remove the second so that we prevent toggling all pills. if we  do the 'all' pill will be
+      // toggled instead of the filter pills
+      // the query openshift is very generic and so should return many different resource types
+      const visitString = `?q=openshift&f=${first}&f=${rest ? rest.join('&f=') : ''}`;
+      cy.visit(visitString);
 
-    // cy.log('Check if the Documentation Pill is toggled');
-    // cy.get('[data-testid="resource-preview-pill-Documentation"]')
-    //   .should('have.attr', 'data-active')
-    //   .and('eq', 'true');
-
-    // cy.log('Check if the Components filter pill is toggled');
-    // cy.get('[data-testid="resource-preview-pill-Components"]')
-    //   .should('have.attr', 'data-active')
-    //   .and('eq', 'true');
-
-    // cy.log('Check if the Events pill is toggled');
-    // cy.get('[data-testid="resource-preview-pill-Events"]')
-    //   .should('have.attr', 'data-active')
-    //   .and('eq', 'true');
+      [first].concat(rest).forEach(rt => {
+        cy.get(`[data-testid="resource-preview-pill-${rt}"]`)
+          .should('have.attr', 'data-active')
+          .and('eq', 'true');
+      });
+    });
   });
 });
 
