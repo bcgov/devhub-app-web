@@ -13,7 +13,7 @@ export const createIam = () => {
     baseURL: SSO_BASE_URL,
     clientId: SSO_CLIENT_ID,
     realmName: SSO_REALM_NAME,
-    redirectURI: origin + pathname + encodeURIComponent(search),
+    redirectURI: origin + pathname + search,
   };
 
   if (iam === null) {
