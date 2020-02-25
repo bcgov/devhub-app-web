@@ -90,6 +90,19 @@
             "apps/artifactory/DEVHUB-README.md"
           ]
         }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "title": "Dynamics 365 FAQ",
+          "url": "https://github.com/bcgov/cap-information",
+          "author": "ateppin",
+          "owner": "bcgov",
+          "repo": "cap-information",
+          "files": [
+            "cloud-pathfinder/dynamics.md"
+          ]
+        }
       }
     ]
   }
