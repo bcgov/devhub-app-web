@@ -1,0 +1,17 @@
+{
+  "setSettingsArgs": {
+    "forwardToReplicas":  false
+  },
+  "setSettings": { 
+    "searchableAttributes": ["content", "unordered(fields.description)", "unordered(fields.title)"]
+  },
+  "synonymsArgs": {
+    "forwardToReplicas": false,
+    "replaceExistingSynonyms": true
+  },
+  "synonyms": [{
+    "objectID": "devhub.storage",
+    "type": "synonym",
+    "synonyms": ["pvc", "persistent", "storage", "netapp", "block storage"]
+  }]
+}
