@@ -47,9 +47,10 @@ const FILE_CONTENTS_QUERY = `
   }
 `;
 
+const throttleRequests = core.getInput('throttle', { required: false }) || 333;
 const limiter = new Bottleneck({
   maxConcurrent: 3,
-  minTime: 333,
+  minTime: throttleRequests,
 });
 /**
  * gets journeys and topics registry files
