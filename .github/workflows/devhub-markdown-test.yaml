@@ -28,3 +28,4 @@ jobs:
       with:
         repo: devhub-app-web
         owner: bcgov
+        throttle: 600
