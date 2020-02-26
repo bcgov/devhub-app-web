@@ -108,7 +108,7 @@ test('it can fetch and process', async () => {
   process.env['GITHUB_TOKEN'] = 500;
 
   await run();
-});
+}, 20000);
 
 describe('validation', () => {
   test('hasNoErrors', () => {

@@ -27,6 +27,7 @@
     "@actions/core": "^1.1.1",
     "@actions/github": "^2.0.0",
     "babel-polyfill": "^6.26.0",
+    "bottleneck": "^2.19.5",
     "gray-matter": "^4.0.2",
     "lodash": "^4.17.15"
   },
