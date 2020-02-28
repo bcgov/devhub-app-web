@@ -31,9 +31,9 @@ import keycloak from './src/auth';
 
 config.autoAddCss = false;
 
-const Foo = Component => ({ element }) => (
+const RuntimeWrapper = Component => ({ element }) => (
   <KeycloakProvider keycloak={keycloak}>
     <Component element={element} />
   </KeycloakProvider>
 );
-export const wrapRootElement = Foo(wrapWithProvider);
+export const wrapRootElement = RuntimeWrapper(wrapWithProvider);
