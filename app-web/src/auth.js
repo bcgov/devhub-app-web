@@ -6,7 +6,7 @@ import { SSO_BASE_URL, SSO_CLIENT_ID, SSO_REALM_NAME } from './constants/api';
 // let iam = null;
 
 export const keycloak = new Keycloak({
-  url: SSO_BASE_URL,
+  url: `${SSO_BASE_URL}/auth`,
   realm: SSO_REALM_NAME,
   clientId: SSO_CLIENT_ID,
 });
