@@ -14,9 +14,7 @@ Created by Patrick Simonian
 // custom react hooks
 // notes on custom hooks https://reactjs.org/docs/hooks-custom.html
 import { useState, useEffect, useRef, useMemo } from 'react';
-
 import isEqual from 'lodash/isEqual';
-
 import { useLazyQuery } from '@apollo/react-hooks';
 import { SEARCHGATE_QUERY } from '../constants/runtimeGraphqlQueries';
 import algoliasearch from 'algoliasearch/lite';
@@ -70,40 +68,6 @@ export const useSearch = query => {
   }, [query]);
   return results;
 };
-
-// export const useImplicitAuth = () => {
-//   const [user, setUser] = useState({});
-//   const [intention, setIntention] = useState('');
-//   useEffect(() => {
-//     const { search } = window.location;
-//     const searchParams = queryString.parse(search);
-//     setIntention(searchParams.intention);
-
-//     const implicitAuthManager = createIam();
-//     implicitAuthManager.registerHooks({
-//       onAuthenticateSuccess: () => setUser(implicitAuthManager.getAuthDataFromLocal()),
-//       onAuthenticateFail: () => setUser({}),
-//       onAuthLocalStorageCleared: () => {
-//         setUser({});
-//       },
-//       onTokenExpired: () => {
-//         implicitAuthManager.clearAuthLocalStorage();
-//       },
-//     });
-
-//     if (!isLocalHost()) {
-//       implicitAuthManager.handleOnPageLoad();
-//     } else if (implicitAuthManager.isAuthenticated()) {
-//       setUser(implicitAuthManager.getAuthDataFromLocal());
-//     }
-
-//     if (intention === 'LOGOUT') {
-//       implicitAuthManager.clearAuthLocalStorage();
-//     }
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, [intention]);
-//   return user;
-// };
 
 /**
  * hook that performs a rocket chat search against the rocket gate apollo api
