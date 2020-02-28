@@ -15,9 +15,10 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { navigate } from 'gatsby';
+import { useKeycloak } from '@react-keycloak/web';
 import styled from '@emotion/styled';
 import { Alert } from 'reactstrap';
 import { css } from '@emotion/core';
@@ -27,7 +28,6 @@ import { EMOTION_BOOTSTRAP_BREAKPOINTS, SPACING } from '../../constants/designTo
 import Search from '../Search';
 import AppLogo from '../UI/AppLogo/AppLogo';
 import { SearchSources } from '../Search/SearchSources';
-import AuthContext from '../../AuthContext';
 import AlgoliaBrand from '../UI/AlgoliaBrand';
 
 const SearchStyled = styled(Search)`
@@ -70,7 +70,8 @@ export const TEST_IDS = {
 };
 
 export const Masthead = ({ query, searchSourcesLoading, location }) => {
-  const { isAuthenticated } = useContext(AuthContext);
+  const [keycloak] = useKeycloak();
+  const isAuthenticated = keycloak && keycloak.authenticated;
   const [alertHasBeenAcknowledged, setAlertHasBeenAcknowledged] = useState(false);
 
   const onDismiss = () => {
