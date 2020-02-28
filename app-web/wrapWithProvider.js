@@ -18,7 +18,7 @@ Created by Patrick Simonian
 
 import React from 'react';
 import { ThemeProvider } from 'emotion-theming';
-import { AuthProvider } from './src/AuthContext';
+
 import theme from './theme';
 import { ApolloClient, InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
@@ -38,8 +38,6 @@ export const client = new ApolloClient({
 
 export default ({ element }) => (
   <ThemeProvider theme={theme}>
-    <AuthProvider>
-      <ApolloProvider client={client}>{element}</ApolloProvider>
-    </AuthProvider>
+    <ApolloProvider client={client}>{element}</ApolloProvider>
   </ThemeProvider>
 );

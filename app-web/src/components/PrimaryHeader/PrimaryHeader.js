@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Banner from '../UI/Banner/Banner';
 import Hamburger from '../UI/Hamburger/Hamburger';
@@ -6,7 +6,6 @@ import Hamburger from '../UI/Hamburger/Hamburger';
 import Login from '../Auth/Login';
 import styled from '@emotion/styled';
 import { CUSTOM_BREAKPOINTS } from '../../constants/designTokens';
-import AuthContext from '../../AuthContext';
 
 const Header = styled.header`
   background-color: ${({ theme }) => theme.colors.blue};
@@ -48,14 +47,12 @@ const Panel = styled.div`
 `;
 
 export const PrimaryHeader = ({ showHamburger, hamburgerClicked }) => {
-  const { isAuthenticated } = useContext(AuthContext);
-
   return (
     <Header>
       <Banner />
       <Panel>
         <LoginWrapper>
-          <Login authenticated={isAuthenticated} />
+          <Login />
         </LoginWrapper>
         {showHamburger ? <StyledHamburger clicked={hamburgerClicked} /> : null}
       </Panel>
