@@ -15,12 +15,14 @@ module.exports = ({ actions }) => {
     }
     type frontMatterLabelSet {
       app: String
+      ministry: String
+      team: String
     }
+
     type ConnectedNodeFieldSet {
       position: String
       title: String
       description: String
-      image: String
       labels: frontMatterLabelSet
       tags: [String]
       path: String
@@ -36,6 +38,9 @@ module.exports = ({ actions }) => {
     }
     type GithubRaw implements Node {
       _conflictsFound: Boolean
+    }
+    type DevhubSiphon implements Node {
+      fields: ConnectedNodeFieldSet
     }
   `;
 

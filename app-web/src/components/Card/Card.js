@@ -20,7 +20,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import validUrl from 'valid-url';
 import CardHeader from './CardHeader';
-
+import Img from 'gatsby-image';
 import {
   CardBody,
   Description,
@@ -39,6 +39,7 @@ import {
 
 import { RESOURCE_TYPES_LIST, RESOURCE_TYPES } from '../../constants/ui';
 import EventLogo from '../Event/Logo';
+import { graphql } from 'gatsby';
 
 const variants = {
   basic: 'basic', // title, description, normal card header
@@ -113,7 +114,16 @@ export const Card = ({
       cardBody = (
         <React.Fragment>
           <ImageWrapper>
-            <Image src={image} alt={title} />
+            {image.childImageSharp ? (
+              <Img
+                imgStyle={{ objectFit: 'scale-down', height: '100%', padding: '10px' }}
+                style={{ margin: '0 auto' }}
+                fixed={image.childImageSharp.fixed}
+                alt={title}
+              />
+            ) : (
+              <Image src={image} alt={title} />
+            )}
           </ImageWrapper>
         </React.Fragment>
       );
@@ -124,9 +134,18 @@ export const Card = ({
           <Description title={description} clamp={2} tagName="p">
             {description}
           </Description>
-          <ImageWrapper>
-            <Image src={image} alt={title} />
-          </ImageWrapper>
+          {image.childImageSharp ? (
+            <Img
+              imgStyle={{ objectFit: 'scale-down', height: '100%', padding: '10px' }}
+              style={{ margin: '0 auto' }}
+              fixed={image.childImageSharp.fixed}
+              alt={title}
+            />
+          ) : (
+            <ImageWrapper>
+              <Image src={image} alt={title} />
+            </ImageWrapper>
+          )}
         </React.Fragment>
       );
       break;
@@ -240,3 +259,13 @@ export const EventCard = ({ title, description, image, link, event, isExternal }
 };
 
 export default Card;
+
+export const CardImageFragment = graphql`
+  fragment cardFixedImage on File {
+    childImageSharp {
+      fixed(width: 240) {
+        ...GatsbyImageSharpFixed
+      }
+    }
+  }
+`;

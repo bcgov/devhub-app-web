@@ -115,6 +115,8 @@ module.exports = {
     'GithubRaw.fields.topics': 'TopicRegistryJson.name',
     'DevhubSiphon.fields.topics': 'TopicRegistryJson.name',
     'GithubRaw.fields.journeys': 'JourneyRegistryJson.name',
+    'GithubRaw.fields.image': 'File.url',
+    'DevhubSiphon.fields.image': 'File.url',
     // 'devhubRegistryJson.fields.content': 'MarkdownRemark.fields.id', // topic page content mapping
     // 'TopicRegistryJson.fields.githubRaw': 'GithubRaw.id',
     // 'JourneyRegistryJson.name': 'MarkdownRemark.frontmatter.id',
@@ -197,7 +199,6 @@ module.exports = {
     },
     'gatsby-transformer-json',
     'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-yaml',
     {
@@ -304,5 +305,6 @@ module.exports = {
         },
       },
     },
+    'gatsby-transformer-sharp',
   ].concat(dynamicPlugins.filter(plugin => plugin !== void 0)),
 };

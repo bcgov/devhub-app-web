@@ -15,6 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
+const { createRemoteFileNode } = require('gatsby-source-filesystem');
 const moment = require('moment');
 const htmlToFormattedText = require('html-to-formatted-text');
 const { isPlainObject, isArray } = require('lodash');
@@ -56,8 +57,8 @@ const buildTimeDate = moment();
  * @param  {String} image
  * more info can be found in devhubCardSpec.md
  */
-module.exports = ({ node, actions, getNode, getNodes }) => {
-  const { createNodeField } = actions;
+module.exports = async ({ node, actions, getNode, getNodes, store, cache, createNodeId }) => {
+  const { createNodeField, createNode } = actions;
 
   if (isGithubRaw(node)) {
     createNodeField({ node, name: 'topics', value: node.___boundProperties.topics });
@@ -125,11 +126,23 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       value: node.unfurl.description,
     });
 
-    createNodeField({
-      node,
-      name: 'image',
-      value: node.unfurl.image,
-    });
+    if (node.unfurl.image && /^https/.test(node.unfurl.image) && !/svg$/.test(node.unfurl.image)) {
+      let fileNode = await createRemoteFileNode({
+        url: node.unfurl.image, // string that points to the URL of the image
+        parentNodeId: node.id, // id of the parent node of the fileNode you are going to create
+        createNode, // helper function in gatsby-node to generate the node
+        createNodeId, // helper function in gatsby-node to generate the node id
+        cache, // Gatsby's cache
+        store, // Gatsby's redux store
+      });
+      if (fileNode) {
+        createNodeField({
+          node,
+          name: 'image',
+          value: node.unfurl.image || '',
+        });
+      }
+    }
 
     createNodeField({
       node,
@@ -284,6 +297,20 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       value: node.frontmatter.description ? node.frontmatter.description : '',
     });
 
+    if (
+      !!node.frontmatter.image &&
+      /^https/.test(node.frontmatter.image) &&
+      !/svg$/.test(node.frontmatter.image)
+    ) {
+      await createRemoteFileNode({
+        url: node.frontmatter.image, // string that points to the URL of the image
+        parentNodeId: node.id, // id of the parent node of the fileNode you are going to create
+        createNode, // helper function in gatsby-node to generate the node
+        createNodeId, // helper function in gatsby-node to generate the node id
+        cache, // Gatsby's cache
+        store, // Gatsby's redux store
+      });
+    }
     createNodeField({
       node,
       name: 'image',
