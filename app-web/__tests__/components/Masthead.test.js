@@ -3,21 +3,18 @@ import { render, cleanup, fireEvent } from '@testing-library/react';
 import Masthead, { TEST_IDS } from '../../src/components/Home/Masthead';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
-import { useImplicitAuth } from '../../src/utils/hooks';
-import { AuthProvider } from '../../src/AuthContext';
+import { useKeycloak } from '@react-keycloak/web';
+jest.mock('@react-keycloak/web');
 jest.mock('../../src/utils/hooks');
 describe('Masthead Component', () => {
   afterEach(cleanup);
   // jwt time stamps are in seconds. dividing by 1000 to convert date.now ms to s
-  const currentDate = Date.now() / 1000;
-  it('It shows an alert window when a search has happened', () => {
-    useImplicitAuth.mockReturnValue({});
 
+  it('It shows an alert window when a search has happened', () => {
+    useKeycloak.mockReturnValue([{ authenticated: false }]);
     const { queryByTestId, rerender } = render(
       <ThemeProvider theme={theme}>
-        <AuthProvider>
-          <Masthead query={'openshift'} searchSourcesLoading={true} />
-        </AuthProvider>
+        <Masthead query={'openshift'} searchSourcesLoading={true} />
       </ThemeProvider>,
     );
     const alert = queryByTestId(TEST_IDS.alertBox);
@@ -25,9 +22,7 @@ describe('Masthead Component', () => {
 
     rerender(
       <ThemeProvider theme={theme}>
-        <AuthProvider>
-          <Masthead query={'devop'} searchSourcesLoading={true} />
-        </AuthProvider>
+        <Masthead query={'devop'} searchSourcesLoading={true} />
       </ThemeProvider>,
     );
     expect(alert).toBeInTheDocument();
@@ -38,9 +33,7 @@ describe('Masthead Component', () => {
 
     rerender(
       <ThemeProvider theme={theme}>
-        <AuthProvider>
-          <Masthead query={'happy'} searchSourcesLoading={true} />
-        </AuthProvider>
+        <Masthead query={'happy'} searchSourcesLoading={true} />
       </ThemeProvider>,
     );
 
@@ -48,27 +41,17 @@ describe('Masthead Component', () => {
   });
 
   it('The alert box does not show when authenticated', () => {
-    useImplicitAuth.mockReturnValue({
-      idToken: {
-        data: {
-          exp: currentDate + 50000,
-        },
-      },
-    });
+    useKeycloak.mockReturnValue([{ authenticated: true }]);
     const { queryByTestId, rerender } = render(
       <ThemeProvider theme={theme}>
-        <AuthProvider>
-          <Masthead query={'openshift'} searchSourcesLoading={true} />
-        </AuthProvider>
+        <Masthead query={'openshift'} searchSourcesLoading={true} />
       </ThemeProvider>,
     );
     const alert = queryByTestId(TEST_IDS.alertBox);
     expect(alert).not.toBeInTheDocument();
     rerender(
       <ThemeProvider theme={theme}>
-        <AuthProvider>
-          <Masthead query={'happy'} searchSourcesLoading={true} />
-        </AuthProvider>
+        <Masthead query={'happy'} searchSourcesLoading={true} />
       </ThemeProvider>,
     );
 
