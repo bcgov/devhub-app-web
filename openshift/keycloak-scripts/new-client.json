@@ -9,12 +9,12 @@
   "redirectUris": [
       "https://devhub-static-dev-#{PR}-devhub-dev.pathfinder.gov.bc.ca/*"
   ],
-  "webOrigins": [],
+  "webOrigins": ["*"],
   "notBefore": 0,
   "bearerOnly": false,
   "consentRequired": false,
-  "standardFlowEnabled": false,
-  "implicitFlowEnabled": true,
+  "standardFlowEnabled": true,
+  "implicitFlowEnabled": false,
   "directAccessGrantsEnabled": false,
   "serviceAccountsEnabled": false,
   "publicClient": true,
