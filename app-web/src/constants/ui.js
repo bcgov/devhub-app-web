@@ -5,6 +5,8 @@ export const RESOURCE_TYPES = {
   REPOSITORIES: 'Repositories',
   PEOPLE: 'People',
   EVENTS: 'Events',
+  TOPICS: 'Topics',
+  JOURNEY: 'Journey'
 };
 
 export const SEARCH_RESOURCE_TYPES = {

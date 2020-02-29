@@ -28,7 +28,7 @@ export const TEST_IDS = {
 export const Index = ({
   location,
   client,
-  data: { allGithubRaw, allDevhubSiphon, allEventbriteEvents },
+  data: { allGithubRaw, allDevhubSiphon, allEventbriteEvents, allJourneyRegistryJson },
 }) => {
   // this forces the component to re render on the client as there will be a mistmatch between
   // html properties on reloads of this page when a search comes in. This is a known effect
@@ -61,16 +61,22 @@ export const Index = ({
     allEventbriteEvents.edges,
   ]);
 
+  const journeydata = useMemo(() => flattenGatsbyGraphQL(allJourneyRegistryJson.edges), [
+    allJourneyRegistryJson.edges,
+  ]);
+  // console.log(allJourneyRegistryJson.fields.resourceType)
   const searchSources = useMemo(() => groupBy(searchGate.results, 'type'), [searchGate.results]);
 
   // github raw and siphon can be joined because they already have like metadata for their node fields
   const githubRawAndSiphon = allGithubRaw.edges.concat(allDevhubSiphon.edges);
   // adds properties needed for rendering the 'event metadata' in the event card component
   const currentEvents = formatEvents(events.filter(e => e.start.daysFromNow <= 0));
+  // adds properties needes for rendering the journeys
+  // const journeyRegistryJson = allJourneyRegistryJson.edges;
 
-  const resourcesToSearchAgainst = useMemo(() => flattenGatsbyGraphQL(githubRawAndSiphon), [
+  const resourcesToSearchAgainst = useMemo(() => flattenGatsbyGraphQL(githubRawAndSiphon),[
     githubRawAndSiphon,
-  ]).concat(currentEvents);
+  ]).concat(currentEvents).concat(journeydata);
 
   let content;
   if (!isClient) {
@@ -201,6 +207,23 @@ export const homeQuery = graphql`
             }
             pagePaths
             standAlonePath
+          }
+        }
+      }
+    }
+    allJourneyRegistryJson {
+      edges {
+        node {
+          id
+          name
+          fields {
+            resourceType
+            slug
+          }
+          connectsWith {
+            path
+            id
+            _type
           }
         }
       }

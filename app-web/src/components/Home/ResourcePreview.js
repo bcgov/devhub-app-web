@@ -151,6 +151,7 @@ export const ResourcePreview = ({
   const filteredResources = isAllToggled
     ? resources
     : resources.filter(resource => activeFilters.includes(resource.fields.resourceType));
+    console.log("here ",resources)
 
   //sets the amount of resources to show, allowing users to 'see more' if its appropriate
   const updateCount = () => {

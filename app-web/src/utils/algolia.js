@@ -19,6 +19,34 @@ const algoliaIndexQuery = `{
       }
     }
   }
+  Journeys: allJourneyRegistryJson {
+    edges {
+      node {
+        id
+        name
+        fields {
+          resourceType
+          slug
+          description
+        }
+        internal {
+          type
+        }
+      }
+    }
+  }
+  Topics: allTopicRegistryJson {
+    edges {
+      node {
+        id
+        name
+        description
+        internal {
+          type
+        }
+      }
+    }
+  }
   DevhubSiphon: allDevhubSiphon(filter: { source: { type: { eq: "web" } } }) {
     edges {
       node {
@@ -87,11 +115,13 @@ export const reduceNodesForIndex = nodes => {
 export const queries = [
   {
     query: algoliaIndexQuery,
-    transformer: ({ data: { GithubSource, DevhubSiphon, EventbriteEvents } }) =>
+    transformer: ({ data: { GithubSource, DevhubSiphon, EventbriteEvents, Journeys, Topics } }) =>
       reduceNodesForIndex(
         flattenGatsbyGraphQL(GithubSource.edges)
           .concat(flattenGatsbyGraphQL(DevhubSiphon.edges))
-          .concat(flattenGatsbyGraphQL(EventbriteEvents.edges)),
+          .concat(flattenGatsbyGraphQL(EventbriteEvents.edges))
+          .concat(flattenGatsbyGraphQL(Journeys.edges))
+          .concat(flattenGatsbyGraphQL(Topics.edges)),
       ),
     indexName: `Devhub-Algolia`,
     settings,

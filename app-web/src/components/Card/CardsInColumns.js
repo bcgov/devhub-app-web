@@ -22,6 +22,9 @@ import Col from './Column';
 import Card from './Card';
 
 const CardsInColumns = ({ cards }) => {
+  cards.map(card => (
+    console.log(card.fields.resourceType)
+  ))
   return cards.map(card => (
     <Col
       key={card.id}
