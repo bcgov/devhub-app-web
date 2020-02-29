@@ -51,9 +51,5 @@ storiesOf('Navigation', module)
       ]}
       authenticated
       toggled
-      implicitAuthManager={{
-        getSSOLogoutURI: () => 'null',
-        getSSOLoginURI: () => 'null',
-      }}
     />
   ));

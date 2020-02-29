@@ -1,4 +1,5 @@
-import React, { useMemo, useContext, useEffect, useState } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
+import { useKeycloak } from '@react-keycloak/web';
 import queryString from 'query-string';
 import { graphql } from 'gatsby';
 // components
@@ -7,7 +8,7 @@ import { Alert } from 'reactstrap';
 import { SearchResults } from '../components/Search/SearchResults';
 import { Masthead, TopicsPreview } from '../components/Home';
 import Layout from '../hoc/Layout';
-import AuthContext from '../AuthContext';
+
 import Loading from '../components/UI/Loading/Loading';
 // hooks
 import { useSearch, useSearchGate } from '../utils/hooks';
@@ -40,7 +41,10 @@ export const Index = ({
   }, []);
   const queryParam = queryString.parse(location.search);
   const windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, SEARCH_QUERY_PARAM);
-  const { isAuthenticated } = useContext(AuthContext);
+  // const { isAuthenticated } = useContext(AuthContext);
+  const [keycloak] = useKeycloak();
+  const isAuthenticated = keycloak && keycloak.authenticated;
+
   const query = windowHasQuery ? decodeURIComponent(queryParam[SEARCH_QUERY_PARAM]) : '';
   const queryIsEmpty = isQueryEmpty(query);
   const thereIsASearch = !queryIsEmpty && windowHasQuery;

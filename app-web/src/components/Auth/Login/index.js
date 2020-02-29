@@ -1,32 +1,26 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import Button from '../../UI/Button/Button';
-import { redirectToSSOLogout, redirectToSSOLogin } from '../../../auth';
+import { useKeycloak } from '@react-keycloak/web';
 
 export const TEST_IDS = {
   login: 'auth.login',
   logout: 'auth.logout',
 };
 
-export const Login = ({ authenticated, ...rest }) => {
+export const Login = ({ ...rest }) => {
+  const [keycloak] = useKeycloak();
+  const authenticated = keycloak && keycloak.authenticated;
   return (
     <Button
       variant={authenticated ? 'link' : 'secondary'}
       data-testid={authenticated ? TEST_IDS.logout : TEST_IDS.login}
-      clicked={authenticated ? redirectToSSOLogout : redirectToSSOLogin}
       {...rest}
+      clicked={() => (authenticated ? keycloak.logout() : keycloak.login())}
     >
       {authenticated ? 'Logout' : 'Login'}
     </Button>
   );
-};
-
-Login.propTypes = {
-  authenticated: PropTypes.bool.isRequired,
-};
-
-Login.defaultProps = {
-  authenticated: false,
 };
 
 export default Login;

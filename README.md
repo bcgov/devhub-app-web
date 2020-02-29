@@ -248,15 +248,16 @@ rebuild the image
    node type that is to be leveraged as a 'card' in the devhub. More information can be found on this [here](./docs/devhubCardSpec.md)
 
 ### Authentication
-   Devhub utilizes __Implicit Authorization Flow__. This is provided automatically by the app via `ImplicitAuthManager` and the hook 
-   `useImplicitAuth`. To use auth, all you are required to do is use the `AuthContext` via the React `useContext` api.
+   Devhub utilizes __Authorization Code Flow__. This is provided automatically by the app via `Keycloak Javascript Adapter` and the hook 
+   `useKeycloak`.
    ```js
-      import React, {useContext} from 'react'
-      import AuthContext from '../AuthContext';
+      import React from 'react'
+      import { useKeycloak } from '@react-keycloak/web';
 
       const MyComponent = () => {
-         const { auth } = useContext(AuthContext);
-
+         const [keycloak] = useKeycloak();
+         // need to ensure keycloak obj has been initialized before checking properties
+         const authenticated = keycloak && keycloak.authenticated;
          if(auth) {
             // do something here
          } else {
