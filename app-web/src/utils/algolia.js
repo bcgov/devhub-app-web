@@ -40,6 +40,11 @@ const algoliaIndexQuery = `{
       node {
         id
         name
+        fields {
+          resourceType
+          slug
+          description
+        }
         description
         internal {
           type

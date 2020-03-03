@@ -72,8 +72,7 @@ module.exports = async ({ node, actions, getNode, getNodes, store, cache, create
     createNodeField({ node, name: 'slug', value: slug });
     createNodeField({ node, name: 'title', value: node.name });
     createNodeField({ node, name: 'description', value: node.description });
-    createNodeField({ node, name: 'resourceType', value: 'Journey' || [] });
-
+    createNodeField({ node, name: 'resourceType', value: 'Journey' });
   }
 
   if (isTopicRegistryJson(node)) {
@@ -87,8 +86,7 @@ module.exports = async ({ node, actions, getNode, getNodes, store, cache, create
     createNodeField({ node, name: 'title', value: node.name });
     createNodeField({ node, name: 'description', value: node.description });
     createNodeField({ node, name: 'template', value: node.template ? node.template : 'default' });
-    createNodeField({ node, name: 'resourceType', value: 'Topics' || [] });
-
+    createNodeField({ node, name: 'resourceType', value: 'Topics' });
   }
 
   if (isDevhubSiphon(node)) {
