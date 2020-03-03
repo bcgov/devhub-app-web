@@ -16,11 +16,12 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React, { useState, useEffect } from 'react';
+import { graphql } from 'gatsby';
 import queryString from 'query-string';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { Title } from '../components/Page';
 import Main from '../components/Page/Main';
-import withResourceQuery from '../hoc/withResourceQuery';
+
 import Layout from '../hoc/Layout';
 import { reduceJourneyToSubwayLine, reduceNodeForTableOfContents } from '../utils/helpers';
 import { JourneyMap } from '../components/Journey';
@@ -99,4 +100,24 @@ export const JourneysPage = ({ data, location }) => {
   );
 };
 
-export default withResourceQuery(JourneysPage)();
+export default JourneysPage;
+
+export const JourneysQuery = graphql`
+  query {
+    allJourneyRegistryJson {
+      edges {
+        node {
+          id
+          name
+          fields {
+            slug
+            description
+          }
+          connectsWith {
+            ...JourneyNodeConnection
+          }
+        }
+      }
+    }
+  }
+`;
