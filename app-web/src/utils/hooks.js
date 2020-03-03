@@ -112,7 +112,9 @@ export const useDevhubSiphonAndGithubRawNodes = () => {
               resourceType
               title
               description
-              image
+              image {
+                ...cardFixedImage
+              }
               pagePaths
               standAlonePath
               slug
@@ -140,7 +142,9 @@ export const useDevhubSiphonAndGithubRawNodes = () => {
               personas
               title
               description
-              image
+              image {
+                ...cardFixedImage
+              }
               pagePaths
               standAlonePath
             }

@@ -177,7 +177,9 @@ export const homeQuery = graphql`
             resourceType
             title
             description
-            image
+            image {
+              ...cardFixedImage
+            }
             pagePaths
             standAlonePath
             slug
@@ -202,7 +204,9 @@ export const homeQuery = graphql`
             personas
             title
             description
-            image
+            image {
+              ...cardFixedImage
+            }
             pagePaths
             standAlonePath
           }
