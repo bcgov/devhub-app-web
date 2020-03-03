@@ -183,14 +183,6 @@ export const homeQuery = graphql`
             pagePaths
             standAlonePath
             slug
-            personas
-          }
-          internal {
-            type
-          }
-          childMarkdownRemark {
-            htmlAst
-            html
           }
         }
       }

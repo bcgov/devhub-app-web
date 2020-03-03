@@ -14,7 +14,7 @@ import { RESOURCE_TYPE_PAGES } from '../messages';
 // components
 import Filters from '../components/Filters/Filters';
 import Layout from '../hoc/Layout';
-import withResourceQuery from '../hoc/withResourceQuery';
+
 import { CardsContainer, PageContainer, Title, Main, FilterMenu } from '../components/Page';
 import SideDrawer from '../components/SideDrawer/SideDrawer';
 import NoResources from '../components/UI/NoResources/NoResources';
@@ -31,6 +31,7 @@ import {
   isFilterLonely,
   removeOtherResourceTypeResults,
 } from '../utils/helpers';
+import { graphql } from 'gatsby';
 
 // create a selector instance from the selectResourcesGroupedByType
 const resourcesSelector = selectResourcesGroupedByType();
@@ -158,4 +159,57 @@ export const ResourceType = ({
   );
 };
 
-export default withResourceQuery(ResourceType)();
+export default ResourceType;
+
+export const ResourceTypeQuery = graphql`
+  query($resourceType: String) {
+    allGithubRaw(
+      filter: { fields: { pageOnly: { eq: false }, resourceType: { eq: $resourceType } } }
+    ) {
+      edges {
+        node {
+          id
+          pageViews
+          html_url
+          fields {
+            resourceType
+            title
+            description
+            image {
+              ...cardFixedImage
+            }
+            pagePaths
+            standAlonePath
+            slug
+            personas
+          }
+        }
+      }
+    }
+    allDevhubSiphon(
+      filter: { source: { type: { eq: "web" } }, fields: { resourceType: { eq: $resourceType } } }
+    ) {
+      edges {
+        node {
+          id
+          name
+          owner
+          parent {
+            id
+          }
+          fields {
+            resourceType
+            personas
+            title
+            description
+            image {
+              ...cardFixedImage
+            }
+            pagePaths
+            standAlonePath
+          }
+        }
+      }
+    }
+  }
+`;
