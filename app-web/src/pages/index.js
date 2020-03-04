@@ -28,7 +28,13 @@ export const TEST_IDS = {
 export const Index = ({
   location,
   client,
-  data: { allGithubRaw, allDevhubSiphon, allEventbriteEvents, allJourneyRegistryJson, allTopicRegistryJson },
+  data: {
+    allGithubRaw,
+    allDevhubSiphon,
+    allEventbriteEvents,
+    allJourneyRegistryJson,
+    allTopicRegistryJson,
+  },
 }) => {
   // this forces the component to re render on the client as there will be a mistmatch between
   // html properties on reloads of this page when a search comes in. This is a known effect
@@ -78,9 +84,12 @@ export const Index = ({
   // adds properties needes for rendering the journeys
   // const journeyRegistryJson = allJourneyRegistryJson.edges;
 
-  const resourcesToSearchAgainst = useMemo(() => flattenGatsbyGraphQL(githubRawAndSiphon),[
+  const resourcesToSearchAgainst = useMemo(() => flattenGatsbyGraphQL(githubRawAndSiphon), [
     githubRawAndSiphon,
-  ]).concat(currentEvents).concat(journeydata).concat(topicdata);
+  ])
+    .concat(currentEvents)
+    .concat(journeydata)
+    .concat(topicdata);
 
   let content;
   if (!isClient) {
@@ -221,6 +230,8 @@ export const homeQuery = graphql`
           id
           name
           fields {
+            title
+            description
             resourceType
             slug
           }
@@ -238,6 +249,8 @@ export const homeQuery = graphql`
           id
           name
           fields {
+            title
+            description
             resourceType
             slug
           }
