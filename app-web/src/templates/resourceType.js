@@ -67,7 +67,7 @@ export const ResourceType = ({
   const nodes = flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(
     flattenGatsbyGraphQL(allGithubRaw.edges),
     flattenGatsbyGraphQL(allJourneyRegistryJson.edges),
-    flattenGatsbyGraphQL(allTopicRegistryJson.edges)
+    flattenGatsbyGraphQL(allTopicRegistryJson.edges),
   );
 
   const resourcesByType = resourcesSelector(nodes);
@@ -209,6 +209,39 @@ export const ResourceTypeQuery = graphql`
             }
             pagePaths
             standAlonePath
+          }
+        }
+      }
+    }
+    allJourneyRegistryJson {
+      edges {
+        node {
+          id
+          name
+          fields {
+            resourceType
+            slug
+            description
+          }
+          internal {
+            type
+          }
+        }
+      }
+    }
+    allTopicRegistryJson {
+      edges {
+        node {
+          id
+          name
+          fields {
+            resourceType
+            slug
+            description
+          }
+          description
+          internal {
+            type
           }
         }
       }
