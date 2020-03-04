@@ -79,7 +79,7 @@ export const formatMeetUps = meetups => {
   });
 };
 
-export const EventsPage = ({ data: { allEventbriteEvents, siphonEvents, githubEvents } }) => {
+export const EventsPage = ({ data: { allEventbriteEvents, allDevhubSiphon, allGithubRaw } }) => {
   const events = flattenGatsbyGraphQL(allEventbriteEvents.edges);
   /*const meetUps = formatMeetUps(
     flattenGatsbyGraphQL(allMeetupGroup.edges).flatMap(meetups => {
@@ -92,8 +92,8 @@ export const EventsPage = ({ data: { allEventbriteEvents, siphonEvents, githubEv
 
   //const currentMeetups = meetUps.filter(e => e.start.daysFromNow <= 0);
   //Get all the cards on the site
-  const staticEvents = flattenGatsbyGraphQL(siphonEvents.edges).concat(
-    flattenGatsbyGraphQL(githubEvents.edges),
+  const staticEvents = flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(
+    flattenGatsbyGraphQL(allGithubRaw.edges),
   );
 
   //sort all the info so that event show up from soonest to farthest away
@@ -224,7 +224,7 @@ export const EventData = graphql`
     # }
     # }
     # }
-    siphonEvents: allDevhubSiphon(
+    allDevhubSiphon(
       filter: { source: { type: { eq: "web" } }, fields: { resourceType: { eq: "Events" } } }
     ) {
       edges {
@@ -240,7 +240,7 @@ export const EventData = graphql`
         }
       }
     }
-    githubEvents: allGithubRaw(filter: { fields: { resourceType: { eq: "Events" } } }) {
+    allGithubRaw(filter: { fields: { resourceType: { eq: "Events" } } }) {
       edges {
         node {
           fields {
