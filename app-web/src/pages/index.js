@@ -254,6 +254,9 @@ export const homeQuery = graphql`
             resourceType
             slug
           }
+          connectsWith {
+            ...DevhubNodeConnection
+          }
         }
       }
     }
