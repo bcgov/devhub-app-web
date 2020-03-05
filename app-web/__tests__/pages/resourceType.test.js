@@ -4,7 +4,7 @@ import queryString from 'query-string';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 import { ResourceType } from '../../src/templates/resourceType';
-import { SIPHON_NODES, TOPICS, GITHUB_RAW_NODES, EVENTS } from '../../__fixtures__/nodes';
+import { SIPHON_NODES, TOPICS, GITHUB_RAW_NODES, EVENTS, JOURNEYS } from '../../__fixtures__/nodes';
 import { SELECT_RESOURCES_GROUPED_BY_TYPE } from '../../__fixtures__/selector-fixtures';
 import { useSearch } from '../../src/utils/hooks';
 
@@ -33,6 +33,7 @@ describe('Resource Type Template Page', () => {
   // this component
   const nodes = SIPHON_NODES.map(c => ({ node: c }));
   const topics = TOPICS.map(c => ({ node: c }));
+  const journeys = JOURNEYS.map(c => ({ node: c }));
   const githubRaw = GITHUB_RAW_NODES.map(c => ({ node: c }));
   const props = {
     data: {
@@ -44,6 +45,12 @@ describe('Resource Type Template Page', () => {
       },
       allGithubRaw: {
         edges: githubRaw,
+      },
+      allTopicRegistryJson: {
+        edges: topics,
+      },
+      allJourneyRegistryJson: {
+        edges: journeys,
       },
     },
     location: {
