@@ -48,7 +48,6 @@ const TopicContent = topics =>
       // resources are grouped by type, 'ungroup' them so we can find the first available
       // non external link to use as the entry page for the topic card
       const allResources = topic.connectsWith;
-      console.log(allResources)
 
       return (
         <Topic

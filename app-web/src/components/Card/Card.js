@@ -21,7 +21,6 @@ import PropTypes from 'prop-types';
 import validUrl from 'valid-url';
 import CardHeader from './CardHeader';
 import Img from 'gatsby-image';
-import { getFirstNonExternalResource } from '../../utils/helpers'
 import {
   CardBody,
   Description,
@@ -49,13 +48,13 @@ const variants = {
   eventbrite: 'eventbrite', // title, desc, image, normal card header
   meetup: 'meetup', // title, desc, image, normal card header
 };
-const check = "Topics";
+
 /**
  * Basic building block to compose all other cards from
  * @param {Object} Props
  */
 export const BaseCard = ({ resourceType, children, link, githubRawSlug, slug, ...rest }) => (
-  <LinkWrapper to={githubRawSlug}>
+  <LinkWrapper to={link || githubRawSlug}>
     <Container {...rest}>
       <DecorativeBar color={resourceType} />
       {children}
@@ -166,7 +165,6 @@ export const Card = ({
       />
     );
   } else {
-    console.log(resourceType)
     return (
       <BaseCard resourceType={resourceType} link={link} slug={slug} {...rest}>
         <CardBody>

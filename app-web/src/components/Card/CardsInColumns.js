@@ -17,14 +17,11 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {getFirstNonExternalResource} from '../../utils/helpers'
+import { getFirstNonExternalResource } from '../../utils/helpers';
 import Col from './Column';
 import Card from './Card';
 
 const CardsInColumns = ({ cards }) => {
-  cards.map(card => (
-    console.log(card.connectsWith)
-    ))
   return cards.map(card => (
     <Col
       key={card.id}
@@ -40,7 +37,7 @@ const CardsInColumns = ({ cards }) => {
         image={card.fields.image}
         link={card.fields.standAlonePath}
         slug={card.fields.slug}
-        // githubRawSlug={getFirstNonExternalResource(card.connectsWith)}
+        githubRawSlug={card.connectsWith ? getFirstNonExternalResource(card.connectsWith) : ''}
         event={card}
         data-resourcetype={card.fields.resourceType}
       />
