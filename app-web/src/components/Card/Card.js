@@ -53,8 +53,8 @@ const variants = {
  * Basic building block to compose all other cards from
  * @param {Object} Props
  */
-export const BaseCard = ({ resourceType, children, link, githubRawSlug, slug, ...rest }) => (
-  <LinkWrapper to={link || githubRawSlug}>
+export const BaseCard = ({ resourceType, children, link, ...rest }) => (
+  <LinkWrapper to={link}>
     <Container {...rest}>
       <DecorativeBar color={resourceType} />
       {children}
@@ -166,7 +166,7 @@ export const Card = ({
     );
   } else {
     return (
-      <BaseCard resourceType={resourceType} link={link} slug={slug} {...rest}>
+      <BaseCard resourceType={resourceType} link={link} {...rest}>
         <CardBody>
           {renderHeader ? (
             renderHeader()
@@ -186,7 +186,6 @@ Card.propTypes = {
   link: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
-  slug: PropTypes.string,
   image: PropTypes.string,
   renderBody: PropTypes.func,
   renderHeader: PropTypes.func,

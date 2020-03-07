@@ -35,9 +35,7 @@ const CardsInColumns = ({ cards }) => {
         title={card.fields.title}
         description={card.fields.description}
         image={card.fields.image}
-        link={card.fields.standAlonePath}
-        slug={card.fields.slug}
-        githubRawSlug={card.connectsWith ? getFirstNonExternalResource(card.connectsWith) : ''}
+        link={card.fields.standAlonePath || getFirstNonExternalResource(card.connectsWith)}
         event={card}
         data-resourcetype={card.fields.resourceType}
       />

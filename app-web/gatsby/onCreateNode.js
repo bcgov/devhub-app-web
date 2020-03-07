@@ -72,6 +72,7 @@ module.exports = async ({ node, actions, getNode, getNodes, store, cache, create
     createNodeField({ node, name: 'slug', value: slug });
     createNodeField({ node, name: 'title', value: node.name });
     createNodeField({ node, name: 'description', value: node.description });
+    createNodeField({ node, name: 'standAlonePath', value: slug });
     createNodeField({ node, name: 'resourceType', value: 'Journey' });
   }
 
@@ -86,7 +87,6 @@ module.exports = async ({ node, actions, getNode, getNodes, store, cache, create
     createNodeField({ node, name: 'title', value: node.name });
     createNodeField({ node, name: 'description', value: node.description });
     createNodeField({ node, name: 'template', value: node.template ? node.template : 'default' });
-    createNodeField({ node, name: 'connectsWith', value: [] });
     createNodeField({ node, name: 'resourceType', value: 'Topics' });
   }
 

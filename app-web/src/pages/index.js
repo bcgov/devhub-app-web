@@ -232,6 +232,7 @@ export const homeQuery = graphql`
           fields {
             title
             description
+            standAlonePath
             resourceType
             slug
           }
