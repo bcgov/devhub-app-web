@@ -8,7 +8,7 @@ tags:
 - Solr
 - Search Engine
 - site search
-image: https://www.algolia.com/gatsby-images/shared/algolia_logo/logo-algolia-nebula-blue-full.png
+image: https://github.com/bcgov/devhub-app-web/blob/master/app-web/src/assets/images/algolia.png?raw=true
 ---
 
 # Integrating Algolia Search Engine Into the Devhub
