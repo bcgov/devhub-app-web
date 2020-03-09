@@ -19,6 +19,7 @@ import { isQueryEmpty } from '../utils/search';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { formatEvents } from '../templates/events';
 import { SearchGateResults } from '../components/Search/SearchGateResults';
+import { getFirstNonExternalResource } from '../utils/helpers';
 import groupBy from 'lodash/groupBy';
 
 export const TEST_IDS = {
@@ -74,6 +75,10 @@ export const Index = ({
   const topicdata = useMemo(() => flattenGatsbyGraphQL(allTopicRegistryJson.edges), [
     allTopicRegistryJson.edges,
   ]);
+
+  topicdata.forEach(topic => {
+    topic.fields.standAlonePath = getFirstNonExternalResource(topic.connectsWith);
+  });
 
   const searchSources = useMemo(() => groupBy(searchGate.results, 'type'), [searchGate.results]);
 
@@ -252,6 +257,7 @@ export const homeQuery = graphql`
           fields {
             title
             description
+            standAlonePath
             resourceType
             slug
           }

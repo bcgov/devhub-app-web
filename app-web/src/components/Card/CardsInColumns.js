@@ -17,7 +17,6 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getFirstNonExternalResource } from '../../utils/helpers';
 import Col from './Column';
 import Card from './Card';
 
@@ -35,7 +34,7 @@ const CardsInColumns = ({ cards }) => {
         title={card.fields.title}
         description={card.fields.description}
         image={card.fields.image}
-        link={card.fields.standAlonePath || getFirstNonExternalResource(card.connectsWith)}
+        link={card.fields.standAlonePath}
         event={card}
         data-resourcetype={card.fields.resourceType}
       />

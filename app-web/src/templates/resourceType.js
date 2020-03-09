@@ -213,38 +213,5 @@ export const ResourceTypeQuery = graphql`
         }
       }
     }
-    allJourneyRegistryJson {
-      edges {
-        node {
-          id
-          name
-          fields {
-            resourceType
-            slug
-            description
-          }
-          internal {
-            type
-          }
-        }
-      }
-    }
-    allTopicRegistryJson {
-      edges {
-        node {
-          id
-          name
-          fields {
-            resourceType
-            slug
-            description
-          }
-          description
-          internal {
-            type
-          }
-        }
-      }
-    }
   }
 `;

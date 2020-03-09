@@ -76,7 +76,6 @@ export const Card = ({
   link,
   renderBody,
   renderHeader,
-  slug,
   ...rest
 }) => {
   let isExternal = !!validUrl.isWebUri(link);
