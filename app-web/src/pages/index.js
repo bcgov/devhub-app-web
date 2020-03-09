@@ -68,17 +68,23 @@ export const Index = ({
     allEventbriteEvents.edges,
   ]);
 
-  const journeydata = useMemo(() => flattenGatsbyGraphQL(allJourneyRegistryJson.edges), [
+  const journeyData = useMemo(() => flattenGatsbyGraphQL(allJourneyRegistryJson.edges), [
     allJourneyRegistryJson.edges,
   ]);
 
-  const topicdata = useMemo(() => flattenGatsbyGraphQL(allTopicRegistryJson.edges), [
+  const topicData = useMemo(() => flattenGatsbyGraphQL(allTopicRegistryJson.edges), [
     allTopicRegistryJson.edges,
   ]);
 
-  topicdata.forEach(topic => {
-    topic.fields.standAlonePath = getFirstNonExternalResource(topic.connectsWith);
-  });
+  // Method to get standAlonePath for Topics as their slugs are formed differently than journeys and other nodes.
+  // eslint-disable-next-line
+  const getTopicStandAlonePath = useMemo(
+    () =>
+      topicData.map(topic => {
+        topic.fields.standAlonePath = getFirstNonExternalResource(topic.connectsWith);
+      }),
+    [topicData],
+  );
 
   const searchSources = useMemo(() => groupBy(searchGate.results, 'type'), [searchGate.results]);
 
@@ -86,15 +92,13 @@ export const Index = ({
   const githubRawAndSiphon = allGithubRaw.edges.concat(allDevhubSiphon.edges);
   // adds properties needed for rendering the 'event metadata' in the event card component
   const currentEvents = formatEvents(events.filter(e => e.start.daysFromNow <= 0));
-  // adds properties needes for rendering the journeys
-  // const journeyRegistryJson = allJourneyRegistryJson.edges;
 
   const resourcesToSearchAgainst = useMemo(() => flattenGatsbyGraphQL(githubRawAndSiphon), [
     githubRawAndSiphon,
   ])
     .concat(currentEvents)
-    .concat(journeydata)
-    .concat(topicdata);
+    .concat(journeyData)
+    .concat(topicData);
 
   let content;
   if (!isClient) {
@@ -233,18 +237,12 @@ export const homeQuery = graphql`
       edges {
         node {
           id
-          name
           fields {
             title
             description
             standAlonePath
             resourceType
             slug
-          }
-          connectsWith {
-            path
-            id
-            _type
           }
         }
       }
@@ -253,7 +251,6 @@ export const homeQuery = graphql`
       edges {
         node {
           id
-          name
           fields {
             title
             description
