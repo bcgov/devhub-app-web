@@ -77,11 +77,16 @@ export const Index = ({
   ]);
 
   // Method to get standAlonePath for Topics as their slugs are formed differently than journeys and other nodes.
-  // eslint-disable-next-line
   const getTopicStandAlonePath = useMemo(
     () =>
       topicData.map(topic => {
-        return (topic.fields.standAlonePath = getFirstNonExternalResource(topic.connectsWith));
+        return {
+          ...topic,
+          fields: {
+            ...topic.fields,
+            standAlonePath: getFirstNonExternalResource(topic.connectsWith),
+          },
+        };
       }),
     [topicData],
   );
@@ -98,7 +103,7 @@ export const Index = ({
   ])
     .concat(currentEvents)
     .concat(journeyData)
-    .concat(topicData);
+    .concat(getTopicStandAlonePath);
 
   let content;
   if (!isClient) {
