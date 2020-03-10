@@ -81,7 +81,7 @@ export const Index = ({
   const getTopicStandAlonePath = useMemo(
     () =>
       topicData.map(topic => {
-        topic.fields.standAlonePath = getFirstNonExternalResource(topic.connectsWith);
+        return (topic.fields.standAlonePath = getFirstNonExternalResource(topic.connectsWith));
       }),
     [topicData],
   );
