@@ -20,6 +20,7 @@
           "owner": "BCDevOps",
           "repo": "developer-experience",
           "branch": "shelly-kc-migration",
+          "throttle": 1000,
           "files": [
             "docs/kcMigration/KeycloakMigration.md"
           ]
