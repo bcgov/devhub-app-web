@@ -1,6 +1,6 @@
 {
   "name": "Platform Service Migration",
-  "description": "A series of migration plan for the platform services provided",
+  "description": "A series of plans and guidances for migrating many of the platform services that are provided to application teams.",
   "attributes": {
     "labels": [
       "Documentation"
@@ -20,7 +20,6 @@
           "owner": "BCDevOps",
           "repo": "developer-experience",
           "branch": "shelly-kc-migration",
-          "throttle": 1000,
           "files": [
             "docs/kcMigration/KeycloakMigration.md"
           ]
