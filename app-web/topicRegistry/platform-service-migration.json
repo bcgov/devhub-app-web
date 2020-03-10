@@ -1,0 +1,30 @@
+{
+  "name": "Platform Service Migration",
+  "description": "A series of migration plan for the platform services provided",
+  "attributes": {
+    "labels": [
+      "Documentation"
+    ],
+    "personas": [
+      "Developer",
+      "Product Owner"
+    ]
+  },
+  "resourceType": "Documentation",
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/BCDevOps/developer-experience",
+          "owner": "BCDevOps",
+          "repo": "developer-experience",
+          "branch": "shelly-kc-migration",
+          "files": [
+            "docs/kcMigration/KeycloakMigration.md"
+          ]
+        }
+      }
+    ]
+  }
+}
