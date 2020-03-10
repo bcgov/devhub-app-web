@@ -115,8 +115,8 @@ const filePathFromSourceProps = sourceProperties =>
 
 const validateFile = async ({ sourceProperties }) => {
   const file = filePathFromSourceProps(sourceProperties);
-
-  console.log(`Validating ${sourceDetails} at ${(Date.now() - rootTime)/1000}s`);
+  // eslint-disable-next-line
+  console.log(`Validating ${sourceDetails} at ${(Date.now() - rootTime) / 1000}s`);
   const rawContents = await limiter.schedule(() => getMarkdownContents(sourceProperties));
   const contents = reduceFileResults(rawContents);
 
@@ -174,10 +174,7 @@ async function run() {
 
     core.debug('Beginning Validation of markdown frontmatter');
 
-    const messagesArray = await Promise.all(
-      gitSources.map(({ source }) => validateFile(source)
-      ),
-    );
+    const messagesArray = await Promise.all(gitSources.map(({ source }) => validateFile(source)));
 
     const didError = processMessagesArray(messagesArray);
 
