@@ -4,6 +4,8 @@ const Bottleneck = require('bottleneck');
 const matter = require('gray-matter');
 const { flatten, groupBy } = require('lodash');
 const process = require('process');
+const rootTime = Date.now();
+
 const {
   reduceJourneyRegistryToTopic,
   expandRegistry,
@@ -114,6 +116,7 @@ const filePathFromSourceProps = sourceProperties =>
 const validateFile = async ({ sourceProperties }) => {
   const file = filePathFromSourceProps(sourceProperties);
 
+  console.log(`Validating ${sourceDetails} at ${(Date.now() - rootTime)/1000}s`);
   const rawContents = await limiter.schedule(() => getMarkdownContents(sourceProperties));
   const contents = reduceFileResults(rawContents);
 
@@ -172,13 +175,8 @@ async function run() {
     core.debug('Beginning Validation of markdown frontmatter');
 
     const messagesArray = await Promise.all(
-      gitSources.map(({ source }) => {
-        const sourceDetails = filePathFromSourceProps(source.sourceProperties);
-        core.debug(`Debugging ${sourceDetails}`);
-        // eslint-disable-next-line
-          console.log(`Validating ${sourceDetails}`);
-        return validateFile(source);
-      }),
+      gitSources.map(({ source }) => validateFile(source)
+      ),
     );
 
     const didError = processMessagesArray(messagesArray);
