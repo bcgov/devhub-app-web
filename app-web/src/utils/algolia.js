@@ -25,6 +25,7 @@ const algoliaIndexQuery = `{
         id
         name
         fields {
+          title
           resourceType
           slug
           description
@@ -41,6 +42,7 @@ const algoliaIndexQuery = `{
         id
         name
         fields {
+          title
           resourceType
           slug
           description
