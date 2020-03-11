@@ -163,6 +163,21 @@ describe('Searching from homepage', () => {
           .and('eq', 'true');
       });
     });
+    cy.log('The journey and topic cards should be available on search along with their filters');
+
+    cy.visit('?f=Journey&f=Topics&q=openshift');
+
+    cy.getByTestId('resource-preview-pill-Journey')
+      .should('have.attr', 'data-active')
+      .and('eq', 'true');
+
+    cy.get('article[data-resourcetype="Journey"]').should('exist');
+
+    cy.getByTestId('resource-preview-pill-Topics')
+      .should('have.attr', 'data-active')
+      .and('eq', 'true');
+
+    cy.get('article[data-resourcetype="Topics"]').should('exist');
   });
 });
 
