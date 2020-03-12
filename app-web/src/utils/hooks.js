@@ -50,17 +50,32 @@ export function useDeepCompareMemoize(value) {
 export const useSearch = query => {
   const [results, setResults] = useState([]);
   const index = searchClient.initIndex(`Devhub-Algolia-${ALGOLIA_INDEX_SUFFIX}`);
+  const allPersonas = ['Developer', 'Designer', 'Product Owner'];
   useEffect(() => {
     if (query) {
-      // if no query, I.E query is '', algolia will return all index....
-      index
-        .search({
-          query: query,
-          hitsPerPage: 200, //set it to a large number, the default value is 200, which some search result is over that number
-        })
-        .then(res => {
-          setResults(res.hits);
-        });
+      // console.log("used seach once")
+      if (allPersonas.map(persona => query.includes(persona)) && query.includes('personas:')) {
+        let personaName = query.split(':')[1];
+        // const filters = 'persona : [' + personaName +']';
+        // console.log('here ->', personaName, filters);
+        index
+          .search({
+            query: personaName,
+          })
+          .then(res => {
+            setResults(res.hits);
+          });
+      } else {
+        // if no query, I.E query is '', algolia will return all index....
+        index
+          .search({
+            query: query,
+            hitsPerPage: 200, //set it to a large number, the default value is 200, which some search result is over that number
+          })
+          .then(res => {
+            setResults(res.hits);
+          });
+      }
     } else {
       setResults([]);
     }
