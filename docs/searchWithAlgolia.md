@@ -49,6 +49,12 @@ Some questions arose:
 - Local Development should leverage a local Algolia developer account
 
 
+## Testing algolia based features in a PR based pipeline
+
+- The e2e Cypress testing within Github Actions uses the "Devhub-Algolia-local" index for search.
+- For every PR containing a feature or a change to the algolia index, the algolia index based of the PR will have to be cloned to "Devhub-Algolia-local" index
+
+
 ## How does that work again?
 
 Glad you asked. Here is an illustration :)

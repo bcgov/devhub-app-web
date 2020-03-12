@@ -19,6 +19,7 @@ import { isQueryEmpty } from '../utils/search';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { formatEvents } from '../templates/events';
 import { SearchGateResults } from '../components/Search/SearchGateResults';
+import { getFirstNonExternalResource } from '../utils/helpers';
 import groupBy from 'lodash/groupBy';
 
 export const TEST_IDS = {
@@ -28,7 +29,13 @@ export const TEST_IDS = {
 export const Index = ({
   location,
   client,
-  data: { allGithubRaw, allDevhubSiphon, allEventbriteEvents },
+  data: {
+    allGithubRaw,
+    allDevhubSiphon,
+    allEventbriteEvents,
+    allJourneyRegistryJson,
+    allTopicRegistryJson,
+  },
 }) => {
   // this forces the component to re render on the client as there will be a mistmatch between
   // html properties on reloads of this page when a search comes in. This is a known effect
@@ -61,6 +68,29 @@ export const Index = ({
     allEventbriteEvents.edges,
   ]);
 
+  const journeyData = useMemo(() => flattenGatsbyGraphQL(allJourneyRegistryJson.edges), [
+    allJourneyRegistryJson.edges,
+  ]);
+
+  const topicData = useMemo(() => flattenGatsbyGraphQL(allTopicRegistryJson.edges), [
+    allTopicRegistryJson.edges,
+  ]);
+
+  // Method to get standAlonePath for Topics as their slugs are formed differently than journeys and other nodes.
+  const getTopicStandAlonePath = useMemo(
+    () =>
+      topicData.map(topic => {
+        return {
+          ...topic,
+          fields: {
+            ...topic.fields,
+            standAlonePath: getFirstNonExternalResource(topic.connectsWith),
+          },
+        };
+      }),
+    [topicData],
+  );
+
   const searchSources = useMemo(() => groupBy(searchGate.results, 'type'), [searchGate.results]);
 
   // github raw and siphon can be joined because they already have like metadata for their node fields
@@ -70,7 +100,10 @@ export const Index = ({
 
   const resourcesToSearchAgainst = useMemo(() => flattenGatsbyGraphQL(githubRawAndSiphon), [
     githubRawAndSiphon,
-  ]).concat(currentEvents);
+  ])
+    .concat(currentEvents)
+    .concat(journeyData)
+    .concat(getTopicStandAlonePath);
 
   let content;
   if (!isClient) {
@@ -201,6 +234,37 @@ export const homeQuery = graphql`
             }
             pagePaths
             standAlonePath
+          }
+        }
+      }
+    }
+    allJourneyRegistryJson {
+      edges {
+        node {
+          id
+          fields {
+            title
+            description
+            standAlonePath
+            resourceType
+            slug
+          }
+        }
+      }
+    }
+    allTopicRegistryJson {
+      edges {
+        node {
+          id
+          fields {
+            title
+            description
+            standAlonePath
+            resourceType
+            slug
+          }
+          connectsWith {
+            ...DevhubNodeConnection
           }
         }
       }
