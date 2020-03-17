@@ -90,6 +90,17 @@
           "url": "https://console.pathfinder.gov.bc.ca:8443/console/projects"
         },
         "resourceType": "Self-Service Tools"
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcDevOps/developer-experience",
+          "owner": "bcDevOps",
+          "repo": "developer-experience",
+          "files": [
+            "docs/HumanHelp.md"
+          ]
+        }
       }
     ]
   }
