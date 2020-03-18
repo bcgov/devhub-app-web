@@ -53,14 +53,12 @@ export const useSearch = query => {
   const allPersonas = ['Developer', 'Designer', 'Product Owner'];
   useEffect(() => {
     if (query) {
-      // console.log("used seach once")
       if (allPersonas.map(persona => query.includes(persona)) && query.includes('personas:')) {
         let personaName = query.split(':')[1];
-        // const filters = 'persona : [' + personaName +']';
-        // console.log('here ->', personaName, filters);
+        const filters = 'persona :' + personaName;
         index
-          .search({
-            query: personaName,
+          .search('', {
+            facetFilters: [filters],
           })
           .then(res => {
             setResults(res.hits);
