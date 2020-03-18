@@ -2,9 +2,6 @@
   "name": "Platform Service Migration",
   "description": "A series of plans and guidances for migrating many of the platform services that are provided to application teams.",
   "attributes": {
-    "labels": [
-      "Documentation"
-    ],
     "personas": [
       "Developer",
       "Product Owner"
