@@ -77,7 +77,7 @@
               {
                 "name": "${NAME}${SUFFIX}-data-db",
                 "persistentVolumeClaim": {
-                  "claimName": "${NAME}${SUFFIX}-db"
+                  "claimName": "${NAME}${SUFFIX}-db-pvc"
                 }
               }
             ],
@@ -196,7 +196,7 @@
       "kind": "PersistentVolumeClaim",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${NAME}${SUFFIX}-db",
+        "name": "${NAME}${SUFFIX}-db-pvc",
         "labels": {
           "app": "${NAME}",
           "name": "${NAME}${SUFFIX}-db"
