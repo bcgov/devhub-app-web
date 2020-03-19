@@ -50,10 +50,9 @@ export function useDeepCompareMemoize(value) {
 export const useSearch = query => {
   const [results, setResults] = useState([]);
   const index = searchClient.initIndex(`Devhub-Algolia-${ALGOLIA_INDEX_SUFFIX}`);
-  const allPersonas = ['Developer', 'Designer', 'Product Owner'];
   useEffect(() => {
     if (query) {
-      if (allPersonas.map(persona => query.includes(persona)) && query.includes('personas:')) {
+      if (query.includes('personas:')) {
         let personaName = query.split(':')[1];
         const filters = 'persona :' + personaName;
         index
