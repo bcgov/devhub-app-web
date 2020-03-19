@@ -1,5 +1,5 @@
 'use strict';
-const options= require('pipeline-cli').Util.parseArguments()
+const options= require('@bcgov/pipeline-cli').Util.parseArguments()
 const changeId = options.pr //aka pull-request
 const version = '1.0.0'
 const name = 'matomo'
