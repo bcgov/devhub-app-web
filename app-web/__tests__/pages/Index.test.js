@@ -75,6 +75,9 @@ describe('Home Page', () => {
       allJourneyRegistryJson: {
         edges: journeys,
       },
+      allTopicRegistryJson: {
+        edges: topics,
+      },
       allDevhubSiphon: {
         edges: nodes,
       },
