@@ -331,7 +331,7 @@
       "displayName": "Persistent Volume Class name",
       "description": "The class of the volume; netappp-file, netappp-block, netappp-file-db",
       "required": false,
-      "value": "netappp-file-standard"
+      "value": "netapp-file-standard"
     },
     {
       "name": "CPU_REQUEST",
