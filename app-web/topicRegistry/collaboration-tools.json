@@ -10,19 +10,24 @@
 					"owner": "bcgov",
 					"repo": "cloud-pathfinder-technology-and-ux",
 					"files": [
+						"devhub-content/service-registry/skype-for-business.md",
+						"devhub-content/service-registry/rocket-chat.md",
+						"devhub-content/service-registry/yammer.md",
+						"devhub-content/service-registry/trello.md",
+						"devhub-content/service-registry/asana.md",
+						"devhub-content/service-registry/documize.md",
 						"devhub-content/service-registry/gitter.md",
 						"devhub-content/service-registry/google-docs.md",
 						"devhub-content/service-registry/google-hangouts.md",
 						"devhub-content/service-registry/goto-meeting.md",
+						"devhub-content/service-registry/jira.md",
 						"devhub-content/service-registry/mattermost.md",
 						"devhub-content/service-registry/microsoft-teams.md",
 						"devhub-content/service-registry/miro.md",
 						"devhub-content/service-registry/mozilla-hub.md",
-						"devhub-content/service-registry/rocket-chat.md",
 						"devhub-content/service-registry/ryver.md",
-						"devhub-content/service-registry/skype-for-business.md",
 						"devhub-content/service-registry/slack.md",
-						"devhub-content/service-registry/yammer.md",
+						"devhub-content/service-registry/zenhub.md",
 						"devhub-content/service-registry/zoom.md"
 					]
 				}
