@@ -51,27 +51,20 @@ export const useSearch = query => {
   const [results, setResults] = useState([]);
   const index = searchClient.initIndex(`Devhub-Algolia-${ALGOLIA_INDEX_SUFFIX}`);
   useEffect(() => {
+    let params;
+    let options = {};
     if (query && query.includes('persona:')) {
-      index
-        .search('', {
-          facetFilters: [query],
-        })
-        .then(res => {
-          setResults(res.hits);
-        });
-    } else if (query) {
-      // if no query, I.E query is '', algolia will return all index....
-      index
-        .search({
-          query: query,
-          hitsPerPage: 200, //set it to a large number, the default value is 200, which some search result is over that number
-        })
-        .then(res => {
-          setResults(res.hits);
-        });
+      params = '';
+      options.facetFilters = [query];
     } else {
-      setResults([]);
+      params = null;
+      options.query = query;
+      options.hitsPerPage = 200;
     }
+    index.search(params, options).then(res => {
+      setResults(res.hits);
+    });
+    setResults([]);
     // eslint-disable-next-line
   }, [query]);
   return results;
