@@ -10,20 +10,20 @@
 					"owner": "bcgov",
 					"repo": "cloud-pathfinder-technology-and-ux",
 					"files": [
-						"devhub-content/service-registry/Gitter.md",
-						"devhub-content/service-registry/Google Docs.md",
-						"devhub-content/service-registry/Google Hangouts.md",
-						"devhub-content/service-registry/GoTo Meeting.md",
-						"devhub-content/service-registry/Mattermost.md",
-						"devhub-content/service-registry/Microsoft Teams.md",
-						"devhub-content/service-registry/Miro.md",
-						"devhub-content/service-registry/Mozilla Hub.md",
-						"devhub-content/service-registry/Rocket.Chat.md",
-						"devhub-content/service-registry/Ryver.md",
-						"devhub-content/service-registry/Skype for Business.md",
-						"devhub-content/service-registry/Slack.md",
-						"devhub-content/service-registry/Yammer.md",
-						"devhub-content/service-registry/Zoom.md"
+						"devhub-content/service-registry/gitter.md",
+						"devhub-content/service-registry/google-docs.md",
+						"devhub-content/service-registry/google-hangouts.md",
+						"devhub-content/service-registry/goto-meeting.md",
+						"devhub-content/service-registry/mattermost.md",
+						"devhub-content/service-registry/microsoft-teams.md",
+						"devhub-content/service-registry/miro.md",
+						"devhub-content/service-registry/mozilla-hub.md",
+						"devhub-content/service-registry/rocket-chat.md",
+						"devhub-content/service-registry/ryver.md",
+						"devhub-content/service-registry/skype-for-business.md",
+						"devhub-content/service-registry/slack.md",
+						"devhub-content/service-registry/yammer.md",
+						"devhub-content/service-registry/zoom.md"
 					]
 				}
 			}
