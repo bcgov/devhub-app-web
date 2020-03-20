@@ -51,20 +51,20 @@ export const useSearch = query => {
   const [results, setResults] = useState([]);
   const index = searchClient.initIndex(`Devhub-Algolia-${ALGOLIA_INDEX_SUFFIX}`);
   useEffect(() => {
-    let params;
     let options = {};
-    if (query && query.includes('persona:')) {
-      params = '';
-      options.facetFilters = [query];
+    if (query) {
+      if (query && query.includes('persona:')) {
+        options.facetFilters = [query];
+      } else {
+        options.query = query;
+        options.hitsPerPage = 200;
+      }
+      index.search(options).then(res => {
+        setResults(res.hits);
+      });
     } else {
-      params = null;
-      options.query = query;
-      options.hitsPerPage = 200;
+      setResults([]);
     }
-    index.search(params, options).then(res => {
-      setResults(res.hits);
-    });
-    setResults([]);
     // eslint-disable-next-line
   }, [query]);
   return results;
