@@ -10,6 +10,7 @@
 					"owner": "bcgov",
 					"repo": "cloud-pathfinder-technology-and-ux",
 					"files": [
+						"devhub-content/service-registry/collaboration-tools-intro.md",
 						"devhub-content/service-registry/skype-for-business.md",
 						"devhub-content/service-registry/rocket-chat.md",
 						"devhub-content/service-registry/yammer.md",
