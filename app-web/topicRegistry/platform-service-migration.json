@@ -16,7 +16,6 @@
           "url": "https://github.com/BCDevOps/developer-experience",
           "owner": "BCDevOps",
           "repo": "developer-experience",
-          "branch": "shelly-kc-migration",
           "files": [
             "docs/kcMigration/KeycloakMigration.md"
           ]
