@@ -52,14 +52,17 @@ export const useSearch = query => {
   const index = searchClient.initIndex(`Devhub-Algolia-${ALGOLIA_INDEX_SUFFIX}`);
   useEffect(() => {
     let options = {};
+    let userQuery;
     if (query) {
       if (query && query.includes('persona:')) {
+        userQuery = null;
         options.facetFilters = [query];
       } else {
+        userQuery = null;
         options.query = query;
         options.hitsPerPage = 200;
       }
-      index.search(options).then(res => {
+      index.search(userQuery, options).then(res => {
         setResults(res.hits);
       });
     } else {
