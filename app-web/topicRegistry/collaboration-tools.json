@@ -12,7 +12,7 @@
 					"files": [
 						"devhub-content/service-registry/collaboration-tools-intro.md",
 						"devhub-content/service-registry/skype-for-business.md",
-						"devhub-content/service-registry/rocket-chat.md",
+						"devhub-content/service-registry/bcgov-hosted-rocket-chat.md",
 						"devhub-content/service-registry/yammer.md",
 						"devhub-content/service-registry/trello.md",
 						"devhub-content/service-registry/asana.md",
@@ -23,7 +23,7 @@
 						"devhub-content/service-registry/goto-meeting.md",
 						"devhub-content/service-registry/jira.md",
 						"devhub-content/service-registry/mattermost.md",
-						"devhub-content/service-registry/microsoft-teams.md",
+						"devhub-content/service-registry/ms-teams.md",
 						"devhub-content/service-registry/miro.md",
 						"devhub-content/service-registry/mozilla-hub.md",
 						"devhub-content/service-registry/ryver.md",
