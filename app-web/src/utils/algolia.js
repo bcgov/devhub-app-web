@@ -11,6 +11,9 @@ const algoliaIndexQuery = `{
             title
             tags
           }
+          frontmatter {
+            personas
+          }
           content: excerpt(pruneLength: 1000)
         }
         internal {
@@ -62,6 +65,7 @@ const algoliaIndexQuery = `{
           title
           description
           tags
+          personas
         }
         internal {
           type
@@ -101,19 +105,23 @@ export const reduceNodesForIndex = nodes => {
     } = node;
     let fields,
       content,
+      persona,
       id = node.id;
 
     if (type === 'GithubRaw') {
       fields = node.childMarkdownRemark.fields;
       content = node.childMarkdownRemark.content;
+      persona = node.childMarkdownRemark.frontmatter.personas;
     } else {
       content = '';
       fields = node.fields;
+      persona = node.fields.personas;
     }
     return {
       fields,
       content,
       id,
+      persona,
       [NODE_TYPE_FIELD_NAME]: type,
     };
   });

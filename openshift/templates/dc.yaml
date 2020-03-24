@@ -78,11 +78,11 @@ objects:
     strategy:
       resources:
         requests:
-          cpu: '10m'
+          cpu: '150m'
           memory: '50Mi'
         limits:
-          cpu: '150m'
-          memory: '75Mi'
+          cpu: '250m'
+          memory: '105Mi'
     template:
       metadata:
         creationTimestamp: null
@@ -99,11 +99,11 @@ objects:
             protocol: TCP
           resources:
             requests:
-              cpu: '10m'
-              memory: '50Mi'
+              cpu: ${CPU_REQUEST}
+              memory: ${MEMORY_REQUEST}
             limits:
-              cpu: '150m'
-              memory: '75Mi'
+              cpu: ${CPU_LIMIT}
+              memory: ${MEMORY_LIMIT}
           env:
           - name: SEARCHGATE_API_URL
             value: ${SEARCHGATE_API_URL}
@@ -239,3 +239,23 @@ parameters:
   displayName: Algolia Index Suffix
   name: ALGOLIA_INDEX_NAME_SUFFIX
   required: true
+- description: The CPU Request for the deployment config
+  displayName: CPU Request 
+  name: CPU_REQUEST
+  required: false
+  value: 10m
+- description: The CPU Limit for the deployment config
+  displayName: CPU Limit 
+  name: CPU_LIMIT
+  required: false
+  value: 100m
+- description: The Memory Request for the deployment config
+  displayName: Memory Request 
+  name: MEMORY_REQUEST
+  required: false
+  value: 50Mi
+- description: The Memory Limit for the deployment config
+  displayName: Memory Limit 
+  name: MEMORY_LIMIT
+  required: false
+  value: 75Mi
