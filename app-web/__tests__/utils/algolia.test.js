@@ -46,6 +46,9 @@ describe('Algolia Utils', () => {
               title: 'foo',
               description: 'abcabc',
             },
+            frontmatter: {
+              personas: 'Developer',
+            },
             content: 'foo',
           },
           internal: {
@@ -59,6 +62,9 @@ describe('Algolia Utils', () => {
               title: 'foo2',
               description: 'xzcv',
             },
+            frontmatter: {
+              personas: 'Developer',
+            },
             content: 'foo',
           },
           internal: {
@@ -71,6 +77,9 @@ describe('Algolia Utils', () => {
             fields: {
               title: 'foo3',
               description: 'asdfad',
+            },
+            frontmatter: {
+              personas: 'Developer',
             },
             content: 'foo',
           },
@@ -95,18 +104,21 @@ describe('Algolia Utils', () => {
           id: '123123',
           content: 'foo',
           fields: { title: 'foo', description: 'abcabc' },
+          persona: 'Developer',
           [NODE_TYPE_FIELD_NAME]: 'GithubRaw',
         },
         {
           id: '232323',
           content: 'foo',
           fields: { title: 'foo2', description: 'xzcv' },
+          persona: 'Developer',
           [NODE_TYPE_FIELD_NAME]: 'GithubRaw',
         },
         {
           id: '232323',
           content: 'foo',
           fields: { title: 'foo3', description: 'asdfad' },
+          persona: 'Developer',
           [NODE_TYPE_FIELD_NAME]: 'GithubRaw',
         },
         {

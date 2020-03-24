@@ -29,7 +29,7 @@ const getParamsByEnv = (env, pr) => {
   };
   switch (env) {
     case ENVS.PROD:
-      return params;
+      return {...params, CPU_REQUEST: '100m', CPU_LIMIT: '150m', MEMORY_REQUEST: '75Mi', MEMORY_LIMIT: '125Mi'};
     case ENVS.TEST:
       return {
         ...params,

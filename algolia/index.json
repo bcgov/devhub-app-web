@@ -3,7 +3,8 @@
     "forwardToReplicas":  false
   },
   "setSettings": { 
-    "searchableAttributes": ["content", "unordered(fields.description)", "unordered(fields.title)"]
+    "searchableAttributes": ["content", "unordered(fields.description)", "unordered(fields.title)"],
+    "attributesForFaceting": ["searchable(persona)"]
   },
   "synonymsArgs": {
     "forwardToReplicas": false,
