@@ -128,7 +128,7 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
     personaPills = personas.map(persona => (
       //links to the homepage search, with a query showing only resources of the given persona type
       <PillLink
-        to={encodeURI(`/?q=personas:${persona}`)}
+        to={encodeURI(`/?q=persona:${persona}`)}
         key={persona}
         label={persona}
         icon={'persona'}
