@@ -1,0 +1,26 @@
+{
+  "name": "Platform Service Migration",
+  "description": "A series of plans and guidances for migrating many of the platform services that are provided to application teams.",
+  "attributes": {
+    "personas": [
+      "Developer",
+      "Product Owner"
+    ]
+  },
+  "resourceType": "Documentation",
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/BCDevOps/developer-experience",
+          "owner": "BCDevOps",
+          "repo": "developer-experience",
+          "files": [
+            "docs/kcMigration/KeycloakMigration.md"
+          ]
+        }
+      }
+    ]
+  }
+}
