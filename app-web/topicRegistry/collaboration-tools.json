@@ -1,0 +1,50 @@
+{
+	"name": "Collaboration Tools",
+	"description": "Tools to support online collaboration and remote work.",
+	"sourceProperties": {
+		"sources": [
+			{
+				"sourceType": "github",
+				"sourceProperties": {
+					"url": "http://github.com/bcgov/cloud-pathfinder-technology-and-ux",
+					"owner": "bcgov",
+					"repo": "cloud-pathfinder-technology-and-ux",
+					"files": [
+						"devhub-content/service-registry/collaboration-tools-intro.md",
+						"devhub-content/service-registry/skype-for-business.md",
+						"devhub-content/service-registry/bcgov-hosted-rocket-chat.md",
+						"devhub-content/service-registry/yammer.md",
+						"devhub-content/service-registry/trello.md",
+						"devhub-content/service-registry/asana.md",
+						"devhub-content/service-registry/documize.md",
+						"devhub-content/service-registry/gitter.md",
+						"devhub-content/service-registry/google-docs.md",
+						"devhub-content/service-registry/google-hangouts.md",
+						"devhub-content/service-registry/goto-meeting.md",
+						"devhub-content/service-registry/jira.md",
+						"devhub-content/service-registry/mattermost.md",
+						"devhub-content/service-registry/ms-teams.md",
+						"devhub-content/service-registry/miro.md",
+						"devhub-content/service-registry/mozilla-hub.md",
+						"devhub-content/service-registry/ryver.md",
+						"devhub-content/service-registry/slack.md",
+						"devhub-content/service-registry/zenhub.md",
+						"devhub-content/service-registry/zoom.md"
+					]
+				}
+			}
+		]
+	},
+	"attributes": {
+		"labels": [
+			"Collaboration",
+			"Repository"
+		],
+		"personas": [
+			"Designer",
+			"Developer",
+			"Product Owner"
+		]
+	},
+	"resourceType": "Self-Service Tools"
+}
