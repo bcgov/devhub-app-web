@@ -28,6 +28,8 @@ import { withPadding, MarkdownBody } from '../components/GithubTemplate/common';
 import slugify from 'slugify';
 import { Link } from '../components/UI/Link';
 import { SEO } from '../components/SEO/SEO';
+import withNode from '../hoc/withNode';
+import ComponentPreview from '../components/ComponentPreview/ComponentPreview';
 
 const PillDiv = styled.div`
   display: flex;
@@ -77,8 +79,11 @@ const PillLink = ({ to, label, icon, ...rest }) => (
 );
 
 export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
+  const previewWithNode = withNode(githubRaw)(ComponentPreview);
+
   const renderAst = new rehypeReact({
     createElement: React.createElement,
+    components: { 'component-preview': previewWithNode },
   }).Compiler;
 
   //create pill to show resource type and links out to the corresponding resource type page
