@@ -98,7 +98,8 @@
           "owner": "bcDevOps",
           "repo": "developer-experience",
           "files": [
-            "docs/HumanHelp.md"
+            "docs/HumanHelp.md",
+            "docs/OnboardingOutcomes.md"
           ]
         }
       }
