@@ -24,21 +24,23 @@
           }
       },
       {
-        "sourceType": "web",
+        "sourceType": "github",
         "sourceProperties":
           {
-            "url": "https://developer.gov.bc.ca/self-service-tools",
-            "title": "Self-Service Tools",
-            "description": "Tools Provided by the Platform Services Team for development teams."
+            "file": "resources/tools/tools-intro.md",
+            "url": "https://github.com/bcgov/devhub-resources",
+            "owner": "bcgov",
+            "repo": "devhub-resources"
           }
       },
       {
-        "sourceType": "web",
+        "sourceType": "github",
         "sourceProperties":
           {
-            "url": "https://github.com/BCDevOps/devops-requests",
-            "title": "DevOps Requests",
-            "description": "How to request things (a new project set, a keycloak realm, etc) from the Platform Services team."
+            "file": "resources/community/devops-requests.md",
+            "url": "https://github.com/bcgov/devhub-resources",
+            "owner": "bcgov",
+            "repo": "devhub-resources"
           }
       },
       {
@@ -49,15 +51,6 @@
             "url": "https://github.com/bcdevops/developer-experience",
             "owner": "bcdevops",
             "repo": "developer-experience"
-          }
-      },
-      {
-        "sourceType": "web",
-        "sourceProperties":
-          {
-            "url": "https://developer.gov.bc.ca/Beginner-Guide-to-Developing-on-the-Platform",
-            "title": "Beginners Guide to Developing on the Platform",
-            "description": "A more technical journey with a focus on how to develop for the platform - important for the technical members of your new team."
           }
       }
     ]
