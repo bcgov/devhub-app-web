@@ -8,6 +8,7 @@ import { Alert } from 'reactstrap';
 import { SearchResults } from '../components/Search/SearchResults';
 import { Masthead, TopicsPreview } from '../components/Home';
 import Layout from '../hoc/Layout';
+import { SEO } from '../components/SEO/SEO';
 
 import Loading from '../components/UI/Loading/Loading';
 // hooks
@@ -145,6 +146,7 @@ export const Index = ({
 
   return (
     <Layout>
+      <SEO title="DevHub" />
       <Masthead
         query={query}
         searchSourcesLoading={searchGate.loading}

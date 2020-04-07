@@ -77,7 +77,7 @@
               {
                 "name": "${NAME}${SUFFIX}-data-db",
                 "persistentVolumeClaim": {
-                  "claimName": "${NAME}${SUFFIX}-db"
+                  "claimName": "${NAME}${SUFFIX}-db-pvc"
                 }
               }
             ],
@@ -196,7 +196,7 @@
       "kind": "PersistentVolumeClaim",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${NAME}${SUFFIX}-db",
+        "name": "${NAME}${SUFFIX}-db-pvc",
         "labels": {
           "app": "${NAME}",
           "name": "${NAME}${SUFFIX}-db"
@@ -339,9 +339,9 @@
     {
       "name": "PERSISTENT_VOLUME_CLASS",
       "displayName": "Persistent Volume Class name",
-      "description": "The class of the volume; gluster-file, gluster-block, gluster-file-db",
+      "description": "The class of the volume; netapp-file, netapp-block, netapp-file-db",
       "required": false,
-      "value": "gluster-file-db"
+      "value": "netapp-file-standard"
     },
     {
       "name": "CPU_REQUEST",
