@@ -361,7 +361,16 @@ export const buildPopularTopic = (nodes, name, description, slug, minPageViews, 
  * @param {Object} featuredResources the map of featured resources to look up
  */
 export const buildFeaturedTopic = (nodes, name, description, slug, featuredResources) => {
-  const featuredNodes = nodes.filter(n => featuredResources.includes(n.fields.title));
+  // this sub routine ensure the featured resources order is preserved
+  const featuredNodes = featuredResources
+    .map(title => {
+      const index = nodes.findIndex(n => n.fields.title === title);
+      if (index > -1) {
+        return nodes[index];
+      }
+      return null;
+    })
+    .filter(n => !!n); // remove null values
 
   return {
     node: {
