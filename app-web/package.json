@@ -29,6 +29,7 @@
     "emotion": "^10.0.7",
     "emotion-theming": "^10.0.10",
     "esm": "^3.2.25",
+    "formik": "^2.1.4",
     "gatsby": "^2.20.4",
     "gatsby-image": "^2.2.4",
     "gatsby-plugin-algolia": "^0.5.0",
@@ -114,7 +115,8 @@
     "typography": "^0.16.19",
     "unfetch": "^4.1.0",
     "unist-util-visit": "^1.4.1",
-    "valid-url": "^1.0.9"
+    "valid-url": "^1.0.9",
+    "yup": "^0.28.3"
   },
   "scripts": {
     "build": "npx --node-arg '-r esm' gatsby build",
