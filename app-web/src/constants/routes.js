@@ -41,8 +41,8 @@ export const MAIN_NAV_ROUTES = {
   },
   CONTRIBUTION: {
     to: '/contentContribution',
-    text: 'Contribute'
-  }
+    text: 'Contribute',
+  },
 };
 
 export const MAIN_NAV_ROUTE_LIST = Object.keys(MAIN_NAV_ROUTES).map(r => MAIN_NAV_ROUTES[r]);
