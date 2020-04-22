@@ -31,15 +31,21 @@ export const StyledLabel = styled.label`
   display: block;
 `;
 
+export const StyledInput = styled.input`
+display: block;
+width: 300px;
+height: 35px;
+border: ${props => props.border || '1px solid #ccc'};
+background-color: #fff;
+`;
+
 export const MyTextInput = ({ label, ...props }) => {
   // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
   // which we can spread on <input> and alse replace ErrorMessage entirely.
-  const [field, meta] = useField(props);
   return (
     <>
-      <label htmlFor={props.id || props.name}>{label}</label>
-      <input className="text-input" {...field} {...props} />
-      {meta.touched && meta.error ? <div className="error">{meta.error}</div> : null}
+      <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
+      <StyledInput className="text-input" {...props} />
     </>
   );
 };
@@ -60,12 +66,10 @@ export const MyCheckbox = ({ children, ...props }) => {
 export const MySelect = ({ label, ...props }) => {
   // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
   // which we can spread on <input> and alse replace ErrorMessage entirely.
-  const [field, meta] = useField(props);
   return (
     <>
-      <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
-      <StyledSelect {...field} {...props} />
-      {meta.touched && meta.error ? <StyledErrorMessage>{meta.error}</StyledErrorMessage> : null}
+      <StyledLabel>{label}</StyledLabel>
+      <StyledSelect  {...props} />
     </>
   );
 };
