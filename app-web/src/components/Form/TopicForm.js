@@ -28,7 +28,7 @@ export const TopicForm = () => {
         content = (
             <Fragment>
                 <MyTextInput label="Enter github repository url"></MyTextInput>
-                <MyTextInput label="Enter repository owner"></MyTextInput>
+                <MyTextInput label="Enter repository owner's github user name"></MyTextInput>
                 <MyTextInput label="Enter repository name"></MyTextInput>
                 <MyTextInput label="Enter path to files from root of your repository"></MyTextInput>
             </Fragment>
