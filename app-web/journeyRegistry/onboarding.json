@@ -7,6 +7,16 @@
         "sourceType": "github",
         "sourceProperties":
           {
+            "file": "docs/Onboarding.md",
+            "url": "https://github.com/bcdevops/developer-experience",
+            "owner": "bcdevops",
+            "repo": "developer-experience"
+          }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties":
+          {
             "file": "docs/OnboardingOutcomes.md",
             "url": "https://github.com/bcdevops/developer-experience",
             "owner": "bcdevops",
