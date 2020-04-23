@@ -2,9 +2,11 @@ import { React, useMemo, useState, Fragment } from 'react';
 import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
 import { MyTextInput, MyCheckbox, MySelect, StyledLabel } from './form';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { graphql, useStaticQuery } from 'gatsby';
 import { flattenGatsbyGraphQL } from '../../utils/dataHelpers';
 import { Author } from '../RocketChatItem/RocketChatItem';
+import { faPlus,faMinus } from '@fortawesome/free-solid-svg-icons';
 
 export const TopicForm = () => {
     const [inputFields, setInputFields] = useState([
@@ -21,6 +23,30 @@ export const TopicForm = () => {
     ]);
     let content;
 
+    const handleAddFields = () => {
+        const values = [...inputFields]
+        values.push({
+            sourceType: '',
+            gitUrl: '',
+            gitUsername: '',
+            gitReponame: '',
+            gitFilepath: [],
+            webUrl: '',
+            webTitle: '',
+            webDescription: ''
+        })
+        setInputFields(values)
+    }
+
+    const handleRemoveFields = (index) => {
+        if (index === 0){
+            return;
+        }
+        const values = [...inputFields]
+        values.splice(index,1)
+        setInputFields(values)
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault()
         console.log("input fields", inputFields)
@@ -28,7 +54,8 @@ export const TopicForm = () => {
         // alert('A topic was submitted :'+currTopic+currSourcetype)
 
     }
-    const handleChange = (event, index) => {
+    const handleChange = (event,index) => {
+
         const values = [...inputFields]
         console.log(index)
         const map = [
@@ -41,9 +68,12 @@ export const TopicForm = () => {
             'webTitle',
             'webDescription'
         ]
-
-        if (map.includes(event.target.name)) {
-            values[index][event.target.name] = event.target.value
+        if(event.target.name === 'sourceType'){
+            values[index].sourceType = event.target.value
+        }
+        if (event.target.name === 'gitUrl') {
+            console.log("yaha pra yeh hain index",index)
+            values[index].gitUrl = event.target.value
         }
         setInputFields(values)
     }
@@ -90,6 +120,8 @@ export const TopicForm = () => {
                         <option value="github">Github</option>
                     </MySelect>
                     <LoadSubForm index={index}></LoadSubForm>
+                    <button onClick={() => handleAddFields()}><FontAwesomeIcon icon={faPlus} /></button>
+                    <button onClick={() =>handleRemoveFields(index)}><FontAwesomeIcon icon={faMinus} /></button>
                 {/* {content} */}
                 </Fragment>
             ))}
