@@ -10,7 +10,8 @@ import { faPlus,faMinus } from '@fortawesome/free-solid-svg-icons';
 
 export const TopicForm = () => {
     const [inputFields, setInputFields] = useState([
-        {
+        {   topicName: '',
+            topicDescription: '',
             sourceType: '',
             gitUrl: '',
             gitUsername: '',
@@ -55,11 +56,11 @@ export const TopicForm = () => {
 
     }
     const handleChange = (event,index) => {
-
         const values = [...inputFields]
         console.log(index)
         const map = [
-            'sourceType',
+            'topicName',
+            'topicDescription',
             'gitUrl',
             'gitUsername',
             'gitReponame',
@@ -68,42 +69,41 @@ export const TopicForm = () => {
             'webTitle',
             'webDescription'
         ]
+        console.log(event.target.name)
         if(event.target.name === 'sourceType'){
             values[index].sourceType = event.target.value
+            content = (<LoadForm index={index}></LoadForm>)
         }
-        if (event.target.name === 'gitUrl') {
+        if (map.includes(event.target.name)) {
             console.log("yaha pra yeh hain index",index)
-            values[index].gitUrl = event.target.value
+            values[0][event.target.name] = event.target.value
         }
         setInputFields(values)
     }
-
-    const LoadSubForm = ({index}) => {
-        console.log("here is the index -->>>",index)
-        console.log("printing here ",inputFields[0].sourceType)
+    const LoadForm = ({index}) => {
+        // console.log("here is the index -->>>",index,field)
+        console.log("printing here ",inputFields[index].sourceType)
         if (inputFields[index].sourceType === "github") {
-            return (
+            return  (
                 <Fragment>
-                    <MyTextInput name="gitUrl" label="Enter github repository url" onChange={e => handleChange(e,index)}></MyTextInput>
-                    <MyTextInput name="gitUsername" label="Enter repository owner's github user name" onChange={e => handleChange(e,index)}></MyTextInput>
-                    <MyTextInput name="gitReponame" label="Enter repository name" onChange={e => handleChange(e,index)}></MyTextInput>
-                    <MyTextInput name="gitFilepath" label="Enter path to files from root of your repository" onChange={e => handleChange(e,index)}></MyTextInput>
+                    <MyTextInput name="gitUrl" label="Enter github repository url" autoFocus={true} onChange={e => handleChange(e)}></MyTextInput>
+                    <MyTextInput name="gitUsername" label="Enter repository owner's github user name"  onChange={e => handleChange(e)}></MyTextInput>
+                    <MyTextInput name="gitReponame" label="Enter repository name" onChange={e => handleChange(e)}></MyTextInput>
+                    <MyTextInput name="gitFilepath" label="Enter path to files from root of your repository" onChange={e => handleChange(e)}></MyTextInput>
                 </Fragment>
             );
         }
         else if (inputFields[index].sourceType === "web") {
-            return (
+            return  (
                 <Fragment>
-                    <MyTextInput name="webUrl" label="Enter source url" onChange={e => handleChange(e,index)} ></MyTextInput>
-                    <MyTextInput name="webTitle" label="Enter a title for source" onChange={e => handleChange(e,index)}></MyTextInput>
-                    <MyTextInput name="webDescription" label="Enter source description" onChange={e => handleChange(e,index)}></MyTextInput>
+                    <MyTextInput name="webUrl" label="Enter source url" onChange={e => handleChange(e)} ></MyTextInput>
+                    <MyTextInput name="webTitle" label="Enter a title for source" onChange={e => handleChange(e)}></MyTextInput>
+                    <MyTextInput name="webDescription" label="Enter source description" onChange={e => handleChange(e)}></MyTextInput>
                 </Fragment>
             );
         }
         else{
-            return(
-                null
-            );
+            return(null)
         }
     }
 
@@ -111,18 +111,18 @@ export const TopicForm = () => {
         <form onSubmit={e => handleSubmit(e)}>
             <MyTextInput label="What would you like to name the topic ?" name="topicName" onChange={e => handleChange(e)}>
             </MyTextInput>
-            <MyTextInput label="Enter topic description"></MyTextInput>
+            <MyTextInput label="Enter topic description" name="topicDescription"></MyTextInput>
             {inputFields.map((inputField, index) => (
                 <Fragment key={`${inputField}~${index}`}>
-                    <MySelect name="sourceType" label="Select sourcetype for your data" onChange={e => handleChange(e,index)}>
+                    <MySelect name="sourceType" label="Select sourcetype for your data" value={inputField.sourceType} onChange={e => handleChange(e,index)}>
                         <option value="">Select Source type</option>
                         <option value="web">Web</option>
                         <option value="github">Github</option>
                     </MySelect>
-                    <LoadSubForm index={index}></LoadSubForm>
                     <button onClick={() => handleAddFields()}><FontAwesomeIcon icon={faPlus} /></button>
                     <button onClick={() =>handleRemoveFields(index)}><FontAwesomeIcon icon={faMinus} /></button>
-                {/* {content} */}
+                    {/* <LoadSubForm index={index} field={inputField}></LoadSubForm> */}
+                {content}
                 </Fragment>
             ))}
             <button type="Submit">Submit</button>
