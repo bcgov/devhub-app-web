@@ -1,7 +1,7 @@
 import { React, useMemo, useState, Fragment } from 'react';
 import { MyTextInput, MyCheckbox, MySelect,StyledLabel} from './form';
 
-export const JoruneyForm = () => {
+export const JourneyForm = () => {
     return(
         <form>
             <MyTextInput label="What would you like to name the journey"></MyTextInput>
@@ -14,4 +14,4 @@ export const JoruneyForm = () => {
     );
 };
 
-export default JoruneyForm;
+export default JourneyForm;

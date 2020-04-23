@@ -10,7 +10,7 @@ import Main from '../components/Page/Main';
 import { MyTextInput, MyCheckbox, MySelect} from '../components/Form/form';
 import CurrentForm from '../components/Form/CurrentForm';
 import TopicForm from '../components/Form/TopicForm'
-import JourneyForm, { JoruneyForm } from '../components/Form/JourneyForm'
+import JourneyForm from '../components/Form/JourneyForm'
 
 export const contentContribution = ({}) => {
   const [currentVal, setVal] = useState('');
@@ -22,7 +22,7 @@ export const contentContribution = ({}) => {
       content = <TopicForm></TopicForm>
   }
   else if (currentVal === "addNewJourney"){
-      content = <JoruneyForm></JoruneyForm>
+      content = <JourneyForm></JourneyForm>
   }
   return (
     <Layout>
