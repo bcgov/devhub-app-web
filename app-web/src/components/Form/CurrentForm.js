@@ -1,6 +1,4 @@
 import { React, useMemo, useState, Fragment } from 'react';
-import { Formik, Form, useField } from 'formik';
-import * as Yup from 'yup';
 import { MyTextInput, MyCheckbox, MySelect} from './form';
 import { graphql, useStaticQuery } from 'gatsby';
 import { flattenGatsbyGraphQL } from '../../utils/dataHelpers';

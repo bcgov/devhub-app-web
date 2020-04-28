@@ -1,7 +1,5 @@
 import { React, useEffect, useState } from 'react';
 import Layout from '../hoc/Layout';
-import { Formik, Form, useField } from 'formik';
-import * as Yup from 'yup';
 
 // components
 import { SEO } from '../components/SEO/SEO';
