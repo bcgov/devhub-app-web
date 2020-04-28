@@ -108,6 +108,17 @@ export const Masthead = ({ query, searchSourcesLoading, location }) => {
         How Devhub Works
       </ChevronLink>
 
+      <ChevronLink
+        to="/contentContribution"
+        css={css`
+          font-size: 18px;
+          font-weight: 600;
+          margin-bottom: 1.5em;
+        `}
+      >
+        Add Content
+      </ChevronLink>
+
       <SearchContainer>
         <SearchStyled
           searchOnEnter

@@ -39,10 +39,6 @@ export const MAIN_NAV_ROUTES = {
     to: '/events',
     text: 'Events',
   },
-  CONTRIBUTION: {
-    to: '/contentContribution',
-    text: 'Contribute',
-  },
 };
 
 export const MAIN_NAV_ROUTE_LIST = Object.keys(MAIN_NAV_ROUTES).map(r => MAIN_NAV_ROUTES[r]);
