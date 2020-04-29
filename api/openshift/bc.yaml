@@ -11,9 +11,9 @@ objects:
         openshift.io/generated-by: OpenShiftNewApp
       labels:
         app: devhub-dev-${SUFFIX}
-        component: devhub-api-${SUFFIX}
-        rootComponent: devhub-api
-      name: devhub-api
+        component: ${NAME}-${SUFFIX}
+        rootComponent: ${NAME}
+      name: ${NAME}
   - apiVersion: build.openshift.io/v1
     kind: BuildConfig
     spec:
@@ -21,7 +21,7 @@ objects:
       output:
         to:
           kind: ImageStreamTag
-          name: 'devhub-api:${SUFFIX}'
+          name: '${NAME}:${SUFFIX}'
       postCommit: {}
       resources: {}
       source:
@@ -46,16 +46,16 @@ objects:
         openshift.io/generated-by: OpenShiftNewApp
       labels:
         app: devhub-dev-${SUFFIX}
-        component: devhub-api-${SUFFIX}
-        rootComponent: devhub-api
+        component: ${NAME}-${SUFFIX}
+        rootComponent: ${NAME}
       
-      name: devhub-api-${SUFFIX}
+      name: ${NAME}-${SUFFIX}
 parameters:
-  - name: GIT_REF
+  - name: SOURCE_REPOSITORY_REF
     value: master
     description: the github branch 
     displayName: Git Ref (branch)
-  - name: GIT_REPO
+  - name: SOURCE_REPOSITORY_URL
     value: https://github.com/bcgov/devhub-app-web
     description: the github repository 
     displayName: Github Repo
@@ -63,6 +63,10 @@ parameters:
     value: "0.0.0.0"
     description: the host the server runs on 
     displayName: Server Host
+  - name: NAME
+    value: devhub-api
+    description: the component name
+    displayName: Name
   - name: SUFFIX
     value: dev
     description: the suffix applied to app instances 

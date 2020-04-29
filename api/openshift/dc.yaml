@@ -11,9 +11,9 @@ objects:
         openshift.io/generated-by: OpenShiftNewApp
       labels:
         app: devhub-dev-${SUFFIX}
-        component: devhub-api-${SUFFIX}
-        rootComponent: devhub-api
-      name: devhub-api
+        component: ${NAME}-${SUFFIX}
+        rootComponent: ${NAME}
+      name: ${NAME}
   - apiVersion: build.openshift.io/v1
     kind: BuildConfig
     spec:
@@ -21,14 +21,14 @@ objects:
       output:
         to:
           kind: ImageStreamTag
-          name: 'devhub-api:${SUFFIX}'
+          name: '${NAME}:${SUFFIX}'
       postCommit: {}
       resources: {}
       source:
         contextDir: api
         git:
-          ref: ${GIT_REF}
-          uri: ${GIT_REPO}
+          ref: ${SOURCE_REPOSITORY_REF}
+          uri: ${SOURCE_REPOSITORY_URL}
         type: Git
       strategy:
         sourceStrategy:
@@ -46,18 +46,18 @@ objects:
         openshift.io/generated-by: OpenShiftNewApp
       labels:
         app: devhub-dev-${SUFFIX}
-        component: devhub-api-${SUFFIX}
-        rootComponent: devhub-api
+        component: ${NAME}-${SUFFIX}
+        rootComponent: ${NAME}
       
-      name: devhub-api-${SUFFIX}
+      name: ${NAME}-${SUFFIX}
   - apiVersion: apps.openshift.io/v1
     kind: DeploymentConfig
     spec:
       replicas: 3
       selector:
         app: devhub-dev-${SUFFIX}
-        component: devhub-api-${SUFFIX}
-        rootComponent: devhub-api
+        component: ${NAME}-${SUFFIX}
+        rootComponent: ${NAME}
       
         deploymentconfig: devhub-app-web
       strategy:
@@ -69,14 +69,14 @@ objects:
           creationTimestamp: null
           labels:
             app: devhub-dev-${SUFFIX}
-            component: devhub-api-${SUFFIX}
-            rootComponent: devhub-api
+            component: ${NAME}-${SUFFIX}
+            rootComponent: ${NAME}
           
             deploymentconfig: devhub-app-web
         spec:
           containers:
-            - image: 'devhub-api:${SUFFIX}'
-              name: devhub-api
+            - image: '${NAME}:${SUFFIX}'
+              name: ${NAME}
               env:
                 - name: PORT 
                   value: "3000"
@@ -86,7 +86,7 @@ objects:
                   valueFrom:
                     secretKeyRef:
                       key: GITHUB_TOKEN
-                      name: devhub-api-github
+                      name: ${NAME}-github
               resources:
                 requests:
                   cpu: ${CPU_REQUEST}
@@ -100,20 +100,20 @@ objects:
         - imageChangeParams:
             automatic: true
             containerNames:
-              - devhub-api
+              - ${NAME}
             from:
               kind: ImageStreamTag
-              name: 'devhub-api:${SUFFIX}'
+              name: '${NAME}:${SUFFIX}'
           type: ImageChange
     metadata:
       annotations:
         openshift.io/generated-by: OpenShiftNewApp
       labels:
         app: devhub-dev-${SUFFIX}
-        component: devhub-api-${SUFFIX}
-        rootComponent: devhub-api
+        component: ${NAME}-${SUFFIX}
+        rootComponent: ${NAME}
       
-      name: devhub-api-${SUFFIX}
+      name: ${NAME}-${SUFFIX}
   - apiVersion: v1
     kind: Service
     spec:
@@ -125,8 +125,8 @@ objects:
           targetPort: 3000
       selector:
         app: devhub-dev-${SUFFIX}
-        component: devhub-api-${SUFFIX}
-        rootComponent: devhub-api
+        component: ${NAME}-${SUFFIX}
+        rootComponent: ${NAME}
       
         deploymentconfig: devhub-app-web
     metadata:
@@ -134,9 +134,9 @@ objects:
         openshift.io/generated-by: OpenShiftNewApp
       labels:
         app: devhub-dev-${SUFFIX}
-        component: devhub-api-${SUFFIX}
-        rootComponent: devhub-api
-      name: devhub-api-${SUFFIX}
+        component: ${NAME}-${SUFFIX}
+        rootComponent: ${NAME}
+      name: ${NAME}-${SUFFIX}
   - apiVersion: route.openshift.io/v1
     kind: Route
     spec:
@@ -144,7 +144,7 @@ objects:
         targetPort: 8080-tcp
       to:
         kind: Service
-        name: devhub-api-${SUFFIX}
+        name: ${NAME}-${SUFFIX}
         weight: 100
       wildcardPolicy: None
     metadata:
@@ -152,16 +152,16 @@ objects:
         openshift.io/host.generated: 'true'
       labels:
         app: devhub-dev-${SUFFIX}
-        component: devhub-api-${SUFFIX}
-        rootComponent: devhub-api
-      name: devhub-api-${SUFFIX}
+        component: ${NAME}-${SUFFIX}
+        rootComponent: ${NAME}
+      name: ${NAME}-${SUFFIX}
   
 parameters:
-  - name: GIT_REF
+  - name: SOURCE_REPOSITORY_REF
     value: master
     description: the github branch 
     displayName: Git Ref (branch)
-  - name: GIT_REPO
+  - name: SOURCE_REPOSITORY_URL
     value: https://github.com/bcgov/devhub-app-web
     description: the github repository 
     displayName: Github Repo
@@ -169,6 +169,10 @@ parameters:
     value: "0.0.0.0"
     description: the host the server runs on 
     displayName: Server Host
+  - name: NAME
+    value: devhub-api
+    description: the component name
+    displayName: Name
   - name: SUFFIX
     value: dev
     description: the suffix applied to app instances 
