@@ -1,17 +1,17 @@
-import { React, useMemo, useState, Fragment } from 'react';
-import { MyTextInput, MyCheckbox, MySelect,StyledLabel} from './form';
+import { React } from 'react';
+import { TextInput } from './form';
 
 export const JourneyForm = () => {
-    return(
-        <form>
-            <MyTextInput label="What would you like to name the journey"></MyTextInput>
-            <MyTextInput label="Enter journey description"></MyTextInput>
-            <MyTextInput label="Enter github repository url"></MyTextInput>
-            <MyTextInput label="Enter repository owner's github username"></MyTextInput>
-            <MyTextInput label="Enter repository name"></MyTextInput>
-            <MyTextInput label="Enter path to files from root of your repository"></MyTextInput>
-        </form>
-    );
+  return (
+    <form>
+      <TextInput label="What would you like to name the journey"></TextInput>
+      <TextInput label="Enter journey description"></TextInput>
+      <TextInput label="Enter github repository url"></TextInput>
+      <TextInput label="Enter repository owner's github username"></TextInput>
+      <TextInput label="Enter repository name"></TextInput>
+      <TextInput label="Enter path to files from root of your repository"></TextInput>
+    </form>
+  );
 };
 
 export default JourneyForm;

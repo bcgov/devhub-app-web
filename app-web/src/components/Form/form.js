@@ -9,7 +9,7 @@ export const StyledSelect = styled.select`
   margin: 0;
   box-sizing: border-box;
   padding: 0.65rem 0.5rem;
-  margin-right: 10px;    
+  margin-right: 10px;
 `;
 
 export const StyledErrorMessage = styled.div`
@@ -32,14 +32,18 @@ export const StyledLabel = styled.label`
 `;
 
 export const StyledInput = styled.input`
-display: block;
-width: 300px;
-height: 35px;
-border: ${props => props.border || '1px solid #ccc'};
-background-color: #fff;
+  display: flex;
+  font-family: ‘BCSans’, ‘Noto Sans’, Verdana, Arial, sans-serif;
+  font-size: 18px;
+  height: 34px;
+  border: 2px solid #606060;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  padding: 5px 5px 5px 7px;
 `;
 
-export const MyTextInput = ({ label, ...props }) => {
+export const TextInput = ({ label, ...props }) => {
   // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
   // which we can spread on <input> and alse replace ErrorMessage entirely.
   return (
@@ -63,13 +67,13 @@ export const MyCheckbox = ({ children, ...props }) => {
   );
 };
 
-export const MySelect = ({ label, ...props }) => {
+export const SelectDropdown = ({ label, ...props }) => {
   // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
   // which we can spread on <input> and alse replace ErrorMessage entirely.
   return (
     <>
       <StyledLabel>{label}</StyledLabel>
-      <StyledSelect  {...props} />
+      <StyledSelect {...props} />
     </>
   );
 };
