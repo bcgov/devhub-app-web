@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 app.get('/ehlo', (req, res) => {
   res.sendStatus(200);
 });
-// Error handleing middleware. This needs to be last in or it will
+// Error handling middleware. This needs to be last in or it will
 // not get called.
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
