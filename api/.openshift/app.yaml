@@ -1,0 +1,154 @@
+kind: Template
+apiVersion: v1
+objects:
+  - apiVersion: image.openshift.io/v1
+    kind: ImageStream
+    spec:
+      lookupPolicy:
+        local: false
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      labels:
+        app: devhub-dev-${SUFFIX}
+        component: devhub-api-${SUFFIX}
+        rootComponent: devhub-api
+      name: devhub-api
+  - apiVersion: build.openshift.io/v1
+    kind: BuildConfig
+    spec:
+      nodeSelector: null
+      output:
+        to:
+          kind: ImageStreamTag
+          name: 'devhub-api:${SUFFIX}'
+      postCommit: {}
+      resources: {}
+      source:
+        contextDir: api
+        git:
+          ref: ${GIT_REF}
+          uri: ${GIT_REPO}
+        type: Git
+      strategy:
+        sourceStrategy:
+          from:
+            kind: ImageStreamTag
+            name: 'nodejs:10'
+            namespace: openshift
+        type: Source
+      triggers:
+        - type: ConfigChange
+        - imageChange: {}
+          type: ImageChange
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      labels:
+        app: devhub-dev-${SUFFIX}
+        component: devhub-api-${SUFFIX}
+        rootComponent: devhub-api
+      
+      name: devhub-api-${SUFFIX}
+  - apiVersion: apps.openshift.io/v1
+    kind: DeploymentConfig
+    spec:
+      replicas: 3
+      selector:
+        app: devhub-dev-${SUFFIX}
+        component: devhub-api-${SUFFIX}
+        rootComponent: devhub-api
+      
+        deploymentconfig: devhub-app-web
+      strategy:
+        resources: {}
+      template:
+        metadata:
+          annotations:
+            openshift.io/generated-by: OpenShiftNewApp
+          creationTimestamp: null
+          labels:
+            app: devhub-dev-${SUFFIX}
+            component: devhub-api-${SUFFIX}
+            rootComponent: devhub-api
+          
+            deploymentconfig: devhub-app-web
+        spec:
+          containers:
+            - image: 'devhub-api:${SUFFIX}'
+              name: devhub-api
+              env:
+                - name: PORT 
+                  value: "3000"
+                - name: HOST 
+                  value: ${SERVER_HOST}
+                - name: GITHUB_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      key: GITHUB_TOKEN
+                      name: devhub-api-github
+              # ports:
+              #   - containerPort: "3000"
+              #     protocol: TCP
+              resources: {}
+      test: false
+      triggers:
+        - type: ConfigChange
+        - imageChangeParams:
+            automatic: true
+            containerNames:
+              - devhub-api
+            from:
+              kind: ImageStreamTag
+              name: 'devhub-api:${SUFFIX}'
+          type: ImageChange
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      labels:
+        app: devhub-dev-${SUFFIX}
+        component: devhub-api-${SUFFIX}
+        rootComponent: devhub-api
+      
+      name: devhub-api-${SUFFIX}
+  - apiVersion: v1
+    kind: Service
+    spec:
+      ports:
+        - name: 8080-tcp
+          port: 8080
+          protocol: TCP
+          # I wanted to parametrize target port but template params do not allow integer values atm
+          targetPort: 3000
+      selector:
+        app: devhub-dev-${SUFFIX}
+        component: devhub-api-${SUFFIX}
+        rootComponent: devhub-api
+      
+        deploymentconfig: devhub-app-web
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      labels:
+        app: devhub-dev-${SUFFIX}
+        component: devhub-api-${SUFFIX}
+        rootComponent: devhub-api
+      
+      name: devhub-api-${SUFFIX}
+parameters:
+  - name: GIT_REF
+    value: master
+    description: the github branch 
+    displayName: Git Ref (branch)
+  - name: GIT_REPO
+    value: https://github.com/bcgov/devhub-app-web
+    description: the github repository 
+    displayName: Github Repo
+  - name: SERVER_HOST
+    value: localhost
+    description: the host the server runs on 
+    displayName: Server Host
+  - name: SUFFIX
+    value: dev
+    description: the suffix applied to app instances 
+    displayName: Suffix
