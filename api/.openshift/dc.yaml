@@ -136,8 +136,26 @@ objects:
         app: devhub-dev-${SUFFIX}
         component: devhub-api-${SUFFIX}
         rootComponent: devhub-api
-      
       name: devhub-api-${SUFFIX}
+  - apiVersion: route.openshift.io/v1
+    kind: Route
+    spec:
+      port:
+        targetPort: 8080-tcp
+      to:
+        kind: Service
+        name: devhub-api-${SUFFIX}
+        weight: 100
+      wildcardPolicy: None
+    metadata:
+      annotations:
+        openshift.io/host.generated: 'true'
+      labels:
+        app: devhub-dev-${SUFFIX}
+        component: devhub-api-${SUFFIX}
+        rootComponent: devhub-api
+      name: devhub-api-${SUFFIX}
+  
 parameters:
   - name: GIT_REF
     value: master

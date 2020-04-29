@@ -1,0 +1,89 @@
+kind: Template
+apiVersion: v1
+objects:
+  - apiVersion: image.openshift.io/v1
+    kind: ImageStream
+    spec:
+      lookupPolicy:
+        local: false
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      labels:
+        app: devhub-dev-${SUFFIX}
+        component: devhub-api-${SUFFIX}
+        rootComponent: devhub-api
+      name: devhub-api
+  - apiVersion: build.openshift.io/v1
+    kind: BuildConfig
+    spec:
+      nodeSelector: null
+      output:
+        to:
+          kind: ImageStreamTag
+          name: 'devhub-api:${SUFFIX}'
+      postCommit: {}
+      resources: {}
+      source:
+        contextDir: api
+        git:
+          ref: ${GIT_REF}
+          uri: ${GIT_REPO}
+        type: Git
+      strategy:
+        sourceStrategy:
+          from:
+            kind: ImageStreamTag
+            name: 'nodejs:10'
+            namespace: openshift
+        type: Source
+      triggers:
+        - type: ConfigChange
+        - imageChange: {}
+          type: ImageChange
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      labels:
+        app: devhub-dev-${SUFFIX}
+        component: devhub-api-${SUFFIX}
+        rootComponent: devhub-api
+      
+      name: devhub-api-${SUFFIX}
+parameters:
+  - name: GIT_REF
+    value: master
+    description: the github branch 
+    displayName: Git Ref (branch)
+  - name: GIT_REPO
+    value: https://github.com/bcgov/devhub-app-web
+    description: the github repository 
+    displayName: Github Repo
+  - name: SERVER_HOST
+    value: "0.0.0.0"
+    description: the host the server runs on 
+    displayName: Server Host
+  - name: SUFFIX
+    value: dev
+    description: the suffix applied to app instances 
+    displayName: Suffix
+  - description: The CPU Request for the deployment config
+    displayName: CPU Request 
+    name: CPU_REQUEST
+    required: false
+    value: 100m
+  - description: The CPU Limit for the deployment config
+    displayName: CPU Limit 
+    name: CPU_LIMIT
+    required: false
+    value: 150m
+  - description: The Memory Request for the deployment config
+    displayName: Memory Request 
+    name: MEMORY_REQUEST
+    required: false
+    value: 50Mi
+  - description: The Memory Limit for the deployment config
+    displayName: Memory Limit 
+    name: MEMORY_LIMIT
+    required: false
+    value: 75Mi
