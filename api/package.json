@@ -8,7 +8,9 @@
   },
   "scripts": {
     "test": "npm test",
-    "dev": "nodemon --exec babel-node src/index.js"
+    "build": "babel src -d dist",
+    "dev": "nodemon --exec babel-node src/index.js",
+    "start": "node dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,7 @@
   },
   "homepage": "https://github.com/bcgov/devhub-app-web#readme",
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
     "@babel/node": "^7.8.7",
     "@babel/preset-env": "^7.9.6",
