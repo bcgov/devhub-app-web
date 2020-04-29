@@ -2,7 +2,6 @@ import { React, useMemo, useState, Fragment } from 'react';
 import { MyTextInput, MyCheckbox, MySelect} from './form';
 import { graphql, useStaticQuery } from 'gatsby';
 import { flattenGatsbyGraphQL } from '../../utils/dataHelpers';
-import { Label } from 'reactstrap';
 
 export const CurrentForm = () => {
   const [currVal, setVal] = useState('');
