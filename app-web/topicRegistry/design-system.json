@@ -30,6 +30,7 @@
             "components/dropdown/README.md",
             "components/text_input/README.md",
             "components/textarea/README.md",
+            "components/about/browser_support_guidance.md",
             "components/about/component_workflow.md",
             "components/about/propose_a_component.md",
             "components/about/prototyping_tools.md"
