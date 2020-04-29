@@ -22,6 +22,9 @@ Additional component can be fond in these repos:
 
 > this is not the recommended way to deploy the application onto the platform. There is a Jenkinsfile in conjunction with the `.pipeline` scripts to build and deploy this application
 
+1. Create the github token secren `oc process -f openshift/secret.yaml -p GITHUB_TOKEN=... | oc apply -f -`
+2. Create the build `oc process -f openshift/bc.yaml -p ... | oc apply -f -`
+3. Create  the deployment `oc process  -f openshift/dc.yaml -p ... | oc apply -f -`
 ### API Usage & Documentation
 
 The API documentation can be built with the following command; the result of building the documentation can be found in the `public/doc/api` directory / folder and will be served out via the API.
