@@ -87,7 +87,9 @@
           "owner": "bcdevops",
           "repo": "developer-experience",
           "files": [
-            "apps/artifactory/DEVHUB-README.md"
+            "apps/artifactory/DEVHUB-README.md",
+            "docs/resiliency-checklist.md",
+            "docs/post-outage-checklist.md"
           ]
         }
       },
