@@ -87,10 +87,13 @@ objects:
                     secretKeyRef:
                       key: GITHUB_TOKEN
                       name: devhub-api-github
-              # ports:
-              #   - containerPort: "3000"
-              #     protocol: TCP
-              resources: {}
+              resources:
+                requests:
+                  cpu: ${CPU_REQUEST}
+                  memory: ${MEMORY_REQUEST}
+                limits:
+                  cpu: ${CPU_LIMIT}
+                  memory: ${MEMORY_LIMIT}
       test: false
       triggers:
         - type: ConfigChange
@@ -145,10 +148,30 @@ parameters:
     description: the github repository 
     displayName: Github Repo
   - name: SERVER_HOST
-    value: localhost
+    value: "0.0.0.0"
     description: the host the server runs on 
     displayName: Server Host
   - name: SUFFIX
     value: dev
     description: the suffix applied to app instances 
     displayName: Suffix
+  - description: The CPU Request for the deployment config
+    displayName: CPU Request 
+    name: CPU_REQUEST
+    required: false
+    value: 100m
+  - description: The CPU Limit for the deployment config
+    displayName: CPU Limit 
+    name: CPU_LIMIT
+    required: false
+    value: 150m
+  - description: The Memory Request for the deployment config
+    displayName: Memory Request 
+    name: MEMORY_REQUEST
+    required: false
+    value: 50Mi
+  - description: The Memory Limit for the deployment config
+    displayName: Memory Limit 
+    name: MEMORY_LIMIT
+    required: false
+    value: 75Mi
