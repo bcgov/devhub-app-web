@@ -1,0 +1,25 @@
+{
+  "name": "devhub-api",
+  "version": "1.0.0",
+  "description": "the content api",
+  "main": "dist/index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bcgov/devhub-app-web.git"
+  },
+  "keywords": [
+    "content"
+  ],
+  "author": "Patrick Simonian",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/bcgov/devhub-app-web/issues"
+  },
+  "homepage": "https://github.com/bcgov/devhub-app-web#readme"
+}
