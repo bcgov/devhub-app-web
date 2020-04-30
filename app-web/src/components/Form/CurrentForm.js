@@ -71,10 +71,12 @@ const DataQuery = ({ datatype }) => {
     }
   `);
   let queriedData;
+  const topicData = useMemo(() => flattenGatsbyGraphQL(topics.edges), [topics.edges]);
+  const journeyData = useMemo(() => flattenGatsbyGraphQL(journeys.edges), [journeys.edges]);
   if (datatype === 'topics') {
-    queriedData = useMemo(() => flattenGatsbyGraphQL(topics.edges), [topics.edges]);
+    queriedData = topicData;
   } else if (datatype === 'journeys') {
-    queriedData = useMemo(() => flattenGatsbyGraphQL(journeys.edges), [journeys.edges]);
+    queriedData = journeyData;
   }
   const dropdownlabel = 'Select one of the following ' + datatype.toString();
   return (

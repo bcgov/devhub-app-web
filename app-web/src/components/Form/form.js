@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { useField } from 'formik';
 
 // Styled components ....
 export const StyledSelect = styled.select`
@@ -50,19 +49,6 @@ export const TextInput = ({ label, ...props }) => {
     <>
       <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
       <StyledInput className="text-input" {...props} />
-    </>
-  );
-};
-
-export const MyCheckbox = ({ children, ...props }) => {
-  const [field, meta] = useField({ ...props, type: 'checkbox' });
-  return (
-    <>
-      <label className="checkbox">
-        <input {...field} {...props} type="checkbox" />
-        {children}
-      </label>
-      {meta.touched && meta.error ? <div className="error">{meta.error}</div> : null}
     </>
   );
 };

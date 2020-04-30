@@ -11,7 +11,7 @@ import TopicForm from '../components/Form/TopicForm';
 import JourneyForm from '../components/Form/JourneyForm';
 
 const contentContribution = () => {
-  const [currentVal, setVal] = useState('');
+  const [currentVal, setCurrentVal] = useState('');
   let content;
   if (currentVal === 'addToExistingResource') {
     content = <CurrentForm></CurrentForm>;
@@ -32,7 +32,7 @@ const contentContribution = () => {
           <SelectDropdown
             label="How would you like to contribute ?"
             onChange={e => {
-              setVal(e.target.value);
+              setCurrentVal(e.target.value);
             }}
           >
             <option value="">Select a job type</option>
