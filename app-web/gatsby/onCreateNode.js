@@ -253,7 +253,7 @@ module.exports = async ({ node, actions, getNode, getNodes, store, cache, create
       visit(ast, 'heading', node => {
         // is title blank and is node on first line and a h1 or h2?
         const H2_NODE_DEPTH = 2;
-        const MAX_STARTING_LINE = 10;
+        const MAX_STARTING_LINE = 20;
         const isH1orH2 = node.depth <= H2_NODE_DEPTH;
         if (title === '' && isH1orH2) {
           // accept headers up to 3rd line of markdown file

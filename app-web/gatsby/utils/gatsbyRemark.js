@@ -120,11 +120,13 @@ const converter = (astType, path, markdownNode, parentQLnode, { getNode, getNode
       });
 
       if (githubRawNodeThatMatches) {
-        // currently we are just assuming the link is from the first topic, this will cause an
+        // currently we are just assuming the link is from the first topic or journey, this will cause an
         // ux issue where all links that are sourced from multiple topics will lead to possibly incorrect
         // topics, that beings said, in order to fix this requires a run time solution as we are unsure
         // which link this path belongs too. If this really becomes an issue we can fix it then
-        const basePath = slugify(githubRawNodeThatMatches.___boundProperties.topics[0]);
+        const { journeys, topics } = githubRawNodeThatMatches.___boundProperties;
+        const baseNode = journeys ? journeys[0] : topics[0];
+        const basePath = slugify(baseNode);
         const pageComponentSlug = githubRawNodeThatMatches.fields.slug;
 
         absolutePath = `/${basePath}/${pageComponentSlug}`;
