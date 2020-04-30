@@ -1,4 +1,4 @@
-import React,{ useMemo, useState, Fragment } from 'react';
+import React, { useMemo, useState, Fragment } from 'react';
 import { SelectDropdown } from './form';
 import { graphql, useStaticQuery } from 'gatsby';
 import { flattenGatsbyGraphQL } from '../../utils/dataHelpers';

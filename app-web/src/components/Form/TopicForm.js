@@ -1,4 +1,4 @@
-import React,{ useState, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { TextInput, SelectDropdown } from './form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
@@ -183,7 +183,7 @@ export const TopicForm = () => {
             label="What type of content would you like to contribute ?"
             onChange={e => handleChange(e, index)}
           >
-            <option>Select a resource type</option>  
+            <option>Select a resource type</option>
             <option value="Components">Components</option>
             <option value="Self-Service Tools">Self-Service Tools</option>
             <option value="Documentation">Documentation</option>
