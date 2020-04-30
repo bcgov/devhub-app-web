@@ -1,13 +1,13 @@
-import { React, useMemo, useState, Fragment } from 'react';
+import React,{ useMemo, useState, Fragment } from 'react';
 import { SelectDropdown } from './form';
 import { graphql, useStaticQuery } from 'gatsby';
 import { flattenGatsbyGraphQL } from '../../utils/dataHelpers';
 
 export const CurrentForm = () => {
-  const [currVal, setVal] = useState('');
+  const [currentFormValue, setFormValue] = useState('');
   let content;
 
-  if (currVal === 'addToTopic') {
+  if (currentFormValue === 'addToTopic') {
     content = (
       <Fragment>
         <DataQuery datatype="topics"></DataQuery>
@@ -18,7 +18,7 @@ export const CurrentForm = () => {
         </SelectDropdown>
       </Fragment>
     );
-  } else if (currVal === 'addToJourney') {
+  } else if (currentFormValue === 'addToJourney') {
     content = <DataQuery datatype="journeys"></DataQuery>;
   }
 
@@ -29,7 +29,7 @@ export const CurrentForm = () => {
           label="Would you like to add to an existing Topic or Journey"
           name="jobType"
           onChange={e => {
-            setVal(e.target.value);
+            setFormValue(e.target.value);
           }}
         >
           <option value="">Select a job type</option>

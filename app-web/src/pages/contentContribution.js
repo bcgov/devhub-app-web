@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import React,{ useState } from 'react';
 import Layout from '../hoc/Layout';
 
 // components
@@ -11,13 +11,13 @@ import TopicForm from '../components/Form/TopicForm';
 import JourneyForm from '../components/Form/JourneyForm';
 
 const contentContribution = () => {
-  const [currentVal, setCurrentVal] = useState('');
+  const [currentFormValue, setCurrentFormValue] = useState('');
   let content;
-  if (currentVal === 'addToExistingResource') {
+  if (currentFormValue === 'addToExistingResource') {
     content = <CurrentForm></CurrentForm>;
-  } else if (currentVal === 'addNewTopic') {
+  } else if (currentFormValue === 'addNewTopic') {
     content = <TopicForm></TopicForm>;
-  } else if (currentVal === 'addNewJourney') {
+  } else if (currentFormValue === 'addNewJourney') {
     content = <JourneyForm></JourneyForm>;
   }
   return (
@@ -32,7 +32,7 @@ const contentContribution = () => {
           <SelectDropdown
             label="How would you like to contribute ?"
             onChange={e => {
-              setCurrentVal(e.target.value);
+              setCurrentFormValue(e.target.value);
             }}
           >
             <option value="">Select a job type</option>
