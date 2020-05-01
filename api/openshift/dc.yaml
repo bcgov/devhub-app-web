@@ -38,9 +38,16 @@ objects:
           
             deploymentconfig: devhub-app-web
         spec:
+          volumes:
+            - name: ${NAME}-config-${SUFFIX}
+              configMap:
+                name: devhub-api-config
           containers:
             - image: '${NAME}:${VERSION}'
               name: ${NAME}
+              volumeMounts:
+                - name: ...
+                  mountPath: /opt/app-root/src/dist/config
               env:
                 - name: PORT 
                   value: "3000"
@@ -145,6 +152,8 @@ objects:
     kind: ConfigMap
     metadata:
       name: devhub-api-config
+      labels:
+        rootComponent: ${NAME}
 
 parameters:
   - name: SERVER_HOST
