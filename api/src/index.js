@@ -18,36 +18,23 @@ Created by Patrick Simonian
 'use strict';
 
 import dotenv from 'dotenv';
-import { logger } from '@bcgov/common-nodejs-utils';
 import bodyParser from 'body-parser';
 import express from 'express';
+import healthcheckRouters from './routers/healthcheck';
 
 dotenv.config();
 
 // Config
 
 const app = express();
-
+// middlewares
 app.use(bodyParser.json());
 
-app.get('/ehlo', (req, res) => {
-  res.sendStatus(200);
-});
-// Error handling middleware. This needs to be last in or it will
-// not get called.
-// eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
-  logger.error(err.message);
-  const code = err.code ? err.code : 500;
-  const message = err.message ? err.message : 'Internal Server Error';
-
-  res.status(code).json({ error: message, success: false });
-});
+// routes
+app.use('/v1/checks', healthcheckRouters);
 
 
-const port = process.env.PORT || 3000;
-const host = process.env.HOST || '0.0.0.0';
 
-app.listen(port, host, () => {
-  logger.info(`Listening on ${host}:${port}`);
-});
+
+
+export default app;

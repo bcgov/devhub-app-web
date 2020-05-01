@@ -22,7 +22,7 @@ const phases = {
     changeId: changeId,
     suffix: `dev-${changeId}`,
     instance: `${name}-dev-${changeId}`,
-    version: `${version}-${changeId}`,
+    version: `dev-${version}-${changeId}`,
     tag: `dev-${version}-${changeId}`,
   },
   test: {
