@@ -20,7 +20,10 @@ Created by Patrick Simonian
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import express from 'express';
+import passport from 'passport';
+
 import healthcheckRouters from './routers/healthcheck';
+import { authmware } from './utils/authmware';
 
 dotenv.config();
 
@@ -34,7 +37,10 @@ app.use(bodyParser.json());
 app.use('/v1/checks', healthcheckRouters);
 
 
+// authenticated routes 
 
+authmware(app);
+app.use(passport.authenticate('jwt', { session: false }));
 
 
 export default app;

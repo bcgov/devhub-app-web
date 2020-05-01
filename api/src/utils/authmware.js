@@ -23,26 +23,9 @@ import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
 
 import config from '../config/index.json';
 
-export const isAuthorized = jwtPayload => {
-  // if (
-  //   (jwtPayload.azp === ACCESS_CONTROL.AGENT_CLIENT_ID &&
-  //     jwtPayload.preferred_username === ACCESS_CONTROL.AGENT_USER) ||
-  //   (jwtPayload.roles && jwtPayload.roles.includes(ACCESS_CONTROL.USER_ROLE))
-  // ) {
-    return true;
-  // }
-
-  // return false;
-};
-
 export const verify = (req, jwtPayload, done) => {
-  if (jwtPayload) {
-    if (!isAuthorized(jwtPayload)) {
-      const err = new Error('You do not have the proper role for signing');
-      err.code = 401;
 
-      return done(err, null);
-    }
+  if (jwtPayload) {
 
     const user = {
       roles: jwtPayload.roles,
@@ -65,7 +48,7 @@ export const verify = (req, jwtPayload, done) => {
 export const authmware = async app => {
   app.use(passport.initialize());
   app.use(passport.session());
-
+  console.log("IS THIS BEING CALLED")
   // We don't store any user information.
   passport.serializeUser((user, done) => {
     console.log('serialize');
@@ -80,13 +63,14 @@ export const authmware = async app => {
 
   const { certificate, algorithm } = await getJwtCertificate(config.sso.certsUrl);
   const opts = {};
+
   opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
   opts.algorithms = [algorithm];
   opts.secretOrKey = certificate;
   opts.passReqToCallback = true;
   // For development purposes only ignore the expiration
   // time of tokens.
-  if (config.get('environment') === 'development') {
+  if (process.env.NODE_ENV === 'development') {
     opts.ignoreExpiration = true;
   }
 
