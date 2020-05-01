@@ -32,7 +32,7 @@ objects:
             openshift.io/generated-by: OpenShiftNewApp
           creationTimestamp: null
           labels:
-            app: devhub-dev-${SUFFIX}
+            app: devhub-api-${SUFFIX}
             component: ${NAME}-${SUFFIX}
             rootComponent: ${NAME}
           
@@ -88,11 +88,7 @@ objects:
           # I wanted to parametrize target port but template params do not allow integer values atm
           targetPort: 3000
       selector:
-        app: devhub-dev-${SUFFIX}
-        component: ${NAME}-${SUFFIX}
-        rootComponent: ${NAME}
-      
-        deploymentconfig: devhub-app-web
+        app: devhub-api-${SUFFIX}
     metadata:
       annotations:
         openshift.io/generated-by: OpenShiftNewApp
