@@ -13,7 +13,7 @@ const phases = {
     suffix: `build-${changeId}`,
     instance: `${name}-build-${changeId}`,
     version: `${version}-${changeId}`,
-    tag: `build-${version}-${changeId}`,
+    tag: `${version}-${changeId}`,
   },
   dev: {
     namespace: 'devhub-dev',
