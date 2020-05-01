@@ -33,7 +33,7 @@ const phases = {
     suffix: `test`,
     instance: `${name}-test`,
     version: `${version}`,
-    tag: `test-${version}`,
+    tag: `test`,
   },
   prod: {
     namespace: 'devhub-prod',
@@ -43,7 +43,7 @@ const phases = {
     suffix: `prod`,
     instance: `${name}-prod`,
     version: `${version}`,
-    tag: `prod-${version}`,
+    tag: `prod`,
   },
 };
 
