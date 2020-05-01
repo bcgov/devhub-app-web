@@ -21,7 +21,7 @@ objects:
       output:
         to:
           kind: ImageStreamTag
-          name: '${NAME}:${SUFFIX}'
+          name: '${NAME}:${VERSION}'
       postCommit: {}
       resources: {}
       source:
@@ -71,6 +71,10 @@ parameters:
     value: dev
     description: the suffix applied to app instances 
     displayName: Suffix
+  - name: VERSION
+    value: "1.0.0"
+    description: the version applied to image tag 
+    displayName: Version
   - description: The CPU Request for the deployment config
     displayName: CPU Request 
     name: CPU_REQUEST
