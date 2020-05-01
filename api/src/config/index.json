@@ -1,5 +1,4 @@
-export default {
-  
+{  
   "session": {
     "maxAge": 604800000,
     "expires": 604800000

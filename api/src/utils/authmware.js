@@ -21,7 +21,7 @@ import { getJwtCertificate } from '@bcgov/common-nodejs-utils';
 import passport from 'passport';
 import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
 
-import config from '../config';
+import config from '../config/index.json';
 
 export const isAuthorized = jwtPayload => {
   // if (
