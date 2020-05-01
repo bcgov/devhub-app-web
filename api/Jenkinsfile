@@ -61,5 +61,17 @@ pipeline {
                 sh "cd api/.pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=prod"
             }
         }
+
+        stage('Cleanup') {
+            agent { label 'deploy' }
+            input {
+                message "Should we cleanup and merge this pr?"
+                ok "Yes!"
+            }
+            steps {
+                echo "Cleaning ..."
+                sh "cd .pipeline && ./npmw ci && ./npmw run clean -- --pr=${CHANGE_ID} --env=dev"
+            }
+        }
     }
 }
