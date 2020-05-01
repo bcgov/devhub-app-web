@@ -1,0 +1,50 @@
+{
+  "name": "devhub-api",
+  "version": "1.0.0",
+  "description": "the content api",
+  "main": "dist/index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo 'No testing framework installed! Get on this'",
+    "build": "babel src -d dist",
+    "dev": "nodemon --exec babel-node src/index.js",
+    "start": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bcgov/devhub-app-web.git"
+  },
+  "keywords": [
+    "content"
+  ],
+  "author": "Patrick Simonian",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/bcgov/devhub-app-web/issues"
+  },
+  "homepage": "https://github.com/bcgov/devhub-app-web#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.6",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.0",
+    "nodemon": "^2.0.3",
+    "prettier": "^2.0.5"
+  },
+  "dependencies": {
+    "@bcgov/common-nodejs-utils": "^0.1.18",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0"
+  }
+}

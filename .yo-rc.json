@@ -121,5 +121,35 @@
         }
       }
     }
+  },
+  "@bcgov/generator-bcdk": {
+    "promptValues": {
+      "modules": {
+        "devhub-api": {
+          "name": "devhub-api",
+          "version": "1.0.0",
+          "path": "api",
+          "environments": {
+            "build": {
+              "namespace": "devhub-tools"
+            },
+            "dev": {
+              "namespace": "devhub-dev"
+            },
+            "test": {
+              "namespace": "devhub-test"
+            },
+            "prod": {
+              "namespace": "devhub-prod"
+            }
+          },
+          "jenkinsJobName": "devhub-api",
+          "github_owner": "bcgov",
+          "github_repo": "devhub-app-web",
+          "jenkinsFilePath": "api/Jenkinsfile",
+          "uuid": "aeb88339-a1a9-48e0-8d54-bfc3e23bb0c9"
+        }
+      }
+    }
   }
 }
