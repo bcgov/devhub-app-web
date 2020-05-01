@@ -14,42 +14,6 @@ objects:
         component: ${NAME}-${SUFFIX}
         rootComponent: ${NAME}
       name: ${NAME}
-  - apiVersion: build.openshift.io/v1
-    kind: BuildConfig
-    spec:
-      nodeSelector: null
-      output:
-        to:
-          kind: ImageStreamTag
-          name: '${NAME}:${SUFFIX}'
-      postCommit: {}
-      resources: {}
-      source:
-        contextDir: api
-        git:
-          ref: ${SOURCE_REPOSITORY_REF}
-          uri: ${SOURCE_REPOSITORY_URL}
-        type: Git
-      strategy:
-        sourceStrategy:
-          from:
-            kind: ImageStreamTag
-            name: 'nodejs:10'
-            namespace: openshift
-        type: Source
-      triggers:
-        - type: ConfigChange
-        - imageChange: {}
-          type: ImageChange
-    metadata:
-      annotations:
-        openshift.io/generated-by: OpenShiftNewApp
-      labels:
-        app: devhub-dev-${SUFFIX}
-        component: ${NAME}-${SUFFIX}
-        rootComponent: ${NAME}
-      
-      name: ${NAME}-${SUFFIX}
   - apiVersion: apps.openshift.io/v1
     kind: DeploymentConfig
     spec:
@@ -157,14 +121,6 @@ objects:
       name: ${NAME}-${SUFFIX}
   
 parameters:
-  - name: SOURCE_REPOSITORY_REF
-    value: master
-    description: the github branch 
-    displayName: Git Ref (branch)
-  - name: SOURCE_REPOSITORY_URL
-    value: https://github.com/bcgov/devhub-app-web
-    description: the github repository 
-    displayName: Github Repo
   - name: SERVER_HOST
     value: "0.0.0.0"
     description: the host the server runs on 

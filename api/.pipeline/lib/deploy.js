@@ -18,8 +18,7 @@ module.exports = (settings) => {
       param: {
         NAME: phases[phase].name,
         SUFFIX: phases[phase].suffix,
-        SOURCE_REPOSITORY_URL: oc.git.http_url,
-        SOURCE_REPOSITORY_REF: oc.git.ref,
+        VERSION: phases[phase].version
       },
     }),
   );
