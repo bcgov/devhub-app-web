@@ -30,6 +30,13 @@ const app = express();
 // middlewares
 app.use(bodyParser.json());
 
+// Add access control header (cors)
+app.use(function(req,res,next){
+   res.header("Access-Control-Allow-Origin", "http://localhost:8000/contentContribution")
+   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+   next();
+})
+
 // routes
 app.use('/v1/checks', healthcheckRouters);
 
