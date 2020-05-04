@@ -18,7 +18,8 @@ module.exports = (settings) => {
       param: {
         NAME: phases[phase].name,
         SUFFIX: phases[phase].suffix,
-        VERSION: phases[phase].version
+        VERSION: phases[phase].version,
+        DEVHUB_WEB_ORIGIN_URL: 'http://developer.gov.bc.ca',
       },
     }),
   );

@@ -31,21 +31,15 @@ const app = express();
 // middlewares
 app.use(bodyParser.json());
 
+// default to devhub in localhost
+const corsOrigin = process.env.CORS_URL || 'http://localhost:8000';
 
 var corsOptions = {
-   origin: `${process.env.CORS_URL}/contentContribution`,
+   origin: corsOrigin,
    optionsSuccessStatus: 200
 }
 
-app.use(cors(corsOptions),function(req,res){
-  req.on('data', chunk => {
-   console.log(`${chunk}`)
- })
- req.on('end', () => {
-   //end of data
- })
-
-})
+app.use(cors(corsOptions));
 
 // routes
 app.use('/v1/checks', healthcheckRouters);
