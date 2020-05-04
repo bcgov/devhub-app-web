@@ -84,7 +84,7 @@ objects:
               - ${NAME}
             from:
               kind: ImageStreamTag
-              name: '${NAME}:${SUFFIX}'
+              name: '${NAME}:${VERSION}'
           type: ImageChange
     metadata:
       annotations:
