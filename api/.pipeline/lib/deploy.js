@@ -53,7 +53,8 @@ module.exports = (settings) => {
         NAME: phases[phase].name,
         SUFFIX: phases[phase].suffix,
         VERSION: phases[phase].version,
-        ...getParamsByEnv(phase, changeId)
+        ...getParamsByEnv(phase, changeId),
+        DEVHUB_WEB_ORIGIN_URL: 'http://developer.gov.bc.ca',
       },
     }),
   );

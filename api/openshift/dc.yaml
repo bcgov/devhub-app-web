@@ -53,6 +53,8 @@ objects:
                   value: "3000"
                 - name: HOST 
                   value: ${SERVER_HOST}
+                - name: CORS_URL 
+                  value: ${DEVHUB_WEB_ORIGIN_URL}
                 - name: GITHUB_TOKEN
                   valueFrom:
                     secretKeyRef:
@@ -160,6 +162,10 @@ parameters:
     value: "0.0.0.0"
     description: the host the server runs on 
     displayName: Server Host
+  - name: DEVHUB_WEB_ORIGIN_URL
+    value: http://localhost:8000
+    description: The origin url for the devhub web, this ties into a cors policy
+    displayName: Devhub Web Origin URL
   - name: NAME
     value: devhub-api
     description: the component name
