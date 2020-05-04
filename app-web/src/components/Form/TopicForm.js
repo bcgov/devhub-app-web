@@ -67,13 +67,12 @@ export const TopicForm = () => {
       name: values[0].topicName,
       description: values[0].topicDescription,
       sourceProperties: {
-        sources: [
+        sources: 
           values.map(value => ({
             sourceType: value.sourceType,
             sourceProperties: getSourceProps(value),
             resourceType: value.resourceType,
           })),
-        ],
       },
     };
     const xhr = new XMLHttpRequest()
