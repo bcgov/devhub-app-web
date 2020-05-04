@@ -38,9 +38,16 @@ objects:
           
             deploymentconfig: devhub-app-web
         spec:
+          volumes:
+            - name: ${NAME}-config-${SUFFIX}
+              configMap:
+                name: devhub-api-config
           containers:
             - image: '${NAME}:${VERSION}'
               name: ${NAME}
+              volumeMounts:
+                - name: ${NAME}-config-${SUFFIX}
+                  mountPath: /opt/app-root/src/dist/config
               env:
                 - name: PORT 
                   value: "3000"
@@ -79,7 +86,7 @@ objects:
               - ${NAME}
             from:
               kind: ImageStreamTag
-              name: '${NAME}:${SUFFIX}'
+              name: '${NAME}:${VERSION}'
           type: ImageChange
     metadata:
       annotations:
@@ -127,7 +134,29 @@ objects:
         component: ${NAME}-${SUFFIX}
         rootComponent: ${NAME}
       name: ${NAME}-${SUFFIX}
-  
+  - apiVersion: v1
+    data:
+      index.json: |-
+        {  
+          "session": {
+            "maxAge": 604800000,
+            "expires": 604800000
+          },
+          "sso": {
+            "grantType": "client_credentials",
+            "clientId": "${SSO_CLIENT_ID_VALUE}",
+            "callback": "/v1/auth/callback",
+            "authUrl": "${SSO_BASE_URL_VALUE}/auth/realms/${SSO_REALM_NAME_VALUE}/protocol/openid-connect/auth",
+            "tokenUrl": "${SSO_BASE_URL_VALUE}/auth/realms/${SSO_REALM_NAME_VALUE}/protocol/openid-connect/token",
+            "certsUrl": "${SSO_BASE_URL_VALUE}/auth/realms/${SSO_REALM_NAME_VALUE}/protocol/openid-connect/certs"
+          }
+        }
+    kind: ConfigMap
+    metadata:
+      name: devhub-api-config
+      labels:
+        rootComponent: ${NAME}
+
 parameters:
   - name: SERVER_HOST
     value: "0.0.0.0"
@@ -169,3 +198,18 @@ parameters:
     name: MEMORY_LIMIT
     required: false
     value: 75Mi
+  - description: A base url of sso in the env
+    displayName: sso base URL
+    name: SSO_BASE_URL_VALUE
+    required: false
+    value: ''
+  - description: A sso client id in the env
+    displayName: sso client id
+    name: SSO_CLIENT_ID_VALUE
+    required: false
+    value: ''
+  - description: A sso realm name in the env
+    displayName: sso realm name
+    name: SSO_REALM_NAME_VALUE
+    required: false
+    value: ''
