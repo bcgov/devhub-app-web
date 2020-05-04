@@ -20,6 +20,7 @@ Created by Patrick Simonian
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import express from 'express';
+import cors from 'cors';
 import healthcheckRouters from './routers/healthcheck';
 
 dotenv.config();
@@ -30,18 +31,20 @@ const app = express();
 // middlewares
 app.use(bodyParser.json());
 
-// Add access control header (cors)
-app.use(function(req,res,next){
-    // we can access HTTP headers
+
+var corsOptions = {
+   origin: `${process.env.CORS_URL}/contentContribution`,
+   optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions),function(req,res){
   req.on('data', chunk => {
    console.log(`${chunk}`)
  })
  req.on('end', () => {
    //end of data
  })
-   res.header("Access-Control-Allow-Origin", "http://localhost:8000/contentContribution")
-   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-   next();
+
 })
 
 // routes
