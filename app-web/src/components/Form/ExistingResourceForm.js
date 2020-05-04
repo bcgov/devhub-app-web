@@ -3,7 +3,7 @@ import { SelectDropdown } from './form';
 import { graphql, useStaticQuery } from 'gatsby';
 import { flattenGatsbyGraphQL } from '../../utils/dataHelpers';
 
-export const CurrentForm = () => {
+export const ExistingResourceForm = () => {
   const [currentFormValue, setFormValue] = useState('');
   let content;
 
@@ -42,7 +42,7 @@ export const CurrentForm = () => {
   );
 };
 
-export default CurrentForm;
+export default ExistingResourceForm;
 
 const DataQuery = ({ datatype }) => {
   const { topics, journeys } = useStaticQuery(graphql`

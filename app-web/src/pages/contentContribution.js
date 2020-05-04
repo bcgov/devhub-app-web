@@ -6,7 +6,7 @@ import { SEO } from '../components/SEO/SEO';
 import { Title } from '../components/Page';
 import Main from '../components/Page/Main';
 import { SelectDropdown } from '../components/Form/form';
-import CurrentForm from '../components/Form/CurrentForm';
+import ExistingResourceForm from '../components/Form/ExistingResourceForm';
 import TopicForm from '../components/Form/TopicForm';
 import JourneyForm from '../components/Form/JourneyForm';
 
@@ -14,7 +14,7 @@ const contentContribution = () => {
   const [currentFormValue, setCurrentFormValue] = useState('');
   let content;
   if (currentFormValue === 'addToExistingResource') {
-    content = <CurrentForm></CurrentForm>;
+    content = <ExistingResourceForm></ExistingResourceForm>;
   } else if (currentFormValue === 'addNewTopic') {
     content = <TopicForm></TopicForm>;
   } else if (currentFormValue === 'addNewJourney') {

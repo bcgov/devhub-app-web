@@ -76,6 +76,9 @@ export const TopicForm = () => {
         ],
       },
     };
+    const xhr = new XMLHttpRequest()
+    xhr.open('POST','http://localhost:3000/v1/checks/form/submit')
+    xhr.send(JSON.stringify(userValues, null, 2))
     // eslint-disable-next-line no-console
     console.log(JSON.stringify(userValues, null, 2));
   };
