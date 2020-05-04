@@ -46,7 +46,7 @@ objects:
             - image: '${NAME}:${VERSION}'
               name: ${NAME}
               volumeMounts:
-                - name: ...
+                - name: ${NAME}-config-${SUFFIX}
                   mountPath: /opt/app-root/src/dist/config
               env:
                 - name: PORT 
