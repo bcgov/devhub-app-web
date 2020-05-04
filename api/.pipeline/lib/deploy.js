@@ -1,6 +1,45 @@
 'use strict';
 const { OpenShiftClientX } = require('@bcgov/pipeline-cli');
 const path = require('path');
+const ENVS = {
+  TEST: 'test',
+  PROD: 'prod',
+  DEV: 'dev',
+};
+
+const getParamsByEnv = (env, pr) => {
+  const params = {
+    SSO_BASE_URL_VALUE: 'https://sso.pathfinder.gov.bc.ca',
+    SSO_CLIENT_ID_VALUE: 'devhub-api',
+    SSO_REALM_NAME_VALUE: 'devhub',
+    // for the time being we only have a dev instance, this will change as the api is developed
+    SEARCHGATE_API_URL: 'https://searchgate.pathfinder.gov.bc.ca/',
+  };
+  switch (env) {
+    case ENVS.PROD:
+      return {...params, CPU_REQUEST: '100m', CPU_LIMIT: '150m', MEMORY_REQUEST: '75Mi', MEMORY_LIMIT: '125Mi'};
+    case ENVS.TEST:
+      return {
+        ...params,
+        SSO_BASE_URL_VALUE: 'https://sso-test.pathfinder.gov.bc.ca',
+        ALGOLIA_INDEX_NAME_SUFFIX: 'test',
+      };
+    case ENVS.DEV:
+      return {
+        ...params,
+        SSO_BASE_URL_VALUE: 'https://sso-dev.pathfinder.gov.bc.ca',
+        SSO_CLIENT_ID_VALUE: `devhub-web-${pr}`,
+        ALGOLIA_INDEX_NAME_SUFFIX: `-build-${pr}`,
+      };
+    default:
+      return {
+        ...params,
+        SSO_BASE_URL_VALUE: 'https://sso-dev.pathfinder.gov.bc.ca',
+        SSO_CLIENT_ID_VALUE: `devhub-web-${pr}`,
+      };
+  }
+};
+
 
 module.exports = (settings) => {
   const phases = settings.phases;
@@ -18,9 +57,7 @@ module.exports = (settings) => {
         NAME: phases[phase].name,
         SUFFIX: phases[phase].suffix,
         VERSION: phases[phase].version,
-        SSO_BASE_URL_VALUE: 'https://sso-dev.pathfinder.gov.bc.ca/',
-        SSO_CLIENT_ID_VALUE: 'devhub-web',
-        SSO_REALM_NAME_VALUE: 'devhub',
+        ...getParamsByEnv(phase)
       },
     }),
   );
