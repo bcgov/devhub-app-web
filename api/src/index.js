@@ -32,6 +32,13 @@ app.use(bodyParser.json());
 
 // Add access control header (cors)
 app.use(function(req,res,next){
+    // we can access HTTP headers
+  req.on('data', chunk => {
+   console.log(`${chunk}`)
+ })
+ req.on('end', () => {
+   //end of data
+ })
    res.header("Access-Control-Allow-Origin", "http://localhost:8000/contentContribution")
    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
    next();
