@@ -33,12 +33,10 @@ export const TopicForm = () => {
     setInputFields(values);
   };
 
-  const handleRemoveFields = index => {
-    if (index === 0) {
-      return;
-    }
+  const handleRemoveFields = () => {
     const values = [...inputFields];
-    values.splice(index, 1);
+    if(values.length === 1) return;
+    values.splice((values.length)-1 , 1);
     setInputFields(values);
   };
 
@@ -191,14 +189,14 @@ export const TopicForm = () => {
             <option value="Repositories">Repositories</option>
           </SelectDropdown>
           {LoadSubForm(index)}
-          <StyledButton type="button" onClick={() => handleAddFields()}>
-            Add a new source
-          </StyledButton>
-          <StyledButton type="button" onClick={() => handleRemoveFields(index)}>
-            Remove source
-          </StyledButton>
         </Fragment>
       ))}
+      <StyledButton type="button" onClick={() => handleAddFields()}>
+            Add a new source
+          </StyledButton>
+          <StyledButton type="button" onClick={() => handleRemoveFields()}>
+            Remove source
+          </StyledButton>
       <SubmitButton type="Submit">Submit</SubmitButton>
     </form>
   );

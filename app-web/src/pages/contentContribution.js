@@ -11,30 +11,18 @@ import TopicForm from '../components/Form/TopicForm';
 const contentContribution = () => {
   const [keycloak] = useKeycloak();
   const isAuthenticated = keycloak && keycloak.authenticated;
-  if (isAuthenticated === false){
-    return(
-      <Layout>
-        <SEO title="Content Contribution"></SEO>
-        <Main>
-          <Title title="Content Contribution" subtitle="Login via IDIR or Github to continue"/>
-        </Main>
-      </Layout>
-    )
-  }
-  else{
     return (
       <Layout>
         <SEO title="Content Contribution" />
         <Main>
           <Title
             title="Content Contribution"
-            subtitle="Add a topic to the Devhub"
+            subtitle= {!isAuthenticated ? 'Login via IDIR or Github to continue' : 'Add a topic to the Devhub'}
           />
-          <TopicForm></TopicForm>
+          {isAuthenticated ? <TopicForm></TopicForm> : ''}
         </Main>
       </Layout>
     );
-   }
 };
 
 export default contentContribution;
