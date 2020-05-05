@@ -17,13 +17,17 @@ router.post('/', async (req, res) => {
   const name = encryptStringToB64(req.user.preferred_username);
   const branchName = `${github.branchPrefix}/${name}`;
   const {repo, owner, defaultBranch} = github;
+  console.log('DEFAULT branch', defaultBranch)
   if( await openPullExistsForBranch(branchName, repo, owner)) {
     // add payload to pull request as new commit
   } else {
     // create branch  
-    const response = await octokit.repos.getBranch({repo, owner, branch: defaultBranch});
-    const sha = response.data.commit.sha
-    await octokit.git.createRef({owner, repo, ref: branchName, sha});
+    const response = await octokit.git.getRef({owner, repo, ref: `heads/${defaultBranch}`});
+
+    const sha = response.data.object.sha
+
+    // https://developer.github.com/v3/git/refs/#create-a-reference
+    await octokit.git.createRef({owner, repo, ref: `refs/heads/bar`, sha});
   }
   // check if an open pr exists
 

@@ -1,3 +1,5 @@
 import { Octokit } from '@octokit/rest';
+import createPullRequest from "octokit-create-pull-request";
 
-export default new Octokit({auth: process.env.GITHUB_TOKEN});
+const MyOctokit = Octokit.plugin(createPullRequest);
+export default new MyOctokit({auth: process.env.GITHUB_TOKEN});
