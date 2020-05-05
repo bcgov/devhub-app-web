@@ -1,7 +1,5 @@
 import React, { useState, Fragment } from 'react';
-import { TextInput, SelectDropdown } from './form';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { TextInput, SelectDropdown, StyledButton, SubmitButton } from './form';
 
 export const TopicForm = () => {
   const [inputFields, setInputFields] = useState([
@@ -111,22 +109,22 @@ export const TopicForm = () => {
         <Fragment>
           <TextInput
             name="url"
-            label="Enter github repository url"
+            label="Github repository url"
             onChange={e => handleChange(e, index)}
           ></TextInput>
           <TextInput
             name="gitUsername"
-            label="Enter repository owner's github user name"
+            label="Repository owner's github user name"
             onChange={e => handleChange(e, index)}
           ></TextInput>
           <TextInput
             name="gitReponame"
-            label="Enter repository name"
+            label="Repository name"
             onChange={e => handleChange(e, index)}
           ></TextInput>
           <TextInput
             name="gitFilepath"
-            label="Enter path to files from root of your repository, Seperate with commas if multiple"
+            label="Enter path to files from root of your repository"
             onChange={e => handleChange(e, index)}
           ></TextInput>
         </Fragment>
@@ -136,17 +134,17 @@ export const TopicForm = () => {
         <Fragment>
           <TextInput
             name="url"
-            label="Enter source url"
+            label="Enter the source url"
             onChange={e => handleChange(e, index)}
           ></TextInput>
           <TextInput
             name="webTitle"
-            label="Enter a title for source"
+            label="Provide a title for your source"
             onChange={e => handleChange(e, index)}
           ></TextInput>
           <TextInput
             name="webDescription"
-            label="Enter source description"
+            label="Describe your source"
             onChange={e => handleChange(e, index)}
           ></TextInput>
         </Fragment>
@@ -164,7 +162,7 @@ export const TopicForm = () => {
         onChange={e => handleChange(e)}
       ></TextInput>
       <TextInput
-        label="Enter topic description"
+        label="Describe the topic"
         name="topicDescription"
         onChange={e => handleChange(e)}
       ></TextInput>
@@ -172,36 +170,36 @@ export const TopicForm = () => {
         <Fragment key={`${inputField}~${index}`}>
           <SelectDropdown
             name="sourceType"
-            label="Select sourcetype for your data"
+            label="What type of data would you like to add ?"
             value={inputField.sourceType}
             onChange={e => handleChange(e, index)}
           >
             <option value="">Select Source type</option>
-            <option value="web">Web</option>
-            <option value="github">Github</option>
+            <option value="web">Web Page</option>
+            <option value="github">Github Markdown</option>
           </SelectDropdown>
           <SelectDropdown
             name="resourceType"
-            label="What type of content would you like to contribute ?"
+            label="How would you best categorize your content ?"
             onChange={e => handleChange(e, index)}
           >
-            <option>Select a resource type</option>
+            <option>Select a category</option>
             <option value="Components">Components</option>
             <option value="Self-Service Tools">Self-Service Tools</option>
             <option value="Documentation">Documentation</option>
             <option value="Events">Events</option>
             <option value="Repositories">Repositories</option>
           </SelectDropdown>
-          <button onClick={() => handleAddFields()}>
-            <FontAwesomeIcon icon={faPlus} />
-          </button>
-          <button onClick={() => handleRemoveFields(index)}>
-            <FontAwesomeIcon icon={faMinus} />
-          </button>
           {LoadSubForm(index)}
+          <StyledButton type="button" onClick={() => handleAddFields()}>
+            Add a new source
+          </StyledButton>
+          <StyledButton type="button" onClick={() => handleRemoveFields(index)}>
+            Remove source
+          </StyledButton>
         </Fragment>
       ))}
-      <button type="Submit">Submit</button>
+      <SubmitButton type="Submit">Submit</SubmitButton>
     </form>
   );
 };

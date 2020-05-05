@@ -6,19 +6,13 @@ import { SEO } from '../components/SEO/SEO';
 import { Title } from '../components/Page';
 import Main from '../components/Page/Main';
 import { SelectDropdown } from '../components/Form/form';
-import ExistingResourceForm from '../components/Form/ExistingResourceForm';
 import TopicForm from '../components/Form/TopicForm';
-import JourneyForm from '../components/Form/JourneyForm';
 
 const contentContribution = () => {
   const [currentFormValue, setCurrentFormValue] = useState('');
   let content;
-  if (currentFormValue === 'addToExistingResource') {
-    content = <ExistingResourceForm></ExistingResourceForm>;
-  } else if (currentFormValue === 'addNewTopic') {
+   if (currentFormValue === 'addNewTopic') {
     content = <TopicForm></TopicForm>;
-  } else if (currentFormValue === 'addNewJourney') {
-    content = <JourneyForm></JourneyForm>;
   }
   return (
     <Layout>
@@ -36,9 +30,7 @@ const contentContribution = () => {
             }}
           >
             <option value="">Select a job type</option>
-            <option value="addToExistingResource">Add content to existing Topic/Journey</option>
             <option value="addNewTopic">Add a new Topic</option>
-            <option value="addNewJourney">Add a new Journey</option>
           </SelectDropdown>
         </form>
         {content}

@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 // Styled components ....
 export const StyledSelect = styled.select`
+  display: block;
   color: var(--blue);
   width: 400px;
   margin: 0;
@@ -31,7 +32,7 @@ export const StyledLabel = styled.label`
 `;
 
 export const StyledInput = styled.input`
-  display: flex;
+  display: block;
   font-family: ‘BCSans’, ‘Noto Sans’, Verdana, Arial, sans-serif;
   font-size: 18px;
   height: 34px;
@@ -40,6 +41,30 @@ export const StyledInput = styled.input`
   margin-bottom: 15px;
   border-radius: 4px;
   padding: 5px 5px 5px 7px;
+`;
+
+export const StyledButton = styled.button`
+  position: relative;
+  width: 150px;
+  height: 36px;
+  border-radius: 2px;
+  margin: 20px 2px;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+`;
+
+export const SubmitButton = styled.button`
+  display:block;
+  width: 180px;
+  background-color: #003366;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 2px;
 `;
 
 export const TextInput = ({ label, ...props }) => {
