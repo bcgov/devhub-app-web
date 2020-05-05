@@ -23,11 +23,8 @@ import express from 'express';
 import passport from 'passport';
 import cors from 'cors';
 import healthcheckRouters from './routers/healthcheck';
-<<<<<<< HEAD
 import { authmware } from './utils/authmware';
-=======
 import topicRouters from './routers/topics';
->>>>>>> Add topic routes
 
 dotenv.config();
 
