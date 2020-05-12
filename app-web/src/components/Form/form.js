@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import css from '@emotion/css';
-import {Field} from 'react-final-form'
+import { Field } from 'react-final-form';
 
 // Styled components ....
 export const StyledSelect = styled.select`
@@ -57,7 +56,7 @@ export const StyledButton = styled.button`
 `;
 
 export const SubmitButton = styled.button`
-  display:block;
+  display: block;
   width: 180px;
   background-color: #003366;
   border: none;
@@ -70,8 +69,6 @@ export const SubmitButton = styled.button`
 `;
 
 export const TextInput = ({ label, ...props }) => {
-  // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
-  // which we can spread on <input> and alse replace ErrorMessage entirely.
   return (
     <>
       <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
@@ -81,8 +78,6 @@ export const TextInput = ({ label, ...props }) => {
 };
 
 export const SelectDropdown = ({ label, ...props }) => {
-  // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]
-  // which we can spread on <input> and alse replace ErrorMessage entirely.
   return (
     <>
       <StyledLabel>{label}</StyledLabel>
@@ -92,7 +87,6 @@ export const SelectDropdown = ({ label, ...props }) => {
 };
 
 export const Styles = styled.div`
-
   input {
   display: block;
   font-family: ‘BCSans’, ‘Noto Sans’, Verdana, Arial, sans-serif;

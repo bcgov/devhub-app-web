@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
 import { TextInput, SelectDropdown, StyledButton, SubmitButton, Styles} from './form';
-import {Form} from 'react-final-form'
-import arrayMutators from 'final-form-arrays'
-import { FieldArray } from 'react-final-form-arrays'
+import { Form } from 'react-final-form';
+import arrayMutators from 'final-form-arrays';
+import { FieldArray } from 'react-final-form-arrays';
+import axios from 'axios'
 
 export const TopicForm = () => {
 
@@ -39,6 +40,8 @@ export const TopicForm = () => {
 
     const onSubmit = async values => {
         values = convertToRegistryFormat(values)
+        axios.post('http://localhost:3000/v1/checks/form/submit',JSON.stringify(values,null,2))
+        // eslint-disable-next-line
         console.log(JSON.stringify(values,null,2))
     }
 
