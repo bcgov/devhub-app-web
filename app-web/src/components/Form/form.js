@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import css from '@emotion/css';
+import {Field} from 'react-final-form'
 
 // Styled components ....
 export const StyledSelect = styled.select`
@@ -73,7 +75,7 @@ export const TextInput = ({ label, ...props }) => {
   return (
     <>
       <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
-      <StyledInput className="text-input" {...props} />
+      <Field component="input" {...props}></Field>
     </>
   );
 };
@@ -84,7 +86,31 @@ export const SelectDropdown = ({ label, ...props }) => {
   return (
     <>
       <StyledLabel>{label}</StyledLabel>
-      <StyledSelect {...props} />
+      <Field component="select" {...props}></Field>
     </>
   );
 };
+
+export const Styles = styled.div`
+
+  input {
+  display: block;
+  font-family: ‘BCSans’, ‘Noto Sans’, Verdana, Arial, sans-serif;
+  font-size: 18px;
+  height: 34px;
+  border: 2px solid #606060;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  padding: 5px 5px 5px 7px;
+  }
+  select{
+  display: block;
+  color: var(--blue);
+  width: 400px;
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0.65rem 0.5rem;
+  margin-right: 10px;
+  }
+`

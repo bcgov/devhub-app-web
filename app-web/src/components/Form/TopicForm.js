@@ -1,205 +1,114 @@
-import React, { useState, Fragment } from 'react';
-import { TextInput, SelectDropdown, StyledButton, SubmitButton } from './form';
+import React, { Fragment } from 'react';
+import { TextInput, SelectDropdown, StyledButton, SubmitButton, Styles} from './form';
+import {Form} from 'react-final-form'
+import arrayMutators from 'final-form-arrays'
+import { FieldArray } from 'react-final-form-arrays'
 
 export const TopicForm = () => {
-  const [inputFields, setInputFields] = useState([
-    {
-      topicName: '',
-      topicDescription: '',
-      resourceType: '',
-      persona: '',
-      sourceType: '',
-      url: '',
-      gitUsername: '',
-      gitReponame: '',
-      gitFilepath: [],
-      webTitle: '',
-      webDescription: '',
-    },
-  ]);
 
-  const handleAddFields = () => {
-    const values = [...inputFields];
-    values.push({
-      sourceType: '',
-      resourceType: '',
-      url: '',
-      gitUsername: '',
-      gitReponame: '',
-      gitFilepath: [],
-      webTitle: '',
-      webDescription: '',
-    });
-    setInputFields(values);
-  };
-
-  const handleRemoveFields = () => {
-    const values = [...inputFields];
-    if(values.length === 1) return;
-    values.splice((values.length)-1 , 1);
-    setInputFields(values);
-  };
-
-  const getSourceProps = value => {
-    const properties = {};
-    if (value.sourceType === 'github') {
-      properties.url = value.url;
-      properties.owner = value.gitUsername;
-      properties.repo = value.gitReponame;
-      properties.file = value.gitFilepath.split(',');
+    const convertToRegistryFormat = (values) => {
+    const convertedFields = {
+        name: values.topicName,
+        description: values.topicDescription,
+        sourceProperties:{
+            sources:
+                values.sources.map(source => ({
+                    sourceType: source.sourceType,
+                    sourceProperties: getSourceProps(source),
+                    resourceType: source.resourceType
+                }))
+        }
     }
-    if (value.sourceType === 'web') {
-      properties.url = value.url;
-      properties.title = value.webTitle;
-      properties.description = value.webDescription;
+        return convertedFields
     }
-    return properties;
-  };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    const values = [...inputFields];
-    const userValues = {
-      name: values[0].topicName,
-      description: values[0].topicDescription,
-      sourceProperties: {
-        sources: 
-          values.map(value => ({
-            sourceType: value.sourceType,
-            sourceProperties: getSourceProps(value),
-            resourceType: value.resourceType,
-          })),
-      },
-    };
-    const xhr = new XMLHttpRequest()
-    xhr.open('POST','http://localhost:3000/v1/checks/form/submit')
-    xhr.send(JSON.stringify(userValues, null, 2))
-    // eslint-disable-next-line no-console
-    console.log(JSON.stringify(userValues, null, 2));
-  };
-
-  const handleChange = (event, index) => {
-    const values = [...inputFields];
-    const map = [
-      'topicName',
-      'topicDescription',
-      'resourceType',
-      'persona',
-      'sourceType',
-      'url',
-      'gitUsername',
-      'gitReponame',
-      'gitFilepath',
-      'webTitle',
-      'webDescription',
-    ];
-    if (event.target.name === 'topicName' || event.target.name === 'topicDescription') {
-      values[0][event.target.name] = event.target.value;
-    } else if (map.includes(event.target.name)) {
-      values[index][event.target.name] = event.target.value;
+    const getSourceProps = (source) => {
+      const properties = {}
+      properties.url = source.url;
+      if(source.sourceType === "github") {
+        properties.owner = source.owner
+        properties.repo = source.repo
+        properties.file = [source.file]
+      }
+      else if (source.sourceType === "web"){
+        properties.title = source.title
+        properties.description = source.description
+      }
+      return properties;
     }
-    setInputFields(values);
-  };
 
-  const LoadSubForm = index => {
-    if (inputFields[index].sourceType === 'github') {
-      return (
-        <Fragment>
-          <TextInput
-            name="url"
-            label="Github repository url"
-            onChange={e => handleChange(e, index)}
-          ></TextInput>
-          <TextInput
-            name="gitUsername"
-            label="Repository owner's github user name"
-            onChange={e => handleChange(e, index)}
-          ></TextInput>
-          <TextInput
-            name="gitReponame"
-            label="Repository name"
-            onChange={e => handleChange(e, index)}
-          ></TextInput>
-          <TextInput
-            name="gitFilepath"
-            label="Enter path to files from root of your repository"
-            onChange={e => handleChange(e, index)}
-          ></TextInput>
-        </Fragment>
-      );
-    } else if (inputFields[index].sourceType === 'web') {
-      return (
-        <Fragment>
-          <TextInput
-            name="url"
-            label="Enter the source url"
-            onChange={e => handleChange(e, index)}
-          ></TextInput>
-          <TextInput
-            name="webTitle"
-            label="Provide a title for your source"
-            onChange={e => handleChange(e, index)}
-          ></TextInput>
-          <TextInput
-            name="webDescription"
-            label="Describe your source"
-            onChange={e => handleChange(e, index)}
-          ></TextInput>
-        </Fragment>
-      );
-    } else {
-      return null;
+    const onSubmit = async values => {
+        values = convertToRegistryFormat(values)
+        console.log(JSON.stringify(values,null,2))
     }
-  };
 
-  return (
-    <form onSubmit={e => handleSubmit(e)}>
-      <TextInput
-        label="What would you like to name the topic ?"
-        name="topicName"
-        onChange={e => handleChange(e)}
-      ></TextInput>
-      <TextInput
-        label="Describe the topic"
-        name="topicDescription"
-        onChange={e => handleChange(e)}
-      ></TextInput>
-      {inputFields.map((inputField, index) => (
-        <Fragment key={`${inputField}~${index}`}>
-          <SelectDropdown
-            name="sourceType"
-            label="What type of data would you like to add ?"
-            value={inputField.sourceType}
-            onChange={e => handleChange(e, index)}
-          >
-            <option value="">Select Source type</option>
-            <option value="web">Web Page</option>
-            <option value="github">Github Markdown</option>
-          </SelectDropdown>
-          <SelectDropdown
-            name="resourceType"
-            label="How would you best categorize your content ?"
-            onChange={e => handleChange(e, index)}
-          >
-            <option>Select a category</option>
-            <option value="Components">Components</option>
-            <option value="Self-Service Tools">Self-Service Tools</option>
-            <option value="Documentation">Documentation</option>
-            <option value="Events">Events</option>
-            <option value="Repositories">Repositories</option>
-          </SelectDropdown>
-          {LoadSubForm(index)}
-        </Fragment>
-      ))}
-      <StyledButton type="button" onClick={() => handleAddFields()}>
-            Add a new source
-          </StyledButton>
-          <StyledButton type="button" onClick={() => handleRemoveFields()}>
-            Remove source
-          </StyledButton>
-      <SubmitButton type="Submit">Submit</SubmitButton>
-    </form>
-  );
-};
+    const initialValue = {
+        sources: [
+            {
+                sourceType:null,
+                resourceType: null
+            }
+        ]
+    }
+
+    const SubForm = (sourceType,name) => {
+        if (sourceType === "web") {
+            return (
+            <Fragment>
+                <TextInput label="Enter the source URL" name={`${name}.url`}></TextInput>
+                <TextInput label="Provide a title for your source" name={`${name}.title`}></TextInput>
+                <TextInput label="Describe your source in less than 140 characters" name={`${name}.description`}></TextInput>
+            </Fragment>
+            );
+        }
+        else if (sourceType === "github") {
+            return(
+                <Fragment>
+                    <TextInput label="Github Repository URL" name={`${name}.url`}></TextInput>
+                    <TextInput label="Github Repositiry owner's github user name" name={`${name}.owner`}></TextInput>
+                    <TextInput label="Repository name" name={`${name}.repo`}></TextInput>
+                    <TextInput label="Enter path to files to from root of your repository" name={`${name}.file`}></TextInput>
+                </Fragment>
+            );
+        }
+        else return null;
+    }
+
+    return(
+        <Styles>  
+            <Form onSubmit={onSubmit} mutators = {{...arrayMutators}} initialValues={initialValue}
+            render={({handleSubmit, form:{mutators: {push,pop}}, values}) =>(
+            <form onSubmit={handleSubmit}>
+                <TextInput label="What would you like to name the topic ?" name="topicName"></TextInput>
+                <TextInput label="Describe the topic" name="topicDescription"></TextInput>
+                <FieldArray name="sources">
+                    {({fields}) => fields.map((name,index) => (
+                        <Fragment key={`${name}~${index}`}>
+                        <SelectDropdown name={`${name}.sourceType`} key={`${name}~${index}`} label="What type of data would you like to add ?">
+                            <option>Select source type</option>
+                            <option value="web">Web Page</option>
+                            <option value="github">Github Markdown</option>
+                        </SelectDropdown>
+                        <SelectDropdown name={`${name}.resourceType`} label="How would you best categorize your data ?">
+                            <option>Select a category</option>
+                            <option value="Components">Components</option>
+                            <option value="Self-Service Tools">Self-Service Tools</option>
+                            <option value="Documentation">Documentation</option>
+                            <option value="Events">Events</option>
+                            <option value="Repositories">Repositories</option>
+                        </SelectDropdown>
+                        {SubForm(values.sources[index].sourceType,name)}
+                        </Fragment>
+                ))}
+                </FieldArray>
+                <StyledButton type="button" onClick={()=> push('sources',{sourceType:null,resourceType:null})}>Add a new source</StyledButton>
+                <StyledButton type="button" onClick={()=> values.sources.length > 1 ? pop('sources') : null }>Remove source</StyledButton>
+                <SubmitButton type="submit">Submit</SubmitButton>
+            </form>
+            )}
+            />
+        </Styles>
+    )
+}
 
 export default TopicForm;
