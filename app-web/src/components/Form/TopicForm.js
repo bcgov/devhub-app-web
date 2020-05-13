@@ -6,7 +6,6 @@ import { FieldArray } from 'react-final-form-arrays';
 import axios from 'axios';
 
 export const TopicForm = () => {
-
   const onSubmit = async values => {
     values = convertToRegistryFormat(values);
     axios.post('http://localhost:3000/v1/checks/form/submit', JSON.stringify(values, null, 2));
@@ -22,7 +21,7 @@ export const TopicForm = () => {
       },
     ],
   };
-  
+
   return (
     <Styles>
       <Form
