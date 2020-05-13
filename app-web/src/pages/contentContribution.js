@@ -6,7 +6,6 @@ import { useKeycloak } from '@react-keycloak/web';
 import { SEO } from '../components/SEO/SEO';
 import { Title } from '../components/Page';
 import Main from '../components/Page/Main';
-import { UnAuth } from '../components/Form/form';
 import TopicForm from '../components/Form/TopicForm';
 
 const contentContribution = () => {
@@ -23,7 +22,7 @@ const contentContribution = () => {
             !isAuthenticated ? 'Login via IDIR or Github to continue' : 'Add a topic to the Devhub'
           }
         />
-        {isAuthenticated ? <TopicForm></TopicForm> : <UnAuth>Not Authorized</UnAuth>}
+        {isAuthenticated ? <TopicForm></TopicForm> : <h4 css={{ color: 'red' }}>Not Authorized</h4>}
       </Main>
     </Layout>
   );
