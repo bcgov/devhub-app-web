@@ -6,34 +6,6 @@ import { FieldArray } from 'react-final-form-arrays';
 import axios from 'axios';
 
 export const TopicForm = () => {
-  const convertToRegistryFormat = values => {
-    const convertedFields = {
-      name: values.topicName,
-      description: values.topicDescription,
-      sourceProperties: {
-        sources: values.sources.map(source => ({
-          sourceType: source.sourceType,
-          sourceProperties: getSourceProps(source),
-          resourceType: source.resourceType,
-        })),
-      },
-    };
-    return convertedFields;
-  };
-
-  const getSourceProps = source => {
-    const properties = {};
-    properties.url = source.url;
-    if (source.sourceType === 'github') {
-      properties.owner = source.owner;
-      properties.repo = source.repo;
-      properties.file = [source.file];
-    } else if (source.sourceType === 'web') {
-      properties.title = source.title;
-      properties.description = source.description;
-    }
-    return properties;
-  };
 
   const onSubmit = async values => {
     values = convertToRegistryFormat(values);
@@ -50,37 +22,7 @@ export const TopicForm = () => {
       },
     ],
   };
-
-  const SubForm = (sourceType, name) => {
-    if (sourceType === 'web') {
-      return (
-        <Fragment>
-          <TextInput label="Enter the source URL" name={`${name}.url`}></TextInput>
-          <TextInput label="Provide a title for your source" name={`${name}.title`}></TextInput>
-          <TextInput
-            label="Describe your source in less than 140 characters"
-            name={`${name}.description`}
-          ></TextInput>
-        </Fragment>
-      );
-    } else if (sourceType === 'github') {
-      return (
-        <Fragment>
-          <TextInput label="Github Repository URL" name={`${name}.url`}></TextInput>
-          <TextInput
-            label="Github Repositiry owner's github user name"
-            name={`${name}.owner`}
-          ></TextInput>
-          <TextInput label="Repository name" name={`${name}.repo`}></TextInput>
-          <TextInput
-            label="Enter path to files to from root of your repository"
-            name={`${name}.file`}
-          ></TextInput>
-        </Fragment>
-      );
-    } else return null;
-  };
-
+  
   return (
     <Styles>
       <Form
@@ -144,6 +86,65 @@ export const TopicForm = () => {
       />
     </Styles>
   );
+};
+
+const convertToRegistryFormat = values => {
+  const convertedFields = {
+    name: values.topicName,
+    description: values.topicDescription,
+    sourceProperties: {
+      sources: values.sources.map(source => ({
+        sourceType: source.sourceType,
+        sourceProperties: getSourceProps(source),
+        resourceType: source.resourceType,
+      })),
+    },
+  };
+  return convertedFields;
+};
+
+const getSourceProps = source => {
+  const properties = {};
+  properties.url = source.url;
+  if (source.sourceType === 'github') {
+    properties.owner = source.owner;
+    properties.repo = source.repo;
+    properties.file = [source.file];
+  } else if (source.sourceType === 'web') {
+    properties.title = source.title;
+    properties.description = source.description;
+  }
+  return properties;
+};
+
+const SubForm = (sourceType, name) => {
+  if (sourceType === 'web') {
+    return (
+      <Fragment>
+        <TextInput label="Enter the source URL" name={`${name}.url`}></TextInput>
+        <TextInput label="Provide a title for your source" name={`${name}.title`}></TextInput>
+        <TextInput
+          label="Describe your source in less than 140 characters"
+          name={`${name}.description`}
+        ></TextInput>
+      </Fragment>
+    );
+  } else if (sourceType === 'github') {
+    return (
+      <Fragment>
+        <TextInput label="Github Repository URL" name={`${name}.url`}></TextInput>
+        <TextInput
+          label="Github Repositiry owner's github user name"
+          name={`${name}.owner`}
+        ></TextInput>
+        <TextInput label="Repository name" name={`${name}.repo`}></TextInput>
+        <TextInput
+          label="Enter path to files to from root of your repository"
+          name={`${name}.file`}
+        ></TextInput>
+      </Fragment>
+    );
+  } else return null;
 };
 
 export default TopicForm;

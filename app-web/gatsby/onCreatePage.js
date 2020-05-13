@@ -27,7 +27,7 @@ module.exports = async ({ page, actions }) => {
     page.matchPath = `/topic/*`;
     createPage(page);
   }
-  else if (page.path.match(/^\/contentContribution/)) {
+  if (page.path.match(/^\/contentContribution/)) {
     deletePage(page)
   }
 
