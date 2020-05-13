@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from '@emotion/styled';
 import { Field } from 'react-final-form';
 
@@ -68,21 +68,29 @@ export const SubmitButton = styled.button`
   border-radius: 2px;
 `;
 
+export const UnAuth = styled.h4`
+  color: red;
+  max-width: 565px;
+  margin-bottom: 0;
+  padding: 4px;
+  line-height: 1.5em;
+`;
+
 export const TextInput = ({ label, ...props }) => {
   return (
-    <>
+    <Fragment>
       <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
       <Field component="input" {...props}></Field>
-    </>
+    </Fragment>
   );
 };
 
 export const SelectDropdown = ({ label, ...props }) => {
   return (
-    <>
+    <Fragment>
       <StyledLabel>{label}</StyledLabel>
       <Field component="select" {...props}></Field>
-    </>
+    </Fragment>
   );
 };
 
