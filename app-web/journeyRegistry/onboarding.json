@@ -1,0 +1,65 @@
+{
+  "name": "Onboarding Journey",
+  "description": "Everything a new team should know when starting with the platform.",
+  "sourceProperties": {
+    "stops": [
+      {
+        "sourceType": "github",
+        "sourceProperties":
+          {
+            "file": "docs/OnboardingOutcomes.md",
+            "url": "https://github.com/bcdevops/developer-experience",
+            "owner": "bcdevops",
+            "repo": "developer-experience"
+          }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties":
+          {
+            "file": "resources/community/rocketchat.md",
+            "url": "https://github.com/bcgov/devhub-resources",
+            "owner": "bcgov",
+            "repo": "devhub-resources"
+          }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties":
+          {
+            "file": "resources/tools/tools-intro.md",
+            "url": "https://github.com/bcgov/devhub-resources",
+            "owner": "bcgov",
+            "repo": "devhub-resources"
+          }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties":
+          {
+            "file": "resources/community/devops-requests.md",
+            "url": "https://github.com/bcgov/devhub-resources",
+            "owner": "bcgov",
+            "repo": "devhub-resources"
+          }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties":
+          {
+            "file": "docs/GitIntro.md",
+            "url": "https://github.com/bcdevops/developer-experience",
+            "owner": "bcdevops",
+            "repo": "developer-experience"
+          }
+      }
+    ]
+  },
+  "attributes": {
+    "personas": [
+      "Developer",
+      "Product Owner"
+    ]
+  },
+  "resourceType": "Documentation"
+}

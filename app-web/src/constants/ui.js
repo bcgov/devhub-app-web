@@ -99,6 +99,7 @@ export const DYNAMIC_TOPIC_PATHS = {
 // this is a lookup table to easily identify which resources are considered featured
 export const FEATURED_CONTENT = [
   'Exchange Lab Ops Learning Programs',
+  'BCDevExchange Platform Status Page',
   'BC Developers Exchange',
   'Chat Channel Conventions',
   'Steps to join Pathfinder Rocket.Chat',
