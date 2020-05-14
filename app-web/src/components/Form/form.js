@@ -4,47 +4,22 @@ import { Field } from 'react-final-form';
 
 // Styled components ....
 
+// The CSS needs some refactoring, Look into this later ...
+
 export const StyledErrorMessage = styled.div`
-  font-size: 12px;
-  color: red;
-  width: 400px;
-  margin-top: 0.25rem;
-  &:before {
-    content: '❌ ';
-    font-size: 10px;
-  }
-  @media (prefers-color-scheme: dark) {
-    color: red;
-  }
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a12622;
 `;
 
 export const StyledLabel = styled.label`
   margin-top: 1rem;
   display: block;
-`;
-
-export const StyledButton = styled.button`
-  position: relative;
-  width: 150px;
-  height: 36px;
-  border-radius: 2px;
-  margin: 20px 2px;
-  background-color: white;
-  color: black;
-  cursor: pointer;
-`;
-
-export const SubmitButton = styled.button`
-  display: block;
-  width: 180px;
-  background-color: #003366;
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-decoration: none;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 2px;
 `;
 
 export const TextInput = ({ label, ...props }) => {
@@ -65,7 +40,7 @@ export const SelectDropdown = ({ label, ...props }) => {
   );
 };
 
-export const Styles = styled.div`
+export const StylesWrapper = styled.div`
   input {
     display: block;
     font-size: 18px;
@@ -83,5 +58,10 @@ export const Styles = styled.div`
     box-sizing: border-box;
     padding: 5px 5px 5px 7px;
     margin-right: 10px;
+  }
+  button {
+    position: relative;
+    margin: 10px 2px;
+    cursor: pointer;
   }
 `;

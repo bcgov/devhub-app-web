@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
-import { TextInput, SelectDropdown, StyledButton, SubmitButton, Styles } from './form';
+import { TextInput, SelectDropdown, StylesWrapper } from './form';
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { FieldArray } from 'react-final-form-arrays';
 import axios from 'axios';
+import StyledButton from '../UI/Button/Button';
 
 export const TopicForm = () => {
   const onSubmit = async values => {
@@ -23,7 +24,7 @@ export const TopicForm = () => {
   };
 
   return (
-    <Styles>
+    <StylesWrapper>
       <Form
         onSubmit={onSubmit}
         mutators={{ ...arrayMutators }}
@@ -69,21 +70,25 @@ export const TopicForm = () => {
             </FieldArray>
             <StyledButton
               type="button"
+              variant="secondary"
               onClick={() => push('sources', { sourceType: null, resourceType: null })}
             >
               Add a new source
             </StyledButton>
             <StyledButton
               type="button"
+              variant="secondary"
               onClick={() => (values.sources.length > 1 ? pop('sources') : null)}
             >
               Remove source
             </StyledButton>
-            <SubmitButton type="submit">Submit</SubmitButton>
+            <StyledButton type="submit" variant="primary" css={{ display: 'block' }}>
+              Submit
+            </StyledButton>
           </form>
         )}
       />
-    </Styles>
+    </StylesWrapper>
   );
 };
 
