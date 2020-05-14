@@ -107,6 +107,7 @@ const createSlugBlacklist = () => {
     sitemap: 'sitemap',
     repositories: 'repositories',
     'past-events': 'past-events',
+    'contentContribution': 'contentContribution',
   };
   const CONFIG_LIST = slugBlackList.reduce((map, slug) => {
     map[slug] = slug;
