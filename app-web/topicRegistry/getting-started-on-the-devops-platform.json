@@ -31,6 +31,14 @@
           "title": "BCDevExchange Platform Status Page",
           "description": "Find out information on the operational status of Keycloak, Openshift, Rocket.chat as well as any service disruptions or maintenance",
           "url": "https://status.developer.gov.bc.ca"
+        },
+        "attributes": {
+          "tags": [
+            "outage",
+            "service disruption",
+            "maintenance",
+            "feed"
+          ]
         }
       },
       {
