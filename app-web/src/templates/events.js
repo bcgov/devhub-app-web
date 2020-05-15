@@ -24,9 +24,7 @@ import Title from '../components/Page/Title';
 import Main from '../components/Page/Main';
 import NoEvents from '../components/UI/NoEvents';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
-import { RESOURCE_TYPES } from '../constants/ui';
 import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../constants/designTokens';
-import { TOPICS } from '../constants/topics';
 import { ChevronLink } from '../components/UI/Link';
 import Row from '../components/Card/Row';
 import CardsInColumns from '../components/Card/CardsInColumns';
@@ -81,7 +79,7 @@ export const formatMeetUps = meetups => {
   });
 };
 
-export const EventsPage = ({ data: { allEventbriteEvents, allTopicRegistryJson } }) => {
+export const EventsPage = ({ data: { allEventbriteEvents, allDevhubSiphon, allGithubRaw } }) => {
   const events = flattenGatsbyGraphQL(allEventbriteEvents.edges);
   /*const meetUps = formatMeetUps(
     flattenGatsbyGraphQL(allMeetupGroup.edges).flatMap(meetups => {
@@ -94,18 +92,14 @@ export const EventsPage = ({ data: { allEventbriteEvents, allTopicRegistryJson }
 
   //const currentMeetups = meetUps.filter(e => e.start.daysFromNow <= 0);
   //Get all the cards on the site
-  const topics = flattenGatsbyGraphQL(allTopicRegistryJson.edges);
-
-  //filter to just get the cards for the Community and Events topic
-  const communityEventCards = topics
-    .filter(e => e.name === TOPICS.COMMUNITY_AND_EVENTS)
-    .flatMap(e => e.connectsWith)
-    .filter(e => e.fields.resourceType === RESOURCE_TYPES.EVENTS);
+  const staticEvents = flattenGatsbyGraphQL(allDevhubSiphon.edges).concat(
+    flattenGatsbyGraphQL(allGithubRaw.edges),
+  );
 
   //sort all the info so that event show up from soonest to farthest away
   let currentEventsMeetUpsAndCards = currentEvents
     .sort((a, b) => b.start.daysFromNow - a.start.daysFromNow)
-    .concat(communityEventCards);
+    .concat(staticEvents);
 
   // community and event cards to carry a light reference to eventbrite cards, essentially titles and node fields
   // these need to be removed
@@ -145,8 +139,9 @@ export const EventsPage = ({ data: { allEventbriteEvents, allTopicRegistryJson }
 export const EventData = graphql`
   query EventsQuery {
     allEventbriteEvents(
-      sort: { fields: [start___local], order: ASC }
+      sort: { fields: [start___local], order: DESC }
       filter: { shareable: { eq: true } }
+      limit: 50
     ) {
       edges {
         node {
@@ -229,15 +224,32 @@ export const EventData = graphql`
     # }
     # }
     # }
-    allTopicRegistryJson {
+    allDevhubSiphon(
+      filter: { source: { type: { eq: "web" } }, fields: { resourceType: { eq: "Events" } } }
+    ) {
       edges {
         node {
-          id
-          name
-          description
-          connectsWith {
-            ...DevhubNodeConnection
+          fields {
+            resourceType
+            title
+            description
+            standAlonePath
+            path
           }
+          id
+        }
+      }
+    }
+    allGithubRaw(filter: { fields: { resourceType: { eq: "Events" } } }) {
+      edges {
+        node {
+          fields {
+            resourceType
+            title
+            description
+            standAlonePath
+          }
+          id
         }
       }
     }

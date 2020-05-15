@@ -20,7 +20,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { CONTENT } from '../Card/index';
-import { faBook } from '@fortawesome/free-solid-svg-icons';
+import { faBook, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import styled from '@emotion/styled';
@@ -44,7 +44,13 @@ const GithubIssueCardHeader = ({ resourceType, repository }) => {
         alignItems: 'flex-start',
       }}
     >
-      <span style={{ flex: '1 0 auto' }}>{CONTENT.byResourceType[resourceType].text}</span>
+      <span style={{ flex: '1 0 auto' }}>
+        {CONTENT.byResourceType[resourceType].text}
+        <small style={{ margin: '0 4px' }}>
+          <FontAwesomeIcon icon={faExternalLinkAlt} />
+        </small>
+      </span>
+
       <small style={{ color: '#444', flex: '0 0 105px', padding: '2px 0' }}>
         <FontAwesomeIcon icon={faBook} /> {repository}
       </small>
