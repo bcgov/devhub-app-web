@@ -78,7 +78,7 @@ export const renderCards = cards => (
                 repository={gh.repository.name}
               />
             ) : (
-              <CardHeader resourceType={gh.fields.resourceType} />
+              <CardHeader resourceType={gh.fields.resourceType} linksToExternal />
             );
           }}
         />

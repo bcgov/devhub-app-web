@@ -10,9 +10,16 @@
     "forwardToReplicas": false,
     "replaceExistingSynonyms": true
   },
-  "synonyms": [{
-    "objectID": "devhub.storage",
-    "type": "synonym",
-    "synonyms": ["pvc", "persistent", "storage", "netapp", "block storage"]
-  }]
+  "synonyms": [
+    {
+      "objectID": "devhub.storage",
+      "type": "synonym",
+      "synonyms": ["pvc", "persistent", "storage", "netapp", "block storage"]
+    },
+    {
+      "objectID": "devhub.storage",
+      "type": "synonym",
+      "synonyms": ["resilient", "resilience", "resiliency", "ha", "fault-tolerant", "fault tolerant"]
+    }
+  ]
 }

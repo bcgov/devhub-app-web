@@ -1,13 +1,14 @@
 import React from 'react';
 import EventsPage from '../../src/templates/events';
 import { render } from '@testing-library/react';
-import { TOPICS, EVENTS } from '../../__fixtures__/nodes';
+import { EVENTS, SIPHON_NODES, GITHUB_RAW_NODES } from '../../__fixtures__/nodes';
 import { ThemeProvider } from 'emotion-theming';
 import theme from '../../theme';
 
 describe('Events Page', () => {
   it('renders without crashing', () => {
-    const topics = TOPICS.map(c => ({ node: c }));
+    const siphon = SIPHON_NODES.map(c => ({ node: c }));
+    const githubraw = GITHUB_RAW_NODES.map(c => ({ node: c }));
     const events = EVENTS.map(c => ({ node: c }));
 
     render(
@@ -15,7 +16,8 @@ describe('Events Page', () => {
         <EventsPage
           data={{
             allEventbriteEvents: { edges: events },
-            allTopicRegistryJson: { edges: topics },
+            allGithubRaw: { edges: githubraw },
+            allDevhubSiphon: { edges: siphon },
           }}
         />
       </ThemeProvider>,

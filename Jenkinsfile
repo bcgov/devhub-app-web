@@ -9,7 +9,7 @@ pipeline {
     environment {
         COMPONENT_NAME = 'DevHub web app'
         COMPONENT_HOME = '/'
-        BUILD_TRIGGER_EXCLUDES = "^.jenkins/\\|^matomo/"
+        BUILD_TRIGGER_INCLUDES = "^app-web"
     }
     options {
         disableResume()
@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     // only continue build if changes are relevant to the devhub
-                    def filesInThisCommitAsString = sh(script:"git diff --name-only HEAD~1..HEAD | grep -v '$BUILD_TRIGGER_EXCLUDES' || echo -n ''", returnStatus: false, returnStdout: true).trim()
+                    def filesInThisCommitAsString = sh(script:"git diff --name-only HEAD~1..HEAD | grep -e '$BUILD_TRIGGER_INCLUDES' || echo -n ''", returnStatus: false, returnStdout: true).trim()
                     def hasChangesInPath = (filesInThisCommitAsString.length() > 0)
                     echo "${filesInThisCommitAsString}"
                     if (!currentBuild.rawBuild.getCauses()[0].toString().contains('UserIdCause') && !hasChangesInPath){
