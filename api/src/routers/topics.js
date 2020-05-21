@@ -14,7 +14,10 @@ const validate = ajv.compile(schema);
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-  const name = encryptStringToB64(req.user.preferred_username);
+  req.on('data', chunk => {
+    console.log(`Data chunk available ${chunk}`)
+  })
+  const name = encryptStringToB64('test');
   const branchName = `${github.branchPrefix}/${name}`;
   const {repo, owner, defaultBranch} = github;
   console.log('DEFAULT branch', defaultBranch)
@@ -22,12 +25,11 @@ router.post('/', async (req, res) => {
     // add payload to pull request as new commit
   } else {
     // create branch  
-    const response = await octokit.git.getRef({owner, repo, ref: `heads/${defaultBranch}`});
-
+    const response = await octokit.git.getRef({owner, repo, ref: `heads/${defaultBranch}`}).catch(e => console.error(e));
     const sha = response.data.object.sha
-
+    console.log(response)
     // https://developer.github.com/v3/git/refs/#create-a-reference
-    await octokit.git.createRef({owner, repo, ref: `refs/heads/bar`, sha});
+    await octokit.git.createRef({owner, repo, ref: 'refs/heads/bar', sha}).catch(e=> console.error(e));
   }
   // check if an open pr exists
 
@@ -38,7 +40,7 @@ router.post('/', async (req, res) => {
   // create the pr
   res.send('ok')
   
-});
+})
 
 
 export default router;
