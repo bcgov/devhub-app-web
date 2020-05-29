@@ -15,9 +15,4 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import Crypto from 'crypto-js';
-
-export const encryptStringToB64 = string => {
-  const hashedName = Crypto.MD5(string, { outputLength: 224 });
-  return hashedName.toString(Crypto.enc.Base64);
-}
+export const randomId = length => Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, length)
