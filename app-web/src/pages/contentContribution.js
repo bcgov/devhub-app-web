@@ -6,7 +6,7 @@ import { useKeycloak } from '@react-keycloak/web';
 import { SEO } from '../components/SEO/SEO';
 import { Title } from '../components/Page';
 import Main from '../components/Page/Main';
-import TopicForm from '../components/Form/TopicForm';
+import JourneyForm from '../components/Form/JourneyForm';
 
 const contentContribution = () => {
   // eslint-disable-next-line
@@ -19,10 +19,14 @@ const contentContribution = () => {
         <Title
           title="Content Contribution"
           subtitle={
-            !isAuthenticated ? 'Login via IDIR or Github to continue' : 'Add a topic to the Devhub'
+            !isAuthenticated ? 'Login via IDIR or Github to continue' : 'Add content to the Devhub'
           }
         />
-        {isAuthenticated ? <TopicForm></TopicForm> : <h4 css={{ color: 'red' }}>Not Authorized</h4>}
+        {isAuthenticated ? (
+          <JourneyForm></JourneyForm>
+        ) : (
+          <h4 css={{ color: 'red' }}>Not Authorized</h4>
+        )}
       </Main>
     </Layout>
   );
