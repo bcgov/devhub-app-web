@@ -3,7 +3,8 @@
     "repo": "devhub-app-web",
     "owner": "bcgov",
     "branchPrefix": "contribution",
-    "defaultBranch": "master"
+    "defaultBranch": "master",
+    "branchIdLength": 6
   },
   "session": {
     "maxAge": 604800000,
