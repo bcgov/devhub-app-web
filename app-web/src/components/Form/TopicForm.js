@@ -8,8 +8,8 @@ import StyledButton from '../UI/Button/Button';
 
 export const TopicForm = () => {
   const onSubmit = async values => {
-    values = convertToRegistryFormat(values);
-    axios.post('http://localhost:3000/v1/topics/', JSON.stringify(values, null, 2));
+    values = JSON.stringify(convertToRegistryFormat(values), null, 2);
+    axios.post(`${process.env.GATSBY_GITHUB_API_URL}/v1/topics`, values);
     // eslint-disable-next-line
         console.log(JSON.stringify(values,null,2))
   };

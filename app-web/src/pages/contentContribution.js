@@ -11,7 +11,7 @@ import JourneyForm from '../components/Form/JourneyForm';
 const contentContribution = () => {
   // eslint-disable-next-line
   const [keycloak] = useKeycloak();
-  const isAuthenticated = keycloak && keycloak.authenticated;
+  const isAuthenticated = true; //keycloak && keycloak.authenticated;
   return (
     <Layout>
       <SEO title="Content Contribution" />
@@ -25,7 +25,7 @@ const contentContribution = () => {
         {isAuthenticated ? (
           <JourneyForm></JourneyForm>
         ) : (
-          <h4 css={{ color: 'red' }}>Not Authorized</h4>
+          <h4 css={{ color: '#D8292F' }}>Not Authorized</h4>
         )}
       </Main>
     </Layout>
