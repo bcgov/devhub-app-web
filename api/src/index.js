@@ -24,6 +24,7 @@ import passport from 'passport';
 import cors from 'cors';
 import healthcheckRouters from './routers/healthcheck';
 import { authmware } from './utils/authmware';
+import topicRouters from './routers/topics';
 
 dotenv.config();
 
@@ -51,6 +52,7 @@ app.use('/v1/checks', healthcheckRouters);
 
 authmware(app);
 app.use(passport.authenticate('jwt', { session: false }));
+app.use('/v1/topics', topicRouters);
 
 
 export default app;
