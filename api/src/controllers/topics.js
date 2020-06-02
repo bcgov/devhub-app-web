@@ -1,14 +1,19 @@
-
 import { github } from '../config/index.json';
 import Ajv from 'ajv';
 import schema from '../schemas/topic.json';
 import { randomId } from '../utils/strings';
-import octokit from '../octokit';
+import { Octokit } from '@octokit/rest'
 import { openPullExistsForBranch } from '../utils/github';
+import dotenv, { config } from 'dotenv'
+import { Base64 } from 'js-base64'
 
 const ajv = new Ajv();
 
+dotenv.config()
+
 const validate = ajv.compile(schema);
+
+const octokit = new Octokit({auth: process.env.GITHUB_TOKEN});
 
 /**
  * 
@@ -31,8 +36,18 @@ export const createNewRefFromBase = async (owner, repo, ref) => {
   const response = await octokit.git.getRef({owner, repo, ref});
   const sha = response.data.object.sha
   // https://developer.github.com/v3/git/refs/#create-a-reference
-  const { data } = await octokit.git.createRef({owner, repo, ref: 'refs/heads/bar', sha});
+  const { data } = await octokit.git.createRef({owner, repo, ref: 'refs/heads/test', sha});
   return data ;
+}
+
+export const createFile = async (owner, repo, ref) => {
+  const path = "app-web/topicRegistry/topicName.json"
+  const message = "test commit"
+  const content = Base64.encode(JSON.stringify({name: "topicName", description:"lorem ipsum"},null,2))
+  const committer = {email:"karansaini29@gmail.com", name:"jas29"}
+  const author = committer
+  const { fileData } = await octokit.repos.createOrUpdateFile({owner,repo,path,message,content,committer,author});
+  return fileData
 }
 
 export const createOrUpdateTopic = async (req, res) => {
@@ -51,10 +66,11 @@ export const createOrUpdateTopic = async (req, res) => {
       // validate topic sources are valid
       await createNewRefFromBase(owner, repo, `heads/${defaultBranch}`);
       // create a new file with contents
+      await createFile(owner,repo,`heads/${defaultBranch}`)
       // commit  to branch 
       // make pr against ref to base using templates
     } catch(e) {
-
+      console.log(e)
     }
 
   }

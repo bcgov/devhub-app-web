@@ -51,7 +51,7 @@ app.use('/v1/checks', healthcheckRouters);
 // authenticated routes 
 
 authmware(app);
-app.use(passport.authenticate('jwt', { session: false }));
+// app.use(passport.authenticate('jwt', { session: false }));
 app.use('/v1/topics', topicRouters);
 
 
