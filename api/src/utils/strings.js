@@ -15,4 +15,8 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-export const randomId = length => Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, length)
+export const randomId = (length) =>
+  Math.random()
+    .toString(36)
+    .replace(/[^a-z]+/g, '')
+    .substr(0, length);

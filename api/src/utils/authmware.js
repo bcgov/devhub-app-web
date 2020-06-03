@@ -24,9 +24,7 @@ import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
 import config from '../config/index.json';
 
 export const verify = (req, jwtPayload, done) => {
-
   if (jwtPayload) {
-
     const user = {
       roles: jwtPayload.roles,
       name: jwtPayload.name,
@@ -45,10 +43,10 @@ export const verify = (req, jwtPayload, done) => {
   return done(err, false);
 };
 
-export const authmware = async app => {
+export const authmware = async (app) => {
   app.use(passport.initialize());
   app.use(passport.session());
-  console.log("IS THIS BEING CALLED")
+  console.log('IS THIS BEING CALLED');
   // We don't store any user information.
   passport.serializeUser((user, done) => {
     console.log('serialize');

@@ -3,7 +3,6 @@ import { createOrUpdateTopic } from '../controllers/topics';
 
 const router = express.Router();
 
-router.post('/', createOrUpdateTopic)
-
+router.post('/', createOrUpdateTopic);
 
 export default router;

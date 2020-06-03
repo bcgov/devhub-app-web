@@ -32,27 +32,26 @@ dotenv.config();
 
 const app = express();
 // middlewares
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // default to devhub in localhost
 const corsOrigin = process.env.CORS_URL || 'http://localhost:8000';
 
 var corsOptions = {
-   origin: corsOrigin,
-   optionsSuccessStatus: 200
-}
+  origin: corsOrigin,
+  optionsSuccessStatus: 200,
+};
 
 app.use(cors(corsOptions));
 
 // routes
 app.use('/v1/checks', healthcheckRouters);
 
-
-// authenticated routes 
+// authenticated routes
 
 authmware(app);
 // app.use(passport.authenticate('jwt', { session: false }));
 app.use('/v1/topics', topicRouters);
-
 
 export default app;
