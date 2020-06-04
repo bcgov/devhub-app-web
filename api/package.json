@@ -64,6 +64,7 @@
     "octokit-create-pull-request": "^1.4.2",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
+    "slugify": "^1.4.0",
     "snake-case": "^3.0.3"
   }
 }

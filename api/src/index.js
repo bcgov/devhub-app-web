@@ -32,8 +32,8 @@ dotenv.config();
 
 const app = express();
 // middlewares
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // default to devhub in localhost
 const corsOrigin = process.env.CORS_URL || 'http://localhost:8000';

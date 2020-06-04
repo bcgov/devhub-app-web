@@ -6,7 +6,7 @@ import { Octokit } from '@octokit/rest';
 import { openPullExistsForBranch } from '../utils/github';
 import dotenv, { config } from 'dotenv';
 import { Base64 } from 'js-base64';
-import bodyParser from 'body-parser';
+import slugify from 'slugify';
 
 const ajv = new Ajv();
 
@@ -34,27 +34,24 @@ const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
  * }
  */
 export const createNewRefFromBase = async (owner, repo, ref) => {
-  const response = await octokit.git.getRef({ owner, repo, ref });
+  const response = await octokit.git.getRef({ owner, repo, ref: 'heads/master' });
   const sha = response.data.object.sha;
   // https://developer.github.com/v3/git/refs/#create-a-reference
-  const { data } = await octokit.git.createRef({ owner, repo, ref: 'refs/heads/test', sha });
+  const { data } = await octokit.git.createRef({ owner, repo, ref, sha });
   return data;
 };
 
-export const createFile = async (owner, repo) => {
-  const path = 'app-web/topicRegistry/topicName.json';
-  const message = 'test commit';
-  const branch = 'refs/heads/test';
-  const content = Base64.encode(
-    JSON.stringify({ name: 'topicName', description: 'lorem ipsum' }, null, 2),
-  );
-  const committer = { email: 'karansaini29@gmail.com', name: 'jas29' };
+export const createFile = async (owner, repo, bodyData, ref, topicName, email, name) => {
+  const path = `app-web/topicRegistry/${topicName}.json`;
+  const message = 'add new topic';
+  const content = Base64.encode(bodyData);
+  const committer = { email: email, name: name };
   const author = committer;
   const { fileData } = await octokit.repos.createOrUpdateFile({
     owner,
     repo,
     path,
-    branch,
+    branch: ref,
     message,
     content,
     committer,
@@ -63,21 +60,24 @@ export const createFile = async (owner, repo) => {
   return fileData;
 };
 
-export const createPullRequest = async (owner, repo, base) => {
-  const head = 'refs/heads/test';
-  const title = 'Suggesting new Topic';
-  const body = 'Add a new topic to the devhub';
-  const { pullRequest } = await octokit.pulls.create({ owner, repo, base, title, head, body });
+export const createPullRequest = async (owner, repo, base, topicName, ref) => {
+  const title = `Add new topic ${topicName}`;
+  const body = `Add a new topic to the devhub named ${topicName}`;
+  const { pullRequest } = await octokit.pulls.create({ owner, repo, base, title, head: ref, body });
   return pullRequest;
 };
 
 export const createOrUpdateTopic = async (req, res) => {
   const branchName = `${github.branchPrefix}/${randomId(github.branchIdLength)}`;
-  const { repo, owner, defaultBranch } = github;
-  // req.on('data', chunk => {
-  //   console.log(`${chunk}`);
-  // })
-  console.log('DEFAULT branch', defaultBranch, req.body);
+  const { repo, owner, defaultBranch, email, name } = github;
+
+  const bodyData = JSON.stringify(req.body, null, 2);
+
+  const topicName = slugify(JSON.parse(bodyData).name.toLowerCase(), '-');
+
+  const ref = `refs/heads/createTopic/${topicName}`;
+  console.log(bodyData);
+  // console.log('DEFAULT branch', defaultBranch, req.body);
   if (await openPullExistsForBranch(branchName, repo, owner)) {
     // add payload to pull request as new commit
   } else {
@@ -87,12 +87,12 @@ export const createOrUpdateTopic = async (req, res) => {
       validate(req.body.topic);
       // validate topic doesn't already exist
       // validate topic sources are valid
-      // await createNewRefFromBase(owner, repo, `heads/${defaultBranch}`);
-      // // create a new file with contents
-      // await createFile(owner, repo);
-      // // commit  to branch
-      // // make pr against ref to base using templates
-      // await createPullRequest(owner,repo,defaultBranch)
+      await createNewRefFromBase(owner, repo, ref);
+      // create a new file with contents
+      await createFile(owner, repo, bodyData, ref, topicName, email, name);
+      // commit  to branch
+      // make pr against ref to base using templates
+      await createPullRequest(owner, repo, defaultBranch, topicName, ref);
     } catch (e) {
       console.log(e);
     }
