@@ -71,13 +71,12 @@ export const createOrUpdateTopic = async (req, res) => {
   const branchName = `${github.branchPrefix}/${randomId(github.branchIdLength)}`;
   const { repo, owner, defaultBranch, email, name } = github;
 
-  const bodyData = JSON.stringify(req.body, null, 2);
+  const bodyData = JSON.stringify(JSON.parse(req.body.data), null, 2);
 
   const topicName = slugify(JSON.parse(bodyData).name.toLowerCase(), '-');
 
   const ref = `refs/heads/createTopic/${topicName}`;
-  console.log(bodyData);
-  // console.log('DEFAULT branch', defaultBranch, req.body);
+
   if (await openPullExistsForBranch(branchName, repo, owner)) {
     // add payload to pull request as new commit
   } else {
@@ -85,8 +84,9 @@ export const createOrUpdateTopic = async (req, res) => {
     try {
       // validate topic schema
       validate(req.body.topic);
-      // validate topic doesn't already exist
-      // validate topic sources are valid
+      // TODO -- validate topic doesn't already exist
+      // TODO -- validate topic sources are valid
+      // create a git branch on the remote with a naming convention [createTopic/topicname]
       await createNewRefFromBase(owner, repo, ref);
       // create a new file with contents
       await createFile(owner, repo, bodyData, ref, topicName, email, name);
@@ -97,12 +97,5 @@ export const createOrUpdateTopic = async (req, res) => {
       console.log(e);
     }
   }
-  // check if an open pr exists
-
-  // create a git branch on the remote with a good naming convention
-  // something like contribution/username-[known-identifier]
-
-  // create the topic and place in branch
-  // create the pr
   res.send('ok');
 };

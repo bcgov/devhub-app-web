@@ -21,29 +21,37 @@ import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import express from 'express';
 import passport from 'passport';
-import cors from 'cors';
+// import cors from 'cors';
 import healthcheckRouters from './routers/healthcheck';
 import { authmware } from './utils/authmware';
 import topicRouters from './routers/topics';
 
 dotenv.config();
 
-// Config
-
 const app = express();
+
+// default to devhub in localhost
+// const corsOrigin = process.env.CORS_URL || 'http://localhost:8000';
+
+// console.log(corsOrigin)
+
+// var corsOptions = {
+//   origin: corsOrigin,
+//   optionsSuccessStatus: 200,
+// };
+
+// app.use(cors(corsOptions));
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', '*');
+  res.header('Access-Control-Allow-Headers', '*');
+  next();
+});
+
 // middlewares
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// default to devhub in localhost
-const corsOrigin = process.env.CORS_URL || 'http://localhost:8000';
-
-var corsOptions = {
-  origin: corsOrigin,
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
 
 // routes
 app.use('/v1/checks', healthcheckRouters);
@@ -52,6 +60,9 @@ app.use('/v1/checks', healthcheckRouters);
 
 authmware(app);
 // app.use(passport.authenticate('jwt', { session: false }));
+// app.options('/v1/topics', (req, res) => {
+
+// })
 app.use('/v1/topics', topicRouters);
 
 export default app;
