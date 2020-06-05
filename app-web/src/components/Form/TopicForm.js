@@ -1,17 +1,24 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { TextInput, SelectDropdown, StylesWrapper } from './form';
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { FieldArray } from 'react-final-form-arrays';
 import axios from 'axios';
 import StyledButton from '../UI/Button/Button';
+import Loading from '../UI/Loading/Loading';
 
 export const TopicForm = () => {
+  const [isLoading, setLoading] = useState(false);
+
   const onSubmit = async values => {
+    setLoading(true);
     values = convertToRegistryFormat(values);
-    axios.post('http://localhost:3000/v1/topics/', JSON.stringify(values, null, 2));
+    await axios
+      .post(`${process.env.GATSBY_GITHUB_API_URL}/v1/topics/`, { data: JSON.stringify(values) })
+      .catch(e => console.log(e));
+    setLoading(false);
     // eslint-disable-next-line
-        console.log(JSON.stringify(values,null,2))
+    console.log(JSON.stringify(values,null,2))
   };
 
   const initialValue = {
@@ -25,6 +32,7 @@ export const TopicForm = () => {
 
   return (
     <StylesWrapper>
+      {isLoading ? <Loading message="Please wait" /> : null}
       <Form
         onSubmit={onSubmit}
         mutators={{ ...arrayMutators }}
