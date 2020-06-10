@@ -1,5 +1,11 @@
 import React, { Fragment, useState } from 'react';
-import { TextInput, SelectDropdown, StylesWrapper } from './form';
+import {
+  TextInput,
+  SelectDropdown,
+  StylesWrapper,
+  StyledSuccessMessage,
+  StyledErrorMessage,
+} from './form';
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { FieldArray } from 'react-final-form-arrays';
@@ -10,15 +16,29 @@ import Loading from '../UI/Loading/Loading';
 export const TopicForm = () => {
   const [isLoading, setLoading] = useState(false);
 
+  const [currResponse, setResponse] = useState();
+
+  const [message, showMessage] = useState(false);
+
   const onSubmit = async values => {
     setLoading(true);
     values = convertToRegistryFormat(values);
     await axios
-      .post(`${process.env.GATSBY_GITHUB_API_URL}/v1/topics/`, { data: JSON.stringify(values) })
-      .catch(e => console.log(e));
+      .post(`${process.env.GATSBY_GITHUB_API_URL}/v1/topics/`, values)
+      .catch(e => console.log(e))
+      .then(response => setResponse(response));
     setLoading(false);
+    showMessage(true);
     // eslint-disable-next-line
     console.log(JSON.stringify(values,null,2))
+  };
+
+  const ResponseMessage = () => {
+    if (currResponse) {
+      return <StyledSuccessMessage>{currResponse.request.responseText}</StyledSuccessMessage>;
+    } else {
+      return <StyledErrorMessage>Please try again</StyledErrorMessage>;
+    }
   };
 
   const initialValue = {
@@ -96,6 +116,7 @@ export const TopicForm = () => {
           </form>
         )}
       />
+      {message ? ResponseMessage() : null}
     </StylesWrapper>
   );
 };
@@ -121,7 +142,7 @@ const getSourceProps = source => {
   if (source.sourceType === 'github') {
     properties.owner = source.owner;
     properties.repo = source.repo;
-    properties.file = [source.file];
+    properties.files = [source.file];
   } else if (source.sourceType === 'web') {
     properties.title = source.title;
     properties.description = source.description;
