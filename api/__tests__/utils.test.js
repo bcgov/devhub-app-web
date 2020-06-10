@@ -1,5 +1,4 @@
-import { randomId } from "../src/utils/strings";
-
+import { randomId } from '../src/utils/strings';
 
 describe('String Utilities', () => {
   it('generates a random id of n length', () => {
@@ -13,5 +12,5 @@ describe('String Utilities', () => {
     expect(str3.length).toBe(8);
 
     expect(str1).not.toBe(str2);
-  })
+  });
 });

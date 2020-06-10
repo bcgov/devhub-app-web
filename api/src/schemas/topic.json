@@ -8,9 +8,7 @@
   "required": [
       "name",
       "description",
-      "sourceProperties",
-      "attributes",
-      "resourceType"
+      "sourceProperties"
   ],
   "additionalProperties": true,
   "properties": {
@@ -78,6 +76,10 @@
                             "type": "array"
                           }
                         }
+                      },
+                      "resourceType": {
+                        "type": "string",
+                        "enum": ["Documentation", "Components", "Repositories", "Self-Service Tools", "Events"]
                       }
                     }
                   }

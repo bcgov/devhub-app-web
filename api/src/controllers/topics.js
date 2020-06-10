@@ -63,17 +63,17 @@ export const createFile = async (owner, repo, bodyData, ref, topicName, email, n
 export const createPullRequest = async (owner, repo, base, topicName, ref) => {
   const title = `Add new topic ${topicName}`;
   const body = `Add a new topic to the devhub named ${topicName}`;
-  const { pullRequest } = await octokit.pulls.create({ owner, repo, base, title, head: ref, body });
+  const pullRequest = await octokit.pulls.create({ owner, repo, base, title, head: ref, body });
   return pullRequest;
 };
 
 export const createOrUpdateTopic = async (req, res) => {
   const branchName = `${github.branchPrefix}/${randomId(github.branchIdLength)}`;
   const { repo, owner, defaultBranch, email, name } = github;
-
-  const bodyData = JSON.stringify(JSON.parse(req.body.data), null, 2);
-
-  const topicName = slugify(JSON.parse(bodyData).name.toLowerCase(), '-');
+  let status = '200';
+  let statusMessage = 'Ok';
+  const bodyData = JSON.stringify(req.body, null, 2);
+  const topicName = slugify(req.body.name.toLowerCase(), '-');
 
   const ref = `refs/heads/createTopic/${topicName}`;
 
@@ -83,19 +83,28 @@ export const createOrUpdateTopic = async (req, res) => {
     // create branch
     try {
       // validate topic schema
-      validate(req.body.topic);
-      // TODO -- validate topic doesn't already exist
-      // TODO -- validate topic sources are valid
-      // create a git branch on the remote with a naming convention [createTopic/topicname]
-      await createNewRefFromBase(owner, repo, ref);
-      // create a new file with contents
-      await createFile(owner, repo, bodyData, ref, topicName, email, name);
-      // commit  to branch
-      // make pr against ref to base using templates
-      await createPullRequest(owner, repo, defaultBranch, topicName, ref);
+      const isValidData = validate(req.body);
+      if (isValidData) {
+        // TODO -- validate topic doesn't already exist
+        // TODO -- validate topic sources are valid
+        // create a git branch on the remote with a naming convention [createTopic/topicname]
+        await createNewRefFromBase(owner, repo, ref);
+        // // create a new file with contents
+        await createFile(owner, repo, bodyData, ref, topicName, email, name);
+        // commit  to branch
+        // make pr against ref to base using templates
+        const pullRequest = await createPullRequest(owner, repo, defaultBranch, topicName, ref);
+        // URL to the pull Request created ..
+        const pullRequest_url = pullRequest.data.html_url;
+        statusMessage = `Pull Request Created at ${pullRequest_url}`;
+      } else {
+        status = '400';
+        statusMessage = 'Bad Request';
+      }
     } catch (e) {
-      console.log(e);
+      status = e.status;
+      statusMessage = e;
     }
   }
-  res.send('ok');
+  res.status(status).send(statusMessage);
 };
