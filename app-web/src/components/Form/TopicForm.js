@@ -16,33 +16,36 @@ import Loading from '../UI/Loading/Loading';
 export const TopicForm = () => {
   const [loading, setLoading] = useState(false);
 
-  const [error, setError] = useState({});
+  const [response, setResponse] = useState({ status: '', data: '' });
 
-  const [response, setResponse] = useState({});
-
-  const [message, showMessage] = useState(false);
+  const [message, setMessage] = useState(false);
 
   const onSubmit = async values => {
     setLoading(true);
     values = convertToRegistryFormat(values);
     try {
       const res = await axios.post(`${process.env.GATSBY_GITHUB_API_URL}/v1/topics/`, values);
-      setResponse(res.data);
+      setResponse({ status: res.status, data: res.data });
     } catch (err) {
-      console.log(err);
+      setResponse({ status: err.response.status, data: err.response.data });
     }
     setLoading(false);
-    showMessage(true);
-    // eslint-disable-next-line
-    console.log(JSON.stringify(values,null,2))
-    console.log(response);
+    setMessage(true);
   };
 
   const ResponseMessage = () => {
-    if (response) {
-      return <StyledSuccessMessage>{response.request.responseText}</StyledSuccessMessage>;
-    } else if (error) {
-      return <StyledErrorMessage>Please enter all the fields</StyledErrorMessage>;
+    if (response.status === 200) {
+      return <StyledSuccessMessage>{response.data}</StyledSuccessMessage>;
+    }
+    if (response.status === 400) {
+      return (
+        <StyledErrorMessage>
+          Please make sure you have entered all the fields correctly
+        </StyledErrorMessage>
+      );
+    }
+    if (response.status === 422) {
+      return <StyledErrorMessage>A pull request for this topic already exists</StyledErrorMessage>;
     }
   };
 
@@ -121,7 +124,7 @@ export const TopicForm = () => {
           </form>
         )}
       />
-      {/* {message ? ResponseMessage() : null} */}
+      {message ? ResponseMessage() : null}
     </StylesWrapper>
   );
 };
