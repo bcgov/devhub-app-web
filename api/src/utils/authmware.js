@@ -46,8 +46,6 @@ export const verify = (req, jwtPayload, done) => {
 export const authmware = async (app) => {
   app.use(passport.initialize());
   app.use(passport.session());
-  // eslint-disable-next-line
-  console.log('IS THIS BEING CALLED');
   // We don't store any user information.
   passport.serializeUser((user, done) => {
     // eslint-disable-next-line

@@ -21,7 +21,6 @@ import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import express from 'express';
 import passport from 'passport';
-// import cors from 'cors';
 import healthcheckRouters from './routers/healthcheck';
 import { authmware } from './utils/authmware';
 import topicRouters from './routers/topics';
@@ -31,20 +30,10 @@ dotenv.config();
 const app = express();
 
 // default to devhub in localhost
-// const corsOrigin = process.env.CORS_URL || 'http://localhost:8000';
-
-// console.log(corsOrigin)
-
-// var corsOptions = {
-//   origin: corsOrigin,
-//   optionsSuccessStatus: 200,
-// };
-
-// app.use(cors(corsOptions));
+const corsOrigin = process.env.CORS_URL || 'http://localhost:8000';
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', '*');
+  res.header('Access-Control-Allow-Origin', corsOrigin);
   res.header('Access-Control-Allow-Headers', '*');
   next();
 });
