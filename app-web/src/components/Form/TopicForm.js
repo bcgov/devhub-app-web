@@ -14,30 +14,35 @@ import StyledButton from '../UI/Button/Button';
 import Loading from '../UI/Loading/Loading';
 
 export const TopicForm = () => {
-  const [isLoading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const [currResponse, setResponse] = useState();
+  const [error, setError] = useState({});
+
+  const [response, setResponse] = useState({});
 
   const [message, showMessage] = useState(false);
 
   const onSubmit = async values => {
     setLoading(true);
     values = convertToRegistryFormat(values);
-    await axios
-      .post(`${process.env.GATSBY_GITHUB_API_URL}/v1/topics/`, values)
-      .catch(e => console.log(e))
-      .then(response => setResponse(response));
+    try {
+      const res = await axios.post(`${process.env.GATSBY_GITHUB_API_URL}/v1/topics/`, values);
+      setResponse(res.data);
+    } catch (err) {
+      console.log(err);
+    }
     setLoading(false);
     showMessage(true);
     // eslint-disable-next-line
     console.log(JSON.stringify(values,null,2))
+    console.log(response);
   };
 
   const ResponseMessage = () => {
-    if (currResponse) {
-      return <StyledSuccessMessage>{currResponse.request.responseText}</StyledSuccessMessage>;
-    } else {
-      return <StyledErrorMessage>Please try again</StyledErrorMessage>;
+    if (response) {
+      return <StyledSuccessMessage>{response.request.responseText}</StyledSuccessMessage>;
+    } else if (error) {
+      return <StyledErrorMessage>Please enter all the fields</StyledErrorMessage>;
     }
   };
 
@@ -52,7 +57,7 @@ export const TopicForm = () => {
 
   return (
     <StylesWrapper>
-      {isLoading ? <Loading message="Please wait" /> : null}
+      {loading ? <Loading message="Loading ..." /> : null}
       <Form
         onSubmit={onSubmit}
         mutators={{ ...arrayMutators }}
@@ -116,7 +121,7 @@ export const TopicForm = () => {
           </form>
         )}
       />
-      {message ? ResponseMessage() : null}
+      {/* {message ? ResponseMessage() : null} */}
     </StylesWrapper>
   );
 };
