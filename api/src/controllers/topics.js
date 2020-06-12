@@ -22,8 +22,8 @@ export const createOrUpdateTopic = async (req, res) => {
   const { repo, owner, defaultBranch } = github;
   const email = process.env.GITHUB_USERNAME;
   const name = process.env.GITHUB_USER_EMAIL;
+  let response = { statusMessage: 'Ok' };
   let status = '200';
-  let statusMessage = 'Ok';
   const bodyData = JSON.stringify(req.body, null, 2);
   const topicName = slugify(req.body.name.toLowerCase(), '-');
 
@@ -48,15 +48,15 @@ export const createOrUpdateTopic = async (req, res) => {
         const pullRequest = await createPullRequest(owner, repo, defaultBranch, topicName, ref);
         // URL to the pull Request created ..
         const pullRequestUrl = pullRequest.data.html_url;
-        statusMessage = `Pull Request Created at ${pullRequestUrl}`;
+        response.statusMessage = `Pull Request Created at ${pullRequestUrl}`;
       } else {
         status = '400';
-        statusMessage = 'Bad Request';
+        response.statusMessage = 'Bad Request';
       }
     }
   } catch (e) {
     status = e.status;
-    statusMessage = e;
+    response.statusMessage = e;
   }
-  res.status(status).send(statusMessage);
+  res.status(status).json(response);
 };
