@@ -49,6 +49,8 @@ export const createOrUpdateTopic = async (req, res) => {
         // URL to the pull Request created ..
         const pullRequestUrl = pullRequest.data.html_url;
         response.prUrl = pullRequestUrl;
+        //eslint-disable-next-line
+        console.log(`Pull request for topic ${topicName} created. Check out ${pullRequestUrl} to view the pull request`);
       } else {
         status = '400';
         response.statusMessage = 'Bad Request';
