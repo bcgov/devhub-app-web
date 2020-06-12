@@ -11,7 +11,7 @@ import TopicForm from '../components/Form/TopicForm';
 const contentContribution = () => {
   // eslint-disable-next-line
   const [keycloak] = useKeycloak();
-  const isAuthenticated = true; //keycloak && keycloak.authenticated;
+  const isAuthenticated = keycloak && keycloak.authenticated;
   return (
     <Layout>
       <SEO title="Content Contribution" />

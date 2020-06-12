@@ -35,7 +35,7 @@ export const TopicForm = () => {
 
   const ResponseMessage = () => {
     if (response.status === 200) {
-      return <StyledSuccessMessage>{response.data}</StyledSuccessMessage>;
+      return <StyledSuccessMessage>{response.data.statusMessage}</StyledSuccessMessage>;
     }
     if (response.status === 400) {
       return (
