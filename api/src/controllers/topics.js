@@ -22,7 +22,7 @@ export const createOrUpdateTopic = async (req, res) => {
   const { repo, owner, defaultBranch } = github;
   const email = process.env.GITHUB_USERNAME;
   const name = process.env.GITHUB_USER_EMAIL;
-  let response = { statusMessage: 'Ok' };
+  let response = { statusMessage: 'Ok', prUrl: '' };
   let status = '200';
   const bodyData = JSON.stringify(req.body, null, 2);
   const topicName = slugify(req.body.name.toLowerCase(), '-');
@@ -48,7 +48,7 @@ export const createOrUpdateTopic = async (req, res) => {
         const pullRequest = await createPullRequest(owner, repo, defaultBranch, topicName, ref);
         // URL to the pull Request created ..
         const pullRequestUrl = pullRequest.data.html_url;
-        response.statusMessage = pullRequestUrl;
+        response.prUrl = pullRequestUrl;
       } else {
         status = '400';
         response.statusMessage = 'Bad Request';
