@@ -35,7 +35,7 @@ export const TopicForm = () => {
 
   const ResponseMessage = () => {
     if (response.status === 200) {
-      const prMessage = `Pull request created at ${response.data.statusMessage}`;
+      const prMessage = `Pull request created at ${response.data.prUrl}`;
       return <StyledSuccessMessage> {prMessage} </StyledSuccessMessage>;
     }
     if (response.status === 400) {
