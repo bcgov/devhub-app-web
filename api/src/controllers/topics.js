@@ -9,6 +9,9 @@ import {
   createPullRequest,
 } from '../utils/github';
 import slugify from 'slugify';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const ajv = new Ajv();
 
@@ -16,7 +19,9 @@ const validate = ajv.compile(schema);
 
 export const createOrUpdateTopic = async (req, res) => {
   const branchName = `${github.branchPrefix}/${randomId(github.branchIdLength)}`;
-  const { repo, owner, defaultBranch, email, name } = github;
+  const { repo, owner, defaultBranch } = github;
+  const email = process.env.GITHUB_USERNAME;
+  const name = process.env.GITHUB_USER_EMAIL;
   let status = '200';
   let statusMessage = 'Ok';
   const bodyData = JSON.stringify(req.body, null, 2);
@@ -42,8 +47,8 @@ export const createOrUpdateTopic = async (req, res) => {
         // make pr against ref to base using templates
         const pullRequest = await createPullRequest(owner, repo, defaultBranch, topicName, ref);
         // URL to the pull Request created ..
-        const pullRequest_url = pullRequest.data.html_url;
-        statusMessage = `Pull Request Created at ${pullRequest_url}`;
+        const pullRequestUrl = pullRequest.data.html_url;
+        statusMessage = `Pull Request Created at ${pullRequestUrl}`;
       } else {
         status = '400';
         statusMessage = 'Bad Request';

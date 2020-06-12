@@ -1,9 +1,7 @@
 {  
   "github": {
     "repo": "devhub-app-web",
-    "owner": "jas29",
-    "email": "karansaini29@gmail.com",
-    "name": "jas29",
+    "owner": "bcgov",
     "branchPrefix": "contribution",
     "defaultBranch": "master",
     "branchIdLength": 6

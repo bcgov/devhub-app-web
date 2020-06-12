@@ -1,6 +1,6 @@
 import { Octokit } from '@octokit/rest';
 import { PULL_REQUEST_STATE } from '../constants';
-import dotenv, { config } from 'dotenv';
+import dotenv from 'dotenv';
 import { Base64 } from 'js-base64';
 
 dotenv.config();

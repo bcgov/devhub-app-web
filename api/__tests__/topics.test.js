@@ -1,4 +1,4 @@
-import { createOrUpdateTopic, createNewRefFromBase } from '../src/controllers/topics';
+import { createOrUpdateTopic, createNewRefFromBase } from '../src/utils/github';
 import octokit from '../src/octokit';
 
 import stubTopic from '../__fixtures__/topic1.json';
