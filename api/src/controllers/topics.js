@@ -48,7 +48,7 @@ export const createOrUpdateTopic = async (req, res) => {
         const pullRequest = await createPullRequest(owner, repo, defaultBranch, topicName, ref);
         // URL to the pull Request created ..
         const pullRequestUrl = pullRequest.data.html_url;
-        response.statusMessage = `Pull Request Created at ${pullRequestUrl}`;
+        response.statusMessage = pullRequestUrl;
       } else {
         status = '400';
         response.statusMessage = 'Bad Request';
