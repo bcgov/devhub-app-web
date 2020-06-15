@@ -12,6 +12,7 @@ const getParamsByEnv = (env, pr) => {
     SSO_BASE_URL_VALUE: 'https://sso.pathfinder.gov.bc.ca',
     SSO_CLIENT_ID_VALUE: 'devhub-api',
     SSO_REALM_NAME_VALUE: 'devhub',
+    CORS_ORIGIN: 'https://developer.gov.bc.ca'
   };
   switch (env) {
     case ENVS.PROD:
@@ -20,12 +21,14 @@ const getParamsByEnv = (env, pr) => {
       return {
         ...params,
         SSO_BASE_URL_VALUE: 'https://sso-test.pathfinder.gov.bc.ca',
+        CORS_ORIGIN: 'https://devhub-static-test-devhub-test.pathfinder.gov.bc.ca/',
       };
     case ENVS.DEV:
       return {
         ...params,
         SSO_BASE_URL_VALUE: 'https://sso-dev.pathfinder.gov.bc.ca',
         SSO_CLIENT_ID_VALUE: `devhub-api-${pr}`,
+        CORS_PATTERN: 'https:\/\/devhub-static-dev-[0-9]+-devhub-dev\.pathfinder\.gov\.bc\.ca',
       };
     default:
       return {

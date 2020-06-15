@@ -25,6 +25,7 @@ import healthcheckRouters from './routers/healthcheck';
 import { authmware } from './utils/authmware';
 import topicRouters from './routers/topics';
 import cors from 'cors';
+import { originMatchesPattern } from './utils/cors';
 
 dotenv.config();
 
@@ -32,13 +33,23 @@ const app = express();
 
 // default to devhub in localhost
 const corsOrigin = process.env.CORS_URL || 'http://localhost:8000';
+const corsPattern = process.env.CORS_PATTERN || '';
 
+/**
+ * the dynamic cors origin checker
+ * does it match a specific origin or a pattern
+ * @param {String} origin 
+ * @param {Fn} callback 
+ */
+export const originIsWhitelisted = (origin, callback) => {
+  if(origin === corsOrigin || (corsPattern && originMatchesPattern(corsPattern, origin))) {
+    return callback(null, true);
+  }
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', corsOrigin);
-  res.header('Access-Control-Allow-Headers', '*');
-  next();
-});
+  return callback(new Error('Not Allowed by CORS'));
+};
+
+app.use(cors({origin: originIsWhitelisted}));
 
 // middlewares
 app.use(bodyParser.json());

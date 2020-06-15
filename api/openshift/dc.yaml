@@ -49,6 +49,10 @@ objects:
                 - name: ${NAME}-config-${SUFFIX}
                   mountPath: /opt/app-root/src/dist/config
               env:
+                - name: CORS_ORIGIN
+                  value: ${CORS_ORIGIN}
+                - name: CORS_PATTERN
+                  value: ${CORS_PATTERN}
                 - name: PORT 
                   value: "3000"
                 - name: HOST 
@@ -211,5 +215,13 @@ parameters:
   - description: A sso realm name in the env
     displayName: sso realm name
     name: SSO_REALM_NAME_VALUE
+    required: false
+    value: ''
+  - description: The CORS origin to accept requests from
+    name: CORS_ORIGIN
+    required: false
+    value: http://localhost:8000
+  - description: A CORS pattern to test origins against using regexp
+    name: CORS_PATTERN
     required: false
     value: ''
