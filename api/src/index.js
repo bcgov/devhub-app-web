@@ -42,7 +42,8 @@ const corsPattern = process.env.CORS_PATTERN || '';
  * @param {Fn} callback 
  */
 export const originIsWhitelisted = (origin, callback) => {
-  if(origin === corsOrigin || (corsPattern && originMatchesPattern(corsPattern, origin))) {
+  console.log('ORIGIN', origin);
+  if(!origin || origin === corsOrigin || (corsPattern && originMatchesPattern(corsPattern, origin))) {
     return callback(null, true);
   }
 
