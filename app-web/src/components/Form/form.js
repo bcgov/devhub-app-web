@@ -17,6 +17,17 @@ export const StyledErrorMessage = styled.div`
   color: #a12622;
 `;
 
+export const StyledSuccessMessage = styled.div`
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #2d4821;
+`;
+
 export const StyledLabel = styled.label`
   margin-top: 1rem;
   display: block;
