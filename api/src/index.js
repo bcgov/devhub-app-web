@@ -50,7 +50,6 @@ export const originIsWhitelisted = (origin, callback) => {
   return callback(new Error('Not Allowed by CORS'));
 };
 
-app.use(cors({origin: originIsWhitelisted}));
 
 // middlewares
 app.use(bodyParser.json());
@@ -58,6 +57,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // routes
 app.use('/v1/checks', healthcheckRouters);
+
+app.use(cors({origin: originIsWhitelisted}));
 
 // authenticated routes
 
