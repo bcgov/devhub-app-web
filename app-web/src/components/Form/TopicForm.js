@@ -12,6 +12,7 @@ import { FieldArray } from 'react-final-form-arrays';
 import axios from 'axios';
 import StyledButton from '../UI/Button/Button';
 import Loading from '../UI/Loading/Loading';
+import { useKeycloak } from '@react-keycloak/web';
 
 export const TopicForm = () => {
   const [loading, setLoading] = useState(false);
@@ -20,8 +21,11 @@ export const TopicForm = () => {
 
   const [message, setMessage] = useState(false);
 
+  const [keycloak] = useKeycloak();
+
   const onSubmit = async values => {
     setLoading(true);
+    console.log('here is the token ->', keycloak.token);
     values = convertToRegistryFormat(values);
     try {
       const res = await axios.post(`${process.env.GATSBY_GITHUB_API_URL}/v1/topics/`, values);
