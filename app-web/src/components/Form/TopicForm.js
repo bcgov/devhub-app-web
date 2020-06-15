@@ -22,12 +22,16 @@ export const TopicForm = () => {
   const [message, setMessage] = useState(false);
 
   const [keycloak] = useKeycloak();
-  console.log('here is the token ->', keycloak.token);
+
   const onSubmit = async values => {
     setLoading(true);
     values = convertToRegistryFormat(values);
     try {
-      const res = await axios.post(`${process.env.GATSBY_GITHUB_API_URL}/v1/topics/`, values);
+      const res = await axios.post(`${process.env.GATSBY_GITHUB_API_URL}/v1/topics/`, values, {
+        headers: {
+          Authorization: `Bearer ${keycloak.token}`,
+        },
+      });
       setResponse({ status: res.status, data: res.data });
     } catch (err) {
       setResponse({ status: err.response.status, data: err.response.data });
