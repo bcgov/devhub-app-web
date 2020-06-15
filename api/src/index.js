@@ -24,6 +24,7 @@ import passport from 'passport';
 import healthcheckRouters from './routers/healthcheck';
 import { authmware } from './utils/authmware';
 import topicRouters from './routers/topics';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ const app = express();
 
 // default to devhub in localhost
 const corsOrigin = process.env.CORS_URL || 'http://localhost:8000';
+
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', corsOrigin);
