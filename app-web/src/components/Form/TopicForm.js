@@ -22,10 +22,9 @@ export const TopicForm = () => {
   const [message, setMessage] = useState(false);
 
   const [keycloak] = useKeycloak();
-
+  console.log('here is the token ->', keycloak.token);
   const onSubmit = async values => {
     setLoading(true);
-    console.log('here is the token ->', keycloak.token);
     values = convertToRegistryFormat(values);
     try {
       const res = await axios.post(`${process.env.GATSBY_GITHUB_API_URL}/v1/topics/`, values);
