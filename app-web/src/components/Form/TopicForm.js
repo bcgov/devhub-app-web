@@ -43,17 +43,20 @@ export const TopicForm = () => {
 
   const ResponseMessage = () => {
     if (response.status === 200) {
+      // status code when pull request is created
       const prMessage = `Pull request created at ${response.data.prUrl}`;
       return <StyledSuccessMessage> {prMessage} </StyledSuccessMessage>;
     }
     if (response.status === 400) {
       return (
+        // status when the input validation failed
         <StyledErrorMessage>
           Please make sure you have entered all the fields correctly
         </StyledErrorMessage>
       );
     }
     if (response.status === 422) {
+      // status code for pull request for this topic already exists
       return <StyledErrorMessage>A pull request for this topic already exists</StyledErrorMessage>;
     }
   };
