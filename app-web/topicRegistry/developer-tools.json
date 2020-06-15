@@ -81,7 +81,7 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "title": "Artifactory",
+          "title": "Developer Experience",
           "url": "https://github.com/bcdevops/developer-experience",
           "author": "caggles",
           "owner": "bcdevops",
@@ -89,7 +89,8 @@
           "files": [
             "apps/artifactory/DEVHUB-README.md",
             "docs/resiliency-checklist.md",
-            "docs/post-outage-checklist.md"
+            "docs/post-outage-checklist.md", 
+            "docs/resource-tuning-recommendations.md"
           ]
         }
       },
