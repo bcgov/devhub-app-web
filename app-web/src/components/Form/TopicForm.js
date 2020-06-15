@@ -13,6 +13,7 @@ import axios from 'axios';
 import StyledButton from '../UI/Button/Button';
 import Loading from '../UI/Loading/Loading';
 import { useKeycloak } from '@react-keycloak/web';
+import { GATSBY_GITHUB_API_URL } from '../../constants/api';
 
 export const TopicForm = () => {
   const [loading, setLoading] = useState(false);
@@ -27,7 +28,7 @@ export const TopicForm = () => {
     setLoading(true);
     values = convertToRegistryFormat(values);
     try {
-      const res = await axios.post(`${process.env.GATSBY_GITHUB_API_URL}/v1/topics/`, values, {
+      const res = await axios.post(`${GATSBY_GITHUB_API_URL}/v1/topics/`, values, {
         headers: {
           Authorization: `Bearer ${keycloak.token}`,
         },
