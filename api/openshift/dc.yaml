@@ -145,6 +145,13 @@ objects:
     data:
       index.json: |-
         {  
+          "github": {
+            "repo": "devhub-app-web",
+            "owner": "bcgov",
+            "branchPrefix": "contribution",
+            "defaultBranch": "master",
+            "branchIdLength": 6
+          },
           "session": {
             "maxAge": 604800000,
             "expires": 604800000
