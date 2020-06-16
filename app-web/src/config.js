@@ -5,5 +5,5 @@ export default {
   ssoBaseUrl: '{{.Env.SSO_BASE_URL}}',
   searchgateApiUrl: '{{.Env.SEARCHGATE_API_URL}}',
   algoliaIndexSuffix: '{{.Env.ALGOLIA_INDEX_NAME_SUFFIX}}',
-  githubApiUrl: '{{.Env.GATSBY_GITHUB_API_URL}}',
+  devhubApiUrl: '{{.Env.DEVHUB_API_URL}}',
 };
