@@ -57,8 +57,6 @@ objects:
                   value: "3000"
                 - name: HOST 
                   value: ${SERVER_HOST}
-                - name: CORS_URL 
-                  value: ${DEVHUB_WEB_ORIGIN_URL}
                 - name: GITHUB_TOKEN
                   valueFrom:
                     secretKeyRef:

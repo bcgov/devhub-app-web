@@ -32,7 +32,7 @@ dotenv.config();
 const app = express();
 
 // default to devhub in localhost
-const corsOrigin = process.env.CORS_URL || 'http://localhost:8000';
+const corsOrigin = process.env.CORS_ORIGIN || 'http://localhost:8000';
 const corsPattern = process.env.CORS_PATTERN || '';
 
 /**

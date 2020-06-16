@@ -7,6 +7,12 @@ const ENVS = {
   DEV: 'dev',
 };
 
+/**
+ * custom params based on our github flow like environments 
+ * a new dev instance is deployed from a pr and subsequently promoted to test/prod
+ * @param {String} env 
+ * @param {String} pr 
+ */
 const getParamsByEnv = (env, pr) => {
   const params = {
     SSO_BASE_URL_VALUE: 'https://sso.pathfinder.gov.bc.ca',
@@ -58,7 +64,6 @@ module.exports = (settings) => {
         SUFFIX: phases[phase].suffix,
         VERSION: phases[phase].version,
         ...getParamsByEnv(phase, changeId),
-        DEVHUB_WEB_ORIGIN_URL: 'http://developer.gov.bc.ca',
       },
     }),
   );
