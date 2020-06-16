@@ -64,6 +64,16 @@ objects:
                     secretKeyRef:
                       key: GITHUB_TOKEN
                       name: ${NAME}-github
+                - name: GITHUB_USER_EMAIL
+                  valueFrom:
+                    secretKeyRef:
+                      key: GITHUB_USER_EMAIL
+                      name: ${NAME}-github
+                - name: GITHUB_USER_NAME
+                  valueFrom:
+                    secretKeyRef:
+                      key: GITHUB_USER_NAME
+                      name: ${NAME}-github
               readinessProbe:
                 failureThreshold: 3
                 httpGet:
