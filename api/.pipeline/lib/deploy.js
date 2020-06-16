@@ -17,10 +17,11 @@ const getParamsByEnv = (env, pr) => {
   };
   switch (env) {
     case ENVS.PROD:
-      return {...params, CPU_REQUEST: '100m', CPU_LIMIT: '150m', MEMORY_REQUEST: '75Mi', MEMORY_LIMIT: '125Mi'};
+      return {...params,VERSION: 'prod', CPU_REQUEST: '100m', CPU_LIMIT: '150m', MEMORY_REQUEST: '75Mi', MEMORY_LIMIT: '125Mi'};
     case ENVS.TEST:
       return {
         ...params,
+        VERSION: 'test',
         SSO_BASE_URL_VALUE: 'https://sso-test.pathfinder.gov.bc.ca',
         CORS_ORIGIN: 'https://devhub-static-test-devhub-test.pathfinder.gov.bc.ca/',
       };
