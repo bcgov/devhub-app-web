@@ -30,9 +30,9 @@ export const createOrUpdateTopic = async (req, res) => {
   const ref = `refs/heads/createTopic/${topicName}`;
 
   try {
-    // if (await openPullExistsForBranch(branchName, repo, owner)) {
-    //   // add payload to pull request as new commit
-    // } else {
+    if (await openPullExistsForBranch(branchName, repo, owner)) {
+      // add payload to pull request as new commit
+    } else {
       // create new topic and branch
       // validate topic schema
       const isValidData = validate(req.body);
@@ -40,22 +40,22 @@ export const createOrUpdateTopic = async (req, res) => {
         // TODO -- validate topic doesn't already exist
         // TODO -- validate topic sources are valid
         // create a git branch on the remote with a naming convention [createTopic/topicname]
-        // await createNewRefFromBase(owner, repo, ref);
-        // // // create a new file with contents
-        // await createFile(owner, repo, bodyData, ref, topicName, email, name);
-        // // commit  to branch
-        // // make pr against ref to base using templates
-        // const pullRequest = await createPullRequest(owner, repo, defaultBranch, topicName, ref);
-        // // URL to the pull Request created ..
-        // const pullRequestUrl = pullRequest.data.html_url;
-        response.prUrl = 'test url';
+        await createNewRefFromBase(owner, repo, ref);
+        // // create a new file with contents
+        await createFile(owner, repo, bodyData, ref, topicName, email, name);
+        // commit  to branch
+        // make pr against ref to base using templates
+        const pullRequest = await createPullRequest(owner, repo, defaultBranch, topicName, ref);
+        // URL to the pull Request created ..
+        const pullRequestUrl = pullRequest.data.html_url;
+        response.prUrl = pullRequestUrl;
         //eslint-disable-next-line
-        // console.log(`Pull request for topic ${topicName} created. Check out ${pullRequestUrl} to view the pull request`);
+        console.log(`Pull request for topic ${topicName} created. Check out ${pullRequestUrl} to view the pull request`);
       } else {
         status = '400';
         response.statusMessage = 'Bad Request';
       }
-    // }
+    }
   } catch (e) {
     status = e.status;
     response.statusMessage = e;
