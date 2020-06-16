@@ -42,8 +42,8 @@ const corsPattern = process.env.CORS_PATTERN || '';
  * @param {Fn} callback 
  */
 export const originIsWhitelisted = (origin, callback) => {
-  console.log('ORIGIN', origin);
   if(!origin || origin === corsOrigin || (corsPattern && originMatchesPattern(corsPattern, origin))) {
+    console.log('ORIGIN', origin);
     return callback(null, true);
   }
 
@@ -63,7 +63,7 @@ app.use(cors({origin: originIsWhitelisted}));
 // authenticated routes
 
 authmware(app);
-// app.use(passport.authenticate('jwt', { session: false }));
+app.use(passport.authenticate('jwt', { session: false }));
 // app.options('/v1/topics', (req, res) => {
 
 // })
