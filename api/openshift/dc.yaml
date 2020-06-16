@@ -70,7 +70,7 @@ objects:
                 - name: GITHUB_USER_NAME
                   valueFrom:
                     secretKeyRef:
-                      key: GITHUB_USER_NAME
+                      key: GITHUB_USERNAME
                       name: ${NAME}-github
               readinessProbe:
                 failureThreshold: 3
