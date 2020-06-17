@@ -27,7 +27,7 @@ export const TopicForm = () => {
     setLoading(true);
     values = convertToRegistryFormat(values);
     try {
-      const res = await axios.post(`${DEVHUB_API_URL}v1/topics/`, values, {
+      const res = await axios.post(`${DEVHUB_API_URL}/v1/topics/`, values, {
         headers: {
           Authorization: `Bearer ${keycloak.token}`,
         },
