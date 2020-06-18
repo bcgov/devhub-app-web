@@ -20,7 +20,7 @@ export const TopicForm = () => {
 
   const [response, setResponse] = useState({ status: '', data: '' });
 
-  const [message, setMessage] = useState(false);
+  const [showResponseMessage, setResponseMessage] = useState(false);
 
   const [keycloak] = useKeycloak();
   const onSubmit = async values => {
@@ -37,7 +37,7 @@ export const TopicForm = () => {
       setResponse({ status: err.response.status, data: err.response.data });
     }
     setLoading(false);
-    setMessage(true);
+    setResponseMessage(true);
   };
 
   const ResponseMessage = () => {
@@ -71,7 +71,7 @@ export const TopicForm = () => {
 
   return (
     <StylesWrapper>
-      {loading ? <Loading message="Loading ..." /> : null}
+      {loading && <Loading message="Loading ..." />}
       <Form
         onSubmit={onSubmit}
         mutators={{ ...arrayMutators }}
@@ -135,7 +135,7 @@ export const TopicForm = () => {
           </form>
         )}
       />
-      {message ? ResponseMessage() : null}
+      {showResponseMessage && ResponseMessage()}
     </StylesWrapper>
   );
 };
