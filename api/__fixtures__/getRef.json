@@ -1,0 +1,10 @@
+{
+  "ref": "refs/heads/master",
+  "node_id": "MDM6UmVmMTQ4Njc5NTk0OnJlZnMvaGVhZHMvbWFzdGVy",
+  "url": "https://api.github.com/repos/bcgov/devhub-app-web/git/refs/heads/master",
+  "object": {
+      "sha": "72fc403744a4e902dfdda56aae0d48ee4ed9d32e",
+      "type": "commit",
+      "url": "https://api.github.com/repos/bcgov/devhub-app-web/git/commits/72fc403744a4e902dfdda56aae0d48ee4ed9d32e"
+  }
+}

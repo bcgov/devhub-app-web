@@ -21,36 +21,56 @@ import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import express from 'express';
 import passport from 'passport';
-import cors from 'cors';
 import healthcheckRouters from './routers/healthcheck';
 import { authmware } from './utils/authmware';
+import topicRouters from './routers/topics';
+import cors from 'cors';
+import { originMatchesPattern } from './utils/cors';
 
 dotenv.config();
 
-// Config
-
 const app = express();
-// middlewares
-app.use(bodyParser.json());
 
 // default to devhub in localhost
-const corsOrigin = process.env.CORS_URL || 'http://localhost:8000';
+const corsOrigin = process.env.CORS_ORIGIN || 'http://localhost:8000';
+const corsPattern = process.env.CORS_PATTERN || '';
 
-var corsOptions = {
-   origin: corsOrigin,
-   optionsSuccessStatus: 200
-}
+/**
+ * the dynamic cors origin checker
+ * does it match a specific origin or a pattern
+ * @param {String} origin
+ * @param {Fn} callback
+ */
+export const originIsWhitelisted = (origin, callback) => {
+  if (
+    !origin ||
+    origin === corsOrigin ||
+    (corsPattern && originMatchesPattern(corsPattern, origin))
+  ) {
+    //eslint-disable-next-line
+    console.log('ORIGIN', origin);
+    return callback(null, true);
+  }
 
-app.use(cors(corsOptions));
+  return callback(new Error('Not Allowed by CORS'));
+};
+
+// middlewares
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // routes
 app.use('/v1/checks', healthcheckRouters);
 
+app.use(cors({ origin: originIsWhitelisted }));
 
-// authenticated routes 
+// authenticated routes
 
 authmware(app);
-app.use(passport.authenticate('jwt', { session: false }));
+// app.use(passport.authenticate('jwt', { session: false }));
+// app.options('/v1/topics', (req, res) => {
 
+// })
+app.use('/v1/topics', topicRouters);
 
 export default app;
