@@ -38,18 +38,22 @@ const corsPattern = process.env.CORS_PATTERN || '';
 /**
  * the dynamic cors origin checker
  * does it match a specific origin or a pattern
- * @param {String} origin 
- * @param {Fn} callback 
+ * @param {String} origin
+ * @param {Fn} callback
  */
 export const originIsWhitelisted = (origin, callback) => {
-  if(!origin || origin === corsOrigin || (corsPattern && originMatchesPattern(corsPattern, origin))) {
+  if (
+    !origin ||
+    origin === corsOrigin ||
+    (corsPattern && originMatchesPattern(corsPattern, origin))
+  ) {
+    //eslint-disable-next-line
     console.log('ORIGIN', origin);
     return callback(null, true);
   }
 
   return callback(new Error('Not Allowed by CORS'));
 };
-
 
 // middlewares
 app.use(bodyParser.json());
@@ -58,7 +62,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // routes
 app.use('/v1/checks', healthcheckRouters);
 
-app.use(cors({origin: originIsWhitelisted}));
+app.use(cors({ origin: originIsWhitelisted }));
 
 // authenticated routes
 

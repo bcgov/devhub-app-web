@@ -17,12 +17,12 @@ Created by Patrick Simonian
 */
 /**
  * checks a regex string against an origin
- * @param {String} pattern 
- * @param {String} origin 
+ * @param {String} pattern
+ * @param {String} origin
  * @returns {Boolean}
  */
 export const originMatchesPattern = (pattern, origin) => {
   const re = new RegExp(pattern);
 
   return re.test(origin);
-}
+};

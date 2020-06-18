@@ -22,13 +22,37 @@ export const createOrUpdateTopic = async (req, res) => {
   const { repo, owner, defaultBranch } = github;
   const email = process.env.GITHUB_USERNAME;
   const name = process.env.GITHUB_USER_EMAIL;
-  let response = { statusMessage: 'Ok', prUrl: '' };
-  let status = '200';
   const bodyData = JSON.stringify(req.body, null, 2);
   const topicName = slugify(req.body.name.toLowerCase(), '-');
-
   const ref = `refs/heads/createTopic/${topicName}`;
+  const response = await githubFunc(
+    branchName,
+    defaultBranch,
+    repo,
+    owner,
+    req,
+    ref,
+    bodyData,
+    topicName,
+    email,
+    name,
+  );
+  res.status(response.status).json(response);
+};
 
+const githubFunc = async (
+  branchName,
+  defaultBranch,
+  repo,
+  owner,
+  req,
+  ref,
+  bodyData,
+  topicName,
+  email,
+  name,
+) => {
+  let response = { statusMessage: 'Ok', prUrl: '', status: '200' };
   try {
     if (await openPullExistsForBranch(branchName, repo, owner)) {
       // add payload to pull request as new commit
@@ -52,13 +76,13 @@ export const createOrUpdateTopic = async (req, res) => {
         //eslint-disable-next-line
         console.log(`Pull request for topic ${topicName} created. Check out ${pullRequestUrl} to view the pull request`);
       } else {
-        status = '400';
+        response.status = '400';
         response.statusMessage = 'Bad Request';
       }
     }
   } catch (e) {
-    status = e.status;
+    response.status = e.status;
     response.statusMessage = e;
   }
-  res.status(status).json(response);
+  return response;
 };
