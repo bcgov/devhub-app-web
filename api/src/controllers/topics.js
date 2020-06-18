@@ -54,9 +54,6 @@ const githubFunc = async (
 ) => {
   let response = { statusMessage: 'Ok', prUrl: '', status: '200' };
   try {
-    if (await openPullExistsForBranch(branchName, repo, owner)) {
-      // add payload to pull request as new commit
-    } else {
       // create new topic and branch
       // validate topic schema
       const isValidData = validate(req.body);
@@ -79,7 +76,6 @@ const githubFunc = async (
         response.status = '400';
         response.statusMessage = 'Bad Request';
       }
-    }
   } catch (e) {
     response.status = e.status;
     response.statusMessage = e;
