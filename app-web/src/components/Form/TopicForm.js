@@ -20,7 +20,7 @@ export const TopicForm = () => {
 
   const [response, setResponse] = useState({ status: '', data: '' });
 
-  const [showResponseMessage, setResponseMessage] = useState(false);
+  const [responseMessage, setResponseMessage] = useState(false);
 
   const [keycloak] = useKeycloak();
   const onSubmit = async values => {
@@ -135,7 +135,7 @@ export const TopicForm = () => {
           </form>
         )}
       />
-      {showResponseMessage && ResponseMessage()}
+      {responseMessage && ResponseMessage()}
     </StylesWrapper>
   );
 };
