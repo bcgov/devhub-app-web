@@ -1,0 +1,17 @@
+{
+  "name": "agile delivery ",
+  "description": "topic description",
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://github.com",
+          "title": "title",
+          "description": "some source description"
+        },
+        "resourceType": "Events"
+      }
+    ]
+  }
+}
