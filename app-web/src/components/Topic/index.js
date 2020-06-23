@@ -20,12 +20,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
+import slugify from 'slugify';
 
 import { RESOURCE_TYPES_LIST, TOPICS } from '../../constants/ui';
 import { ChevronLink, Link } from '../UI/Link';
 import { DecorativeBar, Title as CardTitle, Description as CardDescription } from '../Card';
 import CardHeader from '../Card/CardHeader';
 import CardCarousel from '../CardCarousel/CardCarousel';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 
 const withPadding = css`
   padding: 0 15px;
@@ -79,6 +82,9 @@ const Topic = ({ title, description, link, resources, ...rest }) => (
   <Container {...rest}>
     <TopicDecorativeBar color={TOPICS} />
     <PreviewContainer>
+      <Link to={`/editTopic/${slugify(title)}`}>
+        <FontAwesomeIcon icon={faPen} css={{ float: 'right' }}></FontAwesomeIcon>
+      </Link>
       <CardHeader resourceType={TOPICS} />
       <TopicTitle clamp={2}>
         <TitleLink to={link.to} data-testid={`topic-${title}`}>
