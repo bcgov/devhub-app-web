@@ -55,6 +55,8 @@ export const StylesWrapper = styled.div`
   input {
     display: block;
     font-size: 18px;
+    width: 500px;
+    height: 50px;
     border: 2px solid #606060;
     margin-top: 5px;
     margin-bottom: 15px;
