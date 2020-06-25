@@ -22,7 +22,11 @@ const contentContribution = () => {
             !isAuthenticated ? 'Login via IDIR or Github to continue' : 'Add a topic to the Devhub'
           }
         />
-        {isAuthenticated ? <TopicForm></TopicForm> : <h4 css={{ color: 'red' }}>Not Authorized</h4>}
+        {isAuthenticated ? (
+          <TopicForm operation="create"></TopicForm>
+        ) : (
+          <h4 css={{ color: 'red' }}>Not Authorized</h4>
+        )}
       </Main>
     </Layout>
   );
