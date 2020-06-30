@@ -5,6 +5,7 @@ import {
   StylesWrapper,
   StyledSuccessMessage,
   StyledErrorMessage,
+  RemoveButton,
 } from './form';
 import { Form } from 'react-final-form';
 import { graphql, useStaticQuery } from 'gatsby';
@@ -43,7 +44,7 @@ export const TopicForm = ({ operation }) => {
       .split('/')
       .pop()
       .replace(/-/g, ' ');
-    const topicData = dataQuery(topicName);
+    const topicData = getTopicDataByName(topicName);
     config = {
       apiEndPoint: '/v1/edit/topic/',
       initialValue: {
@@ -120,6 +121,12 @@ export const TopicForm = ({ operation }) => {
               {({ fields }) =>
                 fields.map((name, index) => (
                   <Fragment key={`${name}~${index}`}>
+                    <RemoveButton
+                      type="button"
+                      onClick={() => values.sources.length > 1 && fields.remove(index)}
+                    >
+                    ❌
+                    </RemoveButton>
                     <SelectDropdown
                       name={`${name}.sourceType`}
                       key={`${name}~${index}`}
@@ -155,7 +162,7 @@ export const TopicForm = ({ operation }) => {
             <StyledButton
               type="button"
               variant="secondary"
-              onClick={() => (values.sources.length > 1 ? pop('sources') : null)}
+              onClick={() => values.sources.length > 1 && pop('sources')}
             >
               Remove source
             </StyledButton>
@@ -191,9 +198,10 @@ const getSourceProps = (source, operation) => {
   if (source.sourceType === 'github') {
     properties.owner = source.sourceProperties.owner;
     properties.repo = source.sourceProperties.repo;
-    console.log(operation);
     properties.files =
-      operation === 'create' ? [source.sourceProperties.files] : source.sourceProperties.files;
+      operation === 'create'
+        ? [source.sourceProperties.files.split(',')]
+        : String(source.sourceProperties.files).split(',');
   } else if (source.sourceType === 'web') {
     properties.title = source.sourceProperties.title;
     properties.description = source.sourceProperties.description;
@@ -226,7 +234,7 @@ const SubForm = (sourceType, name) => {
         ></TextInput>
         <TextInput label="Repository name" name={`${name}.sourceProperties.repo`}></TextInput>
         <TextInput
-          label="Enter path to files to from root of your repository"
+          label="Enter path to files to from root of your repository seperated with commas if multiple"
           name={`${name}.sourceProperties.files`}
         ></TextInput>
       </Fragment>
@@ -234,7 +242,7 @@ const SubForm = (sourceType, name) => {
   } else return null;
 };
 
-const dataQuery = topicName => {
+const getTopicDataByName = topicName => {
   const { topics } = useStaticQuery(graphql`
     query {
       topics: allTopicRegistryJson {

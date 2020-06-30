@@ -33,6 +33,13 @@ export const StyledLabel = styled.label`
   display: block;
 `;
 
+export const RemoveButton = styled.button`
+  border: none;
+  position: absolute;
+  background: white;
+  float: right;
+`;
+
 export const TextInput = ({ label, ...props }) => {
   return (
     <Fragment>
