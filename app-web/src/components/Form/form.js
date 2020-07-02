@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import { Field } from 'react-final-form';
 
@@ -28,11 +28,6 @@ export const StyledSuccessMessage = styled.div`
   color: #2d4821;
 `;
 
-export const StyledLabel = styled.label`
-  margin-top: 1rem;
-  display: block;
-`;
-
 export const RemoveButton = styled.button`
   border: none;
   position: relative;
@@ -42,21 +37,25 @@ export const RemoveButton = styled.button`
   float: right;
 `;
 
+export const InputContainer = styled.div`
+  padding: 6px 0px 10px;
+`;
+
 export const TextInput = ({ label, ...props }) => {
   return (
-    <Fragment>
-      <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
+    <InputContainer>
+      <label htmlFor={props.id || props.name}>{label}</label>
       <Field component="input" {...props}></Field>
-    </Fragment>
+    </InputContainer>
   );
 };
 
 export const SelectDropdown = ({ label, ...props }) => {
   return (
-    <Fragment>
-      <StyledLabel>{label}</StyledLabel>
+    <InputContainer>
+      <label>{label}</label>
       <Field component="select" {...props}></Field>
-    </Fragment>
+    </InputContainer>
   );
 };
 
@@ -65,10 +64,7 @@ export const StylesWrapper = styled.div`
     display: block;
     font-size: 18px;
     border: 2px solid #606060;
-    margin-top: 5px;
-    margin-bottom: 15px;
     border-radius: 4px;
-    padding: 5px 5px 5px 7px;
   }
   select {
     display: block;
@@ -78,10 +74,5 @@ export const StylesWrapper = styled.div`
     box-sizing: border-box;
     padding: 5px 5px 5px 7px;
     margin-right: 10px;
-  }
-  button {
-    position: relative;
-    margin: 10px 2px;
-    cursor: pointer;
   }
 `;
