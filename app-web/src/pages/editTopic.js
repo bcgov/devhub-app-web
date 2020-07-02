@@ -9,7 +9,7 @@ import { Title } from '../components/Page';
 import Main from '../components/Page/Main';
 import TopicForm from '../components/Form/TopicForm';
 import { useStaticQuery, graphql } from 'gatsby';
-import { DEVHUB_PALETTE } from '../constants/designTokens';
+import { DS_PALETTE } from '../constants/designTokens';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 
 export const editTopic = props => {
@@ -60,10 +60,7 @@ export const editTopic = props => {
     return (
       <Layout>
         <Main>
-          <Title
-            title="Content Contribution"
-            subtitle={!isAuthenticated ? 'Login via IDIR or Github to continue' : 'Edit a topic'}
-          />
+          <Title title="Content Contribution" subtitle={'Edit a topic'} />
           {isAuthenticated ? (
             <TopicForm
               operation="edit"
@@ -74,7 +71,9 @@ export const editTopic = props => {
               }}
             />
           ) : (
-            <h4 css={{ color: DEVHUB_PALETTE.lightred }}>Please Login to edit this topic :) </h4>
+            <h4 css={{ color: DS_PALETTE.red, fontsize: '18px' }}>
+              Login via IDIR or Github to continue{' '}
+            </h4>
           )}
         </Main>
         <SEO title="Edit topic" />

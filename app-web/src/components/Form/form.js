@@ -34,7 +34,6 @@ export const RemoveButton = styled.button`
   background: white;
   color: red;
   font-size: 25px;
-  float: right;
 `;
 
 export const InputContainer = styled.div`
@@ -65,6 +64,8 @@ export const StylesWrapper = styled.div`
     font-size: 18px;
     border: 2px solid #606060;
     border-radius: 4px;
+    height: 50px;
+    width: 70%;
   }
   select {
     display: block;

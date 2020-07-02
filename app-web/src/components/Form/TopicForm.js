@@ -36,7 +36,6 @@ export const TopicForm = ({ operation, initialValues = {} }) => {
   const onSubmit = async values => {
     setLoading(true);
     values = convertToRegistryFormat(values, operation);
-
     let apiEndPoint = '/v1/topics/';
     if (operation === 'edit') {
       apiEndPoint = '/v1/edit/topic/';
@@ -170,7 +169,9 @@ const getSourceProps = (source, operation) => {
     properties.files =
       operation === 'create'
         ? [source.sourceProperties.files.split(',')]
-        : String(source.sourceProperties.files).split(',');
+        : String(source.sourceProperties.files)
+            .replace(/ /g, '')
+            .split(',');
   } else if (source.sourceType === 'web') {
     properties.title = source.sourceProperties.title;
     properties.description = source.sourceProperties.description;
