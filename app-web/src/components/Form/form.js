@@ -35,8 +35,10 @@ export const StyledLabel = styled.label`
 
 export const RemoveButton = styled.button`
   border: none;
-  position: absolute;
+  position: relative;
   background: white;
+  color: red;
+  font-size: 25px;
   float: right;
 `;
 
@@ -62,8 +64,6 @@ export const StylesWrapper = styled.div`
   input {
     display: block;
     font-size: 18px;
-    width: 500px;
-    height: 50px;
     border: 2px solid #606060;
     margin-top: 5px;
     margin-bottom: 15px;

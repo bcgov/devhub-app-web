@@ -17,6 +17,8 @@ import Loading from '../UI/Loading/Loading';
 import { useKeycloak } from '@react-keycloak/web';
 import { DEVHUB_API_URL } from '../../constants/api';
 import { flattenGatsbyGraphQL } from '../../utils/dataHelpers';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 export const TopicForm = ({ operation }) => {
   let config = {};
@@ -98,6 +100,7 @@ export const TopicForm = ({ operation }) => {
       // status code for pull request for this topic already exists
       return <StyledErrorMessage>A pull request for this topic already exists</StyledErrorMessage>;
     }
+    return null;
   };
 
   return (
@@ -120,12 +123,13 @@ export const TopicForm = ({ operation }) => {
             <FieldArray name="sources">
               {({ fields }) =>
                 fields.map((name, index) => (
-                  <Fragment key={`${name}~${index}`}>
+                  <div key={`${name}~${index}`}>
                     <RemoveButton
                       type="button"
-                      onClick={() => values.sources.length > 1 && fields.remove(index)}
+                      onClick={() => fields.remove(index)}
+                      css={values.sources.length === 1 && { display: 'none' }}
                     >
-                    ❌
+                      <FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>
                     </RemoveButton>
                     <SelectDropdown
                       name={`${name}.sourceType`}
@@ -148,7 +152,7 @@ export const TopicForm = ({ operation }) => {
                       <option value="Repositories">Repositories</option>
                     </SelectDropdown>
                     {SubForm(values.sources[index].sourceType, name)}
-                  </Fragment>
+                  </div>
                 ))
               }
             </FieldArray>
@@ -162,7 +166,8 @@ export const TopicForm = ({ operation }) => {
             <StyledButton
               type="button"
               variant="secondary"
-              onClick={() => values.sources.length > 1 && pop('sources')}
+              onClick={() => pop('sources')}
+              css={values.sources.length === 1 && { display: 'none' }}
             >
               Remove source
             </StyledButton>
@@ -270,12 +275,7 @@ const getTopicDataByName = topicName => {
     }
   `);
   const topicsNode = useMemo(() => flattenGatsbyGraphQL(topics.edges), [topics.edges]);
-  let topicData = {};
-  topicsNode.map(topic => {
-    if (topic.name === topicName) {
-      topicData = topic;
-    }
-  });
+  const topicData = topicsNode.find(topic => topic.name === topicName);
   return topicData;
 };
 
