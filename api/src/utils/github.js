@@ -44,28 +44,61 @@ export const createNewRefFromBase = async (owner, repo, ref) => {
   return data;
 };
 
-export const createFile = async (owner, repo, bodyData, ref, topicName, email, name) => {
+export const createOrUpdateFile = async (
+  operation,
+  owner,
+  repo,
+  bodyData,
+  ref,
+  topicName,
+  email,
+  name,
+) => {
   const path = `app-web/topicRegistry/${topicName}.json`;
-  const message = 'add new topic';
+  const message = operation === 'create' ? `add new topic ${topicName}` : `edit topic ${topicName}`;
   const content = Base64.encode(bodyData);
   const committer = { email: email, name: name };
   const author = committer;
-  const { fileData } = await octokit.repos.createOrUpdateFile({
-    owner,
-    repo,
-    path,
-    branch: ref,
-    message,
-    content,
-    committer,
-    author,
-  });
-  return fileData;
+  let sha = '';
+
+  // update a an existing file with topic data
+  if (operation === 'edit') {
+    const getFileData = await octokit.repos.getContent({ owner, repo, path });
+    sha = getFileData.data.sha;
+    const { updatedFile } = await octokit.repos.createOrUpdateFileContents({
+      owner,
+      repo,
+      path,
+      branch: ref,
+      message,
+      content,
+      committer,
+      author,
+      sha,
+    });
+    return updatedFile;
+  }
+
+  // create a new file for topic
+  else {
+    const { createFile } = await octokit.repos.createOrUpdateFileContents({
+      owner,
+      repo,
+      path,
+      branch: ref,
+      message,
+      content,
+      committer,
+      author,
+    });
+    return createFile;
+  }
 };
 
-export const createPullRequest = async (owner, repo, base, topicName, ref) => {
-  const title = `Add new topic ${topicName}`;
-  const body = `Add a new topic to the devhub named ${topicName}`;
+export const createPullRequest = async (operation, owner, repo, base, topicName, ref) => {
+  const title = operation === 'create' ? `Add new topic ${topicName}` : `Edit topic ${topicName}`;
+  const body =
+    operation === 'create' ? `Add a new topic ${topicName} to Devhub` : `Edit topic ${topicName}`;
   const pullRequest = await octokit.pulls.create({ owner, repo, base, title, head: ref, body });
   return pullRequest;
 };

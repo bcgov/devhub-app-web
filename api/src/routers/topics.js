@@ -5,4 +5,6 @@ const router = express.Router();
 
 router.post('/', createOrUpdateTopic);
 
+router.post('/edit/', createOrUpdateTopic);
+
 export default router;
