@@ -59,12 +59,11 @@ export const createOrUpdateFile = async (
   const content = Base64.encode(bodyData);
   const committer = { email: email, name: name };
   const author = committer;
-  let sha = '';
 
   // update a an existing file with topic data
   if (operation === 'edit') {
     const getFileData = await octokit.repos.getContent({ owner, repo, path });
-    sha = getFileData.data.sha;
+    const sha = getFileData.data.sha;
     const { updatedFile } = await octokit.repos.createOrUpdateFileContents({
       owner,
       repo,

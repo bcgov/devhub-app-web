@@ -18,7 +18,7 @@ const ajv = new Ajv();
 const validate = ajv.compile(schema);
 
 export const createOrUpdateTopic = async (req, res) => {
-  const operation = req.path === '/edit/' ? 'edit' : 'create';
+  const operation = req.path === '/edit' ? 'edit' : 'create';
   const branchName = `${github.branchPrefix}/${randomId(github.branchIdLength)}`;
   const { repo, owner, defaultBranch } = github;
   const email = process.env.GITHUB_USERNAME;
