@@ -1,0 +1,28 @@
+{
+  "name": "agile delivery ",
+  "description": "topic description",
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://google.com",
+          "owner": "jas29",
+          "repo": "devhub-app-web",
+          "files": [
+            [
+              "README.md",
+              "01_Alignment.md",
+              "02_Discovery.md",
+              "03_Alpha.md",
+              "04_Beta.md",
+              "05_Live.md",
+              "test.md"
+            ]
+          ]
+        },
+        "resourceType": "Self-Service Tools"
+      }
+    ]
+  }
+}
