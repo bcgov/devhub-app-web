@@ -9,13 +9,19 @@
 export const reduceFormSourceToSourceProperties = ({ sourceType, sourceProperties }) => {
   if (sourceType === 'github') {
     return {
-      ...sourceProperties,
+      url: sourceProperties.url,
+      owner: sourceProperties.owner,
+      repo: sourceProperties.repo,
       files: sourceProperties.files.split(',').map(file => file.trim()),
     };
   }
 
   if (sourceType === 'web') {
-    return sourceProperties;
+    return {
+      url: sourceProperties.url,
+      title: sourceProperties.title,
+      description: sourceProperties.description,
+    };
   }
 
   return {};
@@ -27,10 +33,10 @@ export const reduceFormSourceToSourceProperties = ({ sourceType, sourcePropertie
  * @param {String} operation the form mode (edit or create)
  * @returns {Object}
  */
-export const convertToRegistryFormat = ({ name, description, sources }, operation) => {
+export const convertToRegistryFormat = ({ topicName, topicDescription, sources }, operation) => {
   const convertedFields = {
-    name,
-    description,
+    name: topicName,
+    description: topicDescription,
     sourceProperties: {
       sources: sources.map(source => ({
         sourceType: source.sourceType,
