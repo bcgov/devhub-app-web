@@ -9,8 +9,8 @@ export const SEARCHGATE_API_URL = process.env.GATSBY_SEARCHGATE_API_URL || confi
 export const DEVHUB_API_URL = process.env.GATSBY_DEVHUB_API_URL || config.devhubApiUrl;
 
 export const API_ROUTES = {
-  editTopic: `${DEVHUB_API_URL}/v1/topics/edit`,
-  createTopic: `${DEVHUB_API_URL}/v1/topics`,
+  editTopic: `${DEVHUB_API_URL}/v1/topics/edit/`,
+  createTopic: `${DEVHUB_API_URL}/v1/topics/`,
 };
 // because this env variable GATBSY_ALGOLIA.. is made available at build, it will never utilize
 // the caddy template string. This self invocated function will only allow the ennv variable to be used
