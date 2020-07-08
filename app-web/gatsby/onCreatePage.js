@@ -27,9 +27,11 @@ module.exports = async ({ page, actions }) => {
     page.matchPath = `/topic/*`;
     createPage(page);
   }
-  if (page.path.match(/^\/editTopic(?!s)/)) {
-    page.matchPath = `/editTopic/*`;
-    createPage(page);
-  }
+
+  // client only pages for edit topic functionality.
+  // if (page.path.match(/^\/editTopic(?!s)/)) {
+  //   page.matchPath = `/editTopic/*`;
+  //   createPage(page);
+  // }
 
 };

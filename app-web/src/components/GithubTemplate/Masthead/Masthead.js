@@ -39,13 +39,13 @@ export const TEST_IDS = {
 
 const Masthead = ({ title, description, type, render }) => (
   <Header data-testid={TEST_IDS.header}>
-    <Link
+    {/* <Link
       to={`/editTopic/${slugify(title)}`}
       css={{ display: 'inline-block', float: 'right', color: '#444', textDecoration: 'none' }}
     >
       <span css={{ padding: '0px 2px' }}> Suggest an edit </span>
       <FontAwesomeIcon icon={faPen}></FontAwesomeIcon>
-    </Link>
+    </Link> */}
     <CardHeader resourceType={type} />
     <Title title={title} subtitle={description} />
     {render && render()}
