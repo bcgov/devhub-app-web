@@ -1,8 +1,12 @@
 ---
 name: Content Suggestion
 about: Suggest some content to live in the Devhub
+title: ''
+labels: ''
+assignees: ''
 
 ---
+
 Please fill in this form with your suggested content:
 > eg:
 >
