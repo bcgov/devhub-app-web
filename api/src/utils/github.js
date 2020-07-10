@@ -9,7 +9,7 @@ const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
 export const email = process.env.GITHUB_USER_EMAIL;
 
-export const name = process.env.GITHUB_USERNAME;
+export const name = process.env.GITHUB_USER_NAME;
 
 export const openPullExistsForBranch = async (branchName, repo, owner) => {
   const response = await octokit.pulls.list({
