@@ -1,15 +1,7 @@
-import { github } from '../config/index.json';
+import dotenv from 'dotenv';
 import Ajv from 'ajv';
 import schema from '../schemas/topic.json';
-import { randomId } from '../utils/strings';
-import {
-  openPullExistsForBranch,
-  createNewRefFromBase,
-  createOrUpdateFile,
-  createPullRequest,
-} from '../utils/github';
-import slugify from 'slugify';
-import dotenv from 'dotenv';
+import { createNewRefFromBase, createFile, createPullRequest, updateFile } from './github';
 
 dotenv.config();
 
@@ -17,37 +9,20 @@ const ajv = new Ajv();
 
 const validate = ajv.compile(schema);
 
-export const createOrUpdateTopic = async (req, res) => {
-  const operation = req.path === '/edit' ? 'edit' : 'create';
-  const branchName = `${github.branchPrefix}/${randomId(github.branchIdLength)}`;
-  const { repo, owner, defaultBranch } = github;
-  const email = process.env.GITHUB_USERNAME;
-  const name = process.env.GITHUB_USER_EMAIL;
-  const bodyData = JSON.stringify(req.body, null, 2);
-  const topicName = slugify(req.body.name.toLowerCase(), '-');
-  const ref =
-    operation === 'create'
-      ? `refs/heads/createTopic/${topicName}`
-      : `refs/heads/editTopic/${topicName}`;
-  const response = await githubFunc(
-    operation,
-    branchName,
-    defaultBranch,
-    repo,
-    owner,
-    req,
-    ref,
-    bodyData,
-    topicName,
-    email,
-    name,
-  );
-  res.status(response.status).json(response);
-};
-
-const githubFunc = async (
+/**
+ *
+ * @param {String} operation
+ * @param {String} defaultBranch
+ * @param {String} repo
+ * @param {String} owner
+ * @param {String} req
+ * @param {String} ref
+ * @param {String} bodyData
+ * @param {String} topicName
+ * @returns {Object} {response {status, message, prUrl}}
+ */
+export const githubHandler = async (
   operation,
-  branchName,
   defaultBranch,
   repo,
   owner,
@@ -55,8 +30,6 @@ const githubFunc = async (
   ref,
   bodyData,
   topicName,
-  email,
-  name,
 ) => {
   let response = { statusMessage: 'Ok', prUrl: '', status: '200' };
   try {
@@ -69,7 +42,12 @@ const githubFunc = async (
       // create a git branch on the remote with a naming convention [createTopic/topicname]
       await createNewRefFromBase(owner, repo, ref);
       // // create a new file with contents
-      await createOrUpdateFile(operation, owner, repo, bodyData, ref, topicName, email, name);
+      if (operation === 'create') {
+        await createFile(owner, repo, bodyData, ref, topicName);
+      }
+      if (operation === 'update') {
+        await updateFile(owner, repo, bodyData, ref, topicName);
+      }
       // commit  to branch
       // make pr against ref to base using templates
       const pullRequest = await createPullRequest(

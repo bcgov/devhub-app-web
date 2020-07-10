@@ -1,11 +1,15 @@
 import { Octokit } from '@octokit/rest';
-import { PULL_REQUEST_STATE } from '../constants';
+import { PULL_REQUEST_STATE, FILE_PATH, PR_BODY, PR_TITLE, COMMIT_MESSAGE } from '../constants';
 import dotenv from 'dotenv';
 import { Base64 } from 'js-base64';
 
 dotenv.config();
 
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+
+export const email = process.env.GITHUB_USER_EMAIL;
+
+export const name = process.env.GITHUB_USERNAME;
 
 export const openPullExistsForBranch = async (branchName, repo, owner) => {
   const response = await octokit.pulls.list({
@@ -44,60 +48,81 @@ export const createNewRefFromBase = async (owner, repo, ref) => {
   return data;
 };
 
-export const createOrUpdateFile = async (
-  operation,
-  owner,
-  repo,
-  bodyData,
-  ref,
-  topicName,
-  email,
-  name,
-) => {
-  const path = `app-web/topicRegistry/${topicName}.json`;
-  const message = operation === 'create' ? `add new topic ${topicName}` : `edit topic ${topicName}`;
+/**
+ *
+ * @param {String} owner
+ * @param {String} repo
+ * @param {String} bodyData
+ * @param {String} ref
+ * @param {String} topicName
+ * @returns {Promise}
+ */
+export const createFile = async (owner, repo, bodyData, ref, topicName) => {
+  const path = `${FILE_PATH}${topicName}.json`;
+  const message = `${COMMIT_MESSAGE.CREATE} ${topicName}`;
   const content = Base64.encode(bodyData);
   const committer = { email: email, name: name };
   const author = committer;
 
-  // update a an existing file with topic data
-  if (operation === 'edit') {
-    const getFileData = await octokit.repos.getContent({ owner, repo, path });
-    const sha = getFileData.data.sha;
-    const { updatedFile } = await octokit.repos.createOrUpdateFileContents({
-      owner,
-      repo,
-      path,
-      branch: ref,
-      message,
-      content,
-      committer,
-      author,
-      sha,
-    });
-    return updatedFile;
-  }
-
-  // create a new file for topic
-  else {
-    const { createFile } = await octokit.repos.createOrUpdateFileContents({
-      owner,
-      repo,
-      path,
-      branch: ref,
-      message,
-      content,
-      committer,
-      author,
-    });
-    return createFile;
-  }
+  const { createdFile } = await octokit.repos.createOrUpdateFileContents({
+    owner,
+    repo,
+    path,
+    branch: ref,
+    message,
+    content,
+    committer,
+    author,
+  });
+  return createdFile;
 };
 
+/**
+ *
+ * @param {String} owner
+ * @param {String} repo
+ * @param {String} bodyData
+ * @param {String} ref
+ * @param {String} topicName
+ * @returns {Promise}
+ */
+export const updateFile = async (owner, repo, bodyData, ref, topicName) => {
+  const path = `${FILE_PATH}${topicName}.json`;
+  const message = `${COMMIT_MESSAGE.UPDATE} ${topicName}`;
+  const content = Base64.encode(bodyData);
+  const committer = { email: email, name: name };
+  const author = committer;
+  const getFileData = await octokit.repos.getContent({ owner, repo, path });
+  const sha = getFileData.data.sha;
+  const { updatedFile } = await octokit.repos.createOrUpdateFileContents({
+    owner,
+    repo,
+    path,
+    branch: ref,
+    message,
+    content,
+    committer,
+    author,
+    sha,
+  });
+  return updatedFile;
+};
+
+/**
+ *
+ * @param {String} operation
+ * @param {String} owner
+ * @param {String} repo
+ * @param {String} base
+ * @param {String} topicName
+ * @param {String} ref
+ * @returns {Promise}
+ */
 export const createPullRequest = async (operation, owner, repo, base, topicName, ref) => {
-  const title = operation === 'create' ? `Add new topic ${topicName}` : `Edit topic ${topicName}`;
+  const title =
+    operation === 'create' ? `${PR_TITLE.CREATE} ${topicName}` : `${PR_TITLE.UPDATE} ${topicName}`;
   const body =
-    operation === 'create' ? `Add a new topic ${topicName} to Devhub` : `Edit topic ${topicName}`;
+    operation === 'create' ? `${PR_BODY.CREATE} ${topicName}` : `${PR_BODY.UPDATE} ${topicName}`;
   const pullRequest = await octokit.pulls.create({ owner, repo, base, title, head: ref, body });
   return pullRequest;
 };
