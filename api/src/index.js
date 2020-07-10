@@ -68,7 +68,7 @@ app.use(cors({ origin: originIsWhitelisted }));
 // authenticated routes
 
 authmware(app);
-// app.use(passport.authenticate('jwt', { session: false }));
+app.use(passport.authenticate('jwt', { session: false }));
 // app.options('/v1/topics', (req, res) => {
 
 // })
