@@ -1,0 +1,17 @@
+{
+  "name": "agile delivery ",
+  "description": "topic description",
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://google.com",
+          "title": "title",
+          "description": "BC Government's home on GitHub. Open source code developed by and for the BC Government resides here."
+        },
+        "resourceType": "Documentation"
+      }
+    ]
+  }
+}
