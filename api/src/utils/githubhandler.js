@@ -68,6 +68,8 @@ export const githubHandler = async (
       response.statusMessage = 'Bad Request';
     }
   } catch (e) {
+    //eslint-disable-next-line
+    console.log("error ->",e);
     response.status = e.status;
     response.statusMessage = e;
   }
