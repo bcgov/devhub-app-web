@@ -78,11 +78,11 @@ objects:
     strategy:
       resources:
         requests:
-          cpu: '10m'
+          cpu: '150m'
           memory: '50Mi'
         limits:
-          cpu: '150m'
-          memory: '75Mi'
+          cpu: '250m'
+          memory: '105Mi'
     template:
       metadata:
         creationTimestamp: null
@@ -99,11 +99,11 @@ objects:
             protocol: TCP
           resources:
             requests:
-              cpu: '10m'
-              memory: '50Mi'
+              cpu: ${CPU_REQUEST}
+              memory: ${MEMORY_REQUEST}
             limits:
-              cpu: '150m'
-              memory: '75Mi'
+              cpu: ${CPU_LIMIT}
+              memory: ${MEMORY_LIMIT}
           env:
           - name: SEARCHGATE_API_URL
             value: ${SEARCHGATE_API_URL}
@@ -121,6 +121,8 @@ objects:
             value: ${MATOMO_SITE_URL}
           - name: MATOMO_SITE_ID
             value: ${MATOMO_SITE_ID}
+          - name: DEVHUB_API_URL
+            value: ${DEVHUB_API_URL}
           volumeMounts:
           - name: caddy-${NAME}-static${SUFFIX}
             mountPath: /etc/Caddyfile
@@ -205,6 +207,10 @@ parameters:
   name: SSO_BASE_URL_VALUE
   required: false
   value: ''
+- description: The base url for the devhub api
+  displayName: Devhub API url
+  name: DEVHUB_API_URL
+  required: true
 - description: A sso client id in the env
   displayName: sso client id
   name: SSO_CLIENT_ID_VALUE
@@ -239,3 +245,23 @@ parameters:
   displayName: Algolia Index Suffix
   name: ALGOLIA_INDEX_NAME_SUFFIX
   required: true
+- description: The CPU Request for the deployment config
+  displayName: CPU Request 
+  name: CPU_REQUEST
+  required: false
+  value: 10m
+- description: The CPU Limit for the deployment config
+  displayName: CPU Limit 
+  name: CPU_LIMIT
+  required: false
+  value: 100m
+- description: The Memory Request for the deployment config
+  displayName: Memory Request 
+  name: MEMORY_REQUEST
+  required: false
+  value: 50Mi
+- description: The Memory Limit for the deployment config
+  displayName: Memory Limit 
+  name: MEMORY_LIMIT
+  required: false
+  value: 75Mi

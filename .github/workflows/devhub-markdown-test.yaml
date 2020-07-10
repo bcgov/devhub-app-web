@@ -8,7 +8,7 @@ on:
 jobs:
   # unit tests
   units:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
     steps:
     - uses: actions/checkout@v1
     - run: |
@@ -19,7 +19,7 @@ jobs:
         npm test
   # test action works running from the graph  
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
     steps:
     - uses: actions/checkout@v1
     - uses: ./.github/actions/devhub-markdown-frontmatter-verify
@@ -28,3 +28,4 @@ jobs:
       with:
         repo: devhub-app-web
         owner: bcgov
+        throttle: 1000

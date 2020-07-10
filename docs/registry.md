@@ -21,8 +21,11 @@ description: Learn how to make requests for new content in the Devhub by making 
 The Devhub's content contribution model allows it to source content from a variety of sources and stitch them together. 
 The way it achieves this is through a set of loosely coupled files called __registries__. 
 
-The two ways you may get content into the Devhub is by either _making a pull request_ or _[creating a new github issue](https://github.com/bcgov/devhub-app-web/issues/new)_. 
-Both require a working Github Account.
+The two ways you may get content into the Devhub is by either _making a pull request_ or _[creating a new github issue](https://github.com/bcgov/devhub-app-web/issues/new/choose)_. 
+Both require a working Github Account. 
+
+There are automated __[validations](https://github.com/bcgov/devhub-app-web/issues/1287)__ that run during the Application Runtime as well as when there are code-changes.
+These validations help contributors (as well as developers of the Devhub) maintain the user experience.
 
 ## How The Devhub Works
 >  [Want to dive right in?](#before-you-contribute) 
@@ -70,7 +73,7 @@ If you would like to suggest a direct contribution (preferred) you will also req
 - Some knowledge of editing `JSON` configuration files
 - Some knowledge of editing `Markdown` files
 
-If you would like to __suggest content__ you can also make a [New Issue](https://github.com/bcgov/devhub-app-web/issues/new) on the devhub. 
+If you would like to __suggest content__ you can also make a [New Issue](https://github.com/bcgov/devhub-app-web/issues/new/choose) on the devhub. 
 
 
 ## Suggesting a Direct Contribution

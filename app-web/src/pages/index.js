@@ -1,4 +1,5 @@
-import React, { useMemo, useContext, useEffect, useState } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
+import { useKeycloak } from '@react-keycloak/web';
 import queryString from 'query-string';
 import { graphql } from 'gatsby';
 // components
@@ -7,7 +8,8 @@ import { Alert } from 'reactstrap';
 import { SearchResults } from '../components/Search/SearchResults';
 import { Masthead, TopicsPreview } from '../components/Home';
 import Layout from '../hoc/Layout';
-import AuthContext from '../AuthContext';
+import { SEO } from '../components/SEO/SEO';
+
 import Loading from '../components/UI/Loading/Loading';
 // hooks
 import { useSearch, useSearchGate } from '../utils/hooks';
@@ -18,6 +20,7 @@ import { isQueryEmpty } from '../utils/search';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { formatEvents } from '../templates/events';
 import { SearchGateResults } from '../components/Search/SearchGateResults';
+import { getFirstNonExternalResource } from '../utils/helpers';
 import groupBy from 'lodash/groupBy';
 
 export const TEST_IDS = {
@@ -27,7 +30,13 @@ export const TEST_IDS = {
 export const Index = ({
   location,
   client,
-  data: { allGithubRaw, allDevhubSiphon, allEventbriteEvents },
+  data: {
+    allGithubRaw,
+    allDevhubSiphon,
+    allEventbriteEvents,
+    allJourneyRegistryJson,
+    allTopicRegistryJson,
+  },
 }) => {
   // this forces the component to re render on the client as there will be a mistmatch between
   // html properties on reloads of this page when a search comes in. This is a known effect
@@ -40,7 +49,10 @@ export const Index = ({
   }, []);
   const queryParam = queryString.parse(location.search);
   const windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, SEARCH_QUERY_PARAM);
-  const { isAuthenticated } = useContext(AuthContext);
+  // const { isAuthenticated } = useContext(AuthContext);
+  const [keycloak] = useKeycloak();
+  const isAuthenticated = keycloak && keycloak.authenticated;
+
   const query = windowHasQuery ? decodeURIComponent(queryParam[SEARCH_QUERY_PARAM]) : '';
   const queryIsEmpty = isQueryEmpty(query);
   const thereIsASearch = !queryIsEmpty && windowHasQuery;
@@ -57,6 +69,29 @@ export const Index = ({
     allEventbriteEvents.edges,
   ]);
 
+  const journeyData = useMemo(() => flattenGatsbyGraphQL(allJourneyRegistryJson.edges), [
+    allJourneyRegistryJson.edges,
+  ]);
+
+  const topicData = useMemo(() => flattenGatsbyGraphQL(allTopicRegistryJson.edges), [
+    allTopicRegistryJson.edges,
+  ]);
+
+  // Method to get standAlonePath for Topics as their slugs are formed differently than journeys and other nodes.
+  const getTopicStandAlonePath = useMemo(
+    () =>
+      topicData.map(topic => {
+        return {
+          ...topic,
+          fields: {
+            ...topic.fields,
+            standAlonePath: getFirstNonExternalResource(topic.connectsWith),
+          },
+        };
+      }),
+    [topicData],
+  );
+
   const searchSources = useMemo(() => groupBy(searchGate.results, 'type'), [searchGate.results]);
 
   // github raw and siphon can be joined because they already have like metadata for their node fields
@@ -66,7 +101,10 @@ export const Index = ({
 
   const resourcesToSearchAgainst = useMemo(() => flattenGatsbyGraphQL(githubRawAndSiphon), [
     githubRawAndSiphon,
-  ]).concat(currentEvents);
+  ])
+    .concat(currentEvents)
+    .concat(journeyData)
+    .concat(getTopicStandAlonePath);
 
   let content;
   if (!isClient) {
@@ -108,6 +146,7 @@ export const Index = ({
 
   return (
     <Layout>
+      <SEO title="DevHub" />
       <Masthead
         query={query}
         searchSourcesLoading={searchGate.loading}
@@ -173,18 +212,12 @@ export const homeQuery = graphql`
             resourceType
             title
             description
-            image
+            image {
+              ...cardFixedImage
+            }
             pagePaths
             standAlonePath
             slug
-            personas
-          }
-          internal {
-            type
-          }
-          childMarkdownRemark {
-            htmlAst
-            html
           }
         }
       }
@@ -198,9 +231,42 @@ export const homeQuery = graphql`
             personas
             title
             description
-            image
+            image {
+              ...cardFixedImage
+            }
             pagePaths
             standAlonePath
+          }
+        }
+      }
+    }
+    allJourneyRegistryJson {
+      edges {
+        node {
+          id
+          fields {
+            title
+            description
+            standAlonePath
+            resourceType
+            slug
+          }
+        }
+      }
+    }
+    allTopicRegistryJson {
+      edges {
+        node {
+          id
+          fields {
+            title
+            description
+            standAlonePath
+            resourceType
+            slug
+          }
+          connectsWith {
+            ...DevhubNodeConnection
           }
         }
       }

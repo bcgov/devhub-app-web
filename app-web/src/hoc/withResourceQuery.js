@@ -32,7 +32,9 @@ const withResourceQuery = WrappedComponent => () => props => (
                 resourceType
                 title
                 description
-                image
+                image {
+                  ...cardFixedImage
+                }
                 pagePaths
                 standAlonePath
                 slug
@@ -176,9 +178,7 @@ const withResourceQuery = WrappedComponent => () => props => (
               id
               name
               owner
-              fields {
-                standAlonePath
-              }
+
               parent {
                 id
               }
@@ -187,7 +187,9 @@ const withResourceQuery = WrappedComponent => () => props => (
                 personas
                 title
                 description
-                image
+                image {
+                  ...cardFixedImage
+                }
                 pagePaths
                 standAlonePath
               }

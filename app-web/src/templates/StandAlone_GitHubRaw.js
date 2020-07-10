@@ -28,6 +28,8 @@ import { withPadding, MarkdownBody } from '../components/GithubTemplate/common';
 import slugify from 'slugify';
 import { Link } from '../components/UI/Link';
 import { SEO } from '../components/SEO/SEO';
+import withNode from '../hoc/withNode';
+import ComponentPreview from '../components/ComponentPreview/ComponentPreview';
 
 const PillDiv = styled.div`
   display: flex;
@@ -44,7 +46,7 @@ const IconPill = styled(Pill)`
   }
 `;
 
-const PillLink = styled(Link)`
+const PillContainer = styled(Link)`
   margin: 0;
   padding: 0;
   text-decoration: none;
@@ -62,7 +64,7 @@ const Header = styled.header`
   ${withPadding}
 `;
 const HeaderTitle = styled.div`
-  bottom-margin: 10px;
+  margin-bottom: 10px;
   padding-left: 5px;
   font-size: 20px;
   @media only screen and (max-width: 768px) {
@@ -70,21 +72,28 @@ const HeaderTitle = styled.div`
   }
 `;
 
+const PillLink = ({ to, label, icon, ...rest }) => (
+  <PillContainer to={to} {...rest}>
+    <IconPill otherIcon={icon} label={label} variant="filled" deletable={false} {...rest} />
+  </PillContainer>
+);
+
 export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
+  const previewWithNode = withNode(githubRaw)(ComponentPreview);
+
   const renderAst = new rehypeReact({
     createElement: React.createElement,
+    components: { 'component-preview': previewWithNode },
   }).Compiler;
 
   //create pill to show resource type and links out to the corresponding resource type page
   let resourceTypePill = (
-    <PillLink to={`/${slugify(githubRaw.fields.resourceType).toLowerCase()}`} key={githubRaw.id}>
-      <IconPill
-        resourceType={githubRaw.fields.resourceType}
-        label={githubRaw.fields.resourceType}
-        variant="filled"
-        deletable={false}
-      />
-    </PillLink>
+    <PillLink
+      to={`/${slugify(githubRaw.fields.resourceType).toLowerCase()}`}
+      key={githubRaw.id}
+      label={githubRaw.fields.resourceType}
+      resourceType={githubRaw.fields.resourceType}
+    />
   );
 
   //get the topics which this resource is a part of
@@ -92,13 +101,28 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
   let topicPills = [];
   //if there are topics, create pills which link out to that topics page
   if (topics) {
-    topicPills = topics.map(topic => {
-      return (
-        <PillLink to={`/${topic.fields.slug}/${githubRaw.fields.slug}`} key={topic.id}>
-          <IconPill otherIcon={'topic'} label={topic.name} variant="filled" deletable={false} />
-        </PillLink>
-      );
-    });
+    topicPills = topics.map(topic => (
+      <PillLink
+        to={`/${topic.fields.slug}/${githubRaw.fields.slug}`}
+        key={topic.id}
+        label={topic.name}
+        icon={'topic'}
+      />
+    ));
+  }
+
+  let journey = githubRaw.fields.journeys;
+  let journeyPills = [];
+  // if there are journeys, create pills which link out to that journeys page
+  if (journey) {
+    journeyPills = journey.map(journey => (
+      <PillLink
+        to={`/${journey.fields.slug}/${githubRaw.fields.slug}`}
+        label={journey.name}
+        key={journey.id}
+        icon={'journey'}
+      />
+    ));
   }
 
   let personaPills = [];
@@ -106,15 +130,15 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
   let personas = githubRaw.fields.personas.filter(ifNotBlank => ifNotBlank);
   //if there are personas, create pills which link out to a search of resources with that persona
   if (personas) {
-    personaPills = personas.map(persona => {
+    personaPills = personas.map(persona => (
       //links to the homepage search, with a query showing only resources of the given persona type
-      const linkString = `/?q=personas:${persona}`;
-      return (
-        <PillLink to={encodeURI(linkString)} key={persona}>
-          <IconPill label={persona} otherIcon={'persona'} variant="filled" deletable={false} />
-        </PillLink>
-      );
-    });
+      <PillLink
+        to={encodeURI(`/?q=persona:${persona}`)}
+        key={persona}
+        label={persona}
+        icon={'persona'}
+      />
+    ));
   }
 
   /* for later
@@ -131,7 +155,7 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
         </PillLink>
       );
     });
-  }*/
+  } */
   const {
     html_url,
     fields: { standAlonePath, title },
@@ -144,6 +168,7 @@ export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
         <HeaderTitle>Resource Information</HeaderTitle>
         <PillDiv>{resourceTypePill}</PillDiv>
         <PillDiv>{topicPills}</PillDiv>
+        <PillDiv>{journeyPills}</PillDiv>
         <PillDiv>{personaPills}</PillDiv>
       </Header>
       <Main>
@@ -173,6 +198,13 @@ export const devhubGitHubRawData = graphql`
         title
         resourceType
         standAlonePath
+        journeys {
+          name
+          id
+          fields {
+            slug
+          }
+        }
         topics {
           name
           id

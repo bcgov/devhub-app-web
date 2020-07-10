@@ -14,7 +14,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
   z-index: 150;
 }
 
-@media (min-width:858px) {
+@media (min-width:932px) {
   .emotion-30 {
     display: block;
     padding: 0 65px;
@@ -40,7 +40,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
   text-decoration: none;
 }
 
-@media (min-width:858px) {
+@media (min-width:932px) {
   .emotion-2 {
     display: none;
   }
@@ -84,7 +84,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
   margin: 0;
 }
 
-@media (min-width:858px) {
+@media (min-width:932px) {
   .emotion-28 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -135,7 +135,7 @@ exports[`Primary Filter Component it matches snapshot 1`] = `
   color: #fff;
 }
 
-@media (min-width:858px) {
+@media (min-width:932px) {
   .emotion-5 {
     padding: 14px 10px;
   }

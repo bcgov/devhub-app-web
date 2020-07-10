@@ -3,7 +3,7 @@ module.exports = ({ actions }) => {
   // this definition is used by any createResolvers function that links one devhub resource to another
   // for now this type definition is the bare minimum needed to generate a order set of links in a navigation menu
   // id = id of the connected node
-  // position = a arbitery number used to sort the set of nodes
+  // position = a arbitrary number used to sort the set of nodes
   // name = is the name of the link
   // path = the link href
   // resourceType = the resource type of the nodes
@@ -13,15 +13,17 @@ module.exports = ({ actions }) => {
       path: String
       id: String! 
     }
-    type frontmatterLableSet {
+    type frontMatterLabelSet {
       app: String
+      ministry: String
+      team: String
     }
+
     type ConnectedNodeFieldSet {
       position: String
       title: String
       description: String
-      image: String
-      labels: frontmatterLableSet
+      labels: frontMatterLabelSet
       tags: [String]
       path: String
       resourceType: String
@@ -33,6 +35,12 @@ module.exports = ({ actions }) => {
       id: String!
       _type: String!
       connectsWith: [ConnectedNode]
+    }
+    type GithubRaw implements Node {
+      _conflictsFound: Boolean
+    }
+    type DevhubSiphon implements Node {
+      fields: ConnectedNodeFieldSet
     }
   `;
 

@@ -28,6 +28,22 @@
       {
         "sourceType": "web",
         "sourceProperties": {
+          "title": "BCDevExchange Platform Status Page",
+          "description": "Find out information on the operational status of Keycloak, Openshift, Rocket.chat as well as any service disruptions or maintenance",
+          "url": "https://status.developer.gov.bc.ca"
+        },
+        "attributes": {
+          "tags": [
+            "outage",
+            "service disruption",
+            "maintenance",
+            "feed"
+          ]
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
           "title": "OpenShift Interactive Learning Portal",
           "description": "These Interactive Learning Scenarios provide you with a pre-configured OpenShift® instance, accessible from your browser without any downloads or configuration. Use it to experiment, learn OpenShift and see how we can help solve real-world problems.",
           "url": "http://learn.openshift.com/"
@@ -90,6 +106,18 @@
           "url": "https://console.pathfinder.gov.bc.ca:8443/console/projects"
         },
         "resourceType": "Self-Service Tools"
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcDevOps/developer-experience",
+          "owner": "bcDevOps",
+          "repo": "developer-experience",
+          "files": [
+            "docs/HumanHelp.md",
+            "docs/OnboardingOutcomes.md"
+          ]
+        }
       }
     ]
   }

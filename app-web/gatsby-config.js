@@ -114,6 +114,9 @@ module.exports = {
   mapping: {
     'GithubRaw.fields.topics': 'TopicRegistryJson.name',
     'DevhubSiphon.fields.topics': 'TopicRegistryJson.name',
+    'GithubRaw.fields.journeys': 'JourneyRegistryJson.name',
+    'GithubRaw.fields.image': 'File.url',
+    'DevhubSiphon.fields.image': 'File.url',
     // 'devhubRegistryJson.fields.content': 'MarkdownRemark.fields.id', // topic page content mapping
     // 'TopicRegistryJson.fields.githubRaw': 'GithubRaw.id',
     // 'JourneyRegistryJson.name': 'MarkdownRemark.frontmatter.id',
@@ -196,7 +199,6 @@ module.exports = {
     },
     'gatsby-transformer-json',
     'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-yaml',
     {
@@ -281,27 +283,6 @@ module.exports = {
         pathToConfigModule: 'typography',
       },
     },
-    {
-      resolve: 'gatsby-plugin-matomo',
-      options: {
-        siteId: process.env.GATSBY_MATOMO_SITE_ID,
-        matomoUrl: process.env.GATSBY_MATOMO_URL,
-        siteUrl: process.env.GATSBY_MATOMO_SITE_URL,
-        localScript: '/scripts/matomo.js',
-        dev: true,
-      },
-    },
-    {
-      resolve: '@bcgov/gatsby-source-matomo',
-      options: {
-        siteId: process.env.GATSBY_MATOMO_SITE_ID,
-        matomoUrl: process.env.GATSBY_MATOMO_URL,
-        matomoApiToken: process.env.MATOMO_API_KEY,
-        apiOptions: {
-          period: 'year',
-          date: 'today',
-        },
-      },
-    },
+    'gatsby-transformer-sharp',
   ].concat(dynamicPlugins.filter(plugin => plugin !== void 0)),
 };

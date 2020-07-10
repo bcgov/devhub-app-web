@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import groupBy from 'lodash/groupBy';
 import intersectionBy from 'lodash/intersectionBy';
-import { ResourcePreview } from '../Home';
+import ResourcePreview from '../Home/ResourcePreview';
 
 /**
  * returns a resource preview components

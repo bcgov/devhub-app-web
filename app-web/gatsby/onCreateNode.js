@@ -15,6 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
+const { createRemoteFileNode } = require('gatsby-source-filesystem');
 const moment = require('moment');
 const htmlToFormattedText = require('html-to-formatted-text');
 const { isPlainObject, isArray } = require('lodash');
@@ -39,25 +40,25 @@ const slugify = require('slugify');
 const validUrl = require('valid-url');
 // build time date
 const buildTimeDate = moment();
+
 /**
  * on create node for many source/transformer plugins there are a set of fields that are created
  * which are normalized. This allows a set of cards to be produced from different datastructures
  * using a common interface.
  * NORMALIZED FIELDS
- * title: <String> the card title
- * description: <String> short summary
- * slug: <String> the page path if not pointing to an external resource
- * standalonePagePath: <String>
- * author: <String>
- * personas: [<String>]
- * labels: [<String>]
- * topics: if not already a topic [<String>]
- * image: <String>
- *
+ * @param  {String}  title the card title
+ * @param  {String}  description short summary
+ * @param  {String}  slug the page path if not pointing to an external resource
+ * @param  {String} standalonePagePath
+ * @param {Array{String}} personas
+ * @param {Array{String}} labels
+ * @param {Array{String}} topics if not already a topic
+ * @param {Array{String}} journeys if not already a journey
+ * @param  {String} image
+ * more info can be found in devhubCardSpec.md
  */
-
-module.exports = ({ node, actions, getNode, getNodes }) => {
-  const { createNodeField } = actions;
+module.exports = async ({ node, actions, getNode, getNodes, store, cache, createNodeId }) => {
+  const { createNodeField, createNode } = actions;
 
   if (isGithubRaw(node)) {
     createNodeField({ node, name: 'topics', value: node.___boundProperties.topics });
@@ -66,19 +67,28 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
   }
 
   if (isJourneyRegistryJson(node)) {
-    createNodeField({ node, name: 'slug', value: slugify(node.name) });
+    const slug = slugify(node.name);
+
+    createNodeField({ node, name: 'slug', value: slug });
+    createNodeField({ node, name: 'title', value: node.name });
     createNodeField({ node, name: 'description', value: node.description });
+    createNodeField({ node, name: 'standAlonePath', value: slug });
+    createNodeField({ node, name: 'resourceType', value: 'Journey' });
   }
 
   if (isTopicRegistryJson(node)) {
+    const slug = slugify(node.name);
+
     // add a content field that the markdown topics will map too
     createNodeField({ node, name: 'content', value: node.name });
     // to help with page path creation, we adapt a slug from the collection/topic name
     // because collections/topics are held within this repo they SHOULD be unique
-    createNodeField({ node, name: 'slug', value: slugify(node.name) });
+    createNodeField({ node, name: 'slug', value: slug });
     createNodeField({ node, name: 'title', value: node.name });
     createNodeField({ node, name: 'description', value: node.description });
     createNodeField({ node, name: 'template', value: node.template ? node.template : 'default' });
+    createNodeField({ node, name: 'standAlonePath', value: '' });
+    createNodeField({ node, name: 'resourceType', value: 'Topics' });
   }
 
   if (isDevhubSiphon(node)) {
@@ -121,11 +131,23 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       value: node.unfurl.description,
     });
 
-    createNodeField({
-      node,
-      name: 'image',
-      value: node.unfurl.image,
-    });
+    if (node.unfurl.image && /^https/.test(node.unfurl.image) && !/svg$/.test(node.unfurl.image)) {
+      let fileNode = await createRemoteFileNode({
+        url: node.unfurl.image, // string that points to the URL of the image
+        parentNodeId: node.id, // id of the parent node of the fileNode you are going to create
+        createNode, // helper function in gatsby-node to generate the node
+        createNodeId, // helper function in gatsby-node to generate the node id
+        cache, // Gatsby's cache
+        store, // Gatsby's redux store
+      });
+      if (fileNode) {
+        createNodeField({
+          node,
+          name: 'image',
+          value: node.unfurl.image || '',
+        });
+      }
+    }
 
     createNodeField({
       node,
@@ -280,6 +302,20 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       value: node.frontmatter.description ? node.frontmatter.description : '',
     });
 
+    if (
+      !!node.frontmatter.image &&
+      /^https/.test(node.frontmatter.image) &&
+      !/svg$/.test(node.frontmatter.image)
+    ) {
+      await createRemoteFileNode({
+        url: node.frontmatter.image, // string that points to the URL of the image
+        parentNodeId: node.id, // id of the parent node of the fileNode you are going to create
+        createNode, // helper function in gatsby-node to generate the node
+        createNodeId, // helper function in gatsby-node to generate the node id
+        cache, // Gatsby's cache
+        store, // Gatsby's redux store
+      });
+    }
     createNodeField({
       node,
       name: 'image',
@@ -297,22 +333,21 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       name: 'content',
       value: node.internal.content ? node.internal.content : '',
     });
-    const slug = node.frontmatter.title ? node.frontmatter.title : title;
+    // add a slug for page paths if exists
+    const slug = slugify(title);
+
     createNodeField({
       node: node,
       name: 'standAlonePath',
-      value: `/${slugify(slug)}`,
+      value: `/${slug}`,
     });
     createNodeField({
       node: node,
       name: 'slug',
-      value: slugify(slug),
+      value: slug,
     });
 
     if (isGithubRaw(parentNode)) {
-      const slug = node.frontmatter.title ? node.frontmatter.title : title;
-      // const resourceType = node.frontmatter.resourceType ? getClosest
-      // add a slug for page paths if exists
       // allows to filter out github raw resources that shouldnt be rendered as cards
       createNodeField({
         node: parentNode,
@@ -323,10 +358,11 @@ module.exports = ({ node, actions, getNode, getNodes }) => {
       createNodeField({
         node: parentNode,
         name: 'slug',
-        value: slugify(slug),
+        value: slug,
       });
 
       const topics = parentNode.___boundProperties.topics;
+      // we need to have topics here and create page paths for them
       const pagePaths = topics.map(t => `${slugify(t)}/${slugify(slug)}`);
       // all github raw nodes have a page path that is just the individual resource
       // the others are based off of the topics it belongs too

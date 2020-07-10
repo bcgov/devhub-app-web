@@ -22,7 +22,6 @@ import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import { Title } from '../components/Page';
 import Topic from '../components/Topic';
 import Main from '../components/Page/Main';
-import withResourceQuery from '../hoc/withResourceQuery';
 import Layout from '../hoc/Layout';
 import { getFirstNonExternalResource, reduceNodeForTableOfContents } from '../utils/helpers';
 import TableOfContents, {
@@ -103,4 +102,21 @@ export const TopicsPage = ({ data, location }) => {
   );
 };
 
-export default withResourceQuery(TopicsPage)();
+export default TopicsPage;
+
+export const TopicsQuery = graphql`
+  query {
+    allTopicRegistryJson {
+      edges {
+        node {
+          id
+          name
+          description
+          connectsWith {
+            ...DevhubNodeConnection
+          }
+        }
+      }
+    }
+  }
+`;

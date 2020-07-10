@@ -1,8 +1,11 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const Bottleneck = require('bottleneck');
 const matter = require('gray-matter');
 const { flatten, groupBy } = require('lodash');
 const process = require('process');
+const rootTime = Date.now();
+
 const {
   reduceJourneyRegistryToTopic,
   expandRegistry,
@@ -46,6 +49,11 @@ const FILE_CONTENTS_QUERY = `
   }
 `;
 
+const throttleRequests = core.getInput('throttle', { required: false }) || 333;
+const limiter = new Bottleneck({
+  maxConcurrent: 3,
+  minTime: throttleRequests,
+});
 /**
  * gets journeys and topics registry files
  * @param {String} repo
@@ -104,14 +112,14 @@ const validateMarkdownContents = text => {
 
 const filePathFromSourceProps = sourceProperties =>
   `${sourceProperties.owner}/${sourceProperties.repo}:${sourceProperties.file}`;
+
 const validateFile = async ({ sourceProperties }) => {
   const file = filePathFromSourceProps(sourceProperties);
-
-  core.debug(`fetching file contents`);
-  const rawContents = await getMarkdownContents(sourceProperties);
+  // eslint-disable-next-line
+  console.log(`Validating ${sourceDetails} at ${(Date.now() - rootTime) / 1000}s`);
+  const rawContents = await limiter.schedule(() => getMarkdownContents(sourceProperties));
   const contents = reduceFileResults(rawContents);
-  core.debug(`contents retrieved`);
-  core.debug(`validating frontmatter`);
+
   return validateMarkdownContents(contents).map(m => ({ ...m, file }));
 };
 
@@ -166,14 +174,8 @@ async function run() {
 
     core.debug('Beginning Validation of markdown frontmatter');
 
-    const messagesArray = await Promise.all(
-      gitSources.map(async ({ source }) => {
-        core.debug(`Debugging ${source}`);
-        // eslint-disable-next-line
-        console.log(`Validating ${filePathFromSourceProps(source.sourceProperties)}`);
-        return await validateFile(source);
-      }),
-    );
+    const messagesArray = await Promise.all(gitSources.map(({ source }) => validateFile(source)));
+
     const didError = processMessagesArray(messagesArray);
 
     if (didError && throwOnError) {

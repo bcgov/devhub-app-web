@@ -3,7 +3,7 @@ module.exports = {
     __PATH_PREFIX__: '',
   },
   transform: {
-    '.(js|jsx)': 'babel-jest',
+    '.(js|jsx)$': 'babel-jest',
   },
   testPathIgnorePatterns: ['/node_modules/', '/.cache/', '/cypress/'],
   moduleFileExtensions: ['js', 'module.css', '.css', 'json']

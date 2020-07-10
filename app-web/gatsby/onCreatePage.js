@@ -17,7 +17,7 @@ Created by Patrick Simonian
 */
 
 module.exports = async ({ page, actions }) => {
-  const { createPage } = actions;
+  const { createPage, deletePage } = actions;
   // check if page that's being created matches the filter base routes
   // which is intended for client side loading only
   // https://github.com/gatsbyjs/gatsby/blob/v1/docs/docs/building-apps-with-gatsby.md#client-only-routes--user-authentication
@@ -27,4 +27,6 @@ module.exports = async ({ page, actions }) => {
     page.matchPath = `/topic/*`;
     createPage(page);
   }
+  // Delete the content contribution page so that it does not show up on Devhub.
+
 };

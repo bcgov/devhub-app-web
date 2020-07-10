@@ -28,5 +28,6 @@ jobs:
       with:
         repo: devhub-app-web
         owner: bcgov
+        throttle: 500 # throttles api requests by 500ms defaults to 333ms
         throwOnError: false # defaults to false if not set,  otherwise  just prints error statements
 ```

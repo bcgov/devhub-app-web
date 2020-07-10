@@ -18,12 +18,22 @@ Created by Patrick Simonian
 // bootstrap needed styles/themes for the app
 // as well as wrap all components with the root provider, which is a redux store
 // for more info https://github.com/gatsbyjs/gatsby/tree/master/examples/using-redux
+import React from 'react';
 import 'prismjs/themes/prism-solarizedlight.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import './src/assets/styles/fontawesome.css';
 // this hack is to resolve issue https://stackoverflow.com/questions/49781726/react-font-awesome-renders-big-icon-until-scales-down
 import { config } from '@fortawesome/fontawesome-svg-core';
 import wrapWithProvider from './wrapWithProvider';
+import { KeycloakProvider } from '@react-keycloak/web';
+
+import keycloak from './src/auth';
 
 config.autoAddCss = false;
-export const wrapRootElement = wrapWithProvider;
+
+const RuntimeWrapper = Component => ({ element }) => (
+  <KeycloakProvider keycloak={keycloak}>
+    <Component element={element} />
+  </KeycloakProvider>
+);
+export const wrapRootElement = RuntimeWrapper(wrapWithProvider);

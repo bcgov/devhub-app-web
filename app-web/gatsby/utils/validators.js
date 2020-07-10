@@ -18,6 +18,8 @@ Created by Patrick Simonian
 
 // node validators
 const stringSimilarity = require('string-similarity');
+const { slugBlackList } = require('../../devhub.config.json');
+
 const isGithubRaw = node => node.internal.type === 'GithubRaw';
 const isMarkdownRemark = node => node.internal.type === 'MarkdownRemark';
 const isDevhubSiphon = node => node.internal.type === 'DevhubSiphon';
@@ -91,6 +93,41 @@ const verifyJourney = registryItem => {
  */
 const nodeBelongsToTopic = (topic, node) => node.fields.topics.includes(topic);
 
+/**
+ * creates the base black list of slugs that are not allowed to createNodefields for
+ * @returns {Object} the base black list mapping
+ */
+const createSlugBlacklist = () => {
+  const BASE_BLACK_LIST = {
+    topic: 'topic',
+    '404': '404',
+    aboutDevhub: 'aboutDevhub',
+    '/': '',
+    journeys: 'journeys',
+    sitemap: 'sitemap',
+    repositories: 'repositories',
+    'past-events': 'past-events',
+    'contentContribution': 'contentContribution',
+  };
+  const CONFIG_LIST = slugBlackList.reduce((map, slug) => {
+    map[slug] = slug;
+    return map;
+  }, {});
+
+  return {
+    ...CONFIG_LIST,
+    ...BASE_BLACK_LIST,
+  };
+};
+
+/**
+ * a simple lookup of a slug against the black list  map
+ * @param {Object} blackList the blacklist map
+ * @param {String} slug the  slug to check against
+ * @returns {Boolean}
+ */
+const isInBlackList = (blackList, slug) => !!blackList[slug.trim().toLowerCase()];
+
 module.exports = {
   isGithubRaw,
   isMeetupEvent,
@@ -106,4 +143,6 @@ module.exports = {
   getClosestResourceType,
   nodeBelongsToTopic,
   verifyJourney,
+  createSlugBlacklist,
+  isInBlackList,
 };

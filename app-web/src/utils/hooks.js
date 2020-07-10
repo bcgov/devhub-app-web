@@ -14,10 +14,7 @@ Created by Patrick Simonian
 // custom react hooks
 // notes on custom hooks https://reactjs.org/docs/hooks-custom.html
 import { useState, useEffect, useRef, useMemo } from 'react';
-import queryString from 'query-string';
 import isEqual from 'lodash/isEqual';
-import { createIam } from '../auth';
-import { isLocalHost } from './helpers';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { SEARCHGATE_QUERY } from '../constants/runtimeGraphqlQueries';
 import algoliasearch from 'algoliasearch/lite';
@@ -54,56 +51,26 @@ export const useSearch = query => {
   const [results, setResults] = useState([]);
   const index = searchClient.initIndex(`Devhub-Algolia-${ALGOLIA_INDEX_SUFFIX}`);
   useEffect(() => {
+    let options = {};
+    let userQuery;
     if (query) {
-      // if no query, I.E query is '', algolia will return all index....
-      index
-        .search({
-          query: query,
-          hitsPerPage: 200, //set it to a large number, the default value is 200, which some search result is over that number
-        })
-        .then(res => {
-          setResults(res.hits);
-        });
+      if (query && query.includes('persona:')) {
+        userQuery = null;
+        options.facetFilters = [query];
+      } else {
+        userQuery = null;
+        options.query = query;
+        options.hitsPerPage = 200;
+      }
+      index.search(userQuery, options).then(res => {
+        setResults(res.hits);
+      });
     } else {
       setResults([]);
     }
     // eslint-disable-next-line
   }, [query]);
   return results;
-};
-
-export const useImplicitAuth = () => {
-  const [user, setUser] = useState({});
-  const [intention, setIntention] = useState('');
-  useEffect(() => {
-    const { search } = window.location;
-    const searchParams = queryString.parse(search);
-    setIntention(searchParams.intention);
-
-    const implicitAuthManager = createIam();
-    implicitAuthManager.registerHooks({
-      onAuthenticateSuccess: () => setUser(implicitAuthManager.getAuthDataFromLocal()),
-      onAuthenticateFail: () => setUser({}),
-      onAuthLocalStorageCleared: () => {
-        setUser({});
-      },
-      onTokenExpired: () => {
-        implicitAuthManager.clearAuthLocalStorage();
-      },
-    });
-
-    if (!isLocalHost()) {
-      implicitAuthManager.handleOnPageLoad();
-    } else if (implicitAuthManager.isAuthenticated()) {
-      setUser(implicitAuthManager.getAuthDataFromLocal());
-    }
-
-    if (intention === 'LOGOUT') {
-      implicitAuthManager.clearAuthLocalStorage();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [intention]);
-  return user;
 };
 
 /**
@@ -149,7 +116,9 @@ export const useDevhubSiphonAndGithubRawNodes = () => {
               resourceType
               title
               description
-              image
+              image {
+                ...cardFixedImage
+              }
               pagePaths
               standAlonePath
               slug
@@ -177,7 +146,9 @@ export const useDevhubSiphonAndGithubRawNodes = () => {
               personas
               title
               description
-              image
+              image {
+                ...cardFixedImage
+              }
               pagePaths
               standAlonePath
             }

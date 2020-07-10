@@ -10,8 +10,8 @@ const ENVS = {
   DEV: 'dev',
 };
 
-// our nominclature for environments is mapped to what github's nomenclature is to keep them
-// seperate and consistent
+// our nomenclature for environments is mapped to what github's nomenclature is to keep them
+// separate and consistent
 const githubEnvironmentMapping = {
   prod: 'production',
   dev: 'development',
@@ -26,12 +26,17 @@ const getParamsByEnv = (env, pr) => {
     ALGOLIA_INDEX_NAME_SUFFIX: 'prod',
     // for the time being we only have a dev instance, this will change as the api is developed
     SEARCHGATE_API_URL: 'https://searchgate.pathfinder.gov.bc.ca/',
+    DEVHUB_API_URL: 'https://devhub-api-prod-devhub-prod.pathfinder.gov.bc.ca',
   };
   switch (env) {
     case ENVS.PROD:
-      return params;
+      return {...params, CPU_REQUEST: '100m', CPU_LIMIT: '150m', MEMORY_REQUEST: '75Mi', MEMORY_LIMIT: '125Mi'};
     case ENVS.TEST:
-      return { ...params, SSO_BASE_URL_VALUE: 'https://sso-test.pathfinder.gov.bc.ca', ALGOLIA_INDEX_NAME_SUFFIX: 'test' };
+      return {
+        ...params,
+        SSO_BASE_URL_VALUE: 'https://sso-test.pathfinder.gov.bc.ca',
+        ALGOLIA_INDEX_NAME_SUFFIX: 'test',
+      };
     case ENVS.DEV:
       return {
         ...params,
@@ -91,6 +96,7 @@ module.exports = async settings => {
       description: options.description,
       environment: githubEnvironmentMapping[phase],
       log_url: `https://devhub-static-dev-${changeId}-devhub-dev.pathfinder.gov.bc.ca`,
+      environment_url: `https://devhub-static-dev-${changeId}-devhub-dev.pathfinder.gov.bc.ca`,
     },
     repository,
     owner,

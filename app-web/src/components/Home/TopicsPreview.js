@@ -101,7 +101,7 @@ export const TopicsPreview = () => {
   const link = { to: '/topics', text: 'Topics' };
 
   return (
-    <PreviewContainer data-testid={TEST_IDS.container}>
+    <PreviewContainer data-testid={TEST_IDS.container} style={{ padding: '0 10px' }}>
       <Title>
         <StyledLink to={link.to}>Topics</StyledLink>
       </Title>

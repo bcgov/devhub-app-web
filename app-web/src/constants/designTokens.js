@@ -63,7 +63,7 @@ export const EMOTION_BOOTSTRAP_BREAKPOINTS = BOOTSTRAP_BREAKPOINTS.reduce(
 );
 
 export const CUSTOM_BREAKPOINTS = {
-  navbar: breakpoint(858),
+  navbar: breakpoint(932),
 };
 
 // COLOR PALETTE TOKENS
