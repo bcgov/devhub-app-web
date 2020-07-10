@@ -49,16 +49,28 @@ objects:
                 - name: ${NAME}-config-${SUFFIX}
                   mountPath: /opt/app-root/src/dist/config
               env:
+                - name: CORS_ORIGIN
+                  value: ${CORS_ORIGIN}
+                - name: CORS_PATTERN
+                  value: ${CORS_PATTERN}
                 - name: PORT 
                   value: "3000"
                 - name: HOST 
                   value: ${SERVER_HOST}
-                - name: CORS_URL 
-                  value: ${DEVHUB_WEB_ORIGIN_URL}
                 - name: GITHUB_TOKEN
                   valueFrom:
                     secretKeyRef:
                       key: GITHUB_TOKEN
+                      name: ${NAME}-github
+                - name: GITHUB_USER_EMAIL
+                  valueFrom:
+                    secretKeyRef:
+                      key: GITHUB_USER_EMAIL
+                      name: ${NAME}-github
+                - name: GITHUB_USER_NAME
+                  valueFrom:
+                    secretKeyRef:
+                      key: GITHUB_USERNAME
                       name: ${NAME}-github
               readinessProbe:
                 failureThreshold: 3
@@ -119,6 +131,9 @@ objects:
   - apiVersion: route.openshift.io/v1
     kind: Route
     spec:
+      tls:
+        insecureEdgeTerminationPolicy: Redirect
+        termination: edge
       port:
         targetPort: 8080-tcp
       to:
@@ -138,6 +153,13 @@ objects:
     data:
       index.json: |-
         {  
+          "github": {
+            "repo": "devhub-app-web",
+            "owner": "bcgov",
+            "branchPrefix": "contribution",
+            "defaultBranch": "master",
+            "branchIdLength": 6
+          },
           "session": {
             "maxAge": 604800000,
             "expires": 604800000
@@ -211,5 +233,13 @@ parameters:
   - description: A sso realm name in the env
     displayName: sso realm name
     name: SSO_REALM_NAME_VALUE
+    required: false
+    value: ''
+  - description: The CORS origin to accept requests from
+    name: CORS_ORIGIN
+    required: false
+    value: http://localhost:8000
+  - description: A CORS pattern to test origins against using regexp
+    name: CORS_PATTERN
     required: false
     value: ''

@@ -1,0 +1,152 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "title": "The root schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "required": [
+      "name",
+      "description",
+      "sourceProperties"
+  ],
+  "additionalProperties": true,
+  "properties": {
+      "name": {
+          "$id": "#/properties/name",
+          "type": "string",
+          "title": "The name schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+              "Agile Delivery Process"
+          ]
+      },
+      "description": {
+          "$id": "#/properties/description",
+          "type": "string",
+          "title": "The description schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": [
+              "An agile process for teams to deliver digital services"
+          ]
+      },
+      "sourceProperties": {
+          "$id": "#/properties/sourceProperties",
+          "type": "object",
+          "title": "The sourceProperties schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "required": [
+              "sources"
+          ],
+          "additionalProperties": true,
+          "properties": {
+              "sources": {
+                  "$id": "#/properties/sourceProperties/properties/sources",
+                  "type": "array",
+                  "title": "The sources schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": [],
+                  "contains": {
+                    "type": "object",
+                    "properties": {
+                      "sourceType": {
+                        "type": "string",
+                        "enum": ["web", "github"]
+                      },
+                      "sourceProperties": {
+                        "type": "object",
+                        "additionalProperties": true,
+                        "properties": {
+                          "url": {
+                            "type": "string"
+                          },
+                          "owner": {
+                            "type": "string"
+                          },
+                          "repo": {
+                            "type": "string"
+                          },
+                          "file": {
+                            "type": "string"
+                          },
+                          "files": {
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "resourceType": {
+                        "type": "string",
+                        "enum": ["Documentation", "Components", "Repositories", "Self-Service Tools", "Events"]
+                      }
+                    }
+                  }
+              }
+          }
+      },
+      "attributes": {
+          "$id": "#/properties/attributes",
+          "type": "object",
+          "title": "The attributes schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {
+            "personas": ["Developer"]
+          },
+          "properties": {
+              "labels": {
+                  
+                  "type": "array",
+                  "title": "The labels schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": {},
+                  "contains": {
+                    "type": "object"
+                  }
+              },
+              "personas": {
+                  "$id": "#/properties/attributes/properties/personas",
+                  "type": "array",
+                  "title": "The personas schema",
+                  "description": "An explanation about the purpose of this instance.",
+                  "default": [],
+                  "examples": [
+                      [
+                          "Designer",
+                          "Developer"
+                      ]
+                  ],
+                  "additionalItems": true,
+                  "items": {
+                      "$id": "#/properties/attributes/properties/personas/items",
+                      "anyOf": [
+                          {
+                              "$id": "#/properties/attributes/properties/personas/items/anyOf/0",
+                              "type": "string",
+                              "title": "The first anyOf schema",
+                              "description": "An explanation about the purpose of this instance.",
+                              "default": "",
+                              "examples": [
+                                  "Designer",
+                                  "Developer"
+                              ]
+                          }
+                      ]
+                  }
+              }
+          }
+      },
+      "resourceType": {
+          "$id": "#/properties/resourceType",
+          "type": "string",
+          "title": "The resourceType schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "Documentation",
+          "enum": ["Documentation", "Components", "Repositories", "Self-Service Tools", "Events"],
+          "examples": [
+              "Documentation"
+          ]
+      }
+  }
+}

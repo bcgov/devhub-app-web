@@ -121,6 +121,8 @@ objects:
             value: ${MATOMO_SITE_URL}
           - name: MATOMO_SITE_ID
             value: ${MATOMO_SITE_ID}
+          - name: DEVHUB_API_URL
+            value: ${DEVHUB_API_URL}
           volumeMounts:
           - name: caddy-${NAME}-static${SUFFIX}
             mountPath: /etc/Caddyfile
@@ -205,6 +207,10 @@ parameters:
   name: SSO_BASE_URL_VALUE
   required: false
   value: ''
+- description: The base url for the devhub api
+  displayName: Devhub API url
+  name: DEVHUB_API_URL
+  required: true
 - description: A sso client id in the env
   displayName: sso client id
   name: SSO_CLIENT_ID_VALUE

@@ -27,8 +27,6 @@ module.exports = async ({ page, actions }) => {
     page.matchPath = `/topic/*`;
     createPage(page);
   }
-  if (page.path.match(/^\/contentContribution/)) {
-    deletePage(page)
-  }
+  // Delete the content contribution page so that it does not show up on Devhub.
 
 };

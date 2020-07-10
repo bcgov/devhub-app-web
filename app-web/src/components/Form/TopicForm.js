@@ -1,17 +1,63 @@
-import React, { Fragment } from 'react';
-import { TextInput, SelectDropdown, StylesWrapper } from './form';
+import React, { Fragment, useState } from 'react';
+import {
+  TextInput,
+  SelectDropdown,
+  StylesWrapper,
+  StyledSuccessMessage,
+  StyledErrorMessage,
+} from './form';
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { FieldArray } from 'react-final-form-arrays';
 import axios from 'axios';
 import StyledButton from '../UI/Button/Button';
+import Loading from '../UI/Loading/Loading';
+import { useKeycloak } from '@react-keycloak/web';
+import { DEVHUB_API_URL } from '../../constants/api';
 
 export const TopicForm = () => {
+  const [loading, setLoading] = useState(false);
+
+  const [response, setResponse] = useState({ status: '', data: '' });
+
+  const [showMessage, setShowMessage] = useState(false);
+
+  const [keycloak] = useKeycloak();
   const onSubmit = async values => {
+    setLoading(true);
     values = convertToRegistryFormat(values);
-    axios.post('http://localhost:3000/v1/checks/form/submit', JSON.stringify(values, null, 2));
-    // eslint-disable-next-line
-        console.log(JSON.stringify(values,null,2))
+    try {
+      const res = await axios.post(`${DEVHUB_API_URL}/v1/topics/`, values, {
+        headers: {
+          Authorization: `Bearer ${keycloak.token}`,
+        },
+      });
+      setResponse({ status: res.status, data: res.data });
+    } catch (err) {
+      setResponse({ status: err.response.status, data: err.response.data });
+    }
+    setLoading(false);
+    setShowMessage(true);
+  };
+
+  const ResponseMessage = () => {
+    if (response.status === 200) {
+      // status code when pull request is created
+      const prMessage = `Pull request created at ${response.data.prUrl}`;
+      return <StyledSuccessMessage> {prMessage} </StyledSuccessMessage>;
+    }
+    if (response.status === 400) {
+      return (
+        // status when the input validation failed
+        <StyledErrorMessage>
+          Please make sure you have entered all the fields correctly
+        </StyledErrorMessage>
+      );
+    }
+    if (response.status === 422) {
+      // status code for pull request for this topic already exists
+      return <StyledErrorMessage>A pull request for this topic already exists</StyledErrorMessage>;
+    }
   };
 
   const initialValue = {
@@ -25,6 +71,7 @@ export const TopicForm = () => {
 
   return (
     <StylesWrapper>
+      {loading && <Loading message="Loading ..." />}
       <Form
         onSubmit={onSubmit}
         mutators={{ ...arrayMutators }}
@@ -88,6 +135,7 @@ export const TopicForm = () => {
           </form>
         )}
       />
+      {showMessage && ResponseMessage()}
     </StylesWrapper>
   );
 };
@@ -113,7 +161,7 @@ const getSourceProps = source => {
   if (source.sourceType === 'github') {
     properties.owner = source.owner;
     properties.repo = source.repo;
-    properties.file = [source.file];
+    properties.files = [source.file];
   } else if (source.sourceType === 'web') {
     properties.title = source.title;
     properties.description = source.description;

@@ -26,6 +26,7 @@ const getParamsByEnv = (env, pr) => {
     ALGOLIA_INDEX_NAME_SUFFIX: 'prod',
     // for the time being we only have a dev instance, this will change as the api is developed
     SEARCHGATE_API_URL: 'https://searchgate.pathfinder.gov.bc.ca/',
+    DEVHUB_API_URL: 'https://devhub-api-prod-devhub-prod.pathfinder.gov.bc.ca',
   };
   switch (env) {
     case ENVS.PROD:
