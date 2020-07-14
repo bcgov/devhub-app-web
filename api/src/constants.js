@@ -21,6 +21,6 @@ export const PR_TITLE = {
 };
 
 export const PR_BODY = {
-  CREATE: 'Add new topic to the devhub',
-  UPDATE: 'Edit topic to include new changes',
+  CREATE: 'Suggest a new topic',
+  UPDATE: 'Suggest new changes to topic',
 };

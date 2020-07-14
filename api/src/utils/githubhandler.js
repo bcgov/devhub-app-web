@@ -46,6 +46,7 @@ export const createPullRequestFromData = async (
       }
       // commit  to branch
       // make pr against ref to base using templates
+      const topicDescription = JSON.parse(bodyData).description;
       const pullRequest = await createPullRequest(
         operation,
         owner,
@@ -53,6 +54,7 @@ export const createPullRequestFromData = async (
         defaultBranch,
         topicName,
         ref,
+        topicDescription,
       );
       // URL to the pull Request created ..
       const pullRequestUrl = pullRequest.data.html_url;

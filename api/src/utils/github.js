@@ -116,13 +116,27 @@ export const updateFile = async (owner, repo, bodyData, ref, topicName) => {
  * @param {String} base
  * @param {String} topicName
  * @param {String} ref
+ * @param {String} topicDescription
  * @returns {Promise}
  */
-export const createPullRequest = async (operation, owner, repo, base, topicName, ref) => {
-  const title =
-    operation === 'create' ? `${PR_TITLE.CREATE} ${topicName}` : `${PR_TITLE.UPDATE} ${topicName}`;
-  const body =
-    operation === 'create' ? `${PR_BODY.CREATE} ${topicName}` : `${PR_BODY.UPDATE} ${topicName}`;
+export const createPullRequest = async (
+  operation,
+  owner,
+  repo,
+  base,
+  topicName,
+  ref,
+  topicDescription,
+) => {
+  let title,
+    body = '';
+  if (operation === 'create') {
+    title = `${PR_TITLE.CREATE} ${topicName}`;
+    body = `${PR_BODY.CREATE} ${topicName} \n ${topicDescription}`;
+  } else if (operation === 'update') {
+    title = `${PR_TITLE.UPDATE} ${topicName}`;
+    body = `${PR_BODY.UPDATE} ${topicName} \n ${topicDescription}`;
+  }
   const pullRequest = await octokit.pulls.create({ owner, repo, base, title, head: ref, body });
   return pullRequest;
 };
