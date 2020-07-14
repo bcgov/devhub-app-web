@@ -1,9 +1,6 @@
 import { github } from '../config/index.json';
 import slugify from 'slugify';
-import dotenv from 'dotenv';
-import { githubHandler } from '../utils/githubhandler';
-
-dotenv.config();
+import { createPullRequestFromData } from '../utils/githubhandler';
 
 export const createTopic = async (req, res) => {
   const operation = 'create';
@@ -12,7 +9,7 @@ export const createTopic = async (req, res) => {
   const topicName = slugify(req.body.name.toLowerCase(), '-');
   const ref = `refs/heads/createTopic/${topicName}`;
 
-  const response = await githubHandler(
+  const response = await createPullRequestFromData(
     operation,
     defaultBranch,
     repo,

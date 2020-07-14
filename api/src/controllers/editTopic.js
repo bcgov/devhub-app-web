@@ -1,6 +1,6 @@
 import slugify from 'slugify';
 import { github } from '../config/index.json';
-import { githubHandler } from '../utils/githubhandler';
+import { createPullRequestFromData } from '../utils/githubhandler';
 
 export const editTopics = async (req, res) => {
   const operation = 'update';
@@ -8,7 +8,7 @@ export const editTopics = async (req, res) => {
   const bodyData = JSON.stringify(req.body, null, 2);
   const topicName = slugify(req.body.name.toLowerCase(), '-');
   const ref = `refs/heads/editTopic/${topicName}`;
-  const response = await githubHandler(
+  const response = await createPullRequestFromData(
     operation,
     defaultBranch,
     repo,

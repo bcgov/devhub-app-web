@@ -1,9 +1,6 @@
-import dotenv from 'dotenv';
 import Ajv from 'ajv';
 import schema from '../schemas/topic.json';
 import { createNewRefFromBase, createFile, createPullRequest, updateFile } from './github';
-
-dotenv.config();
 
 const ajv = new Ajv();
 
@@ -21,7 +18,7 @@ const validate = ajv.compile(schema);
  * @param {String} topicName
  * @returns {Object} {response {status, message, prUrl}}
  */
-export const githubHandler = async (
+export const createPullRequestFromData = async (
   operation,
   defaultBranch,
   repo,
@@ -44,8 +41,7 @@ export const githubHandler = async (
       // // create a new file with contents
       if (operation === 'create') {
         await createFile(owner, repo, bodyData, ref, topicName);
-      }
-      if (operation === 'update') {
+      } else if (operation === 'update') {
         await updateFile(owner, repo, bodyData, ref, topicName);
       }
       // commit  to branch
@@ -62,14 +58,14 @@ export const githubHandler = async (
       const pullRequestUrl = pullRequest.data.html_url;
       response.prUrl = pullRequestUrl;
       //eslint-disable-next-line
-        console.log(`Pull request for topic ${topicName} created. Check out ${pullRequestUrl} to view the pull request`);
+      console.log(`Pull request for topic ${topicName} created. Check out ${pullRequestUrl} to view the pull request`);
     } else {
       response.status = '400';
       response.statusMessage = 'Bad Request';
     }
   } catch (e) {
     //eslint-disable-next-line
-    console.log("error ->",e);
+    console.error(e);
     response.status = e.status;
     response.statusMessage = e;
   }
