@@ -5,7 +5,7 @@ import { createPullRequestFromData } from '../utils/githubhandler';
 export const editTopics = async (req, res) => {
   const operation = 'update';
   const { repo, owner, defaultBranch } = github;
-  const bodyData = JSON.stringify(req.body, null, 2);
+  const bodyData = req.body;
   const topicName = slugify(req.body.name.toLowerCase(), '-');
   const ref = `refs/heads/editTopic/${topicName}`;
   const response = await createPullRequestFromData(
@@ -13,7 +13,6 @@ export const editTopics = async (req, res) => {
     defaultBranch,
     repo,
     owner,
-    req,
     ref,
     bodyData,
     topicName,

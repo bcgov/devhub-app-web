@@ -12,7 +12,6 @@ const validate = ajv.compile(schema);
  * @param {String} defaultBranch
  * @param {String} repo
  * @param {String} owner
- * @param {String} req
  * @param {String} ref
  * @param {String} bodyData
  * @param {String} topicName
@@ -23,7 +22,6 @@ export const createPullRequestFromData = async (
   defaultBranch,
   repo,
   owner,
-  req,
   ref,
   bodyData,
   topicName,
@@ -32,7 +30,7 @@ export const createPullRequestFromData = async (
   try {
     // create new topic and branch
     // validate topic schema
-    const isValidData = validate(req.body);
+    const isValidData = validate(bodyData);
     if (isValidData) {
       // TODO -- validate topic doesn't already exist
       // TODO -- validate topic sources are valid
@@ -46,7 +44,7 @@ export const createPullRequestFromData = async (
       }
       // commit  to branch
       // make pr against ref to base using templates
-      const topicDescription = JSON.parse(bodyData).description;
+      const topicDescription = bodyData.description;
       const pullRequest = await createPullRequest(
         operation,
         owner,
@@ -57,10 +55,9 @@ export const createPullRequestFromData = async (
         topicDescription,
       );
       // URL to the pull Request created ..
-      const pullRequestUrl = pullRequest.data.html_url;
-      response.prUrl = pullRequestUrl;
+      response.prUrl = pullRequest.data.html_url;
       //eslint-disable-next-line
-      console.log(`Pull request for topic ${topicName} created. Check out ${pullRequestUrl} to view the pull request`);
+      console.log(`Pull request for topic ${topicName} created. Check out ${response.prUrl} to view the pull request`);
     } else {
       response.status = '400';
       response.statusMessage = 'Bad Request';

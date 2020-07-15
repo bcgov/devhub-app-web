@@ -5,7 +5,7 @@ import { createPullRequestFromData } from '../utils/githubhandler';
 export const createTopic = async (req, res) => {
   const operation = 'create';
   const { repo, owner, defaultBranch } = github;
-  const bodyData = JSON.stringify(req.body, null, 2);
+  const bodyData = req.body;
   const topicName = slugify(req.body.name.toLowerCase(), '-');
   const ref = `refs/heads/createTopic/${topicName}`;
 
@@ -14,7 +14,6 @@ export const createTopic = async (req, res) => {
     defaultBranch,
     repo,
     owner,
-    req,
     ref,
     bodyData,
     topicName,

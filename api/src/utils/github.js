@@ -60,7 +60,7 @@ export const createNewRefFromBase = async (owner, repo, ref) => {
 export const createFile = async (owner, repo, bodyData, ref, topicName) => {
   const path = `${FILE_PATH}${topicName}.json`;
   const message = `${COMMIT_MESSAGE.CREATE} ${topicName}`;
-  const content = Base64.encode(bodyData);
+  const content = Base64.encode(JSON.stringify(bodyData, null, 2));
   const committer = { email: email, name: name };
   const author = committer;
 
@@ -89,7 +89,7 @@ export const createFile = async (owner, repo, bodyData, ref, topicName) => {
 export const updateFile = async (owner, repo, bodyData, ref, topicName) => {
   const path = `${FILE_PATH}${topicName}.json`;
   const message = `${COMMIT_MESSAGE.UPDATE} ${topicName}`;
-  const content = Base64.encode(bodyData);
+  const content = Base64.encode(JSON.stringify(bodyData, null, 2));
   const committer = { email: email, name: name };
   const author = committer;
   const getFileData = await octokit.repos.getContent({ owner, repo, path });
