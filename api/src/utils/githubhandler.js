@@ -65,8 +65,8 @@ export const createPullRequestFromData = async (
   } catch (e) {
     //eslint-disable-next-line
     console.error(e);
-    response.status = e.status;
-    response.statusMessage = e;
+    response.status = '422';
+    response.statusMessage = 'Unprocessable Entity';
   }
   return response;
 };
