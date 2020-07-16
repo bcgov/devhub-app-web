@@ -36,7 +36,7 @@ export const editTopic = props => {
     const topicRegistry = convertToRegistryFormat(values);
 
     try {
-      const res = await axios.post(API_ROUTES.editTopic, topicRegistry, {
+      const res = await axios.put(API_ROUTES.editTopic, topicRegistry, {
         headers: {
           Authorization: `Bearer ${keycloak.token}`,
         },

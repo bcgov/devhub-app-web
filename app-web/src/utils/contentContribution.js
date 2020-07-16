@@ -12,7 +12,9 @@ export const reduceFormSourceToSourceProperties = ({ sourceType, sourcePropertie
       url: sourceProperties.url,
       owner: sourceProperties.owner,
       repo: sourceProperties.repo,
-      files: String(sourceProperties.files).split(',').map(file => file.trim()),
+      files: String(sourceProperties.files)
+        .split(',')
+        .map(file => file.trim()),
     };
   }
 
