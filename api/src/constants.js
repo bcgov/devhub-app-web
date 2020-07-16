@@ -15,12 +15,14 @@ export const COMMIT_MESSAGE = {
   UPDATE: 'edit topic',
 };
 
-export const PR_TITLE = {
-  CREATE: 'Suggest new topic to the devhub',
-  UPDATE: 'Suggest an edit to topic',
-};
-
-export const PR_BODY = {
-  CREATE: 'Suggest a new topic',
-  UPDATE: 'Suggest new changes to topic',
+export const PR_BODY = (operation, topicName, topicDescription) => {
+  let prData = { title: '', body: '' };
+  if (operation === 'create') {
+    prData.title = `Suggest new topic to the devhub ${topicName}`;
+    prData.body = `Suggest a new topic ${topicName} \n ${topicDescription}`;
+  } else if (operation === 'update') {
+    prData.title = `Suggest an edit to topic ${topicName}`;
+    prData.body = `Suggest new changes to topic ${topicName} \n ${topicDescription}`;
+  }
+  return prData;
 };

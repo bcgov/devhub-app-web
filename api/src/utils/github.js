@@ -1,5 +1,5 @@
 import { Octokit } from '@octokit/rest';
-import { PULL_REQUEST_STATE, FILE_PATH, PR_BODY, PR_TITLE, COMMIT_MESSAGE } from '../constants';
+import { PULL_REQUEST_STATE, FILE_PATH, PR_BODY, COMMIT_MESSAGE } from '../constants';
 import dotenv from 'dotenv';
 import { Base64 } from 'js-base64';
 
@@ -128,15 +128,14 @@ export const createPullRequest = async (
   ref,
   topicDescription,
 ) => {
-  let title,
-    body = '';
-  if (operation === 'create') {
-    title = `${PR_TITLE.CREATE} ${topicName}`;
-    body = `${PR_BODY.CREATE} ${topicName} \n ${topicDescription}`;
-  } else if (operation === 'update') {
-    title = `${PR_TITLE.UPDATE} ${topicName}`;
-    body = `${PR_BODY.UPDATE} ${topicName} \n ${topicDescription}`;
-  }
-  const pullRequest = await octokit.pulls.create({ owner, repo, base, title, head: ref, body });
+  const prData = PR_BODY(operation, topicName, topicDescription);
+  const pullRequest = await octokit.pulls.create({
+    owner,
+    repo,
+    base,
+    title: prData.title,
+    head: ref,
+    body: prData.body,
+  });
   return pullRequest;
 };
