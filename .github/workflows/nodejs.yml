@@ -2,7 +2,8 @@ name: Unit Tests (Web)
 on: 
   pull_request:
     paths:
-    - 'app-web
+    - 'app-web/**/*.js'
+    - 'app-web/package.json'
 jobs:
   build:
 
