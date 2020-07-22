@@ -1,0 +1,17 @@
+{
+  "name": "test",
+  "description": "test desc",
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://google.com",
+          "title": "title",
+          "description": "The Toolkit is intended to assist teams within the BC Public Service navigate through a Privacy Impact Assessment when working in an Agile manner."
+        },
+        "resourceType": "Components"
+      }
+    ]
+  }
+}
