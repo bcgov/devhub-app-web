@@ -34,7 +34,7 @@ const app = express();
 
 // default to devhub in localhost
 const corsOrigin = process.env.CORS_ORIGIN || 'http://localhost:8000';
-const corsPattern = process.env.CORS_PATTERN || 'https://devhub-static-test-devhub-test.pathfinder.gov.bc.ca/';
+const corsPattern = process.env.CORS_PATTERN || '';
 
 /**
  * the dynamic cors origin checker
