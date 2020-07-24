@@ -104,6 +104,23 @@ There are several ways you can explore content through the Devhub. Some of the p
 - Viewing a Topic: Whenever you click on a topic you get to view the topic plus all of the individual resources
 that make up the topic. 
 
+### How to Suggest a new content for the Devhub
+
+New content can be added to the Dehub, by either suggesting a new topic or editing an existing topic.
+
+  - Suggesting a new topic: You can find the `Suggest New Topic ` button on the topics page.
+
+    Clicking the button re-directs you to a form. The form prompts the user to enter essential information regarding the topic and lets, them add
+    multiple sources within a topic. Upon submitting the form, a pull request is generated to create a new topic. The link for the pull request appears on the
+    same page once, the pull request is created.
+
+  - Suggesting an edit to topic: You can find the `Suggest An Edit ` button for each topic on the respective topic lannding page.
+  
+    Clicking the button re-directs you to a prepopulated form with data corresponding to the topic. You can either make changes to the existing data or add new source for the topic. Upon submitting the form, a pull request is created to incorporate new changes to the topic. The link for the pull request appears on the same page, once it is generated.
+
+    A member of the Platform Services team, will then review the pull request and promote it to the production instance of Devhub.
+  
+
 ### When There's a Problem
 
 
