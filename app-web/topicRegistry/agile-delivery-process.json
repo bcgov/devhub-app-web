@@ -17,20 +17,30 @@
             "04_Beta.md",
             "05_Live.md"
           ]
-        }
+        },
+        "resourceType": "Repositories"
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://google.com",
+          "title": "Privacy Toolkit for Agile Initiatives",
+          "description": "some description"
+        },
+        "resourceType": "Documentation"
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/ocp-sso",
+          "owner": "jas29",
+          "repo": "devhub-app-web",
+          "files": [
+            "/components/test.md"
+          ]
+        },
+        "resourceType": "Documentation"
       }
     ]
-  },
-  "attributes": {
-    "labels": [
-      "Documentation",
-      "Repository"
-    ],
-    "personas": [
-      "Designer",
-      "Developer",
-      "Product Owner"
-    ]
-  },
-  "resourceType": "Documentation"
+  }
 }
