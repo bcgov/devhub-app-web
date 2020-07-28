@@ -15,22 +15,20 @@
             "02_Discovery.md",
             "03_Alpha.md",
             "04_Beta.md",
-            "05_Live.md"
+            "05_Live.md",
+            "test.md"
           ]
         }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://google.com",
+          "title": "Privacy Toolkit for Agile Initiatives",
+          "description": "The Toolkit is intended to assist teams within the BC Public Service navigate through a Privacy Impact Assessment when working in an Agile manner."
+        },
+        "resourceType": "Self-Service Tools"
       }
     ]
-  },
-  "attributes": {
-    "labels": [
-      "Documentation",
-      "Repository"
-    ],
-    "personas": [
-      "Designer",
-      "Developer",
-      "Product Owner"
-    ]
-  },
-  "resourceType": "Documentation"
+  }
 }
