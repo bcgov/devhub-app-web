@@ -24,7 +24,6 @@ import passport from 'passport';
 import healthcheckRouters from './routers/healthcheck';
 import { authmware } from './utils/authmware';
 import topicRouters from './routers/topics';
-import editTopicRouters from './routers/editTopic';
 import cors from 'cors';
 import { originMatchesPattern } from './utils/cors';
 
@@ -71,7 +70,5 @@ authmware(app);
 app.use(passport.authenticate('jwt', { session: false }));
 
 app.use('/v1/topics', topicRouters);
-
-app.use('/v1/topics/edit', editTopicRouters);
 
 export default app;
