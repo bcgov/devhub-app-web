@@ -15,22 +15,31 @@ describe('Topic Form Helpers', () => {
     resourceType: 'Documentation',
   };
 
+  const expectedGithubSource = {
+    sourceType: 'github',
+    sourceProperties: {
+      url: 'https://github.com/bcgov/devhub-app-web',
+      repo: 'devhub-app-web',
+      owner: 'bcgov',
+      files: ['foo.md', 'bar.md', 'baz.md'],
+    },
+    resourceType: 'Documentation',
+  };
+
   const webSource = {
     sourceType: 'web',
     sourceProperties: {
       url: 'https://github.com/bcgov/devhub-app-web',
       title: 'devhub-app-web',
       description: 'bcgov',
-      image: 'foo.png',
-      bar: 'baz',
     },
     resourceType: 'Documentation',
   };
 
   test('it converts to registry format', () => {
     const topicFormData = {
-      name: 'Foo',
-      description: 'Bar',
+      topicName: 'Foo',
+      topicDescription: 'Bar',
       sources: [githubSource, webSource],
     };
 
@@ -38,7 +47,7 @@ describe('Topic Form Helpers', () => {
       name: 'Foo',
       description: 'Bar',
       sourceProperties: {
-        sources: [githubSource, webSource],
+        sources: [expectedGithubSource, webSource],
       },
     };
 
@@ -60,13 +69,13 @@ describe('Topic Form Helpers', () => {
     expect(reduceFormSourceToSourceProperties({ sourceType: 'foo' })).toEqual({});
   });
 
+  // The test does not check for the image attributes, for web sources. This is because, we are not using
+  // image inputs for v1 of the content contribution feature.
   test('it can properly reduce a web source to source properties', () => {
     const expected = {
       url: 'https://github.com/bcgov/devhub-app-web',
       title: 'devhub-app-web',
       description: 'bcgov',
-      image: 'foo.png',
-      bar: 'baz',
     };
 
     expect(reduceFormSourceToSourceProperties(webSource)).toEqual(expected);

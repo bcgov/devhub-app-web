@@ -17,7 +17,7 @@ Created by Patrick Simonian
 */
 
 module.exports = async ({ page, actions }) => {
-  const { createPage, deletePage} = actions;
+  const { createPage } = actions;
   // check if page that's being created matches the filter base routes
   // which is intended for client side loading only
   // https://github.com/gatsbyjs/gatsby/blob/v1/docs/docs/building-apps-with-gatsby.md#client-only-routes--user-authentication
@@ -28,15 +28,9 @@ module.exports = async ({ page, actions }) => {
     createPage(page);
   }
 
-  // delete page temporarily
-  if (page.path.match(/^\/editTopic/)){
-    deletePage(page)
-  }
-
   // client only pages for edit topic functionality.
-  // if (page.path.match(/^\/editTopic(?!s)/)) {
-  //   page.matchPath = `/editTopic/*`;
-  //   createPage(page);
-  // }
-
+  if (page.path.match(/^\/editTopic(?!s)/)) {
+    page.matchPath = `/editTopic/*`;
+    createPage(page);
+  }
 };
