@@ -1,11 +1,15 @@
 import { Octokit } from '@octokit/rest';
-import { PULL_REQUEST_STATE } from '../constants';
+import { PULL_REQUEST_STATE, FILE_PATH, PR_BODY, COMMIT_MESSAGE } from '../constants';
 import dotenv from 'dotenv';
 import { Base64 } from 'js-base64';
 
 dotenv.config();
 
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+
+export const email = process.env.GITHUB_USER_EMAIL;
+
+export const name = process.env.GITHUB_USER_NAME;
 
 export const openPullExistsForBranch = async (branchName, repo, owner) => {
   const response = await octokit.pulls.list({
@@ -44,13 +48,23 @@ export const createNewRefFromBase = async (owner, repo, ref) => {
   return data;
 };
 
-export const createFile = async (owner, repo, bodyData, ref, topicName, email, name) => {
-  const path = `app-web/topicRegistry/${topicName}.json`;
-  const message = 'add new topic';
-  const content = Base64.encode(bodyData);
+/**
+ *
+ * @param {String} owner
+ * @param {String} repo
+ * @param {String} bodyData
+ * @param {String} ref
+ * @param {String} topicName
+ * @returns {Promise}
+ */
+export const createFile = async (owner, repo, bodyData, ref, topicName) => {
+  const path = `${FILE_PATH}${topicName}.json`;
+  const message = `${COMMIT_MESSAGE.CREATE} ${topicName}`;
+  const content = Base64.encode(JSON.stringify(bodyData, null, 2));
   const committer = { email: email, name: name };
   const author = committer;
-  const { fileData } = await octokit.repos.createOrUpdateFile({
+
+  const { createdFile } = await octokit.repos.createOrUpdateFileContents({
     owner,
     repo,
     path,
@@ -60,12 +74,68 @@ export const createFile = async (owner, repo, bodyData, ref, topicName, email, n
     committer,
     author,
   });
-  return fileData;
+  return createdFile;
 };
 
-export const createPullRequest = async (owner, repo, base, topicName, ref) => {
-  const title = `Add new topic ${topicName}`;
-  const body = `Add a new topic to the devhub named ${topicName}`;
-  const pullRequest = await octokit.pulls.create({ owner, repo, base, title, head: ref, body });
+/**
+ *
+ * @param {String} owner
+ * @param {String} repo
+ * @param {String} bodyData
+ * @param {String} ref
+ * @param {String} topicName
+ * @returns {Promise}
+ */
+export const updateFile = async (owner, repo, bodyData, ref, topicName) => {
+  const path = `${FILE_PATH}${topicName}.json`;
+  const message = `${COMMIT_MESSAGE.UPDATE} ${topicName}`;
+  const content = Base64.encode(JSON.stringify(bodyData, null, 2));
+  const committer = { email: email, name: name };
+  const author = committer;
+  const getFileData = await octokit.repos.getContent({ owner, repo, path });
+  const sha = getFileData.data.sha;
+  const { updatedFile } = await octokit.repos.createOrUpdateFileContents({
+    owner,
+    repo,
+    path,
+    branch: ref,
+    message,
+    content,
+    committer,
+    author,
+    sha,
+  });
+  return updatedFile;
+};
+
+/**
+ *
+ * @param {String} operation
+ * @param {String} owner
+ * @param {String} repo
+ * @param {String} base
+ * @param {String} topicName
+ * @param {String} ref
+ * @param {String} topicDescription
+ * @returns {Promise}
+ */
+export const createPullRequest = async (
+  operation,
+  owner,
+  repo,
+  base,
+  topicName,
+  ref,
+  topicDescription,
+) => {
+  const prData = PR_BODY(operation, topicName, topicDescription);
+  const pullRequest = await octokit.pulls.create({
+    owner,
+    repo,
+    base,
+    title: prData.title,
+    head: ref,
+    body: prData.body,
+  });
   return pullRequest;
 };

@@ -1,8 +1,11 @@
 import express from 'express';
-import { createOrUpdateTopic } from '../controllers/topics';
+import { createTopic } from '../controllers/createTopic';
+import { editTopics } from '../controllers/editTopic';
 
 const router = express.Router();
 
-router.post('/', createOrUpdateTopic);
+router.post('/', createTopic);
+
+router.put('/edit', editTopics);
 
 export default router;
