@@ -130,6 +130,11 @@ export const TopicsQuery = graphql`
           description
           connectsWith {
             ...DevhubNodeConnection
+            fields {
+              image {
+                ...cardFixedImage
+              }
+            }
           }
         }
       }
