@@ -8,7 +8,7 @@
         "sourceProperties": {
           "url": "https://github.com/bcgov/Agile-Delivery-Process",
           "owner": "bcgov",
-          "repo": "Agile-Delivery-Process",
+          "repo": "Agile-Delivery-Process test",
           "files": [
             "README.md",
             "01_Alignment.md",
@@ -20,17 +20,5 @@
         }
       }
     ]
-  },
-  "attributes": {
-    "labels": [
-      "Documentation",
-      "Repository"
-    ],
-    "personas": [
-      "Designer",
-      "Developer",
-      "Product Owner"
-    ]
-  },
-  "resourceType": "Documentation"
+  }
 }
