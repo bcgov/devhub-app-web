@@ -2,7 +2,7 @@ import { createNewRefFromBase, createFile } from '../src/utils/github';
 import octokit from '../src/octokit';
 import stubGetRef from '../__fixtures__/getRef.json';
 import stubCreateRef from '../__fixtures__/createRef.json';
-import stubCreateFile from '../__fixtures__/createFile.json'
+import stubCreateFile from '../__fixtures__/createFile.json';
 import stubCreatePullRequest from '../__fixtures__/createPullRequest.json';
 import ajv from 'ajv';
 
@@ -16,7 +16,6 @@ octokit.git.createRef.mockImplementation(() => Promise.resolve({ data: stubCreat
 octokit.pulls.create.mockImplementation(() => Promise.resolve({ data: stubCreatePullRequest }));
 
 describe('Creating Topics', () => {
-
   afterEach(() => {
     jest.clearAllMocks();
     jest.resetAllMocks();
@@ -24,9 +23,9 @@ describe('Creating Topics', () => {
 
   test('Get branch reference', async () => {
     octokit.git.getRef = jest.fn().mockReturnValueOnce(Promise.resolve(stubGetRef));
-    const ref = await octokit.git.getRef('foo','bar','/heads/master');
-    expect(ref).toEqual(stubGetRef)
-  })
+    const ref = await octokit.git.getRef('foo', 'bar', '/heads/master');
+    expect(ref).toEqual(stubGetRef);
+  });
 
   test('Creates a new branch', async () => {
     // mock validate to be true
@@ -36,11 +35,19 @@ describe('Creating Topics', () => {
   });
 
   test('Creates file in branch', async () => {
-    octokit.repos.createOrUpdateFileContents = jest.fn().mockReturnValueOnce(Promise.resolve(stubCreateFile));
-    const createdFile = await createFile('foo','bar','/test/path','/heads/master/foo','message','content','committer','author');
+    octokit.repos.createOrUpdateFileContents = jest
+      .fn()
+      .mockReturnValueOnce(Promise.resolve(stubCreateFile));
+    const createdFile = await createFile(
+      'foo',
+      'bar',
+      '/test/path',
+      '/heads/master/foo',
+      'message',
+      'content',
+      'committer',
+      'author',
+    );
     expect(createdFile).toEqual(stubCreateFile);
-  })
-
-
-
+  });
 });

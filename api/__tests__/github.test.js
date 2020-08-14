@@ -1,7 +1,7 @@
 import { openPullExistsForBranch } from '../src/utils/github';
 import octokit from '../src/octokit';
 jest.mock('../src/octokit.js');
-import {github} from '../src/config/index.json'
+import { github } from '../src/config/index.json';
 
 const { repo, owner } = github;
 

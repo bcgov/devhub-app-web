@@ -1,7 +1,7 @@
 import Ajv from 'ajv';
 import schema from '../schemas/topic.json';
 import { createNewRefFromBase, createFile, createPullRequest, updateFile } from './github';
-import octokit from '../octokit'
+import octokit from '../octokit';
 
 const ajv = new Ajv();
 
