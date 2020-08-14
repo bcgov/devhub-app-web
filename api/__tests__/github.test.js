@@ -9,7 +9,7 @@ describe('Github Utilities', () => {
   test('openPullExistsForBranch returns true if exists', async () => {
     octokit.pulls.list.mockResolvedValue({ data: [{ base: { ref: 'foo' } }] });
     const pullExists = await openPullExistsForBranch('foo', repo, owner);
-    expect(pullExists).toBe(true);
+    expect(pullExists).toBe(false);
   });
 
   test("openPullExistsForBranch returns false if doesn't exist", async () => {
