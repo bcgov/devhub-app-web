@@ -42,7 +42,7 @@ export const createNewRefFromBase = async (context, owner, repo, ref) => {
   const response = await context.git.getRef({ owner, repo, ref: 'heads/master' });
   const sha = response.data.object.sha;
   // https://developer.github.com/v3/git/refs/#create-a-reference
-  const { data } = await context.git.createRef({ owner, repo, ref, sha });
+  const data = await context.git.createRef({ owner, repo, ref, sha });
   return data;
 };
 
@@ -63,7 +63,7 @@ export const createFile = async (context, owner, repo, bodyData, ref, topicName)
   const committer = { email: email, name: name };
   const author = committer;
 
-  const { createdFile } = await context.repos.createOrUpdateFileContents({
+  const createdFile = await context.repos.createOrUpdateFileContents({
     owner,
     repo,
     path,
@@ -94,7 +94,7 @@ export const updateFile = async (context, owner, repo, bodyData, ref, topicName)
   const author = committer;
   const getFileData = await context.repos.getContent({ owner, repo, path });
   const sha = getFileData.data.sha;
-  const { updatedFile } = await context.repos.createOrUpdateFileContents({
+  const updatedFile = await context.repos.createOrUpdateFileContents({
     owner,
     repo,
     path,
