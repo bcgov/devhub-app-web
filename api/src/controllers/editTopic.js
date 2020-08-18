@@ -1,6 +1,6 @@
 import slugify from 'slugify';
 import { github } from '../config/index.json';
-import { createPullRequestFromData } from '../utils/githubhandler';
+import { createPullRequestFromData } from '../utils/githubHandler';
 
 export const editTopics = async (req, res) => {
   const operation = 'update';
