@@ -1,6 +1,7 @@
 import Ajv from 'ajv';
 import schema from '../schemas/topic.json';
 import { createNewRefFromBase, createFile, createPullRequest, updateFile } from './github';
+import octokit from '../octokit';
 
 const ajv = new Ajv();
 
@@ -35,17 +36,18 @@ export const createPullRequestFromData = async (
       // TODO -- validate topic doesn't already exist
       // TODO -- validate topic sources are valid
       // create a git branch on the remote with a naming convention [createTopic/topicname]
-      await createNewRefFromBase(owner, repo, ref);
+      await createNewRefFromBase(octokit, owner, repo, ref);
       // // create a new file with contents
       if (operation === 'create') {
-        await createFile(owner, repo, bodyData, ref, topicName);
+        await createFile(octokit, owner, repo, bodyData, ref, topicName);
       } else if (operation === 'update') {
-        await updateFile(owner, repo, bodyData, ref, topicName);
+        await updateFile(octokit, owner, repo, bodyData, ref, topicName);
       }
       // commit  to branch
       // make pr against ref to base using templates
       const topicDescription = bodyData.description;
       const pullRequest = await createPullRequest(
+        octokit,
         operation,
         owner,
         repo,

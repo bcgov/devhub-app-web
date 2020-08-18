@@ -1,10 +1,43 @@
 {
-  "ref": "refs/heads/master",
-  "node_id": "MDM6UmVmMTQ4Njc5NTk0OnJlZnMvaGVhZHMvbWFzdGVy",
-  "url": "https://api.github.com/repos/bcgov/devhub-app-web/git/refs/heads/master",
-  "object": {
-      "sha": "72fc403744a4e902dfdda56aae0d48ee4ed9d32e",
+  "status": 200,
+  "url": "https://api.github.com/repos/jas29/devhub-app-web/git/ref/heads%2Fmaster",
+  "headers": {
+    "access-control-allow-origin": "*",
+    "access-control-expose-headers": "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, Deprecation, Sunset",
+    "cache-control": "private, max-age=60, s-maxage=60",
+    "connection": "close",
+    "content-encoding": "gzip",
+    "content-security-policy": "default-src 'none'",
+    "content-type": "application/json; charset=utf-8",
+    "date": "Fri, 14 Aug 2020 21:58:02 GMT",
+    "etag": "W/\"b27ebc40851f09425574c41a912d3364\"",
+    "last-modified": "Fri, 10 Jul 2020 17:01:44 GMT",
+    "referrer-policy": "origin-when-cross-origin, strict-origin-when-cross-origin",
+    "server": "GitHub.com",
+    "status": "200 OK",
+    "strict-transport-security": "max-age=31536000; includeSubdomains; preload",
+    "transfer-encoding": "chunked",
+    "vary": "Accept, Authorization, Cookie, X-GitHub-OTP, Accept-Encoding, Accept, X-Requested-With",
+    "x-accepted-oauth-scopes": "repo",
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "deny",
+    "x-github-media-type": "github.v3; format=json",
+    "x-github-request-id": "D5B5:7A0D:710A45:12AE63D:5F3708EA",
+    "x-oauth-scopes": "admin:enterprise, admin:gpg_key, admin:org, admin:org_hook, admin:public_key, admin:repo_hook, delete:packages, gist, read:packages, repo, user, workflow, write:discussion, write:packages",
+    "x-poll-interval": "300",
+    "x-ratelimit-limit": "5000",
+    "x-ratelimit-remaining": "4988",
+    "x-ratelimit-reset": "1597443418",
+    "x-xss-protection": "1; mode=block"
+  },
+  "data": {
+    "ref": "refs/heads/master",
+    "node_id": "MDM6UmVmMjM2MDkzNjM0OnJlZnMvaGVhZHMvbWFzdGVy",
+    "url": "https://api.github.com/repos/jas29/devhub-app-web/git/refs/heads/master",
+    "object": {
+      "sha": "1457372edf4efc159e6b7f3544911a95f5a22baa",
       "type": "commit",
-      "url": "https://api.github.com/repos/bcgov/devhub-app-web/git/commits/72fc403744a4e902dfdda56aae0d48ee4ed9d32e"
+      "url": "https://api.github.com/repos/jas29/devhub-app-web/git/commits/1457372edf4efc159e6b7f3544911a95f5a22baa"
+    }
   }
 }
