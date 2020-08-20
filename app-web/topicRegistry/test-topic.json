@@ -1,0 +1,21 @@
+{
+  "name": "test topic",
+  "description": "this is a test for the new topic feature",
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/BCDevOps/devops-requests",
+          "owner": "ShellyXueHan",
+          "repo": "devops-requests",
+          "files": [
+            "README.md",
+            ".github/ISSUE_TEMPLATE/annotation_update.md"
+          ]
+        },
+        "resourceType": "Documentation"
+      }
+    ]
+  }
+}
