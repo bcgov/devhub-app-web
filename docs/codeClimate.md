@@ -10,7 +10,7 @@ with the pull request.
 
 ## Devhub Code Climate Report
 
-[code climate report] (https://codeclimate.com/github/bcgov/devhub-app-web)
+[code climate report](https://codeclimate.com/github/bcgov/devhub-app-web)
 
 ## Badges
 
