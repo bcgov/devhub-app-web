@@ -1,17 +1,18 @@
-name: Generate/Upload test coverage to code climate
+name: Upload test coverage to code climate
 on:
-  push:
-    branches:
-      - master
   pull_request:
+    branches:
       - master
     tags:
       - '!*' # Do not execute on tags
     paths:
       - app-web/src/*
-      - app-web/__tests__/*
       - app-web/journeyRegistry/*.json
       - app-web/topicRegistry/*.json
+      - app-web/__tests__/*
+  pull_request:
+    paths:
+      - '!*.MD'
 jobs:
   test:
     strategy:
@@ -26,8 +27,8 @@ jobs:
       with:
         node-version: ${{ matrix.node }}
     - run: cd app-web
-    - run: npm run test:lint
     - run: npm run test
+    - run: npm run test:lint
   coverage:
     needs: [ test ]
     name: coverage
@@ -38,9 +39,9 @@ jobs:
       with:
         node-version: '12'
     - run: cd app-web
-    - run: npm run test:lint
     - run: npm run test
-    - uses: ./.github/actions/
+    - run: npm run test:lint
+    - uses: ./.github/workflows/
       env:
         CC_TEST_REPORTER_ID: 3512ac105b5e332e8450e1c0c4003a78d07f3c52ab7520d1b0b6fac233996730
       with:
