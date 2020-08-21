@@ -1,6 +1,6 @@
 name: Upload test coverage to code climate
 on:
-  push:
+  pull_request:
     branches:
       - master
     tags:
@@ -10,9 +10,6 @@ on:
       - app-web/journeyRegistry/*.json
       - app-web/topicRegistry/*.json
       - app-web/__tests__/*
-  pull_request:
-    paths:
-      - '!*.MD'
 jobs:
   test:
     strategy:
