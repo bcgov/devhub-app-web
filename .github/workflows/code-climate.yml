@@ -1,6 +1,6 @@
 name: Upload test coverage to code climate
 on:
-  pull_request:
+  push:
     branches:
       - master
     tags:
