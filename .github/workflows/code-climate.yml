@@ -17,8 +17,8 @@ jobs:
   test:
     strategy:
       matrix:
-        platform: [ ubuntu-latest, macOS-latest ]
-        node: [ '12', '10' ]
+        platform: ubuntu-16.04
+        node: [ 10.x ]
     name: test/node ${{ matrix.node }}/${{ matrix.platform }}
     runs-on: ${{ matrix.platform }}
     steps:
@@ -37,7 +37,7 @@ jobs:
     - uses: actions/checkout@master
     - uses: actions/setup-node@master
       with:
-        node-version: '12'
+        node-version: [ 10.x ]
     - run: cd app-web
     - run: npm run test
     - run: npm run test:lint
