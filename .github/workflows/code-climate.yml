@@ -66,3 +66,19 @@ jobs:
           cd app-web
           npm i
           npm run test
+      
+      # Formatting the FRONTEND coverage report
+      - name: Format the FRONTEND coverage report
+        run: |
+          ./cc-test-reporter format-coverage -t lcov -o coverage/frontend-codeclimate.json ${{github.workspace}}/app-web/src/coverage/lcov.info
+
+      # Upload JSON for debugging purposes
+      - name: Upload JSON for debugging purposes
+        uses: actions/upload-artifact@v2
+        with:
+          name: summed-yarn-coverage-report
+          path: coverage/total-codeclimate.json
+
+      # Upload total coverage report to Code Climate
+      - name: Upload coverage report to Code Climate
+        run: ./cc-test-reporter upload-coverage -i coverage-reports/total-codeclimate.json
