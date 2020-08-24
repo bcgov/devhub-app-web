@@ -64,5 +64,4 @@ jobs:
       - name: npm install, lint and test
         run: |
           cd app-web
-          npm run test:lint
           npm run test
