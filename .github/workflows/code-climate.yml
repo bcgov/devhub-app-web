@@ -1,49 +1,58 @@
-name: Upload test coverage to code climate
+name: Generate/Upload all Coverage Reports
+
 on:
-  pull_request:
-    branches:
-      - master
   push:
-    branches:
-      - master
-    tags:
-      - '!*' # Do not execute on tags
-    paths:
-      - app-web/src/*
-      - app-web/journeyRegistry/*.json
-      - app-web/topicRegistry/*.json
-      - app-web/__tests__/*
+    branches: [master]
+  pull_request:
+    branches: [master]
+
 jobs:
-  test:
-    strategy:
-      matrix:
-        platform: [ ubuntu-latest, macOS-latest ]
-        node: [ '12', '10' ]
-    name: test/node ${{ matrix.node }}/${{ matrix.platform }}
-    runs-on: ${{ matrix.platform }}
-    steps:
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@master
-      with:
-        node-version: ${{ matrix.node }}
-    - run: cd app-web
-    - run: npm install
-    - run: npm run test
-    - run: npm run test:lint
-  coverage:
-    needs: [ test ]
-    name: coverage
+  yarn:
+    env:
+      FILE_COUNTER: 0
+      CC_TEST_REPORTER_ID: 3512ac105b5e332e8450e1c0c4003a78d07f3c52ab7520d1b0b6fac233996730
+      ACTION_DEBUG: true
+
+    name: Create, format and upload Javascript coverage artifact
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@master
-      with:
-        node-version: '12'
-    - run: cd app-web
-    - run: npm install
-    - run: npm run test
-    - uses: paambaati/codeclimate-action@v2.2.4
-      env:
-        CC_TEST_REPORTER_ID: 3512ac105b5e332e8450e1c0c4003a78d07f3c52ab7520d1b0b6fac233996730
-      with:
-        coverageCommand: yarn coverage
+      - uses: actions/checkout@v2
+
+      # Get Code Climate binary
+      - name: Download Code Climate Binary
+        run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+
+      # Permissions applied to the Code Climate Executable
+      - name: Apply executable perms to Code Climate Binary
+        run: chmod +x ./cc-test-reporter
+
+      # Before build
+      - name: Before build
+        run: ./cc-test-reporter before-build
+
+      # Set required Git env vars for either pull request
+      - name: Set ENV for codeclimate (pull_request)
+        run: |
+          echo "::set-env name=GIT_BRANCH::${{ github.event.pull_request.head.ref }}"
+          echo "::set-env name=GIT_COMMIT_SHA::${{ github.event.pull_request.head.sha }}"
+        if: github.event_name == 'pull_request'
+
+      # Set required Git env vars for a push to master
+      - name: Set ENV for codeclimate (push)
+        run: |
+          echo "::set-env name=GIT_BRANCH::$GITHUB_REF"
+          echo "::set-env name=GIT_COMMIT_SHA::$GITHUB_SHA"
+        if: github.event_name == 'push'
+
+      # Trimming the ref to master in order to publish correct report (paambaati)
+      - name: Set ref/head/master to master
+        run: |
+          echo "::set-env name=GIT_BRANCH::master"
+        if: env.GIT_BRANCH == 'refs/heads/master'
+
+       # Install Modules - Devhub Front-End
+      - name: npm install, lint and test
+        run: |
+          cd app-web
+          npm run test:lint
+          npm test
