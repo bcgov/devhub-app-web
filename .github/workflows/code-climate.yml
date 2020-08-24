@@ -17,8 +17,8 @@ jobs:
   test:
     strategy:
       matrix:
-        platform: ubuntu-16.04
-        node: [ 10.x ]
+        platform: [ ubuntu-latest, macOS-latest ]
+        node: [ '12', '10' ]
     name: test/node ${{ matrix.node }}/${{ matrix.platform }}
     runs-on: ${{ matrix.platform }}
     steps:
@@ -26,9 +26,10 @@ jobs:
     - uses: actions/setup-node@master
       with:
         node-version: ${{ matrix.node }}
-    - run: cd app-web
-    - run: npm run test
-    - run: npm run test:lint
+    - run: npm install -g yarn
+    - run: yarn install
+    - run: yarn build
+    - run: yarn test
   coverage:
     needs: [ test ]
     name: coverage
@@ -37,11 +38,11 @@ jobs:
     - uses: actions/checkout@master
     - uses: actions/setup-node@master
       with:
-        node-version: [ 10.x ]
-    - run: cd app-web
-    - run: npm run test
-    - run: npm run test:lint
-    - uses: ./.github/workflows/
+        node-version: '12'
+    - run: npm install -g yarn
+    - run: yarn install
+    - run: yarn build
+    - uses: paambaati/codeclimate-action@v2.2.4
       env:
         CC_TEST_REPORTER_ID: 3512ac105b5e332e8450e1c0c4003a78d07f3c52ab7520d1b0b6fac233996730
       with:
