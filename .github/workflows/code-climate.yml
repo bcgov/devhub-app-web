@@ -65,12 +65,13 @@ jobs:
         run: |
           cd app-web
           npm i
-          npm run test
+          npm run test:lint
+          npm run test -- --coverage
       
       # Formatting the FRONTEND coverage report
       - name: Format the FRONTEND coverage report
         run: |
-          ./cc-test-reporter format-coverage -t lcov -o coverage/frontend-codeclimate.json ${{github.workspace}}/app-web/src/coverage/lcov.info
+          ./cc-test-reporter format-coverage -t lcov -o coverage/frontend-codeclimate.json ${{github.workspace}}/app-web/coverage/lcov.info
 
       # Upload JSON for debugging purposes
       - name: Upload JSON for debugging purposes
