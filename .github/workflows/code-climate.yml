@@ -82,4 +82,4 @@ jobs:
 
       # Upload total coverage report to Code Climate
       - name: Upload coverage report to Code Climate
-        run: ./cc-test-reporter upload-coverage -i coverage-reports/total-codeclimate.json
+        run: ./cc-test-reporter upload-coverage -i coverage/index.html
