@@ -41,7 +41,7 @@ const getFieldsForSource = (sourceType, name) => {
         />
         <TextInput label="Repository name" name={`${name}.sourceProperties.repo`} />
         <TextInput
-          label="Enter path to files to from root of your repository seperated with commas if multiple"
+          label="Enter path to files from root of your repository seperated with commas if multiple"
           name={`${name}.sourceProperties.files`}
         />
       </Fragment>

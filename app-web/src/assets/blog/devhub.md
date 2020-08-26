@@ -104,7 +104,7 @@ There are several ways you can explore content through the Devhub. Some of the p
 - Viewing a Topic: Whenever you click on a topic you get to view the topic plus all of the individual resources
 that make up the topic. 
 
-### How to Suggest a new content for the Devhub
+### How to Suggest new content for the Devhub
 
 New content can be added to the Dehub, by either suggesting a new topic or editing an existing topic.
 
