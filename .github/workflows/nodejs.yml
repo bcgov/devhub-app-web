@@ -87,7 +87,6 @@ jobs:
         run: |
           cd api
           npm i
-          npm run test:lint
           npm run test -- --coverage
       
       # Formatting the Backend coverage report
