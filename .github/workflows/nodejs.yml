@@ -78,6 +78,30 @@ jobs:
           name: summed-yarn-coverage-report
           path: coverage/index.html
 
-      # Upload total coverage report to Code Climate
+      # Upload front-end coverage report to Code Climate
+      - name: Upload coverage report to Code Climate
+        run: ./cc-test-reporter upload-coverage -i coverage/index.html
+
+      # Install Modules - Content Contribution API
+      - name: npm install, lint and test
+        run: |
+          cd api
+          npm i
+          npm run test:lint
+          npm run test -- --coverage
+      
+      # Formatting the Backend coverage report
+      - name: Format the BACKEND coverage report
+        run: |
+          ./cc-test-reporter format-coverage -t lcov -o coverage/index.html ${{github.workspace}}/app-web/coverage/lcov.info
+      
+      # Upload File for debugging purposes
+      - name: Upload File for debugging purposes
+        uses: actions/upload-artifact@v2
+        with:
+          name: summed-yarn-coverage-report
+          path: coverage/index.html
+
+      # Upload back-end coverage report to Code Climate
       - name: Upload coverage report to Code Climate
         run: ./cc-test-reporter upload-coverage -i coverage/index.html
