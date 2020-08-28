@@ -20,7 +20,11 @@ describe('Cors Utilities', () => {
   it(`matches the pattern https:\/\/devhub-static-dev-\\d\+-devhub-dev\.pathfinder\.gov\.bc\.ca 
       when https://devhub-static-dev-4343-devhub-dev.pathfinder.gov.bc.ca 
       is passed`, () => {
-      
-     expect(originMatchesPattern("https:\/\/devhub-static-dev-\\d\+-devhub-dev\.pathfinder\.gov\.bc\.ca", "https://devhub-static-dev-4343-devhub-dev.pathfinder.gov.bc.ca" )).toBe(true);
+    expect(
+      originMatchesPattern(
+        'https://devhub-static-dev-\\d+-devhub-dev.pathfinder.gov.bc.ca',
+        'https://devhub-static-dev-4343-devhub-dev.pathfinder.gov.bc.ca',
+      ),
+    ).toBe(true);
   });
 });

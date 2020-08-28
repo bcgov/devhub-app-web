@@ -1,14 +1,15 @@
-import { Octokit } from '@octokit/rest';
-import { PULL_REQUEST_STATE } from '../constants';
+import { PULL_REQUEST_STATE, FILE_PATH, PR_BODY, COMMIT_MESSAGE } from '../constants';
 import dotenv from 'dotenv';
 import { Base64 } from 'js-base64';
 
 dotenv.config();
 
-const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+export const email = process.env.GITHUB_USER_EMAIL;
 
-export const openPullExistsForBranch = async (branchName, repo, owner) => {
-  const response = await octokit.pulls.list({
+export const name = process.env.GITHUB_USER_NAME;
+
+export const openPullExistsForBranch = async (context, branchName, repo, owner) => {
+  const response = await context.pulls.list({
     owner,
     repo,
     state: PULL_REQUEST_STATE.open,
@@ -21,6 +22,7 @@ export const openPullExistsForBranch = async (branchName, repo, owner) => {
 
 /**
  * 
+ * @param {Context} context
  * @param {String} owner 
  * @param {String} repo 
  * @param {String} ref 
@@ -36,21 +38,32 @@ export const openPullExistsForBranch = async (branchName, repo, owner) => {
     }
  * }
  */
-export const createNewRefFromBase = async (owner, repo, ref) => {
-  const response = await octokit.git.getRef({ owner, repo, ref: 'heads/master' });
+export const createNewRefFromBase = async (context, owner, repo, ref) => {
+  const response = await context.git.getRef({ owner, repo, ref: 'heads/master' });
   const sha = response.data.object.sha;
   // https://developer.github.com/v3/git/refs/#create-a-reference
-  const { data } = await octokit.git.createRef({ owner, repo, ref, sha });
+  const data = await context.git.createRef({ owner, repo, ref, sha });
   return data;
 };
 
-export const createFile = async (owner, repo, bodyData, ref, topicName, email, name) => {
-  const path = `app-web/topicRegistry/${topicName}.json`;
-  const message = 'add new topic';
-  const content = Base64.encode(bodyData);
+/**
+ *
+ * @param {Context} context
+ * @param {String} owner
+ * @param {String} repo
+ * @param {String} bodyData
+ * @param {String} ref
+ * @param {String} topicName
+ * @returns {Promise}
+ */
+export const createFile = async (context, owner, repo, bodyData, ref, topicName) => {
+  const path = `${FILE_PATH}${topicName}.json`;
+  const message = `${COMMIT_MESSAGE.CREATE} ${topicName}`;
+  const content = Base64.encode(JSON.stringify(bodyData, null, 2));
   const committer = { email: email, name: name };
   const author = committer;
-  const { fileData } = await octokit.repos.createOrUpdateFile({
+
+  const createdFile = await context.repos.createOrUpdateFileContents({
     owner,
     repo,
     path,
@@ -60,12 +73,71 @@ export const createFile = async (owner, repo, bodyData, ref, topicName, email, n
     committer,
     author,
   });
-  return fileData;
+  return createdFile;
 };
 
-export const createPullRequest = async (owner, repo, base, topicName, ref) => {
-  const title = `Add new topic ${topicName}`;
-  const body = `Add a new topic to the devhub named ${topicName}`;
-  const pullRequest = await octokit.pulls.create({ owner, repo, base, title, head: ref, body });
+/**
+ *
+ * @param {Context} context
+ * @param {String} owner
+ * @param {String} repo
+ * @param {String} bodyData
+ * @param {String} ref
+ * @param {String} topicName
+ * @returns {Promise}
+ */
+export const updateFile = async (context, owner, repo, bodyData, ref, topicName) => {
+  const path = `${FILE_PATH}${topicName}.json`;
+  const message = `${COMMIT_MESSAGE.UPDATE} ${topicName}`;
+  const content = Base64.encode(JSON.stringify(bodyData, null, 2));
+  const committer = { email: email, name: name };
+  const author = committer;
+  const getFileData = await context.repos.getContent({ owner, repo, path });
+  const sha = getFileData.data.sha;
+  const updatedFile = await context.repos.createOrUpdateFileContents({
+    owner,
+    repo,
+    path,
+    branch: ref,
+    message,
+    content,
+    committer,
+    author,
+    sha,
+  });
+  return updatedFile;
+};
+
+/**
+ *
+ * @param {Context} context
+ * @param {String} operation
+ * @param {String} owner
+ * @param {String} repo
+ * @param {String} base
+ * @param {String} topicName
+ * @param {String} ref
+ * @param {String} topicDescription
+ * @returns {Promise}
+ */
+export const createPullRequest = async (
+  context,
+  operation,
+  owner,
+  repo,
+  base,
+  topicName,
+  ref,
+  topicDescription,
+) => {
+  const prData = PR_BODY(operation, topicName, topicDescription);
+  const pullRequest = await context.pulls.create({
+    owner,
+    repo,
+    base,
+    title: prData.title,
+    head: ref,
+    body: prData.body,
+  });
   return pullRequest;
 };
