@@ -83,7 +83,7 @@ jobs:
         run: ./cc-test-reporter upload-coverage -i coverage/lcov-report/index.html
 
       # Install Modules, Run Tests - Content Contribution API
-      - name: npm install, lint and test (Devhub API)
+      - name: npm install and test (Devhub API)
         run: |
           cd api
           npm i
@@ -92,16 +92,15 @@ jobs:
       # Formatting the Backend coverage report
       - name: Format the BACKEND coverage report
         run: |
-          cd api
-          ./cc-test-reporter format-coverage -t lcov -o coverage/lcov-report/index.html ${{github.workspace}}/api/coverage/lcov.info
+          ./cc-test-reporter format-coverage -t lcov -o api/coverage/lcov-report/index.html ${{github.workspace}}/api/coverage/lcov.info
       
       # Upload File for debugging purposes
       - name: Upload File for debugging purposes
         uses: actions/upload-artifact@v2
         with:
           name: summed-yarn-coverage-report
-          path: coverage/lcov-report/index.html
+          path: api/coverage/lcov-report/index.html
 
       # Upload back-end coverage report to Code Climate
       - name: Upload coverage report to Code Climate
-        run: ./cc-test-reporter upload-coverage -i coverage/lcov-report/index.html
+        run: ./cc-test-reporter upload-coverage -i api/coverage/lcov-report/index.html
