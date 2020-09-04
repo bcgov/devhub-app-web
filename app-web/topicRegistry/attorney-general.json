@@ -1,0 +1,20 @@
+{
+  "name": "Attorney General",
+  "description": "Everything you need to know",
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/jag-lcrb-carla-public",
+          "owner": "bcgov",
+          "repo": "jag-lcrb-carla-public",
+          "files": [
+            "README.md"
+          ]
+        },
+        "resourceType": "Documentation"
+      }
+    ]
+  }
+}
