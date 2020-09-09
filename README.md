@@ -177,11 +177,6 @@ Any issues that are created within this repository are synced with our Zenhub ka
 
 ## Getting Started
 * Setup a Developer Account with [Algolia](https://algolia.com). Use the __Community__ version.
-* change into app-web project directory
-* copy and update your env file
-* `cp .env.production.example .env.production`
-   * the `MATOMO_URL` should be pointing to the instance of your production matomo service. If you do not have one
-   leave it as a blank variable.
 * set up a secret to allow the openshift builder service account to push devhub 'dev mode' images to
   docker hub, instructions [here](./docs/devhub-previewer-setup.md)
 
@@ -189,10 +184,11 @@ Any issues that are created within this repository are synced with our Zenhub ka
 
 * Requires **Node 10** and **npm 6**
 * Clone this repo
-* Change into app-web project directory
+* Change into app-web project directory `cp app-web`
 * run: `npm install`
-* replace relevant environment variables (for local dev only)
-* *it may be* beneficial to have the gatsby cli package `npm install -g gatsby-cli`
+* copy and update your env file
+* `cp .env.production.example .env.production`
+   * the `MATOMO_URL` should be pointing to the instance of your production matomo service. If you do not have one leave it as a blank variable.
 * to start development server run: `npm run dev`
 * to build a production version run: `npm run build`
 * to view production build run (requires gatsby-cli to be installed globally): `gatsby serve`
