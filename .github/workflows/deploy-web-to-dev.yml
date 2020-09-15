@@ -26,13 +26,13 @@ jobs:
           core.exportVariable('DEPLOYMENT_ID', context.payload.deployment.id);
           core.exportVariable('REF', context.payload.deployment.ref);
     - name: Login to cluster
-      run: oc login ${CLUSTER_URL} --username=${SA_NAME} --password=${SA_PASSWORD}
+      run: oc login --server=${OPENSHIFT_SERVER_URL} --username=${SA_NAME} --password=${SA_PASSWORD}
     - name: Create Gatsby Build
       run: oc process -n ${TOOLS_NAMESPACE} \
         -f openshift/templates/web/bc.yaml \
         -p SUFFIX="-${PULL_NUMBER}" \
         -p SOURCE_REPOSITORY_URL="https://github.com/${GITHUB_REPOSITORY}" \
         -p SOURCE_REPOSITORY_REF=${GITHUB_HEAD_REF} \
-        -p MATOMO_URL=${MATOMO_URL} \
-        -p MATOMO_SITE_URL=https://developer.gov.bc.ca \
-        -p MATOMO_SITE_ID=${MATOMO_SITE_ID} | oc apply -n ${TOOLS_NAMESPACE} process -f -
+        -p MATOMO_URL=${GATSBY_MATOMO_URL} \
+        -p MATOMO_SITE_URL=${GATSBY_MATOMO_SITE_URL} \
+        -p MATOMO_SITE_ID=${GATSBY_MATOMO_SITE_ID} | oc apply -n ${TOOLS_NAMESPACE} process -f -
