@@ -140,7 +140,7 @@ export const EventData = graphql`
   query EventsQuery {
     allEventbriteEvents(
       sort: { fields: [start___local], order: DESC }
-      filter: { shareable: { eq: true } }
+      filter: { shareable: { eq: true }, status: { ne: "draft" } }
       limit: 50
     ) {
       edges {
@@ -154,6 +154,7 @@ export const EventData = graphql`
             image
             standAlonePath
           }
+          status
           siphon {
             unfurl {
               title

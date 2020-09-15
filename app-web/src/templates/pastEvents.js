@@ -60,7 +60,7 @@ export const EventData = graphql`
   query PastEventsQuery {
     allEventbriteEvents(
       sort: { fields: [start___local], order: ASC }
-      filter: { shareable: { eq: true } }
+      filter: { shareable: { eq: true }, status: { ne: "draft" } }
     ) {
       edges {
         node {
