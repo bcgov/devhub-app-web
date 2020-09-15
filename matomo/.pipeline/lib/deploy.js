@@ -18,19 +18,21 @@ module.exports = (settings) => {
             'SUFFIX': phases[phase].suffix,
             'VERSION': phases[phase].tag,
             'IMAGE_NAMESPACE': phases[phase].namespace,
-            'PERSISTENT_VOLUME_SIZE': '10Gi'
+            'PERSISTENT_VOLUME_SIZE': '5Gi',
+            'PERSISTENT_VOLUME_CLASS': 'azurefile',
         }
     }));
 
-    objects = objects.concat(oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/matomo/matomo-deploy.json`, {
-        'param': {
-            'NAME': phases[phase].name,
-            'SUFFIX': phases[phase].suffix,
-            'VERSION': phases[phase].tag,
-            'IMAGE_NAMESPACE': phases[phase].namespace,
-            'MATOMO_URL': phases[phase].host
-        }
-    }));
+    // objects = objects.concat(oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/matomo/matomo-deploy.json`, {
+    //     'param': {
+    //         'NAME': phases[phase].name,
+    //         'SUFFIX': phases[phase].suffix,
+    //         'VERSION': phases[phase].tag,
+    //         'IMAGE_NAMESPACE': phases[phase].namespace,
+    //         'MATOMO_URL': phases[phase].host,
+    //         'PERSISTENT_VOLUME_CLASS': 'azurefile',
+    //     }
+    // }));
 
     oc.applyRecommendedLabels(objects, phases[phase].name, phase, `${changeId}`, phases[phase].instance)
     oc.importImageStreams(objects, phases[phase].tag, phases.build.namespace, phases.build.tag)

@@ -1,12 +1,12 @@
 'use strict';
 const options= require('@bcgov/pipeline-cli').Util.parseArguments()
-const changeId = options.pr //aka pull-request
+const changeId = options.pr || options.suffix //aka pull-request
 const version = '1.0.0'
 const name = 'matomo'
 
 const phases = {
     build: {
-        namespace: 'devhub-tools',
+        namespace: 'pltfrm-tools',
         name: `${name}`,
         phase: 'build',
         changeId: changeId,
@@ -16,7 +16,7 @@ const phases = {
         tag: `build-${version}-${changeId}`
     },
     dev: {
-        namespace: 'devhub-tools',
+        namespace: 'pltfrm-tools',
         name: `${name}`,
         phase: 'dev',
         changeId: changeId,
@@ -27,7 +27,7 @@ const phases = {
         host: `${name}-${changeId}.pathfinder.gov.bc.ca`
     },
     prod: {
-        namespace: 'devhub-tools',
+        namespace: 'pltfrm-tools',
         name: `${name}`,
         phase: 'prod',
         changeId: changeId,
@@ -35,7 +35,7 @@ const phases = {
         instance: `${name}-prod`,
         version: `${version}`,
         tag: `prod-${version}`,
-        host: 'matomo-devhub-prod.pathfinder.gov.bc.ca'
+        host: ''
     },
 };
 

@@ -1,38 +1,49 @@
 name: On Deployment Created
 on: 
   deployment
+env:
+  PULL_NUMBER: ${{ github.event.deployment.payload.pr }}
+  MICRO_SERVICE: ${{ github.event.deployment.payload.microservice }}
+  DEPLOY_REF: ${{ github.event.deployment.ref }}
+  DEPLOYMENT_ID: ${{ github.event.deployment.id }}
+  ENVIRONMENT: ${{ github.event.deployment.environment }}
 jobs:
   build:
-    if: JSON.parse(context.payload.deployment.payload).microservice === 'web'
+    if: ${{ env.MICRO_SERVICE == 'web' }}
     name: Build and Deploy Gatsby
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v1
-  setup:
-    name: Setup credentials
-    runs-on: ubuntu-18.04
-    steps:
-    - uses: actions/checkout@v1
-    - name: Store Deploy Env Vars
-      uses: actions/github-script@0.3.0
-      with:
-        github-token: ${{github.token}}
-        script: |
-          const core = require('@actions/core')
-          const prNumber = context.payload.number;
-          const deployPayload = ;
-          core.exportVariable('MICROSERVICE', deployPayload.microservice);
-          core.exportVariable('PULL_NUMBER', deployPayload.pr);
-          core.exportVariable('ENVIRONMENT', context.payload.deployment.environment);
-          core.exportVariable('DEPLOYMENT_ID', context.payload.deployment.id);
-          core.exportVariable('REF', context.payload.deployment.ref);
-    - name: Login to cluster
-      run: oc login --server=${OPENSHIFT_SERVER_URL} --username=${SA_NAME} --password=${SA_PASSWORD}
-    - name: Create Gatsby Build
-      run: oc process -n ${TOOLS_NAMESPACE} \
-        -f openshift/templates/web/bc.yaml \
-        -p SUFFIX="-${PULL_NUMBER}" \
-        -p SOURCE_REPOSITORY_URL="https://github.com/${GITHUB_REPOSITORY}" \
-        -p SOURCE_REPOSITORY_REF=${GITHUB_HEAD_REF} \
-        -p MATOMO_URL=${GATSBY_MATOMO_URL} \
-        -p MATOMO_SITE_URL=${GATSBY_MATOMO_SITE_URL} \
-        -p MATOMO_SITE_ID=${GATSBY_MATOMO_SITE_ID} | oc apply -n ${TOOLS_NAMESPACE} process -f -
+      
+      - name: Change Deploy Status to Pending
+        uses: actions/github-script@0.3.0
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            github.repos.createDeploymentStatus({
+              deployment_id: ${{ env.DEPLOYMENT_ID }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'pending'
+            });
+      - name: Cluster Login
+        uses: redhat-developer/openshift-actions@v1.1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL}}
+          parameters: '{"apitoken": "${{ secrets.SA_PASSWORD }}"}'
+          cmd: 'version'
+      - name: Run Build
+        env:
+          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
+          GATSBY_MATOMO_URL: ${{ secrets.GATSBY_MATOMO_URL }}
+          GATSBY_MATOMO_SITE_URL: ${{ secrets.GATSBY_MATOMO_SITE_URL }}
+          GATSBY_MATOMO_SITE_ID: ${{ secrets.GATSBY_MATOMO_SITE_ID }}
+        run: |
+          oc process -f openshift/templates/web/bc.yaml -n $TOOLS_NAMESPACE \
+          -p SUFFIX="-$PULL_NUMBER" \
+          -p SOURCE_REPOSITORY_URL="https://github.com/$GITHUB_REPOSITORY" \
+          -p SOURCE_REPOSITORY_REF=$GITHUB_REF \
+          -p MATOMO_URL=$GATSBY_MATOMO_URL \
+          -p MATOMO_SITE_URL=$GATSBY_MATOMO_SITE_URL \
+          -p MATOMO_SITE_ID=$GATSBY_MATOMO_SITE_ID -n $TOOLS_NAMESPACE | \
+          oc apply -n $TOOLS_NAMESPACE -f -

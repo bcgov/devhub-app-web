@@ -215,24 +215,6 @@
       }
     },
     {
-      "kind": "Secret",
-      "apiVersion": "v1",
-      "metadata": {
-        "name": "${NAME}${SUFFIX}-db",
-        "labels": {
-          "app": "${NAME}",
-          "name": "${NAME}${SUFFIX}-db"
-        }
-      },
-      "stringData": {
-        "database-root-password": "${MYSQL_ROOT_PASSWORD}",
-        "database-password": "${MYSQL_PASSWORD}",
-        "database-user": "${MYSQL_USER}",
-        "database-name": "${MYSQL_DATABASE}"
-      },
-      "type": "Opaque"
-    },
-    {
       "kind": "Service",
       "apiVersion": "v1",
       "metadata": {

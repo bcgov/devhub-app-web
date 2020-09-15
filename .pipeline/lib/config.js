@@ -6,7 +6,7 @@ const name = 'devhub';
 
 const phases = {
   build: {
-    namespace: 'devhub-tools',
+    namespace: 'pltfrm-tools',
     name: `${name}`,
     phase: 'build',
     changeId: changeId,
@@ -16,7 +16,7 @@ const phases = {
     tag: `build-${version}-${changeId}`,
   },
   dev: {
-    namespace: 'devhub-dev',
+    namespace: 'pltfrm-dev',
     name: `${name}`,
     phase: 'dev',
     changeId: changeId,
@@ -26,7 +26,7 @@ const phases = {
     tag: `dev-${version}-${changeId}`,
   },
   test: {
-    namespace: 'devhub-test',
+    namespace: 'pltfrm-test',
     name: `${name}`,
     phase: 'test',
     changeId: changeId,
@@ -36,7 +36,7 @@ const phases = {
     tag: `test-${version}`,
   },
   prod: {
-    namespace: 'devhub-prod',
+    namespace: 'pltfrm-prod',
     name: `${name}`,
     phase: 'prod',
     changeId: changeId,

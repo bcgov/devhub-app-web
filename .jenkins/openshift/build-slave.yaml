@@ -95,10 +95,10 @@ parameters:
 - name: SLAVE_NAME
   value: build
 - name: SOURCE_IMAGE_STREAM_NAMESPACE
-  value: ""
+  value: openshift
 - name: SOURCE_IMAGE_STREAM_TAG
   required: true
-  value: "jenkins:build-v2.0-0"
+  value: jenkins:2
 - name: SOURCE_GIT_URL
   required: true
   value: https://github.com/cvarjao-o/hello-world.git

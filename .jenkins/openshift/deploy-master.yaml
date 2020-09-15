@@ -113,7 +113,7 @@ objects:
             value: ${ENV_NAME}
           - name: ENV_ID
             value: ${ENV_ID}
-          image: ' '
+          image: registry.redhat.io/openshift3/jenkins-2-rhel7
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
@@ -228,7 +228,6 @@ objects:
     creationTimestamp: null
     name: ${NAME}${SUFFIX}
   spec:
-    host: ${ROUTE_HOST}
     path: ${ROUTE_PATH}
     port:
       targetPort: 8080-tcp
