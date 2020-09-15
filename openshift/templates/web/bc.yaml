@@ -127,23 +127,12 @@ parameters:
   displayName: SOURCE_REPOSITORY_URL
   name: SOURCE_REPOSITORY_URL
   required: true
-  value: https://github.com/cvarjao-o/devhub-app-web.git
+  value: https://github.com/bcgov/devhub-app-web.git
 - description: SOURCE_REPOSITORY_REF
   displayName: SOURCE_REPOSITORY_REF
   name: SOURCE_REPOSITORY_REF
   required: true
   value: ''
-  # latest node js version as of Apr 2 2019
-- description: NODE_JS_VERSION
-  displayName: NODE_JS_VERSION
-  name: NODE_JS_VERSION
-  required: true
-  value: '10'
-- description: DOCKER_IMAGE_DIRECTORY
-  displayName: DOCKER_IMAGE_DIRECTORY
-  name: DOCKER_IMAGE_DIRECTORY
-  required: true
-  value: docker-images/nodejs-base
 - description: Location of the Matomo server that the app should post events to.
   displayName: Matomo URL
   name: MATOMO_URL

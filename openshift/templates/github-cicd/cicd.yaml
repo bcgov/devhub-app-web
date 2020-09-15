@@ -1,0 +1,256 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+# this is the service account that github actions or any other ci server can use to interact with openshift
+metadata:
+  name: github-cicd-credentials
+objects:
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: ${NAME}
+      labels:
+        app: ${NAME}
+      namespace: ${TOOLS_NAMESPACE}
+  - apiVersion: authorization.openshift.io/v1
+    kind: Role
+    metadata:
+      name: ${NAME}-builder
+      labels:
+        app: ${NAME}
+      namespace: ${TOOLS_NAMESPACE}
+    rules:
+      - apiGroups:
+          - template.openshift.io 
+        resources:
+          - processedtemplates
+        verbs:
+          - create
+      - apiGroups:
+          - apps.openshift.io 
+        resources:
+          - deploymentconfigs/instantiate
+        verbs:
+          - create
+   
+      - apiGroups:
+          - build.openshift.io
+          - ""
+        resources:
+          - buildconfigs/instantiate
+        verbs:
+          - create
+      - apiGroups:
+          - build.openshift.io
+          - ""
+        resources:
+          - buildconfigs
+        verbs:
+          - patch
+    
+      - apiGroups:
+          - build.openshift.io
+          - ""
+        resources:
+          - buildconfigs
+          - builds
+        verbs:
+          - create
+          - get
+          - list
+          - update
+      - apiGroups:
+          - image.openshift.io
+          - ""
+        resources:
+          - imagestreamimages
+          - imagestreamtags
+        verbs:
+          - create
+          - get
+          - list
+      - apiGroups:
+          - image.openshift.io
+          - ""
+        resources:
+          - imagestreams
+        verbs:
+          - get
+          - list
+          - patch
+      - apiGroups:
+          - build.openshift.io
+          - ""
+        resources:
+          - builds/log
+        verbs:
+          - get
+          - list
+          - watch
+  - apiVersion: authorization.openshift.io/v1
+    kind: Role
+    metadata:
+      name: ${NAME}-deployer-dev
+      labels:
+        app: ${NAME}
+      namespace: ${DEV_NAMESPACE}
+    rules:
+      - apiGroups:
+          - template.openshift.io 
+        resources:
+          - processedtemplates
+        verbs:
+          - create
+      - apiGroups:
+          - ""
+        attributeRestrictions: null
+        resources:
+          - replicationcontrollers
+        verbs:
+          - delete
+      - apiGroups:
+          - ""
+        attributeRestrictions: null
+        resources:
+          - replicationcontrollers
+        verbs:
+          - get
+          - list
+          - update
+          - watch
+          - patch
+      - apiGroups:
+          - ""
+        attributeRestrictions: null
+        resources:
+          - pods
+        verbs:
+          - create
+          - get
+          - list
+          - watch
+          - delete
+      - apiGroups:
+          - ""
+        attributeRestrictions: null
+        resources:
+          - pods/log
+        verbs:
+          - get
+      - apiGroups:
+          - ""
+        attributeRestrictions: null
+        resources:
+          - events
+        verbs:
+          - list
+      - apiGroups:
+          - image.openshift.io
+          - ""
+        attributeRestrictions: null
+        resources:
+          - imagestreamtags
+        verbs:
+          - update
+      - apiGroups:
+          - ""
+        attributeRestrictions: null
+        resources:
+          - replicationcontrollers/scale
+          - configmaps
+          - secrets
+          - services
+        verbs:
+          - get
+      - apiGroups:
+          - ""
+        attributeRestrictions: null
+        resources:
+          - replicationcontrollers/scale
+        verbs:
+          - update
+      
+      - apiGroups:
+          - ""
+        attributeRestrictions: null
+        resources:
+          - configmaps
+          - services
+        verbs:
+          - patch
+          - create
+          - patch
+          - delete
+      - apiGroups:
+          - "route.openshift.io"
+        attributeRestrictions: null
+        resources:
+          - routes
+        verbs:
+          - get
+          - create
+          - patch
+          - delete
+      - apiGroups:
+          - "apps.openshift.io"
+        attributeRestrictions: null
+        resources:
+          - deploymentconfigs
+        verbs:
+          - get
+          - list
+          - create
+          - patch
+          - delete
+          - update
+  - apiVersion: authorization.openshift.io/v1
+    kind: RoleBinding
+    metadata:
+      name: ${NAME}-builder
+      labels:
+        app: ${NAME}
+      namespace: ${TOOLS_NAMESPACE}
+    subjects:
+      - kind: ServiceAccount
+        name: ${NAME}
+    roleRef:
+      kind: Role
+      name: ${NAME}-builder
+      namespace: ${TOOLS_NAMESPACE}
+      apiGroup: authorization.openshift.io
+    # dev deployer rolebinding
+  - apiVersion: authorization.openshift.io/v1
+    kind: RoleBinding
+    metadata:
+      name: ${NAME}-deployer-dev
+      labels:
+        app: ${NAME}
+      namespace: ${DEV_NAMESPACE}
+    subjects:
+      - kind: ServiceAccount
+        name: ${NAME}
+        namespace: ${TOOLS_NAMESPACE}
+    roleRef:
+      kind: Role
+      name: ${NAME}-deployer-dev
+      namespace: ${DEV_NAMESPACE}
+      apiGroup: authorization.openshift.io
+
+parameters:
+  - displayName: Tools Namespace
+    description: |
+      The namespace where all of components of the
+      credentials are stored.
+    name: TOOLS_NAMESPACE
+  - displayName: Dev Namespace
+    description: |
+      The namespace where all of components of the
+      credentials are stored.
+    name: DEV_NAMESPACE
+    required: true
+  - displayName: Credentials Name
+    description: |
+      The name used for all components of the 
+      credentials.
+    name: NAME
+    required: true
+    value: github-cicd

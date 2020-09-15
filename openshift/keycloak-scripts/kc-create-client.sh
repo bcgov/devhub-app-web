@@ -17,8 +17,8 @@ curl https://stedolan.github.io/jq/download/linux64/jq > $JQ && chmod +x $JQ
 ls -la $JQ
 
 # oc get secret for sso service account:
-KEYCLOAK_CLIENT_ID=$(oc -n devhub-dev get secret/sso-dev-service-account --template={{.data.KEYCLOAK_CLIENT_ID}} | base64 --decode)
-KEYCLOAK_CLIENT_SECRET=$(oc -n devhub-dev get secret/sso-dev-service-account --template={{.data.KEYCLOAK_CLIENT_SECRET}} | base64 --decode)
+KEYCLOAK_CLIENT_ID=$(oc -n pltfrm-dev get secret/sso-dev-service-account --template={{.data.KEYCLOAK_CLIENT_ID}} | base64 --decode)
+KEYCLOAK_CLIENT_SECRET=$(oc -n pltfrm-dev get secret/sso-dev-service-account --template={{.data.KEYCLOAK_CLIENT_SECRET}} | base64 --decode)
 
 # get sso variables:
 KEYCLOAK_URL=https://sso-dev.pathfinder.gov.bc.ca

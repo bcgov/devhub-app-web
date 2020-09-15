@@ -1,0 +1,38 @@
+name: On Deployment Created
+on: 
+  deployment
+jobs:
+  build:
+    if: JSON.parse(context.payload.deployment.payload).microservice === 'web'
+    name: Build and Deploy Gatsby
+    steps:
+      - uses: actions/checkout@v1
+  setup:
+    name: Setup credentials
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: Store Deploy Env Vars
+      uses: actions/github-script@0.3.0
+      with:
+        github-token: ${{github.token}}
+        script: |
+          const core = require('@actions/core')
+          const prNumber = context.payload.number;
+          const deployPayload = ;
+          core.exportVariable('MICROSERVICE', deployPayload.microservice);
+          core.exportVariable('PULL_NUMBER', deployPayload.pr);
+          core.exportVariable('ENVIRONMENT', context.payload.deployment.environment);
+          core.exportVariable('DEPLOYMENT_ID', context.payload.deployment.id);
+          core.exportVariable('REF', context.payload.deployment.ref);
+    - name: Login to cluster
+      run: oc login ${CLUSTER_URL} --username=${SA_NAME} --password=${SA_PASSWORD}
+    - name: Create Gatsby Build
+      run: oc process -n ${TOOLS_NAMESPACE} \
+        -f openshift/templates/web/bc.yaml \
+        -p SUFFIX="-${PULL_NUMBER}" \
+        -p SOURCE_REPOSITORY_URL="https://github.com/${GITHUB_REPOSITORY}" \
+        -p SOURCE_REPOSITORY_REF=${GITHUB_HEAD_REF} \
+        -p MATOMO_URL=${MATOMO_URL} \
+        -p MATOMO_SITE_URL=https://developer.gov.bc.ca \
+        -p MATOMO_SITE_ID=${MATOMO_SITE_ID} | oc apply -n ${TOOLS_NAMESPACE} process -f -
