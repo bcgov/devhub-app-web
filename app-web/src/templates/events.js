@@ -55,7 +55,7 @@ export const formatEvents = events => {
       resource: event.siphon.resource,
       id: event.siphon.id,
       start: event.start,
-      venue: event.venue.name,
+      venue: event.online_event ? 'online' : event.venue.name,
     };
   });
 };
@@ -155,6 +155,7 @@ export const EventData = graphql`
             standAlonePath
           }
           status
+          online_event
           siphon {
             unfurl {
               title

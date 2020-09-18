@@ -101,6 +101,7 @@ const withResourceQuery = WrappedComponent => () => props => (
               internal {
                 type
               }
+              online_event
               fields {
                 resourceType
                 title

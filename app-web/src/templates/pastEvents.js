@@ -84,6 +84,7 @@ export const EventData = graphql`
             }
             id
           }
+          online_event
           start {
             day: local(formatString: "DD")
             month: local(formatString: "MMM")
