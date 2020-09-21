@@ -11,7 +11,7 @@ objects:
   kind: ImageStream
   metadata:
     creationTimestamp: null
-    name: ${NAME}-static
+    name: ${NAME}
   spec:
     lookupPolicy:
       local: false
@@ -20,15 +20,15 @@ objects:
   metadata:
     creationTimestamp: null
     labels:
-      build: ${NAME}-static${SUFFIX}
-    name: ${NAME}-static${SUFFIX}
+      build: ${NAME}${SUFFIX}
+    name: ${NAME}${SUFFIX}
   spec:
     runPolicy: SerialLatestOnly
     nodeSelector: null
     output:
       to:
         kind: ImageStreamTag
-        name: ${NAME}-static:${VERSION}
+        name: ${NAME}:${VERSION}
     postCommit: {}
     resources:
       requests:
@@ -104,7 +104,7 @@ objects:
     - imageChange:
         from:
           kind: ImageStreamTag
-          name: ${NAME}-static:${VERSION}
+          name: ${NAME}:${VERSION}
       type: ImageChange
 parameters:
 - description: A name used for all objects
