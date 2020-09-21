@@ -51,7 +51,7 @@ jobs:
           -p MATOMO_URL=$GATSBY_MATOMO_URL \
           -p NAME=$INFRA_NAME \
           -p MATOMO_SITE_URL=$GATSBY_MATOMO_SITE_URL \
-          -p MATOMO_SITE_ID=$GATSBY_MATOMO_SITE_ID -n $TOOLS_NAMESPACE
+          -p MATOMO_SITE_ID=$GATSBY_MATOMO_SITE_ID -n $TOOLS_NAMESPACE \
           -p VERSION="-$PULL_NUMBER" | \
           oc apply -n $TOOLS_NAMESPACE -f -
           oc start-build $INFRA_NAME$SUFFIX --follow
