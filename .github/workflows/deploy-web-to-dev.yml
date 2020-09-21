@@ -41,7 +41,7 @@ jobs:
           openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL}}
           parameters: '{"apitoken": "${{ secrets.SA_PASSWORD }}"}'
           cmd: |
-            'cancel-build -n ${{ env.TOOLS_NAMESPACE }} bc/${{ env.INFRA_NAME }}${{ env.SUFFIX }} || echo no builds found'
+            'cancel-build -n ${{ env.TOOLS_NAMESPACE }} bc/${{ env.INFRA_NAME }}${{ env.SUFFIX }}'
       - name: Run Build
         env:
           TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
