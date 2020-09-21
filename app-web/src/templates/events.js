@@ -55,7 +55,7 @@ export const formatEvents = events => {
       resource: event.siphon.resource,
       id: event.siphon.id,
       start: event.start,
-      venue: event.venue.name,
+      venue: event.online_event ? 'online' : event.venue.name,
     };
   });
 };
@@ -140,7 +140,7 @@ export const EventData = graphql`
   query EventsQuery {
     allEventbriteEvents(
       sort: { fields: [start___local], order: DESC }
-      filter: { shareable: { eq: true } }
+      filter: { shareable: { eq: true }, status: { ne: "draft" } }
       limit: 50
     ) {
       edges {
@@ -154,6 +154,8 @@ export const EventData = graphql`
             image
             standAlonePath
           }
+          status
+          online_event
           siphon {
             unfurl {
               title
