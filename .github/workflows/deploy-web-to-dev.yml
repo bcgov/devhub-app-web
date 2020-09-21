@@ -9,7 +9,7 @@ env:
   ENVIRONMENT: ${{ github.event.deployment.environment }}
 jobs:
   build:
-    if: ${{ env.MICRO_SERVICE == 'web' }}
+    if: ${{ github.event.deployment.payload.microservice == 'web' }}
     name: Build and Deploy Gatsby
     runs-on: ubuntu-20.04
     steps:
@@ -18,10 +18,10 @@ jobs:
       - name: Change Deploy Status to Pending
         uses: actions/github-script@0.3.0
         with:
-          github-token: ${{ github.token }}
+          github-token: ${{github.token}}
           script: |
             github.repos.createDeploymentStatus({
-              deployment_id: ${{ env.DEPLOYMENT_ID }},
+              deployment_id: context.payload.deployment.id,
               owner: context.repo.owner,
               repo: context.repo.repo,
               state: 'pending'
