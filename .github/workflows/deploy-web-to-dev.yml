@@ -8,7 +8,7 @@ env:
   DEPLOYMENT_ID: ${{ github.event.deployment.id }}
   ENVIRONMENT: ${{ github.event.deployment.environment }}
   INFRA_NAME: devhub-app-web
-  SUFFIX: "-$PULL_NUMBER"
+  SUFFIX: "-${{ github.event.deployment.payload.pr }}"
 jobs:
   build:
     if: ${{ github.event.deployment.payload.microservice == 'web' }}
