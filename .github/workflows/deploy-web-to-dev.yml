@@ -7,6 +7,8 @@ env:
   DEPLOY_REF: ${{ github.event.deployment.ref }}
   DEPLOYMENT_ID: ${{ github.event.deployment.id }}
   ENVIRONMENT: ${{ github.event.deployment.environment }}
+  INFRA_NAME: devhub-app-web
+  SUFFIX: "-$PULL_NUMBER"
 jobs:
   build:
     if: ${{ github.event.deployment.payload.microservice == 'web' }}
@@ -32,19 +34,24 @@ jobs:
           openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL}}
           parameters: '{"apitoken": "${{ secrets.SA_PASSWORD }}"}'
           cmd: 'version'
+      - name: Cancel previous builds (if any)
+        run: oc cancel-build $INFRA_NAME$SUFFIX || echo no builds found
       - name: Run Build
         env:
           TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
           GATSBY_MATOMO_URL: ${{ secrets.GATSBY_MATOMO_URL }}
           GATSBY_MATOMO_SITE_URL: ${{ secrets.GATSBY_MATOMO_SITE_URL }}
           GATSBY_MATOMO_SITE_ID: ${{ secrets.GATSBY_MATOMO_SITE_ID }}
+
         run: |
           oc process -f openshift/templates/web/bc.yaml -n $TOOLS_NAMESPACE \
-          -p SUFFIX="-$PULL_NUMBER" \
+          -p SUFFIX=$SUFFIX \
           -p SOURCE_REPOSITORY_URL="https://github.com/$GITHUB_REPOSITORY" \
           -p SOURCE_REPOSITORY_REF=$GITHUB_REF \
           -p MATOMO_URL=$GATSBY_MATOMO_URL \
+          -p NAME=$INFRA_NAME \
           -p MATOMO_SITE_URL=$GATSBY_MATOMO_SITE_URL \
           -p MATOMO_SITE_ID=$GATSBY_MATOMO_SITE_ID -n $TOOLS_NAMESPACE
           -p VERSION="-$PULL_NUMBER" | \
           oc apply -n $TOOLS_NAMESPACE -f -
+          oc start-build $INFRA_NAME$SUFFIX --follow

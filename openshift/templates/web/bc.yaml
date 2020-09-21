@@ -106,7 +106,6 @@ objects:
           kind: ImageStreamTag
           name: ${NAME}-static:${VERSION}
       type: ImageChange
-    - type: ConfigChange
 parameters:
 - description: A name used for all objects
   displayName: Name
