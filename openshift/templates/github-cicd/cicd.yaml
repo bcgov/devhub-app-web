@@ -80,9 +80,17 @@ objects:
           - create
       - apiGroups:
           - build.openshift.io
-          - ""
+          - ""  
         resources:
           - builds/log
+        verbs:
+          - get
+          - list
+          - watch
+      - apiGroups:
+          - build.openshift.io
+        resources:
+          - builds
         verbs:
           - get
           - list
