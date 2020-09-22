@@ -36,7 +36,7 @@ jobs:
           cmd: |
             'version'
       - name: Cancel previous builds (if any)
-        run: 'oc cancel-build -n ${{ env.TOOLS_NAMESPACE }} bc/${{ env.INFRA_NAME }}${{ env.SUFFIX }} || no build found for ${{ github.event.deployment.payload.pr }}'
+        run: 'oc cancel-build -n ${{ secrets.TOOLS_NAMESPACE }} bc/${{ env.INFRA_NAME }}${{ env.SUFFIX }} || echo no build found for ${{ github.event.deployment.payload.pr }}'
       - name: Run Build
         env:
           TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
