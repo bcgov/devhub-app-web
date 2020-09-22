@@ -1,0 +1,17 @@
+{
+  "name": "Attorney General",
+  "description": "Everything you need to know",
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://google.com",
+          "title": "foo",
+          "description": "bar"
+        },
+        "resourceType": "Documentation"
+      }
+    ]
+  }
+}
