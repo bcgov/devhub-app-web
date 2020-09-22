@@ -35,15 +35,8 @@ jobs:
           parameters: '{"apitoken": "${{ secrets.SA_PASSWORD }}"}'
           cmd: |
             'version'
-      - name: test
-        run: echo cancel-build -n ${{ env.TOOLS_NAMESPACE }} bc/${{ env.INFRA_NAME }}${{ env.SUFFIX }}
       - name: Cancel previous builds (if any)
-        uses: redhat-developer/openshift-actions@v1.1
-        with:
-          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL}}
-          parameters: '{"apitoken": "${{ secrets.SA_PASSWORD }}"}'
-          cmd: |
-            'cancel-build -n ${{ env.TOOLS_NAMESPACE }} bc/${{ env.INFRA_NAME }}${{ env.SUFFIX }}'
+        run: 'oc cancel-build -n ${{ env.TOOLS_NAMESPACE }} bc/${{ env.INFRA_NAME }}${{ env.SUFFIX }} || no build found for ${{ github.event.deployment.payload.pr }}'
       - name: Run Build
         env:
           TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
