@@ -13,6 +13,14 @@ if [ "$LATEST_BUILD" = "No resources found" ] || [  -z "$LATEST_BUILD" ]; then
   exit 0
 fi
 
-LATEST_COMMIT=$(oc get -n $TOOLS_NAMESPACE ${LATEST_BUILD} -o json | jq '.spec.revision.git.commit')
+_BUILD=$(oc get -n $TOOLS_NAMESPACE ${LATEST_BUILD} -o json)
+_PHASE=$(echo $_BUILD | jq '.status.phase')
+
+if [ "$_PHASE" != "Complete"]; then
+  echo "Last Build DNF"
+  exit 0
+fi
+
+LATEST_COMMIT=$(echo $_BUILD | jq '.spec.revision.git.commit')
 
 echo $LATEST_COMMIT
