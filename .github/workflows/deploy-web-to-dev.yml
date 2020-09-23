@@ -39,6 +39,8 @@ jobs:
       - name: Cancel previous builds (if any)
         run: 'oc cancel-build -n ${{ secrets.TOOLS_NAMESPACE }} bc/${{ env.INFRA_NAME }}${{ env.SUFFIX }} || echo no build found for ${{ github.event.deployment.payload.pr }}'
       - name: Check if should run build (based on a commit id comparison)
+        env:
+          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
         # reference https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable
         run: |
           _commit=$(.github/helpers/get_last_build_commit_id.sh)
