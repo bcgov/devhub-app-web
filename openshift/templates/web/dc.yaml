@@ -97,7 +97,7 @@ objects:
           deploymentconfig: ${NAME}${SUFFIX}
       spec:
         containers:
-        - image: ${IMAGE_NAMESPACE}/${NAME}:${IMAGE_TAG}
+        - image: ${IMAGE_REGISTRY}/${IMAGE_NAMESPACE}/${NAME}:${IMAGE_TAG}
           name: devhub-app-web
           args:
           - /tmp/scripts/run
@@ -243,6 +243,8 @@ parameters:
   name: CPU_LIMIT
   required: false
   value: 100m
+- name: IMAGE_REGISTRY
+  value: image-registry.openshift-image-registry.svc:5000
 - description: The Memory Request for the deployment config
   displayName: Memory Request 
   name: MEMORY_REQUEST
