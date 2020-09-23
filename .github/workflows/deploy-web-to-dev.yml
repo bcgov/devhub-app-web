@@ -65,7 +65,7 @@ jobs:
           oc apply -n $TOOLS_NAMESPACE -f -
           
       - name: Start Build (if needed)
-        if: env.BUILD_COMMIT_ID != github.sha
+        if: contains(env.BUILD_COMMIT_ID, github.sha)
         env:
           TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
         run: |
