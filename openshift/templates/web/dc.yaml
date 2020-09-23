@@ -99,8 +99,6 @@ objects:
         containers:
         - image: ${IMAGE_REGISTRY}/${IMAGE_NAMESPACE}/${NAME}:${IMAGE_TAG}
           name: devhub-app-web
-          args:
-          - /tmp/scripts/run
           ports:
           - containerPort: 2015
             protocol: TCP
