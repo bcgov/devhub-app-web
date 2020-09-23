@@ -89,7 +89,7 @@ jobs:
           MATOMO_URL: ${{ secrets.MATOMO_URL }}
           ALGOLIA_INDEX_NAME_SUFFIX: "-build-${{ PULL_NUMBER }}"
         run: |
-          oc process -f openshift/templates/web/dc.yaml -n $DEV_NAMESAPCE \
+          oc process -f openshift/templates/web/dc.yaml -n $DEV_NAMESPACE \
           -p NAME=$INFRA_NAME \
           -p IMAGE_NAMESPACE=$TOOLS_NAMESPACE \
           -p IMAGE_TAG="$PULL_NUMBER" \
@@ -102,5 +102,5 @@ jobs:
           -p SSO_CLIENT_ID="$SSO_CLIENT_ID" \
           -p SSO_REALM_NAME="$SSO_REALM_NAME" \
           -p ALGOLIA_INDEX_NAME_SUFFIX="$ALGOLIA_INDEX_NAME_SUFFIX" | \
-          oc apply -n $DEV_NAMESAPCE -f -
+          oc apply -n $DEV_NAMESPACE -f -
           echo "Deployment started"
