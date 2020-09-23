@@ -76,6 +76,7 @@ jobs:
     # needs: [ build ]
     runs-on: ubuntu-20.04
     steps:
+      - uses: actions/checkout@v1
       - name: Cluster Login
         uses: redhat-developer/openshift-actions@v1.1
         with:
