@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <main>
+      <h1>hello world!</h1>
+      <form onsubmit="handleSaveName()" method="GET">
+        <input type="text" placeholder="name" />
+        <button>save</button>
+      </form> 
+      <h2>names</h2>
+      <ul>
+
+      </ul>
+    </main>
+
+    <script>
+      const handleSaveName = event => {
+        event.preventDefault();
+        console.log(event);
+        return false;
+      }
+    </script>
+</body>
+</html>

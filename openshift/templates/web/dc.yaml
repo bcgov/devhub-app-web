@@ -15,22 +15,21 @@ objects:
       root * /opt/app-root/src
       file_server 
       encode gzip
+
       try_files {path} {path}/ /index.html
-      log stdout
-      log stderr
-      header / {
-        # prevent any static html from being cached
-        Cache-Control "public, max-age=0, must-revalidate"
+      try_files {path} {path}/
+      log {
+        output stdout
       }
 
       
-      rewrite {
-        regexp ^\/topic(\/[\w|\-|\_|~|\.]+)+
-        to {path} {path}/ /topic/
-      }
-      
-      templates {
-        ext   .js
+      log {
+        output stderr
+      } 
+
+      header / {
+        # prevent any static html from being cached
+        Cache-Control "public, max-age=0, must-revalidate"
       }
 
       header /public/static {
@@ -45,8 +44,12 @@ objects:
       header /app-data.json {
         Cache-Control "public, max-age=0, must-revalidate"
       }
-      
 
+      rewrite /topic/* /topic/index.html
+      
+      templates {
+        ext   .js
+      }
   kind: ConfigMap
   metadata:
     creationTimestamp: null
@@ -147,9 +150,9 @@ objects:
   spec:
     ports:
     - name: web
-      port: 2015
+      port: 4000
       protocol: TCP
-      targetPort: 2015
+      targetPort: 4000
     selector:
       deploymentconfig: ${NAME}${SUFFIX}
 - apiVersion: route.openshift.io/v1
