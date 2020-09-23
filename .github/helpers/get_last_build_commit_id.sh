@@ -6,11 +6,8 @@
 # SUFFIX
 # TOOLS_NAMESPACE
 
-INFRA_NAME=devhub-app-we34b
-SUFFIX=-146e7
-
 LATEST_BUILD=$(oc get -n $TOOLS_NAMESPACE build -l buildconfig=$INFRA_NAME$SUFFIX --sort-by='{.metadata.creationTimestamp}' -o name | tail -n 1)
-echo $LATEST_BUILD FUCK MY LIFE
+echo $LATEST_BUILD
 if [ "$LATEST_BUILD" = "No resources found" ] || [  -z "$LATEST_BUILD" ]; then
   echo "No Builds Found"
   exit 0
