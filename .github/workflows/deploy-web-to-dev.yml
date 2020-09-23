@@ -13,7 +13,7 @@ jobs:
   
   build:
     if: ${{ github.event.deployment.payload.microservice == 'web' }}
-    name: Build and Deploy Gatsby
+    name: Build Gatsby App
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v1
@@ -70,6 +70,7 @@ jobs:
   deploy:
     if: ${{ github.event.deployment.payload.microservice == 'web' }}
     needs: [ build ]
+    runs-on: ubuntu-20.04
     steps:
       - name: Run Deployment to Dev
         env:
