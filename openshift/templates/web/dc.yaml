@@ -50,16 +50,16 @@ objects:
   kind: ConfigMap
   metadata:
     creationTimestamp: null
-    name: caddy-${NAME}-static${SUFFIX}
+    name: caddy-${NAME}${SUFFIX}
     labels:
-      app: ${NAME}-static${SUFFIX}
-      deploymentconfig: ${NAME}-static${SUFFIX}
-      app-name: ${NAME}-static${SUFFIX}
+      app: ${NAME}${SUFFIX}
+      deploymentconfig: ${NAME}${SUFFIX}
+      app-name: ${NAME}${SUFFIX}
 - apiVersion: v1
   kind: ImageStream
   metadata:
     creationTimestamp: null
-    name: ${NAME}-static
+    name: ${NAME}
   spec:
     lookupPolicy:
       local: false
@@ -67,13 +67,13 @@ objects:
   kind: DeploymentConfig
   metadata:
     creationTimestamp: null
-    name: ${NAME}-static${SUFFIX}
+    name: ${NAME}${SUFFIX}
   spec:
     minReadySeconds: 20 # should be ready for atleast 20 seconds before the container is considered available. This will allow us
     # to catch any errors on deploy before they are available to the web
     replicas: 3
     selector:
-      deploymentconfig: ${NAME}-static${SUFFIX}
+      deploymentconfig: ${NAME}${SUFFIX}
     strategy:
       resources:
         requests:
@@ -86,10 +86,10 @@ objects:
       metadata:
         creationTimestamp: null
         labels:
-          deploymentconfig: ${NAME}-static${SUFFIX}
+          deploymentconfig: ${NAME}${SUFFIX}
       spec:
         containers:
-        - image: ${NAME}-static:${VERSION}
+        - image: ${IMAGE_NAMESPACE}/${NAME}:${IMAGE_TAG}
           name: devhub-app-web
           args:
           - /tmp/scripts/run
@@ -107,47 +107,33 @@ objects:
           - name: SEARCHGATE_API_URL
             value: ${SEARCHGATE_API_URL}
           - name: SSO_BASE_URL
-            value: ${SSO_BASE_URL_VALUE}
+            value: ${SSO_BASE_URL}
           - name: SSO_REALM_NAME
-            value: ${SSO_REALM_NAME_VALUE}
+            value: ${SSO_REALM_NAME}
           - name: SSO_CLIENT_ID
-            value: ${SSO_CLIENT_ID_VALUE}
+            value: ${SSO_CLIENT_ID}
           - name: ALGOLIA_INDEX_NAME_SUFFIX
             value: ${ALGOLIA_INDEX_NAME_SUFFIX}
-          - name: MATOMO_URL
-            value: ${MATOMO_URL}
-          - name: MATOMO_SITE_URL
-            value: ${MATOMO_SITE_URL}
-          - name: MATOMO_SITE_ID
-            value: ${MATOMO_SITE_ID}
           - name: DEVHUB_API_URL
             value: ${DEVHUB_API_URL}
           volumeMounts:
-          - name: caddy-${NAME}-static${SUFFIX}
+          - name: caddy-${NAME}${SUFFIX}
             mountPath: /opt/app-root/etc/Caddyfile
             readOnly: true
             subPath: Caddyfile
         volumes:
-        - name: caddy-${NAME}-static${SUFFIX}
+        - name: caddy-${NAME}${SUFFIX}
           configMap:
             defaultMode: 420
-            name: caddy-${NAME}-static${SUFFIX}
+            name: caddy-${NAME}${SUFFIX}
     test: false
     triggers:
     - type: ConfigChange
-    - imageChangeParams:
-        automatic: true
-        containerNames:
-        - devhub-app-web
-        from:
-          kind: ImageStreamTag
-          name: ${NAME}-static:${VERSION}
-      type: ImageChange
 - apiVersion: v1
   kind: Service
   metadata:
     creationTimestamp: null
-    name: ${NAME}-static${SUFFIX}
+    name: ${NAME}${SUFFIX}
   spec:
     ports:
     - name: web
@@ -155,14 +141,14 @@ objects:
       protocol: TCP
       targetPort: 2015
     selector:
-      deploymentconfig: ${NAME}-static${SUFFIX}
+      deploymentconfig: ${NAME}${SUFFIX}
 - apiVersion: route.openshift.io/v1
   kind: Route
   metadata:
     annotations:
       haproxy.router.openshift.io/disable_cookies: 'true'
     creationTimestamp: null
-    name: ${NAME}-static${SUFFIX}
+    name: ${NAME}${SUFFIX}
   spec:
     host:
     port:
@@ -172,7 +158,7 @@ objects:
       termination: edge
     to:
       kind: Service
-      name: ${NAME}-static${SUFFIX}
+      name: ${NAME}${SUFFIX}
       weight: 100
     wildcardPolicy: None
 parameters:
@@ -188,9 +174,11 @@ parameters:
   value: -dev
 - description: A version used for the image tags
   displayName: version
-  name: VERSION
+  name: IMAGE_TAG
   required: true
-  value: v1.0.0
+- name: IMAGE_NAMESPACE
+  description: the namespace to pull the image from
+  required: true
 - description: A name used for routes/services and deployment configs
   displayName: Host
   name: HOST
@@ -203,7 +191,7 @@ parameters:
   value: ''
 - description: A base url of sso in the env
   displayName: sso base URL
-  name: SSO_BASE_URL_VALUE
+  name: SSO_BASE_URL
   required: false
   value: ''
 - description: The base url for the devhub api
@@ -212,12 +200,12 @@ parameters:
   required: true
 - description: A sso client id in the env
   displayName: sso client id
-  name: SSO_CLIENT_ID_VALUE
+  name: SSO_CLIENT_ID
   required: false
   value: ''
 - description: A sso realm name in the env
   displayName: sso realm name
-  name: SSO_REALM_NAME_VALUE
+  name: SSO_REALM_NAME
   required: false
   value: ''
 - description: A volumn used for the caddy from config map
@@ -225,21 +213,6 @@ parameters:
   name: CADDY_VOLUME_NAME
   required: false
   value: web-caddy-config
-- description: Location of the Matomo server that the app should post events to.
-  displayName: Matomo URL
-  name: MATOMO_URL
-  required: false
-  value: ''
-- description: URL (route) where this app is deployed
-  displayName: Matomo URL
-  name: MATOMO_SITE_URL
-  required: false
-  value: ''
-- description: Identifier for this site within Matomo
-  displayName: Matomo URL
-  name: MATOMO_SITE_ID
-  required: false
-  value: '1'
 - description: The algolia search index suffix
   displayName: Algolia Index Suffix
   name: ALGOLIA_INDEX_NAME_SUFFIX

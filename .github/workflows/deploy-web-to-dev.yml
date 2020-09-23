@@ -57,3 +57,31 @@ jobs:
           oc apply -n $TOOLS_NAMESPACE -f -
           echo "Build started"
           oc start-build -n $TOOLS_NAMESPACE $INFRA_NAME$SUFFIX --wait
+      - name: Run Deployment to Dev
+        env:
+          DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
+          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
+          GATSBY_MATOMO_URL: ${{ secrets.GATSBY_MATOMO_URL }}
+          GATSBY_MATOMO_SITE_URL: ${{ secrets.GATSBY_MATOMO_SITE_URL }}
+          GATSBY_MATOMO_SITE_ID: ${{ secrets.GATSBY_MATOMO_SITE_ID }}
+          SSO_DEV_URL: ${{ secrets.SSO_DEV_URL }}
+          SSO_CLIENT_ID: "devhub-web-$PULLNUMBER"
+          SSO_REALM_NAME: ${{ secrets.SSO_REALM_NAME }}
+          MATOMO_URL: ${{ secrets.MATOMO_URL }}
+          ALGOLIA_INDEX_NAME_SUFFIX: "-build-$PULL_NUMBER"
+        run: |
+          oc process -f openshift/templates/web/dc.yaml -n $DEV_NAMESAPCE \
+          -p NAME=$INFRA_NAME \
+          -p IMAGE_NAMESPACE=$TOOLS_NAMESPACE \
+          -p IMAGE_TAG="$PULL_NUMBER" | \
+          -p SUFFIX=$SUFFIX \
+          -p SOURCE_REPOSITORY_URL="https://github.com/$GITHUB_REPOSITORY" \
+          -p SOURCE_REPOSITORY_REF=$GITHUB_REF \
+          -p SEARCH_GATE_API_URL="https://searchgate.pathfinder.gov.bc.ca" \
+          -p SSO_BASE_URL="$SSO_DEV_URL" \
+          -p DEVHUB_API_URL="https://devhub-api-prod-devhub-prod.pathfinder.gov.bc.ca" \
+          -p SSO_CLIENT_ID="$SSO_CLIENT_ID" \
+          -p SSO_REALM_NAME="$SSO_REALM_NAME" \
+          -p ALGOLIA_INDEX_NAME_SUFFIX="$ALGOLIA_INDEX_NAME_SUFFIX" \
+          oc apply -n $DEV_NAMESAPCE -f -
+          echo "Deployment started"
