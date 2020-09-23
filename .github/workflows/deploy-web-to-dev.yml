@@ -84,10 +84,10 @@ jobs:
           GATSBY_MATOMO_SITE_URL: ${{ secrets.GATSBY_MATOMO_SITE_URL }}
           GATSBY_MATOMO_SITE_ID: ${{ secrets.GATSBY_MATOMO_SITE_ID }}
           SSO_DEV_URL: ${{ secrets.SSO_DEV_URL }}
-          SSO_CLIENT_ID: "devhub-web-${{ PULL_NUMBER }}"
+          SSO_CLIENT_ID: "devhub-web-${{ env.PULL_NUMBER }}"
           SSO_REALM_NAME: ${{ secrets.SSO_REALM_NAME }}
           MATOMO_URL: ${{ secrets.MATOMO_URL }}
-          ALGOLIA_INDEX_NAME_SUFFIX: "-build-${{ PULL_NUMBER }}"
+          ALGOLIA_INDEX_NAME_SUFFIX: "-build-${{ env.PULL_NUMBER }}"
         run: |
           oc process -f openshift/templates/web/dc.yaml -n $DEV_NAMESPACE \
           -p NAME=$INFRA_NAME \
