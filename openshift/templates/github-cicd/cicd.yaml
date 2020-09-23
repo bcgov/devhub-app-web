@@ -160,6 +160,7 @@ objects:
           - imagestreamtags
         verbs:
           - update
+          - get
       - apiGroups:
           - ""
         attributeRestrictions: null
@@ -211,6 +212,16 @@ objects:
           - patch
           - delete
           - update
+      - apiGroups:
+          - image.openshift.io
+          - ""
+        resources:
+          - imagestreams
+        verbs:
+          - get
+          - list
+          - patch
+          - create
   - apiVersion: authorization.openshift.io/v1
     kind: RoleBinding
     metadata:
@@ -243,6 +254,21 @@ objects:
       name: ${NAME}-deployer-dev
       namespace: ${DEV_NAMESPACE}
       apiGroup: authorization.openshift.io
+  - apiVersion: authorization.openshift.io/v1
+    kind: RoleBinding
+    metadata:
+      name: ${NAME}-deployer-dev-image-puller
+      labels:
+        app: ${NAME}
+      namespace: ${TOOLS_NAMESPACE}
+    subjects:
+      - kind: ServiceAccount
+        name: default
+        namespace: ${DEV_NAMESPACE}
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: 'system:image-puller'
 
 parameters:
   - displayName: Tools Namespace

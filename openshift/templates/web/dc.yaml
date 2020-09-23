@@ -53,13 +53,17 @@ objects:
     name: caddy-${NAME}${SUFFIX}
     labels:
       app: ${NAME}${SUFFIX}
-      deploymentconfig: ${NAME}${SUFFIX}
-      app-name: ${NAME}${SUFFIX}
+      group: ${NAME}
+      version: ${IMAGE_TAG}
 - apiVersion: v1
   kind: ImageStream
   metadata:
     creationTimestamp: null
     name: ${NAME}
+    labels:
+      app: ${NAME}${SUFFIX}
+      group: ${NAME}
+      version: ${IMAGE_TAG}
   spec:
     lookupPolicy:
       local: false
@@ -68,6 +72,10 @@ objects:
   metadata:
     creationTimestamp: null
     name: ${NAME}${SUFFIX}
+    labels:
+      app: ${NAME}${SUFFIX}
+      group: ${NAME}
+      version: ${IMAGE_TAG}
   spec:
     minReadySeconds: 20 # should be ready for atleast 20 seconds before the container is considered available. This will allow us
     # to catch any errors on deploy before they are available to the web
@@ -134,6 +142,10 @@ objects:
   metadata:
     creationTimestamp: null
     name: ${NAME}${SUFFIX}
+    labels:
+      app: ${NAME}${SUFFIX}
+      group: ${NAME}
+      version: ${IMAGE_TAG}
   spec:
     ports:
     - name: web
@@ -149,6 +161,10 @@ objects:
       haproxy.router.openshift.io/disable_cookies: 'true'
     creationTimestamp: null
     name: ${NAME}${SUFFIX}
+    labels:
+      app: ${NAME}${SUFFIX}
+      group: ${NAME}
+      version: ${IMAGE_TAG}
   spec:
     host:
     port:
