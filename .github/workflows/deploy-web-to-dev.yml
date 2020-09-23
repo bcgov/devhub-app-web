@@ -76,6 +76,13 @@ jobs:
     # needs: [ build ]
     runs-on: ubuntu-20.04
     steps:
+      - name: Cluster Login
+        uses: redhat-developer/openshift-actions@v1.1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL}}
+          parameters: '{"apitoken": "${{ secrets.SA_PASSWORD }}"}'
+          cmd: |
+            'version'
       - name: Run Deployment to Dev
         env:
           DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
