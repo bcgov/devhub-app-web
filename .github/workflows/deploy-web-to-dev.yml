@@ -102,9 +102,7 @@ jobs:
           -p IMAGE_NAMESPACE=$TOOLS_NAMESPACE \
           -p IMAGE_TAG="$PULL_NUMBER" \
           -p SUFFIX=$SUFFIX \
-          -p SOURCE_REPOSITORY_URL="https://github.com/$GITHUB_REPOSITORY" \
-          -p SOURCE_REPOSITORY_REF=$GITHUB_REF \
-          -p SEARCH_GATE_API_URL="https://searchgate.pathfinder.gov.bc.ca" \
+          -p SEARCHGATE_API_URL="https://searchgate.pathfinder.gov.bc.ca" \
           -p SSO_BASE_URL="$SSO_DEV_URL" \
           -p DEVHUB_API_URL="https://devhub-api-prod-devhub-prod.pathfinder.gov.bc.ca" \
           -p SSO_CLIENT_ID="$SSO_CLIENT_ID" \
