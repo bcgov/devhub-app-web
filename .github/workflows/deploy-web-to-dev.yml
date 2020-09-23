@@ -73,7 +73,7 @@ jobs:
           oc start-build -n $TOOLS_NAMESPACE $INFRA_NAME$SUFFIX --wait
   deploy:
     if: ${{ github.event.deployment.payload.microservice == 'web' }}
-    # needs: [ build ]
+    needs: [ build ]
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v1
