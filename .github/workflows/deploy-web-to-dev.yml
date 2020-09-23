@@ -10,6 +10,7 @@ env:
   INFRA_NAME: devhub-app-web
   SUFFIX: "-${{ github.event.deployment.payload.pr }}"
 jobs:
+  
   build:
     if: ${{ github.event.deployment.payload.microservice == 'web' }}
     name: Build and Deploy Gatsby
@@ -37,7 +38,12 @@ jobs:
             'version'
       - name: Cancel previous builds (if any)
         run: 'oc cancel-build -n ${{ secrets.TOOLS_NAMESPACE }} bc/${{ env.INFRA_NAME }}${{ env.SUFFIX }} || echo no build found for ${{ github.event.deployment.payload.pr }}'
-      - name: Run Build
+      - name: Check if should run build (based on a commit id comparison)
+        # reference https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable
+        run: |
+          _commit=$(.github/helpers/get_last_build_commit_id.sh)
+          echo "::set-env name=BUILD_COMMIT_ID::$_commit"
+      - name: Create Build
         env:
           TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
           GATSBY_MATOMO_URL: ${{ secrets.GATSBY_MATOMO_URL }}
@@ -55,8 +61,16 @@ jobs:
           -p MATOMO_SITE_ID=$GATSBY_MATOMO_SITE_ID -n $TOOLS_NAMESPACE \
           -p VERSION="$PULL_NUMBER" | \
           oc apply -n $TOOLS_NAMESPACE -f -
+          
+      - name: Start Build (if needed)
+        if: env.BUILD_COMMIT_ID != github.sha
+        run: |
           echo "Build started"
           oc start-build -n $TOOLS_NAMESPACE $INFRA_NAME$SUFFIX --wait
+  deploy:
+    if: ${{ github.event.deployment.payload.microservice == 'web' }}
+    needs: [ build ]
+    steps:
       - name: Run Deployment to Dev
         env:
           DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
