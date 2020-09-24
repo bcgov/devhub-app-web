@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v1
       
       - name: Change Deploy Status to In Progress
-        uses: unacast/actions-github-deployment-status@latest
+        uses: unacast/actions-github-deployment-status@0.4.0
         with:
           github_token: ${{github.token}}
           status: in_progress
@@ -116,7 +116,7 @@ jobs:
           echo "::set-env name=DEPLOY_ROUTE::$HOST_NAME"
 
       - name: Change Deploy Status to Success or Failure
-        uses: unacast/actions-github-deployment-status@latest
+        uses: unacast/actions-github-deployment-status@0.4.0
         with:
           github_token: ${{ github.token }}
           status: ${{ env.DEPLOY_STATUS }}
