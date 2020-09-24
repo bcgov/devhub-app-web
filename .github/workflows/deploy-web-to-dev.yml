@@ -27,7 +27,8 @@ jobs:
               deployment_id: context.payload.deployment.id,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              state: 'pending'
+              state: 'pending',
+              environment: "${{ github.event.deployment.environment }}"
             });
       - name: Cluster Login
         uses: redhat-developer/openshift-actions@v1.1
@@ -110,3 +111,27 @@ jobs:
           -p ALGOLIA_INDEX_NAME_SUFFIX="$ALGOLIA_INDEX_NAME_SUFFIX" | \
           oc apply -n $DEV_NAMESPACE -f -
           echo "Deployment started"
+      - name: Wait for Deployment and Update Status
+        env:
+          NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
+
+        run: |
+          DEPLOY_STATUS=$(.github/helpers/wait_for_deployment dc/$INFRA_NAME$SUFFIX)
+          echo "getting route to set deployment status"
+          HOST_NAME=$(.github/helpers/get_route_from_app.sh)
+          echo "::set-env name=DEPLOY_STATUS::$DEPLOY_STATUS"
+          echo "::set-env name=DEPLOY_ROUTE::$HOST_NAME"
+
+      - name: Update Deploy Status
+        uses: actions/github-script@0.3.0
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            github.repos.createDeploymentStatus({
+              deployment_id: context.payload.deployment.id,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: $DEPLOY_STATUS,
+              environment_url: $DEPLOY_ROUTE,
+              environment: "${{ github.event.deployment.environment }}"
+            });

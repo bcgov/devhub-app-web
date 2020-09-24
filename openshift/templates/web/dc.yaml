@@ -101,6 +101,7 @@ objects:
       spec:
         containers:
         - image: ${IMAGE_REGISTRY}/${IMAGE_NAMESPACE}/${NAME}:${IMAGE_TAG}
+          imagePullPolicy: Always
           name: devhub-app-web
           ports:
           - containerPort: 2015
