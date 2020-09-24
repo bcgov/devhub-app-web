@@ -9,8 +9,61 @@ env:
   ENVIRONMENT: ${{ github.event.deployment.environment }}
   INFRA_NAME: devhub-app-web
   SUFFIX: "-${{ github.event.deployment.payload.pr }}"
+  TEST_IMAGE_TAG: test
 jobs:
-  
+  promote-to-test:
+    name: Promote Web to Test
+    if: github.event.deployment.payload.microservice == 'web' && 
+      (github.event.deployment.environment == 'staging' || github.event.deployment.environment == 'qa')
+    runs-on: ubuntu-20.04  
+
+    steps:
+      - uses: actions/checkout@v1
+      
+      - name: Change Deploy Status to In Progress
+        uses: unacast/actions-github-deployment-status@0.4.0
+        with:
+          github_token: ${{ github.token }}
+          status: in_progress
+      - name: Cluster Login
+        uses: redhat-developer/openshift-actions@v1.1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL}}
+          parameters: '{"apitoken": "${{ secrets.SA_PASSWORD }}"}'
+          cmd: |
+            'version'
+      - name: Import PR based Image to Test
+        run: |
+          oc tag ${{ secrets.TOOLS_NAMESPACE }}/${{ env.INFRA_NAME }}:${{ env.PULL_NUMBER }} \
+           ${{ secrets.TEST_NAMESPACE }}//${{ env.INFRA_NAME }}:${{ env.TEST_IMAGE_TAG }}
+      - name: Run Deployment to Test
+        env:
+          TEST_NAMESPACE: ${{ secrets.TEST_NAMESPACE }}
+          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
+          GATSBY_MATOMO_URL: ${{ secrets.GATSBY_MATOMO_URL }}
+          GATSBY_MATOMO_SITE_URL: ${{ secrets.GATSBY_MATOMO_SITE_URL }}
+          GATSBY_MATOMO_SITE_ID: ${{ secrets.GATSBY_MATOMO_SITE_ID }}
+          SSO_DEV_URL: ${{ secrets.SSO_DEV_URL }}
+          SSO_CLIENT_ID: "devhub-web-${{ env.PULL_NUMBER }}"
+          SSO_REALM_NAME: ${{ secrets.SSO_REALM_NAME }}
+          MATOMO_URL: ${{ secrets.MATOMO_URL }}
+          ALGOLIA_INDEX_NAME_SUFFIX: "-build-${{ env.PULL_NUMBER }}"
+        run: |
+          oc process -f openshift/templates/web/dc.yaml -n $TEST_NAMESPACE \
+          -p NAME=$INFRA_NAME \
+          -p IMAGE_NAMESPACE=$TEST_NAMESPACE \
+          -p IMAGE_TAG="$TEST_IMAGE_TAG" \
+          -p SUFFIX=$SUFFIX \
+          -p SEARCHGATE_API_URL="https://searchgate.pathfinder.gov.bc.ca" \
+          -p SSO_BASE_URL="$SSO_DEV_URL" \
+          -p DEVHUB_API_URL="https://devhub-api-prod-devhub-prod.pathfinder.gov.bc.ca" \
+          -p SSO_CLIENT_ID="$SSO_CLIENT_ID" \
+          -p SSO_REALM_NAME="$SSO_REALM_NAME" \
+          -p ALGOLIA_INDEX_NAME_SUFFIX="$ALGOLIA_INDEX_NAME_SUFFIX" | \
+          oc apply -n $TEST_NAMESPACE -f -
+          echo "Deployment started"
+
+          
   build:
     if: ${{ github.event.deployment.payload.microservice == 'web' }}
     name: Build Gatsby App
