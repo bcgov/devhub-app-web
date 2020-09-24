@@ -1,4 +1,4 @@
-name: On Deployment Created
+name: On Promotion to Test or Production for Web
 on: 
   deployment
 env:
@@ -11,10 +11,14 @@ env:
   SUFFIX: "-${{ github.event.deployment.payload.pr }}"
   TEST_IMAGE_TAG: test
 jobs:
-  promote-to-test:
-    name: Promote Web to Test
+  promote-environment:
+    name: Promote Web to Environment
     if: github.event.deployment.payload.microservice == 'web' && 
-      (github.event.deployment.environment == 'staging' || github.event.deployment.environment == 'qa')
+      (
+        github.event.deployment.environment == 'staging' || 
+        github.event.deployment.environment == 'qa' || 
+        github.event.deployment.environment == 'production' || 
+      )
     runs-on: ubuntu-20.04  
 
     steps:
@@ -25,6 +29,11 @@ jobs:
         with:
           github_token: ${{ github.token }}
           status: in_progress
+      - name: Map the deployments environment to a valid Openshift Namespace
+        run: |
+          _NAMESPACE=$(.github/helpers/github_env_to_namespace.sh ${{  github.event.deployment.environment}})
+          echo "::set-env name=DEPLOY_NAMESPACE::$_NAMESPACE"
+          echo "Deploying to $_NAMESPACE"
       - name: Cluster Login
         uses: redhat-developer/openshift-actions@v1.1
         with:
@@ -32,13 +41,13 @@ jobs:
           parameters: '{"apitoken": "${{ secrets.SA_PASSWORD }}"}'
           cmd: |
             'version'
-      - name: Import PR based Image to Test
+      - name: Import PR based Image to Environment
         run: |
           oc tag ${{ secrets.TOOLS_NAMESPACE }}/${{ env.INFRA_NAME }}:${{ env.PULL_NUMBER }} \
-           ${{ secrets.TEST_NAMESPACE }}//${{ env.INFRA_NAME }}:${{ env.TEST_IMAGE_TAG }}
-      - name: Run Deployment to Test
+           ${{ env.DEPLOY_NAMESPACE }}//${{ env.INFRA_NAME }}:${{ env.TEST_IMAGE_TAG }}
+      - name: Run Deployment
         env:
-          TEST_NAMESPACE: ${{ secrets.TEST_NAMESPACE }}
+          DEPLOY_NAMESPACE: ${{ env.DEPLOY_NAMESPACE }}
           TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
           GATSBY_MATOMO_URL: ${{ secrets.GATSBY_MATOMO_URL }}
           GATSBY_MATOMO_SITE_URL: ${{ secrets.GATSBY_MATOMO_SITE_URL }}
@@ -49,9 +58,9 @@ jobs:
           MATOMO_URL: ${{ secrets.MATOMO_URL }}
           ALGOLIA_INDEX_NAME_SUFFIX: "-build-${{ env.PULL_NUMBER }}"
         run: |
-          oc process -f openshift/templates/web/dc.yaml -n $TEST_NAMESPACE \
+          oc process -f openshift/templates/web/dc.yaml -n $DEPLOY_NAMESPACE \
           -p NAME=$INFRA_NAME \
-          -p IMAGE_NAMESPACE=$TEST_NAMESPACE \
+          -p IMAGE_NAMESPACE=$DEPLOY_NAMESPACE \
           -p IMAGE_TAG="$TEST_IMAGE_TAG" \
           -p SUFFIX=$SUFFIX \
           -p SEARCHGATE_API_URL="https://searchgate.pathfinder.gov.bc.ca" \
@@ -60,109 +69,12 @@ jobs:
           -p SSO_CLIENT_ID="$SSO_CLIENT_ID" \
           -p SSO_REALM_NAME="$SSO_REALM_NAME" \
           -p ALGOLIA_INDEX_NAME_SUFFIX="$ALGOLIA_INDEX_NAME_SUFFIX" | \
-          oc apply -n $TEST_NAMESPACE -f -
-          echo "Deployment started"
-
-          
-  build:
-    if: ${{ github.event.deployment.payload.microservice == 'web' }}
-    name: Build Gatsby App
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v1
-      
-      - name: Change Deploy Status to In Progress
-        uses: unacast/actions-github-deployment-status@0.4.0
-        with:
-          github_token: ${{github.token}}
-          status: in_progress
-      - name: Cluster Login
-        uses: redhat-developer/openshift-actions@v1.1
-        with:
-          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL}}
-          parameters: '{"apitoken": "${{ secrets.SA_PASSWORD }}"}'
-          cmd: |
-            'version'
-      - name: Cancel previous builds (if any)
-        run: 'oc cancel-build -n ${{ secrets.TOOLS_NAMESPACE }} bc/${{ env.INFRA_NAME }}${{ env.SUFFIX }} || echo no build found for ${{ github.event.deployment.payload.pr }}'
-      - name: Check if should run build (based on a commit id comparison)
-        env:
-          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
-        # reference https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable
-        run: |
-          _commit=$(.github/helpers/get_last_build_commit_id.sh)
-          echo "::set-env name=BUILD_COMMIT_ID::$_commit"
-      - name: Create Build
-        env:
-          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
-          GATSBY_MATOMO_URL: ${{ secrets.GATSBY_MATOMO_URL }}
-          GATSBY_MATOMO_SITE_URL: ${{ secrets.GATSBY_MATOMO_SITE_URL }}
-          GATSBY_MATOMO_SITE_ID: ${{ secrets.GATSBY_MATOMO_SITE_ID }}
-
-        run: |
-          oc process -f openshift/templates/web/bc.yaml -n $TOOLS_NAMESPACE \
-          -p SUFFIX=$SUFFIX \
-          -p SOURCE_REPOSITORY_URL="https://github.com/$GITHUB_REPOSITORY" \
-          -p SOURCE_REPOSITORY_REF=$GITHUB_REF \
-          -p MATOMO_URL=$GATSBY_MATOMO_URL \
-          -p NAME=$INFRA_NAME \
-          -p MATOMO_SITE_URL=$GATSBY_MATOMO_SITE_URL \
-          -p MATOMO_SITE_ID=$GATSBY_MATOMO_SITE_ID -n $TOOLS_NAMESPACE \
-          -p VERSION="$PULL_NUMBER" | \
-          oc apply -n $TOOLS_NAMESPACE -f -
-          
-      - name: Start Build (if needed)
-        if: env.BUILD_COMMIT_ID != github.sha
-        env:
-          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
-        run: |
-          echo "Build started"
-          oc start-build -n $TOOLS_NAMESPACE $INFRA_NAME$SUFFIX --wait
-  deploy:
-    if: ${{ github.event.deployment.payload.microservice == 'web' }}
-    needs: [ build ]
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v1
-      - name: Cluster Login
-        uses: redhat-developer/openshift-actions@v1.1
-        with:
-          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL}}
-          parameters: '{"apitoken": "${{ secrets.SA_PASSWORD }}"}'
-          cmd: |
-            'version'
-      - name: Run Deployment to Dev
-        env:
-          DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
-          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
-          GATSBY_MATOMO_URL: ${{ secrets.GATSBY_MATOMO_URL }}
-          GATSBY_MATOMO_SITE_URL: ${{ secrets.GATSBY_MATOMO_SITE_URL }}
-          GATSBY_MATOMO_SITE_ID: ${{ secrets.GATSBY_MATOMO_SITE_ID }}
-          SEARCHGATE_API_URL: ${{ secrets.SEARCHGATE_API_URL }}
-          DEVHUB_API_URL: ${{ secrets.DEVHUB_API_URL }}
-          SSO_DEV_URL: ${{ secrets.SSO_DEV_URL }}
-          SSO_CLIENT_ID: "devhub-web-${{ env.PULL_NUMBER }}"
-          SSO_REALM_NAME: ${{ secrets.SSO_REALM_NAME }}
-          MATOMO_URL: ${{ secrets.MATOMO_URL }}
-          ALGOLIA_INDEX_NAME_SUFFIX: "-build-${{ env.PULL_NUMBER }}"
-        run: |
-          oc process -f openshift/templates/web/dc.yaml -n $DEV_NAMESPACE \
-          -p NAME=$INFRA_NAME \
-          -p IMAGE_NAMESPACE=$TOOLS_NAMESPACE \
-          -p IMAGE_TAG="$PULL_NUMBER" \
-          -p SUFFIX=$SUFFIX \
-          -p SEARCHGATE_API_URL="$SEARCHGATE_API_URL" \
-          -p SSO_BASE_URL="$SSO_DEV_URL" \
-          -p DEVHUB_API_URL="$DEVHUB_API_URL" \
-          -p SSO_CLIENT_ID="$SSO_CLIENT_ID" \
-          -p SSO_REALM_NAME="$SSO_REALM_NAME" \
-          -p ALGOLIA_INDEX_NAME_SUFFIX="$ALGOLIA_INDEX_NAME_SUFFIX" | \
-          oc apply -n $DEV_NAMESPACE -f -
+          oc apply -n $DEPLOY_NAMESPACE -f -
           echo "Deployment started"
 
       - name: Wait for Deployment and Update Status
         env:
-          NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
+          NAMESPACE: ${{ env.DEPLOY_NAMESPACE }}
         run: |
           DEPLOY_STATUS=$(.github/helpers/wait_for_deployment.sh dc/$INFRA_NAME$SUFFIX)
           echo "getting route to set deployment status"
