@@ -30,7 +30,7 @@ jobs:
               state: 'pending',
               environment: "${{ github.event.deployment.environment }}",
               mediaType: {
-                previes: ['ant-man-preview', 'flash-preview']
+                previews: ['ant-man-preview', 'flash-preview']
               }
             });
       - name: Cluster Login
@@ -138,6 +138,6 @@ jobs:
               environment_url: $DEPLOY_ROUTE,
               environment: "${{ github.event.deployment.environment }}",
               mediaType: {
-                previes: ['ant-man-preview', 'flash-preview']
+                previews: ['ant-man-preview', 'flash-preview']
               }
             });
