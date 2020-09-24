@@ -32,11 +32,11 @@ objects:
     postCommit: {}
     resources:
       requests:
-        cpu: 250m
-        memory: 500Mi
+        cpu: 1
+        memory: 3Gi
       limits:
-        cpu: 400m
-        memory: 750Mi
+        cpu: 2
+        memory: 4Gi
     source:
       git:
         uri: ${SOURCE_REPOSITORY_URL}
