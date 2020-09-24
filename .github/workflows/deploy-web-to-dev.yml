@@ -109,7 +109,7 @@ jobs:
         env:
           NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
         run: |
-          DEPLOY_STATUS=$(.github/helpers/wait_for_deployment dc/$INFRA_NAME$SUFFIX)
+          DEPLOY_STATUS=$(.github/helpers/wait_for_deployment.sh dc/$INFRA_NAME$SUFFIX)
           echo "getting route to set deployment status"
           HOST_NAME=$(.github/helpers/get_route_from_app.sh)
           echo "::set-env name=DEPLOY_STATUS::$DEPLOY_STATUS"
