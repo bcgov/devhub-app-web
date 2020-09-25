@@ -8,7 +8,6 @@ env:
   DEPLOYMENT_ID: ${{ github.event.deployment.id }}
   ENVIRONMENT: ${{ github.event.deployment.environment }}
   INFRA_NAME: devhub-app-web
-  SUFFIX: "-${{ github.event.deployment.payload.pr }}"
 jobs:
   promote-environment:
     name: Promote Web to Environment
@@ -37,6 +36,7 @@ jobs:
           _IMAGE_TAG=$(.github/helpers/github_env_to_image_tag.sh ${{  github.event.deployment.environment}})
           echo "::set-env name=DEPLOY_NAMESPACE::$_NAMESPACE"
           echo "::set-env name=IMAGE_TAG::$_IMAGE_TAG"
+          echo "::set-env name=SUFFIX::-$_IMAGE_TAG"
           echo "Deploying to $_NAMESPACE"
       - name: Cluster Login
         uses: redhat-developer/openshift-actions@v1.1
