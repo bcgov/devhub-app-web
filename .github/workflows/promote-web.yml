@@ -89,4 +89,4 @@ jobs:
           github-token: ${{ github.token }}
           script: |
             const {  repo: { owner, repo }  } = context;
-            github.issues.createComment({ issue_number: ${{ env.PULL_NUMBER }}, owner, repo, body: 'Deployment to ${{ github.event.deployment.environment }} succeeded! Check it out ${{ env.DEPLOY_ROUTE }}' });
+            github.issues.createComment({ issue_number: ${{ env.PULL_NUMBER }}, owner, repo, body: 'Deployment to ${{ github.event.deployment.environment }} succeeded! [Check it out](${{ env.DEPLOY_ROUTE }})' });
