@@ -48,7 +48,7 @@ jobs:
       - name: Import PR based Image to Environment
         run: |
           oc tag ${{ secrets.TOOLS_NAMESPACE }}/${{ env.INFRA_NAME }}:${{ env.PULL_NUMBER }} \
-           ${{ env.DEPLOY_NAMESPACE }}/${{ env.INFRA_NAME }}:${{ env.TEST_IMAGE_TAG }}
+           ${{ env.DEPLOY_NAMESPACE }}/${{ env.INFRA_NAME }}:${{ env.IMAGE_TAG }}
       - name: Run Deployment
         env:
           IMAGE_NAMESPACE: ${{ env.DEPLOY_NAMESPACE }}
