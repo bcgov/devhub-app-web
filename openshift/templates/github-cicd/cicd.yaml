@@ -11,6 +11,8 @@ objects:
       labels:
         app: ${NAME}
       namespace: ${TOOLS_NAMESPACE}
+
+  # Builder Service Account Role
   - apiVersion: authorization.openshift.io/v1
     kind: Role
     metadata:
@@ -95,6 +97,8 @@ objects:
           - get
           - list
           - watch
+
+  # Deployer Role
   - apiVersion: authorization.openshift.io/v1
     kind: Role
     metadata:
@@ -222,10 +226,11 @@ objects:
           - list
           - patch
           - create
+
   - apiVersion: authorization.openshift.io/v1
     kind: Role
     metadata:
-      name: ${NAME}-deployer-dev
+      name: ${NAME}-deployer-test
       labels:
         app: ${NAME}
       namespace: ${TEST_NAMESPACE}
@@ -285,6 +290,7 @@ objects:
         attributeRestrictions: null
         resources:
           - imagestreamtags
+          - imagestreams
         verbs:
           - update
           - get
@@ -352,7 +358,7 @@ objects:
   - apiVersion: authorization.openshift.io/v1
     kind: Role
     metadata:
-      name: ${NAME}-deployer-dev
+      name: ${NAME}-deployer-prod
       labels:
         app: ${NAME}
       namespace: ${PROD_NAMESPACE}
@@ -476,6 +482,8 @@ objects:
           - list
           - patch
           - create
+
+  # BUILDER ROLE BINDING
   - apiVersion: authorization.openshift.io/v1
     kind: RoleBinding
     metadata:
@@ -508,10 +516,11 @@ objects:
       name: ${NAME}-deployer-dev
       namespace: ${DEV_NAMESPACE}
       apiGroup: authorization.openshift.io
+  
   - apiVersion: authorization.openshift.io/v1
     kind: RoleBinding
     metadata:
-      name: ${NAME}-deployer-dev
+      name: ${NAME}-deployer-test
       labels:
         app: ${NAME}
       namespace: ${TEST_NAMESPACE}
@@ -521,13 +530,14 @@ objects:
         namespace: ${TOOLS_NAMESPACE}
     roleRef:
       kind: Role
-      name: ${NAME}-deployer-dev
+      name: ${NAME}-deployer-test
       namespace: ${TEST_NAMESPACE}
       apiGroup: authorization.openshift.io
+          
   - apiVersion: authorization.openshift.io/v1
     kind: RoleBinding
     metadata:
-      name: ${NAME}-deployer-dev
+      name: ${NAME}-deployer-prod
       labels:
         app: ${NAME}
       namespace: ${PROD_NAMESPACE}
@@ -537,9 +547,12 @@ objects:
         namespace: ${TOOLS_NAMESPACE}
     roleRef:
       kind: Role
-      name: ${NAME}-deployer-dev
+      name: ${NAME}-deployer-prod
       namespace: ${PROD_NAMESPACE}
       apiGroup: authorization.openshift.io
+
+
+  # IMAGE PULL BINDINGS
   - apiVersion: authorization.openshift.io/v1
     kind: RoleBinding
     metadata:
@@ -555,22 +568,7 @@ objects:
       apiGroup: rbac.authorization.k8s.io
       kind: ClusterRole
       name: 'system:image-puller'
-  - apiVersion: authorization.openshift.io/v1
-    kind: RoleBinding
-    metadata:
-      name: ${NAME}-deployer-dev
-      labels:
-        app: ${NAME}
-      namespace: ${DEV_NAMESPACE}
-    subjects:
-      - kind: ServiceAccount
-        name: ${NAME}
-        namespace: ${TOOLS_NAMESPACE}
-    roleRef:
-      kind: Role
-      name: ${NAME}-deployer-dev
-      namespace: ${DEV_NAMESPACE}
-      apiGroup: authorization.openshift.io
+
   - apiVersion: authorization.openshift.io/v1
     kind: RoleBinding
     metadata:
