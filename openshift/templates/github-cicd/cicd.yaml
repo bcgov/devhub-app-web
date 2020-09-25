@@ -216,6 +216,7 @@ objects:
           - patch
           - delete
           - update
+          - watch
       - apiGroups:
           - image.openshift.io
           - ""
@@ -345,6 +346,7 @@ objects:
           - patch
           - delete
           - update
+          - watch
       - apiGroups:
           - image.openshift.io
           - ""
@@ -472,6 +474,7 @@ objects:
           - patch
           - delete
           - update
+          - watch
       - apiGroups:
           - image.openshift.io
           - ""
