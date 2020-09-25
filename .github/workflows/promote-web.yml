@@ -88,5 +88,5 @@ jobs:
         with:
           github-token: ${{ github.token }}
           script: |
-            const { issue: { number }, repo: { owner, repo }  } = context;
-            github.issues.createComment({ issue_number: number, owner, repo, body: 'Deployment to ${{ env.DEPLOY_NAMESPACE }} succeeded! Check it out ${{ env.DEPLOY_ROUTE }}' });
+            const {  repo: { owner, repo }  } = context;
+            github.issues.createComment({ issue_number: ${{ env.PULL_NUMBER }}, owner, repo, body: 'Deployment to ${{ env.DEPLOY_NAMESPACE }} succeeded! Check it out ${{ env.DEPLOY_ROUTE }}' });
