@@ -17,10 +17,9 @@ jobs:
       (
         github.event.deployment.environment == 'staging' || 
         github.event.deployment.environment == 'qa' || 
-        github.event.deployment.environment == 'production' || 
+        github.event.deployment.environment == 'production' 
       )
     runs-on: ubuntu-20.04  
-
     steps:
       - uses: actions/checkout@v1
       
