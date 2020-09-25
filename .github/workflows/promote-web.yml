@@ -81,3 +81,11 @@ jobs:
         with:
           github_token: ${{ github.token }}
           status: ${{ env.DEPLOY_STATUS }}
+      
+      - name: Comment PR
+        if: env.DEPLOY_STATUS == 'success'
+        uses: thollander/actions-comment-pull-request@master
+        with:
+          message: 'Deployment to ${{ env.DEPLOY_NAMESPACE }} Successful! Check it out ${{ env.DEPLOY_STATUS }}'
+          GITHUB_TOKEN: ${{ github.token }}
+    
