@@ -29,6 +29,10 @@ jobs:
           github_token: ${{ github.token }}
           status: in_progress
       - name: Map the deployments environment to a valid Openshift Namespace
+        env:
+          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
+          PROD_NAMESPACE: ${{ secrets.PROD_NAMESPACE }}
+          DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
         run: |
           _NAMESPACE=$(.github/helpers/github_env_to_namespace.sh ${{  github.event.deployment.environment}})
           echo "::set-env name=DEPLOY_NAMESPACE::$_NAMESPACE"
