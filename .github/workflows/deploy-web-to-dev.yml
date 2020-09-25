@@ -12,7 +12,8 @@ env:
 jobs:
   
   build:
-    if: ${{ github.event.deployment.payload.microservice == 'web' }}
+    if: ${{ github.event.deployment.payload.microservice == 'web' && 
+      github.event.deployment.environment == 'development' }}
     name: Build Gatsby App
     runs-on: ubuntu-20.04
     steps:
@@ -66,7 +67,8 @@ jobs:
           echo "Build started"
           oc start-build -n $TOOLS_NAMESPACE $INFRA_NAME$SUFFIX --wait
   deploy:
-    if: ${{ github.event.deployment.payload.microservice == 'web' }}
+    if: ${{ github.event.deployment.payload.microservice == 'web' && 
+      github.event.deployment.environment == 'development' }}
     needs: [ build ]
     runs-on: ubuntu-20.04
     steps:
