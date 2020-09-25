@@ -29,7 +29,7 @@ jobs:
           status: in_progress
       - name: Map the deployments environment to a valid Openshift Namespace
         env:
-          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
+          TEST_NAMESPACE: ${{ secrets.TEST_NAMESPACE }}
           PROD_NAMESPACE: ${{ secrets.PROD_NAMESPACE }}
           DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
         run: |
