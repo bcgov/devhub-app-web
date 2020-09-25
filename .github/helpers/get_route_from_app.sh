@@ -10,7 +10,5 @@
 
 _ROUTE=$(oc -n $NAMESPACE get route/$INFRA_NAME$SUFFIX -o json)
 _HOST=$(echo $_ROUTE | jq '.spec.host')
-# remove leading and trailing quotes
-_HOST="${HOST%\"}"
-_HOST="${HOST#\"}"
+
 echo $_HOST
