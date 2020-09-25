@@ -9,7 +9,6 @@ env:
   ENVIRONMENT: ${{ github.event.deployment.environment }}
   INFRA_NAME: devhub-app-web
   SUFFIX: "-${{ github.event.deployment.payload.pr }}"
-  TEST_IMAGE_TAG: test
 jobs:
   promote-environment:
     name: Promote Web to Environment
@@ -35,7 +34,9 @@ jobs:
           DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
         run: |
           _NAMESPACE=$(.github/helpers/github_env_to_namespace.sh ${{  github.event.deployment.environment}})
+          _IMAGE_TAG=$(.github/helpers/github_env_to_image_tag.sh ${{  github.event.deployment.environment}})
           echo "::set-env name=DEPLOY_NAMESPACE::$_NAMESPACE"
+          echo "::set-env name=IMAGE_TAG::$_IMAGE_TAG"
           echo "Deploying to $_NAMESPACE"
       - name: Cluster Login
         uses: redhat-developer/openshift-actions@v1.1
@@ -50,29 +51,20 @@ jobs:
            $DEPLOY_NAMESPACE/${{ env.INFRA_NAME }}:${{ env.TEST_IMAGE_TAG }}
       - name: Run Deployment
         env:
-          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
+          IMAGE_NAMESPACE: ${{ env.DEPLOY_NAMESPACE }}
+          IMAGE_TAG: ${{ env.IMAGE_TAG }}
+          DEPLOY_NAMESPACE: ${{ env.DEPLOY_NAMESPACE }}
           GATSBY_MATOMO_URL: ${{ secrets.GATSBY_MATOMO_URL }}
           GATSBY_MATOMO_SITE_URL: ${{ secrets.GATSBY_MATOMO_SITE_URL }}
           GATSBY_MATOMO_SITE_ID: ${{ secrets.GATSBY_MATOMO_SITE_ID }}
+          SEARCHGATE_API_URL: ${{ secrets.SEARCHGATE_API_URL }}
+          DEVHUB_API_URL: ${{ secrets.DEVHUB_API_URL }}
           SSO_DEV_URL: ${{ secrets.SSO_DEV_URL }}
           SSO_CLIENT_ID: "devhub-web-${{ env.PULL_NUMBER }}"
           SSO_REALM_NAME: ${{ secrets.SSO_REALM_NAME }}
           MATOMO_URL: ${{ secrets.MATOMO_URL }}
           ALGOLIA_INDEX_NAME_SUFFIX: "-build-${{ env.PULL_NUMBER }}"
-        run: |
-          oc process -f openshift/templates/web/dc.yaml -n $DEPLOY_NAMESPACE \
-          -p NAME=$INFRA_NAME \
-          -p IMAGE_NAMESPACE=$DEPLOY_NAMESPACE \
-          -p IMAGE_TAG="$TEST_IMAGE_TAG" \
-          -p SUFFIX=$SUFFIX \
-          -p SEARCHGATE_API_URL="https://searchgate.pathfinder.gov.bc.ca" \
-          -p SSO_BASE_URL="$SSO_DEV_URL" \
-          -p DEVHUB_API_URL="https://devhub-api-prod-devhub-prod.pathfinder.gov.bc.ca" \
-          -p SSO_CLIENT_ID="$SSO_CLIENT_ID" \
-          -p SSO_REALM_NAME="$SSO_REALM_NAME" \
-          -p ALGOLIA_INDEX_NAME_SUFFIX="$ALGOLIA_INDEX_NAME_SUFFIX" | \
-          oc apply -n $DEPLOY_NAMESPACE -f -
-          echo "Deployment started"
+        run: .github/helpers/deploy_web.sh
 
       - name: Wait for Deployment and Update Status
         env:
