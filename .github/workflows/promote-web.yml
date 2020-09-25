@@ -81,4 +81,3 @@ jobs:
         with:
           github_token: ${{ github.token }}
           status: ${{ env.DEPLOY_STATUS }}
-          environment_url: ${{ env.DEPLOY_ROUTE }}
