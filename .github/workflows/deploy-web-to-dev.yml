@@ -2,16 +2,25 @@ name: On Deployment Created
 on: 
   deployment
 env:
-  PULL_NUMBER: ${{ github.event.deployment.payload.pr }}
-  MICRO_SERVICE: ${{ github.event.deployment.payload.microservice }}
+  PULL_NUMBER: ${{ fromJSON(github.event.deployment.payload).pr }}
+  MICRO_SERVICE: ${{ fromJSON(github.event.deployment.payload).microservice }}
   DEPLOY_REF: ${{ github.event.deployment.ref }}
   DEPLOYMENT_ID: ${{ github.event.deployment.id }}
   ENVIRONMENT: ${{ github.event.deployment.environment }}
   INFRA_NAME: devhub-app-web
-  SUFFIX: "-${{ github.event.deployment.payload.pr }}"
+  SUFFIX: "-${{ fromJSON(github.event.deployment.payload).pr }}"
 jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: test
+        run: echo ${{ fromJSON(github.event.deployment.payload) }}
+      - name: test2
+        run: echo $MICRO_SERVICE
+      - name: test2
+        run: echo ${{ github.event.deployment.environment }}
   build:
-    if: ${{ github.event.deployment.payload.microservice == 'web' && 
+    if: ${{ fromJSON(github.event.deployment.payload).microservice == 'web' && 
       github.event.deployment.environment == 'development' }}
     name: Build Gatsby App
     runs-on: ubuntu-20.04
@@ -31,7 +40,7 @@ jobs:
           cmd: |
             'version'
       - name: Cancel previous builds (if any)
-        run: 'oc cancel-build -n ${{ secrets.TOOLS_NAMESPACE }} bc/${{ env.INFRA_NAME }}${{ env.SUFFIX }} || echo no build found for ${{ github.event.deployment.payload.pr }}'
+        run: 'oc cancel-build -n ${{ secrets.TOOLS_NAMESPACE }} bc/${{ env.INFRA_NAME }}${{ env.SUFFIX }} || echo no build found for ${{ fromJSON(github.event.deployment.payload).pr }}'
       - name: Check if should run build (based on a commit id comparison)
         env:
           TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
@@ -66,7 +75,7 @@ jobs:
           echo "Build started"
           oc start-build -n $TOOLS_NAMESPACE $INFRA_NAME$SUFFIX --wait
   deploy:
-    if: ${{ github.event.deployment.payload.microservice == 'web' && 
+    if: ${{ fromJSON(github.event.deployment.payload).microservice == 'web' && 
       github.event.deployment.environment == 'development' }}
     needs: [ build ]
     runs-on: ubuntu-20.04
