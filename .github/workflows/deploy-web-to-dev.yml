@@ -10,15 +10,6 @@ env:
   INFRA_NAME: devhub-app-web
   SUFFIX: "-${{ fromJSON(github.event.deployment.payload).pr }}"
 jobs:
-  test:
-    runs-on: ubuntu-20.04
-    steps:
-      - name: test
-        run: echo ${{ fromJSON(github.event.deployment.payload) }}
-      - name: test2
-        run: echo $MICRO_SERVICE
-      - name: test2
-        run: echo ${{ github.event.deployment.environment }}
   build:
     if: ${{ fromJSON(github.event.deployment.payload).microservice == 'web' && 
       github.event.deployment.environment == 'development' }}
