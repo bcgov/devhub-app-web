@@ -14,7 +14,7 @@
             "resources/aro/working-in-multiple-clusters.md",
             "resources/aro/exploring-available-images.md",
             "resources/aro/finding-app-migration-painpoints.md",
-            "resources/aro/migrating-rhel-images.md
+            "resources/aro/migrating-rhel-images.md"
           ]
         }
       }
