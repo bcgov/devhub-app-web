@@ -6,7 +6,7 @@ image: https://github.com/bcgov/devhub-app-web/blob/master/docs/images/book.png?
 
 > looking for pipeline docs? Please see [Jenkins Readme](./.jenkins/README.md) :)
 
-# DevHub App Web
+# DevHub App Web!
  
  This is the primary repository for the BC Gov DevHub application.  The code contained mostly relates to the web application specifically, but other content may relate to the DevHub more generally.     
  
