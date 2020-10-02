@@ -1,0 +1,245 @@
+kind: Template
+apiVersion: v1
+objects:
+  - apiVersion: image.openshift.io/v1
+    kind: ImageStream
+    spec:
+      lookupPolicy:
+        local: false
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      labels:
+        app: devhub-dev-${SUFFIX}
+        component: ${NAME}-${SUFFIX}
+        rootComponent: ${NAME}
+      name: ${NAME}
+  - apiVersion: apps.openshift.io/v1
+    kind: DeploymentConfig
+    spec:
+      replicas: 3
+      selector:
+        app: devhub-dev-${SUFFIX}
+        component: ${NAME}-${SUFFIX}
+        rootComponent: ${NAME}
+      
+        deploymentconfig: devhub-app-web
+      strategy:
+        resources: {}
+      template:
+        metadata:
+          annotations:
+            openshift.io/generated-by: OpenShiftNewApp
+          creationTimestamp: null
+          labels:
+            app: devhub-api-${SUFFIX}
+            component: ${NAME}-${SUFFIX}
+            rootComponent: ${NAME}
+          
+            deploymentconfig: devhub-app-web
+        spec:
+          volumes:
+            - name: ${NAME}-config-${SUFFIX}
+              configMap:
+                name: devhub-api-config
+          containers:
+            - image: '${NAME}:${VERSION}'
+              name: ${NAME}
+              volumeMounts:
+                - name: ${NAME}-config-${SUFFIX}
+                  mountPath: /opt/app-root/src/dist/config
+              env:
+                - name: CORS_ORIGIN
+                  value: ${CORS_ORIGIN}
+                - name: CORS_PATTERN
+                  value: ${CORS_PATTERN}
+                - name: PORT 
+                  value: "3000"
+                - name: HOST 
+                  value: ${SERVER_HOST}
+                - name: GITHUB_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      key: GITHUB_TOKEN
+                      name: ${NAME}-github
+                - name: GITHUB_USER_EMAIL
+                  valueFrom:
+                    secretKeyRef:
+                      key: GITHUB_USER_EMAIL
+                      name: ${NAME}-github
+                - name: GITHUB_USER_NAME
+                  valueFrom:
+                    secretKeyRef:
+                      key: GITHUB_USERNAME
+                      name: ${NAME}-github
+              readinessProbe:
+                failureThreshold: 3
+                httpGet:
+                  path: /v1/checks/ehlo
+                  port: 3000
+                  scheme: HTTP
+                initialDelaySeconds: 4
+                periodSeconds: 10
+                successThreshold: 1
+                timeoutSeconds: 50
+              resources:
+                requests:
+                  cpu: ${CPU_REQUEST}
+                  memory: ${MEMORY_REQUEST}
+                limits:
+                  cpu: ${CPU_LIMIT}
+                  memory: ${MEMORY_LIMIT}
+      test: false
+      triggers:
+        - type: ConfigChange
+        - imageChangeParams:
+            automatic: true
+            containerNames:
+              - ${NAME}
+            from:
+              kind: ImageStreamTag
+              name: '${NAME}:${VERSION}'
+          type: ImageChange
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      labels:
+        app: devhub-dev-${SUFFIX}
+        component: ${NAME}-${SUFFIX}
+        rootComponent: ${NAME}
+      
+      name: ${NAME}-${SUFFIX}
+  - apiVersion: v1
+    kind: Service
+    spec:
+      ports:
+        - name: 8080-tcp
+          port: 8080
+          protocol: TCP
+          # I wanted to parametrize target port but template params do not allow integer values atm
+          targetPort: 3000
+      selector:
+        app: devhub-api-${SUFFIX}
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      labels:
+        app: devhub-dev-${SUFFIX}
+        component: ${NAME}-${SUFFIX}
+        rootComponent: ${NAME}
+      name: ${NAME}-${SUFFIX}
+  - apiVersion: route.openshift.io/v1
+    kind: Route
+    spec:
+      tls:
+        insecureEdgeTerminationPolicy: Redirect
+        termination: edge
+      port:
+        targetPort: 8080-tcp
+      to:
+        kind: Service
+        name: ${NAME}-${SUFFIX}
+        weight: 100
+      wildcardPolicy: None
+    metadata:
+      annotations:
+        openshift.io/host.generated: 'true'
+      labels:
+        app: devhub-dev-${SUFFIX}
+        component: ${NAME}-${SUFFIX}
+        rootComponent: ${NAME}
+      name: ${NAME}-${SUFFIX}
+  - apiVersion: v1
+    data:
+      index.json: |-
+        {  
+          "github": {
+            "repo": "devhub-app-web",
+            "owner": "bcgov",
+            "branchPrefix": "contribution",
+            "defaultBranch": "master",
+            "branchIdLength": 6
+          },
+          "session": {
+            "maxAge": 604800000,
+            "expires": 604800000
+          },
+          "sso": {
+            "grantType": "client_credentials",
+            "clientId": "${SSO_CLIENT_ID_VALUE}",
+            "callback": "/v1/auth/callback",
+            "authUrl": "${SSO_BASE_URL_VALUE}/auth/realms/${SSO_REALM_NAME_VALUE}/protocol/openid-connect/auth",
+            "tokenUrl": "${SSO_BASE_URL_VALUE}/auth/realms/${SSO_REALM_NAME_VALUE}/protocol/openid-connect/token",
+            "certsUrl": "${SSO_BASE_URL_VALUE}/auth/realms/${SSO_REALM_NAME_VALUE}/protocol/openid-connect/certs"
+          }
+        }
+    kind: ConfigMap
+    metadata:
+      name: devhub-api-config
+      labels:
+        rootComponent: ${NAME}
+
+parameters:
+  - name: SERVER_HOST
+    value: "0.0.0.0"
+    description: the host the server runs on 
+    displayName: Server Host
+  - name: DEVHUB_WEB_ORIGIN_URL
+    value: http://localhost:8000
+    description: The origin url for the devhub web, this ties into a cors policy
+    displayName: Devhub Web Origin URL
+  - name: NAME
+    value: devhub-api
+    description: the component name
+    displayName: Name
+  - name: SUFFIX
+    value: dev
+    description: the suffix applied to app instances 
+    displayName: Suffix
+  - name: VERSION
+    value: "1.0.0"
+    description: the version applied to image tag 
+    displayName: Version
+  - description: The CPU Request for the deployment config
+    displayName: CPU Request 
+    name: CPU_REQUEST
+    required: false
+    value: 100m
+  - description: The CPU Limit for the deployment config
+    displayName: CPU Limit 
+    name: CPU_LIMIT
+    required: false
+    value: 150m
+  - description: The Memory Request for the deployment config
+    displayName: Memory Request 
+    name: MEMORY_REQUEST
+    required: false
+    value: 50Mi
+  - description: The Memory Limit for the deployment config
+    displayName: Memory Limit 
+    name: MEMORY_LIMIT
+    required: false
+    value: 75Mi
+  - description: A base url of sso in the env
+    displayName: sso base URL
+    name: SSO_BASE_URL_VALUE
+    required: false
+    value: ''
+  - description: A sso client id in the env
+    displayName: sso client id
+    name: SSO_CLIENT_ID_VALUE
+    required: false
+    value: ''
+  - description: A sso realm name in the env
+    displayName: sso realm name
+    name: SSO_REALM_NAME_VALUE
+    required: false
+    value: ''
+  - description: The CORS origin to accept requests from
+    name: CORS_ORIGIN
+    required: false
+    value: http://localhost:8000
+  - description: A CORS pattern to test origins against using regexp
+    name: CORS_PATTERN
+    required: false
+    value: ''
