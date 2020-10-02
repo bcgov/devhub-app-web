@@ -34,7 +34,7 @@ pipeline {
                 }
                 echo "Building ..."
                 sh '''
-                    oc process -n $TOOLS_NAMESPACE -f openshift/templates/api/bc.yaml \
+                    oc process -f openshift/templates/api/bc.yaml \
                     -p NAME="${COMPONENT_NAME}" \
                     -p SUFFIX=$SUFFIX -p VERSION=$SUFFIX \
                     -p SOURCE_REPOSITORY_URL="$SOURCE_REPOSITORY_URL" \
