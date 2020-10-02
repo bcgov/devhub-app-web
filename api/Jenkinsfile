@@ -1,16 +1,9 @@
 pipeline {
     agent none
      environment {
-        COMPONENT_NAME = 'devhub-api'
+        COMPONENT_NAME = 'DevHub web app'
         COMPONENT_HOME = '/'
         BUILD_TRIGGER_INCLUDES = "^api"
-        SUFFIX = "-${CHANGE_ID}"
-        SOURCE_REPOSITORY_URL = "https://github.com/bcgov/devhub-app-web"
-        // env vars expected
-        // TOOLS_NAMESPACE: string
-        // DEV_NAMESPACE: string
-        // TEST_NAMESPACE: string
-        // PROD_NAMESPACE: string
     }
     options {
         disableResume()
@@ -33,63 +26,57 @@ pipeline {
                     abortAllPreviousBuildInProgress(currentBuild)
                 }
                 echo "Building ..."
-                sh '''
-                    oc process -f openshift/templates/api/bc.yaml \
-                    -p NAME="${COMPONENT_NAME}" \
-                    -p SUFFIX=$SUFFIX -p VERSION=$SUFFIX \
-                    -p SOURCE_REPOSITORY_URL="$SOURCE_REPOSITORY_URL" \
-                    -p SOURCE_REPOSITORY_REF="$BRANCH_NAME"
-                '''
+                sh "cd api/.pipeline && ./npmw ci && ./npmw run build -- --pr=${CHANGE_ID}"
             }
         }
-        // stage('Deploy (DEV)') {
-        //     agent { label 'deploy' }
-        //     steps {
-        //         echo "Deploying ..."
-        //         sh "cd api/.pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev"
-        //     }
-        // }
-        // stage('Deploy (TEST)') {
-        //     agent { label 'deploy' }
-        //     when {
-        //         expression { return env.CHANGE_TARGET == 'master';}
-        //         beforeInput true
-        //     }
-        //     input {
-        //         message "Should we continue with deployment to TEST?"
-        //         ok "Yes!"
-        //     }
-        //     steps {
-        //         echo "Deploying ..."
-        //         sh "cd api/.pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=test"
-        //     }
-        // }
-        // stage('Deploy (PROD)') {
-        //     agent { label 'deploy' }
-        //     when {
-        //         expression { return env.CHANGE_TARGET == 'master';}
-        //         beforeInput true
-        //     }
-        //     input {
-        //         message "Should we continue with deployment to TEST?"
-        //         ok "Yes!"
-        //     }
-        //     steps {
-        //         echo "Deploying ..."
-        //         sh "cd api/.pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=prod"
-        //     }
-        // }
+        stage('Deploy (DEV)') {
+            agent { label 'deploy' }
+            steps {
+                echo "Deploying ..."
+                sh "cd api/.pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=dev"
+            }
+        }
+        stage('Deploy (TEST)') {
+            agent { label 'deploy' }
+            when {
+                expression { return env.CHANGE_TARGET == 'master';}
+                beforeInput true
+            }
+            input {
+                message "Should we continue with deployment to TEST?"
+                ok "Yes!"
+            }
+            steps {
+                echo "Deploying ..."
+                sh "cd api/.pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=test"
+            }
+        }
+        stage('Deploy (PROD)') {
+            agent { label 'deploy' }
+            when {
+                expression { return env.CHANGE_TARGET == 'master';}
+                beforeInput true
+            }
+            input {
+                message "Should we continue with deployment to TEST?"
+                ok "Yes!"
+            }
+            steps {
+                echo "Deploying ..."
+                sh "cd api/.pipeline && ./npmw ci && ./npmw run deploy -- --pr=${CHANGE_ID} --env=prod"
+            }
+        }
 
-        // stage('Cleanup') {
-        //     agent { label 'deploy' }
-        //     input {
-        //         message "Should we cleanup and merge this pr?"
-        //         ok "Yes!"
-        //     }
-        //     steps {
-        //         echo "Cleaning ..."
-        //         sh "cd .pipeline && ./npmw ci && ./npmw run clean -- --pr=${CHANGE_ID} --env=dev"
-        //     }
-        // }
+        stage('Cleanup') {
+            agent { label 'deploy' }
+            input {
+                message "Should we cleanup and merge this pr?"
+                ok "Yes!"
+            }
+            steps {
+                echo "Cleaning ..."
+                sh "cd .pipeline && ./npmw ci && ./npmw run clean -- --pr=${CHANGE_ID} --env=dev"
+            }
+        }
     }
 }
