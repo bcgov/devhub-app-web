@@ -10,8 +10,8 @@ objects:
       annotations:
         openshift.io/generated-by: OpenShiftNewApp
       labels:
-        app: devhub-dev-${SUFFIX}
-        component: ${NAME}-${SUFFIX}
+        app: ${NAME}-${SUFFIX}
+        component: ${NAME}-${SUFFIX}-imagestream
         rootComponent: ${NAME}
       name: ${NAME}
   - apiVersion: apps.openshift.io/v1
@@ -19,11 +19,9 @@ objects:
     spec:
       replicas: 3
       selector:
-        app: devhub-dev-${SUFFIX}
-        component: ${NAME}-${SUFFIX}
+        app: ${NAME}-${SUFFIX}
+        component: ${NAME}-${SUFFIX}-pod
         rootComponent: ${NAME}
-      
-        deploymentconfig: devhub-app-web
       strategy:
         resources: {}
       template:
@@ -32,16 +30,14 @@ objects:
             openshift.io/generated-by: OpenShiftNewApp
           creationTimestamp: null
           labels:
-            app: devhub-api-${SUFFIX}
-            component: ${NAME}-${SUFFIX}
+            app: ${NAME}-${SUFFIX}
+            component: ${NAME}-${SUFFIX}-pod
             rootComponent: ${NAME}
-          
-            deploymentconfig: devhub-app-web
         spec:
           volumes:
             - name: ${NAME}-config-${SUFFIX}
               configMap:
-                name: devhub-api-config
+                name: ${NAME}-${SUFFIX}-config
           containers:
             - image: '${NAME}:${VERSION}'
               name: ${NAME}
@@ -104,10 +100,9 @@ objects:
       annotations:
         openshift.io/generated-by: OpenShiftNewApp
       labels:
-        app: devhub-dev-${SUFFIX}
-        component: ${NAME}-${SUFFIX}
+        app: ${NAME}-${SUFFIX}
+        component: ${NAME}-${SUFFIX}-deploymentconfig
         rootComponent: ${NAME}
-      
       name: ${NAME}-${SUFFIX}
   - apiVersion: v1
     kind: Service
@@ -119,13 +114,13 @@ objects:
           # I wanted to parametrize target port but template params do not allow integer values atm
           targetPort: 3000
       selector:
-        app: devhub-api-${SUFFIX}
+        app: ${NAME}-${SUFFIX}
     metadata:
       annotations:
         openshift.io/generated-by: OpenShiftNewApp
       labels:
-        app: devhub-dev-${SUFFIX}
-        component: ${NAME}-${SUFFIX}
+        app: ${NAME}-${SUFFIX}
+        component: ${NAME}-${SUFFIX}-service
         rootComponent: ${NAME}
       name: ${NAME}-${SUFFIX}
   - apiVersion: route.openshift.io/v1
@@ -145,8 +140,8 @@ objects:
       annotations:
         openshift.io/host.generated: 'true'
       labels:
-        app: devhub-dev-${SUFFIX}
-        component: ${NAME}-${SUFFIX}
+        app: ${NAME}-${SUFFIX}
+        component: ${NAME}-${SUFFIX}-route
         rootComponent: ${NAME}
       name: ${NAME}-${SUFFIX}
   - apiVersion: v1
@@ -175,10 +170,11 @@ objects:
         }
     kind: ConfigMap
     metadata:
-      name: devhub-api-config
+      name: ${NAME}-${SUFFIX}-config
       labels:
         rootComponent: ${NAME}
-
+        app: ${NAME}-${SUFFIX}
+        component: ${NAME}-${SUFFIX}-configmap
 parameters:
   - name: SERVER_HOST
     value: "0.0.0.0"
@@ -214,12 +210,12 @@ parameters:
     displayName: Memory Request 
     name: MEMORY_REQUEST
     required: false
-    value: 50Mi
+    value: 100Mi
   - description: The Memory Limit for the deployment config
     displayName: Memory Limit 
     name: MEMORY_LIMIT
     required: false
-    value: 75Mi
+    value: 175Mi
   - description: A base url of sso in the env
     displayName: sso base URL
     name: SSO_BASE_URL_VALUE

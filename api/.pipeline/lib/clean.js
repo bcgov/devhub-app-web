@@ -65,7 +65,7 @@ module.exports = (settings) => {
       });
       oc.raw(
         'delete',
-        ['pvc,Secret,configmap,endpoints,RoleBinding,role,ServiceAccount,Endpoints'],
+        ['pvc,Secret,configmap'],
         {
           selector: `app=${phase.instance},env-id=${phase.changeId},!shared,github-repo=${oc.git.repository},github-owner=${oc.git.owner}`,
           wait: 'true',
