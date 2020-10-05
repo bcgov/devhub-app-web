@@ -78,5 +78,5 @@ module.exports = (settings) => {
   oc.importImageStreams(objects, phases[phase].tag, phases.build.namespace, phases.build.tag);
   oc.applyAndDeploy(objects, phases[phase].instance);
   // wait for roll out
-  oc.raw('rollout', [`status dc/${phases[phase].name}-${phases[phase].suffix}`], { wait: true})
+  oc.raw('rollout', [`status dc/${phases[phase].name}-${phases[phase].suffix}`], { watch: true})
 };
