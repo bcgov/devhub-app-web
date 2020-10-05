@@ -7,9 +7,9 @@ const name = 'devhub-api';
 const phases = {
   build: {
     namespace: 'pltfrm-tools',
-    name: `${name}`,
+    name,
     phase: 'build',
-    changeId: changeId,
+    changeId,
     suffix: `build-${changeId}`,
     instance: `${name}-build-${changeId}`,
     version: `${version}-${changeId}`,
@@ -17,9 +17,9 @@ const phases = {
   },
   dev: {
     namespace: 'pltfrm-dev',
-    name: `${name}`,
+    name,
     phase: 'dev',
-    changeId: changeId,
+    changeId,
     suffix: `dev-${changeId}`,
     instance: `${name}-dev-${changeId}`,
     version: `dev-${version}-${changeId}`,
@@ -27,9 +27,9 @@ const phases = {
   },
   test: {
     namespace: 'pltfrm-test',
-    name: `${name}`,
+    name,
     phase: 'test',
-    changeId: changeId,
+    changeId,
     suffix: `test`,
     instance: `${name}-test`,
     version: `${version}`,
@@ -37,9 +37,9 @@ const phases = {
   },
   prod: {
     namespace: 'pltfrm-prod',
-    name: `${name}`,
+    name,
     phase: 'prod',
-    changeId: changeId,
+    changeId,
     suffix: `prod`,
     instance: `${name}-prod`,
     version: `${version}`,
