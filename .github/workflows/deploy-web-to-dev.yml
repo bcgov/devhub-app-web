@@ -97,6 +97,9 @@ jobs:
           IMAGE_TAG: ${{ env.PULL_NUMBER }}
         run: .github/helpers/deploy_web.sh
       - name: Create Keycloak Client
+        env:
+          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
+          DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
         run: |
           KC_CLIENT_SECRET=$(oc -n $TOOLS_NAMESPACE get secret/sso-dev-service-account -o json | jq -r '.data.KEYCLOAK_CLIENT_SECRET' | base64 -d)
           KC_CLIENT_ID=$(oc -n $TOOLS_NAMESPACE get secret/sso-dev-service-account -o json | jq -r '.data.KEYCLOAK_CLIENT_ID' | base64 -d)
