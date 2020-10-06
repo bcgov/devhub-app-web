@@ -13,7 +13,7 @@ const phases = {
     suffix: `-build-${changeId}`,
     instance: `${name}-build-${changeId}`,
     version: `${version}-${changeId}`,
-    tag: `build-${version}-${changeId}`,
+    tag: `aro-latest`,
   },
   dev: {
     namespace: 'pltfrm-tools',
@@ -23,7 +23,7 @@ const phases = {
     suffix: `-dev-${changeId}`,
     instance: `${name}-dev-${changeId}`,
     version: `${version}-${changeId}`,
-    tag: `dev-${version}-${changeId}`,
+    tag: `aro-latest`,
   },
   test: {
     namespace: 'pltfrm-tools',
@@ -33,7 +33,7 @@ const phases = {
     suffix: `-test`,
     instance: `${name}-test`,
     version: `${version}`,
-    tag: `test-${version}`,
+    tag: `aro-latest`,
   },
   prod: {
     namespace: 'pltfrm-tools',
@@ -43,7 +43,7 @@ const phases = {
     suffix: `-prod`,
     instance: `${name}`,
     version: `${version}`,
-    tag: `prod-${version}`,
+    tag: `aro-latest`,
   },
 };
 

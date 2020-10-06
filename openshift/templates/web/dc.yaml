@@ -48,7 +48,7 @@ objects:
       rewrite /topic/* /topic/index.html
       
       templates {
-        ext   .js
+        mime  "text/javascript"
       }
   kind: ConfigMap
   metadata:

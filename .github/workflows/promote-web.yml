@@ -2,8 +2,8 @@ name: On Promotion to Test or Production for Web
 on: 
   deployment
 env:
-  PULL_NUMBER: ${{ github.event.deployment.payload.pr }}
-  MICRO_SERVICE: ${{ github.event.deployment.payload.microservice }}
+  PULL_NUMBER: ${{ fromJSON(github.event.deployment.payload).pr }}
+  MICRO_SERVICE: ${{ fromJSON(github.event.deployment.payload).microservice }}
   DEPLOY_REF: ${{ github.event.deployment.ref }}
   DEPLOYMENT_ID: ${{ github.event.deployment.id }}
   ENVIRONMENT: ${{ github.event.deployment.environment }}
@@ -11,7 +11,7 @@ env:
 jobs:
   promote-environment:
     name: Promote Web to Environment
-    if: github.event.deployment.payload.microservice == 'web' && 
+    if: fromJSON(github.event.deployment.payload).microservice == 'web' && 
       (
         github.event.deployment.environment == 'staging' || 
         github.event.deployment.environment == 'qa' || 

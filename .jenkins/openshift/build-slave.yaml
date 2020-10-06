@@ -95,7 +95,7 @@ parameters:
 - name: SLAVE_NAME
   value: build
 - name: SOURCE_IMAGE_STREAM_NAMESPACE
-  value: openshift
+  value: pltfrm-tools
 - name: SOURCE_IMAGE_STREAM_TAG
   required: true
   value: jenkins:2

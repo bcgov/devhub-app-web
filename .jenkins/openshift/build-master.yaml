@@ -70,10 +70,10 @@ parameters:
   value: v1.0.0
 - name: SOURCE_IMAGE_STREAM_NAMESPACE
   required: true
-  value: openshift
+  value: pltfrm-tools
 - name: SOURCE_IMAGE_STREAM_TAG
   required: true
-  value: jenkins:2
+  value: jenkins-basic:aro-latest
 - name: SOURCE_REPOSITORY_URL
   required: true
 - name: SOURCE_REPOSITORY_REF

@@ -35,5 +35,5 @@ oc process -f openshift/templates/web/dc.yaml -n $DEPLOY_NAMESPACE \
   -p ALGOLIA_INDEX_NAME_SUFFIX="$ALGOLIA_INDEX_NAME_SUFFIX" | \
   oc apply -n $DEPLOY_NAMESPACE -f -
 
-oc rollout latest dc/$INFRA_NAME$SUFFIX
+oc -n $DEPLOY_NAMESPACE rollout latest dc/$INFRA_NAME$SUFFIX
 echo "Deployment started"
