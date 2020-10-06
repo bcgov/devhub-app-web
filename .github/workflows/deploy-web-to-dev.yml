@@ -100,9 +100,9 @@ jobs:
         env:
           TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
           DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
+          KC_CLIENT_ID: ${{ secrets.KC_CLIENT_ID }}
+          KC_CLIENT_SECRET: ${{ secrets.KC_CLIENT_SECRET }}
         run: |
-          KC_CLIENT_SECRET=$(oc -n $TOOLS_NAMESPACE get secret/sso-dev-service-account -o json | jq -r '.data.KEYCLOAK_CLIENT_SECRET' | base64 -d)
-          KC_CLIENT_ID=$(oc -n $TOOLS_NAMESPACE get secret/sso-dev-service-account -o json | jq -r '.data.KEYCLOAK_CLIENT_ID' | base64 -d)
           REDIRECT_URI=$(oc -n $DEV_NAMESPACE get route/$INFRA_NAME$SUFFIX -o json | jq -r '.spec.host')
           .github/helpers/kc-create-client.sh
       - name: Wait for Deployment and Update Status
