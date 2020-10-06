@@ -39,7 +39,9 @@ CLIENT_ID=$(_curl -sX GET "$KEYCLOAK_URL/auth/admin/realms/$REALM_NAME/clients" 
 # Create client:
 if [ "${CLIENT_ID}" == "" ]; then
     echo "Creating 'devhub-web-$PR_NUMBER' client..."
-    cat openshift/keycloak-scripts/new-client.json | sed -e "s|#{PR}|${PR_NUMBER}|g" | _curl -sX POST -d '@-' -H 'Content-Type: application/json' "$KEYCLOAK_URL/auth/admin/realms/$REALM_NAME/clients"
+    cat openshift/keycloak-scripts/new-client.json | sed -e "s|#{PR}|${PR_NUMBER}|g" | \
+    sed -e "s|#{REDIRECT_URI}|${REDIRECT_URI}|g" | \
+    _curl -sX POST -d '@-' -H 'Content-Type: application/json' "$KEYCLOAK_URL/auth/admin/realms/$REALM_NAME/clients"
 fi
 
 # return the client-id:

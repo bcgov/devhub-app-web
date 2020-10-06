@@ -79,6 +79,7 @@ jobs:
           parameters: '{"apitoken": "${{ secrets.SA_PASSWORD }}"}'
           cmd: |
             'version'
+      
       - name: Run Deployment to Dev
         env:
           DEPLOY_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
@@ -95,7 +96,12 @@ jobs:
           IMAGE_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
           IMAGE_TAG: ${{ env.PULL_NUMBER }}
         run: .github/helpers/deploy_web.sh
-
+      - name: Create Keycloak Client
+        run: |
+          KC_CLIENT_SECRET=$(oc -n $TOOLS_NAMESPACE get secret/sso-dev-service-account -o json | jq -r '.data.KEYCLOAK_CLIENT_SECRET' | base64 -d)
+          KC_CLIENT_ID=$(oc -n $TOOLS_NAMESPACE get secret/sso-dev-service-account -o json | jq -r '.data.KEYCLOAK_CLIENT_ID' | base64 -d)
+          REDIRECT_URI=$(oc -n $DEV_NAMESPACE get route/$INFRA_NAME$SUFFIX -o json | jq -r '.spec.host')
+          .github/helpers/kc-create-client.sh
       - name: Wait for Deployment and Update Status
         env:
           NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
