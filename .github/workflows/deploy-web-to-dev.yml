@@ -102,6 +102,7 @@ jobs:
           DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
           KC_CLIENT_ID: ${{ secrets.KC_CLIENT_ID }}
           KC_CLIENT_SECRET: ${{ secrets.KC_CLIENT_SECRET }}
+          PULL_NUMBER: ${{ env.PULL_NUMBER }}
         run: |
           REDIRECT_URI=$(oc -n $DEV_NAMESPACE get route/$INFRA_NAME$SUFFIX -o json | jq -r '.spec.host')
           .github/helpers/kc-create-client.sh $PULL_NUMBER
