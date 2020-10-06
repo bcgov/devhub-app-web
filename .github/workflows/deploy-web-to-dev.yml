@@ -104,7 +104,7 @@ jobs:
           KC_CLIENT_SECRET: ${{ secrets.KC_CLIENT_SECRET }}
         run: |
           REDIRECT_URI=$(oc -n $DEV_NAMESPACE get route/$INFRA_NAME$SUFFIX -o json | jq -r '.spec.host')
-          .github/helpers/kc-create-client.sh
+          .github/helpers/kc-create-client.sh $PULL_NUMBER
       - name: Wait for Deployment and Update Status
         env:
           NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
