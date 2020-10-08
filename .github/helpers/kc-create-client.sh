@@ -7,7 +7,6 @@
 # environment variables
 # NAMESPACE <string>
 # KC_URL <string>
-# KC_REALM <string>
 # KC_CLIENT_ID <string>
 # KC_CLIENT_SECRET <string>
 # REDIRECT_URI <string>
@@ -20,7 +19,7 @@ if [ "$1" == "" ]; then
 fi
 
 # get sso variables:
-KEYCLOAK_URL=https://oidc.dev.gov.bc.ca
+KEYCLOAK_URL=https://dev.oidc.gov.bc.ca
 REALM_NAME=devhub
 PR_NUMBER="$1"
 
@@ -29,12 +28,13 @@ echo "Request to $KEYCLOAK_URL"
 # get auth token:
 KEYCLOAK_ACCESS_TOKEN=$(curl -sX POST -u "$KEYCLOAK_CLIENT_ID:$KEYCLOAK_CLIENT_SECRET" "$KEYCLOAK_URL/auth/realms/$REALM_NAME/protocol/openid-connect/token" -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=client_credentials' | jq -r '.access_token')
 
+
  _curl(){
      curl -H "Authorization: Bearer $KEYCLOAK_ACCESS_TOKEN" "$@"
  }
 
 # check if client exists:
-CLIENT_ID=$(_curl -sX GET "$KEYCLOAK_URL/auth/admin/realms/$REALM_NAME/clients" -H "Accept: application/json" | jq -r --arg CLIENT "devhub-web-$PR_NUMBER" '.[] | select(.clientId==$CLIENT) | .id')
+CLIENT_ID=$(_curl -sX GET "$KEYCLOAK_URL/auth/admin/realms/$REALM_NAME/clients" -H "Accept: application/json" | jq -r --arg CLIENT "devhub-web-$PR_NUMBER" '.[] | select(.clientId==$CLIENT) | .id' || '') || 
 
 # Create client:
 if [ "${CLIENT_ID}" == "" ]; then
