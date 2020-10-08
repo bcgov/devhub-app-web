@@ -65,6 +65,12 @@ jobs:
         run: |
           echo "Build started"
           oc start-build -n $TOOLS_NAMESPACE $INFRA_NAME$SUFFIX --wait
+      - name: The job has failed
+        if: ${{ failure() }}
+        uses: unacast/actions-github-deployment-status@0.4.0
+        with:
+          github_token: ${{github.token}}
+          status: error
   deploy:
     if: ${{ fromJSON(github.event.deployment.payload).microservice == 'web' && 
       github.event.deployment.environment == 'development' }}
@@ -118,3 +124,9 @@ jobs:
         with:
           github_token: ${{ github.token }}
           status: ${{ env.DEPLOY_STATUS }}
+      - name: The job has failed
+        if: ${{ failure() }}
+        uses: unacast/actions-github-deployment-status@0.4.0
+        with:
+          github_token: ${{github.token}}
+          status: error
