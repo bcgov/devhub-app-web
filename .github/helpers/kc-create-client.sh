@@ -22,6 +22,7 @@ fi
 KEYCLOAK_URL=https://dev.oidc.gov.bc.ca
 REALM_NAME=devhub
 PR_NUMBER="$1"
+REDIRECT_URI="$2"
 
 echo "Request to $KEYCLOAK_URL"
 

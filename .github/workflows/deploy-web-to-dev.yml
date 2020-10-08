@@ -111,7 +111,8 @@ jobs:
           PULL_NUMBER: ${{ env.PULL_NUMBER }}
         run: |
           REDIRECT_URI=$(oc -n $DEV_NAMESPACE get route/$INFRA_NAME$SUFFIX -o json | jq -r '.spec.host')
-          .github/helpers/kc-create-client.sh $PULL_NUMBER
+          echo $REDIRECT_URI
+          .github/helpers/kc-create-client.sh $PULL_NUMBER $REDIRECT_URI
       - name: Wait for Deployment and Update Status
         env:
           NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
