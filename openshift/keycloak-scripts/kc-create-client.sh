@@ -10,6 +10,7 @@
 # KC_REALM <string>
 # KC_CLIENT_ID <string>
 # KC_CLIENT_SECRET <string>
+# REDIRECT_URI <string>
 set -Eeuo pipefail
 # set -x
 
@@ -19,7 +20,7 @@ if [ "$1" == "" ]; then
 fi
 
 # get sso variables:
-KEYCLOAK_URL=https://sso-dev.pathfinder.gov.bc.ca
+KEYCLOAK_URL=https://oidc.dev.gov.bc.ca
 REALM_NAME=devhub
 PR_NUMBER="$1"
 
