@@ -177,6 +177,7 @@ export const homeQuery = graphql`
             image
             standAlonePath
           }
+          online_event
           siphon {
             unfurl {
               title
