@@ -118,7 +118,7 @@
           "files": [
             "apps/pgsql/patroni/README.md"
           ]
-        },
+        }
     ]
   }
 }
