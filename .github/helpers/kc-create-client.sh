@@ -29,7 +29,6 @@ echo "Request to $KEYCLOAK_URL"
 # get auth token:
 KEYCLOAK_ACCESS_TOKEN=$(curl -sX POST -u "$KEYCLOAK_CLIENT_ID:$KEYCLOAK_CLIENT_SECRET" "$KEYCLOAK_URL/auth/realms/$REALM_NAME/protocol/openid-connect/token" -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=client_credentials' | jq -r '.access_token')
 
-echo $KEYCLOAK_ACCESS_TOKEN
  _curl(){
      curl -H "Authorization: Bearer $KEYCLOAK_ACCESS_TOKEN" "$@"
  }
