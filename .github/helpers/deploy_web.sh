@@ -28,7 +28,7 @@ oc process -f openshift/templates/web/dc.yaml -n $DEPLOY_NAMESPACE \
   -p IMAGE_TAG="$IMAGE_TAG" \
   -p SUFFIX=$SUFFIX \
   -p SEARCHGATE_API_URL="$SEARCHGATE_API_URL" \
-  -p SSO_BASE_URL="$SSO_DEV_URL" \
+  -p SSO_BASE_URL="$SSO_BASE_URL" \
   -p DEVHUB_API_URL="$DEVHUB_API_URL" \
   -p SSO_CLIENT_ID="$SSO_CLIENT_ID" \
   -p SSO_REALM_NAME="$SSO_REALM_NAME" \
