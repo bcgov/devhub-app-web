@@ -9,7 +9,6 @@
           "url": "https://github.com/bcgov/devhub-resources",
           "owner": "bcgov",
           "repo": "devhub-resources",
-          "branch": "aro-migration",
           "files": [
             "resources/aro/working-in-multiple-clusters.md",
             "resources/aro/exploring-available-images.md",
