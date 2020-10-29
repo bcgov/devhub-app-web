@@ -119,7 +119,7 @@
             "apps/pgsql/patroni/README.md"
           ]
         }
-    }
- 
-  ]
+      }
+    ]
+  }
 }
