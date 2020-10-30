@@ -106,6 +106,19 @@
             "cloud-pathfinder/dynamics.md"
           ]
         }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "title": "Patroni",
+          "url": "https://github.com/BCDevOps/platform-services",
+          "author": "cvarjao",
+          "owner": "bcdevops",
+          "repo": "platform-services",
+          "files": [
+            "apps/pgsql/patroni/README.md"
+          ]
+        }
       }
     ]
   }
