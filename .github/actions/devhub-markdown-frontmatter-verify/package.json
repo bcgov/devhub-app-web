@@ -26,6 +26,7 @@
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/github": "^2.0.0",
+    "@octokit/plugin-throttling": "^3.3.3",
     "babel-polyfill": "^6.26.0",
     "bottleneck": "^2.19.5",
     "gray-matter": "^4.0.2",
@@ -34,6 +35,7 @@
   "devDependencies": {
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
+    "@octokit/core": "^3.2.1",
     "@types/nock": "^11.1.0",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
