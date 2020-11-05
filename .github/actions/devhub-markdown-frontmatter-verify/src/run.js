@@ -24,7 +24,7 @@ const myOctokit = Octokit.plugin(throttling);
 const octokit = new myOctokit({
   auth: `${token}`,
   throttle: {
-    onRateLimit: (retryAfter, options, octokit) => {
+    onRateLimit: (10, options, octokit) => {
       octokit.log.warn(`Request quota exhausted for request ${options.method} ${options.url}`);
 
       if (options.request.retryCount === 0) {
@@ -34,7 +34,7 @@ const octokit = new myOctokit({
       }
       return true;
     },
-    onAbuseLimit: (retryAfter, options, octokit) => {
+    onAbuseLimit: (10, options, octokit) => {
       // does not retry, only logs a warning
       octokit.log.warn(`Abuse detected for request ${options.method} ${options.url}`);
       return true;
