@@ -1,10 +1,13 @@
 const core = require('@actions/core');
-const github = require('@actions/github');
+//const github = require('@actions/github');
 const Bottleneck = require('bottleneck');
 const matter = require('gray-matter');
 const { flatten, groupBy } = require('lodash');
 const process = require('process');
 const rootTime = Date.now();
+//const { Octokit } = require('@octokit/core');
+const { throttling } = require('@octokit/plugin-throttling');
+const { GitHub } = require('@actions/github/lib/utils');
 
 const {
   reduceJourneyRegistryToTopic,
@@ -14,7 +17,29 @@ const {
 const { reduceContentsResults, reduceResultsToData, reduceFileResults } = require('./utils');
 const { validateDescription, hasNoErrors } = require('./validators');
 const token = process.env.GITHUB_TOKEN;
-const octokit = new github.GitHub(token);
+const Octokit = GitHub.plugin(throttling);
+
+//const MyOctokit = Octokit.plugin(throttling);
+
+const octokit = new Octokit({
+  auth: `${token}`,
+  throttle: {
+    onRateLimit: (retryAfter, options, octokit) => {
+      octokit.log.warn(`Request quota exhausted for request ${options.method} ${options.url}`);
+
+      if (options.request.retryCount === 0) {
+        // only retries once
+        octokit.log.info(`Retrying after ${retryAfter} seconds!`);
+        return true;
+      }
+      return true;
+    },
+    onAbuseLimit: (retryAfter, options, octokit) => {
+      // does not retry, only logs a warning
+      octokit.log.warn(`Abuse detected for request ${options.method} ${options.url}`);
+    },
+  },
+});
 
 const REGISTRY_CONTENTS_QUERY = `
 query getRegistryContents($owner: String!, $repo: String!, $path: String!) { 
@@ -116,7 +141,7 @@ const filePathFromSourceProps = sourceProperties =>
 const validateFile = async ({ sourceProperties }) => {
   const file = filePathFromSourceProps(sourceProperties);
   // eslint-disable-next-line
-  console.log(`Validating ${sourceDetails} at ${(Date.now() - rootTime) / 1000}s`);
+  console.log(`Validating ${sourceProperties} at ${(Date.now() - rootTime) / 1000}s`);
   const rawContents = await limiter.schedule(() => getMarkdownContents(sourceProperties));
   const contents = reduceFileResults(rawContents);
 
@@ -149,7 +174,7 @@ async function run() {
     const repo = core.getInput('repo', { required: true });
     const owner = core.getInput('owner', { required: true });
     const throwOnError = core.getInput('throwOnError', { required: false }) || false;
-    const { ref } = github.context;
+    const { ref } = Octokit.context;
     core.debug(`Fetching contents from ${ref}`);
     const result = await getJourneysAndTopics(repo, owner, ref);
 
