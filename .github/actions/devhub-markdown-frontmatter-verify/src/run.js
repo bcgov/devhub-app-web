@@ -1,13 +1,13 @@
 const core = require('@actions/core');
-//const github = require('@actions/github');
+const github = require('@actions/github');
 const Bottleneck = require('bottleneck');
 const matter = require('gray-matter');
 const { flatten, groupBy } = require('lodash');
 const process = require('process');
 const rootTime = Date.now();
-//const { Octokit } = require('@octokit/core');
+const { Octokit } = require('@octokit/core');
 const { throttling } = require('@octokit/plugin-throttling');
-const { GitHub } = require('@actions/github/lib/utils');
+//const { GitHub } = require('@actions/github/lib/utils');
 
 const {
   reduceJourneyRegistryToTopic,
@@ -17,11 +17,11 @@ const {
 const { reduceContentsResults, reduceResultsToData, reduceFileResults } = require('./utils');
 const { validateDescription, hasNoErrors } = require('./validators');
 const token = process.env.GITHUB_TOKEN;
-const Octokit = GitHub.plugin(throttling);
+const myOctokit = Octokit.plugin(throttling);
 
 //const MyOctokit = Octokit.plugin(throttling);
 
-const octokit = new Octokit({
+const octokit = new myOctokit({
   auth: `${token}`,
   throttle: {
     onRateLimit: (retryAfter, options, octokit) => {
@@ -174,7 +174,7 @@ async function run() {
     const repo = core.getInput('repo', { required: true });
     const owner = core.getInput('owner', { required: true });
     const throwOnError = core.getInput('throwOnError', { required: false }) || false;
-    const { ref } = Octokit.context;
+    const { ref } = github.context;
     core.debug(`Fetching contents from ${ref}`);
     const result = await getJourneysAndTopics(repo, owner, ref);
 
