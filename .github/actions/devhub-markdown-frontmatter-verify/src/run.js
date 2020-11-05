@@ -24,7 +24,7 @@ const myOctokit = Octokit.plugin(throttling);
 const octokit = new myOctokit({
   auth: `${token}`,
   throttle: {
-    onRateLimit: (10, options, octokit) => {
+    onRateLimit: (retryAfter, options, octokit) => {
       octokit.log.warn(`Request quota exhausted for request ${options.method} ${options.url}`);
 
       if (options.request.retryCount === 0) {
@@ -34,7 +34,7 @@ const octokit = new myOctokit({
       }
       return true;
     },
-    onAbuseLimit: (10, options, octokit) => {
+    onAbuseLimit: (retryAfter, options, octokit) => {
       // does not retry, only logs a warning
       octokit.log.warn(`Abuse detected for request ${options.method} ${options.url}`);
       return true;
@@ -74,12 +74,12 @@ const FILE_CONTENTS_QUERY = `
     }
   }
 `;
-
+/*
 const throttleRequests = core.getInput('throttle', { required: false }) || 333;
 const limiter = new Bottleneck({
   maxConcurrent: 3,
   minTime: throttleRequests,
-});
+});*/
 /**
  * gets journeys and topics registry files
  * @param {String} repo
@@ -143,7 +143,7 @@ const validateFile = async ({ sourceProperties }) => {
   const file = filePathFromSourceProps(sourceProperties);
   // eslint-disable-next-line
   console.log(`Validating ${sourceProperties} at ${(Date.now() - rootTime) / 1000}s`);
-  const rawContents = await limiter.schedule(() => getMarkdownContents(sourceProperties));
+  const rawContents = await getMarkdownContents(sourceProperties);
   const contents = reduceFileResults(rawContents);
 
   return validateMarkdownContents(contents).map(m => ({ ...m, file }));
