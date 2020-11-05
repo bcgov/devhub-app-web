@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const Bottleneck = require('bottleneck');
+//const Bottleneck = require('bottleneck');
 const matter = require('gray-matter');
 const { flatten, groupBy } = require('lodash');
 const process = require('process');
