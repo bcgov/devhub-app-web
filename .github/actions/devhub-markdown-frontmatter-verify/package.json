@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/bcgov/devhub-app-web",
   "dependencies": {
-    "@actions/core": "^1.1.1",
+    "@actions/core": "^1.2.6",
     "@actions/github": "^2.0.0",
     "babel-polyfill": "^6.26.0",
     "bottleneck": "^2.19.5",

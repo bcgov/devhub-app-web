@@ -94,13 +94,14 @@ const withResourceQuery = WrappedComponent => () => props => (
         }
         allEventbriteEvents(
           sort: { fields: [start___local], order: ASC }
-          filter: { shareable: { eq: true } }
+          filter: { shareable: { eq: true }, status: { ne: "draft" } }
         ) {
           edges {
             node {
               internal {
                 type
               }
+              online_event
               fields {
                 resourceType
                 title
