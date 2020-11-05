@@ -37,6 +37,7 @@ const octokit = new myOctokit({
     onAbuseLimit: (retryAfter, options, octokit) => {
       // does not retry, only logs a warning
       octokit.log.warn(`Abuse detected for request ${options.method} ${options.url}`);
+      return true;
     },
   },
 });
