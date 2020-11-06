@@ -23,10 +23,6 @@ import { withPadding } from '../common';
 import CardHeader from '../../Card/CardHeader';
 import { Title } from '../../Page';
 import { RESOURCE_TYPES_LIST } from '../../../constants/ui';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPen } from '@fortawesome/free-solid-svg-icons';
-import { Link } from '../../UI/Link';
-import slugify from 'slugify';
 
 const Header = styled.header`
   background-color: #f1f1f1;
@@ -39,13 +35,6 @@ export const TEST_IDS = {
 
 const Masthead = ({ title, description, type, render }) => (
   <Header data-testid={TEST_IDS.header}>
-    <Link
-      to={`/editTopic/${slugify(title)}`}
-      css={{ display: 'inline-block', float: 'right', color: '#444', textDecoration: 'none' }}
-    >
-      <span css={{ padding: '0px 2px' }}> Suggest an edit </span>
-      <FontAwesomeIcon icon={faPen}></FontAwesomeIcon>
-    </Link>
     <CardHeader resourceType={type} />
     <Title title={title} subtitle={description} />
     {render && render()}

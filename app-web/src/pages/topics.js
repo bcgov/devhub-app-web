@@ -31,9 +31,6 @@ import TableOfContents, {
   viewToggle,
 } from '../components/TableOfContents/TableOfContents';
 import { JOURNEY_TOPIC_VIEW_MODES as VIEW_MODES } from '../constants/ui';
-import { Link } from '../components/UI/Link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export const TEST_IDS = {
   toggle: 'topic-page-view-toggle',
@@ -90,19 +87,6 @@ export const TopicsPage = ({ data, location }) => {
   return (
     <Layout>
       <Main>
-        <Link
-          to={'/contentContribution'}
-          css={{
-            display: 'inline-block',
-            float: 'right',
-            color: '#444',
-            textDecoration: 'none',
-            fontSize: '1em',
-          }}
-        >
-          <FontAwesomeIcon icon={faPlus} />
-          <span> Suggest new topic</span>
-        </Link>
         <Title
           title={TOPICS_PAGE.header.title.defaultMessage}
           subtitle={TOPICS_PAGE.header.subtitle.defaultMessage}
