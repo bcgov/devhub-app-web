@@ -30,7 +30,8 @@
     "babel-polyfill": "^6.26.0",
     "bottleneck": "^2.19.5",
     "gray-matter": "^4.0.2",
-    "lodash": "^4.17.19"
+    "lodash": "^4.17.19",
+    "redis": "^3.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
