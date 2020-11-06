@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-//const Bottleneck = require('bottleneck');
+const Bottleneck = require('bottleneck');
 const matter = require('gray-matter');
 const { flatten, groupBy } = require('lodash');
 const process = require('process');
@@ -18,7 +18,6 @@ const { reduceContentsResults, reduceResultsToData, reduceFileResults } = requir
 const { validateDescription, hasNoErrors } = require('./validators');
 const token = process.env.GITHUB_TOKEN;
 const myOctokit = Octokit.plugin(throttling);
-
 
 const octokit = new myOctokit({
   auth: `${token}`,
@@ -73,12 +72,12 @@ const FILE_CONTENTS_QUERY = `
     }
   }
 `;
-/*
+
 const throttleRequests = core.getInput('throttle', { required: false }) || 333;
 const limiter = new Bottleneck({
   maxConcurrent: 3,
   minTime: throttleRequests,
-});*/
+});
 /**
  * gets journeys and topics registry files
  * @param {String} repo
@@ -142,7 +141,7 @@ const validateFile = async ({ sourceProperties }) => {
   const file = filePathFromSourceProps(sourceProperties);
   // eslint-disable-next-line
   console.log(`Validating ${sourceProperties} at ${(Date.now() - rootTime) / 1000}s`);
-  const rawContents = await getMarkdownContents(sourceProperties);
+  const rawContents = await limiter.schedule(() => getMarkdownContents(sourceProperties));
   const contents = reduceFileResults(rawContents);
 
   return validateMarkdownContents(contents).map(m => ({ ...m, file }));
