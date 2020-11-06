@@ -19,19 +19,18 @@ const { validateDescription, hasNoErrors } = require('./validators');
 const token = process.env.GITHUB_TOKEN;
 const myOctokit = Octokit.plugin(throttling);
 
-//const MyOctokit = Octokit.plugin(throttling);
 
 const octokit = new myOctokit({
   auth: `${token}`,
   throttle: {
     onRateLimit: (retryAfter, options, octokit) => {
       octokit.log.warn(`Request quota exhausted for request ${options.method} ${options.url}`);
-
+      /*
       if (options.request.retryCount === 0) {
         // only retries once
         octokit.log.info(`Retrying after ${retryAfter} seconds!`);
         return true;
-      }
+      }*/
       return true;
     },
     onAbuseLimit: (retryAfter, options, octokit) => {
