@@ -1,13 +1,11 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-//const Bottleneck = require('bottleneck');
 const matter = require('gray-matter');
 const { flatten, groupBy } = require('lodash');
 const process = require('process');
 const rootTime = Date.now();
 const { Octokit } = require('@octokit/core');
 const { throttling } = require('@octokit/plugin-throttling');
-//const { GitHub } = require('@actions/github/lib/utils');
 
 const {
   reduceJourneyRegistryToTopic,
@@ -24,13 +22,11 @@ const octokit = new myOctokit({
   throttle: {
     onRateLimit: (retryAfter, options, octokit) => {
       octokit.log.warn(`Request quota exhausted for request ${options.method} ${options.url}`);
-      /*
       if (options.request.retryCount === 0) {
         // only retries once
         octokit.log.info(`Retrying after ${retryAfter} seconds!`);
         return true;
-      }*/
-      return true;
+      }
     },
     onAbuseLimit: (retryAfter, options, octokit) => {
       // does not retry, only logs a warning
@@ -73,11 +69,6 @@ const FILE_CONTENTS_QUERY = `
   }
 `;
 
-/*const throttleRequests = core.getInput('throttle', { required: false }) || 333;
-const limiter = new Bottleneck({
-  maxConcurrent: 3,
-  minTime: throttleRequests,
-});*/
 /**
  * gets journeys and topics registry files
  * @param {String} repo
