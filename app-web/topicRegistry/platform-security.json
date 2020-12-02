@@ -29,6 +29,14 @@
               "description": "Application Security in a Cloud Native World.",
               "url": "https://raw.githubusercontent.com/bcgov/devhub-resources/master/resources/security/BCGov-DevSecOps-Project.pdf"
             }
+          },
+          {
+            "sourceType": "web",
+            "sourceProperties": {
+              "title": "Vault Service Description",
+              "description": "A better way to store your platform and application secrets",
+              "url": "https://github.com/BCDevOps/openshift-wiki/blob/master/docs/OCP/VaultServiceDescription.md"
+            }
           }
       ]
     }
