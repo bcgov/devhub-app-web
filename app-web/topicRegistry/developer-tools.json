@@ -79,6 +79,18 @@
         "resourceType": "Documentation"
       },
       {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://bcgov.github.io/bcwebmaps-options/",
+          "owner": "bcgov",
+          "author": "webgismd",
+          "title": "BC Web Mapping and Spatial Resources",
+          "description": "There are many options for web mapping technology. The purpose of this site is to help people become more familiar with what is available in the area of spatail web services and web mapping hosted solutions.",
+          "image": "https://developer.gov.bc.ca/images/gov-logo-static.png"
+        },
+        "resourceType": "Documentation"
+      },
+      {
         "sourceType": "github",
         "sourceProperties": {
           "title": "Developer Experience",
