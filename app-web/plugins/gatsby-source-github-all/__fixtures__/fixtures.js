@@ -445,7 +445,7 @@ const REGISTRY_WITH_TOPIC = [
         {
           sourceType: 'web',
           sourceProperties: {
-            url: 'https://sso.pathfinder.gov.bc.ca/',
+            url: 'https://oidc.gov.bc.ca/',
             author: 'cvarjao',
             title: 'Red Hat Single Sign On (aka KeyCloak)',
             description:
