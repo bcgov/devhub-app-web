@@ -150,6 +150,8 @@ objects:
       type: Dockerfile
     strategy:
       dockerStrategy:
+        pullSecret:
+          name: ${PULL_SECRET_NAME}
         from:
           kind: ImageStreamTag
           name: 'bcgov-s2i-caddy:latest'
@@ -216,3 +218,7 @@ parameters:
   name: MATOMO_SITE_ID
   required: false
   value: '1'
+- description: The pull secret name
+  displayName: Pull Secret Name
+  name: PULL_SECRET_NAME
+  required: true
