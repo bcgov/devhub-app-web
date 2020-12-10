@@ -3,9 +3,9 @@
 The Devhub requires a realm created for each instance of key cloak (dev, test, prod)
 
 there urls are 
-- https://sso-dev.pathfinder.gov.bc.ca
-- https://sso-test.pathfinder.gov.bc.ca
-- https://sso.pathfinder.gov.bc.ca
+- https://dev.oidc.gov.bc.ca
+- https://test.oidc.gov.bc.ca
+- https://oidc.gov.bc.ca
 
 Please make a realm request to have a realm created for each of these instances.
 
