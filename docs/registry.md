@@ -179,7 +179,7 @@ for example this is the configuration for the 'Authentication and Authorization'
       {
         "sourceType": "web",
         "sourceProperties": {
-          "url": "https://sso.pathfinder.gov.bc.ca/",
+          "url": "https://oidc.gov.bc.ca/",
           "author": "cvarjao",
           "title": "Red Hat Single Sign On (aka KeyCloak)",
           "description": "Red Hat Single Sign On is .....",
@@ -265,7 +265,7 @@ Once you are done, edit the `JSON` configuration file of your choosing (preferab
       {
         "sourceType": "web",
         "sourceProperties": {
-          "url": "https://sso.pathfinder.gov.bc.ca/",
+          "url": "https://oidc.gov.bc.ca/",
           "author": "cvarjao",
           "title": "Red Hat Single Sign On (aka KeyCloak)",
           "description": "Red Hat Single Sign On is .....",

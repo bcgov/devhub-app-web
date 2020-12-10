@@ -21,7 +21,7 @@ KEYCLOAK_CLIENT_ID=$(oc -n devhub-dev get secret/sso-dev-service-account --templ
 KEYCLOAK_CLIENT_SECRET=$(oc -n devhub-dev get secret/sso-dev-service-account --template={{.data.KEYCLOAK_CLIENT_SECRET}} | base64 --decode)
 
 # get sso variables:
-KEYCLOAK_URL=https://sso-dev.pathfinder.gov.bc.ca
+KEYCLOAK_URL=https://dev.oidc.gov.bc.ca
 REALM_NAME=devhub
 PR_NUMBER="$1"
 
