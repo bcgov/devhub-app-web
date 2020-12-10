@@ -17,7 +17,7 @@
           "owner": "BCDevOps",
           "repo": "developer-experience",
           "files": [
-            "docs/kcMigration/KeycloakMigration.md"
+            "docs/kcMigration/sso-service-name-migration-notification.md"
           ]
         }
       }
