@@ -23,7 +23,6 @@ module.exports = settings => {
         MATOMO_URL: 'https://matomo-devhub-prod.pathfinder.gov.bc.ca',
         MATOMO_SITE_URL: 'https://developer.gov.bc.ca',
         MATOMO_SITE_ID: '1',
-        PULL_SECRET_NAME: 'dockerhub', // this is a personal docker hub account for now
       },
     }),
   );
