@@ -16,11 +16,7 @@ Created by Patrick Simonian
  */
 import React, { useMemo } from 'react';
 
-import {
-  getFirstNonExternalResource,
-  buildFeaturedTopic,
-  buildPopularTopic,
-} from '../../utils/helpers';
+import { getFirstNonExternalResource, buildFeaturedTopic } from '../../utils/helpers';
 import Topic from '../Topic';
 
 import { ChevronLink } from '../UI/Link';
@@ -31,7 +27,6 @@ import {
   FEATURE_TOPIC_CONFIGURATION,
   DYNAMIC_TOPIC_PATHS,
   FEATURED_CONTENT,
-  POPULAR_TOPIC_CONFIGURATION,
 } from '../../constants/ui';
 import { useDevhubSiphonAndGithubRawNodes } from '../../utils/hooks';
 
@@ -80,15 +75,6 @@ export const TopicsPreview = () => {
 
   const [devhubSiphon, githubRaw] = useDevhubSiphonAndGithubRawNodes();
 
-  const popularTopic = buildPopularTopic(
-    githubRaw,
-    POPULAR_TOPIC_CONFIGURATION.name,
-    POPULAR_TOPIC_CONFIGURATION.description,
-    DYNAMIC_TOPIC_PATHS.popular,
-    POPULAR_TOPIC_CONFIGURATION.minPageViews,
-    POPULAR_TOPIC_CONFIGURATION.maxNodes,
-  );
-
   const featuredTopic = buildFeaturedTopic(
     githubRaw.concat(devhubSiphon),
     FEATURE_TOPIC_CONFIGURATION.name,
@@ -96,7 +82,7 @@ export const TopicsPreview = () => {
     DYNAMIC_TOPIC_PATHS.featured,
     FEATURED_CONTENT,
   );
-  const allTopics = [popularTopic, featuredTopic].concat(topics.edges);
+  const allTopics = [featuredTopic].concat(topics.edges);
   const topicNodes = useMemo(() => flattenGatsbyGraphQL(allTopics), [allTopics]);
   const link = { to: '/topics', text: 'Topics' };
 

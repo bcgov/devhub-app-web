@@ -26,7 +26,6 @@ const withResourceQuery = WrappedComponent => () => props => (
           edges {
             node {
               id
-              pageViews
               html_url
               fields {
                 resourceType

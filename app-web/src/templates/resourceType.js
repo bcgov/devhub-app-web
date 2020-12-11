@@ -171,7 +171,6 @@ export const ResourceTypeQuery = graphql`
       edges {
         node {
           id
-          pageViews
           html_url
           fields {
             resourceType

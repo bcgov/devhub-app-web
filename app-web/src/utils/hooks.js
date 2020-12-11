@@ -110,7 +110,6 @@ export const useDevhubSiphonAndGithubRawNodes = () => {
         edges {
           node {
             id
-            pageViews
             html_url
             fields {
               resourceType
