@@ -31,7 +31,6 @@ const {
   getClosestResourceType,
   getClosestPersona,
   isTopicRegistryJson,
-  isMatomoPageStats,
   isJourneyRegistryJson,
 } = require('./utils/validators.js');
 const { isRelativePath, converter } = require('./utils/gatsbyRemark');
@@ -467,10 +466,5 @@ module.exports = async ({ node, actions, getNode, getNodes, store, cache, create
         value: node.frontmatter.author ? node.frontmatter.author : '',
       });
     }
-  }
-
-  if (isMatomoPageStats(node)) {
-    const label = node.label.replace(/^\//, ''); // labels may start with a forward slash which needs to be removed
-    createNodeField({ node, name: 'githubSlug', value: label });
   }
 };

@@ -28,7 +28,6 @@ const isEventbriteEvents = node => node.internal.type === 'EventbriteEvents';
 const isTopicRegistryJson = node => node.internal.type === 'TopicRegistryJson';
 const isJourneyRegistryJson = node => node.internal.type === 'JourneyRegistryJson';
 const isMarkdownRemarkFrontmatter = node => node.internal.type === 'MarkdownRemarkFrontmatter';
-const isMatomoPageStats = node => node.internal.type === 'MatomoPageStats';
 
 const getClosest = (value, list) => {
   const matches = stringSimilarity.findBestMatch(value, list);
@@ -107,7 +106,7 @@ const createSlugBlacklist = () => {
     sitemap: 'sitemap',
     repositories: 'repositories',
     'past-events': 'past-events',
-    'contentContribution': 'contentContribution',
+    contentContribution: 'contentContribution',
   };
   const CONFIG_LIST = slugBlackList.reduce((map, slug) => {
     map[slug] = slug;
@@ -137,7 +136,6 @@ module.exports = {
   isEventbriteEvents,
   isTopicRegistryJson,
   isJourneyRegistryJson,
-  isMatomoPageStats,
   getClosest,
   getClosestPersona,
   getClosestResourceType,

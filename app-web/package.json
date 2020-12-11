@@ -11,7 +11,6 @@
   "dependencies": {
     "@apollo/react-hooks": "0.1.0-beta.11",
     "@bcgov/gatsby-source-github-raw": "^1.0.4",
-    "@bcgov/gatsby-source-matomo": "0.0.3",
     "@brainhubeu/react-carousel": "^1.13.41",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.11",
@@ -41,7 +40,6 @@
     "gatsby-plugin-favicon": "^3.1.6",
     "gatsby-plugin-google-analytics": "^2.3.0",
     "gatsby-plugin-manifest": "^2.4.1",
-    "gatsby-plugin-matomo": "^0.7.2",
     "gatsby-plugin-offline": "^2.1.1",
     "gatsby-plugin-postcss": "^2.3.0",
     "gatsby-plugin-prefetch-google-fonts": "^1.4.2",
@@ -59,7 +57,6 @@
     "gatsby-source-eventbrite": "^1.1.0",
     "gatsby-source-filesystem": "^2.3.0",
     "gatsby-source-github-raw": "^1.2.5",
-    "gatsby-source-matomo": "0.0.4-0",
     "gatsby-source-meetup": "0.0.1",
     "gatsby-transformer-json": "^2.4.0",
     "gatsby-transformer-remark": "^2.8.3",

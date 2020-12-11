@@ -20,9 +20,6 @@ module.exports = settings => {
         SOURCE_REPOSITORY_URL: oc.git.http_url,
         SOURCE_REPOSITORY_REF: oc.git.ref,
         DOCKER_IMAGE_DIRECTORY: 'docker-images/nodejs-base',
-        MATOMO_URL: 'https://matomo-devhub-prod.pathfinder.gov.bc.ca',
-        MATOMO_SITE_URL: 'https://developer.gov.bc.ca',
-        MATOMO_SITE_ID: '1',
       },
     }),
   );

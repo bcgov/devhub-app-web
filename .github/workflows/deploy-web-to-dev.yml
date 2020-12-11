@@ -42,19 +42,13 @@ jobs:
       - name: Create Build
         env:
           TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
-          GATSBY_MATOMO_URL: ${{ secrets.GATSBY_MATOMO_URL }}
-          GATSBY_MATOMO_SITE_URL: ${{ secrets.GATSBY_MATOMO_SITE_URL }}
-          GATSBY_MATOMO_SITE_ID: ${{ secrets.GATSBY_MATOMO_SITE_ID }}
 
         run: |
           oc process -f openshift/templates/web/bc.yaml -n $TOOLS_NAMESPACE \
           -p SUFFIX=$SUFFIX \
           -p SOURCE_REPOSITORY_URL="https://github.com/$GITHUB_REPOSITORY" \
           -p SOURCE_REPOSITORY_REF=$GITHUB_REF \
-          -p MATOMO_URL=$GATSBY_MATOMO_URL \
           -p NAME=$INFRA_NAME \
-          -p MATOMO_SITE_URL=$GATSBY_MATOMO_SITE_URL \
-          -p MATOMO_SITE_ID=$GATSBY_MATOMO_SITE_ID -n $TOOLS_NAMESPACE \
           -p VERSION="$PULL_NUMBER" | \
           oc apply -n $TOOLS_NAMESPACE -f -
           
@@ -89,15 +83,11 @@ jobs:
       - name: Run Deployment to Dev
         env:
           DEPLOY_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
-          GATSBY_MATOMO_URL: ${{ secrets.GATSBY_MATOMO_URL }}
-          GATSBY_MATOMO_SITE_URL: ${{ secrets.GATSBY_MATOMO_SITE_URL }}
-          GATSBY_MATOMO_SITE_ID: ${{ secrets.GATSBY_MATOMO_SITE_ID }}
           SEARCHGATE_API_URL: ${{ secrets.SEARCHGATE_API_URL }}
           DEVHUB_API_URL: ${{ secrets.DEVHUB_API_URL }}
           SSO_BASE_URL: dev.oidc.gov.bc.ca
           SSO_CLIENT_ID: "devhub-web-${{ env.PULL_NUMBER }}"
           SSO_REALM_NAME: ${{ secrets.SSO_REALM_NAME }}
-          MATOMO_URL: ${{ secrets.MATOMO_URL }}
           ALGOLIA_INDEX_NAME_SUFFIX: "-build-${{ env.PULL_NUMBER }}"
           IMAGE_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
           IMAGE_TAG: ${{ env.PULL_NUMBER }}

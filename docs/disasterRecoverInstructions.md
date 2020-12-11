@@ -12,7 +12,7 @@ Have a nodejs version 10 and s2i-caddy image from Redhat in ‘openshift’ name
 
 Have Openshift Cli knowledge.
 
-Have all required API token.(Github, matomo, eventbrite)
+Have all required API token.(Github, eventbrite)
 
 Assuming we start in an empty namespace
  
@@ -23,7 +23,6 @@ In OpenShift: namespace: BC developer Hub(tools)
   * devhub-eventbrite-token
   * devhub-gh-token
   * devhub-meetup-token
-  * matomo-api-key
 
  we can add by using the corresponding template in the project file: openshift/template:
 
@@ -31,7 +30,6 @@ In OpenShift: namespace: BC developer Hub(tools)
 oc project devhub-tools
 oc process -f gh.secret.yaml -p GITHUB_TOKEN=<token that you get from github> | oc apply -f -
  
-oc process -f matomo.secret.yaml -p MATOMO_API_KEY=<Matomo access token> | oc apply -f -
 
 oc process -f eventbrite.secret.yaml -p EVENT_BRITE_API_KEY=<Event brite api key if you have> |oc apply -f -
 ```
@@ -52,9 +50,6 @@ VERSION=1.0.0
 SOURCE_REPOSITORY_URL=https://github.com/bcgov/devhub-app-web.git
 SOURCE_REPOSITORY_REF=master
 DOCKER_IMAGE_DIRECTORY=docker-images/nodejs-base
-MATOMO_URL=https://matomo-devhub-prod.pathfinder.gov.bc.ca
-MATOMO_SITE_URL=https://developer.gov.bc.ca
-MATOMO_SITE_ID=1
 ```
 
 Then, use bc.yaml by:
@@ -70,7 +65,6 @@ devhub-build in build should start build and hopefully will succeed.
 we need to deploy image into BC developer-Hub (dev/test/prod)namespace pod by using dc.yaml in dev/test/prod 
 Again first we need to create a `dcparameter.sh` as parameters:
 ```sh
-MATOMO_URL=https://matomo-devhub-prod.pathfinder.gov.bc.ca/
 SEARCHGATE_API_URL=https://searchgate-test.pathfinder.gov.bc.ca
 SSO_BASE_URL_VALUE=https://sso-dev.pathfinder.gov.bc.ca
 SSO_REALM_NAME=<Your SSO_REALM Name>
