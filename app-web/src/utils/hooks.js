@@ -77,13 +77,15 @@ export const useSearch = query => {
  * hook that performs a rocket chat search against the rocket gate apollo api
  * @param {Boolean} authenticated
  * @param {String} queryString the search string
+ * @param {Array} dataSources the list of datasources to search string[]
  * @param {Client} client the apollo client to query
  * @returns {Object} {loading, results: <Array>}
  */
-export const useSearchGate = (authenticated, queryString, client) => {
+export const useSearchGate = (authenticated, queryString, dataSources, client) => {
   const [execute, { data, loading, error }] = useLazyQuery(SEARCHGATE_QUERY, {
     variables: {
       queryString,
+      dataSources,
     },
     client,
   });

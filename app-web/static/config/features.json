@@ -1,0 +1,7 @@
+{
+  "dynamicSearch": {
+    "github": true,
+    "documize": true,
+    "rocketchat": true
+  }
+}
