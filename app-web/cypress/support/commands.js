@@ -37,7 +37,7 @@ const JWT = () => ({
   exp: Date.now() + 10000,
   nbf: 0,
   iat: Date.now(),
-  iss: 'https://sso.pathfinder.gov.bc.ca/auth/realms/devhub',
+  iss: 'https://oidc.gov.bc.ca/auth/realms/devhub',
   aud: 'devhub-web',
   sub: '2fe15c36-72e7-48f1-97e3-9b988cf1c861',
   typ: 'ID',

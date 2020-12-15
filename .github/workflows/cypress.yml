@@ -39,7 +39,7 @@ jobs:
           CI: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           EVENT_BRITE_API_KEY: ${{secrets.EVENT_BRITE_API_KEY}}
-          GATSBY_SSO_BASE_URL: https://sso-dev.pathfinder.gov.bc.ca
+          GATSBY_SSO_BASE_URL: https://dev.oicd.gov.bc.ca
           GATSBY_ALGOLIA_APP_ID: ${{secrets.GATSBY_ALGOLIA_APP_ID}}
           GATSBY_ALGOLIA_SEARCH_KEY: ${{secrets.GATSBY_ALGOLIA_SEARCH_KEY}}
           GATSBY_ALGOLIA_INDEX_NAME_SUFFIX: local

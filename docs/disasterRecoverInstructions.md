@@ -66,7 +66,7 @@ we need to deploy image into BC developer-Hub (dev/test/prod)namespace pod by us
 Again first we need to create a `dcparameter.sh` as parameters:
 ```sh
 SEARCHGATE_API_URL=https://searchgate-test.pathfinder.gov.bc.ca
-SSO_BASE_URL_VALUE=https://sso-dev.pathfinder.gov.bc.ca
+SSO_BASE_URL_VALUE=https://dev.oidc.gov.bc.ca
 SSO_REALM_NAME=<Your SSO_REALM Name>
 SSO_CLIENT_ID_VALUE=<Your SSO SSO_CLIENT ID>
 ```

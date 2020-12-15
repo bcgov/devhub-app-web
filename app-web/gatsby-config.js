@@ -268,13 +268,16 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: `gatsby-plugin-webfonts`,
       options: {
-        fonts: [
-          {
-            family: 'Noto Sans', // default/included variants are 400,400i,700,700i
-          },
-        ],
+        fonts: {
+          google: [
+            {
+              family: 'Noto Sans',
+              variants: ['300', '400', '500', '400i', '700', '700i'],
+            },
+          ],
+        },
       },
     },
     {

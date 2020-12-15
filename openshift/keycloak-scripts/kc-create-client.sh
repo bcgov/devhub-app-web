@@ -20,7 +20,7 @@ if [ "$1" == "" ]; then
 fi
 
 # get sso variables:
-KEYCLOAK_URL=https://oidc.dev.gov.bc.ca
+KEYCLOAK_URL=https://dev.oidc.gov.bc.ca
 REALM_NAME=devhub
 PR_NUMBER="$1"
 

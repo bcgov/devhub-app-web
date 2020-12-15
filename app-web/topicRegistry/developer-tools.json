@@ -60,7 +60,7 @@
       {
         "sourceType": "web",
         "sourceProperties": {
-          "url": "https://sso.pathfinder.gov.bc.ca/",
+          "url": "https://oidc.gov.bc.ca/",
           "author": "cvarjao",
           "title": "Red Hat Single Sign On (aka KeyCloak)",
           "description": "Red Hat Single Sign On is a modern, developer-friendly single sign on solution implementing the OpenID Connect specification as well as SAML.  The BC Gov implementation provides built-in intregration with IDIR, BCeID and GitHub and allow application developers to quickly meet the authentication needs of their applications. Red Hat SSO is the downstream, commercially supported distribution of the open source KeyCloak product.",
@@ -74,6 +74,18 @@
           "owner": "bcgov",
           "title": "BC Data Catalogue",
           "description": "The BC Data catalogue helps users to find, understand and explore data. The catalogue also provides contact information so that data users can contact Data Custodians for additional information if required.",
+          "image": "https://developer.gov.bc.ca/images/gov-logo-static.png"
+        },
+        "resourceType": "Documentation"
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://bcgov.github.io/bcwebmaps-options/",
+          "owner": "bcgov",
+          "author": "webgismd",
+          "title": "BC Web Mapping and Spatial Resources",
+          "description": "There are many options for web mapping technology. The purpose of this site is to help people become more familiar with what is available in the area of spatail web services and web mapping hosted solutions.",
           "image": "https://developer.gov.bc.ca/images/gov-logo-static.png"
         },
         "resourceType": "Documentation"
@@ -104,6 +116,19 @@
           "repo": "cap-information",
           "files": [
             "cloud-pathfinder/dynamics.md"
+          ]
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "title": "Patroni",
+          "url": "https://github.com/BCDevOps/platform-services",
+          "author": "cvarjao",
+          "owner": "bcdevops",
+          "repo": "platform-services",
+          "files": [
+            "apps/pgsql/patroni/README.md"
           ]
         }
       }
