@@ -12,7 +12,6 @@ import {
   MEETUP_NODES,
   FEATURED_TOPIC,
   JOURNEYS,
-  POPULAR_TOPIC,
 } from '../../__fixtures__/nodes';
 
 import { useSearch, useSearchGate, useDevhubSiphonAndGithubRawNodes } from '../../src/utils/hooks';
@@ -23,7 +22,6 @@ import {
   getTextAndLink,
   removeUnwantedResults,
   buildFeaturedTopic,
-  buildPopularTopic,
   reduceJourneyToSubwayLine,
 } from '../../src/utils/helpers';
 import { GITHUB_RAW_NODES } from '../../__fixtures__/nodes';
@@ -51,7 +49,6 @@ useSearchGate.mockReturnValue({ results: [], loading: false });
 // jwt time stamps are in seconds. dividing by 1000 to convert date.now ms to s
 
 buildFeaturedTopic.mockReturnValue({ node: FEATURED_TOPIC });
-buildPopularTopic.mockReturnValue({ node: POPULAR_TOPIC });
 reduceJourneyToSubwayLine.mockReturnValue([{ name: 'foo' }]);
 
 describe('Home Page', () => {

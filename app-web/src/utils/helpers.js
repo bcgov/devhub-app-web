@@ -324,35 +324,6 @@ export const sortDevhubTopicsAfterSelectedTopics = topics => {
 };
 
 /**
- * returns a set of nodes that should be apart of the popular topic
- * @param {Array} nodes a list of gatsby nodes to build a popular topic from
- * @param {String} name
- * @param {String} description
- * @param {String} slug
- * @param {Object} nodes.fields gatsby fields object
- * @param {Number} nodes.fields.pageViews  number of page views
- * @param {Number} minPageViews the threshold of how many page views before something can be considered popular
- * @param {Number} maxNodes max number of nodes in the popular topic
- */
-export const buildPopularTopic = (nodes, name, description, slug, minPageViews, maxNodes) => {
-  const sortedNodes = nodes.sort((a, b) => a.pageViews - b.pageViews);
-
-  const popularNodes = sortedNodes.filter(node => node.pageViews > minPageViews).slice(0, maxNodes);
-  // popular nodes need to have a path property assigned based on the dynamic page path '/topic
-  return {
-    node: {
-      id: 'popular-topic',
-      name,
-      description,
-      fields: {
-        githubRaw: popularNodes,
-      },
-      connectsWith: popularNodes.map(n => ({ ...n, path: `/topic/${slug}/${n.fields.slug}` })),
-    },
-  };
-};
-
-/**
  * returns a set of nodes that should be apart of a featured topic based on the FEATURED_TOPICS map
  * @param {Array} nodes the a set of different node types that will be used to build the featured set of topics
  * @param {String} name

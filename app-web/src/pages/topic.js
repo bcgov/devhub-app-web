@@ -7,11 +7,10 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   DYNAMIC_TOPIC_PATHS,
-  POPULAR_TOPIC_CONFIGURATION,
   FEATURE_TOPIC_CONFIGURATION,
   FEATURED_CONTENT,
 } from '../constants/ui';
-import { buildPopularTopic, buildFeaturedTopic } from '../utils/helpers';
+import { buildFeaturedTopic } from '../utils/helpers';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
 import Popular from '../components/TopicEntryPage/Popular';
 import Featured from '../components/TopicEntryPage/Featured';
@@ -61,16 +60,7 @@ export const TopicPage = ({ data, location, ...rest }) => {
     return navigateFn('404');
   }
 
-  if (topicType === DYNAMIC_TOPIC_PATHS.popular) {
-    topicObj = buildPopularTopic(
-      nodes,
-      POPULAR_TOPIC_CONFIGURATION.name,
-      POPULAR_TOPIC_CONFIGURATION.description,
-      DYNAMIC_TOPIC_PATHS.popular,
-      POPULAR_TOPIC_CONFIGURATION.minPageViews,
-      POPULAR_TOPIC_CONFIGURATION.maxNodes,
-    );
-  } else if (topicType === DYNAMIC_TOPIC_PATHS.featured) {
+  if (topicType === DYNAMIC_TOPIC_PATHS.featured) {
     topicObj = buildFeaturedTopic(
       nodes.concat(flattenGatsbyGraphQL(data.allDevhubSiphon.edges)),
       FEATURE_TOPIC_CONFIGURATION.name,

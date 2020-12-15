@@ -23,7 +23,6 @@ import {
   mapPagePathToResourceTypeConst,
   sortDevhubTopicsAfterSelectedTopics,
   getTextAndLink,
-  buildPopularTopic,
   buildFeaturedTopic,
   togglePills,
   reduceNodeForTableOfContents,
@@ -155,96 +154,6 @@ describe('Helpers', () => {
       };
 
       expect(getTextAndLink(resourceType, resourcesByType)).toEqual(expected);
-    });
-  });
-
-  describe('Building the popular topic', () => {
-    it('builds the popular topic', () => {
-      const nodes = [
-        {
-          fields: {
-            slug: 'foo',
-          },
-          id: 1,
-          pageViews: 5,
-        },
-        {
-          fields: {
-            slug: 'foo',
-          },
-          id: 2,
-          pageViews: 1,
-        },
-        {
-          fields: {
-            slug: 'foo',
-          },
-          id: 3,
-          pageViews: 2,
-        },
-        {
-          fields: {
-            slug: 'foo',
-          },
-          id: 5,
-          pageViews: 10,
-        },
-        {
-          fields: {
-            slug: 'foo',
-          },
-          id: 1,
-          pageViews: 5,
-        },
-      ];
-
-      const topic = {
-        node: {
-          id: 'popular-topic',
-          name: 'title',
-          description: 'description',
-          fields: {
-            githubRaw: nodes,
-          },
-          connectsWith: nodes
-            .sort((a, b) => a.pageViews - b.pageViews)
-            .map(n => ({ ...n, path: `/topic/bar/${n.fields.slug}` })),
-        },
-      };
-
-      const popular = buildPopularTopic(
-        nodes,
-        topic.node.name,
-        topic.node.description,
-        'bar',
-        0,
-        10,
-      );
-
-      expect(popular).toEqual(topic);
-
-      // with a threshold of minn page views of 6 only id: 5 should be within connects With
-      const popular2 = buildPopularTopic(
-        nodes,
-        topic.node.name,
-        topic.node.description,
-        'bar',
-        6,
-        10,
-      );
-
-      expect(popular2.node.connectsWith.length).toBe(1);
-
-      const popular3 = buildPopularTopic(
-        nodes,
-        topic.node.name,
-        topic.node.description,
-        'bar',
-        1,
-        3,
-      );
-
-      expect(popular3.node.connectsWith.length).toBe(3);
     });
   });
 

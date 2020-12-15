@@ -50,19 +50,6 @@ module.exports = ({ createResolvers }) => {
       },
     },
     GithubRaw: {
-      pageViews: {
-        // binding page views to github raw nodes based off of Matomo page stats so that a popular topic can be built
-        type: 'Int',
-        resolve: (source, args, context) => {
-          const nodes = context.nodeModel.getAllNodes({ type: 'MatomoPageStats' });
-          const node = nodes.find(n => n.fields.githubSlug === source.fields.slug);
-          if (node) {
-            return node.nb_visits;
-          } else {
-            return 0;
-          }
-        },
-      },
       _conflictsFound: {
         // binding a boolean if the slug that was created for this node would conflict with our blacklisted slugs
         // and or any other github raw node (ie all slugs must be unique)
