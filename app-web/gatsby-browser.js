@@ -28,12 +28,16 @@ import wrapWithProvider from './wrapWithProvider';
 import { KeycloakProvider } from '@react-keycloak/web';
 
 import keycloak from './src/auth';
+import features from './config/features.json';
+import { AppConfig } from './src/context/AppConfig';
 
 config.autoAddCss = false;
 
 const RuntimeWrapper = Component => ({ element }) => (
   <KeycloakProvider keycloak={keycloak}>
-    <Component element={element} />
+    <AppConfig.Provider value={{ features }}>
+      <Component element={element} />
+    </AppConfig.Provider>
   </KeycloakProvider>
 );
 export const wrapRootElement = RuntimeWrapper(wrapWithProvider);

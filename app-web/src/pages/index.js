@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useState } from 'react';
+import React, { useMemo, useEffect, useState, useContext } from 'react';
 import { useKeycloak } from '@react-keycloak/web';
 import queryString from 'query-string';
 import { graphql } from 'gatsby';
@@ -22,6 +22,7 @@ import { formatEvents } from '../templates/events';
 import { SearchGateResults } from '../components/Search/SearchGateResults';
 import { getFirstNonExternalResource } from '../utils/helpers';
 import groupBy from 'lodash/groupBy';
+import { AppConfig } from '../context/AppConfig';
 
 export const TEST_IDS = {
   alert: 'home-test-alert',
@@ -43,13 +44,23 @@ export const Index = ({
   // of reacts hydration process https://reactjs.org/docs/react-dom.html#hydrate
   // eslint-disable-next-line
   const [isClient, setClient] = useState(false);
+  const appConfig = useContext(AppConfig);
+
+  const dataSources = useMemo(
+    () =>
+      Object.keys(appConfig.features.dynamicSearch).filter(
+        feature => appConfig.features.dynamicSearch[feature],
+      ),
+    [appConfig.features.dynamicSearch],
+  );
 
   useEffect(() => {
     setClient(true);
   }, []);
+
   const queryParam = queryString.parse(location.search);
   const windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, SEARCH_QUERY_PARAM);
-  // const { isAuthenticated } = useContext(AuthContext);
+
   const [keycloak] = useKeycloak();
   const isAuthenticated = keycloak && keycloak.authenticated;
 
@@ -57,7 +68,7 @@ export const Index = ({
   const queryIsEmpty = isQueryEmpty(query);
   const thereIsASearch = !queryIsEmpty && windowHasQuery;
   // search our local graphql federated search for (documize, github and rocketchat)
-  const searchGate = useSearchGate(isAuthenticated, query, client);
+  const searchGate = useSearchGate(isAuthenticated || true, query, dataSources, client);
   // search algolia
   const results = useSearch(query);
 
@@ -122,7 +133,16 @@ export const Index = ({
       </div>
     );
   } else if (thereIsASearch) {
-    // if there is no query render the topics
+    let dynamicContent = null;
+    if (dataSources.length > 0) {
+      dynamicContent =
+        searchGate.authenticated && searchGate.loading ? (
+          <Loading message="loading" />
+        ) : (
+          <SearchGateResults searchSources={searchSources} />
+        );
+    }
+
     content = (
       <React.Fragment>
         <SearchResults
@@ -130,17 +150,14 @@ export const Index = ({
           resources={resourcesToSearchAgainst}
           results={results}
         />
-        {searchGate.error && (
+        {dataSources.length > 0 && searchGate.error && (
           <Alert color="error">There was an error fetching external results :(</Alert>
         )}
-        {searchGate.authenticated && searchGate.loading ? (
-          <Loading message="loading" />
-        ) : (
-          <SearchGateResults searchSources={searchSources} />
-        )}
+        {dynamicContent}
       </React.Fragment>
     );
   } else {
+    // if there is no query render the topics
     content = <TopicsPreview />;
   }
 
@@ -149,6 +166,7 @@ export const Index = ({
       <SEO title="DevHub" />
       <Masthead
         query={query}
+        dataSources={dataSources}
         searchSourcesLoading={searchGate.loading}
         location={location}
         resultCount={results && results.length}

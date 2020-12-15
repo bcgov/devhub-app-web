@@ -1,5 +1,5 @@
 // used to verify some things about the devhub setup
-const features = require('../static/features.json');
+const features = require('../config/features.json');
 
 const checkIfDynamicSearchIsInUse = () => {
   const { github, documize, rocketchat } = features.dynamicSearch;
@@ -7,7 +7,7 @@ const checkIfDynamicSearchIsInUse = () => {
   if (!process.env.GATSBY_SEARCHGATE_API_URL && askingForDynamicSearch) {
     // eslint-disable-next-line no-console
     console.error(`
-    Error! You have set dynamic search to be enabled (features.json > dynamicSearch)
+    Error! You have set dynamic search to be enabled (config/features.json) by enabling one or more search sources (github, rocketchat, documize).
     but have not passed a valid value for the GATSBY_SEARCHGATE_API_URL. A test connection is not made to your search gate service, 
     ensure it is up running prior to running this app`);
     process.exit(1);

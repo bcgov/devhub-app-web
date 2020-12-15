@@ -68,8 +68,23 @@ export const TEST_IDS = {
   alertBox: 'Masthead.show',
   algolia: 'Masthead.algolia',
 };
+const dataSourceDisplayName = {
+  rocketchat: 'Rocket.Chat',
+  documize: 'Documize',
+  github: 'Github Issues',
+};
 
-export const Masthead = ({ query, searchSourcesLoading, location }) => {
+const compiledDataSourceNames = dataSources => {
+  if (dataSources.length === 0) return null;
+
+  if (dataSources.length === 1) return <span>{dataSourceDisplayName[dataSources[0]]}</span>;
+  const dataSourcesCopy = [...dataSources].map(d => dataSourceDisplayName[d]);
+  dataSourcesCopy[dataSourcesCopy.length - 1] = `or ${dataSourcesCopy[dataSourcesCopy.length - 1]}`;
+
+  return <span>{dataSourcesCopy.join(', ')}</span>;
+};
+
+export const Masthead = ({ query, searchSourcesLoading, dataSources, location }) => {
   const [keycloak] = useKeycloak();
   const isAuthenticated = keycloak && keycloak.authenticated;
   const [alertHasBeenAcknowledged, setAlertHasBeenAcknowledged] = useState(false);
@@ -119,14 +134,14 @@ export const Masthead = ({ query, searchSourcesLoading, location }) => {
         />
         <IconDiv>{query && <SearchSources searchSourcesLoading={searchSourcesLoading} />}</IconDiv>
       </SearchContainer>
-      {!isAuthenticated && !alertHasBeenAcknowledged && (
+      {!isAuthenticated && !alertHasBeenAcknowledged && dataSources.length > 0 && (
         <AlertMessage
           color="warning"
           isOpen={query !== ''}
           toggle={() => onDismiss()}
           data-testid={TEST_IDS.alertBox}
         >
-          You can view search results from applications like Rocket.Chat, Github or Documize when
+          You can view search results from services like {compiledDataSourceNames(dataSources)} when
           logged in.
         </AlertMessage>
       )}

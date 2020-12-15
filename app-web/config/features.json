@@ -1,7 +1,7 @@
 {
   "dynamicSearch": {
     "github": true,
-    "documize": true,
+    "documize": false,
     "rocketchat": true
   }
 }
