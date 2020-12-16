@@ -6,7 +6,22 @@ metadata:
 labels:
   template: devhub-app-web
 objects:
-
+- apiVersion: v1
+  data:
+    features.json: |-
+      {
+        "dynamicSearch": {
+          "github": ${GITHUB_ISSUE_SEARCH},
+          "documize": ${DOCUMIZE_SEARCH},
+          "rocketchat": ${ROCKET_CHAT_SEARCH}
+        }
+      }
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: null
+    name: ${NAME}-app-config${SUFFIX}
+    labels:
+      build: ${NAME}-static${SUFFIX}
 - apiVersion: v1
   kind: ImageStream
   metadata:
@@ -43,6 +58,10 @@ objects:
         ref: ${SOURCE_REPOSITORY_REF}
       contextDir: 'app-web'
       type: Git
+      configMaps:
+        - configMap:
+            name: ${NAME}-app-config${SUFFIX}
+          destinationDir: './config'
     strategy:
       sourceStrategy:
         env:
@@ -121,3 +140,18 @@ parameters:
   name: SOURCE_REPOSITORY_REF
   required: true
   value: ''
+- description: Enable Github Issue Searching (requires search gate to be enabled on runtime)
+  displayName: Github Issue Search
+  name: GITHUB_ISSUE_SEARCH
+  required: true
+  value: false
+- description: Enable Documize Searching (requires search gate to be enabled on runtime)
+  displayName: Documize Search
+  name: DOCUMIZE_SEARCH
+  required: true
+  value: false
+- description: Enable Rocket.Chat  Searching (requires search gate to be enabled on runtime)
+  displayName: Rocket.Chat Search
+  name: ROCKET_CHAT_SEARCH
+  required: true
+  value: false
