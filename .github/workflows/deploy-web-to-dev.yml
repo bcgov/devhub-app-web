@@ -38,7 +38,7 @@ jobs:
         # reference https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable
         run: |
           _commit=$(.github/helpers/get_last_build_commit_id.sh)
-          echo "::set-env name=BUILD_COMMIT_ID::$_commit"
+          echo "BUILD_COMMIT_ID=$_commit" >> $GITHUB_ENV
       - name: Create Build
         env:
           TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
@@ -108,7 +108,7 @@ jobs:
           NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
         run: |
           DEPLOY_STATUS=$(.github/helpers/wait_for_deployment.sh dc/$INFRA_NAME$SUFFIX)
-          echo "::set-env name=DEPLOY_STATUS::$DEPLOY_STATUS"
+          echo "DEPLOY_STATUS=$DEPLOY_STATUS" >> $GITHUB_ENV
 
       - name: Change Deploy Status to Success or Failure
         uses: unacast/actions-github-deployment-status@0.4.0
