@@ -68,7 +68,7 @@ export const Index = ({
   const queryIsEmpty = isQueryEmpty(query);
   const thereIsASearch = !queryIsEmpty && windowHasQuery;
   // search our local graphql federated search for (documize, github and rocketchat)
-  const searchGate = useSearchGate(isAuthenticated || true, query, dataSources, client);
+  const searchGate = useSearchGate(isAuthenticated, query, dataSources, client);
   // search algolia
   const results = useSearch(query);
 
