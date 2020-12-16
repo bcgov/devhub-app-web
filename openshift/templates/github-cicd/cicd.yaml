@@ -70,6 +70,7 @@ objects:
           - list
           - update
           - delete
+          - patch
       - apiGroups:
           - image.openshift.io
           - ""

@@ -61,7 +61,7 @@ objects:
       configMaps:
         - configMap:
             name: ${NAME}-app-config${SUFFIX}
-          destinationDir: './config'
+          destinationDir: '/tmp/src/config'
     strategy:
       sourceStrategy:
         env:
