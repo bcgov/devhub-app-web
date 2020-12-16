@@ -61,6 +61,16 @@ objects:
           - list
           - update
       - apiGroups:
+          - ""
+        resources:
+          - configmaps
+        verbs:
+          - create
+          - get
+          - list
+          - update
+          - delete
+      - apiGroups:
           - image.openshift.io
           - ""
         resources:
