@@ -143,12 +143,12 @@ parameters:
 - description: Enable Github Issue Searching (requires search gate to be enabled on runtime)
   displayName: Github Issue Search
   name: GITHUB_ISSUE_SEARCH
-  value: false
+  value: "false"
 - description: Enable Documize Searching (requires search gate to be enabled on runtime)
   displayName: Documize Search
   name: DOCUMIZE_SEARCH
-  value: false
-- description: Enable Rocket.Chat  Searching (requires search gate to be enabled on runtime)
+  value: "false"
+- description: Enable Rocket.Chat Searching (requires search gate to be enabled on runtime)
   displayName: Rocket.Chat Search
   name: ROCKET_CHAT_SEARCH
-  value: false
+  value: "false"
