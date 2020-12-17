@@ -31,8 +31,8 @@ jobs:
           TEST_NAMESPACE: ${{ secrets.TEST_NAMESPACE }}
           PROD_NAMESPACE: ${{ secrets.PROD_NAMESPACE }}
           DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
-          SSO_TEST_URL: test.oidc.gov.bc.ca
-          SSO_PROD_URL: oidc.gov.bc.ca
+          SSO_TEST_URL: https://test.oidc.gov.bc.ca
+          SSO_PROD_URL: https://oidc.gov.bc.ca
         run: |
           _NAMESPACE=$(.github/helpers/github_env_to_namespace.sh ${{  github.event.deployment.environment}})
           _IMAGE_TAG=$(.github/helpers/github_env_to_image_tag.sh ${{  github.event.deployment.environment}})

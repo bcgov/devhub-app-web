@@ -18,7 +18,7 @@ Created by Patrick Simonian
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Layout } from '../../src/hoc/Layout';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import theme from '../../theme';
 describe('Layout Component', () => {
   test('it matches snapshot', () => {

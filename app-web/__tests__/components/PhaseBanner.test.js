@@ -18,7 +18,7 @@ Created by Patrick Simonian
 import React from 'react';
 import PhaseBanner from '../../src/components/UI/PhaseBanner/PhaseBanner';
 import { render } from '@testing-library/react';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import theme from '../../theme';
 
 describe('Phase Banner Component', () => {

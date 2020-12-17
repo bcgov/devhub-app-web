@@ -21,7 +21,7 @@ import { navigate } from 'gatsby';
 import { useKeycloak } from '@react-keycloak/web';
 import styled from '@emotion/styled';
 import { Alert } from 'reactstrap';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { ChevronLink } from '../UI/Link';
 import { SEARCH } from '../../constants/ui';
 import { EMOTION_BOOTSTRAP_BREAKPOINTS, SPACING } from '../../constants/designTokens';

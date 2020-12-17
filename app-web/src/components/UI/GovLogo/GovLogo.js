@@ -2,7 +2,7 @@ import React from 'react';
 import Aux from '../../../hoc/auxillary';
 import logo from '../../../assets/images/BCID_H_rgb_rev.svg';
 import logoMobile from '../../../assets/images/logo.svg';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 const noMargin = css`

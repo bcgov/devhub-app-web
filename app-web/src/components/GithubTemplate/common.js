@@ -15,7 +15,7 @@ limitations under the License.
 
 Created by Patrick Simonian
 */
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { EMOTION_BOOTSTRAP_BREAKPOINTS } from '../../constants/designTokens';
 import { SPACING } from '../../constants/designTokens';
 import styled from '@emotion/styled';

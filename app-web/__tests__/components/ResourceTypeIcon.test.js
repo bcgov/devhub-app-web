@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { RESOURCE_TYPES } from '../../src/constants/ui';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import theme from '../../theme';
 import { render, cleanup } from '@testing-library/react';
 import ResourceTypeIcon, { TEST_IDS } from '../../src/components/UI/ResourceTypeIcon';

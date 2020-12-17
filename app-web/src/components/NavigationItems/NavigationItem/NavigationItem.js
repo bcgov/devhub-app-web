@@ -18,7 +18,7 @@ Created by Patrick Simonian
 import React from 'react';
 import Link from '../../UI/Link/Link';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 const NavigationItem = ({ to, text }) => (
   <li>
     <Link

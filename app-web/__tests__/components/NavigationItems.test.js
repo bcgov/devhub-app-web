@@ -17,7 +17,7 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import { render } from '@testing-library/react';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import theme from '../../theme';
 import NavigationItems from '../../src/components/NavigationItems/NavigationItems';
 import { FOOTER_NAV } from '../../__fixtures__/ui-fixtures';

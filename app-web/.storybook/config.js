@@ -2,7 +2,7 @@ import React from 'react';
 import { configure, addParameters, addDecorator } from '@storybook/react';
 import { action } from "@storybook/addon-actions"
 import storybookTheme from '../stories/theme';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import theme from '../theme'
 
 // automatically import all files ending in *.stories.js

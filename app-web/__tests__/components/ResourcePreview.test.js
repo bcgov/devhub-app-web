@@ -24,7 +24,7 @@ import {
 } from '../../src/components/Home/ResourcePreview';
 import { SIPHON_NODES } from '../../__fixtures__/nodes';
 import { render } from '@testing-library/react';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import theme from '../../theme';
 
 describe('Resource Preview Component', () => {

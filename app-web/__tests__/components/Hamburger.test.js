@@ -17,7 +17,7 @@ Created by Patrick Simonian
 */
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import theme from '../../theme';
 import Hamburger, { TEST_IDS } from '../../src/components/UI/Hamburger/Hamburger';
 

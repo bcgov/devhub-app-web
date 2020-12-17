@@ -1,7 +1,7 @@
 import React from 'react';
 import Pill, { TEST_IDS } from '../../src/components/UI/Pill';
 import { render, cleanup, fireEvent } from '@testing-library/react';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import theme from '../../theme';
 describe('Pill Component', () => {
   const props = {

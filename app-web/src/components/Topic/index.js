@@ -19,7 +19,7 @@ Created by Patrick Simonian
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 
 import { RESOURCE_TYPES_LIST, TOPICS } from '../../constants/ui';
 import { ChevronLink, Link } from '../UI/Link';

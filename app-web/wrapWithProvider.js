@@ -17,7 +17,7 @@ Created by Patrick Simonian
 */
 
 import React from 'react';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import features from './config/features.json';
 import { AppConfig } from './src/context/AppConfig';
 import theme from './theme';

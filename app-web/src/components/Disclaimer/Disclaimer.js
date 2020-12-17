@@ -4,7 +4,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { FAIR_USE_IMAGE_POLICY } from '../../messages';
 import { Link } from '../UI/Link';
 import Button from '../UI/Button/Button';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 
 // ids are for test targeting
 export const IDS = {
