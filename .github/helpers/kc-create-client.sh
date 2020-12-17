@@ -9,7 +9,6 @@
 # KC_URL <string>
 # KC_CLIENT_ID <string>
 # KC_CLIENT_SECRET <string>
-# REDIRECT_URI <string>
 set -Eeuo pipefail
 # set -x
 
