@@ -88,7 +88,7 @@ jobs:
           SSO_BASE_URL: dev.oidc.gov.bc.ca
           SSO_CLIENT_ID: "devhub-web-${{ env.PULL_NUMBER }}"
           SSO_REALM_NAME: ${{ secrets.SSO_REALM_NAME }}
-          ALGOLIA_INDEX_NAME_SUFFIX: "-build-${{ env.PULL_NUMBER }}"
+          ALGOLIA_INDEX_NAME_SUFFIX: "build-${{ env.PULL_NUMBER }}"
           IMAGE_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
           IMAGE_TAG: ${{ env.PULL_NUMBER }}
         run: .github/helpers/deploy_web.sh
