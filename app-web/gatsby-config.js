@@ -31,6 +31,8 @@ const algoliaPlugin = () =>
           apiKey: process.env.ALGOLIA_ADMIN_KEY,
           queries: getQueries(process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX),
           chunkSize: 10000, // default: 1000
+          enablePartialUpdates: true,
+          matchFields: ['id'],
         },
       }
     : undefined;
