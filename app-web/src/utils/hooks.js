@@ -49,7 +49,7 @@ export function useDeepCompareMemoize(value) {
  */
 export const useSearch = query => {
   const [results, setResults] = useState([]);
-  const index = searchClient.initIndex(`Devhub-Algolia-${ALGOLIA_INDEX_SUFFIX}`);
+  const index = searchClient.initIndex(`Devhub-Algolia${ALGOLIA_INDEX_SUFFIX}`);
   useEffect(() => {
     let options = {};
     let userQuery;
