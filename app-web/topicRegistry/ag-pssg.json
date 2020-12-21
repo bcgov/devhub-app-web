@@ -1,0 +1,25 @@
+{
+  "name": "Ministry of AG-PSSG",
+  "description": "Example documents for AG-PSSG Information Systems Branch",
+  "attributes": {
+    "personas": [
+      "Developer",
+      "Product Owner"
+    ]
+  },
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/AubreyR/test-markdown/",
+          "owner": "AubreyR",
+          "repo": "test-markdown",
+          "files": [
+            "README.md",
+          ]
+        }
+      }
+    ]
+  }
+}
