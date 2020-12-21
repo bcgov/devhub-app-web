@@ -17,8 +17,9 @@ Created by Patrick Simonian
 */
 
 import React from 'react';
-import { ThemeProvider } from 'emotion-theming';
-
+import { ThemeProvider } from '@emotion/react';
+import features from './config/features.json';
+import { AppConfig } from './src/context/AppConfig';
 import theme from './theme';
 import { ApolloClient, InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
@@ -38,6 +39,8 @@ export const client = new ApolloClient({
 
 export default ({ element }) => (
   <ThemeProvider theme={theme}>
-    <ApolloProvider client={client}>{element}</ApolloProvider>
+    <AppConfig.Provider value={{ features }}>
+      <ApolloProvider client={client}>{element}</ApolloProvider>
+    </AppConfig.Provider>
   </ThemeProvider>
 );

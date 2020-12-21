@@ -1,6 +1,6 @@
 import React from 'react';
 import 'github-markdown-css';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 

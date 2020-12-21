@@ -31,8 +31,8 @@ jobs:
           TEST_NAMESPACE: ${{ secrets.TEST_NAMESPACE }}
           PROD_NAMESPACE: ${{ secrets.PROD_NAMESPACE }}
           DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
-          SSO_TEST_URL: test.oidc.gov.bc.ca
-          SSO_PROD_URL: oidc.gov.bc.ca
+          SSO_TEST_URL: https://test.oidc.gov.bc.ca
+          SSO_PROD_URL: https://oidc.gov.bc.ca
         run: |
           _NAMESPACE=$(.github/helpers/github_env_to_namespace.sh ${{  github.event.deployment.environment}})
           _IMAGE_TAG=$(.github/helpers/github_env_to_image_tag.sh ${{  github.event.deployment.environment}})
@@ -42,10 +42,10 @@ jobs:
           else
             _SSO_BASE_URL=$SSO_PROD_URL
           fi
-          echo "::set-env name=DEPLOY_NAMESPACE::$_NAMESPACE"
-          echo "::set-env name=IMAGE_TAG::$_IMAGE_TAG"
-          echo "::set-env name=SUFFIX::-$_IMAGE_TAG"
-          echo "::set-env name=SSO_BASE_URL::$_SSO_BASE_URL"
+          echo "DEPLOY_NAMESPACE=$_NAMESPACE" >> $GITHUB_ENV
+          echo "IMAGE_TAG=$_IMAGE_TAG" >> $GITHUB_ENV
+          echo "SUFFIX=-$_IMAGE_TAG" >> $GITHUB_ENV
+          echo "SSO_BASE_URL=$_SSO_BASE_URL" >> $GITHUB_ENV
           echo "Deploying to $_NAMESPACE"
       - name: Cluster Login
         uses: redhat-developer/openshift-actions@v1.1
@@ -68,7 +68,7 @@ jobs:
           SSO_BASE_URL: ${{ env.SSO_BASE_URL }}
           SSO_CLIENT_ID: "devhub-web-${{ env.PULL_NUMBER }}"
           SSO_REALM_NAME: ${{ secrets.SSO_REALM_NAME }}
-          ALGOLIA_INDEX_NAME_SUFFIX: "-build-${{ env.PULL_NUMBER }}"
+          ALGOLIA_INDEX_NAME_SUFFIX: "build-${{ env.PULL_NUMBER }}"
         run: .github/helpers/deploy_web.sh
 
       - name: Wait for Deployment and Update Status
@@ -77,7 +77,7 @@ jobs:
         run: |
           DEPLOY_STATUS=$(.github/helpers/wait_for_deployment.sh dc/$INFRA_NAME$SUFFIX)
 
-          echo "::set-env name=DEPLOY_STATUS::$DEPLOY_STATUS"
+          echo "DEPLOY_STATUS=$DEPLOY_STATUS" >> $GITHUB_ENV
 
       - name: Change Deploy Status to Success or Failure
         uses: unacast/actions-github-deployment-status@0.4.0

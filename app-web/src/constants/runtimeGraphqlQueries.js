@@ -18,8 +18,8 @@ Created by Patrick Simonian
 import gql from 'graphql-tag';
 
 export const SEARCHGATE_QUERY = gql`
-  query DevHubQuery($queryString: String!) {
-    search(searchString: $queryString) {
+  query DevHubQuery($queryString: String!, $dataSources: [String!]!) {
+    search(searchString: $queryString, dataSources: $dataSources) {
       id
       type
       typePayload

@@ -25,7 +25,7 @@ styled components or css-in-js
 ```js
 import React from 'react';
 import { SPACING, CUSTOM_TYPE } from '../../constants/designTokens';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 
 
 const Container = css`

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import queryString from 'query-string';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import theme from '../../theme';
 import { useStaticQuery } from 'gatsby';
 import { Index, TEST_IDS } from '../../src/pages/index';

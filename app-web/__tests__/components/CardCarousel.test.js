@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import theme from '../../theme';
 import CardCarousel, { TEST_IDS } from '../../src/components/CardCarousel/CardCarousel';
 import { RESOURCE_TYPES } from '../../src/constants/ui';

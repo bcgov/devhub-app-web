@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import queryString from 'query-string';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import theme from '../../theme';
 import { ResourceType } from '../../src/templates/resourceType';
 import { SIPHON_NODES, TOPICS, GITHUB_RAW_NODES, EVENTS, JOURNEYS } from '../../__fixtures__/nodes';

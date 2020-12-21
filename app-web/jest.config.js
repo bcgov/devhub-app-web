@@ -4,8 +4,8 @@ module.exports = {
   },
   transform: {
     '.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/config/fileTransformer.js',
-    '^.+\\.(js|jsx)$': '<rootDir>/config/jest/jestPreprocess.js',
+      '<rootDir>/jest/fileTransformer.js',
+    '^.+\\.(js|jsx)$': '<rootDir>/jest/jestPreprocess.js',
   },
   testRegex: '(\\.(i?test|spec))\\.(jsx|js)$',
   testPathIgnorePatterns: ['/node_modules/', '/.cache/', '/cypress/'],
@@ -17,6 +17,6 @@ module.exports = {
   },
   collectCoverage: true,
   coverageReporters: ['lcov', 'text', 'html'],
-  setupFilesAfterEnv: ['<rootDir>/config/setupTests.js'],
-  setupFiles: ['raf/polyfill', 'jest-localstorage-mock', '<rootDir>/config/jest/loadershim.js'],
+  setupFilesAfterEnv: ['<rootDir>/jest/setupTests.js'],
+  setupFiles: ['raf/polyfill', 'jest-localstorage-mock', '<rootDir>/jest/loadershim.js'],
 };

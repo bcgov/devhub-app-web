@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import Masthead, { TEST_IDS } from '../../src/components/Home/Masthead';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import theme from '../../theme';
 import { useKeycloak } from '@react-keycloak/web';
 jest.mock('@react-keycloak/web');

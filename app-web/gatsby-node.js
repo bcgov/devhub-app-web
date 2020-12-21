@@ -22,3 +22,4 @@ exports.createResolvers = require('./gatsby/createResolvers');
 exports.onCreateNode = require('./gatsby/onCreateNode');
 exports.sourceNodes = require('./gatsby/sourceNodes');
 exports.createSchemaCustomization = require('./gatsby/createSchemaCustomization');
+exports.onPreBootstrap = require('./gatsby/onPreBootstrap');

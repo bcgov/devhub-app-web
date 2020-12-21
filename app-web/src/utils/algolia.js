@@ -150,6 +150,6 @@ export const queries = [
  */
 export const getQueries = (suffix = '') => {
   let suffixName = '';
-  if (suffix) suffixName = `-${suffix}`;
+  if (suffix) suffixName = `${suffix}`;
   return queries.map(q => ({ ...q, indexName: `${q.indexName}${suffixName}` }));
 };

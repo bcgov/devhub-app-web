@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import theme from '../../theme';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import SideDrawer, { TEST_IDS } from '../../src/components/SideDrawer/SideDrawer';

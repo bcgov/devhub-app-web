@@ -3,7 +3,7 @@ import PastEventsPage from '../../src/templates/pastEvents';
 
 import { render } from '@testing-library/react';
 import { TOPICS, EVENTS } from '../../__fixtures__/nodes';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import theme from '../../theme';
 
 describe('Events Page', () => {

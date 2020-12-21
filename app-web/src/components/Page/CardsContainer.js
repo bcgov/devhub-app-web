@@ -21,7 +21,7 @@ Created by Patrick Simonian
 import React from 'react';
 import PropTypes from 'prop-types';
 import { navigate } from 'gatsby';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Alert } from 'reactstrap';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';

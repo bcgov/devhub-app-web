@@ -2,7 +2,7 @@ import React from 'react';
 import { SearchAwareLink } from '../../src/components/UI/Link';
 import { linkMatchesQueryString } from '../../src/components/UI/Link/SearchAwareLink';
 import { render } from '@testing-library/react';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import theme from '../../theme';
 
 describe('Search Aware Link', () => {

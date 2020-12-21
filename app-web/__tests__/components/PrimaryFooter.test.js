@@ -3,7 +3,7 @@ import { render, fireEvent, cleanup, waitForElement } from '@testing-library/rea
 
 import PrimaryFooter from '../../src/components/PrimaryFooter/PrimaryFooter';
 
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import theme from '../../theme';
 
 import Disclaimer from '../../src/components/Disclaimer/Disclaimer';

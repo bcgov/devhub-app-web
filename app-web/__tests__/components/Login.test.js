@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import theme from '../../theme';
 import { Login, TEST_IDS } from '../../src/components/Auth/Login';
 import { useKeycloak } from '@react-keycloak/web';

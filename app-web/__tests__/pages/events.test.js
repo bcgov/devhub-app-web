@@ -2,7 +2,7 @@ import React from 'react';
 import EventsPage from '../../src/templates/events';
 import { render } from '@testing-library/react';
 import { EVENTS, SIPHON_NODES, GITHUB_RAW_NODES } from '../../__fixtures__/nodes';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider } from '@emotion/react';
 import theme from '../../theme';
 
 describe('Events Page', () => {
