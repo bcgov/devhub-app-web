@@ -14,6 +14,7 @@
         "sourceProperties": {
           "url": "https://github.com/AubreyR/test-markdown/",
           "owner": "AubreyR",
+          "branch": "main",
           "repo": "test-markdown",
           "files": [
             "README.md"
