@@ -4,7 +4,6 @@
 # ALGOLIA_APP_ID string
 # ALGOLIA_SOURCE_INDEX string
 # ALGOLIA_DEST_INDEX string
-
 curl -X POST \
      -H "X-Algolia-API-Key: ${ALGOLIA_API_KEY}" \
      -H "X-Algolia-Application-Id: ${ALGOLIA_APP_ID}" \
