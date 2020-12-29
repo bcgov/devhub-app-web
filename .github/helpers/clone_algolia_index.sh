@@ -6,7 +6,7 @@
 # ALGOLIA_DEST_INDEX string
 
 curl -X POST \
-     -H "X-Algolia-API-Key: ${API_KEY}" \
-     -H "X-Algolia-Application-Id: ${APPLICATION_ID}" \
-     --data-binary "{ \"operation\": \"copy\", \"destination\":\"$ALOGOLIA_DEST_INDEX\" }" \
-    "https://${APPLICATION_ID}.algolia.net/1/indexes/$AGOLIA_SOURCE_INDEX/operation"
+     -H "X-Algolia-API-Key: ${ALGOLIA_API_KEY}" \
+     -H "X-Algolia-Application-Id: ${ALGOLIA_APPLICATION_ID}" \
+     --data-binary "{ \"operation\": \"copy\", \"destination\":\"${ALOGOLIA_DEST_INDEX}\" }" \
+    "https://${APPLICATION_ID}.algolia.net/1/indexes/${ALGOLIA_SOURCE_INDEX}/operation"
