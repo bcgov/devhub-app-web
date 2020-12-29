@@ -34,12 +34,13 @@ jobs:
           SSO_TEST_URL: https://test.oidc.gov.bc.ca
           SSO_PROD_URL: https://oidc.gov.bc.ca
         run: |
-          _NAMESPACE=$(.github/helpers/github_env_to_namespace.sh ${{  github.event.deployment.environment}})
-          _IMAGE_TAG=$(.github/helpers/github_env_to_image_tag.sh ${{  github.event.deployment.environment}})
+          _NAMESPACE=$(.github/helpers/github_env_to_namespace.sh ${{  github.event.deployment.environment }})
+          _IMAGE_TAG=$(.github/helpers/github_env_to_image_tag.sh ${{  github.event.deployment.environment }})
           _SSO_BASE_URL=''
           _ALGOLIA_SOURCE_INDEX=''
           if [ _NAMESPACE == "$TEST_NAMESPACE" ]; then
-            _SSO_BASE_URL=$SSO_TEST_URL
+            _SSO_BASE_URL=$SSO_TEST_URL 
+            echo "RIGHT HERE!"
             _ALGOLIA_SOURCE_INDEX=Devhub-Algolia-build-${{ env.PULL_NUMBER }}
           else
             _ALGOLIA_SOURCE_INDEX=Devhub-Algolia-$_IMAGE_TAG
