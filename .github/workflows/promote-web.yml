@@ -40,14 +40,15 @@ jobs:
           _ALGOLIA_SOURCE_INDEX=''
           if [ _NAMESPACE == "$TEST_NAMESPACE" ]; then
             _SSO_BASE_URL=$SSO_TEST_URL
-            _ALGOLIA_SOURCE_INDEX=build-${{ env.PULL_NUMBER }}
+            _ALGOLIA_SOURCE_INDEX=Devhub-Algolia-build-${{ env.PULL_NUMBER }}
           else
-            _ALGOLIA_SOURCE_INDEX=$_IMAGE_TAG
+            _ALGOLIA_SOURCE_INDEX=Devhub-Algolia-$_IMAGE_TAG
             _SSO_BASE_URL=$SSO_PROD_URL
           fi
           echo "DEPLOY_NAMESPACE=$_NAMESPACE" >> $GITHUB_ENV
           echo "IMAGE_TAG=$_IMAGE_TAG" >> $GITHUB_ENV
           echo "SUFFIX=-$_IMAGE_TAG" >> $GITHUB_ENV
+          echo "ALGOLIA_SOURCE_INDEX=$_ALGOLIA_SOURCE_INDEX" >> $GITHUB_ENV
           echo "SSO_BASE_URL=$_SSO_BASE_URL" >> $GITHUB_ENV
           echo "Deploying to $_NAMESPACE"
 
@@ -62,8 +63,9 @@ jobs:
         env:
           ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+          ALGOLIA_SOURCE_INDEX: ${{ env.ALGOLIA_SOURCE_INDEX }}
+
         run: |
-          ALGOLIA_SOURCE_INDEX=${{ env.ALGOLIA_SOURCE_INDEX }}
           ALGOLIA_DEST_INDEX=$(.github/helpers/github_env_to_algolia_index_suffix.sh ${{  github.event.deployment.environment}})
           .github/helpers/clone_algolia_index.sh
       - name: Import PR based Image to Environment
@@ -80,7 +82,7 @@ jobs:
           SSO_BASE_URL: ${{ env.SSO_BASE_URL }}
           SSO_CLIENT_ID: "devhub-web-${{ env.PULL_NUMBER }}"
           SSO_REALM_NAME: ${{ secrets.SSO_REALM_NAME }}
-          ALGOLIA_INDEX_NAME_SUFFIX: "build-${{ env.PULL_NUMBER }}"
+          ALGOLIA_INDEX_NAME_SUFFIX: "-build-${{ env.PULL_NUMBER }}"
         run: .github/helpers/deploy_web.sh
 
       - name: Wait for Deployment and Update Status
