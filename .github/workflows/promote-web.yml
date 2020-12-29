@@ -37,9 +37,12 @@ jobs:
           _NAMESPACE=$(.github/helpers/github_env_to_namespace.sh ${{  github.event.deployment.environment}})
           _IMAGE_TAG=$(.github/helpers/github_env_to_image_tag.sh ${{  github.event.deployment.environment}})
           _SSO_BASE_URL=''
+          _ALGOLIA_SOURCE_INDEX=''
           if [ _NAMESPACE == "$TEST_NAMESPACE" ]; then
             _SSO_BASE_URL=$SSO_TEST_URL
+            _ALGOLIA_SOURCE_INDEX=build-${{ env.PULL_NUMBER }}
           else
+            _ALGOLIA_SOURCE_INDEX=$_IMAGE_TAG
             _SSO_BASE_URL=$SSO_PROD_URL
           fi
           echo "DEPLOY_NAMESPACE=$_NAMESPACE" >> $GITHUB_ENV
@@ -60,7 +63,7 @@ jobs:
           ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
         run: |
-          ALGOLIA_SOURCE_INDEX=${{ env.SUFFIX }}
+          ALGOLIA_SOURCE_INDEX=${{ env.ALGOLIA_SOURCE_INDEX }}
           ALGOLIA_DEST_INDEX=$(.github/helpers/github_env_to_algolia_index_suffix.sh ${{  github.event.deployment.environment}})
           .github/helpers/clone_algolia_index.sh
       - name: Import PR based Image to Environment
