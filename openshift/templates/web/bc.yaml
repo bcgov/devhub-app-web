@@ -92,7 +92,7 @@ objects:
               name: devhub-algolia-build
               key: GATSBY_ALGOLIA_SEARCH_KEY
         - name: GATSBY_ALGOLIA_INDEX_NAME_SUFFIX
-          value: ${SUFFIX}
+          value: ${GATSBY_ALGOLIA_INDEX_NAME_SUFFIX}
         - name: MEETUP_API_KEY
           valueFrom: 
             secretKeyRef:
@@ -125,6 +125,11 @@ parameters:
   name: SUFFIX
   required: false
   value: -dev
+- description: A name suffix used for all objects
+  displayName: Suffix
+  name: GATSBY_ALGOLIA_INDEX_NAME_SUFFIX
+  required: false
+  value: local
 - description: A version used for the image tags
   displayName: version
   name: VERSION
