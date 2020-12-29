@@ -47,6 +47,7 @@ jobs:
           echo "SUFFIX=-$_IMAGE_TAG" >> $GITHUB_ENV
           echo "SSO_BASE_URL=$_SSO_BASE_URL" >> $GITHUB_ENV
           echo "Deploying to $_NAMESPACE"
+
       - name: Cluster Login
         uses: redhat-developer/openshift-actions@v1.1
         with:
@@ -54,6 +55,14 @@ jobs:
           parameters: '{"apitoken": "${{ secrets.SA_PASSWORD }}"}'
           cmd: |
             'version'
+      - name: Promote Algolia index to Environment
+        env:
+          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+        run: |
+          ALGOLIA_SOURCE_INDEX=$SUFFIX
+          ALGOLIA_DEST_INDEX=$(.github/helpers/github_env_to_algolia_index_suffix.sh ${{  github.event.deployment.environment}})
+          .github/helpers/clone_algolia_index.sh
       - name: Import PR based Image to Environment
         run: |
           oc tag ${{ secrets.TOOLS_NAMESPACE }}/${{ env.INFRA_NAME }}:${{ env.PULL_NUMBER }} \
