@@ -38,14 +38,14 @@ jobs:
           _IMAGE_TAG=$(.github/helpers/github_env_to_image_tag.sh ${{  github.event.deployment.environment }})
           _SSO_BASE_URL=''
           _ALGOLIA_SOURCE_INDEX=''
-          _ALGOLIA_DEST_INDEX=''
+          _ALGOLIA_DEST_INDEX_SUFFIX=''
           if [ "$_NAMESPACE" == "$TEST_NAMESPACE" ]; then
             _SSO_BASE_URL=$SSO_TEST_URL 
             _ALGOLIA_SOURCE_INDEX=Devhub-Algolia-build-${{ env.PULL_NUMBER }}
-            _ALGOLIA_DEST_INDEX=Devhub-Algolia-test
+            _ALGOLIA_DEST_INDEX_SUFFIX=-test
           else
             _ALGOLIA_SOURCE_INDEX=Devhub-Algolia-$_IMAGE_TAG
-            _ALGOLIA_DEST_INDEX=Devhub-Algolia-prod
+            _ALGOLIA_DEST_INDEX_SUFFIX=-prod
             _SSO_BASE_URL=$SSO_PROD_URL
           fi
           echo "DEPLOY_NAMESPACE=$_NAMESPACE" >> $GITHUB_ENV
