@@ -2,7 +2,7 @@ pipeline {
     agent none
      environment {
                 COMPONENT_NAME = 'SearchGate'
-                COMPONENT_HOME = '.'
+                COMPONENT_HOME = 'searchgate'
             }
     options {
         disableResume()
