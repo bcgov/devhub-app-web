@@ -52,7 +52,7 @@ jobs:
           echo "IMAGE_TAG=$_IMAGE_TAG" >> $GITHUB_ENV
           echo "SUFFIX=-$_IMAGE_TAG" >> $GITHUB_ENV
           echo "ALGOLIA_SOURCE_INDEX=$_ALGOLIA_SOURCE_INDEX" >> $GITHUB_ENV
-          echo "ALGOLIA_DEST_INDEX=$_ALGOLIA_DEST_INDEX" >> $GITHUB_ENV
+          echo "ALGOLIA_DEST_INDEX_SUFFIX=$_ALGOLIA_DEST_INDEX_SUFFIX" >> $GITHUB_ENV
           echo "SSO_BASE_URL=$_SSO_BASE_URL" >> $GITHUB_ENV
           echo "Deploying to $_NAMESPACE"
 
@@ -68,7 +68,7 @@ jobs:
           ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_SOURCE_INDEX: ${{ env.ALGOLIA_SOURCE_INDEX }}
-          ALGOLIA_DEST_INDEX: ${{ env.ALGOLIA_DEST_INDEX }}
+          ALGOLIA_DEST_INDEX: Algolia-Build${{ env.ALGOLIA_DEST_INDEX_SUFFIX }}
         run: |
           .github/helpers/clone_algolia_index.sh
       - name: Import PR based Image to Environment
@@ -85,7 +85,7 @@ jobs:
           SSO_BASE_URL: ${{ env.SSO_BASE_URL }}
           SSO_CLIENT_ID: "devhub-web"
           SSO_REALM_NAME: ${{ secrets.SSO_REALM_NAME }}
-          ALGOLIA_INDEX_NAME_SUFFIX: ${{ env.ALGOLIA_DEST_INDEX }}
+          ALGOLIA_INDEX_NAME_SUFFIX: ${{ env.ALGOLIA_DEST_INDEX_SUFFIX }}
         run: .github/helpers/deploy_web.sh
 
       - name: Wait for Deployment and Update Status
