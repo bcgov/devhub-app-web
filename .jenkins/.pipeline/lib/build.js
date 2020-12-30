@@ -18,7 +18,7 @@ module.exports = settings => {
         SUFFIX: phases[phase].suffix,
         VERSION: phases[phase].tag,
         SOURCE_REPOSITORY_URL: 'https://github.com/patricksimonian/openshift-components/',
-        SOURCE_REPOSITORY_REF: 'jenkins-basic/aro',
+        SOURCE_REPOSITORY_REF: oc.git.ref,
       },
     }),
   );
