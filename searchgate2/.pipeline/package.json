@@ -9,8 +9,7 @@
     "build": "node build.js",
     "clean": "node clean.js",
     "deploy": "node deploy.js",
-    "version": "echo \"node@$(node --version) ($(which node))\" && echo \"npm@$(npm --version) ($(which npm))\" && npm ls",
-    "test:lint": "eslint . --fix"
+    "version": "echo \"node@$(node --version) ($(which node))\" && echo \"npm@$(npm --version) ($(which npm))\" && npm ls"
   },
   "repository": {
     "type": "git",
@@ -21,11 +20,5 @@
   "dependencies": {
     "@bcgov/pipeline-cli": "^1.0.1",
     "pipeline-cli": "git+https://github.com/BCDevOps/pipeline-cli.git#v1.1"
-  },
-  "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-plugin-prettier": "^3.1.0",
-    "prettier": "^1.18.2"
   }
 }

@@ -1,0 +1,83 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: searchgate-bc-templates
+labels:
+  template: searchgate
+objects:
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    name: ${NAME}
+  spec:
+    lookupPolicy:
+      local: false
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    name: ${NAME}${SUFFIX}
+  spec:
+    completionDeadlineSeconds: 1500 # terminate the build if it takes longer than 900 seconds, our builds are avg 10 minutes as of Feb 2019
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: ${NAME}:${VERSION}
+    postCommit: {}
+    resources:
+      requests:
+        cpu: 1
+        memory: 2Gi ## memory usage is high because jest test use a lot of memory when running
+        ## we are hoping to move jest tests outside of the assemble script but until we do this will be quite a high request
+      limits:
+        cpu: 1
+        memory: 4Gi
+    source:
+      git:
+        uri: ${SOURCE_REPOSITORY_URL}
+        ref: ${SOURCE_REPOSITORY_REF}
+      type: Git
+    strategy:
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          name: nodejs:${NODE_JS_VERSION}
+          namespace: openshift
+        incremental: true
+      type: Source
+    triggers:
+    - type: ConfigChange
+    - imageChange: {}
+      type: ImageChange
+parameters:
+- description: A name used for all objects
+  displayName: Name
+  name: NAME
+  required: true
+  value: searchgate
+- description: A name suffix used for all objects
+  displayName: Suffix
+  name: SUFFIX
+  required: false
+  value: -dev
+- description: A version used for the image tags
+  displayName: version
+  name: VERSION
+  required: true
+  value: v1.0.0
+- description: SOURCE_REPOSITORY_URL
+  displayName: SOURCE_REPOSITORY_URL
+  name: SOURCE_REPOSITORY_URL
+  required: true
+  value: 'https://github.com/bcgov/searchgate.git'
+- description: SOURCE_REPOSITORY_REF
+  displayName: SOURCE_REPOSITORY_REF
+  name: SOURCE_REPOSITORY_REF
+  required: true
+  value: ''
+  # latest node js version as of Apr 2 2019
+- description: NODE_JS_VERSION
+  displayName: NODE_JS_VERSION
+  name: NODE_JS_VERSION
+  required: true
+  value: '10'
