@@ -33,6 +33,7 @@ objects:
         cpu: 1
         memory: 4Gi
     source:
+      contextDir: searchgate
       git:
         uri: ${SOURCE_REPOSITORY_URL}
         ref: ${SOURCE_REPOSITORY_REF}
