@@ -1,5 +1,5 @@
 'use strict';
-const { OpenShiftClientX } = require('pipeline-cli');
+const { OpenShiftClientX } = require('@bcgov/pipeline-cli');
 const path = require('path');
 
 module.exports = settings => {
@@ -18,7 +18,7 @@ module.exports = settings => {
         SUFFIX: phases[phase].suffix,
         VERSION: phases[phase].tag,
         SOURCE_REPOSITORY_URL: 'https://github.com/patricksimonian/openshift-components/',
-        SOURCE_REPOSITORY_REF: 'jenkins-basic/aro',
+        SOURCE_REPOSITORY_REF: oc.git.ref,
       },
     }),
   );
