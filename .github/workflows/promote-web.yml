@@ -83,9 +83,9 @@ jobs:
           SEARCHGATE_API_URL: ${{ secrets.SEARCHGATE_API_URL }}
           DEVHUB_API_URL: ${{ secrets.DEVHUB_API_URL }}
           SSO_BASE_URL: ${{ env.SSO_BASE_URL }}
-          SSO_CLIENT_ID: "devhub-web-${{ env.PULL_NUMBER }}"
+          SSO_CLIENT_ID: "devhub-web"
           SSO_REALM_NAME: ${{ secrets.SSO_REALM_NAME }}
-          ALGOLIA_INDEX_NAME_SUFFIX: "-build-${{ env.PULL_NUMBER }}"
+          ALGOLIA_INDEX_NAME_SUFFIX: ${{ env.ALGOLIA_DEST_INDEX }}
         run: .github/helpers/deploy_web.sh
 
       - name: Wait for Deployment and Update Status
