@@ -57,3 +57,15 @@ SEARCHGATE_API_URL
 - Deploy [deploy-tron](https://github.com/patricksimonian/deploy-tron#building-and-deploying-on-openshift) and setup a Github App for your repository.
 
 > deploy tron will be your interface for CD with the devhub front end component
+
+- In order to deploy the Devhub Front End Component you will need to create the s2i builder image in your tools namespace. You can do that easily by
+```
+  oc process -f https://raw.githubusercontent.com/bcgov/s2i-caddy-nodejs/master/openshift/templates/build.yaml | 
+  oc apply -f -
+```
+
+
+
+## Deploying Devhub
+
+It's as easy as creating a PR and running them command in your PR `@deploy-tron deploy web to dev`!

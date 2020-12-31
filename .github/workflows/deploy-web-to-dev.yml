@@ -9,7 +9,7 @@ env:
   ENVIRONMENT: ${{ github.event.deployment.environment }}
   INFRA_NAME: devhub-app-web
   SUFFIX: "-${{ fromJSON(github.event.deployment.payload).pr }}"
-  ALGOLIA_INDEX_SUFFIX: "-build-${{ fromJSON(github.event.deployment.payload).pr }}"
+  ALGOLIA_INDEX_NAME: "Devhub-Algolia-${{ fromJSON(github.event.deployment.payload).pr }}"
 jobs:
   build:
     if: ${{ fromJSON(github.event.deployment.payload).microservice == 'web' && 
@@ -28,7 +28,7 @@ jobs:
         uses: redhat-developer/openshift-actions@v1.1
         with:
           openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL}}
-          parameters: '{"apitoken": "${{ secrets.SA_PASSWORD }}"}'
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT_SA_PASSWORD }}"}'
           cmd: |
             'version'
       - name: Cancel previous builds (if any)
@@ -47,7 +47,7 @@ jobs:
         run: |
           oc process -f openshift/templates/web/bc.yaml -n $TOOLS_NAMESPACE \
           -p SUFFIX=$SUFFIX \
-          -p GATSBY_ALGOLIA_INDEX_NAME_SUFFIX=${{ env.ALGOLIA_INDEX_SUFFIX }} \
+          -p GATSBY_ALGOLIA_INDEX_NAME=${{ env.ALGOLIA_INDEX_NAME }} \
           -p SOURCE_REPOSITORY_URL="https://github.com/$GITHUB_REPOSITORY" \
           -p SOURCE_REPOSITORY_REF=$GITHUB_REF \
           -p NAME=$INFRA_NAME \
@@ -78,7 +78,7 @@ jobs:
         uses: redhat-developer/openshift-actions@v1.1
         with:
           openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL}}
-          parameters: '{"apitoken": "${{ secrets.SA_PASSWORD }}"}'
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT_SA_PASSWORD }}"}'
           cmd: |
             'version'
       
@@ -90,7 +90,7 @@ jobs:
           SSO_BASE_URL: https://dev.oidc.gov.bc.ca
           SSO_CLIENT_ID: "devhub-web-${{ env.PULL_NUMBER }}"
           SSO_REALM_NAME: ${{ secrets.SSO_REALM_NAME }}
-          ALGOLIA_INDEX_NAME_SUFFIX: "${{ env.ALGOLIA_INDEX_SUFFIX }}"
+          ALGOLIA_INDEX_NAME: "${{ env.ALGOLIA_INDEX_NAME }}"
           IMAGE_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
           IMAGE_TAG: ${{ env.PULL_NUMBER }}
         run: .github/helpers/deploy_web.sh
