@@ -1,30 +1,28 @@
-# =========== Notes ============
-# in order to push to docker hub, docker credentials are needed
-# the following command will create a docker hub secret
-# oc create secret dockerhub ~/.docker/config.json
 apiVersion: v1
 kind: Template
 metadata:
-  creationTimestamp: null
-  name: devhub-previewer-bc-template
+  name: searchgate-bc-templates
 labels:
-  template: devhub-app-web
+  template: searchgate
 objects:
-# push devhub/nodejs image to docker
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    name: ${NAME}
+  spec:
+    lookupPolicy:
+      local: false
 - apiVersion: v1
   kind: BuildConfig
   metadata:
-    creationTimestamp: null
-    name: ${NAME}-previewer
+    name: ${NAME}${SUFFIX}
   spec:
     completionDeadlineSeconds: 1500 # terminate the build if it takes longer than 900 seconds, our builds are avg 10 minutes as of Feb 2019
     nodeSelector: null
     output:
       to:
-        kind: DockerImage
-        name: ${DOCKER_IMAGE}
-      pushSecret: 
-        name: ${DOCKERHUB_SECRET}
+        kind: ImageStreamTag
+        name: ${NAME}:${VERSION}
     postCommit: {}
     resources:
       requests:
@@ -35,37 +33,34 @@ objects:
         cpu: 1
         memory: 4Gi
     source:
+      contextDir: searchgate
       git:
         uri: ${SOURCE_REPOSITORY_URL}
         ref: ${SOURCE_REPOSITORY_REF}
-      contextDir: 'app-web'
       type: Git
     strategy:
       sourceStrategy:
-        env:
-          - name: NODE_ENV
-            value: development
         from:
           kind: ImageStreamTag
           name: nodejs:${NODE_JS_VERSION}
           namespace: openshift
+        incremental: true
       type: Source
     triggers:
     - type: ConfigChange
     - imageChange: {}
       type: ImageChange
-# push devhub/nodejs image to docker
 parameters:
 - description: A name used for all objects
   displayName: Name
   name: NAME
   required: true
-  value: devhub
-- description: The name used for the 'preview' image pushed to dockerhub, ie (registry.hub.docker.com/bcgovimages/devhub-previewer:latest)
-  displayName: Name
-  name: DOCKER_IMAGE
-  required: true
-  value: registry.hub.docker.com/bcgovimages/devhub-previewer:latest
+  value: searchgate
+- description: A name suffix used for all objects
+  displayName: Suffix
+  name: SUFFIX
+  required: false
+  value: -dev
 - description: A version used for the image tags
   displayName: version
   name: VERSION
@@ -75,7 +70,7 @@ parameters:
   displayName: SOURCE_REPOSITORY_URL
   name: SOURCE_REPOSITORY_URL
   required: true
-  value: https://github.com/bcgov/devhub-app-web.git
+  value: 'https://github.com/bcgov/searchgate.git'
 - description: SOURCE_REPOSITORY_REF
   displayName: SOURCE_REPOSITORY_REF
   name: SOURCE_REPOSITORY_REF
@@ -87,8 +82,3 @@ parameters:
   name: NODE_JS_VERSION
   required: true
   value: '10'
-- description: Dockerhub Push Secret
-  displayName: dockerhub secret
-  name: DOCKERHUB_SECRET
-  required: true
-  value: dockerhub-registry
