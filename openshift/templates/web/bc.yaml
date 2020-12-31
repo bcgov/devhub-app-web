@@ -14,7 +14,8 @@ objects:
           "github": ${GITHUB_ISSUE_SEARCH},
           "documize": ${DOCUMIZE_SEARCH},
           "rocketchat": ${ROCKET_CHAT_SEARCH}
-        }
+        },
+        "login": ${LOGIN_FEATURE}
       }
   kind: ConfigMap
   metadata:
@@ -91,8 +92,8 @@ objects:
             secretKeyRef:
               name: devhub-algolia-build
               key: GATSBY_ALGOLIA_SEARCH_KEY
-        - name: GATSBY_ALGOLIA_INDEX_NAME_SUFFIX
-          value: ${GATSBY_ALGOLIA_INDEX_NAME_SUFFIX}
+        - name: GATSBY_ALGOLIA_INDEX_NAME
+          value: ${GATSBY_ALGOLIA_INDEX_NAME}
         - name: MEETUP_API_KEY
           valueFrom: 
             secretKeyRef:
@@ -127,9 +128,9 @@ parameters:
   value: -dev
 - description: A name suffix used for all objects
   displayName: Suffix
-  name: GATSBY_ALGOLIA_INDEX_NAME_SUFFIX
+  name: GATSBY_ALGOLIA_INDEX_NAME
   required: false
-  value: local
+  value: Devhub-Algolia-local
 - description: A version used for the image tags
   displayName: version
   name: VERSION
@@ -156,4 +157,8 @@ parameters:
 - description: Enable Rocket.Chat Searching (requires search gate to be enabled on runtime)
   displayName: Rocket.Chat Search
   name: ROCKET_CHAT_SEARCH
+  value: "false"
+- description: Enable Logging into Keycloak Services (requires keycloak integration details to be set up at runtime)
+  displayName: Login Feature
+  name: LOGIN_FEATURE
   value: "false"

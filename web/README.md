@@ -99,6 +99,29 @@ At this point, you can modify contents of the `registry` directory (adding resou
   ```
 
   - if you have access to eventbrite you may grab an api key from there and run the eventbrite secret in the builder namespace (this is optional)
+    ```
+    oc process -f openshift/templates/web/eventbrite.secret.yaml \ 
+    -p EVENT_BRITE_API_KEY=... \
+    -p NAMESPACE=... | \
+     oc apply -f -
+  ```
+
+2. Build the Image
+
+   ```
+   oc process -f openshift/templates/web/bc.yaml \
+   -p NAME=devhub-app-web \
+   -p SUFFIX=... \
+   -p GATSBY_ALGOLIA_INDEX_NAME=... \
+   -p SOURCE_REPOSITORY_URL=... \
+   -p SOURCE_REPOSITORY_REF=... \
+   -p GITHUB_ISSUE_SEARCH=false \
+   -p DOCUMIZE_SEARCH=false \
+   -p ROCKET_CHAT_SEARCH=false \
+   -p LOGIN_FEATURE=false | |
+   oc apply -f -
+   ```
+   > the true/false params require external integrations in order to work
 ## Development Guide/Considerations
 
    Devhub leverages different sources of content via the `gatsby-source-plugin`. These sources are
