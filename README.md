@@ -1,14 +1,7 @@
----
-description: This is the primary repository for the BC Gov DevHub application
-author: sheaphillips
-image: https://github.com/bcgov/devhub-app-web/blob/master/docs/images/book.png?raw=true
----
 
-> looking for pipeline docs? Please see [Jenkins Readme](./.jenkins/README.md) :)
-
-# DevHub App Web
+# Devhub
  
- This is the primary repository for the BC Gov DevHub application.  The code contained mostly relates to the web application specifically, but other content may relate to the DevHub more generally.     
+ This is the primary repository for the BC Gov DevHub application. This is a mono repo holding multiple services that are coupled together. More details can be found in the [schematic](./schematic.md)
  
 ## DevHub Intro
 
