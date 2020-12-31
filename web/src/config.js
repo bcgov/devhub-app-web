@@ -4,6 +4,5 @@ export default {
   ssoClientId: '{{env "SSO_CLIENT_ID"}}',
   ssoBaseUrl: '{{env "SSO_BASE_URL"}}',
   searchgateApiUrl: '{{env "SEARCHGATE_API_URL"}}',
-  algoliaIndexSuffix: '{{env "ALGOLIA_INDEX_NAME_SUFFIX"}}',
-  devhubApiUrl: '{{env "DEVHUB_API_URL"}}',
+  algoliaIndexName: '{{env "ALGOLIA_INDEX_NAME"}}',
 };

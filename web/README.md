@@ -128,6 +128,24 @@ At this point, you can modify contents of the `registry` directory (adding resou
    ```
    > the true/false params require external integrations in order to work
 3. Wait for build to complete (this can take up to 30 minutes)
+4. Deploy image to your deploy namespace
+   ```
+      oc process -f openshift/templates/web/dc.yaml \
+      -p NAME=... \
+      -p SUFFIX=... \
+      -p IMAGE_TAG=... \
+      -p IMAGE_NAMESPACE=... \
+      -p HOST=... \
+      -p SEARCHGATE_API_URL=... \
+      -p SSO_BASE_URL=... \
+      -p DEVHUB_API_URL=... \
+      -p SSO_CLIENT_ID=... \
+      -p SSO_REALM_NAME=... \
+      -p CADDY_VOLUME_NAME=... \
+      -p ALGOLIA_INDEX_NAME=... \
+      -p IMAGE_REGISTRY=... \
+      oc apply -f -
+   ```
 ## Development Guide/Considerations
 
    Devhub leverages different sources of content via the `gatsby-source-plugin`. These sources are
