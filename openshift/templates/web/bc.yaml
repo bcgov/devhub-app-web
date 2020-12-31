@@ -94,11 +94,6 @@ objects:
               key: GATSBY_ALGOLIA_SEARCH_KEY
         - name: GATSBY_ALGOLIA_INDEX_NAME
           value: ${GATSBY_ALGOLIA_INDEX_NAME}
-        - name: MEETUP_API_KEY
-          valueFrom: 
-            secretKeyRef:
-              name: devhub-meetup-token
-              key: MEETUP_API_KEY
         - name: EVENT_BRITE_API_KEY
           valueFrom:
             secretKeyRef:

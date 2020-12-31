@@ -76,7 +76,7 @@ At this point, you can modify contents of the `registry` directory (adding resou
     oc process -f openshift/templates/web/algolia-build.secret.yaml \ 
     -p ALGOLIA_ADMIN_KEY= \
     -p GATSBY_ALGOLIA_APP_ID= \
-    -p GATSBY_ALGOLIA_SEARCH_KEY= | \
+    -p GATSBY_ALGOLIA_SEARCH_KEY= |
      oc apply -f -
   ```
   - build a production version of the devhub locally or in a pipeline to produce an Algolia Index `npm run build`
@@ -86,7 +86,7 @@ At this point, you can modify contents of the `registry` directory (adding resou
     oc process -f openshift/templates/web/algolia-deployment.secret.yaml \ 
     -p GATSBY_ALGOLIA_INDEX_NAME=... \
     -p GATSBY_ALGOLIA_APP_ID=... \
-    -p GATSBY_ALGOLIA_SEARCH_KEY=... | \
+    -p GATSBY_ALGOLIA_SEARCH_KEY=... |
      oc apply -f -
   ```
  
@@ -94,18 +94,23 @@ At this point, you can modify contents of the `registry` directory (adding resou
   ```
     oc process -f openshift/templates/web/gh.secret.yaml \ 
     -p GITHUB_TOKEN=... \
-    -p NAMESPACE=... | \
+    -p NAMESPACE=... |
      oc apply -f -
   ```
 
   - if you have access to eventbrite you may grab an api key from there and run the eventbrite secret in the builder namespace (this is optional)
-    ```
-    oc process -f openshift/templates/web/eventbrite.secret.yaml \ 
-    -p EVENT_BRITE_API_KEY=... \
-    -p NAMESPACE=... | \
-     oc apply -f -
-  ```
-
+   ```
+      oc process -f openshift/templates/web/eventbrite.secret.yaml \ 
+      -p EVENT_BRITE_API_KEY=... \
+      -p NAMESPACE=... |
+      oc apply -f -
+   ```
+  - setup the caddy s2i builder image in your build namespace passing in the `caddy-s2i-builder` for the NAME parameter
+   ```
+      oc process -f https://raw.githubusercontent.com/bcgov/s2i-caddy-nodejs/master/openshift/templates/build.yaml | 
+      oc apply -f -
+   ```
+   > if you have trouble building the s2i builder image see [troubleshooting steps in the readme](https://github.com/bcgov/s2i-caddy-nodejs#usage)
 2. Build the Image
 
    ```
@@ -118,10 +123,11 @@ At this point, you can modify contents of the `registry` directory (adding resou
    -p GITHUB_ISSUE_SEARCH=false \
    -p DOCUMIZE_SEARCH=false \
    -p ROCKET_CHAT_SEARCH=false \
-   -p LOGIN_FEATURE=false | |
+   -p LOGIN_FEATURE=false |
    oc apply -f -
    ```
    > the true/false params require external integrations in order to work
+3. Wait for build to complete (this can take up to 30 minutes)
 ## Development Guide/Considerations
 
    Devhub leverages different sources of content via the `gatsby-source-plugin`. These sources are
