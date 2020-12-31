@@ -138,18 +138,16 @@ export const queries = [
           .concat(flattenGatsbyGraphQL(Journeys.edges))
           .concat(flattenGatsbyGraphQL(Topics.edges)),
       ),
-    indexName: `Devhub-Algolia`,
+    indexName: `Devhub-Algolia`, // default index name
     settings,
   },
 ];
 
 /**
- * returns all queries with the index name suffixed
- * @param {String} suffix the suffix for the index
+ * returns all queries with the index name
+ * @param {String} indexName the indexname for
  * @returns {Array} the queries used by gatsby-plugin-algolia
  */
-export const getQueries = (suffix = '') => {
-  let suffixName = '';
-  if (suffix) suffixName = `${suffix}`;
-  return queries.map(q => ({ ...q, indexName: `${q.indexName}${suffixName}` }));
+export const getQueries = (indexName = '') => {
+  return queries.map(q => ({ ...q, indexName: indexName ? indexName : q.indexName }));
 };

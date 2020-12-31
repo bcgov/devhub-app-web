@@ -29,85 +29,15 @@ const algoliaPlugin = () =>
         options: {
           appId: process.env.GATSBY_ALGOLIA_APP_ID,
           apiKey: process.env.ALGOLIA_ADMIN_KEY,
-          queries: getQueries(process.env.GATSBY_ALGOLIA_INDEX_NAME_SUFFIX),
+          queries: getQueries(process.env.GATSBY_ALGOLIA_INDEX_NAME),
           chunkSize: 10000, // default: 1000
           enablePartialUpdates: true,
           matchFields: ['id'],
         },
       }
     : undefined;
-//Commented out since Meetup no longer has an API and has switched to OAUTH, but the plugin we use may be updated
-//more info at https://chat.pathfinder.gov.bc.ca/channel/general?msg=MdAyQzrPRPpQt382o
-/*const devopsCommonsMeetup = () =>
-  process.env.MEETUP_API_KEY
-    ? {
-        resolve: `gatsby-source-meetup`,
-        options: {
-          key: process.env.MEETUP_API_KEY,
-          groupUrlName: 'DevOps-Commons',
-          status: 'upcoming,past',
-          desc: 'true',
-        },
-      }
-    : undefined;
-const cloudNativeMeetup = () =>
-  process.env.MEETUP_API_KEY
-    ? {
-        resolve: `gatsby-source-meetup`,
-        options: {
-          key: process.env.MEETUP_API_KEY,
-          groupUrlName: 'Cloud-Native-Victoria',
-          status: 'upcoming,past',
-          desc: 'true',
-        },
-      }
-    : undefined;
-const uxGuildMeetup = () =>
-  process.env.MEETUP_API_KEY
-    ? {
-        resolve: `gatsby-source-meetup`,
-        options: {
-          key: process.env.MEETUP_API_KEY,
-          groupUrlName: 'bcgov-uxguild',
-          status: 'upcoming,past',
-          desc: 'true',
-        },
-      }
-    : undefined;
-const devopsVictoriaMeetup = () =>
-  process.env.MEETUP_API_KEY
-    ? {
-        resolve: `gatsby-source-meetup`,
-        options: {
-          key: process.env.MEETUP_API_KEY,
-          groupUrlName: 'meetup-group-GjYRUnKV',
-          status: 'upcoming,past',
-          desc: 'true',
-        },
-      }
-    : undefined;
-const SCIPSMeetup = () =>
-  process.env.MEETUP_API_KEY
-    ? {
-        resolve: `gatsby-source-meetup`,
-        options: {
-          key: process.env.MEETUP_API_KEY,
-          groupUrlName: 'Social-Club-for-Innovative-Public-Servants-SCIPS',
-          status: 'upcoming,past',
-          desc: 'true',
-        },
-      }
-    : undefined;*/
 
-const dynamicPlugins = [
-  eventbritePlugin(),
-  algoliaPlugin(),
-  /*devopsCommonsMeetup(),
-  cloudNativeMeetup(),
-  uxGuildMeetup(),
-  devopsVictoriaMeetup(),
-  SCIPSMeetup(),*/
-];
+const dynamicPlugins = [eventbritePlugin(), algoliaPlugin()];
 
 module.exports = {
   siteMetadata: {
@@ -119,9 +49,6 @@ module.exports = {
     'GithubRaw.fields.journeys': 'JourneyRegistryJson.name',
     'GithubRaw.fields.image': 'File.url',
     'DevhubSiphon.fields.image': 'File.url',
-    // 'devhubRegistryJson.fields.content': 'MarkdownRemark.fields.id', // topic page content mapping
-    // 'TopicRegistryJson.fields.githubRaw': 'GithubRaw.id',
-    // 'JourneyRegistryJson.name': 'MarkdownRemark.frontmatter.id',
   },
   pathPrefix: '/images',
   plugins: [

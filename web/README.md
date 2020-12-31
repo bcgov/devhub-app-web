@@ -66,30 +66,39 @@ An pre-built "previewer" image will be pulled down from Docker Hub to your local
 
 At this point, you can modify contents of the `registry` directory (adding resources or topics for example), or rebuild and preview locally based on changes in repositories that area already referenced in the `registry`.  If you make changes to the `registry` or remote content, you willneed to restart the previewer via ^C and running `./preview.sh` again - the hot reload does not apply to `registry` or remote content.
 
-## Openshift
+## Openshift Single Deployment
 
-1. Deploy the Jenkins Instance. 
-   > info the jenkins job is found at `docker/contrib.../jobs/_jenkins`
-   a. change into the jenkins node js builder/deployer tool `cd .jenkins/.pipeline/lib`
-   b. explore the `config.js` file this contains some important params that will be passed into the build templates which are located at `openshift/build-master.yaml`, `openshift/build-slave.yaml`
-   c. for some reason I (Patrick) have not be able to use the `--dev-mode` flag of this version of the jenkins bcdk
-   and so you will need to make a live pr to your repository before continuing
-   d. log into oc through the command line and switch projects to your tools name space
-   e. build the live pr, from the `lib` directory, run `npm run build --  --pr=<your pr number>`
-   f. observe that the build was succesful by either viewing logs through the oc cli or the openshift console
-   h. when the build is complete you may deploy straight to production (since this is the initial deployment)
-   g. run `npm run deploy -- --pr=<you pr number> --env=prod`
-   i. observe that your build is complete
+1. Pre-requisistes:
 
-> please note jobs are built into the image, if you change any jobs  (`docker/contrib.../jobs`), you will need to
-rebuild the image
+  - sign up for Algolia and obtain your app id, search token, and admin key
+  - run the algolia build secret in your build namespace 
+  ```
+    oc process -f openshift/templates/web/algolia-build.secret.yaml \ 
+    -p ALGOLIA_ADMIN_KEY= \
+    -p GATSBY_ALGOLIA_APP_ID= \
+    -p GATSBY_ALGOLIA_SEARCH_KEY= | \
+     oc apply -f -
+  ```
+  - build a production version of the devhub locally or in a pipeline to produce an Algolia Index `npm run build`
 
-2. Deploy the application
-> Jenkins should now be looking for prs
-   a. make a pr for your code changes and jenkins should fire off a job to build and deploy the application
-   b. if builds do not fire off, you may build and deploy the application seperately. Process and apply all templates
-   withing the `openshift/templates` directory
+  - run the algolia deploy secret in your deploy namespace
+   ```
+    oc process -f openshift/templates/web/algolia-deployment.secret.yaml \ 
+    -p GATSBY_ALGOLIA_INDEX_NAME=... \
+    -p GATSBY_ALGOLIA_APP_ID=... \
+    -p GATSBY_ALGOLIA_SEARCH_KEY=... | \
+     oc apply -f -
+  ```
+ 
+  - create a [generic github access token](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token) and then run the gh secret in your build namespace
+  ```
+    oc process -f openshift/templates/web/gh.secret.yaml \ 
+    -p GITHUB_TOKEN=... \
+    -p NAMESPACE=... | \
+     oc apply -f -
+  ```
 
+  - if you have access to eventbrite you may grab an api key from there and run the eventbrite secret in the builder namespace (this is optional)
 ## Development Guide/Considerations
 
    Devhub leverages different sources of content via the `gatsby-source-plugin`. These sources are
