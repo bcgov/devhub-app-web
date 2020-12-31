@@ -98,8 +98,8 @@ jobs:
         env:
           TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
           DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
-          KEYCLOAK_CLIENT_ID: ${{ secrets.KC_CLIENT_ID }}
-          KEYCLOAK_CLIENT_SECRET: ${{ secrets.KC_CLIENT_SECRET }}
+          KEYCLOAK_CLIENT_ID: ${{ secrets.KC_SA_CLIENT_ID }}
+          KEYCLOAK_CLIENT_SECRET: ${{ secrets.KC_SA_CLIENT_SECRET }}
           PULL_NUMBER: ${{ env.PULL_NUMBER }}
         run: |
           REDIRECT_URI=$(oc -n $DEV_NAMESPACE get route/$INFRA_NAME$SUFFIX -o json | jq -r '.spec.host')
