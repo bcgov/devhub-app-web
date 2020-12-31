@@ -130,7 +130,7 @@ parameters:
   displayName: version
   name: VERSION
   required: true
-  value: v1.0.0
+  value: dev
 - description: SOURCE_REPOSITORY_URL
   displayName: SOURCE_REPOSITORY_URL
   name: SOURCE_REPOSITORY_URL

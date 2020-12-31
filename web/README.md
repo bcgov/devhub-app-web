@@ -80,15 +80,6 @@ At this point, you can modify contents of the `registry` directory (adding resou
      oc apply -f -
   ```
   - build a production version of the devhub locally or in a pipeline to produce an Algolia Index `npm run build`
-
-  - run the algolia deploy secret in your deploy namespace
-   ```
-    oc process -f openshift/templates/web/algolia-deployment.secret.yaml \ 
-    -p GATSBY_ALGOLIA_INDEX_NAME=... \
-    -p GATSBY_ALGOLIA_APP_ID=... \
-    -p GATSBY_ALGOLIA_SEARCH_KEY=... |
-     oc apply -f -
-  ```
  
   - create a [generic github access token](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token) and then run the gh secret in your build namespace
   ```
@@ -111,6 +102,9 @@ At this point, you can modify contents of the `registry` directory (adding resou
       oc apply -f -
    ```
    > if you have trouble building the s2i builder image see [troubleshooting steps in the readme](https://github.com/bcgov/s2i-caddy-nodejs#usage)
+  
+  - setup your keycloak realm and client in preperation for the deployment, ensure that you are setting your redirect uri's within the client correctly
+
 2. Build the Image
 
    ```
@@ -127,8 +121,8 @@ At this point, you can modify contents of the `registry` directory (adding resou
    oc apply -f -
    ```
    > the true/false params require external integrations in order to work
-3. Wait for build to complete (this can take up to 30 minutes)
-4. Deploy image to your deploy namespace
+
+3. Deploy image to your deploy namespace
    ```
       oc process -f openshift/templates/web/dc.yaml \
       -p NAME=... \
@@ -136,14 +130,11 @@ At this point, you can modify contents of the `registry` directory (adding resou
       -p IMAGE_TAG=... \
       -p IMAGE_NAMESPACE=... \
       -p HOST=... \
-      -p SEARCHGATE_API_URL=... \
       -p SSO_BASE_URL=... \
-      -p DEVHUB_API_URL=... \
       -p SSO_CLIENT_ID=... \
       -p SSO_REALM_NAME=... \
-      -p CADDY_VOLUME_NAME=... \
       -p ALGOLIA_INDEX_NAME=... \
-      -p IMAGE_REGISTRY=... \
+      -p IMAGE_REGISTRY=... |
       oc apply -f -
    ```
 ## Development Guide/Considerations
