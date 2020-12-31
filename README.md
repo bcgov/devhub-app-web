@@ -46,6 +46,8 @@ EVENT_BRITE_API_KEY
 # your key cloack service accout client id
 KC_SA_CLIENT_ID
 KC_SA_CLIENT_SECRET
+# you can obtain the server url by inspecting the --server flag when copy and pasting your oc 
+# login command
 OPENSHIFT_SERVER_URL
 OPENSHIFT_SA_NAME
 # this is the openshift service account secret token
