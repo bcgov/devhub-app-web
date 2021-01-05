@@ -20,7 +20,7 @@ const githubEnvironmentMapping = {
 
 const getParamsByEnv = (env, pr) => {
   const params = {
-    SSO_BASE_URL_VALUE: 'https://sso.pathfinder.gov.bc.ca',
+    SSO_BASE_URL_VALUE: 'https://oidc.gov.bc.ca',
     SSO_CLIENT_ID_VALUE: 'devhub-web',
     SSO_REALM_NAME_VALUE: 'devhub',
     ALGOLIA_INDEX_NAME_SUFFIX: 'prod',
@@ -34,20 +34,20 @@ const getParamsByEnv = (env, pr) => {
     case ENVS.TEST:
       return {
         ...params,
-        SSO_BASE_URL_VALUE: 'https://sso-test.pathfinder.gov.bc.ca',
+        SSO_BASE_URL_VALUE: 'https://test.oidc.gov.bc.ca',
         ALGOLIA_INDEX_NAME_SUFFIX: 'test',
       };
     case ENVS.DEV:
       return {
         ...params,
-        SSO_BASE_URL_VALUE: 'https://sso-dev.pathfinder.gov.bc.ca',
+        SSO_BASE_URL_VALUE: 'https://dev.oidc.gov.bc.ca',
         SSO_CLIENT_ID_VALUE: `devhub-web-${pr}`,
         ALGOLIA_INDEX_NAME_SUFFIX: `-build-${pr}`,
       };
     default:
       return {
         ...params,
-        SSO_BASE_URL_VALUE: 'https://sso-dev.pathfinder.gov.bc.ca',
+        SSO_BASE_URL_VALUE: 'https://dev.oidc.gov.bc.ca',
         SSO_CLIENT_ID_VALUE: `devhub-web-${pr}`,
       };
   }

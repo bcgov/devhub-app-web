@@ -72,7 +72,7 @@ Again first we need to create a `dcparameter.sh` as parameters:
 ```sh
 MATOMO_URL=https://matomo-devhub-prod.pathfinder.gov.bc.ca/
 SEARCHGATE_API_URL=https://searchgate-test.pathfinder.gov.bc.ca
-SSO_BASE_URL_VALUE=https://sso-dev.pathfinder.gov.bc.ca
+SSO_BASE_URL_VALUE=https://dev.oidc.gov.bc.ca
 SSO_REALM_NAME=<Your SSO_REALM Name>
 SSO_CLIENT_ID_VALUE=<Your SSO SSO_CLIENT ID>
 ```
