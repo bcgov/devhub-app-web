@@ -85,7 +85,7 @@ jobs:
           SSO_BASE_URL: ${{ env.SSO_BASE_URL }}
           SSO_CLIENT_ID: "devhub-web"
           SSO_REALM_NAME: ${{ secrets.SSO_REALM_NAME }}
-          ALGOLIA_INDEX_NAME_SUFFIX: ${{ env.ALGOLIA_DEST_INDEX_SUFFIX }}
+          ALGOLIA_INDEX_NAME: Algolia-Build${{ env.ALGOLIA_DEST_INDEX_SUFFIX }}
         run: .github/helpers/deploy_web.sh
 
       - name: Wait for Deployment and Update Status
