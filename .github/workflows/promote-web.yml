@@ -59,8 +59,8 @@ jobs:
       - name: Cluster Login
         uses: redhat-developer/openshift-actions@v1.1
         with:
-          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL}}
-          parameters: '{"apitoken": "${{ secrets.SA_PASSWORD }}"}'
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT_SA_PASSWORD }}"}'
           cmd: |
             'version'
       - name: Promote Algolia index to Environment
