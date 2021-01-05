@@ -18,7 +18,7 @@ import isEqual from 'lodash/isEqual';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { SEARCHGATE_QUERY } from '../constants/runtimeGraphqlQueries';
 import algoliasearch from 'algoliasearch/lite';
-import { ALGOLIA_INDEX_SUFFIX } from '../constants/api';
+import { ALGOLIA_INDEX } from '../constants/api';
 import { useStaticQuery, graphql } from 'gatsby';
 import { flattenGatsbyGraphQL } from './dataHelpers';
 
@@ -49,7 +49,7 @@ export function useDeepCompareMemoize(value) {
  */
 export const useSearch = query => {
   const [results, setResults] = useState([]);
-  const index = searchClient.initIndex(`Devhub-Algolia${ALGOLIA_INDEX_SUFFIX}`);
+  const index = searchClient.initIndex(ALGOLIA_INDEX);
   useEffect(() => {
     let options = {};
     let userQuery;

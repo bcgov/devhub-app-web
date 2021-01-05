@@ -59,8 +59,8 @@ jobs:
       - name: Cluster Login
         uses: redhat-developer/openshift-actions@v1.1
         with:
-          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL}}
-          parameters: '{"apitoken": "${{ secrets.SA_PASSWORD }}"}'
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT_SA_PASSWORD }}"}'
           cmd: |
             'version'
       - name: Promote Algolia index to Environment
@@ -85,7 +85,7 @@ jobs:
           SSO_BASE_URL: ${{ env.SSO_BASE_URL }}
           SSO_CLIENT_ID: "devhub-web"
           SSO_REALM_NAME: ${{ secrets.SSO_REALM_NAME }}
-          ALGOLIA_INDEX_NAME_SUFFIX: ${{ env.ALGOLIA_DEST_INDEX_SUFFIX }}
+          ALGOLIA_INDEX_NAME: Algolia-Build${{ env.ALGOLIA_DEST_INDEX_SUFFIX }}
         run: .github/helpers/deploy_web.sh
 
       - name: Wait for Deployment and Update Status

@@ -14,7 +14,8 @@ objects:
           "github": ${GITHUB_ISSUE_SEARCH},
           "documize": ${DOCUMIZE_SEARCH},
           "rocketchat": ${ROCKET_CHAT_SEARCH}
-        }
+        },
+        "login": ${LOGIN_FEATURE}
       }
   kind: ConfigMap
   metadata:
@@ -56,7 +57,7 @@ objects:
       git:
         uri: ${SOURCE_REPOSITORY_URL}
         ref: ${SOURCE_REPOSITORY_REF}
-      contextDir: 'app-web'
+      contextDir: 'web'
       type: Git
       configMaps:
         - configMap:
@@ -91,13 +92,8 @@ objects:
             secretKeyRef:
               name: devhub-algolia-build
               key: GATSBY_ALGOLIA_SEARCH_KEY
-        - name: GATSBY_ALGOLIA_INDEX_NAME_SUFFIX
-          value: ${GATSBY_ALGOLIA_INDEX_NAME_SUFFIX}
-        - name: MEETUP_API_KEY
-          valueFrom: 
-            secretKeyRef:
-              name: devhub-meetup-token
-              key: MEETUP_API_KEY
+        - name: GATSBY_ALGOLIA_INDEX_NAME
+          value: ${GATSBY_ALGOLIA_INDEX_NAME}
         - name: EVENT_BRITE_API_KEY
           valueFrom:
             secretKeyRef:
@@ -127,14 +123,14 @@ parameters:
   value: -dev
 - description: A name suffix used for all objects
   displayName: Suffix
-  name: GATSBY_ALGOLIA_INDEX_NAME_SUFFIX
+  name: GATSBY_ALGOLIA_INDEX_NAME
   required: false
-  value: local
+  value: Devhub-Algolia-local
 - description: A version used for the image tags
   displayName: version
   name: VERSION
   required: true
-  value: v1.0.0
+  value: dev
 - description: SOURCE_REPOSITORY_URL
   displayName: SOURCE_REPOSITORY_URL
   name: SOURCE_REPOSITORY_URL
@@ -156,4 +152,8 @@ parameters:
 - description: Enable Rocket.Chat Searching (requires search gate to be enabled on runtime)
   displayName: Rocket.Chat Search
   name: ROCKET_CHAT_SEARCH
+  value: "false"
+- description: Enable Logging into Keycloak Services (requires keycloak integration details to be set up at runtime)
+  displayName: Login Feature
+  name: LOGIN_FEATURE
   value: "false"
