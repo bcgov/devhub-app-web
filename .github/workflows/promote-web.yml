@@ -83,8 +83,8 @@ jobs:
           SEARCHGATE_API_URL: ${{ secrets.SEARCHGATE_API_URL }}
           DEVHUB_API_URL: ${{ secrets.DEVHUB_API_URL }}
           SSO_BASE_URL: ${{ env.SSO_BASE_URL }}
-          SSO_CLIENT_ID: "devhub-web"
-          SSO_REALM_NAME: ${{ secrets.SSO_REALM_NAME }}
+          SSO_CLIENT_ID: ${{ secrets.SSO_CLIENT }}
+          SSO_REALM_NAME: ${{ secrets.SSO_REALM }}
           ALGOLIA_INDEX_NAME: Algolia-Build${{ env.ALGOLIA_DEST_INDEX_SUFFIX }}
         run: .github/helpers/deploy_web.sh
 

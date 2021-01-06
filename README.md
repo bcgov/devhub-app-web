@@ -54,6 +54,9 @@ OPENSHIFT_SA_NAME
 OPENSHIFT_SA_PASSWORD
 # optional as described in schematic.md recommended not to use searchgate
 SEARCHGATE_API_URL
+SSO_REALM
+# please note that your test and prod instances of the SSO_CLIENT should be exactly the same, the dev clients are created dynamically
+SSO_CLIENT
 ```
 
 - Deploy [deploy-tron](https://github.com/patricksimonian/deploy-tron#building-and-deploying-on-openshift) and setup a Github App for your repository.
