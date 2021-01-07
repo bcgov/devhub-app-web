@@ -12,7 +12,7 @@ const { resolveBaseDataSources } = require('./utils/datasources');
 const DATA_SOURCES = resolveBaseDataSources();
 
 if(isEmpty(DATA_SOURCES)) {
-  throw new Error('Searchgate has no Datasources! By default it contains 3 default base sources that you can enable by passing in the appropriate env vars')
+  throw new Error('Searchgate has no Datasources! By default it contains 3 base sources that you can enable by passing in the appropriate env vars')
 }
 
 const DATA_SOURCE_NAMES = Object.keys(DATA_SOURCES);
