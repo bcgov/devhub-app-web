@@ -29,6 +29,7 @@ Docs on emotion https://emotion.sh/docs/introduction
 when and as needed. This is a slow processes but will lead to better and more maintaible styling in the long run.
 */
 
+
 import { SPACING } from './src/constants/designTokens';
 import { RESOURCE_TYPES, TOPICS, SEARCH_RESOURCE_TYPES, JOURNEY } from './src/constants/ui';
 
