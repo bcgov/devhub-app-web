@@ -1,24 +1,19 @@
 require('dotenv').config({
-  path: '.env.production',
+  path: '.env',
 });
 
 const { ApolloServer, gql } = require('apollo-server');
+const { isEmpty } = require('lodash');
 const flatten = require('lodash/flatten');
 const userConfig = require('./config/index.json');
 const baseConfig = require('./constants');
-const RocketGateAPI = require('./datasources/rocket.gate');
-const GitHubAPI = require('./datasources/github');
-const DocugateAPI = require('./datasources/docugate');
+const { resolveBaseDataSources } = require('./utils/datasources');
 
-const DATA_SOURCES = {
-  rocketchat: new RocketGateAPI({
-    baseURL: process.env.ROCKETGATE_BASE_URL,
-  }),
-  github: new GitHubAPI({ authToken: process.env.GITHUB_AUTH_TOKEN }),
-  documize: new DocugateAPI({
-    baseURL: process.env.DOCUGATE_BASE_URL,
-  }),
-};
+const DATA_SOURCES = resolveBaseDataSources();
+
+if(isEmpty(DATA_SOURCES)) {
+  throw new Error('Searchgate has no Datasources! By default it contains 3 default base sources that you can enable by passing in the appropriate env vars')
+}
 
 const DATA_SOURCE_NAMES = Object.keys(DATA_SOURCES);
 // Type definitions define the "shape" of your data and specify
