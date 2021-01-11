@@ -34,7 +34,7 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/developer-experience",
+          "url": "https://github.com/bcdevops/developer-experience",
           "owner": "bcdevops",
           "repo": "developer-experience",
           "files": [
