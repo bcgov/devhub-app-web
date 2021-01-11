@@ -38,7 +38,7 @@
           "owner": "BCDevOps",
           "repo": "developer-experience",
           "files": [
-            "docs/PCI-DSSPatternforContainer-basedapplicationsonOpenShift.md"
+            "docs/PCIDSSPatternforOCP.md"
           ]
         }
       }
