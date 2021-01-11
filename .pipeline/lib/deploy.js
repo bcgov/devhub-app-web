@@ -64,7 +64,7 @@ module.exports = async settings => {
 
   const chatUrl =
     process.env.CHAT_WEBHOOK_URL ||
-    'https://chat.pathfinder.gov.bc.ca/hooks/ScLeYnDzyKN3hbBob/F84wsFWxmpkguyDN9ZQ8BAyHRrLT3c2yF6DPoNoFbnitqxES';
+    'https://chat.developer.gov.bc.ca/hooks/ScLeYnDzyKN3hbBob/F84wsFWxmpkguyDN9ZQ8BAyHRrLT3c2yF6DPoNoFbnitqxES';
   // The deployment of your cool app goes here ▼▼▼
   objects = oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/dc.yaml`, {
     param: {
