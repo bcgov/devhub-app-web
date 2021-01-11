@@ -34,8 +34,8 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/bcdevops/developer-experience",
-          "owner": "bcdevops",
+          "url": "https://github.com/BCDevOps/developer-experience",
+          "owner": "BCDevOps",
           "repo": "developer-experience",
           "files": [
             "docs/PCI-DSSPatternforContainer-basedapplicationsonOpenShift.md"
