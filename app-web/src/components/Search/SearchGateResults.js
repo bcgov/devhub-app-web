@@ -114,7 +114,7 @@ export const SearchGateResults = ({ searchSources }) => {
     },
     [SEARCH_SOURCES.rocketchat]: {
       link: {
-        to: 'https://chat.pathfinder.gov.bc.ca',
+        to: 'https://chat.developer.gov.bc.ca',
         text: 'Go To Rocket.Chat',
       },
       render: renderRocketchat,
