@@ -1,5 +1,5 @@
 /*
-Copyright 2019 Province of British Columbia
+Copyright 2021 Province of British Columbia
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ Docs on emotion https://emotion.sh/docs/introduction
 --- our idea is to introduce emotion early and slowly replace css modules with emotion styled components
 when and as needed. This is a slow processes but will lead to better and more maintaible styling in the long run.
 */
+
 
 import { SPACING } from './src/constants/designTokens';
 import { RESOURCE_TYPES, TOPICS, SEARCH_RESOURCE_TYPES, JOURNEY } from './src/constants/ui';
