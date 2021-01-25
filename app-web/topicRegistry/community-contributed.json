@@ -1,5 +1,6 @@
 {
   "name": "Community Contributed Content",
+  "version": "1.0.0",
   "description": "Helpful resources shared by the community",
   "resourceType": "Documentation",
   "attributes": {
