@@ -137,7 +137,7 @@ Our current list of topics include:
 
 ### Have an idea for a new Topic?
 
-Please @mention patricksimonian or sheaphillips with your PR or even better, contact the Devhub Team in [Rocket Chat](https://chat.pathfinder.gov.bc.ca)
+Please @mention patricksimonian or sheaphillips with your PR or even better, contact the Devhub Team in [Rocket Chat](https://chat.developer.gov.bc.ca)
 
 
 
