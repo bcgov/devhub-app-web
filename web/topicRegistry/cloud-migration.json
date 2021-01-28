@@ -1,5 +1,6 @@
 {
   "name": "Cloud Migration",
+  "version": "1.0.0",
   "description": "Discover tips and tricks when migrating your app from one Openshift cluster to the next",
   "sourceProperties": {
     "sources": [
