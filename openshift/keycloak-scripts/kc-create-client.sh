@@ -2,7 +2,15 @@
 
 # Reference:
 # https://www.keycloak.org/docs-api/3.3/rest-api/#_identity_providers_resource
-
+# dependancies
+# - jq
+# environment variables
+# NAMESPACE <string>
+# KC_URL <string>
+# KC_REALM <string>
+# KC_CLIENT_ID <string>
+# KC_CLIENT_SECRET <string>
+# REDIRECT_URI <string>
 set -Eeuo pipefail
 # set -x
 
@@ -10,15 +18,6 @@ if [ "$1" == "" ]; then
     echo "Skip this step in test or prod enviroments"
     exit 0
 fi
-
-# install jq:
-JQ=/tmp/jq
-curl https://stedolan.github.io/jq/download/linux64/jq > $JQ && chmod +x $JQ
-ls -la $JQ
-
-# oc get secret for sso service account:
-KEYCLOAK_CLIENT_ID=$(oc -n devhub-dev get secret/sso-dev-service-account --template={{.data.KEYCLOAK_CLIENT_ID}} | base64 --decode)
-KEYCLOAK_CLIENT_SECRET=$(oc -n devhub-dev get secret/sso-dev-service-account --template={{.data.KEYCLOAK_CLIENT_SECRET}} | base64 --decode)
 
 # get sso variables:
 KEYCLOAK_URL=https://dev.oidc.gov.bc.ca

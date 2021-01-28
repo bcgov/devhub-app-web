@@ -7,7 +7,7 @@
   "enabled": true,
   "clientAuthenticatorType": "client-secret",
   "redirectUris": [
-      "https://devhub-static-dev-#{PR}-devhub-dev.pathfinder.gov.bc.ca/*"
+      "${REDIRECT_URI}/*"
   ],
   "webOrigins": ["*"],
   "notBefore": 0,

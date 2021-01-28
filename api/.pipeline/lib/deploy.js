@@ -1,5 +1,6 @@
 'use strict';
 const { OpenShiftClientX } = require('@bcgov/pipeline-cli');
+const  { spawn } = require('child_process');
 const path = require('path');
 const ENVS = {
   TEST: 'test',
@@ -54,11 +55,11 @@ module.exports = (settings) => {
   const changeId = phases[phase].changeId;
   const oc = new OpenShiftClientX(Object.assign({ namespace: phases[phase].namespace }, options));
 
-  const templatesLocalBaseUrl = oc.toFileUrl(path.resolve(__dirname, '../../openshift'));
+  const templatesLocalBaseUrl = oc.toFileUrl(path.resolve(__dirname, '../../../openshift'));
   var objects = [];
   // The deployment of your cool app goes here ▼▼▼
   objects = objects.concat(
-    oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/dc.yaml`, {
+    oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/templates/api/dc.yaml`, {
       param: {
         NAME: phases[phase].name,
         SUFFIX: phases[phase].suffix,

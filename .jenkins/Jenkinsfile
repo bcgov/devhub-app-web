@@ -8,6 +8,7 @@ pipeline {
             agent { label 'build' }
             steps {
                 script {
+                    echo "checking dupicate"
                     def filesInThisCommitAsString = sh(script:"git diff --name-only HEAD~1..HEAD | grep '^.jenkins/' || echo -n ''", returnStatus: false, returnStdout: true).trim()
                     def hasChangesInPath = (filesInThisCommitAsString.length() > 0)
                     echo "${filesInThisCommitAsString}"

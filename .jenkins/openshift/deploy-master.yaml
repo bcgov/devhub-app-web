@@ -113,7 +113,7 @@ objects:
             value: ${ENV_NAME}
           - name: ENV_ID
             value: ${ENV_ID}
-          image: ' '
+          image: registry.redhat.io/openshift3/jenkins-2-rhel7
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
@@ -145,7 +145,7 @@ objects:
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           volumeMounts:
-          - mountPath: /var/lib/jenkins/jobs
+          - mountPath: /var/jenkins-data
             name: jenkins-jobs
             readOnly: false
           - mountPath: /var/run/pod
@@ -228,7 +228,6 @@ objects:
     creationTimestamp: null
     name: ${NAME}${SUFFIX}
   spec:
-    host: ${ROUTE_HOST}
     path: ${ROUTE_PATH}
     port:
       targetPort: 8080-tcp
