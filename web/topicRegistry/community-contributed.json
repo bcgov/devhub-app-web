@@ -17,7 +17,7 @@
           "url": "https://github.com/bcgov/devhub-app-web",
           "owner": "bcgov",
           "repo": "devhub-app-web",
-          "file": "app-web/src/assets/blog/integratingAlgolia.md"
+          "file": "web/src/assets/blog/integratingAlgolia.md"
         }
       },
       {

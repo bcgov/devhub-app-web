@@ -8,7 +8,7 @@ export const RESOURCE_VERBS = {
   CREATE: 'CREATE',
 };
 
-export const FILE_PATH = 'app-web/topicRegistry/';
+export const FILE_PATH = 'web/topicRegistry/';
 
 export const COMMIT_MESSAGE = {
   CREATE: 'add new topic',

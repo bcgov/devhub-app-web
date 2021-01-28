@@ -6,9 +6,9 @@ services:
     build: '.'
     image: bcgovimages/devhub-previewer
     env_file:
-      - app-web/.env.production
+      - web/.env.production
     volumes:
-      - './app-web/:/site'
+      - './web/:/site'
       # a hack to ignore node_modules and other folders so that local version,
       # if existing does not mount ontop of the image's version
       - '/site/node_modules/'

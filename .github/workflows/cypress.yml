@@ -2,11 +2,11 @@ name: End-to-end tests
 on: 
   pull_request:
     paths:
-    - 'app-web'
+    - 'web'
 paths:
   - '.github/actions/devhub-markdown-frontmatter-verify/**/*.js'
-  - 'app-web/journeyRegistry/*.json'
-  - 'app-web/topicRegistry/*.json'
+  - 'web/journeyRegistry/*.json'
+  - 'web/topicRegistry/*.json'
 jobs:
   cypress-run:
     runs-on: ubuntu-16.04
@@ -16,7 +16,7 @@ jobs:
       - name: Cache node modules
         uses: actions/cache@v1
         with:
-          path: app-web/node_modules
+          path: web/node_modules
           key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-build-${{ env.cache-name }}-
@@ -24,13 +24,13 @@ jobs:
             ${{ runner.OS }}-
       - uses: bahmutov/npm-install@v1
         with:
-          working-directory: app-web
+          working-directory: web
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
       - name: Cypress run
         uses: patricksimonian/github-action@6dc0f8790dccace7167b12f9aaa0e28b7dc81c7c 
         with:
-          working-directory: app-web
+          working-directory: web
           start: npm run dev
           wait-on: 'http://localhost:8000'
           wait-on-timeout: 120
