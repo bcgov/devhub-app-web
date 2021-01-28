@@ -32,7 +32,7 @@
           <id>800fe2e9-f5b6-46af-9f53-2b21d8038ed1</id>
           <credentialsId>github-account</credentialsId>
           <repoOwner>bcgov</repoOwner>
-          <repository>searchgate</repository>
+          <repository>devhub-app-web</repository>
           <traits>
             <!-- disabling fork discovery -->
             <!--<org.jenkinsci.plugins.github__branch__source.ForkPullRequestDiscoveryTrait>-->
@@ -57,6 +57,6 @@
   </sources>
   <factory class="org.jenkinsci.plugins.workflow.multibranch.WorkflowBranchProjectFactory">
     <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
-    <scriptPath>Jenkinsfile</scriptPath>
+    <scriptPath>searchgate/Jenkinsfile</scriptPath>
   </factory>
 </org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject>

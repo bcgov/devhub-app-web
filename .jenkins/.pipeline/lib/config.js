@@ -1,49 +1,49 @@
 'use strict';
-const options = require('pipeline-cli').Util.parseArguments();
+const options = require('@bcgov/pipeline-cli').Util.parseArguments();
 const changeId = options.pr; //aka pull-request
 const version = '1.0.0';
 const name = 'jenkins';
 
 const phases = {
   build: {
-    namespace: 'devhub-tools',
+    namespace: 'pltfrm-tools',
     name: `${name}`,
     phase: 'build',
     changeId: changeId,
     suffix: `-build-${changeId}`,
     instance: `${name}-build-${changeId}`,
     version: `${version}-${changeId}`,
-    tag: `build-${version}-${changeId}`,
+    tag: `aro-latest`,
   },
   dev: {
-    namespace: 'devhub-tools',
+    namespace: 'pltfrm-tools',
     name: `${name}`,
     phase: 'dev',
     changeId: changeId,
     suffix: `-dev-${changeId}`,
     instance: `${name}-dev-${changeId}`,
     version: `${version}-${changeId}`,
-    tag: `dev-${version}-${changeId}`,
+    tag: `aro-latest`,
   },
   test: {
-    namespace: 'devhub-tools',
+    namespace: 'pltfrm-tools',
     name: `${name}`,
     phase: 'test',
     changeId: changeId,
     suffix: `-test`,
     instance: `${name}-test`,
     version: `${version}`,
-    tag: `test-${version}`,
+    tag: `aro-latest`,
   },
   prod: {
-    namespace: 'devhub-tools',
+    namespace: 'pltfrm-tools',
     name: `${name}`,
     phase: 'prod',
     changeId: changeId,
     suffix: `-prod`,
     instance: `${name}`,
     version: `${version}`,
-    tag: `prod-${version}`,
+    tag: `aro-latest`,
   },
 };
 

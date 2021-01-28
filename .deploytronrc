@@ -1,0 +1,21 @@
+{
+  "microservices": ["web"],
+  "environmentSynonyms": {
+    "prod": "production",
+    "dev": "development",
+    "test": "staging"
+  },
+  "requiredEnvironments": {
+    "development": [],
+    "staging": ["development"],
+    "production": ["development", "staging"]
+  },
+  "environmentsThatAllowConcurrentDeploys": ["development"],
+  "environments": ["production", "staging", "development"],
+  "requiredContexts": {
+    "development": [],
+    "staging": [],
+    "production": []
+  },
+  "maxDeploymentsToLookupForPending": 10
+}

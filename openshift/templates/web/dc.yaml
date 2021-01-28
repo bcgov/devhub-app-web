@@ -1,0 +1,260 @@
+apiVersion: v1
+kind: Template
+metadata:
+  creationTimestamp: null
+  name: devhub-app-web
+labels:
+  template: devhub-app-web
+objects:
+- apiVersion: v1
+  data:
+    Caddyfile: |
+
+      :4000
+      # for app
+      root * /opt/app-root/src
+      file_server 
+      encode gzip
+
+      try_files {path} {path}/ /index.html
+      try_files {path} {path}/
+      log {
+        output stdout
+      }
+
+      
+      log {
+        output stderr
+      } 
+
+      header / {
+        # prevent any static html from being cached
+        Cache-Control "public, max-age=0, must-revalidate"
+      }
+
+      header /public/static {
+        # all static assets SHOULD be cached
+        Cache-Control "public, max-age=31536000, immutable"
+      }
+
+      header /public/page-data/ {
+        Cache-Control "public, max-age=0, must-revalidate"
+      }
+
+      header /app-data.json {
+        Cache-Control "public, max-age=0, must-revalidate"
+      }
+
+      rewrite /topic/* /topic/index.html
+      
+      templates {
+        mime  "text/javascript"
+      }
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: null
+    name: caddy-${NAME}${SUFFIX}
+    labels:
+      app: ${NAME}${SUFFIX}
+      group: ${NAME}
+      version: ${IMAGE_TAG}
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    creationTimestamp: null
+    name: ${NAME}
+    labels:
+      app: ${NAME}${SUFFIX}
+      group: ${NAME}
+      version: ${IMAGE_TAG}
+  spec:
+    lookupPolicy:
+      local: false
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    creationTimestamp: null
+    name: ${NAME}${SUFFIX}
+    labels:
+      app: ${NAME}${SUFFIX}
+      group: ${NAME}
+      version: ${IMAGE_TAG}
+  spec:
+    minReadySeconds: 20 # should be ready for atleast 20 seconds before the container is considered available. This will allow us
+    # to catch any errors on deploy before they are available to the web
+    replicas: 3
+    selector:
+      deploymentconfig: ${NAME}${SUFFIX}
+    strategy:
+      resources:
+        requests:
+          cpu: '150m'
+          memory: '50Mi'
+        limits:
+          cpu: '250m'
+          memory: '105Mi'
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          deploymentconfig: ${NAME}${SUFFIX}
+      spec:
+        containers:
+        - image: ${IMAGE_REGISTRY}/${IMAGE_NAMESPACE}/${NAME}:${IMAGE_TAG}
+          imagePullPolicy: Always
+          name: devhub-app-web
+          ports:
+          - containerPort: 2015
+            protocol: TCP
+          resources:
+            requests:
+              cpu: ${CPU_REQUEST}
+              memory: ${MEMORY_REQUEST}
+            limits:
+              cpu: ${CPU_LIMIT}
+              memory: ${MEMORY_LIMIT}
+          env:
+          - name: SEARCHGATE_API_URL
+            value: ${SEARCHGATE_API_URL}
+          - name: SSO_BASE_URL
+            value: ${SSO_BASE_URL}
+          - name: SSO_REALM_NAME
+            value: ${SSO_REALM_NAME}
+          - name: SSO_CLIENT_ID
+            value: ${SSO_CLIENT_ID}
+          - name: ALGOLIA_INDEX_NAME
+            value: ${ALGOLIA_INDEX_NAME}
+          - name: DEVHUB_API_URL
+            value: ${DEVHUB_API_URL}
+          volumeMounts:
+          - name: caddy-${NAME}${SUFFIX}
+            mountPath: /opt/app-root/etc/Caddyfile
+            readOnly: true
+            subPath: Caddyfile
+        volumes:
+        - name: caddy-${NAME}${SUFFIX}
+          configMap:
+            defaultMode: 420
+            name: caddy-${NAME}${SUFFIX}
+    test: false
+    triggers:
+    - type: ConfigChange
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: null
+    name: ${NAME}${SUFFIX}
+    labels:
+      app: ${NAME}${SUFFIX}
+      group: ${NAME}
+      version: ${IMAGE_TAG}
+  spec:
+    ports:
+    - name: web
+      port: 4000
+      protocol: TCP
+      targetPort: 4000
+    selector:
+      deploymentconfig: ${NAME}${SUFFIX}
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      haproxy.router.openshift.io/disable_cookies: 'true'
+    creationTimestamp: null
+    name: ${NAME}${SUFFIX}
+    labels:
+      app: ${NAME}${SUFFIX}
+      group: ${NAME}
+      version: ${IMAGE_TAG}
+  spec:
+    host:
+    port:
+      targetPort: web
+    tls:
+      insecureEdgeTerminationPolicy: Redirect
+      termination: edge
+    to:
+      kind: Service
+      name: ${NAME}${SUFFIX}
+      weight: 100
+    wildcardPolicy: None
+parameters:
+- description: A name used for all objects
+  displayName: Name
+  name: NAME
+  required: true
+  value: devhub-app-web
+- description: A name suffix used for all objects
+  displayName: Suffix
+  name: SUFFIX
+  required: false
+  value: -dev
+- description: A version used for the image tags
+  displayName: version
+  name: IMAGE_TAG
+  required: true
+- name: IMAGE_NAMESPACE
+  description: the namespace to pull the image from
+  required: true
+- description: A name used for routes/services and deployment configs
+  displayName: Host
+  name: HOST
+  required: false
+  value: ''
+- description: Then end point for connecting to the apollo graphql api gateway 
+  displayName: Searchgate Graphql Api Url
+  name: SEARCHGATE_API_URL
+  required: false
+  value: ''
+- description: A base url of sso in the env
+  displayName: sso base URL
+  name: SSO_BASE_URL
+  required: false
+  value: ''
+- description: The base url for the devhub api
+  displayName: Devhub API url
+  name: DEVHUB_API_URL
+  required: false
+  value: ''
+- description: A sso client id in the env
+  displayName: sso client id
+  name: SSO_CLIENT_ID
+  required: false
+  value: ''
+- description: A sso realm name in the env
+  displayName: sso realm name
+  name: SSO_REALM_NAME
+  required: false
+  value: ''
+- description: A volumn used for the caddy from config map
+  displayName: volumn name
+  name: CADDY_VOLUME_NAME
+  required: false
+  value: web-caddy-config
+- description: The algolia search index suffix
+  displayName: Algolia Index Suffix
+  name: ALGOLIA_INDEX_NAME
+  required: true
+- description: The CPU Request for the deployment config
+  displayName: CPU Request 
+  name: CPU_REQUEST
+  required: false
+  value: 10m
+- description: The CPU Limit for the deployment config
+  displayName: CPU Limit 
+  name: CPU_LIMIT
+  required: false
+  value: 100m
+- name: IMAGE_REGISTRY
+  value: image-registry.openshift-image-registry.svc:5000
+- description: The Memory Request for the deployment config
+  displayName: Memory Request 
+  name: MEMORY_REQUEST
+  required: false
+  value: 50Mi
+- description: The Memory Limit for the deployment config
+  displayName: Memory Limit 
+  name: MEMORY_LIMIT
+  required: false
+  value: 75Mi

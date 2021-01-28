@@ -105,8 +105,6 @@ objects:
         terminationGracePeriodSeconds: 30
         volumes:
         - name: jenkins-home
-          persistentVolumeClaim:
-            claimName: ${NAME}${SUFFIX}
         - downwardAPI:
             items:
             - fieldRef:

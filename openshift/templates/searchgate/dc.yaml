@@ -1,0 +1,155 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: searchgate-dc-templates
+labels:
+  template: searchgate
+objects:
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    name: ${NAME}
+  spec:
+    lookupPolicy:
+      local: false
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    name: ${NAME}${SUFFIX}
+  spec:
+    minReadySeconds: 20 # should be ready for atleast 20 seconds before the container is considered available. This will allow us
+    # to catch any errors on deploy before they are available to the web
+    replicas: 3
+    selector:
+      deploymentconfig: ${NAME}${SUFFIX}
+    strategy:
+      resources:
+        requests:
+          cpu: '100m'
+          memory: '128Mi'
+        limits:
+          cpu: '200m'
+          memory: '256Mi'
+    template:
+      metadata:
+        labels:
+          deploymentconfig: ${NAME}${SUFFIX}
+      spec:
+        containers:
+        - image: ${NAME}:${VERSION}
+          name: searchgate
+          ports:
+          - containerPort: 4001
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /.well-known/apollo/server-health
+              port: 4001
+              scheme: HTTP
+            initialDelaySeconds: 4
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 4
+          resources:
+            requests:
+              cpu: '100m'
+              memory: '128Mi'
+            limits:
+              cpu: '200m'
+              memory: '256Mi'
+          env:          
+          - name: ROCKETGATE_BASE_URL
+            valueFrom:
+              configMapKeyRef:
+                name: searchgate-config
+                key: rocketGateURL
+          - name: GITHUB_AUTH_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: searchgate-credentials
+                key: githubAuthtoken
+          - name: DOCUGATE_BASE_URL
+            valueFrom:
+              configMapKeyRef:
+                key: docuGateURL
+                name: searchgate-config
+    test: false
+    triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - searchgate
+        from:
+          kind: ImageStreamTag
+          name: ${NAME}:${VERSION}
+      type: ImageChange
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: ${NAME}${SUFFIX}
+  spec:
+    ports:
+    - name: web
+      port: 4001
+      protocol: TCP
+      targetPort: 4001
+    selector:
+      deploymentconfig: ${NAME}${SUFFIX}
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      haproxy.router.openshift.io/disable_cookies: 'true'
+    name: ${NAME}${SUFFIX}
+  spec:
+    host: ${HOST}
+    port:
+      targetPort: web
+    tls:
+      insecureEdgeTerminationPolicy: Redirect
+      termination: edge
+    to:
+      kind: Service
+      name: ${NAME}${SUFFIX}
+      weight: 100
+    wildcardPolicy: None
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+      name: searchgate-config
+  data:    
+    docuGateURL: ${DOCUGATE_BASE_URL}
+    rocketGateURL: ${ROCKETGATE_BASE_URL}  
+parameters:
+- description: A name used for all objects
+  displayName: Name
+  name: NAME
+  required: true
+  value: searchgate
+- description: A name suffix used for all objects
+  displayName: Suffix
+  name: SUFFIX
+  required: false
+  value: -dev
+- description: A version used for the image tags
+  displayName: version
+  name: VERSION
+  required: true
+  value: v1.0.0
+- description: A name used for routes/services and deployment configs
+  displayName: Host
+  name: HOST
+  required: false
+  value: ''
+- description: Base URL of the Rocket.Chat instance to be searched
+  displayName: Rocket.Chat Base URL
+  name: ROCKETGATE_BASE_URL
+  required: true
+  value: "https://rocketgate.pathfinder.gov.bc.ca"
+- description: Base URL of the Documize instance to be searched
+  displayName: Documize Base URL
+  name: DOCUGATE_BASE_URL
+  required: true
+  value: "https://docugate-prod-devhub-prod.pathfinder.gov.bc.ca"

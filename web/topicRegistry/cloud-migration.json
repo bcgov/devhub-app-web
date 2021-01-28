@@ -1,0 +1,33 @@
+{
+  "name": "Cloud Migration",
+  "description": "Discover tips and tricks when migrating your app from one Openshift cluster to the next",
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/devhub-resources/",
+          "owner": "bcgov",
+          "repo": "devhub-resources",
+          "files": [
+            "resources/aro/working-in-multiple-clusters.md",
+            "resources/aro/migrating-rhel-images.md",
+            "resources/aro/migrating-jenkins.md",
+            "resources/aro/exploring-available-images.md",
+            "resources/aro/finding-app-migration-painpoints.md"
+          ]
+        }
+      }
+    ]
+  },
+  "attributes": {
+    "labels": [
+      "Documentation"
+    ],
+    "personas": [
+      "Developer",
+      "Product Owner"
+    ]
+  },
+  "resourceType": "Documentation"
+}

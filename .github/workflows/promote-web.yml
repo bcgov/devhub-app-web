@@ -1,0 +1,112 @@
+name: On Promotion to Test or Production for Web
+on: 
+  deployment
+env:
+  PULL_NUMBER: ${{ fromJSON(github.event.deployment.payload).pr }}
+  MICRO_SERVICE: ${{ fromJSON(github.event.deployment.payload).microservice }}
+  DEPLOY_REF: ${{ github.event.deployment.ref }}
+  DEPLOYMENT_ID: ${{ github.event.deployment.id }}
+  ENVIRONMENT: ${{ github.event.deployment.environment }}
+  INFRA_NAME: devhub-app-web
+jobs:
+  promote-environment:
+    name: Promote Web to Environment
+    if: fromJSON(github.event.deployment.payload).microservice == 'web' && 
+      (
+        github.event.deployment.environment == 'staging' || 
+        github.event.deployment.environment == 'qa' || 
+        github.event.deployment.environment == 'production' 
+      )
+    runs-on: ubuntu-20.04  
+    steps:
+      - uses: actions/checkout@v1
+      
+      - name: Change Deploy Status to In Progress
+        uses: unacast/actions-github-deployment-status@0.4.0
+        with:
+          github_token: ${{ github.token }}
+          status: in_progress
+      - name: Map the deployments environment to a valid Openshift Namespace
+        env:
+          TEST_NAMESPACE: ${{ secrets.TEST_NAMESPACE }}
+          PROD_NAMESPACE: ${{ secrets.PROD_NAMESPACE }}
+          DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
+          SSO_TEST_URL: https://test.oidc.gov.bc.ca
+          SSO_PROD_URL: https://oidc.gov.bc.ca
+        run: |
+          _NAMESPACE=$(.github/helpers/github_env_to_namespace.sh ${{  github.event.deployment.environment }})
+          _IMAGE_TAG=$(.github/helpers/github_env_to_image_tag.sh ${{  github.event.deployment.environment }})
+          _SSO_BASE_URL=''
+          _ALGOLIA_SOURCE_INDEX=''
+          _ALGOLIA_DEST_INDEX_SUFFIX=''
+          if [ "$_NAMESPACE" == "$TEST_NAMESPACE" ]; then
+            _SSO_BASE_URL=$SSO_TEST_URL 
+            _ALGOLIA_SOURCE_INDEX=Devhub-Algolia-build-${{ env.PULL_NUMBER }}
+            _ALGOLIA_DEST_INDEX_SUFFIX=-test
+          else
+            _ALGOLIA_SOURCE_INDEX=Devhub-Algolia-$_IMAGE_TAG
+            _ALGOLIA_DEST_INDEX_SUFFIX=-prod
+            _SSO_BASE_URL=$SSO_PROD_URL
+          fi
+          echo "DEPLOY_NAMESPACE=$_NAMESPACE" >> $GITHUB_ENV
+          echo "IMAGE_TAG=$_IMAGE_TAG" >> $GITHUB_ENV
+          echo "SUFFIX=-$_IMAGE_TAG" >> $GITHUB_ENV
+          echo "ALGOLIA_SOURCE_INDEX=$_ALGOLIA_SOURCE_INDEX" >> $GITHUB_ENV
+          echo "ALGOLIA_DEST_INDEX_SUFFIX=$_ALGOLIA_DEST_INDEX_SUFFIX" >> $GITHUB_ENV
+          echo "SSO_BASE_URL=$_SSO_BASE_URL" >> $GITHUB_ENV
+          echo "Deploying to $_NAMESPACE"
+
+      - name: Cluster Login
+        uses: redhat-developer/openshift-actions@v1.1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT_SA_PASSWORD }}"}'
+          cmd: |
+            'version'
+      - name: Promote Algolia index to Environment
+        env:
+          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+          ALGOLIA_SOURCE_INDEX: ${{ env.ALGOLIA_SOURCE_INDEX }}
+          ALGOLIA_DEST_INDEX: Algolia-Build${{ env.ALGOLIA_DEST_INDEX_SUFFIX }}
+        run: |
+          .github/helpers/clone_algolia_index.sh
+      - name: Import PR based Image to Environment
+        run: |
+          oc tag ${{ secrets.TOOLS_NAMESPACE }}/${{ env.INFRA_NAME }}:${{ env.PULL_NUMBER }} \
+           ${{ env.DEPLOY_NAMESPACE }}/${{ env.INFRA_NAME }}:${{ env.IMAGE_TAG }}
+      - name: Run Deployment
+        env:
+          IMAGE_NAMESPACE: ${{ env.DEPLOY_NAMESPACE }}
+          IMAGE_TAG: ${{ env.IMAGE_TAG }}
+          DEPLOY_NAMESPACE: ${{ env.DEPLOY_NAMESPACE }}
+          SEARCHGATE_API_URL: ${{ secrets.SEARCHGATE_API_URL }}
+          DEVHUB_API_URL: ${{ secrets.DEVHUB_API_URL }}
+          SSO_BASE_URL: ${{ env.SSO_BASE_URL }}
+          SSO_CLIENT_ID: ${{ secrets.SSO_CLIENT }}
+          SSO_REALM_NAME: ${{ secrets.SSO_REALM }}
+          ALGOLIA_INDEX_NAME: Algolia-Build${{ env.ALGOLIA_DEST_INDEX_SUFFIX }}
+        run: .github/helpers/deploy_web.sh
+
+      - name: Wait for Deployment and Update Status
+        env:
+          NAMESPACE: ${{ env.DEPLOY_NAMESPACE }}
+        run: |
+          DEPLOY_STATUS=$(.github/helpers/wait_for_deployment.sh dc/$INFRA_NAME$SUFFIX)
+
+          echo "DEPLOY_STATUS=$DEPLOY_STATUS" >> $GITHUB_ENV
+
+      - name: Change Deploy Status to Success or Failure
+        uses: unacast/actions-github-deployment-status@0.4.0
+        with:
+          github_token: ${{ github.token }}
+          status: ${{ env.DEPLOY_STATUS }}
+
+      - name: 'Comment PR'
+        uses: actions/github-script@0.3.0
+        if: env.DEPLOY_STATUS == 'success'
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const {  repo: { owner, repo }  } = context;
+            github.issues.createComment({ issue_number: ${{ env.PULL_NUMBER }}, owner, repo, body: 'Deployment to ${{ github.event.deployment.environment }} succeeded!' });

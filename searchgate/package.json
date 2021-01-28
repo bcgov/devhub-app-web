@@ -1,0 +1,41 @@
+{
+  "name": "searchgate",
+  "version": "1.0.0",
+  "description": "Description of the application.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "@octokit/graphql": "^4.0.0",
+    "apollo-datasource-graphql": "^1.3.2",
+    "apollo-datasource-rest": "^0.6.1",
+    "apollo-server": "^2.14.2",
+    "apollo-server-express": "^2.14.2",
+    "dotenv": "^8.1.0",
+    "graphql": "^14.4.2",
+    "lodash": "^4.17.19"
+  },
+  "devDependencies": {
+    "eslint": "^6.2.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "prettier": "^1.18.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bcgov/searchgate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bcgov/searchgate/issues"
+  },
+  "homepage": "https://github.com/bcgov/searchgate#readme"
+}
