@@ -34,7 +34,7 @@ With `emotion` we have the ability to provide a `<ThemeProvider>` near the root 
 components that utilize the `css` or `styled` features of `emotion` will inherit said themes and use them.
 > Hurrah for removing duplication of colors!
 
-You will find `theme.js` at the root of `app-web` and it being used within `wrapWithProvider.js`.
+You will find `theme.js` at the root of `web` and it being used within `wrapWithProvider.js`.
 
 Please read the docs on [theming](https://emotion.sh/docs/theming) for usage.
 

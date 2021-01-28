@@ -6,7 +6,7 @@ Additional component can be fond in these repos:
 
 [](https://github.com/bcdevops/mobile-cicd-agent)
 
-[Public Web](../app-web)
+[Public Web](../web)
 
 ## Running Locally
 > requires Node 10.15.3 or higher

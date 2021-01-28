@@ -71,18 +71,18 @@ const CONTENTS_FIXTURE = {
 test('Reducing Github GraphQL Contents', () => {
   const expected = [
     {
-      path: 'app-web/topic1.json',
+      path: 'web/topic1.json',
       contents:
         '{\n  "name": "Agile Delivery Process",\n  "description": "An agile process for teams to deliver digital services",\n  "sourceProperties": {\n    "sources": [\n      {\n        "sourceType": "github",\n        "sourceProperties": {\n          "url": "https://github.com/bcgov/Agile-Delivery-Process",\n          "owner": "bcgov",\n          "repo": "Agile-Delivery-Process",\n          "files": [\n            "README.md",\n            "01_Alignment.md",\n            "02_Discovery.md",\n            "03_Alpha.md",\n            "04_Beta.md",\n            "05_Live.md"\n          ]\n        }\n      }\n    ]\n  },\n  "attributes": {\n    "labels": [\n      "Documentation",\n      "Repository"\n    ],\n    "personas": [\n      "Designer",\n      "Developer",\n      "Product Owner"\n    ]\n  },\n  "resourceType": "Documentation"\n}\n',
     },
     {
-      path: 'app-web/topic2.json',
+      path: 'web/topic2.json',
       contents:
         '{\n  "name": "Agile Delivery Process",\n  "description": "An agile process for teams to deliver digital services",\n  "sourceProperties": {\n    "sources": [\n      {\n        "sourceType": "github",\n        "sourceProperties": {\n          "url": "https://github.com/bcgov/Agile-Delivery-Process",\n          "owner": "bcgov",\n          "repo": "Agile-Delivery-Process",\n          "files": [\n            "README.md",\n            "01_Alignment.md",\n            "02_Discovery.md",\n            "03_Alpha.md",\n            "04_Beta.md",\n            "05_Live.md"\n          ]\n        }\n      }\n    ]\n  },\n  "attributes": {\n    "labels": [\n      "Documentation",\n      "Repository"\n    ],\n    "personas": [\n      "Designer",\n      "Developer",\n      "Product Owner"\n    ]\n  },\n  "resourceType": "Documentation"\n}\n',
     },
   ];
 
-  expect(reduceContentsResults('app-web', TOPICS_FIXTURE)).toEqual(expected);
+  expect(reduceContentsResults('web', TOPICS_FIXTURE)).toEqual(expected);
 });
 
 // shows how the runner will run a javascript action with env / stdout protocol

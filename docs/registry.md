@@ -91,7 +91,7 @@ We found `YAML` to be more error prone for content contributes because it is spa
 
 The location of the __configuration files__ can be found within the [devhub repo](https://github.com/bcgov/devhub-app-web) under two directories. 
 
-They are located within `app-web/topicRegistry/` and `app-web/journeyRegistry`.
+They are located within `web/topicRegistry/` and `web/journeyRegistry`.
 
 ## How it is organized
 
@@ -101,7 +101,7 @@ The registry directory/folder contains a series of `JSON` files. Each of these f
 
 There is essentially two steps to get content into the Devhub.
 
-1. Modify or add to the __`JSON` configuration files__ found within `app-web/topicRegistry` or `app-web/journeyRegistry` via a Github Pull Request
+1. Modify or add to the __`JSON` configuration files__ found within `web/topicRegistry` or `web/journeyRegistry` via a Github Pull Request
 2. Ensure the markdown files your are pointing to from within the `JSON` configuration files are ready for the __Devhub__
 
 ## Adding Content to Existing Topics
@@ -428,7 +428,7 @@ An example Journey:
 ```
 ### Journey Entry Pages
 Journeys have a local markdown file authored to serve as an entry or introductory page that describes the journey.
-This can be found in `/app-web/journeys/<name>.md`
+This can be found in `/web/journeys/<name>.md`
 
 Based on the slug of the journey, this entry page is used to render a page at the slug.
 
@@ -445,7 +445,7 @@ This Journey registry:
 
 ```
 
-would have a markdown file in `/app-web/journeys/beginner-guide-to-developing-on-the-platform.md`
+would have a markdown file in `/web/journeys/beginner-guide-to-developing-on-the-platform.md`
 with the content:
 ```md
 ---
