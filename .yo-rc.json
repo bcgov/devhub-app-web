@@ -1,0 +1,131 @@
+{
+  "generator-bcdk": {
+    "promptValues": {
+      "modules": {
+        "jenkins": {
+          "path": ".jenkins",
+          "namespace": "devhub-tools",
+          "name": "jenkins",
+          "jenkinsJobName": "_jenkins",
+          "github_owner": "bcgov",
+          "github_repo": "devhub-app-web",
+          "jenkinsFilePath": ".jenkins/Jenkinsfile",
+          "uuid": "0c59e2dc-e980-471d-a38f-046596d7e682"
+        },
+        "app": {
+          "path": ".",
+          "name": "app",
+          "version": "1.0.0",
+          "environments": {
+            "build": {
+              "namespace": "devhub-tools"
+            },
+            "dev": {
+              "namespace": "devhub-dev"
+            },
+            "test": {
+              "namespace": "devhub-test"
+            },
+            "prod": {
+              "namespace": "devhub-prod"
+            }
+          },
+          "jenkinsJobName": "devhub",
+          "github_owner": "bcgov",
+          "github_repo": "devhub-app-web",
+          "jenkinsFilePath": "Jenkinsfile",
+          "uuid": "0c59e2dc-e980-471d-a38f-046596d7e682"
+        },
+        "jenkins_job": {
+          "path": ".",
+          "name": "jenkins_job",
+          "version": "1.0.0",
+          "environments": {
+            "build": {
+              "namespace": "devhub-tools"
+            },
+            "dev": {
+              "namespace": "devhub-tools"
+            },
+            "test": {
+              "namespace": "devhub-tools"
+            },
+            "prod": {
+              "namespace": "devhub-tools"
+            }
+          },
+          "jenkinsJobName": "_jenkins",
+          "github_owner": "bcgov",
+          "github_repo": "devhub-app-web",
+          "jenkinsFilePath": ".jenkins/Jenkinsfile",
+          "uuid": "957ECEF2-7D8F-4763-B1F8-F90560F031A7"
+        },
+        "matomo": {
+          "name": "matomo",
+          "version": "1.0.0",
+          "path": "matomo",
+          "environments": {
+            "build": {
+              "namespace": "devhub-tools"
+            },
+            "dev": {
+              "namespace": "devhub-tools"
+            },
+            "prod": {
+              "namespace": "devhub-tools"
+            }
+          },
+          "jenkinsJobName": "matomo",
+          "github_owner": "bcgov",
+          "github_repo": "devhub-app-web",
+          "jenkinsFilePath": "matomo/Jenkinsfile",
+          "uuid": "8c1bf2ae-7b11-4810-a571-8283f23684db"
+        },
+        "docugate": {
+          "jenkinsJobName": "docugate",
+          "github_owner": "bcgov",
+          "github_repo": "docugate",
+          "jenkinsFilePath": "Jenkinsfile",
+          "uuid": "5461cc8d-5cb9-4259-8720-fd34f774966a"
+        },
+        "searchgate": {
+          "jenkinsJobName": "searchgate",
+          "github_owner": "bcgov",
+          "github_repo": "searchgate",
+          "jenkinsFilePath": "Jenkinsfile",
+          "uuid": "800fe2e9-f5b6-46af-9f53-2b21d8038ed1"
+        }
+      }
+    }
+  },
+  "@bcgov/generator-bcdk": {
+    "promptValues": {
+      "modules": {
+        "devhub-api": {
+          "name": "devhub-api",
+          "version": "1.0.0",
+          "path": "api",
+          "environments": {
+            "build": {
+              "namespace": "devhub-tools"
+            },
+            "dev": {
+              "namespace": "devhub-dev"
+            },
+            "test": {
+              "namespace": "devhub-test"
+            },
+            "prod": {
+              "namespace": "devhub-prod"
+            }
+          },
+          "jenkinsJobName": "devhub-api",
+          "github_owner": "bcgov",
+          "github_repo": "devhub-app-web",
+          "jenkinsFilePath": "api/Jenkinsfile",
+          "uuid": "aeb88339-a1a9-48e0-8d54-bfc3e23bb0c9"
+        }
+      }
+    }
+  }
+}
