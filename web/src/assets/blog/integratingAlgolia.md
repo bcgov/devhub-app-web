@@ -8,7 +8,7 @@ tags:
 - Solr
 - Search Engine
 - site search
-image: https://github.com/bcgov/devhub-app-web/blob/master/app-web/src/assets/images/algolia.png?raw=true
+image: https://github.com/bcgov/devhub-app-web/blob/master/web/src/assets/images/algolia.png?raw=true
 ---
 
 # Integrating Algolia Search Engine Into the Devhub
