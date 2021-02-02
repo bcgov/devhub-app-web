@@ -23,7 +23,7 @@ const { resolve } = require('path');
 const chalk = require('chalk');
 const fs = require('fs');
 const slugify = require('slugify');
-const snakeCase = require('snake-case');
+const { snakeCase } = require('snake-case');
 const { TOPIC_TEMPLATES } = require('../plugins/gatsby-source-github-all/utils/constants');
 
 const { RESOURCE_TYPES } = require('../plugins/gatsby-source-github-all/utils/constants');
