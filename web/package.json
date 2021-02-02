@@ -9,7 +9,7 @@
   "description": "DevHub aims to become the \"Central Nervous System\" for the growing gov developer community.",
   "license": "Apache-2.0",
   "dependencies": {
-    "@apollo/react-hooks": "0.1.0-beta.11",
+    "@apollo/react-hooks": "^4.0.0",
     "@bcgov/gatsby-source-github-raw": "^1.0.4",
     "@brainhubeu/react-carousel": "^1.13.41",
     "@emotion/react": "^11.1.2",
@@ -19,7 +19,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
     "@react-keycloak/web": "^1.0.6",
-    "algoliasearch": "^3.35.1",
+    "algoliasearch": "^4.8.4",
     "apollo-boost": "^0.4.3",
     "apollo-client": "^2.6.3",
     "axios": "^0.21.1",

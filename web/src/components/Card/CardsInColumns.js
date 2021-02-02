@@ -16,7 +16,6 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import React from 'react';
-import PropTypes from 'prop-types';
 import Col from './Column';
 import Card from './Card';
 
@@ -40,21 +39,6 @@ const CardsInColumns = ({ cards }) => {
       />
     </Col>
   ));
-};
-
-CardsInColumns.propTypes = {
-  cards: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      fields: PropTypes.shape({
-        resourceType: PropTypes.string,
-        title: PropTypes.string,
-        description: PropTypes.string,
-        image: PropTypes.string,
-        link: PropTypes.string,
-      }),
-    }),
-  ),
 };
 
 export default React.memo(CardsInColumns);
