@@ -79,8 +79,8 @@ const FILE_CONTENTS_QUERY = `
  */
 const getJourneysAndTopics = (repo, owner, ref) => {
   return core.group('Fetching topic and journey registries', async () => {
-    const topicPath = 'app-web/topicRegistry';
-    const journeyPath = 'app-web/journeyRegistry';
+    const topicPath = 'web/topicRegistry';
+    const journeyPath = 'web/journeyRegistry';
     const topicBranchPath = `${ref}:${topicPath}`;
     const journeyBranchPath = `${ref}:${journeyPath}`;
     core.debug(`Fetching topic registries at ${topicBranchPath}`);

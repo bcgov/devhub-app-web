@@ -1,5 +1,6 @@
 {
   "name": "Agile Delivery Process",
+  "version": "1.0.0",
   "description": "An agile process for teams to deliver digital services",
   "sourceProperties": {
     "sources": [

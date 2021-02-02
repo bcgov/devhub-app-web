@@ -6,7 +6,7 @@ End to End tests are similar to functional testing in that they test the applica
 More information on cypress can be found [here](https://docs.cypress.io/guides/overview/why-cypress.html).
 
 To run the cypress test runner, get your local dev server running and then in a new terminal run `npm run cy:dev`
-> more cypress related npm scripts can be found within `app-web/package.json`
+> more cypress related npm scripts can be found within `web/package.json`
 
 ### Developing E2E Tests
 Ideally you should aim to write E2E tests while developing features/fixing bugs :)

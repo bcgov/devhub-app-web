@@ -1,6 +1,6 @@
 {
     "status": 201,
-    "url": "https://api.github.com/repos/jas29/devhub-app-web/contents/app-web%2FtopicRegistry%2Fagile-delivery.json",
+    "url": "https://api.github.com/repos/jas29/devhub-app-web/contents/web%2FtopicRegistry%2Fagile-delivery.json",
     "headers": {
       "access-control-allow-origin": "*",
       "access-control-expose-headers": "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, Deprecation, Sunset",
@@ -30,16 +30,16 @@
     "data": {
       "content": {
         "name": "agile-delivery.json",
-        "path": "app-web/topicRegistry/agile-delivery.json",
+        "path": "web/topicRegistry/agile-delivery.json",
         "sha": "a242fd166442c9e10da967d39cb4c5b9f2ab1ca9",
         "size": 724,
-        "url": "https://api.github.com/repos/jas29/devhub-app-web/contents/app-web/topicRegistry/agile-delivery.json?ref=refs/heads/createTopic/agile-delivery",
+        "url": "https://api.github.com/repos/jas29/devhub-app-web/contents/web/topicRegistry/agile-delivery.json?ref=refs/heads/createTopic/agile-delivery",
         "html_url": "https://github.com/jas29/devhub-app-web/blob/refs/heads/createTopic/agile-delivery/app-web/topicRegistry/agile-delivery.json",
         "git_url": "https://api.github.com/repos/jas29/devhub-app-web/git/blobs/a242fd166442c9e10da967d39cb4c5b9f2ab1ca9",
         "download_url": "https://raw.githubusercontent.com/jas29/devhub-app-web/refs/heads/createTopic/agile-delivery/app-web/topicRegistry/agile-delivery.json",
         "type": "file",
         "_links": {
-          "self": "https://api.github.com/repos/jas29/devhub-app-web/contents/app-web/topicRegistry/agile-delivery.json?ref=refs/heads/createTopic/agile-delivery",
+          "self": "https://api.github.com/repos/jas29/devhub-app-web/contents/web/topicRegistry/agile-delivery.json?ref=refs/heads/createTopic/agile-delivery",
           "git": "https://api.github.com/repos/jas29/devhub-app-web/git/blobs/a242fd166442c9e10da967d39cb4c5b9f2ab1ca9",
           "html": "https://github.com/jas29/devhub-app-web/blob/refs/heads/createTopic/agile-delivery/app-web/topicRegistry/agile-delivery.json"
         }

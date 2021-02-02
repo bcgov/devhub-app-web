@@ -57,7 +57,7 @@ jobs:
        # Install Modules - Devhub Front-End
       - name: npm install, lint and test
         run: |
-          cd app-web
+          cd web
           npm i
           npm run test:lint
           npm run test -- --coverage
@@ -65,7 +65,7 @@ jobs:
       # Formatting the FRONTEND coverage report
       - name: Format the FRONTEND coverage report
         run: |
-          ./cc-test-reporter format-coverage -t lcov -o coverage/index.html ${{github.workspace}}/app-web/coverage/lcov.info
+          ./cc-test-reporter format-coverage -t lcov -o coverage/index.html ${{github.workspace}}/web/coverage/lcov.info
 
       # Upload File for debugging purposes
       - name: Upload File for debugging purposes

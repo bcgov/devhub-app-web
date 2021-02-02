@@ -110,10 +110,10 @@ pipeline/build/
 .config/
 
 # app registry
-app-web/registry/registry.json
+web/registry/registry.json
 
 # IntelliJ file
 .idea
 
 
-app-web/cypress/videos
+web/cypress/videos

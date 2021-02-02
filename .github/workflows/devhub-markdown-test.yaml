@@ -3,8 +3,8 @@ on:
   pull_request:
     paths:
     - '.github/actions/devhub-markdown-frontmatter-verify/**/*.js'
-    - 'app-web/journeyRegistry/*.json'
-    - 'app-web/topicRegistry/*.json'
+    - 'web/journeyRegistry/*.json'
+    - 'web/topicRegistry/*.json'
 jobs:
   # unit tests
   units:
@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - run: |
-        cd app-web
+        cd web
         npm ci
         cd ../.github/actions/devhub-markdown-frontmatter-verify
         npm ci 
