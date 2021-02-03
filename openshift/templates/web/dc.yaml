@@ -16,8 +16,8 @@ objects:
       file_server 
       encode gzip
 
-      try_files {path} {path}/ /index.html
-      try_files {path} {path}/
+      try_files {path} {path}/index.html /index.html
+      
       log {
         output stdout
       }

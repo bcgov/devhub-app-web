@@ -126,7 +126,7 @@ module.exports = {
         path: `${__dirname}/src/assets/images/`,
       },
     },
-    'gatsby-transformer-json',
+    { resolve: 'gatsby-transformer-json', options: { failOnError: false } },
     'gatsby-plugin-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-yaml',

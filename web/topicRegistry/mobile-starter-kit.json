@@ -7,12 +7,7 @@
   },
   "sourceProperties": {
     "sources": [
-      {
-        "sourceType": "web",
-        "sourceProperties": {
-          "url": "https://signing-web-devhub-prod.pathfinder.gov.bc.ca"
-        }
-      },
+
       {
         "sourceType": "github",
         "sourceProperties": {
