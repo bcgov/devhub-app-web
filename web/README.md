@@ -152,7 +152,7 @@ At this point, you can modify contents of the `registry` directory (adding resou
       import { useKeycloak } from '@react-keycloak/web';
 
       const MyComponent = () => {
-         const [keycloak] = useKeycloak();
+         const {keycloak, initialized} = useKeycloak();
          // need to ensure keycloak obj has been initialized before checking properties
          const authenticated = keycloak && keycloak.authenticated;
          if(auth) {

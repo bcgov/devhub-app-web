@@ -7,7 +7,12 @@
   },
   "sourceProperties": {
     "sources": [
-
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://mss.developer.gov.bc.ca"
+        }
+      },
       {
         "sourceType": "github",
         "sourceProperties": {

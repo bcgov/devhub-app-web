@@ -85,7 +85,8 @@ const compiledDataSourceNames = dataSources => {
 };
 
 export const Masthead = ({ query, searchSourcesLoading, dataSources, location }) => {
-  const [keycloak] = useKeycloak();
+  // eslint-disable-next-line no-unused-vars
+  const { keycloak, initialized } = useKeycloak();
   const isAuthenticated = keycloak && keycloak.authenticated;
   const [alertHasBeenAcknowledged, setAlertHasBeenAcknowledged] = useState(false);
 

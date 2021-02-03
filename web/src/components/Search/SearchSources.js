@@ -29,7 +29,8 @@ export const TEST_IDS = {
 };
 
 export const SearchSources = ({ searchSourcesLoading }) => {
-  const [keycloak] = useKeycloak();
+  // eslint-disable-next-line no-unused-vars
+  const { keycloak, initialized } = useKeycloak();
   const isAuthenticated = keycloak && keycloak.authenticated;
   const iconProps = {};
   const { features } = useContext(AppConfig);
