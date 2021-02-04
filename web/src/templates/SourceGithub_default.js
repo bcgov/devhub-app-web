@@ -41,11 +41,16 @@ import {
 import { SEO } from '../components/SEO/SEO';
 
 class SourceGithubMarkdownDefault extends React.Component {
-  state = {
-    sideDrawerToggled: false,
-  };
+  constructor() {
+    super();
+    this.state = {
+      sideDrawerToggled: false,
+    };
+  }
 
-  toggleMenu = toggled => this.setState({ sideDrawerToggled: toggled });
+  toggleMenu(toggled) {
+    this.setState({ sideDrawerToggled: toggled });
+  }
 
   render() {
     const {

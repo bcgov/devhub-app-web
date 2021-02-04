@@ -61,7 +61,8 @@ export const Index = ({
   const queryParam = queryString.parse(location.search);
   const windowHasQuery = Object.prototype.hasOwnProperty.call(queryParam, SEARCH_QUERY_PARAM);
 
-  const [keycloak] = useKeycloak();
+  // eslint-disable-next-line no-unused-vars
+  const { keycloak, initialized } = useKeycloak();
   const isAuthenticated = keycloak && keycloak.authenticated;
 
   const query = windowHasQuery ? decodeURIComponent(queryParam[SEARCH_QUERY_PARAM]) : '';

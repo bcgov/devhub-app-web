@@ -10,10 +10,7 @@ import ResourcePreview from '../Home/ResourcePreview';
  * @param {Srting} title the title of currtion card section
  */
 export const SearchResults = ({ resources, results = [], title }) => {
-  let resourcesToShow = useMemo(() => intersectionBy(resources, results, 'id'), [
-    resources,
-    results,
-  ]);
+  let resourcesToShow = intersectionBy(resources, results, 'id');
   let resourcesByType = useMemo(() => groupBy(resourcesToShow, 'fields.resourceType'), [
     resourcesToShow,
   ]);

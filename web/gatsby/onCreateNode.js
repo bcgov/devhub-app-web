@@ -140,11 +140,21 @@ module.exports = async ({ node, actions, getNode, getNodes, store, cache, create
         store, // Gatsby's redux store
       });
       if (fileNode) {
-        createNodeField({
-          node,
-          name: 'image',
-          value: node.unfurl.image || '',
-        });
+        try {
+          createNodeField({
+            node,
+            name: 'image',
+            value: node.unfurl.image || '',
+          });
+        } catch (e) {
+          // eslint-disable-next-line no-console
+          console.warn(`could not create image node field for devhub siphone ${node.id}`);
+          createNodeField({
+            node,
+            name: 'image',
+            value: null,
+          });
+        }
       }
     }
 
