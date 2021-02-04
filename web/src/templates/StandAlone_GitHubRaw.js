@@ -78,114 +78,104 @@ const PillLink = ({ to, label, icon, ...rest }) => (
   </PillContainer>
 );
 
-export const StandAloneGitHubRawResource = ({ data: { githubRaw } }) => {
-  const previewWithNode = withNode(githubRaw)(ComponentPreview);
+export class StandAloneGitHubRawResource extends React.Component {
+  render() {
+    const {
+      data: { githubRaw },
+    } = this.props;
+    const previewWithNode = withNode(githubRaw)(ComponentPreview);
 
-  const renderAst = new rehypeReact({
-    createElement: React.createElement,
-    components: { 'component-preview': previewWithNode },
-  }).Compiler;
+    const renderAst = new rehypeReact({
+      createElement: React.createElement,
+      components: { 'component-preview': previewWithNode },
+    }).Compiler;
 
-  //create pill to show resource type and links out to the corresponding resource type page
-  let resourceTypePill = (
-    <PillLink
-      to={`/${slugify(githubRaw.fields.resourceType).toLowerCase()}`}
-      key={githubRaw.id}
-      label={githubRaw.fields.resourceType}
-      resourceType={githubRaw.fields.resourceType}
-    />
-  );
-
-  //get the topics which this resource is a part of
-  let topics = githubRaw.fields.topics;
-  let topicPills = [];
-  //if there are topics, create pills which link out to that topics page
-  if (topics) {
-    topicPills = topics.map(topic => (
+    //create pill to show resource type and links out to the corresponding resource type page
+    let resourceTypePill = (
       <PillLink
-        to={`/${topic.fields.slug}/${githubRaw.fields.slug}`}
-        key={topic.id}
-        label={topic.name}
-        icon={'topic'}
+        to={`/${slugify(githubRaw.fields.resourceType).toLowerCase()}`}
+        key={githubRaw.id}
+        label={githubRaw.fields.resourceType}
+        resourceType={githubRaw.fields.resourceType}
       />
-    ));
-  }
+    );
 
-  let journey = githubRaw.fields.journeys;
-  let journeyPills = [];
-  // if there are journeys, create pills which link out to that journeys page
-  if (journey) {
-    journeyPills = journey.map(journey => (
-      <PillLink
-        to={`/${journey.fields.slug}/${githubRaw.fields.slug}`}
-        label={journey.name}
-        key={journey.id}
-        icon={'journey'}
-      />
-    ));
-  }
+    //get the topics which this resource is a part of
+    let topics = githubRaw.fields.topics;
+    let topicPills = [];
+    //if there are topics, create pills which link out to that topics page
+    if (topics) {
+      topicPills = topics.map(topic => (
+        <PillLink
+          to={`/${topic.fields.slug}/${githubRaw.fields.slug}`}
+          key={topic.id}
+          label={topic.name}
+          icon={'topic'}
+        />
+      ));
+    }
 
-  let personaPills = [];
-  //get personas and filter out any blank strings
-  let personas = githubRaw.fields.personas.filter(ifNotBlank => ifNotBlank);
-  //if there are personas, create pills which link out to a search of resources with that persona
-  if (personas) {
-    personaPills = personas.map(persona => (
-      //links to the homepage search, with a query showing only resources of the given persona type
-      <PillLink
-        to={encodeURI(`/?q=persona:${persona}`)}
-        key={persona}
-        label={persona}
-        icon={'persona'}
-      />
-    ));
-  }
+    let journey = githubRaw.fields.journeys;
+    let journeyPills = [];
+    // if there are journeys, create pills which link out to that journeys page
+    if (journey) {
+      journeyPills = journey.map(journey => (
+        <PillLink
+          to={`/${journey.fields.slug}/${githubRaw.fields.slug}`}
+          label={journey.name}
+          key={journey.id}
+          icon={'journey'}
+        />
+      ));
+    }
 
-  /* for later
-  let labelPills = [];
-  //get labels and slice array to only have 3 (could get a bit overrun)
-  let labels = githubRaw.childMarkdownRemark.frontmatter.labels;
-  //if there are labels, create pills which link out to a search of resources with that label
-  if (labels) {
-    labelPills = labels.slice(0, 3).map(label => {
-      return (
-        //this needs to link out to search results with the given tag
-        <PillLink key={label}>
-          <IconPill label={label} otherIcon={'label'} variant="filled" deletable={false} />
-        </PillLink>
-      );
-    });
-  } */
-  const {
-    html_url,
-    fields: { standAlonePath, title },
-  } = githubRaw;
-  const [owner, repo] = html_url.replace('https://github.com/', '').split('/');
-  return (
-    <Layout>
-      <SEO title={title} />
-      <Header>
-        <HeaderTitle>Resource Information</HeaderTitle>
-        <PillDiv>{resourceTypePill}</PillDiv>
-        <PillDiv>{topicPills}</PillDiv>
-        <PillDiv>{journeyPills}</PillDiv>
-        <PillDiv>{personaPills}</PillDiv>
-      </Header>
-      <Main>
-        <MarkdownBody>
-          {renderAst(githubRaw.childMarkdownRemark.htmlAst)}
-          <Actions
-            repo={repo}
-            owner={owner}
-            pageTitle={title}
-            originalSource={html_url}
-            devhubPath={standAlonePath}
-          />
-        </MarkdownBody>
-      </Main>
-    </Layout>
-  );
-};
+    let personaPills = [];
+    //get personas and filter out any blank strings
+    let personas = githubRaw.fields.personas.filter(ifNotBlank => ifNotBlank);
+    //if there are personas, create pills which link out to a search of resources with that persona
+    if (personas) {
+      personaPills = personas.map(persona => (
+        //links to the homepage search, with a query showing only resources of the given persona type
+        <PillLink
+          to={encodeURI(`/?q=persona:${persona}`)}
+          key={persona}
+          label={persona}
+          icon={'persona'}
+        />
+      ));
+    }
+
+    const {
+      html_url,
+      fields: { standAlonePath, title },
+    } = githubRaw;
+    const [owner, repo] = html_url.replace('https://github.com/', '').split('/');
+    return (
+      <Layout>
+        <SEO title={title} />
+        <Header>
+          <HeaderTitle>Resource Information</HeaderTitle>
+          <PillDiv>{resourceTypePill}</PillDiv>
+          <PillDiv>{topicPills}</PillDiv>
+          <PillDiv>{journeyPills}</PillDiv>
+          <PillDiv>{personaPills}</PillDiv>
+        </Header>
+        <Main>
+          <MarkdownBody>
+            {renderAst(githubRaw.childMarkdownRemark.htmlAst)}
+            <Actions
+              repo={repo}
+              owner={owner}
+              pageTitle={title}
+              originalSource={html_url}
+              devhubPath={standAlonePath}
+            />
+          </MarkdownBody>
+        </Main>
+      </Layout>
+    );
+  }
+}
 
 export const devhubGitHubRawData = graphql`
   query devhubGitHubRawQuery($id: String!) {
