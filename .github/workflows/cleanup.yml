@@ -1,0 +1,36 @@
+name: End-to-end tests
+on: 
+  pull_request:
+    types:
+    - closed
+    paths:
+    - 'web'
+env: 
+  INFRA_NAME: devhub-app-web
+jobs:
+  cypress-run:
+    runs-on: ubuntu-16.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      
+      - name: Cluster Login
+        uses: redhat-developer/openshift-actions@v1.1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT_SA_PASSWORD }}"}'
+          cmd: |
+            'version'
+      - name: Clean up artifacts
+        env:
+          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
+          DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
+        run: |
+          PULL_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          echo "deleting build artifacts"
+          oc -n $TOOLS_NAMESPACE delete all,configmap -l build=$INFRA_NAME-$PULL_NUMBER
+          echo "deleting imagestream tag"
+          oc -n $TOOLS_NAMESPACE delete imagestreamtag/$INFRA_NAME:$PULL_NUMBER
+
+          echo "deleting dev artifacts"
+          oc -n $DEV_NAMESPACE delete all,configmap -l app=$INFRA_NAME-$PULL_NUMBER
