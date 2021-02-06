@@ -13,8 +13,7 @@ Created by Patrick Simonian
 */
 // custom react hooks
 // notes on custom hooks https://reactjs.org/docs/hooks-custom.html
-import { useState, useEffect, useRef, useMemo } from 'react';
-import isEqual from 'lodash/isEqual';
+import { useState, useEffect, useMemo } from 'react';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { SEARCHGATE_QUERY } from '../constants/runtimeGraphqlQueries';
 import algoliasearch from 'algoliasearch/lite';
@@ -27,22 +26,6 @@ const searchClient = algoliasearch(
   process.env.GATSBY_ALGOLIA_SEARCH_KEY,
 );
 
-//TODO, why in a function?
-function deepCompareEquals(a, b) {
-  return isEqual(a, b);
-}
-
-export function useDeepCompareMemoize(value) {
-  const ref = useRef();
-  // it can be done by using useMemo as well
-  // but useRef is rather cleaner and easier
-
-  if (!deepCompareEquals(value, ref.current)) {
-    ref.current = value;
-  }
-
-  return ref.current;
-}
 /**
  * custom react hook to perform a algolia search
  * @param {String | Array} query the query param from the url q=

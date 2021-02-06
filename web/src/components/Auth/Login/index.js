@@ -9,7 +9,8 @@ export const TEST_IDS = {
 };
 
 export const Login = ({ ...rest }) => {
-  const [keycloak] = useKeycloak();
+  // eslint-disable-next-line no-unused-vars
+  const { keycloak, initialized } = useKeycloak();
   const authenticated = keycloak && keycloak.authenticated;
   return (
     <Button

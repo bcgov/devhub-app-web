@@ -1,6 +1,6 @@
 ## Here is a snapshot of the Devhub Eco System
 
-![diagram](./diagram.jpg)
+![diagram](./Diagram.jpg)
 
 
 Starting from the center and working outwards here is a description of the services Devhub Utilizes.

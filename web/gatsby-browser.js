@@ -25,15 +25,15 @@ import './src/assets/styles/fontawesome.css';
 // this hack is to resolve issue https://stackoverflow.com/questions/49781726/react-font-awesome-renders-big-icon-until-scales-down
 import { config } from '@fortawesome/fontawesome-svg-core';
 import wrapWithProvider from './wrapWithProvider';
-import { KeycloakProvider } from '@react-keycloak/web';
+import { ReactKeycloakProvider } from '@react-keycloak/web';
 
 import keycloak from './src/auth';
 
 config.autoAddCss = false;
 
 const RuntimeWrapper = Component => ({ element }) => (
-  <KeycloakProvider keycloak={keycloak}>
+  <ReactKeycloakProvider authClient={keycloak}>
     <Component element={element} />
-  </KeycloakProvider>
+  </ReactKeycloakProvider>
 );
 export const wrapRootElement = RuntimeWrapper(wrapWithProvider);

@@ -16,6 +16,13 @@ limitations under the License.
 Created by Patrick Simonian
 */
 // for more info https://github.com/gatsbyjs/gatsby/tree/master/examples/using-redux
+import { ReactKeycloakProvider } from '@react-keycloak/web';
+import React from 'react';
 import wrapWithProvider from './wrapWithProvider';
 
-export const wrapRootElement = wrapWithProvider;
+const RuntimeWrapper = Component => ({ element }) => (
+  <ReactKeycloakProvider authClient={{}}>
+    <Component element={element} />
+  </ReactKeycloakProvider>
+);
+export const wrapRootElement = RuntimeWrapper(wrapWithProvider);
