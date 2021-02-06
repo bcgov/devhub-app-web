@@ -110,3 +110,29 @@ jobs:
           script: |
             const {  repo: { owner, repo }  } = context;
             github.issues.createComment({ issue_number: ${{ env.PULL_NUMBER }}, owner, repo, body: 'Deployment to ${{ github.event.deployment.environment }} succeeded!' });
+            
+      - name: Clean up artifacts
+        if: env.DEPLOY_STATUS == 'success' && github.event.deployment.environment == 'production' 
+        env:
+          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
+          DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
+        run: |
+          PULL_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          echo "deleting build artifacts"
+          oc -n $TOOLS_NAMESPACE delete all,configmap -l build=$INFRA_NAME-$PULL_NUMBER
+          echo "deleting imagestream tag"
+          oc -n $TOOLS_NAMESPACE delete imagestreamtag/$INFRA_NAME:$PULL_NUMBER
+
+          echo "deleting dev artifacts"
+          oc -n $DEV_NAMESPACE delete all,configmap -l app=$INFRA_NAME-$PULL_NUMBER
+
+
+      - name: 'Clean up PR comment'
+        uses: actions/github-script@0.3.0
+        if: env.DEPLOY_STATUS == 'success' && github.event.deployment.environment == 'production' 
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const {  repo: { owner, repo }  } = context;
+            github.issues.createComment({ issue_number: ${{ env.PULL_NUMBER }}, owner, repo, body: 'Cleaning up dev artifacts and build artifacts' });
+      
