@@ -134,11 +134,11 @@
         "sourceType": "github",
         "resourceType": "Documentation",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/reggie/",
+          "url": "https://github.com/bcgov/rocketchat/",
           "owner": "bcgov",
-          "repo": "reggie",
+          "repo": "rocketchat",
           "files": [
-            "UserInstructions.md"
+            "reggie/UserInstructions.md"
           ]
         }
       },
