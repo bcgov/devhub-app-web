@@ -119,6 +119,17 @@
             "docs/OnboardingOutcomes.md"
           ]
         }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/networkpolicy-migration-workshop",
+          "owner": "bcgov",
+          "repo": "networkpolicy-migration-workshop",
+          "files": [
+            "README.md"
+          ]
+        }
       }
     ]
   }
