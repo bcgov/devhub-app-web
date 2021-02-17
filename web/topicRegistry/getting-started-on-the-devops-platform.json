@@ -126,6 +126,7 @@
           "url": "https://github.com/bcgov/networkpolicy-migration-workshop",
           "owner": "bcgov",
           "repo": "networkpolicy-migration-workshop",
+          "ref": "main",
           "files": [
             "README.md"
           ]
