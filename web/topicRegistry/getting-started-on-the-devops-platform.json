@@ -130,18 +130,6 @@
           "files": [
             "README.md"
           ]
-        },
-        "attributes": {
-          "tags": [
-            "network",
-            "network policy",
-            "networkpolicy",
-            "nsp",
-            "migration",
-            "workshop",
-            "policy",
-            "aporeto"
-          ]
         }
       }
     ]
