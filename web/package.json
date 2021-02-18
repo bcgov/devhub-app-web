@@ -10,7 +10,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
-    "@bcgov/gatsby-source-github-raw": "^1.0.9",
+    "@bcgov/gatsby-source-github-raw": "^1.0.10",
     "@brainhubeu/react-carousel": "^1.19.26",
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
