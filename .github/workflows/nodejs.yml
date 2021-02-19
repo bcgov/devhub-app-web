@@ -3,7 +3,8 @@ name: Unit tests and uploading test coverage
 on:
   pull_request:
     branches: [master]
-
+    paths:
+      - web
 jobs:
   yarn:
     env:
