@@ -1,5 +1,5 @@
 {
-  "microservices": ["web"],
+  "microservices": ["web", "searchgate"],
   "environmentSynonyms": {
     "prod": "production",
     "dev": "development",

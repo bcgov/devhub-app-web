@@ -58,17 +58,15 @@ objects:
             limits:
               cpu: '200m'
               memory: '256Mi'
-          env:          
+          envFrom:
+          env:
+            secretRef:
+              name: searchgate-credentials        
           - name: ROCKETGATE_BASE_URL
             valueFrom:
               configMapKeyRef:
                 name: searchgate-config
                 key: rocketGateURL
-          - name: GITHUB_AUTH_TOKEN
-            valueFrom:
-              secretKeyRef:
-                name: searchgate-credentials
-                key: githubAuthtoken
           - name: DOCUGATE_BASE_URL
             valueFrom:
               configMapKeyRef:
@@ -147,9 +145,9 @@ parameters:
   displayName: Rocket.Chat Base URL
   name: ROCKETGATE_BASE_URL
   required: true
-  value: "https://rocketgate.pathfinder.gov.bc.ca"
+  value: ""
 - description: Base URL of the Documize instance to be searched
   displayName: Documize Base URL
   name: DOCUGATE_BASE_URL
   required: true
-  value: "https://docugate-prod-devhub-prod.pathfinder.gov.bc.ca"
+  value: ""
