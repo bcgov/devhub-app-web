@@ -49,9 +49,7 @@ jobs:
           -p SOURCE_REPOSITORY_URL="https://github.com/$GITHUB_REPOSITORY" \
           -p SOURCE_REPOSITORY_REF=$GITHUB_REF \
           -p NAME=$INFRA_NAME \
-          -p VERSION="$PULL_NUMBER" | \
-          oc apply -n $TOOLS_NAMESPACE -f -
-          
+          -p VERSION="$PULL_NUMBER" 
       - name: Start Build (if needed)
         if: env.BUILD_COMMIT_ID != github.sha
         env:
