@@ -36,7 +36,7 @@ objects:
           deploymentconfig: ${NAME}${SUFFIX}
       spec:
         containers:
-        - image: ${NAME}:${VERSION}
+        - image: ${IMAGE_REGISTRY}/${IMAGE_NAMESPACE}/${IMAGE_NAME}:${IMAGE_TAG}
           name: searchgate
           ports:
           - containerPort: 4001
@@ -81,7 +81,7 @@ objects:
         - searchgate
         from:
           kind: ImageStreamTag
-          name: ${NAME}:${VERSION}
+          name: ${IMAGE_REGISTRY}/${IMAGE_NAMESPACE}/${IMAGE_NAME}:${IMAGE_TAG}
       type: ImageChange
 - apiVersion: v1
   kind: Service
@@ -126,16 +126,30 @@ parameters:
   name: NAME
   required: true
   value: searchgate
+- description: The Image Name
+  displayName: Image Name
+  name: IMAGE_NAME
+  required: true
+  value: searchgate
+- description: The Image tag
+  displayName: Image tag
+  name: IMAGE_TAG
+  required: true
+  value: dev
+- description: The Image location
+  displayName: Image Name space
+  name: IMAGE_NAMESPACE
+  required: true
+- description: The Image registry
+  displayName: Image Registry
+  name: IMAGE_REGISTRY
+  required: true
+  value: image-registry.openshift-image-registry.svc:5000
 - description: A name suffix used for all objects
   displayName: Suffix
   name: SUFFIX
   required: false
   value: -dev
-- description: A version used for the image tags
-  displayName: version
-  name: VERSION
-  required: true
-  value: v1.0.0
 - description: A name used for routes/services and deployment configs
   displayName: Host
   name: HOST
