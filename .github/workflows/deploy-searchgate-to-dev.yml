@@ -1,0 +1,130 @@
+name: On Deployment Created
+on: 
+  deployment
+env:
+  PULL_NUMBER: ${{ fromJSON(github.event.deployment.payload).pr }}
+  MICRO_SERVICE: ${{ fromJSON(github.event.deployment.payload).microservice }}
+  DEPLOY_REF: ${{ github.event.deployment.ref }}
+  DEPLOYMENT_ID: ${{ github.event.deployment.id }}
+  ENVIRONMENT: ${{ github.event.deployment.environment }}
+  INFRA_NAME: devhub-app-web
+  SUFFIX: "-${{ fromJSON(github.event.deployment.payload).pr }}"
+  ALGOLIA_INDEX_NAME: "Devhub-Algolia-${{ fromJSON(github.event.deployment.payload).pr }}"
+jobs:
+  build:
+    if: ${{ fromJSON(github.event.deployment.payload).microservice == 'searchgate' && 
+      github.event.deployment.environment == 'development' }}
+    name: Build Gatsby App
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v1
+      
+      - name: Change Deploy Status to In Progress
+        uses: unacast/actions-github-deployment-status@0.4.0
+        with:
+          github_token: ${{github.token}}
+          status: in_progress
+      - name: Cluster Login
+        uses: redhat-developer/openshift-actions@v1.1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT_SA_PASSWORD }}"}'
+          cmd: |
+            'version'
+      - name: Cancel previous builds (if any)
+        run: 'oc cancel-build -n ${{ secrets.TOOLS_NAMESPACE }} bc/${{ env.INFRA_NAME }}${{ env.SUFFIX }} || echo no build found for ${{ fromJSON(github.event.deployment.payload).pr }}'
+      - name: Check if should run build (based on a commit id comparison)
+        env:
+          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
+        # reference https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable
+        run: |
+          _commit=$(.github/helpers/get_last_build_commit_id.sh)
+          echo "BUILD_COMMIT_ID=$_commit" >> $GITHUB_ENV
+      - name: Create Build
+        env:
+          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
+
+        run: |
+          oc process -f openshift/templates/searchgate/bc.yaml -n $TOOLS_NAMESPACE \
+          -p SUFFIX=$SUFFIX \
+          -p GATSBY_ALGOLIA_INDEX_NAME=${{ env.ALGOLIA_INDEX_NAME }} \
+          -p SOURCE_REPOSITORY_URL="https://github.com/$GITHUB_REPOSITORY" \
+          -p SOURCE_REPOSITORY_REF=$GITHUB_REF \
+          -p NAME=$INFRA_NAME \
+          -p VERSION="$PULL_NUMBER" | \
+          oc apply -n $TOOLS_NAMESPACE -f -
+          
+      - name: Start Build (if needed)
+        if: env.BUILD_COMMIT_ID != github.sha
+        env:
+          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
+        run: |
+          echo "Build started"
+          oc start-build -n $TOOLS_NAMESPACE $INFRA_NAME$SUFFIX --wait
+      - name: The job has failed
+        if: ${{ failure() }}
+        uses: unacast/actions-github-deployment-status@0.4.0
+        with:
+          github_token: ${{github.token}}
+          status: error
+  deploy:
+    if: ${{ fromJSON(github.event.deployment.payload).microservice == 'searchgate' && 
+      github.event.deployment.environment == 'development' }}
+    needs: [ build ]
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v1
+      - name: Cluster Login
+        uses: redhat-developer/openshift-actions@v1.1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL}}
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT_SA_PASSWORD }}"}'
+          cmd: |
+            'version'
+      - name: Create/Update Github Auth Token
+        env:
+          NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_API_TOKEN }}
+        run: |
+          .github/helpers/create_searchgate_credentials.sh 
+      - name: Run Deployment to Dev
+        env:
+          DEPLOY_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
+          DEVHUB_API_URL: ${{ secrets.DEVHUB_API_URL }}
+          SSO_BASE_URL: https://dev.oidc.gov.bc.ca
+          SSO_CLIENT_ID: "searchgate-${{ env.PULL_NUMBER }}"
+          SSO_REALM_NAME: ${{ secrets.SSO_REALM }}
+          ALGOLIA_INDEX_NAME: "${{ env.ALGOLIA_INDEX_NAME }}"
+          IMAGE_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
+          IMAGE_TAG: ${{ env.PULL_NUMBER }}
+        run: .github/helpers/deploy_web.sh
+      - name: Create Keycloak Client
+        env:
+          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
+          DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
+          KEYCLOAK_CLIENT_ID: ${{ secrets.KC_SA_CLIENT_ID }}
+          KEYCLOAK_CLIENT_SECRET: ${{ secrets.KC_SA_CLIENT_SECRET }}
+          PULL_NUMBER: ${{ env.PULL_NUMBER }}
+        run: |
+          REDIRECT_URI=$(oc -n $DEV_NAMESPACE get route/$INFRA_NAME$SUFFIX -o json | jq -r '.spec.host')
+
+          .github/helpers/kc-create-client.sh $PULL_NUMBER $REDIRECT_URI
+      - name: Wait for Deployment and Update Status
+        env:
+          NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
+        run: |
+          DEPLOY_STATUS=$(.github/helpers/wait_for_deployment.sh dc/$INFRA_NAME$SUFFIX)
+          echo "DEPLOY_STATUS=$DEPLOY_STATUS" >> $GITHUB_ENV
+
+      - name: Change Deploy Status to Success or Failure
+        uses: unacast/actions-github-deployment-status@0.4.0
+        with:
+          github_token: ${{ github.token }}
+          status: ${{ env.DEPLOY_STATUS }}
+
+      - name: The job has failed
+        if: ${{ failure() }}
+        uses: unacast/actions-github-deployment-status@0.4.0
+        with:
+          github_token: ${{github.token}}
+          status: error
