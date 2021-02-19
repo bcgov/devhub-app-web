@@ -89,7 +89,7 @@ jobs:
           IMAGE_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
           IMAGE_TAG: ${{ env.PULL_NUMBER }}
         run: |
-          oc process -f openshift/searchgate/dc.yaml -n $DEPLOY_NAMESPACE \
+          oc process -f openshift/templates/searchgate/dc.yaml -n $DEPLOY_NAMESPACE \
           -p NAME=$INFRA_NAME \ 
           -p SUFFIX=$SUFFIX \
           -p IMAGE_TAG=$IMAGE_TAG \
