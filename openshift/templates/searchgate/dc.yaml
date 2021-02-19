@@ -59,9 +59,9 @@ objects:
               cpu: '200m'
               memory: '256Mi'
           envFrom:
-          env:
-            secretRef:
-              name: searchgate-credentials        
+          - secretRef:
+              name: searchgate-credentials
+          env:        
           - name: ROCKETGATE_BASE_URL
             valueFrom:
               configMapKeyRef:
@@ -158,10 +158,8 @@ parameters:
 - description: Base URL of the Rocket.Chat instance to be searched
   displayName: Rocket.Chat Base URL
   name: ROCKETGATE_BASE_URL
-  required: true
   value: ""
 - description: Base URL of the Documize instance to be searched
   displayName: Documize Base URL
   name: DOCUGATE_BASE_URL
-  required: true
   value: ""
