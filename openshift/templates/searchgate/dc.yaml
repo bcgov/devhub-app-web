@@ -75,14 +75,6 @@ objects:
     test: false
     triggers:
     - type: ConfigChange
-    - imageChangeParams:
-        automatic: true
-        containerNames:
-        - searchgate
-        from:
-          kind: ImageStreamTag
-          name: ${IMAGE_REGISTRY}/${IMAGE_NAMESPACE}/${IMAGE_NAME}:${IMAGE_TAG}
-      type: ImageChange
 - apiVersion: v1
   kind: Service
   metadata:
