@@ -7,7 +7,7 @@ env:
   DEPLOY_REF: ${{ github.event.deployment.ref }}
   DEPLOYMENT_ID: ${{ github.event.deployment.id }}
   ENVIRONMENT: ${{ github.event.deployment.environment }}
-  INFRA_NAME: devhub-app-web
+  INFRA_NAME: searchgate
   SUFFIX: "-${{ fromJSON(github.event.deployment.payload).pr }}"
 jobs:
   build:
@@ -126,4 +126,3 @@ jobs:
   #       with:
   #         github_token: ${{github.token}}
   #         status: error
-  
