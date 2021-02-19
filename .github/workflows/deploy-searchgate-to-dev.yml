@@ -79,12 +79,6 @@ jobs:
           parameters: '{"apitoken": "${{ secrets.OPENSHIFT_SA_PASSWORD }}"}'
           cmd: |
             'version'
-      - name: Create/Update Github Auth Token
-        env:
-          NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          .github/helpers/create_searchgate_credentials.sh 
       - name: Run Deployment to Dev
         env:
           DEPLOY_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
