@@ -89,10 +89,10 @@ jobs:
           IMAGE_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
           IMAGE_TAG: ${{ env.PULL_NUMBER }}
         run: |
-          echo "processing file"
+          echo "processing file infra-name: $INFRA_NAME suffix: $SUFFIX image_tag: $IMAGE_TAG image_ns: $IMAGE_NAMESPACE deploy_ns: $DEPLOY_NAMESPACE"
           oc process -f openshift/templates/searchgate/dc.yaml -n $DEPLOY_NAMESPACE \
           -p NAME=$INFRA_NAME \ 
-          -p SUFFIX=$SUFFIX \
+          -p SUFFIX=-$IMAGE_TAG \
           -p IMAGE_TAG=$IMAGE_TAG \
           -p IMAGE_NAMESPACE=$IMAGE_NAMESPACE > foo.json
           echo "finished processing"
