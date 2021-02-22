@@ -80,6 +80,7 @@ objects:
         verbs:
           - create
           - get
+          - delete
           - list
       - apiGroups:
           - image.openshift.io
