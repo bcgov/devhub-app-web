@@ -82,21 +82,19 @@ jobs:
       - name: Run Deployment to Dev
         env:
           DEPLOY_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
-          DEVHUB_API_URL: ${{ secrets.DEVHUB_API_URL }}
           SSO_BASE_URL: https://dev.oidc.gov.bc.ca
           SSO_CLIENT_ID: "searchgate-${{ env.PULL_NUMBER }}"
           SSO_REALM_NAME: ${{ secrets.SSO_REALM }}
           IMAGE_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
           IMAGE_TAG: ${{ env.PULL_NUMBER }}
         run: |
-          echo "processing file infra-name: $INFRA_NAME suffix: $SUFFIX image_tag: $IMAGE_TAG image_ns: $IMAGE_NAMESPACE deploy_ns: pltfrm-dev"
+          echo "pltfrm-dev woo PLATFORM_DEV processing file infra-name: $INFRA_NAME suffix: $SUFFIX image_tag: $IMAGE_TAG image_ns: $IMAGE_NAMESPACE deploy_ns: pltfrm-dev"
           oc process -f openshift/templates/searchgate/dc.yaml -n pltfrm-dev \
           -p NAME=$INFRA_NAME \ 
           -p SUFFIX=-$IMAGE_TAG \
           -p IMAGE_TAG=$IMAGE_TAG \
           -p IMAGE_NAMESPACE=$IMAGE_NAMESPACE > foo.json
           echo "finished processing"
-          oc apply -n pltfrm-dev -f foo.json 
       # - name: Create Keycloak Client
       #   env:
       #     TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
