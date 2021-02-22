@@ -88,7 +88,6 @@ jobs:
           SSO_REALM_NAME: ${{ secrets.SSO_REALM }}
           IMAGE_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
           IMAGE_TAG: ${{ env.PULL_NUMBER }}
-        
         run: |
           oc process -f openshift/templates/searchgate/dc.yaml -n $DEPLOY_NAMESPACE -p NAME=$INFRA_NAME -p SUFFIX=-$IMAGE_TAG -p IMAGE_TAG=$IMAGE_TAG -p ROCKETGATE_BASE_URL='' -p DOCUGATE_BASE_URL='' -p IMAGE_NAMESPACE=$IMAGE_NAMESPACE | oc apply -f - -n $DEPLOY_NAMESPACE
       # - name: Create Keycloak Client

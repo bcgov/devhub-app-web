@@ -33,7 +33,7 @@ To test this api locally it is beneficial to have a graphql playground which vis
 
 This application was built using the [bcdk](https://github.com/bcdevop/bcdk) and the [pipeline cli](https://github.com/bcdevops/pipeline-cli).
 
-Prior to running any builds or deploys, ensure you have generated a github auth secret for each respective namepspace you are deploying search gate too. `oc process -f openshift/templates/searchgate/secret-template.yaml -p GITHUB_AUTH_TOKEN=<token> | oc apply -f - -n <namespace>`
+Prior to running any builds or deploys, ensure you have generated a github auth secret for each respective namepspace you are deploying search gate too. `oc process -f openshift/templates/searchgate/secret-template.yaml -p GITHUB_TOKEN=<token> | oc apply -f - -n <namespace>`
 
 1. Build the search gate service by processing and applying the `bc.yaml` file
 2. Deploy the search gate service by processing and applying the `dc.yaml` file
