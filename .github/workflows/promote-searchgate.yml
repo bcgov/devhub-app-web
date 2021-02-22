@@ -98,15 +98,16 @@ jobs:
         env:
           TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
           DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
+          PULL_NUMBER: ${{ env.PULL_NUMBER }}
         run: |
           PULL_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
           echo "deleting build artifacts"
-          oc -n $TOOLS_NAMESPACE delete bc -l build=$INFRA_NAME-$IMAGE_TAG
+          oc -n $TOOLS_NAMESPACE delete bc -l build=$INFRA_NAME-$PULL_NUMBER
           echo "deleting imagestream tag"
-          oc -n $TOOLS_NAMESPACE delete imagestreamtag/$INFRA_NAME:$IMAGE_TAG
+          oc -n $TOOLS_NAMESPACE delete imagestreamtag/$INFRA_NAME:$PULL_NUMBER
 
           echo "deleting dev artifacts"
-          oc -n $DEV_NAMESPACE delete dc,configmap -l app=$INFRA_NAME-$IMAGE_TAG
+          oc -n $DEV_NAMESPACE delete dc,configmap -l app=$INFRA_NAME-$PULL_NUMBER
 
 
       - name: 'Clean up PR comment'
