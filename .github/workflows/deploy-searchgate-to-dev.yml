@@ -89,12 +89,14 @@ jobs:
           IMAGE_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
           IMAGE_TAG: ${{ env.PULL_NUMBER }}
         run: |
+          echo "processing file"
           oc process -f openshift/templates/searchgate/dc.yaml -n $DEPLOY_NAMESPACE \
           -p NAME=$INFRA_NAME \ 
           -p SUFFIX=$SUFFIX \
           -p IMAGE_TAG=$IMAGE_TAG \
-          -p IMAGE_NAMESPACE=$IMAGE_NAMESPACE | \
-          oc apply -n $DEPLOY_NAMESPACE -f - 
+          -p IMAGE_NAMESPACE=$IMAGE_NAMESPACE > foo.json
+          echo "finished processing"
+          oc apply -n $DEPLOY_NAMESPACE -f foo.json 
       # - name: Create Keycloak Client
       #   env:
       #     TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
