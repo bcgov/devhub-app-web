@@ -38,6 +38,7 @@ objects:
         containers:
         - image: ${IMAGE_REGISTRY}/${IMAGE_NAMESPACE}/${IMAGE_NAME}:${IMAGE_TAG}
           name: searchgate
+          imagePullPolicy: Always
           ports:
           - containerPort: 4001
             protocol: TCP
