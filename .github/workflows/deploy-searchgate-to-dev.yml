@@ -87,6 +87,7 @@ jobs:
           SSO_REALM_NAME: ${{ secrets.SSO_REALM }}
           IMAGE_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
           IMAGE_TAG: ${{ env.PULL_NUMBER }}
+          ACTIONS_STEP_DEBUG: true
         run: |
           echo "pltfrm-dev woo PLATFORM_DEV processing file infra-name: $INFRA_NAME suffix: $SUFFIX image_tag: $IMAGE_TAG image_ns: $IMAGE_NAMESPACE deploy_ns: pltfrm-dev"
           oc process -f openshift/templates/searchgate/dc.yaml -n pltfrm-dev \
