@@ -36,8 +36,9 @@ objects:
           deploymentconfig: ${NAME}${SUFFIX}
       spec:
         containers:
-        - image: ${NAME}:${VERSION}
+        - image: ${IMAGE_REGISTRY}/${IMAGE_NAMESPACE}/${IMAGE_NAME}:${IMAGE_TAG}
           name: searchgate
+          imagePullPolicy: Always
           ports:
           - containerPort: 4001
             protocol: TCP
@@ -59,9 +60,9 @@ objects:
               cpu: '200m'
               memory: '256Mi'
           envFrom:
-          env:
-            secretRef:
-              name: searchgate-credentials        
+          - secretRef:
+              name: searchgate-credentials
+          env:        
           - name: ROCKETGATE_BASE_URL
             valueFrom:
               configMapKeyRef:
@@ -75,14 +76,6 @@ objects:
     test: false
     triggers:
     - type: ConfigChange
-    - imageChangeParams:
-        automatic: true
-        containerNames:
-        - searchgate
-        from:
-          kind: ImageStreamTag
-          name: ${NAME}:${VERSION}
-      type: ImageChange
 - apiVersion: v1
   kind: Service
   metadata:
@@ -102,7 +95,6 @@ objects:
       haproxy.router.openshift.io/disable_cookies: 'true'
     name: ${NAME}${SUFFIX}
   spec:
-    host: ${HOST}
     port:
       targetPort: web
     tls:
@@ -126,28 +118,35 @@ parameters:
   name: NAME
   required: true
   value: searchgate
+- description: The Image Name
+  displayName: Image Name
+  name: IMAGE_NAME
+  required: true
+  value: searchgate
+- description: The Image tag
+  displayName: Image tag
+  name: IMAGE_TAG
+  required: true
+  value: dev
+- description: The Image location
+  displayName: Image Name space
+  name: IMAGE_NAMESPACE
+  required: true
+- description: The Image registry
+  displayName: Image Registry
+  name: IMAGE_REGISTRY
+  required: true
+  value: image-registry.openshift-image-registry.svc:5000
 - description: A name suffix used for all objects
   displayName: Suffix
   name: SUFFIX
   required: false
   value: -dev
-- description: A version used for the image tags
-  displayName: version
-  name: VERSION
-  required: true
-  value: v1.0.0
-- description: A name used for routes/services and deployment configs
-  displayName: Host
-  name: HOST
-  required: false
-  value: ''
 - description: Base URL of the Rocket.Chat instance to be searched
   displayName: Rocket.Chat Base URL
   name: ROCKETGATE_BASE_URL
-  required: true
-  value: ""
+  value: ''
 - description: Base URL of the Documize instance to be searched
   displayName: Documize Base URL
   name: DOCUGATE_BASE_URL
-  required: true
-  value: ""
+  value: ''

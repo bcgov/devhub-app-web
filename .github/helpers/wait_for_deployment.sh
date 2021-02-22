@@ -12,7 +12,7 @@
 
 _RESULT=$(oc -n $NAMESPACE rollout status -w $1 || echo 'Uhoh!')
 
-if [ "$_RESULT" = 'Uhoh!' ]; then
+if [[ "$_RESULT" = 'Uhoh!' || "$_RESULT" == *"error:"* ]]; then
   echo 'failure' 
 else
   echo 'success'

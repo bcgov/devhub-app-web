@@ -33,22 +33,15 @@ To test this api locally it is beneficial to have a graphql playground which vis
 
 This application was built using the [bcdk](https://github.com/bcdevop/bcdk) and the [pipeline cli](https://github.com/bcdevops/pipeline-cli).
 
-Prior to running any builds or deploys, ensure you have generated a github auth secret for each respective namepspace you are deploying search gate too. `oc process -f openshift/secret-template.yaml -p GITHUB_AUTH_TOKEN=<token> | oc apply -f - -n <namespace>`
+Prior to running any builds or deploys, ensure you have generated a github auth secret for each respective namepspace you are deploying search gate too. `oc process -f openshift/templates/searchgate/secret-template.yaml -p GITHUB_TOKEN=<token> | oc apply -f - -n <namespace>`
 
-The application is built using a __PR based workflow__. Every PR kicks off a job in Jenkins that produces a new developer environment that you may subsequently promote into production. 
+1. Build the search gate service by processing and applying the `bc.yaml` file
+2. Deploy the search gate service by processing and applying the `dc.yaml` file
 
-To create this pipeline you may take a look at bcdk and more specifically,  the jenkins and jenkins-job script generators. 
 
-To trigger builds or deploys from your machine:
-- ensure your have a PR made in github
-- `cd .pipeline && npm install`
+Alternatively you can opt to use the CD pipeline configuired for this app. This involves having `deploy-tron` [setup for your repository.](https://github.com/patricksimonian/deploy-tron#building-and-deploying-on-openshift)
 
-To Build: `npm run build -- --pr=<prNum>`
-
-To Deploy: `npm run deploy -- --pr=<prNum> --env=<dev|test|prod>
-
-If you require clarity on what is actually happening during these npm scripts take a look at the build and deploy files found in `lib`
-
+Every PR kicks can kick of a github workflow to deploy. When opening a PR, authorized users can trigger a workflow by creating a github deployment via deploy-tron, a continuous delivery github app. Enter a comment in the PR like `@deploy-tron deploy searchgate to dev`.
 
 ## How to Contribute
 

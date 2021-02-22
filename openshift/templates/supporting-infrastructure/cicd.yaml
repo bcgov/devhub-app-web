@@ -80,6 +80,7 @@ objects:
         verbs:
           - create
           - get
+          - delete
           - list
       - apiGroups:
           - image.openshift.io
@@ -201,6 +202,7 @@ objects:
           - configmaps
           - services
         verbs:
+          - list
           - patch
           - create
           - patch
