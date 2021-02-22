@@ -91,7 +91,6 @@ jobs:
         
         run: |
           oc process -f openshift/templates/searchgate/dc.yaml -n $DEPLOY_NAMESPACE -p NAME=$INFRA_NAME -p SUFFIX=-$IMAGE_TAG -p IMAGE_TAG=$IMAGE_TAG -p ROCKETGATE_BASE_URL='' -p DOCUGATE_BASE_URL='' -p IMAGE_NAMESPACE=$IMAGE_NAMESPACE | oc apply -f - -n $DEPLOY_NAMESPACE
-          echo "finished processing"
       # - name: Create Keycloak Client
       #   env:
       #     TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}

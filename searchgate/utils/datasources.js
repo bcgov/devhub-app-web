@@ -1,8 +1,8 @@
-import DocumizeApi from "../datasources/docugate"
-import GithubApi from "../datasources/github"
-import RocketGateApi from "../datasources/rocketchat"
+const DocumizeApi = require("../datasources/docugate");
+const GithubApi = require("../datasources/github");
+const RocketGateApi = require("../datasources/rocketchat");
 
-export const resolveBaseDataSources = () => {
+const resolveBaseDataSources = () => {
   const datasources = {};
   
   if(process.env.ROCKETGATE_BASE_URL) {
@@ -23,3 +23,5 @@ export const resolveBaseDataSources = () => {
 
   return datasources;
 }
+
+module.exports = { resolveBaseDataSources };
