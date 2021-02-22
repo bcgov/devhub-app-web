@@ -4,8 +4,7 @@ const RocketGateApi = require("../datasources/rocketchat");
 
 const resolveBaseDataSources = () => {
   const datasources = {};
-  console.log(process.env.GITHUB_TOKEN, 
-    'GITHUB_TOKEN')
+
   if(process.env.ROCKETGATE_BASE_URL) {
     datasources.rocketchat = new RocketGateApi({
       baseURL: process.env.ROCKETGATE_BASE_URL,
