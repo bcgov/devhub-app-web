@@ -94,7 +94,7 @@ jobs:
           -p SUFFIX=$SUFFIX \
           -p IMAGE_TAG=$IMAGE_TAG \
           -p IMAGE_NAMESPACE=$IMAGE_NAMESPACE | \
-          oc apply -f - -n $DEPLOY_NAMESPACE
+          oc apply -n $DEPLOY_NAMESPACE -f - 
       # - name: Create Keycloak Client
       #   env:
       #     TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
