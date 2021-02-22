@@ -90,14 +90,7 @@ jobs:
           IMAGE_TAG: ${{ env.PULL_NUMBER }}
         
         run: |
-          echo "pltfrm-dev woo PLATFORM_DEV processing file infra-name: $INFRA_NAME suffix: $SUFFIX image_tag: $IMAGE_TAG image_ns: $IMAGE_NAMESPACE deploy_ns: pltfrm-dev"
-          oc process -f openshift/templates/searchgate/dc.yaml -n pltfrm-dev \
-          -p NAME=$INFRA_NAME \ 
-          -p SUFFIX=-$IMAGE_TAG \
-          -p IMAGE_TAG=$IMAGE_TAG \
-          -p ROCKETGATE_BASE_URL='' \
-          -p DOCUGATE_BASE_URL='' \ 
-          -p IMAGE_NAMESPACE=$IMAGE_NAMESPACE > foo.json
+          oc process -f openshift/templates/searchgate/dc.yaml -n $DEPLOY_NAMESPACE -p NAME=$INFRA_NAME -p SUFFIX=-$IMAGE_TAG -p IMAGE_TAG=$IMAGE_TAG -p ROCKETGATE_BASE_URL='' -p DOCUGATE_BASE_URL='' -p IMAGE_NAMESPACE=$IMAGE_NAMESPACE | oc apply -f - -n $DEPLOY_NAMESPACE
           echo "finished processing"
       # - name: Create Keycloak Client
       #   env:
