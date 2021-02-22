@@ -105,6 +105,8 @@ jobs:
         env:
           NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
         run: |
+          oc rollout latest dc/$INFRA_NAME$SUFFIX -n $NAMESPACE
+          sleep 1
           DEPLOY_STATUS=$(.github/helpers/wait_for_deployment.sh dc/$INFRA_NAME$SUFFIX)
           echo "DEPLOY_STATUS=$DEPLOY_STATUS" >> $GITHUB_ENV
 
