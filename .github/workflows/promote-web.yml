@@ -117,7 +117,6 @@ jobs:
           DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
           PULL_NUMBER: ${{ env.PULL_NUMBER }}
         run: |
-          PULL_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
           echo "deleting build artifacts"
           oc -n $TOOLS_NAMESPACE delete all,configmap -l build=$INFRA_NAME-$PULL_NUMBER
           echo "deleting imagestream tag"
