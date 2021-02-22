@@ -118,12 +118,12 @@ jobs:
           PULL_NUMBER: ${{ env.PULL_NUMBER }}
         run: |
           echo "deleting build artifacts"
-          oc -n $TOOLS_NAMESPACE delete all,configmap -l build=$INFRA_NAME-$PULL_NUMBER
+          oc -n $TOOLS_NAMESPACE delete bc,configmap -l build=$INFRA_NAME-$PULL_NUMBER
           echo "deleting imagestream tag"
           oc -n $TOOLS_NAMESPACE delete imagestreamtag/$INFRA_NAME:$PULL_NUMBER
 
           echo "deleting dev artifacts"
-          oc -n $DEV_NAMESPACE delete all,configmap -l app=$INFRA_NAME-$PULL_NUMBER
+          oc -n $DEV_NAMESPACE delete dc,configmap -l app=$INFRA_NAME-$PULL_NUMBER
 
 
       - name: 'Clean up PR comment'

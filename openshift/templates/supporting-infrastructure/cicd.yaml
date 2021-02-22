@@ -202,6 +202,7 @@ objects:
           - configmaps
           - services
         verbs:
+          - list
           - patch
           - create
           - patch
