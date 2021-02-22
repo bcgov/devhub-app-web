@@ -115,6 +115,7 @@ jobs:
         env:
           TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
           DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
+          PULL_NUMBER: ${{ env.PULL_NUMBER }}
         run: |
           PULL_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
           echo "deleting build artifacts"
