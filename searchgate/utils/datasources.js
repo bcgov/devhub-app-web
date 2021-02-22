@@ -17,8 +17,8 @@ const resolveBaseDataSources = () => {
     });
   }
 
-  if(process.env.GITHUB_AUTH_TOKEN) {
-    datasources.github = new GithubApi({ authToken: process.env.GITHUB_AUTH_TOKEN });
+  if(process.env.GITHUB_TOKEN) {
+    datasources.github = new GithubApi({ authToken: process.env.GITHUB_TOKEN });
   }
 
   return datasources;
