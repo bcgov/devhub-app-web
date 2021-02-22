@@ -91,9 +91,14 @@ jobs:
         
         run: |
           echo "pltfrm-dev woo PLATFORM_DEV processing file infra-name: $INFRA_NAME suffix: $SUFFIX image_tag: $IMAGE_TAG image_ns: $IMAGE_NAMESPACE deploy_ns: pltfrm-dev"
-          cat openshift/templates/searchgate/dc.yaml
+          oc process -f openshift/templates/searchgate/dc.yaml -n pltfrm-dev \
+          -p NAME=$INFRA_NAME \ 
+          -p SUFFIX=-$IMAGE_TAG \
+          -p IMAGE_TAG=$IMAGE_TAG \
+          -p ROCKETGATE_BASE_URL='' \
+          -p DOCUGATE_BASE_URL='' \ 
+          -p IMAGE_NAMESPACE=$IMAGE_NAMESPACE > foo.json
           echo "finished processing"
-          exit 1
       # - name: Create Keycloak Client
       #   env:
       #     TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
@@ -105,18 +110,18 @@ jobs:
       #     REDIRECT_URI=$(oc -n $DEV_NAMESPACE get route/$INFRA_NAME$SUFFIX -o json | jq -r '.spec.host')
 
       #     .github/helpers/kc-create-client.sh $PULL_NUMBER $REDIRECT_URI
-      # - name: Wait for Deployment and Update Status
-      #   env:
-      #     NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
-      #   run: |
-      #     DEPLOY_STATUS=$(.github/helpers/wait_for_deployment.sh dc/$INFRA_NAME$SUFFIX)
-      #     echo "DEPLOY_STATUS=$DEPLOY_STATUS" >> $GITHUB_ENV
+      - name: Wait for Deployment and Update Status
+        env:
+          NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
+        run: |
+          DEPLOY_STATUS=$(.github/helpers/wait_for_deployment.sh dc/$INFRA_NAME$SUFFIX)
+          echo "DEPLOY_STATUS=$DEPLOY_STATUS" >> $GITHUB_ENV
 
-      # - name: Change Deploy Status to Success or Failure
-      #   uses: unacast/actions-github-deployment-status@0.4.0
-      #   with:
-      #     github_token: ${{ github.token }}
-      #     status: ${{ env.DEPLOY_STATUS }}
+      - name: Change Deploy Status to Success or Failure
+        uses: unacast/actions-github-deployment-status@0.4.0
+        with:
+          github_token: ${{ github.token }}
+          status: ${{ env.DEPLOY_STATUS }}
 
       - name: The job has failed
         if: ${{ failure() }}

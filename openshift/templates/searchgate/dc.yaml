@@ -94,7 +94,6 @@ objects:
       haproxy.router.openshift.io/disable_cookies: 'true'
     name: ${NAME}${SUFFIX}
   spec:
-    host: ${HOST}
     port:
       targetPort: web
     tls:
@@ -142,11 +141,6 @@ parameters:
   name: SUFFIX
   required: false
   value: -dev
-- description: A name used for routes/services and deployment configs
-  displayName: Host
-  name: HOST
-  required: false
-  value: ''
 - description: Base URL of the Rocket.Chat instance to be searched
   displayName: Rocket.Chat Base URL
   name: ROCKETGATE_BASE_URL
