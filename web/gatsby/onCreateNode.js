@@ -464,6 +464,7 @@ module.exports = async ({ node, actions, getNode, getNodes, store, cache, create
           getNodes,
         });
       }
+
       createNodeField({
         node: parentNode,
         name: 'image',

@@ -16,6 +16,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 import queryString from 'query-string';
+import { graphql } from 'gatsby';
 import React, { useState, useEffect } from 'react';
 import { TOPICS_PAGE } from '../messages';
 import { flattenGatsbyGraphQL } from '../utils/dataHelpers';
