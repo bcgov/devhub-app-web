@@ -11,7 +11,7 @@ const {
   reduceJourneyRegistryToTopic,
   expandRegistry,
   flattenSourcesFromTopics,
-} = require('../../../../app-web/gatsby/utils/githubRaw');
+} = require('../../../../web/gatsby/utils/githubRaw');
 const { reduceContentsResults, reduceResultsToData, reduceFileResults } = require('./utils');
 const { validateDescription, hasNoErrors } = require('./validators');
 const token = process.env.GITHUB_TOKEN;
