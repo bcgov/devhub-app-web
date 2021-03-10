@@ -150,6 +150,18 @@
           "image": ""
         },
         "resourceType": "Repositories"
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcdevops/openshift-wiki",
+          "owner": "BCDevOps",
+          "repo": "openshift-wiki",
+          "ref": "master",
+          "files": [
+            "docs/HowTo/PlatformServicesSprintReviewDemos.md"
+          ]
+        }
       }
     ]
   }
