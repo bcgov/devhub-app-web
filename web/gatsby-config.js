@@ -127,7 +127,7 @@ module.exports = {
       },
     },
     { resolve: 'gatsby-transformer-json', options: { failOnError: false } },
-    'gatsby-plugin-sharp',
+    { resolve: 'gatsby-plugin-sharp', options: { failOnError: false } },
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-yaml',
     {
