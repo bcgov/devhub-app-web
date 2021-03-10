@@ -6,7 +6,7 @@
 
 ## Deploying Devhub
 
-The Devhub has a ton of components that are stiched together that need to be deployed in a specific order. The best way to accomplish is is to first deploy the CI/CD pipelines (deploy-tron and jenkins) to perform the work for you. 
+The Devhub has a ton of components that are stiched together that need to be deployed in a specific order. The best way to accomplish is is to first deploy the CI/CD pipelines (deploy-tron) to perform the work for you. 
 
 ### Pre Requisites
 - Obtain a Openshift Project Set (dev, test, tools, prod)
