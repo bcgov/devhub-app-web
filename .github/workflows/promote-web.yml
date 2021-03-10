@@ -39,7 +39,7 @@ jobs:
           _SSO_BASE_URL=''
           _ALGOLIA_SOURCE_INDEX=''
           _ALGOLIA_DEST_INDEX_SUFFIX=''
-            _ALGOLIA_SOURCE_INDEX=Devhub-Algolia-build-${{ env.PULL_NUMBER }}
+            _ALGOLIA_SOURCE_INDEX=Devhub-Algolia-${{ env.PULL_NUMBER }}
           if [ "$_NAMESPACE" == "$TEST_NAMESPACE" ]; then
             _SSO_BASE_URL=$SSO_TEST_URL 
             _ALGOLIA_DEST_INDEX_SUFFIX=-test
