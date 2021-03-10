@@ -2,23 +2,11 @@ name: "devhub-markdown-verify-test"
 on:
   pull_request:
     paths:
-    - '.github/actions/devhub-markdown-frontmatter-verify/**/*.js'
     - 'web/journeyRegistry/*.json'
     - 'web/topicRegistry/*.json'
 jobs:
-  # unit tests
-  units:
-    runs-on: ubuntu-16.04
-    steps:
-    - uses: actions/checkout@v1
-    - run: |
-        cd web
-        npm ci
-        cd ../.github/actions/devhub-markdown-frontmatter-verify
-        npm ci 
-        npm test
-  # test action works running from the graph  
   test:
+    name: Running the frontmatter verifier
     runs-on: ubuntu-16.04
     steps:
     - uses: actions/checkout@v1

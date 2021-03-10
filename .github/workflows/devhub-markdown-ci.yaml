@@ -1,0 +1,18 @@
+name: "devhub-markdown-verify-test"
+on:
+  pull_request:
+    paths:
+    - '.github/actions/devhub-markdown-frontmatter-verify/**/*.js'
+jobs:
+  # unit tests
+  units:
+    name: Unit Testing the Verifier
+    runs-on: ubuntu-16.04
+    steps:
+    - uses: actions/checkout@v1
+    - run: |
+        cd web
+        npm ci
+        cd ../.github/actions/devhub-markdown-frontmatter-verify
+        npm ci 
+        npm test
