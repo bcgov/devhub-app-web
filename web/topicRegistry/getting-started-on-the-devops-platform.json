@@ -131,6 +131,18 @@
             "README.md"
           ]
         }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/BCDevOps/openshift-wiki",
+          "owner": "BCDevOps",
+          "repo": "openshift-wiki",
+          "ref": "master",
+          "files": [
+            "docs/LoadTest/LoadTestingGuidelines.md"
+          ]
+        }
       }
     ]
   }
