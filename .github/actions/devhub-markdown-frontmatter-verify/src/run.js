@@ -105,11 +105,24 @@ const getJourneysAndTopics = (repo, owner, ref) => {
 };
 
 const getMarkdownContents = ({ branch = 'master', file, repo, owner }) => {
-  return octokit.graphql(FILE_CONTENTS_QUERY, {
-    repo,
-    owner,
-    path: `${branch}:${file}`,
-  });
+  try { 
+    return octokit.graphql(FILE_CONTENTS_QUERY, {
+      repo,
+      owner,
+      path: `${branch}:${file}`,
+    });
+  } catch (e) {
+    if(branch === 'master') {
+      // try again with main
+      return octokit.graphql(FILE_CONTENTS_QUERY, {
+        repo,
+        owner,
+        path: `main:${file}`,
+      });
+    } else {
+      throw e;
+    }
+  }
 };
 
 const getRegistryContents = (repo, owner, path) =>
