@@ -105,6 +105,7 @@ const getJourneysAndTopics = (repo, owner, ref) => {
 };
 
 const getMarkdownContents = ({ branch = 'master', file, repo, owner }) => {
+  console.log('branch', branch);
   try { 
     return octokit.graphql(FILE_CONTENTS_QUERY, {
       repo,
@@ -147,6 +148,7 @@ const validateFile = async ({ sourceProperties }) => {
   // eslint-disable-next-line
   console.log(`Validating ${filePathFromSourceProps(sourceProperties)} at ${(Date.now() - rootTime) / 1000}s`);
   const rawContents = await getMarkdownContents(sourceProperties);
+  console.log(rawContents)
   const contents = reduceFileResults(rawContents);
 
   return validateMarkdownContents(contents).map(m => ({ ...m, file }));
