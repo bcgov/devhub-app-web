@@ -6,5 +6,5 @@ module.exports = {
     '.(js|jsx)$': 'babel-jest',
   },
   testPathIgnorePatterns: ['/node_modules/', '/.cache/', '/cypress/'],
-  moduleFileExtensions: ['js', 'module.css', '.css', 'json']
+  moduleFileExtensions: ['js', 'module.css', '.css', 'json'],
 };

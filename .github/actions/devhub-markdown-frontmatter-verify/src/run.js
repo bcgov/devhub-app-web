@@ -105,15 +105,14 @@ const getJourneysAndTopics = (repo, owner, ref) => {
 };
 
 const getMarkdownContents = ({ branch = 'master', file, repo, owner }) => {
-  console.log('branch', branch);
-  try { 
+  try {
     return octokit.graphql(FILE_CONTENTS_QUERY, {
       repo,
       owner,
       path: `${branch}:${file}`,
     });
   } catch (e) {
-    if(branch === 'master') {
+    if (branch === 'master') {
       // try again with main
       return octokit.graphql(FILE_CONTENTS_QUERY, {
         repo,
@@ -150,12 +149,12 @@ const validateFile = async ({ sourceProperties }) => {
   try {
     const rawContents = await getMarkdownContents(sourceProperties);
     const contents = reduceFileResults(rawContents);
-  
+
     return validateMarkdownContents(contents).map(m => ({ ...m, file }));
-  } catch(e) {
+  } catch (e) {
     return {
-      type: 'failure'
-    }
+      type: 'failure',
+    };
   }
 };
 
