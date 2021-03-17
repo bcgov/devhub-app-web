@@ -147,10 +147,16 @@ const validateFile = async ({ sourceProperties }) => {
   const file = filePathFromSourceProps(sourceProperties);
   // eslint-disable-next-line
   console.log(`Validating ${filePathFromSourceProps(sourceProperties)} at ${(Date.now() - rootTime) / 1000}s`);
-  const rawContents = await getMarkdownContents(sourceProperties);
-  const contents = reduceFileResults(rawContents);
-
-  return validateMarkdownContents(contents).map(m => ({ ...m, file }));
+  try {
+    const rawContents = await getMarkdownContents(sourceProperties);
+    const contents = reduceFileResults(rawContents);
+  
+    return validateMarkdownContents(contents).map(m => ({ ...m, file }));
+  } catch(e) {
+    return {
+      type: 'failure'
+    }
+  }
 };
 
 /**
