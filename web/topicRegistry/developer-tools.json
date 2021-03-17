@@ -124,7 +124,8 @@
             "apps/artifactory/DEVHUB-README.md",
             "docs/resiliency-checklist.md",
             "docs/post-outage-checklist.md", 
-            "docs/resource-tuning-recommendations.md"
+            "docs/resource-tuning-recommendations.md",
+            "docs/resourceTuning/request-for-quota-increase.md"
           ]
         }
       },
