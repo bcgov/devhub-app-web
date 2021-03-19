@@ -56,6 +56,7 @@ objects:
           - buildconfigs
           - builds
         verbs:
+          - delete
           - create
           - get
           - list

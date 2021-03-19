@@ -105,11 +105,24 @@ const getJourneysAndTopics = (repo, owner, ref) => {
 };
 
 const getMarkdownContents = ({ branch = 'master', file, repo, owner }) => {
-  return octokit.graphql(FILE_CONTENTS_QUERY, {
-    repo,
-    owner,
-    path: `${branch}:${file}`,
-  });
+  try {
+    return octokit.graphql(FILE_CONTENTS_QUERY, {
+      repo,
+      owner,
+      path: `${branch}:${file}`,
+    });
+  } catch (e) {
+    if (branch === 'master') {
+      // try again with main
+      return octokit.graphql(FILE_CONTENTS_QUERY, {
+        repo,
+        owner,
+        path: `main:${file}`,
+      });
+    } else {
+      throw e;
+    }
+  }
 };
 
 const getRegistryContents = (repo, owner, path) =>
@@ -132,11 +145,17 @@ const filePathFromSourceProps = sourceProperties =>
 const validateFile = async ({ sourceProperties }) => {
   const file = filePathFromSourceProps(sourceProperties);
   // eslint-disable-next-line
-  console.log(`Validating ${sourceProperties} at ${(Date.now() - rootTime) / 1000}s`);
-  const rawContents = await getMarkdownContents(sourceProperties);
-  const contents = reduceFileResults(rawContents);
+  console.log(`Validating ${filePathFromSourceProps(sourceProperties)} at ${(Date.now() - rootTime) / 1000}s`);
+  try {
+    const rawContents = await getMarkdownContents(sourceProperties);
+    const contents = reduceFileResults(rawContents);
 
-  return validateMarkdownContents(contents).map(m => ({ ...m, file }));
+    return validateMarkdownContents(contents).map(m => ({ ...m, file }));
+  } catch (e) {
+    return {
+      type: 'failure',
+    };
+  }
 };
 
 /**
