@@ -17,4 +17,3 @@ jobs:
         repo: devhub-app-web
         owner: bcgov
         throttle: 1000
-    - run: exit 0

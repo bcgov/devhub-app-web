@@ -16,4 +16,3 @@ jobs:
         cd ../.github/actions/devhub-markdown-frontmatter-verify
         npm ci 
         npm test
-        exit 0
