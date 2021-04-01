@@ -37,7 +37,9 @@
               "owner": "BCDevOps",
               "repo": "openshift-wiki",
               "files": [
-                "docs/OCP/VaultServiceDescription.md"
+                "docs/OCP/VaultServiceDescription.md",
+                "docs/Sysdig/ServiceDefiniton.md",
+                "docs/Artifactory/ServiceDefinition.md"
               ]
             }
           }
