@@ -37,7 +37,8 @@
           "owner": "BCDevOps",
           "repo": "openshift-wiki",
           "files": [
-            "docs/API/KongAPI.md"
+            "docs/API/KongAPI.md",
+            "docs/EDB/ServiceDefinition.md"
           ]
         }
       },
