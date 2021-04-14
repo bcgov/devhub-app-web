@@ -41,7 +41,7 @@
                 "docs/Sysdig/ServiceDefiniton.md",
                 "docs/Artifactory/ServiceDefinition.md"
               ]
-            }
+            },
            {
             "sourceType": "github",
             "sourceProperties": {
