@@ -40,8 +40,9 @@
                 "docs/OCP/VaultServiceDescription.md",
                 "docs/Sysdig/ServiceDefiniton.md",
                 "docs/Artifactory/ServiceDefinition.md"
-              ]
-            },
+               ]
+              }
+           },
            {
             "sourceType": "github",
             "sourceProperties": {
@@ -50,8 +51,8 @@
               "repo": "developer-experience",
               "files": [
                 "docs/SonarQubeBestPractices.md"          
-              ]
-            }
+               ]
+             }
           }
       ]
     }
