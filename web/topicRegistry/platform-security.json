@@ -42,6 +42,16 @@
                 "docs/Artifactory/ServiceDefinition.md"
               ]
             }
+           {
+            "sourceType": "github",
+            "sourceProperties": {
+              "url": "https://github.com/BCDevOps/developer-experience/docs/",
+              "owner": "BCDevOps",
+              "repo": "developer-experience",
+              "files": [
+                "docs/SonarQubeBestPractices.md"          
+              ]
+            }
           }
       ]
     }
