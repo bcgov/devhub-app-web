@@ -134,6 +134,18 @@
         "sourceType": "github",
         "resourceType": "Documentation",
         "sourceProperties": {
+          "url": "https://github.com/bcgov/devhub-resources/",
+          "owner": "bcgov",
+          "repo": "devhub-resources",
+          "files": [
+            "resources/community/community-meetup.md"
+          ]
+        }
+      },
+      {
+        "sourceType": "github",
+        "resourceType": "Documentation",
+        "sourceProperties": {
           "url": "https://github.com/bcgov/rocketchat/",
           "owner": "bcgov",
           "repo": "rocketchat",
