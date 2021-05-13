@@ -23,12 +23,7 @@ The Devhub has a ton of components that are stiched together that need to be dep
   ```
 - Create the CI/CD service account that the Github Actions will utilize
 ```
-   oc process -f openshift/templates/supporting-infrastructure/cicd.yaml \
-    -p TOOLS_NAMESPACE= \
-    -p PROD_NAMESPACE= \
-    -p TEST_NAMESPACE= \ 
-    -p DEV_NAMESPACE= |
-   oc apply -f -
+   oc process -f openshift/templates/supporting-infrastructure/cicd.yaml -p TOOLS_NAMESPACE=<namespace> -p PROD_NAMESPACE=<namespace> -p TEST_NAMESPACE=<namespace> -p DEV_NAMESPACE=<namespace> | oc apply -f -
 ```
   - Obtain the SA Name and Credentials
 
