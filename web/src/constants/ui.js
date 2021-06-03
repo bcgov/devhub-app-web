@@ -91,7 +91,7 @@ export const DYNAMIC_TOPIC_PATHS = {
 // an expressed in order by this object
 // this is a lookup table to easily identify which resources are considered featured
 export const FEATURED_CONTENT = [
-  'Service Overview: Private Cloud Platform as a Service (aka DevOps Openshift 4 Platform)',
+  'BC Government Private Cloud as a Service/Openshift 4 Platform Service Overview',
   'Exchange Lab Ops Learning Programs',
   'BCDevExchange Platform Status Page',
   'BC Developers Exchange',
