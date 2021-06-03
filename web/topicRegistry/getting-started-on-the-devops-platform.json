@@ -87,7 +87,8 @@
             "docs/HowTo/GrantUsersAccessToProject.md",
             "docs/OCP/Networking.md",
             "docs/OCP/OCPStorageServices.md",
-            "docs/OCP/OCP4-Storage-backup.md"
+            "docs/OCP/OCP4-Storage-backup.md",
+            "docs/OCP/OCP4ServiceOverview.md"
           ]
         }
       },
