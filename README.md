@@ -72,4 +72,4 @@ SSO_CLIENT
 
 ## Deploying Devhub
 
-It's as easy as creating a PR and running them command in your PR `@deploy-tron deploy web to dev`!
+It's as easy as creating a PR and running them command in your PR `@deploy-tron deploy web to dev`! 
