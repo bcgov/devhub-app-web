@@ -7,21 +7,6 @@
     },
     "sourceProperties": {
       "sources": [
-        {
-            "sourceType": "github",
-            "sourceProperties": {
-              "url": "https://github.com/BCDevOps/platform-services",
-              "owner": "BCDevOps",
-              "repo": "platform-services",
-              "files": [
-                "security/README.md",
-                "security/aporeto/docs/README.md",
-                "security/aporeto/docs/DeveloperWorkshop.md",
-                "security/aporeto/docs/QuickStart.md",
-                "security/aporeto/docs/CustomPolicy.md"
-              ]
-            }
-          },
           {
             "sourceType": "web",
             "sourceProperties": {
