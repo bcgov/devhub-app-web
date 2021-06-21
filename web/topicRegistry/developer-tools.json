@@ -49,7 +49,8 @@
           "owner": "BCDevOps",
           "repo": "platform-services",
           "files": [
-            "monitoring/sysdig/docs/sysdigteam_user_guide.md"
+            "monitoring/sysdig/docs/sysdigteam_user_guide.md",
+            "monitoring/uptime-robot/readme.md"
           ]
         }
       }, 
@@ -154,6 +155,14 @@
           "files": [
             "apps/pgsql/patroni/README.md"
           ]
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/nr-get-token/wiki/Patroni-Troubleshooting",
+          "title": "Patroni Troubleshooting",
+          "description": "Patroni Troubleshooting tips and tricks"
         }
       }
     ]
