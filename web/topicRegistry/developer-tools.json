@@ -127,7 +127,8 @@
             "docs/resiliency-checklist.md",
             "docs/post-outage-checklist.md", 
             "docs/resource-tuning-recommendations.md",
-            "docs/resourceTuning/request-for-quota-increase.md"
+            "docs/resourceTuning/request-for-quota-increase.md",
+            "docs/resourceTuning/project-resource-quotas.md"
           ]
         }
       },
