@@ -117,7 +117,8 @@
           "repo": "developer-experience",
           "files": [
             "docs/HumanHelp.md",
-            "docs/OnboardingOutcomes.md"
+            "docs/OnboardingOutcomes.md"",
+            "docs/UserAccessToOrg.md"
           ]
         }
       },
