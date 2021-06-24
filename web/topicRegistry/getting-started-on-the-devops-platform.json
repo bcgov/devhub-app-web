@@ -44,6 +44,21 @@
       {
         "sourceType": "web",
         "sourceProperties": {
+          "title": "Custom BC Gov Domain Entities",
+          "description": "Learn more about how to apply for a custom domain under the .gov.bc.ca TLD",
+          "url":  "https://www2.gov.bc.ca/gov/content/governments/services-for-government/service-experience-digital-delivery/digital-delivery/web-property-process/web-property-applications"
+        },
+        "attributes": {
+          "tags": [
+            "GCPE",
+            "custom url",
+            "dns"
+          ]
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
           "title": "OpenShift Interactive Learning Portal",
           "description": "These Interactive Learning Scenarios provide you with a pre-configured OpenShift® instance, accessible from your browser without any downloads or configuration. Use it to experiment, learn OpenShift and see how we can help solve real-world problems.",
           "url": "http://learn.openshift.com/"
@@ -117,7 +132,8 @@
           "repo": "developer-experience",
           "files": [
             "docs/HumanHelp.md",
-            "docs/OnboardingOutcomes.md"
+            "docs/OnboardingOutcomes.md",
+            "docs/UserAccessToOrg.md"
           ]
         }
       },

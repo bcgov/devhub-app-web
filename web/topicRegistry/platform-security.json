@@ -24,7 +24,8 @@
               "files": [
                 "docs/Vault/VaultServiceDefinition.md",
                 "docs/Sysdig/ServiceDefiniton.md",
-                "docs/Artifactory/ServiceDefinition.md"
+                "docs/Artifactory/ServiceDefinition.md",
+                "docs/AQUA/AQUAServiceDefinition.md"
                ]
               }
            },
