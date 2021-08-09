@@ -1,0 +1,34 @@
+{
+  "name": "Cloud Pathfinder",
+  "description": "The Cloud Pathfinder \"Public Cloud Accelerator Service\" is an OCIO initiative to explore cloud services to inform strategy, policy, and related activities within BC Gov.",
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "http://github.com/bcgov/cloud-pathfinder",
+          "owner": "bcgov",
+          "repo": "cloud-pathfinder",
+          "files": [
+            "devhub-content/cloud-pathfinder-services/aws-services.md"
+          ]
+        },
+        "resourceType": "Documentation",
+        "labels": [
+          "aws",
+          "cloud"
+        ]
+      }
+    ]
+  },
+  "attributes": {
+    "labels": [
+      "cloud"
+    ],
+    "personas": [
+      "Developer",
+      "Product Owner"
+    ]
+  },
+  "resourceType": "Documentation"
+}
