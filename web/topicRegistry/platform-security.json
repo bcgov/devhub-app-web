@@ -7,21 +7,6 @@
     },
     "sourceProperties": {
       "sources": [
-        {
-            "sourceType": "github",
-            "sourceProperties": {
-              "url": "https://github.com/BCDevOps/platform-services",
-              "owner": "BCDevOps",
-              "repo": "platform-services",
-              "files": [
-                "security/README.md",
-                "security/aporeto/docs/README.md",
-                "security/aporeto/docs/DeveloperWorkshop.md",
-                "security/aporeto/docs/QuickStart.md",
-                "security/aporeto/docs/CustomPolicy.md"
-              ]
-            }
-          },
           {
             "sourceType": "web",
             "sourceProperties": {
@@ -37,11 +22,23 @@
               "owner": "BCDevOps",
               "repo": "openshift-wiki",
               "files": [
-                "docs/OCP/VaultServiceDescription.md",
+                "docs/Vault/VaultServiceDefinition.md",
                 "docs/Sysdig/ServiceDefiniton.md",
-                "docs/Artifactory/ServiceDefinition.md"
-              ]
-            }
+                "docs/Artifactory/ServiceDefinition.md",
+                "docs/AQUA/AQUAServiceDefinition.md"
+               ]
+              }
+           },
+           {
+            "sourceType": "github",
+            "sourceProperties": {
+              "url": "https://github.com/BCDevOps/developer-experience/docs/",
+              "owner": "BCDevOps",
+              "repo": "developer-experience",
+              "files": [
+                "docs/SonarQubeBestPractices.md"          
+               ]
+             }
           }
       ]
     }

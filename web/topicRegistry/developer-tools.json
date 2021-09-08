@@ -49,7 +49,8 @@
           "owner": "BCDevOps",
           "repo": "platform-services",
           "files": [
-            "monitoring/sysdig/docs/sysdigteam_user_guide.md"
+            "monitoring/sysdig/docs/sysdigteam_user_guide.md",
+            "monitoring/uptime-robot/readme.md"
           ]
         }
       }, 
@@ -79,15 +80,6 @@
           "title": "BC Gov on GitHub",
           "description": "BC Government's home on GitHub. Open source code developed by and for the BC Government resides here.",
           "image": "https://github.githubassets.com/images/modules/logos_page/Octocat.png"
-        }
-      },
-      {
-        "sourceType": "web",
-        "sourceProperties": {
-          "url": "https://oidc.gov.bc.ca/",
-          "author": "cvarjao",
-          "title": "Red Hat Single Sign On (aka KeyCloak)",
-          "description": "Red Hat Single Sign On is a modern, developer-friendly single sign on solution implementing the OpenID Connect specification as well as SAML.  The BC Gov implementation provides built-in intregration with IDIR, BCeID and GitHub and allow application developers to quickly meet the authentication needs of their applications. Red Hat SSO is the downstream, commercially supported distribution of the open source KeyCloak product."
         }
       },
       {
@@ -126,7 +118,8 @@
             "docs/resiliency-checklist.md",
             "docs/post-outage-checklist.md", 
             "docs/resource-tuning-recommendations.md",
-            "docs/resourceTuning/request-for-quota-increase.md"
+            "docs/resourceTuning/request-for-quota-increase.md",
+            "docs/resourceTuning/project-resource-quotas.md"
           ]
         }
       },
@@ -154,6 +147,14 @@
           "files": [
             "apps/pgsql/patroni/README.md"
           ]
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/nr-get-token/wiki/Patroni-Troubleshooting",
+          "title": "Patroni Troubleshooting",
+          "description": "Patroni Troubleshooting tips and tricks"
         }
       }
     ]

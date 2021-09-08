@@ -11,6 +11,10 @@ The Devhub has a ton of components that are stiched together that need to be dep
 ### Pre Requisites
 - Obtain a Openshift Project Set (dev, test, tools, prod)
 - Apply for a realm in the 3 SSO instances (dev, test, prod)
+- Setup Network Policies for each namespace
+  ```
+    oc process -f openshift/templates/supporting-infrastructure/networkpolicy.yaml -p APP_NAME=platform-services -p NAMESPACE=<namespace> -p ENVIRONMENT=dev | oc apply -f - -n <namespace>-dev
+  ```
 - Create a Service Account in the Dev SSO instance to perform the automated client creation in the CI/CD workflow. Ensure you have enough priviledges to `manage clients` with this service account!
   - when you have the service account user those credentials to create a secret in the `tools` namespace. `oc process -f openshift/supporting-infrastructure/keycloak.secret.yaml -p KEYCLOAK_CLIENT_ID=... -p KEYCLOAK_CLIENT_SECRET=... | oc apply -f -` This is for long term storage.
 - Setup an [Algolia Production Account](https://algolia.com) (this costs moolah) and collect your application id, search key and admin api key. 
@@ -23,12 +27,7 @@ The Devhub has a ton of components that are stiched together that need to be dep
   ```
 - Create the CI/CD service account that the Github Actions will utilize
 ```
-   oc process -f openshift/templates/supporting-infrastructure/cicd.yaml \
-    -p TOOLS_NAMESPACE= \
-    -p PROD_NAMESPACE= \
-    -p TEST_NAMESPACE= \ 
-    -p DEV_NAMESPACE= |
-   oc apply -f -
+   oc process -f openshift/templates/supporting-infrastructure/cicd.yaml -p TOOLS_NAMESPACE=<namespace> -p PROD_NAMESPACE=<namespace> -p TEST_NAMESPACE=<namespace> -p DEV_NAMESPACE=<namespace> | oc apply -f -
 ```
   - Obtain the SA Name and Credentials
 
