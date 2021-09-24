@@ -1,5 +1,6 @@
 {
   "name": "Authentication and Authorization",
+  "version": "1.0.0",
   "description": "Technical resources related to implementing authentication and authorization in government applications.",
   "resourceType": "Documentation",
   "attributes": {
