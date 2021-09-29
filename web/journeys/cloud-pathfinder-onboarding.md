@@ -23,4 +23,4 @@ tags:
 
 Onboarding your team onto one of the platforms offered by the Cloud Pathfinder team is a 6 step, collaborative process:
 
-![CPF Onboarding](https://i.imgur.com/cZOA4Vv.png)
+![CPF Onboarding](https://i.imgur.com/cZOA4Vv.png 'The six steps in the onboarding journey: Awareness, Discovery, Evaluation, Intent, Onboarding and Performing.')
