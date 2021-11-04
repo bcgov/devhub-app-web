@@ -19,7 +19,8 @@
           "repo": "openshift-wiki",
           "files": [
             "docs/RH-SSO/RequestSSOClient.md",
-            "docs/RH-SSO/ServiceDefinition.md"
+            "docs/RH-SSO/ServiceDefinition.md",
+            "docs/RH-SSO/ServiceOverview.md"
           ]
         }
       },
@@ -32,17 +33,8 @@
           "description": "you can find guides and information of config for keycloak here",
           "image": "https://design.jboss.org/keycloak/logo/images/keycloak_logo_200px.png"
         }
-      },
-      {
-        "sourceType": "web",
-        "sourceProperties": {
-          "url": "https://github.com/bcgov/ocp-sso",
-          "title": "Keycloak Single Sign On",
-          "description": "This is the repository for installing a keycloak instance which has been configured to work with Pathfinder Projects inside of Openshift",
-          "image": ""
-        },
-        "resourceType": "Repositories"
       }
+
     ]
   }
 }
