@@ -54,6 +54,43 @@
           ]
         }
       }, 
+       {
+        "sourceType": "github",
+        "sourceProperties": {
+          "title": "ArgoCD",
+          "url": "https://github.com/BCDevOps/openshift-wiki",
+          "author": "IanKWatts",
+          "owner": "bcdevops",
+          "repo": "openshift-wiki",
+          "files": [
+            "docs/ArgoCD/argocd_info.md"
+          ]
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/BCDevOps/openshift-wiki",
+          "owner": "BCDevOps",
+          "repo": "openshift-wiki",
+          "files": [
+            "docs/HowTo/PipelineAutomation.md"
+          ]
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "title": "Patroni",
+          "url": "https://github.com/BCDevOps/platform-services",
+          "author": "cvarjao",
+          "owner": "bcdevops",
+          "repo": "platform-services",
+          "files": [
+            "apps/pgsql/patroni/README.md"
+          ]
+        }
+      },
       {
         "sourceType": "github",
         "sourceProperties": {
