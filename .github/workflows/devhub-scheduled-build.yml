@@ -3,6 +3,7 @@ on:
   cron: 0 6,12,3,5 * * *
 env:
   ENVIRONMENT: prod
+  SUFFIX: prod
   INFRA_NAME: devhub-app-web
   ALGOLIA_INDEX_NAME: "Devhub-Algolia-prod"
 jobs:
@@ -24,8 +25,6 @@ jobs:
           parameters: '{"apitoken": "${{ secrets.OPENSHIFT_SA_PASSWORD }}"}'
           cmd: |
             'version'
-      - name: Cancel previous builds (if any)
-        run: 'oc cancel-build -n ${{ secrets.TOOLS_NAMESPACE }} bc/${{ env.INFRA_NAME }}${{ env.SUFFIX }} || echo no build found for ${{ fromJSON(github.event.deployment.payload).pr }}'
       - name: Check if should run build (based on a commit id comparison)
         env:
           TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
