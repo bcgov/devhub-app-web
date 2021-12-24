@@ -22,7 +22,8 @@
               "owner": "BCDevOps",
               "repo": "openshift-wiki",
               "files": [
-                "docs/HowTo/SecurityConsiderationsForDevOps.md"
+                "docs/HowTo/SecurityConsiderationsForDevOps.md",
+                "docs/HowTo/IDIR_OpenShift_Login.md"
                ]
               }
            },
