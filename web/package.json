@@ -82,7 +82,7 @@
     "moment": "^2.29.1",
     "number-to-words": "^1.2.4",
     "postcss-flexbugs-fixes": "^4.2.1",
-    "prismjs": "^1.23.0",
+    "prismjs": "^1.25.0",
     "prop-types": "^15.6.0",
     "query-string": "^6.13.8",
     "react": "^16.14.0",
