@@ -1,7 +1,7 @@
 name: Scheduled Build/Deploy
 on: 
   schedule:
-    - cron: '0 6,12,15,17 * * *'
+    - cron: '0 0 1,15 * *'
 env:
   ENVIRONMENT: prod
   SUFFIX: prod
