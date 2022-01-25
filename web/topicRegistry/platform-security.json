@@ -22,22 +22,12 @@
               "owner": "BCDevOps",
               "repo": "openshift-wiki",
               "files": [
-                "docs/HowTo/SecurityConsiderationsForDevOps.md",
-                "docs/HowTo/IDIR_OpenShift_Login.md"
-               ]
-              }
-           },
-          {
-            "sourceType": "github",
-            "sourceProperties": {
-              "url": "https://github.com/BCDevOps/openshift-wiki",
-              "owner": "BCDevOps",
-              "repo": "openshift-wiki",
-              "files": [
                 "docs/Vault/VaultServiceDefinition.md",
                 "docs/Sysdig/ServiceDefiniton.md",
                 "docs/Artifactory/ServiceDefinition.md",
-                "docs/AQUA/AQUAServiceDefinition.md"
+                "docs/AQUA/AQUAServiceDefinition.md",
+                 "docs/HowTo/SecurityConsiderationsForDevOps.md",
+                "docs/HowTo/IDIR_OpenShift_Login.md"
                ]
               }
            },
