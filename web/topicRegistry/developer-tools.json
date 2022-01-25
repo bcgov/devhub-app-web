@@ -38,7 +38,8 @@
           "repo": "openshift-wiki",
           "files": [
             "docs/API/KongAPI.md",
-            "docs/EDB/ServiceDefinition.md"
+            "docs/EDB/ServiceDefinition.md",
+            "docs/ArgoCD/argocd_info.md"
           ]
         }
       },
@@ -54,19 +55,6 @@
           ]
         }
       }, 
-       {
-        "sourceType": "github",
-        "sourceProperties": {
-          "title": "ArgoCD",
-          "url": "https://github.com/BCDevOps/openshift-wiki",
-          "author": "IanKWatts",
-          "owner": "bcdevops",
-          "repo": "openshift-wiki",
-          "files": [
-            "docs/ArgoCD/argocd_info.md"
-          ]
-        }
-      },
       {
         "sourceType": "github",
         "sourceProperties": {
