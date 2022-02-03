@@ -64,7 +64,7 @@ jobs:
       
       - name: Run Deployment to Dev
         env:
-          DEPLOY_NAMESPACE: ${{ secrets.PROD_NAMESPACE }}
+          DEPLOY_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
           SEARCHGATE_API_URL: ${{ secrets.SEARCHGATE_API_URL }}
           DEVHUB_API_URL: ${{ secrets.DEVHUB_API_URL }}
           SSO_BASE_URL: https://dev.oidc.gov.bc.ca

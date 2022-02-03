@@ -69,6 +69,17 @@
       {
         "sourceType": "github",
         "sourceProperties": {
+          "url": "https://github.com/BCDevOps/openshift-wiki",
+          "owner": "BCDevOps",
+          "repo": "openshift-wiki",
+          "files": [
+            "docs/HowTo/ImageStreams.md"
+          ]
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
           "title": "Patroni",
           "url": "https://github.com/BCDevOps/platform-services",
           "author": "cvarjao",
