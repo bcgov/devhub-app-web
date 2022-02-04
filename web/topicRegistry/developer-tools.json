@@ -50,7 +50,7 @@
           "repo": "platform-services",
           "files": [
             "monitoring/sysdig/docs/sysdigteam_user_guide.md",
-            "monitoring/uptime-robot/readme.md"
+            "monitoring/uptime/readme.md"
           ]
         }
       }, 
