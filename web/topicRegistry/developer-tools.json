@@ -63,7 +63,7 @@
           "owner": "bcdevops",
           "repo": "openshift-wiki",
           "files": [
-            "docs/ArgoCD/argocd_info.md"
+            "docs/ArgoCD/README.md"
           ]
         }
       },
