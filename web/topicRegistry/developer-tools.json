@@ -39,7 +39,7 @@
           "files": [
             "docs/API/KongAPI.md",
             "docs/EDB/ServiceDefinition.md",
-            "docs/ArgoCD/argocd_info.md"
+            "docs/ArgoCD/README.md"
           ]
         }
       },
@@ -51,10 +51,10 @@
           "repo": "platform-services",
           "files": [
             "monitoring/sysdig/docs/sysdigteam_user_guide.md",
-            "monitoring/uptime-robot/readme.md"
+            "monitoring/uptime/readme.md"
           ]
         }
-      }, 
+      },
       {
         "sourceType": "github",
         "sourceProperties": {
