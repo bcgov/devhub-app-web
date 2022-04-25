@@ -1,0 +1,25 @@
+name: Scheduled Build Cleanup
+on:
+  schedule:
+    - cron: '0 0 2,16 * *'
+jobs:
+  build:
+    name: Build Gatsby App
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v1
+      
+      - name: Cluster Login
+        uses: redhat-developer/openshift-actions@v1.1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT_SA_PASSWORD }}"}'
+          cmd: |
+            'version'
+      - name: Delete old builds
+        uses: redhat-developer/openshift-actions@v1.1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT_SA_PASSWORD }}"}'
+          cmd: |
+            delete buildconfig -l template=devhub-app-web -n ${{ secrets.TOOLS_NAMESPACE }}

@@ -10,7 +10,7 @@ It will provide an inventory of ongoing open product development products, compo
 
 The resources will be collected into curated various focused kits/topics of resources needed to build particular types of systems, assist teams at a point in their lifecycle, support persona specific-workflows, etc. 
 
-It will also provide a aeans to seed “prosumer”/community behaviours. For example, it will be possible to view source/fork/comment/PR on many of the elements in the DevHub.
+It will also provide a means to seed “prosumer”/community behaviours. For example, it will be possible to view source/fork/comment/PR on many of the elements in the DevHub.
 
 ## Technical Details
 

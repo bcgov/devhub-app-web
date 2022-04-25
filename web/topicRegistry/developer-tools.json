@@ -38,7 +38,8 @@
           "repo": "openshift-wiki",
           "files": [
             "docs/API/KongAPI.md",
-            "docs/EDB/ServiceDefinition.md"
+            "docs/EDB/ServiceDefinition.md",
+            "docs/ArgoCD/README.md"
           ]
         }
       },
@@ -50,20 +51,7 @@
           "repo": "platform-services",
           "files": [
             "monitoring/sysdig/docs/sysdigteam_user_guide.md",
-            "monitoring/uptime-robot/readme.md"
-          ]
-        }
-      }, 
-       {
-        "sourceType": "github",
-        "sourceProperties": {
-          "title": "ArgoCD",
-          "url": "https://github.com/BCDevOps/openshift-wiki",
-          "author": "IanKWatts",
-          "owner": "bcdevops",
-          "repo": "openshift-wiki",
-          "files": [
-            "docs/ArgoCD/argocd_info.md"
+            "monitoring/uptime/readme.md"
           ]
         }
       },
@@ -81,6 +69,17 @@
       {
         "sourceType": "github",
         "sourceProperties": {
+          "url": "https://github.com/BCDevOps/openshift-wiki",
+          "owner": "BCDevOps",
+          "repo": "openshift-wiki",
+          "files": [
+            "docs/HowTo/ImageStreams.md"
+          ]
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
           "title": "Patroni",
           "url": "https://github.com/BCDevOps/platform-services",
           "author": "cvarjao",
@@ -88,6 +87,17 @@
           "repo": "platform-services",
           "files": [
             "apps/pgsql/patroni/README.md"
+          ]
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/BC-Policy-Framework-For-GitHub",
+          "owner": "bcgov",
+          "repo": "BC-Policy-Framework-For-GitHub",
+          "files": [
+            "github/README.md"
           ]
         }
       },

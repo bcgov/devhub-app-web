@@ -25,7 +25,9 @@
                 "docs/Vault/VaultServiceDefinition.md",
                 "docs/Sysdig/ServiceDefiniton.md",
                 "docs/Artifactory/ServiceDefinition.md",
-                "docs/AQUA/AQUAServiceDefinition.md"
+                "docs/AQUA/AQUAServiceDefinition.md",
+                 "docs/HowTo/SecurityConsiderationsForDevOps.md",
+                "docs/HowTo/IDIR_OpenShift_Login.md"
                ]
               }
            },

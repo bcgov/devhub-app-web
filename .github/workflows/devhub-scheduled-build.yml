@@ -1,0 +1,82 @@
+name: Scheduled Build/Deploy
+on: 
+  schedule:
+    - cron: '0 0 1,15 * *'
+env:
+  ENVIRONMENT: prod
+  SUFFIX: prod
+  INFRA_NAME: devhub-app-web
+  ALGOLIA_INDEX_NAME: "Devhub-Algolia-prod"
+jobs:
+  build:
+    name: Build Gatsby App
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v1
+      
+      - name: Cluster Login
+        uses: redhat-developer/openshift-actions@v1.1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT_SA_PASSWORD }}"}'
+          cmd: |
+            'version'
+      - name: Check if should run build (based on a commit id comparison)
+        env:
+          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
+        # reference https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-environment-variable
+        run: |
+          _commit=$(.github/helpers/get_last_build_commit_id.sh)
+          echo "BUILD_COMMIT_ID=$_commit" >> $GITHUB_ENV
+      - name: Create Build
+        env:
+          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
+
+        run: |
+          oc process -f openshift/templates/web/bc.yaml -n $TOOLS_NAMESPACE \
+          -p SUFFIX=$SUFFIX \
+          -p GATSBY_ALGOLIA_INDEX_NAME=${{ env.ALGOLIA_INDEX_NAME }} \
+          -p SOURCE_REPOSITORY_URL="https://github.com/$GITHUB_REPOSITORY" \
+          -p SOURCE_REPOSITORY_REF=master \
+          -p NAME=$INFRA_NAME \
+          -p VERSION="latest" | \
+          oc apply -n $TOOLS_NAMESPACE -f -
+          
+      - name: Start Build (if needed)
+        if: env.BUILD_COMMIT_ID != github.sha
+        env:
+          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
+        run: |
+          echo "Build started"
+          oc start-build -n $TOOLS_NAMESPACE $INFRA_NAME$SUFFIX --wait
+  deploy:
+    needs: [ build ]
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v1
+      - name: Cluster Login
+        uses: redhat-developer/openshift-actions@v1.1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL}}
+          parameters: '{"apitoken": "${{ secrets.OPENSHIFT_SA_PASSWORD }}"}'
+          cmd: |
+            'version'
+      
+      - name: Run Deployment to Dev
+        env:
+          DEPLOY_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
+          SEARCHGATE_API_URL: ${{ secrets.SEARCHGATE_API_URL }}
+          DEVHUB_API_URL: ${{ secrets.DEVHUB_API_URL }}
+          SSO_BASE_URL: https://dev.oidc.gov.bc.ca
+          SSO_CLIENT_ID: "devhub-web-${{ env.PULL_NUMBER }}"
+          SSO_REALM_NAME: ${{ secrets.SSO_REALM }}
+          ALGOLIA_INDEX_NAME: "${{ env.ALGOLIA_INDEX_NAME }}"
+          IMAGE_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
+          IMAGE_TAG: latest
+        run: .github/helpers/deploy_web.sh
+
+      - name: Wait for Deployment
+        env:
+          NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
+        run: |
+          DEPLOY_STATUS=$(.github/helpers/wait_for_deployment.sh dc/$INFRA_NAME$SUFFIX)

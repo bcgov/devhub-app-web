@@ -171,7 +171,7 @@
           "repo": "openshift-wiki",
           "ref": "master",
           "files": [
-            "docs/HowTo/PlatformServicesSprintReviewDemos.md"
+            "docs/HowTo/PlatformServicesDemoCollection.md"
           ]
         }
       }
