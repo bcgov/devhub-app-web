@@ -50,8 +50,21 @@
           "owner": "BCDevOps",
           "repo": "platform-services",
           "files": [
-            "monitoring/sysdig/docs/sysdigteam_user_guide.md",
             "monitoring/uptime/readme.md"
+          ]
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/platform-developer-docs",
+          "owner": "bcgov",
+          "repo": "platform-developer-docs",
+          "files": [
+            "src/docs/app-monitoring/sysdig-monitor-onboarding.md",
+            "src/docs/app-monitoring/sysdig-monitor-setup-team.md",
+            "src/docs/app-monitoring/sysdig-monitor-create-alert-channels.md",
+            "src/docs/app-monitoring/sysdig-monitor-set-up-advanced-functions.md"
           ]
         }
       },
