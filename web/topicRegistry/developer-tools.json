@@ -46,11 +46,11 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/BCDevOps/platform-services",
-          "owner": "BCDevOps",
-          "repo": "platform-services",
+          "url": "https://github.com/bcgov/platform-services-uptime",
+          "owner": "bcgov",
+          "repo": "platform-services-uptime",
           "files": [
-            "monitoring/uptime/readme.md"
+            "README.md"
           ]
         }
       },
