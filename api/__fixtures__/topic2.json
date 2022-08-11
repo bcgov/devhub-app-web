@@ -1,7 +1,7 @@
 {
   "name": "Code Management",
   "template": "overview",
-  "description": "Resources related to source code control, GitHub, and open source in BC Gov.",
+  "description": "Resources related to source 111code control, GitHub, and open source in BC Gov.",
   "resourceType": "Documentation",
   "attributes": {
     "persona": "Developer"
