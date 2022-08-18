@@ -48,16 +48,6 @@
         "sourceType": "web",
         "resourceType": "Events",
         "sourceProperties": {
-          "url": "https://www.meetup.com/DevOps-Commons/",
-          "title": "DevOps Commons MeetUp",
-          "description": "The DevOps Commons MeetUp is the in-person forum focused on growing and evolving the BCGov DevOps community.",
-          "image": "https://secure.meetupstatic.com/photos/event/3/9/f/f/600_471194847.jpeg"
-        }
-      },
-      {
-        "sourceType": "web",
-        "resourceType": "Events",
-        "sourceProperties": {
           "url": "https://www.meetup.com/Cloud-Native-Victoria/",
           "title": "Cloud Native Victoria MeetUp",
           "description": "Cloud Native Victoria is the official Cloud Native Computing Foundation (CNCF) Meetup group dedicated to building a strong, open, diverse developer community around the Cloud Native platform and technologies in Victoria.",
