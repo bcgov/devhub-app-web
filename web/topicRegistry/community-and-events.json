@@ -12,19 +12,6 @@
     "sources": [
       {
         "sourceType": "web",
-        "resourceType": "Events",
-        "sourceProperties": {
-          "url": "https://bcgov.github.io/ExchangeLabOps/Lab-Learning-Programs/README.html",
-          "title": "Exchange Lab Ops Learning Programs",
-          "description": "Find out about the different Lab Training programs and how you may sign up!"
-        },
-        "attributes": {
-          "personas": ["Product Owner", "Facilitators", "Developer"],
-          "tags": ["Openshift 101", "Openshift Training", "CSI Lab Training", "Agile Fundamentals", "Digital Leadership", "Training"]
-        }
-      },
-      {
-        "sourceType": "web",
         "resourceType": "Repositories",
         "sourceProperties": {
           "url": "https://github.com/bcdevops/devops-platform-workshops",
