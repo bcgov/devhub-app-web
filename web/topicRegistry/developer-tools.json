@@ -22,15 +22,6 @@
         }
       },
       {
-        "sourceType": "web",
-        "sourceProperties": {
-          "resourceType": "Self-Service Tools",
-          "title": "OpenShift Developer Console",
-          "description": "This guide is intended for application developers, and provides instructions for setting up and configuring a workstation to develop and deploy applications in an OpenShift Container Platform.",
-          "url": "https://console.pathfinder.gov.bc.ca:8443/console/projects"
-        }
-      },
-      {
         "sourceType": "github",
         "sourceProperties": {
           "url": "https://github.com/BCDevOps/openshift-wiki",
