@@ -27,10 +27,10 @@
         "sourceType": "web",
         "resourceType": "Self-Service Tools",
         "sourceProperties": {
-          "url": "https://www.bcdevexchange.org",
+          "url": "https://bcdevexchange.org",
           "title": "BC Developers Exchange",
           "description": "Finding better ways for government and developers to work together.",
-          "image": "https://www.bcdevexchange.org/modules/core/client/img/logo/new-logo.svg"
+          "image": "https://bcdevexchange.org/img/logo.svg"
         }
       },
       {
