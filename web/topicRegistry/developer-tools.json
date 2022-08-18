@@ -128,13 +128,6 @@
       {
         "sourceType": "web",
         "sourceProperties": {
-          "title": "Mobile Signing",
-          "url": "https://mss.developer.gov.bc.ca"
-        }
-      },
-      {
-        "sourceType": "web",
-        "sourceProperties": {
           "url": "https://github.com/bcgov",
           "author": "kelpisland",
           "title": "BC Gov on GitHub",
