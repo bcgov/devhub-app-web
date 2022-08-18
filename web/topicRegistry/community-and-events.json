@@ -48,15 +48,6 @@
         "sourceType": "web",
         "resourceType": "Events",
         "sourceProperties": {
-          "url": "https://www.meetup.com/bcgov-uxguild/",
-          "title": "BC Gov UX Guild",
-          "description": "We help build better digital products and services for government. The UX Guild is a group of user experience designers and researchers working within and supporting the B.C. government. We share ideas, support each other and push forward to make our collective work better."
-        }
-      },
-      {
-        "sourceType": "web",
-        "resourceType": "Events",
-        "sourceProperties": {
           "url": "https://www.meetup.com/Social-Club-for-Innovative-Public-Servants-SCIPS/",
           "title": "OneTeamGov Victoria, BC",
           "description": "This meetup group hosts the Victoria Chapter of the global #OneTeamGov movement.",
