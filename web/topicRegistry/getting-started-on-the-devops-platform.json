@@ -61,7 +61,7 @@
         "sourceProperties": {
           "title": "OpenShift Interactive Learning Portal",
           "description": "These Interactive Learning Scenarios provide you with a pre-configured OpenShift® instance, accessible from your browser without any downloads or configuration. Use it to experiment, learn OpenShift and see how we can help solve real-world problems.",
-          "url": "http://learn.openshift.com/"
+          "url": "https://developers.redhat.com/learn"
         }
       },
       {
@@ -69,7 +69,7 @@
         "sourceProperties": {
           "title": "OpenShift for Developers eBook",
           "description": "Get a quick hands-on introduction to OpenShift, the open source Platform as a Service (PaaS) offering from Red Hat®. With this practical guide, you’ll learn the steps necessary to build, deploy, and host a complete real-world application on OpenShift without having to slog through long, detailed explanations of the technologies involved.",
-          "url": "https://www.openshift.com/for-developers/"
+          "url": "https://www.redhat.com/en/openshift-developers-free-ebook-red-hat-openshift"
         }
       },
       {
@@ -77,7 +77,7 @@
         "sourceProperties": {
           "title": "Deploying to OpenShift eBook",
           "description": "Get an in-depth tour of OpenShift®, the container-based software deployment and management platform from Red Hat® that provides a secure multitenant environment for the enterprise. This practical guide describes in detail how OpenShift, building on Kubernetes, enables you to automate the way you create, ship, and run applications in a containerized environment.",
-          "url": "https://www.openshift.com/deploying-to-openshift/?extIdCarryOver=true&sc_cid=701f2000001Css5AAC"
+          "url": "https://www.redhat.com/en/deploying-openshift-free-ebook-red-hat-openshift"
         }
       },
       {
@@ -85,7 +85,7 @@
         "sourceProperties": {
           "title": "DevOps with OpenShift eBook",
           "description": "For many organizations, a big part of DevOps’ appeal is software automation using infrastructure-as-code techniques. This book presents developers, architects, and infra-ops engineers with a more practical option. You’ll learn how a container-centric approach from OpenShift® can help your team deliver quality software through a self-service view of IT infrastructure.",
-          "url": "https://www.openshift.com/devops-with-openshift/?extIdCarryOver=true&sc_cid=701f2000001Css5AAC"
+          "url": "https://developers.redhat.com/topics/devops"
         }
       },
       {
