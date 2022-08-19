@@ -12,19 +12,6 @@
     "sources": [
       {
         "sourceType": "web",
-        "resourceType": "Events",
-        "sourceProperties": {
-          "url": "https://bcgov.github.io/ExchangeLabOps/Lab-Learning-Programs/README.html",
-          "title": "Exchange Lab Ops Learning Programs",
-          "description": "Find out about the different Lab Training programs and how you may sign up!"
-        },
-        "attributes": {
-          "personas": ["Product Owner", "Facilitators", "Developer"],
-          "tags": ["Openshift 101", "Openshift Training", "CSI Lab Training", "Agile Fundamentals", "Digital Leadership", "Training"]
-        }
-      },
-      {
-        "sourceType": "web",
         "resourceType": "Repositories",
         "sourceProperties": {
           "url": "https://github.com/bcdevops/devops-platform-workshops",
@@ -40,10 +27,10 @@
         "sourceType": "web",
         "resourceType": "Self-Service Tools",
         "sourceProperties": {
-          "url": "https://www.bcdevexchange.org",
+          "url": "https://bcdevexchange.org",
           "title": "BC Developers Exchange",
           "description": "Finding better ways for government and developers to work together.",
-          "image": "https://www.bcdevexchange.org/modules/core/client/img/logo/new-logo.svg"
+          "image": "https://bcdevexchange.org/img/logo.svg"
         }
       },
       {
@@ -55,35 +42,6 @@
           "title": "DevOps Commons Yammer Group",
           "description": "The DevOps Commons Group in the BC Gov Yammer community is an online community focused on growing and evolving the BCGov DevOps community.",
           "image": "https://upload.wikimedia.org/wikipedia/commons/0/09/Yammer_logo.svg"
-        }
-      },
-      {
-        "sourceType": "web",
-        "resourceType": "Events",
-        "sourceProperties": {
-          "url": "https://www.meetup.com/DevOps-Commons/",
-          "title": "DevOps Commons MeetUp",
-          "description": "The DevOps Commons MeetUp is the in-person forum focused on growing and evolving the BCGov DevOps community.",
-          "image": "https://secure.meetupstatic.com/photos/event/3/9/f/f/600_471194847.jpeg"
-        }
-      },
-      {
-        "sourceType": "web",
-        "resourceType": "Events",
-        "sourceProperties": {
-          "url": "https://www.meetup.com/Cloud-Native-Victoria/",
-          "title": "Cloud Native Victoria MeetUp",
-          "description": "Cloud Native Victoria is the official Cloud Native Computing Foundation (CNCF) Meetup group dedicated to building a strong, open, diverse developer community around the Cloud Native platform and technologies in Victoria.",
-          "image": "https://secure.meetupstatic.com/photos/event/4/f/e/6/highres_453200454.jpeg"
-        }
-      },
-      {
-        "sourceType": "web",
-        "resourceType": "Events",
-        "sourceProperties": {
-          "url": "https://www.meetup.com/bcgov-uxguild/",
-          "title": "BC Gov UX Guild",
-          "description": "We help build better digital products and services for government. The UX Guild is a group of user experience designers and researchers working within and supporting the B.C. government. We share ideas, support each other and push forward to make our collective work better."
         }
       },
       {

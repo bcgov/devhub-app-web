@@ -130,7 +130,12 @@ module.exports = async ({ node, actions, getNode, getNodes, store, cache, create
       value: node.unfurl.description,
     });
 
-    if (node.unfurl.image && /^https/.test(node.unfurl.image) && !/svg$/.test(node.unfurl.image)) {
+    if (
+      node.unfurl.image &&
+      /^https/.test(node.unfurl.image) &&
+      !/svg$/.test(node.unfurl.image) &&
+      !/(githubassets.com)/.test(node.unfurl.image) // Exclude images from GitHub CDN due to its API rate limiting breaking builds
+    ) {
       let fileNode = await createRemoteFileNode({
         url: node.unfurl.image, // string that points to the URL of the image
         parentNodeId: node.id, // id of the parent node of the fileNode you are going to create
