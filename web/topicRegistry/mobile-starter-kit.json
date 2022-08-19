@@ -1,6 +1,6 @@
 {
   "name": "Mobile Starter Kit",
-  "description": "Blarb",
+  "description": "Native mobile application development in the BC government ecosystem",
   "resourceType": "Self-Service Tools",
   "attributes": {
     "personas": ["Developer"]
@@ -10,7 +10,7 @@
       {
         "sourceType": "web",
         "sourceProperties": {
-          "url": "https://mss.developer.gov.bc.ca"
+          "url": "https://github.com/bcgov/mobile-signing-service/wiki/!-Signing-Changes"
         }
       },
       {
