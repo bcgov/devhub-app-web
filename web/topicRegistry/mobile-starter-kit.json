@@ -19,7 +19,10 @@
           "url": "https://github.com/bcgov/mobile-starter-kit",
           "repo": "mobile-starter-kit",
           "owner": "bcgov",
-          "files": ["README.md", "ServiceDefinition.md"]
+          "files": [
+            "README.md", 
+            "ServiceDefinition.md"
+          ]
         }
       }
     ]
