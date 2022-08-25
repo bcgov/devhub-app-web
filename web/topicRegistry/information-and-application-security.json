@@ -12,33 +12,33 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-resources/",
+          "url": "http://github.com/bcgov/devhub-app-web",
           "owner": "bcgov",
-          "repo": "devhub-resources",
+          "repo": "devhub-app-web",
           "files": [
-            "resources/security/app_security_self_assessment.md"
+            "web/src/assets/migrated-pages/Information-and-Application-Security/app_security_self_assessment.md"
           ]
         }
       },
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/BC-Policy-Framework-For-GitHub",
+          "url": "http://github.com/bcgov/devhub-app-web",
           "owner": "bcgov",
-          "repo": "BC-Policy-Framework-For-GitHub",
+          "repo": "devhub-app-web",
           "files": [
-            "README.md"
+            "web/src/assets/migrated-pages/Information-and-Application-Security/BC-Policy-Framework-For-GitHub-readme.md"
           ]
         }
       },
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/BCDevOps/developer-experience/",
-          "owner": "BCDevOps",
-          "repo": "developer-experience",
+          "url": "http://github.com/bcgov/devhub-app-web",
+          "owner": "bcgov",
+          "repo": "devhub-app-web",
           "files": [
-            "docs/PCIDSSPatternforOCP.md"
+            "web/src/assets/migrated-pages/Information-and-Application-Security/PCIDSSPatternforOCP.md"
           ]
         }
       }

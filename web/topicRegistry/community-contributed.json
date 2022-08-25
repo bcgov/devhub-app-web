@@ -14,45 +14,20 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "file": "web/src/assets/blog/integratingAlgolia.md"
-        }
-      },
-      {
-        "sourceType": "github",
-        "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
+          "url": "http://github.com/bcgov/devhub-app-web",
           "owner": "bcgov",
           "repo": "devhub-app-web",
           "files": [
-            "docs/registry.md"
+            "web/src/assets/migrated-pages/Community-Contributed-Content/integratingAlgolia.md",
+            "web/src/assets/migrated-pages/Community-Contributed-Content/registry.md",
+            "web/src/assets/migrated-pages/Community-Contributed-Content/document-generation-showcase-overview.md",
+            "web/src/assets/migrated-pages/Community-Contributed-Content/docker-weasyprint.md",
+            "web/src/assets/migrated-pages/Community-Contributed-Content/go-crond.md",
+            "web/src/assets/migrated-pages/Community-Contributed-Content/nr-messaging-service-showcase-developer-guide.md",
+            "web/src/assets/migrated-pages/Community-Contributed-Content/nr-messaging-service-showcase-overview.md"
           ]
         }
-      },
-      {
-        "sourceType": "github",
-        "sourceProperties": {
-          "url": "https://github.com/bcgov/api-specs",
-          "owner": "bcgov",
-          "repo": "api-specs",
-          "files": [
-            "geocoder/geocoder-developer-guide.md"
-          ]
-        }
-      },
-      {
-        "sourceType": "github",
-        "sourceProperties": {
-          "url": "https://github.com/BCDevOps/docker-weasyprint/",
-          "owner": "BCDevOps",
-          "repo": "docker-weasyprint",
-          "files": [
-            "README.md"
-          ]
-        }
-      },
+      }, 
       {
         "sourceType": "github",
         "sourceProperties": {
@@ -97,35 +72,6 @@
           ]
         }
       },
-      {
-        "sourceType": "github",
-        "sourceProperties": {
-          "url": "https://github.com/BCDevOps/go-crond/",
-          "owner": "BCDevOps",
-          "repo": "go-crond",
-          "files": [
-            "README.md"
-          ]
-        }
-      },
-      {
-        "sourceType":"github",
-        "resourceType":"Repository",
-        "labels":[
-            "email",
-            "sms",
-            "messaging"
-        ],
-        "sourceProperties":{
-            "url":"https://github.com/bcgov/nr-messaging-service-showcase",
-            "repo":"nr-messaging-service-showcase",
-            "owner":"bcgov",
-            "files":[
-                "docs/overview.md",
-                "docs/developer-guide.md"
-            ]
-        }
-    },
     {
         "sourceType":"web",
         "sourceProperties":{
@@ -135,29 +81,7 @@
             "image":"https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png"
         }
     },
-    {
-        "sourceType":"github",
-        "resourceType":"Repository",
-        "labels":[
-            "index",
-            "upload",
-            "store",
-            "update",
-            "retrieve",
-            "attachments",
-            "documents"
-        ],
-        "sourceProperties":{
-            "url":"https://github.com/bcgov/nr-document-management-showcase",
-            "repo":"nr-document-management-showcase",
-            "owner":"bcgov",
-            "files":[
-                "docs/overview.md",
-                "docs/developer-guide.md"
-            ]
-        }
-    },
-    {
+     {
         "sourceType":"web",
         "sourceProperties":{
             "url":"https://apistore.nrs.gov.bc.ca/store/apis/info?version=v1&name=dms-api&provider=admin",
@@ -179,7 +103,6 @@
             "repo":"document-generation-showcase",
             "owner":"bcgov",
             "files":[
-                "docs/overview.md",
                 "docs/developer-guide.md"
             ]
         }

@@ -7,17 +7,20 @@
         "sourceType": "web",
         "sourceProperties": {
           "url": "https://github.com/BCDevOps/openshift-components/",
-          "description":"A trove of apps/components/stuff/things that are usable by anyone running OpenShift - in particular BC Gov teams \"doing\" Agile/DevOps."
+          "description": "A trove of apps/components/stuff/things that are usable by anyone running OpenShift - in particular BC Gov teams \"doing\" Agile/DevOps."
         },
         "resourceType": "Repositories"
       },
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/BCDevOps/openshift-components/",
-          "owner": "BCDevOps",
-          "repo": "openshift-components",
-          "file": "README.md"
+          "url": "http://github.com/bcgov/devhub-app-web",
+          "owner": "bcgov",
+          "repo": "devhub-app-web",
+          "files": [
+            "web/src/assets/migrated-pages/Developer-Toy-Box/openshift-components-readme.md",
+            "web/src/assets/migrated-pages/Developer-Toy-Box/postgis-readme.md"
+          ]
         },
         "resourceType": "Repositories"
       },
@@ -29,7 +32,6 @@
           "repo": "openshift-components",
           "files": [
             "db/oracle-rpm-store/README.md",
-            "db/postgis/README.md",
             "cicd/jenkins-slave-zap/README.md"
           ]
         }

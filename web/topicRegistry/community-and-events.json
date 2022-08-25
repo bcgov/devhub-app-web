@@ -68,11 +68,11 @@
         "sourceType": "github",
         "resourceType": "Events",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-resources/",
+          "url": "http://github.com/bcgov/devhub-app-web",
           "owner": "bcgov",
-          "repo": "devhub-resources",
+          "repo": "devhub-app-web",
           "files": [
-            "resources/community/events.md"
+            "web/src/assets/migrated-pages/Community-and-Events/events.md"
           ]
         }
       },
@@ -80,56 +80,14 @@
         "sourceType": "github",
         "resourceType": "Documentation",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-resources/",
+          "url": "http://github.com/bcgov/devhub-app-web",
           "owner": "bcgov",
-          "repo": "devhub-resources",
+          "repo": "devhub-app-web",
           "files": [
-            "resources/community/chat_conventions.md"
-          ]
-        }
-      },
-      {
-        "sourceType": "github",
-        "resourceType": "Documentation",
-        "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-resources/",
-          "owner": "bcgov",
-          "repo": "devhub-resources",
-          "files": [
-            "resources/community/community-meetup.md"
-          ]
-        }
-      },
-      {
-        "sourceType": "github",
-        "resourceType": "Documentation",
-        "sourceProperties": {
-          "url": "https://github.com/bcgov/rocketchat/",
-          "owner": "bcgov",
-          "repo": "rocketchat",
-          "files": [
-            "reggie/UserInstructions.md"
-          ]
-        }
-      },
-      {
-        "sourceType": "web",
-        "sourceProperties": {
-          "url": "https://github.com/bcgov/reggie/",
-          "title": "Reggie - Rocket Chat Invitation App",
-          "image": ""
-        },
-        "resourceType": "Repositories"
-      },
-      {
-        "sourceType": "github",
-        "sourceProperties": {
-          "url": "https://github.com/bcdevops/openshift-wiki",
-          "owner": "BCDevOps",
-          "repo": "openshift-wiki",
-          "ref": "master",
-          "files": [
-            "docs/HowTo/PlatformServicesDemoCollection.md"
+            "web/src/assets/migrated-pages/Community-and-Events/community-meetup.md",
+            "web/src/assets/migrated-pages/Community-and-Events/chat_conventions.md",
+            "web/src/assets/migrated-pages/Community-and-Events/UserInstructions.md",
+            "web/src/assets/migrated-pages/Community-and-Events/PlatformServicesDemoCollection.md"
           ]
         }
       }

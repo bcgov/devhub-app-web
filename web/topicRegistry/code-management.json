@@ -21,13 +21,18 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/BC-Policy-Framework-For-GitHub",
+          "url": "http://github.com/bcgov/devhub-app-web",
           "owner": "bcgov",
-          "repo": "BC-Policy-Framework-For-GitHub",
+          "repo": "devhub-app-web",
           "files": [
-            "github/README.md",
-            "BC-Open-Source-Development-Employee-Guide/appropriate-use.md",
-            "github/flow.md"
+            "web/src/assets/migrated-pages/Code-Management/Collaborating-Contributing.md",
+            "web/src/assets/migrated-pages/Code-Management/appropriate-use.md",
+            "web/src/assets/migrated-pages/Code-Management/flow.md",
+            "web/src/assets/migrated-pages/Code-Management/Licenses.md",
+            "web/src/assets/migrated-pages/Code-Management/SAMPLE-CODE_OF_CONDUCT.md",
+            "web/src/assets/migrated-pages/Code-Management/SAMPLE-CONTRIBUTING.md",
+            "web/src/assets/migrated-pages/Code-Management/SAMPLE-README.md",
+            "web/src/assets/migrated-pages/Code-Management/Introduction-To-Github-in-BC-Gov.md"
           ]
         }
       },
@@ -35,21 +40,6 @@
         "sourceType": "web",
         "sourceProperties": {
           "url": "https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow"
-        }
-      },
-      {
-        "sourceType": "github",
-        "sourceProperties": {
-          "url": "https://github.com/bcgov/BC-Policy-Framework-For-GitHub",
-          "owner": "bcgov",
-          "repo": "BC-Policy-Framework-For-GitHub",
-          "files": [
-            "BC-Open-Source-Development-Employee-Guide/Licenses.md",
-            "BC-Open-Source-Development-Employee-Guide/Collaborating-Contributing.md",
-            "BC-Gov-Org-HowTo/SAMPLE-CODE_OF_CONDUCT.md",
-            "BC-Gov-Org-HowTo/SAMPLE-CONTRIBUTING.md",
-            "BC-Gov-Org-HowTo/SAMPLE-README.md"
-          ]
         }
       }
     ]

@@ -6,11 +6,11 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "http://github.com/bcgov/cloud-pathfinder",
+          "url": "http://github.com/bcgov/devhub-app-web",
           "owner": "bcgov",
-          "repo": "cloud-pathfinder",
+          "repo": "devhub-app-web",
           "files": [
-            "devhub-content/cloud-pathfinder-services/aws-services.md"
+            "web/src/assets/migrated-pages/Cloud-Pathfinder/aws-services.md"
           ]
         },
         "resourceType": "Documentation",
@@ -32,3 +32,4 @@
   },
   "resourceType": "Documentation"
 }
+

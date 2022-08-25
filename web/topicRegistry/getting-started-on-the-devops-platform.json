@@ -1,7 +1,6 @@
 {
   "name": "Getting Started on the DevOps Platform",
   "description": "Resources to help product team become productive as quickly and effectively as possible when using the BC Gov DevOps OpenShift platform.",
-  "resourceType": "Documentation",
   "attributes": {
     "personas": [
       "Developer"
@@ -12,16 +11,16 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-resources/",
+          "url": "http://github.com/bcgov/devhub-app-web",
           "owner": "bcgov",
-          "repo": "devhub-resources",
+          "repo": "devhub-app-web",
           "files": [
-            "resources/alignment/opensource.md",
-            "resources/alignment/architecture_and_tech_stacks.md",
-            "resources/alignment/communication_community_and_support.md",
-            "resources/tools/documize.md",
-            "resources/community/12-factor-apps.md",
-            "resources/community/progressive-web-apps.md"
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/12-factor-apps.md",
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/architecture_and_tech_stacks.md",
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/communication_community_and_support.md",
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/documize.md",
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/opensource.md",
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/progressive-web-apps.md"
           ]
         }
       },
@@ -91,21 +90,21 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/bcDevOps/openshift-wiki",
-          "owner": "bcDevOps",
-          "repo": "openshift-wiki",
+          "url": "http://github.com/bcgov/devhub-app-web",
+          "owner": "bcgov",
+          "repo": "devhub-app-web",
           "files": [
-            "docs/OCP/OCPServiceDefinition.md",
-            "docs/OCP/StartingANewProject.md",
-            "docs/OCP/RequestUserAccess.md",
-            "docs/OCP/RequestGitHubUserAccess.md",
-            "docs/HowTo/GrantUsersAccessToProject.md",
-            "docs/OCP/Networking.md",
-            "docs/OCP/OCPStorageServices.md",
-            "docs/OCP/OCP4-Storage-backup.md",
-            "docs/OCP/OCP4ServiceOverview.md",
-            "docs/HowTo/UsefulProTips.md",
-            "docs/HowTo/RequestGitHubEnterpriseUserLicense.md"
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/GrantUsersAccessToProject.md",
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/Networking.md",
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/OCP4-Storage-backup.md",
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/OCP4ServiceOverview.md",
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/OCPStorageServices.md",
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/OCPServiceDefinition.md",
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/RequestGitHubEnterpriseUserLicense.md",
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/RequestGitHubUserAccess.md",
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/RequestUserAccess.md",
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/StartingANewProject.md",
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/UsefulProTips.md"
           ]
         }
       },
@@ -120,37 +119,55 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/bcDevOps/developer-experience",
-          "owner": "bcDevOps",
-          "repo": "developer-experience",
-          "files": [
-            "docs/HumanHelp.md",
-            "docs/OnboardingOutcomes.md",
-            "docs/UserAccessToOrg.md"
-          ]
-        }
-      },
-      {
-        "sourceType": "github",
-        "sourceProperties": {
-          "url": "https://github.com/bcgov/networkpolicy-migration-workshop",
+          "url": "http://github.com/bcgov/devhub-app-web",
           "owner": "bcgov",
-          "repo": "networkpolicy-migration-workshop",
-          "ref": "main",
+          "repo": "devhub-app-web",
           "files": [
-            "README.md"
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/HumanHelp.md"
           ]
         }
       },
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/BCDevOps/openshift-wiki",
-          "owner": "BCDevOps",
-          "repo": "openshift-wiki",
-          "ref": "master",
+          "url": "http://github.com/bcgov/devhub-app-web",
+          "owner": "bcgov",
+          "repo": "devhub-app-web",
           "files": [
-            "docs/LoadTest/LoadTestingGuidelines.md"
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/UserAccessToOrg.md"
+          ]
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "http://github.com/bcgov/devhub-app-web",
+          "owner": "bcgov",
+          "repo": "devhub-app-web",
+          "files": [
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/OnboardingOutcomes.md"
+          ]
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "http://github.com/bcgov/devhub-app-web",
+          "owner": "bcgov",
+          "repo": "devhub-app-web",
+          "files": [
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/networkpolicy-migration-workshop-readme.md"
+          ]
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "http://github.com/bcgov/devhub-app-web",
+          "owner": "bcgov",
+          "repo": "devhub-app-web",
+          "files": [
+            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/LoadTestingGuidelines.md"
           ]
         }
       }
