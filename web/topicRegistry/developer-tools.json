@@ -190,18 +190,6 @@
         }
       },
       {
-        "sourceType": "github",
-        "sourceProperties": {
-          "title": "Patroni",
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Developer-Tools/patroni-readme.md"
-          ]
-        }
-      },
-      {
         "sourceType": "web",
         "sourceProperties": {
           "url": "https://github.com/bcgov/nr-get-token/wiki/Patroni-Troubleshooting",
