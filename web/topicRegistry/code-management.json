@@ -21,7 +21,7 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "http://github.com/bcgov/devhub-app-web",
+          "url": "https://github.com/bcgov/devhub-app-web",
           "owner": "bcgov",
           "repo": "devhub-app-web",
           "files": [
