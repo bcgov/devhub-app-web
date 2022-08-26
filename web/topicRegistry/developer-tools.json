@@ -1,6 +1,8 @@
 {
   "name": "Developer Tools",
+  "version": "1.0.0",
   "description": "Tools to assist software developers in building, deploying, and running applications for BC Gov.",
+  "resourceType": "Self-Service Tools",
   "attributes": {
     "personas": [
       "Developer"

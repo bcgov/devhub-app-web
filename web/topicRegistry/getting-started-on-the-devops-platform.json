@@ -1,6 +1,7 @@
 {
   "name": "Getting Started on the DevOps Platform",
   "description": "Resources to help product team become productive as quickly and effectively as possible when using the BC Gov DevOps OpenShift platform.",
+  "resourceType": "Documentation",
   "attributes": {
     "personas": [
       "Developer"
