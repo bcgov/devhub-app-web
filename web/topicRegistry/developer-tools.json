@@ -85,6 +85,7 @@
         "sourceType": "github",
         "sourceProperties": {
           "title": "Patroni",
+          "url": "https://github.com/bcgov/devhub-app-web",
           "owner": "bcgov",
           "repo": "devhub-app-web",
           "files": [
@@ -192,6 +193,7 @@
         "sourceType": "github",
         "sourceProperties": {
           "title": "Patroni",
+          "url": "https://github.com/bcgov/devhub-app-web",
           "owner": "bcgov",
           "repo": "devhub-app-web",
           "files": [
