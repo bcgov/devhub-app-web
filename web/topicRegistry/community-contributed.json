@@ -34,11 +34,11 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/api-specs",
+          "url": "https://github.com/bcgov/ols-geocoder/tree/gh-pages",
           "owner": "bcgov",
-          "repo": "api-specs",
+          "repo": "ols-geocoder",
           "files": [
-            "geocoder/geocoder-developer-guide.md"
+            "geocoder-developer-guide.md"
           ]
         }
       },
