@@ -1,10 +1,20 @@
 
-# Devhub
+# DevHub
 
 [![Lifecycle:Stable](https://img.shields.io/badge/Lifecycle-Stable-97ca00)](https://github.com/bcgov/repomountie/blob/master/doc/lifecycle-badges.md)
  
- This is the primary repository for the BC Gov DevHub application. This is a mono repo holding multiple services that are coupled together. More details can be found in the [schematic](./schematic.md)
-  
+**Note**❗
+
+The Platform Services team has migrated DevHub content to two new sites:
+
+- Look for technical, developer-focused documentation on the [BC Gov Private Cloud Platform's Technical Documentation website](https://beta-docs.developer.gov.bc.ca/)
+- Look for non-technical, business user-focused documentation on the [BC Gov Private Cloud Platform website](https://cloud.gov.bc.ca/private-cloud)
+
+Can't find what you're looking for? Please email <a href="mailto:PlatformServicesTeam@gov.bc.ca">PlatformServicesTeam@gov.bc.ca</a>.
+
+---
+
+This is the primary repository for the BC Gov DevHub application. This is a mono repo holding multiple services that are coupled together. More details can be found in the [schematic](./schematic.md)
 
 ## Deploying Devhub
 
