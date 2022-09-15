@@ -13,11 +13,11 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/cloud-pathfinder",
+          "url": "https://github.com/bcgov/devhub-app-web",
           "owner": "bcgov",
-          "repo": "cloud-pathfinder",
+          "repo": "devhub-app-web",
           "files": [
-            "devhub-content/README.md"
+            "web/src/assets/migrated-pages/Developer-Tools/cloud-pathfinder-readme.md"
           ]
         }
       },
@@ -48,36 +48,36 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/platform-developer-docs",
+          "url": "https://github.com/bcgov/devhub-app-web",
           "owner": "bcgov",
-          "repo": "platform-developer-docs",
+          "repo": "devhub-app-web",
           "files": [
-            "src/docs/app-monitoring/sysdig-monitor-onboarding.md",
-            "src/docs/app-monitoring/sysdig-monitor-setup-team.md",
-            "src/docs/app-monitoring/sysdig-monitor-create-alert-channels.md",
-            "src/docs/app-monitoring/sysdig-monitor-set-up-advanced-functions.md"
+            "web/src/assets/migrated-pages/Developer-Tools/sysdig-monitor-create-alert-channels.md",
+            "web/src/assets/migrated-pages/Developer-Tools/sysdig-monitor-onboarding.md",
+            "web/src/assets/migrated-pages/Developer-Tools/sysdig-monitor-set-up-advanced-functions.md",
+            "web/src/assets/migrated-pages/Developer-Tools/sysdig-monitor-setup-team.md"
           ]
         }
       },
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/BCDevOps/openshift-wiki",
-          "owner": "BCDevOps",
-          "repo": "openshift-wiki",
+          "url": "https://github.com/bcgov/devhub-app-web",
+          "owner": "bcgov",
+          "repo": "devhub-app-web",
           "files": [
-            "docs/HowTo/PipelineAutomation.md"
+            "web/src/assets/migrated-pages/Developer-Tools/PipelineAutomation.md"
           ]
         }
       },
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/BCDevOps/openshift-wiki",
-          "owner": "BCDevOps",
-          "repo": "openshift-wiki",
+          "url": "https://github.com/bcgov/devhub-app-web",
+          "owner": "bcgov",
+          "repo": "devhub-app-web",
           "files": [
-            "docs/HowTo/ImageStreams.md"
+            "web/src/assets/migrated-pages/Developer-Tools/ImageStreams.md"
           ]
         }
       },
@@ -85,34 +85,33 @@
         "sourceType": "github",
         "sourceProperties": {
           "title": "Patroni",
-          "url": "https://github.com/BCDevOps/platform-services",
-          "author": "cvarjao",
-          "owner": "bcdevops",
-          "repo": "platform-services",
+          "url": "https://github.com/bcgov/devhub-app-web",
+          "owner": "bcgov",
+          "repo": "devhub-app-web",
           "files": [
-            "apps/pgsql/patroni/README.md"
+            "web/src/assets/migrated-pages/Developer-Tools/patroni-readme.md"
           ]
         }
       },
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/BC-Policy-Framework-For-GitHub",
+          "url": "https://github.com/bcgov/devhub-app-web",
           "owner": "bcgov",
-          "repo": "BC-Policy-Framework-For-GitHub",
+          "repo": "devhub-app-web",
           "files": [
-            "github/README.md"
+            "web/src/assets/migrated-pages/Developer-Tools/BC-Policy-Framework-For-GitHub-readme.md"
           ]
         }
       },
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-resources",
+          "url": "https://github.com/bcgov/devhub-app-web",
           "owner": "bcgov",
-          "repo": "devhub-resources",
+          "repo": "devhub-app-web",
           "files": [
-            "resources/tools/sizzy.md"
+            "web/src/assets/migrated-pages/Developer-Tools/sizzy.md"
           ]
         }
       },
@@ -158,12 +157,22 @@
           "owner": "bcdevops",
           "repo": "developer-experience",
           "files": [
-            "apps/artifactory/DEVHUB-README.md",
-            "docs/resiliency-checklist.md",
-            "docs/post-outage-checklist.md", 
-            "docs/resource-tuning-recommendations.md",
-            "docs/resourceTuning/request-for-quota-increase.md",
-            "docs/resourceTuning/project-resource-quotas.md"
+            "apps/artifactory/DEVHUB-README.md"
+          ]
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "title": "Developer Experience",
+          "url": "https://github.com/bcgov/devhub-app-web",
+          "owner": "bcgov",
+          "repo": "devhub-app-web",
+          "files": [
+            "web/src/assets/migrated-pages/Developer-Tools/resiliency-checklist.md",
+            "web/src/assets/migrated-pages/Developer-Tools/post-outage-checklist.md",
+            "web/src/assets/migrated-pages/Developer-Tools/resource-tuning-recommendations.md",
+            "web/src/assets/migrated-pages/Developer-Tools/request-for-quota-increase.md"
           ]
         }
       },
@@ -181,19 +190,6 @@
         }
       },
       {
-        "sourceType": "github",
-        "sourceProperties": {
-          "title": "Patroni",
-          "url": "https://github.com/BCDevOps/platform-services",
-          "author": "cvarjao",
-          "owner": "bcdevops",
-          "repo": "platform-services",
-          "files": [
-            "apps/pgsql/patroni/README.md"
-          ]
-        }
-      },
-      {
         "sourceType": "web",
         "sourceProperties": {
           "url": "https://github.com/bcgov/nr-get-token/wiki/Patroni-Troubleshooting",
@@ -203,4 +199,5 @@
       }
     ]
   }
-}
+ }
+  

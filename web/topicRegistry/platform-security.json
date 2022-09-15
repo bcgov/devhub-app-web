@@ -1,48 +1,49 @@
 {
-    "name": "Platform Services Security",
-    "description": "Modern day resources for securing your applications and services.",
-    "resourceType": "Documentation",
-    "attributes": {
-      "personas": ["Developer"]
-    },
-    "sourceProperties": {
-      "sources": [
-          {
-            "sourceType": "web",
-            "sourceProperties": {
-              "title": "Cloud Native Application Security",
-              "description": "Application Security in a Cloud Native World.",
-              "url": "https://raw.githubusercontent.com/bcgov/devhub-resources/master/resources/security/BCGov-DevSecOps-Project.pdf"
-            }
-          },
-          {
-            "sourceType": "github",
-            "sourceProperties": {
-              "url": "https://github.com/BCDevOps/openshift-wiki",
-              "owner": "BCDevOps",
-              "repo": "openshift-wiki",
-              "files": [
-                "docs/Vault/VaultServiceDefinition.md",
-                "docs/Sysdig/ServiceDefiniton.md",
-                "docs/Artifactory/ServiceDefinition.md",
-                "docs/AQUA/AQUAServiceDefinition.md",
-                 "docs/HowTo/SecurityConsiderationsForDevOps.md",
-                "docs/HowTo/IDIR_OpenShift_Login.md"
-               ]
-              }
-           },
-           {
-            "sourceType": "github",
-            "sourceProperties": {
-              "url": "https://github.com/BCDevOps/developer-experience/docs/",
-              "owner": "BCDevOps",
-              "repo": "developer-experience",
-              "files": [
-                "docs/SonarQubeBestPractices.md"          
-               ]
-             }
-          }
-      ]
-    }
+  "name": "Platform Services Security",
+  "description": "Modern day resources for securing your applications and services.",
+  "resourceType": "Documentation",
+  "attributes": {
+    "personas": [
+      "Developer"
+    ]
+  },
+  "sourceProperties": {
+    "sources": [
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "title": "Cloud Native Application Security",
+          "description": "Application Security in a Cloud Native World.",
+          "url": "https://raw.githubusercontent.com/bcgov/devhub-resources/master/resources/security/BCGov-DevSecOps-Project.pdf"
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/devhub-app-web",
+          "owner": "bcgov",
+          "repo": "devhub-app-web",
+          "files": [
+            "web/src/assets/migrated-pages/Platform-Services-Security/AQUAServiceDefinition.md",
+            "web/src/assets/migrated-pages/Platform-Services-Security/IDIR_OpenShift_Login.md",
+            "web/src/assets/migrated-pages/Platform-Services-Security/SecurityConsiderationsForDevOps.md",
+            "web/src/assets/migrated-pages/Platform-Services-Security/ServiceDefiniton.md",
+            "web/src/assets/migrated-pages/Platform-Services-Security/ServiceDefinition.md",
+            "web/src/assets/migrated-pages/Platform-Services-Security/VaultServiceDefinition.md"
+          ]
+        }
+      },
+      {
+        "sourceType": "github",
+        "sourceProperties": {
+          "url": "https://github.com/bcgov/devhub-app-web",
+          "owner": "bcgov",
+          "repo": "devhub-app-web",
+          "files": [
+            "web/src/assets/migrated-pages/Platform-Services-Security/SonarQubeBestPractices.md"
+          ]
+        }
+      }
+    ]
   }
-  
+}

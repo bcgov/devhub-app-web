@@ -6,15 +6,15 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-resources/",
+          "url": "https://github.com/bcgov/devhub-app-web",
           "owner": "bcgov",
-          "repo": "devhub-resources",
+          "repo": "devhub-app-web",
           "files": [
-            "resources/aro/working-in-multiple-clusters.md",
-            "resources/aro/migrating-rhel-images.md",
-            "resources/aro/migrating-jenkins.md",
-            "resources/aro/exploring-available-images.md",
-            "resources/aro/finding-app-migration-painpoints.md"
+            "web/src/assets/migrated-pages/Cloud-Migration/working-in-multiple-clusters.md",
+            "web/src/assets/migrated-pages/Cloud-Migration/migrating-rhel-images.md",
+            "web/src/assets/migrated-pages/Cloud-Migration/migrating-jenkins.md",
+            "web/src/assets/migrated-pages/Cloud-Migration/exploring-available-images.md",
+            "web/src/assets/migrated-pages/Cloud-Migration/finding-app-migration-painpoints.md"
           ]
         }
       }

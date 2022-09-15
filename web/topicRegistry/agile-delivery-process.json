@@ -7,16 +7,16 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/Agile-Delivery-Process",
+          "url": "https://github.com/bcgov/devhub-app-web",
           "owner": "bcgov",
-          "repo": "Agile-Delivery-Process",
+          "repo": "devhub-app-web",
           "files": [
-            "README.md",
-            "01_Alignment.md",
-            "02_Discovery.md",
-            "03_Alpha.md",
-            "04_Beta.md",
-            "05_Live.md"
+            "web/src/assets/migrated-pages/Agile-Delivery-Process/agile-delivery-process.md",
+            "web/src/assets/migrated-pages/Agile-Delivery-Process/01_Alignment.md",
+            "web/src/assets/migrated-pages/Agile-Delivery-Process/02_Discovery.md",
+            "web/src/assets/migrated-pages/Agile-Delivery-Process/03_Alpha.md",
+            "web/src/assets/migrated-pages/Agile-Delivery-Process/04_Beta.md",
+            "web/src/assets/migrated-pages/Agile-Delivery-Process/05_Live.md"
           ]
         }
       }
