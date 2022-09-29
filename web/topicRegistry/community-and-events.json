@@ -27,16 +27,6 @@
         "sourceType": "web",
         "resourceType": "Self-Service Tools",
         "sourceProperties": {
-          "url": "https://bcdevexchange.org",
-          "title": "BC Developers Exchange",
-          "description": "Finding better ways for government and developers to work together.",
-          "image": "https://bcdevexchange.org/img/logo.svg"
-        }
-      },
-      {
-        "sourceType": "web",
-        "resourceType": "Self-Service Tools",
-        "sourceProperties": {
           "url": "https://www.yammer.com/gov.bc.ca/#/threads/inGroup?type=in_group&feedId=11241672&view=all",
           "author": "kelpisland",
           "title": "DevOps Commons Yammer Group",
