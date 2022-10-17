@@ -20,11 +20,8 @@
           "files": [
             "web/src/assets/migrated-pages/Community-Contributed-Content/integratingAlgolia.md",
             "web/src/assets/migrated-pages/Community-Contributed-Content/registry.md",
-            "web/src/assets/migrated-pages/Community-Contributed-Content/document-generation-showcase-overview.md",
             "web/src/assets/migrated-pages/Community-Contributed-Content/docker-weasyprint.md",
-            "web/src/assets/migrated-pages/Community-Contributed-Content/go-crond.md",
-            "web/src/assets/migrated-pages/Community-Contributed-Content/nr-messaging-service-showcase-developer-guide.md",
-            "web/src/assets/migrated-pages/Community-Contributed-Content/nr-messaging-service-showcase-overview.md"
+            "web/src/assets/migrated-pages/Community-Contributed-Content/go-crond.md"
           ]
         }
       }, 
@@ -88,23 +85,6 @@
             "title":"APIStore Document Management Services",
             "description":"The Document Management REST API and Swagger",
             "image":"https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png"
-        }
-    },
-    {
-        "sourceType":"github",
-        "resourceType":"Repository",
-        "labels":[
-            "document",
-            "pdf",
-            "generation"
-        ],
-        "sourceProperties":{
-            "url":"https://github.com/bcgov/document-generation-showcase",
-            "repo":"document-generation-showcase",
-            "owner":"bcgov",
-            "files":[
-                "docs/developer-guide.md"
-            ]
         }
     },
     {
