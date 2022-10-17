@@ -21,9 +21,7 @@
             "web/src/assets/migrated-pages/Community-Contributed-Content/integratingAlgolia.md",
             "web/src/assets/migrated-pages/Community-Contributed-Content/registry.md",
             "web/src/assets/migrated-pages/Community-Contributed-Content/docker-weasyprint.md",
-            "web/src/assets/migrated-pages/Community-Contributed-Content/go-crond.md",
-            "web/src/assets/migrated-pages/Community-Contributed-Content/nr-messaging-service-showcase-developer-guide.md",
-            "web/src/assets/migrated-pages/Community-Contributed-Content/nr-messaging-service-showcase-overview.md"
+            "web/src/assets/migrated-pages/Community-Contributed-Content/go-crond.md"
           ]
         }
       }, 
