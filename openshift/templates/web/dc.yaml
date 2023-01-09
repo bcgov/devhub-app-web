@@ -50,6 +50,32 @@ objects:
       templates {
         mime  "text/javascript"
       }
+
+      #code management redirects
+      redir /Introduction-To-Github-and-Gov https://docs.developer.gov.bc.ca/bc-government-organizations-in-github/ permanent
+      redir /Code-Management/Introduction-To-Github-and-Gov https://docs.developer.gov.bc.ca/bc-government-organizations-in-github/ permanent
+
+      redir /Github-Practices-in-Gov https://docs.developer.gov.bc.ca/start-working-in-bcgov-github-organization/ permanent
+      redir /Code-Management/Github-Practices-in-Gov https://docs.developer.gov.bc.ca/start-working-in-bcgov-github-organization/ permanent
+
+      redir /Approaches-to-CollaboratingContributing https://docs.developer.gov.bc.ca/start-working-in-bcgov-github-organization/ permanent
+      redir /Code-Management/Approaches-to-CollaboratingContributing https://docs.developer.gov.bc.ca/start-working-in-bcgov-github-organization/ permanent
+      
+      redir /Licensing-Your-Project https://docs.developer.gov.bc.ca/license-your-github-repository/ permanent
+      redir /Code-Management/Licensing-Your-Project https://docs.developer.gov.bc.ca/license-your-github-repository/ permanent
+      
+      redir /Sample-Contributing-File https://docs.developer.gov.bc.ca/required-pages-for-github-repository/#contribution-guidelines permanent
+      redir /Code-Management/Sample-Contributing-File https://docs.developer.gov.bc.ca/required-pages-for-github-repository/#contribution-guidelines permanent
+
+      redir /Sample-Code-of-Conduct https://docs.developer.gov.bc.ca/required-pages-for-github-repository/#code-of-conduct permanent
+      redir /Code-Management/Sample-Code-of-Conduct https://docs.developer.gov.bc.ca/required-pages-for-github-repository/#code-of-conduct permanent
+
+      redir /Sample-Readme-File https://docs.developer.gov.bc.ca/required-pages-for-github-repository/#readme permanent
+      redir /Code-Management/Sample-Readme-File https://docs.developer.gov.bc.ca/required-pages-for-github-repository/#readme permanent
+
+      redir /Git-Workflows-For-Your-Team-or-Project https://docs.developer.gov.bc.ca/start-working-in-bcgov-github-organization/ permanent
+      redir /Code-Management/Git-Workflows-For-Your-Team-or-Project https://docs.developer.gov.bc.ca/start-working-in-bcgov-github-organization/ permanent
+
   kind: ConfigMap
   metadata:
     creationTimestamp: null
