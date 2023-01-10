@@ -28,12 +28,25 @@
             "web/src/assets/migrated-pages/Code-Management/Collaborating-Contributing.md",
             "web/src/assets/migrated-pages/Code-Management/appropriate-use.md",
             "web/src/assets/migrated-pages/Code-Management/flow.md",
-            "web/src/assets/migrated-pages/Code-Management/Licenses.md",
             "web/src/assets/migrated-pages/Code-Management/SAMPLE-CODE_OF_CONDUCT.md",
-            "web/src/assets/migrated-pages/Code-Management/SAMPLE-CONTRIBUTING.md",
             "web/src/assets/migrated-pages/Code-Management/SAMPLE-README.md",
             "web/src/assets/migrated-pages/Code-Management/Introduction-To-Github-in-BC-Gov.md"
           ]
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/license-your-github-repository/",
+          "title": "Licensing Your Project",
+          "description": "Monica's test description"
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/required-pages-for-github-repository/#contribution-guidelines",
+          "title": "Sample Contributing File"
         }
       },
       {

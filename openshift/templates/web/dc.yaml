@@ -50,6 +50,15 @@ objects:
       templates {
         mime  "text/javascript"
       }
+      map {path} {redirect-uri} {
+        /Licensing-Your-Project  https://docs.developer.gov.bc.ca/license-your-github-repository/
+        /Code-Management/Licensing-Your-Project https://docs.developer.gov.bc.ca/license-your-github-repository/
+        /Code-Management/Sample-Contributing-File https://docs.developer.gov.bc.ca/required-pages-for-github-repository/#contribution-guidelines
+        /Sample-Contributing-File https://docs.developer.gov.bc.ca/required-pages-for-github-repository/#contribution-guidelines
+      }
+      @hasRedir expression `{redirect-uri} != ""`
+      redir @hasRedir {redirect-uri} permanent
+
   kind: ConfigMap
   metadata:
     creationTimestamp: null
