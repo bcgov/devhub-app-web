@@ -16,7 +16,7 @@ limitations under the License.
 Created by Patrick Simonian
 */
 const { nodeBelongsToTopic } = require('../utils/validators');
-const { uniqBy } = require('lodash');
+const { uniqWith, isEqual } = require('lodash');
 
 const resolveDevhubTopicConnections = (source, args, context) => {
   // cache devhub topic connectsWith resolutions for speed purposes
@@ -48,7 +48,7 @@ const resolveDevhubTopicConnections = (source, args, context) => {
     // });
 
     // siphon nodes produce multiples of the same type which we need to filter out
-    webNodes = uniqBy(webNodes, 'path');
+    webNodes = uniqWith(webNodes, isEqual);
 
     ghNodes = ghNodes
       .filter(n => nodeBelongsToTopic(source.name, n) && !n.fields.disabled)

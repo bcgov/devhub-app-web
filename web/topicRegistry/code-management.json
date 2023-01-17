@@ -19,27 +19,59 @@
         }
       },
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Code-Management/Collaborating-Contributing.md",
-            "web/src/assets/migrated-pages/Code-Management/appropriate-use.md",
-            "web/src/assets/migrated-pages/Code-Management/flow.md",
-            "web/src/assets/migrated-pages/Code-Management/Licenses.md",
-            "web/src/assets/migrated-pages/Code-Management/SAMPLE-CODE_OF_CONDUCT.md",
-            "web/src/assets/migrated-pages/Code-Management/SAMPLE-CONTRIBUTING.md",
-            "web/src/assets/migrated-pages/Code-Management/SAMPLE-README.md",
-            "web/src/assets/migrated-pages/Code-Management/Introduction-To-Github-in-BC-Gov.md"
-          ]
+          "url": "https://docs.developer.gov.bc.ca/bc-government-organizations-in-github/",
+          "title": "Introduction To Github and Gov",
+          "description": "Describes the different BC Government organizations in GitHub."
         }
       },
       {
         "sourceType": "web",
         "sourceProperties": {
-          "url": "https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow"
+          "url": "https://docs.developer.gov.bc.ca/start-working-in-bcgov-github-organization/",
+          "title": "Approaches to Collaborating/Contributing",
+          "description": "Learn more about operating, and possibly maintaining, a GitHub Repository in Gov."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/start-working-in-bcgov-github-organization/",
+          "title": "Github Practices in Gov",
+          "description": "Learn more about operating, and possibly maintaining, a GitHub Repository in Gov."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/license-your-github-repository/",
+          "title": "Licensing Your Project",
+          "description": "Describes licence guidelines and the different types of licences used for GitHub repositories."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/required-pages-for-github-repository/#code-of-conduct",
+          "title": "Sample Code of Conduct",
+          "description": "Learn about and view an example code of conduct."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/required-pages-for-github-repository/#contribution-guidelines",
+          "title": "Sample Contributing File",
+          "description": "Learn about contributing files and see an example."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/required-pages-for-github-repository/#readme",
+          "title": "Sample Readme File",
+          "description": "Learn about Readme files and see an example."
         }
       }
     ]
