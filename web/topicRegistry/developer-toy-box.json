@@ -12,18 +12,13 @@
         "resourceType": "Repositories"
       },
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Developer-Toy-Box/openshift-components-readme.md",
-            "web/src/assets/migrated-pages/Developer-Toy-Box/postgis-readme.md"
-          ]
-        },
-        "resourceType": "Repositories"
-      },
+          "url": "https://docs.developer.gov.bc.ca/reusable-services-list/",
+          "title": "OpenShift Components",
+          "description": "Provides an index of reusable services for developers and related information."
+         }
+       },
       {
         "sourceType": "github",
         "sourceProperties": {

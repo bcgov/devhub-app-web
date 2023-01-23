@@ -56,6 +56,27 @@ In Development
 * to run test suites: `npm test`
 * to run storybook: `npm run storybook`
 
+### Debugging from VSCode
+
+[Launch.json](https://code.visualstudio.com/Docs/editor/debugging#_launch-configurations) configuration file for VSCode.
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Gatsby develop",
+        "type": "node",
+        "runtimeVersion": "10.24.1", 
+        "request": "launch",
+        "cwd": "${workspaceFolder}/web/",
+        "runtimeExecutable": "npm",
+        "runtimeArgs": ["run-script", "dev"],
+        "console": "integratedTerminal"
+      }
+    ]
+  }
+```
+
 ## Deployment (Docker Compose for Local Development)
 
 * Requires **Docker**  & **Docker Compose** (and for Windows users. some `bash` compatible environment)
@@ -162,6 +183,29 @@ At this point, you can modify contents of the `registry` directory (adding resou
          }
       }
    ```
+
+## Troubleshooting
+
+### Invalid token
+
+```
+Error in "/devhub-app-web/web/node_modulesgatsby-plugin-algolia/gatsby-node.js": Invalid or unexpected token
+
+Error: /devhub-app-web/web/node_modules/gatsby-plugin-algolia/gatsby-node.js: 47
+const client = algoliasearch(appId, apiKey, { timeout: 30_000});
+                                                       ^^
+
+SyntaxError: Invalid or unexpected token
+```
+
+Change the line to (note the underscore removed from the number):
+```
+const client = algoliasearch(appId, apiKey, { timeout: 30000});
+```
+
+### Changes not picked up when running locally
+Try deleting the `devhub-app-web/web/.cache/` directory.
+
 ## Getting Help or Reporting an Issue
 
 To report bugs/issues/feature requests, please file an [issue](https://github.com/bcgov/devhub-app-web/issues/).

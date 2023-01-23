@@ -12,25 +12,27 @@
   "sourceProperties": {
     "sources": [
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Community-Contributed-Content/integratingAlgolia.md",
-            "web/src/assets/migrated-pages/Community-Contributed-Content/registry.md",
-            "web/src/assets/migrated-pages/Community-Contributed-Content/docker-weasyprint.md",
-            "web/src/assets/migrated-pages/Community-Contributed-Content/go-crond.md"
-          ]
+          "url": "https://docs.developer.gov.bc.ca/reusable-services-list/#weasyprint-html-to-pdfpng-microservice",
+          "title": "WeasyPrint HTML to PDF/PNG Microservice",
+          "description": "The docker-weasyprint project bundles WeasyPrint into a simple, OpenShift-compatible, HTML to PDF/PNG microservice with a simple REST interface."
         }
-      }, 
+      },
       {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/reusable-services-list/#go-crond",
+          "title": "Go-Crond",
+          "description": "go-crond is a cron daemon written in Go for use in Docker images."
+        }
+      },
+       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/BCDevOps/backup-container/",
+          "url": "https://github.com/BCDevOps/sonarqube/",
           "owner": "BCDevOps",
-          "repo": "backup-container",
+          "repo": "sonarqube",
           "files": [
             "README.md"
           ]
@@ -39,9 +41,9 @@
       {
         "sourceType": "github",
         "sourceProperties": {
-          "url": "https://github.com/BCDevOps/sonarqube/",
+          "url": "https://github.com/BCDevOps/backup-container/",
           "owner": "BCDevOps",
-          "repo": "sonarqube",
+          "repo": "backup-container",
           "files": [
             "README.md"
           ]
