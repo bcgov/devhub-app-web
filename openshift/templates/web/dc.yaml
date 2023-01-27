@@ -76,6 +76,219 @@ objects:
       redir /Git-Workflows-For-Your-Team-or-Project https://docs.developer.gov.bc.ca/start-working-in-bcgov-github-organization/ permanent
       redir /Code-Management/Git-Workflows-For-Your-Team-or-Project https://docs.developer.gov.bc.ca/start-working-in-bcgov-github-organization/ permanent
 
+      # agile delivery process redirects
+      redir /Agile-Delivery-Process /Agile-Delivery-Journey permanent
+      redir /Agile-Delivery-Process/Agile-Delivery-Process /Agile-Delivery-Journey permanent
+
+      redir /Alignment /Agile-Delivery-Journey/Alignment permanent
+      redir /Agile-Delivery-Process/Alignment /Agile-Delivery-Journey/Alignment permanent
+
+      redir /Discovery /Agile-Delivery-Journey/Discovery permanent
+      redir /Agile-Delivery-Process/Discovery /Agile-Delivery-Journey/Discovery permanent
+
+      redir /Alpha /Agile-Delivery-Journey/Alpha permanent
+      redir /Agile-Delivery-Process/Alpha /Agile-Delivery-Journey/Alpha permanent
+      
+      redir /Beta /Agile-Delivery-Journey/Beta permanent
+      redir /Agile-Delivery-Process/Beta /Agile-Delivery-Journey/Beta permanent
+     
+      redir /Live /Agile-Delivery-Journey/Live permanent
+      redir /Agile-Delivery-Process/Live /Agile-Delivery-Journey/Live permanent
+
+      # cloud migration redirects
+      redir /Working-in-Multiple-Clusters https://docs.developer.gov.bc.ca permanent
+      redir /Cloud-Migration/Working-in-Multiple-Clusters https://docs.developer.gov.bc.ca permanent
+      
+      redir /Migrating-Rhel-Images https://docs.developer.gov.bc.ca permanent
+      redir /Cloud-Migration/Migrating-Rhel-Images https://docs.developer.gov.bc.ca permanent
+      
+      redir /Migrating-Your-BC-Gov-Jenkins-to-the-Cloud https://docs.developer.gov.bc.ca permanent
+      redir /Cloud-Migration/Migrating-Your-BC-Gov-Jenkins-to-the-Cloud https://docs.developer.gov.bc.ca permanent
+      
+      redir /Check-1-:-Exploring-the-images-you-leverage-and-its-availability https://docs.developer.gov.bc.ca permanent
+      redir /Cloud-Migration/Check-1-:-Exploring-the-images-you-leverage-and-its-availability https://docs.developer.gov.bc.ca permanent
+      
+      redir /App-Migration-Painpoints https://docs.developer.gov.bc.ca permanent
+      redir /Cloud-Migration/App-Migration-Painpoints https://docs.developer.gov.bc.ca permanent
+
+      # community and events redirects
+      redir /Platform-Community-Meetup https://cloud.gov.bc.ca/private-cloud/support-and-community/events-in-the-bc-gov-private-cloud-paas/ permanent
+      redir /Community-and-Events/Platform-Community-Meetup https://cloud.gov.bc.ca/private-cloud/support-and-community/events-in-the-bc-gov-private-cloud-paas/ permanent
+     
+      redir /Steps-to-join-Rocket.Chat https://cloud.gov.bc.ca/private-cloud/support-and-community/stay-connected/steps-to-join-the-bc-gov-rocket-chat/ permanent
+      redir /Community-and-Events/Steps-to-join-Rocket.Chat https://cloud.gov.bc.ca/private-cloud/support-and-community/stay-connected/steps-to-join-the-bc-gov-rocket-chat/ permanent
+     
+      redir /Chat-Channel-Conventions https://cloud.gov.bc.ca/private-cloud/support-and-community/stay-connected/rocket-chat-etiquette/ permanent
+      redir /Community-and-Events/Chat-Channel-Conventions https://cloud.gov.bc.ca/private-cloud/support-and-community/stay-connected/rocket-chat-etiquette/ permanent
+      
+      redir /Platform-Services-Sprint-Review-Demo-Collection https://docs.developer.gov.bc.ca/training-from-the-platform-services-team/#video-resources permanent
+      redir /Community-and-Events/Platform-Services-Sprint-Review-Demo-Collection https://docs.developer.gov.bc.ca/training-from-the-platform-services-team/#video-resources permanent
+      
+      redir /BC-Gov-Development-Community-Events https://cloud.gov.bc.ca/private-cloud/support-and-community/events-in-the-bc-gov-private-cloud-paas/ permanent
+      redir /Community-and-Events/BC-Gov-Development-Community-Events https://cloud.gov.bc.ca/private-cloud/support-and-community/events-in-the-bc-gov-private-cloud-paas/ permanent
+
+      # community contributed content redirects
+      redir /Integrating-Algolia-Search-Engine-Into-the-Devhub https://docs.developer.gov.bc.ca/ permanent
+      redir /Community-Contributed-Content/Integrating-Algolia-Search-Engine-Into-the-Devhub https://docs.developer.gov.bc.ca/ permanent
+      
+      redir /Contributing-To-The-Devhub https://docs.developer.gov.bc.ca/ permanent
+      redir /Community-Contributed-Content/Contributing-To-The-Devhub https://docs.developer.gov.bc.ca/ permanent
+      
+      redir /WeasyPrint-HTML-to-PDFPNG-Microservice https://docs.developer.gov.bc.ca/reusable-services-list/#weasyprint-html-to-pdfpng-microservice permanent
+      redir /Community-Contributed-Content/WeasyPrint-HTML-to-PDFPNG-Microservice https://docs.developer.gov.bc.ca/reusable-services-list/#weasyprint-html-to-pdfpng-microservice permanent
+     
+      redir /Go-Crond https://docs.developer.gov.bc.ca/reusable-services-list/#go-crond permanent
+      redir /Community-Contributed-Content/Go-Crond https://docs.developer.gov.bc.ca/reusable-services-list/#go-crond permanent
+
+      # developer tools redirects
+      redir /Cloud-Pathfinder /Cloud-Pathfinder-Onboarding-Journey permanent
+      redir /Developer-Tools/Cloud-Pathfinder /Cloud-Pathfinder-Onboarding-Journey permanent
+     
+      redir /Create-alerts-and-notifications-in-Sysdig-Monitor https://docs.developer.gov.bc.ca/sysdig-monitor-create-alert-channels/ permanent
+      redir /Developer-Tools/Create-alerts-and-notifications-in-Sysdig-Monitor https://docs.developer.gov.bc.ca/sysdig-monitor-create-alert-channels/ permanent
+    
+      redir /Onboarding-to-application-monitoring-with-Sysdig https://docs.developer.gov.bc.ca/sysdig-monitor-onboarding/ permanent
+      redir /Developer-Tools/Onboarding-to-application-monitoring-with-Sysdig https://docs.developer.gov.bc.ca/sysdig-monitor-onboarding/ permanent
+      
+      redir /Set-up-advanced-metrics-in-Sysdig-Monitor https://docs.developer.gov.bc.ca/sysdig-monitor-set-up-advanced-functions/ permanent
+      redir /Developer-Tools/Set-up-advanced-metrics-in-Sysdig-Monitor https://docs.developer.gov.bc.ca/sysdig-monitor-set-up-advanced-functions/ permanent
+      
+      redir /Set-up-a-team-in-Sysdig-Monitor https://docs.developer.gov.bc.ca/sysdig-monitor-setup-team/ permanent
+      redir /Developer-Tools/Set-up-a-team-in-Sysdig-Monitor https://docs.developer.gov.bc.ca/sysdig-monitor-setup-team/ permanent
+     
+      redir /Best-practices-for-managing-image-streams https://docs.developer.gov.bc.ca/best-practices-for-managing-image-streams/ permanent
+      redir /Developer-Tools/Best-practices-for-managing-image-streams https://docs.developer.gov.bc.ca/best-practices-for-managing-image-streams/ permanent
+    
+      redir /CICD-with-Pipeline-Automation https://docs.developer.gov.bc.ca/ci-cd-pipeline-templates/ permanent
+      redir /Developer-Tools/CICD-with-Pipeline-Automation https://docs.developer.gov.bc.ca/ci-cd-pipeline-templates/ permanent
+      
+      redir /Patroni-Cluster-Setup-in-Openshift-4 https://docs.developer.gov.bc.ca/prebuilt-images/#patronipostgres permanent
+      redir /Developer-Tools/Patroni-Cluster-Setup-in-Openshift-4 https://docs.developer.gov.bc.ca/prebuilt-images/#patronipostgres permanent
+      
+      redir /Introduction-To-Github-and-Gov https://docs.developer.gov.bc.ca/bc-government-organizations-in-github/ permanent
+      redir /Developer-Tools/Introduction-To-Github-and-Gov https://docs.developer.gov.bc.ca/bc-government-organizations-in-github/ permanent
+      
+      redir /Resiliency-Guidelines https://docs.developer.gov.bc.ca/app-resiliency-guidelines/ permanent
+      redir /Developer-Tools/Resiliency-Guidelines https://docs.developer.gov.bc.ca/app-resiliency-guidelines/ permanent
+      
+      redir /Post-Outage-Application-Health-Checklist https://docs.developer.gov.bc.ca/check-application-health-after-outage/ permanent
+      redir /Developer-Tools/Post-Outage-Application-Health-Checklist https://docs.developer.gov.bc.ca/check-application-health-after-outage/ permanent
+      
+      redir /Resource-Tuning-Recommendations https://docs.developer.gov.bc.ca/application-resource-tuning/ permanent
+      redir /Developer-Tools/Resource-Tuning-Recommendations https://docs.developer.gov.bc.ca/application-resource-tuning/ permanent
+      
+      redir /Need-more-quota-for-OpenShift-project-set https://docs.developer.gov.bc.ca/request-quota-increase-for-openshift-project-set/ permanent
+      redir /Developer-Tools/Need-more-quota-for-OpenShift-project-set https://docs.developer.gov.bc.ca/request-quota-increase-for-openshift-project-set/ permanent
+      
+      redir /Sizzy-Responsive-Design-Testing https://docs.developer.gov.bc.ca permanent
+      redir /Developer-Tools/Sizzy-Responsive-Design-Testing https://docs.developer.gov.bc.ca permanent
+   
+      # developer toy box redirects
+      redir /OpenShift-Components https://docs.developer.gov.bc.ca/reusable-services-list/ permanent
+      redir /Developer-Toy-Box/OpenShift-Components https://docs.developer.gov.bc.ca/reusable-services-list/ permanent
+    
+      redir /PostGIS https://docs.developer.gov.bc.ca/opensource-database-technologies/ permanent
+      redir /Developer-Toy-Box/PostGIS https://docs.developer.gov.bc.ca/opensource-database-technologies/ permanent
+      
+      # information and application security redirects
+      redir /Application-Security-Self-Assessment https://docs.developer.gov.bc.ca/security-best-practices-for-apps/#application-security-self-assessment permanent
+      redir /Information-and-Application-Security/Application-Security-Self-Assessment https://docs.developer.gov.bc.ca/security-best-practices-for-apps/#application-security-self-assessment permanent
+      
+      redir /BC-Gov-Policy-Framework-For-using-GitHub https://cloud.gov.bc.ca/private-cloud/your-product-team-in-the-private-cloud-paas/work-in-the-open-with-github/ permanent
+      redir /Information-and-Application-Security/BC-Gov-Policy-Framework-For-using-GitHub https://cloud.gov.bc.ca/private-cloud/your-product-team-in-the-private-cloud-paas/work-in-the-open-with-github/ permanent
+      
+      redir /Payment-Card-Processing-for-OpenShift-Applications https://docs.developer.gov.bc.ca/payment-card-processing/ permanent
+      redir /Information-and-Application-Security/Payment-Card-Processing-for-OpenShift-Applications https://docs.developer.gov.bc.ca/payment-card-processing/ permanent
+      
+      # platform security redirects
+      redir /BC-Government-Aqua-Cloud-Service-Definition https://docs.developer.gov.bc.ca/devops-security-considerations/#container-image-scanning permanent
+      redir /Platform-Services-Security/BC-Government-Aqua-Cloud-Service-Definition https://docs.developer.gov.bc.ca/devops-security-considerations/#container-image-scanning permanent
+      
+      redir /IDIR-Login-(via-Azure-AD)-for-OpenShift-Console https://docs.developer.gov.bc.ca/login-to-openshift/ permanent
+      redir /Platform-Services-Security/IDIR-Login-(via-Azure-AD)-for-OpenShift-Console https://docs.developer.gov.bc.ca/login-to-openshift/ permanent
+      
+      redir /BC-Government-OpenShift-DevOps-Security-Considerations https://docs.developer.gov.bc.ca/devops-security-considerations/ permanent
+      redir /Platform-Services-Security/BC-Government-OpenShift-DevOps-Security-Considerations https://docs.developer.gov.bc.ca/devops-security-considerations/ permanent
+      
+      redir /BC-Government-Sysdig-Monitoring-Service-Definition https://docs.developer.gov.bc.ca/sysdig-monitor-onboarding/ permanent
+      redir /Platform-Services-Security/BC-Government-Sysdig-Monitoring-Service-Definition https://docs.developer.gov.bc.ca/sysdig-monitor-onboarding/ permanent
+
+      redir /BC-Government-Artifact-Repository-Service-Definition https://docs.developer.gov.bc.ca/image-artifact-management-with-artifactory/ permanent
+      redir /Platform-Services-Security/BC-Government-Artifact-Repository-Service-Definition https://docs.developer.gov.bc.ca/image-artifact-management-with-artifactory/ permanent
+      
+      redir /BC-Government-Vault-Secrets-Management https://docs.developer.gov.bc.ca/vault-secrets-management-service/ permanent
+      redir /Platform-Services-Security/BC-Government-Vault-Secrets-Management https://docs.developer.gov.bc.ca/vault-secrets-management-service/ permanent
+      
+      redir /SonarQube-Best-Practices https://docs.developer.gov.bc.ca/reusable-services-list/#sonarqube-in-the-bc-gov-private-cloud-paas permanent
+      redir /Platform-Services-Security/SonarQube-Best-Practices https://docs.developer.gov.bc.ca/reusable-services-list/#sonarqube-in-the-bc-gov-private-cloud-paas permanent
+      
+      # getting started on the devops platform redirects
+      redir /12-Factor-Apps https://docs.developer.gov.bc.ca/app-resiliency-guidelines/#what-does-correctly-designed-mean permanent
+      redir /Getting-Started-on-the-DevOps-Platform/12-Factor-Apps https://docs.developer.gov.bc.ca/app-resiliency-guidelines/#what-does-correctly-designed-mean permanent
+      
+      redir /Application-Architecture-and-Technology-Stacks https://docs.developer.gov.bc.ca/app-resiliency-guidelines/ permanent
+      redir /Getting-Started-on-the-DevOps-Platform/Application-Architecture-and-Technology-Stacks https://docs.developer.gov.bc.ca/app-resiliency-guidelines/ permanent
+      
+      redir /Communication-Community-and-Support https://cloud.gov.bc.ca/private-cloud/support-and-community/ permanent
+      redir /Getting-Started-on-the-DevOps-Platform/Communication-Community-and-Support https://cloud.gov.bc.ca/private-cloud/support-and-community/ permanent
+      
+      redir /Documize https://cloud.gov.bc.ca/private-cloud/about-the-private-cloud-paas/our-content-strategy-in-private-cloud-paas/ permanent
+      redir /Getting-Started-on-the-DevOps-Platform/Documize https://cloud.gov.bc.ca/private-cloud/about-the-private-cloud-paas/our-content-strategy-in-private-cloud-paas/ permanent
+      
+      redir /Open-Source-Code https://docs.developer.gov.bc.ca/start-working-in-bcgov-github-organization/ permanent
+      redir /Getting-Started-on-the-DevOps-Platform/Open-Source-Code https://docs.developer.gov.bc.ca/start-working-in-bcgov-github-organization/ permanent
+     
+      redir /Progressive-Web-Apps https://docs.developer.gov.bc.ca permanent
+      redir /Getting-Started-on-the-DevOps-Platform/Progressive-Web-Apps https://docs.developer.gov.bc.ca permanent
+      
+      redir /Granting-a-user-access-to-a-project https://docs.developer.gov.bc.ca/grant-user-access-openshift/ permanent
+      redir /Getting-Started-on-the-DevOps-Platform/Granting-a-user-access-to-a-project https://docs.developer.gov.bc.ca/grant-user-access-openshift/ permanent
+      
+      redir /BC-Gov-OpenShift-networking-overview https://docs.developer.gov.bc.ca/openshift-network-policies/ permanent
+      redir /Getting-Started-on-the-DevOps-Platform/BC-Gov-OpenShift-networking-overview https://docs.developer.gov.bc.ca/openshift-network-policies/ permanent
+      
+      redir /OCP4-Backup-and-Restore https://docs.developer.gov.bc.ca/reusable-services-list/#backup-container permanent
+      redir /Getting-Started-on-the-DevOps-Platform/OCP4-Backup-and-Restore https://docs.developer.gov.bc.ca/reusable-services-list/#backup-container permanent
+
+      redir /Service-Overview-for-BC-Government-Private-Cloud-as-a-ServiceOpenshift-4-Platform https://cloud.gov.bc.ca/private-cloud/our-services-in-private-cloud-paas/overview-of-our-service-in-private-cloud-paas/ permanent
+      redir /Getting-Started-on-the-DevOps-Platform/Service-Overview-for-BC-Government-Private-Cloud-as-a-ServiceOpenshift-4-Platform https://cloud.gov.bc.ca/private-cloud/our-services-in-private-cloud-paas/overview-of-our-service-in-private-cloud-paas/ permanent
+   
+      redir /Persistent-Storage-Services https://docs.developer.gov.bc.ca/platform-storage/ permanent
+      redir /Getting-Started-on-the-DevOps-Platform/Persistent-Storage-Services https://docs.developer.gov.bc.ca/platform-storage/ permanent
+      
+      redir /BC-Gov-PaaS-OpenShift-Platform-Service-Definition https://cloud.gov.bc.ca/private-cloud/your-product-team-in-the-private-cloud-paas/ permanent
+      redir /Getting-Started-on-the-DevOps-Platform/BC-Gov-PaaS-OpenShift-Platform-Service-Definition https://cloud.gov.bc.ca/private-cloud/your-product-team-in-the-private-cloud-paas/ permanent
+      
+      redir /Use-of-GitHub-Enterprise-User-Licenses-in-BC-Gov https://docs.developer.gov.bc.ca/github-enterprise-user-licenses-bc-government/ permanent
+      redir /Getting-Started-on-the-DevOps-Platform/Use-of-GitHub-Enterprise-User-Licenses-in-BC-Gov https://docs.developer.gov.bc.ca/github-enterprise-user-licenses-bc-government/ permanent
+      
+      redir /How-to-request-new-GitHub-user-access-or-repository-creation https://just-ask.developer.gov.bc.ca permanent
+      redir /Getting-Started-on-the-DevOps-Platform/How-to-request-new-GitHub-user-access-or-repository-creation https://just-ask.developer.gov.bc.ca permanent
+      
+      redir /How-to-Request-New-User-Access-to-OpenShift https://docs.developer.gov.bc.ca/grant-user-access-openshift/ permanent
+      redir /Getting-Started-on-the-DevOps-Platform/How-to-Request-New-User-Access-to-OpenShift https://docs.developer.gov.bc.ca/grant-user-access-openshift/ permanent
+      
+      redir /How-to-Request-a-New-OpenShift-Project https://cloud.gov.bc.ca/private-cloud/our-products-in-the-private-cloud-paas/project-registry/ permanent
+      redir /Getting-Started-on-the-DevOps-Platform/How-to-Request-a-New-OpenShift-Project https://cloud.gov.bc.ca/private-cloud/our-products-in-the-private-cloud-paas/project-registry/ permanent
+      
+      redir /Openshift-Useful-Pro-Tips https://docs.developer.gov.bc.ca permanent
+      redir /Getting-Started-on-the-DevOps-Platform/Openshift-Useful-Pro-Tips https://docs.developer.gov.bc.ca permanent
+      
+      redir /Getting-human-support-for-issues-not-covered-by-devops-requests https://cloud.gov.bc.ca/private-cloud/support-and-community/how-to-get-support-or-help/ permanent
+      redir /Getting-Started-on-the-DevOps-Platform/Getting-human-support-for-issues-not-covered-by-devops-requests https://cloud.gov.bc.ca/private-cloud/support-and-community/how-to-get-support-or-help/ permanent
+      
+      redir /User-access-into-Github-or-Openshift https://just-ask.developer.gov.bc.ca permanent
+      redir /Getting-Started-on-the-DevOps-Platform/User-access-into-Github-or-Openshift https://just-ask.developer.gov.bc.ca permanent
+      
+      redir /Welcome-to-our-Platform-Community! https://cloud.gov.bc.ca/private-cloud/our-services-in-private-cloud-paas/get-started-with-the-private-cloud-paas/ permanent
+      redir /Getting-Started-on-the-DevOps-Platform/Welcome-to-our-Platform-Community! https://cloud.gov.bc.ca/private-cloud/our-services-in-private-cloud-paas/get-started-with-the-private-cloud-paas/ permanent
+      
+      redir /TLDR https://docs.developer.gov.bc.ca/openshift-network-policies/ permanent
+      redir /Getting-Started-on-the-DevOps-Platform/TLDR https://docs.developer.gov.bc.ca/openshift-network-policies/ permanent
+      
+      redir /Load-Testing-Guidelines https://docs.developer.gov.bc.ca/prepare-to-load-test-application-on-openshift/ permanent
+      redir /Getting-Started-on-the-DevOps-Platform/Load-Testing-Guidelines https://docs.developer.gov.bc.ca/prepare-to-load-test-application-on-openshift/ permanent
+      
   kind: ConfigMap
   metadata:
     creationTimestamp: null

@@ -11,14 +11,11 @@
   "sourceProperties": {
     "sources": [
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Developer-Tools/cloud-pathfinder-readme.md"
-          ]
+          "url": "https://developer.gov.bc.ca/Cloud-Pathfinder-Onboarding-Journey",
+          "title": "Cloud Pathfinder",
+          "description": "Get started on the Cloud Pathfinder platforms (AWS, Azure, GCP)"
         }
       },
       {
@@ -46,73 +43,67 @@
         }
       },
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Developer-Tools/sysdig-monitor-create-alert-channels.md",
-            "web/src/assets/migrated-pages/Developer-Tools/sysdig-monitor-onboarding.md",
-            "web/src/assets/migrated-pages/Developer-Tools/sysdig-monitor-set-up-advanced-functions.md",
-            "web/src/assets/migrated-pages/Developer-Tools/sysdig-monitor-setup-team.md"
-          ]
+          "url": "https://docs.developer.gov.bc.ca/sysdig-monitor-create-alert-channels/",
+          "title": "Create alerts and notifications in Sysdig Monitor",
+          "description": "Describes how to configure alerts and notifications for a team in Sysdig Monitor."
         }
       },
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Developer-Tools/PipelineAutomation.md"
-          ]
+          "url": "https://docs.developer.gov.bc.ca/sysdig-monitor-onboarding/",
+          "title": "Onboarding to application monitoring with Sysdig",
+          "description": "Describes how to get started with Sysdig and monitor application."
         }
       },
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Developer-Tools/ImageStreams.md"
-          ]
+          "url": "https://docs.developer.gov.bc.ca/sysdig-monitor-set-up-advanced-functions/",
+          "title": "Set up advanced metrics in Sysdig Monitor",
+          "description": "Describes how to set up and configure advanced functions for a team in Sysdig Monitor."
         }
       },
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "title": "Patroni",
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Developer-Tools/patroni-readme.md"
-          ]
+          "url": "https://docs.developer.gov.bc.ca/sysdig-monitor-setup-team/",
+          "title": "Set up a team in Sysdig Monitor",
+          "description": "Describes how to set up and configure a team in Sysdig Monitor."
         }
       },
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Developer-Tools/BC-Policy-Framework-For-GitHub-readme.md"
-          ]
+          "url": "https://docs.developer.gov.bc.ca/ci-cd-pipeline-templates/",
+          "title": "CI/CD with Pipeline Automation",
+          "description": "This page provides guidance to the teams in BC Gov that look to get started with encorporating Continuous integration (CI) and continuous delivery (CD) into the lifecycle of their application hosted on the Private Cloud Openshift Platform."
         }
       },
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Developer-Tools/sizzy.md"
-          ]
+          "url": "https://docs.developer.gov.bc.ca/best-practices-for-managing-image-streams/",
+          "title": "Best practices for managing image streams",
+          "description": "Image Streams are used to store the outputs of builds and if not managed properly can clutter up the cluster."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/prebuilt-images/#patronipostgres",
+          "title": "Patroni Cluster Setup in Openshift 4",
+          "description": "Describes prebuilt images maintained by the Platform Services team and available for use in applications."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/bc-government-organizations-in-github/",
+          "title": "Introduction To Github and Gov",
+          "description": "Describes the different BC Government organizations in GitHub."
         }
       },
       {
@@ -162,18 +153,35 @@
         }
       },
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "title": "Developer Experience",
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Developer-Tools/resiliency-checklist.md",
-            "web/src/assets/migrated-pages/Developer-Tools/post-outage-checklist.md",
-            "web/src/assets/migrated-pages/Developer-Tools/resource-tuning-recommendations.md",
-            "web/src/assets/migrated-pages/Developer-Tools/request-for-quota-increase.md"
-          ]
+          "url": "https://docs.developer.gov.bc.ca/app-resiliency-guidelines/",
+          "title": "Resiliency Guidelines",
+          "description": "Describes the design and implementation process for creatin resilient applications"
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/check-application-health-after-outage/",
+          "title": "Post-Outage Application Health Checklist",
+          "description": "Describes aspects of your application you can check to ensure they are up and running after an outage."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/application-resource-tuning/",
+          "title": "Resource Tuning Recommendations",
+          "description": "Describes how to tune resource limits and requests in OpenShift."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/request-quota-increase-for-openshift-project-set/",
+          "title": "Need more quota for OpenShift project set?",
+          "description": "Describes the process to request more resource quota for an OpenShift project"
         }
       },
       {
@@ -199,5 +207,4 @@
       }
     ]
   }
- }
-  
+}

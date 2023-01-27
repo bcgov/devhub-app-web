@@ -10,19 +10,35 @@
   "sourceProperties": {
     "sources": [
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/12-factor-apps.md",
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/architecture_and_tech_stacks.md",
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/communication_community_and_support.md",
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/documize.md",
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/opensource.md",
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/progressive-web-apps.md"
-          ]
+          "url": "https://docs.developer.gov.bc.ca/app-resiliency-guidelines/#what-does-correctly-designed-mean",
+          "title": "12 Factor Apps",
+          "description": "The twelve-factor app is a methodology for building software-as-a-service apps."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/app-resiliency-guidelines/",
+          "title": "Application Architecture and Technology Stacks",
+          "description": "Describes the design and implementation process for creatin resilient applications"
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://cloud.gov.bc.ca/private-cloud/support-and-community/",
+          "title": "Communication, Community and Support",
+          "description": "Overview of Communication, Community and Support mechanism mechanism and conventions within the BC Gov developer community."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/start-working-in-bcgov-github-organization/",
+          "title": "Open Source Code",
+          "description": "Learn more about operating, and possibly maintaining, a GitHub Repository in Gov."
         }
       },
       {
@@ -89,24 +105,83 @@
         }
       },
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/GrantUsersAccessToProject.md",
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/Networking.md",
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/OCP4-Storage-backup.md",
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/OCP4ServiceOverview.md",
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/OCPStorageServices.md",
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/OCPServiceDefinition.md",
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/RequestGitHubEnterpriseUserLicense.md",
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/RequestGitHubUserAccess.md",
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/RequestUserAccess.md",
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/StartingANewProject.md",
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/UsefulProTips.md"
-          ]
+          "url": "https://docs.developer.gov.bc.ca/grant-user-access-openshift/",
+          "title": "Granting a user access to a project",
+          "description": "Describes how to get users access to OpenShift."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/openshift-network-policies/",
+          "title": "BC Gov OpenShift networking overview",
+          "description": "How to use Kubernetes Network Policies for an OpenShift product on the BCGov Private Cloud platform."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/reusable-services-list/#backup-container",
+          "title": "OCP4 Backup and Restore",
+          "description": "Backup Container is a simple, containerized backup solution used to backup one or more supported databases to a secondary location."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://cloud.gov.bc.ca/private-cloud/our-services-in-private-cloud-paas/overview-of-our-service-in-private-cloud-paas/",
+          "title": "Service Overview for BC Government Private Cloud as a Service/Openshift 4 Platform",
+          "description": "The BC Gov Private Cloud Platform as a Service (PaaS) is a reliable and secure application hosting platform for deploying and running government services. Learn about the platform and the benefits of hosting your application in the cloud."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/platform-storage/",
+          "title": "Persistent Storage Services",
+          "description": "Describes the different storage technologies used on the OpenShift platform."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://cloud.gov.bc.ca/private-cloud/your-product-team-in-the-private-cloud-paas/",
+          "title": "BC Gov PaaS OpenShift Platform Service Definition",
+          "description": "Make sure your team is prepared to work in the BC Gov Private Cloud PaaS."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/github-enterprise-user-licenses-bc-government/",
+          "title": "Use of GitHub Enterprise User Licenses in BC Gov",
+          "description": "Describes the benefits of GitHub Enterprise user licences and how to access them."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://just-ask.developer.gov.bc.ca",
+          "title": "How to request new GitHub user access or repository creation",
+          "description": "Just Ask! A github app to just ask for Github organization access"
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/grant-user-access-openshift/",
+          "title": "How to Request New User Access to OpenShift",
+          "description": "Describes how to get users access to OpenShift."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://cloud.gov.bc.ca/private-cloud/our-products-in-the-private-cloud-paas/project-registry/",
+          "title": "How to Request a New OpenShift Project",
+          "description": "Start building a new application in the BC Gov Private Cloud PaaS by submitting a product provisioning request using the self-serve Platform Product Registry tool."
         }
       },
       {
@@ -118,58 +193,27 @@
         }
       },
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/HumanHelp.md"
-          ]
+          "url": "https://cloud.gov.bc.ca/private-cloud/support-and-community/how-to-get-support-or-help/",
+          "title": "Getting human support for issues not covered by devops-requests",
+          "description": "Explore your options for getting support on the platform."
         }
       },
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/UserAccessToOrg.md"
-          ]
+          "url": "https://cloud.gov.bc.ca/private-cloud/our-services-in-private-cloud-paas/get-started-with-the-private-cloud-paas/",
+          "title": "Welcome to our Platform Community!",
+          "description": "Ready to start building your application in the BC Gov Private Cloud PaaS? Learn how to onboard your team onto the platform."
         }
       },
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/OnboardingOutcomes.md"
-          ]
-        }
-      },
-      {
-        "sourceType": "github",
-        "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/networkpolicy-migration-workshop-readme.md"
-          ]
-        }
-      },
-      {
-        "sourceType": "github",
-        "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Getting-Started-on-the-DevOps-Platform/LoadTestingGuidelines.md"
-          ]
+          "url": "https://docs.developer.gov.bc.ca/prepare-to-load-test-application-on-openshift/",
+          "title": "Load Testing Guidelines",
+          "description": "Describe what to do before you load test an application"
         }
       }
     ]

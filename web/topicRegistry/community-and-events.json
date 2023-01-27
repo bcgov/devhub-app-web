@@ -55,32 +55,41 @@
         }
       },
       {
-        "sourceType": "github",
-        "resourceType": "Events",
+        "sourceType": "web",
+        "resourceType": "Documentation",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Community-and-Events/events.md"
-          ]
+          "url": "https://cloud.gov.bc.ca/private-cloud/support-and-community/events-in-the-bc-gov-private-cloud-paas/",
+          "title": "Platform Community Meetup",
+          "description": "Learn about upcoming events, training and Meetups in the platform community."
         }
       },
       {
-        "sourceType": "github",
+       "sourceType": "web",
+       "resourceType": "Documentation",
+       "sourceProperties": {
+          "url": "https://cloud.gov.bc.ca/private-cloud/support-and-community/stay-connected/steps-to-join-the-bc-gov-rocket-chat/",
+          "title": "Steps To Join Rocket.Chat",
+          "description": "Instruction on registering and joining Rocket.Chat"
+        }
+      },
+       {
+        "sourceType": "web",
         "resourceType": "Documentation",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Community-and-Events/community-meetup.md",
-            "web/src/assets/migrated-pages/Community-and-Events/chat_conventions.md",
-            "web/src/assets/migrated-pages/Community-and-Events/UserInstructions.md",
-            "web/src/assets/migrated-pages/Community-and-Events/PlatformServicesDemoCollection.md"
-          ]
+          "url": "https://cloud.gov.bc.ca/private-cloud/support-and-community/stay-connected/rocket-chat-etiquette/",
+          "title": "Chat Channel Conventions",
+          "description": "Conventions and etiquette related to the BC Gov developer chat platform."
         }
-      }
+       },
+       {
+        "sourceType": "web",
+        "resourceType": "Documentation",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/training-from-the-platform-services-team/#video-resources",
+          "title": "Platform Services Sprint Review Demos",
+          "description": "Watch training videos created by the Platform Services team."
+        }
+       }
     ]
   }
 }
