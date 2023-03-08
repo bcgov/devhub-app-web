@@ -78,7 +78,7 @@ Documentation may be sourced from GitHub, other government websites, or external
 
 ### Github Repositories
 
-Github Repositories correspond directly to the B.C. Government repository on [GitHub](https://github.com). Resources that
+Github Repositories correspond directly to the [B.C. Government repository on GitHub](https://github.com/bcgov). Resources that
 are of type 'Github Repository' will allow you to directly access/reference/contribute to the repoositories
 codebase.  
 
