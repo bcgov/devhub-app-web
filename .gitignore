@@ -115,5 +115,7 @@ web/registry/registry.json
 # IntelliJ file
 .idea
 
+# VSCode configs
+.vscode/
 
 web/cypress/videos

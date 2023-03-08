@@ -18,30 +18,59 @@
         }
       },
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Platform-Services-Security/AQUAServiceDefinition.md",
-            "web/src/assets/migrated-pages/Platform-Services-Security/IDIR_OpenShift_Login.md",
-            "web/src/assets/migrated-pages/Platform-Services-Security/SecurityConsiderationsForDevOps.md",
-            "web/src/assets/migrated-pages/Platform-Services-Security/ServiceDefiniton.md",
-            "web/src/assets/migrated-pages/Platform-Services-Security/ServiceDefinition.md",
-            "web/src/assets/migrated-pages/Platform-Services-Security/VaultServiceDefinition.md"
-          ]
+          "url": "https://docs.developer.gov.bc.ca/devops-security-considerations/#container-image-scanning",
+          "title": "BC Government Aqua Cloud Service Definition",
+          "description": "Image scanning/analysis"
         }
       },
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Platform-Services-Security/SonarQubeBestPractices.md"
-          ]
+          "url": "https://docs.developer.gov.bc.ca/login-to-openshift/",
+          "title": "IDIR Login (via Azure AD) for OpenShift Console",
+          "description": "Describes how to login to the OpenShift console with your IDIR"
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/devops-security-considerations/",
+          "title": "BC Government OpenShift DevOps Security Considerations",
+          "description": "Learn about DevOps security considerations and tools on the BC Government OpenShift Private Cloud Platform as a Service."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/sysdig-monitor-onboarding/",
+          "title": "BC Government Sysdig Monitoring Service Definition",
+          "description": "Describes how to get started with Sysdig and monitor application"
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/image-artifact-management-with-artifactory/",
+          "title": "BC Government Artifact Repository Service Definition",
+          "description": "Discusses available Artifactory features and management"
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/vault-secrets-management-service/",
+          "title": "BC Government Vault Secrets Management",
+          "description": "HashiCorp Vault is available for secrets management in the BC Government&#x27;s OpenShift private cloud platform."
+        }
+      },
+      {
+        "sourceType": "web",
+        "sourceProperties": {
+          "url": "https://docs.developer.gov.bc.ca/reusable-services-list/#sonarqube-in-the-bc-gov-private-cloud-paas",
+          "title": "SonarQube Best Practices",
+          "description": "SonarQube® is an automatic code review tool you can use to detect bugs, vulnerabilities and code smells in your code."
         }
       }
     ]

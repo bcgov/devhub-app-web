@@ -10,36 +10,27 @@
   "sourceProperties": {
     "sources": [
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Information-and-Application-Security/app_security_self_assessment.md"
-          ]
+          "url": "https://docs.developer.gov.bc.ca/security-best-practices-for-apps/#application-security-self-assessment",
+          "title": "Application Security Self-Assessment",
+          "description": "This document contains a set of items to think about, questions to ask, tools, and references for conducting a STRA in a BCGov DevOps environment."
         }
       },
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Information-and-Application-Security/BC-Policy-Framework-For-GitHub-readme.md"
-          ]
+          "url": "https://cloud.gov.bc.ca/private-cloud/your-product-team-in-the-private-cloud-paas/work-in-the-open-with-github/",
+          "title": "BC Gov Policy Framework For using GitHub",
+          "description": "Describes the different BC Government organizations in GitHub."
         }
       },
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/devhub-app-web",
-          "owner": "bcgov",
-          "repo": "devhub-app-web",
-          "files": [
-            "web/src/assets/migrated-pages/Information-and-Application-Security/PCIDSSPatternforOCP.md"
-          ]
+          "url": "https://docs.developer.gov.bc.ca/payment-card-processing/",
+          "title": "Payment Card Processing for OpenShift Applications",
+          "description": "How to use centralized payment card processing for OpenShift applications"
         }
       }
     ]
