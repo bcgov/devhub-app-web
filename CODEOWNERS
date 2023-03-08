@@ -1,6 +1,6 @@
 # The default owner of all the files in the repository (Global Owner) will be requested for review.
-*      @ShellyXueHan @ty2k @w8896699
+*      @ShellyXueHan @ty2k @w8896699 @MonicaG @sheaphillips
 
 # If a pull request is made the following owners will be requested to review.
-*.     @ShellyXueHan @ty2k @w8896699
+*.     @ShellyXueHan @ty2k @w8896699 @MonicaG @sheaphillips
 
