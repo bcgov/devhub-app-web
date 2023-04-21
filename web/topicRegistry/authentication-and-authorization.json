@@ -18,23 +18,29 @@
           "owner": "bcdevops",
           "repo": "openshift-wiki",
           "files": [
-            "docs/RH-SSO/RequestSSOClient.md",
-            "docs/RH-SSO/ServiceDefinition.md",
-            "docs/RH-SSO/ServiceOverview.md"
+            "docs/RH-SSO/RequestSSOClient.md"
           ]
         }
       },
       {
         "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/bcgov/ocp-sso/wiki",
-          "author": "cvarjao",
-          "title": "KeyCloak wiki page",
-          "description": "you can find guides and information of config for keycloak here",
+          "url": "https://github.com/bcgov/sso-keycloak/wiki",
+          "title": "KeyCloak Wiki Page",
+          "description": "Guides and information related to KeyCloak SSO.",
           "image": "https://design.jboss.org/keycloak/logo/images/keycloak_logo_200px.png"
         }
-      }
+      },
+		{
+			"sourceType": "web",
+			"sourceProperties": {
+				"url": "https://digital.gov.bc.ca/common-components/pathfinder-sso",
+				"title": "Pathfinder SSO Service Definition",
+				"description": "Pathfinder SSO Service Definition outlines roles and responsibilities related to the service.",
+				"image": "https://design.jboss.org/keycloak/logo/images/keycloak_logo_200px.png"
+			}
+		}
 
-    ]
+	]
   }
 }
