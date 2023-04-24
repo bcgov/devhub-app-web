@@ -1,46 +1,41 @@
 {
-  "name": "Authentication and Authorization",
-  "version": "1.0.0",
-  "description": "Technical resources related to implementing authentication and authorization in government applications.",
-  "resourceType": "Documentation",
-  "attributes": {
-    "personas": [
-      "Developer"
-    ]
-  },
-  "template": "overview",
-  "sourceProperties": {
-    "sources": [
-      {
-        "sourceType": "github",
-        "sourceProperties": {
-          "url": "https://github.com/bcdevops/openshift-wiki",
-          "owner": "bcdevops",
-          "repo": "openshift-wiki",
-          "files": [
-            "docs/RH-SSO/RequestSSOClient.md"
-          ]
-        }
-      },
-      {
-        "sourceType": "web",
-        "sourceProperties": {
-          "url": "https://github.com/bcgov/sso-keycloak/wiki",
-          "title": "KeyCloak Wiki Page",
-          "description": "Guides and information related to KeyCloak SSO.",
-          "image": "https://design.jboss.org/keycloak/logo/images/keycloak_logo_200px.png"
-        }
-      },
-		{
-			"sourceType": "web",
-			"sourceProperties": {
-				"url": "https://digital.gov.bc.ca/common-components/pathfinder-sso",
-				"title": "Pathfinder SSO Service Definition",
-				"description": "Pathfinder SSO Service Definition outlines roles and responsibilities related to the service.",
-				"image": "https://design.jboss.org/keycloak/logo/images/keycloak_logo_200px.png"
+	"name": "Authentication and Authorization",
+	"version": "1.0.0",
+	"description": "Technical resources related to implementing authentication and authorization in government applications.",
+	"resourceType": "Documentation",
+	"attributes": {
+		"personas": [
+			"Developer"
+		]
+	},
+	"template": "overview",
+	"sourceProperties": {
+		"sources": [
+			{
+				"sourceType": "web",
+				"sourceProperties": {
+					"url": "https://github.com/bcgov/sso-keycloak/wiki/SSO-Onboarding",
+					"title": "Request SSO Client Creation",
+					"description": "How to request a new client in the SSO service."
+				}
+			},
+			{
+				"sourceType": "web",
+				"sourceProperties": {
+					"url": "https://github.com/bcgov/sso-keycloak/wiki",
+					"title": "KeyCloak Wiki Page",
+					"description": "Guides and information related to KeyCloak SSO.",
+					"image": "https://design.jboss.org/keycloak/logo/images/keycloak_logo_200px.png"
+				}
+			},
+			{
+				"sourceType": "web",
+				"sourceProperties": {
+					"url": "https://digital.gov.bc.ca/common-components/pathfinder-sso",
+					"title": "Pathfinder SSO Service Definition",
+					"description": "Pathfinder SSO Service Definition outlines roles and responsibilities related to the service."
+				}
 			}
-		}
-
-	]
-  }
+		]
+	}
 }
