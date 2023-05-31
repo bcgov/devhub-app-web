@@ -3,7 +3,7 @@ Copyright 2019 Province of British Columbia
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
-You may obtain a copy of the License at 
+You may obtain a copy of the License at
 
    http://www.apache.org/licenses/LICENSE-2.0
 
@@ -28,7 +28,6 @@ import { EMOTION_BOOTSTRAP_BREAKPOINTS, SPACING } from '../../constants/designTo
 import Search from '../Search';
 import AppLogo from '../UI/AppLogo/AppLogo';
 import { SearchSources } from '../Search/SearchSources';
-import AlgoliaBrand from '../UI/AlgoliaBrand';
 
 const SearchStyled = styled(Search)`
   font-size: 1.25em;
@@ -146,7 +145,6 @@ export const Masthead = ({ query, searchSourcesLoading, dataSources, location })
           logged in.
         </AlertMessage>
       )}
-      <AlgoliaBrand data-testid={TEST_IDS.algolia} style={{ paddingBottom: '5px' }} />
     </Container>
   );
 };
