@@ -19,16 +19,11 @@
         }
       },
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/BCDevOps/openshift-wiki",
-          "owner": "BCDevOps",
-          "repo": "openshift-wiki",
-          "files": [
-            "docs/API/KongAPI.md",
-            "docs/EDB/ServiceDefinition.md",
-            "docs/ArgoCD/README.md"
-          ]
+          "url": "https://bcgov.github.io/aps-infra-platform/",
+          "title": "BC Gov API Services",
+          "description": "Documentation for BC Gov API Services."
         }
       },
       {
