@@ -94,17 +94,7 @@ jobs:
           IMAGE_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
           IMAGE_TAG: ${{ env.PULL_NUMBER }}
         run: .github/helpers/deploy_web.sh
-      - name: Create Keycloak Client
-        env:
-          TOOLS_NAMESPACE: ${{ secrets.TOOLS_NAMESPACE }}
-          DEV_NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
-          KEYCLOAK_CLIENT_ID: ${{ secrets.KC_SA_CLIENT_ID }}
-          KEYCLOAK_CLIENT_SECRET: ${{ secrets.KC_SA_CLIENT_SECRET }}
-          PULL_NUMBER: ${{ env.PULL_NUMBER }}
-        run: |
-          REDIRECT_URI=$(oc -n $DEV_NAMESPACE get route/$INFRA_NAME$SUFFIX -o json | jq -r '.spec.host')
 
-          .github/helpers/kc-create-client.sh $PULL_NUMBER $REDIRECT_URI
       - name: Wait for Deployment and Update Status
         env:
           NAMESPACE: ${{ secrets.DEV_NAMESPACE }}
