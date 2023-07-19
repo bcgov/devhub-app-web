@@ -13,14 +13,6 @@
       {
         "sourceType": "web",
         "sourceProperties": {
-          "url": "https://developer.gov.bc.ca/Cloud-Pathfinder-Onboarding-Journey",
-          "title": "Cloud Pathfinder",
-          "description": "Get started on the Cloud Pathfinder platforms (AWS, Azure, GCP)"
-        }
-      },
-      {
-        "sourceType": "web",
-        "sourceProperties": {
           "url": "https://bcgov.github.io/aps-infra-platform/",
           "title": "BC Gov API Services",
           "description": "Documentation for BC Gov API Services."
