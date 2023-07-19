@@ -128,6 +128,9 @@ objects:
       redir /Community-and-Events/BC-Gov-Development-Community-Events https://cloud.gov.bc.ca/private-cloud/support-and-community/events-in-the-bc-gov-private-cloud-paas/ permanent
 
       # community contributed content redirects
+      redir /Cloud-Pathfinder https://digital.gov.bc.ca/cloud/public/ permanent
+      redir /Developer-Tools/Cloud-Pathfinder https://digital.gov.bc.ca/cloud/public/ permanent
+
       redir /Integrating-Algolia-Search-Engine-Into-the-Devhub https://docs.developer.gov.bc.ca/ permanent
       redir /Community-Contributed-Content/Integrating-Algolia-Search-Engine-Into-the-Devhub https://docs.developer.gov.bc.ca/ permanent
       
@@ -141,9 +144,6 @@ objects:
       redir /Community-Contributed-Content/Go-Crond https://docs.developer.gov.bc.ca/reusable-services-list/#go-crond permanent
 
       # developer tools redirects
-      redir /Cloud-Pathfinder /Cloud-Pathfinder-Onboarding-Journey permanent
-      redir /Developer-Tools/Cloud-Pathfinder /Cloud-Pathfinder-Onboarding-Journey permanent
-     
       redir /Create-alerts-and-notifications-in-Sysdig-Monitor https://docs.developer.gov.bc.ca/sysdig-monitor-create-alert-channels/ permanent
       redir /Developer-Tools/Create-alerts-and-notifications-in-Sysdig-Monitor https://docs.developer.gov.bc.ca/sysdig-monitor-create-alert-channels/ permanent
     
