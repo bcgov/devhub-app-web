@@ -57,7 +57,7 @@
     "gatsby-source-github-raw": "^1.2.5",
     "gatsby-source-meetup": "^1.1.0",
     "gatsby-transformer-json": "^2.11.0",
-    "gatsby-transformer-remark": "^2.16.0",
+    "gatsby-transformer-remark": "^5.25.1",
     "gatsby-transformer-sharp": "^2.12.0",
     "gatsby-transformer-yaml": "^2.11.0",
     "github-markdown-css": "^4.0.0",
