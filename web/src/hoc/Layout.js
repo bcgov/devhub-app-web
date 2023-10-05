@@ -65,10 +65,9 @@ export const Layout = ({ children }) => {
             </a>{' '}
             what's missing to make it useful for you.
           </p>
-          {/*<hr/>*/}
-          <p>
+          <div>
             <ButtonLink to={utmLink}>Test it out!</ButtonLink>
-          </p>
+          </div>
         </RetirementNotice>
         {children}
       </Wrapper>

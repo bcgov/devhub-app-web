@@ -119,3 +119,4 @@ web/registry/registry.json
 .vscode/
 
 web/cypress/videos
+/web/how_to_private.txt
