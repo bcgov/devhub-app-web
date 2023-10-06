@@ -13,22 +13,17 @@
       {
         "sourceType": "web",
         "sourceProperties": {
-          "url": "https://developer.gov.bc.ca/Cloud-Pathfinder-Onboarding-Journey",
+          "url": "https://digital.gov.bc.ca/cloud/public/",
           "title": "Cloud Pathfinder",
           "description": "Get started on the Cloud Pathfinder platforms (AWS, Azure, GCP)"
         }
       },
       {
-        "sourceType": "github",
+        "sourceType": "web",
         "sourceProperties": {
-          "url": "https://github.com/BCDevOps/openshift-wiki",
-          "owner": "BCDevOps",
-          "repo": "openshift-wiki",
-          "files": [
-            "docs/API/KongAPI.md",
-            "docs/EDB/ServiceDefinition.md",
-            "docs/ArgoCD/README.md"
-          ]
+          "url": "https://bcgov.github.io/aps-infra-platform/",
+          "title": "BC Gov API Services",
+          "description": "Documentation for BC Gov API Services."
         }
       },
       {
@@ -182,19 +177,6 @@
           "url": "https://docs.developer.gov.bc.ca/request-quota-increase-for-openshift-project-set/",
           "title": "Need more quota for OpenShift project set?",
           "description": "Describes the process to request more resource quota for an OpenShift project"
-        }
-      },
-      {
-        "sourceType": "github",
-        "sourceProperties": {
-          "title": "Dynamics 365 FAQ",
-          "url": "https://github.com/bcgov/cap-information",
-          "author": "ateppin",
-          "owner": "bcgov",
-          "repo": "cap-information",
-          "files": [
-            "cloud-pathfinder/dynamics.md"
-          ]
         }
       },
       {
