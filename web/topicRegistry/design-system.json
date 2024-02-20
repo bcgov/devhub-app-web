@@ -9,6 +9,7 @@
           "url": "https://github.com/bcgov/design-system/",
           "owner": "bcgov",
           "repo": "design-system",
+          "branch": "main",
           "files": [
             "components/about/about.md",
             "components/about/accessibility.md",
