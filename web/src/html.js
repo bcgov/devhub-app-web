@@ -23,7 +23,7 @@ class HTML extends React.Component {
             content="DevHub aims to become the &#34;Central Nervous System&#34; for the growing BC Gov developer community."
           />
           <meta name="twitter:author" content="patricksimonian" />
-          <meta name="robots" content="noindex"></meta>
+          <meta name="robots" content="noindex" />
           <meta
             name="twitter:description"
             content="DevHub aims to become the &#34;Central Nervous System&#34; for the growing BC Gov developer community."
