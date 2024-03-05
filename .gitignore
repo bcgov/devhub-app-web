@@ -120,3 +120,5 @@ web/registry/registry.json
 
 web/cypress/videos
 /web/how_to_private.txt
+
+.nvmrc
