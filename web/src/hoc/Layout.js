@@ -45,7 +45,7 @@ export const Layout = ({ children }) => {
     <StyledContainer fluid>
       {/* This is to fix the some of the issues occuring on IE 11, specifically the nav issues*/}
       <Helmet>
-          <script src="https://cdn.polyfill.io/v2/polyfill.min.js" />
+        <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js" />
       </Helmet>
       <PrimaryHeader showHamburger hamburgerClicked={() => setMenuToggled(!menuToggled)} />
 
