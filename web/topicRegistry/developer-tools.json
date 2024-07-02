@@ -118,7 +118,7 @@
           "owner": "bcgov",
           "title": "BC Data Catalogue",
           "description": "The BC Data catalogue helps users to find, understand and explore data. The catalogue also provides contact information so that data users can contact Data Custodians for additional information if required.",
-          "image": "https://developer.gov.bc.ca/images/gov-logo-static.png"
+          "image": "https://classic.developer.gov.bc.ca/images/gov-logo-static.png"
         },
         "resourceType": "Documentation"
       },
@@ -130,7 +130,7 @@
           "author": "webgismd",
           "title": "BC Web Mapping and Spatial Resources",
           "description": "There are many options for web mapping technology. The purpose of this site is to help people become more familiar with what is available in the area of spatail web services and web mapping hosted solutions.",
-          "image": "https://developer.gov.bc.ca/images/gov-logo-static.png"
+          "image": "https://classic.developer.gov.bc.ca/images/gov-logo-static.png"
         },
         "resourceType": "Documentation"
       },
