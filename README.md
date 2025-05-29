@@ -1,4 +1,6 @@
+# Archived
 
+**This repo is archived. It is replaced by [https://github.com/bcgov/developer-portal](https://github.com/bcgov/developer-portal)**
 # Devhub
 
 [![Lifecycle:Dormant](https://img.shields.io/badge/Lifecycle-Dormant-ff7f2a)](https://github.com/bcgov/repomountie/blob/master/doc/lifecycle-badges.md)
